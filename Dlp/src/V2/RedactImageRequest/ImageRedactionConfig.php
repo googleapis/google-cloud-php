@@ -147,5 +147,5 @@ class ImageRedactionConfig extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ImageRedactionConfig::class, \Google\Cloud\Dlp\V2\RedactImageRequest_ImageRedactionConfig::class);
+\class_alias(ImageRedactionConfig::class, \Google\Cloud\Dlp\V2\RedactImageRequest_ImageRedactionConfig::class);
 

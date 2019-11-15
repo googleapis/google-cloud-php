@@ -11,6 +11,6 @@ if (false) {
      */
     class Index_IndexField {}
 }
-class_exists(Index\IndexField::class);
-@trigger_error('Google\Cloud\Firestore\Admin\V1\Index_IndexField is deprecated and will be removed in the next major release. Use Google\Cloud\Firestore\Admin\V1\Index\IndexField instead', E_USER_DEPRECATED);
+\class_exists(Index\IndexField::class);
+@\trigger_error('Google\Cloud\Firestore\Admin\V1\Index_IndexField is deprecated and will be removed in the next major release. Use Google\Cloud\Firestore\Admin\V1\Index\IndexField instead', E_USER_DEPRECATED);
 

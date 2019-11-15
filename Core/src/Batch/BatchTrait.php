@@ -87,12 +87,12 @@ trait BatchTrait
      */
     public function send(array $items)
     {
-        $start = microtime(true);
+        $start = \microtime(true);
         try {
-            call_user_func_array($this->getCallback(), [$items]);
+            \call_user_func_array($this->getCallback(), [$items]);
         } catch (\Exception $e) {
             if ($this->debugOutput) {
-                fwrite(
+                \fwrite(
                     $this->debugOutputResource,
                     $e->getMessage() . PHP_EOL . PHP_EOL
                     . $e->getTraceAsString() . PHP_EOL
@@ -101,22 +101,22 @@ trait BatchTrait
 
             return false;
         }
-        $end = microtime(true);
+        $end = \microtime(true);
         if ($this->debugOutput) {
-            fwrite(
+            \fwrite(
                 $this->debugOutputResource,
-                sprintf(
+                \sprintf(
                     '%f seconds for %s: %d items' . PHP_EOL,
                     $end - $start,
                     $this->batchMethod,
-                    count($items)
+                    \count($items)
                 )
             );
-            fwrite(
+            \fwrite(
                 $this->debugOutputResource,
-                sprintf(
+                \sprintf(
                     'memory used: %d' . PHP_EOL,
-                    memory_get_usage()
+                    \memory_get_usage()
                 )
             );
         }
@@ -185,7 +185,7 @@ trait BatchTrait
         $this->identifier = $options['identifier'];
         $this->debugOutputResource = isset($options['debugOutputResource'])
             ? $options['debugOutputResource']
-            : fopen('php://stderr', 'w');
+            : \fopen('php://stderr', 'w');
         $this->debugOutput = isset($options['debugOutput'])
             ? $options['debugOutput']
             : false;

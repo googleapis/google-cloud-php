@@ -135,5 +135,5 @@ class GroupedResult extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(GroupedResult::class, \Google\Cloud\Vision\V1\ProductSearchResults_GroupedResult::class);
+\class_alias(GroupedResult::class, \Google\Cloud\Vision\V1\ProductSearchResults_GroupedResult::class);
 

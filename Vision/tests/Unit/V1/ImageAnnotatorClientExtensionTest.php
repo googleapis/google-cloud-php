@@ -58,8 +58,8 @@ class ImageAnnotatorClientExtensionTest extends TestCase
     public function testCreateImageObject()
     {
         $image = $this->client->createImageObject("gs://my-bucket/myimage.jpg");
-        $this->assertSame(Image::class, get_class($image));
-        $this->assertSame(ImageSource::class, get_class($image->getSource()));
+        $this->assertSame(Image::class, \get_class($image));
+        $this->assertSame(ImageSource::class, \get_class($image->getSource()));
     }
 
     /**

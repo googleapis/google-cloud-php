@@ -174,7 +174,7 @@ class Annotation
             $this->imageProperties = new ImageProperties($info['imagePropertiesAnnotation']);
         }
 
-        if (isset($info['cropHintsAnnotation']) && is_array($info['cropHintsAnnotation']['cropHints'])) {
+        if (isset($info['cropHintsAnnotation']) && \is_array($info['cropHintsAnnotation']['cropHints'])) {
             $this->cropHints = [];
             foreach ($info['cropHintsAnnotation']['cropHints'] as $hint) {
                 $this->cropHints[] = new CropHint($hint);
@@ -189,9 +189,9 @@ class Annotation
             $this->error = $info['error'];
         }
 
-        $class = get_class($this);
+        $class = \get_class($this);
         $err = "The class {$class} is no longer supported";
-        @trigger_error($err, E_USER_DEPRECATED);
+        @\trigger_error($err, E_USER_DEPRECATED);
     }
 
     /**

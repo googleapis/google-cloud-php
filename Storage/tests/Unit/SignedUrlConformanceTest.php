@@ -65,7 +65,7 @@ class SignedUrlConformanceTest extends TestCase
 
     public function signedUrlConformanceCases()
     {
-        $cases = json_decode(file_get_contents(__DIR__ . '/data/signed-url-v4-testdata.json'), true);
+        $cases = \json_decode(\file_get_contents(__DIR__ . '/data/signed-url-v4-testdata.json'), true);
 
         // rekey with description for more useful error reporting.
         $out = [];

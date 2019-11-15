@@ -21,7 +21,7 @@ class FirestoreAdmin
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         \GPBMetadata\Google\Api\Client::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0aca170a2f676f6f676c652f6669726573746f72652f61646d696e2f7631" .
             "2f6669726573746f72655f61646d696e2e70726f746f1219676f6f676c65" .
             "2e6669726573746f72652e61646d696e2e76311a25676f6f676c652f6669" .

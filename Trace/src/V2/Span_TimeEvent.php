@@ -11,6 +11,6 @@ if (false) {
      */
     class Span_TimeEvent {}
 }
-class_exists(Span\TimeEvent::class);
-@trigger_error('Google\Cloud\Trace\V2\Span_TimeEvent is deprecated and will be removed in a future release. Use Google\Cloud\Trace\V2\Span\TimeEvent instead', E_USER_DEPRECATED);
+\class_exists(Span\TimeEvent::class);
+@\trigger_error('Google\Cloud\Trace\V2\Span_TimeEvent is deprecated and will be removed in a future release. Use Google\Cloud\Trace\V2\Span\TimeEvent instead', E_USER_DEPRECATED);
 

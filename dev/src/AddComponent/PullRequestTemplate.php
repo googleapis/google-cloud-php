@@ -44,12 +44,12 @@ class PullRequestTemplate
         $source = $this->rootPath . '/dev/src/AddComponent/templates/template-pull_request_template.md.txt';
         $dir = $this->path .'/.github';
         $dest = $dir . '/pull_request_template.md';
-        @mkdir($dir);
+        @\mkdir($dir);
 
-        $pathParts = explode('/', $this->path);
-        $template = file_get_contents($source);
-        $template = str_replace('{clientBase}', array_pop($pathParts), $template);
+        $pathParts = \explode('/', $this->path);
+        $template = \file_get_contents($source);
+        $template = \str_replace('{clientBase}', \array_pop($pathParts), $template);
 
-        file_put_contents($dest, $template);
+        \file_put_contents($dest, $template);
     }
 }

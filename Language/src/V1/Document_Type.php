@@ -11,6 +11,6 @@ if (false) {
      */
     class Document_Type {}
 }
-class_exists(Document\Type::class);
-@trigger_error('Google\Cloud\Language\V1\Document_Type is deprecated and will be removed in the next major release. Use Google\Cloud\Language\V1\Document\Type instead', E_USER_DEPRECATED);
+\class_exists(Document\Type::class);
+@\trigger_error('Google\Cloud\Language\V1\Document_Type is deprecated and will be removed in the next major release. Use Google\Cloud\Language\V1\Document\Type instead', E_USER_DEPRECATED);
 

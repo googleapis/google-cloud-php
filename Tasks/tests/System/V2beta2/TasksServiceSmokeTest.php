@@ -43,7 +43,7 @@ class TasksServiceSmokeTest extends SystemTestCase
         self::$deletionQueue->add(function () use ($client, $queue) {
             $client->deleteQueue($queue->getName());
         });
-        sleep(120);
+        \sleep(120);
     }
 
     /**
@@ -51,13 +51,13 @@ class TasksServiceSmokeTest extends SystemTestCase
      */
     public function smokeTest()
     {
-        $projectId = getenv('PROJECT_ID');
+        $projectId = \getenv('PROJECT_ID');
         if ($projectId === false) {
             $this->fail('Environment variable PROJECT_ID must be set for smoke test');
         }
         $client = new CloudTasksClient();
         $location = 'us-central1';
-        $queue = uniqid();
+        $queue = \uniqid();
         $queueName = $client::queueName($projectId, $location, $queue);
         $locationName = $client::locationName($projectId, $location);
         $queue = new Queue();
@@ -65,7 +65,7 @@ class TasksServiceSmokeTest extends SystemTestCase
         $queue->setPullTarget(new PullTarget());
         $this->createQueue($client, $locationName, $queue);
         $pullMessage = new PullMessage();
-        $payload = 'a message for the consumer: ' . uniqid();
+        $payload = 'a message for the consumer: ' . \uniqid();
         $pullMessage->setPayload($payload);
         $task = new Task();
         $task->setPullMessage($pullMessage);

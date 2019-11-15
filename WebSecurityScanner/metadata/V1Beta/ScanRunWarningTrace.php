@@ -14,7 +14,7 @@ class ScanRunWarningTrace
         if (static::$is_initialized == true) {
           return;
         }
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0ab3040a43676f6f676c652f636c6f75642f776562736563757269747973" .
             "63616e6e65722f7631626574612f7363616e5f72756e5f7761726e696e67" .
             "5f74726163652e70726f746f1226676f6f676c652e636c6f75642e776562" .

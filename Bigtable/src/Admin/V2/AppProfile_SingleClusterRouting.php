@@ -11,6 +11,6 @@ if (false) {
      */
     class AppProfile_SingleClusterRouting {}
 }
-class_exists(AppProfile\SingleClusterRouting::class);
-@trigger_error('Google\Cloud\Bigtable\Admin\V2\AppProfile_SingleClusterRouting is deprecated and will be removed in the next major release. Use Google\Cloud\Bigtable\Admin\V2\AppProfile\SingleClusterRouting instead', E_USER_DEPRECATED);
+\class_exists(AppProfile\SingleClusterRouting::class);
+@\trigger_error('Google\Cloud\Bigtable\Admin\V2\AppProfile_SingleClusterRouting is deprecated and will be removed in the next major release. Use Google\Cloud\Bigtable\Admin\V2\AppProfile\SingleClusterRouting instead', E_USER_DEPRECATED);
 

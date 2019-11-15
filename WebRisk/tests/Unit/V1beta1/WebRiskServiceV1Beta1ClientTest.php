@@ -95,7 +95,7 @@ class WebRiskServiceV1Beta1ClientTest extends GeneratedTest
         $response = $client->computeThreatListDiff($threatType, $constraints);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertSame(1, \count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.webrisk.v1beta1.WebRiskServiceV1Beta1/ComputeThreatListDiff', $actualFuncCall);
@@ -124,7 +124,7 @@ class WebRiskServiceV1Beta1ClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -171,7 +171,7 @@ class WebRiskServiceV1Beta1ClientTest extends GeneratedTest
         $response = $client->searchUris($uri, $threatTypes);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertSame(1, \count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.webrisk.v1beta1.WebRiskServiceV1Beta1/SearchUris', $actualFuncCall);
@@ -200,7 +200,7 @@ class WebRiskServiceV1Beta1ClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -246,7 +246,7 @@ class WebRiskServiceV1Beta1ClientTest extends GeneratedTest
         $response = $client->searchHashes($threatTypes);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertSame(1, \count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.webrisk.v1beta1.WebRiskServiceV1Beta1/SearchHashes', $actualFuncCall);
@@ -272,7 +272,7 @@ class WebRiskServiceV1Beta1ClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',

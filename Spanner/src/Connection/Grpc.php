@@ -663,9 +663,9 @@ class Grpc implements ConnectionInterface
         $inputMutations = $this->pluck('mutations', $args);
 
         $mutations = [];
-        if (is_array($inputMutations)) {
+        if (\is_array($inputMutations)) {
             foreach ($inputMutations as $mutation) {
-                $type = array_keys($mutation)[0];
+                $type = \array_keys($mutation)[0];
                 $data = $mutation[$type];
 
                 switch ($type) {
@@ -854,7 +854,7 @@ class Grpc implements ConnectionInterface
             $args['params']->setFields($modifiedParams);
         }
 
-        if (isset($args['paramTypes']) && is_array($args['paramTypes'])) {
+        if (isset($args['paramTypes']) && \is_array($args['paramTypes'])) {
             foreach ($args['paramTypes'] as $key => $param) {
                 $args['paramTypes'][$key] = $this->serializer->decodeMessage(new Type, $param);
             }
@@ -942,7 +942,7 @@ class Grpc implements ConnectionInterface
     private function instanceArray(array &$args, $required = false)
     {
         $argsCopy = $args;
-        return array_intersect_key([
+        return \array_intersect_key([
             'name' => $this->pluck('name', $args, $required),
             'config' => $this->pluck('config', $args, $required),
             'displayName' => $this->pluck('displayName', $args, $required),
@@ -959,7 +959,7 @@ class Grpc implements ConnectionInterface
     private function fieldMask($instanceArray)
     {
         $mask = [];
-        foreach (array_keys($instanceArray) as $key) {
+        foreach (\array_keys($instanceArray) as $key) {
             $mask[] = Serializer::toSnakeCase($key);
         }
         return $this->serializer->decodeMessage(new FieldMask(), ['paths' => $mask]);
@@ -975,7 +975,7 @@ class Grpc implements ConnectionInterface
         $value = $this->formatValueForApi($param);
 
         $setter = null;
-        switch (array_keys($value)[0]) {
+        switch (\array_keys($value)[0]) {
             case 'string_value':
                 $setter = 'setStringValue';
                 break;
@@ -1011,7 +1011,7 @@ class Grpc implements ConnectionInterface
                 break;
         }
 
-        $value = is_array($value) ? current($value) : $value;
+        $value = \is_array($value) ? \current($value) : $value;
         if ($setter) {
             $field->$setter($value);
         }

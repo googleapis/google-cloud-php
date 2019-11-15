@@ -532,7 +532,7 @@ class Span extends \Google\Protobuf\Internal\Message
     public function getSameProcessAsParentSpanValue()
     {
         $wrapper = $this->getSameProcessAsParentSpan();
-        return is_null($wrapper) ? null : $wrapper->getValue();
+        return \is_null($wrapper) ? null : $wrapper->getValue();
     }
 
     /**
@@ -567,7 +567,7 @@ class Span extends \Google\Protobuf\Internal\Message
      */
     public function setSameProcessAsParentSpanValue($var)
     {
-        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
+        $wrappedVar = \is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
         return $this->setSameProcessAsParentSpan($wrappedVar);
     }
 
@@ -595,7 +595,7 @@ class Span extends \Google\Protobuf\Internal\Message
     public function getChildSpanCountValue()
     {
         $wrapper = $this->getChildSpanCount();
-        return is_null($wrapper) ? null : $wrapper->getValue();
+        return \is_null($wrapper) ? null : $wrapper->getValue();
     }
 
     /**
@@ -626,7 +626,7 @@ class Span extends \Google\Protobuf\Internal\Message
      */
     public function setChildSpanCountValue($var)
     {
-        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\Int32Value(['value' => $var]);
+        $wrappedVar = \is_null($var) ? null : new \Google\Protobuf\Int32Value(['value' => $var]);
         return $this->setChildSpanCount($wrappedVar);
     }
 

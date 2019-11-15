@@ -181,7 +181,7 @@ class TranslateClient
     public function translate($string, array $options = [])
     {
         $res = $this->translateBatch([$string], $options);
-        if (count($res) > 0) {
+        if (\count($res) > 0) {
             return $res[0];
         }
     }
@@ -236,19 +236,19 @@ class TranslateClient
             'model' => null,
         ];
 
-        $options = array_filter($options + [
+        $options = \array_filter($options + [
             'q' => $strings,
             'key' => $this->key,
             'target' => $this->targetLanguage,
             'model' => $options['model']
         ], function ($opt) {
-            return !is_null($opt);
+            return !\is_null($opt);
         });
 
         $response = $this->connection->listTranslations($options);
 
         $translations = [];
-        $strings = array_values($strings);
+        $strings = \array_values($strings);
 
         if (isset($response['data']['translations'])) {
             foreach ($response['data']['translations'] as $key => $translation) {
@@ -334,7 +334,7 @@ class TranslateClient
         foreach ($response['data']['detections'] as $key => $detection) {
             $detection = $detection[0];
 
-            $detections[] = array_filter([
+            $detections[] = \array_filter([
                 'languageCode' => $detection['language'],
                 'input' => $strings[$key],
                 'confidence' => isset($detection['confidence']) ? $detection['confidence'] : null
@@ -367,7 +367,7 @@ class TranslateClient
     {
         $response = $this->localizedLanguages($options + ['target' => null]);
 
-        return array_map(function ($language) {
+        return \array_map(function ($language) {
             return $language['code'];
         }, $response);
     }
@@ -411,8 +411,8 @@ class TranslateClient
             'target' => $this->targetLanguage
         ]);
 
-        return array_map(function ($language) {
-            return array_filter([
+        return \array_map(function ($language) {
+            return \array_filter([
                 'code' => $language['language'],
                 'name' => isset($language['name']) ? $language['name'] : null
             ]);
@@ -422,5 +422,5 @@ class TranslateClient
 
 //@codingStandardsIgnoreStart
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TranslateClient::class, \Google\Cloud\Translate\TranslateClient::class);
+\class_alias(TranslateClient::class, \Google\Cloud\Translate\TranslateClient::class);
 //@codingStandardsIgnoreEnd

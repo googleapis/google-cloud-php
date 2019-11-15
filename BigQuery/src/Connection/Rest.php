@@ -295,8 +295,8 @@ class Rest implements ConnectionInterface
             'metadata'
         ];
 
-        $args['uploaderOptions'] = array_intersect_key($args, array_flip($uploaderOptionKeys));
-        $args = array_diff_key($args, array_flip($uploaderOptionKeys));
+        $args['uploaderOptions'] = \array_intersect_key($args, \array_flip($uploaderOptionKeys));
+        $args = \array_diff_key($args, \array_flip($uploaderOptionKeys));
 
         return $args;
     }

@@ -46,7 +46,7 @@ trait UriTrait
      */
     public function buildUriWithQuery($uri, array $query)
     {
-        $query = array_filter($query, function ($v) {
+        $query = \array_filter($query, function ($v) {
             return $v !== null;
         });
 
@@ -54,7 +54,7 @@ trait UriTrait
         // 1 or 0 which the API does not accept. this casts bools to their
         // string representation
         foreach ($query as $k => &$v) {
-            if (is_bool($v)) {
+            if (\is_bool($v)) {
                 $v = $v ? 'true' : 'false';
             }
         }

@@ -11,6 +11,6 @@ if (false) {
      */
     class SearchJobsRequest_SearchMode {}
 }
-class_exists(SearchJobsRequest\SearchMode::class);
-@trigger_error('Google\Cloud\Talent\V4beta1\SearchJobsRequest_SearchMode is deprecated and will be removed in the next major release. Use Google\Cloud\Talent\V4beta1\SearchJobsRequest\SearchMode instead', E_USER_DEPRECATED);
+\class_exists(SearchJobsRequest\SearchMode::class);
+@\trigger_error('Google\Cloud\Talent\V4beta1\SearchJobsRequest_SearchMode is deprecated and will be removed in the next major release. Use Google\Cloud\Talent\V4beta1\SearchJobsRequest\SearchMode instead', E_USER_DEPRECATED);
 

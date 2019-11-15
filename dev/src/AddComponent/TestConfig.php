@@ -51,7 +51,7 @@ class TestConfig
             $source = $this->rootPath . '/dev/src/AddComponent/templates/template-' . $file . '.txt';
             $dest = $this->path . '/' . $file;
 
-            copy($source, $dest);
+            \copy($source, $dest);
         }
     }
 }

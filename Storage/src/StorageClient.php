@@ -126,7 +126,7 @@ class StorageClient
     {
         if (!$userProject) {
             $userProject = null;
-        } elseif (!is_string($userProject)) {
+        } elseif (!\is_string($userProject)) {
             $userProject = $this->projectId;
         }
 
@@ -187,7 +187,7 @@ class StorageClient
 
         $resultLimit = $this->pluck('resultLimit', $options, false);
         $bucketUserProject = $this->pluck('bucketUserProject', $options, false);
-        $bucketUserProject = !is_null($bucketUserProject)
+        $bucketUserProject = !\is_null($bucketUserProject)
             ? $bucketUserProject
             : true;
         $userProject = (isset($options['userProject']) && $bucketUserProject)
@@ -325,7 +325,7 @@ class StorageClient
         }
 
         $bucketUserProject = $this->pluck('bucketUserProject', $options, false);
-        $bucketUserProject = !is_null($bucketUserProject)
+        $bucketUserProject = !\is_null($bucketUserProject)
             ? $bucketUserProject
             : true;
         $userProject = (isset($options['userProject']) && $bucketUserProject)

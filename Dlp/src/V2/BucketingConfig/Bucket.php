@@ -142,5 +142,5 @@ class Bucket extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Bucket::class, \Google\Cloud\Dlp\V2\BucketingConfig_Bucket::class);
+\class_alias(Bucket::class, \Google\Cloud\Dlp\V2\BucketingConfig_Bucket::class);
 

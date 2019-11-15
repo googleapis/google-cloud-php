@@ -11,6 +11,6 @@ if (false) {
      */
     class InternalChecker_State {}
 }
-class_exists(InternalChecker\State::class);
-@trigger_error('Google\Cloud\Monitoring\V3\InternalChecker_State is deprecated and will be removed in the next major release. Use Google\Cloud\Monitoring\V3\InternalChecker\State instead', E_USER_DEPRECATED);
+\class_exists(InternalChecker\State::class);
+@\trigger_error('Google\Cloud\Monitoring\V3\InternalChecker_State is deprecated and will be removed in the next major release. Use Google\Cloud\Monitoring\V3\InternalChecker\State instead', E_USER_DEPRECATED);
 

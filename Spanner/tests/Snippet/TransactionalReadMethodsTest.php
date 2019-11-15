@@ -366,7 +366,7 @@ class TransactionalReadMethodsTest extends SnippetTestCase
 
         $snippet->addLocal($localName, $client);
 
-        $res = explode(PHP_EOL, $snippet->invoke()->output());
+        $res = \explode(PHP_EOL, $snippet->invoke()->output());
         $this->assertEquals('foo: bar', $res[0]);
         $this->assertEquals('foo: 2', $res[1]);
         $this->assertEquals('2: this field is unnamed', $res[2]);
@@ -477,7 +477,7 @@ class TransactionalReadMethodsTest extends SnippetTestCase
             $this->session->reveal(),
             [
                 'id' => self::TRANSACTION,
-                'readTimestamp' => new Timestamp(\DateTime::createFromFormat('U', (string) time()))
+                'readTimestamp' => new Timestamp(\DateTime::createFromFormat('U', (string) \time()))
             ]
         ], ['operation', 'session']);
     }

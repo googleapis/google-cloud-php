@@ -11,6 +11,6 @@ if (false) {
      */
     class Intent_Message_BasicCard_Button {}
 }
-class_exists(Intent\Message\BasicCard\Button::class);
-@trigger_error('Google\Cloud\Dialogflow\V2\Intent_Message_BasicCard_Button is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\Intent\Message\BasicCard\Button instead', E_USER_DEPRECATED);
+\class_exists(Intent\Message\BasicCard\Button::class);
+@\trigger_error('Google\Cloud\Dialogflow\V2\Intent_Message_BasicCard_Button is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\Intent\Message\BasicCard\Button instead', E_USER_DEPRECATED);
 

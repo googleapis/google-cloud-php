@@ -11,6 +11,6 @@ if (false) {
      */
     class ScanConfig_ExportToSecurityCommandCenter {}
 }
-class_exists(ScanConfig\ExportToSecurityCommandCenter::class);
-@trigger_error('Google\Cloud\WebSecurityScanner\V1beta\ScanConfig_ExportToSecurityCommandCenter is deprecated and will be removed in a future release. Use Google\Cloud\WebSecurityScanner\V1beta\ScanConfig\ExportToSecurityCommandCenter instead', E_USER_DEPRECATED);
+\class_exists(ScanConfig\ExportToSecurityCommandCenter::class);
+@\trigger_error('Google\Cloud\WebSecurityScanner\V1beta\ScanConfig_ExportToSecurityCommandCenter is deprecated and will be removed in a future release. Use Google\Cloud\WebSecurityScanner\V1beta\ScanConfig\ExportToSecurityCommandCenter instead', E_USER_DEPRECATED);
 

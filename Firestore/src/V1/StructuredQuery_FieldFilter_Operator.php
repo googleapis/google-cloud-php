@@ -11,6 +11,6 @@ if (false) {
      */
     class StructuredQuery_FieldFilter_Operator {}
 }
-class_exists(StructuredQuery\FieldFilter\Operator::class);
-@trigger_error('Google\Cloud\Firestore\V1\StructuredQuery_FieldFilter_Operator is deprecated and will be removed in the next major release. Use Google\Cloud\Firestore\V1\StructuredQuery\FieldFilter\Operator instead', E_USER_DEPRECATED);
+\class_exists(StructuredQuery\FieldFilter\Operator::class);
+@\trigger_error('Google\Cloud\Firestore\V1\StructuredQuery_FieldFilter_Operator is deprecated and will be removed in the next major release. Use Google\Cloud\Firestore\V1\StructuredQuery\FieldFilter\Operator instead', E_USER_DEPRECATED);
 

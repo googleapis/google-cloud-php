@@ -74,7 +74,7 @@ class SampleRowKeysTest extends BigtableTestCase
     public function testSampleRowKeys()
     {
         $rowKeysStream = self::$table->sampleRowKeys();
-        $rowKeys = iterator_to_array($rowKeysStream);
+        $rowKeys = \iterator_to_array($rowKeysStream);
         $expectedRowKeys = [
             [
                 'rowKey' => '',

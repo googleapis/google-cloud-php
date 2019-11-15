@@ -11,6 +11,6 @@ if (false) {
      */
     class AliasContext_Kind {}
 }
-class_exists(AliasContext\Kind::class);
-@trigger_error('Google\Cloud\DevTools\Source\V1\AliasContext_Kind is deprecated and will be removed in the next major release. Use Google\Cloud\DevTools\Source\V1\AliasContext\Kind instead', E_USER_DEPRECATED);
+\class_exists(AliasContext\Kind::class);
+@\trigger_error('Google\Cloud\DevTools\Source\V1\AliasContext_Kind is deprecated and will be removed in the next major release. Use Google\Cloud\DevTools\Source\V1\AliasContext\Kind instead', E_USER_DEPRECATED);
 

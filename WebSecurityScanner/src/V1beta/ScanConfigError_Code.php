@@ -11,6 +11,6 @@ if (false) {
      */
     class ScanConfigError_Code {}
 }
-class_exists(ScanConfigError\Code::class);
-@trigger_error('Google\Cloud\WebSecurityScanner\V1beta\ScanConfigError_Code is deprecated and will be removed in a future release. Use Google\Cloud\WebSecurityScanner\V1beta\ScanConfigError\Code instead', E_USER_DEPRECATED);
+\class_exists(ScanConfigError\Code::class);
+@\trigger_error('Google\Cloud\WebSecurityScanner\V1beta\ScanConfigError_Code is deprecated and will be removed in a future release. Use Google\Cloud\WebSecurityScanner\V1beta\ScanConfigError\Code instead', E_USER_DEPRECATED);
 

@@ -204,10 +204,10 @@ class BatchClient
      */
     public function snapshotFromString($identifier)
     {
-        $data = json_decode(base64_decode($identifier), true);
-        $missing = array_diff(
+        $data = \json_decode(\base64_decode($identifier), true);
+        $missing = \array_diff(
             ['sessionName', 'transactionId', 'readTimestamp'],
-            array_keys($data)
+            \array_keys($data)
         );
 
         if ($missing) {
@@ -239,13 +239,13 @@ class BatchClient
      */
     public function partitionFromString($partition)
     {
-        $data = json_decode(base64_decode($partition), true);
+        $data = \json_decode(\base64_decode($partition), true);
         if (!isset($data[self::PARTITION_TYPE_KEY])) {
             throw new \InvalidArgumentException('Invalid partition data.');
         }
 
         $class = $data[self::PARTITION_TYPE_KEY];
-        if (!in_array($class, $this->allowedPartitionTypes)) {
+        if (!\in_array($class, $this->allowedPartitionTypes)) {
             throw new \InvalidArgumentException('Invalid partition type.');
         }
 

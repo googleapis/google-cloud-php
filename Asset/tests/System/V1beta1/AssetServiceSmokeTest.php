@@ -32,11 +32,11 @@ class AssetServiceSmokeTest extends SystemTestCase
      */
     public function smokeTest()
     {
-        $projectId = getenv('PROJECT_ID');
+        $projectId = \getenv('PROJECT_ID');
         if ($projectId === false) {
             $this->fail('Environment variable PROJECT_ID must be set for smoke test');
         }
-        $bucket = getenv('ASSET_TEST_BUCKET');
+        $bucket = \getenv('ASSET_TEST_BUCKET');
         if ($bucket === false) {
             $this->fail('Environment variable ASSET_TEST_BUCKET must be set for smoke test');
         }

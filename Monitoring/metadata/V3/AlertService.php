@@ -19,7 +19,7 @@ class AlertService
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         \GPBMetadata\Google\Api\Client::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0aea0e0a28676f6f676c652f6d6f6e69746f72696e672f76332f616c6572" .
             "745f736572766963652e70726f746f1214676f6f676c652e6d6f6e69746f" .
             "72696e672e76331a20676f6f676c652f6d6f6e69746f72696e672f76332f" .

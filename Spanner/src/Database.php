@@ -310,7 +310,7 @@ class Database
         ];
 
         $databaseId = DatabaseAdminClient::parseName($this->name())['database'];
-        $statement = sprintf('CREATE DATABASE `%s`', $databaseId);
+        $statement = \sprintf('CREATE DATABASE `%s`', $databaseId);
 
         $operation = $this->connection->createDatabase([
             'instance' => $this->instance->name(),
@@ -748,7 +748,7 @@ class Database
         };
 
         $transactionFn = function ($operation, $session, $options) use ($startTransactionFn) {
-            $transaction = call_user_func_array($startTransactionFn, [
+            $transaction = \call_user_func_array($startTransactionFn, [
                 $session,
                 $options
             ]);
@@ -756,7 +756,7 @@ class Database
             // Prevent nested transactions.
             $this->isRunningTransaction = true;
             try {
-                $res = call_user_func($operation, $transaction);
+                $res = \call_user_func($operation, $transaction);
             } finally {
                 $this->isRunningTransaction = false;
             }
@@ -1715,13 +1715,13 @@ class Database
      */
     public function identity()
     {
-        $databaseParts = explode('/', $this->name);
-        $instanceParts = explode('/', $this->instance->name());
+        $databaseParts = \explode('/', $this->name);
+        $instanceParts = \explode('/', $this->instance->name());
 
         return [
             'projectId' => $this->projectId,
-            'database' => end($databaseParts),
-            'instance' => end($instanceParts),
+            'database' => \end($databaseParts),
+            'instance' => \end($instanceParts),
         ];
     }
 
@@ -1746,7 +1746,7 @@ class Database
     public function __debugInfo()
     {
         return [
-            'connection' => get_class($this->connection),
+            'connection' => \get_class($this->connection),
             'projectId' => $this->projectId,
             'name' => $this->name,
             'instance' => $this->instance,

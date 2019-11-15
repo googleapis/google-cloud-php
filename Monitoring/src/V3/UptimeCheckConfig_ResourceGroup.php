@@ -11,6 +11,6 @@ if (false) {
      */
     class UptimeCheckConfig_ResourceGroup {}
 }
-class_exists(UptimeCheckConfig\ResourceGroup::class);
-@trigger_error('Google\Cloud\Monitoring\V3\UptimeCheckConfig_ResourceGroup is deprecated and will be removed in the next major release. Use Google\Cloud\Monitoring\V3\UptimeCheckConfig\ResourceGroup instead', E_USER_DEPRECATED);
+\class_exists(UptimeCheckConfig\ResourceGroup::class);
+@\trigger_error('Google\Cloud\Monitoring\V3\UptimeCheckConfig_ResourceGroup is deprecated and will be removed in the next major release. Use Google\Cloud\Monitoring\V3\UptimeCheckConfig\ResourceGroup instead', E_USER_DEPRECATED);
 

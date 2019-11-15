@@ -16,7 +16,7 @@ class ResumeService
         }
         \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Cloud\Talent\V4Beta1\Profile::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0a83050a30676f6f676c652f636c6f75642f74616c656e742f7634626574" .
             "61312f726573756d655f736572766963652e70726f746f121b676f6f676c" .
             "652e636c6f75642e74616c656e742e763462657461311a29676f6f676c65" .

@@ -11,6 +11,6 @@ if (false) {
      */
     class PrivacyMetric_KMapEstimationConfig_AuxiliaryTable {}
 }
-class_exists(PrivacyMetric\KMapEstimationConfig\AuxiliaryTable::class);
-@trigger_error('Google\Cloud\Dlp\V2\PrivacyMetric_KMapEstimationConfig_AuxiliaryTable is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\PrivacyMetric\KMapEstimationConfig\AuxiliaryTable instead', E_USER_DEPRECATED);
+\class_exists(PrivacyMetric\KMapEstimationConfig\AuxiliaryTable::class);
+@\trigger_error('Google\Cloud\Dlp\V2\PrivacyMetric_KMapEstimationConfig_AuxiliaryTable is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\PrivacyMetric\KMapEstimationConfig\AuxiliaryTable instead', E_USER_DEPRECATED);
 

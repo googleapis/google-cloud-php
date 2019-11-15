@@ -36,16 +36,16 @@ class RegionalizationTest extends BigQueryTestCase
         parent::setUpBeforeClass();
         self::$datasetAsia = self::createDataset(
             self::$client,
-            uniqid(self::TESTING_PREFIX),
+            \uniqid(self::TESTING_PREFIX),
             ['location' => self::LOCATION_ASIA]
         );
         self::$tableAsia = self::createTable(
             self::$datasetAsia,
-            uniqid(self::TESTING_PREFIX)
+            \uniqid(self::TESTING_PREFIX)
         );
         self::$bucketAsia = self::createBucket(
             self::$storageClient,
-            uniqid(self::TESTING_PREFIX),
+            \uniqid(self::TESTING_PREFIX),
             ['location' => self::LOCATION_ASIA]
         );
     }
@@ -53,7 +53,7 @@ class RegionalizationTest extends BigQueryTestCase
     public function testCopyJobSucceedsInAsia()
     {
         $targetTable = self::$datasetAsia
-            ->table(uniqid(self::TESTING_PREFIX));
+            ->table(\uniqid(self::TESTING_PREFIX));
         $copyConfig = self::$tableAsia->copy($targetTable)
             ->location(self::LOCATION_ASIA);
         $results = self::$tableAsia->runJob($copyConfig);
@@ -74,7 +74,7 @@ class RegionalizationTest extends BigQueryTestCase
     public function testCopyJobThrowsNotFoundExceptionInUS()
     {
         $targetTable = self::$datasetAsia
-            ->table(uniqid(self::TESTING_PREFIX));
+            ->table(\uniqid(self::TESTING_PREFIX));
         $copyConfig = self::$tableAsia->copy($targetTable)
             ->location(self::LOCATION_US);
         self::$tableAsia->runJob($copyConfig);
@@ -82,7 +82,7 @@ class RegionalizationTest extends BigQueryTestCase
 
     public function testExtractJobSucceedsInAsia()
     {
-        $object = self::$bucketAsia->object(uniqid(self::TESTING_PREFIX));
+        $object = self::$bucketAsia->object(\uniqid(self::TESTING_PREFIX));
         $extractConfig = self::$tableAsia->extract($object)
             ->destinationFormat('NEWLINE_DELIMITED_JSON')
             ->location(self::LOCATION_ASIA);
@@ -100,7 +100,7 @@ class RegionalizationTest extends BigQueryTestCase
      */
     public function testExtractJobThrowsNotFoundExceptionInUS()
     {
-        $object = self::$bucketAsia->object(uniqid(self::TESTING_PREFIX));
+        $object = self::$bucketAsia->object(\uniqid(self::TESTING_PREFIX));
         $extractConfig = self::$tableAsia->extract($object)
             ->destinationFormat('NEWLINE_DELIMITED_JSON')
             ->location(self::LOCATION_US);
@@ -110,7 +110,7 @@ class RegionalizationTest extends BigQueryTestCase
     public function testLoadJobSucceedsInAsia()
     {
         $loadConfig = self::$tableAsia->load(
-            file_get_contents(__DIR__ . '/data/table-data.json')
+            \file_get_contents(__DIR__ . '/data/table-data.json')
         )
             ->sourceFormat('NEWLINE_DELIMITED_JSON')
             ->location(self::LOCATION_ASIA);
@@ -129,7 +129,7 @@ class RegionalizationTest extends BigQueryTestCase
     public function testLoadJobThrowsNotFoundExceptionInUS()
     {
         $loadConfig = self::$tableAsia->load(
-            file_get_contents(__DIR__ . '/data/table-data.json')
+            \file_get_contents(__DIR__ . '/data/table-data.json')
         )
             ->sourceFormat('NEWLINE_DELIMITED_JSON')
             ->createDisposition('CREATE_NEVER')
@@ -140,7 +140,7 @@ class RegionalizationTest extends BigQueryTestCase
     public function testRunQuerySucceedsInAsia()
     {
         $queryConfig = self::$client->query(
-            sprintf(
+            \sprintf(
                 self::QUERY_TEMPLATE,
                 self::$datasetAsia->id(),
                 self::$tableAsia->id()
@@ -161,7 +161,7 @@ class RegionalizationTest extends BigQueryTestCase
     public function testRunQueryThrowsNotFoundExceptionInUS()
     {
         $queryConfig = self::$client->query(
-            sprintf(
+            \sprintf(
                 self::QUERY_TEMPLATE,
                 self::$datasetAsia->id(),
                 self::$tableAsia->id()
@@ -173,7 +173,7 @@ class RegionalizationTest extends BigQueryTestCase
     public function testGetJobSucceedsInAsia()
     {
         $queryConfig = self::$client->query(
-            sprintf(
+            \sprintf(
                 self::QUERY_TEMPLATE,
                 self::$datasetAsia->id(),
                 self::$tableAsia->id()
@@ -195,7 +195,7 @@ class RegionalizationTest extends BigQueryTestCase
     public function testGetJobThrowsNotFoundExceptionInUS()
     {
         $queryConfig = self::$client->query(
-            sprintf(
+            \sprintf(
                 self::QUERY_TEMPLATE,
                 self::$datasetAsia->id(),
                 self::$tableAsia->id()
@@ -211,7 +211,7 @@ class RegionalizationTest extends BigQueryTestCase
     public function testCancelJobSucceedsInAsia()
     {
         $queryConfig = self::$client->query(
-            sprintf(
+            \sprintf(
                 self::QUERY_TEMPLATE,
                 self::$datasetAsia->id(),
                 self::$tableAsia->id()
@@ -232,7 +232,7 @@ class RegionalizationTest extends BigQueryTestCase
     public function testCancelJobThrowsNotFoundExceptionInUS()
     {
         $queryConfig = self::$client->query(
-            sprintf(
+            \sprintf(
                 self::QUERY_TEMPLATE,
                 self::$datasetAsia->id(),
                 self::$tableAsia->id()

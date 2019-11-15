@@ -74,7 +74,7 @@ class GAEStandardMetadataProviderTest extends TestCase
                 'my-version',
                 [
                     'appengine.googleapis.com/trace_id' =>
-                    sprintf(
+                    \sprintf(
                         'projects/%s/traces/%s',
                         'my-project',
                         'my-traceId'

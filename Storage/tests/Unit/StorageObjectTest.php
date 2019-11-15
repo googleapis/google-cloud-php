@@ -142,8 +142,8 @@ class StorageObjectTest extends TestCase
         $destinationBucket = 'bucket2';
         $objectName = self::OBJECT;
         $acl = 'private';
-        $key = base64_encode('abcd');
-        $hash = base64_encode('1234');
+        $key = \base64_encode('abcd');
+        $hash = \base64_encode('1234');
         $this->connection->copyObject([
                 'sourceBucket' => $sourceBucket,
                 'sourceObject' => $objectName,
@@ -222,10 +222,10 @@ class StorageObjectTest extends TestCase
         $destinationBucket = 'bucket2';
         $objectName = self::OBJECT;
         $acl = 'private';
-        $key = base64_encode('abcd');
-        $hash = base64_encode('1234');
-        $destinationKey = base64_encode('efgh');
-        $destinationHash = base64_encode('5678');
+        $key = \base64_encode('abcd');
+        $hash = \base64_encode('1234');
+        $destinationKey = \base64_encode('efgh');
+        $destinationHash = \base64_encode('5678');
         $this->connection->rewriteObject([
                 'sourceBucket' => $sourceBucket,
                 'sourceObject' => $objectName,
@@ -328,8 +328,8 @@ class StorageObjectTest extends TestCase
         $objectName = self::OBJECT;
         $newObjectName = 'new-name.txt';
         $acl = 'private';
-        $key = base64_encode('abcd');
-        $hash = base64_encode('1234');
+        $key = \base64_encode('abcd');
+        $hash = \base64_encode('1234');
         $this->connection->copyObject([
                 'sourceBucket' => $sourceBucket,
                 'sourceObject' => $objectName,
@@ -371,8 +371,8 @@ class StorageObjectTest extends TestCase
         $objectName = self::OBJECT;
         $newObjectName = 'new-name.txt';
         $acl = 'private';
-        $key = base64_encode('abcd');
-        $hash = base64_encode('1234');
+        $key = \base64_encode('abcd');
+        $hash = \base64_encode('1234');
         $this->connection->copyObject([
                 'sourceBucket' => $sourceBucket,
                 'sourceObject' => $objectName,
@@ -410,8 +410,8 @@ class StorageObjectTest extends TestCase
 
     public function testDownloadsAsString()
     {
-        $key = base64_encode('abcd');
-        $hash = base64_encode('1234');
+        $key = \base64_encode('abcd');
+        $hash = \base64_encode('1234');
         $bucket = 'bucket';
         $object = self::OBJECT;
         $stream = Psr7\stream_for($string = 'abcdefg');
@@ -439,8 +439,8 @@ class StorageObjectTest extends TestCase
 
     public function testDownloadsToFile()
     {
-        $key = base64_encode('abcd');
-        $hash = base64_encode('1234');
+        $key = \base64_encode('abcd');
+        $hash = \base64_encode('1234');
         $bucket = 'bucket';
         $object = self::OBJECT;
         $stream = Psr7\stream_for($string = 'abcdefg');
@@ -487,8 +487,8 @@ class StorageObjectTest extends TestCase
 
     public function testDownloadAsStreamWithExtraOptions()
     {
-        $key = base64_encode('abcd');
-        $hash = base64_encode('1234');
+        $key = \base64_encode('abcd');
+        $hash = \base64_encode('1234');
         $bucket = 'bucket';
         $object = self::OBJECT;
         $stream = Psr7\stream_for($string = 'abcdefg');
@@ -518,8 +518,8 @@ class StorageObjectTest extends TestCase
 
     public function testDownloadAsStreamAsync()
     {
-        $key = base64_encode('abcd');
-        $hash = base64_encode('1234');
+        $key = \base64_encode('abcd');
+        $hash = \base64_encode('1234');
         $bucket = 'bucket';
         $object = self::OBJECT;
         $stream = Psr7\stream_for($string = 'abcdefg');
@@ -566,8 +566,8 @@ class StorageObjectTest extends TestCase
 
     public function testGetsInfoWithReload()
     {
-        $key = base64_encode('abcd');
-        $hash = base64_encode('1234');
+        $key = \base64_encode('abcd');
+        $hash = \base64_encode('1234');
         $bucket = 'bucket';
         $object = self::OBJECT;
         $objectInfo = [
@@ -616,7 +616,7 @@ class StorageObjectTest extends TestCase
     {
         $object = new StorageObject($this->connection->reveal(), self::OBJECT, self::BUCKET);
 
-        $expectedUri = sprintf('gs://%s/%s', self::BUCKET, self::OBJECT);
+        $expectedUri = \sprintf('gs://%s/%s', self::BUCKET, self::OBJECT);
         $this->assertEquals($expectedUri, $object->gcsUri());
     }
 
@@ -644,9 +644,9 @@ class StorageObjectTest extends TestCase
      */
     public function testSignedUrlVersions($version, $method)
     {
-        $expectedResource = sprintf('/%s/%s', self::BUCKET, self::OBJECT);
+        $expectedResource = \sprintf('/%s/%s', self::BUCKET, self::OBJECT);
         $expectedGeneration = 11111;
-        $expectedExpiration = time() + 10;
+        $expectedExpiration = \time() + 10;
         $return = 'signedUrl';
 
         $object = $this->getStorageObjectForSigning(null, '', $expectedGeneration);
@@ -681,8 +681,8 @@ class StorageObjectTest extends TestCase
     public function testInvalidSigningVersion()
     {
         $object = $this->getStorageObjectForSigning();
-        $object->signedUrl(time()+1, [
-            'version' => uniqid()
+        $object->signedUrl(\time()+1, [
+            'version' => \uniqid()
         ]);
     }
 
@@ -707,13 +707,13 @@ class StorageObjectTest extends TestCase
             return $args;
         });
 
-        $callArgs = $object->signedUrl(time() + 1, [
+        $callArgs = $object->signedUrl(\time() + 1, [
             $key => $value,
             'helper' => $signingHelper->reveal()
         ]);
 
         $path = \Google\Cloud\Core\Testing\Snippet\Fixtures::KEYFILE_STUB_FIXTURE();
-        $json = json_decode(file_get_contents($path), true);
+        $json = \json_decode(\file_get_contents($path), true);
 
         $this->assertEquals('', $callArgs[0]->requestWrapper()->getCredentialsFetcher()->getClientName());
     }
@@ -721,7 +721,7 @@ class StorageObjectTest extends TestCase
     public function signedUrlKeyfiles()
     {
         $path = \Google\Cloud\Core\Testing\Snippet\Fixtures::KEYFILE_STUB_FIXTURE();
-        $json = json_decode(file_get_contents($path), true);
+        $json = \json_decode(\file_get_contents($path), true);
 
         return [
             ['keyFilePath', $path],
@@ -736,7 +736,7 @@ class StorageObjectTest extends TestCase
     public function testSignedUrlInvalidKeyFilePath()
     {
         $object = $this->getStorageObjectForSigning();
-        $object->signedUrl(time(), [
+        $object->signedUrl(\time(), [
             'keyFilePath' => __DIR__ . '/foo/bar/json.json'
         ]);
     }
@@ -747,16 +747,16 @@ class StorageObjectTest extends TestCase
      */
     public function testSignedUrlInvalidKeyFileData()
     {
-        $file = tmpfile();
-        $path = stream_get_meta_data($file)['uri'];
-        fwrite($file, '{');
+        $file = \tmpfile();
+        $path = \stream_get_meta_data($file)['uri'];
+        \fwrite($file, '{');
 
         $object = $this->getStorageObjectForSigning();
-        $object->signedUrl(time(), [
+        $object->signedUrl(\time(), [
             'keyFilePath' => $path
         ]);
 
-        fclose($file);
+        \fclose($file);
     }
 
     /**
@@ -765,7 +765,7 @@ class StorageObjectTest extends TestCase
      */
     public function testSignedUploadUrl($version, $method)
     {
-        $expectedExpiration = time() + 1;
+        $expectedExpiration = \time() + 1;
         $return = 'signedUrl';
 
         $signingHelper = $this->prophesize(SigningHelper::class);
@@ -877,7 +877,7 @@ class StorageObjectTest extends TestCase
         }
 
         $rw = $this->prophesize(RequestWrapper::class);
-        $rw->scopes()->willReturn(is_array($scopes) ? $scopes : [$scopes]);
+        $rw->scopes()->willReturn(\is_array($scopes) ? $scopes : [$scopes]);
         $rw->getCredentialsFetcher()->willReturn($credentials);
 
         $this->connection->requestWrapper()->willReturn($rw->reveal());

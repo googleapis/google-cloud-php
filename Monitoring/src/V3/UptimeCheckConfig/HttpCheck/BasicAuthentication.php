@@ -103,5 +103,5 @@ class BasicAuthentication extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(BasicAuthentication::class, \Google\Cloud\Monitoring\V3\UptimeCheckConfig_HttpCheck_BasicAuthentication::class);
+\class_alias(BasicAuthentication::class, \Google\Cloud\Monitoring\V3\UptimeCheckConfig_HttpCheck_BasicAuthentication::class);
 

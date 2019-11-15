@@ -296,5 +296,5 @@ class PersonStructuredName extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PersonStructuredName::class, \Google\Cloud\Talent\V4beta1\PersonName_PersonStructuredName::class);
+\class_alias(PersonStructuredName::class, \Google\Cloud\Talent\V4beta1\PersonName_PersonStructuredName::class);
 

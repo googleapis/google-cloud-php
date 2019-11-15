@@ -428,7 +428,7 @@ class StorageObjectTest extends SnippetTestCase
         $snippet->addLocal('object', $this->object);
 
         $res = $snippet->invoke();
-        $expectedOutput = sprintf('gs://%s/%s', self::BUCKET, self::OBJECT);
+        $expectedOutput = \sprintf('gs://%s/%s', self::BUCKET, self::OBJECT);
         $this->assertEquals($expectedOutput, $res->output());
     }
 

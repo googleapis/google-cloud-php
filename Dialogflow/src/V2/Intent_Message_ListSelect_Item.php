@@ -11,6 +11,6 @@ if (false) {
      */
     class Intent_Message_ListSelect_Item {}
 }
-class_exists(Intent\Message\ListSelect\Item::class);
-@trigger_error('Google\Cloud\Dialogflow\V2\Intent_Message_ListSelect_Item is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\Intent\Message\ListSelect\Item instead', E_USER_DEPRECATED);
+\class_exists(Intent\Message\ListSelect\Item::class);
+@\trigger_error('Google\Cloud\Dialogflow\V2\Intent_Message_ListSelect_Item is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\Intent\Message\ListSelect\Item instead', E_USER_DEPRECATED);
 

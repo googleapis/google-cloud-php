@@ -11,6 +11,6 @@ if (false) {
      */
     class ClassificationEvaluationMetrics_ConfusionMatrix_Row {}
 }
-class_exists(ClassificationEvaluationMetrics\ConfusionMatrix\Row::class);
-@trigger_error('Google\Cloud\AutoMl\V1beta1\ClassificationEvaluationMetrics_ConfusionMatrix_Row is deprecated and will be removed in the next major release. Use Google\Cloud\AutoMl\V1beta1\ClassificationEvaluationMetrics\ConfusionMatrix\Row instead', E_USER_DEPRECATED);
+\class_exists(ClassificationEvaluationMetrics\ConfusionMatrix\Row::class);
+@\trigger_error('Google\Cloud\AutoMl\V1beta1\ClassificationEvaluationMetrics_ConfusionMatrix_Row is deprecated and will be removed in the next major release. Use Google\Cloud\AutoMl\V1beta1\ClassificationEvaluationMetrics\ConfusionMatrix\Row instead', E_USER_DEPRECATED);
 

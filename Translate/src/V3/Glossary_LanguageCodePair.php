@@ -11,6 +11,6 @@ if (false) {
      */
     class Glossary_LanguageCodePair {}
 }
-class_exists(Glossary\LanguageCodePair::class);
-@trigger_error('Google\Cloud\Translate\V3\Glossary_LanguageCodePair is deprecated and will be removed in a future release. Use Google\Cloud\Translate\V3\Glossary\LanguageCodePair instead', E_USER_DEPRECATED);
+\class_exists(Glossary\LanguageCodePair::class);
+@\trigger_error('Google\Cloud\Translate\V3\Glossary_LanguageCodePair is deprecated and will be removed in a future release. Use Google\Cloud\Translate\V3\Glossary\LanguageCodePair instead', E_USER_DEPRECATED);
 

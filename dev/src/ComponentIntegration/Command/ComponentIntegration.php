@@ -62,11 +62,11 @@ class ComponentIntegration extends GoogleCloudCommand
 
         $dest = $rootPath . DIRECTORY_SEPARATOR . self::TESTING_DIR;
         $this->tmpDir = $dest;
-        @mkdir($dest);
+        @\mkdir($dest);
 
         // If `--preserve|-p` is not provided, .testing will be deleted if an error occurs.
         if (!$input->getOption('preserve')) {
-            register_shutdown_function(function () use ($dest) {
+            \register_shutdown_function(function () use ($dest) {
                 $this->deleteTmp($dest);
             });
         }
@@ -100,7 +100,7 @@ class ComponentIntegration extends GoogleCloudCommand
             }
 
             $component['useLocalPath'] = $isUpdated;
-            $component['tmpDir'] = realpath($tmpDir);
+            $component['tmpDir'] = \realpath($tmpDir);
         }
 
         $components = $this->updateComposerFiles($dest, $components);
@@ -133,7 +133,7 @@ class ComponentIntegration extends GoogleCloudCommand
         $src = $rootPath . DIRECTORY_SEPARATOR . $component['path'];
         $dest = $dest . DIRECTORY_SEPARATOR . $component['id'];
 
-        if (file_exists($dest)) {
+        if (\file_exists($dest)) {
             $this->deleteTmp($dest);
         }
 
@@ -141,7 +141,7 @@ class ComponentIntegration extends GoogleCloudCommand
         $this->output->writeln('path: '. $dest);
         $this->output->writeln('');
 
-        @mkdir($dest);
+        @\mkdir($dest);
         $filteredIterator = new \RecursiveCallbackFilterIterator(
             new \RecursiveDirectoryIterator(
                 $src,
@@ -162,9 +162,9 @@ class ComponentIntegration extends GoogleCloudCommand
 
         foreach ($iterator as $item) {
             if ($item->isDir()) {
-                mkdir($dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName());
+                \mkdir($dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName());
             } else {
-                copy($item, $dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName());
+                \copy($item, $dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName());
             }
         }
 
@@ -176,20 +176,20 @@ class ComponentIntegration extends GoogleCloudCommand
         $this->output->writeln('Deleting '. $path);
         $this->output->writeln('');
 
-        if (!strpos($this->tmpDir, $path) === false) {
+        if (!\strpos($this->tmpDir, $path) === false) {
             throw new \RuntimeException('cannot delete files outside test root path.');
         }
 
-        passthru('rm -rf '. $path);
+        \passthru('rm -rf '. $path);
     }
 
     private function getRemoteLatestVersion(Client $guzzle, array $component)
     {
-        $target = str_replace('.git', '', trim($component['target'], '/'));
+        $target = \str_replace('.git', '', \trim($component['target'], '/'));
 
         $uri = 'https://api.github.com/repos/'. $target .'/releases/latest';
-        if (getenv('GH_OAUTH_TOKEN')) {
-            $uri .= '?access_token='. getenv('GH_OAUTH_TOKEN');
+        if (\getenv('GH_OAUTH_TOKEN')) {
+            $uri .= '?access_token='. \getenv('GH_OAUTH_TOKEN');
         }
 
         try {
@@ -198,7 +198,7 @@ class ComponentIntegration extends GoogleCloudCommand
             return '0.0.0';
         }
 
-        $release = json_decode((string) $res->getBody(), true);
+        $release = \json_decode((string) $res->getBody(), true);
 
         if (!isset($release['tag_name'])) {
             throw new \RuntimeException('Unexpected response from '. $uri);
@@ -227,21 +227,21 @@ class ComponentIntegration extends GoogleCloudCommand
 
         foreach ($components as &$component) {
             $composerFile = $component['tmpDir'] . DIRECTORY_SEPARATOR .'composer.json';
-            $composer = json_decode(file_get_contents($composerFile), true);
-            if (json_last_error() !== JSON_ERROR_NONE) {
-                throw new \RuntimeException(sprintf(
+            $composer = \json_decode(\file_get_contents($composerFile), true);
+            if (\json_last_error() !== JSON_ERROR_NONE) {
+                throw new \RuntimeException(\sprintf(
                     'Could not decode composer file %s. Got error %s',
                     $composerFile,
-                    json_last_error_msg()
+                    \json_last_error_msg()
                 ));
             }
 
             foreach ($aliases as $alias) {
                 $id = $component['id'];
                 if (
-                    !in_array($id, $aliases) && (
-                    array_key_exists('google/'. $alias, $composer['require']) ||
-                    array_key_exists('google/'. $alias, $composer['require-dev'])
+                    !\in_array($id, $aliases) && (
+                    \array_key_exists('google/'. $alias, $composer['require']) ||
+                    \array_key_exists('google/'. $alias, $composer['require-dev'])
                 )) {
                     $aliases[] = $id;
 
@@ -254,9 +254,9 @@ class ComponentIntegration extends GoogleCloudCommand
 
             $component['missingDependency'] = false;
             foreach ($composer['require'] as $require => $version) {
-                if (strpos($require, 'ext-') === 0) {
-                    $ext = str_replace('ext-', '', $require);
-                    if (!extension_loaded($ext)) {
+                if (\strpos($require, 'ext-') === 0) {
+                    $ext = \str_replace('ext-', '', $require);
+                    if (!\extension_loaded($ext)) {
                         $component['missingDependency'] = true;
                         continue;
                     }
@@ -282,20 +282,20 @@ class ComponentIntegration extends GoogleCloudCommand
         ];
 
         if ($this->hasTests($component, 'Unit', 'phpunit.xml.dist')) {
-            $commands = array_merge($commands, [
+            $commands = \array_merge($commands, [
                 "echo \"\\nRUNNING UNIT TESTS\\n\"",
                 "vendor/bin/phpunit",
             ]);
         }
 
         if ($this->hasTests($component, 'Snippet', 'phpunit-snippets.xml.dist')) {
-            $commands = array_merge($commands, [
+            $commands = \array_merge($commands, [
                 "echo \"\\nRUNNING SNIPPET TESTS\\n\"",
                 "vendor/bin/phpunit -c phpunit-snippets.xml.dist"
             ]);
         }
 
-        passthru(implode(" && ", $commands), $exitCode);
+        \passthru(\implode(" && ", $commands), $exitCode);
 
         if ($exitCode !== 0) {
             throw new \RuntimeException('Testing '. $component['id'] .' exited with a non-zero code');
@@ -306,8 +306,8 @@ class ComponentIntegration extends GoogleCloudCommand
 
     private function modifyComposerFile($composerFile, array $repositories, array $aliases)
     {
-        $composer = json_decode(file_get_contents($composerFile), true);
-        if (json_last_error() !== JSON_ERROR_NONE) {
+        $composer = \json_decode(\file_get_contents($composerFile), true);
+        if (\json_last_error() !== JSON_ERROR_NONE) {
             throw new \RuntimeException('Could not decode composer file '. $composerFile);
         }
 
@@ -325,9 +325,9 @@ class ComponentIntegration extends GoogleCloudCommand
             ? $composer['repositories']
             : [];
 
-        $composer['repositories'] = array_merge($oldRepositories, $repositories);
+        $composer['repositories'] = \array_merge($oldRepositories, $repositories);
 
-        file_put_contents($composerFile, json_encode($composer, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES));
+        \file_put_contents($composerFile, \json_encode($composer, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES));
     }
 
     private function hasTests(array $component, $folderName, $configFile)
@@ -335,9 +335,9 @@ class ComponentIntegration extends GoogleCloudCommand
         $folderPath = $component['tmpDir'] . '/tests/' . $folderName;
         $configFilePath = $component['tmpDir'] . '/' . $configFile;
 
-        if (file_exists($folderPath)) {
-            if (!file_exists($configFilePath)) {
-                throw new \RuntimeException(sprintf(
+        if (\file_exists($folderPath)) {
+            if (!\file_exists($configFilePath)) {
+                throw new \RuntimeException(\sprintf(
                     'Test folder %s exists, but no relevant PHPUnit configuration was found at %s.',
                     $folderPath,
                     $configFilePath

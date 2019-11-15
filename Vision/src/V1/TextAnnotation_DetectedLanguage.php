@@ -11,6 +11,6 @@ if (false) {
      */
     class TextAnnotation_DetectedLanguage {}
 }
-class_exists(TextAnnotation\DetectedLanguage::class);
-@trigger_error('Google\Cloud\Vision\V1\TextAnnotation_DetectedLanguage is deprecated and will be removed in a future release. Use Google\Cloud\Vision\V1\TextAnnotation\DetectedLanguage instead', E_USER_DEPRECATED);
+\class_exists(TextAnnotation\DetectedLanguage::class);
+@\trigger_error('Google\Cloud\Vision\V1\TextAnnotation_DetectedLanguage is deprecated and will be removed in a future release. Use Google\Cloud\Vision\V1\TextAnnotation\DetectedLanguage instead', E_USER_DEPRECATED);
 

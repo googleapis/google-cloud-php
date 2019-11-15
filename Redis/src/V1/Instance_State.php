@@ -11,6 +11,6 @@ if (false) {
      */
     class Instance_State {}
 }
-class_exists(Instance\State::class);
-@trigger_error('Google\Cloud\Redis\V1\Instance_State is deprecated and will be removed in a future release. Use Google\Cloud\Redis\V1\Instance\State instead', E_USER_DEPRECATED);
+\class_exists(Instance\State::class);
+@\trigger_error('Google\Cloud\Redis\V1\Instance_State is deprecated and will be removed in a future release. Use Google\Cloud\Redis\V1\Instance\State instead', E_USER_DEPRECATED);
 

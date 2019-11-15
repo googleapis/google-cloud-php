@@ -11,6 +11,6 @@ if (false) {
      */
     class PartOfSpeech_Form {}
 }
-class_exists(PartOfSpeech\Form::class);
-@trigger_error('Google\Cloud\Language\V1beta2\PartOfSpeech_Form is deprecated and will be removed in the next major release. Use Google\Cloud\Language\V1beta2\PartOfSpeech\Form instead', E_USER_DEPRECATED);
+\class_exists(PartOfSpeech\Form::class);
+@\trigger_error('Google\Cloud\Language\V1beta2\PartOfSpeech_Form is deprecated and will be removed in the next major release. Use Google\Cloud\Language\V1beta2\PartOfSpeech\Form instead', E_USER_DEPRECATED);
 

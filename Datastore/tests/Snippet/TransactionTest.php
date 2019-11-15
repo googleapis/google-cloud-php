@@ -102,7 +102,7 @@ class TransactionTest extends SnippetTestCase
         $this->connection->commit(Argument::allOf(
             Argument::withEntry('transaction', self::TRANSACTION),
             Argument::that(function ($args) {
-                return array_keys($args['mutations'][0])[0] === 'insert';
+                return \array_keys($args['mutations'][0])[0] === 'insert';
             })
         ))->shouldBeCalled()->willReturn([
             'mutationResults' => [
@@ -126,7 +126,7 @@ class TransactionTest extends SnippetTestCase
         $this->connection->commit(Argument::allOf(
             Argument::withEntry('transaction', self::TRANSACTION),
             Argument::that(function ($args) {
-                return array_keys($args['mutations'][0])[0] === 'insert';
+                return \array_keys($args['mutations'][0])[0] === 'insert';
             })
         ))->shouldBeCalled()->willReturn([
             'mutationResults' => [
@@ -155,7 +155,7 @@ class TransactionTest extends SnippetTestCase
         $this->connection->commit(Argument::allOf(
             Argument::withEntry('transaction', self::TRANSACTION),
             Argument::that(function ($args) {
-                return array_keys($args['mutations'][0])[0] === 'update';
+                return \array_keys($args['mutations'][0])[0] === 'update';
             })
         ))->shouldBeCalled()->willReturn([
             'mutationResults' => [
@@ -183,7 +183,7 @@ class TransactionTest extends SnippetTestCase
         $this->connection->commit(Argument::allOf(
             Argument::withEntry('transaction', self::TRANSACTION),
             Argument::that(function ($args) {
-                return array_keys($args['mutations'][0])[0] === 'update';
+                return \array_keys($args['mutations'][0])[0] === 'update';
             })
         ))->shouldBeCalled();
 
@@ -202,7 +202,7 @@ class TransactionTest extends SnippetTestCase
         $this->connection->commit(Argument::allOf(
             Argument::withEntry('transaction', self::TRANSACTION),
             Argument::that(function ($args) {
-                return array_keys($args['mutations'][0])[0] === 'upsert';
+                return \array_keys($args['mutations'][0])[0] === 'upsert';
             })
         ))
             ->shouldBeCalled()
@@ -232,7 +232,7 @@ class TransactionTest extends SnippetTestCase
         $this->connection->commit(Argument::allOf(
             Argument::withEntry('transaction', self::TRANSACTION),
             Argument::that(function ($args) {
-                return array_keys($args['mutations'][0])[0] === 'upsert';
+                return \array_keys($args['mutations'][0])[0] === 'upsert';
             })
         ))
             ->shouldBeCalled();
@@ -249,7 +249,7 @@ class TransactionTest extends SnippetTestCase
         $this->connection->commit(Argument::allOf(
             Argument::withEntry('transaction', self::TRANSACTION),
             Argument::that(function ($args) {
-                return array_keys($args['mutations'][0])[0] === 'delete';
+                return \array_keys($args['mutations'][0])[0] === 'delete';
             })
         ))
             ->shouldBeCalled()
@@ -275,7 +275,7 @@ class TransactionTest extends SnippetTestCase
         $this->connection->commit(Argument::allOf(
             Argument::withEntry('transaction', self::TRANSACTION),
             Argument::that(function ($args) {
-                return array_keys($args['mutations'][0])[0] === 'delete';
+                return \array_keys($args['mutations'][0])[0] === 'delete';
             })
         ))->shouldBeCalled();
 
@@ -363,8 +363,8 @@ class TransactionTest extends SnippetTestCase
         ]);
 
         $res = $snippet->invoke();
-        $this->assertEquals("Bob", explode("\n", $res->output())[0]);
-        $this->assertEquals("John", explode("\n", $res->output())[1]);
+        $this->assertEquals("Bob", \explode("\n", $res->output())[0]);
+        $this->assertEquals("John", \explode("\n", $res->output())[1]);
     }
 
     public function testRunQuery()

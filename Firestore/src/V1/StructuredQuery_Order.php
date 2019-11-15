@@ -11,6 +11,6 @@ if (false) {
      */
     class StructuredQuery_Order {}
 }
-class_exists(StructuredQuery\Order::class);
-@trigger_error('Google\Cloud\Firestore\V1\StructuredQuery_Order is deprecated and will be removed in the next major release. Use Google\Cloud\Firestore\V1\StructuredQuery\Order instead', E_USER_DEPRECATED);
+\class_exists(StructuredQuery\Order::class);
+@\trigger_error('Google\Cloud\Firestore\V1\StructuredQuery_Order is deprecated and will be removed in the next major release. Use Google\Cloud\Firestore\V1\StructuredQuery\Order instead', E_USER_DEPRECATED);
 

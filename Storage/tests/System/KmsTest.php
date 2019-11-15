@@ -38,9 +38,9 @@ class KmsTest extends StorageTestCase
     {
         parent::setUpBeforeClass();
 
-        $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
+        $keyFilePath = \getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
         $encryption = new KeyManager(
-            json_decode(file_get_contents($keyFilePath), true),
+            \json_decode(\file_get_contents($keyFilePath), true),
             self::$client->getServiceAccount(),
             self::getProjectId($keyFilePath)
         );
@@ -109,7 +109,7 @@ class KmsTest extends StorageTestCase
     {
         $object = $this->upload();
         $rewriteOptions = [
-            'name' => uniqid(self::TESTING_PREFIX),
+            'name' => \uniqid(self::TESTING_PREFIX),
             'destinationKmsKeyName' => self::$keyName2
         ];
         $rewrittenObject = $object->rewrite(self::$bucket, $rewriteOptions);
@@ -120,10 +120,10 @@ class KmsTest extends StorageTestCase
 
     public function testRotatesCustomerSuppliedEncrpytionToKms()
     {
-        $key = base64_encode(openssl_random_pseudo_bytes(32));
+        $key = \base64_encode(\openssl_random_pseudo_bytes(32));
         $object = $this->upload(['encryptionKey' => $key, 'metadata' => null]);
         $rewriteOptions = [
-            'name' => uniqid(self::TESTING_PREFIX),
+            'name' => \uniqid(self::TESTING_PREFIX),
             'encryptionKey' => $key,
             'destinationKmsKeyName' => self::$keyName1
         ];
@@ -135,15 +135,15 @@ class KmsTest extends StorageTestCase
 
     public function testRotatesKmsToCustomerSuppliedEncrpytion()
     {
-        $key = base64_encode(openssl_random_pseudo_bytes(32));
-        $sha = base64_encode(hash('SHA256', base64_decode($key), true));
+        $key = \base64_encode(\openssl_random_pseudo_bytes(32));
+        $sha = \base64_encode(\hash('SHA256', \base64_decode($key), true));
         $object = $this->upload([
             'metadata' => [
                 'kmsKeyName' => self::$keyName1
             ]
         ]);
         $rewriteOptions = [
-            'name' => uniqid(self::TESTING_PREFIX),
+            'name' => \uniqid(self::TESTING_PREFIX),
             'destinationEncryptionKey' => $key
         ];
         $rewrittenObject = $object->rewrite(self::$bucket, $rewriteOptions);
@@ -159,7 +159,7 @@ class KmsTest extends StorageTestCase
     private function upload(array $options = [])
     {
         return self::$bucket->upload(self::DATA, $options + [
-            'name' => uniqid(self::TESTING_PREFIX),
+            'name' => \uniqid(self::TESTING_PREFIX),
             'metadata' => [
                 'kmsKeyName' => self::$keyName1
             ]

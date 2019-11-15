@@ -74,7 +74,7 @@ class SpannerClientTest extends TestCase
         $prop->setAccessible(true);
 
         $this->assertEquals(
-            sprintf(
+            \sprintf(
                 'projects/%s/instances/%s/databases/%s',
                 self::PROJECT,
                 'foo',
@@ -109,7 +109,7 @@ class SpannerClientTest extends TestCase
 
         $this->assertInstanceOf(ItemIterator::class, $configs);
 
-        $configs = iterator_to_array($configs);
+        $configs = \iterator_to_array($configs);
         $this->assertCount(2, $configs);
         $this->assertInstanceOf(InstanceConfiguration::class, $configs[0]);
         $this->assertInstanceOf(InstanceConfiguration::class, $configs[1]);
@@ -149,7 +149,7 @@ class SpannerClientTest extends TestCase
 
         $this->assertInstanceOf(ItemIterator::class, $configs);
 
-        $configs = iterator_to_array($configs);
+        $configs = \iterator_to_array($configs);
         $this->assertCount(2, $configs);
         $this->assertInstanceOf(InstanceConfiguration::class, $configs[0]);
         $this->assertInstanceOf(InstanceConfiguration::class, $configs[1]);
@@ -231,7 +231,7 @@ class SpannerClientTest extends TestCase
         $instances = $this->client->instances();
         $this->assertInstanceOf(ItemIterator::class, $instances);
 
-        $instances = iterator_to_array($instances);
+        $instances = \iterator_to_array($instances);
         $this->assertCount(2, $instances);
         $this->assertEquals('foo', InstanceAdminClient::parseName($instances[0]->name())['instance']);
         $this->assertEquals('bar', InstanceAdminClient::parseName($instances[1]->name())['instance']);
@@ -280,7 +280,7 @@ class SpannerClientTest extends TestCase
     {
         $b = $this->client->bytes('foo');
         $this->assertInstanceOf(Bytes::class, $b);
-        $this->assertEquals(base64_encode('foo'), (string)$b);
+        $this->assertEquals(\base64_encode('foo'), (string)$b);
     }
 
     public function testDate()

@@ -72,12 +72,12 @@ class GrpcTest extends TestCase
     public function testBatchGetDocuments()
     {
         $documents = [
-            sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, 'a/b'),
-            sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, 'a/c')
+            \sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, 'a/b'),
+            \sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, 'a/c')
         ];
 
         $args = [
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
+            'database' => \sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             'documents' => $documents
         ];
 
@@ -89,7 +89,7 @@ class GrpcTest extends TestCase
     public function testBeginTransaction()
     {
         $args = [
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
+            'database' => \sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
         ];
 
         $rw = new TransactionOptions_ReadWrite;
@@ -109,7 +109,7 @@ class GrpcTest extends TestCase
     {
         $args = [
             'retryTransaction' => 'foo',
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
+            'database' => \sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
         ];
 
         $rw = new TransactionOptions_ReadWrite;
@@ -129,7 +129,7 @@ class GrpcTest extends TestCase
     public function testCommit()
     {
         $args = [
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
+            'database' => \sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             'writes' => [
                 [
                     'updateMask' => ['fieldPaths' => ['foo']],
@@ -180,7 +180,7 @@ class GrpcTest extends TestCase
     public function testListCollectionIds()
     {
         $args = [
-            'parent' => sprintf('projects/%s/databases/%s/documents', self::PROJECT, self::DATABASE)
+            'parent' => \sprintf('projects/%s/databases/%s/documents', self::PROJECT, self::DATABASE)
         ];
 
         $expected = [$args['parent'], $this->header()];
@@ -191,7 +191,7 @@ class GrpcTest extends TestCase
     public function testListDocuments()
     {
         $args = [
-            'parent' => sprintf('projects/%s/databases/%s/documents', self::PROJECT, self::DATABASE),
+            'parent' => \sprintf('projects/%s/databases/%s/documents', self::PROJECT, self::DATABASE),
             'collectionId' => 'coll1',
             'mask' => [],
         ];
@@ -211,7 +211,7 @@ class GrpcTest extends TestCase
     public function testRollback()
     {
         $args = [
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
+            'database' => \sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             'transaction' => 'foo'
         ];
 
@@ -243,7 +243,7 @@ class GrpcTest extends TestCase
     public function testCustomRequestHeaders()
     {
         $args = [
-            'parent' => sprintf('projects/%s/databases/%s/documents', self::PROJECT, self::DATABASE),
+            'parent' => \sprintf('projects/%s/databases/%s/documents', self::PROJECT, self::DATABASE),
             'headers' => [
                 'foo' => ['bar']
             ]
@@ -259,7 +259,7 @@ class GrpcTest extends TestCase
     public function testProvidesAuthorizationHeaderWithEmulator()
     {
         $args = [
-            'parent' => sprintf('projects/%s/databases/%s/documents', self::PROJECT, self::DATABASE),
+            'parent' => \sprintf('projects/%s/databases/%s/documents', self::PROJECT, self::DATABASE),
         ];
 
         $headers = $this->header();

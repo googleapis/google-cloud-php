@@ -524,7 +524,7 @@ class Instance
     public function __debugInfo()
     {
         return [
-            'connection' => get_class($this->connection),
+            'connection' => \get_class($this->connection),
             'projectId' => $this->projectId,
             'name' => $this->name,
             'info' => $this->info

@@ -11,6 +11,6 @@ if (false) {
      */
     class FaceAnnotation_Landmark_Type {}
 }
-class_exists(FaceAnnotation\Landmark\Type::class);
-@trigger_error('Google\Cloud\Vision\V1\FaceAnnotation_Landmark_Type is deprecated and will be removed in a future release. Use Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type instead', E_USER_DEPRECATED);
+\class_exists(FaceAnnotation\Landmark\Type::class);
+@\trigger_error('Google\Cloud\Vision\V1\FaceAnnotation_Landmark_Type is deprecated and will be removed in a future release. Use Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type instead', E_USER_DEPRECATED);
 

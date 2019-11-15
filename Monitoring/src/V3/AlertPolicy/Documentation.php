@@ -121,5 +121,5 @@ class Documentation extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Documentation::class, \Google\Cloud\Monitoring\V3\AlertPolicy_Documentation::class);
+\class_alias(Documentation::class, \Google\Cloud\Monitoring\V3\AlertPolicy_Documentation::class);
 

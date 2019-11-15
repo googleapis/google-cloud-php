@@ -11,6 +11,6 @@ if (false) {
      */
     class PrivacyMetric_KAnonymityConfig {}
 }
-class_exists(PrivacyMetric\KAnonymityConfig::class);
-@trigger_error('Google\Cloud\Dlp\V2\PrivacyMetric_KAnonymityConfig is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\PrivacyMetric\KAnonymityConfig instead', E_USER_DEPRECATED);
+\class_exists(PrivacyMetric\KAnonymityConfig::class);
+@\trigger_error('Google\Cloud\Dlp\V2\PrivacyMetric_KAnonymityConfig is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\PrivacyMetric\KAnonymityConfig instead', E_USER_DEPRECATED);
 

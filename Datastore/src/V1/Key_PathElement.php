@@ -11,6 +11,6 @@ if (false) {
      */
     class Key_PathElement {}
 }
-class_exists(Key\PathElement::class);
-@trigger_error('Google\Cloud\Datastore\V1\Key_PathElement is deprecated and will be removed in the next major release. Use Google\Cloud\Datastore\V1\Key\PathElement instead', E_USER_DEPRECATED);
+\class_exists(Key\PathElement::class);
+@\trigger_error('Google\Cloud\Datastore\V1\Key_PathElement is deprecated and will be removed in the next major release. Use Google\Cloud\Datastore\V1\Key\PathElement instead', E_USER_DEPRECATED);
 

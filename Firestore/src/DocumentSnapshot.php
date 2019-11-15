@@ -277,15 +277,15 @@ class DocumentSnapshot implements \ArrayAccess
     {
         $res = null;
 
-        if (is_string($fieldPath)) {
-            $parts = explode('.', $fieldPath);
+        if (\is_string($fieldPath)) {
+            $parts = \explode('.', $fieldPath);
         } elseif ($fieldPath instanceof FieldPath) {
             $parts = $fieldPath->path();
         } else {
             throw new \InvalidArgumentException('Given path was not a string or instance of FieldPath.');
         }
 
-        $len = count($parts);
+        $len = \count($parts);
 
         $fields = $this->data;
         foreach ($parts as $idx => $part) {
@@ -294,7 +294,7 @@ class DocumentSnapshot implements \ArrayAccess
                 break;
             } else {
                 if (!isset($fields[$part])) {
-                    throw new \InvalidArgumentException(sprintf(
+                    throw new \InvalidArgumentException(\sprintf(
                         'Field path `%s` does not exist.',
                         $fieldPath
                     ));
@@ -320,7 +320,7 @@ class DocumentSnapshot implements \ArrayAccess
      */
     public function offsetExists($offset)
     {
-        return array_key_exists($offset, $this->data);
+        return \array_key_exists($offset, $this->data);
     }
 
     /**
@@ -337,7 +337,7 @@ class DocumentSnapshot implements \ArrayAccess
     public function offsetGet($offset)
     {
         if (!$this->offsetExists($offset)) {
-            trigger_error(sprintf(
+            \trigger_error(\sprintf(
                 'Undefined index: %s. Document field does not exist.',
                 $offset
             ), E_USER_NOTICE);

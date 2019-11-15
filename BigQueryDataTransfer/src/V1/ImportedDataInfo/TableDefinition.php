@@ -322,7 +322,7 @@ class TableDefinition extends \Google\Protobuf\Internal\Message
     public function getIgnoreUnknownValuesValue()
     {
         $wrapper = $this->getIgnoreUnknownValues();
-        return is_null($wrapper) ? null : $wrapper->getValue();
+        return \is_null($wrapper) ? null : $wrapper->getValue();
     }
 
     /**
@@ -353,12 +353,12 @@ class TableDefinition extends \Google\Protobuf\Internal\Message
      */
     public function setIgnoreUnknownValuesValue($var)
     {
-        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
+        $wrappedVar = \is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
         return $this->setIgnoreUnknownValues($wrappedVar);
     }
 
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TableDefinition::class, \Google\Cloud\BigQuery\DataTransfer\V1\ImportedDataInfo_TableDefinition::class);
+\class_alias(TableDefinition::class, \Google\Cloud\BigQuery\DataTransfer\V1\ImportedDataInfo_TableDefinition::class);
 

@@ -11,6 +11,6 @@ if (false) {
      */
     class ByteContentItem_BytesType {}
 }
-class_exists(ByteContentItem\BytesType::class);
-@trigger_error('Google\Cloud\Dlp\V2\ByteContentItem_BytesType is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\ByteContentItem\BytesType instead', E_USER_DEPRECATED);
+\class_exists(ByteContentItem\BytesType::class);
+@\trigger_error('Google\Cloud\Dlp\V2\ByteContentItem_BytesType is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\ByteContentItem\BytesType instead', E_USER_DEPRECATED);
 

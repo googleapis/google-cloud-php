@@ -105,7 +105,7 @@ class Duration implements ValueInterface
      */
     public function formatAsString()
     {
-        return json_encode($this->get());
+        return \json_encode($this->get());
     }
 
     /**

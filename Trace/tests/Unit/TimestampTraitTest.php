@@ -44,7 +44,7 @@ class TimestampTraitTest extends TestCase
     {
         return [
             [false, new \DateTime()],
-            [false, microtime(true)],
+            [false, \microtime(true)],
             ['2017-11-28T23:06:59.000000000Z', 1511910419],
             [false, null]
         ];

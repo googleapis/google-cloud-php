@@ -23,14 +23,14 @@
 
 use Google\Cloud\Dev\GetComponentsTrait;
 
-if (!extension_loaded('grpc')) {
+if (!\extension_loaded('grpc')) {
     echo "gRPC Not Installed.";
     exit(0);
 }
 
 include __DIR__ .'/../../vendor/autoload.php';
 
-define('BASE_PATH', __DIR__ .'/../..');
+\define('BASE_PATH', __DIR__ .'/../..');
 
 class GetComponentsImpl
 {
@@ -62,18 +62,18 @@ foreach((new GetComponentsImpl)->components() as $component) {
     ];
 }
 
-$composer = json_encode($composer, JSON_UNESCAPED_SLASHES);
-file_put_contents(__DIR__ .'/composer.json', $composer);
+$composer = \json_encode($composer, JSON_UNESCAPED_SLASHES);
+\file_put_contents(__DIR__ .'/composer.json', $composer);
 
 $out = [];
 $return = null;
-exec('composer install --dry-run --working-dir='. __DIR__ .' 2>&1', $out, $return);
-unlink(__DIR__ .'/composer.json');
+\exec('composer install --dry-run --working-dir='. __DIR__ .' 2>&1', $out, $return);
+\unlink(__DIR__ .'/composer.json');
 
 if ($return !== 0) {
     echo "Problem installing components!" . PHP_EOL . PHP_EOL;
 
-    echo implode("\n", $out);
+    echo \implode("\n", $out);
     echo PHP_EOL . $composer;
     exit(1);
 }

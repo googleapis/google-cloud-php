@@ -79,8 +79,8 @@ class EntityMapper
      */
     public function responseToEntityProperties(array $entityData, $className = Entity::class)
     {
-        if (!is_subclass_of($className, EntityInterface::class)) {
-            throw new \InvalidArgumentException(sprintf(
+        if (!\is_subclass_of($className, EntityInterface::class)) {
+            throw new \InvalidArgumentException(\sprintf(
                 'Class %s must implement EntityInterface.',
                 $className
             ));
@@ -93,13 +93,13 @@ class EntityMapper
         $mappings = $className::mappings();
         foreach ($entityData as $key => $property) {
             $mapClassName = Entity::class;
-            if (array_key_exists($key, $mappings)) {
+            if (\array_key_exists($key, $mappings)) {
                 $mapClassName = $mappings[$key];
             }
 
             if ($mapClassName) {
-                if (!is_subclass_of($mapClassName, EntityInterface::class)) {
-                    throw new \InvalidArgumentException(sprintf(
+                if (!\is_subclass_of($mapClassName, EntityInterface::class)) {
+                    throw new \InvalidArgumentException(\sprintf(
                         'Class %s must implement EntityInterface. (Found in mappings on %s)',
                         $mapClassName,
                         $className
@@ -137,7 +137,7 @@ class EntityMapper
 
         $properties = [];
         foreach ($data as $key => $value) {
-            $exclude = in_array($key, $entity->excludedProperties());
+            $exclude = \in_array($key, $entity->excludedProperties());
             $meaning = (isset($entity->meanings()[$key]))
                 ? $entity->meanings()[$key]
                 : null;
@@ -153,7 +153,7 @@ class EntityMapper
             ? $entity->key()->keyObject()
             : null;
 
-        return array_filter([
+        return \array_filter([
             'key' => $key,
             'properties' => $properties
         ]);
@@ -221,7 +221,7 @@ class EntityMapper
 
             case 'blobValue':
                 if ($this->isEncoded($value)) {
-                    $value = base64_decode($value);
+                    $value = \base64_decode($value);
                 }
 
                 $result = new Blob($value);
@@ -283,7 +283,7 @@ class EntityMapper
             case 'arrayValue':
                 $result = [];
 
-                if (array_key_exists('values', $value)) {
+                if (\array_key_exists('values', $value)) {
                     foreach ($value['values'] as $val) {
                         $result[] = $this->getPropertyValue($val);
                     }
@@ -292,7 +292,7 @@ class EntityMapper
                 break;
 
             default:
-                throw new \RuntimeException(sprintf(
+                throw new \RuntimeException(\sprintf(
                     'Unrecognized value type %s. Please ensure you are using the latest version of google/cloud.',
                     $type
                 ));
@@ -314,7 +314,7 @@ class EntityMapper
      */
     public function valueObject($value, $exclude = false, $meaning = null)
     {
-        switch (gettype($value)) {
+        switch (\gettype($value)) {
             case 'boolean':
                 $propertyValue = [
                     'booleanValue' => $value
@@ -357,11 +357,11 @@ class EntityMapper
                 break;
 
             case 'resource':
-                $content = stream_get_contents($value);
+                $content = \stream_get_contents($value);
 
                 $propertyValue = [
                     'blobValue' => ($this->encode)
-                        ? base64_encode($content)
+                        ? \base64_encode($content)
                         : $content
                 ];
                 break;
@@ -374,14 +374,14 @@ class EntityMapper
 
             //@codeCoverageIgnoreStart
             case 'unknown type':
-                throw new \InvalidArgumentException(sprintf(
+                throw new \InvalidArgumentException(\sprintf(
                     'Unknown type for `%s',
                     $value
                 ));
                 break;
 
             default:
-                throw new \InvalidArgumentException(sprintf(
+                throw new \InvalidArgumentException(\sprintf(
                     'Invalid type for `%s',
                     $value
                 ));
@@ -420,7 +420,7 @@ class EntityMapper
             case $value instanceof Blob:
                 return [
                     'blobValue' => ($this->encode)
-                        ? base64_encode((string) $value)
+                        ? \base64_encode((string) $value)
                         : (string) $value
                 ];
 
@@ -459,7 +459,7 @@ class EntityMapper
 
             default:
                 throw new \InvalidArgumentException(
-                    sprintf('Value of type `%s` could not be serialized', get_class($value))
+                    \sprintf('Value of type `%s` could not be serialized', \get_class($value))
                 );
 
                 break;
@@ -479,7 +479,7 @@ class EntityMapper
             // ListValues may not contain nested ListValues.
             // Therefore, if an empty array is provided as part of an array,
             // we can encode it as an EntityValue.
-            if (is_array($val) && empty($val)) {
+            if (\is_array($val) && empty($val)) {
                 $val = (object) $val;
             }
 
@@ -507,7 +507,7 @@ class EntityMapper
         foreach ($value as $key => $val) {
             $properties[$key] = $this->valueObject(
                 $val,
-                in_array($key, $excludes)
+                \in_array($key, $excludes)
             );
         }
 
@@ -525,18 +525,18 @@ class EntityMapper
     private function isEncoded($value)
     {
         // Check if there are valid base64 characters
-        if (!preg_match('/^[a-zA-Z0-9\/\r\n+]*={0,2}$/', $value)) {
+        if (!\preg_match('/^[a-zA-Z0-9\/\r\n+]*={0,2}$/', $value)) {
             return false;
         }
 
         // Decode the string in strict mode and check the results
-        $decoded = base64_decode($value, true);
+        $decoded = \base64_decode($value, true);
         if ($decoded == false) {
             return false;
         }
 
         // Encode the string again
-        return base64_encode($decoded) == $value;
+        return \base64_encode($decoded) == $value;
     }
 
     /**
@@ -561,9 +561,9 @@ class EntityMapper
      */
     private function getValueType(array $value)
     {
-        $keys = array_keys($value);
-        $types = array_values(array_filter($keys, function ($key) {
-            return strpos($key, 'Value') !== false;
+        $keys = \array_keys($value);
+        $types = \array_values(\array_filter($keys, function ($key) {
+            return \strpos($key, 'Value') !== false;
         }));
 
         if (!empty($types)) {

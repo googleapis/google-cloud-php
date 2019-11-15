@@ -52,7 +52,7 @@ class SnapshotTraitTest extends TestCase
     public function testCreateSnapshot()
     {
         $this->connection->batchGetDocuments([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
+            'database' => \sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             'documents' => [self::NAME]
         ])->shouldBeCalled()->willReturn(new \ArrayIterator([
             ['found' => [
@@ -82,7 +82,7 @@ class SnapshotTraitTest extends TestCase
     public function testCreateSnapshotNonExistence()
     {
         $this->connection->batchGetDocuments([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
+            'database' => \sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             'documents' => [self::NAME]
         ])->shouldBeCalled()->willReturn(new \ArrayIterator([
             ['missing' => self::NAME]
@@ -104,7 +104,7 @@ class SnapshotTraitTest extends TestCase
     public function testGetSnapshot()
     {
         $this->connection->batchGetDocuments([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
+            'database' => \sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             'documents' => [self::NAME]
         ])->shouldBeCalled()->willReturn(new \ArrayIterator([
             ['found' => 'foo']
@@ -159,7 +159,7 @@ class SnapshotTraitTest extends TestCase
     public function testGetSnapshotNotFound()
     {
         $this->connection->batchGetDocuments([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
+            'database' => \sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             'documents' => [self::NAME]
         ])->shouldBeCalled()->willReturn(new \ArrayIterator([
             ['missing' => self::NAME]

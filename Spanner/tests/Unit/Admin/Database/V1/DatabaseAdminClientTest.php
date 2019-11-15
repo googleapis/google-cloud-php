@@ -100,12 +100,12 @@ class DatabaseAdminClientTest extends GeneratedTest
 
         $response = $client->listDatabases($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
-        $resources = iterator_to_array($response->iterateAllElements());
-        $this->assertSame(1, count($resources));
+        $resources = \iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, \count($resources));
         $this->assertEquals($expectedResponse->getDatabases()[0], $resources[0]);
 
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertSame(1, \count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/ListDatabases', $actualFuncCall);
@@ -130,7 +130,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -199,9 +199,9 @@ class DatabaseAdminClientTest extends GeneratedTest
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($apiRequests));
+        $this->assertSame(1, \count($apiRequests));
         $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
-        $this->assertSame(0, count($operationsRequestsEmpty));
+        $this->assertSame(0, \count($operationsRequestsEmpty));
 
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
@@ -222,9 +222,9 @@ class DatabaseAdminClientTest extends GeneratedTest
         $this->assertTrue($response->isDone());
         $this->assertEquals($expectedResponse, $response->getResult());
         $apiRequestsEmpty = $transport->popReceivedCalls();
-        $this->assertSame(0, count($apiRequestsEmpty));
+        $this->assertSame(0, \count($apiRequestsEmpty));
         $operationsRequests = $operationsTransport->popReceivedCalls();
-        $this->assertSame(1, count($operationsRequests));
+        $this->assertSame(1, \count($operationsRequests));
 
         $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
         $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
@@ -265,7 +265,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -324,7 +324,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         $response = $client->getDatabase($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertSame(1, \count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/GetDatabase', $actualFuncCall);
@@ -350,7 +350,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -417,9 +417,9 @@ class DatabaseAdminClientTest extends GeneratedTest
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($apiRequests));
+        $this->assertSame(1, \count($apiRequests));
         $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
-        $this->assertSame(0, count($operationsRequestsEmpty));
+        $this->assertSame(0, \count($operationsRequestsEmpty));
 
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
@@ -440,9 +440,9 @@ class DatabaseAdminClientTest extends GeneratedTest
         $this->assertTrue($response->isDone());
         $this->assertEquals($expectedResponse, $response->getResult());
         $apiRequestsEmpty = $transport->popReceivedCalls();
-        $this->assertSame(0, count($apiRequestsEmpty));
+        $this->assertSame(0, \count($apiRequestsEmpty));
         $operationsRequests = $operationsTransport->popReceivedCalls();
-        $this->assertSame(1, count($operationsRequests));
+        $this->assertSame(1, \count($operationsRequests));
 
         $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
         $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
@@ -483,7 +483,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -539,7 +539,7 @@ class DatabaseAdminClientTest extends GeneratedTest
 
         $client->dropDatabase($formattedDatabase);
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertSame(1, \count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/DropDatabase', $actualFuncCall);
@@ -565,7 +565,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -610,7 +610,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         $response = $client->getDatabaseDdl($formattedDatabase);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertSame(1, \count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/GetDatabaseDdl', $actualFuncCall);
@@ -636,7 +636,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -686,7 +686,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         $response = $client->setIamPolicy($formattedResource, $policy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertSame(1, \count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/SetIamPolicy', $actualFuncCall);
@@ -715,7 +715,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -765,7 +765,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         $response = $client->getIamPolicy($formattedResource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertSame(1, \count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/GetIamPolicy', $actualFuncCall);
@@ -791,7 +791,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -837,7 +837,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         $response = $client->testIamPermissions($formattedResource, $permissions);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertSame(1, \count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/TestIamPermissions', $actualFuncCall);
@@ -866,7 +866,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',

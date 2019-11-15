@@ -11,6 +11,6 @@ if (false) {
      */
     class CryptoKeyVersion_CryptoKeyVersionView {}
 }
-class_exists(CryptoKeyVersion\CryptoKeyVersionView::class);
-@trigger_error('Google\Cloud\Kms\V1\CryptoKeyVersion_CryptoKeyVersionView is deprecated and will be removed in a future release. Use Google\Cloud\Kms\V1\CryptoKeyVersion\CryptoKeyVersionView instead', E_USER_DEPRECATED);
+\class_exists(CryptoKeyVersion\CryptoKeyVersionView::class);
+@\trigger_error('Google\Cloud\Kms\V1\CryptoKeyVersion_CryptoKeyVersionView is deprecated and will be removed in a future release. Use Google\Cloud\Kms\V1\CryptoKeyVersion\CryptoKeyVersionView instead', E_USER_DEPRECATED);
 

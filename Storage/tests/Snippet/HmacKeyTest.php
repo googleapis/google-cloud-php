@@ -70,7 +70,7 @@ class HmacKeyTest extends SnippetTestCase
 
     public function testReload()
     {
-        $newMetadata = array_merge($this->metadata, ['foo' => 'bar']);
+        $newMetadata = \array_merge($this->metadata, ['foo' => 'bar']);
         $this->connection->getHmacKey(Argument::any())->willReturn($newMetadata);
         $this->key->___setProperty('connection', $this->connection->reveal());
 

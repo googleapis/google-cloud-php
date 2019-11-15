@@ -111,7 +111,7 @@ class CompanyServiceClientTest extends GeneratedTest
         $response = $client->createCompany($formattedParent, $company);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertSame(1, \count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.talent.v4beta1.CompanyService/CreateCompany', $actualFuncCall);
@@ -140,7 +140,7 @@ class CompanyServiceClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -206,7 +206,7 @@ class CompanyServiceClientTest extends GeneratedTest
         $response = $client->getCompany($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertSame(1, \count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.talent.v4beta1.CompanyService/GetCompany', $actualFuncCall);
@@ -232,7 +232,7 @@ class CompanyServiceClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -297,7 +297,7 @@ class CompanyServiceClientTest extends GeneratedTest
         $response = $client->updateCompany($company);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertSame(1, \count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.talent.v4beta1.CompanyService/UpdateCompany', $actualFuncCall);
@@ -323,7 +323,7 @@ class CompanyServiceClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -367,7 +367,7 @@ class CompanyServiceClientTest extends GeneratedTest
 
         $client->deleteCompany($formattedName);
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertSame(1, \count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.talent.v4beta1.CompanyService/DeleteCompany', $actualFuncCall);
@@ -393,7 +393,7 @@ class CompanyServiceClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -442,12 +442,12 @@ class CompanyServiceClientTest extends GeneratedTest
 
         $response = $client->listCompanies($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
-        $resources = iterator_to_array($response->iterateAllElements());
-        $this->assertSame(1, count($resources));
+        $resources = \iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, \count($resources));
         $this->assertEquals($expectedResponse->getCompanies()[0], $resources[0]);
 
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertSame(1, \count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.talent.v4beta1.CompanyService/ListCompanies', $actualFuncCall);
@@ -472,7 +472,7 @@ class CompanyServiceClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',

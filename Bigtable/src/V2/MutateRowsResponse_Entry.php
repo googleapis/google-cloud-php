@@ -11,6 +11,6 @@ if (false) {
      */
     class MutateRowsResponse_Entry {}
 }
-class_exists(MutateRowsResponse\Entry::class);
-@trigger_error('Google\Cloud\Bigtable\V2\MutateRowsResponse_Entry is deprecated and will be removed in the next major release. Use Google\Cloud\Bigtable\V2\MutateRowsResponse\Entry instead', E_USER_DEPRECATED);
+\class_exists(MutateRowsResponse\Entry::class);
+@\trigger_error('Google\Cloud\Bigtable\V2\MutateRowsResponse_Entry is deprecated and will be removed in the next major release. Use Google\Cloud\Bigtable\V2\MutateRowsResponse\Entry instead', E_USER_DEPRECATED);
 

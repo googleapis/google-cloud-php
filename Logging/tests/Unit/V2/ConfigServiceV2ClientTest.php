@@ -97,12 +97,12 @@ class ConfigServiceV2ClientTest extends GeneratedTest
 
         $response = $client->listSinks($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
-        $resources = iterator_to_array($response->iterateAllElements());
-        $this->assertSame(1, count($resources));
+        $resources = \iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, \count($resources));
         $this->assertEquals($expectedResponse->getSinks()[0], $resources[0]);
 
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertSame(1, \count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/ListSinks', $actualFuncCall);
@@ -127,7 +127,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -182,7 +182,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $response = $client->getSink($formattedSinkName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertSame(1, \count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/GetSink', $actualFuncCall);
@@ -208,7 +208,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -264,7 +264,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $response = $client->createSink($formattedParent, $sink);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertSame(1, \count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/CreateSink', $actualFuncCall);
@@ -293,7 +293,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -350,7 +350,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $response = $client->updateSink($formattedSinkName, $sink);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertSame(1, \count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/UpdateSink', $actualFuncCall);
@@ -379,7 +379,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -424,7 +424,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
 
         $client->deleteSink($formattedSinkName);
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertSame(1, \count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/DeleteSink', $actualFuncCall);
@@ -450,7 +450,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -499,12 +499,12 @@ class ConfigServiceV2ClientTest extends GeneratedTest
 
         $response = $client->listExclusions($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
-        $resources = iterator_to_array($response->iterateAllElements());
-        $this->assertSame(1, count($resources));
+        $resources = \iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, \count($resources));
         $this->assertEquals($expectedResponse->getExclusions()[0], $resources[0]);
 
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertSame(1, \count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/ListExclusions', $actualFuncCall);
@@ -529,7 +529,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -582,7 +582,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $response = $client->getExclusion($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertSame(1, \count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/GetExclusion', $actualFuncCall);
@@ -608,7 +608,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -662,7 +662,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $response = $client->createExclusion($formattedParent, $exclusion);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertSame(1, \count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/CreateExclusion', $actualFuncCall);
@@ -691,7 +691,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -747,7 +747,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $response = $client->updateExclusion($formattedName, $exclusion, $updateMask);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertSame(1, \count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/UpdateExclusion', $actualFuncCall);
@@ -779,7 +779,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -825,7 +825,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
 
         $client->deleteExclusion($formattedName);
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertSame(1, \count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/DeleteExclusion', $actualFuncCall);
@@ -851,7 +851,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',

@@ -69,7 +69,7 @@ class RecordingDeviceType
     public static function name($value)
     {
         if (!isset(self::$valueToName[$value])) {
-            throw new UnexpectedValueException(sprintf(
+            throw new UnexpectedValueException(\sprintf(
                     'Enum %s has no name defined for value %s', __CLASS__, $value));
         }
         return self::$valueToName[$value];
@@ -78,15 +78,15 @@ class RecordingDeviceType
 
     public static function value($name)
     {
-        $const = __CLASS__ . '::' . strtoupper($name);
-        if (!defined($const)) {
-            throw new UnexpectedValueException(sprintf(
+        $const = __CLASS__ . '::' . \strtoupper($name);
+        if (!\defined($const)) {
+            throw new UnexpectedValueException(\sprintf(
                     'Enum %s has no value defined for name %s', __CLASS__, $name));
         }
-        return constant($const);
+        return \constant($const);
     }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RecordingDeviceType::class, \Google\Cloud\Speech\V1p1beta1\RecognitionMetadata_RecordingDeviceType::class);
+\class_alias(RecordingDeviceType::class, \Google\Cloud\Speech\V1p1beta1\RecognitionMetadata_RecordingDeviceType::class);
 

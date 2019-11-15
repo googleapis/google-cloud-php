@@ -205,23 +205,23 @@ class Lifecycle implements \ArrayAccess, \IteratorAggregate
             return $this;
         }
 
-        if (!is_string($action) && !is_callable($action)) {
+        if (!\is_string($action) && !\is_callable($action)) {
             throw new \InvalidArgumentException(
-                sprintf(
+                \sprintf(
                     'Expected either a string or callable, instead got \'%s\'.',
-                    gettype($action)
+                    \gettype($action)
                 )
             );
         }
 
         if (isset($this->lifecycle['rule'])) {
-            if (is_string($action)) {
+            if (\is_string($action)) {
                 $action = function ($rule) use ($action) {
                     return $rule['action']['type'] !== $action;
                 };
             }
 
-            $this->lifecycle['rule'] = array_filter(
+            $this->lifecycle['rule'] = \array_filter(
                 $this->lifecycle['rule'],
                 $action
             );

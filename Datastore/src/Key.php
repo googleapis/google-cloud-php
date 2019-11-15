@@ -121,7 +121,7 @@ class Key implements JsonSerializable
             'namespaceId' => null
         ];
 
-        if (is_array($this->options['path']) && !empty($this->options['path'])) {
+        if (\is_array($this->options['path']) && !empty($this->options['path'])) {
             $this->path = $this->normalizePath($this->options['path']);
         }
 
@@ -220,7 +220,7 @@ class Key implements JsonSerializable
 
         $pathElement = $this->normalizeElement($kind, $identifier, $options['identifierType']);
 
-        array_unshift($this->path, $pathElement);
+        \array_unshift($this->path, $pathElement);
 
         return $this;
     }
@@ -248,7 +248,7 @@ class Key implements JsonSerializable
 
         $path = $key->path();
 
-        $this->path = array_merge($path, $this->path);
+        $this->path = \array_merge($path, $this->path);
 
         return $this;
     }
@@ -311,8 +311,8 @@ class Key implements JsonSerializable
         $end = $this->pathEnd();
         $end[$type] = (string) $value;
 
-        $elements = array_keys($this->path);
-        $lastElement = end($elements);
+        $elements = \array_keys($this->path);
+        $lastElement = \end($elements);
 
         $this->path[$lastElement] = $end;
     }
@@ -345,7 +345,7 @@ class Key implements JsonSerializable
     public function pathEnd()
     {
         $path = $this->path;
-        $end = end($path);
+        $end = \end($path);
 
         return $end;
     }
@@ -441,7 +441,7 @@ class Key implements JsonSerializable
         $element = [];
         $element['kind'] = $kind;
 
-        if (!is_null($identifier)) {
+        if (!\is_null($identifier)) {
             $element[$identifierType] = $identifier;
         }
 
@@ -461,16 +461,16 @@ class Key implements JsonSerializable
     {
         $allowedTypes = [self::TYPE_ID, self::TYPE_NAME];
 
-        if (!is_null($identifierType) && in_array($identifierType, $allowedTypes)) {
+        if (!\is_null($identifierType) && \in_array($identifierType, $allowedTypes)) {
             return $identifierType;
-        } elseif (!is_null($identifierType)) {
-            throw new InvalidArgumentException(sprintf(
+        } elseif (!\is_null($identifierType)) {
+            throw new InvalidArgumentException(\sprintf(
                 'Invalid identifier type %s',
                 $identifierType
             ));
         }
 
-        if (is_numeric($identifier)) {
+        if (\is_numeric($identifier)) {
             return self::TYPE_ID;
         }
 
@@ -498,13 +498,13 @@ class Key implements JsonSerializable
             }
 
             $incomplete = (!isset($pathElement['id']) && !isset($pathElement['name']));
-            if ($index < count($path) -1 && $incomplete) {
+            if ($index < \count($path) -1 && $incomplete) {
                 throw new InvalidArgumentException(
                     'Only the final pathElement may omit a name or ID.'
                 );
             }
 
-            if (isset($pathElement['id']) && !is_string($pathElement['id'])) {
+            if (isset($pathElement['id']) && !\is_string($pathElement['id'])) {
                 $pathElement['id'] = (string) $pathElement['id'];
             }
 
@@ -528,9 +528,9 @@ class Key implements JsonSerializable
                 'name' => null
             ];
             $id = ($element['id']) ? $element['id'] : $element['name'];
-            $el[] = sprintf('[%s: %s]', $element['kind'], $id);
+            $el[] = \sprintf('[%s: %s]', $element['kind'], $id);
         }
 
-        return sprintf('[ %s ]', implode(', ', $el));
+        return \sprintf('[ %s ]', \implode(', ', $el));
     }
 }

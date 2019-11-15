@@ -316,7 +316,7 @@ class QueryTest extends TestCase
         foreach ($constants as $constant) {
             $ops[] = [$constant];
         }
-        return array_merge($ops, [
+        return \array_merge($ops, [
             ['<'],
             ['<='],
             ['>'],
@@ -366,7 +366,7 @@ class QueryTest extends TestCase
                         ],
                         'op' => FieldFilterOperator::EQUAL,
                         'value' => [
-                            'referenceValue' => is_string($expected)
+                            'referenceValue' => \is_string($expected)
                                 ? $expected
                                 : $expected->name()
                         ]
@@ -948,13 +948,13 @@ class QueryTest extends TestCase
 
     private function runAndAssert(callable $filters, $assertion, Query $query = null)
     {
-        if (is_array($assertion)) {
+        if (\is_array($assertion)) {
             $this->connection->runQuery(
                 new ArrayHasSameValuesToken($assertion + ['retries' => 0])
             )->shouldBeCalledTimes(1)->willReturn(new \ArrayIterator([
                 []
             ]));
-        } elseif (is_callable($assertion)) {
+        } elseif (\is_callable($assertion)) {
             $this->connection->runQuery(Argument::that($assertion))
                 ->shouldBeCalledTimes(1);
         }
@@ -967,7 +967,7 @@ class QueryTest extends TestCase
         $this->assertInstanceOf(Query::class, $query);
         $this->assertNotEquals($immutable, $query);
 
-        iterator_to_array($query->documents(['maxRetries' => 0]));
+        \iterator_to_array($query->documents(['maxRetries' => 0]));
     }
 
     private function queryFrom($allDescendants = false)

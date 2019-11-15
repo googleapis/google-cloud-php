@@ -396,7 +396,7 @@ class SpannerClient
      */
     public function connect($instance, $name, array $options = [])
     {
-        if (is_string($instance)) {
+        if (\is_string($instance)) {
             $instance = $this->instance($instance);
         }
 

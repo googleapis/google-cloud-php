@@ -34,7 +34,7 @@ class DataUtil
     public static function isSystemLittleEndian()
     {
         if (self::$isLittleEndian === null) {
-            self::$isLittleEndian = (pack("P", 2) === pack("Q", 2));
+            self::$isLittleEndian = (\pack("P", 2) === \pack("Q", 2));
         }
         return self::$isLittleEndian;
     }
@@ -67,15 +67,15 @@ class DataUtil
         if (!self::isSupported()) {
             throw new \RuntimeException('This utility is only supported on 64 bit machines with PHP version > 5.5.');
         }
-        if (!is_int($intValue)) {
+        if (!\is_int($intValue)) {
             throw new \InvalidArgumentException(
-                sprintf(
+                \sprintf(
                     'Expected argument to be of type int, instead got \'%s\'.',
-                    gettype($intValue)
+                    \gettype($intValue)
                 )
             );
         }
-        $bytes = pack("J", $intValue);
+        $bytes = \pack("J", $intValue);
         return $bytes;
     }
 
@@ -92,8 +92,8 @@ class DataUtil
             throw new \RuntimeException('This utility is only supported on 64 bit machines with PHP version > 5.5.');
         }
         if (self::isSystemLittleEndian()) {
-            $bytes = strrev($bytes);
+            $bytes = \strrev($bytes);
         }
-        return unpack("q", $bytes)[1];
+        return \unpack("q", $bytes)[1];
     }
 }

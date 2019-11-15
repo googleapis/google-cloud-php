@@ -96,7 +96,7 @@ class Grpc implements ConnectionInterface
         $spans = $this->pluck('spans', $args);
         return $this->send([$this->traceClient, 'batchWriteSpans'], [
             TraceServiceClient::projectName($this->pluck('projectsId', $args)),
-            array_map(function (array $span) {
+            \array_map(function (array $span) {
                 return $this->serializer->decodeMessage(new Span(), $span);
             }, $spans),
             $args

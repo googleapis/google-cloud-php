@@ -11,6 +11,6 @@ if (false) {
      */
     class CustomInfoType_DetectionRule {}
 }
-class_exists(CustomInfoType\DetectionRule::class);
-@trigger_error('Google\Cloud\Dlp\V2\CustomInfoType_DetectionRule is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\CustomInfoType\DetectionRule instead', E_USER_DEPRECATED);
+\class_exists(CustomInfoType\DetectionRule::class);
+@\trigger_error('Google\Cloud\Dlp\V2\CustomInfoType_DetectionRule is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\CustomInfoType\DetectionRule instead', E_USER_DEPRECATED);
 

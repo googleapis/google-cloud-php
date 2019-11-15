@@ -70,7 +70,7 @@ class RunQueryTest extends DatastoreTestCase
         // on rare occasions the queries below are returning no results when
         // triggered immediately after an insert operation. the sleep here
         // is intended to help alleviate this issue.
-        sleep(1);
+        \sleep(1);
 
         self::$localDeletionQueue->add(self::$ancestor);
         self::$localDeletionQueue->add($key1);
@@ -87,7 +87,7 @@ class RunQueryTest extends DatastoreTestCase
             ->kind(self::$kind)
             ->order('knownDances');
 
-        $results = iterator_to_array($client->runQuery($query));
+        $results = \iterator_to_array($client->runQuery($query));
 
         $this->assertEquals(self::$data[0], $results[0]->get());
         $this->assertEquals(self::$data[1], $results[1]->get());
@@ -212,7 +212,7 @@ class RunQueryTest extends DatastoreTestCase
             ->kind(self::$kind)
             ->limit(1);
 
-        $results = iterator_to_array($client->runQuery($query));
+        $results = \iterator_to_array($client->runQuery($query));
 
         $cursorQuery = $client->query()
             ->kind(self::$kind)
@@ -235,7 +235,7 @@ class RunQueryTest extends DatastoreTestCase
             ->kind(self::$kind)
             ->limit(1);
 
-        $results = iterator_to_array($client->runQuery($query));
+        $results = \iterator_to_array($client->runQuery($query));
 
         $cursorQuery = $client->query()
             ->kind(self::$kind)
@@ -296,8 +296,8 @@ class RunQueryTest extends DatastoreTestCase
 
     private function runQueryAndSortResults($client, $query)
     {
-        $results = iterator_to_array($client->runQuery($query));
-        usort($results, function ($a, $b) {
+        $results = \iterator_to_array($client->runQuery($query));
+        \usort($results, function ($a, $b) {
             return $a['knownDances'] - $b['knownDances'];
         });
 

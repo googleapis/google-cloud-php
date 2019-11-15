@@ -35,9 +35,9 @@ class BlobTest extends TestCase
     public function testBlobResource()
     {
         $string = 'hello world';
-        $stream = fopen('php://memory', 'r+');
-        fwrite($stream, $string);
-        rewind($stream);
+        $stream = \fopen('php://memory', 'r+');
+        \fwrite($stream, $string);
+        \rewind($stream);
 
         $blob = new Blob($stream);
         $this->assertEquals('hello world', (string) $blob);

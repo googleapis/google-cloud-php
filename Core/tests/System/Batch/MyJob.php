@@ -34,21 +34,21 @@ class MyJob
      */
     public function runJob($items)
     {
-        $failCommand = @file_get_contents($this->commandFile);
+        $failCommand = @\file_get_contents($this->commandFile);
         if ($failCommand === 'fail') {
             return false;
         }
-        $fp = fopen($this->targetFile, 'w+');
-        if (flock($fp, LOCK_EX)) {
+        $fp = \fopen($this->targetFile, 'w+');
+        if (\flock($fp, LOCK_EX)) {
             foreach ($items as $item) {
-                fwrite($fp, strtoupper($item) . PHP_EOL);
+                \fwrite($fp, \strtoupper($item) . PHP_EOL);
             }
         } else {
             echo 'Could not get the lock';
-            @fclose($fp);
+            @\fclose($fp);
             return false;
         }
-        fclose($fp);
+        \fclose($fp);
         return true;
     }
 }

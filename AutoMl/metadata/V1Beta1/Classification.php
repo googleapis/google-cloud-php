@@ -16,7 +16,7 @@ class Classification
         }
         \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Cloud\Automl\V1Beta1\Temporal::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0aba0c0a30676f6f676c652f636c6f75642f6175746f6d6c2f7631626574" .
             "61312f636c617373696669636174696f6e2e70726f746f121b676f6f676c" .
             "652e636c6f75642e6175746f6d6c2e763162657461311a2a676f6f676c65" .

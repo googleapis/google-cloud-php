@@ -11,6 +11,6 @@ if (false) {
      */
     class CustomInfoType_Dictionary_WordList {}
 }
-class_exists(CustomInfoType\Dictionary\WordList::class);
-@trigger_error('Google\Cloud\Dlp\V2\CustomInfoType_Dictionary_WordList is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\CustomInfoType\Dictionary\WordList instead', E_USER_DEPRECATED);
+\class_exists(CustomInfoType\Dictionary\WordList::class);
+@\trigger_error('Google\Cloud\Dlp\V2\CustomInfoType_Dictionary_WordList is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\CustomInfoType\Dictionary\WordList instead', E_USER_DEPRECATED);
 

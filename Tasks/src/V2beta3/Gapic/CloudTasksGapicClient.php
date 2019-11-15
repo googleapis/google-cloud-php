@@ -474,7 +474,7 @@ class CloudTasksGapicClient
           'parent' => $request->getParent(),
         ]);
         $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            ? \array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->getPagedListResponse(
@@ -525,7 +525,7 @@ class CloudTasksGapicClient
           'name' => $request->getName(),
         ]);
         $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            ? \array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -596,7 +596,7 @@ class CloudTasksGapicClient
           'parent' => $request->getParent(),
         ]);
         $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            ? \array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -673,7 +673,7 @@ class CloudTasksGapicClient
           'queue.name' => $request->getQueue()->getName(),
         ]);
         $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            ? \array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -734,7 +734,7 @@ class CloudTasksGapicClient
           'name' => $request->getName(),
         ]);
         $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            ? \array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -790,7 +790,7 @@ class CloudTasksGapicClient
           'name' => $request->getName(),
         ]);
         $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            ? \array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -847,7 +847,7 @@ class CloudTasksGapicClient
           'name' => $request->getName(),
         ]);
         $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            ? \array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -910,7 +910,7 @@ class CloudTasksGapicClient
           'name' => $request->getName(),
         ]);
         $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            ? \array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -975,7 +975,7 @@ class CloudTasksGapicClient
           'resource' => $request->getResource(),
         ]);
         $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            ? \array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -1042,7 +1042,7 @@ class CloudTasksGapicClient
           'resource' => $request->getResource(),
         ]);
         $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            ? \array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -1105,7 +1105,7 @@ class CloudTasksGapicClient
           'resource' => $request->getResource(),
         ]);
         $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            ? \array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -1211,7 +1211,7 @@ class CloudTasksGapicClient
           'parent' => $request->getParent(),
         ]);
         $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            ? \array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->getPagedListResponse(
@@ -1279,7 +1279,7 @@ class CloudTasksGapicClient
           'name' => $request->getName(),
         ]);
         $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            ? \array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -1388,7 +1388,7 @@ class CloudTasksGapicClient
           'parent' => $request->getParent(),
         ]);
         $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            ? \array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -1441,7 +1441,7 @@ class CloudTasksGapicClient
           'name' => $request->getName(),
         ]);
         $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            ? \array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -1532,7 +1532,7 @@ class CloudTasksGapicClient
           'name' => $request->getName(),
         ]);
         $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            ? \array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(

@@ -82,7 +82,7 @@ class SigningHelper
 
         unset($options['version']);
 
-        switch (strtolower($version)) {
+        switch (\strtolower($version)) {
             case 'v2':
                 $method = 'v2Sign';
                 break;
@@ -95,7 +95,7 @@ class SigningHelper
                 throw new \InvalidArgumentException('Invalid signing version.');
         }
 
-        return call_user_func_array([$this, $method], func_get_args());
+        return \call_user_func_array([$this, $method], \func_get_args());
     }
 
     /**
@@ -134,16 +134,16 @@ class SigningHelper
             'x-goog-encryption-key',
             'x-goog-encryption-key-sha256'
         ];
-        if ($illegal = array_intersect_key(array_flip($illegalHeaders), $headers)) {
-            throw new \InvalidArgumentException(sprintf(
+        if ($illegal = \array_intersect_key(\array_flip($illegalHeaders), $headers)) {
+            throw new \InvalidArgumentException(\sprintf(
                 '%s %s not allowed in Signed URL headers.',
-                implode(' and ', array_keys($illegal)),
-                count($illegal) === 1 ? 'is' : 'are'
+                \implode(' and ', \array_keys($illegal)),
+                \count($illegal) === 1 ? 'is' : 'are'
             ));
         }
 
         // Sort headers by name.
-        ksort($headers);
+        \ksort($headers);
 
         $toSign = [
             $options['method'],
@@ -159,7 +159,7 @@ class SigningHelper
 
         // Push the headers onto the end of the signing string.
         if ($signedHeaders) {
-            $toSign = array_merge($toSign, $signedHeaders);
+            $toSign = \array_merge($toSign, $signedHeaders);
         }
 
         $toSign[] = $resource;
@@ -225,8 +225,8 @@ class SigningHelper
         }
 
         $clientEmail = $credentials->getClientName();
-        $credentialScope = sprintf('%s/auto/storage/goog4_request', $requestDatestamp);
-        $credential = sprintf('%s/%s', $clientEmail, $credentialScope);
+        $credentialScope = \sprintf('%s/auto/storage/goog4_request', $requestDatestamp);
+        $credential = \sprintf('%s/%s', $clientEmail, $credentialScope);
 
         // Add headers and query params based on provided options.
         $params = $options['queryParams'];
@@ -247,7 +247,7 @@ class SigningHelper
         $headers = $this->normalizeHeaders($headers);
 
         // sort headers by name
-        ksort($headers, SORT_NATURAL | SORT_FLAG_CASE);
+        \ksort($headers, SORT_NATURAL | SORT_FLAG_CASE);
 
         // Canonical headers are a list, newline separated, of keys and values,
         // comma separated.
@@ -255,12 +255,12 @@ class SigningHelper
         $canonicalHeaders = [];
         $signedHeaders = [];
         foreach ($headers as $key => $val) {
-            $canonicalHeaders[] = sprintf('%s:%s', $key, $val);
+            $canonicalHeaders[] = \sprintf('%s:%s', $key, $val);
             $signedHeaders[] = $key;
         }
-        $canonicalHeaders = implode("\n", $canonicalHeaders) . "\n";
+        $canonicalHeaders = \implode("\n", $canonicalHeaders) . "\n";
 
-        $signedHeaders = implode(';', $signedHeaders);
+        $signedHeaders = \implode(';', $signedHeaders);
 
         // Add required query parameters.
         $params['X-Goog-Algorithm'] = self::V4_ALGO_NAME;
@@ -270,7 +270,7 @@ class SigningHelper
         $params['X-Goog-SignedHeaders'] = $signedHeaders;
 
         // Sort query string params by name.
-        ksort($params, SORT_NATURAL | SORT_FLAG_CASE);
+        \ksort($params, SORT_NATURAL | SORT_FLAG_CASE);
 
         $canonicalQueryString = $this->buildQueryString($params);
 
@@ -286,14 +286,14 @@ class SigningHelper
         $requestHash = $this->createV4CanonicalRequest($canonicalRequest);
 
         // Construct the string to sign.
-        $stringToSign = implode("\n", [
+        $stringToSign = \implode("\n", [
             self::V4_ALGO_NAME,
             $requestTimestamp,
             $credentialScope,
             $requestHash
         ]);
 
-        $signature = bin2hex(base64_decode($credentials->signBlob($stringToSign, [
+        $signature = \bin2hex(\base64_decode($credentials->signBlob($stringToSign, [
             'forceOpenssl' => $options['forceOpenssl']
         ])));
 
@@ -301,7 +301,7 @@ class SigningHelper
         // this will remove the bucket name from the resource.
         $resource = $this->normalizeUriPath($options['cname'], $resource);
 
-        return sprintf(
+        return \sprintf(
             'https://%s%s?%s&X-Goog-Signature=%s',
             $options['cname'],
             $resource,
@@ -322,7 +322,7 @@ class SigningHelper
      */
     private function createV4CanonicalRequest(array $canonicalRequest)
     {
-        return bin2hex(hash('sha256', implode("\n", $canonicalRequest), true));
+        return \bin2hex(\hash('sha256', \implode("\n", $canonicalRequest), true));
     }
 
     /**
@@ -337,7 +337,7 @@ class SigningHelper
      */
     private function createV2CanonicalRequest(array $canonicalRequest)
     {
-        return implode("\n", $canonicalRequest);
+        return \implode("\n", $canonicalRequest);
     }
 
     /**
@@ -353,7 +353,7 @@ class SigningHelper
             $seconds = $expires->get()->format('U');
         } elseif ($expires instanceof \DateTimeInterface) {
             $seconds = $expires->format('U');
-        } elseif (is_numeric($expires)) {
+        } elseif (\is_numeric($expires)) {
             $seconds = (int) $expires;
         } else {
             throw new \InvalidArgumentException('Invalid expiration.');
@@ -372,11 +372,11 @@ class SigningHelper
      */
     private function normalizeResource($resource)
     {
-        $pieces = explode('/', trim($resource, '/'));
-        array_walk($pieces, function (&$piece) {
-            $piece = rawurlencode($piece);
+        $pieces = \explode('/', \trim($resource, '/'));
+        \array_walk($pieces, function (&$piece) {
+            $piece = \rawurlencode($piece);
         });
-        return '/' . implode('/', $pieces);
+        return '/' . \implode('/', $pieces);
     }
 
     /**
@@ -406,8 +406,8 @@ class SigningHelper
         ];
 
         $allowedMethods = ['GET', 'PUT', 'POST', 'DELETE'];
-        $options['method'] = strtoupper($options['method']);
-        if (!in_array($options['method'], $allowedMethods)) {
+        $options['method'] = \strtoupper($options['method']);
+        if (!\in_array($options['method'], $allowedMethods)) {
             throw new \InvalidArgumentException('$options.method must be one of `GET`, `PUT` or `DELETE`.');
         }
 
@@ -419,18 +419,18 @@ class SigningHelper
         unset($options['allowPost']);
 
         // For backwards compatibility, strip protocol from cname.
-        $cnameParts = explode('//', $options['cname']);
-        if (count($cnameParts) > 1) {
+        $cnameParts = \explode('//', $options['cname']);
+        if (\count($cnameParts) > 1) {
             $options['cname'] = $cnameParts[1];
         }
 
-        $options['cname'] = trim($options['cname'], '/');
+        $options['cname'] = \trim($options['cname'], '/');
 
         // If a timestamp is provided, use it in place of `now` for v4 URLs only..
         // This option exists for testing purposes, and should not generally be provided by users.
         if ($options['timestamp']) {
             if (!($options['timestamp'] instanceof \DateTimeInterface)) {
-                if (!is_string($options['timestamp'])) {
+                if (!\is_string($options['timestamp'])) {
                     throw new \InvalidArgumentException(
                         'User-provided timestamps must be a string or instance of `\DateTimeInterface`.'
                     );
@@ -471,24 +471,24 @@ class SigningHelper
     {
         $out = [];
         foreach ($headers as $name => $value) {
-            $name = strtolower(trim($name));
+            $name = \strtolower(\trim($name));
             // collapse arrays of values into a comma-separated list.
-            if (!is_array($value)) {
+            if (!\is_array($value)) {
                 $value = [$value];
             }
 
             foreach ($value as &$headerValue) {
                 // strip trailing and leading spaces.
-                $headerValue = trim($headerValue);
+                $headerValue = \trim($headerValue);
 
                 // replace newlines with empty strings.
-                $headerValue = str_replace(PHP_EOL, '', $headerValue);
+                $headerValue = \str_replace(PHP_EOL, '', $headerValue);
 
                 // collapse multiple whitespace chars to a single space.
-                $headerValue = preg_replace('/\s+/', ' ', $headerValue);
+                $headerValue = \preg_replace('/\s+/', ' ', $headerValue);
             }
 
-            $out[$name] = implode(', ', $value);
+            $out[$name] = \implode(', ', $value);
         }
 
         return $out;
@@ -507,14 +507,14 @@ class SigningHelper
     private function normalizeUriPath($cname, $resource)
     {
         if ($cname !== self::DEFAULT_DOWNLOAD_HOST) {
-            $resourceParts = explode('/', trim($resource, '/'));
-            array_shift($resourceParts);
+            $resourceParts = \explode('/', \trim($resource, '/'));
+            \array_shift($resourceParts);
 
             // Resource is a Bucket.
             if (empty($resourceParts)) {
                 $resource = '/';
             } else {
-                $resource = '/' . implode('/', $resourceParts);
+                $resource = '/' . \implode('/', $resourceParts);
             }
         }
 
@@ -538,14 +538,14 @@ class SigningHelper
             : null;
 
         if ($keyFilePath) {
-            if (!file_exists($keyFilePath)) {
-                throw new \InvalidArgumentException(sprintf(
+            if (!\file_exists($keyFilePath)) {
+                throw new \InvalidArgumentException(\sprintf(
                     'Keyfile path %s does not exist.',
                     $keyFilePath
                 ));
             }
 
-            $options['keyFile'] = self::jsonDecode(file_get_contents($keyFilePath), true);
+            $options['keyFile'] = self::jsonDecode(\file_get_contents($keyFilePath), true);
         }
 
         $rw = $connection->requestWrapper();
@@ -564,9 +564,9 @@ class SigningHelper
         }
 
         if (!($credentials instanceof SignBlobInterface)) {
-            throw new \RuntimeException(sprintf(
+            throw new \RuntimeException(\sprintf(
                 'Credentials object is of type `%s` and is not valid for signing.',
-                get_class($credentials)
+                \get_class($credentials)
             ));
         }
 
@@ -615,6 +615,6 @@ class SigningHelper
      */
     private function buildQueryString(array $input)
     {
-        return http_build_query($input, '', '&', PHP_QUERY_RFC3986);
+        return \http_build_query($input, '', '&', PHP_QUERY_RFC3986);
     }
 }

@@ -86,5 +86,5 @@ class Rest implements ConnectionInterface
 
 //@codingStandardsIgnoreStart
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Rest::class, \Google\Cloud\Translate\Connection\Rest::class);
+\class_alias(Rest::class, \Google\Cloud\Translate\Connection\Rest::class);
 //@codingStandardsIgnoreEnd

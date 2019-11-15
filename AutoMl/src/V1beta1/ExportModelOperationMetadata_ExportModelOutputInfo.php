@@ -11,6 +11,6 @@ if (false) {
      */
     class ExportModelOperationMetadata_ExportModelOutputInfo {}
 }
-class_exists(ExportModelOperationMetadata\ExportModelOutputInfo::class);
-@trigger_error('Google\Cloud\AutoMl\V1beta1\ExportModelOperationMetadata_ExportModelOutputInfo is deprecated and will be removed in the next major release. Use Google\Cloud\AutoMl\V1beta1\ExportModelOperationMetadata\ExportModelOutputInfo instead', E_USER_DEPRECATED);
+\class_exists(ExportModelOperationMetadata\ExportModelOutputInfo::class);
+@\trigger_error('Google\Cloud\AutoMl\V1beta1\ExportModelOperationMetadata_ExportModelOutputInfo is deprecated and will be removed in the next major release. Use Google\Cloud\AutoMl\V1beta1\ExportModelOperationMetadata\ExportModelOutputInfo instead', E_USER_DEPRECATED);
 

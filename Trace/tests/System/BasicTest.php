@@ -43,7 +43,7 @@ class BasicTest extends TestCase
         $span2->setStartTime();
 
         // just add a little bit of time for the spans
-        usleep(20);
+        \usleep(20);
 
         $span2->setEndTime();
         $span->setEndTime();
@@ -67,9 +67,9 @@ class BasicTest extends TestCase
             'attributes' => [
                 'foo' => 'bar'
             ],
-            'stackTrace' => debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS),
+            'stackTrace' => \debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS),
             'status' => $status,
-            'startTime' => microtime(true)
+            'startTime' => \microtime(true)
         ]);
         $span->addTimeEvent(
             new Annotation('some annotation', [
@@ -89,7 +89,7 @@ class BasicTest extends TestCase
         $span2 = $trace->span([
             'name' => 'inner',
             'parentSpanId' => $span->spanId(),
-            'startTime' => microtime(true)
+            'startTime' => \microtime(true)
         ]);
         $span2->addLink(
             new Link($trace->traceId(), $span->spanId(), [
@@ -100,7 +100,7 @@ class BasicTest extends TestCase
         );
 
         // just add a little bit of time for the spans
-        usleep(20);
+        \usleep(20);
 
         $span2->setEndTime();
         $span->setEndTime();
@@ -122,7 +122,7 @@ class BasicTest extends TestCase
     private function client($connectionType)
     {
         return new TraceClient([
-            'keyFilePath' => getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH'),
+            'keyFilePath' => \getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH'),
             'transport' => $connectionType
         ]);
     }

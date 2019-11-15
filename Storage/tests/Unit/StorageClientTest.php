@@ -72,7 +72,7 @@ class StorageClientTest extends TestCase
             ->willReturn(self::PROJECT);
 
         $this->client->___setProperty('connection', $this->connection->reveal());
-        $buckets = iterator_to_array($this->client->buckets());
+        $buckets = \iterator_to_array($this->client->buckets());
 
         $this->assertEquals('bucket1', $buckets[0]->name());
     }
@@ -95,7 +95,7 @@ class StorageClientTest extends TestCase
             ->willReturn(self::PROJECT);
 
         $this->client->___setProperty('connection', $this->connection->reveal());
-        $bucket = iterator_to_array($this->client->buckets());
+        $bucket = \iterator_to_array($this->client->buckets());
 
         $this->assertEquals('bucket2', $bucket[1]->name());
     }
@@ -141,7 +141,7 @@ class StorageClientTest extends TestCase
     {
         $this->assertTrue($this->client->registerStreamWrapper());
         $this->assertEquals($this->client, StreamWrapper::getClient());
-        $this->assertContains('gs', stream_get_wrappers());
+        $this->assertContains('gs', \stream_get_wrappers());
         $this->client->unregisterStreamWrapper();
     }
 
@@ -198,7 +198,7 @@ class StorageClientTest extends TestCase
 
         $this->client->___setProperty('connection', $this->connection->reveal());
 
-        $key = iterator_to_array($this->client->hmacKeys([
+        $key = \iterator_to_array($this->client->hmacKeys([
             'serviceAccountEmail' => $email
         ]))[0];
 
@@ -246,7 +246,7 @@ class StorageClientTest extends TestCase
         $client = TestHelpers::stub(StorageClientStub::class, [], ['projectId']);
         $client->___setProperty('projectId', null);
 
-        call_user_func_array([$client, $method], $args);
+        \call_user_func_array([$client, $method], $args);
     }
 
     public function requiresProjectIdMethods()

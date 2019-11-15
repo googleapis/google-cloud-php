@@ -257,16 +257,16 @@ class Topic
             foreach ($iterator as $leafValue) {
                 $excludes = ['name'];
                 $keys = [];
-                foreach (range(0, $iterator->getDepth()) as $depth) {
+                foreach (\range(0, $iterator->getDepth()) as $depth) {
                     $key = $iterator->getSubIterator($depth)->key();
-                    if (!is_string($key)) {
+                    if (!\is_string($key)) {
                         break;
                     }
                     $keys[] = $key;
                 }
 
-                $path = implode('.', $keys);
-                if (!in_array($path, $excludes)) {
+                $path = \implode('.', $keys);
+                if (!\in_array($path, $excludes)) {
                     $updateMaskPaths[] = $path;
                 }
             }
@@ -277,7 +277,7 @@ class Topic
             'topic' => [
                 'name' => $this->name,
             ] + $topic,
-            'updateMask' => implode(',', $updateMaskPaths)
+            'updateMask' => \implode(',', $updateMaskPaths)
         ] + $options);
     }
 
@@ -655,7 +655,7 @@ class Topic
             'name' => $this->name,
             'projectId' => $this->projectId,
             'info' => $this->info,
-            'connection' => get_class($this->connection)
+            'connection' => \get_class($this->connection)
         ];
     }
 
@@ -670,11 +670,11 @@ class Topic
     private function formatMessage(array $message)
     {
         if (isset($message['data']) && $this->encode) {
-            $message['data'] = base64_encode($message['data']);
+            $message['data'] = \base64_encode($message['data']);
         }
 
-        if (!array_key_exists('data', $message) &&
-            !array_key_exists('attributes', $message)) {
+        if (!\array_key_exists('data', $message) &&
+            !\array_key_exists('attributes', $message)) {
             throw new InvalidArgumentException('At least one of $data or
                 $attributes must be specified on each message, but neither
                 was given.');

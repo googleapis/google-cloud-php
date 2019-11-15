@@ -71,7 +71,7 @@ class ReflectorRegister
      */
     private function getReflectorFromFileReflector($fileReflector)
     {
-        if (is_null($fileReflector)) {
+        if (\is_null($fileReflector)) {
             return null;
         }
 
@@ -99,8 +99,8 @@ class ReflectorRegister
         if (empty($name)) {
             return null;
         }
-        if (!array_key_exists($name, $this->nameFileMap)) {
-            if (class_exists($name) || interface_exists($name) || trait_exists($name)) {
+        if (!\array_key_exists($name, $this->nameFileMap)) {
+            if (\class_exists($name) || \interface_exists($name) || \trait_exists($name)) {
                 $refClass = new \ReflectionClass((string)$name);
                 $fileName = $refClass->getFileName();
                 if (empty($fileName)) {

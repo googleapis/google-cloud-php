@@ -239,7 +239,7 @@ class BatchSnapshot implements TransactionalReadInterface
      */
     public function serialize()
     {
-        return base64_encode(json_encode([
+        return \base64_encode(\json_encode([
             'sessionName' => $this->session->name(),
             'transactionId' => $this->transactionId,
             'readTimestamp' => $this->readTimestamp->formatAsString()

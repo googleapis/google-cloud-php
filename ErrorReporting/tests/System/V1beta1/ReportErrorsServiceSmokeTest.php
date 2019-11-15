@@ -40,7 +40,7 @@ class ReportErrorsServiceSmokeTest extends GeneratedTest
      */
     public function reportErrorEventTest()
     {
-        $projectId = getenv('PROJECT_ID');
+        $projectId = \getenv('PROJECT_ID');
         if (false === $projectId) {
             $this->fail('Environment variable PROJECT_ID must be set for smoke test');
         }

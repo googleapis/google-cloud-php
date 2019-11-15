@@ -11,6 +11,6 @@ if (false) {
      */
     class Queue_State {}
 }
-class_exists(Queue\State::class);
-@trigger_error('Google\Cloud\Tasks\V2\Queue_State is deprecated and will be removed in a future release. Use Google\Cloud\Tasks\V2\Queue\State instead', E_USER_DEPRECATED);
+\class_exists(Queue\State::class);
+@\trigger_error('Google\Cloud\Tasks\V2\Queue_State is deprecated and will be removed in a future release. Use Google\Cloud\Tasks\V2\Queue\State instead', E_USER_DEPRECATED);
 

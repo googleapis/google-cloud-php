@@ -11,6 +11,6 @@ if (false) {
      */
     class UptimeCheckConfig_ContentMatcher {}
 }
-class_exists(UptimeCheckConfig\ContentMatcher::class);
-@trigger_error('Google\Cloud\Monitoring\V3\UptimeCheckConfig_ContentMatcher is deprecated and will be removed in the next major release. Use Google\Cloud\Monitoring\V3\UptimeCheckConfig\ContentMatcher instead', E_USER_DEPRECATED);
+\class_exists(UptimeCheckConfig\ContentMatcher::class);
+@\trigger_error('Google\Cloud\Monitoring\V3\UptimeCheckConfig_ContentMatcher is deprecated and will be removed in the next major release. Use Google\Cloud\Monitoring\V3\UptimeCheckConfig\ContentMatcher instead', E_USER_DEPRECATED);
 

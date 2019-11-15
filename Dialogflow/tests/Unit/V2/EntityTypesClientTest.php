@@ -98,12 +98,12 @@ class EntityTypesClientTest extends GeneratedTest
 
         $response = $client->listEntityTypes($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
-        $resources = iterator_to_array($response->iterateAllElements());
-        $this->assertSame(1, count($resources));
+        $resources = \iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, \count($resources));
         $this->assertEquals($expectedResponse->getEntityTypes()[0], $resources[0]);
 
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertSame(1, \count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.EntityTypes/ListEntityTypes', $actualFuncCall);
@@ -128,7 +128,7 @@ class EntityTypesClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -177,7 +177,7 @@ class EntityTypesClientTest extends GeneratedTest
         $response = $client->getEntityType($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertSame(1, \count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.EntityTypes/GetEntityType', $actualFuncCall);
@@ -203,7 +203,7 @@ class EntityTypesClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -253,7 +253,7 @@ class EntityTypesClientTest extends GeneratedTest
         $response = $client->createEntityType($formattedParent, $entityType);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertSame(1, \count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.EntityTypes/CreateEntityType', $actualFuncCall);
@@ -282,7 +282,7 @@ class EntityTypesClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -332,7 +332,7 @@ class EntityTypesClientTest extends GeneratedTest
         $response = $client->updateEntityType($entityType);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertSame(1, \count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.EntityTypes/UpdateEntityType', $actualFuncCall);
@@ -358,7 +358,7 @@ class EntityTypesClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -402,7 +402,7 @@ class EntityTypesClientTest extends GeneratedTest
 
         $client->deleteEntityType($formattedName);
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertSame(1, \count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.EntityTypes/DeleteEntityType', $actualFuncCall);
@@ -428,7 +428,7 @@ class EntityTypesClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -494,9 +494,9 @@ class EntityTypesClientTest extends GeneratedTest
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($apiRequests));
+        $this->assertSame(1, \count($apiRequests));
         $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
-        $this->assertSame(0, count($operationsRequestsEmpty));
+        $this->assertSame(0, \count($operationsRequestsEmpty));
 
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
@@ -514,9 +514,9 @@ class EntityTypesClientTest extends GeneratedTest
         $this->assertTrue($response->isDone());
         $this->assertEquals($expectedResponse, $response->getResult());
         $apiRequestsEmpty = $transport->popReceivedCalls();
-        $this->assertSame(0, count($apiRequestsEmpty));
+        $this->assertSame(0, \count($apiRequestsEmpty));
         $operationsRequests = $operationsTransport->popReceivedCalls();
-        $this->assertSame(1, count($operationsRequests));
+        $this->assertSame(1, \count($operationsRequests));
 
         $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
         $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
@@ -557,7 +557,7 @@ class EntityTypesClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -635,9 +635,9 @@ class EntityTypesClientTest extends GeneratedTest
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($apiRequests));
+        $this->assertSame(1, \count($apiRequests));
         $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
-        $this->assertSame(0, count($operationsRequestsEmpty));
+        $this->assertSame(0, \count($operationsRequestsEmpty));
 
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
@@ -658,9 +658,9 @@ class EntityTypesClientTest extends GeneratedTest
         $this->assertTrue($response->isDone());
         $this->assertEquals($expectedResponse, $response->getResult());
         $apiRequestsEmpty = $transport->popReceivedCalls();
-        $this->assertSame(0, count($apiRequestsEmpty));
+        $this->assertSame(0, \count($apiRequestsEmpty));
         $operationsRequests = $operationsTransport->popReceivedCalls();
-        $this->assertSame(1, count($operationsRequests));
+        $this->assertSame(1, \count($operationsRequests));
 
         $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
         $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
@@ -701,7 +701,7 @@ class EntityTypesClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -780,9 +780,9 @@ class EntityTypesClientTest extends GeneratedTest
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($apiRequests));
+        $this->assertSame(1, \count($apiRequests));
         $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
-        $this->assertSame(0, count($operationsRequestsEmpty));
+        $this->assertSame(0, \count($operationsRequestsEmpty));
 
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
@@ -803,9 +803,9 @@ class EntityTypesClientTest extends GeneratedTest
         $this->assertTrue($response->isDone());
         $this->assertEquals($expectedResponse, $response->getResult());
         $apiRequestsEmpty = $transport->popReceivedCalls();
-        $this->assertSame(0, count($apiRequestsEmpty));
+        $this->assertSame(0, \count($apiRequestsEmpty));
         $operationsRequests = $operationsTransport->popReceivedCalls();
-        $this->assertSame(1, count($operationsRequests));
+        $this->assertSame(1, \count($operationsRequests));
 
         $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
         $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
@@ -846,7 +846,7 @@ class EntityTypesClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -925,9 +925,9 @@ class EntityTypesClientTest extends GeneratedTest
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($apiRequests));
+        $this->assertSame(1, \count($apiRequests));
         $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
-        $this->assertSame(0, count($operationsRequestsEmpty));
+        $this->assertSame(0, \count($operationsRequestsEmpty));
 
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
@@ -948,9 +948,9 @@ class EntityTypesClientTest extends GeneratedTest
         $this->assertTrue($response->isDone());
         $this->assertEquals($expectedResponse, $response->getResult());
         $apiRequestsEmpty = $transport->popReceivedCalls();
-        $this->assertSame(0, count($apiRequestsEmpty));
+        $this->assertSame(0, \count($apiRequestsEmpty));
         $operationsRequests = $operationsTransport->popReceivedCalls();
-        $this->assertSame(1, count($operationsRequests));
+        $this->assertSame(1, \count($operationsRequests));
 
         $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
         $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
@@ -991,7 +991,7 @@ class EntityTypesClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -1070,9 +1070,9 @@ class EntityTypesClientTest extends GeneratedTest
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($apiRequests));
+        $this->assertSame(1, \count($apiRequests));
         $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
-        $this->assertSame(0, count($operationsRequestsEmpty));
+        $this->assertSame(0, \count($operationsRequestsEmpty));
 
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
@@ -1093,9 +1093,9 @@ class EntityTypesClientTest extends GeneratedTest
         $this->assertTrue($response->isDone());
         $this->assertEquals($expectedResponse, $response->getResult());
         $apiRequestsEmpty = $transport->popReceivedCalls();
-        $this->assertSame(0, count($apiRequestsEmpty));
+        $this->assertSame(0, \count($apiRequestsEmpty));
         $operationsRequests = $operationsTransport->popReceivedCalls();
-        $this->assertSame(1, count($operationsRequests));
+        $this->assertSame(1, \count($operationsRequests));
 
         $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
         $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
@@ -1136,7 +1136,7 @@ class EntityTypesClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',

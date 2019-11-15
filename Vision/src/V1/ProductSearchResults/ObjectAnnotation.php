@@ -176,5 +176,5 @@ class ObjectAnnotation extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ObjectAnnotation::class, \Google\Cloud\Vision\V1\ProductSearchResults_ObjectAnnotation::class);
+\class_alias(ObjectAnnotation::class, \Google\Cloud\Vision\V1\ProductSearchResults_ObjectAnnotation::class);
 

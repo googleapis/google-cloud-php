@@ -53,7 +53,7 @@ class TransactionTest extends TestCase
         $this->transaction = TestHelpers::stub(Transaction::class, [
             $this->connection->reveal(),
             $this->valueMapper,
-            sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
+            \sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             self::TRANSACTION
         ]);
 
@@ -64,7 +64,7 @@ class TransactionTest extends TestCase
     public function testSnapshot()
     {
         $this->connection->batchGetDocuments([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
+            'database' => \sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             'documents' => [self::DOCUMENT],
             'transaction' => self::TRANSACTION
         ])->shouldBeCalled()->willReturn(new \ArrayIterator([
@@ -295,9 +295,9 @@ class TransactionTest extends TestCase
         $timestamp = (new Timestamp(new \DateTimeImmutable))->formatAsString();
         $tpl = 'projects/'. self::PROJECT .'/databases/'. self::DATABASE .'/documents/a/%s';
         $names = [
-            sprintf($tpl, 'a'),
-            sprintf($tpl, 'b'),
-            sprintf($tpl, 'c'),
+            \sprintf($tpl, 'a'),
+            \sprintf($tpl, 'b'),
+            \sprintf($tpl, 'c'),
         ];
 
         $res = [
@@ -328,7 +328,7 @@ class TransactionTest extends TestCase
     private function expectAndInvoke(array $writes)
     {
         $this->connection->commit([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
+            'database' => \sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             'writes' => $writes,
             'transaction' => self::TRANSACTION
         ])->shouldBeCalled();

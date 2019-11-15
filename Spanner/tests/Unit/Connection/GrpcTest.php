@@ -910,14 +910,14 @@ class GrpcTest extends TestCase
     {
         // Since the tested method uses pass-by-reference arg, the callPrivateMethod function won't work.
         // test on php7 only is better than nothing.
-        if (version_compare(PHP_VERSION, '7.0.0', '<')) {
+        if (\version_compare(PHP_VERSION, '7.0.0', '<')) {
             $this->markTestSkipped('only works in php 7.');
             return;
         }
 
         $grpc = new Grpc;
         $createTransactionSelector = function () {
-            $args = func_get_args();
+            $args = \func_get_args();
             return $this->createTransactionSelector($args[0]);
         };
 
@@ -995,12 +995,12 @@ class GrpcTest extends TestCase
             'google-cloud-resource-prefix' => [$val]
         ];
 
-        $end = end($args);
-        if (!is_array($end) || !$append) {
+        $end = \end($args);
+        if (!\is_array($end) || !$append) {
             $args[]['headers'] = $header;
-        } elseif (is_array($end)) {
-            $keys = array_keys($args);
-            $key = end($keys);
+        } elseif (\is_array($end)) {
+            $keys = \array_keys($args);
+            $key = \end($keys);
             $args[$key]['headers'] = $header;
         }
 
@@ -1015,8 +1015,8 @@ class GrpcTest extends TestCase
         $method = $ref->getMethod($method);
         $method->setAccessible(true);
 
-        array_unshift($args, $grpc);
-        return call_user_func_array([$method, 'invoke'], $args);
+        \array_unshift($args, $grpc);
+        return \call_user_func_array([$method, 'invoke'], $args);
     }
 
     private function instance($full = true)
@@ -1027,7 +1027,7 @@ class GrpcTest extends TestCase
         ];
 
         if ($full) {
-            $args = array_merge($args, [
+            $args = \array_merge($args, [
                 'config' => self::CONFIG,
                 'nodeCount' => 1,
                 'state' => State::CREATING,
@@ -1036,7 +1036,7 @@ class GrpcTest extends TestCase
         }
 
         $mask = [];
-        foreach (array_keys($args) as $key) {
+        foreach (\array_keys($args) as $key) {
             $mask[] = Serializer::toSnakeCase($key);
         }
 

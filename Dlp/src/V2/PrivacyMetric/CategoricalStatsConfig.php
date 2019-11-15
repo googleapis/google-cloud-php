@@ -79,5 +79,5 @@ class CategoricalStatsConfig extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CategoricalStatsConfig::class, \Google\Cloud\Dlp\V2\PrivacyMetric_CategoricalStatsConfig::class);
+\class_alias(CategoricalStatsConfig::class, \Google\Cloud\Dlp\V2\PrivacyMetric_CategoricalStatsConfig::class);
 

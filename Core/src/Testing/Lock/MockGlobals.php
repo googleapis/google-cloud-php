@@ -34,7 +34,7 @@ namespace Google\Cloud\Core\Lock {
     {
         $val = MockValues::$fopenReturnValue;
 
-        if (is_callable($val)) {
+        if (\is_callable($val)) {
             return $val($file, $mode);
         }
 
@@ -55,7 +55,7 @@ namespace Google\Cloud\Core\Lock {
     {
         $val = MockValues::$sem_getReturnValue;
 
-        if (is_callable($val)) {
+        if (\is_callable($val)) {
             return $val($key);
         }
 

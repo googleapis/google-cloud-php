@@ -118,7 +118,7 @@ class DatasetTest extends SnippetTestCase
         $res = $snippet->invoke('tables');
 
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
-        $this->assertEquals('table', trim($res->output()));
+        $this->assertEquals('table', \trim($res->output()));
     }
 
     public function testCreateTable()
@@ -208,6 +208,6 @@ class DatasetTest extends SnippetTestCase
         $res = $snippet->invoke('models');
 
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
-        $this->assertEquals('my_model', trim($res->output()));
+        $this->assertEquals('my_model', \trim($res->output()));
     }
 }

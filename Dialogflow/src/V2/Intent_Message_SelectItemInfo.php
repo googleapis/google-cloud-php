@@ -11,6 +11,6 @@ if (false) {
      */
     class Intent_Message_SelectItemInfo {}
 }
-class_exists(Intent\Message\SelectItemInfo::class);
-@trigger_error('Google\Cloud\Dialogflow\V2\Intent_Message_SelectItemInfo is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\Intent\Message\SelectItemInfo instead', E_USER_DEPRECATED);
+\class_exists(Intent\Message\SelectItemInfo::class);
+@\trigger_error('Google\Cloud\Dialogflow\V2\Intent_Message_SelectItemInfo is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\Intent\Message\SelectItemInfo instead', E_USER_DEPRECATED);
 

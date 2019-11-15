@@ -186,12 +186,12 @@ class BreakpointTest extends TestCase
                 'line' => 1
             ]
         ]);
-        $cwd = realpath(implode(DIRECTORY_SEPARATOR, [__DIR__, '../../']));
+        $cwd = \realpath(\implode(DIRECTORY_SEPARATOR, [__DIR__, '../../']));
         $resolver = new SourceLocationResolver([$cwd]);
         $this->assertTrue($breakpoint->resolveLocation($resolver));
 
         // resolved location should have changed the path
-        $this->assertLessThan(strlen($breakpoint->location()->path()), strlen($path));
+        $this->assertLessThan(\strlen($breakpoint->location()->path()), \strlen($path));
         $json = $breakpoint->info();
 
         // the serialized location should be unaffected

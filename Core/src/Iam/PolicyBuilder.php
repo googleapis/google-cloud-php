@@ -150,15 +150,15 @@ class PolicyBuilder
         $bindings = $this->bindings;
         foreach ((array) $bindings as $i => $binding) {
             if ($binding['role'] == $role) {
-                $newMembers = array_diff($binding['members'], $members);
-                if (count($newMembers) != count($binding['members']) - count($members)) {
+                $newMembers = \array_diff($binding['members'], $members);
+                if (\count($newMembers) != \count($binding['members']) - \count($members)) {
                     throw new InvalidArgumentException('One or more role-members were not found.');
                 }
                 if (empty($newMembers)) {
                     unset($bindings[$i]);
-                    $bindings = array_values($bindings);
+                    $bindings = \array_values($bindings);
                 } else {
-                    $binding['members'] = array_values($newMembers);
+                    $binding['members'] = \array_values($newMembers);
                     $bindings[$i] = $binding;
                 }
                 $this->bindings = $bindings;
@@ -220,7 +220,7 @@ class PolicyBuilder
      */
     public function result()
     {
-        return array_filter([
+        return \array_filter([
             'etag' => $this->etag,
             'bindings' => $this->bindings,
             'version' => $this->version

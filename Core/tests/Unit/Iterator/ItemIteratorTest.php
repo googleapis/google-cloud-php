@@ -54,7 +54,7 @@ class ItemIteratorTest extends TestCase
             $actualItems[] = $item;
         }
 
-        $this->assertEquals(array_merge($page1, $page2), $actualItems);
+        $this->assertEquals(\array_merge($page1, $page2), $actualItems);
     }
 
     public function testGetsNextResultToken()

@@ -11,6 +11,6 @@ if (false) {
      */
     class CommuteFilter_RoadTraffic {}
 }
-class_exists(CommuteFilter\RoadTraffic::class);
-@trigger_error('Google\Cloud\Talent\V4beta1\CommuteFilter_RoadTraffic is deprecated and will be removed in the next major release. Use Google\Cloud\Talent\V4beta1\CommuteFilter\RoadTraffic instead', E_USER_DEPRECATED);
+\class_exists(CommuteFilter\RoadTraffic::class);
+@\trigger_error('Google\Cloud\Talent\V4beta1\CommuteFilter_RoadTraffic is deprecated and will be removed in the next major release. Use Google\Cloud\Talent\V4beta1\CommuteFilter\RoadTraffic instead', E_USER_DEPRECATED);
 

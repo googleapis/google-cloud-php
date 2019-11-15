@@ -11,6 +11,6 @@ if (false) {
      */
     class Float64Stats_HistogramBucket {}
 }
-class_exists(Float64Stats\HistogramBucket::class);
-@trigger_error('Google\Cloud\AutoMl\V1beta1\Float64Stats_HistogramBucket is deprecated and will be removed in the next major release. Use Google\Cloud\AutoMl\V1beta1\Float64Stats\HistogramBucket instead', E_USER_DEPRECATED);
+\class_exists(Float64Stats\HistogramBucket::class);
+@\trigger_error('Google\Cloud\AutoMl\V1beta1\Float64Stats_HistogramBucket is deprecated and will be removed in the next major release. Use Google\Cloud\AutoMl\V1beta1\Float64Stats\HistogramBucket instead', E_USER_DEPRECATED);
 

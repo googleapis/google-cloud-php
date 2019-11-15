@@ -11,6 +11,6 @@ if (false) {
      */
     class NodePool_Status {}
 }
-class_exists(NodePool\Status::class);
-@trigger_error('Google\Cloud\Container\V1\NodePool_Status is deprecated and will be removed in the next major release. Use Google\Cloud\Container\V1\NodePool\Status instead', E_USER_DEPRECATED);
+\class_exists(NodePool\Status::class);
+@\trigger_error('Google\Cloud\Container\V1\NodePool_Status is deprecated and will be removed in the next major release. Use Google\Cloud\Container\V1\NodePool\Status instead', E_USER_DEPRECATED);
 

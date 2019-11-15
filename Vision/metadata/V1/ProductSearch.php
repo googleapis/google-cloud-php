@@ -19,7 +19,7 @@ class ProductSearch
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0aa0090a2b676f6f676c652f636c6f75642f766973696f6e2f76312f7072" .
             "6f647563745f7365617263682e70726f746f1216676f6f676c652e636c6f" .
             "75642e766973696f6e2e76311a33676f6f676c652f636c6f75642f766973" .

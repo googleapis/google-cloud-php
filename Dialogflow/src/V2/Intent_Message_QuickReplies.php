@@ -11,6 +11,6 @@ if (false) {
      */
     class Intent_Message_QuickReplies {}
 }
-class_exists(Intent\Message\QuickReplies::class);
-@trigger_error('Google\Cloud\Dialogflow\V2\Intent_Message_QuickReplies is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\Intent\Message\QuickReplies instead', E_USER_DEPRECATED);
+\class_exists(Intent\Message\QuickReplies::class);
+@\trigger_error('Google\Cloud\Dialogflow\V2\Intent_Message_QuickReplies is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\Intent\Message\QuickReplies instead', E_USER_DEPRECATED);
 

@@ -18,7 +18,7 @@ class Trace
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         \GPBMetadata\Google\Protobuf\Wrappers::initOnce();
         \GPBMetadata\Google\Rpc\Status::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0a911a0a29676f6f676c652f646576746f6f6c732f636c6f756474726163" .
             "652f76322f74726163652e70726f746f121d676f6f676c652e646576746f" .
             "6f6c732e636c6f756474726163652e76321a1f676f6f676c652f70726f74" .

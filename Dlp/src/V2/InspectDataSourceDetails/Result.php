@@ -138,5 +138,5 @@ class Result extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Result::class, \Google\Cloud\Dlp\V2\InspectDataSourceDetails_Result::class);
+\class_alias(Result::class, \Google\Cloud\Dlp\V2\InspectDataSourceDetails_Result::class);
 

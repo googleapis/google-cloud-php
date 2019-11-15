@@ -16,7 +16,7 @@ class Uptime
         }
         \GPBMetadata\Google\Api\MonitoredResource::initOnce();
         \GPBMetadata\Google\Protobuf\Duration::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0afe110a21676f6f676c652f6d6f6e69746f72696e672f76332f75707469" .
             "6d652e70726f746f1214676f6f676c652e6d6f6e69746f72696e672e7633" .
             "1a1e676f6f676c652f70726f746f6275662f6475726174696f6e2e70726f" .

@@ -49,7 +49,7 @@ class Command extends GoogleCloudCommand
     {
         parent::__construct($rootPath);
 
-        $this->rootPath = realpath($rootPath);
+        $this->rootPath = \realpath($rootPath);
         $this->componentManager = $componentManager;
     }
 
@@ -71,7 +71,7 @@ class Command extends GoogleCloudCommand
                 'token',
                 't',
                 InputOption::VALUE_OPTIONAL,
-                sprintf(
+                \sprintf(
                     'A Github Auth Token. If not provided, uses value of environment variable `%s`.',
                     self::TOKEN_ENV
                 )
@@ -111,7 +111,7 @@ class Command extends GoogleCloudCommand
         $github = $this->githubClient($output, $shell, $guzzle, $token);
         $split = $this->splitWrapper($output, $shell);
 
-        @mkdir($execDir);
+        @\mkdir($execDir);
 
         $splitBinaryPath = $this->splitshInstall($output, $shell, $execDir, $input->getOption('splitsh'));
 
@@ -119,13 +119,13 @@ class Command extends GoogleCloudCommand
         $components = $this->componentManager->componentsExtra($componentId);
 
         // remove umbrella component.
-        $components = array_filter($components, function ($component, $key) {
+        $components = \array_filter($components, function ($component, $key) {
             return $key !== 'google-cloud';
         }, ARRAY_FILTER_USE_BOTH);
 
         $manifestPath = $this->rootPath . '/docs/manifest.json';
 
-        $parentTagSource = sprintf(self::PARENT_TAG_NAME, $input->getArgument('parent'));
+        $parentTagSource = \sprintf(self::PARENT_TAG_NAME, $input->getArgument('parent'));
 
         $errors = [];
         foreach ($components as $component) {
@@ -141,7 +141,7 @@ class Command extends GoogleCloudCommand
         if ($errors) {
             $output->writeln('<error>[ERROR]</error>: One or more components reported an error.');
             $output->writeln('Please correct errors and try again.');
-            $output->writeln('Error component(s): ' . implode(', ', $errors));
+            $output->writeln('Error component(s): ' . \implode(', ', $errors));
 
             return 1;
         }
@@ -172,10 +172,10 @@ class Command extends GoogleCloudCommand
         $parentTagSource
     ) {
         $output->writeln('');
-        $localVersion = current($this->componentManager->componentsVersion($component['id']));
+        $localVersion = \current($this->componentManager->componentsVersion($component['id']));
         $isAlreadyTagged = $github->doesTagExist($component['target'], $localVersion);
 
-        $output->writeln(sprintf(
+        $output->writeln(\sprintf(
             '<comment>%s</comment>: Starting on component. Target version <info>%s</info>',
             $component['id'],
             $localVersion
@@ -184,7 +184,7 @@ class Command extends GoogleCloudCommand
         $this->writeDiv($output);
 
         if ($isAlreadyTagged) {
-            $output->writeln(sprintf(
+            $output->writeln(\sprintf(
                 'Version <info>%s</info> already exists on target <info>%s</info>',
                 $localVersion,
                 $component['target']
@@ -194,14 +194,14 @@ class Command extends GoogleCloudCommand
             return true;
         }
 
-        $output->writeln(sprintf(
+        $output->writeln(\sprintf(
             '<comment>%s</comment>: Running splitsh',
             $component['id']
         ));
 
         $splitBranch = $split->execute($splitBinaryPath, $this->rootPath, $component['path']);
         if ($splitBranch) {
-            $output->writeln(sprintf('Split succeeded, branch <info>%s</info> created.', $splitBranch));
+            $output->writeln(\sprintf('Split succeeded, branch <info>%s</info> created.', $splitBranch));
         } else {
             $output->writeln('<error>Split failed!</error>');
 
@@ -210,7 +210,7 @@ class Command extends GoogleCloudCommand
 
         $output->writeln('');
 
-        $output->writeln(sprintf(
+        $output->writeln(\sprintf(
             '<comment>%s</comment>: Push to github target %s',
             $component['id'],
             $component['target']
@@ -218,9 +218,9 @@ class Command extends GoogleCloudCommand
 
         $res = $github->push($component['target'], $splitBranch);
         if ($res[0]) {
-            $output->writeln(sprintf('<comment>%s</comment>: Push succeeded.', $component['id']));
+            $output->writeln(\sprintf('<comment>%s</comment>: Push succeeded.', $component['id']));
         } else {
-            $output->writeln(sprintf('<error>%s</error>: Push failed.', $component['id']));
+            $output->writeln(\sprintf('<error>%s</error>: Push failed.', $component['id']));
 
             return false;
         }
@@ -230,7 +230,7 @@ class Command extends GoogleCloudCommand
 
         // @todo once the release builder is refactored, this should generate
         //       actually useful release notes for the component in question.
-        $notes = sprintf(
+        $notes = \sprintf(
             'For release notes, please see the [associated Google Cloud PHP release](%s).',
             $parentTagSource
         );
@@ -243,9 +243,9 @@ class Command extends GoogleCloudCommand
         );
 
         if ($res) {
-            $output->writeln(sprintf('<comment>%s</comment>: Tag succeeded.', $component['id']));
+            $output->writeln(\sprintf('<comment>%s</comment>: Tag succeeded.', $component['id']));
         } else {
-            $output->writeln(sprintf('<error>%s</error>: Tag failed.', $component['id']));
+            $output->writeln(\sprintf('<error>%s</error>: Tag failed.', $component['id']));
 
             return false;
         }
@@ -263,10 +263,10 @@ class Command extends GoogleCloudCommand
      */
     protected function githubToken($userToken)
     {
-        $token = $userToken ?: getenv(self::TOKEN_ENV);
+        $token = $userToken ?: \getenv(self::TOKEN_ENV);
 
         if (!$token) {
-            throw new \RuntimeException(sprintf(
+            throw new \RuntimeException(\sprintf(
                 'Could not find GitHub auth token. Please set the environment ' .
                 'variable `%s` or pass token as console argument.',
                 self::TOKEN_ENV
@@ -348,7 +348,7 @@ class Command extends GoogleCloudCommand
 
         $res = $install->installFromSource($this->rootPath);
 
-        $output->writeln(sprintf(
+        $output->writeln(\sprintf(
             '<comment>[info]</comment> Splitsh Installer says <info>%s</info>',
             $res[0]
         ));

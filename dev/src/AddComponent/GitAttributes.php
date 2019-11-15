@@ -46,6 +46,6 @@ class GitAttributes
         $source = $this->rootPath . '/dev/src/AddComponent/templates/' . self::ATTRIBUTES_TPL;
         $dest = $this->path .'/.gitattributes';
 
-        copy($source, $dest);
+        \copy($source, $dest);
     }
 }

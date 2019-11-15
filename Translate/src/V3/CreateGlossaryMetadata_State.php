@@ -11,6 +11,6 @@ if (false) {
      */
     class CreateGlossaryMetadata_State {}
 }
-class_exists(CreateGlossaryMetadata\State::class);
-@trigger_error('Google\Cloud\Translate\V3\CreateGlossaryMetadata_State is deprecated and will be removed in a future release. Use Google\Cloud\Translate\V3\CreateGlossaryMetadata\State instead', E_USER_DEPRECATED);
+\class_exists(CreateGlossaryMetadata\State::class);
+@\trigger_error('Google\Cloud\Translate\V3\CreateGlossaryMetadata_State is deprecated and will be removed in a future release. Use Google\Cloud\Translate\V3\CreateGlossaryMetadata\State instead', E_USER_DEPRECATED);
 

@@ -11,6 +11,6 @@ if (false) {
      */
     class Operation_Type {}
 }
-class_exists(Operation\Type::class);
-@trigger_error('Google\Cloud\Container\V1\Operation_Type is deprecated and will be removed in the next major release. Use Google\Cloud\Container\V1\Operation\Type instead', E_USER_DEPRECATED);
+\class_exists(Operation\Type::class);
+@\trigger_error('Google\Cloud\Container\V1\Operation_Type is deprecated and will be removed in the next major release. Use Google\Cloud\Container\V1\Operation\Type instead', E_USER_DEPRECATED);
 

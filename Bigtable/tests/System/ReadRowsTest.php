@@ -73,7 +73,7 @@ class ReadRowsTest extends BigtableTestCase
 
     public function testReadRowsRowsLimit()
     {
-        $rows = iterator_to_array(
+        $rows = \iterator_to_array(
             self::$table->readRows(
                 [
                     'rowsLimit' => 2
@@ -109,7 +109,7 @@ class ReadRowsTest extends BigtableTestCase
 
     public function testReadRowsSingleKey()
     {
-        $rows = iterator_to_array(
+        $rows = \iterator_to_array(
             self::$table->readRows(
                 [
                     'rowKeys' => ['rk2']
@@ -134,7 +134,7 @@ class ReadRowsTest extends BigtableTestCase
 
     public function testReadRowsMultipleRows()
     {
-        $rows = iterator_to_array(
+        $rows = \iterator_to_array(
             self::$table->readRows(
                 [
                     'rowKeys' => ['rk2', 'rk3']
@@ -170,7 +170,7 @@ class ReadRowsTest extends BigtableTestCase
 
     public function testReadRowsRowRangesStartOpen()
     {
-        $rows = iterator_to_array(
+        $rows = \iterator_to_array(
             self::$table->readRows(
                 [
                     'rowRanges' => [
@@ -210,7 +210,7 @@ class ReadRowsTest extends BigtableTestCase
 
     public function testReadRowsRowRangesStartClosed()
     {
-        $rows = iterator_to_array(
+        $rows = \iterator_to_array(
             self::$table->readRows(
                 [
                     'rowRanges' => [
@@ -250,7 +250,7 @@ class ReadRowsTest extends BigtableTestCase
 
     public function testReadRowsRowRangesEndOpen()
     {
-        $rows = iterator_to_array(
+        $rows = \iterator_to_array(
             self::$table->readRows(
                 [
                     'rowRanges' => [
@@ -290,7 +290,7 @@ class ReadRowsTest extends BigtableTestCase
 
     public function testReadRowsRowRangesEndClosed()
     {
-        $rows = iterator_to_array(
+        $rows = \iterator_to_array(
             self::$table->readRows(
                 [
                     'rowRanges' => [
@@ -319,7 +319,7 @@ class ReadRowsTest extends BigtableTestCase
 
     public function testReadRowsRowRangesStartOpenEndClosed()
     {
-        $rows = iterator_to_array(
+        $rows = \iterator_to_array(
             self::$table->readRows(
                 [
                     'rowRanges' => [
@@ -349,7 +349,7 @@ class ReadRowsTest extends BigtableTestCase
 
     public function testReadRowsRowRangesStartClosedEndClosed()
     {
-        $rows = iterator_to_array(
+        $rows = \iterator_to_array(
             self::$table->readRows(
                 [
                     'rowRanges' => [
@@ -390,7 +390,7 @@ class ReadRowsTest extends BigtableTestCase
 
     public function testReadRowsRowRangesStartOpenEndOpen()
     {
-        $rows = iterator_to_array(
+        $rows = \iterator_to_array(
             self::$table->readRows(
                 [
                     'rowRanges' => [
@@ -420,7 +420,7 @@ class ReadRowsTest extends BigtableTestCase
 
     public function testReadRowsRowRangesStartClosedEndOpen()
     {
-        $rows = iterator_to_array(
+        $rows = \iterator_to_array(
             self::$table->readRows(
                 [
                     'rowRanges' => [
@@ -461,7 +461,7 @@ class ReadRowsTest extends BigtableTestCase
 
     public function testReadRowsMultipleRanges()
     {
-        $rows = iterator_to_array(
+        $rows = \iterator_to_array(
             self::$table->readRows(
                 [
                     'rowRanges' => [

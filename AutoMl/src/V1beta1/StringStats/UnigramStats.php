@@ -100,5 +100,5 @@ class UnigramStats extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(UnigramStats::class, \Google\Cloud\AutoMl\V1beta1\StringStats_UnigramStats::class);
+\class_alias(UnigramStats::class, \Google\Cloud\AutoMl\V1beta1\StringStats_UnigramStats::class);
 

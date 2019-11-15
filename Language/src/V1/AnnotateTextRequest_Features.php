@@ -11,6 +11,6 @@ if (false) {
      */
     class AnnotateTextRequest_Features {}
 }
-class_exists(AnnotateTextRequest\Features::class);
-@trigger_error('Google\Cloud\Language\V1\AnnotateTextRequest_Features is deprecated and will be removed in the next major release. Use Google\Cloud\Language\V1\AnnotateTextRequest\Features instead', E_USER_DEPRECATED);
+\class_exists(AnnotateTextRequest\Features::class);
+@\trigger_error('Google\Cloud\Language\V1\AnnotateTextRequest_Features is deprecated and will be removed in the next major release. Use Google\Cloud\Language\V1\AnnotateTextRequest\Features instead', E_USER_DEPRECATED);
 

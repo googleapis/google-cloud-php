@@ -74,7 +74,7 @@ class QuerySnapshotTest extends SnippetTestCase
         ]);
 
         $res = $snippet->invoke();
-        $this->assertEquals('John', trim($res->output()));
+        $this->assertEquals('John', \trim($res->output()));
     }
 
     public function testRows()

@@ -11,6 +11,6 @@ if (false) {
      */
     class Table_TimestampGranularity {}
 }
-class_exists(Table\TimestampGranularity::class);
-@trigger_error('Google\Cloud\Bigtable\Admin\V2\Table_TimestampGranularity is deprecated and will be removed in the next major release. Use Google\Cloud\Bigtable\Admin\V2\Table\TimestampGranularity instead', E_USER_DEPRECATED);
+\class_exists(Table\TimestampGranularity::class);
+@\trigger_error('Google\Cloud\Bigtable\Admin\V2\Table_TimestampGranularity is deprecated and will be removed in the next major release. Use Google\Cloud\Bigtable\Admin\V2\Table\TimestampGranularity instead', E_USER_DEPRECATED);
 

@@ -11,6 +11,6 @@ if (false) {
      */
     class TextAnnotation_DetectedBreak_BreakType {}
 }
-class_exists(TextAnnotation\DetectedBreak\BreakType::class);
-@trigger_error('Google\Cloud\Vision\V1\TextAnnotation_DetectedBreak_BreakType is deprecated and will be removed in a future release. Use Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak\BreakType instead', E_USER_DEPRECATED);
+\class_exists(TextAnnotation\DetectedBreak\BreakType::class);
+@\trigger_error('Google\Cloud\Vision\V1\TextAnnotation_DetectedBreak_BreakType is deprecated and will be removed in a future release. Use Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak\BreakType instead', E_USER_DEPRECATED);
 

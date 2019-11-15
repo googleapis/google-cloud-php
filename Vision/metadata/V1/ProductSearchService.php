@@ -24,7 +24,7 @@ class ProductSearchService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         \GPBMetadata\Google\Rpc\Status::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0a87440a33676f6f676c652f636c6f75642f766973696f6e2f76312f7072" .
             "6f647563745f7365617263685f736572766963652e70726f746f1216676f" .
             "6f676c652e636c6f75642e766973696f6e2e76311a17676f6f676c652f61" .

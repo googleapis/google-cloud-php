@@ -177,7 +177,7 @@ class DebuggerClient
         $res = $this->connection->listDebuggees(['project' => $this->projectId] + $options);
 
         $debuggees = [];
-        if (is_array($res) && isset($res['debuggees'])) {
+        if (\is_array($res) && isset($res['debuggees'])) {
             foreach ($res['debuggees'] as $debuggee) {
                 $debuggees[] = new Debuggee($this->connection, $debuggee);
             }

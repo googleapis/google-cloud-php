@@ -266,17 +266,17 @@ class Table
         $ranges = $this->pluck('rowRanges', $options, false) ?: [];
         $filter = $this->pluck('filter', $options, false) ?: null;
 
-        array_walk($ranges, function (&$range) {
+        \array_walk($ranges, function (&$range) {
             $range = $this->serializer->decodeMessage(
                 new RowRange(),
                 $range
             );
         });
-        if (!is_array($rowKeys)) {
+        if (!\is_array($rowKeys)) {
             throw new \InvalidArgumentException(
-                sprintf(
+                \sprintf(
                     'Expected rowKeys to be of type array, instead got \'%s\'.',
-                    gettype($rowKeys)
+                    \gettype($rowKeys)
                 )
             );
         }
@@ -292,10 +292,10 @@ class Table
         if ($filter !== null) {
             if (!$filter instanceof FilterInterface) {
                 throw new \InvalidArgumentException(
-                    sprintf(
+                    \sprintf(
                         'Expected filter to be of type \'%s\', instead got \'%s\'.',
                         FilterInterface::class,
-                        gettype($filter)
+                        \gettype($filter)
                     )
                 );
             }
@@ -499,8 +499,8 @@ class Table
         $rowMutationsFailedResponse = [];
         $options = $options + $this->options;
         $argumentFunction = function () use (&$entries, &$rowMutationsFailedResponse, $options) {
-            if (count($rowMutationsFailedResponse) > 0) {
-                $entries = array_values($entries);
+            if (\count($rowMutationsFailedResponse) > 0) {
+                $entries = \array_values($entries);
                 $rowMutationsFailedResponse = [];
             }
             return [$this->tableName, $entries, $options];
@@ -571,9 +571,9 @@ class Table
         $statusCode,
         $message
     ) {
-        if (count($rowMutationsFailedResponse) !== count($entries)) {
-            end($entries);
-            foreach (range($lastProcessedIndex + 1, key($entries)) as $index) {
+        if (\count($rowMutationsFailedResponse) !== \count($entries)) {
+            \end($entries);
+            foreach (\range($lastProcessedIndex + 1, \key($entries)) as $index) {
                 $rowMutationsFailedResponse[] = [
                     'rowKey' => $entries[$index]->getRowKey(),
                     'statusCode' => $statusCode,
@@ -605,7 +605,7 @@ class Table
                         'value' => $cell->getValue(),
                         'timeStamp' => $cell->getTimestampMicros(),
                         'labels' => ($cell->getLabels()->getIterator()->valid())
-                            ? implode(iterator_to_array($cell->getLabels()->getIterator()))
+                            ? \implode(\iterator_to_array($cell->getLabels()->getIterator()))
                             : ''
                     ];
                 }
@@ -620,11 +620,11 @@ class Table
     {
         if (!$options[$key] instanceof $expectedType) {
             throw new \InvalidArgumentException(
-                sprintf(
+                \sprintf(
                     'Expected %s to be of type \'%s\', instead got \'%s\'.',
                     $key,
                     $expectedType,
-                    gettype($options[$key])
+                    \gettype($options[$key])
                 )
             );
         }

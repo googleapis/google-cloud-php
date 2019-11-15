@@ -161,19 +161,19 @@ class DatastoreSessionHandler implements SessionHandlerInterface
     ) {
         $this->datastore = $datastore;
         // Cut down to 1000
-        $this->gcLimit = min($gcLimit, 1000);
+        $this->gcLimit = \min($gcLimit, 1000);
 
         if (!isset($options['entityOptions'])) {
             $options['entityOptions'] = [
                 'excludeFromIndexes' => ['data']
             ];
         }
-        if (!is_array($options['entityOptions'])) {
+        if (!\is_array($options['entityOptions'])) {
             throw new InvalidArgumentException(
                 'Optional argument `entityOptions` must be an array, got ' .
-                (is_object($options['entityOptions'])
-                    ? get_class($options['entityOptions'])
-                    : gettype($options['entityOptions']))
+                (\is_object($options['entityOptions'])
+                    ? \get_class($options['entityOptions'])
+                    : \gettype($options['entityOptions']))
             );
         }
 
@@ -192,10 +192,10 @@ class DatastoreSessionHandler implements SessionHandlerInterface
     public function open($savePath, $sessionName)
     {
         $this->kind = $sessionName;
-        if (preg_match(self::NAMESPACE_ALLOWED_PATTERN, $savePath) !== 1 ||
-            preg_match(self::NAMESPACE_RESERVED_PATTERN, $savePath) === 1) {
+        if (\preg_match(self::NAMESPACE_ALLOWED_PATTERN, $savePath) !== 1 ||
+            \preg_match(self::NAMESPACE_RESERVED_PATTERN, $savePath) === 1) {
             throw new InvalidArgumentException(
-                sprintf('The given save_path "%s" not allowed', $savePath)
+                \sprintf('The given save_path "%s" not allowed', $savePath)
             );
         }
         $this->namespaceId = $savePath;
@@ -227,8 +227,8 @@ class DatastoreSessionHandler implements SessionHandlerInterface
                 return $entity['data'];
             }
         } catch (Exception $e) {
-            trigger_error(
-                sprintf('Datastore lookup failed: %s', $e->getMessage()),
+            \trigger_error(
+                \sprintf('Datastore lookup failed: %s', $e->getMessage()),
                 E_USER_WARNING
             );
         }
@@ -255,15 +255,15 @@ class DatastoreSessionHandler implements SessionHandlerInterface
                 $key,
                 [
                     'data' => $data,
-                    't' => time()
+                    't' => \time()
                 ],
                 $this->options['entityOptions']
             );
             $this->transaction->upsert($entity);
             $this->transaction->commit();
         } catch (Exception $e) {
-            trigger_error(
-                sprintf('Datastore upsert failed: %s', $e->getMessage()),
+            \trigger_error(
+                \sprintf('Datastore upsert failed: %s', $e->getMessage()),
                 E_USER_WARNING
             );
             return false;
@@ -285,8 +285,8 @@ class DatastoreSessionHandler implements SessionHandlerInterface
             $this->transaction->delete($key);
             $this->transaction->commit();
         } catch (Exception $e) {
-            trigger_error(
-                sprintf('Datastore delete failed: %s', $e->getMessage()),
+            \trigger_error(
+                \sprintf('Datastore delete failed: %s', $e->getMessage()),
                 E_USER_WARNING
             );
             return false;
@@ -305,7 +305,7 @@ class DatastoreSessionHandler implements SessionHandlerInterface
         try {
             $query = $this->datastore->query()
                 ->kind($this->kind)
-                ->filter('t', '<', time() - $maxlifetime)
+                ->filter('t', '<', \time() - $maxlifetime)
                 ->order('t')
                 ->keysOnly()
                 ->limit($this->gcLimit);
@@ -322,8 +322,8 @@ class DatastoreSessionHandler implements SessionHandlerInterface
                 $this->datastore->deleteBatch($keys);
             }
         } catch (Exception $e) {
-            trigger_error(
-                sprintf('Session gc failed: %s', $e->getMessage()),
+            \trigger_error(
+                \sprintf('Session gc failed: %s', $e->getMessage()),
                 E_USER_WARNING
             );
             return false;

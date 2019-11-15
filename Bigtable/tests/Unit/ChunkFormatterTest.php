@@ -59,7 +59,7 @@ class ChunkFormatterTest extends TestCase
         $this->serverStream->readAll()->shouldBeCalled()->willReturn(
             $this->arrayAsGenerator([$readRowsResponse])
         );
-        iterator_to_array($this->chunkFormatter->readAll());
+        \iterator_to_array($this->chunkFormatter->readAll());
     }
 
     /**
@@ -76,7 +76,7 @@ class ChunkFormatterTest extends TestCase
         $this->serverStream->readAll()->shouldBeCalled()->willReturn(
             $this->arrayAsGenerator([$readRowsResponse])
         );
-        iterator_to_array($this->chunkFormatter->readAll());
+        \iterator_to_array($this->chunkFormatter->readAll());
     }
 
     /**
@@ -92,7 +92,7 @@ class ChunkFormatterTest extends TestCase
         $this->serverStream->readAll()->shouldBeCalled()->willReturn(
             $this->arrayAsGenerator([$readRowsResponse])
         );
-        iterator_to_array($this->chunkFormatter->readAll());
+        \iterator_to_array($this->chunkFormatter->readAll());
     }
 
     /**
@@ -111,7 +111,7 @@ class ChunkFormatterTest extends TestCase
         $this->serverStream->readAll()->shouldBeCalled()->willReturn(
             $this->arrayAsGenerator([$readRowsResponse])
         );
-        iterator_to_array($this->chunkFormatter->readAll());
+        \iterator_to_array($this->chunkFormatter->readAll());
     }
 
     /**
@@ -135,7 +135,7 @@ class ChunkFormatterTest extends TestCase
         $this->serverStream->readAll()->shouldBeCalled()->willReturn(
             $this->arrayAsGenerator([$readRowsResponse])
         );
-        iterator_to_array($this->chunkFormatter->readAll());
+        \iterator_to_array($this->chunkFormatter->readAll());
     }
 
     /**
@@ -170,7 +170,7 @@ class ChunkFormatterTest extends TestCase
         $this->serverStream->readAll()->shouldBeCalled()->willReturn(
             $this->arrayAsGenerator([$readRowsResponse])
         );
-        iterator_to_array($this->chunkFormatter->readAll());
+        \iterator_to_array($this->chunkFormatter->readAll());
     }
 
     public function testNewRowShouldGenerateNewRow()
@@ -192,7 +192,7 @@ class ChunkFormatterTest extends TestCase
         $this->serverStream->readAll()->shouldBeCalled()->willReturn(
             $this->arrayAsGenerator([$readRowsResponse])
         );
-        $rows = iterator_to_array($this->chunkFormatter->readAll());
+        $rows = \iterator_to_array($this->chunkFormatter->readAll());
         $expectedRows = [
                 'rk1' => [
                     'cf1' => [
@@ -212,7 +212,7 @@ class ChunkFormatterTest extends TestCase
         $readRowsResponse = new ReadRowsResponse;
         $chunks = [];
         $chunk = new ReadRowsResponse_CellChunk();
-        $data = pack("C*", 23, 17, 208, 3, 25, 68, 87, 3, 2, 64, 76, 145, 235);
+        $data = \pack("C*", 23, 17, 208, 3, 25, 68, 87, 3, 2, 64, 76, 145, 235);
         $chunk->setRowKey('rk1');
         $stringValue = new StringValue();
         $stringValue->setValue('cf1');
@@ -227,7 +227,7 @@ class ChunkFormatterTest extends TestCase
         $this->serverStream->readAll()->shouldBeCalled()->willReturn(
             $this->arrayAsGenerator([$readRowsResponse])
         );
-        $rows = iterator_to_array($this->chunkFormatter->readAll());
+        $rows = \iterator_to_array($this->chunkFormatter->readAll());
         $expectedRows = [
                 'rk1' => [
                     'cf1' => [
@@ -247,7 +247,7 @@ class ChunkFormatterTest extends TestCase
         $readRowsResponse = new ReadRowsResponse;
         $chunks = [];
         $chunk = new ReadRowsResponse_CellChunk();
-        $data = pack("C*", 23, 17, 208, 3, 25, 68, 87, 3, 2, 64, 76, 145, 235);
+        $data = \pack("C*", 23, 17, 208, 3, 25, 68, 87, 3, 2, 64, 76, 145, 235);
         $chunk->setRowKey($data);
         $stringValue = new StringValue();
         $stringValue->setValue('cf1');
@@ -262,7 +262,7 @@ class ChunkFormatterTest extends TestCase
         $this->serverStream->readAll()->shouldBeCalled()->willReturn(
             $this->arrayAsGenerator([$readRowsResponse])
         );
-        $rows = iterator_to_array($this->chunkFormatter->readAll());
+        $rows = \iterator_to_array($this->chunkFormatter->readAll());
         $expectedRows = [
             $data => [
                 'cf1' => [
@@ -297,7 +297,7 @@ class ChunkFormatterTest extends TestCase
         $this->serverStream->readAll()->shouldBeCalled()->willReturn(
             $this->arrayAsGenerator([$readRowsResponse])
         );
-        $rows = iterator_to_array($this->chunkFormatter->readAll());
+        $rows = \iterator_to_array($this->chunkFormatter->readAll());
         $expectedRows = [
                 'rk1' => [
                     'cf1' => [
@@ -333,7 +333,7 @@ class ChunkFormatterTest extends TestCase
         $this->serverStream->readAll()->shouldBeCalled()->willReturn(
             $this->arrayAsGenerator([$readRowsResponse])
         );
-        $rows = iterator_to_array($this->chunkFormatter->readAll());
+        $rows = \iterator_to_array($this->chunkFormatter->readAll());
         $expectedRows = [
                 'rk1' => [
                     'cf1' => [
@@ -370,7 +370,7 @@ class ChunkFormatterTest extends TestCase
         $this->serverStream->readAll()->shouldBeCalled()->willReturn(
             $this->arrayAsGenerator([$readRowsResponse])
         );
-        iterator_to_array($this->chunkFormatter->readAll());
+        \iterator_to_array($this->chunkFormatter->readAll());
     }
 
     /**
@@ -399,7 +399,7 @@ class ChunkFormatterTest extends TestCase
         $this->serverStream->readAll()->shouldBeCalled()->willReturn(
             $this->arrayAsGenerator([$readRowsResponse])
         );
-        iterator_to_array($this->chunkFormatter->readAll());
+        \iterator_to_array($this->chunkFormatter->readAll());
     }
 
     /**
@@ -428,7 +428,7 @@ class ChunkFormatterTest extends TestCase
         $this->serverStream->readAll()->shouldBeCalled()->willReturn(
             $this->arrayAsGenerator([$readRowsResponse])
         );
-        iterator_to_array($this->chunkFormatter->readAll());
+        \iterator_to_array($this->chunkFormatter->readAll());
     }
 
     /**
@@ -457,7 +457,7 @@ class ChunkFormatterTest extends TestCase
         $this->serverStream->readAll()->shouldBeCalled()->willReturn(
             $this->arrayAsGenerator([$readRowsResponse])
         );
-        iterator_to_array($this->chunkFormatter->readAll());
+        \iterator_to_array($this->chunkFormatter->readAll());
     }
 
     /**
@@ -486,7 +486,7 @@ class ChunkFormatterTest extends TestCase
         $this->serverStream->readAll()->shouldBeCalled()->willReturn(
             $this->arrayAsGenerator([$readRowsResponse])
         );
-        iterator_to_array($this->chunkFormatter->readAll());
+        \iterator_to_array($this->chunkFormatter->readAll());
     }
 
     /**
@@ -514,7 +514,7 @@ class ChunkFormatterTest extends TestCase
         $this->serverStream->readAll()->shouldBeCalled()->willReturn(
             $this->arrayAsGenerator([$readRowsResponse])
         );
-        iterator_to_array($this->chunkFormatter->readAll());
+        \iterator_to_array($this->chunkFormatter->readAll());
     }
 
     /**
@@ -545,7 +545,7 @@ class ChunkFormatterTest extends TestCase
         $this->serverStream->readAll()->shouldBeCalled()->willReturn(
             $this->arrayAsGenerator([$readRowsResponse])
         );
-        iterator_to_array($this->chunkFormatter->readAll());
+        \iterator_to_array($this->chunkFormatter->readAll());
     }
 
     /**
@@ -581,7 +581,7 @@ class ChunkFormatterTest extends TestCase
         $this->serverStream->readAll()->shouldBeCalled()->willReturn(
             $this->arrayAsGenerator([$readRowsResponse])
         );
-        iterator_to_array($this->chunkFormatter->readAll());
+        \iterator_to_array($this->chunkFormatter->readAll());
     }
 
     public function testRowInProgressResetShouldNotGenerateRow()
@@ -605,7 +605,7 @@ class ChunkFormatterTest extends TestCase
         $this->serverStream->readAll()->shouldBeCalled()->willReturn(
             $this->arrayAsGenerator([$readRowsResponse])
         );
-        $rows = iterator_to_array($this->chunkFormatter->readAll());
+        $rows = \iterator_to_array($this->chunkFormatter->readAll());
         $this->assertEquals([], $rows);
     }
 
@@ -637,7 +637,7 @@ class ChunkFormatterTest extends TestCase
         $this->serverStream->readAll()->shouldBeCalled()->willReturn(
             $this->arrayAsGenerator([$readRowsResponse])
         );
-        $rows = iterator_to_array($this->chunkFormatter->readAll());
+        $rows = \iterator_to_array($this->chunkFormatter->readAll());
         $expectedRows = [
                 'rk1' => [
                     'cf1' => [
@@ -684,7 +684,7 @@ class ChunkFormatterTest extends TestCase
         $this->serverStream->readAll()->shouldBeCalled()->willReturn(
             $this->arrayAsGenerator([$readRowsResponse])
         );
-        $rows = iterator_to_array($this->chunkFormatter->readAll());
+        $rows = \iterator_to_array($this->chunkFormatter->readAll());
         $expectedRows = [
                 'rk1' => [
                     'cf1' => [
@@ -730,7 +730,7 @@ class ChunkFormatterTest extends TestCase
         $this->serverStream->readAll()->shouldBeCalled()->willReturn(
             $this->arrayAsGenerator([$readRowsResponse])
         );
-        $rows = iterator_to_array($this->chunkFormatter->readAll());
+        $rows = \iterator_to_array($this->chunkFormatter->readAll());
         $expectedRows = [
                 'rk1' => [
                     'cf1' => [
@@ -776,7 +776,7 @@ class ChunkFormatterTest extends TestCase
         $this->serverStream->readAll()->shouldBeCalled()->willReturn(
             $this->arrayAsGenerator([$readRowsResponse])
         );
-        $rows = iterator_to_array($this->chunkFormatter->readAll());
+        $rows = \iterator_to_array($this->chunkFormatter->readAll());
         $expectedRows = [
                 'rk1' => [
                     'cf1' => [
@@ -823,7 +823,7 @@ class ChunkFormatterTest extends TestCase
         $this->serverStream->readAll()->shouldBeCalled()->willReturn(
             $this->arrayAsGenerator([$readRowsResponse])
         );
-        iterator_to_array($this->chunkFormatter->readAll());
+        \iterator_to_array($this->chunkFormatter->readAll());
     }
 
     /**
@@ -853,7 +853,7 @@ class ChunkFormatterTest extends TestCase
         $this->serverStream->readAll()->shouldBeCalled()->willReturn(
             $this->arrayAsGenerator([$readRowsResponse])
         );
-        iterator_to_array($this->chunkFormatter->readAll());
+        \iterator_to_array($this->chunkFormatter->readAll());
     }
 
     /**
@@ -885,7 +885,7 @@ class ChunkFormatterTest extends TestCase
         $this->serverStream->readAll()->shouldBeCalled()->willReturn(
             $this->arrayAsGenerator([$readRowsResponse])
         );
-        iterator_to_array($this->chunkFormatter->readAll());
+        \iterator_to_array($this->chunkFormatter->readAll());
     }
 
     /**
@@ -915,7 +915,7 @@ class ChunkFormatterTest extends TestCase
         $this->serverStream->readAll()->shouldBeCalled()->willReturn(
             $this->arrayAsGenerator([$readRowsResponse])
         );
-        iterator_to_array($this->chunkFormatter->readAll());
+        \iterator_to_array($this->chunkFormatter->readAll());
     }
 
     /**
@@ -945,7 +945,7 @@ class ChunkFormatterTest extends TestCase
         $this->serverStream->readAll()->shouldBeCalled()->willReturn(
             $this->arrayAsGenerator([$readRowsResponse])
         );
-        iterator_to_array($this->chunkFormatter->readAll());
+        \iterator_to_array($this->chunkFormatter->readAll());
     }
 
     public function testCellInProgressResetShouldNotGenerateRow()
@@ -970,7 +970,7 @@ class ChunkFormatterTest extends TestCase
         $this->serverStream->readAll()->shouldBeCalled()->willReturn(
             $this->arrayAsGenerator([$readRowsResponse])
         );
-        $rows = iterator_to_array($this->chunkFormatter->readAll());
+        $rows = \iterator_to_array($this->chunkFormatter->readAll());
         $this->assertEquals([], $rows);
     }
 
@@ -997,7 +997,7 @@ class ChunkFormatterTest extends TestCase
         $this->serverStream->readAll()->shouldBeCalled()->willReturn(
             $this->arrayAsGenerator([$readRowsResponse])
         );
-        $rows = iterator_to_array($this->chunkFormatter->readAll());
+        $rows = \iterator_to_array($this->chunkFormatter->readAll());
         $expectedRows = [
                 'rk1' => [
                     'cf1' => [

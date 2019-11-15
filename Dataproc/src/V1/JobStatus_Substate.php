@@ -11,6 +11,6 @@ if (false) {
      */
     class JobStatus_Substate {}
 }
-class_exists(JobStatus\Substate::class);
-@trigger_error('Google\Cloud\Dataproc\V1\JobStatus_Substate is deprecated and will be removed in the next major release. Use Google\Cloud\Dataproc\V1\JobStatus\Substate instead', E_USER_DEPRECATED);
+\class_exists(JobStatus\Substate::class);
+@\trigger_error('Google\Cloud\Dataproc\V1\JobStatus_Substate is deprecated and will be removed in the next major release. Use Google\Cloud\Dataproc\V1\JobStatus\Substate instead', E_USER_DEPRECATED);
 

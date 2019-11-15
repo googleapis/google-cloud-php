@@ -11,6 +11,6 @@ if (false) {
      */
     class Feature_Type {}
 }
-class_exists(Feature\Type::class);
-@trigger_error('Google\Cloud\Vision\V1\Feature_Type is deprecated and will be removed in a future release. Use Google\Cloud\Vision\V1\Feature\Type instead', E_USER_DEPRECATED);
+\class_exists(Feature\Type::class);
+@\trigger_error('Google\Cloud\Vision\V1\Feature_Type is deprecated and will be removed in a future release. Use Google\Cloud\Vision\V1\Feature\Type instead', E_USER_DEPRECATED);
 

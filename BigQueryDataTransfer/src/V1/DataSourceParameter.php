@@ -396,7 +396,7 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
     public function getMinValueValue()
     {
         $wrapper = $this->getMinValue();
-        return is_null($wrapper) ? null : $wrapper->getValue();
+        return \is_null($wrapper) ? null : $wrapper->getValue();
     }
 
     /**
@@ -425,7 +425,7 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
      */
     public function setMinValueValue($var)
     {
-        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\DoubleValue(['value' => $var]);
+        $wrappedVar = \is_null($var) ? null : new \Google\Protobuf\DoubleValue(['value' => $var]);
         return $this->setMinValue($wrappedVar);
     }
 
@@ -451,7 +451,7 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
     public function getMaxValueValue()
     {
         $wrapper = $this->getMaxValue();
-        return is_null($wrapper) ? null : $wrapper->getValue();
+        return \is_null($wrapper) ? null : $wrapper->getValue();
     }
 
     /**
@@ -480,7 +480,7 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
      */
     public function setMaxValueValue($var)
     {
-        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\DoubleValue(['value' => $var]);
+        $wrappedVar = \is_null($var) ? null : new \Google\Protobuf\DoubleValue(['value' => $var]);
         return $this->setMaxValue($wrappedVar);
     }
 

@@ -206,7 +206,7 @@ class BucketTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromMethod(Bucket::class, 'upload', 3);
         $snippet->addLocal('bucket', $this->bucket);
-        $fh = fopen('php://temp', 'r');
+        $fh = \fopen('php://temp', 'r');
         $snippet->addLocal('fh', $fh);
         $snippet->replace("fopen(__DIR__ . '/image.jpg', 'r')", '$fh');
 
@@ -321,8 +321,8 @@ class BucketTest extends SnippetTestCase
 
         $res = $snippet->invoke('objects');
         $this->assertInstanceOf(ObjectIterator::class, $res->returnVal());
-        $this->assertEquals('object 1', explode("\n", $res->output())[0]);
-        $this->assertEquals('object 2', explode("\n", $res->output())[1]);
+        $this->assertEquals('object 1', \explode("\n", $res->output())[0]);
+        $this->assertEquals('object 2', \explode("\n", $res->output())[1]);
     }
 
     public function testCreateNotificationBasicTopic()
@@ -428,8 +428,8 @@ class BucketTest extends SnippetTestCase
         $res = $snippet->invoke('notifications');
 
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
-        $this->assertEquals('123', explode("\n", $res->output())[0]);
-        $this->assertEquals('321', explode("\n", $res->output())[1]);
+        $this->assertEquals('123', \explode("\n", $res->output())[0]);
+        $this->assertEquals('321', \explode("\n", $res->output())[1]);
     }
 
     public function testDelete()
@@ -583,7 +583,7 @@ class BucketTest extends SnippetTestCase
         $res = $snippet->invoke();
 
         $this->assertEquals(
-            print_r(self::$expectedLifecycleData['lifecycle']['rule'][0], true),
+            \print_r(self::$expectedLifecycleData['lifecycle']['rule'][0], true),
             $res->output()
         );
     }

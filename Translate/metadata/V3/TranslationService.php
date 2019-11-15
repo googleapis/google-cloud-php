@@ -20,7 +20,7 @@ class TranslationService
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0ad73c0a33676f6f676c652f636c6f75642f7472616e736c6174652f7633" .
             "2f7472616e736c6174696f6e5f736572766963652e70726f746f121b676f" .
             "6f676c652e636c6f75642e7472616e736c6174696f6e2e76331a17676f6f" .

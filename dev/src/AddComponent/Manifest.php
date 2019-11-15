@@ -86,24 +86,24 @@ class Manifest
     public function run()
     {
         $path = $this->rootPath .'/docs/manifest.json';
-        $manifest = json_decode(file_get_contents($path), true);
+        $manifest = \json_decode(\file_get_contents($path), true);
 
         $modules = $manifest['modules'];
-        $matches = array_filter($modules, function ($module) {
+        $matches = \array_filter($modules, function ($module) {
             return $module['id'] === $this->info['name'];
         });
 
         if ($matches) {
-            $continue = $this->ask(sprintf(
+            $continue = $this->ask(\sprintf(
                 'The component %s alreay exists in the manifest. Continuing will overwrite. Enter "continue" to continue.',
                 $this->info['name']
             ));
 
-            if (strtolower($continue) !== 'continue') {
+            if (\strtolower($continue) !== 'continue') {
                 $this->output->writeln('skipping further work in docs manifest.');
                 return;
             } else {
-                unset($modules[array_keys($matches)[0]]);
+                unset($modules[\array_keys($matches)[0]]);
             }
         }
         $q = $this->question(
@@ -112,16 +112,16 @@ class Manifest
             'For Gapic-only clients, the default service is generally the README file.',
             'README.md'
         )->setValidator(function ($answer) {
-            if (!file_exists($this->path .'/'. $answer)) {
+            if (!\file_exists($this->path .'/'. $answer)) {
                 throw new \RuntimeException('file does not exist');
             }
 
-            $pathParts = explode('/', $this->path);
-            $last = array_pop($pathParts);
+            $pathParts = \explode('/', $this->path);
+            $last = \array_pop($pathParts);
 
-            $answerParts = explode('.', $answer);
-            array_pop($answerParts);
-            return strtolower($last .'/'. implode('.', $answerParts));
+            $answerParts = \explode('.', $answer);
+            \array_pop($answerParts);
+            return \strtolower($last .'/'. \implode('.', $answerParts));
         });
 
         $defaultService = $this->askQuestion($q);
@@ -138,15 +138,15 @@ class Manifest
         $main = $modules[0];
         unset($modules[0]);
 
-        usort($modules, function ($item1, $item2) {
-            return strcmp($item1['id'], $item2['id']);
+        \usort($modules, function ($item1, $item2) {
+            return \strcmp($item1['id'], $item2['id']);
         });
 
-        array_unshift($modules, $main);
+        \array_unshift($modules, $main);
 
         $manifest['modules'] = $modules;
 
-        file_put_contents($path, json_encode($manifest, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES) . PHP_EOL);
+        \file_put_contents($path, \json_encode($manifest, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES) . PHP_EOL);
     }
 
     protected function questionHelper()

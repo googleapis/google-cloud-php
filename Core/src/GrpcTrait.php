@@ -72,7 +72,7 @@ trait GrpcTrait
             'grpcOptions',
             'retries',
             'requestTimeout'
-        ], $args[count($args) - 1]);
+        ], $args[\count($args) - 1]);
 
         try {
             return $this->requestWrapper->send($request, $args, $requestOptions);
@@ -103,7 +103,7 @@ trait GrpcTrait
         // GAX v0.32.0 introduced the CredentialsWrapper class and a different
         // way to configure credentials. If the class exists, use this new method
         // otherwise default to legacy usage.
-        if (class_exists(CredentialsWrapper::class)) {
+        if (\class_exists(CredentialsWrapper::class)) {
             $config['credentials'] = new CredentialsWrapper(
                 $this->requestWrapper->getCredentialsFetcher(),
                 $authHttpHandler
@@ -147,7 +147,7 @@ trait GrpcTrait
 
     private function unpackValue($value)
     {
-        if (count($value) > 1) {
+        if (\count($value) > 1) {
             throw new \RuntimeException("Unexpected fields in struct: $value");
         }
 
@@ -174,7 +174,7 @@ trait GrpcTrait
 
     private function flattenValue(array $value)
     {
-        if (count($value) > 1) {
+        if (\count($value) > 1) {
             throw new \RuntimeException("Unexpected fields in struct: $value");
         }
 
@@ -182,7 +182,7 @@ trait GrpcTrait
             return null;
         }
 
-        return array_pop($value);
+        return \array_pop($value);
     }
 
     private function flattenListValue(array $value)
@@ -215,7 +215,7 @@ trait GrpcTrait
      */
     private function formatValueForApi($value)
     {
-        $type = gettype($value);
+        $type = \gettype($value);
 
         switch ($type) {
             case 'string':

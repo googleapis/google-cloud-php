@@ -181,7 +181,7 @@ class TableTest extends SnippetTestCase
             ]
         ];
         $this->assertEquals(
-            print_r($expectedRows, true),
+            \print_r($expectedRows, true),
             $res->output()
         );
     }
@@ -215,7 +215,7 @@ class TableTest extends SnippetTestCase
             ]
         ];
         $this->assertEquals(
-            print_r($expectedRows, true),
+            \print_r($expectedRows, true),
             $res->output()
         );
     }
@@ -245,7 +245,7 @@ class TableTest extends SnippetTestCase
             ]
         ];
         $this->assertEquals(
-            print_r($expectedRow, true),
+            \print_r($expectedRow, true),
             $res->output()
         );
     }
@@ -295,7 +295,7 @@ class TableTest extends SnippetTestCase
                 ]
             ];
             $this->assertEquals(
-                print_r($expectedRow, true),
+                \print_r($expectedRow, true),
                 $res->output()
             );
     }
@@ -361,7 +361,7 @@ class TableTest extends SnippetTestCase
                 ]
             ];
             $this->assertEquals(
-                print_r($expectedRow, true),
+                \print_r($expectedRow, true),
                 $res->output()
             );
     }
@@ -390,7 +390,7 @@ class TableTest extends SnippetTestCase
             'offset' => 1
         ];
         $this->assertEquals(
-            print_r($expectedRowKeys, true),
+            \print_r($expectedRowKeys, true),
             $res->output()
         );
     }

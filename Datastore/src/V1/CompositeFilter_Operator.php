@@ -11,6 +11,6 @@ if (false) {
      */
     class CompositeFilter_Operator {}
 }
-class_exists(CompositeFilter\Operator::class);
-@trigger_error('Google\Cloud\Datastore\V1\CompositeFilter_Operator is deprecated and will be removed in the next major release. Use Google\Cloud\Datastore\V1\CompositeFilter\Operator instead', E_USER_DEPRECATED);
+\class_exists(CompositeFilter\Operator::class);
+@\trigger_error('Google\Cloud\Datastore\V1\CompositeFilter_Operator is deprecated and will be removed in the next major release. Use Google\Cloud\Datastore\V1\CompositeFilter\Operator instead', E_USER_DEPRECATED);
 

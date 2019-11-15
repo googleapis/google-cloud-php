@@ -271,7 +271,7 @@ class DatastoreClientTest extends TestCase
         $res = $this->client->$method(['transactionOptions' => $options]);
         $this->assertInstanceOf($type, $res);
 
-        iterator_to_array($res->runQuery($this->client->gqlQuery('SELECT 1=1')));
+        \iterator_to_array($res->runQuery($this->client->gqlQuery('SELECT 1=1')));
     }
 
     public function transactionProvider()
@@ -393,7 +393,7 @@ class DatastoreClientTest extends TestCase
     public function partialKeyMutationsProvider()
     {
         $res = $this->mutationsProviderProvider(12345, true);
-        return array_filter($res, function ($case) {
+        return \array_filter($res, function ($case) {
             return $case[0] !== 'update';
         });
     }
@@ -588,7 +588,7 @@ class DatastoreClientTest extends TestCase
         $query->queryKey()->willReturn('gqlQuery');
         $query->queryObject()->willReturn(['queryString' => 'SELECT 1=1']);
 
-        $res = iterator_to_array($this->client->runQuery($query->reveal()));
+        $res = \iterator_to_array($this->client->runQuery($query->reveal()));
         $this->assertContainsOnlyInstancesOf(Entity::class, $res);
     }
 

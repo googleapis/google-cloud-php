@@ -24,7 +24,7 @@ class ProfileService
         \GPBMetadata\Google\Protobuf\Any::initOnce();
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0aa6190a31676f6f676c652f636c6f75642f74616c656e742f7634626574" .
             "61312f70726f66696c655f736572766963652e70726f746f121b676f6f67" .
             "6c652e636c6f75642e74616c656e742e763462657461311a17676f6f676c" .

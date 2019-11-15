@@ -28,7 +28,7 @@ trait CallTrait
     public function __call($name, array $args)
     {
         if (!isset($this->info()[$name])) {
-            trigger_error(sprintf(
+            \trigger_error(\sprintf(
                 'Call to undefined method %s::%s',
                 __CLASS__,
                 $name

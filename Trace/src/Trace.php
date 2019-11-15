@@ -72,7 +72,7 @@ class Trace
         $this->projectId = $projectId;
         $this->traceId = $traceId ?: $this->generateTraceId();
         if ($spans) {
-            $this->spans = array_map(function ($spanData) use ($traceId) {
+            $this->spans = \array_map(function ($spanData) use ($traceId) {
                 return new Span($traceId, $spanData);
             }, $spans);
         }
@@ -163,6 +163,6 @@ class Trace
      */
     private function generateTraceId()
     {
-        return str_replace('-', '', Uuid::uuid4());
+        return \str_replace('-', '', Uuid::uuid4());
     }
 }

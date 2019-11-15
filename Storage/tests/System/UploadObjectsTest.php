@@ -30,7 +30,7 @@ class UploadObjectsTest extends StorageTestCase
     {
         $data = 'somedata';
         $options = [
-            'name' => uniqid(self::TESTING_PREFIX),
+            'name' => \uniqid(self::TESTING_PREFIX),
             'metadata' => [
                 'metadata' => [
                     'location' => 'test'
@@ -40,7 +40,7 @@ class UploadObjectsTest extends StorageTestCase
         $object = self::$bucket->upload($data, $options);
 
         $this->assertEquals($options['name'], $object->name());
-        $this->assertEquals(strlen($data), $object->info()['size']);
+        $this->assertEquals(\strlen($data), $object->info()['size']);
         $this->assertEquals($options['metadata']['metadata'], $object->info()['metadata']);
     }
 
@@ -48,28 +48,28 @@ class UploadObjectsTest extends StorageTestCase
     {
         $path = __DIR__ . '/data/CloudPlatform_128px_Retina.png';
         $object = self::$bucket->upload(
-            fopen($path, 'r')
+            \fopen($path, 'r')
         );
 
         $this->assertEquals('CloudPlatform_128px_Retina.png', $object->name());
-        $this->assertEquals(filesize($path), $object->info()['size']);
+        $this->assertEquals(\filesize($path), $object->info()['size']);
     }
 
     public function testUploadsLargeObjectFromResource()
     {
         $path = __DIR__ . '/data/5mb.txt';
         $object = self::$bucket->upload(
-            fopen($path, 'r')
+            \fopen($path, 'r')
         );
 
         $this->assertEquals('5mb.txt', $object->name());
-        $this->assertEquals(filesize($path), $object->info()['size']);
+        $this->assertEquals(\filesize($path), $object->info()['size']);
     }
 
     public function testUploadsObjectFromStream()
     {
         $stream = Psr7\stream_for('somedata');
-        $options = ['name' => uniqid(self::TESTING_PREFIX)];
+        $options = ['name' => \uniqid(self::TESTING_PREFIX)];
         $object = self::$bucket->upload($stream, $options);
 
         $this->assertEquals($options['name'], $object->name());
@@ -79,17 +79,17 @@ class UploadObjectsTest extends StorageTestCase
     public function testUploadsObjectWithCustomerSuppliedEncryption()
     {
         $data = 'somedata';
-        $key = base64_encode(openssl_random_pseudo_bytes(32));
-        $sha = base64_encode(hash('SHA256', base64_decode($key), true));
+        $key = \base64_encode(\openssl_random_pseudo_bytes(32));
+        $sha = \base64_encode(\hash('SHA256', \base64_decode($key), true));
         $options = [
-            'name' => uniqid(self::TESTING_PREFIX),
+            'name' => \uniqid(self::TESTING_PREFIX),
             'encryptionKey' => $key
         ];
 
         $object = self::$bucket->upload($data, $options);
 
         $this->assertEquals($sha, $object->info()['customerEncryption']['keySha256']);
-        $this->assertEquals(strlen($data), $object->info()['size']);
+        $this->assertEquals(\strlen($data), $object->info()['size']);
     }
 
     private $testFileSize = 0;
@@ -99,7 +99,7 @@ class UploadObjectsTest extends StorageTestCase
     {
         $path = __DIR__ . '/data/5mb.txt';
 
-        $this->testFileSize = filesize($path);
+        $this->testFileSize = \filesize($path);
 
         $options = [
             // It's required to be in resumable upload if we want to track the progress with callback method.
@@ -109,7 +109,7 @@ class UploadObjectsTest extends StorageTestCase
             'uploadProgressCallback' => array($this, 'onStoredFileChunk')
         ];
 
-        $object = self::$bucket->upload(fopen($path, 'r'), $options);
+        $object = self::$bucket->upload(\fopen($path, 'r'), $options);
 
 
         $this->assertEquals('5mb.txt', $object->name());
@@ -122,7 +122,7 @@ class UploadObjectsTest extends StorageTestCase
         $this->assertGreaterThanOrEqual($this->totalStoredBytes, $this->testFileSize);
 
         if ($this->testFileSize == $this->totalStoredBytes) {
-            $this->assertEquals(filesize(__DIR__ . '/data/5mb.txt'), $this->totalStoredBytes);
+            $this->assertEquals(\filesize(__DIR__ . '/data/5mb.txt'), $this->totalStoredBytes);
         }
     }
 
@@ -135,10 +135,10 @@ class UploadObjectsTest extends StorageTestCase
 
         $crc32c = CRC32::create(CRC32::CASTAGNOLI);
         $crc32c->update('foobar');
-        $badChecksum = base64_encode($crc32c->hash(true));
+        $badChecksum = \base64_encode($crc32c->hash(true));
 
         self::$bucket->upload($path, [
-            'name' => uniqid(),
+            'name' => \uniqid(),
             'metadata' => [
                 'crc32c' => $badChecksum
             ]

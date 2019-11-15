@@ -74,5 +74,5 @@ class LanguageCodesSet extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(LanguageCodesSet::class, \Google\Cloud\Translate\V3\Glossary_LanguageCodesSet::class);
+\class_alias(LanguageCodesSet::class, \Google\Cloud\Translate\V3\Glossary_LanguageCodesSet::class);
 

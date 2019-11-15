@@ -11,6 +11,6 @@ if (false) {
      */
     class PlanNode_ShortRepresentation {}
 }
-class_exists(PlanNode\ShortRepresentation::class);
-@trigger_error('Google\Cloud\Spanner\V1\PlanNode_ShortRepresentation is deprecated and will be removed in the next major release. Use Google\Cloud\Spanner\V1\PlanNode\ShortRepresentation instead', E_USER_DEPRECATED);
+\class_exists(PlanNode\ShortRepresentation::class);
+@\trigger_error('Google\Cloud\Spanner\V1\PlanNode_ShortRepresentation is deprecated and will be removed in the next major release. Use Google\Cloud\Spanner\V1\PlanNode\ShortRepresentation instead', E_USER_DEPRECATED);
 

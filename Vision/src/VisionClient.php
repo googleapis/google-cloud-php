@@ -102,9 +102,9 @@ class VisionClient
 
         $this->connection = new Rest($this->configureAuthentication($config));
 
-        $class = get_class($this);
+        $class = \get_class($this);
         $err = "The class {$class} is no longer supported";
-        @trigger_error($err, E_USER_DEPRECATED);
+        @\trigger_error($err, E_USER_DEPRECATED);
     }
 
     /**

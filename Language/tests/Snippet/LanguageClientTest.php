@@ -106,7 +106,7 @@ class LanguageClientTest extends SnippetTestCase
         $snippet->addLocal('language', $this->client);
 
         $res = $snippet->invoke();
-        $lines = explode(PHP_EOL, $res->output());
+        $lines = \explode(PHP_EOL, $res->output());
         $this->assertEquals('Entity name: Google Cloud Platform', $lines[0]);
         $this->assertEquals("This is a positive message.", $lines[1]);
     }

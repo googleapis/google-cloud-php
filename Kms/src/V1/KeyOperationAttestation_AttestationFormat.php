@@ -11,6 +11,6 @@ if (false) {
      */
     class KeyOperationAttestation_AttestationFormat {}
 }
-class_exists(KeyOperationAttestation\AttestationFormat::class);
-@trigger_error('Google\Cloud\Kms\V1\KeyOperationAttestation_AttestationFormat is deprecated and will be removed in the next major release. Use Google\Cloud\Kms\V1\KeyOperationAttestation\AttestationFormat instead', E_USER_DEPRECATED);
+\class_exists(KeyOperationAttestation\AttestationFormat::class);
+@\trigger_error('Google\Cloud\Kms\V1\KeyOperationAttestation_AttestationFormat is deprecated and will be removed in the next major release. Use Google\Cloud\Kms\V1\KeyOperationAttestation\AttestationFormat instead', E_USER_DEPRECATED);
 

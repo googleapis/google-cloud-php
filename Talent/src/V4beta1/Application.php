@@ -513,7 +513,7 @@ class Application extends \Google\Protobuf\Internal\Message
     public function getReferralValue()
     {
         $wrapper = $this->getReferral();
-        return is_null($wrapper) ? null : $wrapper->getValue();
+        return \is_null($wrapper) ? null : $wrapper->getValue();
     }
 
     /**
@@ -542,7 +542,7 @@ class Application extends \Google\Protobuf\Internal\Message
      */
     public function setReferralValue($var)
     {
-        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
+        $wrappedVar = \is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
         return $this->setReferral($wrappedVar);
     }
 
@@ -680,7 +680,7 @@ class Application extends \Google\Protobuf\Internal\Message
     public function getIsMatchValue()
     {
         $wrapper = $this->getIsMatch();
-        return is_null($wrapper) ? null : $wrapper->getValue();
+        return \is_null($wrapper) ? null : $wrapper->getValue();
     }
 
     /**
@@ -713,7 +713,7 @@ class Application extends \Google\Protobuf\Internal\Message
      */
     public function setIsMatchValue($var)
     {
-        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
+        $wrappedVar = \is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
         return $this->setIsMatch($wrappedVar);
     }
 

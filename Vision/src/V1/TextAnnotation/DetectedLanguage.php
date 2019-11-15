@@ -108,5 +108,5 @@ class DetectedLanguage extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DetectedLanguage::class, \Google\Cloud\Vision\V1\TextAnnotation_DetectedLanguage::class);
+\class_alias(DetectedLanguage::class, \Google\Cloud\Vision\V1\TextAnnotation_DetectedLanguage::class);
 

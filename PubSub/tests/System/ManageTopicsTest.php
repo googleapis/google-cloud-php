@@ -31,8 +31,8 @@ class ManageTopicsTest extends PubSubTestCase
     public function testCreateAndListTopics($client)
     {
         $topicsToCreate = [
-            uniqid(self::TESTING_PREFIX),
-            uniqid(self::TESTING_PREFIX)
+            \uniqid(self::TESTING_PREFIX),
+            \uniqid(self::TESTING_PREFIX)
         ];
 
         foreach ($topicsToCreate as $topicToCreate) {
@@ -45,8 +45,8 @@ class ManageTopicsTest extends PubSubTestCase
             $topics = $client->topics();
 
             foreach ($topics as $topic) {
-                $nameParts = explode('/', $topic->name());
-                $sName = end($nameParts);
+                $nameParts = \explode('/', $topic->name());
+                $sName = \end($nameParts);
                 foreach ($topicsToCreate as $key => $topicToCreate) {
                     if ($sName === $topicToCreate) {
                         $foundTopics[$key] = $sName;
@@ -54,7 +54,7 @@ class ManageTopicsTest extends PubSubTestCase
                 }
             }
 
-            if (sort($foundTopics) === sort($topicsToCreate)) {
+            if (\sort($foundTopics) === \sort($topicsToCreate)) {
                 return true;
             }
 
@@ -69,7 +69,7 @@ class ManageTopicsTest extends PubSubTestCase
      */
     public function testReloadTopic($client)
     {
-        $shortName = uniqid(self::TESTING_PREFIX);
+        $shortName = \uniqid(self::TESTING_PREFIX);
         $this->assertFalse($client->topic($shortName)->exists());
         $topic = $client->createTopic($shortName);
         self::$deletionQueue->add($topic);
@@ -83,7 +83,7 @@ class ManageTopicsTest extends PubSubTestCase
      */
     public function testUpdateTopic($client)
     {
-        $shortName = uniqid(self::TESTING_PREFIX);
+        $shortName = \uniqid(self::TESTING_PREFIX);
         $this->assertFalse($client->topic($shortName)->exists());
         $topic = $client->createTopic($shortName);
         self::$deletionQueue->add($topic);
@@ -104,7 +104,7 @@ class ManageTopicsTest extends PubSubTestCase
      */
     public function testUpdateTopicWithUpdateMask($client)
     {
-        $shortName = uniqid(self::TESTING_PREFIX);
+        $shortName = \uniqid(self::TESTING_PREFIX);
         $this->assertFalse($client->topic($shortName)->exists());
         $topic = $client->createTopic($shortName);
         self::$deletionQueue->add($topic);
@@ -128,7 +128,7 @@ class ManageTopicsTest extends PubSubTestCase
     public function testMessageStoragePolicyAllowedPersistenceRegions($client)
     {
         $region = 'us-central1';
-        $shortName = uniqid(self::TESTING_PREFIX);
+        $shortName = \uniqid(self::TESTING_PREFIX);
         $topic = $client->createTopic($shortName, [
             'messageStoragePolicy' => [
                 'allowedPersistenceRegions' => [

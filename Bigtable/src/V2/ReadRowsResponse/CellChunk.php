@@ -213,7 +213,7 @@ class CellChunk extends \Google\Protobuf\Internal\Message
     public function getFamilyNameValue()
     {
         $wrapper = $this->getFamilyName();
-        return is_null($wrapper) ? null : $wrapper->getValue();
+        return \is_null($wrapper) ? null : $wrapper->getValue();
     }
 
     /**
@@ -252,7 +252,7 @@ class CellChunk extends \Google\Protobuf\Internal\Message
      */
     public function setFamilyNameValue($var)
     {
-        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\StringValue(['value' => $var]);
+        $wrappedVar = \is_null($var) ? null : new \Google\Protobuf\StringValue(['value' => $var]);
         return $this->setFamilyName($wrappedVar);
     }
 
@@ -286,7 +286,7 @@ class CellChunk extends \Google\Protobuf\Internal\Message
     public function getQualifierValue()
     {
         $wrapper = $this->getQualifier();
-        return is_null($wrapper) ? null : $wrapper->getValue();
+        return \is_null($wrapper) ? null : $wrapper->getValue();
     }
 
     /**
@@ -323,7 +323,7 @@ class CellChunk extends \Google\Protobuf\Internal\Message
      */
     public function setQualifierValue($var)
     {
-        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BytesValue(['value' => $var]);
+        $wrappedVar = \is_null($var) ? null : new \Google\Protobuf\BytesValue(['value' => $var]);
         return $this->setQualifier($wrappedVar);
     }
 
@@ -530,5 +530,5 @@ class CellChunk extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CellChunk::class, \Google\Cloud\Bigtable\V2\ReadRowsResponse_CellChunk::class);
+\class_alias(CellChunk::class, \Google\Cloud\Bigtable\V2\ReadRowsResponse_CellChunk::class);
 

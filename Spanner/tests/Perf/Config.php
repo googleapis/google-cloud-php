@@ -43,7 +43,7 @@ class Config
 
     public static function getParameters()
     {
-        $config = new self(php_sapi_name());
+        $config = new self(\php_sapi_name());
         return $config->parseInputParams();
     }
 
@@ -56,7 +56,7 @@ class Config
 
     private function parseCliInputParams()
     {
-        $parameters = getopt('', array_map(function ($paramName) {
+        $parameters = \getopt('', \array_map(function ($paramName) {
             return $paramName . ':';
         }, $this->parameters));
 
@@ -80,16 +80,16 @@ class Config
     private function loadWorkloadFile(array $parameters)
     {
         $path = $parameters['workload'];
-        if (!file_exists($path)) {
+        if (!\file_exists($path)) {
             throw new \RuntimeException('Unable to load file from ' . $path);
         }
 
-        foreach (explode(PHP_EOL, file_get_contents($path)) as $line) {
-            $parts = explode('=', $line);
-            $key = trim($parts[0]);
+        foreach (\explode(PHP_EOL, \file_get_contents($path)) as $line) {
+            $parts = \explode('=', $line);
+            $key = \trim($parts[0]);
 
-            if (in_array($key, self::$operations)) {
-                $parameters[$key] = trim($parts[1]);
+            if (\in_array($key, self::$operations)) {
+                $parameters[$key] = \trim($parts[1]);
             }
         }
 

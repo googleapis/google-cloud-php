@@ -100,5 +100,5 @@ class IndexConfigDelta extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(IndexConfigDelta::class, \Google\Cloud\Firestore\Admin\V1\FieldOperationMetadata_IndexConfigDelta::class);
+\class_alias(IndexConfigDelta::class, \Google\Cloud\Firestore\Admin\V1\FieldOperationMetadata_IndexConfigDelta::class);
 

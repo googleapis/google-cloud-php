@@ -99,8 +99,8 @@ class StreamWrapper
     public static function register(StorageClient $client, $protocol = null)
     {
         $protocol = $protocol ?: self::DEFAULT_PROTOCOL;
-        if (!in_array($protocol, stream_get_wrappers())) {
-            if (!stream_wrapper_register($protocol, StreamWrapper::class, STREAM_IS_URL)) {
+        if (!\in_array($protocol, \stream_get_wrappers())) {
+            if (!\stream_wrapper_register($protocol, StreamWrapper::class, STREAM_IS_URL)) {
                 throw new \RuntimeException("Failed to register '$protocol://' protocol");
             }
             self::$clients[$protocol] = $client;
@@ -118,7 +118,7 @@ class StreamWrapper
     public static function unregister($protocol = null)
     {
         $protocol = $protocol ?: self::DEFAULT_PROTOCOL;
-        stream_wrapper_unregister($protocol);
+        \stream_wrapper_unregister($protocol);
         unset(self::$clients[$protocol]);
     }
 
@@ -150,12 +150,12 @@ class StreamWrapper
         $client = $this->openPath($path);
 
         // strip off 'b' or 't' from the mode
-        $mode = rtrim($mode, 'bt');
+        $mode = \rtrim($mode, 'bt');
 
         $options = [];
         if ($this->context) {
-            $contextOptions = stream_context_get_options($this->context);
-            if (array_key_exists($this->protocol, $contextOptions)) {
+            $contextOptions = \stream_context_get_options($this->context);
+            if (\array_key_exists($this->protocol, $contextOptions)) {
                 $options = $contextOptions[$this->protocol] ?: [];
             }
         }
@@ -386,18 +386,18 @@ class StreamWrapper
      */
     public function rename($from, $to)
     {
-        $url = (array) parse_url($to) + [
+        $url = (array) \parse_url($to) + [
             'path' => '',
             'host' => ''
         ];
 
         $destinationBucket = $url['host'];
-        $destinationPath = substr($url['path'], 1);
+        $destinationPath = \substr($url['path'], 1);
 
         $this->dir_opendir($from, 0);
         foreach ($this->directoryIterator as $file) {
             $name = $file->name();
-            $newPath = str_replace($this->file, $destinationPath, $name);
+            $newPath = \str_replace($this->file, $destinationPath, $name);
 
             $obj = $this->bucket->object($name);
             try {
@@ -496,13 +496,13 @@ class StreamWrapper
      */
     private function openPath($path)
     {
-        $url = (array) parse_url($path) + [
+        $url = (array) \parse_url($path) + [
             'scheme' => '',
             'path' => '',
             'host' => ''
         ];
         $this->protocol = $url['scheme'];
-        $this->file = ltrim($url['path'], '/');
+        $this->file = \ltrim($url['path'], '/');
         $client = self::getClient($this->protocol);
         $this->bucket = $client->bucket($url['host']);
         return $client;
@@ -516,7 +516,7 @@ class StreamWrapper
      */
     private function makeDirectory($path)
     {
-        if (substr($path, -1) == '/') {
+        if (\substr($path, -1) == '/') {
             return $path;
         }
 
@@ -610,11 +610,11 @@ class StreamWrapper
             : null;
 
         $stats['mtime'] = (isset($info['updated']))
-            ? strtotime($info['updated'])
+            ? \strtotime($info['updated'])
             : null;
 
         $stats['ctime'] = (isset($info['timeCreated']))
-            ? strtotime($info['timeCreated'])
+            ? \strtotime($info['timeCreated'])
             : null;
     }
 
@@ -626,7 +626,7 @@ class StreamWrapper
      */
     private function isDirectory($path)
     {
-        return substr($path, -1) == '/';
+        return \substr($path, -1) == '/';
     }
 
     /**
@@ -638,8 +638,8 @@ class StreamWrapper
      */
     private function makeStatArray($stats)
     {
-        return array_merge(
-            array_fill_keys([
+        return \array_merge(
+            \array_fill_keys([
                 'dev',
                 'ino',
                 'mode',
@@ -668,7 +668,7 @@ class StreamWrapper
     private function returnError($message, $flags)
     {
         if ($flags & STREAM_REPORT_ERRORS) {
-            trigger_error($message, E_USER_WARNING);
+            \trigger_error($message, E_USER_WARNING);
         }
         return false;
     }

@@ -61,7 +61,7 @@ class SymfonyLockAdapter implements LockInterface
             return $this->lock->acquire($options['blocking']);
         } catch (\Exception $ex) {
             throw new \RuntimeException(
-                sprintf(
+                \sprintf(
                     'Acquiring the lock failed with the following message: %s',
                     $ex->getMessage()
                 ),
@@ -82,7 +82,7 @@ class SymfonyLockAdapter implements LockInterface
             $this->lock->release();
         } catch (\Exception $ex) {
             throw new \RuntimeException(
-                sprintf(
+                \sprintf(
                     'Releasing the lock failed with the following message: %s',
                     $ex->getMessage()
                 ),

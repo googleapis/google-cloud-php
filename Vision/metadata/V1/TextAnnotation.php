@@ -16,7 +16,7 @@ class TextAnnotation
         }
         \GPBMetadata\Google\Cloud\Vision\V1\Geometry::initOnce();
         \GPBMetadata\Google\Api\Annotations::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0af00e0a2c676f6f676c652f636c6f75642f766973696f6e2f76312f7465" .
             "78745f616e6e6f746174696f6e2e70726f746f1216676f6f676c652e636c" .
             "6f75642e766973696f6e2e76311a1c676f6f676c652f6170692f616e6e6f" .

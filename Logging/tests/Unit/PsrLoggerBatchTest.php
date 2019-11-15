@@ -62,7 +62,7 @@ class PsrLoggerBatchTest extends TestCase
             ->willReturn($logName)
             ->shouldBeCalledTimes(2);
         $logger = $this->logger->reveal();
-        $temp = fopen('php://temp', 'rw');
+        $temp = \fopen('php://temp', 'rw');
         $psrBatchLogger = new PsrLogger(
             $logger,
             null,
@@ -74,8 +74,8 @@ class PsrLoggerBatchTest extends TestCase
         $prop->setAccessible(true);
         $prop = $prop->setValue([$logName => $logger]);
         $psrBatchLogger->send([new Entry()]);
-        rewind($temp);
-        $output = stream_get_contents($temp);
+        \rewind($temp);
+        $output = \stream_get_contents($temp);
 
         if ($expectedOutput === false) {
             $this->assertEmpty($output);
@@ -174,7 +174,7 @@ class PsrLoggerBatchTest extends TestCase
         $this->assertEquals('stackdriver-logging-my-log', self::$logName);
         $info = self::$entry->info();
         $this->assertEquals(
-            array_flip(Logger::getLogLevelMap())[$level],
+            \array_flip(Logger::getLogLevelMap())[$level],
             $info['severity']
         );
     }
@@ -188,15 +188,15 @@ class PsrLoggerBatchTest extends TestCase
                 [],
             ],
             [
-                str_repeat('x', 32),
+                \str_repeat('x', 32),
                 [],
-                ['appengine.googleapis.com/trace_id' => str_repeat('x', 32)]
+                ['appengine.googleapis.com/trace_id' => \str_repeat('x', 32)]
             ],
             [
-                str_repeat('x', 32),
+                \str_repeat('x', 32),
                 ['myKey' => 'myVal'],
                 [
-                    'appengine.googleapis.com/trace_id' => str_repeat('x', 32),
+                    'appengine.googleapis.com/trace_id' => \str_repeat('x', 32),
                     'myKey' => 'myVal'
                 ]
             ],

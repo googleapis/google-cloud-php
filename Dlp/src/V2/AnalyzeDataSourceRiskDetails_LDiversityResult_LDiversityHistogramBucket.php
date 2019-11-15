@@ -11,6 +11,6 @@ if (false) {
      */
     class AnalyzeDataSourceRiskDetails_LDiversityResult_LDiversityHistogramBucket {}
 }
-class_exists(AnalyzeDataSourceRiskDetails\LDiversityResult\LDiversityHistogramBucket::class);
-@trigger_error('Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_LDiversityResult_LDiversityHistogramBucket is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\LDiversityResult\LDiversityHistogramBucket instead', E_USER_DEPRECATED);
+\class_exists(AnalyzeDataSourceRiskDetails\LDiversityResult\LDiversityHistogramBucket::class);
+@\trigger_error('Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_LDiversityResult_LDiversityHistogramBucket is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\LDiversityResult\LDiversityHistogramBucket instead', E_USER_DEPRECATED);
 

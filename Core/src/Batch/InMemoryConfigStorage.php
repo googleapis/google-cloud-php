@@ -88,7 +88,7 @@ final class InMemoryConfigStorage implements
     private function __construct()
     {
         $this->config = new JobConfig();
-        $this->created = microtime(true);
+        $this->created = \microtime(true);
         $this->initFailureFile();
         $this->hasShutdownHookRegistered = false;
     }
@@ -160,10 +160,10 @@ final class InMemoryConfigStorage implements
     public function submit($item, $idNum)
     {
         if (!$this->hasShutdownHookRegistered) {
-            register_shutdown_function([$this, 'shutdown']);
+            \register_shutdown_function([$this, 'shutdown']);
             $this->hasShutdownHookRegistered = true;
         }
-        if (!array_key_exists($idNum, $this->items)) {
+        if (!\array_key_exists($idNum, $this->items)) {
             $this->items[$idNum] = [];
             $this->lastInvoked[$idNum] = $this->created;
         }
@@ -171,12 +171,12 @@ final class InMemoryConfigStorage implements
         $job = $this->config->getJobFromIdNum($idNum);
         $batchSize = $job->getBatchSize();
         $period = $job->getCallPeriod();
-        if ((count($this->items[$idNum]) >= $batchSize)
-             || (count($this->items[$idNum]) !== 0
-                 && microtime(true) > $this->lastInvoked[$idNum] + $period)) {
+        if ((\count($this->items[$idNum]) >= $batchSize)
+             || (\count($this->items[$idNum]) !== 0
+                 && \microtime(true) > $this->lastInvoked[$idNum] + $period)) {
             $this->flush($idNum);
             $this->items[$idNum] = [];
-            $this->lastInvoked[$idNum] = microtime(true);
+            $this->lastInvoked[$idNum] = \microtime(true);
         }
     }
 
@@ -196,7 +196,7 @@ final class InMemoryConfigStorage implements
             }
 
             $this->items[$idNum] = [];
-            $this->lastInvoked[$idNum] = microtime(true);
+            $this->lastInvoked[$idNum] = \microtime(true);
         }
 
         return true;
@@ -208,7 +208,7 @@ final class InMemoryConfigStorage implements
     public function shutdown()
     {
         foreach ($this->items as $idNum => $items) {
-            if (count($items) !== 0) {
+            if (\count($items) !== 0) {
                 $this->flush($idNum);
             }
         }

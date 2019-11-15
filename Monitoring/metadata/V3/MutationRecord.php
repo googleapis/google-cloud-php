@@ -15,7 +15,7 @@ class MutationRecord
           return;
         }
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0acf020a2a676f6f676c652f6d6f6e69746f72696e672f76332f6d757461" .
             "74696f6e5f7265636f72642e70726f746f1214676f6f676c652e6d6f6e69" .
             "746f72696e672e763322550a0e4d75746174696f6e5265636f7264122f0a" .

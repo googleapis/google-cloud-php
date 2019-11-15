@@ -68,5 +68,5 @@ class TimeZone extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TimeZone::class, \Google\Cloud\Dlp\V2\DateTime_TimeZone::class);
+\class_alias(TimeZone::class, \Google\Cloud\Dlp\V2\DateTime_TimeZone::class);
 

@@ -74,7 +74,7 @@ class QueryResultsTest extends TestCase
         $this->connection->getQueryResults()->shouldNotBeCalled();
         unset($this->queryData['rows']);
         $queryResults = $this->getQueryResults($this->connection, $this->queryData);
-        $rows = iterator_to_array($queryResults->rows());
+        $rows = \iterator_to_array($queryResults->rows());
 
         $this->assertEmpty($rows);
     }
@@ -83,7 +83,7 @@ class QueryResultsTest extends TestCase
     {
         $this->connection->getQueryResults()->shouldNotBeCalled();
         $queryResults = $this->getQueryResults($this->connection, $this->queryData);
-        $rows = iterator_to_array($queryResults->rows());
+        $rows = \iterator_to_array($queryResults->rows());
 
         $this->assertEquals('Alton', $rows[0]['first_name']);
         $this->assertInstanceOf(Numeric::class, $rows[0]['numeric_value']);
@@ -98,7 +98,7 @@ class QueryResultsTest extends TestCase
             $this->connection,
             $this->queryData + ['pageToken' => 'abcd']
         );
-        $rows = iterator_to_array($queryResults->rows());
+        $rows = \iterator_to_array($queryResults->rows());
 
         $this->assertEquals('Alton', $rows[1]['first_name']);
         $this->assertInstanceOf(Numeric::class, $rows[1]['numeric_value']);
@@ -108,7 +108,7 @@ class QueryResultsTest extends TestCase
     {
         $this->connection->getQueryResults()->shouldNotBeCalled();
         $queryResults = $this->getQueryResults($this->connection, $this->queryData);
-        $rows = iterator_to_array($queryResults->rows([
+        $rows = \iterator_to_array($queryResults->rows([
             'returnRawResults' => true
         ]));
 
@@ -120,7 +120,7 @@ class QueryResultsTest extends TestCase
     {
         $this->connection->getQueryResults()->shouldNotBeCalled();
         $queryResults = $this->getQueryResults($this->connection, $this->queryData);
-        $rows = iterator_to_array($queryResults->rows([
+        $rows = \iterator_to_array($queryResults->rows([
             'returnRawResults' => false
         ]));
 
@@ -144,7 +144,7 @@ class QueryResultsTest extends TestCase
         $this->connection->getQueryResults()->shouldNotBeCalled();
         unset($this->queryData['rows']);
         $queryResults = $this->getQueryResults($this->connection, $this->queryData);
-        $rows = iterator_to_array($queryResults);
+        $rows = \iterator_to_array($queryResults);
 
         $this->assertEmpty($rows);
     }

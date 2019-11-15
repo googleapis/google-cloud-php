@@ -44,6 +44,6 @@ class License
         $source = $this->rootPath .'/LICENSE';
         $dest = $this->path .'/LICENSE';
 
-        copy($source, $dest);
+        \copy($source, $dest);
     }
 }

@@ -11,6 +11,6 @@ if (false) {
      */
     class ReadRowsResponse_CellChunk {}
 }
-class_exists(ReadRowsResponse\CellChunk::class);
-@trigger_error('Google\Cloud\Bigtable\V2\ReadRowsResponse_CellChunk is deprecated and will be removed in the next major release. Use Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk instead', E_USER_DEPRECATED);
+\class_exists(ReadRowsResponse\CellChunk::class);
+@\trigger_error('Google\Cloud\Bigtable\V2\ReadRowsResponse_CellChunk is deprecated and will be removed in the next major release. Use Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk instead', E_USER_DEPRECATED);
 

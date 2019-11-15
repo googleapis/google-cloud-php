@@ -100,7 +100,7 @@ trait LROTrait
      */
     public function longRunningOperations(array $options = [])
     {
-        if (is_null($this->lroResource)) {
+        if (\is_null($this->lroResource)) {
             throw new \BadMethodCallException('This service does list support listing operations.');
         }
 

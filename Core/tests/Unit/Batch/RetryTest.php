@@ -35,28 +35,28 @@ class RetryTest extends TestCase
 
     public static function delTree($dir)
     {
-        $files = array_diff(scandir($dir), array('.', '..'));
+        $files = \array_diff(\scandir($dir), array('.', '..'));
         foreach ($files as $file) {
             $target = "$dir/$file";
-            (is_dir($target)) ? self::delTree($target) : unlink($target);
+            (\is_dir($target)) ? self::delTree($target) : \unlink($target);
         }
-        return rmdir($dir);
+        return \rmdir($dir);
     }
 
     public static function setUpBeforeClass()
     {
-        self::$testDir = sprintf(
+        self::$testDir = \sprintf(
             '%s/google-cloud-unit-test-%d',
-            sys_get_temp_dir(),
-            getmypid()
+            \sys_get_temp_dir(),
+            \getmypid()
         );
-        putenv('GOOGLE_CLOUD_BATCH_DAEMON_FAILURE_DIR=' . self::$testDir);
+        \putenv('GOOGLE_CLOUD_BATCH_DAEMON_FAILURE_DIR=' . self::$testDir);
     }
 
     public static function tearDownAfterClass()
     {
         self::delTree(self::$testDir);
-        putenv('GOOGLE_CLOUD_BATCH_DAEMON_FAILURE_DIR');
+        \putenv('GOOGLE_CLOUD_BATCH_DAEMON_FAILURE_DIR');
     }
 
     public function setUp()
@@ -75,9 +75,9 @@ class RetryTest extends TestCase
             ->shouldBeCalledTimes(1);
         $this->retry = new Retry($this->runner->reveal());
         $this->retry->handleFailure(1, array('apple', 'orange'));
-        $this->assertCount(1, glob(self::$testDir . '/failed-items*'));
+        $this->assertCount(1, \glob(self::$testDir . '/failed-items*'));
         $this->retry->retryAll();
-        $this->assertCount(0, glob(self::$testDir . '/failed-items*'));
+        $this->assertCount(0, \glob(self::$testDir . '/failed-items*'));
     }
 
     public function testRetryAllWithSingleFailure()
@@ -91,8 +91,8 @@ class RetryTest extends TestCase
         $this->retry = new Retry($this->runner->reveal());
         $this->retry->handleFailure(1, array('apple', 'orange'));
         $this->retry->retryAll();
-        $this->assertCount(1, glob(self::$testDir . '/failed-items*'));
+        $this->assertCount(1, \glob(self::$testDir . '/failed-items*'));
         $this->retry->retryAll();
-        $this->assertCount(0, glob(self::$testDir . '/failed-items*'));
+        $this->assertCount(0, \glob(self::$testDir . '/failed-items*'));
     }
 }

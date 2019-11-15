@@ -68,7 +68,7 @@ class FilterTest extends SnippetTestCase
         $snippet->addLocal('table', $table->reveal());
         $res = $snippet->invoke('rows');
         $this->assertEquals(
-            print_r($expectedRows, true),
+            \print_r($expectedRows, true),
             $res->output()
         );
     }

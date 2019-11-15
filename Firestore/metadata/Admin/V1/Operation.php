@@ -17,7 +17,7 @@ class Operation
         \GPBMetadata\Google\Firestore\Admin\V1\Index::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         \GPBMetadata\Google\Api\Annotations::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0a87120a29676f6f676c652f6669726573746f72652f61646d696e2f7631" .
             "2f6f7065726174696f6e2e70726f746f1219676f6f676c652e6669726573" .
             "746f72652e61646d696e2e76311a1f676f6f676c652f70726f746f627566" .

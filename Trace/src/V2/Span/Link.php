@@ -175,5 +175,5 @@ class Link extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Link::class, \Google\Cloud\Trace\V2\Span_Link::class);
+\class_alias(Link::class, \Google\Cloud\Trace\V2\Span_Link::class);
 

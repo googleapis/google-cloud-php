@@ -28,12 +28,12 @@ class ImageTest extends TestCase
 {
     public function testWithString()
     {
-        $bytes = file_get_contents(Fixtures::EIFFEL_TOWER_FIXTURE());
+        $bytes = \file_get_contents(Fixtures::EIFFEL_TOWER_FIXTURE());
         $image = new Image($bytes, ['landmarks']);
 
         $res = $image->requestObject();
 
-        $this->assertEquals($res['image']['content'], base64_encode($bytes));
+        $this->assertEquals($res['image']['content'], \base64_encode($bytes));
         $this->assertEquals($res['features'], [ ['type' => 'LANDMARK_DETECTION'] ]);
     }
 
@@ -54,13 +54,13 @@ class ImageTest extends TestCase
 
     public function testWithResource()
     {
-        $resource = fopen(Fixtures::EIFFEL_TOWER_FIXTURE(), 'r');
-        $bytes = file_get_contents(Fixtures::EIFFEL_TOWER_FIXTURE());
+        $resource = \fopen(Fixtures::EIFFEL_TOWER_FIXTURE(), 'r');
+        $bytes = \file_get_contents(Fixtures::EIFFEL_TOWER_FIXTURE());
 
         $image = new Image($resource, ['landmarks']);
         $res = $image->requestObject();
 
-        $this->assertEquals($res['image']['content'], base64_encode($bytes));
+        $this->assertEquals($res['image']['content'], \base64_encode($bytes));
         $this->assertEquals($res['features'], [ ['type' => 'LANDMARK_DETECTION'] ]);
     }
 
@@ -113,7 +113,7 @@ class ImageTest extends TestCase
 
         $bytes = 'foo';
 
-        $image = new Image($bytes, array_keys($names));
+        $image = new Image($bytes, \array_keys($names));
 
         $res = $image->requestObject();
 
@@ -122,7 +122,7 @@ class ImageTest extends TestCase
             $features[] = $feature['type'];
         }
 
-        $this->assertEquals(array_values($names), $features);
+        $this->assertEquals(\array_values($names), $features);
     }
 
     public function testBytesWithoutEncoding()
@@ -135,7 +135,7 @@ class ImageTest extends TestCase
         $this->assertEquals($res['image']['content'], $bytes);
 
         $encodedRes = $image->requestObject();
-        $this->assertEquals($encodedRes['image']['content'], base64_encode($bytes));
+        $this->assertEquals($encodedRes['image']['content'], \base64_encode($bytes));
     }
 
     public function testUrlSchemes()

@@ -16,7 +16,7 @@ class TextExtraction
         }
         \GPBMetadata\Google\Cloud\Automl\V1\TextSegment::initOnce();
         \GPBMetadata\Google\Api\Annotations::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0aa4050a2c676f6f676c652f636c6f75642f6175746f6d6c2f76312f7465" .
             "78745f65787472616374696f6e2e70726f746f1216676f6f676c652e636c" .
             "6f75642e6175746f6d6c2e76311a1c676f6f676c652f6170692f616e6e6f" .

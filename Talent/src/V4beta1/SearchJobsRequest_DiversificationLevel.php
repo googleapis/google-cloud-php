@@ -11,6 +11,6 @@ if (false) {
      */
     class SearchJobsRequest_DiversificationLevel {}
 }
-class_exists(SearchJobsRequest\DiversificationLevel::class);
-@trigger_error('Google\Cloud\Talent\V4beta1\SearchJobsRequest_DiversificationLevel is deprecated and will be removed in the next major release. Use Google\Cloud\Talent\V4beta1\SearchJobsRequest\DiversificationLevel instead', E_USER_DEPRECATED);
+\class_exists(SearchJobsRequest\DiversificationLevel::class);
+@\trigger_error('Google\Cloud\Talent\V4beta1\SearchJobsRequest_DiversificationLevel is deprecated and will be removed in the next major release. Use Google\Cloud\Talent\V4beta1\SearchJobsRequest\DiversificationLevel instead', E_USER_DEPRECATED);
 

@@ -114,7 +114,7 @@ class ConditionFilter implements FilterInterface
     {
         if ($this->trueFilter === null && $this->falseFilter === null) {
             throw new \RuntimeException(
-                sprintf(
+                \sprintf(
                     'In order to utilize a condition filter you must supply a filter through either %s:%s or %s:%s.',
                     self::class,
                     'then()',

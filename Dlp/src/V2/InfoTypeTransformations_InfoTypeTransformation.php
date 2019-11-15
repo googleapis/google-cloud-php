@@ -11,6 +11,6 @@ if (false) {
      */
     class InfoTypeTransformations_InfoTypeTransformation {}
 }
-class_exists(InfoTypeTransformations\InfoTypeTransformation::class);
-@trigger_error('Google\Cloud\Dlp\V2\InfoTypeTransformations_InfoTypeTransformation is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\InfoTypeTransformations\InfoTypeTransformation instead', E_USER_DEPRECATED);
+\class_exists(InfoTypeTransformations\InfoTypeTransformation::class);
+@\trigger_error('Google\Cloud\Dlp\V2\InfoTypeTransformations_InfoTypeTransformation is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\InfoTypeTransformations\InfoTypeTransformation instead', E_USER_DEPRECATED);
 

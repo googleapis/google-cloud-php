@@ -66,8 +66,8 @@ class LoadDataAndQueryTest extends BigQueryTestCase
     {
         self::$expectedRows++;
         $insertResponse = self::$table->insertRow($this->row);
-        sleep(1);
-        $rows = iterator_to_array(self::$table->rows());
+        \sleep(1);
+        $rows = \iterator_to_array(self::$table->rows());
         $actualRow = $rows[0];
 
         $this->assertTrue($insertResponse->isSuccessful());
@@ -89,7 +89,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
      */
     public function testRunQuery($useLegacySql)
     {
-        $queryString =  sprintf(
+        $queryString =  \sprintf(
             $useLegacySql
                 ? 'SELECT Name, Age, Weight, IsMagic, Spells.* FROM [%s.%s]'
                 : 'SELECT Name, Age, Weight, IsMagic, Spells FROM `%s.%s`',
@@ -112,7 +112,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
             $this->fail('Query did not complete within the allotted time.');
         }
 
-        $actualRow = iterator_to_array($results->rows())[0];
+        $actualRow = \iterator_to_array($results->rows())[0];
 
         if ($useLegacySql) {
             $spells = $this->row['Spells'][0];
@@ -147,7 +147,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
      */
     public function testStartQuery($useLegacySql)
     {
-        $queryString = sprintf(
+        $queryString = \sprintf(
             $useLegacySql
                 ? 'SELECT FavoriteNumbers, ImportantDates.* FROM [%s.%s]'
                 : 'SELECT FavoriteNumbers, ImportantDates FROM `%s.%s`',
@@ -171,7 +171,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
             $this->fail('Query did not complete within the allotted time.');
         }
 
-        $actualRows = iterator_to_array($results->rows());
+        $actualRows = \iterator_to_array($results->rows());
 
         if ($useLegacySql) {
             $dates = $this->row['ImportantDates'];
@@ -261,7 +261,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
             $this->fail('Query did not complete within the allotted time.');
         }
 
-        $actualRow = iterator_to_array($results->rows())[0];
+        $actualRow = \iterator_to_array($results->rows())[0];
         $actualBytes = $actualRow['bytes'];
         unset($params['bytes']);
         unset($actualRow['bytes']);
@@ -282,7 +282,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
             $this->fail('Query did not complete within the allotted time.');
         }
 
-        $actualRows = iterator_to_array($results->rows());
+        $actualRows = \iterator_to_array($results->rows());
         $expectedRows = [
             ['arr' => true]
         ];
@@ -311,7 +311,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
             $this->fail('Query did not complete within the allotted time.');
         }
 
-        $actualRows = iterator_to_array($results->rows());
+        $actualRows = \iterator_to_array($results->rows());
         $expectedRows = [['int' => 5]];
 
         $this->assertEquals($expectedRows, $actualRows);
@@ -338,7 +338,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
             $this->fail('Query did not complete within the allotted time.');
         }
 
-        $actualRows = iterator_to_array($results->rows());
+        $actualRows = \iterator_to_array($results->rows());
         $expectedRows = [
             ['arr' => true]
         ];
@@ -368,19 +368,19 @@ class LoadDataAndQueryTest extends BigQueryTestCase
             $this->fail('Job failed to complete within the allotted time.');
         }
 
-        self::$expectedRows += count(file(__DIR__ . '/data/table-data.json'));
-        $actualRows = count(iterator_to_array(self::$table->rows()));
+        self::$expectedRows += \count(\file(__DIR__ . '/data/table-data.json'));
+        $actualRows = \count(\iterator_to_array(self::$table->rows()));
 
         $this->assertEquals(self::$expectedRows, $actualRows);
     }
 
     public function rowProvider()
     {
-        $data = file_get_contents(__DIR__ . '/data/table-data.json');
+        $data = \file_get_contents(__DIR__ . '/data/table-data.json');
 
         return [
             [$data],
-            [fopen(__DIR__ . '/data/table-data.json', 'r')],
+            [\fopen(__DIR__ . '/data/table-data.json', 'r')],
             [Psr7\stream_for($data)]
         ];
     }
@@ -390,7 +390,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
      */
     public function testQueryDatatoClusteredTable()
     {
-        $table = self::$dataset->table(uniqid(self::TESTING_PREFIX));
+        $table = self::$dataset->table(\uniqid(self::TESTING_PREFIX));
         $queryConfig = self::$client->query('SELECT * FROM ' . self::$dataset->id() . '.' . self::$table->id())
             ->timePartitioning([
                 'expirationMs' => 10000
@@ -403,7 +403,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
             ->destinationTable($table);
 
         $res = self::$client->runQuery($queryConfig);
-        $actualRows = count(iterator_to_array($table->rows()));
+        $actualRows = \count(\iterator_to_array($table->rows()));
         $this->assertEquals(self::$expectedRows, $actualRows);
 
         $info = $table->reload();
@@ -416,8 +416,8 @@ class LoadDataAndQueryTest extends BigQueryTestCase
 
     public function testLoadDataToClusteredTable()
     {
-        $data = file_get_contents(__DIR__ . '/data/table-data.json');
-        $table = self::$dataset->table(uniqid(self::TESTING_PREFIX));
+        $data = \file_get_contents(__DIR__ . '/data/table-data.json');
+        $table = self::$dataset->table(\uniqid(self::TESTING_PREFIX));
         $loadJobConfig = $table->load($data)
             ->autodetect(true)
             ->timePartitioning([
@@ -444,8 +444,8 @@ class LoadDataAndQueryTest extends BigQueryTestCase
             $this->fail('Job failed to complete within the allotted time.');
         }
 
-        $expectedRows = count(file(__DIR__ . '/data/table-data.json'));
-        $actualRows = count(iterator_to_array($table->rows()));
+        $expectedRows = \count(\file(__DIR__ . '/data/table-data.json'));
+        $actualRows = \count(\iterator_to_array($table->rows()));
 
         $this->assertEquals($expectedRows, $actualRows);
     }
@@ -456,7 +456,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
     public function testLoadsDataFromStorageToTable()
     {
         $object = self::$bucket->upload(
-            fopen(__DIR__ . '/data/table-data.json', 'r')
+            \fopen(__DIR__ . '/data/table-data.json', 'r')
         );
 
         $loadJobConfig = self::$table->loadFromStorage($object)
@@ -474,8 +474,8 @@ class LoadDataAndQueryTest extends BigQueryTestCase
             $this->fail('Job failed to complete within the allotted time.');
         }
 
-        self::$expectedRows += count(file(__DIR__ . '/data/table-data.json'));
-        $actualRows = count(iterator_to_array(self::$table->rows()));
+        self::$expectedRows += \count(\file(__DIR__ . '/data/table-data.json'));
+        $actualRows = \count(\iterator_to_array(self::$table->rows()));
 
         $this->assertEquals(self::$expectedRows, $actualRows);
     }
@@ -506,7 +506,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
 
         $this->assertGreaterThan(
             0,
-            count(iterator_to_array($table->rows()))
+            \count(\iterator_to_array($table->rows()))
         );
     }
 
@@ -519,9 +519,9 @@ class LoadDataAndQueryTest extends BigQueryTestCase
             ['data' => $this->row],
             ['data' => $this->row]
         ];
-        self::$expectedRows += count($rows);
+        self::$expectedRows += \count($rows);
         $insertResponse = self::$table->insertRows($rows);
-        $actualRows = count(iterator_to_array(self::$table->rows()));
+        $actualRows = \count(\iterator_to_array(self::$table->rows()));
 
         $this->assertTrue($insertResponse->isSuccessful());
         $this->assertEquals(self::$expectedRows, $actualRows);
@@ -529,7 +529,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
 
     public function testInsertRowsToTableWithAutoCreate()
     {
-        $tName = uniqid(BigQueryTestCase::TESTING_PREFIX);
+        $tName = \uniqid(BigQueryTestCase::TESTING_PREFIX);
         $rows = [
             ['data' => ['hello' => 'world']]
         ];
@@ -550,9 +550,9 @@ class LoadDataAndQueryTest extends BigQueryTestCase
         $results = self::$dataset
             ->table($tName)
             ->rows();
-        $actualRows = count(iterator_to_array($results));
+        $actualRows = \count(\iterator_to_array($results));
 
         $this->assertTrue($insertResponse->isSuccessful());
-        $this->assertEquals(count($rows), $actualRows);
+        $this->assertEquals(\count($rows), $actualRows);
     }
 }

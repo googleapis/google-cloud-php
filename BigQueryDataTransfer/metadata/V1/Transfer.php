@@ -19,7 +19,7 @@ class Transfer
         \GPBMetadata\Google\Protobuf\Struct::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         \GPBMetadata\Google\Rpc\Status::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0afd120a34676f6f676c652f636c6f75642f62696771756572792f646174" .
             "617472616e736665722f76312f7472616e736665722e70726f746f122567" .
             "6f6f676c652e636c6f75642e62696771756572792e646174617472616e73" .

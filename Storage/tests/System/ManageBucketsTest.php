@@ -29,8 +29,8 @@ class ManageBucketsTest extends StorageTestCase
     {
         $foundBuckets = [];
         $bucketsToCreate = [
-            uniqid(self::TESTING_PREFIX),
-            uniqid(self::TESTING_PREFIX)
+            \uniqid(self::TESTING_PREFIX),
+            \uniqid(self::TESTING_PREFIX)
         ];
 
         foreach ($bucketsToCreate as $bucketToCreate) {
@@ -52,7 +52,7 @@ class ManageBucketsTest extends StorageTestCase
 
     public function testCreatesBucket()
     {
-        $name = uniqid(self::TESTING_PREFIX);
+        $name = \uniqid(self::TESTING_PREFIX);
         $options = [
             'location' => 'ASIA',
             'storageClass' => 'NEARLINE',
@@ -78,7 +78,7 @@ class ManageBucketsTest extends StorageTestCase
             ->addDeleteRule([
                 'age' => 500
             ]);
-        $name = uniqid(self::TESTING_PREFIX);
+        $name = \uniqid(self::TESTING_PREFIX);
         $this->assertFalse(self::$client->bucket($name)->exists());
         $bucket = self::createBucket(self::$client, $name, [
             'lifecycle' => $lifecycle
@@ -142,10 +142,10 @@ class ManageBucketsTest extends StorageTestCase
         $policy = $iam->policy();
 
         // pop the version off the resourceId to make the assertion below more robust.
-        $resourceId = explode('#', $policy['resourceId'])[0];
+        $resourceId = \explode('#', $policy['resourceId'])[0];
 
         $bucketName = self::$bucket->name();
-        $this->assertEquals($resourceId, sprintf('projects/_/buckets/%s', $bucketName));
+        $this->assertEquals($resourceId, \sprintf('projects/_/buckets/%s', $bucketName));
 
         $role = 'roles/storage.admin';
 
@@ -158,7 +158,7 @@ class ManageBucketsTest extends StorageTestCase
 
         $policy = $iam->reload();
 
-        $newBinding = array_filter($policy['bindings'], function ($binding) use ($role) {
+        $newBinding = \array_filter($policy['bindings'], function ($binding) use ($role) {
             return ($binding['role'] === $role);
         });
 
@@ -210,7 +210,7 @@ class ManageBucketsTest extends StorageTestCase
      */
     public function testBucketLocationType($storageClass, $location, $expectedLocationType, $updateStorageClass)
     {
-        $bucketName = uniqid(self::TESTING_PREFIX);
+        $bucketName = \uniqid(self::TESTING_PREFIX);
         $bucket = self::createBucket(self::$client, $bucketName, [
             'storageClass' => $storageClass,
             'location' => $location,
@@ -231,8 +231,8 @@ class ManageBucketsTest extends StorageTestCase
         $this->assertEquals($expectedLocationType, $bucket->info()['locationType']);
 
         // Test list bucket response
-        $buckets = iterator_to_array(self::$client->buckets());
-        $listBucketBucket = current(array_filter($buckets, function ($bucket) use ($bucketName) {
+        $buckets = \iterator_to_array(self::$client->buckets());
+        $listBucketBucket = \current(\array_filter($buckets, function ($bucket) use ($bucketName) {
             return $bucket->name() === $bucketName;
         }));
         $this->assertEquals($expectedLocationType, $listBucketBucket->info()['locationType']);

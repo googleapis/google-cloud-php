@@ -23,7 +23,7 @@ class SpannerDatabaseAdmin
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0ac5200a3d676f6f676c652f7370616e6e65722f61646d696e2f64617461" .
             "626173652f76312f7370616e6e65725f64617461626173655f61646d696e" .
             "2e70726f746f1220676f6f676c652e7370616e6e65722e61646d696e2e64" .

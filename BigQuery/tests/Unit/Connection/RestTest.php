@@ -85,7 +85,7 @@ class RestTest extends TestCase
         $rest->setRequestBuilder($requestBuilder->reveal());
         $rest->setRequestWrapper($this->requestWrapper->reveal());
 
-        $this->assertEquals(json_decode($this->successBody, true), $rest->$method($options));
+        $this->assertEquals(\json_decode($this->successBody, true), $rest->$method($options));
     }
 
     public function methodProvider()
@@ -138,7 +138,7 @@ class RestTest extends TestCase
             'data' => 'justSomeData',
             'projectId' => 'myProjectId',
         ] + $config;
-        $response = new Response(200, [], json_encode([
+        $response = new Response(200, [], \json_encode([
             'jobReference' => [
                 'jobId' => 'myJobId'
             ]
@@ -168,7 +168,7 @@ class RestTest extends TestCase
 
     private function getMetadata(Request $request)
     {
-        $lines = explode(PHP_EOL, (string) $request->getBody());
-        return json_decode($lines[5], true);
+        $lines = \explode(PHP_EOL, (string) $request->getBody());
+        return \json_decode($lines[5], true);
     }
 }

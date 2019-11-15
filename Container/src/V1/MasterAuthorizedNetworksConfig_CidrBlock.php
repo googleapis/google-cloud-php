@@ -11,6 +11,6 @@ if (false) {
      */
     class MasterAuthorizedNetworksConfig_CidrBlock {}
 }
-class_exists(MasterAuthorizedNetworksConfig\CidrBlock::class);
-@trigger_error('Google\Cloud\Container\V1\MasterAuthorizedNetworksConfig_CidrBlock is deprecated and will be removed in the next major release. Use Google\Cloud\Container\V1\MasterAuthorizedNetworksConfig\CidrBlock instead', E_USER_DEPRECATED);
+\class_exists(MasterAuthorizedNetworksConfig\CidrBlock::class);
+@\trigger_error('Google\Cloud\Container\V1\MasterAuthorizedNetworksConfig_CidrBlock is deprecated and will be removed in the next major release. Use Google\Cloud\Container\V1\MasterAuthorizedNetworksConfig\CidrBlock instead', E_USER_DEPRECATED);
 

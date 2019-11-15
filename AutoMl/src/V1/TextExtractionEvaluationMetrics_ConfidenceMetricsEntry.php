@@ -11,6 +11,6 @@ if (false) {
      */
     class TextExtractionEvaluationMetrics_ConfidenceMetricsEntry {}
 }
-class_exists(TextExtractionEvaluationMetrics\ConfidenceMetricsEntry::class);
-@trigger_error('Google\Cloud\AutoMl\V1\TextExtractionEvaluationMetrics_ConfidenceMetricsEntry is deprecated and will be removed in the next major release. Use Google\Cloud\AutoMl\V1\TextExtractionEvaluationMetrics\ConfidenceMetricsEntry instead', E_USER_DEPRECATED);
+\class_exists(TextExtractionEvaluationMetrics\ConfidenceMetricsEntry::class);
+@\trigger_error('Google\Cloud\AutoMl\V1\TextExtractionEvaluationMetrics_ConfidenceMetricsEntry is deprecated and will be removed in the next major release. Use Google\Cloud\AutoMl\V1\TextExtractionEvaluationMetrics\ConfidenceMetricsEntry instead', E_USER_DEPRECATED);
 

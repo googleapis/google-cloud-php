@@ -11,6 +11,6 @@ if (false) {
      */
     class PartOfSpeech_Case {}
 }
-class_exists(PartOfSpeech\PBCase::class);
-@trigger_error('Google\Cloud\Language\V1beta2\PartOfSpeech_Case is deprecated and will be removed in the next major release. Use Google\Cloud\Language\V1beta2\PartOfSpeech\PBCase instead', E_USER_DEPRECATED);
+\class_exists(PartOfSpeech\PBCase::class);
+@\trigger_error('Google\Cloud\Language\V1beta2\PartOfSpeech_Case is deprecated and will be removed in the next major release. Use Google\Cloud\Language\V1beta2\PartOfSpeech\PBCase instead', E_USER_DEPRECATED);
 

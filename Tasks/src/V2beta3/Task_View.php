@@ -11,6 +11,6 @@ if (false) {
      */
     class Task_View {}
 }
-class_exists(Task\View::class);
-@trigger_error('Google\Cloud\Tasks\V2beta3\Task_View is deprecated and will be removed in a future release. Use Google\Cloud\Tasks\V2beta3\Task\View instead', E_USER_DEPRECATED);
+\class_exists(Task\View::class);
+@\trigger_error('Google\Cloud\Tasks\V2beta3\Task_View is deprecated and will be removed in a future release. Use Google\Cloud\Tasks\V2beta3\Task\View instead', E_USER_DEPRECATED);
 

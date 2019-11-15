@@ -17,7 +17,7 @@ class Detection
         \GPBMetadata\Google\Cloud\Automl\V1Beta1\Geometry::initOnce();
         \GPBMetadata\Google\Protobuf\Duration::initOnce();
         \GPBMetadata\Google\Api\Annotations::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0ae20a0a2b676f6f676c652f636c6f75642f6175746f6d6c2f7631626574" .
             "61312f646574656374696f6e2e70726f746f121b676f6f676c652e636c6f" .
             "75642e6175746f6d6c2e763162657461311a1e676f6f676c652f70726f74" .

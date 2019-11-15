@@ -18,7 +18,7 @@ class ScanRun
         \GPBMetadata\Google\Cloud\Websecurityscanner\V1Beta\ScanRunErrorTrace::initOnce();
         \GPBMetadata\Google\Cloud\Websecurityscanner\V1Beta\ScanRunWarningTrace::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0aa70a0a35676f6f676c652f636c6f75642f776562736563757269747973" .
             "63616e6e65722f7631626574612f7363616e5f72756e2e70726f746f1226" .
             "676f6f676c652e636c6f75642e77656273656375726974797363616e6e65" .

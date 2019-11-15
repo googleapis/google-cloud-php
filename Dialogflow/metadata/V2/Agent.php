@@ -19,7 +19,7 @@ class Agent
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         \GPBMetadata\Google\Api\Client::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0afe170a26676f6f676c652f636c6f75642f6469616c6f67666c6f772f76" .
             "322f6167656e742e70726f746f121a676f6f676c652e636c6f75642e6469" .
             "616c6f67666c6f772e76321a23676f6f676c652f6c6f6e6772756e6e696e" .

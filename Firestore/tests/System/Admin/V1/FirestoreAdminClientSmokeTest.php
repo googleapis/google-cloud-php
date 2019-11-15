@@ -41,8 +41,8 @@ class FirestoreAdminClientSmokeTest extends SystemTestCase
         if (self::$hasSetup) {
             return;
         }
-        $keyFilePath = getenv('GOOGLE_CLOUD_PHP_FIRESTORE_TESTS_KEY_PATH');
-        $keyFileData = json_decode(file_get_contents($keyFilePath), true);
+        $keyFilePath = \getenv('GOOGLE_CLOUD_PHP_FIRESTORE_TESTS_KEY_PATH');
+        $keyFileData = \json_decode(\file_get_contents($keyFilePath), true);
         self::$projectId = $keyFileData['project_id'];
         self::$adminClient = new FirestoreAdminClient([
             'credentials' => $keyFilePath
@@ -54,7 +54,7 @@ class FirestoreAdminClientSmokeTest extends SystemTestCase
         $parentName = self::$adminClient->parentName(
             self::$projectId,
             FirestoreClient::DEFAULT_DATABASE,
-            uniqid('system-test')
+            \uniqid('system-test')
         );
         $resp = self::$adminClient->listIndexes($parentName);
         $this->assertInstanceOf(PagedListResponse::class, $resp);

@@ -16,7 +16,7 @@ class Finding
         }
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Websecurityscanner\V1Beta\FindingAddon::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0a90090a34676f6f676c652f636c6f75642f776562736563757269747973" .
             "63616e6e65722f7631626574612f66696e64696e672e70726f746f122667" .
             "6f6f676c652e636c6f75642e77656273656375726974797363616e6e6572" .

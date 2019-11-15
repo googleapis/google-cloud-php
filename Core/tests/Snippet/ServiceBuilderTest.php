@@ -74,7 +74,7 @@ class ServiceBuilderTest extends SnippetTestCase
     public function testServices($method, $returnType, $returnName, $skipIfMissingGrpc = false)
     {
         if ($skipIfMissingGrpc) {
-            if (!extension_loaded('grpc')) {
+            if (!\extension_loaded('grpc')) {
                 $this->markTestSkipped('Must have the grpc extension installed to run this test.');
             }
         }

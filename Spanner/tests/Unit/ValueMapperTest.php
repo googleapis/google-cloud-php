@@ -73,9 +73,9 @@ class ValueMapperTest extends TestCase
     {
         $c = 'hello world';
 
-        $resource = fopen('php://temp', 'r+');
-        fwrite($resource, $c);
-        rewind($resource);
+        $resource = \fopen('php://temp', 'r+');
+        \fwrite($resource, $c);
+        \rewind($resource);
 
         $params = [
             'resource' => $resource
@@ -83,7 +83,7 @@ class ValueMapperTest extends TestCase
 
         $res = $this->mapper->formatParamsForExecuteSql($params);
 
-        $this->assertEquals($c, base64_decode($res['params']['resource']));
+        $this->assertEquals($c, \base64_decode($res['params']['resource']));
         $this->assertEquals(Database::TYPE_BYTES, $res['paramTypes']['resource']['code']);
     }
 
@@ -130,7 +130,7 @@ class ValueMapperTest extends TestCase
         ];
 
         $res = $this->mapper->formatParamsForExecuteSql($params);
-        $this->assertEquals($val, base64_decode($res['params']['bytes']));
+        $this->assertEquals($val, \base64_decode($res['params']['bytes']));
         $this->assertEquals(Database::TYPE_BYTES, $res['paramTypes']['bytes']['code']);
     }
 
@@ -670,7 +670,7 @@ class ValueMapperTest extends TestCase
             [$timestamp, $dt->format(Timestamp::FORMAT)],
             [new Date($dt), $dt->format(Date::FORMAT)],
             ['foo'],
-            [new Bytes('hello world'), base64_encode('hello world')],
+            [new Bytes('hello world'), \base64_encode('hello world')],
             [['foo', 'bar']]
         ];
     }
@@ -775,7 +775,7 @@ class ValueMapperTest extends TestCase
             $this->createRow('NaN'),
             Result::RETURN_ASSOCIATIVE
         );
-        $this->assertTrue(is_nan($res['rowName']));
+        $this->assertTrue(\is_nan($res['rowName']));
     }
 
     public function testDecodeValuesFloatInfinity()
@@ -786,7 +786,7 @@ class ValueMapperTest extends TestCase
             Result::RETURN_ASSOCIATIVE
         );
 
-        $this->assertTrue(is_infinite($res['rowName']));
+        $this->assertTrue(\is_infinite($res['rowName']));
         $this->assertGreaterThan(0, $res['rowName']);
     }
 
@@ -798,7 +798,7 @@ class ValueMapperTest extends TestCase
             Result::RETURN_ASSOCIATIVE
         );
 
-        $this->assertTrue(is_infinite($res['rowName']));
+        $this->assertTrue(\is_infinite($res['rowName']));
         $this->assertLessThan(0, $res['rowName']);
     }
 
@@ -856,7 +856,7 @@ class ValueMapperTest extends TestCase
     {
         $res = $this->mapper->decodeValues(
             $this->createField(Database::TYPE_BYTES),
-            $this->createRow(base64_encode('hello world')),
+            $this->createRow(\base64_encode('hello world')),
             Result::RETURN_ASSOCIATIVE
         );
 
@@ -942,7 +942,7 @@ class ValueMapperTest extends TestCase
     {
         return [[
             'name' => 'rowName',
-            'type' => array_filter([
+            'type' => \array_filter([
                 'code' => $code,
                 $type => $typeObj
             ])

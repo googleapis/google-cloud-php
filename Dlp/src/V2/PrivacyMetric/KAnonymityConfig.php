@@ -148,5 +148,5 @@ class KAnonymityConfig extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(KAnonymityConfig::class, \Google\Cloud\Dlp\V2\PrivacyMetric_KAnonymityConfig::class);
+\class_alias(KAnonymityConfig::class, \Google\Cloud\Dlp\V2\PrivacyMetric_KAnonymityConfig::class);
 

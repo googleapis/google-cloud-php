@@ -11,6 +11,6 @@ if (false) {
      */
     class RedactImageRequest_ImageRedactionConfig {}
 }
-class_exists(RedactImageRequest\ImageRedactionConfig::class);
-@trigger_error('Google\Cloud\Dlp\V2\RedactImageRequest_ImageRedactionConfig is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\RedactImageRequest\ImageRedactionConfig instead', E_USER_DEPRECATED);
+\class_exists(RedactImageRequest\ImageRedactionConfig::class);
+@\trigger_error('Google\Cloud\Dlp\V2\RedactImageRequest_ImageRedactionConfig is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\RedactImageRequest\ImageRedactionConfig instead', E_USER_DEPRECATED);
 

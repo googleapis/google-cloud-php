@@ -52,40 +52,40 @@ trait RegexTrait
         if ($value === null) {
             return;
         }
-        $nullBytes = unpack('C*', '\\x00');
+        $nullBytes = \unpack('C*', '\\x00');
         $byteValue = null;
-        if (is_array($value)) {
+        if (\is_array($value)) {
             $byteValue = $value;
-        } elseif (is_string($value)) {
-            if (preg_match('//u', $value)) {
-                $byteValue = unpack('C*', $value);
+        } elseif (\is_string($value)) {
+            if (\preg_match('//u', $value)) {
+                $byteValue = \unpack('C*', $value);
             } else {
-                $byteValue = unpack('C*', utf8_encode($value));
+                $byteValue = \unpack('C*', \utf8_encode($value));
             }
         } else {
             throw new \InvalidArgumentException(
-                sprintf(
+                \sprintf(
                     'Expected byte array or string, instead got \'%s\'.',
-                    gettype($value)
+                    \gettype($value)
                 )
             );
         }
         $quotedBytes = [];
         foreach ($byteValue as $byte) {
-            if (($byte < ord('a') || $byte > ord('z'))
-                && ($byte < ord('A') || $byte > ord('Z'))
-                && ($byte < ord('0') || $byte > ord('9'))
-                && $byte != ord('_')
+            if (($byte < \ord('a') || $byte > \ord('z'))
+                && ($byte < \ord('A') || $byte > \ord('Z'))
+                && ($byte < \ord('0') || $byte > \ord('9'))
+                && $byte != \ord('_')
                 && ($byte & 128) == 0
             ) {
                 if ($byte == 0) {
-                    $quotedBytes = array_merge($quotedBytes, $nullBytes);
+                    $quotedBytes = \array_merge($quotedBytes, $nullBytes);
                     continue;
                 }
-                $quotedBytes[] = ord('\\');
+                $quotedBytes[] = \ord('\\');
             }
             $quotedBytes[] = $byte;
         }
-        return implode(array_map('chr', $quotedBytes));
+        return \implode(\array_map('chr', $quotedBytes));
     }
 }

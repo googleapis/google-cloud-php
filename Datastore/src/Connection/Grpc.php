@@ -78,7 +78,7 @@ class Grpc implements ConnectionInterface
             }
         ], [], [
             'google.protobuf.Timestamp' => function ($v) {
-                if (is_string($v)) {
+                if (\is_string($v)) {
                     $dt = new \DateTime($v);
                     return ['seconds' => $dt->format('U')];
                 }
@@ -152,7 +152,7 @@ class Grpc implements ConnectionInterface
 
         $mutations = $this->pluck('mutations', $args);
         foreach ($mutations as &$mutation) {
-            $mutationType = array_keys($mutation)[0];
+            $mutationType = \array_keys($mutation)[0];
             $data = $mutation[$mutationType];
             if (isset($data['properties'])) {
                 foreach ($data['properties'] as &$property) {
@@ -380,7 +380,7 @@ class Grpc implements ConnectionInterface
             $operator = $filter['propertyFilter']['op'];
 
             try {
-                if (is_int($operator)) {
+                if (\is_int($operator)) {
                     // verify that the operator, given as enum value, exists.
                     PropertyFilterOperator::name($operator);
                 } else {
@@ -413,7 +413,7 @@ class Grpc implements ConnectionInterface
      */
     private function toGrpcValue(array $property)
     {
-        $type = array_keys($property)[0];
+        $type = \array_keys($property)[0];
         $val = $property[$type];
         if ($val === null) {
             $val = NullValue::NULL_VALUE;

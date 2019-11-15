@@ -11,6 +11,6 @@ if (false) {
      */
     class ListJobsRequest_JobStateMatcher {}
 }
-class_exists(ListJobsRequest\JobStateMatcher::class);
-@trigger_error('Google\Cloud\Dataproc\V1beta2\ListJobsRequest_JobStateMatcher is deprecated and will be removed in the next major release. Use Google\Cloud\Dataproc\V1beta2\ListJobsRequest\JobStateMatcher instead', E_USER_DEPRECATED);
+\class_exists(ListJobsRequest\JobStateMatcher::class);
+@\trigger_error('Google\Cloud\Dataproc\V1beta2\ListJobsRequest_JobStateMatcher is deprecated and will be removed in the next major release. Use Google\Cloud\Dataproc\V1beta2\ListJobsRequest\JobStateMatcher instead', E_USER_DEPRECATED);
 

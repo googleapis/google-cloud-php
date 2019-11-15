@@ -72,14 +72,14 @@ class ValueMapperTest extends FirestoreTestCase
             [10],
             [2147483647],
             [3.1415],
-            [new Timestamp(\DateTime::createFromFormat('U', time()))],
+            [new Timestamp(\DateTime::createFromFormat('U', \time()))],
             ['foo'],
             [self::$document],
             [new GeoPoint(10, -10)],
             [[1, 2, 3, 4]],
             [['foo' => 'bar', 'bat' => [1, 2, 3, 4]]],
             [NAN, function ($val) {
-                return is_nan($val);
+                return \is_nan($val);
             }]
         ];
     }

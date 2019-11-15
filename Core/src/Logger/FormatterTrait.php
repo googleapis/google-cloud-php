@@ -24,7 +24,7 @@ trait FormatterTrait
 {
     protected function formatPayload(array $record, $message)
     {
-        list($usec, $sec) = explode(' ', microtime());
+        list($usec, $sec) = \explode(' ', \microtime());
         $usec = (int)(((float)$usec)*1000000000);
         $sec = (int)$sec;
 
@@ -36,12 +36,12 @@ trait FormatterTrait
         ];
 
         if (isset($_SERVER['HTTP_X_CLOUD_TRACE_CONTEXT'])) {
-            $payload['traceId'] = explode(
+            $payload['traceId'] = \explode(
                 '/',
                 $_SERVER['HTTP_X_CLOUD_TRACE_CONTEXT']
             )[0];
         }
 
-        return "\n" . json_encode($payload);
+        return "\n" . \json_encode($payload);
     }
 }

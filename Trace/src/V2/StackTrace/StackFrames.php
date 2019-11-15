@@ -108,5 +108,5 @@ class StackFrames extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(StackFrames::class, \Google\Cloud\Trace\V2\StackTrace_StackFrames::class);
+\class_alias(StackFrames::class, \Google\Cloud\Trace\V2\StackTrace_StackFrames::class);
 

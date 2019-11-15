@@ -266,7 +266,7 @@ class InstanceTest extends TestCase
 
         $this->assertInstanceOf(ItemIterator::class, $dbs);
 
-        $dbs = iterator_to_array($dbs);
+        $dbs = \iterator_to_array($dbs);
 
         $this->assertCount(2, $dbs);
         $this->assertEquals('database1', DatabaseAdminClient::parseName($dbs[0]->name())['database']);
@@ -291,7 +291,7 @@ class InstanceTest extends TestCase
 
         $this->assertInstanceOf(ItemIterator::class, $dbs);
 
-        $dbs = iterator_to_array($dbs);
+        $dbs = \iterator_to_array($dbs);
 
         $this->assertCount(2, $dbs);
         $this->assertEquals('database1', DatabaseAdminClient::parseName($dbs[0]->name())['database']);
@@ -307,6 +307,6 @@ class InstanceTest extends TestCase
 
     private function getDefaultInstance()
     {
-        return json_decode(file_get_contents(Fixtures::INSTANCE_FIXTURE()), true);
+        return \json_decode(\file_get_contents(Fixtures::INSTANCE_FIXTURE()), true);
     }
 }

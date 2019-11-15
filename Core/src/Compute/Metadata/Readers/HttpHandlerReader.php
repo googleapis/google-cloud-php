@@ -50,7 +50,7 @@ class HttpHandlerReader implements ReaderInterface
      */
     public function read($path)
     {
-        $url = sprintf(
+        $url = \sprintf(
             'http://%s/computeMetadata/v1/%s',
             GCECredentials::METADATA_IP,
             $path

@@ -11,6 +11,6 @@ if (false) {
      */
     class StreamingRecognitionResult_MessageType {}
 }
-class_exists(StreamingRecognitionResult\MessageType::class);
-@trigger_error('Google\Cloud\Dialogflow\V2\StreamingRecognitionResult_MessageType is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\StreamingRecognitionResult\MessageType instead', E_USER_DEPRECATED);
+\class_exists(StreamingRecognitionResult\MessageType::class);
+@\trigger_error('Google\Cloud\Dialogflow\V2\StreamingRecognitionResult_MessageType is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\StreamingRecognitionResult\MessageType instead', E_USER_DEPRECATED);
 

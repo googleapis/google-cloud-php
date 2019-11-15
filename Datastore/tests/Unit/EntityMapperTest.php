@@ -142,7 +142,7 @@ class EntityMapperTest extends TestCase
     {
         $data = [
             'foo' => [
-                'blobValue' => base64_encode('hello world')
+                'blobValue' => \base64_encode('hello world')
             ]
         ];
 
@@ -596,7 +596,7 @@ class EntityMapperTest extends TestCase
     public function testConvertValueBlob()
     {
         $type = 'blobValue';
-        $val = base64_encode('hello world');
+        $val = \base64_encode('hello world');
 
         $res = $this->mapper->convertValue($type, $val);
         $this->assertInstanceOf(Blob::class, $res);
@@ -693,7 +693,7 @@ class EntityMapperTest extends TestCase
             'key2' => 'val2'
         ]);
 
-        $this->assertEquals('entityValue', key($entity));
+        $this->assertEquals('entityValue', \key($entity));
         $this->assertEquals('val1', $entity['entityValue']['properties']['key1']['stringValue']);
         $this->assertEquals('val2', $entity['entityValue']['properties']['key2']['stringValue']);
     }
@@ -706,7 +706,7 @@ class EntityMapperTest extends TestCase
             Entity::EXCLUDE_FROM_INDEXES => ['key1']
         ]);
 
-        $this->assertEquals('entityValue', key($entity));
+        $this->assertEquals('entityValue', \key($entity));
         $this->assertEquals('val1', $entity['entityValue']['properties']['key1']['stringValue']);
         $this->assertTrue($entity['entityValue']['properties']['key1']['excludeFromIndexes']);
         $this->assertEquals('val2', $entity['entityValue']['properties']['key2']['stringValue']);
@@ -751,22 +751,22 @@ class EntityMapperTest extends TestCase
     {
         $string = 'test data';
 
-        $stream = fopen('php://memory', 'r+');
-        fwrite($stream, $string);
-        rewind($stream);
+        $stream = \fopen('php://memory', 'r+');
+        \fwrite($stream, $string);
+        \rewind($stream);
 
         $res = $this->mapper->valueObject($stream);
 
-        $this->assertEquals(base64_encode($string), $res['blobValue']);
+        $this->assertEquals(\base64_encode($string), $res['blobValue']);
     }
 
     public function testValueObjectResourceNotEncoded()
     {
         $string = 'test data';
 
-        $stream = fopen('php://memory', 'r+');
-        fwrite($stream, $string);
-        rewind($stream);
+        $stream = \fopen('php://memory', 'r+');
+        \fwrite($stream, $string);
+        \rewind($stream);
 
         $mapper = new EntityMapper('foo', false, false);
         $res = $mapper->valueObject($stream);
@@ -789,7 +789,7 @@ class EntityMapperTest extends TestCase
     {
         $res = $this->mapper->valueObject(new Blob('hello world'));
 
-        $this->assertEquals('hello world', base64_decode($res['blobValue']));
+        $this->assertEquals('hello world', \base64_decode($res['blobValue']));
     }
 
     public function testObjectPropertyBlobNotEncoded()

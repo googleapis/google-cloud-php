@@ -52,7 +52,7 @@ class GitHubTest extends TestCase
 
     public function testDoesTagExist()
     {
-        $uri = sprintf(GitHub::GITHUB_RELEASES_ENDPOINT, self::TARGET_CLEAN, self::TAG);
+        $uri = \sprintf(GitHub::GITHUB_RELEASES_ENDPOINT, self::TARGET_CLEAN, self::TAG);
         $this->guzzle->get($uri, [
             'http_errors' => false,
             'auth' => [null, self::TOKEN]
@@ -65,7 +65,7 @@ class GitHubTest extends TestCase
 
     public function testDoesTagExistReturnFalse()
     {
-        $uri = sprintf(GitHub::GITHUB_RELEASES_ENDPOINT, self::TARGET_CLEAN, self::TAG);
+        $uri = \sprintf(GitHub::GITHUB_RELEASES_ENDPOINT, self::TARGET_CLEAN, self::TAG);
         $this->guzzle->get($uri, [
             'http_errors' => false,
             'auth' => [null, self::TOKEN]
@@ -78,7 +78,7 @@ class GitHubTest extends TestCase
 
     public function testCreateRelease()
     {
-        $uri = sprintf(GitHub::GITHUB_RELEASE_CREATE_ENDPOINT, self::TARGET_CLEAN);
+        $uri = \sprintf(GitHub::GITHUB_RELEASE_CREATE_ENDPOINT, self::TARGET_CLEAN);
         $this->guzzle->post($uri, [
             'http_errors' => false,
             'json' => [
@@ -89,7 +89,7 @@ class GitHubTest extends TestCase
             'auth' => [null, self::TOKEN]
         ])->shouldBeCalled()->willReturn(new Response);
 
-        $uri = sprintf(GitHub::GITHUB_RELEASES_ENDPOINT, self::TARGET_CLEAN, self::TAG);
+        $uri = \sprintf(GitHub::GITHUB_RELEASES_ENDPOINT, self::TARGET_CLEAN, self::TAG);
         $this->guzzle->get($uri, [
             'http_errors' => false,
             'auth' => [null, self::TOKEN]
@@ -102,7 +102,7 @@ class GitHubTest extends TestCase
 
     public function testPush()
     {
-        $cmd = sprintf(
+        $cmd = \sprintf(
             'git push -q https://%s@github.com/%s %s:%s --force',
             self::TOKEN,
             self::TARGET,
@@ -119,7 +119,7 @@ class GitHubTest extends TestCase
 
     public function testPushToBranch()
     {
-        $cmd = sprintf(
+        $cmd = \sprintf(
             'git push -q https://%s@github.com/%s %s:%s --force',
             self::TOKEN,
             self::TARGET,
@@ -136,7 +136,7 @@ class GitHubTest extends TestCase
 
     public function testPushNoForce()
     {
-        $cmd = sprintf(
+        $cmd = \sprintf(
             'git push -q https://%s@github.com/%s %s:%s',
             self::TOKEN,
             self::TARGET,

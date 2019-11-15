@@ -181,7 +181,7 @@ class GrpcTest extends TestCase
 
         $expectedArgs = [
             self::PROJECT_ID,
-            constant(Mode::class .'::' . $mode),
+            \constant(Mode::class .'::' . $mode),
             [$this->serializer->decodeMessage(new Mutation, $mutation)],
             []
         ];
@@ -412,8 +412,8 @@ class GrpcTest extends TestCase
 
         $operator = $query['filter']['propertyFilter']['op'];
         $constName = PropertyFilterOperator::class .'::'. $operator;
-        $query['filter']['propertyFilter']['op'] = defined($constName)
-            ? constant($constName)
+        $query['filter']['propertyFilter']['op'] = \defined($constName)
+            ? \constant($constName)
             : 0;
 
         $expectedArgs = [

@@ -11,6 +11,6 @@ if (false) {
      */
     class Intent_Message_SimpleResponse {}
 }
-class_exists(Intent\Message\SimpleResponse::class);
-@trigger_error('Google\Cloud\Dialogflow\V2\Intent_Message_SimpleResponse is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\Intent\Message\SimpleResponse instead', E_USER_DEPRECATED);
+\class_exists(Intent\Message\SimpleResponse::class);
+@\trigger_error('Google\Cloud\Dialogflow\V2\Intent_Message_SimpleResponse is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\Intent\Message\SimpleResponse instead', E_USER_DEPRECATED);
 

@@ -182,7 +182,7 @@ class StorageObject
      */
     public function delete(array $options = [])
     {
-        $this->connection->deleteObject($options + array_filter($this->identity));
+        $this->connection->deleteObject($options + \array_filter($this->identity));
     }
 
     /**
@@ -238,7 +238,7 @@ class StorageObject
             $options['acl'] = null;
         }
 
-        return $this->info = $this->connection->patchObject($options + array_filter($this->identity));
+        return $this->info = $this->connection->patchObject($options + \array_filter($this->identity));
     }
 
     /**
@@ -536,7 +536,7 @@ class StorageObject
         ] + $options);
 
         $this->delete(
-            array_intersect_key($options, [
+            \array_intersect_key($options, [
                 'restOptions' => null,
                 'retries' => null
             ])
@@ -611,7 +611,7 @@ class StorageObject
      */
     public function downloadToFile($path, array $options = [])
     {
-        $destination = Psr7\stream_for(fopen($path, 'w'));
+        $destination = Psr7\stream_for(\fopen($path, 'w'));
 
         Psr7\copy_to_stream(
             $this->downloadAsStream($options),
@@ -675,7 +675,7 @@ class StorageObject
             $this->formatEncryptionHeaders(
                 $options
                 + $this->encryptionData
-                + array_filter($this->identity)
+                + \array_filter($this->identity)
             )
         );
     }
@@ -743,7 +743,7 @@ class StorageObject
             $this->formatEncryptionHeaders(
                 $options
                 + $this->encryptionData
-                + array_filter($this->identity)
+                + \array_filter($this->identity)
             )
         );
     }
@@ -859,7 +859,7 @@ class StorageObject
         $signingHelper = $this->pluck('helper', $options, false)
             ?: SigningHelper::getHelper();
 
-        $resource = sprintf(
+        $resource = \sprintf(
             '/%s/%s',
             $this->identity['bucket'],
             $this->identity['object']
@@ -1157,7 +1157,7 @@ class StorageObject
             $this->formatEncryptionHeaders(
                 $options
                 + $this->encryptionData
-                + array_filter($this->identity)
+                + \array_filter($this->identity)
             )
         );
     }
@@ -1205,7 +1205,7 @@ class StorageObject
      */
     public function gcsUri()
     {
-        return sprintf(
+        return \sprintf(
             'gs://%s/%s',
             $this->identity['bucket'],
             $this->identity['object']
@@ -1221,7 +1221,7 @@ class StorageObject
      */
     private function formatDestinationRequest($destination, array $options)
     {
-        if (!is_string($destination) && !($destination instanceof Bucket)) {
+        if (!\is_string($destination) && !($destination instanceof Bucket)) {
             throw new \InvalidArgumentException(
                 '$destination must be either a string or an instance of Bucket.'
             );
@@ -1233,7 +1233,7 @@ class StorageObject
         unset($options['name']);
         unset($options['predefinedAcl']);
 
-        return array_filter([
+        return \array_filter([
             'destinationBucket' => $destination instanceof Bucket ? $destination->name() : $destination,
             'destinationObject' => $destObject,
             'destinationPredefinedAcl' => $destAcl,

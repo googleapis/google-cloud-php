@@ -11,6 +11,6 @@ if (false) {
      */
     class Asset_SecurityCenterProperties {}
 }
-class_exists(Asset\SecurityCenterProperties::class);
-@trigger_error('Google\Cloud\SecurityCenter\V1\Asset_SecurityCenterProperties is deprecated and will be removed in a future release. Use Google\Cloud\SecurityCenter\V1\Asset\SecurityCenterProperties instead', E_USER_DEPRECATED);
+\class_exists(Asset\SecurityCenterProperties::class);
+@\trigger_error('Google\Cloud\SecurityCenter\V1\Asset_SecurityCenterProperties is deprecated and will be removed in a future release. Use Google\Cloud\SecurityCenter\V1\Asset\SecurityCenterProperties instead', E_USER_DEPRECATED);
 

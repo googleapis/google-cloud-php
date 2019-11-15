@@ -82,8 +82,8 @@ class ValueMapper
         $paramTypes = [];
 
         foreach ($parameters as $key => $value) {
-            if (is_null($value) && !isset($types[$key])) {
-                throw new \BadMethodCallException(sprintf(
+            if (\is_null($value) && !isset($types[$key])) {
+                throw new \BadMethodCallException(\sprintf(
                     'Null value for parameter @%s must supply a parameter type.',
                     $key
                 ));
@@ -93,7 +93,7 @@ class ValueMapper
                 ? $types[$key]
                 : null;
 
-            if (!$type && is_array($value) && !$this->isAssoc($value)) {
+            if (!$type && \is_array($value) && !$this->isAssoc($value)) {
                 $type = new ArrayType(null);
             }
 
@@ -127,7 +127,7 @@ class ValueMapper
         foreach ($values as $value) {
             $type = null;
             $definition = null;
-            if (is_array($value) && (empty($value) || !$this->isAssoc($value))) {
+            if (\is_array($value) && (empty($value) || !$this->isAssoc($value))) {
                 $type = Database::TYPE_ARRAY;
                 $definition = new ArrayType(null);
             }
@@ -200,7 +200,7 @@ class ValueMapper
     private function resolveTypeDefinition($type, $key = null)
     {
         $definition = null;
-        if (is_array($type)) {
+        if (\is_array($type)) {
             $type += [
                 1 => null,
                 2 => null
@@ -249,7 +249,7 @@ class ValueMapper
                 break;
 
             case self::TYPE_BYTES:
-                $value = new Bytes(base64_decode($value));
+                $value = new Bytes(\base64_decode($value));
                 break;
 
             case self::TYPE_ARRAY:
@@ -275,7 +275,7 @@ class ValueMapper
                 // as strings. This conditional checks for a string, converts to
                 // an equivalent double value, or dies if something really weird
                 // happens.
-                if (is_string($value)) {
+                if (\is_string($value)) {
                     switch ($value) {
                         case 'NaN':
                             $value = NAN;
@@ -290,7 +290,7 @@ class ValueMapper
                             break;
 
                         default:
-                            throw new \RuntimeException(sprintf(
+                            throw new \RuntimeException(\sprintf(
                                 'Unexpected string value %s encountered in FLOAT64 field.',
                                 $value
                             ));
@@ -322,7 +322,7 @@ class ValueMapper
         $definition = null,
         $allowMixedArrayType = false
     ) {
-        $valueType = gettype($value);
+        $valueType = \gettype($value);
 
         // If a definition is provided, the type is set to `array` to force
         // the value to be interpreted as an array or a struct, even if null.
@@ -352,7 +352,7 @@ class ValueMapper
                         break;
                 }
 
-                if (!is_string($value) && is_nan($value)) {
+                if (!\is_string($value) && \is_nan($value)) {
                     $value = 'NaN';
                 }
 
@@ -364,7 +364,7 @@ class ValueMapper
 
             case 'resource':
                 $type = $this->typeObject($givenType ?: self::TYPE_BYTES);
-                $value = base64_encode(stream_get_contents($value));
+                $value = \base64_encode(\stream_get_contents($value));
                 break;
 
             case 'object':
@@ -402,10 +402,10 @@ class ValueMapper
                 break;
 
             default:
-                throw new \InvalidArgumentException(sprintf(
+                throw new \InvalidArgumentException(\sprintf(
                     'Unrecognized value type %s. ' .
                     'Please ensure you are using the latest version of google/cloud or google/cloud-spanner.',
-                    get_class($value)
+                    \get_class($value)
                 ));
                 break;
         }
@@ -422,7 +422,7 @@ class ValueMapper
      */
     private function structParam($value, StructType $type)
     {
-        if (!($value instanceof StructValue) && !is_array($value) && $value !== null) {
+        if (!($value instanceof StructValue) && !\is_array($value) && $value !== null) {
             throw new \InvalidArgumentException(
                 'Struct value must be an array an instance of `Google\Cloud\Spanner\StructValue` or null.'
             );
@@ -435,7 +435,7 @@ class ValueMapper
         // We also record the original position in order to return values in
         // the order given.
         $values = [];
-        if (is_array($value)) {
+        if (\is_array($value)) {
             $idx = 0;
             foreach ($value as $name => $val) {
                 if (!isset($values[$name])) {
@@ -500,7 +500,7 @@ class ValueMapper
 
             $param = $this->paramType($paramValue['value'], $paramType['type'], $paramType['child']);
 
-            $fields[$paramValue['index']] = array_filter([
+            $fields[$paramValue['index']] = \array_filter([
                 'name' => $fieldName,
                 'type' => $param[1]
             ]);
@@ -517,14 +517,14 @@ class ValueMapper
 
                 $type = null;
                 $def = null;
-                if (is_array($val) && !$this->isAssoc($val)) {
+                if (\is_array($val) && !$this->isAssoc($val)) {
                     $type = Database::TYPE_ARRAY;
                     $def = new ArrayType(null);
                 }
 
                 $param = $this->paramType($val, $type, $def);
 
-                $fields[$index] = array_filter([
+                $fields[$index] = \array_filter([
                     'name' => $name,
                     'type' => $param[1]
                 ]);
@@ -534,8 +534,8 @@ class ValueMapper
         }
 
         // Sort values and fields by key to reset back to the order given by the user.
-        ksort($res);
-        ksort($fields);
+        \ksort($res);
+        \ksort($fields);
 
         $type = [
             'code' => self::TYPE_STRUCT,
@@ -565,7 +565,7 @@ class ValueMapper
      */
     private function arrayParam($value, ArrayType $arrayType, $allowMixedArrayType = false)
     {
-        if (!is_array($value) && $value !== null) {
+        if (!\is_array($value) && $value !== null) {
             throw new \InvalidArgumentException('Array value must be an array or null.');
         }
 
@@ -587,7 +587,7 @@ class ValueMapper
             }
         }
 
-        if (!$allowMixedArrayType && count(array_unique($inferredTypes)) > 1) {
+        if (!$allowMixedArrayType && \count(\array_unique($inferredTypes)) > 1) {
             throw new \InvalidArgumentException('Array values may not be of mixed type');
         }
 
@@ -648,10 +648,10 @@ class ValueMapper
             ];
         }
 
-        throw new \InvalidArgumentException(sprintf(
+        throw new \InvalidArgumentException(\sprintf(
             'Unrecognized value type %s. ' .
             'Please ensure you are using the latest version of google/cloud or google/cloud-spanner.',
-            get_class($value)
+            \get_class($value)
         ));
     }
 
@@ -667,7 +667,7 @@ class ValueMapper
      */
     private function typeObject($type, array $nestedDefinition = [], $nestedDefinitionType = null)
     {
-        return array_filter([
+        return \array_filter([
             'code' => $type,
             $nestedDefinitionType => $nestedDefinition
         ]);

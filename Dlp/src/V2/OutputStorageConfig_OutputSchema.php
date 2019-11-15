@@ -11,6 +11,6 @@ if (false) {
      */
     class OutputStorageConfig_OutputSchema {}
 }
-class_exists(OutputStorageConfig\OutputSchema::class);
-@trigger_error('Google\Cloud\Dlp\V2\OutputStorageConfig_OutputSchema is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\OutputStorageConfig\OutputSchema instead', E_USER_DEPRECATED);
+\class_exists(OutputStorageConfig\OutputSchema::class);
+@\trigger_error('Google\Cloud\Dlp\V2\OutputStorageConfig_OutputSchema is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\OutputStorageConfig\OutputSchema instead', E_USER_DEPRECATED);
 

@@ -96,7 +96,7 @@ class DatabaseTest extends SnippetTestCase
 
     public function testClassViaInstance()
     {
-        if (!extension_loaded('grpc')) {
+        if (!\extension_loaded('grpc')) {
             $this->markTestSkipped('Must have the grpc extension installed to run this test.');
         }
 

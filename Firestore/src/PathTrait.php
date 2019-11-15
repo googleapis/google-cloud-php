@@ -51,7 +51,7 @@ trait PathTrait
     private function fullNameFromDatabase($databaseName, $relativeName)
     {
         $template = '%s/documents/%s';
-        return sprintf($template, $databaseName, $relativeName);
+        return \sprintf($template, $databaseName, $relativeName);
     }
 
     /**
@@ -76,8 +76,8 @@ trait PathTrait
      */
     private function databaseFromName($name)
     {
-        $parts = explode('/databases/', $name);
-        return $parts[0] . '/databases/' . explode('/', $parts[1])[0];
+        $parts = \explode('/databases/', $name);
+        return $parts[0] . '/databases/' . \explode('/', $parts[1])[0];
     }
 
     /**
@@ -134,7 +134,7 @@ trait PathTrait
         }
 
         $parts = $this->splitName($name);
-        return count($parts) > 0 && count($parts) % 2 === 0;
+        return \count($parts) > 0 && \count($parts) % 2 === 0;
     }
 
     /**
@@ -150,7 +150,7 @@ trait PathTrait
         }
 
         $parts = $this->splitName($name);
-        return count($parts) % 2 === 1;
+        return \count($parts) % 2 === 1;
     }
 
     /**
@@ -162,7 +162,7 @@ trait PathTrait
     private function isRelative($name)
     {
         $parts = $this->splitName($name);
-        return count($parts) > 0 && $parts[0] !== 'projects';
+        return \count($parts) > 0 && $parts[0] !== 'projects';
     }
 
     /**
@@ -173,7 +173,7 @@ trait PathTrait
      */
     private function splitName($name)
     {
-        return explode('/', trim($name, '/'));
+        return \explode('/', \trim($name, '/'));
     }
 
     /**
@@ -189,7 +189,7 @@ trait PathTrait
             return null;
         }
 
-        return end($parts);
+        return \end($parts);
     }
 
     /**
@@ -212,9 +212,9 @@ trait PathTrait
     private function parentPath($name)
     {
         $parts = $this->splitName($name);
-        array_pop($parts);
+        \array_pop($parts);
 
-        return implode('/', $parts);
+        return \implode('/', $parts);
     }
 
     /**
@@ -229,7 +229,7 @@ trait PathTrait
         // of adding random_compat or something similar.
         // Generate a UUID, then strip `-` and trim to expected length.
         // @todo revisit once library requires php >= 7.0 and random_int() can be used without dependency.
-        $rand = substr(str_replace('-', '', Uuid::uuid4()->toString()), 0, 20);
+        $rand = \substr(\str_replace('-', '', Uuid::uuid4()->toString()), 0, 20);
 
         return $this->childPath($parent, $rand);
     }
@@ -265,7 +265,7 @@ trait PathTrait
         $original = $this->splitName($original);
         $other = $this->splitName($other);
 
-        if (count($other) < count($original)) {
+        if (\count($other) < \count($original)) {
             return false;
         }
 

@@ -140,7 +140,7 @@ class DatastoreClient
      */
     public function __construct(array $config = [])
     {
-        $emulatorHost = getenv('DATASTORE_EMULATOR_HOST');
+        $emulatorHost = \getenv('DATASTORE_EMULATOR_HOST');
 
         $connectionType = $this->getConnectionType($config);
 

@@ -32,7 +32,7 @@ class ManageModelsTest extends BigQueryTestCase
     {
         parent::setUpBeforeClass();
 
-        self::$modelId = uniqid(self::TESTING_PREFIX);
+        self::$modelId = \uniqid(self::TESTING_PREFIX);
 
         $queryTpl = "CREATE MODEL `%s.%s`" .
             " OPTIONS (" .
@@ -46,7 +46,7 @@ class ManageModelsTest extends BigQueryTestCase
               " SELECT 'b' AS f2, 3.8 AS label " .
             ")";
 
-        $query = sprintf($queryTpl, self::$dataset->id(), self::$modelId);
+        $query = \sprintf($queryTpl, self::$dataset->id(), self::$modelId);
         $config = self::$client->query($query);
         self::$client->runQuery($config);
 
@@ -82,9 +82,9 @@ class ManageModelsTest extends BigQueryTestCase
 
     public function testListModels()
     {
-        $models = iterator_to_array(self::$dataset->models());
+        $models = \iterator_to_array(self::$dataset->models());
         $this->assertContainsOnlyInstancesOf(Model::class, $models);
-        $this->assertNotEmpty(array_filter($models, function ($model) {
+        $this->assertNotEmpty(\array_filter($models, function ($model) {
             return $model->id() === self::$modelId;
         }));
     }

@@ -11,6 +11,6 @@ if (false) {
      */
     class GcRule_Intersection {}
 }
-class_exists(GcRule\Intersection::class);
-@trigger_error('Google\Cloud\Bigtable\Admin\V2\GcRule_Intersection is deprecated and will be removed in the next major release. Use Google\Cloud\Bigtable\Admin\V2\GcRule\Intersection instead', E_USER_DEPRECATED);
+\class_exists(GcRule\Intersection::class);
+@\trigger_error('Google\Cloud\Bigtable\Admin\V2\GcRule_Intersection is deprecated and will be removed in the next major release. Use Google\Cloud\Bigtable\Admin\V2\GcRule\Intersection instead', E_USER_DEPRECATED);
 

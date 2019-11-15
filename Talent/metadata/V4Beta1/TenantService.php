@@ -21,7 +21,7 @@ class TenantService
         \GPBMetadata\Google\Cloud\Talent\V4Beta1\Tenant::initOnce();
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0ace0e0a30676f6f676c652f636c6f75642f74616c656e742f7634626574" .
             "61312f74656e616e745f736572766963652e70726f746f121b676f6f676c" .
             "652e636c6f75642e74616c656e742e763462657461311a17676f6f676c65" .

@@ -23,7 +23,7 @@ class Bootstrap
     public static function prependFileLocation()
     {
         // Now it's in the same directory.
-        return realpath(__DIR__ . '/prepend.php');
+        return \realpath(__DIR__ . '/prepend.php');
     }
 
     /**
@@ -43,9 +43,9 @@ class Bootstrap
                     'numWorkers' => 2
                 ]
             ]);
-        register_shutdown_function([self::class, 'shutdownHandler']);
-        set_exception_handler([self::class, 'exceptionHandler']);
-        set_error_handler([self::class, 'errorHandler']);
+        \register_shutdown_function([self::class, 'shutdownHandler']);
+        \set_exception_handler([self::class, 'exceptionHandler']);
+        \set_error_handler([self::class, 'errorHandler']);
     }
 
     /**
@@ -125,7 +125,7 @@ class Bootstrap
      */
     public static function exceptionHandler($ex)
     {
-        $message = sprintf('PHP Notice: %s', (string)$ex);
+        $message = \sprintf('PHP Notice: %s', (string)$ex);
         if (self::$psrLogger) {
             $service = self::$psrLogger->getMetadataProvider()->serviceId();
             $version = self::$psrLogger->getMetadataProvider()->versionId();
@@ -144,8 +144,8 @@ class Bootstrap
                 ]
             ]);
         } else {
-            $stderr = defined('STDERR') ? STDERR : fopen('php://stderr', 'w');
-            fwrite($stderr, $message . PHP_EOL);
+            $stderr = \defined('STDERR') ? STDERR : \fopen('php://stderr', 'w');
+            \fwrite($stderr, $message . PHP_EOL);
         }
     }
 
@@ -157,10 +157,10 @@ class Bootstrap
      */
     public static function errorHandler($level, $message, $file, $line)
     {
-        if (!($level & error_reporting())) {
+        if (!($level & \error_reporting())) {
             return true;
         }
-        $message =  sprintf(
+        $message =  \sprintf(
             '%s: %s in %s on line %d',
             self::getErrorPrefix($level),
             $message,
@@ -199,7 +199,7 @@ class Bootstrap
      */
     public static function shutdownHandler()
     {
-        if ($err = error_get_last()) {
+        if ($err = \error_get_last()) {
             switch ($err['type']) {
                 case E_ERROR:
                 case E_PARSE:
@@ -211,7 +211,7 @@ class Bootstrap
                     $version = self::$psrLogger
                         ->getMetadataProvider()
                         ->versionId();
-                    $message = sprintf(
+                    $message = \sprintf(
                         '%s: %s in %s on line %d',
                         self::getErrorPrefix($err['type']),
                         $err['message'],
@@ -266,6 +266,6 @@ class Bootstrap
         if (isset($trace[0]['class'])) {
             $functionName[] = $trace[0]['class'];
         }
-        return implode('', array_reverse($functionName));
+        return \implode('', \array_reverse($functionName));
     }
 }

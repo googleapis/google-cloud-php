@@ -94,20 +94,20 @@ class Readmes
     private function createReadmesInGeneratedClientRoot($path)
     {
         if ($this->pathIsGapic($path)) {
-            $questionText = sprintf('%s ' . PHP_EOL . 'Create README.md?', $path);
+            $questionText = \sprintf('%s ' . PHP_EOL . 'Create README.md?', $path);
             $q = $this->confirm($questionText);
             $create = $this->askQuestion($q);
             if ($create) {
                 $file = $path .'/README.md';
-                $content = file_get_contents($this->templatesPath .'/'. self::README_GEN_CLIENT_TPL);
+                $content = \file_get_contents($this->templatesPath .'/'. self::README_GEN_CLIENT_TPL);
 
-                $content = str_replace('{notice}', file_get_contents(
-                    $this->templatesPath .'/'. sprintf(self::GRPC_NOTICE_TPL, $this->info['type'])
+                $content = \str_replace('{notice}', \file_get_contents(
+                    $this->templatesPath .'/'. \sprintf(self::GRPC_NOTICE_TPL, $this->info['type'])
                 ), $content);
-                $content = str_replace('{display}', $this->info['display'], $content);
-                $content = str_replace('{version}', $this->getVersionFromPath($path), $content);
+                $content = \str_replace('{display}', $this->info['display'], $content);
+                $content = \str_replace('{version}', $this->getVersionFromPath($path), $content);
 
-                file_put_contents($file, $content);
+                \file_put_contents($file, $content);
             }
             return;
         }
@@ -115,7 +115,7 @@ class Readmes
         $files = $this->scanDirectory($path);
         foreach ($files as $file) {
             $file = $path .'/'. $file;
-            if (is_dir($file)) {
+            if (\is_dir($file)) {
                 $this->createReadmesInGeneratedClientRoot($file);
             }
         }
@@ -124,32 +124,32 @@ class Readmes
     private function createReadmes($path)
     {
         $files = $this->scanDirectory($path);
-        if (!in_array('README.md', $files)) {
-            $questionText = sprintf('%s '. PHP_EOL .'Create README.md?', $path);
+        if (!\in_array('README.md', $files)) {
+            $questionText = \sprintf('%s '. PHP_EOL .'Create README.md?', $path);
             $q = $this->confirm($questionText);
             $create = $this->askQuestion($q);
 
             if ($create) {
                 $file = $path .'/README.md';
-                $content = file_get_contents($this->templatesPath .'/'. self::README_TPL);
+                $content = \file_get_contents($this->templatesPath .'/'. self::README_TPL);
 
-                $content = str_replace('{notice}', file_get_contents(
-                    $this->templatesPath .'/'. sprintf(self::GRPC_NOTICE_TPL, $this->info['type'])
+                $content = \str_replace('{notice}', \file_get_contents(
+                    $this->templatesPath .'/'. \sprintf(self::GRPC_NOTICE_TPL, $this->info['type'])
                 ), $content);
-                $content = str_replace('{display}', $this->info['display'], $content);
-                $content = str_replace('{homepage}', $this->info['cloudPage'], $content);
-                $content = str_replace('{docspage}', $this->info['docsPage'], $content);
-                $content = str_replace('{name}', $this->info['name'], $content);
-                $content = str_replace('{client}', 'readme', $content);
-                $content = str_replace('{directory}', strtolower(basename($this->info['path'])), $content);
+                $content = \str_replace('{display}', $this->info['display'], $content);
+                $content = \str_replace('{homepage}', $this->info['cloudPage'], $content);
+                $content = \str_replace('{docspage}', $this->info['docsPage'], $content);
+                $content = \str_replace('{name}', $this->info['name'], $content);
+                $content = \str_replace('{client}', 'readme', $content);
+                $content = \str_replace('{directory}', \strtolower(\basename($this->info['path'])), $content);
 
-                file_put_contents($file, $content);
+                \file_put_contents($file, $content);
             }
         }
 
         foreach ($files as $file) {
             $file = $path .'/'. $file;
-            if (is_dir($file)) {
+            if (\is_dir($file)) {
                 $this->createReadmesInGeneratedClientRoot($file);
             }
         }

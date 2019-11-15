@@ -11,6 +11,6 @@ if (false) {
      */
     class StartManualTransferRunsRequest_TimeRange {}
 }
-class_exists(StartManualTransferRunsRequest\TimeRange::class);
-@trigger_error('Google\Cloud\BigQuery\DataTransfer\V1\StartManualTransferRunsRequest_TimeRange is deprecated and will be removed in a future release. Use Google\Cloud\BigQuery\DataTransfer\V1\StartManualTransferRunsRequest\TimeRange instead', E_USER_DEPRECATED);
+\class_exists(StartManualTransferRunsRequest\TimeRange::class);
+@\trigger_error('Google\Cloud\BigQuery\DataTransfer\V1\StartManualTransferRunsRequest_TimeRange is deprecated and will be removed in a future release. Use Google\Cloud\BigQuery\DataTransfer\V1\StartManualTransferRunsRequest\TimeRange instead', E_USER_DEPRECATED);
 

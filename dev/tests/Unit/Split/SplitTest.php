@@ -50,7 +50,7 @@ class SplitTest extends TestCase
         // method uses `realpath()`, so we need to give it a real directory.
         $rootPath = __DIR__;
 
-        $cmd = sprintf(
+        $cmd = \sprintf(
             'SPLIT_SHA=`%s --prefix=%s --path=%s`; echo $SPLIT_SHA;',
             $binaryPath,
             $folderToSplit,

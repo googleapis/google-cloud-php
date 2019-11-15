@@ -132,10 +132,10 @@ class Variable
      */
     public static function fromJson(array $data)
     {
-        if (array_key_exists('members', $data)) {
-            $data['members'] = array_map([static::class, 'fromJson'], $data['members']);
+        if (\array_key_exists('members', $data)) {
+            $data['members'] = \array_map([static::class, 'fromJson'], $data['members']);
         }
-        if (array_key_exists('status', $data)) {
+        if (\array_key_exists('status', $data)) {
             $data['status'] = StatusMessage::fromJson($data['status']);
         }
         return new static($data['name'], $data['type'], $data);
@@ -148,9 +148,9 @@ class Variable
      */
     public function byteSize()
     {
-        return mb_strlen($this->name) +
-                mb_strlen($this->type) +
-                mb_strlen($this->value);
+        return \mb_strlen($this->name) +
+                \mb_strlen($this->type) +
+                \mb_strlen($this->value);
     }
 
     /**
@@ -186,7 +186,7 @@ class Variable
             $data['varTableIndex'] = $this->varTableIndex;
         }
         if ($this->members) {
-            $data['members'] = array_map(function ($v) {
+            $data['members'] = \array_map(function ($v) {
                 return $v->info();
             }, $this->members);
         }

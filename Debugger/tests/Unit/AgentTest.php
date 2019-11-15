@@ -40,13 +40,13 @@ class AgentTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->oldDaemonEnv = getenv('IS_BATCH_DAEMON_RUNNING');
+        $this->oldDaemonEnv = \getenv('IS_BATCH_DAEMON_RUNNING');
 
         if (PHP_MAJOR_VERSION < 7) {
             $this->markTestSkipped('Can only run the Agent on PHP 7+');
         }
 
-        if (!extension_loaded('stackdriver_debugger')) {
+        if (!\extension_loaded('stackdriver_debugger')) {
             $this->markTestSkipped('Requires stackdriver_debugger php extension.');
         }
 
@@ -57,9 +57,9 @@ class AgentTest extends TestCase
     public function tearDown()
     {
         if ($this->oldDaemonEnv === false) {
-            putenv('IS_BATCH_DAEMON_RUNNING');
+            \putenv('IS_BATCH_DAEMON_RUNNING');
         } else {
-            putenv('IS_BATCH_DAEMON_RUNNING=' . $this->oldDaemonEnv);
+            \putenv('IS_BATCH_DAEMON_RUNNING=' . $this->oldDaemonEnv);
         }
         parent::tearDown();
     }
@@ -87,7 +87,7 @@ class AgentTest extends TestCase
 
     public function testDaemonOptions()
     {
-        putenv('IS_BATCH_DAEMON_RUNNING=true');
+        \putenv('IS_BATCH_DAEMON_RUNNING=true');
         $this->storage->load()->willReturn(['debuggeeId', []])->shouldBeCalled();
         $configStorage = $this->prophesize(ConfigStorageInterface::class);
         $configStorage->lock()->willReturn(true)->shouldBeCalled();
@@ -121,13 +121,13 @@ class AgentTest extends TestCase
             $this->assertCount(1, $stackframes);
             $this->assertCount(1, $stackframes[0]->locals());
             $variable = $stackframes[0]->locals()[0];
-            $this->assertEquals(500, strlen($variable->info()['value']));
+            $this->assertEquals(500, \strlen($variable->info()['value']));
             return true;
         };
         $agent = $this->setupAgent($itemMatcher, []);
         $locals = [[
             'name' => 'longString',
-            'value' => str_repeat('a', 10000)
+            'value' => \str_repeat('a', 10000)
         ]];
         $agent->handleSnapshot([
             'id' => 'snapshot1',
@@ -147,7 +147,7 @@ class AgentTest extends TestCase
             $this->assertCount(1, $stackframes);
             $this->assertCount(1, $stackframes[0]->locals());
             $variable = $stackframes[0]->locals()[0];
-            $this->assertEquals(1000, strlen($variable->info()['value']));
+            $this->assertEquals(1000, \strlen($variable->info()['value']));
             return true;
         };
         $agent = $this->setupAgent($itemMatcher, [
@@ -155,7 +155,7 @@ class AgentTest extends TestCase
         ]);
         $locals = [[
             'name' => 'longString',
-            'value' => str_repeat('a', 10000)
+            'value' => \str_repeat('a', 10000)
         ]];
         $agent->handleSnapshot([
             'id' => 'snapshot1',
@@ -179,7 +179,7 @@ class AgentTest extends TestCase
         $agent = $this->setupAgent($itemMatcher, []);
         $locals = [];
         for ($i = 0; $i < 1000; $i++) {
-            $locals[] = ['name' => 'var' . $i, 'value' => str_repeat('.', $i)];
+            $locals[] = ['name' => 'var' . $i, 'value' => \str_repeat('.', $i)];
         }
         $agent->handleSnapshot([
             'id' => 'snapshot1',
@@ -359,7 +359,7 @@ class AgentTest extends TestCase
         $agent = $this->setupAgent($itemMatcher, []);
         $locals = [[
             'name' => 'longString',
-            'value' => array_fill(0, 2000, 'a')
+            'value' => \array_fill(0, 2000, 'a')
         ]];
         $agent->handleSnapshot([
             'id' => 'snapshot1',
@@ -387,7 +387,7 @@ class AgentTest extends TestCase
         ]);
         $locals = [[
             'name' => 'longString',
-            'value' => array_fill(0, 2000, 'a')
+            'value' => \array_fill(0, 2000, 'a')
         ]];
         $agent->handleSnapshot([
             'id' => 'snapshot1',

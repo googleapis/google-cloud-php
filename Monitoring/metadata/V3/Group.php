@@ -14,7 +14,7 @@ class Group
         if (static::$is_initialized == true) {
           return;
         }
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0acb020a20676f6f676c652f6d6f6e69746f72696e672f76332f67726f75" .
             "702e70726f746f1214676f6f676c652e6d6f6e69746f72696e672e763322" .
             "640a0547726f7570120c0a046e616d6518012001280912140a0c64697370" .

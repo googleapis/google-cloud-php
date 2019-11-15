@@ -11,6 +11,6 @@ if (false) {
      */
     class CommitRequest_Mode {}
 }
-class_exists(CommitRequest\Mode::class);
-@trigger_error('Google\Cloud\Datastore\V1\CommitRequest_Mode is deprecated and will be removed in the next major release. Use Google\Cloud\Datastore\V1\CommitRequest\Mode instead', E_USER_DEPRECATED);
+\class_exists(CommitRequest\Mode::class);
+@\trigger_error('Google\Cloud\Datastore\V1\CommitRequest_Mode is deprecated and will be removed in the next major release. Use Google\Cloud\Datastore\V1\CommitRequest\Mode instead', E_USER_DEPRECATED);
 

@@ -11,6 +11,6 @@ if (false) {
      */
     class ImportedDataInfo_Encoding {}
 }
-class_exists(ImportedDataInfo\Encoding::class);
-@trigger_error('Google\Cloud\BigQuery\DataTransfer\V1\ImportedDataInfo_Encoding is deprecated and will be removed in a future release. Use Google\Cloud\BigQuery\DataTransfer\V1\ImportedDataInfo\Encoding instead', E_USER_DEPRECATED);
+\class_exists(ImportedDataInfo\Encoding::class);
+@\trigger_error('Google\Cloud\BigQuery\DataTransfer\V1\ImportedDataInfo_Encoding is deprecated and will be removed in a future release. Use Google\Cloud\BigQuery\DataTransfer\V1\ImportedDataInfo\Encoding instead', E_USER_DEPRECATED);
 

@@ -11,6 +11,6 @@ if (false) {
      */
     class Instance_Type {}
 }
-class_exists(Instance\Type::class);
-@trigger_error('Google\Cloud\Bigtable\Admin\V2\Instance_Type is deprecated and will be removed in the next major release. Use Google\Cloud\Bigtable\Admin\V2\Instance\Type instead', E_USER_DEPRECATED);
+\class_exists(Instance\Type::class);
+@\trigger_error('Google\Cloud\Bigtable\Admin\V2\Instance_Type is deprecated and will be removed in the next major release. Use Google\Cloud\Bigtable\Admin\V2\Instance\Type instead', E_USER_DEPRECATED);
 

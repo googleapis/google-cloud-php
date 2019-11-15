@@ -11,6 +11,6 @@ if (false) {
      */
     class WebDetection_WebLabel {}
 }
-class_exists(WebDetection\WebLabel::class);
-@trigger_error('Google\Cloud\Vision\V1\WebDetection_WebLabel is deprecated and will be removed in a future release. Use Google\Cloud\Vision\V1\WebDetection\WebLabel instead', E_USER_DEPRECATED);
+\class_exists(WebDetection\WebLabel::class);
+@\trigger_error('Google\Cloud\Vision\V1\WebDetection_WebLabel is deprecated and will be removed in a future release. Use Google\Cloud\Vision\V1\WebDetection\WebLabel instead', E_USER_DEPRECATED);
 

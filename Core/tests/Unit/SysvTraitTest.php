@@ -45,9 +45,9 @@ class SysvTraitTest extends TestCase
 
     public function testIsSysvIPCLoaded()
     {
-        $expected = extension_loaded('sysvmsg')
-            && extension_loaded('sysvsem')
-            && extension_loaded('sysvshm');
+        $expected = \extension_loaded('sysvmsg')
+            && \extension_loaded('sysvsem')
+            && \extension_loaded('sysvshm');
         $this->assertEquals($expected, $this->impl->call('isSysvIPCLoaded'));
     }
 }

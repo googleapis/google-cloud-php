@@ -28,13 +28,13 @@ class ManageMetricsTest extends LoggingTestCase
     public function testListsMetrics($client)
     {
         $found = true;
-        $name = uniqid(self::TESTING_PREFIX);
+        $name = \uniqid(self::TESTING_PREFIX);
         $metric = $client->createMetric($name, 'severity >= DEBUG', [
             'description' => 'A description.'
         ]);
         self::$deletionQueue->add($metric);
 
-        $metrics = iterator_to_array($client->metrics());
+        $metrics = \iterator_to_array($client->metrics());
 
         foreach ($metrics as $metric) {
             if ($metric->name() === $name) {
@@ -50,7 +50,7 @@ class ManageMetricsTest extends LoggingTestCase
      */
     public function testCreateMetric($client)
     {
-        $name = uniqid(self::TESTING_PREFIX);
+        $name = \uniqid(self::TESTING_PREFIX);
         $filter = 'severity >= DEBUG';
         $options = [
             'description' => 'A description.',
@@ -70,7 +70,7 @@ class ManageMetricsTest extends LoggingTestCase
      */
     public function testUpdateMetric($client)
     {
-        $name = uniqid(self::TESTING_PREFIX);
+        $name = \uniqid(self::TESTING_PREFIX);
         $updateOptions = [
             'description' => 'A new description',
             'filter' => 'severity >= INFO'
@@ -92,7 +92,7 @@ class ManageMetricsTest extends LoggingTestCase
      */
     public function testReloadMetric($client)
     {
-        $name = uniqid(self::TESTING_PREFIX);
+        $name = \uniqid(self::TESTING_PREFIX);
         $filter = 'severity >= ERROR';
         $metric = $client->createMetric($name, $filter, [
             'description' => 'A description.'

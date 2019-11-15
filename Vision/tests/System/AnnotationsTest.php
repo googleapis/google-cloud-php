@@ -44,7 +44,7 @@ class AnnotationsTest extends VisionTestCase
 
     public function testAnnotate()
     {
-        $image = $this->client->image(file_get_contents($this->getFixtureFilePath('landmark.jpg')), [
+        $image = $this->client->image(\file_get_contents($this->getFixtureFilePath('landmark.jpg')), [
             'LANDMARK_DETECTION',
             'SAFE_SEARCH_DETECTION',
             'IMAGE_PROPERTIES',
@@ -57,7 +57,7 @@ class AnnotationsTest extends VisionTestCase
 
         // Landmarks
         $this->assertInstanceOf(Entity::class, $res->landmarks()[0]);
-        $this->assertEquals('mount rushmore national memorial', strtolower($res->landmarks()[0]->description()));
+        $this->assertEquals('mount rushmore national memorial', \strtolower($res->landmarks()[0]->description()));
 
         // Safe Search
         $this->assertInstanceOf(SafeSearch::class, $res->safeSearch());
@@ -86,11 +86,11 @@ class AnnotationsTest extends VisionTestCase
         $this->assertInstanceOf(Web::class, $res->web());
         $this->assertInstanceOf(WebEntity::class, $res->web()->entities()[0]);
 
-        $desc = array_filter($res->web()->entities(), function ($e) {
+        $desc = \array_filter($res->web()->entities(), function ($e) {
             return isset($e->info()['description'])
                     && $e->description() === 'Mount Rushmore National Memorial';
         });
-        $this->assertGreaterThan(0, count($desc));
+        $this->assertGreaterThan(0, \count($desc));
 
         $this->assertInstanceOf(WebImage::class, $res->web()->matchingImages()[0]);
         $this->assertInstanceOf(WebImage::class, $res->web()->partialMatchingImages()[0]);
@@ -99,7 +99,7 @@ class AnnotationsTest extends VisionTestCase
 
     public function testFaceAndLabelDetection()
     {
-        $image = $this->client->image(file_get_contents($this->getFixtureFilePath('obama.jpg')), [
+        $image = $this->client->image(\file_get_contents($this->getFixtureFilePath('obama.jpg')), [
             'FACE_DETECTION',
             'LABEL_DETECTION'
         ]);
@@ -125,32 +125,32 @@ class AnnotationsTest extends VisionTestCase
 
     public function testLogoDetection()
     {
-        $image = $this->client->image(file_get_contents($this->getFixtureFilePath('google.jpg')), [
+        $image = $this->client->image(\file_get_contents($this->getFixtureFilePath('google.jpg')), [
             'LOGO_DETECTION'
         ]);
 
         $res = $this->client->annotate($image);
         $this->assertInstanceOf(Annotation::class, $res);
         $this->assertInstanceOf(Entity::class, $res->logos()[0]);
-        $this->assertEquals('google', strtolower($res->logos()[0]->description()));
+        $this->assertEquals('google', \strtolower($res->logos()[0]->description()));
     }
 
     public function testTextDetection()
     {
-        $image = $this->client->image(file_get_contents($this->getFixtureFilePath('text.jpg')), [
+        $image = $this->client->image(\file_get_contents($this->getFixtureFilePath('text.jpg')), [
             'TEXT_DETECTION'
         ]);
 
         $res = $this->client->annotate($image);
         $this->assertInstanceOf(Annotation::class, $res);
         $this->assertInstanceOf(Entity::class, $res->text()[0]);
-        $this->assertEquals("Hello World", explode("\n", $res->text()[0]->description())[0]);
-        $this->assertEquals("Goodby World!", explode("\n", $res->text()[0]->description())[1]);
+        $this->assertEquals("Hello World", \explode("\n", $res->text()[0]->description())[0]);
+        $this->assertEquals("Goodby World!", \explode("\n", $res->text()[0]->description())[1]);
     }
 
     public function testDocumentTextDetection()
     {
-        $image = $this->client->image(file_get_contents($this->getFixtureFilePath('text.jpg')), [
+        $image = $this->client->image(\file_get_contents($this->getFixtureFilePath('text.jpg')), [
             'DOCUMENT_TEXT_DETECTION'
         ]);
 

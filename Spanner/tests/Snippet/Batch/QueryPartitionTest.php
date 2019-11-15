@@ -48,7 +48,7 @@ class QueryPartitionTest extends SnippetTestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->time = time();
+        $this->time = \time();
         $this->partition = new QueryPartition($this->token, $this->sql, $this->options);
     }
 

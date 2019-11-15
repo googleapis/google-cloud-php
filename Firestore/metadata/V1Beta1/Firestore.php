@@ -23,7 +23,7 @@ class Firestore
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         \GPBMetadata\Google\Rpc\Status::initOnce();
         \GPBMetadata\Google\Api\Client::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0abe3b0a28676f6f676c652f6669726573746f72652f763162657461312f" .
             "6669726573746f72652e70726f746f1218676f6f676c652e666972657374" .
             "6f72652e763162657461311a25676f6f676c652f6669726573746f72652f" .

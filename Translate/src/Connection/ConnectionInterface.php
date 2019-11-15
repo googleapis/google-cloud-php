@@ -29,8 +29,8 @@ if (false) {
     interface ConnectionInterface {}
 }
 
-class_exists(V2\ConnectionInterface::class);
-@trigger_error(
+\class_exists(V2\ConnectionInterface::class);
+@\trigger_error(
     'Google\Cloud\Translate\ConnectionInterface is deprecated and will be ' .
     'removed in a future release. Use ' .
     'Google\Cloud\Translate\V2\ConnectionInterface instead',

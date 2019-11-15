@@ -31,12 +31,12 @@ trait ComponentTypeTrait
 
     private function getComponentTypesListValues()
     {
-        return array_values($this->types);
+        return \array_values($this->types);
     }
 
     private function getComponentTypeKey($value)
     {
-        return array_search($value, $this->types);
+        return \array_search($value, $this->types);
     }
 
     private function getComponentTypeValue($key)

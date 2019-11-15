@@ -14,7 +14,7 @@ class FindingAddon
         if (static::$is_initialized == true) {
           return;
         }
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0ac3060a3a676f6f676c652f636c6f75642f776562736563757269747973" .
             "63616e6e65722f7631626574612f66696e64696e675f6164646f6e2e7072" .
             "6f746f1226676f6f676c652e636c6f75642e776562736563757269747973" .

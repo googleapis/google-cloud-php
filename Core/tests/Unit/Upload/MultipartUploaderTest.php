@@ -50,7 +50,7 @@ class MultipartUploaderTest extends TestCase
             'http://www.example.com'
         );
 
-        $this->assertEquals(json_decode($successBody, true), $uploader->upload());
+        $this->assertEquals(\json_decode($successBody, true), $uploader->upload());
     }
 
     /**
@@ -88,7 +88,7 @@ class MultipartUploaderTest extends TestCase
     private function createStreamWithSizeOf($size)
     {
         $stream = $this->getMockBuilder(Psr7\Stream::class)
-                       ->setConstructorArgs([fopen('php://temp', 'r+')])
+                       ->setConstructorArgs([\fopen('php://temp', 'r+')])
                        ->setMethods(['getSize'])
                        ->getMock();
         $stream->method('getSize')->willReturn($size);

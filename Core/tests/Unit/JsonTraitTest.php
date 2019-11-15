@@ -43,7 +43,7 @@ class JsonTraitTest extends TestCase
      */
     public function testJsonEncodeThrowsException()
     {
-        $this->implementation->call('jsonEncode', [fopen('php://temp', 'r')]);
+        $this->implementation->call('jsonEncode', [\fopen('php://temp', 'r')]);
     }
 
     public function testJsonDecode()

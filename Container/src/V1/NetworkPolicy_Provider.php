@@ -11,6 +11,6 @@ if (false) {
      */
     class NetworkPolicy_Provider {}
 }
-class_exists(NetworkPolicy\Provider::class);
-@trigger_error('Google\Cloud\Container\V1\NetworkPolicy_Provider is deprecated and will be removed in the next major release. Use Google\Cloud\Container\V1\NetworkPolicy\Provider instead', E_USER_DEPRECATED);
+\class_exists(NetworkPolicy\Provider::class);
+@\trigger_error('Google\Cloud\Container\V1\NetworkPolicy_Provider is deprecated and will be removed in the next major release. Use Google\Cloud\Container\V1\NetworkPolicy\Provider instead', E_USER_DEPRECATED);
 

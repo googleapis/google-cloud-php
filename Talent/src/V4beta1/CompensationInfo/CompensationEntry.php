@@ -292,7 +292,7 @@ class CompensationEntry extends \Google\Protobuf\Internal\Message
     public function getExpectedUnitsPerYearValue()
     {
         $wrapper = $this->getExpectedUnitsPerYear();
-        return is_null($wrapper) ? null : $wrapper->getValue();
+        return \is_null($wrapper) ? null : $wrapper->getValue();
     }
 
     /**
@@ -339,7 +339,7 @@ class CompensationEntry extends \Google\Protobuf\Internal\Message
      */
     public function setExpectedUnitsPerYearValue($var)
     {
-        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\DoubleValue(['value' => $var]);
+        $wrappedVar = \is_null($var) ? null : new \Google\Protobuf\DoubleValue(['value' => $var]);
         return $this->setExpectedUnitsPerYear($wrappedVar);
     }
 
@@ -354,5 +354,5 @@ class CompensationEntry extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CompensationEntry::class, \Google\Cloud\Talent\V4beta1\CompensationInfo_CompensationEntry::class);
+\class_alias(CompensationEntry::class, \Google\Cloud\Talent\V4beta1\CompensationInfo_CompensationEntry::class);
 

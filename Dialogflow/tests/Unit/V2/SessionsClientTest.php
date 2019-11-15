@@ -97,7 +97,7 @@ class SessionsClientTest extends GeneratedTest
         $response = $client->detectIntent($formattedSession, $queryInput);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertSame(1, \count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Sessions/DetectIntent', $actualFuncCall);
@@ -126,7 +126,7 @@ class SessionsClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -218,14 +218,14 @@ class SessionsClientTest extends GeneratedTest
         $this->assertEquals($expectedResponses, $responses);
 
         $createStreamRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($createStreamRequests));
+        $this->assertSame(1, \count($createStreamRequests));
         $streamFuncCall = $createStreamRequests[0]->getFuncCall();
         $streamRequestObject = $createStreamRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Sessions/StreamingDetectIntent', $streamFuncCall);
         $this->assertNull($streamRequestObject);
 
         $callObjects = $transport->popCallObjects();
-        $this->assertSame(1, count($callObjects));
+        $this->assertSame(1, \count($callObjects));
         $bidiCall = $callObjects[0];
 
         $writeRequests = $bidiCall->popReceivedCalls();
@@ -250,7 +250,7 @@ class SessionsClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -265,7 +265,7 @@ class SessionsClientTest extends GeneratedTest
         $results = $bidi->closeWriteAndReadAll();
 
         try {
-            iterator_to_array($results);
+            \iterator_to_array($results);
             // If the close stream method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

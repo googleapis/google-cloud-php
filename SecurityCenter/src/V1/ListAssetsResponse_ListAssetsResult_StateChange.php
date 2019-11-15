@@ -11,6 +11,6 @@ if (false) {
      */
     class ListAssetsResponse_ListAssetsResult_StateChange {}
 }
-class_exists(ListAssetsResponse\ListAssetsResult\StateChange::class);
-@trigger_error('Google\Cloud\SecurityCenter\V1\ListAssetsResponse_ListAssetsResult_StateChange is deprecated and will be removed in a future release. Use Google\Cloud\SecurityCenter\V1\ListAssetsResponse\ListAssetsResult\StateChange instead', E_USER_DEPRECATED);
+\class_exists(ListAssetsResponse\ListAssetsResult\StateChange::class);
+@\trigger_error('Google\Cloud\SecurityCenter\V1\ListAssetsResponse_ListAssetsResult_StateChange is deprecated and will be removed in a future release. Use Google\Cloud\SecurityCenter\V1\ListAssetsResponse\ListAssetsResult\StateChange instead', E_USER_DEPRECATED);
 

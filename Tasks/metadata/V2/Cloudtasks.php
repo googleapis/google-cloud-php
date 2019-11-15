@@ -24,7 +24,7 @@ class Cloudtasks
         \GPBMetadata\Google\Iam\V1\Policy::initOnce();
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0a94250a26676f6f676c652f636c6f75642f7461736b732f76322f636c6f" .
             "75647461736b732e70726f746f1215676f6f676c652e636c6f75642e7461" .
             "736b732e76321a17676f6f676c652f6170692f636c69656e742e70726f74" .

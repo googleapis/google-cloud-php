@@ -11,6 +11,6 @@ if (false) {
      */
     class WorkflowNode_NodeState {}
 }
-class_exists(WorkflowNode\NodeState::class);
-@trigger_error('Google\Cloud\Dataproc\V1\WorkflowNode_NodeState is deprecated and will be removed in the next major release. Use Google\Cloud\Dataproc\V1\WorkflowNode\NodeState instead', E_USER_DEPRECATED);
+\class_exists(WorkflowNode\NodeState::class);
+@\trigger_error('Google\Cloud\Dataproc\V1\WorkflowNode_NodeState is deprecated and will be removed in the next major release. Use Google\Cloud\Dataproc\V1\WorkflowNode\NodeState instead', E_USER_DEPRECATED);
 

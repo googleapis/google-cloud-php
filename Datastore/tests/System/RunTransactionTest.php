@@ -31,8 +31,8 @@ class RunTransactionTest extends DatastoreTestCase
     public function testRunTransactions(DatastoreClient $client)
     {
         $kind = 'Person';
-        $key1 = $client->key($kind, rand(1, 999999));
-        $key2 = $client->key($kind, rand(1, 999999));
+        $key1 = $client->key($kind, \rand(1, 999999));
+        $key2 = $client->key($kind, \rand(1, 999999));
         $key2->ancestorKey($key1);
         $data = ['lastName' => 'Smith'];
         $newLastName = 'NotSmith';
@@ -52,7 +52,7 @@ class RunTransactionTest extends DatastoreTestCase
         $query = $client->query()
             ->kind($kind)
             ->hasAncestor($key1);
-        $results = iterator_to_array($transaction2->runQuery($query));
+        $results = \iterator_to_array($transaction2->runQuery($query));
         $results[1]['lastName'] = $newLastName;
         $transaction2->update($results[1]);
         $transaction2->commit();

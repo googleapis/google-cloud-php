@@ -15,7 +15,7 @@ class OrganizationSettings
           return;
         }
         \GPBMetadata\Google\Api\Annotations::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0aee050a3a676f6f676c652f636c6f75642f736563757269747963656e74" .
             "65722f76312f6f7267616e697a6174696f6e5f73657474696e67732e7072" .
             "6f746f121e676f6f676c652e636c6f75642e736563757269747963656e74" .

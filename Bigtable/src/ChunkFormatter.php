@@ -199,7 +199,7 @@ class ChunkFormatter implements \IteratorAggregate
         }
         if (isset($this->options['rows'])) {
             $rowSet = $this->options['rows'];
-            if (count($rowSet->getRowKeys()) > 0) {
+            if (\count($rowSet->getRowKeys()) > 0) {
                 $rowKeys = [];
                 foreach ($rowSet->getRowKeys() as $rowKey) {
                     if ($rowKey > $prevRowKey) {
@@ -208,7 +208,7 @@ class ChunkFormatter implements \IteratorAggregate
                 }
                 $rowSet->setRowKeys($rowKeys);
             }
-            if (count($rowSet->getRowRanges()) > 0) {
+            if (\count($rowSet->getRowRanges()) > 0) {
                 $ranges = [];
                 foreach ($rowSet->getRowRanges() as $range) {
                     if (($range->getEndKeyOpen() && $prevRowKey > $range->getEndKeyOpen())
@@ -354,7 +354,7 @@ class ChunkFormatter implements \IteratorAggregate
         $familyName = $chunk->getFamilyName()->getValue();
         $qualifierName = $chunk->getQualifier()->getValue();
         $labels = ($chunk->getLabels()->getIterator()->valid())
-            ? implode(iterator_to_array($chunk->getLabels()->getIterator()))
+            ? \implode(\iterator_to_array($chunk->getLabels()->getIterator()))
             : '';
         $this->row[$familyName] = [];
         $this->family = &$this->row[$familyName];
@@ -442,7 +442,7 @@ class ChunkFormatter implements \IteratorAggregate
             $this->qualifiers = &$this->family[$qualifierName];
         }
         $labels = ($chunk->getLabels()->getIterator()->valid())
-            ? implode(iterator_to_array($chunk->getLabels()->getIterator()))
+            ? \implode(\iterator_to_array($chunk->getLabels()->getIterator()))
             : '';
         $qualifier = [
             'value' => $chunk->getValue(),

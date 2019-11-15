@@ -11,6 +11,6 @@ if (false) {
      */
     class AnalyzeDataSourceRiskDetails_KMapEstimationResult_KMapEstimationHistogramBucket {}
 }
-class_exists(AnalyzeDataSourceRiskDetails\KMapEstimationResult\KMapEstimationHistogramBucket::class);
-@trigger_error('Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_KMapEstimationResult_KMapEstimationHistogramBucket is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\KMapEstimationResult\KMapEstimationHistogramBucket instead', E_USER_DEPRECATED);
+\class_exists(AnalyzeDataSourceRiskDetails\KMapEstimationResult\KMapEstimationHistogramBucket::class);
+@\trigger_error('Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_KMapEstimationResult_KMapEstimationHistogramBucket is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\KMapEstimationResult\KMapEstimationHistogramBucket instead', E_USER_DEPRECATED);
 

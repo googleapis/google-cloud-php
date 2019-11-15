@@ -20,7 +20,7 @@ class AutoscalingPolicies
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Protobuf\Duration::initOnce();
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0a911e0a38676f6f676c652f636c6f75642f6461746170726f632f763162" .
             "657461322f6175746f7363616c696e675f706f6c69636965732e70726f74" .
             "6f121d676f6f676c652e636c6f75642e6461746170726f632e7631626574" .

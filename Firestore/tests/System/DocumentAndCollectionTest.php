@@ -99,7 +99,7 @@ class DocumentAndCollectionTest extends FirestoreTestCase
 
     public function testCollections()
     {
-        $childName = uniqid(self::COLLECTION_NAME);
+        $childName = \uniqid(self::COLLECTION_NAME);
         $child = $this->document->collection($childName);
         self::$localDeletionQueue->add($child);
         $doc = $child->add(['name' => 'John']);
@@ -111,12 +111,12 @@ class DocumentAndCollectionTest extends FirestoreTestCase
 
     public function testListDocuments()
     {
-        $collection = self::$client->collection(uniqid(self::COLLECTION_NAME));
+        $collection = self::$client->collection(\uniqid(self::COLLECTION_NAME));
         self::$localDeletionQueue->add($collection);
         $doc = $collection->add(['a' => 'b']);
 
         $list = $collection->listDocuments();
-        $this->assertCount(1, iterator_to_array($list));
+        $this->assertCount(1, \iterator_to_array($list));
         $this->assertContainsOnlyInstancesOf(DocumentReference::class, $list);
     }
 
@@ -179,7 +179,7 @@ class DocumentAndCollectionTest extends FirestoreTestCase
         $client = self::$client;
         $this->assertContainsOnlyInstancesOf(
             CollectionReference::class,
-            iterator_to_array($client->collections())
+            \iterator_to_array($client->collections())
         );
     }
 }

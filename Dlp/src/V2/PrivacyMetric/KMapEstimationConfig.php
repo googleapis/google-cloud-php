@@ -160,5 +160,5 @@ class KMapEstimationConfig extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(KMapEstimationConfig::class, \Google\Cloud\Dlp\V2\PrivacyMetric_KMapEstimationConfig::class);
+\class_alias(KMapEstimationConfig::class, \Google\Cloud\Dlp\V2\PrivacyMetric_KMapEstimationConfig::class);
 

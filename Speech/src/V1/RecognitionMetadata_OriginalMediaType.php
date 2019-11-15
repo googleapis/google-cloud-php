@@ -11,6 +11,6 @@ if (false) {
      */
     class RecognitionMetadata_OriginalMediaType {}
 }
-class_exists(RecognitionMetadata\OriginalMediaType::class);
-@trigger_error('Google\Cloud\Speech\V1\RecognitionMetadata_OriginalMediaType is deprecated and will be removed in a future release. Use Google\Cloud\Speech\V1\RecognitionMetadata\OriginalMediaType instead', E_USER_DEPRECATED);
+\class_exists(RecognitionMetadata\OriginalMediaType::class);
+@\trigger_error('Google\Cloud\Speech\V1\RecognitionMetadata_OriginalMediaType is deprecated and will be removed in a future release. Use Google\Cloud\Speech\V1\RecognitionMetadata\OriginalMediaType instead', E_USER_DEPRECATED);
 

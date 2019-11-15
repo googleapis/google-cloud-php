@@ -732,7 +732,7 @@ class Profile extends \Google\Protobuf\Internal\Message
     public function getIsHirableValue()
     {
         $wrapper = $this->getIsHirable();
-        return is_null($wrapper) ? null : $wrapper->getValue();
+        return \is_null($wrapper) ? null : $wrapper->getValue();
     }
 
     /**
@@ -761,7 +761,7 @@ class Profile extends \Google\Protobuf\Internal\Message
      */
     public function setIsHirableValue($var)
     {
-        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
+        $wrappedVar = \is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
         return $this->setIsHirable($wrappedVar);
     }
 

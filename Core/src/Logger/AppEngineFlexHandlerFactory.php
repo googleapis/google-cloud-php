@@ -48,7 +48,7 @@ class AppEngineFlexHandlerFactory
         $useLocking = false,
         $stream = null
     ) {
-        $version = defined('Monolog\Logger::API') ? Logger::API : 1;
+        $version = \defined('Monolog\Logger::API') ? Logger::API : 1;
 
         switch ($version) {
             case 1:

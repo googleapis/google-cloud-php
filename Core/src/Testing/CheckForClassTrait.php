@@ -36,7 +36,7 @@ trait CheckForClassTrait
     protected function checkAndSkipTest(array $requiredClasses)
     {
         foreach ($requiredClasses as $class) {
-            if (!class_exists($class)) {
+            if (!\class_exists($class)) {
                 $this->markTestSkipped("Missing required class: $class");
                 return;
             }

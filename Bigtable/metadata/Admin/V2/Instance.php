@@ -16,7 +16,7 @@ class Instance
         }
         \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Bigtable\Admin\V2\Common::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0ac10a0a27676f6f676c652f6269677461626c652f61646d696e2f76322f" .
             "696e7374616e63652e70726f746f1218676f6f676c652e6269677461626c" .
             "652e61646d696e2e76321a25676f6f676c652f6269677461626c652f6164" .

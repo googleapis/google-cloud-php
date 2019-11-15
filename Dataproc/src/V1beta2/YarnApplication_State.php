@@ -11,6 +11,6 @@ if (false) {
      */
     class YarnApplication_State {}
 }
-class_exists(YarnApplication\State::class);
-@trigger_error('Google\Cloud\Dataproc\V1beta2\YarnApplication_State is deprecated and will be removed in the next major release. Use Google\Cloud\Dataproc\V1beta2\YarnApplication\State instead', E_USER_DEPRECATED);
+\class_exists(YarnApplication\State::class);
+@\trigger_error('Google\Cloud\Dataproc\V1beta2\YarnApplication_State is deprecated and will be removed in the next major release. Use Google\Cloud\Dataproc\V1beta2\YarnApplication\State instead', E_USER_DEPRECATED);
 

@@ -198,7 +198,7 @@ class Debuggee
     public function register(array $options = [])
     {
         $resp = $this->connection->registerDebuggee(['debuggee' => $this->info()] + $options);
-        if (array_key_exists('debuggee', $resp)) {
+        if (\array_key_exists('debuggee', $resp)) {
             $this->id = $resp['debuggee']['id'];
             return true;
         }
@@ -263,8 +263,8 @@ class Debuggee
     {
         $ret = $this->connection->listBreakpoints(['debuggeeId' => $this->id] + $options);
 
-        if (array_key_exists('breakpoints', $ret)) {
-            $ret['breakpoints'] = array_map(function ($breakpointData) {
+        if (\array_key_exists('breakpoints', $ret)) {
+            $ret['breakpoints'] = \array_map(function ($breakpointData) {
                 return new Breakpoint($breakpointData);
             }, $ret['breakpoints']);
         } else {
@@ -373,14 +373,14 @@ class Debuggee
             'description' => $this->description,
             'isInactive' => $this->isInactive,
             'agentVersion' => $this->agentVersion,
-            'sourceContexts' => array_map(function ($esc) {
+            'sourceContexts' => \array_map(function ($esc) {
                 if (empty($esc)) {
                     return [];
                 }
-                return is_array($esc) ? $esc['context'] : $esc->context()->info();
+                return \is_array($esc) ? $esc['context'] : $esc->context()->info();
             }, $this->extSourceContexts),
-            'extSourceContexts' => array_map(function ($esc) {
-                return is_array($esc) ? $esc : $esc->info();
+            'extSourceContexts' => \array_map(function ($esc) {
+                return \is_array($esc) ? $esc : $esc->info();
             }, $this->extSourceContexts)
         ];
 

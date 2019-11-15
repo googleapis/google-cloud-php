@@ -151,7 +151,7 @@ class Session
      */
     public function setExpiration($expiration = null)
     {
-        $this->expiration = $expiration ?: time() + SessionPoolInterface::SESSION_EXPIRATION_SECONDS;
+        $this->expiration = $expiration ?: \time() + SessionPoolInterface::SESSION_EXPIRATION_SECONDS;
     }
 
     /**
@@ -173,7 +173,7 @@ class Session
     public function __debugInfo()
     {
         return [
-            'connection' => get_class($this->connection),
+            'connection' => \get_class($this->connection),
             'projectId' => $this->projectId,
             'instance' => $this->instance,
             'database' => $this->database,

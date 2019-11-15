@@ -17,7 +17,7 @@ class ColumnSpec
         \GPBMetadata\Google\Cloud\Automl\V1Beta1\DataStats::initOnce();
         \GPBMetadata\Google\Cloud\Automl\V1Beta1\DataTypes::initOnce();
         \GPBMetadata\Google\Api\Annotations::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0acf050a2d676f6f676c652f636c6f75642f6175746f6d6c2f7631626574" .
             "61312f636f6c756d6e5f737065632e70726f746f121b676f6f676c652e63" .
             "6c6f75642e6175746f6d6c2e763162657461311a2c676f6f676c652f636c" .

@@ -41,8 +41,8 @@ class AutoMlSmokeTest extends SystemTestCase
             return;
         }
 
-        $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
-        $keyFileData = json_decode(file_get_contents($keyFilePath), true);
+        $keyFilePath = \getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
+        $keyFileData = \json_decode(\file_get_contents($keyFilePath), true);
 
         self::$clients = [
             [

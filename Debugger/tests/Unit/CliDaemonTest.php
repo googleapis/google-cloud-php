@@ -28,7 +28,7 @@ class CliDaemonTest extends TestCase
     public function testClientConfig()
     {
         new CliDaemon([
-            'config' => implode(DIRECTORY_SEPARATOR, [dirname(__FILE__), 'data', 'daemon_config.php'])
+            'config' => \implode(DIRECTORY_SEPARATOR, [\dirname(__FILE__), 'data', 'daemon_config.php'])
         ]);
     }
 
@@ -48,7 +48,7 @@ class CliDaemonTest extends TestCase
     public function testClientConfigWrongReturn()
     {
         new CliDaemon([
-            'config' => implode(DIRECTORY_SEPARATOR, [dirname(__FILE__), 'data', 'daemon_config_wrong_return.php'])
+            'config' => \implode(DIRECTORY_SEPARATOR, [\dirname(__FILE__), 'data', 'daemon_config_wrong_return.php'])
         ]);
     }
 

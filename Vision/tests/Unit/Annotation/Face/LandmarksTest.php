@@ -31,7 +31,7 @@ class LandmarksTest extends TestCase
 
     public function setUp()
     {
-        $this->data = json_decode(file_get_contents(Fixtures::FACE_LANDMARKS_FIXTURE()), true);
+        $this->data = \json_decode(\file_get_contents(Fixtures::FACE_LANDMARKS_FIXTURE()), true);
         $this->landmarks = new Landmarks($this->data);
     }
 
@@ -139,10 +139,10 @@ class LandmarksTest extends TestCase
 
     private function pos($type)
     {
-        $val = array_filter($this->data, function ($landmark) use ($type) {
+        $val = \array_filter($this->data, function ($landmark) use ($type) {
             return ($landmark['type'] === $type);
         });
 
-        return array_shift($val)['position'];
+        return \array_shift($val)['position'];
     }
 }

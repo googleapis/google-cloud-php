@@ -108,5 +108,5 @@ class Delete extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Delete::class, \Google\Cloud\Spanner\V1\Mutation_Delete::class);
+\class_alias(Delete::class, \Google\Cloud\Spanner\V1\Mutation_Delete::class);
 

@@ -105,7 +105,7 @@ class FirestoreClientTest extends GeneratedTest
         $response = $client->getDocument($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertSame(1, \count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.firestore.v1beta1.Firestore/GetDocument', $actualFuncCall);
@@ -131,7 +131,7 @@ class FirestoreClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -181,12 +181,12 @@ class FirestoreClientTest extends GeneratedTest
 
         $response = $client->listDocuments($formattedParent, $collectionId);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
-        $resources = iterator_to_array($response->iterateAllElements());
-        $this->assertSame(1, count($resources));
+        $resources = \iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, \count($resources));
         $this->assertEquals($expectedResponse->getDocuments()[0], $resources[0]);
 
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertSame(1, \count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.firestore.v1beta1.Firestore/ListDocuments', $actualFuncCall);
@@ -214,7 +214,7 @@ class FirestoreClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -265,7 +265,7 @@ class FirestoreClientTest extends GeneratedTest
         $response = $client->createDocument($formattedParent, $collectionId, $documentId, $document);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertSame(1, \count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.firestore.v1beta1.Firestore/CreateDocument', $actualFuncCall);
@@ -300,7 +300,7 @@ class FirestoreClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -351,7 +351,7 @@ class FirestoreClientTest extends GeneratedTest
         $response = $client->updateDocument($document, $updateMask);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertSame(1, \count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.firestore.v1beta1.Firestore/UpdateDocument', $actualFuncCall);
@@ -380,7 +380,7 @@ class FirestoreClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -425,7 +425,7 @@ class FirestoreClientTest extends GeneratedTest
 
         $client->deleteDocument($formattedName);
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertSame(1, \count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.firestore.v1beta1.Firestore/DeleteDocument', $actualFuncCall);
@@ -451,7 +451,7 @@ class FirestoreClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -513,7 +513,7 @@ class FirestoreClientTest extends GeneratedTest
         $serverStream = $client->batchGetDocuments($formattedDatabase, $documents);
         $this->assertInstanceOf(ServerStream::class, $serverStream);
 
-        $responses = iterator_to_array($serverStream->readAll());
+        $responses = \iterator_to_array($serverStream->readAll());
 
         $expectedResponses = [];
         $expectedResponses[] = $expectedResponse;
@@ -522,7 +522,7 @@ class FirestoreClientTest extends GeneratedTest
         $this->assertEquals($expectedResponses, $responses);
 
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertSame(1, \count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.firestore.v1beta1.Firestore/BatchGetDocuments', $actualFuncCall);
@@ -549,7 +549,7 @@ class FirestoreClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -568,7 +568,7 @@ class FirestoreClientTest extends GeneratedTest
         $results = $serverStream->readAll();
 
         try {
-            iterator_to_array($results);
+            \iterator_to_array($results);
             // If the close stream method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -603,7 +603,7 @@ class FirestoreClientTest extends GeneratedTest
         $response = $client->beginTransaction($formattedDatabase);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertSame(1, \count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.firestore.v1beta1.Firestore/BeginTransaction', $actualFuncCall);
@@ -629,7 +629,7 @@ class FirestoreClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -675,7 +675,7 @@ class FirestoreClientTest extends GeneratedTest
         $response = $client->commit($formattedDatabase, $writes);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertSame(1, \count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.firestore.v1beta1.Firestore/Commit', $actualFuncCall);
@@ -704,7 +704,7 @@ class FirestoreClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -750,7 +750,7 @@ class FirestoreClientTest extends GeneratedTest
 
         $client->rollback($formattedDatabase, $transaction);
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertSame(1, \count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.firestore.v1beta1.Firestore/Rollback', $actualFuncCall);
@@ -779,7 +779,7 @@ class FirestoreClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -841,7 +841,7 @@ class FirestoreClientTest extends GeneratedTest
         $serverStream = $client->runQuery($formattedParent);
         $this->assertInstanceOf(ServerStream::class, $serverStream);
 
-        $responses = iterator_to_array($serverStream->readAll());
+        $responses = \iterator_to_array($serverStream->readAll());
 
         $expectedResponses = [];
         $expectedResponses[] = $expectedResponse;
@@ -850,7 +850,7 @@ class FirestoreClientTest extends GeneratedTest
         $this->assertEquals($expectedResponses, $responses);
 
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertSame(1, \count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.firestore.v1beta1.Firestore/RunQuery', $actualFuncCall);
@@ -874,7 +874,7 @@ class FirestoreClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -892,7 +892,7 @@ class FirestoreClientTest extends GeneratedTest
         $results = $serverStream->readAll();
 
         try {
-            iterator_to_array($results);
+            \iterator_to_array($results);
             // If the close stream method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -965,14 +965,14 @@ class FirestoreClientTest extends GeneratedTest
         $this->assertEquals($expectedResponses, $responses);
 
         $createStreamRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($createStreamRequests));
+        $this->assertSame(1, \count($createStreamRequests));
         $streamFuncCall = $createStreamRequests[0]->getFuncCall();
         $streamRequestObject = $createStreamRequests[0]->getRequestObject();
         $this->assertSame('/google.firestore.v1beta1.Firestore/Write', $streamFuncCall);
         $this->assertNull($streamRequestObject);
 
         $callObjects = $transport->popCallObjects();
-        $this->assertSame(1, count($callObjects));
+        $this->assertSame(1, \count($callObjects));
         $bidiCall = $callObjects[0];
 
         $writeRequests = $bidiCall->popReceivedCalls();
@@ -997,7 +997,7 @@ class FirestoreClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -1012,7 +1012,7 @@ class FirestoreClientTest extends GeneratedTest
         $results = $bidi->closeWriteAndReadAll();
 
         try {
-            iterator_to_array($results);
+            \iterator_to_array($results);
             // If the close stream method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1073,14 +1073,14 @@ class FirestoreClientTest extends GeneratedTest
         $this->assertEquals($expectedResponses, $responses);
 
         $createStreamRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($createStreamRequests));
+        $this->assertSame(1, \count($createStreamRequests));
         $streamFuncCall = $createStreamRequests[0]->getFuncCall();
         $streamRequestObject = $createStreamRequests[0]->getRequestObject();
         $this->assertSame('/google.firestore.v1beta1.Firestore/Listen', $streamFuncCall);
         $this->assertNull($streamRequestObject);
 
         $callObjects = $transport->popCallObjects();
-        $this->assertSame(1, count($callObjects));
+        $this->assertSame(1, \count($callObjects));
         $bidiCall = $callObjects[0];
 
         $writeRequests = $bidiCall->popReceivedCalls();
@@ -1105,7 +1105,7 @@ class FirestoreClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -1120,7 +1120,7 @@ class FirestoreClientTest extends GeneratedTest
         $results = $bidi->closeWriteAndReadAll();
 
         try {
-            iterator_to_array($results);
+            \iterator_to_array($results);
             // If the close stream method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1157,12 +1157,12 @@ class FirestoreClientTest extends GeneratedTest
 
         $response = $client->listCollectionIds($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
-        $resources = iterator_to_array($response->iterateAllElements());
-        $this->assertSame(1, count($resources));
+        $resources = \iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, \count($resources));
         $this->assertEquals($expectedResponse->getCollectionIds()[0], $resources[0]);
 
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertSame(1, \count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.firestore.v1beta1.Firestore/ListCollectionIds', $actualFuncCall);
@@ -1187,7 +1187,7 @@ class FirestoreClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',

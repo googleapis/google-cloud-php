@@ -101,8 +101,8 @@ class ArrayType
             $type = Database::TYPE_STRUCT;
         }
 
-        if ($type && !in_array($type, ValueMapper::$allowedTypes)) {
-            throw new \InvalidArgumentException(sprintf(
+        if ($type && !\in_array($type, ValueMapper::$allowedTypes)) {
+            throw new \InvalidArgumentException(\sprintf(
                 'Type %s is not an allowed type.',
                 $type
             ));

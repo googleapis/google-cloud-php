@@ -112,5 +112,5 @@ class CommuteInfo extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CommuteInfo::class, \Google\Cloud\Talent\V4beta1\SearchJobsResponse_CommuteInfo::class);
+\class_alias(CommuteInfo::class, \Google\Cloud\Talent\V4beta1\SearchJobsResponse_CommuteInfo::class);
 

@@ -167,7 +167,7 @@ class TableTest extends TestCase
             ->shouldBeCalledTimes(1);
 
         $table = $this->getTable($this->connection);
-        $rows = iterator_to_array($table->rows());
+        $rows = \iterator_to_array($table->rows());
 
         $this->assertEmpty($rows);
     }
@@ -182,7 +182,7 @@ class TableTest extends TestCase
             ->shouldBeCalledTimes(1);
 
         $table = $this->getTable($this->connection);
-        $rows = iterator_to_array($table->rows());
+        $rows = \iterator_to_array($table->rows());
 
         $this->assertEquals(
             $this->rowData['rows'][0]['f'][0]['v'],
@@ -206,7 +206,7 @@ class TableTest extends TestCase
             ->shouldBeCalledTimes(2);
 
         $table = $this->getTable($this->connection);
-        $rows = iterator_to_array($table->rows());
+        $rows = \iterator_to_array($table->rows());
 
         $this->assertEquals($name, $rows[1]['first_name']);
     }
@@ -358,7 +358,7 @@ class TableTest extends TestCase
 
         return [
             [$this->getObject()],
-            [sprintf(
+            [\sprintf(
                 'gs://%s/%s',
                 self::BUCKET_NAME,
                 self::FILE_NAME

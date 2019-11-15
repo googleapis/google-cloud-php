@@ -11,6 +11,6 @@ if (false) {
      */
     class StructuredQuery_CollectionSelector {}
 }
-class_exists(StructuredQuery\CollectionSelector::class);
-@trigger_error('Google\Cloud\Firestore\V1\StructuredQuery_CollectionSelector is deprecated and will be removed in the next major release. Use Google\Cloud\Firestore\V1\StructuredQuery\CollectionSelector instead', E_USER_DEPRECATED);
+\class_exists(StructuredQuery\CollectionSelector::class);
+@\trigger_error('Google\Cloud\Firestore\V1\StructuredQuery_CollectionSelector is deprecated and will be removed in the next major release. Use Google\Cloud\Firestore\V1\StructuredQuery\CollectionSelector instead', E_USER_DEPRECATED);
 

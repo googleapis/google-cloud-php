@@ -48,8 +48,8 @@ class CacheSessionPoolTest extends TestCase
     public function setUp()
     {
         $this->checkAndSkipGrpcTests();
-        putenv('GOOGLE_CLOUD_SYSV_ID=U');
-        $this->time = time();
+        \putenv('GOOGLE_CLOUD_SYSV_ID=U');
+        $this->time = \time();
         MockValues::initialize();
     }
 
@@ -150,7 +150,7 @@ class CacheSessionPoolTest extends TestCase
 
         $actualItemPool = $pool->cacheItemPool();
         $actualCacheData = $actualItemPool->getItem(
-            sprintf(self::CACHE_KEY_TEMPLATE, self::PROJECT_ID, self::INSTANCE_NAME, self::DATABASE_NAME)
+            \sprintf(self::CACHE_KEY_TEMPLATE, self::PROJECT_ID, self::INSTANCE_NAME, self::DATABASE_NAME)
         )->get();
 
         $this->assertEmpty($actualCacheData['toCreate']);
@@ -194,7 +194,7 @@ class CacheSessionPoolTest extends TestCase
         $pool->release($session->reveal());
         $actualItemPool = $pool->cacheItemPool();
         $actualCacheData = $actualItemPool->getItem(
-            sprintf(self::CACHE_KEY_TEMPLATE, self::PROJECT_ID, self::INSTANCE_NAME, self::DATABASE_NAME)
+            \sprintf(self::CACHE_KEY_TEMPLATE, self::PROJECT_ID, self::INSTANCE_NAME, self::DATABASE_NAME)
         )->get();
 
         $this->assertEquals($expectedCacheData, $actualCacheData);
@@ -223,14 +223,14 @@ class CacheSessionPoolTest extends TestCase
         $pool->setDatabase($this->getDatabase());
         $actualItemPool = $pool->cacheItemPool();
         $actualCacheData = $actualItemPool->getItem(
-            sprintf(self::CACHE_KEY_TEMPLATE, self::PROJECT_ID, self::INSTANCE_NAME, self::DATABASE_NAME)
+            \sprintf(self::CACHE_KEY_TEMPLATE, self::PROJECT_ID, self::INSTANCE_NAME, self::DATABASE_NAME)
         )->get();
 
         $this->assertEquals($lastActiveOriginal, $actualCacheData['inUse'][$sessionName]['lastActive']);
 
         $pool->keepAlive($session->reveal());
         $actualCacheData = $actualItemPool->getItem(
-            sprintf(self::CACHE_KEY_TEMPLATE, self::PROJECT_ID, self::INSTANCE_NAME, self::DATABASE_NAME)
+            \sprintf(self::CACHE_KEY_TEMPLATE, self::PROJECT_ID, self::INSTANCE_NAME, self::DATABASE_NAME)
         )->get();
 
         $this->assertEquals($this->time, $actualCacheData['inUse'][$sessionName]['lastActive']);
@@ -241,7 +241,7 @@ class CacheSessionPoolTest extends TestCase
      */
     public function testDownsizeDeletes($percent, $expectedDeleteCount)
     {
-        $time = time() + 3600;
+        $time = \time() + 3600;
         $pool = new CacheSessionPoolStub($this->getCacheItemPool([
             'queue' => [
                 [
@@ -333,7 +333,7 @@ class CacheSessionPoolTest extends TestCase
         $pool->clear();
         $actualItemPool = $pool->cacheItemPool();
         $actualCacheData = $actualItemPool->getItem(
-            sprintf(self::CACHE_KEY_TEMPLATE, self::PROJECT_ID, self::INSTANCE_NAME, self::DATABASE_NAME)
+            \sprintf(self::CACHE_KEY_TEMPLATE, self::PROJECT_ID, self::INSTANCE_NAME, self::DATABASE_NAME)
         )->get();
 
         $this->assertNull($actualCacheData);
@@ -347,14 +347,14 @@ class CacheSessionPoolTest extends TestCase
         $itemPool = $pool->cacheItemPool();
         $pool->clear();
         $cacheData = $itemPool->getItem(
-            sprintf(self::CACHE_KEY_TEMPLATE, self::PROJECT_ID, self::INSTANCE_NAME, self::DATABASE_NAME)
+            \sprintf(self::CACHE_KEY_TEMPLATE, self::PROJECT_ID, self::INSTANCE_NAME, self::DATABASE_NAME)
         )->get();
 
         $this->assertNull($cacheData);
 
         $pool->release($session);
         $cacheData = $itemPool->getItem(
-            sprintf(self::CACHE_KEY_TEMPLATE, self::PROJECT_ID, self::INSTANCE_NAME, self::DATABASE_NAME)
+            \sprintf(self::CACHE_KEY_TEMPLATE, self::PROJECT_ID, self::INSTANCE_NAME, self::DATABASE_NAME)
         )->get();
 
         $this->assertNull($cacheData);
@@ -370,7 +370,7 @@ class CacheSessionPoolTest extends TestCase
         $actualSession = $pool->acquire();
         $actualItemPool = $pool->cacheItemPool();
         $actualCacheData = $actualItemPool->getItem(
-            sprintf(self::CACHE_KEY_TEMPLATE, self::PROJECT_ID, self::INSTANCE_NAME, self::DATABASE_NAME)
+            \sprintf(self::CACHE_KEY_TEMPLATE, self::PROJECT_ID, self::INSTANCE_NAME, self::DATABASE_NAME)
         )->get();
 
         $this->assertInstanceOf(Session::class, $actualSession);
@@ -379,7 +379,7 @@ class CacheSessionPoolTest extends TestCase
 
     public function acquireDataProvider()
     {
-        $time = time();
+        $time = \time();
 
         return [
             // Set #0: Initialize data using default config
@@ -720,7 +720,7 @@ class CacheSessionPoolTest extends TestCase
             return [
                 'session' => [
                     [
-                        'name' => 'session' . count($methodCalls)
+                        'name' => 'session' . \count($methodCalls)
                     ]
                 ]
             ];
@@ -742,7 +742,7 @@ class CacheSessionPoolTest extends TestCase
     {
         $cacheItemPool = new MemoryCacheItemPool();
         $cacheItem = $cacheItemPool->getItem(
-            sprintf(self::CACHE_KEY_TEMPLATE, self::PROJECT_ID, self::INSTANCE_NAME, self::DATABASE_NAME)
+            \sprintf(self::CACHE_KEY_TEMPLATE, self::PROJECT_ID, self::INSTANCE_NAME, self::DATABASE_NAME)
         );
         $cacheItemPool->save($cacheItem->set($cacheData));
 

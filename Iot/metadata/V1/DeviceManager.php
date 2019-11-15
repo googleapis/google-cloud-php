@@ -24,7 +24,7 @@ class DeviceManager
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         \GPBMetadata\Google\Rpc\Status::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0abb3f0a28676f6f676c652f636c6f75642f696f742f76312f6465766963" .
             "655f6d616e616765722e70726f746f1213676f6f676c652e636c6f75642e" .
             "696f742e76311a17676f6f676c652f6170692f636c69656e742e70726f74" .

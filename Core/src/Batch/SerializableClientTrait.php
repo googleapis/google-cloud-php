@@ -99,7 +99,7 @@ trait SerializableClientTrait
      */
     private function getDefaultClosureSerializer()
     {
-        if (class_exists(SerializableClosure::class)) {
+        if (\class_exists(SerializableClosure::class)) {
             return new OpisClosureSerializer();
         }
     }

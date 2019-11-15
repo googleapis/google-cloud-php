@@ -34,7 +34,7 @@ class CustomEntityTypeTest extends DatastoreTestCase
      */
     public function testCustomEntity(DatastoreClient $client)
     {
-        $id = uniqid('MyDog');
+        $id = \uniqid('MyDog');
         $key = $client->key('Pet', $id);
 
         $owner = $client->entity(null, [

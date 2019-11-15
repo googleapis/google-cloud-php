@@ -11,6 +11,6 @@ if (false) {
      */
     class StreamingRecognizeResponse_SpeechEventType {}
 }
-class_exists(StreamingRecognizeResponse\SpeechEventType::class);
-@trigger_error('Google\Cloud\Speech\V1\StreamingRecognizeResponse_SpeechEventType is deprecated and will be removed in a future release. Use Google\Cloud\Speech\V1\StreamingRecognizeResponse\SpeechEventType instead', E_USER_DEPRECATED);
+\class_exists(StreamingRecognizeResponse\SpeechEventType::class);
+@\trigger_error('Google\Cloud\Speech\V1\StreamingRecognizeResponse_SpeechEventType is deprecated and will be removed in a future release. Use Google\Cloud\Speech\V1\StreamingRecognizeResponse\SpeechEventType instead', E_USER_DEPRECATED);
 

@@ -146,7 +146,7 @@ class PsrLogger implements LoggerInterface, \Serializable
         if (isset($options['batchEnabled']) && $options['batchEnabled'] === true) {
             $this->batchEnabled = true;
             $this->setCommonBatchProperties($options + [
-                'identifier' => sprintf(self::ID_TEMPLATE, $this->logger->name()),
+                'identifier' => \sprintf(self::ID_TEMPLATE, $this->logger->name()),
                 'batchMethod' => 'writeBatch'
             ]);
         }
@@ -432,15 +432,15 @@ class PsrLogger implements LoggerInterface, \Serializable
     public function serialize()
     {
         $debugOutputResource = null;
-        if (is_resource($this->debugOutputResource)) {
-            $metadata = stream_get_meta_data($this->debugOutputResource);
+        if (\is_resource($this->debugOutputResource)) {
+            $metadata = \stream_get_meta_data($this->debugOutputResource);
             $debugOutputResource = [
                 'uri' => $metadata['uri'],
                 'mode' => $metadata['mode']
             ];
         }
 
-        return serialize([
+        return \serialize([
             $this->messageKey,
             $this->batchEnabled,
             $this->metadataProvider,
@@ -469,10 +469,10 @@ class PsrLogger implements LoggerInterface, \Serializable
             $this->batchMethod,
             $this->logName,
             $debugOutputResource
-        ) = unserialize($data);
+        ) = \unserialize($data);
 
-        if (is_array($debugOutputResource)) {
-            $this->debugOutputResource = fopen(
+        if (\is_array($debugOutputResource)) {
+            $this->debugOutputResource = \fopen(
                 $debugOutputResource['uri'],
                 $debugOutputResource['mode']
             );
@@ -487,7 +487,7 @@ class PsrLogger implements LoggerInterface, \Serializable
      */
     protected function getCallback()
     {
-        if (!array_key_exists($this->logName, self::$loggers)) {
+        if (!\array_key_exists($this->logName, self::$loggers)) {
             $c = new LoggingClient($this->getUnwrappedClientConfig());
             self::$loggers[$this->logName] = $c->logger($this->logName);
         }
@@ -506,7 +506,7 @@ class PsrLogger implements LoggerInterface, \Serializable
         $map = Logger::getLogLevelMap();
         $level = (string) $level;
 
-        if (isset($map[$level]) || isset(array_flip($map)[strtoupper($level)])) {
+        if (isset($map[$level]) || isset(\array_flip($map)[\strtoupper($level)])) {
             return true;
         }
 

@@ -61,7 +61,7 @@ class CommitTimestampTest extends SnippetTestCase
         ];
 
         $conn->commit(Argument::withEntry('mutations', [$mutation]))->shouldBeCalled()->willReturn([
-            'commitTimestamp' => \DateTime::createFromFormat('U', (string) time())->format(Timestamp::FORMAT)
+            'commitTimestamp' => \DateTime::createFromFormat('U', (string) \time())->format(Timestamp::FORMAT)
         ]);
 
         $client->___setProperty('connection', $conn->reveal());

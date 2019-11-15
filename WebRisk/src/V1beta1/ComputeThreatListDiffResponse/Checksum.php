@@ -70,5 +70,5 @@ class Checksum extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Checksum::class, \Google\Cloud\WebRisk\V1beta1\ComputeThreatListDiffResponse_Checksum::class);
+\class_alias(Checksum::class, \Google\Cloud\WebRisk\V1beta1\ComputeThreatListDiffResponse_Checksum::class);
 

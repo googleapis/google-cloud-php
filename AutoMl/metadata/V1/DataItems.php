@@ -21,7 +21,7 @@ class DataItems
         \GPBMetadata\Google\Protobuf\Any::initOnce();
         \GPBMetadata\Google\Protobuf\Duration::initOnce();
         \GPBMetadata\Google\Protobuf\Struct::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0ad00d0a27676f6f676c652f636c6f75642f6175746f6d6c2f76312f6461" .
             "74615f6974656d732e70726f746f1216676f6f676c652e636c6f75642e61" .
             "75746f6d6c2e76311a25676f6f676c652f636c6f75642f6175746f6d6c2f" .

@@ -11,6 +11,6 @@ if (false) {
      */
     class Action_PublishToStackdriver {}
 }
-class_exists(Action\PublishToStackdriver::class);
-@trigger_error('Google\Cloud\Dlp\V2\Action_PublishToStackdriver is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\Action\PublishToStackdriver instead', E_USER_DEPRECATED);
+\class_exists(Action\PublishToStackdriver::class);
+@\trigger_error('Google\Cloud\Dlp\V2\Action_PublishToStackdriver is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\Action\PublishToStackdriver instead', E_USER_DEPRECATED);
 

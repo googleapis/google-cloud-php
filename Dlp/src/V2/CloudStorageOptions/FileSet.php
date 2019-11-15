@@ -132,5 +132,5 @@ class FileSet extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(FileSet::class, \Google\Cloud\Dlp\V2\CloudStorageOptions_FileSet::class);
+\class_alias(FileSet::class, \Google\Cloud\Dlp\V2\CloudStorageOptions_FileSet::class);
 

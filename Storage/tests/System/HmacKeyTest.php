@@ -32,8 +32,8 @@ class HmacKeyTest extends StorageTestCase
     {
         parent::setUpBeforeClass();
 
-        self::$serviceAccountEmail = json_decode(
-            file_get_contents(getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH')),
+        self::$serviceAccountEmail = \json_decode(
+            \file_get_contents(\getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH')),
             true
         )['client_email'];
     }
@@ -53,14 +53,14 @@ class HmacKeyTest extends StorageTestCase
 
     public function testListWithServiceAccountEmail()
     {
-        $altServiceAccount = getenv('GOOGLE_CLOUD_PHP_TESTS_ALT_KEY_PATH');
+        $altServiceAccount = \getenv('GOOGLE_CLOUD_PHP_TESTS_ALT_KEY_PATH');
         if (!$altServiceAccount) {
             $this->markTestSkipped('Must provide `GOOGLE_CLOUD_PHP_TESTS_ALT_KEY_PATH` to run this test.');
             return;
         }
 
-        $altServiceAccountEmail = json_decode(
-            file_get_contents($altServiceAccount),
+        $altServiceAccountEmail = \json_decode(
+            \file_get_contents($altServiceAccount),
             true
         )['client_email'];
 
@@ -108,8 +108,8 @@ class HmacKeyTest extends StorageTestCase
             ? ['serviceAccountEmail' => $serviceAccountEmail]
             : [];
 
-        $allKeys = iterator_to_array(self::$client->hmacKeys($opts));
-        $this->$assertion(array_filter($allKeys, function ($key) use ($accessId) {
+        $allKeys = \iterator_to_array(self::$client->hmacKeys($opts));
+        $this->$assertion(\array_filter($allKeys, function ($key) use ($accessId) {
             return $key->accessId() === $accessId;
         }));
     }

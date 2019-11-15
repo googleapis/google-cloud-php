@@ -11,6 +11,6 @@ if (false) {
      */
     class DataSourceParameter_Type {}
 }
-class_exists(DataSourceParameter\Type::class);
-@trigger_error('Google\Cloud\BigQuery\DataTransfer\V1\DataSourceParameter_Type is deprecated and will be removed in a future release. Use Google\Cloud\BigQuery\DataTransfer\V1\DataSourceParameter\Type instead', E_USER_DEPRECATED);
+\class_exists(DataSourceParameter\Type::class);
+@\trigger_error('Google\Cloud\BigQuery\DataTransfer\V1\DataSourceParameter_Type is deprecated and will be removed in a future release. Use Google\Cloud\BigQuery\DataTransfer\V1\DataSourceParameter\Type instead', E_USER_DEPRECATED);
 

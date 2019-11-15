@@ -11,6 +11,6 @@ if (false) {
      */
     class Finding_State {}
 }
-class_exists(Finding\State::class);
-@trigger_error('Google\Cloud\SecurityCenter\V1\Finding_State is deprecated and will be removed in a future release. Use Google\Cloud\SecurityCenter\V1\Finding\State instead', E_USER_DEPRECATED);
+\class_exists(Finding\State::class);
+@\trigger_error('Google\Cloud\SecurityCenter\V1\Finding_State is deprecated and will be removed in a future release. Use Google\Cloud\SecurityCenter\V1\Finding\State instead', E_USER_DEPRECATED);
 

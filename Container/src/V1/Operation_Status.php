@@ -11,6 +11,6 @@ if (false) {
      */
     class Operation_Status {}
 }
-class_exists(Operation\Status::class);
-@trigger_error('Google\Cloud\Container\V1\Operation_Status is deprecated and will be removed in the next major release. Use Google\Cloud\Container\V1\Operation\Status instead', E_USER_DEPRECATED);
+\class_exists(Operation\Status::class);
+@\trigger_error('Google\Cloud\Container\V1\Operation_Status is deprecated and will be removed in the next major release. Use Google\Cloud\Container\V1\Operation\Status instead', E_USER_DEPRECATED);
 

@@ -202,5 +202,5 @@ class FieldSchema extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(FieldSchema::class, \Google\Cloud\BigQuery\DataTransfer\V1\ImportedDataInfo_FieldSchema::class);
+\class_alias(FieldSchema::class, \Google\Cloud\BigQuery\DataTransfer\V1\ImportedDataInfo_FieldSchema::class);
 

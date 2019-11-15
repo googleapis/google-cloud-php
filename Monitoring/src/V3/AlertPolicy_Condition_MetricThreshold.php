@@ -11,6 +11,6 @@ if (false) {
      */
     class AlertPolicy_Condition_MetricThreshold {}
 }
-class_exists(AlertPolicy\Condition\MetricThreshold::class);
-@trigger_error('Google\Cloud\Monitoring\V3\AlertPolicy_Condition_MetricThreshold is deprecated and will be removed in the next major release. Use Google\Cloud\Monitoring\V3\AlertPolicy\Condition\MetricThreshold instead', E_USER_DEPRECATED);
+\class_exists(AlertPolicy\Condition\MetricThreshold::class);
+@\trigger_error('Google\Cloud\Monitoring\V3\AlertPolicy_Condition_MetricThreshold is deprecated and will be removed in the next major release. Use Google\Cloud\Monitoring\V3\AlertPolicy\Condition\MetricThreshold instead', E_USER_DEPRECATED);
 

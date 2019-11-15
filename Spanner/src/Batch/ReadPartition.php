@@ -165,10 +165,10 @@ class ReadPartition implements PartitionInterface
      */
     public function serialize()
     {
-        $vars = get_object_vars($this);
+        $vars = \get_object_vars($this);
         $vars['keySet'] = $vars['keySet']->keySetObject();
 
-        return base64_encode(json_encode($vars + [
+        return \base64_encode(\json_encode($vars + [
             BatchClient::PARTITION_TYPE_KEY => static::class
         ]));
     }

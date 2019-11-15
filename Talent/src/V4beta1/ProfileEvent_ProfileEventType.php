@@ -11,6 +11,6 @@ if (false) {
      */
     class ProfileEvent_ProfileEventType {}
 }
-class_exists(ProfileEvent\ProfileEventType::class);
-@trigger_error('Google\Cloud\Talent\V4beta1\ProfileEvent_ProfileEventType is deprecated and will be removed in the next major release. Use Google\Cloud\Talent\V4beta1\ProfileEvent\ProfileEventType instead', E_USER_DEPRECATED);
+\class_exists(ProfileEvent\ProfileEventType::class);
+@\trigger_error('Google\Cloud\Talent\V4beta1\ProfileEvent_ProfileEventType is deprecated and will be removed in the next major release. Use Google\Cloud\Talent\V4beta1\ProfileEvent\ProfileEventType instead', E_USER_DEPRECATED);
 

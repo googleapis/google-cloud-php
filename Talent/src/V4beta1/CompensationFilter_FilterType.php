@@ -11,6 +11,6 @@ if (false) {
      */
     class CompensationFilter_FilterType {}
 }
-class_exists(CompensationFilter\FilterType::class);
-@trigger_error('Google\Cloud\Talent\V4beta1\CompensationFilter_FilterType is deprecated and will be removed in the next major release. Use Google\Cloud\Talent\V4beta1\CompensationFilter\FilterType instead', E_USER_DEPRECATED);
+\class_exists(CompensationFilter\FilterType::class);
+@\trigger_error('Google\Cloud\Talent\V4beta1\CompensationFilter_FilterType is deprecated and will be removed in the next major release. Use Google\Cloud\Talent\V4beta1\CompensationFilter\FilterType instead', E_USER_DEPRECATED);
 

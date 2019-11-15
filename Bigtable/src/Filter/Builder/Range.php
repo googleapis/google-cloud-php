@@ -193,12 +193,12 @@ abstract class Range
      */
     private function validateStringOrNumeric($value, $func)
     {
-        if (is_string($value) || is_numeric($value)) {
+        if (\is_string($value) || \is_numeric($value)) {
             return true;
         }
 
         throw new \InvalidArgumentException(
-            sprintf(
+            \sprintf(
                 '%s accepts only string or numeric types.',
                 $func
             )

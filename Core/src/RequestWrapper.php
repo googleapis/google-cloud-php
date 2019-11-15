@@ -145,7 +145,7 @@ class RequestWrapper
         $this->shouldSignRequest = $config['shouldSignRequest'];
         $this->retryFunction = $config['restRetryFunction'] ?: $this->getRetryFunction();
         $this->delayFunction = $config['restDelayFunction'] ?: function ($delay) {
-            usleep($delay);
+            \usleep($delay);
         };
         $this->calcDelayFunction = $config['restCalcDelayFunction'];
         $this->httpHandler = $config['httpHandler'] ?: HttpHandlerFactory::build();
@@ -393,7 +393,7 @@ class RequestWrapper
             ? $options['requestTimeout']
             : $this->requestTimeout;
 
-        if ($timeout && !array_key_exists('timeout', $restOptions)) {
+        if ($timeout && !\array_key_exists('timeout', $restOptions)) {
             $restOptions['timeout'] = $timeout;
         }
 

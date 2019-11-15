@@ -11,6 +11,6 @@ if (false) {
      */
     class Application_ApplicationState {}
 }
-class_exists(Application\ApplicationState::class);
-@trigger_error('Google\Cloud\Talent\V4beta1\Application_ApplicationState is deprecated and will be removed in the next major release. Use Google\Cloud\Talent\V4beta1\Application\ApplicationState instead', E_USER_DEPRECATED);
+\class_exists(Application\ApplicationState::class);
+@\trigger_error('Google\Cloud\Talent\V4beta1\Application_ApplicationState is deprecated and will be removed in the next major release. Use Google\Cloud\Talent\V4beta1\Application\ApplicationState instead', E_USER_DEPRECATED);
 

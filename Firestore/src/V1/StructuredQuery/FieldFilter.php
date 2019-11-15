@@ -134,5 +134,5 @@ class FieldFilter extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(FieldFilter::class, \Google\Cloud\Firestore\V1\StructuredQuery_FieldFilter::class);
+\class_alias(FieldFilter::class, \Google\Cloud\Firestore\V1\StructuredQuery_FieldFilter::class);
 

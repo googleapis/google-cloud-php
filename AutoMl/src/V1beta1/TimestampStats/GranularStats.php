@@ -70,5 +70,5 @@ class GranularStats extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(GranularStats::class, \Google\Cloud\AutoMl\V1beta1\TimestampStats_GranularStats::class);
+\class_alias(GranularStats::class, \Google\Cloud\AutoMl\V1beta1\TimestampStats_GranularStats::class);
 

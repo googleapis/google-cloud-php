@@ -11,6 +11,6 @@ if (false) {
      */
     class LocationFilter_TelecommutePreference {}
 }
-class_exists(LocationFilter\TelecommutePreference::class);
-@trigger_error('Google\Cloud\Talent\V4beta1\LocationFilter_TelecommutePreference is deprecated and will be removed in the next major release. Use Google\Cloud\Talent\V4beta1\LocationFilter\TelecommutePreference instead', E_USER_DEPRECATED);
+\class_exists(LocationFilter\TelecommutePreference::class);
+@\trigger_error('Google\Cloud\Talent\V4beta1\LocationFilter_TelecommutePreference is deprecated and will be removed in the next major release. Use Google\Cloud\Talent\V4beta1\LocationFilter\TelecommutePreference instead', E_USER_DEPRECATED);
 

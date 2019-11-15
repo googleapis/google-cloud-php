@@ -56,14 +56,14 @@ class ResultTest extends TestCase
      */
     public function testRows($chunks, $expectedValues)
     {
-        $result = iterator_to_array($this->getResultClass($chunks)->rows());
+        $result = \iterator_to_array($this->getResultClass($chunks)->rows());
         $this->assertEquals($expectedValues, $result);
     }
 
     public function testIterator()
     {
         $fixture = $this->getStreamingDataFixture()['tests'][0];
-        $result = iterator_to_array($this->getResultClass($fixture['chunks']));
+        $result = \iterator_to_array($this->getResultClass($fixture['chunks']));
 
         $this->assertEquals($fixture['result']['value'], $result);
     }
@@ -82,7 +82,7 @@ class ResultTest extends TestCase
             }
         );
 
-        iterator_to_array($result->rows());
+        \iterator_to_array($result->rows());
     }
 
     public function testResumesBrokenStream()
@@ -118,7 +118,7 @@ class ResultTest extends TestCase
             }
         );
 
-        iterator_to_array($result->rows());
+        \iterator_to_array($result->rows());
         $this->assertEquals(2, $timesCalled);
     }
 
@@ -154,7 +154,7 @@ class ResultTest extends TestCase
             }
         );
 
-        iterator_to_array($result->rows());
+        \iterator_to_array($result->rows());
         $this->assertEquals(2, $timesCalled);
     }
 
@@ -187,7 +187,7 @@ class ResultTest extends TestCase
             }
         );
 
-        iterator_to_array($result->rows());
+        \iterator_to_array($result->rows());
     }
 
     public function testColumns()
@@ -205,7 +205,7 @@ class ResultTest extends TestCase
     {
         $fixture = $this->getStreamingDataFixture()['tests'][0];
         $result = $this->getResultClass($fixture['chunks']);
-        $expectedMetadata = json_decode($fixture['chunks'][0], true)['metadata'];
+        $expectedMetadata = \json_decode($fixture['chunks'][0], true)['metadata'];
 
         $this->assertNull($result->stats());
         $result->rows()->next();
@@ -224,7 +224,7 @@ class ResultTest extends TestCase
     {
         $fixture = $this->getStreamingDataFixture()['tests'][1];
         $result = $this->getResultClass($fixture['chunks']);
-        $expectedStats = json_decode($fixture['chunks'][0], true)['stats'];
+        $expectedStats = \json_decode($fixture['chunks'][0], true)['stats'];
 
         $this->assertNull($result->stats());
         $result->rows()->next();

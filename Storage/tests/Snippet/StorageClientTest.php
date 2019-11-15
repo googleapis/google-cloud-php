@@ -86,7 +86,7 @@ class StorageClientTest extends SnippetTestCase
         $res = $snippet->invoke('buckets');
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
 
-        $buckets = iterator_to_array($res->returnVal());
+        $buckets = \iterator_to_array($res->returnVal());
         $this->assertEquals('album 1', $buckets[0]->name());
         $this->assertEquals('album 2', $buckets[1]->name());
     }
@@ -109,8 +109,8 @@ class StorageClientTest extends SnippetTestCase
 
         $res = $snippet->invoke('buckets');
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
-        $this->assertEquals('album 1', explode("\n", $res->output())[0]);
-        $this->assertEquals('album 2', explode("\n", $res->output())[1]);
+        $this->assertEquals('album 1', \explode("\n", $res->output())[0]);
+        $this->assertEquals('album 2', \explode("\n", $res->output())[1]);
     }
 
     public function testCreateBucket()

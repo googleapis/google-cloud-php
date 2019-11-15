@@ -108,5 +108,5 @@ class KeyValue extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(KeyValue::class, \Google\Cloud\Vision\V1\Product_KeyValue::class);
+\class_alias(KeyValue::class, \Google\Cloud\Vision\V1\Product_KeyValue::class);
 

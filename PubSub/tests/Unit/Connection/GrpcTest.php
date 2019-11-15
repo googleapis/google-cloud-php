@@ -241,13 +241,13 @@ class GrpcTest extends TestCase
                 'createSubscription',
                 [
                     'name' => $value,
-                    'topic' => strtoupper($value),
+                    'topic' => \strtoupper($value),
                     'pushConfig' => [
                         'pushEndpoint' => $pushEndpoint,
                         'attributes' => [$attributeKey => $attributeValue]
                     ]
                 ],
-                [$value, strtoupper($value), ['pushConfig' => $pbPushConfig]]
+                [$value, \strtoupper($value), ['pushConfig' => $pbPushConfig]]
             ],
             [
                 'getSubscription',

@@ -53,7 +53,7 @@ class ReadPartitionTest extends SnippetTestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->time = time();
+        $this->time = \time();
         $this->table = 'table';
         $this->keySet = new KeySet(['all' => true]);
         $this->columns = ['foo', 'bar'];
@@ -98,7 +98,7 @@ class ReadPartitionTest extends SnippetTestCase
     public function provideGetters()
     {
         $parent = $this->getters();
-        return array_merge($parent, [
+        return \array_merge($parent, [
             ['table'],
             ['keySet'],
             ['columns']

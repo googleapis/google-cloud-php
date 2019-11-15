@@ -276,5 +276,5 @@ class MetricAbsence extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(MetricAbsence::class, \Google\Cloud\Monitoring\V3\AlertPolicy_Condition_MetricAbsence::class);
+\class_alias(MetricAbsence::class, \Google\Cloud\Monitoring\V3\AlertPolicy_Condition_MetricAbsence::class);
 

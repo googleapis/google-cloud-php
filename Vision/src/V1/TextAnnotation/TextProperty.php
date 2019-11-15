@@ -100,5 +100,5 @@ class TextProperty extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TextProperty::class, \Google\Cloud\Vision\V1\TextAnnotation_TextProperty::class);
+\class_alias(TextProperty::class, \Google\Cloud\Vision\V1\TextAnnotation_TextProperty::class);
 

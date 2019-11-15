@@ -389,5 +389,5 @@ class Message extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Message::class, \Google\Cloud\Dialogflow\V2\Intent_Message::class);
+\class_alias(Message::class, \Google\Cloud\Dialogflow\V2\Intent_Message::class);
 

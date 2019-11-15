@@ -313,7 +313,7 @@ class Query
         $basePath = $this->basePath();
 
         if ($value instanceof FieldValueInterface) {
-            throw new \InvalidArgumentException(sprintf(
+            throw new \InvalidArgumentException(\sprintf(
                 'Value cannot be a `%s` value.',
                 FieldValue::class
             ));
@@ -327,14 +327,14 @@ class Query
 
         // alias for friendlier error message below.
         $originalOperator = $operator;
-        $operator = array_key_exists(strtolower($operator), $this->shortOperators)
-            ? $this->shortOperators[strtolower($operator)]
+        $operator = \array_key_exists(\strtolower($operator), $this->shortOperators)
+            ? $this->shortOperators[\strtolower($operator)]
             : $operator;
 
         try {
             FieldFilterOperator::name($operator);
         } catch (\UnexpectedValueException $e) {
-            throw new \InvalidArgumentException(sprintf(
+            throw new \InvalidArgumentException(\sprintf(
                 'Operator %s is not a valid operator',
                 $originalOperator
             ));
@@ -344,12 +344,12 @@ class Query
             $value = $this->createDocumentReference($basePath, $value);
         }
 
-        if ((is_float($value) && is_nan($value)) || is_null($value)) {
+        if ((\is_float($value) && \is_nan($value)) || \is_null($value)) {
             if ($operator !== self::OP_EQUAL) {
                 throw new \InvalidArgumentException('Null and NaN are allowed only with operator EQUALS.');
             }
 
-            $unaryOperator = is_nan($value)
+            $unaryOperator = \is_nan($value)
                 ? self::OP_NAN
                 : self::OP_NULL;
 
@@ -405,12 +405,12 @@ class Query
      */
     public function orderBy($fieldPath, $direction = self::DIR_ASCENDING)
     {
-        $direction = array_key_exists(strtoupper($direction), $this->shortDirections)
-            ? $this->shortDirections[strtoupper($direction)]
+        $direction = \array_key_exists(\strtoupper($direction), $this->shortDirections)
+            ? $this->shortDirections[\strtoupper($direction)]
             : $direction;
 
-        if (!in_array($direction, $this->allowedDirections)) {
-            throw new \InvalidArgumentException(sprintf(
+        if (!\in_array($direction, $this->allowedDirections)) {
+            throw new \InvalidArgumentException(\sprintf(
                 'Direction %s is not a valid direction',
                 $direction
             ));
@@ -636,8 +636,8 @@ class Query
         if ($fieldValues instanceof DocumentSnapshot) {
             list($fieldValues, $orderBy) = $this->snapshotPosition($fieldValues, $orderBy);
         } else {
-            if (!is_array($fieldValues)) {
-                throw new \InvalidArgumentException(sprintf(
+            if (!\is_array($fieldValues)) {
+                throw new \InvalidArgumentException(\sprintf(
                     'Field values must be an array or an instance of `%s`.',
                     DocumentSnapshot::class
                 ));
@@ -645,14 +645,14 @@ class Query
 
             foreach ($fieldValues as $value) {
                 if ($value instanceof DocumentSnapshot) {
-                    throw new \InvalidArgumentException(sprintf(
+                    throw new \InvalidArgumentException(\sprintf(
                         'Instances of `%s` are not allowed in an array of field values. ' .
                         'Provide it as the method argument instead.',
                         DocumentSnapshot::class
                     ));
                 }
                 if ($value instanceof FieldValueInterface) {
-                    throw new \InvalidArgumentException(sprintf(
+                    throw new \InvalidArgumentException(\sprintf(
                         'Value cannot be a `%s` value.',
                         FieldValue::class
                     ));
@@ -660,7 +660,7 @@ class Query
             }
         }
 
-        if (count($fieldValues) > count($orderBy)) {
+        if (\count($fieldValues) > \count($orderBy)) {
             throw new \InvalidArgumentException(
                 'Too many cursor values specified. The specified values must ' .
                 'match the `orderBy` constraints of the query.'
@@ -669,7 +669,7 @@ class Query
 
         foreach ($fieldValues as $i => &$value) {
             if ($orderBy[$i]['field']['fieldPath'] === self::DOCUMENT_ID) {
-                if (is_string($value)) {
+                if (\is_string($value)) {
                     $value = $this->createDocumentReference($basePath, $value);
                 } else {
                     if ($value instanceof DocumentReference) {
@@ -683,7 +683,7 @@ class Query
                     }
 
                     if (!$this->isPrefixOf($basePath, $name)) {
-                        throw new \InvalidArgumentException(sprintf(
+                        throw new \InvalidArgumentException(\sprintf(
                             '%s is not a part of the query result set and ' .
                             'cannot be used as a query boundary',
                             $name
@@ -735,17 +735,17 @@ class Query
             // append orderBy(the last inequality filter’s path, ascending).
             if (!$orderBy && $this->queryHas('where')) {
                 $filters = $this->query['where']['compositeFilter']['filters'];
-                $inequality = array_filter($filters, function ($filter) {
-                    $type = array_keys($filter)[0];
-                    return !in_array($filter[$type]['op'], [
+                $inequality = \array_filter($filters, function ($filter) {
+                    $type = \array_keys($filter)[0];
+                    return !\in_array($filter[$type]['op'], [
                         self::OP_EQUAL,
                         self::OP_ARRAY_CONTAINS
                     ]);
                 });
 
                 if ($inequality) {
-                    $filter = end($inequality);
-                    $type = array_keys($filter)[0];
+                    $filter = \end($inequality);
+                    $type = \array_keys($filter)[0];
                     $orderBy[] = [
                         'field' => [
                             'fieldPath' => $filter[$type]['field']['fieldPath'],
@@ -758,7 +758,7 @@ class Query
             // If the query has existing orderBy constraints
             if ($orderBy) {
                 // Append orderBy(__name__, direction of last orderBy clause)
-                $lastOrderDirection = end($orderBy)['direction'];
+                $lastOrderDirection = \end($orderBy)['direction'];
                 $orderBy[] = [
                     'field' => [
                         'fieldPath' => self::DOCUMENT_ID
@@ -821,7 +821,7 @@ class Query
         $query = $this->query;
 
         if ($overrideTopLevelKeys) {
-            $keys = array_keys($additionalConfig);
+            $keys = \array_keys($additionalConfig);
             foreach ($keys as $key) {
                 unset($query[$key]);
             }
@@ -848,7 +848,7 @@ class Query
      */
     private function finalQueryPrepare(array $query)
     {
-        if (isset($query['where']['compositeFilter']) && count($query['where']['compositeFilter']['filters']) === 1) {
+        if (isset($query['where']['compositeFilter']) && \count($query['where']['compositeFilter']['filters']) === 1) {
             $filter = $query['where']['compositeFilter']['filters'][0];
             $query['where'] = $filter;
         }
@@ -875,7 +875,7 @@ class Query
         $exceptionMessage = 'When ordering or filtering by document ID, ' .
             'value must be a document reference or valid document name.';
 
-        if (!is_string($document)) {
+        if (!\is_string($document)) {
             throw new \InvalidArgumentException($exceptionMessage);
         }
 

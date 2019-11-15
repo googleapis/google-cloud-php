@@ -77,8 +77,8 @@ class ValueMapper
         $output = [];
 
         foreach ($fields as $key => $val) {
-            $type = array_keys($val)[0];
-            $value = current($val);
+            $type = \array_keys($val)[0];
+            $value = \current($val);
 
             $output[$key] = $this->decodeValue($type, $value);
         }
@@ -151,9 +151,9 @@ class ValueMapper
                 $res = [];
 
                 foreach ($value['values'] as $val) {
-                    $type = array_keys($val)[0];
+                    $type = \array_keys($val)[0];
 
-                    $res[] = $this->decodeValue($type, current($val));
+                    $res[] = $this->decodeValue($type, \current($val));
                 }
 
                 return $res;
@@ -163,9 +163,9 @@ class ValueMapper
                 $res = [];
 
                 foreach ($value['fields'] as $key => $val) {
-                    $type = array_keys($val)[0];
+                    $type = \array_keys($val)[0];
 
-                    $res[$key] = $this->decodeValue($type, current($val));
+                    $res[$key] = $this->decodeValue($type, \current($val));
                 }
 
                 return $res;
@@ -176,7 +176,7 @@ class ValueMapper
                 return new DocumentReference($this->connection, $this, $parent, $value);
 
             default:
-                throw new \RuntimeException(sprintf(
+                throw new \RuntimeException(\sprintf(
                     'unexpected value type %s!',
                     $type
                 ));
@@ -194,7 +194,7 @@ class ValueMapper
      */
     public function encodeValue($value)
     {
-        $type = gettype($value);
+        $type = \gettype($value);
 
         switch ($type) {
             case 'boolean':
@@ -214,7 +214,7 @@ class ValueMapper
                 break;
 
             case 'resource':
-                return ['bytesValue' => stream_get_contents($value)];
+                return ['bytesValue' => \stream_get_contents($value)];
                 break;
 
             case 'object':
@@ -236,7 +236,7 @@ class ValueMapper
 
             // @codeCoverageIgnoreStart
             default:
-                throw new \RuntimeException(sprintf(
+                throw new \RuntimeException(\sprintf(
                     'Invalid value type %s',
                     $type
                 ));
@@ -258,7 +258,7 @@ class ValueMapper
     {
         $out = [];
         foreach ($value as $item) {
-            if (is_array($item) && !$this->isAssoc($item)) {
+            if (\is_array($item) && !$this->isAssoc($item)) {
                 throw new \RuntimeException('Nested array values are not permitted.');
             }
 
@@ -311,9 +311,9 @@ class ValueMapper
             return ['referenceValue' => $value->name()];
         }
 
-        throw new \RuntimeException(sprintf(
+        throw new \RuntimeException(\sprintf(
             'Object of type %s cannot be encoded to a Firestore value type.',
-            get_class($value)
+            \get_class($value)
         ));
     }
 

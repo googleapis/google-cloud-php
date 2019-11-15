@@ -11,6 +11,6 @@ if (false) {
      */
     class Intent_Message {}
 }
-class_exists(Intent\Message::class);
-@trigger_error('Google\Cloud\Dialogflow\V2\Intent_Message is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\Intent\Message instead', E_USER_DEPRECATED);
+\class_exists(Intent\Message::class);
+@\trigger_error('Google\Cloud\Dialogflow\V2\Intent_Message is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\Intent\Message instead', E_USER_DEPRECATED);
 

@@ -116,7 +116,7 @@ class SpeechClientExtensionTest extends TestCase
 
         $responseStream = $this->client->recognizeAudioStream($config, $audio);
 
-        $this->assertSame($expectedResponseStream, iterator_to_array($responseStream));
+        $this->assertSame($expectedResponseStream, \iterator_to_array($responseStream));
 
         /** @var StreamingRecognizeRequest[] $receivedCalls */
         $receivedCalls = $mockBidiStreamingCall->popReceivedCalls();
@@ -125,10 +125,10 @@ class SpeechClientExtensionTest extends TestCase
         $expectedConfigMessage->setStreamingConfig($config);
 
         // Expect one extra call, for the config message
-        $this->assertSame(count($expectedContent) + 1, count($receivedCalls));
-        $initialReceivedCall = array_shift($receivedCalls);
+        $this->assertSame(\count($expectedContent) + 1, \count($receivedCalls));
+        $initialReceivedCall = \array_shift($receivedCalls);
         $this->assertEquals($expectedConfigMessage, $initialReceivedCall);
-        for ($i = 0; $i < count($expectedContent); $i++) {
+        for ($i = 0; $i < \count($expectedContent); $i++) {
             $this->assertSame($expectedContent[$i], $receivedCalls[$i]->getAudioContent());
         }
     }
@@ -152,9 +152,9 @@ class SpeechClientExtensionTest extends TestCase
 
     private function createResource($data)
     {
-        $resource = fopen('php://memory','r+');
-        fwrite($resource, $data);
-        rewind($resource);
+        $resource = \fopen('php://memory','r+');
+        \fwrite($resource, $data);
+        \rewind($resource);
         return $resource;
     }
 }

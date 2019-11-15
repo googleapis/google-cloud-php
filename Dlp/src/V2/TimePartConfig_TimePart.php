@@ -11,6 +11,6 @@ if (false) {
      */
     class TimePartConfig_TimePart {}
 }
-class_exists(TimePartConfig\TimePart::class);
-@trigger_error('Google\Cloud\Dlp\V2\TimePartConfig_TimePart is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\TimePartConfig\TimePart instead', E_USER_DEPRECATED);
+\class_exists(TimePartConfig\TimePart::class);
+@\trigger_error('Google\Cloud\Dlp\V2\TimePartConfig_TimePart is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\TimePartConfig\TimePart instead', E_USER_DEPRECATED);
 

@@ -11,6 +11,6 @@ if (false) {
      */
     class OperationMetadata_State {}
 }
-class_exists(OperationMetadata\State::class);
-@trigger_error('Google\Cloud\Vision\V1\OperationMetadata_State is deprecated and will be removed in a future release. Use Google\Cloud\Vision\V1\OperationMetadata\State instead', E_USER_DEPRECATED);
+\class_exists(OperationMetadata\State::class);
+@\trigger_error('Google\Cloud\Vision\V1\OperationMetadata_State is deprecated and will be removed in a future release. Use Google\Cloud\Vision\V1\OperationMetadata\State instead', E_USER_DEPRECATED);
 

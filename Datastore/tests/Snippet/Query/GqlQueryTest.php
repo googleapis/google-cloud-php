@@ -81,7 +81,7 @@ class GqlQueryTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->datastore);
 
         $res = $snippet->invoke(['query', 'res']);
-        $this->assertEquals('Google', trim($res->output()));
+        $this->assertEquals('Google', \trim($res->output()));
         $this->assertInstanceOf(EntityIterator::class, $res->returnVal()[1]);
     }
 

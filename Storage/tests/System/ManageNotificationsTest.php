@@ -26,7 +26,7 @@ class ManageNotificationsTest extends StorageTestCase
     public function testCreateAndListNotifications()
     {
         $created = [];
-        $topic = self::createTopic(self::$pubsubClient, uniqid(self::TESTING_PREFIX));
+        $topic = self::createTopic(self::$pubsubClient, \uniqid(self::TESTING_PREFIX));
         $policy = $topic->iam()->policy();
         $policy['bindings'] = [
             [
@@ -39,21 +39,21 @@ class ManageNotificationsTest extends StorageTestCase
         $topic->iam()->setPolicy($policy);
 
         for ($i = 0; $i < 2; $i++) {
-            sleep(1);
+            \sleep(1);
             $created[] = self::$bucket->createNotification($topic, [
-                'object_name_prefix' => uniqid('OBJ_PREFIX')
+                'object_name_prefix' => \uniqid('OBJ_PREFIX')
             ]);
         }
 
-        $notifications = iterator_to_array(self::$bucket->notifications());
-        $this->assertCount(count($created), $notifications);
+        $notifications = \iterator_to_array(self::$bucket->notifications());
+        $this->assertCount(\count($created), $notifications);
 
         foreach ($created as $cNotification) {
-            sleep(1);
+            \sleep(1);
             $cNotification->delete();
         }
 
-        $notifications = iterator_to_array(self::$bucket->notifications());
+        $notifications = \iterator_to_array(self::$bucket->notifications());
         $this->assertCount(0, $notifications);
     }
 }

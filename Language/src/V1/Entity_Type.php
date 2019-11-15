@@ -11,6 +11,6 @@ if (false) {
      */
     class Entity_Type {}
 }
-class_exists(Entity\Type::class);
-@trigger_error('Google\Cloud\Language\V1\Entity_Type is deprecated and will be removed in the next major release. Use Google\Cloud\Language\V1\Entity\Type instead', E_USER_DEPRECATED);
+\class_exists(Entity\Type::class);
+@\trigger_error('Google\Cloud\Language\V1\Entity_Type is deprecated and will be removed in the next major release. Use Google\Cloud\Language\V1\Entity\Type instead', E_USER_DEPRECATED);
 

@@ -14,7 +14,7 @@ class Data
         if (static::$is_initialized == true) {
           return;
         }
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0aa3170a1d676f6f676c652f6269677461626c652f76322f646174612e70" .
             "726f746f1212676f6f676c652e6269677461626c652e763222400a03526f" .
             "77120b0a036b657918012001280c122c0a0866616d696c69657318022003" .

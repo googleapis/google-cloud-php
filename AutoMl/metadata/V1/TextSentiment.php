@@ -16,7 +16,7 @@ class TextSentiment
         }
         \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Cloud\Automl\V1\Classification::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0a8c050a2b676f6f676c652f636c6f75642f6175746f6d6c2f76312f7465" .
             "78745f73656e74696d656e742e70726f746f1216676f6f676c652e636c6f" .
             "75642e6175746f6d6c2e76311a2b676f6f676c652f636c6f75642f617574" .

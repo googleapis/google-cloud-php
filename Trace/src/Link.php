@@ -85,7 +85,7 @@ class Link
         $this->traceId = $traceId;
         $this->spanId = $spanId;
         $this->type = $options['type'];
-        if (array_key_exists('attributes', $options)) {
+        if (\array_key_exists('attributes', $options)) {
             $this->addAttributes($options['attributes']);
         }
     }

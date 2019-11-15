@@ -101,7 +101,7 @@ class CsvOptions extends \Google\Protobuf\Internal\Message
     public function getFieldDelimiterValue()
     {
         $wrapper = $this->getFieldDelimiter();
-        return is_null($wrapper) ? null : $wrapper->getValue();
+        return \is_null($wrapper) ? null : $wrapper->getValue();
     }
 
     /**
@@ -132,7 +132,7 @@ class CsvOptions extends \Google\Protobuf\Internal\Message
      */
     public function setFieldDelimiterValue($var)
     {
-        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\StringValue(['value' => $var]);
+        $wrappedVar = \is_null($var) ? null : new \Google\Protobuf\StringValue(['value' => $var]);
         return $this->setFieldDelimiter($wrappedVar);
     }
 
@@ -160,7 +160,7 @@ class CsvOptions extends \Google\Protobuf\Internal\Message
     public function getAllowQuotedNewlinesValue()
     {
         $wrapper = $this->getAllowQuotedNewlines();
-        return is_null($wrapper) ? null : $wrapper->getValue();
+        return \is_null($wrapper) ? null : $wrapper->getValue();
     }
 
     /**
@@ -191,7 +191,7 @@ class CsvOptions extends \Google\Protobuf\Internal\Message
      */
     public function setAllowQuotedNewlinesValue($var)
     {
-        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
+        $wrappedVar = \is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
         return $this->setAllowQuotedNewlines($wrappedVar);
     }
 
@@ -221,7 +221,7 @@ class CsvOptions extends \Google\Protobuf\Internal\Message
     public function getQuoteCharValue()
     {
         $wrapper = $this->getQuoteChar();
-        return is_null($wrapper) ? null : $wrapper->getValue();
+        return \is_null($wrapper) ? null : $wrapper->getValue();
     }
 
     /**
@@ -254,7 +254,7 @@ class CsvOptions extends \Google\Protobuf\Internal\Message
      */
     public function setQuoteCharValue($var)
     {
-        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\StringValue(['value' => $var]);
+        $wrappedVar = \is_null($var) ? null : new \Google\Protobuf\StringValue(['value' => $var]);
         return $this->setQuoteChar($wrappedVar);
     }
 
@@ -280,7 +280,7 @@ class CsvOptions extends \Google\Protobuf\Internal\Message
     public function getSkipLeadingRowsValue()
     {
         $wrapper = $this->getSkipLeadingRows();
-        return is_null($wrapper) ? null : $wrapper->getValue();
+        return \is_null($wrapper) ? null : $wrapper->getValue();
     }
 
     /**
@@ -309,7 +309,7 @@ class CsvOptions extends \Google\Protobuf\Internal\Message
      */
     public function setSkipLeadingRowsValue($var)
     {
-        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\Int64Value(['value' => $var]);
+        $wrappedVar = \is_null($var) ? null : new \Google\Protobuf\Int64Value(['value' => $var]);
         return $this->setSkipLeadingRows($wrappedVar);
     }
 
@@ -335,7 +335,7 @@ class CsvOptions extends \Google\Protobuf\Internal\Message
     public function getAllowJaggedRowsValue()
     {
         $wrapper = $this->getAllowJaggedRows();
-        return is_null($wrapper) ? null : $wrapper->getValue();
+        return \is_null($wrapper) ? null : $wrapper->getValue();
     }
 
     /**
@@ -364,12 +364,12 @@ class CsvOptions extends \Google\Protobuf\Internal\Message
      */
     public function setAllowJaggedRowsValue($var)
     {
-        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
+        $wrappedVar = \is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
         return $this->setAllowJaggedRows($wrappedVar);
     }
 
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CsvOptions::class, \Google\Cloud\BigQuery\DataTransfer\V1\ImportedDataInfo_TableDefinition_CsvOptions::class);
+\class_alias(CsvOptions::class, \Google\Cloud\BigQuery\DataTransfer\V1\ImportedDataInfo_TableDefinition_CsvOptions::class);
 

@@ -88,7 +88,7 @@ class QueryResultsTest extends SnippetTestCase
         $this->qr->reload();
 
         $res = $snippet->invoke();
-        $this->assertEquals('abcd', trim($res->output()));
+        $this->assertEquals('abcd', \trim($res->output()));
     }
 
     public function testWaitUntilComplete()

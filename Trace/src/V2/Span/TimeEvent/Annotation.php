@@ -108,5 +108,5 @@ class Annotation extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Annotation::class, \Google\Cloud\Trace\V2\Span_TimeEvent_Annotation::class);
+\class_alias(Annotation::class, \Google\Cloud\Trace\V2\Span_TimeEvent_Annotation::class);
 

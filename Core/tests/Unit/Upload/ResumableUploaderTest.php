@@ -60,7 +60,7 @@ class ResumableUploaderTest extends TestCase
             'http://www.example.com'
         );
 
-        $this->assertEquals(json_decode($this->successBody, true), $uploader->upload());
+        $this->assertEquals(\json_decode($this->successBody, true), $uploader->upload());
     }
 
     public function testUploadsDataWithCallback()
@@ -84,7 +84,7 @@ class ResumableUploaderTest extends TestCase
             ['uploadProgressCallback' => $callback]
         );
 
-        $this->assertEquals(json_decode($this->successBody, true), $uploader->upload());
+        $this->assertEquals(\json_decode($this->successBody, true), $uploader->upload());
         $this->assertTrue($called);
     }
 
@@ -146,7 +146,7 @@ class ResumableUploaderTest extends TestCase
         );
 
         $this->assertEquals(
-            json_decode($this->successBody, true),
+            \json_decode($this->successBody, true),
             $uploader->resume('http://some-resume-uri.example.com')
         );
     }
@@ -167,7 +167,7 @@ class ResumableUploaderTest extends TestCase
         );
 
         $this->assertEquals(
-            json_decode($this->successBody, true),
+            \json_decode($this->successBody, true),
             $uploader->resume('http://some-resume-uri.example.com')
         );
     }

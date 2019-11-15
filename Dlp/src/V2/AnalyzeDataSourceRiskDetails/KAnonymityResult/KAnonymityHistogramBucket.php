@@ -204,5 +204,5 @@ class KAnonymityHistogramBucket extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(KAnonymityHistogramBucket::class, \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_KAnonymityResult_KAnonymityHistogramBucket::class);
+\class_alias(KAnonymityHistogramBucket::class, \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_KAnonymityResult_KAnonymityHistogramBucket::class);
 

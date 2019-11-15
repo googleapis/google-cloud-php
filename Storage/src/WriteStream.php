@@ -51,7 +51,7 @@ class WriteStream implements StreamInterface
         if ($uploader) {
             $this->setUploader($uploader);
         }
-        if (array_key_exists('chunkSize', $options)) {
+        if (\array_key_exists('chunkSize', $options)) {
             $this->chunkSize = $options['chunkSize'];
         }
         $this->stream = new BufferStream($this->chunkSize);
@@ -89,7 +89,7 @@ class WriteStream implements StreamInterface
         if (!$this->stream->write($data)) {
             $this->uploader->upload($this->getChunkedWriteSize());
         }
-        return strlen($data);
+        return \strlen($data);
     }
 
     /**
@@ -105,6 +105,6 @@ class WriteStream implements StreamInterface
 
     private function getChunkedWriteSize()
     {
-        return (int) floor($this->getSize() / $this->chunkSize) * $this->chunkSize;
+        return (int) \floor($this->getSize() / $this->chunkSize) * $this->chunkSize;
     }
 }

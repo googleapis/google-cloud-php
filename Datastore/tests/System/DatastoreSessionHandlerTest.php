@@ -29,23 +29,23 @@ class DatastoreSessionHandlerTest extends DatastoreTestCase
 {
     public function testSessionHandler()
     {
-        $client = current(self::clientProvider())[0];
+        $client = \current(self::clientProvider())[0];
 
-        $namespace = uniqid('sess-' . self::TESTING_PREFIX);
+        $namespace = \uniqid('sess-' . self::TESTING_PREFIX);
         $content = 'foo';
-        $storedValue = 'name|' . serialize($content);
+        $storedValue = 'name|' . \serialize($content);
 
         $handler = new DatastoreSessionHandler($client);
 
-        session_set_save_handler($handler, true);
-        session_save_path($namespace);
-        session_start();
+        \session_set_save_handler($handler, true);
+        \session_save_path($namespace);
+        \session_start();
 
-        $sessionId = session_id();
+        $sessionId = \session_id();
         $_SESSION['name'] = $content;
 
-        session_write_close();
-        sleep(1);
+        \session_write_close();
+        \sleep(1);
 
         $q = $client->query();
         $q->kind('PHPSESSID');

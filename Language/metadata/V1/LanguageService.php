@@ -17,7 +17,7 @@ class LanguageService
         \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Api\Client::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0a9f400a2f676f6f676c652f636c6f75642f6c616e67756167652f76312f" .
             "6c616e67756167655f736572766963652e70726f746f1218676f6f676c65" .
             "2e636c6f75642e6c616e67756167652e76311a17676f6f676c652f617069" .

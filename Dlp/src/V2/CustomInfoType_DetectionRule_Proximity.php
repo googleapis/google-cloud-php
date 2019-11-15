@@ -11,6 +11,6 @@ if (false) {
      */
     class CustomInfoType_DetectionRule_Proximity {}
 }
-class_exists(CustomInfoType\DetectionRule\Proximity::class);
-@trigger_error('Google\Cloud\Dlp\V2\CustomInfoType_DetectionRule_Proximity is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\CustomInfoType\DetectionRule\Proximity instead', E_USER_DEPRECATED);
+\class_exists(CustomInfoType\DetectionRule\Proximity::class);
+@\trigger_error('Google\Cloud\Dlp\V2\CustomInfoType_DetectionRule_Proximity is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\CustomInfoType\DetectionRule\Proximity instead', E_USER_DEPRECATED);
 

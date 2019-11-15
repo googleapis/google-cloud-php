@@ -39,11 +39,11 @@ class FirestoreTestCase extends SystemTestCase
 
         self::$localDeletionQueue = new DeletionQueue(true);
 
-        $keyFilePath = getenv('GOOGLE_CLOUD_PHP_FIRESTORE_TESTS_KEY_PATH');
+        $keyFilePath = \getenv('GOOGLE_CLOUD_PHP_FIRESTORE_TESTS_KEY_PATH');
         self::$client = new FirestoreClient([
             'keyFilePath' => $keyFilePath
         ]);
-        self::$collection = self::$client->collection(uniqid(self::COLLECTION_NAME));
+        self::$collection = self::$client->collection(\uniqid(self::COLLECTION_NAME));
         self::$localDeletionQueue->add(self::$collection);
 
 

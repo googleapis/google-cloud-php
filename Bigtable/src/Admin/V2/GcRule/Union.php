@@ -66,5 +66,5 @@ class Union extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Union::class, \Google\Cloud\Bigtable\Admin\V2\GcRule_Union::class);
+\class_alias(Union::class, \Google\Cloud\Bigtable\Admin\V2\GcRule_Union::class);
 

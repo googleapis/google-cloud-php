@@ -133,7 +133,7 @@ class SpeechClientTest extends SnippetTestCase
         $this->client->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
-        $this->assertEquals(print_r($results[0]['alternatives'][0], true), $res->output());
+        $this->assertEquals(\print_r($results[0]['alternatives'][0], true), $res->output());
     }
 
     public function testBeginRecognizeOperationWithOptions()
@@ -164,7 +164,7 @@ class SpeechClientTest extends SnippetTestCase
         $this->client->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
-        $this->assertEquals(print_r($results[0]['alternatives'][0], true), $res->output());
+        $this->assertEquals(\print_r($results[0]['alternatives'][0], true), $res->output());
     }
 
     public function testOperation()

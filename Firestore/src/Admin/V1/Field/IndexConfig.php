@@ -204,5 +204,5 @@ class IndexConfig extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(IndexConfig::class, \Google\Cloud\Firestore\Admin\V1\Field_IndexConfig::class);
+\class_alias(IndexConfig::class, \Google\Cloud\Firestore\Admin\V1\Field_IndexConfig::class);
 

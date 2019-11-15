@@ -29,7 +29,7 @@ class BreakpointValidationTest extends TestCase
 {
     public function setUp()
     {
-        if (!extension_loaded('stackdriver_debugger')) {
+        if (!\extension_loaded('stackdriver_debugger')) {
             $this->markTestSkipped('Breakpoint validation requires stackdriver_debugger extension');
         }
     }

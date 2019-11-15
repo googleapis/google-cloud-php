@@ -61,7 +61,7 @@ class BatchClientTest extends TestCase
 
     public function testSnapshot()
     {
-        $time = time();
+        $time = \time();
 
         $this->connection->createSession(Argument::any())
             ->shouldBeCalledTimes(1)
@@ -76,8 +76,8 @@ class BatchClientTest extends TestCase
                     return false;
                 }
 
-                $db = explode('/', self::DATABASE);
-                return $args['database'] === array_pop($db);
+                $db = \explode('/', self::DATABASE);
+                return $args['database'] === \array_pop($db);
             })
         ))->shouldBeCalled()->willReturn([
             'id' => self::TRANSACTION,
@@ -92,9 +92,9 @@ class BatchClientTest extends TestCase
 
     public function testSnapshotFromString()
     {
-        $time = time();
+        $time = \time();
 
-        $identifier = base64_encode(json_encode([
+        $identifier = \base64_encode(\json_encode([
             'sessionName' => self::SESSION,
             'transactionId' => self::TRANSACTION,
             'readTimestamp' => \DateTime::createFromFormat('U', (string) $time)->format(Timestamp::FORMAT)
@@ -149,7 +149,7 @@ class BatchClientTest extends TestCase
      */
     public function testMissingPartitionTypeKey()
     {
-        $data = base64_encode(json_encode(['hello' => 'world']));
+        $data = \base64_encode(\json_encode(['hello' => 'world']));
         $this->client->partitionFromString($data);
     }
 
@@ -159,7 +159,7 @@ class BatchClientTest extends TestCase
      */
     public function testInvalidPartitionType()
     {
-        $data = base64_encode(json_encode([BatchClient::PARTITION_TYPE_KEY => uniqid('this-is-not-real')]));
+        $data = \base64_encode(\json_encode([BatchClient::PARTITION_TYPE_KEY => \uniqid('this-is-not-real')]));
         $this->client->partitionFromString($data);
     }
 }

@@ -11,6 +11,6 @@ if (false) {
      */
     class Breakpoint_LogLevel {}
 }
-class_exists(Breakpoint\LogLevel::class);
-@trigger_error('Google\Cloud\Debugger\V2\Breakpoint_LogLevel is deprecated and will be removed in the next major release. Use Google\Cloud\Debugger\V2\Breakpoint\LogLevel instead', E_USER_DEPRECATED);
+\class_exists(Breakpoint\LogLevel::class);
+@\trigger_error('Google\Cloud\Debugger\V2\Breakpoint_LogLevel is deprecated and will be removed in the next major release. Use Google\Cloud\Debugger\V2\Breakpoint\LogLevel instead', E_USER_DEPRECATED);
 

@@ -268,7 +268,7 @@ class Annotation
             return null;
         }
 
-        return array_filter($items, function ($item) use ($path, $type) {
+        return \array_filter($items, function ($item) use ($path, $type) {
             $itemCopy = $item;
 
             // key into the value with the given path
@@ -276,7 +276,7 @@ class Annotation
                 $itemCopy = $itemCopy[$key];
             }
 
-            if (strtolower($itemCopy) === strtolower($type)) {
+            if (\strtolower($itemCopy) === \strtolower($type)) {
                 return $item;
             }
         });

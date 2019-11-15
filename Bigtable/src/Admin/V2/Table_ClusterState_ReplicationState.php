@@ -11,6 +11,6 @@ if (false) {
      */
     class Table_ClusterState_ReplicationState {}
 }
-class_exists(Table\ClusterState\ReplicationState::class);
-@trigger_error('Google\Cloud\Bigtable\Admin\V2\Table_ClusterState_ReplicationState is deprecated and will be removed in the next major release. Use Google\Cloud\Bigtable\Admin\V2\Table\ClusterState\ReplicationState instead', E_USER_DEPRECATED);
+\class_exists(Table\ClusterState\ReplicationState::class);
+@\trigger_error('Google\Cloud\Bigtable\Admin\V2\Table_ClusterState_ReplicationState is deprecated and will be removed in the next major release. Use Google\Cloud\Bigtable\Admin\V2\Table\ClusterState\ReplicationState instead', E_USER_DEPRECATED);
 

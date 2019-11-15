@@ -108,8 +108,8 @@ class SpeechClientTest extends TestCase
 
     public function audioProvider()
     {
-        stream_wrapper_unregister('http');
-        stream_wrapper_register('http', HttpStreamWrapper::class);
+        \stream_wrapper_unregister('http');
+        \stream_wrapper_register('http', HttpStreamWrapper::class);
         $amrMock = $this->prophesize(StorageObject::class);
         $amrMock->gcsUri(Argument::any())->willReturn(self::GCS_URI . '.amr');
         $awbMock = $this->prophesize(StorageObject::class);
@@ -118,7 +118,7 @@ class SpeechClientTest extends TestCase
 
         return [
             [
-                fopen($audioPath, 'r'),
+                \fopen($audioPath, 'r'),
                 [
                     'maxAlternatives' => 1,
                     'languageCode' => 'en-GB',
@@ -132,7 +132,7 @@ class SpeechClientTest extends TestCase
                 ],
                 [
                     'audio' => [
-                        'content' => base64_encode(file_get_contents($audioPath))
+                        'content' => \base64_encode(\file_get_contents($audioPath))
                     ],
                     'config' => [
                         'maxAlternatives' => 1,
@@ -148,14 +148,14 @@ class SpeechClientTest extends TestCase
                 ]
             ],
             [
-                file_get_contents($audioPath),
+                \file_get_contents($audioPath),
                 [
                     'encoding' => 'FLAC',
                     'sampleRateHertz' => 16000
                 ],
                 [
                     'audio' => [
-                        'content' => base64_encode(file_get_contents($audioPath))
+                        'content' => \base64_encode(\file_get_contents($audioPath))
                     ],
                     'config' => [
                         'encoding' => 'FLAC',
@@ -165,13 +165,13 @@ class SpeechClientTest extends TestCase
                 ]
             ],
             [
-                file_get_contents($audioPath),
+                \file_get_contents($audioPath),
                 [
                     'encoding' => 'FLAC'
                 ],
                 [
                     'audio' => [
-                        'content' => base64_encode(file_get_contents($audioPath)),
+                        'content' => \base64_encode(\file_get_contents($audioPath)),
                     ],
                     'config' => [
                         'encoding' => 'FLAC',
@@ -221,13 +221,13 @@ class SpeechClientTest extends TestCase
                 ]
             ],
             [
-                fopen('http://www.example.com/file.flac', 'r'),
+                \fopen('http://www.example.com/file.flac', 'r'),
                 [
                     'sampleRateHertz' => 16000
                 ],
                 [
                     'audio' => [
-                        'content' => base64_encode('abcd')
+                        'content' => \base64_encode('abcd')
                     ],
                     'config' => [
                         'sampleRateHertz' => 16000,

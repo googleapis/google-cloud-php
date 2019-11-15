@@ -28,8 +28,8 @@ class PublishAndPullTest extends PubSubTestCase
      */
     public function testPublishMessageAndPull($client)
     {
-        $topicName = uniqid(self::TESTING_PREFIX);
-        $subName = uniqid(self::TESTING_PREFIX);
+        $topicName = \uniqid(self::TESTING_PREFIX);
+        $subName = \uniqid(self::TESTING_PREFIX);
         $topic = $client->createTopic($topicName);
         $sub = $client->subscribe($subName, $topicName);
         self::$deletionQueue->add($topic);
@@ -56,8 +56,8 @@ class PublishAndPullTest extends PubSubTestCase
      */
     public function testPublishMessagesAndPull($client)
     {
-        $topicName = uniqid(self::TESTING_PREFIX);
-        $subName = uniqid(self::TESTING_PREFIX);
+        $topicName = \uniqid(self::TESTING_PREFIX);
+        $subName = \uniqid(self::TESTING_PREFIX);
         $topic = $client->createTopic($topicName);
         $sub = $client->subscribe($subName, $topicName);
         self::$deletionQueue->add($topic);

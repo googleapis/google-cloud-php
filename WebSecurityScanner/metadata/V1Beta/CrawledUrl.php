@@ -14,7 +14,7 @@ class CrawledUrl
         if (static::$is_initialized == true) {
           return;
         }
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0aed020a38676f6f676c652f636c6f75642f776562736563757269747973" .
             "63616e6e65722f7631626574612f637261776c65645f75726c2e70726f74" .
             "6f1226676f6f676c652e636c6f75642e7765627365637572697479736361" .

@@ -321,5 +321,5 @@ class ReadOnly extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ReadOnly::class, \Google\Cloud\Spanner\V1\TransactionOptions_ReadOnly::class);
+\class_alias(ReadOnly::class, \Google\Cloud\Spanner\V1\TransactionOptions_ReadOnly::class);
 

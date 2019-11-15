@@ -11,6 +11,6 @@ if (false) {
      */
     class StatusMessage_Reference {}
 }
-class_exists(StatusMessage\Reference::class);
-@trigger_error('Google\Cloud\Debugger\V2\StatusMessage_Reference is deprecated and will be removed in the next major release. Use Google\Cloud\Debugger\V2\StatusMessage\Reference instead', E_USER_DEPRECATED);
+\class_exists(StatusMessage\Reference::class);
+@\trigger_error('Google\Cloud\Debugger\V2\StatusMessage_Reference is deprecated and will be removed in the next major release. Use Google\Cloud\Debugger\V2\StatusMessage\Reference instead', E_USER_DEPRECATED);
 

@@ -32,13 +32,13 @@ class ManageSubscriptionsTest extends PubSubTestCase
      */
     public function testCreateAndListSubscriptions($client)
     {
-        $topicId = uniqid(self::TESTING_PREFIX);
+        $topicId = \uniqid(self::TESTING_PREFIX);
         $topic = $client->createTopic($topicId);
         self::$deletionQueue->add($topic);
 
         $subsToCreate = [
-            uniqid(self::TESTING_PREFIX),
-            uniqid(self::TESTING_PREFIX)
+            \uniqid(self::TESTING_PREFIX),
+            \uniqid(self::TESTING_PREFIX)
         ];
 
         foreach ($subsToCreate as $subToCreate) {
@@ -54,17 +54,17 @@ class ManageSubscriptionsTest extends PubSubTestCase
      */
     public function testSubscribeAndReload($client)
     {
-        $topicId = uniqid(self::TESTING_PREFIX);
+        $topicId = \uniqid(self::TESTING_PREFIX);
         $topic = $client->createTopic($topicId);
 
-        $subscriptionId = uniqid(self::TESTING_PREFIX);
+        $subscriptionId = \uniqid(self::TESTING_PREFIX);
         $this->assertFalse($topic->subscription($subscriptionId)->exists());
 
         // Subscribe via the topic.
         $subscription = $topic->subscribe($subscriptionId);
         $this->assertTrue($subscription->exists());
 
-        $subscriptionId2 = uniqid(self::TESTING_PREFIX);
+        $subscriptionId2 = \uniqid(self::TESTING_PREFIX);
         $this->assertFalse($topic->subscription($subscriptionId2)->exists());
 
         // Subscribe via pubsubclient
@@ -84,7 +84,7 @@ class ManageSubscriptionsTest extends PubSubTestCase
         $subs = $client->subscriptions();
         $sub = $subs->current();
 
-        $snapshotId = uniqid(self::TESTING_PREFIX);
+        $snapshotId = \uniqid(self::TESTING_PREFIX);
 
         $snap = $client->createSnapshot($snapshotId, $sub);
         self::$deletionQueue->add($snap);
@@ -94,11 +94,11 @@ class ManageSubscriptionsTest extends PubSubTestCase
         $backoff = new ExponentialBackoff(8);
         $hasFoundSub = $backoff->execute(function () use ($client, $snapshotId) {
             $snaps = $client->snapshots();
-            $filtered = array_filter(iterator_to_array($snaps), function ($snap) use ($snapshotId) {
-                return strpos($snap->name(), $snapshotId) !== false;
+            $filtered = \array_filter(\iterator_to_array($snaps), function ($snap) use ($snapshotId) {
+                return \strpos($snap->name(), $snapshotId) !== false;
             });
 
-            if (count($filtered) === 1) {
+            if (\count($filtered) === 1) {
                 return true;
             }
 
@@ -123,7 +123,7 @@ class ManageSubscriptionsTest extends PubSubTestCase
             ? $sub->info()['ackDeadlineSeconds']
             : false;
 
-        $newDeadline = rand(10, 200);
+        $newDeadline = \rand(10, 200);
         $sub->update([
             'ackDeadlineSeconds' => $newDeadline
         ]);
@@ -170,7 +170,7 @@ class ManageSubscriptionsTest extends PubSubTestCase
         $durationSeconds = 129600;
         $durationNanos = 1001;
 
-        $resourceId = uniqid(self::TESTING_PREFIX);
+        $resourceId = \uniqid(self::TESTING_PREFIX);
         $topic = $client->createTopic($resourceId);
         $sub = $topic->subscribe($resourceId, [
             'expirationPolicy' => [
@@ -187,30 +187,30 @@ class ManageSubscriptionsTest extends PubSubTestCase
             $this->assertTrue(false, 'Missing expected response data');
         }
 
-        if (is_string($info['messageRetentionDuration'])) {
-            $d = explode('.', trim($info['messageRetentionDuration'], 's'));
-            if (count($d) !== 2) {
+        if (\is_string($info['messageRetentionDuration'])) {
+            $d = \explode('.', \trim($info['messageRetentionDuration'], 's'));
+            if (\count($d) !== 2) {
                 return null;
             }
 
             $info['messageRetentionDuration'] = [
                 'seconds' => (int) $d[0],
-                'nanos' => (int) trim((string) $d[1], '0')
+                'nanos' => (int) \trim((string) $d[1], '0')
             ];
         }
 
         $this->assertEquals($durationSeconds, $info['messageRetentionDuration']['seconds']);
         $this->assertEquals($durationNanos, $info['messageRetentionDuration']['nanos']);
 
-        if (is_string($info['expirationPolicy']['ttl'])) {
-            $d = explode('.', trim($info['expirationPolicy']['ttl'], 's'));
-            if (count($d) !== 2) {
+        if (\is_string($info['expirationPolicy']['ttl'])) {
+            $d = \explode('.', \trim($info['expirationPolicy']['ttl'], 's'));
+            if (\count($d) !== 2) {
                 return null;
             }
 
             $info['expirationPolicy']['ttl'] = [
                 'seconds' => (int) $d[0],
-                'nanos' => (int) trim((string) $d[1], '0')
+                'nanos' => (int) \trim((string) $d[1], '0')
             ];
         }
 
@@ -226,8 +226,8 @@ class ManageSubscriptionsTest extends PubSubTestCase
             $subs = $class->subscriptions();
 
             foreach ($subs as $sub) {
-                $nameParts = explode('/', $sub->name());
-                $sName = end($nameParts);
+                $nameParts = \explode('/', $sub->name());
+                $sName = \end($nameParts);
                 foreach ($expectedSubs as $key => $expectedSub) {
                     if ($sName === $expectedSub) {
                         $foundSubs[$key] = $sName;
@@ -235,7 +235,7 @@ class ManageSubscriptionsTest extends PubSubTestCase
                 }
             }
 
-            if (sort($foundSubs) === sort($expectedSubs)) {
+            if (\sort($foundSubs) === \sort($expectedSubs)) {
                 return true;
             }
 

@@ -11,6 +11,6 @@ if (false) {
      */
     class DocumentTransform_FieldTransform_ServerValue {}
 }
-class_exists(DocumentTransform\FieldTransform\ServerValue::class);
-@trigger_error('Google\Cloud\Firestore\V1\DocumentTransform_FieldTransform_ServerValue is deprecated and will be removed in the next major release. Use Google\Cloud\Firestore\V1\DocumentTransform\FieldTransform\ServerValue instead', E_USER_DEPRECATED);
+\class_exists(DocumentTransform\FieldTransform\ServerValue::class);
+@\trigger_error('Google\Cloud\Firestore\V1\DocumentTransform_FieldTransform_ServerValue is deprecated and will be removed in the next major release. Use Google\Cloud\Firestore\V1\DocumentTransform\FieldTransform\ServerValue instead', E_USER_DEPRECATED);
 

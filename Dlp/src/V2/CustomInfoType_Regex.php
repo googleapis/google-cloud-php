@@ -11,6 +11,6 @@ if (false) {
      */
     class CustomInfoType_Regex {}
 }
-class_exists(CustomInfoType\Regex::class);
-@trigger_error('Google\Cloud\Dlp\V2\CustomInfoType_Regex is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\CustomInfoType\Regex instead', E_USER_DEPRECATED);
+\class_exists(CustomInfoType\Regex::class);
+@\trigger_error('Google\Cloud\Dlp\V2\CustomInfoType_Regex is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\CustomInfoType\Regex instead', E_USER_DEPRECATED);
 

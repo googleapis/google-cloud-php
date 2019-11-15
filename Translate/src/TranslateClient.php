@@ -27,8 +27,8 @@ if (false) {
     class TranslateClient {}
 }
 
-class_exists(V2\TranslateClient::class);
-@trigger_error(
+\class_exists(V2\TranslateClient::class);
+@\trigger_error(
     'Google\Cloud\Translate\TranslateClient is deprecated and will be ' .
     'removed in a future release. Use ' .
     'Google\Cloud\Translate\V2\TranslateClient instead',

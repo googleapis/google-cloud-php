@@ -23,7 +23,7 @@ class Common
         \GPBMetadata\Google\Type\Money::initOnce();
         \GPBMetadata\Google\Type\PostalAddress::initOnce();
         \GPBMetadata\Google\Type\Timeofday::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0af8320a28676f6f676c652f636c6f75642f74616c656e742f7634626574" .
             "61312f636f6d6d6f6e2e70726f746f121b676f6f676c652e636c6f75642e" .
             "74616c656e742e763462657461311a1f676f6f676c652f6170692f666965" .

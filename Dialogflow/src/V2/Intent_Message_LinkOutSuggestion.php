@@ -11,6 +11,6 @@ if (false) {
      */
     class Intent_Message_LinkOutSuggestion {}
 }
-class_exists(Intent\Message\LinkOutSuggestion::class);
-@trigger_error('Google\Cloud\Dialogflow\V2\Intent_Message_LinkOutSuggestion is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\Intent\Message\LinkOutSuggestion instead', E_USER_DEPRECATED);
+\class_exists(Intent\Message\LinkOutSuggestion::class);
+@\trigger_error('Google\Cloud\Dialogflow\V2\Intent_Message_LinkOutSuggestion is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\Intent\Message\LinkOutSuggestion instead', E_USER_DEPRECATED);
 

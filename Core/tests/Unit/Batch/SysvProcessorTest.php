@@ -35,7 +35,7 @@ class SysvProcessorTest extends TestCase
 
     public function setUp()
     {
-        putenv('GOOGLE_CLOUD_SYSV_ID=U');
+        \putenv('GOOGLE_CLOUD_SYSV_ID=U');
         if (! $this->isSysvIPCLOaded()) {
             $this->markTestSkipped(
                 'Skipping because SystemV IPC extensions are not loaded'
@@ -46,7 +46,7 @@ class SysvProcessorTest extends TestCase
 
     public function tearDown()
     {
-        putenv('GOOGLE_CLOUD_SYSV_ID');
+        \putenv('GOOGLE_CLOUD_SYSV_ID');
     }
 
     /**
@@ -55,8 +55,8 @@ class SysvProcessorTest extends TestCase
     public function testSubmit($item, $exptectedType)
     {
         $this->processor->submit($item, 1);
-        $q = msg_get_queue($this->getSysvKey(1));
-        $result = msg_receive(
+        $q = \msg_get_queue($this->getSysvKey(1));
+        $result = \msg_receive(
             $q,
             0,
             $type,
@@ -73,9 +73,9 @@ class SysvProcessorTest extends TestCase
         } else {
             $this->assertEquals(
                 $item,
-                unserialize(file_get_contents($message))
+                \unserialize(\file_get_contents($message))
             );
-            @unlink($message);
+            @\unlink($message);
         }
     }
 
@@ -83,7 +83,7 @@ class SysvProcessorTest extends TestCase
     {
         return [
             ['item', self::$typeDirect],
-            [str_repeat('x', 8193), self::$typeFile]
+            [\str_repeat('x', 8193), self::$typeFile]
         ];
     }
 }

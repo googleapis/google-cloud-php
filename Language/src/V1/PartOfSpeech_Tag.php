@@ -11,6 +11,6 @@ if (false) {
      */
     class PartOfSpeech_Tag {}
 }
-class_exists(PartOfSpeech\Tag::class);
-@trigger_error('Google\Cloud\Language\V1\PartOfSpeech_Tag is deprecated and will be removed in the next major release. Use Google\Cloud\Language\V1\PartOfSpeech\Tag instead', E_USER_DEPRECATED);
+\class_exists(PartOfSpeech\Tag::class);
+@\trigger_error('Google\Cloud\Language\V1\PartOfSpeech_Tag is deprecated and will be removed in the next major release. Use Google\Cloud\Language\V1\PartOfSpeech\Tag instead', E_USER_DEPRECATED);
 

@@ -46,7 +46,7 @@ class HttpHandlerReaderTest extends TestCase
         $expectedResponse = 'hello world';
 
         $httpHandler = function (RequestInterface $request) use ($path, $expectedResponse) {
-            $expectedUrl = sprintf(
+            $expectedUrl = \sprintf(
                 'http://%s/computeMetadata/v1/%s',
                 GCECredentials::METADATA_IP,
                 $path

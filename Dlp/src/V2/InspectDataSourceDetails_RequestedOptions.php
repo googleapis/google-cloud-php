@@ -11,6 +11,6 @@ if (false) {
      */
     class InspectDataSourceDetails_RequestedOptions {}
 }
-class_exists(InspectDataSourceDetails\RequestedOptions::class);
-@trigger_error('Google\Cloud\Dlp\V2\InspectDataSourceDetails_RequestedOptions is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\InspectDataSourceDetails\RequestedOptions instead', E_USER_DEPRECATED);
+\class_exists(InspectDataSourceDetails\RequestedOptions::class);
+@\trigger_error('Google\Cloud\Dlp\V2\InspectDataSourceDetails_RequestedOptions is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\InspectDataSourceDetails\RequestedOptions instead', E_USER_DEPRECATED);
 

@@ -11,6 +11,6 @@ if (false) {
      */
     class ScanConfig_Schedule {}
 }
-class_exists(ScanConfig\Schedule::class);
-@trigger_error('Google\Cloud\WebSecurityScanner\V1beta\ScanConfig_Schedule is deprecated and will be removed in a future release. Use Google\Cloud\WebSecurityScanner\V1beta\ScanConfig\Schedule instead', E_USER_DEPRECATED);
+\class_exists(ScanConfig\Schedule::class);
+@\trigger_error('Google\Cloud\WebSecurityScanner\V1beta\ScanConfig_Schedule is deprecated and will be removed in a future release. Use Google\Cloud\WebSecurityScanner\V1beta\ScanConfig\Schedule instead', E_USER_DEPRECATED);
 

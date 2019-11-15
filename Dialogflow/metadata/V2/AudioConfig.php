@@ -16,7 +16,7 @@ class AudioConfig
         }
         \GPBMetadata\Google\Protobuf\Duration::initOnce();
         \GPBMetadata\Google\Api\Annotations::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0aaf0d0a2d676f6f676c652f636c6f75642f6469616c6f67666c6f772f76" .
             "322f617564696f5f636f6e6669672e70726f746f121a676f6f676c652e63" .
             "6c6f75642e6469616c6f67666c6f772e76321a1c676f6f676c652f617069" .

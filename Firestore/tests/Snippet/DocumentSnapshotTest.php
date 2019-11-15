@@ -44,9 +44,9 @@ class DocumentSnapshotTest extends SnippetTestCase
     {
         $ref = $this->prophesize(DocumentReference::class);
         $ref->name()->willReturn(self::DOCUMENT);
-        $parts = explode('/', self::DOCUMENT);
-        $ref->id()->willReturn(array_pop($parts));
-        $ref->path()->willReturn(explode('/documents/', self::DOCUMENT)[1]);
+        $parts = \explode('/', self::DOCUMENT);
+        $ref->id()->willReturn(\array_pop($parts));
+        $ref->path()->willReturn(\explode('/documents/', self::DOCUMENT)[1]);
 
         $this->snapshot = TestHelpers::stub(DocumentSnapshot::class, [
             $ref->reveal(),
@@ -118,8 +118,8 @@ class DocumentSnapshotTest extends SnippetTestCase
         $snippet->addLocal('snapshot', $this->snapshot);
         $res = $snippet->invoke('id');
 
-        $parts = explode('/', self::DOCUMENT);
-        $id = array_pop($parts);
+        $parts = \explode('/', self::DOCUMENT);
+        $id = \array_pop($parts);
         $this->assertEquals($id, $res->returnVal());
     }
 

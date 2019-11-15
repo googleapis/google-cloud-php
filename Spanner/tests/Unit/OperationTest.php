@@ -75,7 +75,7 @@ class OperationTest extends TestCase
             'baz' => null
         ]);
 
-        $this->assertEquals(Operation::OP_INSERT, array_keys($res)[0]);
+        $this->assertEquals(Operation::OP_INSERT, \array_keys($res)[0]);
         $this->assertEquals('Posts', $res[Operation::OP_INSERT]['table']);
         $this->assertEquals(['foo', 'baz'], $res[Operation::OP_INSERT]['columns']);
         $this->assertEquals(['bar', null], $res[Operation::OP_INSERT]['values']);
@@ -187,7 +187,7 @@ class OperationTest extends TestCase
         ]);
 
         $this->assertInstanceOf(Result::class, $res);
-        $rows = iterator_to_array($res->rows());
+        $rows = \iterator_to_array($res->rows());
         $this->assertEquals(10, $rows[0]['ID']);
     }
 
@@ -204,7 +204,7 @@ class OperationTest extends TestCase
 
         $res = $this->operation->read($this->session, 'Posts', new KeySet(['all' => true]), ['foo']);
         $this->assertInstanceOf(Result::class, $res);
-        $rows = iterator_to_array($res->rows());
+        $rows = \iterator_to_array($res->rows());
         $this->assertEquals(10, $rows[0]['ID']);
     }
 
@@ -394,7 +394,7 @@ class OperationTest extends TestCase
     private function executeAndReadResponse(array $additionalMetadata = [])
     {
         yield [
-            'metadata' => array_merge([
+            'metadata' => \array_merge([
                 'rowType' => [
                     'fields' => [
                         [

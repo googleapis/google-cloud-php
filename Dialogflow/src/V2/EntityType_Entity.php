@@ -11,6 +11,6 @@ if (false) {
      */
     class EntityType_Entity {}
 }
-class_exists(EntityType\Entity::class);
-@trigger_error('Google\Cloud\Dialogflow\V2\EntityType_Entity is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\EntityType\Entity instead', E_USER_DEPRECATED);
+\class_exists(EntityType\Entity::class);
+@\trigger_error('Google\Cloud\Dialogflow\V2\EntityType_Entity is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\EntityType\Entity instead', E_USER_DEPRECATED);
 

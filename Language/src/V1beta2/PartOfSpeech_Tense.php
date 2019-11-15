@@ -11,6 +11,6 @@ if (false) {
      */
     class PartOfSpeech_Tense {}
 }
-class_exists(PartOfSpeech\Tense::class);
-@trigger_error('Google\Cloud\Language\V1beta2\PartOfSpeech_Tense is deprecated and will be removed in the next major release. Use Google\Cloud\Language\V1beta2\PartOfSpeech\Tense instead', E_USER_DEPRECATED);
+\class_exists(PartOfSpeech\Tense::class);
+@\trigger_error('Google\Cloud\Language\V1beta2\PartOfSpeech_Tense is deprecated and will be removed in the next major release. Use Google\Cloud\Language\V1beta2\PartOfSpeech\Tense instead', E_USER_DEPRECATED);
 

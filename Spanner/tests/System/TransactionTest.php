@@ -37,11 +37,11 @@ class TransactionTest extends SpannerTestCase
     {
         parent::setUpBeforeClass();
 
-        self::$tableName = uniqid(self::TABLE_NAME);
+        self::$tableName = \uniqid(self::TABLE_NAME);
 
         self::$row = [
-            'id' => rand(1000, 9999),
-            'name' => uniqid(self::TESTING_PREFIX),
+            'id' => \rand(1000, 9999),
+            'name' => \uniqid(self::TESTING_PREFIX),
             'birthday' => new Date(new \DateTime('2000-01-01'))
         ];
 
@@ -60,10 +60,10 @@ class TransactionTest extends SpannerTestCase
         $db = self::$database;
 
         $db->runTransaction(function ($t) {
-            $id = rand(1, 346464);
+            $id = \rand(1, 346464);
             $t->insert(self::TEST_TABLE_NAME, [
                 'id' => $id,
-                'name' => uniqid(self::TESTING_PREFIX),
+                'name' => \uniqid(self::TESTING_PREFIX),
                 'birthday' => new Date(new \DateTime)
             ]);
 
@@ -92,7 +92,7 @@ class TransactionTest extends SpannerTestCase
         ]);
 
 
-        $iterations = shell_exec(implode(' ', [
+        $iterations = \shell_exec(\implode(' ', [
             'php',
             __DIR__ . '/pcntl/ConcurrentTransactionsIncrementValueWithRead.php',
             $db->name(),
@@ -147,7 +147,7 @@ class TransactionTest extends SpannerTestCase
             'number' => 0
         ]);
 
-        $iterations = shell_exec(implode(' ', [
+        $iterations = \shell_exec(\implode(' ', [
             'php',
             __DIR__ . '/pcntl/AbortedErrorCausesRetry.php',
             $db->name(),
@@ -181,7 +181,7 @@ class TransactionTest extends SpannerTestCase
             'number' => 0
         ]);
 
-        $iterations = shell_exec(implode(' ', [
+        $iterations = \shell_exec(\implode(' ', [
             'php',
             __DIR__ . '/pcntl/ConcurrentTransactionsIncrementValueWithExecute.php',
             $db->name(),
@@ -223,7 +223,7 @@ class TransactionTest extends SpannerTestCase
             new KeySet([
                 'keys' => [self::$row['id']]
             ]),
-            array_keys(self::$row)
+            \array_keys(self::$row)
         ];
     }
 }

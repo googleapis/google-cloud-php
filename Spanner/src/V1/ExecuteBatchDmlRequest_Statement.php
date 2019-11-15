@@ -11,6 +11,6 @@ if (false) {
      */
     class ExecuteBatchDmlRequest_Statement {}
 }
-class_exists(ExecuteBatchDmlRequest\Statement::class);
-@trigger_error('Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest_Statement is deprecated and will be removed in the next major release. Use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest\Statement instead', E_USER_DEPRECATED);
+\class_exists(ExecuteBatchDmlRequest\Statement::class);
+@\trigger_error('Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest_Statement is deprecated and will be removed in the next major release. Use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest\Statement instead', E_USER_DEPRECATED);
 

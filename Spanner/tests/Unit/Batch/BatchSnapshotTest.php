@@ -85,7 +85,7 @@ class BatchSnapshotTest extends TestCase
 
     public function testPartitionRead()
     {
-        $db = explode('/', self::DATABASE);
+        $db = \explode('/', self::DATABASE);
         $table = 'table';
         $keySet = new KeySet(['all' =>  true]);
         $columns = ['a', 'b'];
@@ -97,7 +97,7 @@ class BatchSnapshotTest extends TestCase
 
         $this->connection->partitionRead(Argument::allOf(
             Argument::withEntry('session', self::SESSION),
-            Argument::withEntry('database', array_pop($db)),
+            Argument::withEntry('database', \array_pop($db)),
             Argument::withEntry('transactionId', self::TRANSACTION),
             Argument::withEntry('table', $table),
             Argument::withEntry('columns', $columns),
@@ -130,7 +130,7 @@ class BatchSnapshotTest extends TestCase
 
     public function testPartitionQuery()
     {
-        $db = explode('/', self::DATABASE);
+        $db = \explode('/', self::DATABASE);
         $sql = 'SELECT 1=1';
         $opts = [
             'parameters' => [
@@ -142,7 +142,7 @@ class BatchSnapshotTest extends TestCase
 
         $this->connection->partitionQuery(Argument::allOf(
             Argument::withEntry('session', self::SESSION),
-            Argument::withEntry('database', array_pop($db)),
+            Argument::withEntry('database', \array_pop($db)),
             Argument::withEntry('transactionId', self::TRANSACTION),
             Argument::withEntry('sql', $sql),
             Argument::withEntry('params', $opts['parameters']),
@@ -175,7 +175,7 @@ class BatchSnapshotTest extends TestCase
 
     public function testExecuteQueryPartition()
     {
-        $db = explode('/', self::DATABASE);
+        $db = \explode('/', self::DATABASE);
         $token = 'token';
         $sql = 'SELECT 1=1';
         $opts = [
@@ -189,7 +189,7 @@ class BatchSnapshotTest extends TestCase
         $this->connection->executeStreamingSql(Argument::allOf(
             Argument::withEntry('partitionToken', $token),
             Argument::withEntry('session', self::SESSION),
-            Argument::withEntry('database', array_pop($db)),
+            Argument::withEntry('database', \array_pop($db)),
             Argument::withEntry('transaction', ['id' => self::TRANSACTION]),
             Argument::withEntry('sql', $sql),
             Argument::withEntry('params', $opts['parameters']),
@@ -199,15 +199,15 @@ class BatchSnapshotTest extends TestCase
         $this->refreshOperation($this->snapshot, $this->connection->reveal());
         $res = $this->snapshot->executePartition($partition);
         $this->assertInstanceOf(Result::class, $res);
-        $rows = iterator_to_array($res->rows());
+        $rows = \iterator_to_array($res->rows());
         $this->assertEquals(10, $rows[0]['ID']);
     }
 
     public function testExecuteReadPartition()
     {
-        $db = explode('/', self::DATABASE);
+        $db = \explode('/', self::DATABASE);
         $token = 'token';
-        $db = explode('/', self::DATABASE);
+        $db = \explode('/', self::DATABASE);
         $table = 'table';
         $keySet = new KeySet(['all' =>  true]);
         $columns = ['a', 'b'];
@@ -220,7 +220,7 @@ class BatchSnapshotTest extends TestCase
         $this->connection->streamingRead(Argument::allOf(
             Argument::withEntry('partitionToken', $token),
             Argument::withEntry('session', self::SESSION),
-            Argument::withEntry('database', array_pop($db)),
+            Argument::withEntry('database', \array_pop($db)),
             Argument::withEntry('transaction', ['id' => self::TRANSACTION]),
             Argument::withEntry('table', $table),
             Argument::withEntry('columns', $columns),
@@ -231,13 +231,13 @@ class BatchSnapshotTest extends TestCase
         $this->refreshOperation($this->snapshot, $this->connection->reveal());
         $res = $this->snapshot->executePartition($partition);
         $this->assertInstanceOf(Result::class, $res);
-        $rows = iterator_to_array($res->rows());
+        $rows = \iterator_to_array($res->rows());
         $this->assertEquals(10, $rows[0]['ID']);
     }
 
     public function testSerialize()
     {
-        $identifier = base64_encode(json_encode([
+        $identifier = \base64_encode(\json_encode([
             'sessionName' => $this->session->reveal()->name(),
             'transactionId' => self::TRANSACTION,
             'readTimestamp' => (string) $this->timestamp

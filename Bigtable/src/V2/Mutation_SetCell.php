@@ -11,6 +11,6 @@ if (false) {
      */
     class Mutation_SetCell {}
 }
-class_exists(Mutation\SetCell::class);
-@trigger_error('Google\Cloud\Bigtable\V2\Mutation_SetCell is deprecated and will be removed in the next major release. Use Google\Cloud\Bigtable\V2\Mutation\SetCell instead', E_USER_DEPRECATED);
+\class_exists(Mutation\SetCell::class);
+@\trigger_error('Google\Cloud\Bigtable\V2\Mutation_SetCell is deprecated and will be removed in the next major release. Use Google\Cloud\Bigtable\V2\Mutation\SetCell instead', E_USER_DEPRECATED);
 

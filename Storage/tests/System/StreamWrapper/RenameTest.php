@@ -38,16 +38,16 @@ class RenameTest extends StreamWrapperTestCase
     {
         $oldFile = self::generateUrl(self::TEST_FILE);
         $newFile = self::generateUrl(self::NEW_TEST_FILE);
-        $this->assertTrue(rename($oldFile, $newFile));
+        $this->assertTrue(\rename($oldFile, $newFile));
         $this->assertFileExists($newFile);
     }
 
     public function testRenameDirectory()
     {
-        $oldFolder = self::generateUrl(dirname(self::TEST_FILE));
+        $oldFolder = self::generateUrl(\dirname(self::TEST_FILE));
         $newFolder = self::generateUrl('new_folder');
         $newFile = $newFolder . '/bar.txt';
-        $this->assertTrue(rename($oldFolder, $newFolder));
+        $this->assertTrue(\rename($oldFolder, $newFolder));
         $this->assertFileExists($newFile);
     }
 }

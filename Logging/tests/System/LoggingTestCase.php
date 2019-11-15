@@ -51,7 +51,7 @@ class LoggingTestCase extends SystemTestCase
             return;
         }
 
-        $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
+        $keyFilePath = \getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
 
         $storage = new StorageClient([
             'keyFilePath' => $keyFilePath
@@ -66,9 +66,9 @@ class LoggingTestCase extends SystemTestCase
             'transport' => 'rest'
         ]);
 
-        self::$bucket = self::createBucket($storage, uniqid(self::TESTING_PREFIX));
-        self::$dataset = self::createDataset($bigquery, uniqid(self::TESTING_PREFIX));
-        self::$topic = self::createTopic($pubsub, uniqid(self::TESTING_PREFIX));
+        self::$bucket = self::createBucket($storage, \uniqid(self::TESTING_PREFIX));
+        self::$dataset = self::createDataset($bigquery, \uniqid(self::TESTING_PREFIX));
+        self::$topic = self::createTopic($pubsub, \uniqid(self::TESTING_PREFIX));
 
         self::$restClient = new LoggingClient([
             'keyFilePath' => $keyFilePath,

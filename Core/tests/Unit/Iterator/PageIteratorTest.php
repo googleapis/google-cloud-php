@@ -40,9 +40,9 @@ class PageIteratorTest extends TestCase
             ['itemsKey' => 'items', 'multiPage' => true]
         );
 
-        $page1BeforeRewind = iterator_to_array($pages)[0];
+        $page1BeforeRewind = \iterator_to_array($pages)[0];
         $pages->rewind();
-        $page1AfterRewind = iterator_to_array($pages)[0];
+        $page1AfterRewind = \iterator_to_array($pages)[0];
 
         $this->assertEquals($page1BeforeRewind, $page1AfterRewind);
     }
@@ -54,14 +54,14 @@ class PageIteratorTest extends TestCase
     {
         $pages = new PageIterator(
             function ($result) {
-                return strtoupper($result);
+                return \strtoupper($result);
             },
             [$this, 'theCall'],
             $options,
             $iteratorOptions
         );
 
-        $pagesArray = iterator_to_array($pages);
+        $pagesArray = \iterator_to_array($pages);
 
         $this->assertEquals($expected, $pagesArray);
     }
@@ -72,12 +72,12 @@ class PageIteratorTest extends TestCase
             [
                 ['itemsKey' => 'items'],
                 [],
-                [array_map('strtoupper', self::$page1)]
+                [\array_map('strtoupper', self::$page1)]
             ],
             [
                 ['itemsKey' => 'tests'],
                 ['itemsKey' => 'tests'],
-                [array_map('strtoupper', self::$page1)]
+                [\array_map('strtoupper', self::$page1)]
             ],
             [
                 [
@@ -94,8 +94,8 @@ class PageIteratorTest extends TestCase
                     ]
                 ],
                 [
-                    array_map('strtoupper', self::$page1),
-                    array_map('strtoupper', self::$page2)
+                    \array_map('strtoupper', self::$page1),
+                    \array_map('strtoupper', self::$page2)
                 ]
             ],
             [
@@ -105,8 +105,8 @@ class PageIteratorTest extends TestCase
                 ],
                 [],
                 [
-                    array_map('strtoupper', self::$page1),
-                    array_map('strtoupper', self::$page2)
+                    \array_map('strtoupper', self::$page1),
+                    \array_map('strtoupper', self::$page2)
                 ]
             ],
             [
@@ -120,7 +120,7 @@ class PageIteratorTest extends TestCase
                     }
                 ],
                 [
-                    array_map('strtoupper', self::$page1)
+                    \array_map('strtoupper', self::$page1)
                 ]
             ],
             [
@@ -130,8 +130,8 @@ class PageIteratorTest extends TestCase
                 ],
                 ['resultLimit' => 4],
                 [
-                    array_map('strtoupper', self::$page1),
-                    array_slice(array_map('strtoupper', self::$page2), 0, 1)
+                    \array_map('strtoupper', self::$page1),
+                    \array_slice(\array_map('strtoupper', self::$page2), 0, 1)
                 ]
             ]
         ];

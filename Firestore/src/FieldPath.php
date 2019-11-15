@@ -47,9 +47,9 @@ class FieldPath
         foreach ($fieldNames as $field) {
             // falsey is good enough unless the field is actually `0`.
             if (!$field && $field !== 0) {
-                throw new \InvalidArgumentException(sprintf(
+                throw new \InvalidArgumentException(\sprintf(
                     'Field paths cannot contain empty path elements. Given path was `%s`.',
-                    implode('.', $fieldNames)
+                    \implode('.', $fieldNames)
                 ));
             }
         }
@@ -95,7 +95,7 @@ class FieldPath
         self::validateString($path);
 
         $parts = $splitPath
-            ? explode('.', $path)
+            ? \explode('.', $path)
             : [$path];
 
         return new self($parts);
@@ -139,7 +139,7 @@ class FieldPath
             $out[] = $this->escapePathPart($part);
         }
 
-        $fieldPath = implode('.', $out);
+        $fieldPath = \implode('.', $out);
 
         return $fieldPath;
     }
@@ -176,16 +176,16 @@ class FieldPath
     private function escapePathPart($part)
     {
         // If no special characters are found, return the input unchanged.
-        if (preg_match(self::UNESCAPED_FIELD_NAME, $part)) {
+        if (\preg_match(self::UNESCAPED_FIELD_NAME, $part)) {
             return $part;
         }
 
         // If the string is already wrapped in backticks, return as-is.
-        if (substr($part, 0, 1) === '`' && substr($part, -1) === '`' && strlen($part) > 1) {
+        if (\substr($part, 0, 1) === '`' && \substr($part, -1) === '`' && \strlen($part) > 1) {
             return $part;
         }
 
-        return '`' . str_replace('`', '\\`', str_replace('\\', '\\\\', $part)) . '`';
+        return '`' . \str_replace('`', '\\`', \str_replace('\\', '\\\\', $part)) . '`';
     }
 
     /**
@@ -196,11 +196,11 @@ class FieldPath
      */
     private static function validateString($fieldPath)
     {
-        if (strpos($fieldPath, '..')) {
+        if (\strpos($fieldPath, '..')) {
             throw new \InvalidArgumentException('Paths cannot contain `..`.');
         }
 
-        if (strpos($fieldPath, '.') === 0 || strpos(strrev($fieldPath), '.') === 0) {
+        if (\strpos($fieldPath, '.') === 0 || \strpos(\strrev($fieldPath), '.') === 0) {
             throw new \InvalidArgumentException('Paths cannot begin or end with `.`.');
         }
     }

@@ -11,6 +11,6 @@ if (false) {
      */
     class BatchTranslateMetadata_State {}
 }
-class_exists(BatchTranslateMetadata\State::class);
-@trigger_error('Google\Cloud\Translate\V3\BatchTranslateMetadata_State is deprecated and will be removed in a future release. Use Google\Cloud\Translate\V3\BatchTranslateMetadata\State instead', E_USER_DEPRECATED);
+\class_exists(BatchTranslateMetadata\State::class);
+@\trigger_error('Google\Cloud\Translate\V3\BatchTranslateMetadata_State is deprecated and will be removed in a future release. Use Google\Cloud\Translate\V3\BatchTranslateMetadata\State instead', E_USER_DEPRECATED);
 

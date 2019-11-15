@@ -11,6 +11,6 @@ if (false) {
      */
     class Job_ApplicationInfo {}
 }
-class_exists(Job\ApplicationInfo::class);
-@trigger_error('Google\Cloud\Talent\V4beta1\Job_ApplicationInfo is deprecated and will be removed in the next major release. Use Google\Cloud\Talent\V4beta1\Job\ApplicationInfo instead', E_USER_DEPRECATED);
+\class_exists(Job\ApplicationInfo::class);
+@\trigger_error('Google\Cloud\Talent\V4beta1\Job_ApplicationInfo is deprecated and will be removed in the next major release. Use Google\Cloud\Talent\V4beta1\Job\ApplicationInfo instead', E_USER_DEPRECATED);
 

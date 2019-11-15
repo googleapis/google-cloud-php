@@ -11,6 +11,6 @@ if (false) {
      */
     class StructuredQuery_FieldReference {}
 }
-class_exists(StructuredQuery\FieldReference::class);
-@trigger_error('Google\Cloud\Firestore\V1\StructuredQuery_FieldReference is deprecated and will be removed in the next major release. Use Google\Cloud\Firestore\V1\StructuredQuery\FieldReference instead', E_USER_DEPRECATED);
+\class_exists(StructuredQuery\FieldReference::class);
+@\trigger_error('Google\Cloud\Firestore\V1\StructuredQuery_FieldReference is deprecated and will be removed in the next major release. Use Google\Cloud\Firestore\V1\StructuredQuery\FieldReference instead', E_USER_DEPRECATED);
 

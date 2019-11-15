@@ -69,7 +69,7 @@ class LoggerTest extends TestCase
             ->shouldBeCalledTimes(1);
 
         $logger = $this->getLogger($this->connection);
-        $entries = iterator_to_array($logger->entries($options));
+        $entries = \iterator_to_array($logger->entries($options));
 
         $this->assertEmpty($entries);
     }
@@ -85,7 +85,7 @@ class LoggerTest extends TestCase
             ->shouldBeCalledTimes(1);
 
         $logger = $this->getLogger($this->connection);
-        $entries = iterator_to_array($logger->entries());
+        $entries = \iterator_to_array($logger->entries());
 
         $this->assertEquals($this->textPayload, $entries[0]->info()['textPayload']);
     }
@@ -105,7 +105,7 @@ class LoggerTest extends TestCase
             ])->shouldBeCalledTimes(2);
 
         $logger = $this->getLogger($this->connection);
-        $entries = iterator_to_array($logger->entries());
+        $entries = \iterator_to_array($logger->entries());
 
         $this->assertEquals($this->textPayload, $entries[1]->info()['textPayload']);
     }
@@ -121,7 +121,7 @@ class LoggerTest extends TestCase
             ->shouldBeCalledTimes(1);
 
         $logger = $this->getLogger($this->connection);
-        $entries = iterator_to_array($logger->entries([
+        $entries = \iterator_to_array($logger->entries([
             'filter' => $filter
         ]));
 
@@ -341,7 +341,7 @@ class LoggerStub extends Logger
 
     protected function microtime()
     {
-        return $this->time ?: microtime(true);
+        return $this->time ?: \microtime(true);
     }
 }
 //@codingStandardsIgnoreEnd

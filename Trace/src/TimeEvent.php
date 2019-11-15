@@ -41,7 +41,7 @@ abstract class TimeEvent
      */
     public function __construct(array $options = [])
     {
-        if (array_key_exists('time', $options)) {
+        if (\array_key_exists('time', $options)) {
             $this->time = $this->formatDate($options['time']);
         } else {
             $this->time = $this->formatDate();

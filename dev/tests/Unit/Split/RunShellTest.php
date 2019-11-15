@@ -31,7 +31,7 @@ class RunShellTest extends TestCase
      */
     public function testExecute($cmd, $code, $output)
     {
-        if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+        if (\strtoupper(\substr(PHP_OS, 0, 3)) === 'WIN') {
             $this->markTestSkipped('Cannot execute test in Windows.');
             return;
         }

@@ -581,11 +581,11 @@ class DatabaseTest extends TestCase
                 return false;
             }
 
-            if ($arg['mutations'][0][OPERATION::OP_INSERT]['columns'][0] !== array_keys($row)[0]) {
+            if ($arg['mutations'][0][OPERATION::OP_INSERT]['columns'][0] !== \array_keys($row)[0]) {
                 return false;
             }
 
-            if ($arg['mutations'][0][OPERATION::OP_INSERT]['values'][0] !== current($row)) {
+            if ($arg['mutations'][0][OPERATION::OP_INSERT]['values'][0] !== \current($row)) {
                 return false;
             }
 
@@ -609,11 +609,11 @@ class DatabaseTest extends TestCase
                 return false;
             }
 
-            if ($arg['mutations'][0][OPERATION::OP_INSERT]['columns'][0] !== array_keys($row)[0]) {
+            if ($arg['mutations'][0][OPERATION::OP_INSERT]['columns'][0] !== \array_keys($row)[0]) {
                 return false;
             }
 
-            if ($arg['mutations'][0][OPERATION::OP_INSERT]['values'][0] !== current($row)) {
+            if ($arg['mutations'][0][OPERATION::OP_INSERT]['values'][0] !== \current($row)) {
                 return false;
             }
 
@@ -637,11 +637,11 @@ class DatabaseTest extends TestCase
                 return false;
             }
 
-            if ($arg['mutations'][0][Operation::OP_UPDATE]['columns'][0] !== array_keys($row)[0]) {
+            if ($arg['mutations'][0][Operation::OP_UPDATE]['columns'][0] !== \array_keys($row)[0]) {
                 return false;
             }
 
-            if ($arg['mutations'][0][Operation::OP_UPDATE]['values'][0] !== current($row)) {
+            if ($arg['mutations'][0][Operation::OP_UPDATE]['values'][0] !== \current($row)) {
                 return false;
             }
 
@@ -665,11 +665,11 @@ class DatabaseTest extends TestCase
                 return false;
             }
 
-            if ($arg['mutations'][0][Operation::OP_UPDATE]['columns'][0] !== array_keys($row)[0]) {
+            if ($arg['mutations'][0][Operation::OP_UPDATE]['columns'][0] !== \array_keys($row)[0]) {
                 return false;
             }
 
-            if ($arg['mutations'][0][Operation::OP_UPDATE]['values'][0] !== current($row)) {
+            if ($arg['mutations'][0][Operation::OP_UPDATE]['values'][0] !== \current($row)) {
                 return false;
             }
 
@@ -693,11 +693,11 @@ class DatabaseTest extends TestCase
                 return false;
             }
 
-            if ($arg['mutations'][0][Operation::OP_INSERT_OR_UPDATE]['columns'][0] !== array_keys($row)[0]) {
+            if ($arg['mutations'][0][Operation::OP_INSERT_OR_UPDATE]['columns'][0] !== \array_keys($row)[0]) {
                 return false;
             }
 
-            if ($arg['mutations'][0][Operation::OP_INSERT_OR_UPDATE]['values'][0] !== current($row)) {
+            if ($arg['mutations'][0][Operation::OP_INSERT_OR_UPDATE]['values'][0] !== \current($row)) {
                 return false;
             }
 
@@ -721,11 +721,11 @@ class DatabaseTest extends TestCase
                 return false;
             }
 
-            if ($arg['mutations'][0][Operation::OP_INSERT_OR_UPDATE]['columns'][0] !== array_keys($row)[0]) {
+            if ($arg['mutations'][0][Operation::OP_INSERT_OR_UPDATE]['columns'][0] !== \array_keys($row)[0]) {
                 return false;
             }
 
-            if ($arg['mutations'][0][Operation::OP_INSERT_OR_UPDATE]['values'][0] !== current($row)) {
+            if ($arg['mutations'][0][Operation::OP_INSERT_OR_UPDATE]['values'][0] !== \current($row)) {
                 return false;
             }
 
@@ -749,11 +749,11 @@ class DatabaseTest extends TestCase
                 return false;
             }
 
-            if ($arg['mutations'][0][Operation::OP_REPLACE]['columns'][0] !== array_keys($row)[0]) {
+            if ($arg['mutations'][0][Operation::OP_REPLACE]['columns'][0] !== \array_keys($row)[0]) {
                 return false;
             }
 
-            if ($arg['mutations'][0][Operation::OP_REPLACE]['values'][0] !== current($row)) {
+            if ($arg['mutations'][0][Operation::OP_REPLACE]['values'][0] !== \current($row)) {
                 return false;
             }
 
@@ -777,11 +777,11 @@ class DatabaseTest extends TestCase
                 return false;
             }
 
-            if ($arg['mutations'][0][Operation::OP_REPLACE]['columns'][0] !== array_keys($row)[0]) {
+            if ($arg['mutations'][0][Operation::OP_REPLACE]['columns'][0] !== \array_keys($row)[0]) {
                 return false;
             }
 
-            if ($arg['mutations'][0][Operation::OP_REPLACE]['values'][0] !== current($row)) {
+            if ($arg['mutations'][0][Operation::OP_REPLACE]['values'][0] !== \current($row)) {
                 return false;
             }
 
@@ -834,7 +834,7 @@ class DatabaseTest extends TestCase
 
         $res = $this->database->execute($sql);
         $this->assertInstanceOf(Result::class, $res);
-        $rows = iterator_to_array($res->rows());
+        $rows = \iterator_to_array($res->rows());
         $this->assertEquals(10, $rows[0]['ID']);
     }
 
@@ -852,7 +852,7 @@ class DatabaseTest extends TestCase
         $this->refreshOperation($this->database, $this->connection->reveal());
 
         $res = $this->database->execute($sql);
-        $rows = iterator_to_array($res->rows());
+        $rows = \iterator_to_array($res->rows());
     }
 
     public function testExecuteSingleUseMaxStaleness()
@@ -871,7 +871,7 @@ class DatabaseTest extends TestCase
         $res = $this->database->execute($sql, [
             'maxStaleness' => new Duration(10, 0)
         ]);
-        $rows = iterator_to_array($res->rows());
+        $rows = \iterator_to_array($res->rows());
     }
 
     /**
@@ -937,7 +937,7 @@ class DatabaseTest extends TestCase
 
         $res = $this->database->read($table, new KeySet(['all' => true]), ['ID']);
         $this->assertInstanceOf(Result::class, $res);
-        $rows = iterator_to_array($res->rows());
+        $rows = \iterator_to_array($res->rows());
         $this->assertEquals(10, $rows[0]['ID']);
     }
 

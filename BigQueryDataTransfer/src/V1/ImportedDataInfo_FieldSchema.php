@@ -11,6 +11,6 @@ if (false) {
      */
     class ImportedDataInfo_FieldSchema {}
 }
-class_exists(ImportedDataInfo\FieldSchema::class);
-@trigger_error('Google\Cloud\BigQuery\DataTransfer\V1\ImportedDataInfo_FieldSchema is deprecated and will be removed in a future release. Use Google\Cloud\BigQuery\DataTransfer\V1\ImportedDataInfo\FieldSchema instead', E_USER_DEPRECATED);
+\class_exists(ImportedDataInfo\FieldSchema::class);
+@\trigger_error('Google\Cloud\BigQuery\DataTransfer\V1\ImportedDataInfo_FieldSchema is deprecated and will be removed in a future release. Use Google\Cloud\BigQuery\DataTransfer\V1\ImportedDataInfo\FieldSchema instead', E_USER_DEPRECATED);
 

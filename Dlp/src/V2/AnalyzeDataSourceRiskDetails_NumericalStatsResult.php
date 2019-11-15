@@ -11,6 +11,6 @@ if (false) {
      */
     class AnalyzeDataSourceRiskDetails_NumericalStatsResult {}
 }
-class_exists(AnalyzeDataSourceRiskDetails\NumericalStatsResult::class);
-@trigger_error('Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_NumericalStatsResult is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\NumericalStatsResult instead', E_USER_DEPRECATED);
+\class_exists(AnalyzeDataSourceRiskDetails\NumericalStatsResult::class);
+@\trigger_error('Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_NumericalStatsResult is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\NumericalStatsResult instead', E_USER_DEPRECATED);
 

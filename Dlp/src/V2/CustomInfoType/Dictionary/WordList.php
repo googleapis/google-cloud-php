@@ -74,5 +74,5 @@ class WordList extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(WordList::class, \Google\Cloud\Dlp\V2\CustomInfoType_Dictionary_WordList::class);
+\class_alias(WordList::class, \Google\Cloud\Dlp\V2\CustomInfoType_Dictionary_WordList::class);
 

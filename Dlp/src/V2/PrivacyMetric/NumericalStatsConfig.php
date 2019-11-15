@@ -71,5 +71,5 @@ class NumericalStatsConfig extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(NumericalStatsConfig::class, \Google\Cloud\Dlp\V2\PrivacyMetric_NumericalStatsConfig::class);
+\class_alias(NumericalStatsConfig::class, \Google\Cloud\Dlp\V2\PrivacyMetric_NumericalStatsConfig::class);
 

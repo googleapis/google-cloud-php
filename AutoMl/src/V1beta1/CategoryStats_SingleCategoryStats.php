@@ -11,6 +11,6 @@ if (false) {
      */
     class CategoryStats_SingleCategoryStats {}
 }
-class_exists(CategoryStats\SingleCategoryStats::class);
-@trigger_error('Google\Cloud\AutoMl\V1beta1\CategoryStats_SingleCategoryStats is deprecated and will be removed in the next major release. Use Google\Cloud\AutoMl\V1beta1\CategoryStats\SingleCategoryStats instead', E_USER_DEPRECATED);
+\class_exists(CategoryStats\SingleCategoryStats::class);
+@\trigger_error('Google\Cloud\AutoMl\V1beta1\CategoryStats_SingleCategoryStats is deprecated and will be removed in the next major release. Use Google\Cloud\AutoMl\V1beta1\CategoryStats\SingleCategoryStats instead', E_USER_DEPRECATED);
 

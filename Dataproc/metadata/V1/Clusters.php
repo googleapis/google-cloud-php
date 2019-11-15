@@ -23,7 +23,7 @@ class Clusters
         \GPBMetadata\Google\Protobuf\Duration::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0ae1370a27676f6f676c652f636c6f75642f6461746170726f632f76312f" .
             "636c7573746572732e70726f746f1218676f6f676c652e636c6f75642e64" .
             "61746170726f632e76311a17676f6f676c652f6170692f636c69656e742e" .

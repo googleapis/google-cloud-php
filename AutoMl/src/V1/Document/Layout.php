@@ -222,5 +222,5 @@ class Layout extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Layout::class, \Google\Cloud\AutoMl\V1\Document_Layout::class);
+\class_alias(Layout::class, \Google\Cloud\AutoMl\V1\Document_Layout::class);
 

@@ -18,7 +18,7 @@ class LoggingConfig
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0a8b270a26676f6f676c652f6c6f6767696e672f76322f6c6f6767696e67" .
             "5f636f6e6669672e70726f746f1211676f6f676c652e6c6f6767696e672e" .
             "76321a1b676f6f676c652f70726f746f6275662f656d7074792e70726f74" .

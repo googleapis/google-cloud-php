@@ -30,7 +30,7 @@ class SourceLocationResolverTest extends TestCase
 
     public static function setUpBeforeClass()
     {
-        self::$cwd = realpath(implode(DIRECTORY_SEPARATOR, [__DIR__, '../../']));
+        self::$cwd = \realpath(\implode(DIRECTORY_SEPARATOR, [__DIR__, '../../']));
     }
 
     public function testExactMatch()
@@ -68,6 +68,6 @@ class SourceLocationResolverTest extends TestCase
 
     private function sourcePath($parts)
     {
-        return implode(DIRECTORY_SEPARATOR, $parts);
+        return \implode(DIRECTORY_SEPARATOR, $parts);
     }
 }

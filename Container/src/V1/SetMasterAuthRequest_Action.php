@@ -11,6 +11,6 @@ if (false) {
      */
     class SetMasterAuthRequest_Action {}
 }
-class_exists(SetMasterAuthRequest\Action::class);
-@trigger_error('Google\Cloud\Container\V1\SetMasterAuthRequest_Action is deprecated and will be removed in the next major release. Use Google\Cloud\Container\V1\SetMasterAuthRequest\Action instead', E_USER_DEPRECATED);
+\class_exists(SetMasterAuthRequest\Action::class);
+@\trigger_error('Google\Cloud\Container\V1\SetMasterAuthRequest_Action is deprecated and will be removed in the next major release. Use Google\Cloud\Container\V1\SetMasterAuthRequest\Action instead', E_USER_DEPRECATED);
 

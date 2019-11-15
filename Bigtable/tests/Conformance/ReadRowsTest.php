@@ -63,13 +63,13 @@ class ReadRowsTest extends TestCase
 
     public function rowsProvider()
     {
-        $str = file_get_contents(__DIR__ . '/fixtures/read-rows-test.json');
-        $json = json_decode($str, true)['tests'];
+        $str = \file_get_contents(__DIR__ . '/fixtures/read-rows-test.json');
+        $json = \json_decode($str, true)['tests'];
         $testsData = [];
         foreach ($json as $test) {
             $responses = [];
             foreach ($test['chunks_base64'] as $chunk) {
-                $chunk = base64_decode($chunk);
+                $chunk = \base64_decode($chunk);
                 $cellChunk = new ReadRowsResponse_CellChunk();
                 $cellChunk->mergeFromString($chunk);
                 $response =  new ReadRowsResponse();
@@ -79,12 +79,12 @@ class ReadRowsTest extends TestCase
             $rows = [];
             $errorCount = 0;
             $rawResults = ($test['results'])?$test['results']:[];
-            $error = array_filter($rawResults, function ($var) {
+            $error = \array_filter($rawResults, function ($var) {
                     return $var['error'] == 1;
             });
-            $errorCount = count($error);
+            $errorCount = \count($error);
 
-            $notError = array_filter($rawResults, function ($var) {
+            $notError = \array_filter($rawResults, function ($var) {
                 return $var['error'] == '' || $var['error'] == 0;
             });
             foreach ($notError as $k => $result) {

@@ -109,5 +109,5 @@ class InfoTypeTransformation extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(InfoTypeTransformation::class, \Google\Cloud\Dlp\V2\InfoTypeTransformations_InfoTypeTransformation::class);
+\class_alias(InfoTypeTransformation::class, \Google\Cloud\Dlp\V2\InfoTypeTransformations_InfoTypeTransformation::class);
 

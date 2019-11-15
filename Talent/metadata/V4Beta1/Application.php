@@ -20,7 +20,7 @@ class Application
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         \GPBMetadata\Google\Protobuf\Wrappers::initOnce();
         \GPBMetadata\Google\Type\Date::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0ae40a0a2d676f6f676c652f636c6f75642f74616c656e742f7634626574" .
             "61312f6170706c69636174696f6e2e70726f746f121b676f6f676c652e63" .
             "6c6f75642e74616c656e742e763462657461311a1f676f6f676c652f6170" .

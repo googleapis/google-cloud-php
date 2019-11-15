@@ -11,6 +11,6 @@ if (false) {
      */
     class StructuredQuery_UnaryFilter_Operator {}
 }
-class_exists(StructuredQuery\UnaryFilter\Operator::class);
-@trigger_error('Google\Cloud\Firestore\V1beta1\StructuredQuery_UnaryFilter_Operator is deprecated and will be removed in the next major release. Use Google\Cloud\Firestore\V1beta1\StructuredQuery\UnaryFilter\Operator instead', E_USER_DEPRECATED);
+\class_exists(StructuredQuery\UnaryFilter\Operator::class);
+@\trigger_error('Google\Cloud\Firestore\V1beta1\StructuredQuery_UnaryFilter_Operator is deprecated and will be removed in the next major release. Use Google\Cloud\Firestore\V1beta1\StructuredQuery\UnaryFilter\Operator instead', E_USER_DEPRECATED);
 

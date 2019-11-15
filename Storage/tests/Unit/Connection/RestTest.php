@@ -82,11 +82,11 @@ class RestTest extends TestCase
         $rest->setRequestBuilder($requestBuilder->reveal());
         $rest->setRequestWrapper($this->requestWrapper->reveal());
 
-        if (substr($method, -3) == 'Acl') {
+        if (\substr($method, -3) == 'Acl') {
             $options = ['type' => 'bucketAccessControls'];
         }
 
-        $this->assertEquals(json_decode($this->successBody, true), $rest->$method($options));
+        $this->assertEquals(\json_decode($this->successBody, true), $rest->$method($options));
     }
 
     public function methodProvider()
@@ -242,7 +242,7 @@ class RestTest extends TestCase
         }
 
         if ($metadataKeysWhichShouldNotBeSet) {
-            $metadataKeys = array_keys($metadata);
+            $metadataKeys = \array_keys($metadata);
             foreach ($metadataKeysWhichShouldNotBeSet as $key) {
                 $this->assertArrayNotHasKey($key, $metadataKeys);
             }
@@ -251,13 +251,13 @@ class RestTest extends TestCase
 
     public function insertObjectProvider()
     {
-        $tempFile = Psr7\stream_for(fopen('php://temp', 'r+'));
-        $tempFile->write(str_repeat('0', 5000001));
-        $logoFile = Psr7\stream_for(fopen(__DIR__ . '/../data/logo.svg', 'r'));
+        $tempFile = Psr7\stream_for(\fopen('php://temp', 'r+'));
+        $tempFile->write(\str_repeat('0', 5000001));
+        $logoFile = Psr7\stream_for(\fopen(__DIR__ . '/../data/logo.svg', 'r'));
 
         $crc32c = CRC32::create(CRC32::CASTAGNOLI);
         $crc32c->update((string) $logoFile);
-        $crcHash = base64_encode($crc32c->hash(true));
+        $crcHash = \base64_encode($crc32c->hash(true));
 
         return [
             [
@@ -271,7 +271,7 @@ class RestTest extends TestCase
                 ResumableUploader::class,
                 'text/plain',
                 [
-                    'md5Hash' => base64_encode(Psr7\hash($tempFile, 'md5', true)),
+                    'md5Hash' => \base64_encode(Psr7\hash($tempFile, 'md5', true)),
                     'name' => 'file.txt'
                 ],
                 ['crc32c']
@@ -436,15 +436,15 @@ class RestTest extends TestCase
         if ($request->getHeaderLine('X-Upload-Content-Type')) {
             return [
                 $request->getHeaderLine('X-Upload-Content-Type'),
-                json_decode($request->getBody(), true)
+                \json_decode($request->getBody(), true)
             ];
         }
 
         // Multipart upload request
-        $lines = explode(PHP_EOL, (string) $request->getBody());
+        $lines = \explode(PHP_EOL, (string) $request->getBody());
         return [
-            trim(explode(':', $lines[7])[1]),
-            json_decode($lines[5], true)
+            \trim(\explode(':', $lines[7])[1]),
+            \json_decode($lines[5], true)
         ];
     }
 }
@@ -468,7 +468,7 @@ class RestCrc32cStub extends Rest
     public function chooseValidationMethodProxy(array $args)
     {
         $chooseValidationMethod = function () {
-            return call_user_func_array([$this, 'chooseValidationMethod'], func_get_args());
+            return \call_user_func_array([$this, 'chooseValidationMethod'], \func_get_args());
         };
 
         $call = $chooseValidationMethod->bindTo($this, Rest::class);

@@ -11,6 +11,6 @@ if (false) {
      */
     class PropertyOrder_Direction {}
 }
-class_exists(PropertyOrder\Direction::class);
-@trigger_error('Google\Cloud\Datastore\V1\PropertyOrder_Direction is deprecated and will be removed in the next major release. Use Google\Cloud\Datastore\V1\PropertyOrder\Direction instead', E_USER_DEPRECATED);
+\class_exists(PropertyOrder\Direction::class);
+@\trigger_error('Google\Cloud\Datastore\V1\PropertyOrder_Direction is deprecated and will be removed in the next major release. Use Google\Cloud\Datastore\V1\PropertyOrder\Direction instead', E_USER_DEPRECATED);
 

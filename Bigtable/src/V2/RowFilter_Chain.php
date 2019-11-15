@@ -11,6 +11,6 @@ if (false) {
      */
     class RowFilter_Chain {}
 }
-class_exists(RowFilter\Chain::class);
-@trigger_error('Google\Cloud\Bigtable\V2\RowFilter_Chain is deprecated and will be removed in the next major release. Use Google\Cloud\Bigtable\V2\RowFilter\Chain instead', E_USER_DEPRECATED);
+\class_exists(RowFilter\Chain::class);
+@\trigger_error('Google\Cloud\Bigtable\V2\RowFilter_Chain is deprecated and will be removed in the next major release. Use Google\Cloud\Bigtable\V2\RowFilter\Chain instead', E_USER_DEPRECATED);
 

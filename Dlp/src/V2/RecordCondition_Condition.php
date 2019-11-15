@@ -11,6 +11,6 @@ if (false) {
      */
     class RecordCondition_Condition {}
 }
-class_exists(RecordCondition\Condition::class);
-@trigger_error('Google\Cloud\Dlp\V2\RecordCondition_Condition is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\RecordCondition\Condition instead', E_USER_DEPRECATED);
+\class_exists(RecordCondition\Condition::class);
+@\trigger_error('Google\Cloud\Dlp\V2\RecordCondition_Condition is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\RecordCondition\Condition instead', E_USER_DEPRECATED);
 

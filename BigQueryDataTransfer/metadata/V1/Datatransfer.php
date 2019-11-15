@@ -24,7 +24,7 @@ class Datatransfer
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         \GPBMetadata\Google\Protobuf\Wrappers::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0aa94c0a38676f6f676c652f636c6f75642f62696771756572792f646174" .
             "617472616e736665722f76312f646174617472616e736665722e70726f74" .
             "6f1225676f6f676c652e636c6f75642e62696771756572792e6461746174" .

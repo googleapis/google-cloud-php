@@ -39,19 +39,19 @@ class BigQueryTestCase extends SystemTestCase
             return;
         }
 
-        $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
+        $keyFilePath = \getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
 
         self::$storageClient = new StorageClient([
             'keyFilePath' => $keyFilePath
         ]);
 
-        self::$bucket = self::createBucket(self::$storageClient, uniqid(self::TESTING_PREFIX));
+        self::$bucket = self::createBucket(self::$storageClient, \uniqid(self::TESTING_PREFIX));
 
         self::$client = new BigQueryClient([
             'keyFilePath' => $keyFilePath
         ]);
-        self::$dataset = self::createDataset(self::$client, uniqid(self::TESTING_PREFIX));
-        self::$table = self::createTable(self::$dataset, uniqid(self::TESTING_PREFIX));
+        self::$dataset = self::createDataset(self::$client, \uniqid(self::TESTING_PREFIX));
+        self::$table = self::createTable(self::$dataset, \uniqid(self::TESTING_PREFIX));
 
         self::$hasSetUp = true;
     }
@@ -59,8 +59,8 @@ class BigQueryTestCase extends SystemTestCase
     protected static function createTable(Dataset $dataset, $name, array $options = [])
     {
         if (!isset($options['schema'])) {
-            $options['schema']['fields'] = json_decode(file_get_contents(__DIR__ . '/data/table-schema.json'), true);
+            $options['schema']['fields'] = \json_decode(\file_get_contents(__DIR__ . '/data/table-schema.json'), true);
         }
-        return $dataset->createTable(uniqid(self::TESTING_PREFIX), $options);
+        return $dataset->createTable(\uniqid(self::TESTING_PREFIX), $options);
     }
 }

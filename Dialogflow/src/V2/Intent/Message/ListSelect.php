@@ -100,5 +100,5 @@ class ListSelect extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ListSelect::class, \Google\Cloud\Dialogflow\V2\Intent_Message_ListSelect::class);
+\class_alias(ListSelect::class, \Google\Cloud\Dialogflow\V2\Intent_Message_ListSelect::class);
 

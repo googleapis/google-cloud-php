@@ -11,6 +11,6 @@ if (false) {
      */
     class Company_DataLearningType {}
 }
-class_exists(Company\DataLearningType::class);
-@trigger_error('Google\Cloud\Talent\V4beta1\Company_DataLearningType is deprecated and will be removed in the next major release. Use Google\Cloud\Talent\V4beta1\Company\DataLearningType instead', E_USER_DEPRECATED);
+\class_exists(Company\DataLearningType::class);
+@\trigger_error('Google\Cloud\Talent\V4beta1\Company_DataLearningType is deprecated and will be removed in the next major release. Use Google\Cloud\Talent\V4beta1\Company\DataLearningType instead', E_USER_DEPRECATED);
 

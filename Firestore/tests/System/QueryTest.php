@@ -27,7 +27,7 @@ class QueryTest extends FirestoreTestCase
 
     public function setUp()
     {
-        $this->query = self::$client->collection(uniqid(self::COLLECTION_NAME));
+        $this->query = self::$client->collection(\uniqid(self::COLLECTION_NAME));
         self::$localDeletionQueue->add($this->query);
     }
 
@@ -41,11 +41,11 @@ class QueryTest extends FirestoreTestCase
 
         $expected = ['foo', 'good'];
         $res = $this->getQueryRow($this->query->select($expected));
-        $actual = array_keys($res->data());
+        $actual = \array_keys($res->data());
 
-        $this->assertEmpty(array_merge(
-            array_diff($expected, $actual),
-            array_diff($actual, $expected)
+        $this->assertEmpty(\array_merge(
+            \array_diff($expected, $actual),
+            \array_diff($actual, $expected)
         ));
     }
 
@@ -61,7 +61,7 @@ class QueryTest extends FirestoreTestCase
 
     public function testWhere()
     {
-        $randomVal = base64_encode(random_bytes(10));
+        $randomVal = \base64_encode(\random_bytes(10));
         $doc = $this->insertDoc([
             'foo' => $randomVal
         ]);
@@ -92,7 +92,7 @@ class QueryTest extends FirestoreTestCase
 
     public function testSnapshotCursors()
     {
-        $collection = self::$client->collection(uniqid(self::COLLECTION_NAME));
+        $collection = self::$client->collection(\uniqid(self::COLLECTION_NAME));
         self::$localDeletionQueue->add($collection);
 
         $refs = [];
@@ -103,16 +103,16 @@ class QueryTest extends FirestoreTestCase
         }
 
         $q = $collection->startAt($refs[0]->snapshot());
-        $this->assertCount(count($refs), iterator_to_array($q->documents()));
+        $this->assertCount(\count($refs), \iterator_to_array($q->documents()));
 
         $q = $collection->startAfter($refs[0]->snapshot());
-        $this->assertCount(count($refs)-1, iterator_to_array($q->documents()));
+        $this->assertCount(\count($refs)-1, \iterator_to_array($q->documents()));
 
-        $q = $collection->endBefore(end($refs)->snapshot());
-        $this->assertCount(count($refs)-1, iterator_to_array($q->documents()));
+        $q = $collection->endBefore(\end($refs)->snapshot());
+        $this->assertCount(\count($refs)-1, \iterator_to_array($q->documents()));
 
-        $q = $collection->endAt(end($refs)->snapshot());
-        $this->assertCount(count($refs), iterator_to_array($q->documents()));
+        $q = $collection->endAt(\end($refs)->snapshot());
+        $this->assertCount(\count($refs), \iterator_to_array($q->documents()));
     }
 
     private function insertDoc(array $fields)
@@ -122,6 +122,6 @@ class QueryTest extends FirestoreTestCase
 
     private function getQueryRow($query)
     {
-        return current(iterator_to_array($query->documents()));
+        return \current(\iterator_to_array($query->documents()));
     }
 }

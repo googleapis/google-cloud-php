@@ -11,6 +11,6 @@ if (false) {
      */
     class ListFindingsResponse_ListFindingsResult {}
 }
-class_exists(ListFindingsResponse\ListFindingsResult::class);
-@trigger_error('Google\Cloud\SecurityCenter\V1\ListFindingsResponse_ListFindingsResult is deprecated and will be removed in a future release. Use Google\Cloud\SecurityCenter\V1\ListFindingsResponse\ListFindingsResult instead', E_USER_DEPRECATED);
+\class_exists(ListFindingsResponse\ListFindingsResult::class);
+@\trigger_error('Google\Cloud\SecurityCenter\V1\ListFindingsResponse_ListFindingsResult is deprecated and will be removed in a future release. Use Google\Cloud\SecurityCenter\V1\ListFindingsResponse\ListFindingsResult instead', E_USER_DEPRECATED);
 

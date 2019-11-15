@@ -104,7 +104,7 @@ class BigtableClientTest extends GeneratedTest
         $serverStream = $client->readRows($formattedTableName);
         $this->assertInstanceOf(ServerStream::class, $serverStream);
 
-        $responses = iterator_to_array($serverStream->readAll());
+        $responses = \iterator_to_array($serverStream->readAll());
 
         $expectedResponses = [];
         $expectedResponses[] = $expectedResponse;
@@ -113,7 +113,7 @@ class BigtableClientTest extends GeneratedTest
         $this->assertEquals($expectedResponses, $responses);
 
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertSame(1, \count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.v2.Bigtable/ReadRows', $actualFuncCall);
@@ -137,7 +137,7 @@ class BigtableClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -155,7 +155,7 @@ class BigtableClientTest extends GeneratedTest
         $results = $serverStream->readAll();
 
         try {
-            iterator_to_array($results);
+            \iterator_to_array($results);
             // If the close stream method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -204,7 +204,7 @@ class BigtableClientTest extends GeneratedTest
         $serverStream = $client->sampleRowKeys($formattedTableName);
         $this->assertInstanceOf(ServerStream::class, $serverStream);
 
-        $responses = iterator_to_array($serverStream->readAll());
+        $responses = \iterator_to_array($serverStream->readAll());
 
         $expectedResponses = [];
         $expectedResponses[] = $expectedResponse;
@@ -213,7 +213,7 @@ class BigtableClientTest extends GeneratedTest
         $this->assertEquals($expectedResponses, $responses);
 
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertSame(1, \count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.v2.Bigtable/SampleRowKeys', $actualFuncCall);
@@ -237,7 +237,7 @@ class BigtableClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -255,7 +255,7 @@ class BigtableClientTest extends GeneratedTest
         $results = $serverStream->readAll();
 
         try {
-            iterator_to_array($results);
+            \iterator_to_array($results);
             // If the close stream method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -290,7 +290,7 @@ class BigtableClientTest extends GeneratedTest
         $response = $client->mutateRow($formattedTableName, $rowKey, $mutations);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertSame(1, \count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.v2.Bigtable/MutateRow', $actualFuncCall);
@@ -322,7 +322,7 @@ class BigtableClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -374,7 +374,7 @@ class BigtableClientTest extends GeneratedTest
         $serverStream = $client->mutateRows($formattedTableName, $entries);
         $this->assertInstanceOf(ServerStream::class, $serverStream);
 
-        $responses = iterator_to_array($serverStream->readAll());
+        $responses = \iterator_to_array($serverStream->readAll());
 
         $expectedResponses = [];
         $expectedResponses[] = $expectedResponse;
@@ -383,7 +383,7 @@ class BigtableClientTest extends GeneratedTest
         $this->assertEquals($expectedResponses, $responses);
 
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertSame(1, \count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.v2.Bigtable/MutateRows', $actualFuncCall);
@@ -410,7 +410,7 @@ class BigtableClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -429,7 +429,7 @@ class BigtableClientTest extends GeneratedTest
         $results = $serverStream->readAll();
 
         try {
-            iterator_to_array($results);
+            \iterator_to_array($results);
             // If the close stream method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -465,7 +465,7 @@ class BigtableClientTest extends GeneratedTest
         $response = $client->checkAndMutateRow($formattedTableName, $rowKey);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertSame(1, \count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.v2.Bigtable/CheckAndMutateRow', $actualFuncCall);
@@ -494,7 +494,7 @@ class BigtableClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',
@@ -542,7 +542,7 @@ class BigtableClientTest extends GeneratedTest
         $response = $client->readModifyWriteRow($formattedTableName, $rowKey, $rules);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertSame(1, \count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.v2.Bigtable/ReadModifyWriteRow', $actualFuncCall);
@@ -574,7 +574,7 @@ class BigtableClientTest extends GeneratedTest
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
 
-        $expectedExceptionMessage = json_encode([
+        $expectedExceptionMessage = \json_encode([
            'message' => 'internal error',
            'code' => Code::DATA_LOSS,
            'status' => 'DATA_LOSS',

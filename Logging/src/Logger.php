@@ -294,19 +294,19 @@ class Logger
      */
     public function entry($data, array $options = [])
     {
-        if (!is_array($data) && !is_string($data)) {
+        if (!\is_array($data) && !\is_string($data)) {
             throw new \InvalidArgumentException('$data must be either a string or an array.');
         }
 
         $options['timestamp'] = $this->handleTimestamp($options);
 
-        if (is_array($data)) {
+        if (\is_array($data)) {
             $options['jsonPayload'] = $data;
         } else {
             $options['textPayload'] = $data;
         }
 
-        if (!array_key_exists('labels', $options) && $this->labels) {
+        if (!\array_key_exists('labels', $options) && $this->labels) {
             $options['labels'] = $this->labels;
         }
 
@@ -418,7 +418,7 @@ class Logger
      */
     protected function microtime()
     {
-        return microtime(true);
+        return \microtime(true);
     }
 
     /**
@@ -433,7 +433,7 @@ class Logger
                 return $entry;
             }
 
-            if (array_key_exists('timestamp', $entryOptions)) {
+            if (\array_key_exists('timestamp', $entryOptions)) {
                 $entryOptions['timestamp'] = $this->handleTimestamp($entryOptions);
             }
 
@@ -449,7 +449,7 @@ class Logger
      */
     private function handleTimestamp(array $options)
     {
-        if (!array_key_exists('timestamp', $options)) {
+        if (!\array_key_exists('timestamp', $options)) {
             return $this->createTimestamp();
         }
 
@@ -471,7 +471,7 @@ class Logger
         if (!$dt) {
             $dt = \DateTime::createFromFormat(
                 'U.u',
-                sprintf('%.6F', $this->microtime()),
+                \sprintf('%.6F', $this->microtime()),
                 new \DateTimeZone('UTC')
             );
         }

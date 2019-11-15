@@ -136,7 +136,7 @@ class QueryPartition implements PartitionInterface
      */
     public function serialize()
     {
-        return base64_encode(json_encode(get_object_vars($this) + [
+        return \base64_encode(\json_encode(\get_object_vars($this) + [
             BatchClient::PARTITION_TYPE_KEY => static::class
         ]));
     }

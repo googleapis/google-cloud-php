@@ -31,7 +31,7 @@ class SessionTest extends SpannerTestCase
     public function testCacheSessionPool()
     {
         $identity = self::$database->identity();
-        $cacheKey = sprintf(
+        $cacheKey = \sprintf(
             CacheSessionPool::CACHE_KEY_TEMPLATE,
             $identity['projectId'],
             $identity['instance'],
@@ -56,7 +56,7 @@ class SessionTest extends SpannerTestCase
         $this->assertInstanceOf(Session::class, $session);
         $this->assertTrue($session->exists());
         $this->assertPoolCounts($cache, $cacheKey, 4, 1, 0);
-        $this->assertEquals($session->name(), current($cache->getItem($cacheKey)->get()['inUse'])['name']);
+        $this->assertEquals($session->name(), \current($cache->getItem($cacheKey)->get()['inUse'])['name']);
 
         $pool->release($session);
 
@@ -82,12 +82,12 @@ class SessionTest extends SpannerTestCase
         foreach ($inUse as $i) {
             $pool->release($i);
         }
-        sleep(1);
+        \sleep(1);
 
         $this->assertPoolCounts($cache, $cacheKey, 10, 0, 0);
 
         $pool->clear();
-        sleep(1);
+        \sleep(1);
         $this->assertNull($cache->getItem($cacheKey)->get());
         $this->assertFalse($inUse[0]->exists());
     }

@@ -18,7 +18,7 @@ class Finding
         \GPBMetadata\Google\Cloud\Securitycenter\V1\SecurityMarks::initOnce();
         \GPBMetadata\Google\Protobuf\Struct::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0adb070a2c676f6f676c652f636c6f75642f736563757269747963656e74" .
             "65722f76312f66696e64696e672e70726f746f121e676f6f676c652e636c" .
             "6f75642e736563757269747963656e7465722e76311a33676f6f676c652f" .

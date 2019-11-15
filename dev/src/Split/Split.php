@@ -43,11 +43,11 @@ class Split
     */
     public function execute($binaryPath, $rootPath, $folderToSplit)
     {
-        $cmd = sprintf(
+        $cmd = \sprintf(
             'SPLIT_SHA=`%s --prefix=%s --path=%s`; echo $SPLIT_SHA;',
             $binaryPath,
             $folderToSplit,
-            realpath($rootPath)
+            \realpath($rootPath)
         );
 
         $res = $this->shell->execute($cmd);

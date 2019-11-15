@@ -57,5 +57,5 @@ class Row extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Row::class, \Google\Cloud\Dlp\V2\Table_Row::class);
+\class_alias(Row::class, \Google\Cloud\Dlp\V2\Table_Row::class);
 

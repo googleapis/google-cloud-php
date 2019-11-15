@@ -75,7 +75,7 @@ class TimestampTest extends TestCase
      */
     public function testCreateFromStringTimestampStringsLocale($timestampStr, $expected)
     {
-        setlocale(LC_ALL, 'fr_FR.UTF-8');
+        \setlocale(LC_ALL, 'fr_FR.UTF-8');
 
         try {
             $time = $this->parseTimeString($timestampStr);
@@ -83,7 +83,7 @@ class TimestampTest extends TestCase
 
             $this->assertEquals($expected, $timestamp->formatAsString());
         } finally {
-            setlocale(LC_ALL, null);
+            \setlocale(LC_ALL, null);
         }
     }
 
@@ -108,12 +108,12 @@ class TimestampTest extends TestCase
      */
     public function testNanoSecondsPadCorrectFromDateTime($micros)
     {
-        $today = \DateTime::createFromFormat('U.u', time() .'.'. $micros);
+        $today = \DateTime::createFromFormat('U.u', \time() .'.'. $micros);
         $timestamp = new Timestamp($today);
 
         $this->assertEquals($micros * 1000, $timestamp->nanoSeconds());
         $this->assertEquals(
-            str_replace('+00:00', 'Z', $today->format(Timestamp::FORMAT)),
+            \str_replace('+00:00', 'Z', $today->format(Timestamp::FORMAT)),
             $timestamp->formatAsString()
         );
     }
@@ -144,11 +144,11 @@ class TimestampTest extends TestCase
      */
     public function testNanosFromApiLocale(Timestamp $timestamp, $expected)
     {
-        setlocale(LC_ALL, 'fr_FR.UTF-8');
+        \setlocale(LC_ALL, 'fr_FR.UTF-8');
         try {
             $this->assertEquals($expected, $timestamp->formatAsString());
         } finally {
-            setlocale(LC_ALL, null);
+            \setlocale(LC_ALL, null);
         }
     }
 
@@ -183,7 +183,7 @@ class TimestampTest extends TestCase
      */
     public function testCreateFromStringArraysLocale(array $input)
     {
-        setlocale(LC_ALL, 'fr_FR.UTF-8');
+        \setlocale(LC_ALL, 'fr_FR.UTF-8');
         try {
             $timestamp = new Timestamp(
                 $this->createDateTimeFromSeconds($input['seconds']),
@@ -193,7 +193,7 @@ class TimestampTest extends TestCase
             $this->assertEquals($input['seconds'], $timestamp->get()->format('U'));
             $this->assertEquals($input['nanos'], $timestamp->nanoSeconds());
         } finally {
-            setlocale(LC_ALL, null);
+            \setlocale(LC_ALL, null);
         }
     }
 
@@ -201,10 +201,10 @@ class TimestampTest extends TestCase
     {
         return [
             [
-                ['seconds' => time(), 'nanos' => 3],
-                ['seconds' => time(), 'nanos' => 3000000000],
-                ['seconds' => time(), 'nanos' => 3000000001],
-                ['seconds' => time(), 'nanos' => 9999999999]
+                ['seconds' => \time(), 'nanos' => 3],
+                ['seconds' => \time(), 'nanos' => 3000000000],
+                ['seconds' => \time(), 'nanos' => 3000000001],
+                ['seconds' => \time(), 'nanos' => 9999999999]
             ]
         ];
     }

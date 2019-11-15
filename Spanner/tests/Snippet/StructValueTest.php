@@ -132,7 +132,7 @@ class StructValueTest extends SnippetTestCase
 
         $snippet->addLocal('database', $this->database);
 
-        $res = explode(PHP_EOL, $snippet->invoke()->output());
+        $res = \explode(PHP_EOL, $snippet->invoke()->output());
         $this->assertEquals('foo: bar', $res[0]);
         $this->assertEquals('foo: 2', $res[1]);
         $this->assertEquals('2: this field is unnamed', $res[2]);

@@ -51,7 +51,7 @@ class DurationTest extends TestCase
     public function testFormatAsString()
     {
         $this->assertEquals(
-            json_encode($this->duration->get()),
+            \json_encode($this->duration->get()),
             $this->duration->formatAsString()
         );
     }
@@ -59,7 +59,7 @@ class DurationTest extends TestCase
     public function testTostring()
     {
         $this->assertEquals(
-            json_encode($this->duration->get()),
+            \json_encode($this->duration->get()),
             (string)$this->duration
         );
     }

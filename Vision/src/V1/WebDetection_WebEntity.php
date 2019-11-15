@@ -11,6 +11,6 @@ if (false) {
      */
     class WebDetection_WebEntity {}
 }
-class_exists(WebDetection\WebEntity::class);
-@trigger_error('Google\Cloud\Vision\V1\WebDetection_WebEntity is deprecated and will be removed in a future release. Use Google\Cloud\Vision\V1\WebDetection\WebEntity instead', E_USER_DEPRECATED);
+\class_exists(WebDetection\WebEntity::class);
+@\trigger_error('Google\Cloud\Vision\V1\WebDetection_WebEntity is deprecated and will be removed in a future release. Use Google\Cloud\Vision\V1\WebDetection\WebEntity instead', E_USER_DEPRECATED);
 

@@ -55,20 +55,20 @@ class SysvConfigStorage implements ConfigStorageInterface
      */
     public function __construct()
     {
-        $this->shmSize = intval(getenv('GOOGLE_CLOUD_BATCH_SHM_SIZE'));
+        $this->shmSize = \intval(\getenv('GOOGLE_CLOUD_BATCH_SHM_SIZE'));
         if ($this->shmSize === 0) {
             $this->shmSize = self::DEFAULT_SHM_SIZE;
         }
-        $this->perm = octdec(getenv('GOOGLE_CLOUD_BATCH_PERM'));
+        $this->perm = \octdec(\getenv('GOOGLE_CLOUD_BATCH_PERM'));
         if ($this->perm === 0) {
             $this->perm = self::DEFAULT_PERM;
         }
-        $this->project = getenv('GOOGLE_CLOUD_BATCH_PROJECT');
+        $this->project = \getenv('GOOGLE_CLOUD_BATCH_PROJECT');
         if ($this->project === false) {
             $this->project = self::DEFAULT_PROJECT;
         }
-        $this->sysvKey = ftok(__FILE__, $this->project);
-        $this->semid = sem_get($this->sysvKey, 1, $this->perm, 1);
+        $this->sysvKey = \ftok(__FILE__, $this->project);
+        $this->semid = \sem_get($this->sysvKey, 1, $this->perm, 1);
     }
 
     /**
@@ -78,7 +78,7 @@ class SysvConfigStorage implements ConfigStorageInterface
      */
     public function lock()
     {
-        return sem_acquire($this->semid);
+        return \sem_acquire($this->semid);
     }
 
     /**
@@ -88,7 +88,7 @@ class SysvConfigStorage implements ConfigStorageInterface
      */
     public function unlock()
     {
-        return sem_release($this->semid);
+        return \sem_release($this->semid);
     }
 
     /**
@@ -100,7 +100,7 @@ class SysvConfigStorage implements ConfigStorageInterface
      */
     public function save(JobConfig $config)
     {
-        $shmid = shm_attach($this->sysvKey, $this->shmSize, $this->perm);
+        $shmid = \shm_attach($this->sysvKey, $this->shmSize, $this->perm);
         if ($shmid === false) {
             throw new \RuntimeException(
                 'Failed to attach to the shared memory'
@@ -109,12 +109,12 @@ class SysvConfigStorage implements ConfigStorageInterface
 
         // If the variable write fails, clear the memory and re-raise the exception
         try {
-            $result = shm_put_var($shmid, self::VAR_KEY, $config);
+            $result = \shm_put_var($shmid, self::VAR_KEY, $config);
         } catch (\Exception $e) {
             $this->clear();
             throw new \RuntimeException($e->getMessage());
         } finally {
-            shm_detach($shmid);
+            \shm_detach($shmid);
         }
         return $result;
     }
@@ -127,18 +127,18 @@ class SysvConfigStorage implements ConfigStorageInterface
      */
     public function load()
     {
-        $shmid = shm_attach($this->sysvKey, $this->shmSize, $this->perm);
+        $shmid = \shm_attach($this->sysvKey, $this->shmSize, $this->perm);
         if ($shmid === false) {
             throw new \RuntimeException(
                 'Failed to attach to the shared memory'
             );
         }
-        if (! shm_has_var($shmid, self::VAR_KEY)) {
+        if (! \shm_has_var($shmid, self::VAR_KEY)) {
             $result = new JobConfig();
         } else {
-            $result = shm_get_var($shmid, self::VAR_KEY);
+            $result = \shm_get_var($shmid, self::VAR_KEY);
         }
-        shm_detach($shmid);
+        \shm_detach($shmid);
 
         if ($result === false) {
             throw new \RuntimeException(
@@ -153,7 +153,7 @@ class SysvConfigStorage implements ConfigStorageInterface
      */
     public function clear()
     {
-        $shmid = shm_attach($this->sysvKey, $this->shmSize, $this->perm);
-        shm_remove_var($shmid, self::VAR_KEY);
+        $shmid = \shm_attach($this->sysvKey, $this->shmSize, $this->perm);
+        \shm_remove_var($shmid, self::VAR_KEY);
     }
 }

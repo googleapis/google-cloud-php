@@ -11,6 +11,6 @@ if (false) {
      */
     class ProductSearchResults_Result {}
 }
-class_exists(ProductSearchResults\Result::class);
-@trigger_error('Google\Cloud\Vision\V1\ProductSearchResults_Result is deprecated and will be removed in a future release. Use Google\Cloud\Vision\V1\ProductSearchResults\Result instead', E_USER_DEPRECATED);
+\class_exists(ProductSearchResults\Result::class);
+@\trigger_error('Google\Cloud\Vision\V1\ProductSearchResults_Result is deprecated and will be removed in a future release. Use Google\Cloud\Vision\V1\ProductSearchResults\Result instead', E_USER_DEPRECATED);
 

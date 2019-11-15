@@ -21,7 +21,7 @@ class PredictionService
         \GPBMetadata\Google\Cloud\Automl\V1\DataItems::initOnce();
         \GPBMetadata\Google\Cloud\Automl\V1\Io::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0aa50e0a2f676f6f676c652f636c6f75642f6175746f6d6c2f76312f7072" .
             "6564696374696f6e5f736572766963652e70726f746f1216676f6f676c65" .
             "2e636c6f75642e6175746f6d6c2e76311a17676f6f676c652f6170692f63" .

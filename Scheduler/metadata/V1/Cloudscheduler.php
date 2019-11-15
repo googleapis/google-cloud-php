@@ -21,7 +21,7 @@ class Cloudscheduler
         \GPBMetadata\Google\Cloud\Scheduler\V1\Job::initOnce();
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0a8d140a2e676f6f676c652f636c6f75642f7363686564756c65722f7631" .
             "2f636c6f75647363686564756c65722e70726f746f1219676f6f676c652e" .
             "636c6f75642e7363686564756c65722e76311a17676f6f676c652f617069" .

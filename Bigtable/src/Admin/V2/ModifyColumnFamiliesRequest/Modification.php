@@ -168,5 +168,5 @@ class Modification extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Modification::class, \Google\Cloud\Bigtable\Admin\V2\ModifyColumnFamiliesRequest_Modification::class);
+\class_alias(Modification::class, \Google\Cloud\Bigtable\Admin\V2\ModifyColumnFamiliesRequest_Modification::class);
 

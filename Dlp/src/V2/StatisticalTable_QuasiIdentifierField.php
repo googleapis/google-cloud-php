@@ -11,6 +11,6 @@ if (false) {
      */
     class StatisticalTable_QuasiIdentifierField {}
 }
-class_exists(StatisticalTable\QuasiIdentifierField::class);
-@trigger_error('Google\Cloud\Dlp\V2\StatisticalTable_QuasiIdentifierField is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\StatisticalTable\QuasiIdentifierField instead', E_USER_DEPRECATED);
+\class_exists(StatisticalTable\QuasiIdentifierField::class);
+@\trigger_error('Google\Cloud\Dlp\V2\StatisticalTable_QuasiIdentifierField is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\StatisticalTable\QuasiIdentifierField instead', E_USER_DEPRECATED);
 

@@ -207,7 +207,7 @@ class BigQueryClientTest extends TestCase
             ->shouldBeCalledTimes(1);
 
         $client->___setProperty('connection', $this->connection->reveal());
-        $jobs = iterator_to_array($client->jobs());
+        $jobs = \iterator_to_array($client->jobs());
 
         $this->assertEmpty($jobs);
     }
@@ -224,7 +224,7 @@ class BigQueryClientTest extends TestCase
             ->shouldBeCalledTimes(1);
 
         $client->___setProperty('connection', $this->connection->reveal());
-        $jobs = iterator_to_array($client->jobs());
+        $jobs = \iterator_to_array($client->jobs());
 
         $this->assertEquals(self::JOB_ID, $jobs[0]->id());
     }
@@ -251,7 +251,7 @@ class BigQueryClientTest extends TestCase
             ])->shouldBeCalledTimes(1);
 
         $client->___setProperty('connection', $this->connection->reveal());
-        $job = iterator_to_array($client->jobs());
+        $job = \iterator_to_array($client->jobs());
 
         $this->assertEquals(self::JOB_ID, $job[1]->id());
     }
@@ -259,7 +259,7 @@ class BigQueryClientTest extends TestCase
     public function testGetsJobsWithTimeFilter()
     {
         $client = $this->getClient();
-        $now = round(microtime(true) * 1000);
+        $now = \round(\microtime(true) * 1000);
         $max = $now + 1000;
         $min = $now - 1000;
         $token = 'token';
@@ -273,7 +273,7 @@ class BigQueryClientTest extends TestCase
             ]
         ])->shouldBeCalledTimes(1);
         $client->___setProperty('connection', $this->connection->reveal());
-        $job = iterator_to_array($client->jobs([
+        $job = \iterator_to_array($client->jobs([
             'minCreationTime' => $min,
             'maxCreationTime' => $max,
         ]));
@@ -296,7 +296,7 @@ class BigQueryClientTest extends TestCase
             ->shouldBeCalledTimes(1);
 
         $client->___setProperty('connection', $this->connection->reveal());
-        $datasets = iterator_to_array($client->datasets());
+        $datasets = \iterator_to_array($client->datasets());
 
         $this->assertEmpty($datasets);
     }
@@ -313,7 +313,7 @@ class BigQueryClientTest extends TestCase
             ->shouldBeCalledTimes(1);
 
         $client->___setProperty('connection', $this->connection->reveal());
-        $datasets = iterator_to_array($client->datasets());
+        $datasets = \iterator_to_array($client->datasets());
 
         $this->assertEquals(self::DATASET_ID, $datasets[0]->id());
     }
@@ -334,7 +334,7 @@ class BigQueryClientTest extends TestCase
             ])->shouldBeCalledTimes(2);
 
         $client->___setProperty('connection', $this->connection->reveal());
-        $dataset = iterator_to_array($client->datasets());
+        $dataset = \iterator_to_array($client->datasets());
 
         $this->assertEquals(self::DATASET_ID, $dataset[1]->id());
     }
@@ -461,7 +461,7 @@ class BigQueryClientTest extends TestCase
 
     public function testGetServiceAccount()
     {
-        $expectedEmail = uniqid() . '@bigquery-encryption.iam.gserviceaccount.com';
+        $expectedEmail = \uniqid() . '@bigquery-encryption.iam.gserviceaccount.com';
         $client = $this->getClient();
         $this->connection->getServiceAccount([
             'projectId' => self::PROJECT_ID,

@@ -87,7 +87,7 @@ class Operation
     {
         $this->keys = [];
 
-        $startTime = microtime(true);
+        $startTime = \microtime(true);
         $snapshot = $this->database->snapshot();
 
         // The table must have a primary key called `id`.
@@ -96,7 +96,7 @@ class Operation
             $this->keys[] = $row['id'];
         }
 
-        return microtime(true) - $startTime;
+        return \microtime(true) - $startTime;
     }
 
     /**
@@ -106,15 +106,15 @@ class Operation
      */
     public function run()
     {
-        if (!is_array($this->keys)) {
+        if (!\is_array($this->keys)) {
             throw new \RuntimeException('Call Operation::load() first.');
         }
 
         $operationCount = (int) $this->parameters['operationcount'];
         for ($i = 0; $i < $operationCount; $i++) {
-            $weight = (float) rand(0, $this->totalWeight * 10000) / 10000.0;
+            $weight = (float) \rand(0, $this->totalWeight * 10000) / 10000.0;
 
-            for ($j = 0; $j < count($this->weights); $j++) {
+            for ($j = 0; $j < \count($this->weights); $j++) {
                 if ($weight <= $this->weights[$j]) {
                     $operation = $this->operations[$j];
 
@@ -141,7 +141,7 @@ class Operation
      */
     private function runOperation($database, $table, $operation)
     {
-        $key = $this->keys[array_rand($this->keys)];
+        $key = $this->keys[\array_rand($this->keys)];
         switch ($operation) {
             case 'read':
                 return $this->performRead($database, $table, $key);
@@ -150,7 +150,7 @@ class Operation
             case 'insert':
                 return $this->insert($database, $table);
             case 'scan':
-                trigger_error('Scan is not implemented.', E_USER_NOTICE);
+                \trigger_error('Scan is not implemented.', E_USER_NOTICE);
                 return 0.0;
         }
     }
@@ -165,15 +165,15 @@ class Operation
      */
     private function performRead($database, $table, $key)
     {
-        $startTime = microtime(true);
+        $startTime = \microtime(true);
 
-        iterator_to_array($database->execute('SELECT * FROM ' . $table . ' where id = @id', [
+        \iterator_to_array($database->execute('SELECT * FROM ' . $table . ' where id = @id', [
             'parameters' => [
                 'id' => $key
             ]
         ])->rows());
 
-        return microtime(true) - $startTime;
+        return \microtime(true) - $startTime;
     }
 
     /**
@@ -187,8 +187,8 @@ class Operation
     private function update($database, $table, $key)
     {
         // Does a single update operation.
-        $field = rand(0, 9);
-        $startTime = microtime(true);
+        $field = \rand(0, 9);
+        $startTime = \microtime(true);
 
         $database->transaction(['singleUse' => false])
             ->update($table, [
@@ -196,7 +196,7 @@ class Operation
                 'field' . $field => $this->randString(100)
             ])->commit();
 
-        return microtime(true) - $startTime;
+        return \microtime(true) - $startTime;
     }
 
     /**
@@ -217,14 +217,14 @@ class Operation
         }
 
         $batch[] = $fields;
-        array_multisort($batch);
+        \array_multisort($batch);
 
-        $startTime = microtime(true);
+        $startTime = \microtime(true);
         $database->transaction(['singleUse' => true])
             ->insertBatch($table, $batch)
             ->commit();
 
-        return microtime(true) - $startTime;
+        return \microtime(true) - $startTime;
     }
 
     private function randString($length, $numbersOnly = false)
@@ -233,10 +233,10 @@ class Operation
             ? '0123456789'
             : '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-        $charlen = strlen($characters);
+        $charlen = \strlen($characters);
         $randomString = '';
         for ($i = 0; $i < $length; $i++) {
-            $randomString .= $characters[rand(0, $charlen - 1)];
+            $randomString .= $characters[\rand(0, $charlen - 1)];
         }
 
         return $randomString;

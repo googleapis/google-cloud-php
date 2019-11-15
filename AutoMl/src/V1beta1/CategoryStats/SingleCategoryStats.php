@@ -100,5 +100,5 @@ class SingleCategoryStats extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SingleCategoryStats::class, \Google\Cloud\AutoMl\V1beta1\CategoryStats_SingleCategoryStats::class);
+\class_alias(SingleCategoryStats::class, \Google\Cloud\AutoMl\V1beta1\CategoryStats_SingleCategoryStats::class);
 

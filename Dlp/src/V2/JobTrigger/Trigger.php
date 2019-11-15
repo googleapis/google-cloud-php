@@ -69,5 +69,5 @@ class Trigger extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Trigger::class, \Google\Cloud\Dlp\V2\JobTrigger_Trigger::class);
+\class_alias(Trigger::class, \Google\Cloud\Dlp\V2\JobTrigger_Trigger::class);
 

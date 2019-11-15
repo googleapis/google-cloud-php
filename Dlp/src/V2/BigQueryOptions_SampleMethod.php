@@ -11,6 +11,6 @@ if (false) {
      */
     class BigQueryOptions_SampleMethod {}
 }
-class_exists(BigQueryOptions\SampleMethod::class);
-@trigger_error('Google\Cloud\Dlp\V2\BigQueryOptions_SampleMethod is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\BigQueryOptions\SampleMethod instead', E_USER_DEPRECATED);
+\class_exists(BigQueryOptions\SampleMethod::class);
+@\trigger_error('Google\Cloud\Dlp\V2\BigQueryOptions_SampleMethod is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\BigQueryOptions\SampleMethod instead', E_USER_DEPRECATED);
 

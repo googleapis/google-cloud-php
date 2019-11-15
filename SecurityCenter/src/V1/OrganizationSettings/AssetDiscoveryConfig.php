@@ -100,5 +100,5 @@ class AssetDiscoveryConfig extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AssetDiscoveryConfig::class, \Google\Cloud\SecurityCenter\V1\OrganizationSettings_AssetDiscoveryConfig::class);
+\class_alias(AssetDiscoveryConfig::class, \Google\Cloud\SecurityCenter\V1\OrganizationSettings_AssetDiscoveryConfig::class);
 

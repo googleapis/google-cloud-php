@@ -56,7 +56,7 @@ class Mutations
         if ($timeStamp === null) {
             $mutationSetCell->setTimestampMicros(
                 // gives milli second
-                round($this->microtime() * 1000)
+                \round($this->microtime() * 1000)
                 // multiply by 1000 to get micro
                 * 1000
             );
@@ -133,7 +133,7 @@ class Mutations
      */
     protected function microtime()
     {
-        return microtime(true);
+        return \microtime(true);
     }
 
     /**

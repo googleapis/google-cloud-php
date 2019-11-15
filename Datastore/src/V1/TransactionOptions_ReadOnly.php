@@ -11,6 +11,6 @@ if (false) {
      */
     class TransactionOptions_ReadOnly {}
 }
-class_exists(TransactionOptions\ReadOnly::class);
-@trigger_error('Google\Cloud\Datastore\V1\TransactionOptions_ReadOnly is deprecated and will be removed in the next major release. Use Google\Cloud\Datastore\V1\TransactionOptions\ReadOnly instead', E_USER_DEPRECATED);
+\class_exists(TransactionOptions\ReadOnly::class);
+@\trigger_error('Google\Cloud\Datastore\V1\TransactionOptions_ReadOnly is deprecated and will be removed in the next major release. Use Google\Cloud\Datastore\V1\TransactionOptions\ReadOnly instead', E_USER_DEPRECATED);
 

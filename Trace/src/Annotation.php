@@ -57,7 +57,7 @@ class Annotation extends TimeEvent
     {
         parent::__construct($options);
         $this->description = $description;
-        if (array_key_exists('attributes', $options)) {
+        if (\array_key_exists('attributes', $options)) {
             $this->addAttributes($options['attributes']);
         }
     }

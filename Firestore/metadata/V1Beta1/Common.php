@@ -16,7 +16,7 @@ class Common
         }
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         \GPBMetadata\Google\Api\Annotations::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0ae5050a25676f6f676c652f6669726573746f72652f763162657461312f" .
             "636f6d6d6f6e2e70726f746f1218676f6f676c652e6669726573746f7265" .
             "2e763162657461311a1c676f6f676c652f6170692f616e6e6f746174696f" .

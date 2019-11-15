@@ -11,6 +11,6 @@ if (false) {
      */
     class UptimeCheckConfig_HttpCheck {}
 }
-class_exists(UptimeCheckConfig\HttpCheck::class);
-@trigger_error('Google\Cloud\Monitoring\V3\UptimeCheckConfig_HttpCheck is deprecated and will be removed in the next major release. Use Google\Cloud\Monitoring\V3\UptimeCheckConfig\HttpCheck instead', E_USER_DEPRECATED);
+\class_exists(UptimeCheckConfig\HttpCheck::class);
+@\trigger_error('Google\Cloud\Monitoring\V3\UptimeCheckConfig_HttpCheck is deprecated and will be removed in the next major release. Use Google\Cloud\Monitoring\V3\UptimeCheckConfig\HttpCheck instead', E_USER_DEPRECATED);
 

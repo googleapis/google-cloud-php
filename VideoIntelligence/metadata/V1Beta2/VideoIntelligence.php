@@ -19,7 +19,7 @@ class VideoIntelligence
         \GPBMetadata\Google\Protobuf\Duration::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         \GPBMetadata\Google\Rpc\Status::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0a8a240a3f676f6f676c652f636c6f75642f766964656f696e74656c6c69" .
             "67656e63652f763162657461322f766964656f5f696e74656c6c6967656e" .
             "63652e70726f746f1226676f6f676c652e636c6f75642e766964656f696e" .

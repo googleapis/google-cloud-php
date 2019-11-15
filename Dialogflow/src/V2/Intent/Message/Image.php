@@ -104,5 +104,5 @@ class Image extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Image::class, \Google\Cloud\Dialogflow\V2\Intent_Message_Image::class);
+\class_alias(Image::class, \Google\Cloud\Dialogflow\V2\Intent_Message_Image::class);
 

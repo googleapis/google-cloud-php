@@ -32,5 +32,5 @@ class DeleteFromRow extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DeleteFromRow::class, \Google\Cloud\Bigtable\V2\Mutation_DeleteFromRow::class);
+\class_alias(DeleteFromRow::class, \Google\Cloud\Bigtable\V2\Mutation_DeleteFromRow::class);
 

@@ -42,7 +42,7 @@ class StreamReaderTest extends TestCase
         );
 
         $path = 'foo/bar';
-        $expectedUrl = sprintf(
+        $expectedUrl = \sprintf(
             'http://%s/computeMetadata/v1/%s',
             GCECredentials::METADATA_IP,
             $path
@@ -63,7 +63,7 @@ class StreamReaderStub extends StreamReader
     protected function createStreamContext(array $options)
     {
         $this->options = $options;
-        return stream_context_create($options);
+        return \stream_context_create($options);
     }
 
     protected function getMetadata($url)

@@ -88,7 +88,7 @@ class Duration
      */
     public function formatAsString()
     {
-        return json_encode($this->get());
+        return \json_encode($this->get());
     }
 
     /**

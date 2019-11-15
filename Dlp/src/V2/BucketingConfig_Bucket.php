@@ -11,6 +11,6 @@ if (false) {
      */
     class BucketingConfig_Bucket {}
 }
-class_exists(BucketingConfig\Bucket::class);
-@trigger_error('Google\Cloud\Dlp\V2\BucketingConfig_Bucket is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\BucketingConfig\Bucket instead', E_USER_DEPRECATED);
+\class_exists(BucketingConfig\Bucket::class);
+@\trigger_error('Google\Cloud\Dlp\V2\BucketingConfig_Bucket is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\BucketingConfig\Bucket instead', E_USER_DEPRECATED);
 

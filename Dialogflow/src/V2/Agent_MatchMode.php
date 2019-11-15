@@ -11,6 +11,6 @@ if (false) {
      */
     class Agent_MatchMode {}
 }
-class_exists(Agent\MatchMode::class);
-@trigger_error('Google\Cloud\Dialogflow\V2\Agent_MatchMode is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\Agent\MatchMode instead', E_USER_DEPRECATED);
+\class_exists(Agent\MatchMode::class);
+@\trigger_error('Google\Cloud\Dialogflow\V2\Agent_MatchMode is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\Agent\MatchMode instead', E_USER_DEPRECATED);
 

@@ -509,5 +509,5 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(MetricThreshold::class, \Google\Cloud\Monitoring\V3\AlertPolicy_Condition_MetricThreshold::class);
+\class_alias(MetricThreshold::class, \Google\Cloud\Monitoring\V3\AlertPolicy_Condition_MetricThreshold::class);
 

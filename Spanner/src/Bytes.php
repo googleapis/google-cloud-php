@@ -95,7 +95,7 @@ class Bytes implements ValueInterface
      */
     public function formatAsString()
     {
-        return base64_encode((string) $this->value);
+        return \base64_encode((string) $this->value);
     }
 
     /**

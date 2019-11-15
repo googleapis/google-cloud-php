@@ -11,6 +11,6 @@ if (false) {
      */
     class DlpJob_JobState {}
 }
-class_exists(DlpJob\JobState::class);
-@trigger_error('Google\Cloud\Dlp\V2\DlpJob_JobState is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\DlpJob\JobState instead', E_USER_DEPRECATED);
+\class_exists(DlpJob\JobState::class);
+@\trigger_error('Google\Cloud\Dlp\V2\DlpJob_JobState is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\DlpJob\JobState instead', E_USER_DEPRECATED);
 

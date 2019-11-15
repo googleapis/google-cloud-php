@@ -119,9 +119,9 @@ class SpeechClient
 
         $this->connection = new Rest($this->configureAuthentication($config));
 
-        $class = get_class($this);
+        $class = \get_class($this);
         $err = "The class {$class} is no longer supported";
-        @trigger_error($err, E_USER_DEPRECATED);
+        @\trigger_error($err, E_USER_DEPRECATED);
     }
 
     /**
@@ -404,15 +404,15 @@ class SpeechClient
 
         if ($audio instanceof StorageObject) {
             $options['audio']['uri'] = $audio->gcsUri();
-            $fileFormat = pathinfo($options['audio']['uri'], PATHINFO_EXTENSION);
-        } elseif (is_resource($audio)) {
-            $options['audio']['content'] = base64_encode(stream_get_contents($audio));
-            $fileFormat = pathinfo(stream_get_meta_data($audio)['uri'], PATHINFO_EXTENSION);
-        } elseif ($options['detectGcsUri'] && substr($audio, 0, 5) === 'gs://') {
+            $fileFormat = \pathinfo($options['audio']['uri'], PATHINFO_EXTENSION);
+        } elseif (\is_resource($audio)) {
+            $options['audio']['content'] = \base64_encode(\stream_get_contents($audio));
+            $fileFormat = \pathinfo(\stream_get_meta_data($audio)['uri'], PATHINFO_EXTENSION);
+        } elseif ($options['detectGcsUri'] && \substr($audio, 0, 5) === 'gs://') {
             $options['audio']['uri'] = $audio;
-            $fileFormat = pathinfo($options['audio']['uri'], PATHINFO_EXTENSION);
+            $fileFormat = \pathinfo($options['audio']['uri'], PATHINFO_EXTENSION);
         } else {
-            $options['audio']['content'] = base64_encode($audio);
+            $options['audio']['content'] = \base64_encode($audio);
         }
 
         unset($options['detectGcsUri']);
@@ -422,7 +422,7 @@ class SpeechClient
         }
 
         foreach ($options as $option => $value) {
-            if (in_array($option, $recognizeOptions)) {
+            if (\in_array($option, $recognizeOptions)) {
                 $options['config'][$option] = $value;
                 unset($options[$option]);
             }

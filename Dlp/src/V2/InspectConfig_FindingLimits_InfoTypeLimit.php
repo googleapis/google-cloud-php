@@ -11,6 +11,6 @@ if (false) {
      */
     class InspectConfig_FindingLimits_InfoTypeLimit {}
 }
-class_exists(InspectConfig\FindingLimits\InfoTypeLimit::class);
-@trigger_error('Google\Cloud\Dlp\V2\InspectConfig_FindingLimits_InfoTypeLimit is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\InspectConfig\FindingLimits\InfoTypeLimit instead', E_USER_DEPRECATED);
+\class_exists(InspectConfig\FindingLimits\InfoTypeLimit::class);
+@\trigger_error('Google\Cloud\Dlp\V2\InspectConfig_FindingLimits_InfoTypeLimit is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\InspectConfig\FindingLimits\InfoTypeLimit instead', E_USER_DEPRECATED);
 

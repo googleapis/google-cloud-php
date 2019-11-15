@@ -30,16 +30,16 @@ class Command extends GoogleCloudCommand
     {
         $this->setName('credentials')
             ->setDescription('Configure credentials for system tests')
-            ->setHelp(file_get_contents(__DIR__ .'/help.txt'));
+            ->setHelp(\file_get_contents(__DIR__ .'/help.txt'));
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $base = $this->rootPath;
 
-        $keyfiles = getenv('GOOGLE_CLOUD_PHP_KEYFILES');
-        $decoded = json_decode(base64_decode($keyfiles), true);
-        if (!$keyfiles || json_last_error() !== JSON_ERROR_NONE) {
+        $keyfiles = \getenv('GOOGLE_CLOUD_PHP_KEYFILES');
+        $decoded = \json_decode(\base64_decode($keyfiles), true);
+        if (!$keyfiles || \json_last_error() !== JSON_ERROR_NONE) {
             $output->writeln('<error>You must specify `GOOGLE_CLOUD_PHP_KEYFILES` as a base64-encoded json array of keyfile names.</error>');
             return;
         }
@@ -47,8 +47,8 @@ class Command extends GoogleCloudCommand
         foreach ($decoded as $kf) {
             $err = false;
 
-            $data = base64_decode(getenv($kf . '_ENCODED'), true);
-            if (json_last_error() !== JSON_ERROR_NONE) {
+            $data = \base64_decode(\getenv($kf . '_ENCODED'), true);
+            if (\json_last_error() !== JSON_ERROR_NONE) {
                 $output->writeln('<error>Required environment variable `' . $kf . '_ENCODED` not set or invalid!</error>');
                 return;
             } else {
@@ -58,12 +58,12 @@ class Command extends GoogleCloudCommand
             $dir = $base . '/keys/';
             $path = $dir . $kf .'.json';
 
-            if (!file_exists($dir)) {
-                mkdir($dir);
+            if (!\file_exists($dir)) {
+                \mkdir($dir);
             }
 
-            if (file_put_contents($path, $data) !== false) {
-                $output->writeln('Wrote keyfile contents to file `' . realpath($path) . '`');
+            if (\file_put_contents($path, $data) !== false) {
+                $output->writeln('Wrote keyfile contents to file `' . \realpath($path) . '`');
             } else {
                 $output->writeln('<error>Could not write to file</error>');
                 return;

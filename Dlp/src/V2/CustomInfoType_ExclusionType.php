@@ -11,6 +11,6 @@ if (false) {
      */
     class CustomInfoType_ExclusionType {}
 }
-class_exists(CustomInfoType\ExclusionType::class);
-@trigger_error('Google\Cloud\Dlp\V2\CustomInfoType_ExclusionType is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\CustomInfoType\ExclusionType instead', E_USER_DEPRECATED);
+\class_exists(CustomInfoType\ExclusionType::class);
+@\trigger_error('Google\Cloud\Dlp\V2\CustomInfoType_ExclusionType is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\CustomInfoType\ExclusionType instead', E_USER_DEPRECATED);
 

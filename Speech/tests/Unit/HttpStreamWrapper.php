@@ -29,8 +29,8 @@ class HttpStreamWrapper
 
     public function stream_read($count)
     {
-        $this->position += strlen($this->bodyData);
-        if ($this->position > strlen($this->bodyData)) {
+        $this->position += \strlen($this->bodyData);
+        if ($this->position > \strlen($this->bodyData)) {
             return false;
         }
 
@@ -39,7 +39,7 @@ class HttpStreamWrapper
 
     public function stream_eof()
     {
-        return $this->position >= strlen($this->bodyData);
+        return $this->position >= \strlen($this->bodyData);
     }
 
     public function stream_stat()

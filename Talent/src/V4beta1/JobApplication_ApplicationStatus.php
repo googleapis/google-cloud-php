@@ -11,6 +11,6 @@ if (false) {
      */
     class JobApplication_ApplicationStatus {}
 }
-class_exists(JobApplication\ApplicationStatus::class);
-@trigger_error('Google\Cloud\Talent\V4beta1\JobApplication_ApplicationStatus is deprecated and will be removed in the next major release. Use Google\Cloud\Talent\V4beta1\JobApplication\ApplicationStatus instead', E_USER_DEPRECATED);
+\class_exists(JobApplication\ApplicationStatus::class);
+@\trigger_error('Google\Cloud\Talent\V4beta1\JobApplication_ApplicationStatus is deprecated and will be removed in the next major release. Use Google\Cloud\Talent\V4beta1\JobApplication\ApplicationStatus instead', E_USER_DEPRECATED);
 

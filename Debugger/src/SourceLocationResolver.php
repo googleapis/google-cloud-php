@@ -44,7 +44,7 @@ class SourceLocationResolver
      */
     public function __construct($includePaths = null)
     {
-        $this->includePaths = $includePaths ?: explode(PATH_SEPARATOR, get_include_path());
+        $this->includePaths = $includePaths ?: \explode(PATH_SEPARATOR, \get_include_path());
     }
 
     /**
@@ -86,20 +86,20 @@ class SourceLocationResolver
      */
     public function resolve(SourceLocation $location)
     {
-        $origPath = str_replace('/', DIRECTORY_SEPARATOR, $location->path());
-        $basename = basename($origPath);
+        $origPath = \str_replace('/', DIRECTORY_SEPARATOR, $location->path());
+        $basename = \basename($origPath);
         $prefixes = $this->searchPrefixes($origPath);
 
-        $includePaths = array_filter($this->includePaths, function ($path) {
-            return file_exists($path);
+        $includePaths = \array_filter($this->includePaths, function ($path) {
+            return \file_exists($path);
         });
 
         // Phase 1: search for an exact file match and try stripping off extra
         // folders
         foreach ($prefixes as $prefix) {
             foreach ($includePaths as $path) {
-                $file = implode(DIRECTORY_SEPARATOR, [$path, $prefix, $basename]);
-                if (file_exists($file)) {
+                $file = \implode(DIRECTORY_SEPARATOR, [$path, $prefix, $basename]);
+                if (\file_exists($file)) {
                     return new SourceLocation($this->realRelativePath($file, $path), $location->line());
                 }
             }
@@ -128,18 +128,18 @@ class SourceLocationResolver
      */
     private function searchPrefixes($path)
     {
-        $dirname = dirname($path);
-        $directoryParts = explode(DIRECTORY_SEPARATOR, $dirname);
+        $dirname = \dirname($path);
+        $directoryParts = \explode(DIRECTORY_SEPARATOR, $dirname);
         $directories = [];
         while ($directoryParts) {
-            $directories[] = implode(DIRECTORY_SEPARATOR, $directoryParts);
-            array_shift($directoryParts);
+            $directories[] = \implode(DIRECTORY_SEPARATOR, $directoryParts);
+            \array_shift($directoryParts);
         }
         return $directories;
     }
 
     private function realRelativePath($fullPath, $path)
     {
-        return str_replace(realpath($path) . DIRECTORY_SEPARATOR, '', realpath($fullPath));
+        return \str_replace(\realpath($path) . DIRECTORY_SEPARATOR, '', \realpath($fullPath));
     }
 }

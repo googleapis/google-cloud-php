@@ -49,9 +49,9 @@ class SigningHelperTest extends TestCase
     public function testV2Sign()
     {
         $credentials = $this->createCredentialsMock();
-        $expires = time() + 2;
+        $expires = \time() + 2;
         $resource = $this->createResource();
-        $return = base64_encode('SIGNATURE');
+        $return = \base64_encode('SIGNATURE');
 
         $credentials->signBlob(Argument::type('string'), Argument::type('array'))
             ->shouldBeCalled()
@@ -65,8 +65,8 @@ class SigningHelperTest extends TestCase
             []
         );
 
-        $parts = parse_url($url);
-        parse_str($parts['query'], $query);
+        $parts = \parse_url($url);
+        \parse_str($parts['query'], $query);
 
         $this->assertEquals('https', $parts['scheme']);
         $this->assertEquals(SigningHelper::DEFAULT_DOWNLOAD_HOST, $parts['host']);
@@ -74,7 +74,7 @@ class SigningHelperTest extends TestCase
 
         $this->assertEquals(self::CLIENT_EMAIL, $query['GoogleAccessId']);
         $this->assertEquals($expires, $query['Expires']);
-        $this->assertEquals(urlencode($return), $query['Signature']);
+        $this->assertEquals(\urlencode($return), $query['Signature']);
         $this->assertEquals(self::GENERATION, $query['generation']);
     }
 
@@ -84,9 +84,9 @@ class SigningHelperTest extends TestCase
     public function testV2SignParams($key, $value, $paramKey, $paramValue = null, $isOpt = true)
     {
         $credentials = $this->createCredentialsMock();
-        $expires = time() + 2;
+        $expires = \time() + 2;
         $resource = $this->createResource();
-        $return = base64_encode('SIGNATURE');
+        $return = \base64_encode('SIGNATURE');
 
         $credentials->signBlob(Argument::type('string'), Argument::type('array'))
             ->shouldBeCalled()
@@ -102,8 +102,8 @@ class SigningHelperTest extends TestCase
             ]
         );
 
-        $parts = parse_url($url);
-        parse_str($parts['query'], $query);
+        $parts = \parse_url($url);
+        \parse_str($parts['query'], $query);
         $this->assertEquals($paramValue ?: $value, $query[$paramKey]);
     }
 
@@ -119,9 +119,9 @@ class SigningHelperTest extends TestCase
     public function testV2CanonicalRequestAndCname()
     {
         $credentials = $this->createCredentialsMock();
-        $expires = time() + 2;
+        $expires = \time() + 2;
         $resource = $this->createResource();
-        $return = base64_encode('SIGNATURE');
+        $return = \base64_encode('SIGNATURE');
 
         $contentMd5 = 'md5-value';
         $contentType = 'text/plain';
@@ -168,7 +168,7 @@ class SigningHelperTest extends TestCase
             ]
         );
 
-        $parts = parse_url($url);
+        $parts = \parse_url($url);
         $this->assertEquals('example.com', $parts['host']);
     }
 
@@ -179,7 +179,7 @@ class SigningHelperTest extends TestCase
         $expires = $now->format('U') + 2;
         $expectedExpires = 2;
         $resource = $this->createResource();
-        $return = base64_encode('SIGNATURE');
+        $return = \base64_encode('SIGNATURE');
 
         $requestTimestamp = $now->format('Ymd\THis\Z');
         $requestDatestamp = $now->format('Ymd');
@@ -198,15 +198,15 @@ class SigningHelperTest extends TestCase
             ]
         );
 
-        $parts = parse_url($url);
+        $parts = \parse_url($url);
 
         $this->assertEquals('https', $parts['scheme']);
         $this->assertEquals(SigningHelper::DEFAULT_DOWNLOAD_HOST, $parts['host']);
         $this->assertEquals($resource, $parts['path']);
 
-        parse_str($parts['query'], $query);
+        \parse_str($parts['query'], $query);
 
-        $this->assertEquals(bin2hex(base64_decode($return)), $query['X-Goog-Signature']);
+        $this->assertEquals(\bin2hex(\base64_decode($return)), $query['X-Goog-Signature']);
         $this->assertEquals($requestTimestamp, $query['X-Goog-Date']);
         $this->assertEquals($expectedExpires, $query['X-Goog-Expires']);
         $this->assertEquals(self::GENERATION, $query['generation']);
@@ -227,8 +227,8 @@ class SigningHelperTest extends TestCase
 
         $requestTimestamp = $now->format('Ymd\THis\Z');
         $requestDatestamp = $now->format('Ymd');
-        $credentialScope = sprintf('%s/auto/storage/goog4_request', $requestDatestamp);
-        $credential = sprintf('%s/%s', self::CLIENT_EMAIL, $credentialScope);
+        $credentialScope = \sprintf('%s/auto/storage/goog4_request', $requestDatestamp);
+        $credential = \sprintf('%s/%s', self::CLIENT_EMAIL, $credentialScope);
 
         $credentials->signBlob(Argument::type('string'), Argument::type('array'))
             ->shouldBeCalled()
@@ -249,7 +249,7 @@ class SigningHelperTest extends TestCase
             $this->assertEquals('GET', $request[0]);
             $this->assertEquals($resource, $request[1]);
 
-            parse_str($request[2], $query);
+            \parse_str($request[2], $query);
             $this->assertEquals(self::GENERATION, $query['generation']);
             $this->assertEquals($responseDisposition, $query['response-content-disposition']);
             $this->assertEquals($responseType, $query['response-content-type']);
@@ -258,7 +258,7 @@ class SigningHelperTest extends TestCase
             $this->assertEquals($requestTimestamp, $query['X-Goog-Date']);
             $this->assertEquals($expectedHeaders, $query['X-Goog-SignedHeaders']);
 
-            $headers = explode("\n", $request[3]);
+            $headers = \explode("\n", $request[3]);
             $this->assertContains('content-md5:' . $contentMd5, $headers);
             $this->assertContains('content-type:' . $contentType, $headers);
             $this->assertContains('host:' . $cname, $headers);
@@ -282,7 +282,7 @@ class SigningHelperTest extends TestCase
             ]
         );
 
-        $parts = parse_url($url);
+        $parts = \parse_url($url);
         $this->assertEquals($cname, $parts['host']);
         $this->assertEquals('/' . self::OBJECT, $parts['path']);
     }
@@ -293,9 +293,9 @@ class SigningHelperTest extends TestCase
     public function testV4CnameFix($cname, $expected = null)
     {
         $credentials = $this->createCredentialsMock();
-        $expires = time() + 2;
+        $expires = \time() + 2;
         $resource = $this->createResource();
-        $return = base64_encode('SIGNATURE');
+        $return = \base64_encode('SIGNATURE');
 
         $credentials->signBlob(Argument::type('string'), Argument::type('array'))
             ->shouldBeCalled()
@@ -311,7 +311,7 @@ class SigningHelperTest extends TestCase
             ]
         );
 
-        $parts = parse_url($url);
+        $parts = \parse_url($url);
         $this->assertEquals($expected ?: $cname, $parts['host']);
     }
 
@@ -321,9 +321,9 @@ class SigningHelperTest extends TestCase
     public function testV2CnameFix($cname, $expected = null)
     {
         $credentials = $this->createCredentialsMock();
-        $expires = time() + 2;
+        $expires = \time() + 2;
         $resource = $this->createResource();
-        $return = base64_encode('SIGNATURE');
+        $return = \base64_encode('SIGNATURE');
 
         $credentials->signBlob(Argument::type('string'), Argument::type('array'))
             ->shouldBeCalled()
@@ -339,7 +339,7 @@ class SigningHelperTest extends TestCase
             ]
         );
 
-        $parts = parse_url($url);
+        $parts = \parse_url($url);
         $this->assertEquals($expected ?: $cname, $parts['host']);
     }
 
@@ -357,7 +357,7 @@ class SigningHelperTest extends TestCase
     public function testV4SignCanonicalRequestSaveAsName()
     {
         $credentials = $this->createCredentialsMock();
-        $expires = time() + 2;
+        $expires = \time() + 2;
         $resource = $this->createResource();
         $saveAsName = 'test.txt';
 
@@ -366,7 +366,7 @@ class SigningHelperTest extends TestCase
             ->willReturn('');
 
         $this->helper->createV4CanonicalRequest = function ($request) use ($saveAsName) {
-            parse_str($request[2], $query);
+            \parse_str($request[2], $query);
             $expectedDisposition = 'attachment; filename="' . $saveAsName .'"';
             $this->assertEquals($expectedDisposition, $query['response-content-disposition']);
         };
@@ -433,8 +433,8 @@ class SigningHelperTest extends TestCase
                 $tenMins,
                 $tenMins->format('U')
             ], [
-                time() + 10,
-                time() + 10
+                \time() + 10,
+                \time() + 10
             ]
         ];
     }
@@ -468,7 +468,7 @@ class SigningHelperTest extends TestCase
     public function testNormalizeOptions(array $options, array $expected = null, $exception = null)
     {
         if ($exception) {
-            if (method_exists($this, 'setExpectedException')) {
+            if (\method_exists($this, 'setExpectedException')) {
                 $expectation = 'setExpectedException';
             } else {
                 $expectation = 'expectException';
@@ -480,7 +480,7 @@ class SigningHelperTest extends TestCase
         $res = $this->helper->normalizeProxy('normalizeOptions', [$options]);
 
         if (!$exception) {
-            $expectedKeys = array_keys($expected ?: $options);
+            $expectedKeys = \array_keys($expected ?: $options);
             $fromRes = [];
             foreach ($expectedKeys as $key) {
                 if (isset($res[$key])) {
@@ -531,7 +531,7 @@ class SigningHelperTest extends TestCase
             [['a' => 'b']],
             [123],
             ['hello world'],
-            [date('Y-m-d')]
+            [\date('Y-m-d')]
         ];
     }
 
@@ -578,7 +578,7 @@ class SigningHelperTest extends TestCase
     {
         $this->helper->v2Sign(
             $this->mockConnection($this->prophesize(SignBlobInterface::class)->reveal()),
-            time() + 10,
+            \time() + 10,
             '/foo/bar',
             null,
             [
@@ -651,7 +651,7 @@ class SigningHelperTest extends TestCase
 
     private function createResource($bucket = null, $object = null)
     {
-        return sprintf('/%s/%s', $bucket ?: self::BUCKET, $object ?: self::OBJECT);
+        return \sprintf('/%s/%s', $bucket ?: self::BUCKET, $object ?: self::OBJECT);
     }
 
     private function mockConnection($credentials)
@@ -676,7 +676,7 @@ class SigningHelperStub extends SigningHelper
     {
         $callPrivate = $this->callPrivate('createV4CanonicalRequest', [$request]);
         return $this->createV4CanonicalRequest
-            ? call_user_func($this->createV4CanonicalRequest, $request)
+            ? \call_user_func($this->createV4CanonicalRequest, $request)
             : \Closure::bind($callPrivate, null, new SigningHelper);
     }
 
@@ -684,7 +684,7 @@ class SigningHelperStub extends SigningHelper
     {
         $callPrivate = $this->callPrivate('createV2CanonicalRequest', [$request]);
         return $this->createV2CanonicalRequest
-            ? call_user_func($this->createV2CanonicalRequest, $request)
+            ? \call_user_func($this->createV2CanonicalRequest, $request)
             : \Closure::bind($callPrivate, null, new SigningHelper);
     }
 
@@ -692,7 +692,7 @@ class SigningHelperStub extends SigningHelper
     {
         $parent = new SigningHelper;
         $cb = function () use ($method) {
-            return call_user_func_array([$this, $method], func_get_args()[0]);
+            return \call_user_func_array([$this, $method], \func_get_args()[0]);
         };
 
         $callPrivate = $cb->bindTo($parent, SigningHelper::class);

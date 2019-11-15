@@ -11,6 +11,6 @@ if (false) {
      */
     class CompleteQueryResponse_CompletionResult {}
 }
-class_exists(CompleteQueryResponse\CompletionResult::class);
-@trigger_error('Google\Cloud\Talent\V4beta1\CompleteQueryResponse_CompletionResult is deprecated and will be removed in the next major release. Use Google\Cloud\Talent\V4beta1\CompleteQueryResponse\CompletionResult instead', E_USER_DEPRECATED);
+\class_exists(CompleteQueryResponse\CompletionResult::class);
+@\trigger_error('Google\Cloud\Talent\V4beta1\CompleteQueryResponse_CompletionResult is deprecated and will be removed in the next major release. Use Google\Cloud\Talent\V4beta1\CompleteQueryResponse\CompletionResult instead', E_USER_DEPRECATED);
 

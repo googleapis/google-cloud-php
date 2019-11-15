@@ -370,7 +370,7 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
     public function getIsCurrentValue()
     {
         $wrapper = $this->getIsCurrent();
-        return is_null($wrapper) ? null : $wrapper->getValue();
+        return \is_null($wrapper) ? null : $wrapper->getValue();
     }
 
     /**
@@ -399,7 +399,7 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
      */
     public function setIsCurrentValue($var)
     {
-        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
+        $wrappedVar = \is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
         return $this->setIsCurrent($wrappedVar);
     }
 

@@ -203,7 +203,7 @@ class Result implements \IteratorAggregate
                 }
 
                 $hasResumeToken = $this->isSetAndTrue($result, 'resumeToken');
-                if ($hasResumeToken || count($bufferedResults) >= self::BUFFER_RESULT_LIMIT) {
+                if ($hasResumeToken || \count($bufferedResults) >= self::BUFFER_RESULT_LIMIT) {
                     $chunkedResult = null;
                     if (!$empty) {
                         list($yieldableRows, $chunkedResult) = $this->parseRowsFromBufferedResults($bufferedResults);
@@ -402,7 +402,7 @@ class Result implements \IteratorAggregate
 
             $values = $shouldMergeValues
                 ? $this->mergeValues($values, $resultValues)
-                : array_merge($values, $resultValues);
+                : \array_merge($values, $resultValues);
 
             $shouldMergeValues = $this->isSetAndTrue($result, 'chunkedValue')
                 ? true
@@ -410,12 +410,12 @@ class Result implements \IteratorAggregate
         }
 
         $yieldableRows = $values && $this->columnCount > 0
-            ? array_chunk($values, $this->columnCount)
+            ? \array_chunk($values, $this->columnCount)
             : [];
 
         if ($this->isSetAndTrue($result, 'chunkedValue')) {
             $chunkedResult = [
-                'values' => array_pop($yieldableRows),
+                'values' => \array_pop($yieldableRows),
                 'chunkedValue' => true
             ];
         }
@@ -456,7 +456,7 @@ class Result implements \IteratorAggregate
             }
 
             if ($format === self::RETURN_ASSOCIATIVE
-                && $this->columnCount !== count(array_unique($this->columnNames))
+                && $this->columnCount !== \count(\array_unique($this->columnNames))
             ) {
                 throw new \RuntimeException(
                     'Duplicate column names are not supported when returning' .
@@ -499,20 +499,20 @@ class Result implements \IteratorAggregate
             return $set1;
         }
 
-        $lastItemSet1 = array_pop($set1);
-        $firstItemSet2 = array_shift($set2);
+        $lastItemSet1 = \array_pop($set1);
+        $firstItemSet2 = \array_shift($set2);
         $item = $firstItemSet2;
 
-        if (is_string($lastItemSet1) && is_string($firstItemSet2)) {
+        if (\is_string($lastItemSet1) && \is_string($firstItemSet2)) {
             $item = $lastItemSet1 . $firstItemSet2;
-        } elseif (is_array($lastItemSet1)) {
+        } elseif (\is_array($lastItemSet1)) {
             $item = $this->mergeValues($lastItemSet1, $firstItemSet2);
         } else {
-            array_push($set1, $lastItemSet1);
+            \array_push($set1, $lastItemSet1);
         }
 
-        array_push($set1, $item);
-        return array_merge($set1, $set2);
+        \array_push($set1, $item);
+        return \array_merge($set1, $set2);
     }
 
     /**

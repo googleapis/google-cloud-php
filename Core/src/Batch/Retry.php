@@ -50,27 +50,27 @@ class Retry
     {
         foreach ($this->getFailedFiles() as $file) {
             // Rename the file first
-            $tmpFile = dirname($file) . '/retrying-' . basename($file);
-            rename($file, $tmpFile);
+            $tmpFile = \dirname($file) . '/retrying-' . \basename($file);
+            \rename($file, $tmpFile);
 
-            $fp = @fopen($tmpFile, 'r');
+            $fp = @\fopen($tmpFile, 'r');
             if ($fp === false) {
-                fwrite(
+                \fwrite(
                     STDERR,
-                    sprintf('Could not open the file: %s' . PHP_EOL, $tmpFile)
+                    \sprintf('Could not open the file: %s' . PHP_EOL, $tmpFile)
                 );
                 continue;
             }
-            while ($line = fgets($fp)) {
-                $a = unserialize($line);
-                $idNum = key($a);
+            while ($line = \fgets($fp)) {
+                $a = \unserialize($line);
+                $idNum = \key($a);
                 $job = $this->runner->getJobFromIdNum($idNum);
                 if (! $job->callFunc($a[$idNum])) {
                     $this->handleFailure($idNum, $a[$idNum]);
                 }
             }
-            @fclose($fp);
-            @unlink($tmpFile);
+            @\fclose($fp);
+            @\unlink($tmpFile);
         }
     }
 }

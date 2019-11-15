@@ -38,18 +38,18 @@ trait GetComponentsTrait
      */
     private function getComponents($libraryRootPath, $componentsPath, $defaultComposerPath = null)
     {
-        $files = glob($componentsPath .'/*/composer.json');
+        $files = \glob($componentsPath .'/*/composer.json');
 
-        if (!is_null($defaultComposerPath)) {
+        if (!\is_null($defaultComposerPath)) {
             $files[] = $defaultComposerPath;
         }
 
         $components = [];
         foreach ($files as $file) {
-            $file = realpath($file);
-            $json = json_decode(file_get_contents($file), true);
+            $file = \realpath($file);
+            $json = \json_decode(\file_get_contents($file), true);
 
-            $path = trim(str_replace($libraryRootPath, '', $file), '/');
+            $path = \trim(\str_replace($libraryRootPath, '', $file), '/');
 
             $component = $json['extra']['component'];
             $component['name'] = $json['name'];
@@ -57,7 +57,7 @@ trait GetComponentsTrait
                 $component['displayName'] = $json['name'];
             }
 
-            $component['prefix'] = dirname($path);
+            $component['prefix'] = \dirname($path);
 
             $components[] = $component;
         }
@@ -103,15 +103,15 @@ trait GetComponentsTrait
      */
     private function getManifestComponentModuleIndex($manifest, $componentId)
     {
-        $manifest = is_array($manifest)
+        $manifest = \is_array($manifest)
             ? $manifest
             : $this->getManifest($manifest);
 
-        $modules = array_filter($manifest['modules'], function ($module) use ($componentId) {
+        $modules = \array_filter($manifest['modules'], function ($module) use ($componentId) {
             return ($module['id'] === $componentId);
         });
 
-        return array_keys($modules)[0];
+        return \array_keys($modules)[0];
     }
 
     /**
@@ -125,9 +125,9 @@ trait GetComponentsTrait
         if (self::$__manifest) {
             $manifest = self::$__manifest;
         } else {
-            $manifest = json_decode(file_get_contents($manifestPath), true);
+            $manifest = \json_decode(\file_get_contents($manifestPath), true);
 
-            if (json_last_error() !== JSON_ERROR_NONE) {
+            if (\json_last_error() !== JSON_ERROR_NONE) {
                 throw new \RuntimeException('Could not decode manifest json');
             }
 
@@ -162,12 +162,12 @@ trait GetComponentsTrait
 
         $components = $this->getComponents($libraryRootPath, $componentsDir, $defaultComposerPath);
 
-        $components = array_values(array_filter($components, function ($component) use ($componentId) {
+        $components = \array_values(\array_filter($components, function ($component) use ($componentId) {
             return ($component['id'] === $componentId);
         }));
 
-        if (count($components) === 0) {
-            throw new \InvalidArgumentException(sprintf(
+        if (\count($components) === 0) {
+            throw new \InvalidArgumentException(\sprintf(
                 'Given component id %s is not a valid component.',
                 $componentId
             ));

@@ -108,7 +108,7 @@ class JobConfigurationTraitTest extends TestCase
         $this->trait->call('jobIdPrefix', [$jobIdPrefix]);
 
         $this->assertEquals(
-            sprintf('%s-%s', $jobIdPrefix, self::JOB_ID),
+            \sprintf('%s-%s', $jobIdPrefix, self::JOB_ID),
             $this->trait->call('toArray')['jobReference']['jobId']
         );
     }

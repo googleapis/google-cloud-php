@@ -11,6 +11,6 @@ if (false) {
      */
     class BatchOperationMetadata_State {}
 }
-class_exists(BatchOperationMetadata\State::class);
-@trigger_error('Google\Cloud\Talent\V4beta1\BatchOperationMetadata_State is deprecated and will be removed in the next major release. Use Google\Cloud\Talent\V4beta1\BatchOperationMetadata\State instead', E_USER_DEPRECATED);
+\class_exists(BatchOperationMetadata\State::class);
+@\trigger_error('Google\Cloud\Talent\V4beta1\BatchOperationMetadata_State is deprecated and will be removed in the next major release. Use Google\Cloud\Talent\V4beta1\BatchOperationMetadata\State instead', E_USER_DEPRECATED);
 

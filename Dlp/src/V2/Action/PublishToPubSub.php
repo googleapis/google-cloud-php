@@ -82,5 +82,5 @@ class PublishToPubSub extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PublishToPubSub::class, \Google\Cloud\Dlp\V2\Action_PublishToPubSub::class);
+\class_alias(PublishToPubSub::class, \Google\Cloud\Dlp\V2\Action_PublishToPubSub::class);
 

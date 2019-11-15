@@ -105,8 +105,8 @@ class Composer
 
     public function run()
     {
-        $parts = explode('/', $this->path);
-        $relativePath = array_pop($parts);
+        $parts = \explode('/', $this->path);
+        $relativePath = \array_pop($parts);
 
         $namespace = $this->ask(
             'Enter the component base namespace, relative to `Google\\Cloud\\`.',
@@ -128,21 +128,21 @@ class Composer
     private function updateMainComposer($namespace, $gpbMetadataNamespace, $relativePath)
     {
         $path = $this->rootPath .'/composer.json';
-        $composer = json_decode(file_get_contents($path), true);
+        $composer = \json_decode(\file_get_contents($path), true);
 
         // Add `replace` to main composer file.
         $composer['replace']['google/'. $this->info['name']] = 'master';
-        ksort($composer['replace']);
+        \ksort($composer['replace']);
 
         // Add namespaces to main composer file.
         $composer['autoload']['psr-4']['Google\\Cloud\\' . $namespace .'\\'] = $relativePath . '/src';
         $composer['autoload']['psr-4']['GPBMetadata\\' . $gpbMetadataNamespace .'\\'] = $relativePath . '/metadata';
         $composer['autoload-dev']['psr-4']['Google\\Cloud\\' . $namespace .'\\Tests\\'] = $relativePath . '/tests';
 
-        ksort($composer['autoload']['psr-4']);
-        ksort($composer['autoload-dev']['psr-4']);
+        \ksort($composer['autoload']['psr-4']);
+        \ksort($composer['autoload-dev']['psr-4']);
 
-        file_put_contents($path, json_encode($composer, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES));
+        \file_put_contents($path, \json_encode($composer, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES));
     }
 
     private function createComponentComposer($namespace, $gpbMetadataNamespace, $relativePath)
@@ -167,7 +167,7 @@ class Composer
         $target = $this->ask(
             'Enter the remote repository target, relative to the hostname. ' .
             'For `git@github.com:foo/bar.git`, enter `foo/bar.git`.',
-            'googleapis/google-cloud-php-'. str_replace('cloud-', '', $this->info['name']) .'.git'
+            'googleapis/google-cloud-php-'. \str_replace('cloud-', '', $this->info['name']) .'.git'
         );
 
         $entry = $this->ask(
@@ -184,7 +184,7 @@ class Composer
         ];
 
         foreach ($this->defaultDeps as $dep) {
-            $confirm = $this->confirm(sprintf('Should `%s` be required?', $dep));
+            $confirm = $this->confirm(\sprintf('Should `%s` be required?', $dep));
             if (!$this->askQuestion($confirm)) {
                 continue;
             }
@@ -207,11 +207,11 @@ class Composer
         } while ($hasMoreDependencies);
 
         foreach ($this->defaultDevDeps as $dep => $ver) {
-            if (array_key_exists('require', $composer) && array_key_exists($dep, $composer['require'])) {
+            if (\array_key_exists('require', $composer) && \array_key_exists($dep, $composer['require'])) {
                 continue;
             }
 
-            $confirm = $this->confirm(sprintf('Should `%s` be included in require-dev?', $dep));
+            $confirm = $this->confirm(\sprintf('Should `%s` be included in require-dev?', $dep));
             if (!$this->askQuestion($confirm)) {
                 continue;
             }
@@ -224,11 +224,11 @@ class Composer
         }
 
         foreach ($this->defaultSuggests as $dep => $val) {
-            if (array_key_exists('require', $composer) && array_key_exists($dep, $composer['require'])) {
+            if (\array_key_exists('require', $composer) && \array_key_exists($dep, $composer['require'])) {
                 continue;
             }
 
-            $confirm = $this->confirm(sprintf('Should `%s` be suggested?', $dep));
+            $confirm = $this->confirm(\sprintf('Should `%s` be suggested?', $dep));
             if (!$this->askQuestion($confirm)) {
                 continue;
             }
@@ -240,15 +240,15 @@ class Composer
             $composer['suggest'][$dep] = $val;
         }
 
-        file_put_contents(
+        \file_put_contents(
             $this->path .'/composer.json',
-            json_encode($composer, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES) . PHP_EOL
+            \json_encode($composer, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES) . PHP_EOL
         );
     }
 
     private function askForVersion($dep)
     {
-        if (strpos($dep, 'ext-') !== false) {
+        if (\strpos($dep, 'ext-') !== false) {
             $defaultVersion = '*';
         } else {
             $defaultVersion = $this->getLatestVersion($dep);
@@ -263,10 +263,10 @@ class Composer
         $uri = 'https://packagist.org/packages/'. $dep .'.json';
         $pkg = $client->request('GET', $uri);
 
-        $versions = json_decode($pkg->getBody(), true)['package']['versions'];
+        $versions = \json_decode($pkg->getBody(), true)['package']['versions'];
         $def = null;
-        foreach (array_keys($versions) as $v) {
-            if (strpos($v, 'dev-') !== false) {
+        foreach (\array_keys($versions) as $v) {
+            if (\strpos($v, 'dev-') !== false) {
                 continue;
             }
 
@@ -276,7 +276,7 @@ class Composer
                 continue;
             }
 
-            $def = sprintf(
+            $def = \sprintf(
                 '^%d.%d.0',
                 $version->getMajor(),
                 $version->getMinor()

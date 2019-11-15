@@ -130,8 +130,8 @@ class BigQueryClient
             'returnInt64AsObject' => false,
             'restRetryFunction' => $this->getRetryFunction(),
             'restCalcDelayFunction' => function ($attempt) {
-                return min(
-                    mt_rand(0, 1000000) + (pow(2, $attempt) * 1000000),
+                return \min(
+                    \mt_rand(0, 1000000) + (\pow(2, $attempt) * 1000000),
                     self::MAX_DELAY_MICROSECONDS
                 );
             }

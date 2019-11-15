@@ -41,5 +41,5 @@ class PublishSummaryToCscc extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PublishSummaryToCscc::class, \Google\Cloud\Dlp\V2\Action_PublishSummaryToCscc::class);
+\class_alias(PublishSummaryToCscc::class, \Google\Cloud\Dlp\V2\Action_PublishSummaryToCscc::class);
 

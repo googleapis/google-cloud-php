@@ -324,12 +324,12 @@ class LandmarksTest extends SnippetTestCase
 
     private function getLandmark($type)
     {
-        $l = array_filter($this->landmarksData, function ($landmark) use ($type) {
+        $l = \array_filter($this->landmarksData, function ($landmark) use ($type) {
             return ($landmark['type'] === $type);
         });
 
         if (!empty($l)) {
-            return current($l);
+            return \current($l);
         }
     }
 

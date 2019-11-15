@@ -44,13 +44,13 @@ class BytesTest extends TestCase
     public function testFormatAsString()
     {
         $bytes = new Bytes($this->content);
-        $this->assertEquals(base64_encode($this->content), $bytes->formatAsString());
+        $this->assertEquals(\base64_encode($this->content), $bytes->formatAsString());
     }
 
     public function testCast()
     {
         $bytes = new Bytes($this->content);
-        $this->assertEquals(base64_encode($this->content), (string) $bytes);
+        $this->assertEquals(\base64_encode($this->content), (string) $bytes);
     }
 
     public function testType()

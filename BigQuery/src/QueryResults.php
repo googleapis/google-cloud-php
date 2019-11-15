@@ -171,7 +171,7 @@ class QueryResults implements \IteratorAggregate
                         return $mergedRow;
                     }
 
-                    if (!array_key_exists('f', $row)) {
+                    if (!\array_key_exists('f', $row)) {
                         throw new GoogleException('Bad response - missing key "f" for a row.');
                     }
 

@@ -33,7 +33,7 @@ class SaveAndModifyTest extends DatastoreTestCase
      */
     public function testEntityLifeCycle(DatastoreClient $client)
     {
-        $key = $client->key('Person', rand(0, 99999));
+        $key = $client->key('Person', \rand(0, 99999));
         $data = [
             'description' => 'A great chef.',
             'birthDate' => new \DateTimeImmutable(),

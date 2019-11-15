@@ -11,6 +11,6 @@ if (false) {
      */
     class Action_PublishToPubSub {}
 }
-class_exists(Action\PublishToPubSub::class);
-@trigger_error('Google\Cloud\Dlp\V2\Action_PublishToPubSub is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\Action\PublishToPubSub instead', E_USER_DEPRECATED);
+\class_exists(Action\PublishToPubSub::class);
+@\trigger_error('Google\Cloud\Dlp\V2\Action_PublishToPubSub is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\Action\PublishToPubSub instead', E_USER_DEPRECATED);
 

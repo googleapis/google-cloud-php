@@ -11,6 +11,6 @@ if (false) {
      */
     class TransformationSummary_TransformationResultCode {}
 }
-class_exists(TransformationSummary\TransformationResultCode::class);
-@trigger_error('Google\Cloud\Dlp\V2\TransformationSummary_TransformationResultCode is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\TransformationSummary\TransformationResultCode instead', E_USER_DEPRECATED);
+\class_exists(TransformationSummary\TransformationResultCode::class);
+@\trigger_error('Google\Cloud\Dlp\V2\TransformationSummary_TransformationResultCode is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\TransformationSummary\TransformationResultCode instead', E_USER_DEPRECATED);
 

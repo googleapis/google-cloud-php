@@ -54,7 +54,7 @@ trait ItemIteratorTrait
      */
     public function nextResultToken()
     {
-        return method_exists($this->pageIterator, 'nextResultToken')
+        return \method_exists($this->pageIterator, 'nextResultToken')
             ? $this->pageIterator->nextResultToken()
             : null;
     }
@@ -115,7 +115,7 @@ trait ItemIteratorTrait
         $this->pageIndex++;
         $this->position++;
 
-        if (count($this->pageIterator->current()) <= $this->pageIndex && $this->nextResultToken()) {
+        if (\count($this->pageIterator->current()) <= $this->pageIndex && $this->nextResultToken()) {
             $this->pageIterator->next();
             $this->pageIndex = 0;
         }

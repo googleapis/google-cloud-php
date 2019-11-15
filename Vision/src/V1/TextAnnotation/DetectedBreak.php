@@ -100,5 +100,5 @@ class DetectedBreak extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DetectedBreak::class, \Google\Cloud\Vision\V1\TextAnnotation_DetectedBreak::class);
+\class_alias(DetectedBreak::class, \Google\Cloud\Vision\V1\TextAnnotation_DetectedBreak::class);
 

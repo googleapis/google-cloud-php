@@ -71,7 +71,7 @@ class SystemTestCase extends TestCase
      */
     public static function randId()
     {
-        return rand(1, 9999999);
+        return \rand(1, 9999999);
     }
 
     /**

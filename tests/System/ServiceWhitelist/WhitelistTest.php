@@ -35,11 +35,11 @@ class WhitelistTest extends SystemTestCase
     public function setUp()
     {
         $this->markTestSkipped('Temporarily removed from the system test suite.');
-        if (!getenv('GOOGLE_CLOUD_PHP_WHITELIST_TESTS_KEY_PATH')) {
+        if (!\getenv('GOOGLE_CLOUD_PHP_WHITELIST_TESTS_KEY_PATH')) {
             $this->markTestSkipped('Missing whitelist keyfile path for whitelist system tests.');
         }
 
-        $this->keyFilePath = getenv('GOOGLE_CLOUD_PHP_WHITELIST_TESTS_KEY_PATH');
+        $this->keyFilePath = \getenv('GOOGLE_CLOUD_PHP_WHITELIST_TESTS_KEY_PATH');
     }
 
     public function testPubSubListSnapshotsRest()
@@ -50,7 +50,7 @@ class WhitelistTest extends SystemTestCase
         ]);
 
         $this->checkException(function () use ($client) {
-            iterator_to_array($client->snapshots());
+            \iterator_to_array($client->snapshots());
         });
     }
 
@@ -62,7 +62,7 @@ class WhitelistTest extends SystemTestCase
         ]);
 
         $this->checkException(function () use ($client) {
-            iterator_to_array($client->snapshots());
+            \iterator_to_array($client->snapshots());
         });
     }
 
@@ -73,14 +73,14 @@ class WhitelistTest extends SystemTestCase
             'transport' => 'rest'
         ]);
 
-        $topic = $client->createTopic(uniqid(self::TESTING_PREFIX));
+        $topic = $client->createTopic(\uniqid(self::TESTING_PREFIX));
         self::$deletionQueue->add($topic);
 
-        $sub = $topic->subscribe(uniqid(self::TESTING_PREFIX));
+        $sub = $topic->subscribe(\uniqid(self::TESTING_PREFIX));
         self::$deletionQueue->add($sub);
 
         $this->checkException(function () use ($client, $sub) {
-            $client->createSnapshot(uniqid(self::TESTING_PREFIX), $sub);
+            $client->createSnapshot(\uniqid(self::TESTING_PREFIX), $sub);
         });
     }
 
@@ -91,14 +91,14 @@ class WhitelistTest extends SystemTestCase
             'transport' => 'grpc'
         ]);
 
-        $topic = $client->createTopic(uniqid(self::TESTING_PREFIX));
+        $topic = $client->createTopic(\uniqid(self::TESTING_PREFIX));
         self::$deletionQueue->add($topic);
 
-        $sub = $topic->subscribe(uniqid(self::TESTING_PREFIX));
+        $sub = $topic->subscribe(\uniqid(self::TESTING_PREFIX));
         self::$deletionQueue->add($sub);
 
         $this->checkException(function () use ($client, $sub) {
-            $client->createSnapshot(uniqid(self::TESTING_PREFIX), $sub);
+            $client->createSnapshot(\uniqid(self::TESTING_PREFIX), $sub);
         });
     }
 
@@ -109,10 +109,10 @@ class WhitelistTest extends SystemTestCase
             'transport' => 'rest'
         ]);
 
-        $topic = $client->createTopic(uniqid(self::TESTING_PREFIX));
+        $topic = $client->createTopic(\uniqid(self::TESTING_PREFIX));
         self::$deletionQueue->add($topic);
 
-        $sub = $topic->subscribe(uniqid(self::TESTING_PREFIX));
+        $sub = $topic->subscribe(\uniqid(self::TESTING_PREFIX));
         self::$deletionQueue->add($sub);
 
         $this->checkException(function () use ($sub) {
@@ -127,10 +127,10 @@ class WhitelistTest extends SystemTestCase
             'transport' => 'grpc'
         ]);
 
-        $topic = $client->createTopic(uniqid(self::TESTING_PREFIX));
+        $topic = $client->createTopic(\uniqid(self::TESTING_PREFIX));
         self::$deletionQueue->add($topic);
 
-        $sub = $topic->subscribe(uniqid(self::TESTING_PREFIX));
+        $sub = $topic->subscribe(\uniqid(self::TESTING_PREFIX));
         self::$deletionQueue->add($sub);
 
         $this->checkException(function () use ($sub) {

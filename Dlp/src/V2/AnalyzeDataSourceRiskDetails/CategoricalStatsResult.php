@@ -66,5 +66,5 @@ class CategoricalStatsResult extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CategoricalStatsResult::class, \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_CategoricalStatsResult::class);
+\class_alias(CategoricalStatsResult::class, \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_CategoricalStatsResult::class);
 

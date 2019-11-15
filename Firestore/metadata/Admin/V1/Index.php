@@ -15,7 +15,7 @@ class Index
           return;
         }
         \GPBMetadata\Google\Api\Annotations::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0aaf070a25676f6f676c652f6669726573746f72652f61646d696e2f7631" .
             "2f696e6465782e70726f746f1219676f6f676c652e6669726573746f7265" .
             "2e61646d696e2e763122a7050a05496e646578120c0a046e616d65180120" .

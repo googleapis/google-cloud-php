@@ -130,7 +130,7 @@ class SafeSearchTest extends SnippetTestCase
         $snippet->addLocal('safeSearch', $this->ss);
 
         $res = $snippet->invoke();
-        $this->assertEquals(sprintf('Image contains %s content.', 'adult'), $res->output());
+        $this->assertEquals(\sprintf('Image contains %s content.', 'adult'), $res->output());
     }
 
     public function testIsSpoof()
@@ -139,7 +139,7 @@ class SafeSearchTest extends SnippetTestCase
         $snippet->addLocal('safeSearch', $this->ss);
 
         $res = $snippet->invoke();
-        $this->assertEquals(sprintf('Image contains %s content.', 'spoofed'), $res->output());
+        $this->assertEquals(\sprintf('Image contains %s content.', 'spoofed'), $res->output());
     }
 
     public function testIsMedical()
@@ -148,7 +148,7 @@ class SafeSearchTest extends SnippetTestCase
         $snippet->addLocal('safeSearch', $this->ss);
 
         $res = $snippet->invoke();
-        $this->assertEquals(sprintf('Image contains %s content.', 'medical'), $res->output());
+        $this->assertEquals(\sprintf('Image contains %s content.', 'medical'), $res->output());
     }
 
     public function testIsViolent()
@@ -157,7 +157,7 @@ class SafeSearchTest extends SnippetTestCase
         $snippet->addLocal('safeSearch', $this->ss);
 
         $res = $snippet->invoke();
-        $this->assertEquals(sprintf('Image contains %s content.', 'violent'), $res->output());
+        $this->assertEquals(\sprintf('Image contains %s content.', 'violent'), $res->output());
     }
 
     public function testIsRacy()
@@ -166,7 +166,7 @@ class SafeSearchTest extends SnippetTestCase
         $snippet->addLocal('safeSearch', $this->ss);
 
         $res = $snippet->invoke();
-        $this->assertEquals(sprintf('Image contains %s content.', 'racy'), $res->output());
+        $this->assertEquals(\sprintf('Image contains %s content.', 'racy'), $res->output());
     }
 
     public function testInfo()

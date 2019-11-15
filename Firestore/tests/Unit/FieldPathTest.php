@@ -50,7 +50,7 @@ class FieldPathTest extends TestCase
 
     public function testFromString()
     {
-        $fieldPath = FieldPath::fromString(implode('.', $this->pieces));
+        $fieldPath = FieldPath::fromString(\implode('.', $this->pieces));
         $this->assertEquals($this->pieces, $fieldPath->path());
     }
 

@@ -67,7 +67,7 @@ class Date implements ValueInterface
      */
     public static function createFromValues($year, $month, $day)
     {
-        $value = sprintf('%s-%s-%s', $year, $month, $day);
+        $value = \sprintf('%s-%s-%s', $year, $month, $day);
         $dt = \DateTimeImmutable::createFromFormat(self::FORMAT, $value);
 
         return new static($dt);

@@ -50,7 +50,7 @@ class SpannerTestCase extends SystemTestCase
 
         self::$instance = self::$client->instance(self::INSTANCE_NAME);
 
-        self::$dbName = uniqid(self::TESTING_PREFIX);
+        self::$dbName = \uniqid(self::TESTING_PREFIX);
         $op = self::$instance->createDatabase(self::$dbName);
         $op->pollUntilComplete();
 
@@ -85,13 +85,13 @@ class SpannerTestCase extends SystemTestCase
             return self::$client;
         }
 
-        $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
+        $keyFilePath = \getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
 
         $clientConfig = [
             'keyFilePath' => $keyFilePath
         ];
 
-        $serviceAddress = getenv('SPANNER_SERVICE_ADDRESS');
+        $serviceAddress = \getenv('SPANNER_SERVICE_ADDRESS');
         if ($serviceAddress) {
             $gapicConfig = [
                 'serviceAddress' => $serviceAddress
@@ -113,7 +113,7 @@ class SpannerTestCase extends SystemTestCase
 
     public static function getDatabaseInstance($dbName)
     {
-        $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
+        $keyFilePath = \getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
 
         return self::$client->connect(self::INSTANCE_NAME, $dbName);
     }

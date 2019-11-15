@@ -20,7 +20,7 @@ class Job
         \GPBMetadata\Google\Protobuf\Duration::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         \GPBMetadata\Google\Rpc\Status::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0adf0a0a28676f6f676c652f636c6f75642f7363686564756c65722f7631" .
             "62657461312f6a6f622e70726f746f121e676f6f676c652e636c6f75642e" .
             "7363686564756c65722e763162657461311a19676f6f676c652f6170692f" .

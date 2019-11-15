@@ -182,5 +182,5 @@ class ConfusionMatrix extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ConfusionMatrix::class, \Google\Cloud\AutoMl\V1beta1\ClassificationEvaluationMetrics_ConfusionMatrix::class);
+\class_alias(ConfusionMatrix::class, \Google\Cloud\AutoMl\V1beta1\ClassificationEvaluationMetrics_ConfusionMatrix::class);
 

@@ -134,7 +134,7 @@ class LoggingClientTest extends TestCase
             ->shouldBeCalledTimes(1);
 
         $this->client->___setProperty('connection', $this->connection->reveal());
-        $sinks = iterator_to_array($this->client->sinks());
+        $sinks = \iterator_to_array($this->client->sinks());
 
         $this->assertEmpty($sinks);
     }
@@ -150,7 +150,7 @@ class LoggingClientTest extends TestCase
             ->shouldBeCalledTimes(1);
 
         $this->client->___setProperty('connection', $this->connection->reveal());
-        $sinks = iterator_to_array($this->client->sinks());
+        $sinks = \iterator_to_array($this->client->sinks());
 
         $this->assertEquals($this->sinkName, $sinks[0]->name());
     }
@@ -170,7 +170,7 @@ class LoggingClientTest extends TestCase
             ])->shouldBeCalledTimes(2);
 
         $this->client->___setProperty('connection', $this->connection->reveal());
-        $sinks = iterator_to_array($this->client->sinks());
+        $sinks = \iterator_to_array($this->client->sinks());
 
         $this->assertEquals($this->sinkName, $sinks[1]->name());
     }
@@ -209,7 +209,7 @@ class LoggingClientTest extends TestCase
             ->shouldBeCalledTimes(1);
 
         $this->client->___setProperty('connection', $this->connection->reveal());
-        $metrics = iterator_to_array($this->client->metrics());
+        $metrics = \iterator_to_array($this->client->metrics());
 
         $this->assertEmpty($metrics);
     }
@@ -225,7 +225,7 @@ class LoggingClientTest extends TestCase
             ->shouldBeCalledTimes(1);
 
         $this->client->___setProperty('connection', $this->connection->reveal());
-        $metrics = iterator_to_array($this->client->metrics());
+        $metrics = \iterator_to_array($this->client->metrics());
 
         $this->assertEquals($this->metricName, $metrics[0]->name());
     }
@@ -245,7 +245,7 @@ class LoggingClientTest extends TestCase
             ])->shouldBeCalledTimes(2);
 
         $this->client->___setProperty('connection', $this->connection->reveal());
-        $metrics = iterator_to_array($this->client->metrics());
+        $metrics = \iterator_to_array($this->client->metrics());
 
         $this->assertEquals($this->metricName, $metrics[1]->name());
     }
@@ -263,7 +263,7 @@ class LoggingClientTest extends TestCase
             ->shouldBeCalledTimes(1);
 
         $this->client->___setProperty('connection', $this->connection->reveal());
-        $entries = iterator_to_array($this->client->entries(['projectIds' => [$secondProjectId]]));
+        $entries = \iterator_to_array($this->client->entries(['projectIds' => [$secondProjectId]]));
 
         $this->assertEmpty($entries);
     }
@@ -279,7 +279,7 @@ class LoggingClientTest extends TestCase
             ->shouldBeCalledTimes(1);
 
         $this->client->___setProperty('connection', $this->connection->reveal());
-        $entries = iterator_to_array($this->client->entries());
+        $entries = \iterator_to_array($this->client->entries());
 
         $this->assertEquals($this->textPayload, $entries[0]->info()['textPayload']);
     }
@@ -299,7 +299,7 @@ class LoggingClientTest extends TestCase
             ])->shouldBeCalledTimes(2);
 
         $this->client->___setProperty('connection', $this->connection->reveal());
-        $entries = iterator_to_array($this->client->entries());
+        $entries = \iterator_to_array($this->client->entries());
 
         $this->assertEquals($this->textPayload, $entries[1]->info()['textPayload']);
     }
@@ -326,7 +326,7 @@ class LoggingClientTest extends TestCase
             ],
             'batchRunner' => new BatchRunner,
             'closureSerializer' => new OpisClosureSerializer,
-            'debugOutputResource' => fopen('php://temp', 'wb')
+            'debugOutputResource' => \fopen('php://temp', 'wb')
         ];
 
         $this->client->___setProperty('connection', $this->connection->reveal());

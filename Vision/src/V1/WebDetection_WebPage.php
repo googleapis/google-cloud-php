@@ -11,6 +11,6 @@ if (false) {
      */
     class WebDetection_WebPage {}
 }
-class_exists(WebDetection\WebPage::class);
-@trigger_error('Google\Cloud\Vision\V1\WebDetection_WebPage is deprecated and will be removed in a future release. Use Google\Cloud\Vision\V1\WebDetection\WebPage instead', E_USER_DEPRECATED);
+\class_exists(WebDetection\WebPage::class);
+@\trigger_error('Google\Cloud\Vision\V1\WebDetection_WebPage is deprecated and will be removed in a future release. Use Google\Cloud\Vision\V1\WebDetection\WebPage instead', E_USER_DEPRECATED);
 

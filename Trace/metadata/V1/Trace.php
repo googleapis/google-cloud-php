@@ -17,7 +17,7 @@ class Trace
         \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0aaa0f0a29676f6f676c652f646576746f6f6c732f636c6f756474726163" .
             "652f76312f74726163652e70726f746f121d676f6f676c652e646576746f" .
             "6f6c732e636c6f756474726163652e76311a1b676f6f676c652f70726f74" .

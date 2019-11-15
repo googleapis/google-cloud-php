@@ -24,9 +24,9 @@ class GAEStandardMetadataProvider extends GAEMetadataProvider
 {
     protected function getTraceValue($server)
     {
-        $traceId = substr($server['HTTP_X_CLOUD_TRACE_CONTEXT'], 0, 32);
+        $traceId = \substr($server['HTTP_X_CLOUD_TRACE_CONTEXT'], 0, 32);
         if (isset($server['GOOGLE_CLOUD_PROJECT'])) {
-            return sprintf(
+            return \sprintf(
                 'projects/%s/traces/%s',
                 $server['GOOGLE_CLOUD_PROJECT'],
                 $traceId

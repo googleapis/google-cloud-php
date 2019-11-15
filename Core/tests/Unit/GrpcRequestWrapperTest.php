@@ -204,12 +204,12 @@ class GrpcRequestWrapperTest extends TestCase
     public function credentialsProvider()
     {
         $keyFilePath = Fixtures::JSON_KEY_FIXTURE();
-        putenv("GOOGLE_APPLICATION_CREDENTIALS=$keyFilePath"); // for application default credentials
+        \putenv("GOOGLE_APPLICATION_CREDENTIALS=$keyFilePath"); // for application default credentials
 
         $credentialsFetcher = $this->prophesize(FetchAuthTokenInterface::class);
 
         return [
-            [['keyFile' => json_decode(file_get_contents($keyFilePath), true)]], // keyFile
+            [['keyFile' => \json_decode(\file_get_contents($keyFilePath), true)]], // keyFile
             [['keyFilePath' => $keyFilePath]], //keyFilePath
             [['credentialsFetcher' => $credentialsFetcher->reveal()]], // user supplied fetcher
             [[]] // application default
@@ -221,7 +221,7 @@ class GrpcRequestWrapperTest extends TestCase
         $keyFilePath = Fixtures::JSON_KEY_FIXTURE();
 
         return [
-            [['keyFile' => json_decode(file_get_contents($keyFilePath), true)]], // keyFile
+            [['keyFile' => \json_decode(\file_get_contents($keyFilePath), true)]], // keyFile
             [['keyFilePath' => $keyFilePath]], //keyFilePath
         ];
     }
@@ -294,7 +294,7 @@ class GrpcRequestWrapperTest extends TestCase
             $this->assertFalse(true, 'Exception not thrown!');
         } catch (\Exception $ex) {
             $this->assertEquals(
-                json_decode($metadata->serializeToJsonString(), true),
+                \json_decode($metadata->serializeToJsonString(), true),
                 $ex->getMetadata()[0]
             );
 

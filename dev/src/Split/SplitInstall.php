@@ -54,7 +54,7 @@ class SplitInstall
         if ($this->fileExists($location)) {
             $message = 'Already Installed';
         } else {
-            $res = $this->shell->execute(sprintf(
+            $res = $this->shell->execute(\sprintf(
                 '%s %s',
                 $rootPath . '/' . self::COMPILE_SCRIPT,
                 $this->installPath
@@ -62,7 +62,7 @@ class SplitInstall
 
             if (!$res[0]) {
                 throw new \RuntimeException(
-                    'Splitsh compile failed with output: ' . implode(PHP_EOL, $res[1])
+                    'Splitsh compile failed with output: ' . \implode(PHP_EOL, $res[1])
                 );
             }
         }
@@ -75,6 +75,6 @@ class SplitInstall
      */
     protected function fileExists($file)
     {
-        return file_exists($file);
+        return \file_exists($file);
     }
 }

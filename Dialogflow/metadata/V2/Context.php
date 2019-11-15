@@ -19,7 +19,7 @@ class Context
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         \GPBMetadata\Google\Protobuf\Struct::initOnce();
         \GPBMetadata\Google\Api\Client::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0ab4100a28676f6f676c652f636c6f75642f6469616c6f67666c6f772f76" .
             "322f636f6e746578742e70726f746f121a676f6f676c652e636c6f75642e" .
             "6469616c6f67666c6f772e76321a1b676f6f676c652f70726f746f627566" .

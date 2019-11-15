@@ -40,7 +40,7 @@ trait OperationResponseTrait
     private function operationToArray($operation, $serializer, array $lroMappers)
     {
         $response = $operation->getLastProtoResponse();
-        if (is_null($response)) {
+        if (\is_null($response)) {
             return null;
         }
 
@@ -53,7 +53,7 @@ trait OperationResponseTrait
         }
 
         $error = $operation->getError();
-        if (!is_null($error)) {
+        if (!\is_null($error)) {
             $error = $serializer->encodeMessage($error);
         }
 
@@ -90,21 +90,21 @@ trait OperationResponseTrait
      */
     private function deserializeResult($operation, $type, $serializer, array $mappers)
     {
-        $mappers = array_filter($mappers, function ($mapper) use ($type) {
+        $mappers = \array_filter($mappers, function ($mapper) use ($type) {
             return $mapper['typeUrl'] === $type;
         });
 
-        if (count($mappers) === 0) {
-            throw new \RuntimeException(sprintf('No mapper exists for operation response type %s.', $type));
+        if (\count($mappers) === 0) {
+            throw new \RuntimeException(\sprintf('No mapper exists for operation response type %s.', $type));
         }
 
-        $mapper = current($mappers);
+        $mapper = \current($mappers);
         $message = $mapper['message'];
 
         $response = new $message();
         $anyResponse = $operation->getLastProtoResponse()->getResponse();
 
-        if (is_null($anyResponse)) {
+        if (\is_null($anyResponse)) {
             return null;
         }
 

@@ -52,7 +52,7 @@ class ServiceBuilderTest extends TestCase
         $this->checkAndSkipTest([$expectedClient]);
 
         if ($beforeCallable) {
-            call_user_func($beforeCallable);
+            \call_user_func($beforeCallable);
         }
 
         $serviceBuilder = new ServiceBuilder(['projectId' => 'myProject']);
@@ -92,14 +92,14 @@ class ServiceBuilderTest extends TestCase
         $this->checkAndSkipTest([$expectedClient]);
 
         if ($beforeCallable) {
-            call_user_func($beforeCallable);
+            \call_user_func($beforeCallable);
         }
 
         $kfPath = Fixtures::JSON_KEY_FIXTURE();
-        $kf = json_decode(file_get_contents($kfPath), true);
+        $kf = \json_decode(\file_get_contents($kfPath), true);
 
-        $adc = getenv('GOOGLE_APPLICATION_CREDENTIALS');
-        putenv('GOOGLE_APPLICATION_CREDENTIALS=');
+        $adc = \getenv('GOOGLE_APPLICATION_CREDENTIALS');
+        \putenv('GOOGLE_APPLICATION_CREDENTIALS=');
 
         $serviceBuilder = new ServiceBuilder([
             'keyFilePath' => $kfPath
@@ -115,7 +115,7 @@ class ServiceBuilderTest extends TestCase
             ->getCredentialsFetcher()
             ->fetchAuthToken($this->stub($kf));
 
-        putenv('GOOGLE_APPLICATION_CREDENTIALS='. $adc);
+        \putenv('GOOGLE_APPLICATION_CREDENTIALS='. $adc);
     }
 
     /**
@@ -130,14 +130,14 @@ class ServiceBuilderTest extends TestCase
         $this->checkAndSkipTest([$expectedClient]);
 
         if ($beforeCallable) {
-            call_user_func($beforeCallable);
+            \call_user_func($beforeCallable);
         }
 
         $kfPath = Fixtures::JSON_KEY_FIXTURE();
-        $kf = json_decode(file_get_contents($kfPath), true);
+        $kf = \json_decode(\file_get_contents($kfPath), true);
 
-        $adc = getenv('GOOGLE_APPLICATION_CREDENTIALS');
-        putenv('GOOGLE_APPLICATION_CREDENTIALS=');
+        $adc = \getenv('GOOGLE_APPLICATION_CREDENTIALS');
+        \putenv('GOOGLE_APPLICATION_CREDENTIALS=');
 
         $serviceBuilder = new ServiceBuilder([
             'keyFile' => $kf
@@ -153,7 +153,7 @@ class ServiceBuilderTest extends TestCase
             ->getCredentialsFetcher()
             ->fetchAuthToken($this->stub($kf));
 
-        putenv('GOOGLE_APPLICATION_CREDENTIALS='. $adc);
+        \putenv('GOOGLE_APPLICATION_CREDENTIALS='. $adc);
     }
 
     public function serviceProvider()
@@ -204,7 +204,7 @@ class ServiceBuilderTest extends TestCase
     public function stub($kf)
     {
         return function (RequestInterface $request) use ($kf) {
-            parse_str((string)$request->getBody(), $result);
+            \parse_str((string)$request->getBody(), $result);
 
             $exp = [
                 'grant_type' => 'refresh_token',
@@ -215,7 +215,7 @@ class ServiceBuilderTest extends TestCase
 
             $this->assertEquals($result, $exp);
 
-            return new Response(200, [], json_encode([
+            return new Response(200, [], \json_encode([
                 'access_token' => 'foo'
             ]));
         };

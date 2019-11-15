@@ -40,10 +40,10 @@ class DocBlockStripSpaces extends DocBlock
      */
     public function cleanInput($comment, $spaces = 4)
     {
-        $lines = array_map(function ($line) use ($spaces) {
-            return substr($line, $spaces);
-        }, explode(PHP_EOL, $comment));
+        $lines = \array_map(function ($line) use ($spaces) {
+            return \substr($line, $spaces);
+        }, \explode(PHP_EOL, $comment));
 
-        return trim(implode(PHP_EOL, $lines));
+        return \trim(\implode(PHP_EOL, $lines));
     }
 }

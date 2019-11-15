@@ -231,5 +231,5 @@ class SecurityCenterProperties extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SecurityCenterProperties::class, \Google\Cloud\SecurityCenter\V1\Asset_SecurityCenterProperties::class);
+\class_alias(SecurityCenterProperties::class, \Google\Cloud\SecurityCenter\V1\Asset_SecurityCenterProperties::class);
 

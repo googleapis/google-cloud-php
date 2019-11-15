@@ -114,7 +114,7 @@ class LifecycleTest extends TestCase
         $this->assertCount(1, $result['rule']);
         $this->assertEquals(
             'SetStorageClass',
-            current($result['rule'])['action']['type']
+            \current($result['rule'])['action']['type']
         );
     }
 

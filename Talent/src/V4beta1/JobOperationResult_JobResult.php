@@ -11,6 +11,6 @@ if (false) {
      */
     class JobOperationResult_JobResult {}
 }
-class_exists(JobOperationResult\JobResult::class);
-@trigger_error('Google\Cloud\Talent\V4beta1\JobOperationResult_JobResult is deprecated and will be removed in the next major release. Use Google\Cloud\Talent\V4beta1\JobOperationResult\JobResult instead', E_USER_DEPRECATED);
+\class_exists(JobOperationResult\JobResult::class);
+@\trigger_error('Google\Cloud\Talent\V4beta1\JobOperationResult_JobResult is deprecated and will be removed in the next major release. Use Google\Cloud\Talent\V4beta1\JobOperationResult\JobResult instead', E_USER_DEPRECATED);
 

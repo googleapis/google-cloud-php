@@ -117,5 +117,5 @@ class ShortRepresentation extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ShortRepresentation::class, \Google\Cloud\Spanner\V1\PlanNode_ShortRepresentation::class);
+\class_alias(ShortRepresentation::class, \Google\Cloud\Spanner\V1\PlanNode_ShortRepresentation::class);
 

@@ -35,17 +35,17 @@ class BatchDaemonTraitTest extends TestCase
     public function testIsDaemonRunning()
     {
         // Clear the env
-        $orig = getenv('IS_BATCH_DAEMON_RUNNING');
+        $orig = \getenv('IS_BATCH_DAEMON_RUNNING');
         try {
-            putenv('IS_BATCH_DAEMON_RUNNING');
+            \putenv('IS_BATCH_DAEMON_RUNNING');
             $this->assertFalse($this->impl->call('isDaemonRunning'));
-            putenv('IS_BATCH_DAEMON_RUNNING=true');
+            \putenv('IS_BATCH_DAEMON_RUNNING=true');
             $this->assertTrue($this->impl->call('isDaemonRunning'));
         } finally {
             if ($orig === false) {
-                putenv('IS_BATCH_DAEMON_RUNNING');
+                \putenv('IS_BATCH_DAEMON_RUNNING');
             } else {
-                putenv('IS_BATCH_DAEMON_RUNNING=' . $orig);
+                \putenv('IS_BATCH_DAEMON_RUNNING=' . $orig);
             }
         }
     }

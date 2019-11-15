@@ -11,6 +11,6 @@ if (false) {
      */
     class Mutation_Delete {}
 }
-class_exists(Mutation\Delete::class);
-@trigger_error('Google\Cloud\Spanner\V1\Mutation_Delete is deprecated and will be removed in the next major release. Use Google\Cloud\Spanner\V1\Mutation\Delete instead', E_USER_DEPRECATED);
+\class_exists(Mutation\Delete::class);
+@\trigger_error('Google\Cloud\Spanner\V1\Mutation_Delete is deprecated and will be removed in the next major release. Use Google\Cloud\Spanner\V1\Mutation\Delete instead', E_USER_DEPRECATED);
 

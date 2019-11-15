@@ -21,7 +21,7 @@ class LogEntry
         \GPBMetadata\Google\Protobuf\Any::initOnce();
         \GPBMetadata\Google\Protobuf\Struct::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0ace0a0a21676f6f676c652f6c6f6767696e672f76322f6c6f675f656e74" .
             "72792e70726f746f1211676f6f676c652e6c6f6767696e672e76321a2367" .
             "6f6f676c652f6170692f6d6f6e69746f7265645f7265736f757263652e70" .

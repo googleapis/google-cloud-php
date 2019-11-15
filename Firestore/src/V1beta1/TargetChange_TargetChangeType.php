@@ -11,6 +11,6 @@ if (false) {
      */
     class TargetChange_TargetChangeType {}
 }
-class_exists(TargetChange\TargetChangeType::class);
-@trigger_error('Google\Cloud\Firestore\V1beta1\TargetChange_TargetChangeType is deprecated and will be removed in the next major release. Use Google\Cloud\Firestore\V1beta1\TargetChange\TargetChangeType instead', E_USER_DEPRECATED);
+\class_exists(TargetChange\TargetChangeType::class);
+@\trigger_error('Google\Cloud\Firestore\V1beta1\TargetChange_TargetChangeType is deprecated and will be removed in the next major release. Use Google\Cloud\Firestore\V1beta1\TargetChange\TargetChangeType instead', E_USER_DEPRECATED);
 

@@ -132,5 +132,5 @@ class Attributes extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Attributes::class, \Google\Cloud\Trace\V2\Span_Attributes::class);
+\class_alias(Attributes::class, \Google\Cloud\Trace\V2\Span_Attributes::class);
 

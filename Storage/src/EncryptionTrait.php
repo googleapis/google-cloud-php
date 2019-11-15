@@ -96,8 +96,8 @@ trait EncryptionTrait
                 : $this->encryptionHeaderNames;
 
             if (!$keySHA256) {
-                $decodedKey = base64_decode($key);
-                $keySHA256 = base64_encode(hash('SHA256', $decodedKey, true));
+                $decodedKey = \base64_decode($key);
+                $keySHA256 = \base64_encode(\hash('SHA256', $decodedKey, true));
             }
 
             return [
@@ -127,15 +127,15 @@ trait EncryptionTrait
     {
         $signature = '';
 
-        if (class_exists(RSA::class) && !$forceOpenssl) {
+        if (\class_exists(RSA::class) && !$forceOpenssl) {
             $rsa = new RSA;
             $rsa->loadKey($privateKey);
             $rsa->setSignatureMode(RSA::SIGNATURE_PKCS1);
             $rsa->setHash('sha256');
 
             $signature = $rsa->sign($data);
-        } elseif (extension_loaded('openssl')) {
-            openssl_sign($data, $signature, $privateKey, 'sha256WithRSAEncryption');
+        } elseif (\extension_loaded('openssl')) {
+            \openssl_sign($data, $signature, $privateKey, 'sha256WithRSAEncryption');
         } else {
             // @codeCoverageIgnoreStart
             throw new \RuntimeException('OpenSSL is not installed.');

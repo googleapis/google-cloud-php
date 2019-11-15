@@ -123,7 +123,7 @@ class GrpcRequestWrapper
         $backoff = new ExponentialBackoff($retries, function (\Exception $ex) {
             $statusCode = $ex->getCode();
 
-            return in_array($statusCode, $this->grpcRetryCodes);
+            return \in_array($statusCode, $this->grpcRetryCodes);
         });
 
         if (!isset($grpcOptions['retrySettings'])) {
@@ -136,7 +136,7 @@ class GrpcRequestWrapper
             $grpcOptions['retrySettings'] = $retrySettings;
         }
 
-        $optionalArgs = &$args[count($args) - 1];
+        $optionalArgs = &$args[\count($args) - 1];
         $optionalArgs += $grpcOptions;
 
         try {

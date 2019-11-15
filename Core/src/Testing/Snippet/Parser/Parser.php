@@ -58,19 +58,19 @@ class Parser
         $class = new ReflectionClass($class);
         $examples = $this->examplesFromClass($class);
 
-        $result = array_filter($examples, function ($example) use ($index) {
+        $result = \array_filter($examples, function ($example) use ($index) {
             return ($example->index() == $index);
         });
 
         if (empty($result)) {
-            throw new \Exception(sprintf(
+            throw new \Exception(\sprintf(
                 'Given snippet index %d does not exist for class %s',
                 $index,
                 $class->getName()
             ));
         }
 
-        return current($result);
+        return \current($result);
     }
 
     /**
@@ -100,12 +100,12 @@ class Parser
     {
         $examples = $this->examplesFromMethod($class, $method);
 
-        $result = array_filter($examples, function ($example) use ($index) {
+        $result = \array_filter($examples, function ($example) use ($index) {
             return ($example->index() === $index);
         });
 
         if (empty($result)) {
-            throw new \Exception(sprintf(
+            throw new \Exception(\sprintf(
                 'Given snippet index %d does not exist for method %s::%s',
                 $index,
                 $class,
@@ -113,7 +113,7 @@ class Parser
             ));
         }
 
-        return current($result);
+        return \current($result);
     }
 
     /**
@@ -138,7 +138,7 @@ class Parser
 
         $magic = [];
         if ($doc->getTags()) {
-            $magicMethods = array_filter($doc->getTags(), function ($tag) {
+            $magicMethods = \array_filter($doc->getTags(), function ($tag) {
                 return ($tag->getName() === 'method');
             });
 
@@ -229,7 +229,7 @@ class Parser
                 continue;
             }
 
-            $snippets = array_merge($snippets, $this->examplesFromMethod($class, $method));
+            $snippets = \array_merge($snippets, $this->examplesFromMethod($class, $method));
         }
 
         return $snippets;
@@ -248,8 +248,8 @@ class Parser
         $text = $docBlock->getText();
         $parts = [];
 
-        if (strpos($text, 'Example:' . PHP_EOL . '```') !== false) {
-            $parts = explode('Example:' . PHP_EOL, $text);
+        if (\strpos($text, 'Example:' . PHP_EOL . '```') !== false) {
+            $parts = \explode('Example:' . PHP_EOL, $text);
         } else {
             return [];
         }
@@ -286,7 +286,7 @@ class Parser
             $index++;
         }
 
-        $res = array_merge($res, $magicMethods);
+        $res = \array_merge($res, $magicMethods);
 
         return $res;
     }
@@ -300,13 +300,13 @@ class Parser
      */
     public function createIdentifier($fqn, $indexOrName)
     {
-        return sha1($fqn . $indexOrName);
+        return \sha1($fqn . $indexOrName);
     }
 
     private function extractSnippetName($content)
     {
         $matches = [];
-        if (!preg_match(self::SNIPPET_NAME_REGEX, $content, $matches)) {
+        if (!\preg_match(self::SNIPPET_NAME_REGEX, $content, $matches)) {
             return null;
         }
 
@@ -319,11 +319,11 @@ class Parser
         foreach ($magicMethods as $method) {
             $description = $method->getDescription();
 
-            if (is_null($description)) {
+            if (\is_null($description)) {
                 continue;
             }
 
-            $doc = new DocBlockStripSpaces(substr($method->getDescription(), 1, -1));
+            $doc = new DocBlockStripSpaces(\substr($method->getDescription(), 1, -1));
 
             $res[] = [
                 'name' => $method->getMethodName(),

@@ -11,6 +11,6 @@ if (false) {
      */
     class PartOfSpeech_Gender {}
 }
-class_exists(PartOfSpeech\Gender::class);
-@trigger_error('Google\Cloud\Language\V1beta2\PartOfSpeech_Gender is deprecated and will be removed in the next major release. Use Google\Cloud\Language\V1beta2\PartOfSpeech\Gender instead', E_USER_DEPRECATED);
+\class_exists(PartOfSpeech\Gender::class);
+@\trigger_error('Google\Cloud\Language\V1beta2\PartOfSpeech_Gender is deprecated and will be removed in the next major release. Use Google\Cloud\Language\V1beta2\PartOfSpeech\Gender instead', E_USER_DEPRECATED);
 

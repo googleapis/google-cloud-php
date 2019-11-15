@@ -34,7 +34,7 @@ class RunShell
      */
     public function execute($command)
     {
-        exec($command, $shellOutput, $exitCode);
+        \exec($command, $shellOutput, $exitCode);
 
         return [$exitCode == 0, $shellOutput, $exitCode];
     }

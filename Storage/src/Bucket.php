@@ -484,7 +484,7 @@ class Bucket
             $name,
             $this->identity['bucket'],
             $generation,
-            array_filter([
+            \array_filter([
                 'requesterProjectId' => $this->identity['userProject']
             ]),
             $encryptionKey,
@@ -547,7 +547,7 @@ class Bucket
                         $object['name'],
                         $this->identity['bucket'],
                         isset($object['generation']) ? $object['generation'] : null,
-                        $object + array_filter([
+                        $object + \array_filter([
                             'requesterProjectId' => $this->identity['userProject']
                         ])
                     );
@@ -920,7 +920,7 @@ class Bucket
      */
     public function compose(array $sourceObjects, $name, array $options = [])
     {
-        if (count($sourceObjects) < 2) {
+        if (\count($sourceObjects) < 2) {
             throw new \InvalidArgumentException('Must provide at least two objects to compose.');
         }
 
@@ -930,7 +930,7 @@ class Bucket
             'destinationPredefinedAcl' => isset($options['predefinedAcl']) ? $options['predefinedAcl'] : null,
             'destination' => isset($options['metadata']) ? $options['metadata'] : null,
             'userProject' => $this->identity['userProject'],
-            'sourceObjects' => array_map(function ($sourceObject) {
+            'sourceObjects' => \array_map(function ($sourceObject) {
                 $name = null;
                 $generation = null;
 
@@ -941,7 +941,7 @@ class Bucket
                         : null;
                 }
 
-                return array_filter([
+                return \array_filter([
                     'name' => $name ?: $sourceObject,
                     'generation' => $generation
                 ]);
@@ -959,14 +959,14 @@ class Bucket
         unset($options['metadata']);
         unset($options['predefinedAcl']);
 
-        $response = $this->connection->composeObject(array_filter($options));
+        $response = $this->connection->composeObject(\array_filter($options));
 
         return new StorageObject(
             $this->connection,
             $response['name'],
             $this->identity['bucket'],
             $response['generation'],
-            $response + array_filter([
+            $response + \array_filter([
                 'requesterProjectId' => $this->identity['userProject']
             ])
         );
@@ -1333,7 +1333,7 @@ class Bucket
         $signingHelper = $this->pluck('helper', $options, false)
             ?: SigningHelper::getHelper();
 
-        $resource = sprintf(
+        $resource = \sprintf(
             '/%s',
             $this->identity['bucket']
         );
@@ -1355,7 +1355,7 @@ class Bucket
      */
     private function isObjectNameRequired($data)
     {
-        return is_string($data) || is_null($data);
+        return \is_string($data) || \is_null($data);
     }
 
     /**
@@ -1369,17 +1369,17 @@ class Bucket
     private function getFormattedTopic($topic)
     {
         if ($topic instanceof Topic) {
-            return sprintf(self::NOTIFICATION_TEMPLATE, $topic->name());
+            return \sprintf(self::NOTIFICATION_TEMPLATE, $topic->name());
         }
 
-        if (!is_string($topic)) {
+        if (!\is_string($topic)) {
             throw new \InvalidArgumentException(
                 '$topic may only be a string or instance of Google\Cloud\PubSub\Topic'
             );
         }
 
-        if (preg_match('/projects\/[^\/]*\/topics\/(.*)/', $topic) === 1) {
-            return sprintf(self::NOTIFICATION_TEMPLATE, $topic);
+        if (\preg_match('/projects\/[^\/]*\/topics\/(.*)/', $topic) === 1) {
+            return \sprintf(self::NOTIFICATION_TEMPLATE, $topic);
         }
 
         if (!$this->projectId) {
@@ -1389,9 +1389,9 @@ class Bucket
             );
         }
 
-        return sprintf(
+        return \sprintf(
             self::NOTIFICATION_TEMPLATE,
-            sprintf(self::TOPIC_TEMPLATE, $this->projectId, $topic)
+            \sprintf(self::TOPIC_TEMPLATE, $this->projectId, $topic)
         );
     }
 }

@@ -61,7 +61,7 @@ class InsertResponseTest extends SnippetTestCase
         $res = $snippet->invoke();
 
         $this->assertEquals(
-            print_r($this->insertResponse->failedRows(), true),
+            \print_r($this->insertResponse->failedRows(), true),
             $res->output()
         );
     }
@@ -73,7 +73,7 @@ class InsertResponseTest extends SnippetTestCase
         $res = $snippet->invoke();
 
         $error = $this->info['insertErrors'][0]['errors'][0];
-        $expected = print_r($this->rows[0]['json'], true) . $error['reason'] . ': ' . $error['message'] . PHP_EOL;
+        $expected = \print_r($this->rows[0]['json'], true) . $error['reason'] . ': ' . $error['message'] . PHP_EOL;
 
         $this->assertEquals(
             $expected,
@@ -87,6 +87,6 @@ class InsertResponseTest extends SnippetTestCase
         $snippet->addLocal('insertResponse', $this->insertResponse);
         $res = $snippet->invoke();
 
-        $this->assertEquals(print_r($this->info['insertErrors'], true), $res->output());
+        $this->assertEquals(\print_r($this->info['insertErrors'], true), $res->output());
     }
 }

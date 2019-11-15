@@ -24,7 +24,7 @@ class Session
         \GPBMetadata\Google\Rpc\Status::initOnce();
         \GPBMetadata\Google\Type\Latlng::initOnce();
         \GPBMetadata\Google\Api\Client::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0ae51f0a28676f6f676c652f636c6f75642f6469616c6f67666c6f772f76" .
             "322f73657373696f6e2e70726f746f121a676f6f676c652e636c6f75642e" .
             "6469616c6f67666c6f772e76321a2d676f6f676c652f636c6f75642f6469" .

@@ -11,6 +11,6 @@ if (false) {
      */
     class DateTime_TimeZone {}
 }
-class_exists(DateTime\TimeZone::class);
-@trigger_error('Google\Cloud\Dlp\V2\DateTime_TimeZone is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\DateTime\TimeZone instead', E_USER_DEPRECATED);
+\class_exists(DateTime\TimeZone::class);
+@\trigger_error('Google\Cloud\Dlp\V2\DateTime_TimeZone is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\DateTime\TimeZone instead', E_USER_DEPRECATED);
 

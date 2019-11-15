@@ -159,7 +159,7 @@ class Grpc implements ConnectionInterface
     public function createSink(array $args = [])
     {
         if (isset($args['outputVersionFormat'])) {
-            $args['outputVersionFormat'] = array_flip(self::$versionFormatMap)[$args['outputVersionFormat']];
+            $args['outputVersionFormat'] = \array_flip(self::$versionFormatMap)[$args['outputVersionFormat']];
         }
 
         $pbSink = $this->serializer->decodeMessage(new LogSink(), $this->pluckArray($this->sinkKeys, $args));
@@ -202,7 +202,7 @@ class Grpc implements ConnectionInterface
     public function updateSink(array $args = [])
     {
         if (isset($args['outputVersionFormat'])) {
-            $args['outputVersionFormat'] = array_flip(self::$versionFormatMap)[$args['outputVersionFormat']];
+            $args['outputVersionFormat'] = \array_flip(self::$versionFormatMap)[$args['outputVersionFormat']];
         }
 
         $pbSink = $this->serializer->decodeMessage(new LogSink(), $this->pluckArray($this->sinkKeys, $args));
@@ -320,8 +320,8 @@ class Grpc implements ConnectionInterface
             unset($entry['timestamp']);
         }
 
-        if (isset($entry['severity']) && is_string($entry['severity'])) {
-            $entry['severity'] = array_flip(Logger::getLogLevelMap())[strtoupper($entry['severity'])];
+        if (isset($entry['severity']) && \is_string($entry['severity'])) {
+            $entry['severity'] = \array_flip(Logger::getLogLevelMap())[\strtoupper($entry['severity'])];
         }
 
         return $this->serializer->decodeMessage(new LogEntry(), $entry);

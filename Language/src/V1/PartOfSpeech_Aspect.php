@@ -11,6 +11,6 @@ if (false) {
      */
     class PartOfSpeech_Aspect {}
 }
-class_exists(PartOfSpeech\Aspect::class);
-@trigger_error('Google\Cloud\Language\V1\PartOfSpeech_Aspect is deprecated and will be removed in the next major release. Use Google\Cloud\Language\V1\PartOfSpeech\Aspect instead', E_USER_DEPRECATED);
+\class_exists(PartOfSpeech\Aspect::class);
+@\trigger_error('Google\Cloud\Language\V1\PartOfSpeech_Aspect is deprecated and will be removed in the next major release. Use Google\Cloud\Language\V1\PartOfSpeech\Aspect instead', E_USER_DEPRECATED);
 

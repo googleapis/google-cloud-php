@@ -199,7 +199,7 @@ class FirestoreSessionHandler implements SessionHandlerInterface
         ];
 
         // Cut down gcLimit to 500, as this is the Firestore batch limit.
-        $this->options['gcLimit'] = min($this->options['gcLimit'], 500);
+        $this->options['gcLimit'] = \min($this->options['gcLimit'], 500);
     }
 
     /**
@@ -222,8 +222,8 @@ class FirestoreSessionHandler implements SessionHandlerInterface
                 'database' => $database
             ] + $this->options['begin']);
         } catch (ServiceException $e) {
-            trigger_error(
-                sprintf('Firestore beginTransaction failed: %s', $e->getMessage()),
+            \trigger_error(
+                \sprintf('Firestore beginTransaction failed: %s', $e->getMessage()),
                 E_USER_WARNING
             );
         }
@@ -243,14 +243,14 @@ class FirestoreSessionHandler implements SessionHandlerInterface
      */
     public function close()
     {
-        if (is_null($this->transaction)) {
+        if (\is_null($this->transaction)) {
             throw new \LogicException('open() must be called before close()');
         }
         try {
             $this->commitTransaction($this->transaction);
         } catch (ServiceException $e) {
-            trigger_error(
-                sprintf('Session close failed: %s', $e->getMessage()),
+            \trigger_error(
+                \sprintf('Session close failed: %s', $e->getMessage()),
                 E_USER_WARNING
             );
             return false;
@@ -283,8 +283,8 @@ class FirestoreSessionHandler implements SessionHandlerInterface
                 return $snapshot->get('data');
             }
         } catch (ServiceException $e) {
-            trigger_error(
-                sprintf('Firestore lookup failed: %s', $e->getMessage()),
+            \trigger_error(
+                \sprintf('Firestore lookup failed: %s', $e->getMessage()),
                 E_USER_WARNING
             );
         }
@@ -309,7 +309,7 @@ class FirestoreSessionHandler implements SessionHandlerInterface
         );
         $this->transaction->set($docRef, [
             'data' => $data,
-            't' => time()
+            't' => \time()
         ]);
         return true;
     }
@@ -368,7 +368,7 @@ class FirestoreSessionHandler implements SessionHandlerInterface
             );
             $query = $collectionRef
                 ->limit($this->options['gcLimit'])
-                ->where('t', '<', time() - $maxlifetime)
+                ->where('t', '<', \time() - $maxlifetime)
                 ->orderBy('t');
             $querySnapshot = $transaction->runQuery(
                 $query,
@@ -382,8 +382,8 @@ class FirestoreSessionHandler implements SessionHandlerInterface
             }
             $this->commitTransaction($transaction);
         } catch (ServiceException $e) {
-            trigger_error(
-                sprintf('Session gc failed: %s', $e->getMessage()),
+            \trigger_error(
+                \sprintf('Session gc failed: %s', $e->getMessage()),
                 E_USER_WARNING
             );
             return false;
@@ -424,7 +424,7 @@ class FirestoreSessionHandler implements SessionHandlerInterface
      */
     private function collectionId()
     {
-        return sprintf(
+        return \sprintf(
             $this->options['collectionNameTemplate'],
             $this->savePath,
             $this->sessionName
@@ -440,6 +440,6 @@ class FirestoreSessionHandler implements SessionHandlerInterface
      */
     private function docId($id)
     {
-        return sprintf('%s/%s', $this->collectionId(), $id);
+        return \sprintf('%s/%s', $this->collectionId(), $id);
     }
 }

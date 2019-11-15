@@ -27,7 +27,7 @@ class ManageJobsTest extends BigQueryTestCase
 {
     public function testListJobs()
     {
-        $query = self::$client->query(sprintf(
+        $query = self::$client->query(\sprintf(
             'SELECT * FROM [%s.%s]',
             self::$dataset->id(),
             self::$table->id()
@@ -49,7 +49,7 @@ class ManageJobsTest extends BigQueryTestCase
 
     public function testListJobsWithTimeFilter()
     {
-        $query = self::$client->query(sprintf(
+        $query = self::$client->query(\sprintf(
             'SELECT * FROM [%s.%s]',
             self::$dataset->id(),
             self::$table->id()
@@ -85,7 +85,7 @@ class ManageJobsTest extends BigQueryTestCase
 
     public function testCancelsJob()
     {
-        $query = self::$client->query(sprintf(
+        $query = self::$client->query(\sprintf(
             'SELECT * FROM [%s.%s]',
             self::$dataset->id(),
             self::$table->id()

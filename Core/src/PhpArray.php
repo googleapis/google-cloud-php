@@ -67,9 +67,9 @@ class PhpArray extends Protobuf\Codec\PhpArray
             $empty = !$message->_has($tag);
             if ($field->isRequired() && $empty) {
                 throw new \UnexpectedValueException(
-                    sprintf(
+                    \sprintf(
                         'Message %s\'s field tag %s(%s) is required but has no value',
-                        get_class($message),
+                        \get_class($message),
                         $tag,
                         $field->getName()
                     )
@@ -85,7 +85,7 @@ class PhpArray extends Protobuf\Codec\PhpArray
 
             if ($field->isRepeated()) {
                 // Make sure the value is an array of values
-                $v = is_array($v) ? $v : array($v);
+                $v = \is_array($v) ? $v : array($v);
                 $arr = [];
 
                 foreach ($v as $k => $vv) {
@@ -97,7 +97,7 @@ class PhpArray extends Protobuf\Codec\PhpArray
                     $filteredValue = $this->filterValue($vv, $field);
 
                     if ($this->isKeyValueMessage($vv)) {
-                        $arr[key($filteredValue)] = current($filteredValue);
+                        $arr[\key($filteredValue)] = \current($filteredValue);
                     } else {
                         $arr[$k] = $filteredValue;
                     }
@@ -111,7 +111,7 @@ class PhpArray extends Protobuf\Codec\PhpArray
             $key = ($this->useCamelCase) ? $this->toCamelCase($key) : $key;
 
             if (isset($this->customFilters[$key])) {
-                $v = call_user_func($this->customFilters[$key], $v);
+                $v = \call_user_func($this->customFilters[$key], $v);
             }
 
             $data[$key] = $v;
@@ -137,14 +137,14 @@ class PhpArray extends Protobuf\Codec\PhpArray
 
             // Unknown field found
             if (!$field) {
-                $unknown = new Protobuf\Codec\PhpArray\Unknown($key, gettype($v), $v);
+                $unknown = new Protobuf\Codec\PhpArray\Unknown($key, \gettype($v), $v);
                 $message->addUnknown($unknown);
                 continue;
             }
 
             if ($field->isRepeated()) {
                 // Make sure the value is an array of values
-                $v = is_array($v) && is_int(key($v)) ? $v : array($v);
+                $v = \is_array($v) && \is_int(\key($v)) ? $v : array($v);
                 foreach ($v as $k => $vv) {
                     $v[$k] = $this->filterValue($vv, $field);
                 }
@@ -160,7 +160,7 @@ class PhpArray extends Protobuf\Codec\PhpArray
 
     protected function filterValue($value, Protobuf\Field $field)
     {
-        if (trim($field->getReference(), '\\') === NullValue::class) {
+        if (\trim($field->getReference(), '\\') === NullValue::class) {
             return null;
         }
 
@@ -223,16 +223,16 @@ class PhpArray extends Protobuf\Codec\PhpArray
 
     private function toSnakeCase($key)
     {
-        return strtolower(preg_replace(['/([a-z\d])([A-Z])/', '/([^_])([A-Z][a-z])/'], '$1_$2', $key));
+        return \strtolower(\preg_replace(['/([a-z\d])([A-Z])/', '/([^_])([A-Z][a-z])/'], '$1_$2', $key));
     }
 
     private function toCamelCase($key)
     {
-        return lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
+        return \lcfirst(\str_replace(' ', '', \ucwords(\str_replace('_', ' ', $key))));
     }
 
     private function isKeyValueMessage($value)
     {
-        return property_exists($value, 'key') && property_exists($value, 'value');
+        return \property_exists($value, 'key') && \property_exists($value, 'value');
     }
 }

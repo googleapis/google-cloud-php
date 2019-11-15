@@ -11,6 +11,6 @@ if (false) {
      */
     class Database_State {}
 }
-class_exists(Database\State::class);
-@trigger_error('Google\Cloud\Spanner\Admin\Database\V1\Database_State is deprecated and will be removed in the next major release. Use Google\Cloud\Spanner\Admin\Database\V1\Database\State instead', E_USER_DEPRECATED);
+\class_exists(Database\State::class);
+@\trigger_error('Google\Cloud\Spanner\Admin\Database\V1\Database_State is deprecated and will be removed in the next major release. Use Google\Cloud\Spanner\Admin\Database\V1\Database\State instead', E_USER_DEPRECATED);
 

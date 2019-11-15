@@ -105,5 +105,5 @@ class BatchPredictOutputInfo extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(BatchPredictOutputInfo::class, \Google\Cloud\AutoMl\V1beta1\BatchPredictOperationMetadata_BatchPredictOutputInfo::class);
+\class_alias(BatchPredictOutputInfo::class, \Google\Cloud\AutoMl\V1beta1\BatchPredictOperationMetadata_BatchPredictOutputInfo::class);
 

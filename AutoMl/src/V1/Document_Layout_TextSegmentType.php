@@ -11,6 +11,6 @@ if (false) {
      */
     class Document_Layout_TextSegmentType {}
 }
-class_exists(Document\Layout\TextSegmentType::class);
-@trigger_error('Google\Cloud\AutoMl\V1\Document_Layout_TextSegmentType is deprecated and will be removed in the next major release. Use Google\Cloud\AutoMl\V1\Document\Layout\TextSegmentType instead', E_USER_DEPRECATED);
+\class_exists(Document\Layout\TextSegmentType::class);
+@\trigger_error('Google\Cloud\AutoMl\V1\Document_Layout_TextSegmentType is deprecated and will be removed in the next major release. Use Google\Cloud\AutoMl\V1\Document\Layout\TextSegmentType instead', E_USER_DEPRECATED);
 

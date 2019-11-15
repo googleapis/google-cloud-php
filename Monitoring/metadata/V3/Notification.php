@@ -17,7 +17,7 @@ class Notification
         \GPBMetadata\Google\Api\Label::initOnce();
         \GPBMetadata\Google\Monitoring\V3\Common::initOnce();
         \GPBMetadata\Google\Protobuf\Wrappers::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0ac5080a27676f6f676c652f6d6f6e69746f72696e672f76332f6e6f7469" .
             "6669636174696f6e2e70726f746f1214676f6f676c652e6d6f6e69746f72" .
             "696e672e76331a21676f6f676c652f6d6f6e69746f72696e672f76332f63" .

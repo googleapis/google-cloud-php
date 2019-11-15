@@ -19,7 +19,7 @@ class Alert
         \GPBMetadata\Google\Protobuf\Duration::initOnce();
         \GPBMetadata\Google\Protobuf\Wrappers::initOnce();
         \GPBMetadata\Google\Rpc\Status::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0af00f0a20676f6f676c652f6d6f6e69746f72696e672f76332f616c6572" .
             "742e70726f746f1214676f6f676c652e6d6f6e69746f72696e672e76331a" .
             "2a676f6f676c652f6d6f6e69746f72696e672f76332f6d75746174696f6e" .

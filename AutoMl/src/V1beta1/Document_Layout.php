@@ -11,6 +11,6 @@ if (false) {
      */
     class Document_Layout {}
 }
-class_exists(Document\Layout::class);
-@trigger_error('Google\Cloud\AutoMl\V1beta1\Document_Layout is deprecated and will be removed in the next major release. Use Google\Cloud\AutoMl\V1beta1\Document\Layout instead', E_USER_DEPRECATED);
+\class_exists(Document\Layout::class);
+@\trigger_error('Google\Cloud\AutoMl\V1beta1\Document_Layout is deprecated and will be removed in the next major release. Use Google\Cloud\AutoMl\V1beta1\Document\Layout instead', E_USER_DEPRECATED);
 

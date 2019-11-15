@@ -27,7 +27,7 @@ class ImageAnnotator
         \GPBMetadata\Google\Rpc\Status::initOnce();
         \GPBMetadata\Google\Type\Color::initOnce();
         \GPBMetadata\Google\Type\Latlng::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0af64c0a2c676f6f676c652f636c6f75642f766973696f6e2f76312f696d" .
             "6167655f616e6e6f7461746f722e70726f746f1216676f6f676c652e636c" .
             "6f75642e766973696f6e2e76311a17676f6f676c652f6170692f636c6965" .

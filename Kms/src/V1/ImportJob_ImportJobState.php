@@ -11,6 +11,6 @@ if (false) {
      */
     class ImportJob_ImportJobState {}
 }
-class_exists(ImportJob\ImportJobState::class);
-@trigger_error('Google\Cloud\Kms\V1\ImportJob_ImportJobState is deprecated and will be removed in the next major release. Use Google\Cloud\Kms\V1\ImportJob\ImportJobState instead', E_USER_DEPRECATED);
+\class_exists(ImportJob\ImportJobState::class);
+@\trigger_error('Google\Cloud\Kms\V1\ImportJob_ImportJobState is deprecated and will be removed in the next major release. Use Google\Cloud\Kms\V1\ImportJob\ImportJobState instead', E_USER_DEPRECATED);
 

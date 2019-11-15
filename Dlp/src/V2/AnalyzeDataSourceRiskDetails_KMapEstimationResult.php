@@ -11,6 +11,6 @@ if (false) {
      */
     class AnalyzeDataSourceRiskDetails_KMapEstimationResult {}
 }
-class_exists(AnalyzeDataSourceRiskDetails\KMapEstimationResult::class);
-@trigger_error('Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_KMapEstimationResult is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\KMapEstimationResult instead', E_USER_DEPRECATED);
+\class_exists(AnalyzeDataSourceRiskDetails\KMapEstimationResult::class);
+@\trigger_error('Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_KMapEstimationResult is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\KMapEstimationResult instead', E_USER_DEPRECATED);
 

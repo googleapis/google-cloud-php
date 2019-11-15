@@ -24,6 +24,6 @@ class GAEFlexMetadataProvider extends GAEMetadataProvider
 {
     protected function getTraceValue($server)
     {
-        return substr($server['HTTP_X_CLOUD_TRACE_CONTEXT'], 0, 32);
+        return \substr($server['HTTP_X_CLOUD_TRACE_CONTEXT'], 0, 32);
     }
 }

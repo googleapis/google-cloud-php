@@ -25,7 +25,7 @@ class WebSecurityScanner
         \GPBMetadata\Google\Cloud\Websecurityscanner\V1Beta\ScanRun::initOnce();
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0ad42c0a41676f6f676c652f636c6f75642f776562736563757269747973" .
             "63616e6e65722f7631626574612f7765625f73656375726974795f736361" .
             "6e6e65722e70726f746f1226676f6f676c652e636c6f75642e7765627365" .

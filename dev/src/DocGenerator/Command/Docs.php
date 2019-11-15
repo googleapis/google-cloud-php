@@ -83,16 +83,16 @@ class Docs extends GoogleCloudCommand
         ];
 
         $components = $this->getComponents($this->rootPath, $paths['source']);
-        $tocTemplate = json_decode(file_get_contents($paths['tocTemplate']), true);
+        $tocTemplate = \json_decode(\file_get_contents($paths['tocTemplate']), true);
 
         if ($component !== 'google-cloud') {
             if ($component) {
-                $components = array_filter($components, function ($componentInfo) use ($component) {
+                $components = \array_filter($components, function ($componentInfo) use ($component) {
                     return $componentInfo['id'] === $component;
                 });
 
                 if (!$components) {
-                    throw new \RuntimeException(sprintf('Given component ID %s does not exist', $component));
+                    throw new \RuntimeException(\sprintf('Given component ID %s does not exist', $component));
                 }
             }
 
@@ -116,11 +116,11 @@ class Docs extends GoogleCloudCommand
         }
 
         if (!$component || $component === 'google-cloud') {
-            $projectRealPath = realpath($paths['project']);
+            $projectRealPath = \realpath($paths['project']);
             $source = $this->getFilesList(
                 $projectRealPath,
                 ['php', 'md'],
-                array_merge($commonExcludes, [
+                \array_merge($commonExcludes, [
                     '/build',
                     '/dev',
                     '/docs',
@@ -158,7 +158,7 @@ class Docs extends GoogleCloudCommand
         $pretty = false,
         $isComponent = true
     ) {
-        $output->writeln(sprintf('Writing documentation for %s', $component['id']));
+        $output->writeln(\sprintf('Writing documentation for %s', $component['id']));
         $output->writeln('--------------');
 
         $version = $this->getComponentVersion($paths['manifest'], $component['id']);
@@ -167,7 +167,7 @@ class Docs extends GoogleCloudCommand
             ? $paths['output'] .'/'. $component['id'] .'/'. $version
             : $paths['output'] .'/'. $component['id'] .'/master';
 
-        $output->writeln(sprintf('Writing to %s', realpath($outputPath)));
+        $output->writeln(\sprintf('Writing to %s', \realpath($outputPath)));
 
         $types = new TypeGenerator($outputPath);
 
@@ -187,8 +187,8 @@ class Docs extends GoogleCloudCommand
 
         $types->write($pretty);
 
-        $output->writeln(sprintf('Writing table of contents to %s', realpath($outputPath)));
-        $contents = json_decode(file_get_contents($paths['toc'] .'/'. $component['id'] .'.json'), true);
+        $output->writeln(\sprintf('Writing table of contents to %s', \realpath($outputPath)));
+        $contents = \json_decode(\file_get_contents($paths['toc'] .'/'. $component['id'] .'.json'), true);
 
         $toc = new TableOfContents(
             $tocTemplate,
@@ -229,7 +229,7 @@ class Docs extends GoogleCloudCommand
         $files = [];
 
         foreach ($fileList as $item) {
-            array_push($files, realPath($item->getPathName()));
+            \array_push($files, \realPath($item->getPathName()));
         }
 
         return $files;

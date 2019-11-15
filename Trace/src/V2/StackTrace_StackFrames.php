@@ -11,6 +11,6 @@ if (false) {
      */
     class StackTrace_StackFrames {}
 }
-class_exists(StackTrace\StackFrames::class);
-@trigger_error('Google\Cloud\Trace\V2\StackTrace_StackFrames is deprecated and will be removed in a future release. Use Google\Cloud\Trace\V2\StackTrace\StackFrames instead', E_USER_DEPRECATED);
+\class_exists(StackTrace\StackFrames::class);
+@\trigger_error('Google\Cloud\Trace\V2\StackTrace_StackFrames is deprecated and will be removed in a future release. Use Google\Cloud\Trace\V2\StackTrace\StackFrames instead', E_USER_DEPRECATED);
 

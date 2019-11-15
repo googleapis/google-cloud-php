@@ -19,7 +19,7 @@ class SessionEntityType
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         \GPBMetadata\Google\Api\Client::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0ac4130a34676f6f676c652f636c6f75642f6469616c6f67666c6f772f76" .
             "322f73657373696f6e5f656e746974795f747970652e70726f746f121a67" .
             "6f6f676c652e636c6f75642e6469616c6f67666c6f772e76321a2c676f6f" .

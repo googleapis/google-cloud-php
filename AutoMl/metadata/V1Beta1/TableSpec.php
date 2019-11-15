@@ -16,7 +16,7 @@ class TableSpec
         }
         \GPBMetadata\Google\Cloud\Automl\V1Beta1\Io::initOnce();
         \GPBMetadata\Google\Api\Annotations::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0ae3030a2c676f6f676c652f636c6f75642f6175746f6d6c2f7631626574" .
             "61312f7461626c655f737065632e70726f746f121b676f6f676c652e636c" .
             "6f75642e6175746f6d6c2e763162657461311a1c676f6f676c652f617069" .

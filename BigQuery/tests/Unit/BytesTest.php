@@ -40,9 +40,9 @@ class BytesTest extends TestCase
 
     public function valueProvider()
     {
-        $fh = fopen('php://temp', 'r+');
-        fwrite($fh, $this->value);
-        rewind($fh);
+        $fh = \fopen('php://temp', 'r+');
+        \fwrite($fh, $this->value);
+        \rewind($fh);
 
         return [
             [$this->value],
@@ -61,7 +61,7 @@ class BytesTest extends TestCase
     public function testToString()
     {
         $bytes = new Bytes($this->value);
-        $expected = base64_encode($this->value);
+        $expected = \base64_encode($this->value);
 
         $this->assertEquals($expected, (string) $bytes);
         $this->assertEquals($expected, $bytes->formatAsString());

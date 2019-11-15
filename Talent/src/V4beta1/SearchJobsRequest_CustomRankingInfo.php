@@ -11,6 +11,6 @@ if (false) {
      */
     class SearchJobsRequest_CustomRankingInfo {}
 }
-class_exists(SearchJobsRequest\CustomRankingInfo::class);
-@trigger_error('Google\Cloud\Talent\V4beta1\SearchJobsRequest_CustomRankingInfo is deprecated and will be removed in the next major release. Use Google\Cloud\Talent\V4beta1\SearchJobsRequest\CustomRankingInfo instead', E_USER_DEPRECATED);
+\class_exists(SearchJobsRequest\CustomRankingInfo::class);
+@\trigger_error('Google\Cloud\Talent\V4beta1\SearchJobsRequest_CustomRankingInfo is deprecated and will be removed in the next major release. Use Google\Cloud\Talent\V4beta1\SearchJobsRequest\CustomRankingInfo instead', E_USER_DEPRECATED);
 

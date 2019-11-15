@@ -184,5 +184,5 @@ class MessageEvent extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(MessageEvent::class, \Google\Cloud\Trace\V2\Span_TimeEvent_MessageEvent::class);
+\class_alias(MessageEvent::class, \Google\Cloud\Trace\V2\Span_TimeEvent_MessageEvent::class);
 

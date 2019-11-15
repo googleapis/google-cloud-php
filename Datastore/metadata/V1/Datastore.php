@@ -17,7 +17,7 @@ class Datastore
         \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Datastore\V1\Entity::initOnce();
         \GPBMetadata\Google\Datastore\V1\Query::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0add1c0a23676f6f676c652f6461746173746f72652f76312f6461746173" .
             "746f72652e70726f746f1213676f6f676c652e6461746173746f72652e76" .
             "311a20676f6f676c652f6461746173746f72652f76312f656e746974792e" .

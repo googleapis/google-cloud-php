@@ -101,7 +101,7 @@ trait TransactionConfigurationTrait
         } elseif ($context === SessionPoolInterface::CONTEXT_READWRITE) {
             $transactionOptions = $this->configureTransactionOptions();
         } else {
-            throw new \BadMethodCallException(sprintf(
+            throw new \BadMethodCallException(\sprintf(
                 'Invalid transaction context %s',
                 $context
             ));
@@ -176,7 +176,7 @@ trait TransactionConfigurationTrait
             if (isset($transactionOptions['readOnly'][$tsf]) && !isset($previousOptions[$tsf])) {
                 $field = $transactionOptions['readOnly'][$tsf];
                 if (!($field instanceof Timestamp)) {
-                    throw new \BadMethodCallException(sprintf(
+                    throw new \BadMethodCallException(\sprintf(
                         'Read Only Transaction Configuration Field %s must be an instance of `%s`.',
                         $tsf,
                         Timestamp::class
@@ -191,7 +191,7 @@ trait TransactionConfigurationTrait
             if (isset($transactionOptions['readOnly'][$df]) && !isset($previousOptions[$df])) {
                 $field = $transactionOptions['readOnly'][$df];
                 if (!($field instanceof Duration)) {
-                    throw new \BadMethodCallException(sprintf(
+                    throw new \BadMethodCallException(\sprintf(
                         'Read Only Transaction Configuration Field %s must be an instance of `%s`.',
                         $df,
                         Duration::class

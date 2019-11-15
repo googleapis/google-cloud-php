@@ -33,10 +33,10 @@ trait GrpcTestTrait
      */
     public function checkAndSkipGrpcTests()
     {
-        if (!extension_loaded('grpc')) {
+        if (!\extension_loaded('grpc')) {
             $this->markTestSkipped('Must have the grpc extension installed to run this test.');
         }
-        if (defined('HHVM_VERSION')) {
+        if (\defined('HHVM_VERSION')) {
             $this->markTestSkipped('gRPC is not supported on HHVM.');
         }
     }
@@ -49,6 +49,6 @@ trait GrpcTestTrait
      */
     public function shouldSkipGrpcTests()
     {
-        return !extension_loaded('grpc') || defined('HHVM_VERSION');
+        return !\extension_loaded('grpc') || \defined('HHVM_VERSION');
     }
 }

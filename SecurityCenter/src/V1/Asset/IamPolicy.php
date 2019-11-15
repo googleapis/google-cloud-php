@@ -76,5 +76,5 @@ class IamPolicy extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(IamPolicy::class, \Google\Cloud\SecurityCenter\V1\Asset_IamPolicy::class);
+\class_alias(IamPolicy::class, \Google\Cloud\SecurityCenter\V1\Asset_IamPolicy::class);
 

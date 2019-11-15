@@ -145,7 +145,7 @@ class PubSubClient
     {
         $this->clientConfig = $config;
         $connectionType = $this->getConnectionType($config);
-        $emulatorHost = getenv('PUBSUB_EMULATOR_HOST');
+        $emulatorHost = \getenv('PUBSUB_EMULATOR_HOST');
         $config += [
             'scopes' => [self::FULL_CONTROL_SCOPE],
             'projectIdRequired' => true,
@@ -568,7 +568,7 @@ class PubSubClient
     public function __debugInfo()
     {
         return [
-            'connection' => get_class($this->connection),
+            'connection' => \get_class($this->connection),
             'projectId' => $this->projectId,
             'encode' => $this->encode
         ];

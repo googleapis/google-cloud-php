@@ -233,7 +233,7 @@ class Table
                         return $mergedRow;
                     }
 
-                    if (!array_key_exists('f', $row)) {
+                    if (!\array_key_exists('f', $row)) {
                         throw new GoogleException('Bad response - missing key "f" for a row.');
                     }
 
@@ -620,7 +620,7 @@ class Table
      */
     public function insertRows(array $rows, array $options = [])
     {
-        if (count($rows) === 0) {
+        if (\count($rows) === 0) {
             throw new \InvalidArgumentException('Must provide at least a single row.');
         }
 
@@ -731,7 +731,7 @@ class Table
      */
     protected function usleep($microSeconds)
     {
-        usleep($microSeconds);
+        \usleep($microSeconds);
     }
 
     /**
@@ -761,7 +761,7 @@ class Table
                         );
                     }
 
-                    $this->usleep(mt_rand(1, self::INSERT_CREATE_MAX_DELAY_MICROSECONDS));
+                    $this->usleep(\mt_rand(1, self::INSERT_CREATE_MAX_DELAY_MICROSECONDS));
 
                     try {
                         $this->connection->insertTable($metadata + [

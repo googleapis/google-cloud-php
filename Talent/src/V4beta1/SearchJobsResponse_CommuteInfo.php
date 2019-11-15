@@ -11,6 +11,6 @@ if (false) {
      */
     class SearchJobsResponse_CommuteInfo {}
 }
-class_exists(SearchJobsResponse\CommuteInfo::class);
-@trigger_error('Google\Cloud\Talent\V4beta1\SearchJobsResponse_CommuteInfo is deprecated and will be removed in the next major release. Use Google\Cloud\Talent\V4beta1\SearchJobsResponse\CommuteInfo instead', E_USER_DEPRECATED);
+\class_exists(SearchJobsResponse\CommuteInfo::class);
+@\trigger_error('Google\Cloud\Talent\V4beta1\SearchJobsResponse_CommuteInfo is deprecated and will be removed in the next major release. Use Google\Cloud\Talent\V4beta1\SearchJobsResponse\CommuteInfo instead', E_USER_DEPRECATED);
 

@@ -143,5 +143,5 @@ class DeleteFromColumn extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DeleteFromColumn::class, \Google\Cloud\Bigtable\V2\Mutation_DeleteFromColumn::class);
+\class_alias(DeleteFromColumn::class, \Google\Cloud\Bigtable\V2\Mutation_DeleteFromColumn::class);
 

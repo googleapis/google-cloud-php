@@ -30,7 +30,7 @@ class BucketLockRetentionPolicyTest extends StorageTestCase
     {
         $bucket = self::createBucket(
             self::$client,
-            uniqid(self::TESTING_PREFIX),
+            \uniqid(self::TESTING_PREFIX),
             [
                 'retentionPolicy' => [
                     'retentionPeriod' => 10
@@ -52,7 +52,7 @@ class BucketLockRetentionPolicyTest extends StorageTestCase
             $this->assertEquals(403, $ex->getCode());
         }
 
-        sleep(10); // Wait for the retention period to expire.
+        \sleep(10); // Wait for the retention period to expire.
         $this->assertNull($object->delete()); // Assert the deletion actually occurs.
     }
 }

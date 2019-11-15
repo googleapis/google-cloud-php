@@ -37,13 +37,13 @@ class LoggingServiceV2SmokeTest extends GeneratedTest
      */
     public function writeLogEntriesTest()
     {
-        $projectId = getenv('PROJECT_ID');
+        $projectId = \getenv('PROJECT_ID');
         if ($projectId === false) {
             $this->fail('Environment variable PROJECT_ID must be set for smoke test');
         }
 
         $loggingServiceV2Client = new LoggingServiceV2Client();
-        $formattedLogName = $loggingServiceV2Client->logName($projectId, 'test-'.time());
+        $formattedLogName = $loggingServiceV2Client->logName($projectId, 'test-'.\time());
         $resource = new MonitoredResource();
         $labels = [];
         $entries = [];

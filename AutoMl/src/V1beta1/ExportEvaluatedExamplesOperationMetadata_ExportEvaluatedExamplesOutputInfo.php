@@ -11,6 +11,6 @@ if (false) {
      */
     class ExportEvaluatedExamplesOperationMetadata_ExportEvaluatedExamplesOutputInfo {}
 }
-class_exists(ExportEvaluatedExamplesOperationMetadata\ExportEvaluatedExamplesOutputInfo::class);
-@trigger_error('Google\Cloud\AutoMl\V1beta1\ExportEvaluatedExamplesOperationMetadata_ExportEvaluatedExamplesOutputInfo is deprecated and will be removed in the next major release. Use Google\Cloud\AutoMl\V1beta1\ExportEvaluatedExamplesOperationMetadata\ExportEvaluatedExamplesOutputInfo instead', E_USER_DEPRECATED);
+\class_exists(ExportEvaluatedExamplesOperationMetadata\ExportEvaluatedExamplesOutputInfo::class);
+@\trigger_error('Google\Cloud\AutoMl\V1beta1\ExportEvaluatedExamplesOperationMetadata_ExportEvaluatedExamplesOutputInfo is deprecated and will be removed in the next major release. Use Google\Cloud\AutoMl\V1beta1\ExportEvaluatedExamplesOperationMetadata\ExportEvaluatedExamplesOutputInfo instead', E_USER_DEPRECATED);
 

@@ -143,7 +143,7 @@ class Iam
             $policy = $policy->result();
         }
 
-        if (!is_array($policy)) {
+        if (!\is_array($policy)) {
             throw new \InvalidArgumentException('Given policy data must be an array or an instance of PolicyBuilder.');
         }
 

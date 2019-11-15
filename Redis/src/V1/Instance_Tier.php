@@ -11,6 +11,6 @@ if (false) {
      */
     class Instance_Tier {}
 }
-class_exists(Instance\Tier::class);
-@trigger_error('Google\Cloud\Redis\V1\Instance_Tier is deprecated and will be removed in a future release. Use Google\Cloud\Redis\V1\Instance\Tier instead', E_USER_DEPRECATED);
+\class_exists(Instance\Tier::class);
+@\trigger_error('Google\Cloud\Redis\V1\Instance_Tier is deprecated and will be removed in a future release. Use Google\Cloud\Redis\V1\Instance\Tier instead', E_USER_DEPRECATED);
 

@@ -60,14 +60,14 @@ trait ResourceNameTrait
     private function pluckName($type, $name)
     {
         if (!isset($this->regexes[$type])) {
-            throw new InvalidArgumentException(sprintf(
+            throw new InvalidArgumentException(\sprintf(
                 'Regex `%s` is not defined',
                 $type
             ));
         }
 
         $matches = [];
-        $res = preg_match($this->regexes[$type], $name, $matches);
+        $res = \preg_match($this->regexes[$type], $name, $matches);
         return ($res === 1) ? $matches[1] : null;
     }
 
@@ -90,13 +90,13 @@ trait ResourceNameTrait
     private function formatName($type, $name, $projectId = null)
     {
         if (!isset($this->templates[$type])) {
-            throw new InvalidArgumentException(sprintf(
+            throw new InvalidArgumentException(\sprintf(
                 'Template `%s` is not defined',
                 $type
             ));
         }
 
-        return vsprintf($this->templates[$type], [$name, $projectId]);
+        return \vsprintf($this->templates[$type], [$name, $projectId]);
     }
 
     /**
@@ -118,11 +118,11 @@ trait ResourceNameTrait
     private function isFullyQualifiedName($type, $name)
     {
         if (!isset($this->regexes[$type])) {
-            throw new InvalidArgumentException(sprintf(
+            throw new InvalidArgumentException(\sprintf(
                 'Regex `%s` is not defined',
                 $type
             ));
         }
-        return (preg_match($this->regexes[$type], $name) === 1);
+        return (\preg_match($this->regexes[$type], $name) === 1);
     }
 }

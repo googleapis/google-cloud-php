@@ -19,6 +19,6 @@ class GcTestListener extends PHPUnit_Framework_BaseTestListener
 {
     public function endTestSuite(\PHPUnit_Framework_TestSuite $suite)
     {
-        gc_collect_cycles();
+        \gc_collect_cycles();
     }
 }

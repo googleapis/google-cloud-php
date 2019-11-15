@@ -11,6 +11,6 @@ if (false) {
      */
     class Phone_PhoneType {}
 }
-class_exists(Phone\PhoneType::class);
-@trigger_error('Google\Cloud\Talent\V4beta1\Phone_PhoneType is deprecated and will be removed in the next major release. Use Google\Cloud\Talent\V4beta1\Phone\PhoneType instead', E_USER_DEPRECATED);
+\class_exists(Phone\PhoneType::class);
+@\trigger_error('Google\Cloud\Talent\V4beta1\Phone_PhoneType is deprecated and will be removed in the next major release. Use Google\Cloud\Talent\V4beta1\Phone\PhoneType instead', E_USER_DEPRECATED);
 

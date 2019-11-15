@@ -98,7 +98,7 @@ class HmacKeyTest extends TestCase
     public function testUpdate()
     {
         $state = 'INACTIVE';
-        $newMetadata = array_merge($this->metadata, ['state' => $state]);
+        $newMetadata = \array_merge($this->metadata, ['state' => $state]);
         $this->connection->updateHmacKey([
             'accessId' => $this->metadata['accessId'],
             'projectId' => self::PROJECT,

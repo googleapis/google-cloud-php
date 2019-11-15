@@ -73,11 +73,11 @@ class DaemonTest extends TestCase
         $this->debuggee->breakpointsWithWaitToken([])
             ->willReturn($resp);
         $this->client->debuggee(null, Argument::that(function ($options) {
-            return preg_match('/[a-z0-9]{32}/', $options['uniquifier']);
+            return \preg_match('/[a-z0-9]{32}/', $options['uniquifier']);
         }))->willReturn($this->debuggee->reveal())->shouldBeCalled();
 
         $daemon = new Daemon([
-            'sourceRoot' => implode(DIRECTORY_SEPARATOR, [__DIR__, 'data']),
+            'sourceRoot' => \implode(DIRECTORY_SEPARATOR, [__DIR__, 'data']),
             'storage' => $this->storage->reveal()
         ]);
         $daemon->run($this->client->reveal(), false);
@@ -170,7 +170,7 @@ class DaemonTest extends TestCase
         $this->client->debuggee(null, Argument::withEntry('extSourceContexts', [$expectedSourceContext]))
             ->willReturn($this->debuggee->reveal())->shouldBeCalled();
 
-        $root = implode(DIRECTORY_SEPARATOR, [__DIR__, 'data']);
+        $root = \implode(DIRECTORY_SEPARATOR, [__DIR__, 'data']);
         $daemon = new Daemon([
             'sourceRoot' => $root,
             'storage' => $this->storage->reveal()

@@ -11,6 +11,6 @@ if (false) {
      */
     class TimeFilter_TimeField {}
 }
-class_exists(TimeFilter\TimeField::class);
-@trigger_error('Google\Cloud\Talent\V4beta1\TimeFilter_TimeField is deprecated and will be removed in the next major release. Use Google\Cloud\Talent\V4beta1\TimeFilter\TimeField instead', E_USER_DEPRECATED);
+\class_exists(TimeFilter\TimeField::class);
+@\trigger_error('Google\Cloud\Talent\V4beta1\TimeFilter_TimeField is deprecated and will be removed in the next major release. Use Google\Cloud\Talent\V4beta1\TimeFilter\TimeField instead', E_USER_DEPRECATED);
 

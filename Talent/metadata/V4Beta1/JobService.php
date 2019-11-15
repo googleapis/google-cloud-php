@@ -27,7 +27,7 @@ class JobService
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         \GPBMetadata\Google\Rpc\Status::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0aec2f0a2d676f6f676c652f636c6f75642f74616c656e742f7634626574" .
             "61312f6a6f625f736572766963652e70726f746f121b676f6f676c652e63" .
             "6c6f75642e74616c656e742e763462657461311a17676f6f676c652f6170" .

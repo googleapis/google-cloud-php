@@ -15,7 +15,7 @@ class Histogram
           return;
         }
         \GPBMetadata\Google\Api\Annotations::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0ab4030a2b676f6f676c652f636c6f75642f74616c656e742f7634626574" .
             "61312f686973746f6772616d2e70726f746f121b676f6f676c652e636c6f" .
             "75642e74616c656e742e7634626574613122290a0e486973746f6772616d" .

@@ -59,5 +59,5 @@ class Conditions extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Conditions::class, \Google\Cloud\Dlp\V2\RecordCondition_Conditions::class);
+\class_alias(Conditions::class, \Google\Cloud\Dlp\V2\RecordCondition_Conditions::class);
 

@@ -16,7 +16,7 @@ class Target
         }
         \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Protobuf\Any::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0aba0b0a2b676f6f676c652f636c6f75642f7363686564756c65722f7631" .
             "62657461312f7461726765742e70726f746f121e676f6f676c652e636c6f" .
             "75642e7363686564756c65722e763162657461311a19676f6f676c652f70" .

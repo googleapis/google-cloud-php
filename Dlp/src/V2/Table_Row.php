@@ -11,6 +11,6 @@ if (false) {
      */
     class Table_Row {}
 }
-class_exists(Table\Row::class);
-@trigger_error('Google\Cloud\Dlp\V2\Table_Row is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\Table\Row instead', E_USER_DEPRECATED);
+\class_exists(Table\Row::class);
+@\trigger_error('Google\Cloud\Dlp\V2\Table_Row is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\Table\Row instead', E_USER_DEPRECATED);
 

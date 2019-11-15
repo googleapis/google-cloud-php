@@ -99,12 +99,12 @@ class ReleaseBuilder extends GoogleCloudCommand
 
     public function __construct($rootPath)
     {
-        $this->manifest = sprintf(self::PATH_MANIFEST, $rootPath);
-        $this->components = sprintf(self::COMPONENT_BASE, $rootPath);
+        $this->manifest = \sprintf(self::PATH_MANIFEST, $rootPath);
+        $this->components = \sprintf(self::COMPONENT_BASE, $rootPath);
         $this->defaultComponentComposer = $rootPath .'/composer.json';
 
         $this->http = new Client;
-        $this->token = getenv(self::TOKEN_ENV);
+        $this->token = \getenv(self::TOKEN_ENV);
 
         parent::__construct($rootPath);
     }
@@ -125,7 +125,7 @@ class ReleaseBuilder extends GoogleCloudCommand
         list ($org, $repo) = $this->getOrgAndRepo($composer);
 
         if (!$this->hasExpectedBase($org, $repo, $version)) {
-            throw new \RuntimeException(sprintf(
+            throw new \RuntimeException(\sprintf(
                 'Expected tag %s not found in %s/%s',
                 $version,
                 $org,
@@ -134,7 +134,7 @@ class ReleaseBuilder extends GoogleCloudCommand
         }
 
         $commits = $this->getCommits($org, $repo, $version);
-        $output->writeln(sprintf('%s commits found.', count($commits)));
+        $output->writeln(\sprintf('%s commits found.', \count($commits)));
 
         $release = [];
         foreach ($commits as $commit) {
@@ -153,9 +153,9 @@ class ReleaseBuilder extends GoogleCloudCommand
         $this->updateComponentVersions($release);
         $notesLocation = $this->createReleaseNotes($release);
 
-        $output->writeln(sprintf(
+        $output->writeln(\sprintf(
             '<fg=white;bg=green>Release created!</>'. PHP_EOL .'Release notes generated at <info>%s</info>',
-            realpath($notesLocation)
+            \realpath($notesLocation)
         ));
     }
 
@@ -233,12 +233,12 @@ class ReleaseBuilder extends GoogleCloudCommand
     private function determineUmbrellaLevel(array $release)
     {
         $levels = [];
-        array_walk($release, function ($component) use (&$levels) {
+        \array_walk($release, function ($component) use (&$levels) {
             $levels[] = $component['level'];
         });
 
-        $levels = array_unique($levels);
-        rsort($levels);
+        $levels = \array_unique($levels);
+        \rsort($levels);
 
         // Since we don't use major versions of the umbrella, major versions of
         // components only bump the umbrella by a minor increment.
@@ -266,33 +266,33 @@ class ReleaseBuilder extends GoogleCloudCommand
         $buildDir = $this->rootPath .'/build';
         $locationTemplate = $buildDir . '/release-%s.md';
 
-        if (!is_dir($buildDir)) {
-            mkdir($buildDir);
+        if (!\is_dir($buildDir)) {
+            \mkdir($buildDir);
         }
 
         $umbrella = $release[self::DEFAULT_COMPONENT];
-        $location = sprintf($locationTemplate, $umbrella['version']);
+        $location = \sprintf($locationTemplate, $umbrella['version']);
 
         unset($release[self::DEFAULT_COMPONENT]);
 
-        ksort($release);
+        \ksort($release);
 
         $notes = [];
         foreach ($release as $key => $component) {
             $messages = [];
             foreach ($component['messages'] as $message) {
-                $messages[] = sprintf('* %s', $message);
+                $messages[] = \sprintf('* %s', $message);
             }
 
-            $notes[] = sprintf('### google/%s v%s', $key, $component['version'])
-                . PHP_EOL . PHP_EOL . implode(PHP_EOL, $messages);
+            $notes[] = \sprintf('### google/%s v%s', $key, $component['version'])
+                . PHP_EOL . PHP_EOL . \implode(PHP_EOL, $messages);
         }
 
-        $template = file_get_contents(__DIR__ .'/templates/release-notes.md.txt');
-        $template = str_replace('{version}', $umbrella['version'], $template);
-        $template = str_replace('{notes}', implode(PHP_EOL . PHP_EOL, $notes), $template);
+        $template = \file_get_contents(__DIR__ .'/templates/release-notes.md.txt');
+        $template = \str_replace('{version}', $umbrella['version'], $template);
+        $template = \str_replace('{notes}', \implode(PHP_EOL . PHP_EOL, $notes), $template);
 
-        file_put_contents($location, $template);
+        \file_put_contents($location, $template);
 
         return $location;
     }
@@ -403,10 +403,10 @@ class ReleaseBuilder extends GoogleCloudCommand
      */
     public function handleChange(OutputInterface $output, array $commitRelease, $level = null)
     {
-        $choices = array_keys($commitRelease);
+        $choices = \array_keys($commitRelease);
 
-        if (count($choices) > 1) {
-            $options = array_merge([
+        if (\count($choices) > 1) {
+            $options = \array_merge([
                 'All Components'
             ], $choices, [
                 'Go Back'
@@ -429,7 +429,7 @@ class ReleaseBuilder extends GoogleCloudCommand
 
         if ($level === null) {
             if ($component) {
-                $componentOverview = sprintf(
+                $componentOverview = \sprintf(
                     '<info>google/%s</info> [<info>%s</info>]:',
                     $component,
                     $this->levels[$commitRelease[$component]['level']]
@@ -437,24 +437,24 @@ class ReleaseBuilder extends GoogleCloudCommand
 
                 $currentMessage = $commitRelease[$component]['message'];
             } else {
-                $componentOverview = sprintf(
+                $componentOverview = \sprintf(
                     'Modifying <info>%s</info> components.',
-                    count($commitRelease)
+                    \count($commitRelease)
                 );
 
-                $currentMessage = current($commitRelease)['message'];
+                $currentMessage = \current($commitRelease)['message'];
             }
 
             $key = 'message';
-            $value = $this->ask(sprintf(
+            $value = $this->ask(\sprintf(
                 '%s Enter a release note message. Do not enter the Pull Request reference number.'.
                 PHP_EOL .'  - Message: <info>%s</info>',
                 $componentOverview,
                 $currentMessage
             ), $currentMessage);
 
-            $value .= ' (#'. current($commitRelease)['ref'] .')';
-        } elseif (array_key_exists($level, $this->levels)) {
+            $value .= ' (#'. \current($commitRelease)['ref'] .')';
+        } elseif (\array_key_exists($level, $this->levels)) {
             $key = 'level';
             $value = $level;
         } else {
@@ -483,15 +483,15 @@ class ReleaseBuilder extends GoogleCloudCommand
      */
     private function processCommit(OutputInterface $output, array $commit, array $components)
     {
-        $output->writeln(sprintf(
+        $output->writeln(\sprintf(
             'Processing Commit: <info>%s</info>',
             $commit['message']
         ));
-        $output->writeln(sprintf('View on GitHub: %s', $commit['htmlUrl']));
+        $output->writeln(\sprintf('View on GitHub: %s', $commit['htmlUrl']));
         $output->writeln('----------');
         $output->writeln('');
 
-        $message = trim($this->ask('Enter a release summary for this commit. You can change this later.', $commit['message']));
+        $message = \trim($this->ask('Enter a release summary for this commit. You can change this later.', $commit['message']));
 
         $commitRelease = [];
         foreach ($components as $key => $component) {
@@ -501,16 +501,16 @@ class ReleaseBuilder extends GoogleCloudCommand
 
             $lowestAllowedLevel = $componentRelease['level'];
             $suggestedLevel = $lowestAllowedLevel;
-            $allowedLevels = array_filter($this->levels, function ($name, $key) use ($lowestAllowedLevel) {
+            $allowedLevels = \array_filter($this->levels, function ($name, $key) use ($lowestAllowedLevel) {
                 return $key >= $lowestAllowedLevel;
             }, ARRAY_FILTER_USE_BOTH);
 
-            $output->writeln(sprintf('Component <comment>%s</comment> modified by commit.', $key));
+            $output->writeln(\sprintf('Component <comment>%s</comment> modified by commit.', $key));
 
             list ($suggestedLevel, $reasons) =
                 $this->determineSuggestedLevel($allowedLevels, $suggestedLevel, $component['files']);
 
-            $output->writeln(sprintf(
+            $output->writeln(\sprintf(
                 'We suggest a <info>%s</info> release because of the following reasons. Please do not use this as an ' .
                 'absolute guide, as this tool is unable to determine the correct outcome in every scenario.',
                 $this->levels[$suggestedLevel]
@@ -525,7 +525,7 @@ class ReleaseBuilder extends GoogleCloudCommand
 
             $componentRelease['level'] = $suggestedLevel;
             $componentRelease['message'] = $message .' (#'. $commit['reference'] .')';
-            $componentRelease['reasons'] = array_merge($componentRelease['reasons'], $reasons);
+            $componentRelease['reasons'] = \array_merge($componentRelease['reasons'], $reasons);
             $componentRelease['ref'] = $commit['reference'];
 
             $commitRelease[$key] = $componentRelease;
@@ -547,8 +547,8 @@ class ReleaseBuilder extends GoogleCloudCommand
         $output->writeln('-----');
 
         foreach ($commitRelease as $key => $releaseInfo) {
-            $output->writeln(sprintf('<info>google/%s</info> [<info>%s</info>]', $key, $this->levels[$releaseInfo['level']]));
-            $output->writeln(sprintf('  - Message: <info>%s</info>', $releaseInfo['message']));
+            $output->writeln(\sprintf('<info>google/%s</info> [<info>%s</info>]', $key, $this->levels[$releaseInfo['level']]));
+            $output->writeln(\sprintf('  - Message: <info>%s</info>', $releaseInfo['message']));
         }
     }
 
@@ -566,19 +566,19 @@ class ReleaseBuilder extends GoogleCloudCommand
         $reasons = [];
 
         if ($levelChoices !== $this->levels) {
-            $suggestedLevel = array_keys($levelChoices)[0];
+            $suggestedLevel = \array_keys($levelChoices)[0];
             $reasons[] = 'Another change specified a higher minimum release level.';
         }
 
-        if (isset($levelChoices[self::LEVEL_MINOR]) && (bool) array_filter($files, function ($file) {
-            $parts = explode('/', $file);
-            return isset($parts[1]) && $parts[1] === 'src' && count($parts) > 2;
+        if (isset($levelChoices[self::LEVEL_MINOR]) && (bool) \array_filter($files, function ($file) {
+            $parts = \explode('/', $file);
+            return isset($parts[1]) && $parts[1] === 'src' && \count($parts) > 2;
         })) {
             $suggestedLevel = self::LEVEL_MINOR;
             $reasons[] = 'There are changes in the component `src` folder.';
         }
 
-        if (isset($levelChoices[self::LEVEL_MINOR]) && in_array('composer.json', $files)) {
+        if (isset($levelChoices[self::LEVEL_MINOR]) && \in_array('composer.json', $files)) {
             $suggestedLevel = self::LEVEL_MINOR;
             $reasons[] = 'The component `composer.json` file was modified.';
         }
@@ -601,7 +601,7 @@ class ReleaseBuilder extends GoogleCloudCommand
         $target = $composer['target'];
 
         $matches = [];
-        preg_match(self::TARGET_REGEX, $target, $matches);
+        \preg_match(self::TARGET_REGEX, $target, $matches);
 
         $org = $matches[1];
         $repo = $matches[2];
@@ -621,7 +621,7 @@ class ReleaseBuilder extends GoogleCloudCommand
      */
     private function hasExpectedBase($org, $repo, $version)
     {
-        $url = sprintf(
+        $url = \sprintf(
             self::GITHUB_RELEASES_ENDPOINT,
             $org,
             $repo,
@@ -648,30 +648,30 @@ class ReleaseBuilder extends GoogleCloudCommand
      */
     private function getCommits($org, $repo, $version)
     {
-        $url = sprintf(
+        $url = \sprintf(
             self::GITHUB_COMPARE_ENDPOINT,
             $org,
             $repo,
             $version
         );
 
-        $res = json_decode($this->http->get($url, [
+        $res = \json_decode($this->http->get($url, [
             'auth' => [null, $this->token]
         ])->getBody(), true);
         $commits = [];
         foreach ($res['commits'] as $commit) {
             $message = $commit['commit']['message'];
 
-            $description = explode("\n", $message)[0];
+            $description = \explode("\n", $message)[0];
             $matches = [];
-            if (preg_match('/(.{0,})\(\#(\d{1,})\)/', $description, $matches) === 1) {
-                $message = trim($matches[1]);
+            if (\preg_match('/(.{0,})\(\#(\d{1,})\)/', $description, $matches) === 1) {
+                $message = \trim($matches[1]);
                 $prNumber = isset($matches[2]) ? $matches[2] : null;
             } else {
                 $prNumber = $this->askForPrNumber($message);
             }
 
-            if (strpos($message, '[CHANGE ME]') === 0 && $prNumber) {
+            if (\strpos($message, '[CHANGE ME]') === 0 && $prNumber) {
                 $message = $this->getMessageFromPullRequest($org, $repo, $prNumber);
             }
 
@@ -689,7 +689,7 @@ class ReleaseBuilder extends GoogleCloudCommand
 
     private function askForPrNumber($message)
     {
-        return trim($this->ask(sprintf(
+        return \trim($this->ask(\sprintf(
             'The commit message did not contain a Pull Request reference. ' .
             'Please enter the pull request reference now. ' .
             'A pull request reference is the ID number of the PR, i.e. 1337. ' .
@@ -700,14 +700,14 @@ class ReleaseBuilder extends GoogleCloudCommand
 
     private function getMessageFromPullRequest($org, $repo, $prNumber)
     {
-        $url = sprintf(
+        $url = \sprintf(
             self::GITHUB_PULL_ENDPOINT,
             $org,
             $repo,
             $prNumber
         );
 
-        $res = json_decode($this->http->get($url, [
+        $res = \json_decode($this->http->get($url, [
             'auth' => [null, $this->token]
         ])->getBody(), true);
 
@@ -722,7 +722,7 @@ class ReleaseBuilder extends GoogleCloudCommand
      */
     private function getCommitComponentModifiedList($url)
     {
-        $commit = json_decode($this->http->get($url, [
+        $commit = \json_decode($this->http->get($url, [
             'auth' => [null, $this->token]
         ])->getBody(), true);
 
@@ -730,20 +730,20 @@ class ReleaseBuilder extends GoogleCloudCommand
         $fileDirectoryComponent = [];
         foreach ($commit['files'] as $file) {
             $filename = $file['filename'];
-            if (strpos($filename, '/') === false) {
+            if (\strpos($filename, '/') === false) {
                 continue;
             }
 
-            $fileParts = explode('/', $filename);
+            $fileParts = \explode('/', $filename);
             $componentDirectory = $fileParts[0];
 
             $composerPath = $this->rootPath .'/'. $componentDirectory .'/composer.json';
-            if (!array_key_exists($composerPath, $fileDirectoryComponent)) {
-                if (!file_exists($composerPath)) {
+            if (!\array_key_exists($composerPath, $fileDirectoryComponent)) {
+                if (!\file_exists($composerPath)) {
                     continue;
                 }
 
-                $composer = json_decode(file_get_contents($composerPath), true)['extra']['component'];
+                $composer = \json_decode(\file_get_contents($composerPath), true)['extra']['component'];
                 $fileDirectoryComponent[$composerPath] = $composer;
             } else {
                 $composer = $fileDirectoryComponent[$composerPath];

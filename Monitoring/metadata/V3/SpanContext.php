@@ -14,7 +14,7 @@ class SpanContext
         if (static::$is_initialized == true) {
           return;
         }
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0a94020a27676f6f676c652f6d6f6e69746f72696e672f76332f7370616e" .
             "5f636f6e746578742e70726f746f1214676f6f676c652e6d6f6e69746f72" .
             "696e672e763322200a0b5370616e436f6e7465787412110a097370616e5f" .

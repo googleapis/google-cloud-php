@@ -11,6 +11,6 @@ if (false) {
      */
     class AlertPolicy_Documentation {}
 }
-class_exists(AlertPolicy\Documentation::class);
-@trigger_error('Google\Cloud\Monitoring\V3\AlertPolicy_Documentation is deprecated and will be removed in the next major release. Use Google\Cloud\Monitoring\V3\AlertPolicy\Documentation instead', E_USER_DEPRECATED);
+\class_exists(AlertPolicy\Documentation::class);
+@\trigger_error('Google\Cloud\Monitoring\V3\AlertPolicy_Documentation is deprecated and will be removed in the next major release. Use Google\Cloud\Monitoring\V3\AlertPolicy\Documentation instead', E_USER_DEPRECATED);
 

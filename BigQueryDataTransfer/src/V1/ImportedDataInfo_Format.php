@@ -11,6 +11,6 @@ if (false) {
      */
     class ImportedDataInfo_Format {}
 }
-class_exists(ImportedDataInfo\Format::class);
-@trigger_error('Google\Cloud\BigQuery\DataTransfer\V1\ImportedDataInfo_Format is deprecated and will be removed in a future release. Use Google\Cloud\BigQuery\DataTransfer\V1\ImportedDataInfo\Format instead', E_USER_DEPRECATED);
+\class_exists(ImportedDataInfo\Format::class);
+@\trigger_error('Google\Cloud\BigQuery\DataTransfer\V1\ImportedDataInfo_Format is deprecated and will be removed in a future release. Use Google\Cloud\BigQuery\DataTransfer\V1\ImportedDataInfo\Format instead', E_USER_DEPRECATED);
 

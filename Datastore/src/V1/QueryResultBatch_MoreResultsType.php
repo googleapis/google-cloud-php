@@ -11,6 +11,6 @@ if (false) {
      */
     class QueryResultBatch_MoreResultsType {}
 }
-class_exists(QueryResultBatch\MoreResultsType::class);
-@trigger_error('Google\Cloud\Datastore\V1\QueryResultBatch_MoreResultsType is deprecated and will be removed in the next major release. Use Google\Cloud\Datastore\V1\QueryResultBatch\MoreResultsType instead', E_USER_DEPRECATED);
+\class_exists(QueryResultBatch\MoreResultsType::class);
+@\trigger_error('Google\Cloud\Datastore\V1\QueryResultBatch_MoreResultsType is deprecated and will be removed in the next major release. Use Google\Cloud\Datastore\V1\QueryResultBatch\MoreResultsType instead', E_USER_DEPRECATED);
 

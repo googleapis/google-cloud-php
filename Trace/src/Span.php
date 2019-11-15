@@ -160,27 +160,27 @@ class Span
             'links' => []
         ];
 
-        $this->name = array_key_exists('name', $options)
+        $this->name = \array_key_exists('name', $options)
             ? $options['name']
             : $this->generateSpanName();
         $this->setSpanId(
-            array_key_exists('spanId', $options)
+            \array_key_exists('spanId', $options)
                 ? $options['spanId']
                 : $this->generateSpanId()
         );
 
-        if (array_key_exists('parentSpanId', $options)) {
+        if (\array_key_exists('parentSpanId', $options)) {
             $this->setParentSpanId($options['parentSpanId']);
         }
 
-        if (array_key_exists('stackTrace', $options)) {
+        if (\array_key_exists('stackTrace', $options)) {
             $this->stackTrace = new StackTrace($options['stackTrace']);
         }
 
-        if (array_key_exists('startTime', $options)) {
+        if (\array_key_exists('startTime', $options)) {
             $this->setStartTime($options['startTime']);
         }
-        if (array_key_exists('endTime', $options)) {
+        if (\array_key_exists('endTime', $options)) {
             $this->setEndTime($options['endTime']);
         }
 
@@ -189,7 +189,7 @@ class Span
         $this->addTimeEvents($options['timeEvents']);
         $this->addLinks($options['links']);
 
-        if (array_key_exists('sameProcessAsParentSpan', $options)) {
+        if (\array_key_exists('sameProcessAsParentSpan', $options)) {
             $this->sameProcessAsParentSpan = $options['sameProcessAsParentSpan'];
         }
     }
@@ -282,7 +282,7 @@ class Span
      */
     public function setSpanId($spanId)
     {
-        $this->spanId = str_pad($spanId, 16, '0', STR_PAD_LEFT);
+        $this->spanId = \str_pad($spanId, 16, '0', STR_PAD_LEFT);
     }
 
     /**
@@ -297,7 +297,7 @@ class Span
      */
     public function setParentSpanId($spanId)
     {
-        $this->parentSpanId = str_pad($spanId, 16, '0', STR_PAD_LEFT);
+        $this->parentSpanId = \str_pad($spanId, 16, '0', STR_PAD_LEFT);
     }
 
     /**
@@ -384,14 +384,14 @@ class Span
         }
         if ($this->timeEvents) {
             $data['timeEvents'] = [
-                'timeEvent' => array_map(function ($timeEvent) {
+                'timeEvent' => \array_map(function ($timeEvent) {
                     return $timeEvent->info();
                 }, $this->timeEvents)
             ];
         }
         if ($this->links) {
             $data['links'] = [
-                'link' => array_map(function ($link) {
+                'link' => \array_map(function ($link) {
                     return $link->info();
                 }, $this->links)
             ];
@@ -494,7 +494,7 @@ class Span
      */
     private function generateSpanId()
     {
-        return dechex(mt_rand());
+        return \dechex(\mt_rand());
     }
 
     /**
@@ -506,16 +506,16 @@ class Span
     private function generateSpanName()
     {
         // Try to find the first stacktrace class entry that doesn't start with Google\Cloud\Trace
-        foreach (debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS) as $bt) {
+        foreach (\debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS) as $bt) {
             $bt += ['line' => null];
-            if (!array_key_exists('class', $bt)) {
-                return implode('/', array_filter(['app', basename($bt['file']), $bt['function'], $bt['line']]));
-            } elseif (substr($bt['class'], 0, 18) != 'Google\Cloud\Trace') {
-                return implode('/', array_filter(['app', $bt['class'], $bt['function'], $bt['line']]));
+            if (!\array_key_exists('class', $bt)) {
+                return \implode('/', \array_filter(['app', \basename($bt['file']), $bt['function'], $bt['line']]));
+            } elseif (\substr($bt['class'], 0, 18) != 'Google\Cloud\Trace') {
+                return \implode('/', \array_filter(['app', $bt['class'], $bt['function'], $bt['line']]));
             }
         }
 
         // We couldn't find a suitable backtrace entry - generate a random one
-        return uniqid('span');
+        return \uniqid('span');
     }
 }

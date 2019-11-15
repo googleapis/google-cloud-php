@@ -201,8 +201,8 @@ class ReadOnlyTransactionTest extends SnippetTestCase
         ]);
 
         $res = $snippet->invoke();
-        $this->assertEquals("Bob", explode("\n", $res->output())[0]);
-        $this->assertEquals("John", explode("\n", $res->output())[1]);
+        $this->assertEquals("Bob", \explode("\n", $res->output())[0]);
+        $this->assertEquals("John", \explode("\n", $res->output())[1]);
     }
 
     public function testRunQuery()

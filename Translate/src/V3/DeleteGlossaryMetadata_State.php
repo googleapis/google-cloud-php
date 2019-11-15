@@ -11,6 +11,6 @@ if (false) {
      */
     class DeleteGlossaryMetadata_State {}
 }
-class_exists(DeleteGlossaryMetadata\State::class);
-@trigger_error('Google\Cloud\Translate\V3\DeleteGlossaryMetadata_State is deprecated and will be removed in a future release. Use Google\Cloud\Translate\V3\DeleteGlossaryMetadata\State instead', E_USER_DEPRECATED);
+\class_exists(DeleteGlossaryMetadata\State::class);
+@\trigger_error('Google\Cloud\Translate\V3\DeleteGlossaryMetadata_State is deprecated and will be removed in a future release. Use Google\Cloud\Translate\V3\DeleteGlossaryMetadata\State instead', E_USER_DEPRECATED);
 

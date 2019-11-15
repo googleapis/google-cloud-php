@@ -123,5 +123,5 @@ class QueryTarget extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(QueryTarget::class, \Google\Cloud\Firestore\V1\Target_QueryTarget::class);
+\class_alias(QueryTarget::class, \Google\Cloud\Firestore\V1\Target_QueryTarget::class);
 

@@ -37,7 +37,7 @@ trait KeyPairGenerateTrait
         $rsa->setHash('sha256');
 
         $key = $rsa->createKey();
-        usleep(500);
+        \usleep(500);
         return [$key['privatekey'], $key['publickey']];
     }
 
@@ -45,6 +45,6 @@ trait KeyPairGenerateTrait
     {
         $verify = $this->signString($privateKey, $input);
 
-        return urlencode(base64_encode($verify)) === $signature;
+        return \urlencode(\base64_encode($verify)) === $signature;
     }
 }

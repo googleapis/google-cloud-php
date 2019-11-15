@@ -140,7 +140,7 @@ class Daemon
         ];
 
         $this->setSerializableClientOptions($options);
-        $this->sourceRoot = realpath($options['sourceRoot']);
+        $this->sourceRoot = \realpath($options['sourceRoot']);
         $sourceContext = $options['sourceContext'] ?: $this->defaultSourceContext();
         $this->extSourceContext = $options['extSourceContext'];
         if (!$this->extSourceContext && $sourceContext) {
@@ -152,7 +152,7 @@ class Daemon
         $this->uniquifier = $options['uniquifier'];
         $this->description = $options['description'] ?: $this->defaultDescription();
         $this->labels = $options['labels'] ?: $this->defaultLabels($options['metadataProvider']);
-        $this->storage = array_key_exists('storage', $options)
+        $this->storage = \array_key_exists('storage', $options)
             ? $options['storage']
             : $this->defaultStorage();
 
@@ -205,12 +205,12 @@ class Daemon
                         // when the request times out with a status of 'ABORTED'.
                         // In this case, we'll fetch again with the same waitToken.
                     }
-                    gc_collect_cycles();
+                    \gc_collect_cycles();
                 } while ($asDaemon);
             } catch (ServiceException $e) {
                 // For any other ServiceExceptions, re-register and start over.
             }
-            gc_collect_cycles();
+            \gc_collect_cycles();
         } while ($asDaemon);
     }
 
@@ -221,10 +221,10 @@ class Daemon
         foreach ($breakpoints as $breakpoint) {
             // validate breakpoint condition and/or expressions
             if ($breakpoint->validate()) {
-                array_push($validBreakpoints, $breakpoint);
+                \array_push($validBreakpoints, $breakpoint);
             } else {
                 $breakpoint->finalize();
-                array_push($invalidBreakpoints, $breakpoint);
+                \array_push($invalidBreakpoints, $breakpoint);
             }
         }
 
@@ -245,10 +245,10 @@ class Daemon
             \RecursiveRegexIterator::GET_MATCH
         );
 
-        $files = array_keys(iterator_to_array($regex));
-        return sha1(implode(':', array_map(function ($filename) {
-            $relativeFilename = str_replace($this->sourceRoot, '', $filename);
-            return $relativeFilename . ':' . filesize($filename);
+        $files = \array_keys(\iterator_to_array($regex));
+        return \sha1(\implode(':', \array_map(function ($filename) {
+            $relativeFilename = \str_replace($this->sourceRoot, '', $filename);
+            return $relativeFilename . ':' . \filesize($filename);
         }, $files)));
     }
 
@@ -257,14 +257,14 @@ class Daemon
         if (isset($_SERVER['GAE_SERVICE'])) {
             return $_SERVER['GAE_SERVICE'] . ' - ' . $_SERVER['GAE_VERSION'];
         }
-        return php_uname('n') . ' - ' . getcwd();
+        return \php_uname('n') . ' - ' . \getcwd();
     }
 
     private function defaultSourceContext()
     {
-        $sourceContextFile = implode(DIRECTORY_SEPARATOR, [$this->sourceRoot, 'source-context.json']);
-        if (file_exists($sourceContextFile)) {
-            return json_decode(file_get_contents($sourceContextFile), true);
+        $sourceContextFile = \implode(DIRECTORY_SEPARATOR, [$this->sourceRoot, 'source-context.json']);
+        if (\file_exists($sourceContextFile)) {
+            return \json_decode(\file_get_contents($sourceContextFile), true);
         }
         return [];
     }

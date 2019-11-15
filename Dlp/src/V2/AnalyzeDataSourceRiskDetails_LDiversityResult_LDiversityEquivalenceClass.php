@@ -11,6 +11,6 @@ if (false) {
      */
     class AnalyzeDataSourceRiskDetails_LDiversityResult_LDiversityEquivalenceClass {}
 }
-class_exists(AnalyzeDataSourceRiskDetails\LDiversityResult\LDiversityEquivalenceClass::class);
-@trigger_error('Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_LDiversityResult_LDiversityEquivalenceClass is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\LDiversityResult\LDiversityEquivalenceClass instead', E_USER_DEPRECATED);
+\class_exists(AnalyzeDataSourceRiskDetails\LDiversityResult\LDiversityEquivalenceClass::class);
+@\trigger_error('Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_LDiversityResult_LDiversityEquivalenceClass is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\LDiversityResult\LDiversityEquivalenceClass instead', E_USER_DEPRECATED);
 

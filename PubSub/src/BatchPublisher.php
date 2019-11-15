@@ -67,7 +67,7 @@ class BatchPublisher
     {
         $this->topicName = $topicName;
         $this->setCommonBatchProperties($options + [
-            'identifier' => sprintf(self::ID_TEMPLATE, $topicName),
+            'identifier' => \sprintf(self::ID_TEMPLATE, $topicName),
             'batchMethod' => 'publishBatch'
         ]);
     }
@@ -98,7 +98,7 @@ class BatchPublisher
      */
     protected function getCallback()
     {
-        if (!array_key_exists($this->topicName, self::$topics)) {
+        if (!\array_key_exists($this->topicName, self::$topics)) {
             $client = new PubSubClient($this->getUnwrappedClientConfig());
             self::$topics[$this->topicName] = $client->topic($this->topicName);
         }

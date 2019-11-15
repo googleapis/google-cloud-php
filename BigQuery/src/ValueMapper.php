@@ -101,7 +101,7 @@ class ValueMapper
             case self::TYPE_STRING:
                 return (string) $value;
             case self::TYPE_BYTES:
-                return new Bytes(base64_decode($value));
+                return new Bytes(\base64_decode($value));
             case self::TYPE_DATE:
                 return new Date(new \DateTime($value));
             case self::TYPE_DATETIME:
@@ -113,7 +113,7 @@ class ValueMapper
             case self::TYPE_RECORD:
                 return $this->recordFromBigQuery($value, $schema['fields']);
             default:
-                throw new \InvalidArgumentException(sprintf(
+                throw new \InvalidArgumentException(\sprintf(
                     'Unrecognized value type %s. Please ensure you are using the latest version of google/cloud.',
                     $schema['type']
                 ));
@@ -138,7 +138,7 @@ class ValueMapper
             return $value->format(self::DATETIME_FORMAT_INSERT);
         }
 
-        if (is_array($value)) {
+        if (\is_array($value)) {
             foreach ($value as $key => $item) {
                 $value[$key] = $this->toBigQuery($item);
             }
@@ -159,7 +159,7 @@ class ValueMapper
     public function toParameter($value)
     {
         $pValue = ['value' => $value];
-        $type = gettype($value);
+        $type = \gettype($value);
 
         switch ($type) {
             case 'boolean':
@@ -180,7 +180,7 @@ class ValueMapper
                 break;
             case 'resource':
                 $pType['type'] = self::TYPE_BYTES;
-                $pValue['value'] = base64_encode(stream_get_contents($value));
+                $pValue['value'] = \base64_encode(\stream_get_contents($value));
 
                 break;
             case 'object':
@@ -194,7 +194,7 @@ class ValueMapper
 
                 break;
             default:
-                throw new \InvalidArgumentException(sprintf(
+                throw new \InvalidArgumentException(\sprintf(
                     'Unrecognized value type %s. Please ensure you are using the latest version of google/cloud.',
                     $type
                 ));
@@ -269,9 +269,9 @@ class ValueMapper
             ];
         }
 
-        throw new \InvalidArgumentException(sprintf(
+        throw new \InvalidArgumentException(\sprintf(
             'Unrecognized object %s. Please ensure you are using the latest version of google/cloud.',
-            get_class($object)
+            \get_class($object)
         ));
     }
 
@@ -338,18 +338,18 @@ class ValueMapper
         // If the string contains 'E' convert from exponential notation to
         // decimal notation. This doesn't cast to a float because precision can
         // be lost.
-        if (strpos($value, 'E')) {
-            list($value, $exponent) = explode('E', $value);
-            list($firstDigit, $remainingDigits) = explode('.', $value);
+        if (\strpos($value, 'E')) {
+            list($value, $exponent) = \explode('E', $value);
+            list($firstDigit, $remainingDigits) = \explode('.', $value);
 
-            if (strlen($remainingDigits) > $exponent) {
-                $value = $firstDigit . substr_replace($remainingDigits, '.', $exponent, 0);
+            if (\strlen($remainingDigits) > $exponent) {
+                $value = $firstDigit . \substr_replace($remainingDigits, '.', $exponent, 0);
             } else {
-                $value = $firstDigit . str_pad($remainingDigits, $exponent, '0') . '.0';
+                $value = $firstDigit . \str_pad($remainingDigits, $exponent, '0') . '.0';
             }
         }
 
-        $parts = explode('.', $value);
+        $parts = \explode('.', $value);
         $unixTimestamp = $parts[0];
         $microSeconds = isset($parts[1])
             ? $parts[1]
@@ -360,13 +360,13 @@ class ValueMapper
         // If the timestamp is before the epoch, make sure we account for that
         // before concatenating the microseconds.
         if ($microSeconds > 0 && $unixTimestamp[0] === '-') {
-            $microSeconds = 1000000 - (int) str_pad($microSeconds, 6, '0');
+            $microSeconds = 1000000 - (int) \str_pad($microSeconds, 6, '0');
             $dateTime->modify('-1 second');
         }
 
         return new Timestamp(
             new \DateTime(
-                sprintf(
+                \sprintf(
                     '%s.%s+00:00',
                     $dateTime->format('Y-m-d H:i:s'),
                     $microSeconds

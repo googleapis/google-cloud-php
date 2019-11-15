@@ -113,7 +113,7 @@ class OperationTest extends SnippetTestCase
         $snippet->addLocal('operation', $this->operation);
 
         $res = $snippet->invoke();
-        $this->assertEquals(print_r($this->opData['response'], true), $res->output());
+        $this->assertEquals(\print_r($this->opData['response'], true), $res->output());
     }
 
     public function testReload()
@@ -128,7 +128,7 @@ class OperationTest extends SnippetTestCase
         $this->operation->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
-        $this->assertEquals(print_r($this->opData['response'], true), $res->output());
+        $this->assertEquals(\print_r($this->opData['response'], true), $res->output());
     }
 
     public function testName()

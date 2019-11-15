@@ -49,7 +49,7 @@ class WriteBatchTest extends TestCase
         $this->batch = TestHelpers::stub(WriteBatch::class, [
             $this->connection->reveal(),
             new ValueMapper($this->connection->reveal(), false),
-            sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE)
+            \sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE)
         ], ['connection', 'transaction']);
     }
 
@@ -63,7 +63,7 @@ class WriteBatchTest extends TestCase
         ]);
 
         $this->commitAndAssert([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
+            'database' => \sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             'writes' => [
                 [
                     'currentDocument' => ['exists' => false],
@@ -92,7 +92,7 @@ class WriteBatchTest extends TestCase
         ]);
 
         $this->commitAndAssert([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
+            'database' => \sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             'writes' => [
                 [
                     'updateMask' => [
@@ -158,7 +158,7 @@ class WriteBatchTest extends TestCase
         ]);
 
         $this->commitAndAssert([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
+            'database' => \sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             'writes' => [
                 [
                     'updateMask' => ['fieldPaths' => ['foo', 'hello']],
@@ -220,7 +220,7 @@ class WriteBatchTest extends TestCase
         ]);
 
         $this->commitAndAssert(function ($arg) {
-            if (count($arg['writes']) > 1) {
+            if (\count($arg['writes']) > 1) {
                 return false;
             }
 
@@ -251,7 +251,7 @@ class WriteBatchTest extends TestCase
         ]);
 
         $this->commitAndAssert([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
+            'database' => \sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             'writes' => [
                 [
                     'update' => [
@@ -273,7 +273,7 @@ class WriteBatchTest extends TestCase
         ], ['merge' => true]);
 
         $this->commitAndAssert([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
+            'database' => \sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             'writes' => [
                 [
                     'updateMask' => ['fieldPaths' => ['hello']],
@@ -297,7 +297,7 @@ class WriteBatchTest extends TestCase
         ]);
 
         $this->commitAndAssert([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
+            'database' => \sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             'writes' => [
                 [
                     'update' => [
@@ -388,7 +388,7 @@ class WriteBatchTest extends TestCase
         $this->batch->delete($ref);
 
         $this->commitAndAssert([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
+            'database' => \sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             'writes' => [
                 [
                     'delete' => $name
@@ -417,7 +417,7 @@ class WriteBatchTest extends TestCase
         ]);
 
         $this->commitAndAssert([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
+            'database' => \sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             'writes' => [
                 [
                     'delete' => $name,
@@ -465,7 +465,7 @@ class WriteBatchTest extends TestCase
 
     public function testCommitResponse()
     {
-        $now = time();
+        $now = \time();
         $nanos = 10;
 
         $timestamp = new Timestamp(\DateTimeImmutable::createFromFormat('U', (string) $now), $nanos);
@@ -506,7 +506,7 @@ class WriteBatchTest extends TestCase
     public function testRollback()
     {
         $this->connection->rollback([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
+            'database' => \sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             'transaction' => self::TRANSACTION
         ]);
 
@@ -534,10 +534,10 @@ class WriteBatchTest extends TestCase
 
     private function commitAndAssert($assertion)
     {
-        if (is_callable($assertion)) {
+        if (\is_callable($assertion)) {
             $this->connection->commit(Argument::that($assertion))
                 ->shouldBeCalled();
-        } elseif (is_array($assertion)) {
+        } elseif (\is_array($assertion)) {
             $this->connection->commit($assertion)->shouldBeCalled();
         } else {
             throw new \Exception('bad assertion');

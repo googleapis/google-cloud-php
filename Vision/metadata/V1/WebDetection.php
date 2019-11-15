@@ -15,7 +15,7 @@ class WebDetection
           return;
         }
         \GPBMetadata\Google\Api\Annotations::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0a9e080a2a676f6f676c652f636c6f75642f766973696f6e2f76312f7765" .
             "625f646574656374696f6e2e70726f746f1216676f6f676c652e636c6f75" .
             "642e766973696f6e2e763122d4060a0c576562446574656374696f6e1244" .

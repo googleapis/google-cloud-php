@@ -11,6 +11,6 @@ if (false) {
      */
     class LoggingConfig_Level {}
 }
-class_exists(LoggingConfig\Level::class);
-@trigger_error('Google\Cloud\Dataproc\V1beta2\LoggingConfig_Level is deprecated and will be removed in the next major release. Use Google\Cloud\Dataproc\V1beta2\LoggingConfig\Level instead', E_USER_DEPRECATED);
+\class_exists(LoggingConfig\Level::class);
+@\trigger_error('Google\Cloud\Dataproc\V1beta2\LoggingConfig_Level is deprecated and will be removed in the next major release. Use Google\Cloud\Dataproc\V1beta2\LoggingConfig\Level instead', E_USER_DEPRECATED);
 

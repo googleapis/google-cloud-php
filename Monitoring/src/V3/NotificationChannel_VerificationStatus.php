@@ -11,6 +11,6 @@ if (false) {
      */
     class NotificationChannel_VerificationStatus {}
 }
-class_exists(NotificationChannel\VerificationStatus::class);
-@trigger_error('Google\Cloud\Monitoring\V3\NotificationChannel_VerificationStatus is deprecated and will be removed in the next major release. Use Google\Cloud\Monitoring\V3\NotificationChannel\VerificationStatus instead', E_USER_DEPRECATED);
+\class_exists(NotificationChannel\VerificationStatus::class);
+@\trigger_error('Google\Cloud\Monitoring\V3\NotificationChannel_VerificationStatus is deprecated and will be removed in the next major release. Use Google\Cloud\Monitoring\V3\NotificationChannel\VerificationStatus instead', E_USER_DEPRECATED);
 

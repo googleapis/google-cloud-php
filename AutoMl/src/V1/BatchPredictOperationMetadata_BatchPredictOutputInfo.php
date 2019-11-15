@@ -11,6 +11,6 @@ if (false) {
      */
     class BatchPredictOperationMetadata_BatchPredictOutputInfo {}
 }
-class_exists(BatchPredictOperationMetadata\BatchPredictOutputInfo::class);
-@trigger_error('Google\Cloud\AutoMl\V1\BatchPredictOperationMetadata_BatchPredictOutputInfo is deprecated and will be removed in the next major release. Use Google\Cloud\AutoMl\V1\BatchPredictOperationMetadata\BatchPredictOutputInfo instead', E_USER_DEPRECATED);
+\class_exists(BatchPredictOperationMetadata\BatchPredictOutputInfo::class);
+@\trigger_error('Google\Cloud\AutoMl\V1\BatchPredictOperationMetadata_BatchPredictOutputInfo is deprecated and will be removed in the next major release. Use Google\Cloud\AutoMl\V1\BatchPredictOperationMetadata\BatchPredictOutputInfo instead', E_USER_DEPRECATED);
 

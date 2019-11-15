@@ -95,5 +95,5 @@ class RequestedOptions extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RequestedOptions::class, \Google\Cloud\Dlp\V2\InspectDataSourceDetails_RequestedOptions::class);
+\class_alias(RequestedOptions::class, \Google\Cloud\Dlp\V2\InspectDataSourceDetails_RequestedOptions::class);
 

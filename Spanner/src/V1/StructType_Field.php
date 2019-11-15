@@ -11,6 +11,6 @@ if (false) {
      */
     class StructType_Field {}
 }
-class_exists(StructType\Field::class);
-@trigger_error('Google\Cloud\Spanner\V1\StructType_Field is deprecated and will be removed in the next major release. Use Google\Cloud\Spanner\V1\StructType\Field instead', E_USER_DEPRECATED);
+\class_exists(StructType\Field::class);
+@\trigger_error('Google\Cloud\Spanner\V1\StructType_Field is deprecated and will be removed in the next major release. Use Google\Cloud\Spanner\V1\StructType\Field instead', E_USER_DEPRECATED);
 

@@ -79,7 +79,7 @@ class IncomingMessageTraitTest extends TestCase
             [
                 [
                     'message' => [
-                        'data' => base64_encode('hello world')
+                        'data' => \base64_encode('hello world')
                     ]
                 ],
                 $this->connection->reveal(),
@@ -98,7 +98,7 @@ class IncomingMessageTraitTest extends TestCase
             [
                 [
                     'message' => [
-                        'data' => base64_encode('hello world')
+                        'data' => \base64_encode('hello world')
                     ],
                     'subscription' => 'projects/project-id/subscriptions/foo'
                 ],

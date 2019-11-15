@@ -72,5 +72,5 @@ class ExportEvaluatedExamplesOutputInfo extends \Google\Protobuf\Internal\Messag
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ExportEvaluatedExamplesOutputInfo::class, \Google\Cloud\AutoMl\V1beta1\ExportEvaluatedExamplesOperationMetadata_ExportEvaluatedExamplesOutputInfo::class);
+\class_alias(ExportEvaluatedExamplesOutputInfo::class, \Google\Cloud\AutoMl\V1beta1\ExportEvaluatedExamplesOperationMetadata_ExportEvaluatedExamplesOutputInfo::class);
 

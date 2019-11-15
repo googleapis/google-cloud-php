@@ -51,8 +51,8 @@ trait LikelihoodTrait
      */
     private function likelihood($value, $strength)
     {
-        if (!array_key_exists($strength, $this->likelihoodLevels)) {
-            throw new InvalidArgumentException(sprintf(
+        if (!\array_key_exists($strength, $this->likelihoodLevels)) {
+            throw new InvalidArgumentException(\sprintf(
                 'Given strength %s is not a valid value',
                 $strength
             ));
@@ -60,6 +60,6 @@ trait LikelihoodTrait
 
         $levels = $this->likelihoodLevels[$strength];
 
-        return in_array($value, $levels);
+        return \in_array($value, $levels);
     }
 }

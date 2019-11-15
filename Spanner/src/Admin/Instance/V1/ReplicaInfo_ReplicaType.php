@@ -11,6 +11,6 @@ if (false) {
      */
     class ReplicaInfo_ReplicaType {}
 }
-class_exists(ReplicaInfo\ReplicaType::class);
-@trigger_error('Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo_ReplicaType is deprecated and will be removed in the next major release. Use Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo\ReplicaType instead', E_USER_DEPRECATED);
+\class_exists(ReplicaInfo\ReplicaType::class);
+@\trigger_error('Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo_ReplicaType is deprecated and will be removed in the next major release. Use Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo\ReplicaType instead', E_USER_DEPRECATED);
 

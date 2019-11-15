@@ -11,6 +11,6 @@ if (false) {
      */
     class Model_DeploymentState {}
 }
-class_exists(Model\DeploymentState::class);
-@trigger_error('Google\Cloud\AutoMl\V1\Model_DeploymentState is deprecated and will be removed in the next major release. Use Google\Cloud\AutoMl\V1\Model\DeploymentState instead', E_USER_DEPRECATED);
+\class_exists(Model\DeploymentState::class);
+@\trigger_error('Google\Cloud\AutoMl\V1\Model_DeploymentState is deprecated and will be removed in the next major release. Use Google\Cloud\AutoMl\V1\Model\DeploymentState instead', E_USER_DEPRECATED);
 

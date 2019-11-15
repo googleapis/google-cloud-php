@@ -82,10 +82,10 @@ class FirestoreSessionHandlerTest extends SnippetTestCase
                 'transaction' => self::TRANSACTION
             ]);
 
-        $value = 'name|' . serialize('Bob');
+        $value = 'name|' . \serialize('Bob');
         $this->connection->commit(Argument::allOf(
             Argument::that(function ($args) use ($value) {
-                return strpos($args['writes'][0]['update']['name'], ':PHPSESSID') !== false
+                return \strpos($args['writes'][0]['update']['name'], ':PHPSESSID') !== false
                     && $args['writes'][0]['update']['fields']['data']['stringValue'] === $value
                     && isset($args['writes'][0]['update']['fields']['t']['integerValue']);
             }),
@@ -98,7 +98,7 @@ class FirestoreSessionHandlerTest extends SnippetTestCase
         $snippet->addLocal('firestore', $this->client);
 
         $res = $snippet->invoke();
-        session_write_close();
+        \session_write_close();
 
         $this->assertEquals('Bob', $res->output());
     }
@@ -124,10 +124,10 @@ class FirestoreSessionHandlerTest extends SnippetTestCase
                 'transaction' => self::TRANSACTION
             ]);
 
-        $value = 'name|' . serialize('Bob');
+        $value = 'name|' . \serialize('Bob');
         $this->connection->commit(Argument::allOf(
             Argument::that(function ($args) use ($value) {
-                return strpos($args['writes'][0]['update']['name'], ':PHPSESSID') !== false
+                return \strpos($args['writes'][0]['update']['name'], ':PHPSESSID') !== false
                     && $args['writes'][0]['update']['fields']['data']['stringValue'] === $value
                     && isset($args['writes'][0]['update']['fields']['t']['integerValue']);
             }),
@@ -140,7 +140,7 @@ class FirestoreSessionHandlerTest extends SnippetTestCase
         $snippet->addLocal('firestore', $this->client);
 
         $res = $snippet->invoke();
-        session_write_close();
+        \session_write_close();
 
         $this->assertEquals('Bob', $res->output());
     }
@@ -173,7 +173,7 @@ class FirestoreSessionHandlerTest extends SnippetTestCase
         $this->connection->commit(Argument::any())
             ->shouldBeCalled()
             ->will(function () {
-                trigger_error('oops!', E_USER_WARNING);
+                \trigger_error('oops!', E_USER_WARNING);
             });
 
         $this->client->___setProperty('connection', $this->connection->reveal());

@@ -11,6 +11,6 @@ if (false) {
      */
     class ScanConfig_Authentication_GoogleAccount {}
 }
-class_exists(ScanConfig\Authentication\GoogleAccount::class);
-@trigger_error('Google\Cloud\WebSecurityScanner\V1beta\ScanConfig_Authentication_GoogleAccount is deprecated and will be removed in a future release. Use Google\Cloud\WebSecurityScanner\V1beta\ScanConfig\Authentication\GoogleAccount instead', E_USER_DEPRECATED);
+\class_exists(ScanConfig\Authentication\GoogleAccount::class);
+@\trigger_error('Google\Cloud\WebSecurityScanner\V1beta\ScanConfig_Authentication_GoogleAccount is deprecated and will be removed in a future release. Use Google\Cloud\WebSecurityScanner\V1beta\ScanConfig\Authentication\GoogleAccount instead', E_USER_DEPRECATED);
 

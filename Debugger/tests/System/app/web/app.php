@@ -34,7 +34,7 @@ $app->get('/debuggee', function () use ($app) {
     list($debuggeeId, $breakpoints) = $storage->load();
     return $app->json([
         'debuggeeId' => $debuggeeId,
-        'numBreakpoints' => count($breakpoints)
+        'numBreakpoints' => \count($breakpoints)
     ], 200, ['Content-Type' => 'application/json']);
 });
 

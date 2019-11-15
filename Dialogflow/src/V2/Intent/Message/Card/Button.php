@@ -104,5 +104,5 @@ class Button extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Button::class, \Google\Cloud\Dialogflow\V2\Intent_Message_Card_Button::class);
+\class_alias(Button::class, \Google\Cloud\Dialogflow\V2\Intent_Message_Card_Button::class);
 

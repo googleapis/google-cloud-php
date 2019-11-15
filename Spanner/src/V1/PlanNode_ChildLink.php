@@ -11,6 +11,6 @@ if (false) {
      */
     class PlanNode_ChildLink {}
 }
-class_exists(PlanNode\ChildLink::class);
-@trigger_error('Google\Cloud\Spanner\V1\PlanNode_ChildLink is deprecated and will be removed in the next major release. Use Google\Cloud\Spanner\V1\PlanNode\ChildLink instead', E_USER_DEPRECATED);
+\class_exists(PlanNode\ChildLink::class);
+@\trigger_error('Google\Cloud\Spanner\V1\PlanNode_ChildLink is deprecated and will be removed in the next major release. Use Google\Cloud\Spanner\V1\PlanNode\ChildLink instead', E_USER_DEPRECATED);
 

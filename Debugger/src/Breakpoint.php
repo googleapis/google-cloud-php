@@ -252,7 +252,7 @@ class Breakpoint
         ];
         $this->id = $data['id'];
         $this->action = $data['action'];
-        if (array_key_exists('location', $data)) {
+        if (\array_key_exists('location', $data)) {
             $this->location = SourceLocation::fromJson($data['location']);
         }
         $this->condition = $data['condition'];
@@ -263,21 +263,21 @@ class Breakpoint
         $this->createTime = $data['createTime'];
         $this->finalTime = $data['finalTime'];
         $this->userEmail = $data['userEmail'];
-        if (array_key_exists('status', $data)) {
+        if (\array_key_exists('status', $data)) {
             $this->status = StatusMessage::fromJson($data['status']);
         }
-        $this->stackFrames = array_map(
+        $this->stackFrames = \array_map(
             [StackFrame::class, 'fromJson'],
             $data['stackFrames']
         );
 
-        $this->evaluatedExpressions = array_map(
+        $this->evaluatedExpressions = \array_map(
             [Variable::class, 'fromJson'],
             $data['evaluatedExpressions']
         );
 
         $this->variableTable = new VariableTable(
-            array_map([Variable::class, 'fromJson'], $data['variableTable'])
+            \array_map([Variable::class, 'fromJson'], $data['variableTable'])
         );
     }
 
@@ -473,7 +473,7 @@ class Breakpoint
             'isFinalState' => $this->isFinalState,
             'createTime' => $this->createTime,
             'finalTime' => $this->finalTime,
-            'stackFrames' => array_map(function ($sf) {
+            'stackFrames' => \array_map(function ($sf) {
                 return $sf->info();
             }, $this->stackFrames),
             'evaluatedExpressions' => $this->evaluatedExpressions
@@ -506,9 +506,9 @@ class Breakpoint
      */
     public function finalize()
     {
-        list($usec, $sec) = explode(' ', microtime());
-        $micro = sprintf("%06d", (float) $usec * 1000000);
-        $when = new \DateTime(date('Y-m-d H:i:s.' . $micro));
+        list($usec, $sec) = \explode(' ', \microtime());
+        $micro = \sprintf("%06d", (float) $usec * 1000000);
+        $when = new \DateTime(\date('Y-m-d H:i:s.' . $micro));
         $when->setTimezone(new \DateTimeZone('UTC'));
         $this->finalTime = $when->format('Y-m-d\TH:i:s.u\Z');
         $this->isFinalState = true;
@@ -584,7 +584,7 @@ class Breakpoint
             $sf->addLocal($variable);
         }
 
-        array_push($this->stackFrames, $sf);
+        \array_push($this->stackFrames, $sf);
     }
 
     /**
@@ -672,7 +672,7 @@ class Breakpoint
 
     private function ensureExtensionLoaded()
     {
-        if (!extension_loaded('stackdriver_debugger')) {
+        if (!\extension_loaded('stackdriver_debugger')) {
             $this->setError(
                 StatusMessage::REFERENCE_UNSPECIFIED,
                 'PHP extension not installed.'
@@ -727,7 +727,7 @@ class Breakpoint
         }
 
         // Ensure the file is a php file
-        if (strtolower($info->getExtension()) !== 'php') {
+        if (\strtolower($info->getExtension()) !== 'php') {
             $this->setError(
                 StatusMessage::REFERENCE_BREAKPOINT_SOURCE_LOCATION,
                 'Invalid breakpoint location - Invalid file type: $0.',
@@ -738,7 +738,7 @@ class Breakpoint
 
         $file = $info->openFile('r');
         $file->seek($lineNumber - 1);
-        $line = ltrim($file->current() ?: '');
+        $line = \ltrim($file->current() ?: '');
 
         // Ensure the line exists and is not empty
         if ($line === '') {
@@ -769,9 +769,9 @@ class Breakpoint
             return false;
         }
         $file->seek($lineNumber - 1);
-        $line = ltrim($file->current() ?: '');
+        $line = \ltrim($file->current() ?: '');
 
-        return substr($line, 0, 2) == '/*' ||
+        return \substr($line, 0, 2) == '/*' ||
             ($line[0] == '*' && $this->inMultilineComment($file, $lineNumber - 1));
     }
 

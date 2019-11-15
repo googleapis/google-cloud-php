@@ -89,7 +89,7 @@ trait RestTrait
         ], $options);
 
         try {
-            return json_decode(
+            return \json_decode(
                 $this->requestWrapper->send(
                     $this->requestBuilder->build($resource, $method, $options),
                     $requestOptions
@@ -118,11 +118,11 @@ trait RestTrait
             ? $config['apiEndpoint']
             : $default;
 
-        if (substr($res, -1) !== '/') {
+        if (\substr($res, -1) !== '/') {
             $res = $res . '/';
         }
 
-        if (strpos($res, '//') === false) {
+        if (\strpos($res, '//') === false) {
             $res = 'https://' . $res;
         }
 

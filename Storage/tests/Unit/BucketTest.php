@@ -181,7 +181,7 @@ class BucketTest extends TestCase
         ]);
 
         $bucket = $this->getBucket();
-        $objects = iterator_to_array($bucket->objects());
+        $objects = \iterator_to_array($bucket->objects());
 
         $this->assertEquals('file.txt', $objects[0]->name());
     }
@@ -207,7 +207,7 @@ class BucketTest extends TestCase
             ]);
 
         $bucket = $this->getBucket();
-        $objects = iterator_to_array($bucket->objects());
+        $objects = \iterator_to_array($bucket->objects());
 
         $this->assertEquals('file2.txt', $objects[1]->name());
     }
@@ -467,7 +467,7 @@ class BucketTest extends TestCase
             ->insertNotification([
                 'userProject' => null,
                 'bucket' => self::BUCKET_NAME,
-                'topic' => sprintf('//pubsub.googleapis.com/projects/%s/topics/%s', self::PROJECT_ID, $expectedTopic),
+                'topic' => \sprintf('//pubsub.googleapis.com/projects/%s/topics/%s', self::PROJECT_ID, $expectedTopic),
                 'payload_format' => 'JSON_API_V1'
             ])
             ->willReturn(['id' => self::NOTIFICATION_ID]);
@@ -500,7 +500,7 @@ class BucketTest extends TestCase
     public function topicDataProvider()
     {
         $topicName = self::TOPIC_NAME;
-        $fullTopicName = sprintf('projects/%s/topics/%s', self::PROJECT_ID, $topicName);
+        $fullTopicName = \sprintf('projects/%s/topics/%s', self::PROJECT_ID, $topicName);
         $topic = $this->prophesize(Topic::class);
         $topic->name()
             ->willReturn($fullTopicName);
@@ -531,7 +531,7 @@ class BucketTest extends TestCase
         ]);
 
         $bucket = $this->getBucket();
-        $notifications = iterator_to_array($bucket->notifications());
+        $notifications = \iterator_to_array($bucket->notifications());
 
         $this->assertInstanceOf(Notification::class, $notifications[0]);
         $this->assertEquals($notificationID, $notifications[0]->id());
@@ -586,8 +586,8 @@ class BucketTest extends TestCase
      */
     public function testSignedUrlVersions($version, $method)
     {
-        $expectedResource = sprintf('/%s', self::BUCKET_NAME);
-        $expectedExpiration = time() + 10;
+        $expectedResource = \sprintf('/%s', self::BUCKET_NAME);
+        $expectedExpiration = \time() + 10;
         $return = 'signedUrl';
 
         $bucket = $this->getBucketForSigning();
@@ -634,7 +634,7 @@ class BucketTest extends TestCase
         }
 
         $rw = $this->prophesize(RequestWrapper::class);
-        $rw->scopes()->willReturn(is_array($scopes) ? $scopes : [$scopes]);
+        $rw->scopes()->willReturn(\is_array($scopes) ? $scopes : [$scopes]);
         $rw->getCredentialsFetcher()->willReturn($credentials);
 
         $this->connection->requestWrapper()->willReturn($rw->reveal());

@@ -30,10 +30,10 @@ trait DebugInfoTrait
      */
     public function __debugInfo()
     {
-        $props = get_object_vars($this);
+        $props = \get_object_vars($this);
 
         if (isset($this->connection)) {
-            $props['connection'] = get_class($this->connection);
+            $props['connection'] = \get_class($this->connection);
         }
 
         if (isset($props['__excludeFromDebug'])) {

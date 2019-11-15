@@ -60,7 +60,7 @@ class BatchTraitTest extends TestCase
     public function testSend()
     {
         $items = ['a', 'b', 'c'];
-        $temp = fopen('php://temp', 'rw');
+        $temp = \fopen('php://temp', 'rw');
         $hasExecuted = false;
         $count = 0;
         $impl = new BatchClass([
@@ -68,17 +68,17 @@ class BatchTraitTest extends TestCase
             'debugOutputResource' => $temp,
             'cb' => function (array $items) use (&$count, &$hasExecuted) {
                 $hasExecuted = true;
-                $count = count($items);
+                $count = \count($items);
             }
         ]);
 
         $impl->send($items);
 
-        rewind($temp);
-        $contents = stream_get_contents($temp);
+        \rewind($temp);
+        $contents = \stream_get_contents($temp);
 
         $this->assertTrue($hasExecuted);
-        $this->assertEquals(count($items), $count);
+        $this->assertEquals(\count($items), $count);
         $this->assertContains('seconds for ' . self::BATCH_METHOD, $contents);
     }
 

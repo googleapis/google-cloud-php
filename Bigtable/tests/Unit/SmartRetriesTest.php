@@ -132,7 +132,7 @@ class SmartRetriesTest extends TestCase
             ->shouldBeCalledTimes(2)
             ->willReturn(
                 $this->arrayAsGeneratorWithException(
-                    array_merge($this->generateRowsResponse(1, 2), [$this->generatePartialRowResponse(3)]),
+                    \array_merge($this->generateRowsResponse(1, 2), [$this->generatePartialRowResponse(3)]),
                     $this->retryingApiException
                 ),
                 $this->arrayAsGeneratorWithException(
@@ -413,7 +413,7 @@ class SmartRetriesTest extends TestCase
             ->shouldBeCalledTimes(2)
             ->willReturn(
                 $this->arrayAsGeneratorWithException(
-                    array_merge($this->generateRowsResponse(2, 3), $this->generateRowsResponse(5, 6)),
+                    \array_merge($this->generateRowsResponse(2, 3), $this->generateRowsResponse(5, 6)),
                     $this->retryingApiException
                 ),
                 $this->arrayAsGeneratorWithException(
@@ -446,7 +446,7 @@ class SmartRetriesTest extends TestCase
         foreach ($iterator as $rowKey => $row) {
             $rows[$rowKey] = $row;
         }
-        $expectedRows = array_merge($this->generateExpectedRows(2, 3), $this->generateExpectedRows(5, 9));
+        $expectedRows = \array_merge($this->generateExpectedRows(2, 3), $this->generateExpectedRows(5, 9));
         $this->assertEquals($expectedRows, $rows);
     }
 
@@ -539,7 +539,7 @@ class SmartRetriesTest extends TestCase
             ->willReturn(
                 $this->serverStream->reveal()
             );
-        $entries = array_merge($this->generateEntries(1, 2), $this->generateEntries(4, 5));
+        $entries = \array_merge($this->generateEntries(1, 2), $this->generateEntries(4, 5));
         $this->bigtableClient->mutateRows(self::TABLE_NAME, $entries, $this->options)
             ->shouldBeCalled()
             ->willReturn(
@@ -601,7 +601,7 @@ class SmartRetriesTest extends TestCase
                 'statusCode' => Code::ABORTED,
                 'message' => 'partial failure'
             ];
-            foreach (range(5, 7) as $rowKey) {
+            foreach (\range(5, 7) as $rowKey) {
                 $expectedFailedMutations[] = [
                     'rowKey' => 'rk' . $rowKey,
                     'statusCode' => Code::UNAUTHENTICATED,
@@ -615,7 +615,7 @@ class SmartRetriesTest extends TestCase
     private function generateRowsResponse($from, $to)
     {
         $rows = [];
-        foreach (range($from, $to) as $rowKey) {
+        foreach (\range($from, $to) as $rowKey) {
             $chunks = [];
             $chunks[] = (new ReadRowsResponse_CellChunk)
                 ->setRowKey('rk' . $rowKey)
@@ -653,7 +653,7 @@ class SmartRetriesTest extends TestCase
     private function generateExpectedRows($from, $to)
     {
         $rows = [];
-        foreach (range($from, $to) as $rowKey) {
+        foreach (\range($from, $to) as $rowKey) {
             $rows['rk' . $rowKey] = [
                 'cf1' . $rowKey => [
                     'cq1' . $rowKey => [[
@@ -677,7 +677,7 @@ class SmartRetriesTest extends TestCase
     private function generateMutations($from, $to)
     {
         $mutations = [];
-        foreach (range($from, $to) as $rowKey) {
+        foreach (\range($from, $to) as $rowKey) {
             $mutations['rk' . $rowKey] = (new Mutations)->upsert(
                 'cf1' . $rowKey,
                 'cq1' . $rowKey,
@@ -700,8 +700,8 @@ class SmartRetriesTest extends TestCase
     private function getMutateRowsResponse($to, array $status = [])
     {
         $mutateRowsResponses = [];
-        $range = range(0, $to);
-        foreach (array_combine($range, $this->generateStatus($range, $status)) as $entryIndex => $value) {
+        $range = \range(0, $to);
+        foreach (\array_combine($range, $this->generateStatus($range, $status)) as $entryIndex => $value) {
             $mutateRowsResponses[] = (new MutateRowsResponse)
                 ->setEntries([
                     (new ResponseEntry)->setStatus($value)->setIndex($entryIndex)

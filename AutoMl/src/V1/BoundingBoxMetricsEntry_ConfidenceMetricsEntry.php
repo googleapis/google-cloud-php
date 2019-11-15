@@ -11,6 +11,6 @@ if (false) {
      */
     class BoundingBoxMetricsEntry_ConfidenceMetricsEntry {}
 }
-class_exists(BoundingBoxMetricsEntry\ConfidenceMetricsEntry::class);
-@trigger_error('Google\Cloud\AutoMl\V1\BoundingBoxMetricsEntry_ConfidenceMetricsEntry is deprecated and will be removed in the next major release. Use Google\Cloud\AutoMl\V1\BoundingBoxMetricsEntry\ConfidenceMetricsEntry instead', E_USER_DEPRECATED);
+\class_exists(BoundingBoxMetricsEntry\ConfidenceMetricsEntry::class);
+@\trigger_error('Google\Cloud\AutoMl\V1\BoundingBoxMetricsEntry_ConfidenceMetricsEntry is deprecated and will be removed in the next major release. Use Google\Cloud\AutoMl\V1\BoundingBoxMetricsEntry\ConfidenceMetricsEntry instead', E_USER_DEPRECATED);
 

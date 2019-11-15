@@ -28,10 +28,10 @@ class ManageSinksTest extends LoggingTestCase
     public function testListsSinks($client)
     {
         $found = true;
-        $name = uniqid(self::TESTING_PREFIX);
+        $name = \uniqid(self::TESTING_PREFIX);
         $sink = $client->createSink(
             $name,
-            sprintf(
+            \sprintf(
                 'bigquery.googleapis.com/projects/%s/datasets/%s',
                 self::$dataset->identity()['projectId'],
                 self::$dataset->identity()['datasetId']
@@ -43,7 +43,7 @@ class ManageSinksTest extends LoggingTestCase
         );
         self::$deletionQueue->add($sink);
 
-        $sinks = iterator_to_array($client->sinks());
+        $sinks = \iterator_to_array($client->sinks());
 
         foreach ($sinks as $sink) {
             if ($sink->name() === $name) {
@@ -59,7 +59,7 @@ class ManageSinksTest extends LoggingTestCase
      */
     public function testCreateSink($client, $destination)
     {
-        $name = uniqid(self::TESTING_PREFIX);
+        $name = \uniqid(self::TESTING_PREFIX);
         $options = [
             'outputVersionFormat' => 'V2',
             'filter' => 'severity >= ERROR'
@@ -80,13 +80,13 @@ class ManageSinksTest extends LoggingTestCase
         self::setUpBeforeClass();
         $bucket = self::$bucket;
         $bucket->acl()->add('group-cloud-logs@google.com', 'OWNER');
-        $bucketDest = sprintf('storage.googleapis.com/%s', $bucket->name());
-        $datasetDest = sprintf(
+        $bucketDest = \sprintf('storage.googleapis.com/%s', $bucket->name());
+        $datasetDest = \sprintf(
             'bigquery.googleapis.com/projects/%s/datasets/%s',
             self::$dataset->identity()['projectId'],
             self::$dataset->identity()['datasetId']
         );
-        $topicDest = sprintf('pubsub.googleapis.com/%s', self::$topic->info()['name']);
+        $topicDest = \sprintf('pubsub.googleapis.com/%s', self::$topic->info()['name']);
 
         return [
             [self::$restClient, $bucketDest],
@@ -103,8 +103,8 @@ class ManageSinksTest extends LoggingTestCase
      */
     public function testUpdateSink($client)
     {
-        $name = uniqid(self::TESTING_PREFIX);
-        $destination = sprintf('pubsub.googleapis.com/%s', self::$topic->info()['name']);
+        $name = \uniqid(self::TESTING_PREFIX);
+        $destination = \sprintf('pubsub.googleapis.com/%s', self::$topic->info()['name']);
         $createOptions = [
             'outputVersionFormat' => 'V2',
             'filter' => 'severity >= ERROR'
@@ -126,12 +126,12 @@ class ManageSinksTest extends LoggingTestCase
      */
     public function testReloadSink($client)
     {
-        $name = uniqid(self::TESTING_PREFIX);
+        $name = \uniqid(self::TESTING_PREFIX);
         $options = [
             'outputVersionFormat' => 'V2',
             'filter' => 'severity >= ERROR'
         ];
-        $destination = sprintf('pubsub.googleapis.com/%s', self::$topic->info()['name']);
+        $destination = \sprintf('pubsub.googleapis.com/%s', self::$topic->info()['name']);
         $sink = $client->createSink($name, $destination, $options);
         self::$deletionQueue->add($sink);
 

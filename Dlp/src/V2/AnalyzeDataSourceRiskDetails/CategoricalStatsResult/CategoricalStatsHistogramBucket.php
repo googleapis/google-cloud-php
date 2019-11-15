@@ -204,5 +204,5 @@ class CategoricalStatsHistogramBucket extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CategoricalStatsHistogramBucket::class, \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_CategoricalStatsResult_CategoricalStatsHistogramBucket::class);
+\class_alias(CategoricalStatsHistogramBucket::class, \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_CategoricalStatsResult_CategoricalStatsHistogramBucket::class);
 

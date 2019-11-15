@@ -97,5 +97,5 @@ class Authentication extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Authentication::class, \Google\Cloud\WebSecurityScanner\V1beta\ScanConfig_Authentication::class);
+\class_alias(Authentication::class, \Google\Cloud\WebSecurityScanner\V1beta\ScanConfig_Authentication::class);
 

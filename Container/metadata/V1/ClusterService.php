@@ -16,7 +16,7 @@ class ClusterService
         }
         \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0a8a91010a29676f6f676c652f636f6e7461696e65722f76312f636c7573" .
             "7465725f736572766963652e70726f746f1213676f6f676c652e636f6e74" .
             "61696e65722e76311a1b676f6f676c652f70726f746f6275662f656d7074" .

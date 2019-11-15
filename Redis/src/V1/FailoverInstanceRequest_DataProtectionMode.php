@@ -11,6 +11,6 @@ if (false) {
      */
     class FailoverInstanceRequest_DataProtectionMode {}
 }
-class_exists(FailoverInstanceRequest\DataProtectionMode::class);
-@trigger_error('Google\Cloud\Redis\V1\FailoverInstanceRequest_DataProtectionMode is deprecated and will be removed in a future release. Use Google\Cloud\Redis\V1\FailoverInstanceRequest\DataProtectionMode instead', E_USER_DEPRECATED);
+\class_exists(FailoverInstanceRequest\DataProtectionMode::class);
+@\trigger_error('Google\Cloud\Redis\V1\FailoverInstanceRequest_DataProtectionMode is deprecated and will be removed in a future release. Use Google\Cloud\Redis\V1\FailoverInstanceRequest\DataProtectionMode instead', E_USER_DEPRECATED);
 

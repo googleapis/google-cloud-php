@@ -23,7 +23,7 @@ class Datasource
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         \GPBMetadata\Google\Protobuf\Wrappers::initOnce();
         \GPBMetadata\Google\Api\Client::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0aed2f0a36676f6f676c652f636c6f75642f62696771756572792f646174" .
             "617472616e736665722f76312f64617461736f757263652e70726f746f12" .
             "25676f6f676c652e636c6f75642e62696771756572792e64617461747261" .

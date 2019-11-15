@@ -36,38 +36,38 @@ class DirectoryTest extends StreamWrapperTestCase
     public function testMkDir()
     {
         $dir = self::generateUrl('test_directory');
-        $this->assertTrue(mkdir($dir));
+        $this->assertTrue(\mkdir($dir));
         $this->assertFileExists($dir . '/');
-        $this->assertTrue(is_dir($dir . '/'));
+        $this->assertTrue(\is_dir($dir . '/'));
     }
 
     public function testRmDir()
     {
         $dir = self::generateUrl('test_directory/');
-        $this->assertTrue(rmdir($dir));
+        $this->assertTrue(\rmdir($dir));
         $this->assertFileNotExists($dir . '/');
     }
 
     public function testMkDirCreatesBucket()
     {
-        $newBucket = uniqid(self::TESTING_PREFIX);
+        $newBucket = \uniqid(self::TESTING_PREFIX);
         $bucketUrl = "gs://$newBucket/";
-        $this->assertTrue(mkdir($bucketUrl, 0700));
+        $this->assertTrue(\mkdir($bucketUrl, 0700));
 
         $bucket = self::$client->bucket($newBucket);
         $this->assertTrue($bucket->exists());
-        $this->assertTrue(rmdir($bucketUrl));
+        $this->assertTrue(\rmdir($bucketUrl));
     }
 
     public function testListDirectory()
     {
         $dir = self::generateUrl('some_folder');
-        $fd = opendir($dir);
-        $this->assertEquals('some_folder/1.txt', readdir($fd));
-        $this->assertEquals('some_folder/2.txt', readdir($fd));
-        rewinddir($fd);
-        $this->assertEquals('some_folder/1.txt', readdir($fd));
-        closedir($fd);
+        $fd = \opendir($dir);
+        $this->assertEquals('some_folder/1.txt', \readdir($fd));
+        $this->assertEquals('some_folder/2.txt', \readdir($fd));
+        \rewinddir($fd);
+        $this->assertEquals('some_folder/1.txt', \readdir($fd));
+        \closedir($fd);
     }
 
     public function testScanDirectory()
@@ -78,7 +78,7 @@ class DirectoryTest extends StreamWrapperTestCase
             'some_folder/2.txt',
             'some_folder/3.txt',
         ];
-        $this->assertEquals($expected, scandir($dir));
-        $this->assertEquals(array_reverse($expected), scandir($dir, SCANDIR_SORT_DESCENDING));
+        $this->assertEquals($expected, \scandir($dir));
+        $this->assertEquals(\array_reverse($expected), \scandir($dir, SCANDIR_SORT_DESCENDING));
     }
 }

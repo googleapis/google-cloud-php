@@ -11,6 +11,6 @@ if (false) {
      */
     class VulnerableHeaders_Header {}
 }
-class_exists(VulnerableHeaders\Header::class);
-@trigger_error('Google\Cloud\WebSecurityScanner\V1beta\VulnerableHeaders_Header is deprecated and will be removed in a future release. Use Google\Cloud\WebSecurityScanner\V1beta\VulnerableHeaders\Header instead', E_USER_DEPRECATED);
+\class_exists(VulnerableHeaders\Header::class);
+@\trigger_error('Google\Cloud\WebSecurityScanner\V1beta\VulnerableHeaders_Header is deprecated and will be removed in a future release. Use Google\Cloud\WebSecurityScanner\V1beta\VulnerableHeaders\Header instead', E_USER_DEPRECATED);
 

@@ -65,7 +65,7 @@ class BatchSnapshotTest extends SnippetTestCase
             'name' => self::SESSION
         ]);
 
-        $this->time = time();
+        $this->time = \time();
         $this->snapshot = TestHelpers::stub(BatchSnapshot::class, [
             new Operation($this->connection->reveal(), false),
             $this->session->reveal(),
@@ -193,7 +193,7 @@ class BatchSnapshotTest extends SnippetTestCase
 
         $res = $snippet->invoke('result');
         $this->assertInstanceOf(Result::class, $res->returnVal());
-        iterator_to_array($res->returnVal());
+        \iterator_to_array($res->returnVal());
     }
 
     public function testSerialize()

@@ -34,11 +34,11 @@ class BatchTest extends SpannerTestCase
     {
         parent::setupBeforeClass();
 
-        self::$tableName = uniqid(self::TESTING_PREFIX);
+        self::$tableName = \uniqid(self::TESTING_PREFIX);
 
         $db = self::$database;
 
-        $db->updateDdl(sprintf(
+        $db->updateDdl(\sprintf(
             'CREATE TABLE %s (
                 id INT64 NOT NULL,
                 decade INT64 NOT NULL
@@ -55,7 +55,7 @@ class BatchTest extends SpannerTestCase
         for ($i = 0; $i < 250; $i++) {
             self::$database->insert(self::$tableName, [
                 'id' => self::randId(),
-                'decade' => array_rand($decades)
+                'decade' => \array_rand($decades)
             ], [
                 'timeoutMillis' => 50000
             ]);
@@ -78,7 +78,7 @@ class BatchTest extends SpannerTestCase
             'lateBound' => 1980
         ];
 
-        $resultSet = iterator_to_array(self::$database->execute($query, ['parameters' => $parameters]));
+        $resultSet = \iterator_to_array(self::$database->execute($query, ['parameters' => $parameters]));
 
         $batch = self::$client->batch(self::INSTANCE_NAME, self::$dbName);
         $string = $batch->snapshot()->serialize();
@@ -86,7 +86,7 @@ class BatchTest extends SpannerTestCase
         $snapshot = $batch->snapshotFromString($string);
 
         $partitions = $snapshot->partitionQuery($query, ['parameters' => $parameters]);
-        $this->assertEquals(count($resultSet), $this->executePartitions($batch, $snapshot, $partitions));
+        $this->assertEquals(\count($resultSet), $this->executePartitions($batch, $snapshot, $partitions));
 
         // ($table, KeySet $keySet, array $columns, array $options = [])
         $keySet = new KeySet([
@@ -101,7 +101,7 @@ class BatchTest extends SpannerTestCase
         ]);
 
         $partitions = $snapshot->partitionRead(self::$tableName, $keySet, ['id', 'decade']);
-        $this->assertEquals(count($resultSet), $this->executePartitions($batch, $snapshot, $partitions));
+        $this->assertEquals(\count($resultSet), $this->executePartitions($batch, $snapshot, $partitions));
 
         $snapshot->close();
     }
@@ -113,9 +113,9 @@ class BatchTest extends SpannerTestCase
             $string = $partition->serialize();
 
             $hydrated = $client->partitionFromString($string);
-            $partitionResultSet += iterator_to_array($snapshot->executePartition($hydrated));
+            $partitionResultSet += \iterator_to_array($snapshot->executePartition($hydrated));
         }
 
-        return count($partitionResultSet);
+        return \count($partitionResultSet);
     }
 }

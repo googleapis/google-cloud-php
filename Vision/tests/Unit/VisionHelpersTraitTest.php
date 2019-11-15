@@ -64,7 +64,7 @@ class VisionHelpersTraitTest extends TestCase
             $request = $requests[0];
             $this->assertEquals($image, $request->getImage());
             // Use iterator_to_array to convert protobuf Repeated Field object to array for comparison
-            $this->assertSame($features, iterator_to_array($request->getFeatures()));
+            $this->assertSame($features, \iterator_to_array($request->getFeatures()));
             $this->assertSame($imageContext, $request->getImageContext());
 
             $response = new BatchAnnotateImagesResponse();
@@ -95,15 +95,15 @@ class VisionHelpersTraitTest extends TestCase
         ]);
         $this->assertSame($expectedContent, $image->getContent());
         $imageSource = $image->getSource();
-        $this->assertSame($expectedUri, is_null($imageSource) ? null : $imageSource->getImageUri());
+        $this->assertSame($expectedUri, \is_null($imageSource) ? null : $imageSource->getImageUri());
     }
 
     public function createImageHelperDataProvider()
     {
         $content = 'imageresourcecontent';
-        $stream = fopen('php://memory', 'r+');
-        fwrite($stream, $content);
-        rewind($stream);
+        $stream = \fopen('php://memory', 'r+');
+        \fwrite($stream, $content);
+        \rewind($stream);
         return [
             ["http://my.site/myimage.jpg", "", "http://my.site/myimage.jpg"],
             ["https://my.site/myimage.jpg", "", "https://my.site/myimage.jpg"],

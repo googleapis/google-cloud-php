@@ -11,6 +11,6 @@ if (false) {
      */
     class SearchUrisResponse_ThreatUri {}
 }
-class_exists(SearchUrisResponse\ThreatUri::class);
-@trigger_error('Google\Cloud\WebRisk\V1beta1\SearchUrisResponse_ThreatUri is deprecated and will be removed in the next major release. Use Google\Cloud\WebRisk\V1beta1\SearchUrisResponse\ThreatUri instead', E_USER_DEPRECATED);
+\class_exists(SearchUrisResponse\ThreatUri::class);
+@\trigger_error('Google\Cloud\WebRisk\V1beta1\SearchUrisResponse_ThreatUri is deprecated and will be removed in the next major release. Use Google\Cloud\WebRisk\V1beta1\SearchUrisResponse\ThreatUri instead', E_USER_DEPRECATED);
 

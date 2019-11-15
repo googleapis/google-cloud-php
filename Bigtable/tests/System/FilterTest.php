@@ -53,7 +53,7 @@ class FilterTest extends BigtableTestCase
      */
     public function testFilter($args, $expectedRows, $message)
     {
-        $rows = iterator_to_array(
+        $rows = \iterator_to_array(
             self::$table->readRows($args)->readAll()
         );
         $this->assertEquals($expectedRows, $rows, $message);
@@ -61,11 +61,11 @@ class FilterTest extends BigtableTestCase
 
     public function filterProvider()
     {
-        $text = file_get_contents(__DIR__ . '/data/data.json');
-        $data = explode(PHP_EOL, $text);
+        $text = \file_get_contents(__DIR__ . '/data/data.json');
+        $data = \explode(PHP_EOL, $text);
         $insertRows = [];
         foreach ($data as $row) {
-            $row = json_decode($row, true);
+            $row = \json_decode($row, true);
             foreach ($row as $rowKey => $family) {
                 $mutations = isset(self::$rowMutations[$rowKey])
                     ? self::$rowMutations[$rowKey]
@@ -435,14 +435,14 @@ class FilterTest extends BigtableTestCase
     public function testSample()
     {
         $rowFilter = Filter::key()->sample(.50);
-        $rows = iterator_to_array(
+        $rows = \iterator_to_array(
             self::$table->readRows(
                 [
                     'filter' => $rowFilter
                 ]
             )->readAll()
         );
-        $this->assertGreaterThan(0, count($rows));
+        $this->assertGreaterThan(0, \count($rows));
     }
 
     public function testLabel()

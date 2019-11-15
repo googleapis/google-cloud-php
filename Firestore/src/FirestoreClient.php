@@ -134,7 +134,7 @@ class FirestoreClient
      */
     public function __construct(array $config = [])
     {
-        $emulatorHost = getenv('FIRESTORE_EMULATOR_HOST');
+        $emulatorHost = \getenv('FIRESTORE_EMULATOR_HOST');
 
         $this->requireGrpc();
         $config += [
@@ -350,7 +350,7 @@ class FirestoreClient
      */
     public function collectionGroup($id)
     {
-        if (strpos($id, '/') !== false) {
+        if (\strpos($id, '/') !== false) {
             throw new \InvalidArgumentException(
                 'Collection ID may not contain a slash.'
             );
@@ -458,7 +458,7 @@ class FirestoreClient
         };
 
         $retryFn = function (\Exception $e) use ($retryableErrors) {
-            return in_array(get_class($e), $retryableErrors);
+            return \in_array(\get_class($e), $retryableErrors);
         };
 
         // Track the Transaction ID outside the retry function.
@@ -476,7 +476,7 @@ class FirestoreClient
         ) use (&$transactionId) {
             $database = $this->databaseName($this->projectId, $this->database);
 
-            $beginTransaction = $this->connection->beginTransaction(array_filter([
+            $beginTransaction = $this->connection->beginTransaction(\array_filter([
                 'database' => $database,
                 'retryTransaction' => $transactionId
             ]) + $options['begin']);

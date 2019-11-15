@@ -104,5 +104,5 @@ class ThreatUri extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ThreatUri::class, \Google\Cloud\WebRisk\V1beta1\SearchUrisResponse_ThreatUri::class);
+\class_alias(ThreatUri::class, \Google\Cloud\WebRisk\V1beta1\SearchUrisResponse_ThreatUri::class);
 

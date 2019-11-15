@@ -11,6 +11,6 @@ if (false) {
      */
     class Agent_ApiVersion {}
 }
-class_exists(Agent\ApiVersion::class);
-@trigger_error('Google\Cloud\Dialogflow\V2\Agent_ApiVersion is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\Agent\ApiVersion instead', E_USER_DEPRECATED);
+\class_exists(Agent\ApiVersion::class);
+@\trigger_error('Google\Cloud\Dialogflow\V2\Agent_ApiVersion is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\Agent\ApiVersion instead', E_USER_DEPRECATED);
 

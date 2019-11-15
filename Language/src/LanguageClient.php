@@ -455,7 +455,7 @@ class LanguageClient
     {
         $features = isset($options['features'])
             ? $options['features']
-            : array_values($this->featureShortNames);
+            : \array_values($this->featureShortNames);
         $options['features'] = $this->normalizeFeatures($features);
 
         return new Annotation(
@@ -476,7 +476,7 @@ class LanguageClient
         $results = [];
 
         foreach ($features as $feature) {
-            $featureName = array_key_exists($feature, $this->featureShortNames)
+            $featureName = \array_key_exists($feature, $this->featureShortNames)
                 ? $this->featureShortNames[$feature]
                 : $feature;
 
@@ -504,7 +504,7 @@ class LanguageClient
 
         if ($content instanceof StorageObject) {
             $options['gcsContentUri'] = $content->gcsUri();
-        } elseif ($options['detectGcsUri'] && substr($content, 0, 5) === 'gs://') {
+        } elseif ($options['detectGcsUri'] && \substr($content, 0, 5) === 'gs://') {
             $options['gcsContentUri'] = $content;
         } else {
             $options['content'] = $content;
@@ -513,7 +513,7 @@ class LanguageClient
         unset($options['detectGcsUri']);
 
         foreach ($options as $option => $value) {
-            if (in_array($option, $docOptions)) {
+            if (\in_array($option, $docOptions)) {
                 $options['document'][$option] = $value;
                 unset($options[$option]);
             }

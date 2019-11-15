@@ -49,7 +49,7 @@ trait ClientTrait
         $isGrpcExtensionLoaded = $this->isGrpcLoaded();
         $defaultTransport = $isGrpcExtensionLoaded ? 'grpc' : 'rest';
         $transport = isset($config['transport'])
-            ? strtolower($config['transport'])
+            ? \strtolower($config['transport'])
             : $defaultTransport;
 
         if ($transport === 'grpc') {
@@ -129,17 +129,17 @@ trait ClientTrait
         }
 
         if ($config['keyFilePath']) {
-            if (!file_exists($config['keyFilePath'])) {
-                throw new GoogleException(sprintf(
+            if (!\file_exists($config['keyFilePath'])) {
+                throw new GoogleException(\sprintf(
                     'Given keyfile path %s does not exist',
                     $config['keyFilePath']
                 ));
             }
 
             try {
-                $keyFileData = $this->jsonDecode(file_get_contents($config['keyFilePath']), true);
+                $keyFileData = $this->jsonDecode(\file_get_contents($config['keyFilePath']), true);
             } catch (\InvalidArgumentException $ex) {
-                throw new GoogleException(sprintf(
+                throw new GoogleException(\sprintf(
                     'Given keyfile at path %s was invalid',
                     $config['keyFilePath']
                 ));
@@ -198,8 +198,8 @@ trait ClientTrait
                 $serviceAccountUri = 'https://cloud.google.com/iam/docs/' .
                     'creating-managing-service-account-keys#creating_service_account_keys';
 
-                trigger_error(
-                    sprintf(
+                \trigger_error(
+                    \sprintf(
                         'A keyfile was given, but it does not contain a project ' .
                         'ID. This can indicate an old and obsolete keyfile, ' .
                         'in which case you should create a new one. To suppress ' .
@@ -212,12 +212,12 @@ trait ClientTrait
             }
         }
 
-        if (getenv('GOOGLE_CLOUD_PROJECT')) {
-            return getenv('GOOGLE_CLOUD_PROJECT');
+        if (\getenv('GOOGLE_CLOUD_PROJECT')) {
+            return \getenv('GOOGLE_CLOUD_PROJECT');
         }
 
-        if (getenv('GCLOUD_PROJECT')) {
-            return getenv('GCLOUD_PROJECT');
+        if (\getenv('GCLOUD_PROJECT')) {
+            return \getenv('GCLOUD_PROJECT');
         }
 
         if ($this->onGce($config['httpHandler'])) {
@@ -268,6 +268,6 @@ trait ClientTrait
      */
     protected function isGrpcLoaded()
     {
-        return extension_loaded('grpc');
+        return \extension_loaded('grpc');
     }
 }

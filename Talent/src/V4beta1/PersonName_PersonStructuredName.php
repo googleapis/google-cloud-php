@@ -11,6 +11,6 @@ if (false) {
      */
     class PersonName_PersonStructuredName {}
 }
-class_exists(PersonName\PersonStructuredName::class);
-@trigger_error('Google\Cloud\Talent\V4beta1\PersonName_PersonStructuredName is deprecated and will be removed in the next major release. Use Google\Cloud\Talent\V4beta1\PersonName\PersonStructuredName instead', E_USER_DEPRECATED);
+\class_exists(PersonName\PersonStructuredName::class);
+@\trigger_error('Google\Cloud\Talent\V4beta1\PersonName_PersonStructuredName is deprecated and will be removed in the next major release. Use Google\Cloud\Talent\V4beta1\PersonName\PersonStructuredName instead', E_USER_DEPRECATED);
 

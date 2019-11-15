@@ -11,6 +11,6 @@ if (false) {
      */
     class ListBreakpointsRequest_BreakpointActionValue {}
 }
-class_exists(ListBreakpointsRequest\BreakpointActionValue::class);
-@trigger_error('Google\Cloud\Debugger\V2\ListBreakpointsRequest_BreakpointActionValue is deprecated and will be removed in the next major release. Use Google\Cloud\Debugger\V2\ListBreakpointsRequest\BreakpointActionValue instead', E_USER_DEPRECATED);
+\class_exists(ListBreakpointsRequest\BreakpointActionValue::class);
+@\trigger_error('Google\Cloud\Debugger\V2\ListBreakpointsRequest_BreakpointActionValue is deprecated and will be removed in the next major release. Use Google\Cloud\Debugger\V2\ListBreakpointsRequest\BreakpointActionValue instead', E_USER_DEPRECATED);
 

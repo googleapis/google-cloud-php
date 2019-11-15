@@ -41,8 +41,8 @@ class AutoMlSmokeTest extends SystemTestCase
             return;
         }
 
-        $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
-        $keyFileData = json_decode(file_get_contents($keyFilePath), true);
+        $keyFilePath = \getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
+        $keyFileData = \json_decode(\file_get_contents($keyFilePath), true);
 
         self::$clients = [
             [
@@ -70,7 +70,7 @@ class AutoMlSmokeTest extends SystemTestCase
     {
         $formattedParent = $automl->locationName(self::$projectId, self::$location);
         $dataset = new Dataset([
-            'display_name' => uniqid(self::TESTING_PREFIX),
+            'display_name' => \uniqid(self::TESTING_PREFIX),
             'translation_dataset_metadata' => new TranslationDatasetMetadata([
                 'source_language_code' => 'en',
                 'target_language_code' => 'es'

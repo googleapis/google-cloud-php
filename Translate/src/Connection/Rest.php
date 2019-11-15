@@ -29,8 +29,8 @@ if (false) {
     class Rest {}
 }
 
-class_exists(V2\Rest::class);
-@trigger_error(
+\class_exists(V2\Rest::class);
+@\trigger_error(
     'Google\Cloud\Translate\Rest is deprecated and will be ' .
     'removed in a future release. Use ' .
     'Google\Cloud\Translate\V2\Rest instead',

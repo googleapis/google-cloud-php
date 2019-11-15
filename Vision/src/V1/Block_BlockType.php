@@ -11,6 +11,6 @@ if (false) {
      */
     class Block_BlockType {}
 }
-class_exists(Block\BlockType::class);
-@trigger_error('Google\Cloud\Vision\V1\Block_BlockType is deprecated and will be removed in a future release. Use Google\Cloud\Vision\V1\Block\BlockType instead', E_USER_DEPRECATED);
+\class_exists(Block\BlockType::class);
+@\trigger_error('Google\Cloud\Vision\V1\Block_BlockType is deprecated and will be removed in a future release. Use Google\Cloud\Vision\V1\Block\BlockType instead', E_USER_DEPRECATED);
 

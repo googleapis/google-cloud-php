@@ -11,6 +11,6 @@ if (false) {
      */
     class ListAssetsResponse_ListAssetsResult {}
 }
-class_exists(ListAssetsResponse\ListAssetsResult::class);
-@trigger_error('Google\Cloud\SecurityCenter\V1\ListAssetsResponse_ListAssetsResult is deprecated and will be removed in a future release. Use Google\Cloud\SecurityCenter\V1\ListAssetsResponse\ListAssetsResult instead', E_USER_DEPRECATED);
+\class_exists(ListAssetsResponse\ListAssetsResult::class);
+@\trigger_error('Google\Cloud\SecurityCenter\V1\ListAssetsResponse_ListAssetsResult is deprecated and will be removed in a future release. Use Google\Cloud\SecurityCenter\V1\ListAssetsResponse\ListAssetsResult instead', E_USER_DEPRECATED);
 

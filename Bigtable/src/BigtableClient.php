@@ -159,12 +159,12 @@ class BigtableClient
      */
     private function detectProjectId()
     {
-        if (getenv('GOOGLE_CLOUD_PROJECT')) {
-            return getenv('GOOGLE_CLOUD_PROJECT');
+        if (\getenv('GOOGLE_CLOUD_PROJECT')) {
+            return \getenv('GOOGLE_CLOUD_PROJECT');
         }
 
-        if (getenv('GCLOUD_PROJECT')) {
-            return getenv('GCLOUD_PROJECT');
+        if (\getenv('GCLOUD_PROJECT')) {
+            return \getenv('GCLOUD_PROJECT');
         }
 
         throw new ValidationException(

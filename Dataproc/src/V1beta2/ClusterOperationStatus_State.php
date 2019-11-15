@@ -11,6 +11,6 @@ if (false) {
      */
     class ClusterOperationStatus_State {}
 }
-class_exists(ClusterOperationStatus\State::class);
-@trigger_error('Google\Cloud\Dataproc\V1beta2\ClusterOperationStatus_State is deprecated and will be removed in the next major release. Use Google\Cloud\Dataproc\V1beta2\ClusterOperationStatus\State instead', E_USER_DEPRECATED);
+\class_exists(ClusterOperationStatus\State::class);
+@\trigger_error('Google\Cloud\Dataproc\V1beta2\ClusterOperationStatus_State is deprecated and will be removed in the next major release. Use Google\Cloud\Dataproc\V1beta2\ClusterOperationStatus\State instead', E_USER_DEPRECATED);
 

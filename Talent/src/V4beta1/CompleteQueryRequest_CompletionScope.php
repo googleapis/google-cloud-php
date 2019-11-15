@@ -11,6 +11,6 @@ if (false) {
      */
     class CompleteQueryRequest_CompletionScope {}
 }
-class_exists(CompleteQueryRequest\CompletionScope::class);
-@trigger_error('Google\Cloud\Talent\V4beta1\CompleteQueryRequest_CompletionScope is deprecated and will be removed in the next major release. Use Google\Cloud\Talent\V4beta1\CompleteQueryRequest\CompletionScope instead', E_USER_DEPRECATED);
+\class_exists(CompleteQueryRequest\CompletionScope::class);
+@\trigger_error('Google\Cloud\Talent\V4beta1\CompleteQueryRequest_CompletionScope is deprecated and will be removed in the next major release. Use Google\Cloud\Talent\V4beta1\CompleteQueryRequest\CompletionScope instead', E_USER_DEPRECATED);
 

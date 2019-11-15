@@ -21,7 +21,7 @@ class NotificationService
         \GPBMetadata\Google\Protobuf\Struct::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         \GPBMetadata\Google\Api\Client::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0ace1f0a2f676f6f676c652f6d6f6e69746f72696e672f76332f6e6f7469" .
             "6669636174696f6e5f736572766963652e70726f746f1214676f6f676c65" .
             "2e6d6f6e69746f72696e672e76331a27676f6f676c652f6d6f6e69746f72" .

@@ -195,9 +195,9 @@ class DatastoreSessionHandlerTest extends TestCase
                 $that->assertEquals($key, $args[0]);
                 $that->assertEquals('sessiondata', $args[1]['data']);
                 $that->assertInternalType('int', $args[1]['t']);
-                $that->assertGreaterThanOrEqual($args[1]['t'], time());
+                $that->assertGreaterThanOrEqual($args[1]['t'], \time());
                 // 2 seconds grace period should be enough
-                $that->assertLessThanOrEqual(2, time() - $args[1]['t']);
+                $that->assertLessThanOrEqual(2, \time() - $args[1]['t']);
                 $that->assertEquals(['excludeFromIndexes' => ['data']], $args[2]);
                 return $entity;
             });
@@ -240,9 +240,9 @@ class DatastoreSessionHandlerTest extends TestCase
                 $that->assertEquals($key, $args[0]);
                 $that->assertEquals('sessiondata', $args[1]['data']);
                 $that->assertInternalType('int', $args[1]['t']);
-                $that->assertGreaterThanOrEqual($args[1]['t'], time());
+                $that->assertGreaterThanOrEqual($args[1]['t'], \time());
                 // 2 seconds grace period should be enough
-                $that->assertLessThanOrEqual(2, time() - $args[1]['t']);
+                $that->assertLessThanOrEqual(2, \time() - $args[1]['t']);
                 $that->assertEquals(['excludeFromIndexes' => ['data']], $args[2]);
                 return $entity;
             });
@@ -285,9 +285,9 @@ class DatastoreSessionHandlerTest extends TestCase
                 $that->assertEquals($key, $args[0]);
                 $that->assertEquals('sessiondata', $args[1]['data']);
                 $that->assertInternalType('int', $args[1]['t']);
-                $that->assertGreaterThanOrEqual($args[1]['t'], time());
+                $that->assertGreaterThanOrEqual($args[1]['t'], \time());
                 // 2 seconds grace period should be enough
-                $that->assertLessThanOrEqual(2, time() - $args[1]['t']);
+                $that->assertLessThanOrEqual(2, \time() - $args[1]['t']);
                 $that->assertEquals(['excludeFromIndexes' => ['data', 'additional']], $args[2]);
                 return $entity;
             });
@@ -331,9 +331,9 @@ class DatastoreSessionHandlerTest extends TestCase
                 $that->assertEquals($key, $args[0]);
                 $that->assertEquals('sessiondata', $args[1]['data']);
                 $that->assertInternalType('int', $args[1]['t']);
-                $that->assertGreaterThanOrEqual($args[1]['t'], time());
+                $that->assertGreaterThanOrEqual($args[1]['t'], \time());
                 // 2 seconds grace period should be enough
-                $that->assertLessThanOrEqual(2, time() - $args[1]['t']);
+                $that->assertLessThanOrEqual(2, \time() - $args[1]['t']);
                 $that->assertEquals([], $args[2]);
                 return $entity;
             });
@@ -471,7 +471,7 @@ class DatastoreSessionHandlerTest extends TestCase
                 $that->assertEquals('t', $args[0]);
                 $that->assertEquals('<', $args[1]);
                 $that->assertInternalType('int', $args[2]);
-                $diff = time() - $args[2];
+                $diff = \time() - $args[2];
                 // 2 seconds grace period should be enough
                 $that->assertLessThanOrEqual(102, $diff);
                 $that->assertGreaterThanOrEqual(100, $diff);
@@ -547,7 +547,7 @@ class DatastoreSessionHandlerTest extends TestCase
                 $that->assertEquals('t', $args[0]);
                 $that->assertEquals('<', $args[1]);
                 $that->assertInternalType('int', $args[2]);
-                $diff = time() - $args[2];
+                $diff = \time() - $args[2];
                 // 2 seconds grace period should be enough
                 $that->assertLessThanOrEqual(102, $diff);
                 $that->assertGreaterThanOrEqual(100, $diff);

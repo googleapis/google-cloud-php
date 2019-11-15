@@ -32,12 +32,12 @@ class ImageTest extends StreamWrapperTestCase
 
         // must get contents because we can't pass an fopen stream from the https stream wrapper
         // because it's not seekable
-        $contents = file_get_contents(self::TEST_IMAGE_WITH_EXIF);
+        $contents = \file_get_contents(self::TEST_IMAGE_WITH_EXIF);
         self::$bucket->upload(
             $contents,
             ['name' => 'exif.jpg']
         );
-        $contents = file_get_contents(self::TEST_IMAGE);
+        $contents = \file_get_contents(self::TEST_IMAGE);
         self::$bucket->upload(
             $contents,
             ['name' => 'plain.jpg']
@@ -50,7 +50,7 @@ class ImageTest extends StreamWrapperTestCase
     public function testGetImageSize($image, $width, $height)
     {
         $url = self::generateUrl($image);
-        $size = getimagesize($url);
+        $size = \getimagesize($url);
         $this->assertEquals($width, $size[0]);
         $this->assertEquals($height, $size[1]);
     }
@@ -62,10 +62,10 @@ class ImageTest extends StreamWrapperTestCase
     {
         $url = self::generateUrl($image);
         $info = array();
-        $size = getimagesize($url, $info);
+        $size = \getimagesize($url, $info);
         $this->assertEquals($width, $size[0]);
         $this->assertEquals($height, $size[1]);
-        $this->assertGreaterThan(1, array_keys($info));
+        $this->assertGreaterThan(1, \array_keys($info));
     }
 
     public function imageProvider()

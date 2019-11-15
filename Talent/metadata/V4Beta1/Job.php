@@ -19,7 +19,7 @@ class Job
         \GPBMetadata\Google\Cloud\Talent\V4Beta1\Common::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         \GPBMetadata\Google\Type\PostalAddress::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0ab0110a25676f6f676c652f636c6f75642f74616c656e742f7634626574" .
             "61312f6a6f622e70726f746f121b676f6f676c652e636c6f75642e74616c" .
             "656e742e763462657461311a1f676f6f676c652f6170692f6669656c645f" .

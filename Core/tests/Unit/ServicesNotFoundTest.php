@@ -33,23 +33,23 @@ class ServicesNotFoundTest extends TestCase
     public static function setUpBeforeClass()
     {
         self::$cloud = new ServiceBuilder;
-        foreach (spl_autoload_functions() as $function) {
+        foreach (\spl_autoload_functions() as $function) {
             if ($function[0] instanceof ClassLoader) {
                 $newAutoloader = clone $function[0];
                 $newAutoloader->setPsr4('Google\Cloud\\', '/tmp');
                 foreach (self::getApis() as $api) {
                     $newAutoloader->setPsr4("Google\\Cloud\\$api\\", '/tmp');
                 }
-                spl_autoload_register(self::$newAutoloadFunc = [$newAutoloader, 'loadClass']);
-                spl_autoload_unregister(self::$previousAutoloadFunc = $function);
+                \spl_autoload_register(self::$newAutoloadFunc = [$newAutoloader, 'loadClass']);
+                \spl_autoload_unregister(self::$previousAutoloadFunc = $function);
             }
         }
     }
 
     public static function tearDownAfterClass()
     {
-        spl_autoload_register(self::$previousAutoloadFunc);
-        spl_autoload_unregister(self::$newAutoloadFunc);
+        \spl_autoload_register(self::$previousAutoloadFunc);
+        \spl_autoload_unregister(self::$newAutoloadFunc);
     }
 
     private static function getApis()
@@ -104,9 +104,9 @@ class ServicesNotFoundTest extends TestCase
      */
     public function testServicesNotFound($method)
     {
-        $this->setExpectedException(\Exception::class, sprintf(
+        $this->setExpectedException(\Exception::class, \sprintf(
             'The google/cloud-%s package is missing and must be installed.',
-            strtolower($method)
+            \strtolower($method)
         ));
 
         self::$cloud->$method();

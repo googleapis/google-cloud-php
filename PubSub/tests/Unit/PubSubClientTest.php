@@ -134,7 +134,7 @@ class PubSubClientTest extends TestCase
 
         $this->assertInstanceOf(ItemIterator::class, $topics);
 
-        $arr = iterator_to_array($topics);
+        $arr = \iterator_to_array($topics);
         $this->assertInstanceOf(Topic::class, $arr[0]);
         $this->assertEquals($arr[0]->info()['name'], $topicResult[0]['name']);
         $this->assertEquals($arr[1]->info()['name'], $topicResult[1]['name']);
@@ -251,7 +251,7 @@ class PubSubClientTest extends TestCase
 
         $this->assertInstanceOf(ItemIterator::class, $subscriptions);
 
-        $arr = iterator_to_array($subscriptions);
+        $arr = \iterator_to_array($subscriptions);
         $this->assertInstanceOf(Subscription::class, $arr[0]);
         $this->assertEquals($arr[0]->info()['name'], $subscriptionResult[0]['name']);
         $this->assertEquals($arr[1]->info()['name'], $subscriptionResult[1]['name']);
@@ -354,7 +354,7 @@ class PubSubClientTest extends TestCase
 
         $this->assertInstanceOf(ItemIterator::class, $snapshots);
 
-        $arr = iterator_to_array($snapshots);
+        $arr = \iterator_to_array($snapshots);
         $this->assertInstanceOf(Snapshot::class, $arr[0]);
         $this->assertEquals($arr[0]->info()['name'], $snapshotResult[0]['name']);
         $this->assertEquals($arr[1]->info()['name'], $snapshotResult[1]['name']);

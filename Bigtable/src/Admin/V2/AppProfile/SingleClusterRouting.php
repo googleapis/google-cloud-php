@@ -110,5 +110,5 @@ class SingleClusterRouting extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SingleClusterRouting::class, \Google\Cloud\Bigtable\Admin\V2\AppProfile_SingleClusterRouting::class);
+\class_alias(SingleClusterRouting::class, \Google\Cloud\Bigtable\Admin\V2\AppProfile_SingleClusterRouting::class);
 

@@ -47,7 +47,7 @@ class E2ETest extends TestCase
     public static function beforeDeploy()
     {
         self::createComposerJson();
-        self::$gcloudWrapper->setDir(implode(DIRECTORY_SEPARATOR, [__DIR__, 'app']));
+        self::$gcloudWrapper->setDir(\implode(DIRECTORY_SEPARATOR, [__DIR__, 'app']));
     }
 
     public function setUp()
@@ -58,7 +58,7 @@ class E2ETest extends TestCase
         $this->runEventuallyConsistentTest(function () {
             $resp = $this->httpClient->get('/debuggee');
             $this->assertEquals(200, $resp->getStatusCode());
-            $data = json_decode($resp->getBody()->getContents(), true);
+            $data = \json_decode($resp->getBody()->getContents(), true);
             $this->assertNotEmpty($data['debuggeeId']);
             $this->debuggeeId = $data['debuggeeId'];
         }, 5, true);
@@ -71,7 +71,7 @@ class E2ETest extends TestCase
 
     public static function getBranch()
     {
-        $branch = getenv('TRAVIS_BRANCH') ?: getenv('BRANCH');
+        $branch = \getenv('TRAVIS_BRANCH') ?: \getenv('BRANCH');
         if ($branch === false) {
             self::fail('Please set the BRANCH env var.');
         }
@@ -80,8 +80,8 @@ class E2ETest extends TestCase
 
     public static function getRepo()
     {
-        return getenv('TRAVIS_REPO_SLUG')
-            ?: getenv('REPO_SLUG')
+        return \getenv('TRAVIS_REPO_SLUG')
+            ?: \getenv('REPO_SLUG')
             ?: 'googleapis/google-cloud-php';
     }
 
@@ -103,8 +103,8 @@ class E2ETest extends TestCase
                 ]
             ]
         ];
-        $file = implode(DIRECTORY_SEPARATOR, [__DIR__, 'app', 'composer.json']);
-        file_put_contents($file, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+        $file = \implode(DIRECTORY_SEPARATOR, [__DIR__, 'app', 'composer.json']);
+        \file_put_contents($file, \json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
     }
 
     public function testWithFullPath()
@@ -127,7 +127,7 @@ class E2ETest extends TestCase
     private function assertBreakpointCount($count)
     {
         $resp = $this->httpClient->get('/debuggee');
-        $data = json_decode($resp->getBody()->getContents(), true);
+        $data = \json_decode($resp->getBody()->getContents(), true);
         $this->assertEquals($count, (int) $data['numBreakpoints']);
     }
 
@@ -169,7 +169,7 @@ class E2ETest extends TestCase
     {
         // Set a breakpoint
         $client = new DebuggerClient([
-            'keyFilePath' => getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH')
+            'keyFilePath' => \getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH')
         ]);
         $debuggee = $client->debuggee($this->debuggeeId);
         $breakpoint = $debuggee->setBreakpoint($file, $line);

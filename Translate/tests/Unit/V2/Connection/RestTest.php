@@ -85,7 +85,7 @@ class RestTest extends TestCase
         $rest->setRequestBuilder($requestBuilder->reveal());
         $rest->setRequestWrapper($this->requestWrapper->reveal());
 
-        $this->assertEquals(json_decode($this->successBody, true), $rest->$method($options));
+        $this->assertEquals(\json_decode($this->successBody, true), $rest->$method($options));
     }
 
     public function methodProvider()

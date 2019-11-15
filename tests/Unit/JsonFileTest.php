@@ -29,9 +29,9 @@ class JsonFileTest extends TestCase
 
     public function testComposer()
     {
-        $file = file_get_contents(__DIR__ .'/../../composer.json');
-        $json = json_decode($file);
-        $this->assertEquals(JSON_ERROR_NONE, json_last_error());
+        $file = \file_get_contents(__DIR__ .'/../../composer.json');
+        $json = \json_decode($file);
+        $this->assertEquals(JSON_ERROR_NONE, \json_last_error());
 
         $this->validateAndAssert($json, 'composer.json.schema');
     }
@@ -41,18 +41,18 @@ class JsonFileTest extends TestCase
      */
     public function testComponentComposer($component)
     {
-        $file = file_get_contents($component);
-        $json = json_decode($file);
-        $this->assertEquals(JSON_ERROR_NONE, json_last_error());
+        $file = \file_get_contents($component);
+        $json = \json_decode($file);
+        $this->assertEquals(JSON_ERROR_NONE, \json_last_error());
 
         $this->validateAndAssert($json, 'composer.json.schema');
     }
 
     public function components()
     {
-        $files = glob(__DIR__ .'/../../*/composer.json');
-        array_walk($files, function (&$file) {
-            $file = [realpath($file)];
+        $files = \glob(__DIR__ .'/../../*/composer.json');
+        \array_walk($files, function (&$file) {
+            $file = [\realpath($file)];
         });
 
         return $files;
@@ -60,31 +60,31 @@ class JsonFileTest extends TestCase
 
     public function testManifest()
     {
-        $file = file_get_contents(__DIR__ .'/../../docs/manifest.json');
-        $json = json_decode($file);
-        $this->assertEquals(JSON_ERROR_NONE, json_last_error());
+        $file = \file_get_contents(__DIR__ .'/../../docs/manifest.json');
+        $json = \json_decode($file);
+        $this->assertEquals(JSON_ERROR_NONE, \json_last_error());
 
         $this->validateAndAssert($json, 'manifest.json.schema');
     }
 
     public function testToc()
     {
-        $file = file_get_contents(__DIR__ .'/../../docs/toc.json');
-        $json = json_decode($file);
-        $this->assertEquals(JSON_ERROR_NONE, json_last_error());
+        $file = \file_get_contents(__DIR__ .'/../../docs/toc.json');
+        $json = \json_decode($file);
+        $this->assertEquals(JSON_ERROR_NONE, \json_last_error());
 
         $this->validateAndAssert($json, 'toc.json.schema');
     }
 
     private function validateAndAssert($input, $schemaPath)
     {
-        $schema = file_get_contents(sprintf(
+        $schema = \file_get_contents(\sprintf(
             self::SCHEMA_PATH,
             __DIR__,
             $schemaPath
         ));
 
-        $validator = Schema::import(json_decode($schema));
+        $validator = Schema::import(\json_decode($schema));
 
         $valid = false;
         $msg = '';

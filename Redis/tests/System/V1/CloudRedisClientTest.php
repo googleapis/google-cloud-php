@@ -50,8 +50,8 @@ class CloudRedisClientTest extends TestCase
             return;
         }
 
-        $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
-        $keyFileData = json_decode(file_get_contents($keyFilePath), true);
+        $keyFilePath = \getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
+        $keyFileData = \json_decode(\file_get_contents($keyFilePath), true);
 
         self::$grpcClient = new CloudRedisClient([
             'credentials' => $keyFilePath,
@@ -70,7 +70,7 @@ class CloudRedisClientTest extends TestCase
             // get the $any object to ensure this does not fail
             $any = $operationResponse->getMetadata();
             $this->assertInstanceOf(OperationMetadata::class, $any);
-            sleep(5);
+            \sleep(5);
             $operationResponse->reload();
         }
 
@@ -99,7 +99,7 @@ class CloudRedisClientTest extends TestCase
             // get the $any object to ensure this does not fail
             $any = $operationResponse->getMetadata();
             $this->assertInstanceOf(OperationMetadata::class, $any);
-            sleep(5);
+            \sleep(5);
             $operationResponse->reload();
         }
 
@@ -130,12 +130,12 @@ class CloudRedisClientTest extends TestCase
         $createdInstanceName = $this->createRedisInstance($client, $parent, $instanceId);
         $this->assertSame($instanceName, $createdInstanceName);
 
-        $instances = iterator_to_array($client->listInstances($parent)->iterateAllElements());
-        $this->assertSame(1, count($instances));
+        $instances = \iterator_to_array($client->listInstances($parent)->iterateAllElements());
+        $this->assertSame(1, \count($instances));
 
         $this->deleteInstance($client, $createdInstanceName);
 
-        $instances = iterator_to_array($client->listInstances($parent)->iterateAllElements());
-        $this->assertSame(0, count($instances));
+        $instances = \iterator_to_array($client->listInstances($parent)->iterateAllElements());
+        $this->assertSame(0, \count($instances));
     }
 }

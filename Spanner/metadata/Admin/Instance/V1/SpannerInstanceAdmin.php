@@ -24,7 +24,7 @@ class SpannerInstanceAdmin
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0ac5280a3d676f6f676c652f7370616e6e65722f61646d696e2f696e7374" .
             "616e63652f76312f7370616e6e65725f696e7374616e63655f61646d696e" .
             "2e70726f746f1220676f6f676c652e7370616e6e65722e61646d696e2e69" .

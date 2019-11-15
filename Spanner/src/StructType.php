@@ -145,7 +145,7 @@ class StructType
             Database::TYPE_ARRAY
         ];
 
-        if (is_int($type) && in_array($type, $invalidIntTypes)) {
+        if (\is_int($type) && \in_array($type, $invalidIntTypes)) {
             throw new \InvalidArgumentException(
                 '`Database::TYPE_ARRAY` and `Database::TYPE_STRUCT` are not valid as struct types. ' .
                 'Instead provide `Google\Cloud\Spanner\ArrayType` or `Google\Cloud\Spanner\StructType`.'
@@ -161,8 +161,8 @@ class StructType
             $type = Database::TYPE_ARRAY;
         }
 
-        if (!in_array($type, ValueMapper::$allowedTypes)) {
-            throw new \InvalidArgumentException(sprintf(
+        if (!\in_array($type, ValueMapper::$allowedTypes)) {
+            throw new \InvalidArgumentException(\sprintf(
                 'Field type `%s` is not valid.',
                 $type
             ));

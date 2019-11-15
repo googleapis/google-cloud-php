@@ -46,9 +46,9 @@ class Release extends GoogleCloudCommand
 
     public function __construct($rootPath)
     {
-        $this->manifest = sprintf(self::PATH_MANIFEST, $rootPath);
-        $this->defaultComponentComposer = sprintf(self::DEFAULT_COMPONENT_COMPOSER, $rootPath);
-        $this->components = sprintf(self::COMPONENT_BASE, $rootPath);
+        $this->manifest = \sprintf(self::PATH_MANIFEST, $rootPath);
+        $this->defaultComponentComposer = \sprintf(self::DEFAULT_COMPONENT_COMPOSER, $rootPath);
+        $this->components = \sprintf(self::COMPONENT_BASE, $rootPath);
 
         parent::__construct($rootPath);
     }
@@ -70,14 +70,14 @@ class Release extends GoogleCloudCommand
 
         // If the version is one of "major", "minor" or "patch", determine the
         // correct incrementation.
-        if (in_array(strtolower($version), $this->allowedReleaseTypes)) {
+        if (\in_array(\strtolower($version), $this->allowedReleaseTypes)) {
             $version = $this->getNextVersionName($version, $component);
         }
 
         try {
             $validatedVersion = new version($version);
         } catch (\Exception $e) {
-            throw new RuntimeException(sprintf(
+            throw new RuntimeException(\sprintf(
                 'Given version %s is not a valid version name',
                 $version
             ));
@@ -85,7 +85,7 @@ class Release extends GoogleCloudCommand
 
         $version = (string) $validatedVersion;
 
-        $output->writeln(sprintf(
+        $output->writeln(\sprintf(
             'Adding version %s to Documentation Manifest for component %s.',
             $version,
             $component['id']
@@ -93,7 +93,7 @@ class Release extends GoogleCloudCommand
 
         $this->addToComponentManifest($version, $component);
 
-        $output->writeln(sprintf(
+        $output->writeln(\sprintf(
             'Setting component version constant to %s.',
             $version
         ));
@@ -105,7 +105,7 @@ class Release extends GoogleCloudCommand
                 $entry
             );
             if ($entryUpdated) {
-                $output->writeln(sprintf(
+                $output->writeln(\sprintf(
                     'File %s VERSION constant updated to %s',
                     $entry,
                     $version
@@ -115,7 +115,7 @@ class Release extends GoogleCloudCommand
 
         if ($component['id'] !== 'google-cloud') {
             $this->updateComponentVersionFile($version, $component);
-            $output->writeln(sprintf(
+            $output->writeln(\sprintf(
                 'Component %s VERSION file updated to %s',
                 $component['id'],
                 $version
@@ -123,14 +123,14 @@ class Release extends GoogleCloudCommand
 
             $this->updateComposerReplacesVersion($version, $component);
 
-            $output->writeln(sprintf(
+            $output->writeln(\sprintf(
                 'google-cloud composer replaces for component %s updated to version %s',
                 $component['id'],
                 $version
             ));
         }
 
-        $output->writeln(sprintf(
+        $output->writeln(\sprintf(
             'Release %s generated!',
             $version
         ));

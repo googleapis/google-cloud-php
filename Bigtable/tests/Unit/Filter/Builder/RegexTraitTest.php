@@ -71,7 +71,7 @@ class RegexTraitTest extends TestCase
     {
         $value = [ 0xe2, 0x80, 0xb3];
         $escapedValue = $this->implementation->call('escapeLiteralValue', [$value]);
-        $expected = implode(array_map('chr', $value));
+        $expected = \implode(\array_map('chr', $value));
         $this->assertEquals($expected, $escapedValue);
     }
 }

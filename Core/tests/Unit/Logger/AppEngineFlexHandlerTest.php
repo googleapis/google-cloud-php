@@ -32,7 +32,7 @@ class AppEngineFlexHandlerTest extends TestCase
 
     public function setUp()
     {
-        $this->stream = tmpfile();
+        $this->stream = \tmpfile();
 
         $handler = AppEngineFlexHandlerFactory::build(Logger::DEBUG, true, 0640, false, $this->stream);
 
@@ -42,16 +42,16 @@ class AppEngineFlexHandlerTest extends TestCase
 
     public function tearDown()
     {
-        fclose($this->stream);
+        \fclose($this->stream);
     }
 
     public function testOneLine()
     {
         $msg = 'Error message';
         $this->log->error($msg);
-        rewind($this->stream);
-        $log_text = stream_get_contents($this->stream);
-        $log_array = json_decode($log_text, true);
+        \rewind($this->stream);
+        $log_text = \stream_get_contents($this->stream);
+        $log_array = \json_decode($log_text, true);
         $this->assertContains($msg, $log_array['message']);
         $this->assertInternalType('int', $log_array['timestamp']['seconds']);
         $this->assertInternalType('int', $log_array['timestamp']['nanos']);
@@ -64,9 +64,9 @@ class AppEngineFlexHandlerTest extends TestCase
 
         $msg = 'Error message';
         $this->log->error($msg);
-        rewind($this->stream);
-        $log_text = stream_get_contents($this->stream);
-        $log_array = json_decode($log_text, true);
+        \rewind($this->stream);
+        $log_text = \stream_get_contents($this->stream);
+        $log_array = \json_decode($log_text, true);
         $this->assertContains($msg, $log_array['message']);
         $this->assertInternalType('int', $log_array['timestamp']['seconds']);
         $this->assertInternalType('int', $log_array['timestamp']['nanos']);

@@ -18,7 +18,7 @@ class LanguageService
         \GPBMetadata\Google\Api\Client::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0aa9430a34676f6f676c652f636c6f75642f6c616e67756167652f763162" .
             "657461322f6c616e67756167655f736572766963652e70726f746f121d67" .
             "6f6f676c652e636c6f75642e6c616e67756167652e763162657461321a17" .

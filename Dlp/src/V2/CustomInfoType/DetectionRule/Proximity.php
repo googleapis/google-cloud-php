@@ -101,5 +101,5 @@ class Proximity extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Proximity::class, \Google\Cloud\Dlp\V2\CustomInfoType_DetectionRule_Proximity::class);
+\class_alias(Proximity::class, \Google\Cloud\Dlp\V2\CustomInfoType_DetectionRule_Proximity::class);
 

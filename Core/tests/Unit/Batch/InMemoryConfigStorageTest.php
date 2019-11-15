@@ -106,7 +106,7 @@ class InMemoryConfigStorageTest extends TestCase
     public function runJob($items)
     {
         foreach ($items as $item) {
-            $this->items[] = strtoupper($item);
+            $this->items[] = \strtoupper($item);
         }
         return true;
     }

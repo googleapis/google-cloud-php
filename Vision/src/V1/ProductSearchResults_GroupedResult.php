@@ -11,6 +11,6 @@ if (false) {
      */
     class ProductSearchResults_GroupedResult {}
 }
-class_exists(ProductSearchResults\GroupedResult::class);
-@trigger_error('Google\Cloud\Vision\V1\ProductSearchResults_GroupedResult is deprecated and will be removed in a future release. Use Google\Cloud\Vision\V1\ProductSearchResults\GroupedResult instead', E_USER_DEPRECATED);
+\class_exists(ProductSearchResults\GroupedResult::class);
+@\trigger_error('Google\Cloud\Vision\V1\ProductSearchResults_GroupedResult is deprecated and will be removed in a future release. Use Google\Cloud\Vision\V1\ProductSearchResults\GroupedResult instead', E_USER_DEPRECATED);
 

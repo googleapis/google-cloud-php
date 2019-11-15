@@ -11,6 +11,6 @@ if (false) {
      */
     class ProductSearchResults_ObjectAnnotation {}
 }
-class_exists(ProductSearchResults\ObjectAnnotation::class);
-@trigger_error('Google\Cloud\Vision\V1\ProductSearchResults_ObjectAnnotation is deprecated and will be removed in a future release. Use Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation instead', E_USER_DEPRECATED);
+\class_exists(ProductSearchResults\ObjectAnnotation::class);
+@\trigger_error('Google\Cloud\Vision\V1\ProductSearchResults_ObjectAnnotation is deprecated and will be removed in a future release. Use Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation instead', E_USER_DEPRECATED);
 

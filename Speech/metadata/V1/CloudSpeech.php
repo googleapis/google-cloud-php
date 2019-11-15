@@ -19,7 +19,7 @@ class CloudSpeech
         \GPBMetadata\Google\Protobuf\Duration::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         \GPBMetadata\Google\Rpc\Status::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0a87240a29676f6f676c652f636c6f75642f7370656563682f76312f636c" .
             "6f75645f7370656563682e70726f746f1216676f6f676c652e636c6f7564" .
             "2e7370656563682e76311a23676f6f676c652f6c6f6e6772756e6e696e67" .

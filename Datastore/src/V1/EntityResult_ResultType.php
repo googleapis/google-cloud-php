@@ -11,6 +11,6 @@ if (false) {
      */
     class EntityResult_ResultType {}
 }
-class_exists(EntityResult\ResultType::class);
-@trigger_error('Google\Cloud\Datastore\V1\EntityResult_ResultType is deprecated and will be removed in the next major release. Use Google\Cloud\Datastore\V1\EntityResult\ResultType instead', E_USER_DEPRECATED);
+\class_exists(EntityResult\ResultType::class);
+@\trigger_error('Google\Cloud\Datastore\V1\EntityResult_ResultType is deprecated and will be removed in the next major release. Use Google\Cloud\Datastore\V1\EntityResult\ResultType instead', E_USER_DEPRECATED);
 

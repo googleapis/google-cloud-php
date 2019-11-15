@@ -33,7 +33,7 @@ class LoggingPerfTest extends TestCase
 
     public function setUp()
     {
-        $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
+        $keyFilePath = \getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
         $this->restLogger = LoggingClient::psrBatchLogger(
             'perf-rest',
             [
@@ -57,19 +57,19 @@ class LoggingPerfTest extends TestCase
     public function testPerf()
     {
         $num = 20000;
-        $start = microtime(true);
+        $start = \microtime(true);
         for ($i = 0; $i < $num; $i++) {
             $this->restLogger->info('x');
         }
-        $end = microtime(true);
+        $end = \microtime(true);
         $restResult = $end - $start;
         echo PHP_EOL . 'rest took ' . $restResult . ' seconds for sending '
             . $num . ' logs';
-        $start = microtime(true);
+        $start = \microtime(true);
         for ($i = 0; $i < $num; $i++) {
             $this->grpcLogger->info('x');
         }
-        $end = microtime(true);
+        $end = \microtime(true);
         $grpcResult = $end - $start;
         echo PHP_EOL . 'grpc took ' . $grpcResult . ' seconds for sending '
             . $num . ' logs';

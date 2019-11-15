@@ -69,7 +69,7 @@ class FirestoreClientTest extends SnippetTestCase
         $snippet = $this->snippetFromClass(FirestoreClient::class, 1);
         $res = $snippet->invoke('firestore');
         $this->assertInstanceOf(FirestoreClient::class, $res->returnVal());
-        $this->assertEquals('localhost:8900', getenv('FIRESTORE_EMULATOR_HOST'));
+        $this->assertEquals('localhost:8900', \getenv('FIRESTORE_EMULATOR_HOST'));
     }
 
     public function testBatch()
@@ -124,13 +124,13 @@ class FirestoreClientTest extends SnippetTestCase
             ->willReturn([
                 [
                     'found' => [
-                        'name' => sprintf($tpl, self::PROJECT, self::DATABASE, 'john'),
+                        'name' => \sprintf($tpl, self::PROJECT, self::DATABASE, 'john'),
                         'fields' => []
                     ],
                     'readTime' => (new \DateTime)->format(Timestamp::FORMAT)
                 ], [
                     'found' => [
-                        'name' => sprintf($tpl, self::PROJECT, self::DATABASE, 'dave'),
+                        'name' => \sprintf($tpl, self::PROJECT, self::DATABASE, 'dave'),
                         'fields' => []
                     ],
                     'readTime' => (new \DateTime)->format(Timestamp::FORMAT)
@@ -154,7 +154,7 @@ class FirestoreClientTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn([
                 [
-                    'missing' => sprintf($tpl, self::PROJECT, self::DATABASE, 'deleted-user'),
+                    'missing' => \sprintf($tpl, self::PROJECT, self::DATABASE, 'deleted-user'),
                     'readTime' => (new \DateTime)->format(Timestamp::FORMAT)
                 ]
             ]);
@@ -198,8 +198,8 @@ class FirestoreClientTest extends SnippetTestCase
 
     public function testRunTransaction()
     {
-        $from = sprintf('projects/%s/databases/%s/documents/users/john', self::PROJECT, self::DATABASE);
-        $to = sprintf('projects/%s/databases/%s/documents/users/dave', self::PROJECT, self::DATABASE);
+        $from = \sprintf('projects/%s/databases/%s/documents/users/john', self::PROJECT, self::DATABASE);
+        $to = \sprintf('projects/%s/databases/%s/documents/users/dave', self::PROJECT, self::DATABASE);
 
         $this->connection->beginTransaction(Argument::any())
             ->shouldBeCalled()

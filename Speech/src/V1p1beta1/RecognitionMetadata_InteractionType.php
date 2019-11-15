@@ -11,6 +11,6 @@ if (false) {
      */
     class RecognitionMetadata_InteractionType {}
 }
-class_exists(RecognitionMetadata\InteractionType::class);
-@trigger_error('Google\Cloud\Speech\V1p1beta1\RecognitionMetadata_InteractionType is deprecated and will be removed in a future release. Use Google\Cloud\Speech\V1p1beta1\RecognitionMetadata\InteractionType instead', E_USER_DEPRECATED);
+\class_exists(RecognitionMetadata\InteractionType::class);
+@\trigger_error('Google\Cloud\Speech\V1p1beta1\RecognitionMetadata_InteractionType is deprecated and will be removed in a future release. Use Google\Cloud\Speech\V1p1beta1\RecognitionMetadata\InteractionType instead', E_USER_DEPRECATED);
 

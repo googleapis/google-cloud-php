@@ -11,6 +11,6 @@ if (false) {
      */
     class Intent_Parameter {}
 }
-class_exists(Intent\Parameter::class);
-@trigger_error('Google\Cloud\Dialogflow\V2\Intent_Parameter is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\Intent\Parameter instead', E_USER_DEPRECATED);
+\class_exists(Intent\Parameter::class);
+@\trigger_error('Google\Cloud\Dialogflow\V2\Intent_Parameter is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\Intent\Parameter instead', E_USER_DEPRECATED);
 

@@ -61,7 +61,7 @@ class TableOfContents
             foreach ($toc['includes'] as $include) {
                 $toc = $this->getToc($include);
                 $nested = $toc['services'];
-                $firstService = array_shift($nested);
+                $firstService = \array_shift($nested);
 
                 $service = [
                     'title' => $toc['title'],
@@ -82,6 +82,6 @@ class TableOfContents
 
     private function getToc($componentId)
     {
-        return json_decode(file_get_contents($this->contentsPath .'/'. $componentId .'.json'), true);
+        return \json_decode(\file_get_contents($this->contentsPath .'/'. $componentId .'.json'), true);
     }
 }

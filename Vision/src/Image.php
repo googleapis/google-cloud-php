@@ -240,14 +240,14 @@ class Image
         $this->features = $this->normalizeFeatures($features);
 
         $this->image = $image;
-        if (is_string($image) && in_array(parse_url($image, PHP_URL_SCHEME), $this->urlSchemes)) {
+        if (\is_string($image) && \in_array(\parse_url($image, PHP_URL_SCHEME), $this->urlSchemes)) {
             $this->type = self::TYPE_URI;
-        } elseif (is_string($image)) {
+        } elseif (\is_string($image)) {
             $this->type = self::TYPE_STRING;
         } elseif ($image instanceof StorageObject) {
             $this->type = self::TYPE_URI;
             $this->image = $image->gcsUri();
-        } elseif (is_resource($image)) {
+        } elseif (\is_resource($image)) {
             $this->type = self::TYPE_BYTES;
             $this->image = Psr7\stream_for($image);
         } else {
@@ -257,9 +257,9 @@ class Image
             );
         }
 
-        $class = get_class($this);
+        $class = \get_class($this);
         $err = "The class {$class} is no longer supported";
-        @trigger_error($err, E_USER_DEPRECATED);
+        @\trigger_error($err, E_USER_DEPRECATED);
     }
 
     /**
@@ -288,7 +288,7 @@ class Image
      */
     public function requestObject($encode = true)
     {
-        return array_filter([
+        return \array_filter([
             'image' => $this->imageObject($encode),
             'features' => $this->features,
             'imageContext' => $this->options['imageContext']
@@ -312,7 +312,7 @@ class Image
             $bytes = (string) $this->image;
 
             return [
-                'content' => ($encode) ? base64_encode($bytes) : $bytes
+                'content' => ($encode) ? \base64_encode($bytes) : $bytes
             ];
         }
 
@@ -320,7 +320,7 @@ class Image
             $string = $this->image;
 
             return [
-                'content' => ($encode) ? base64_encode($string) : $string
+                'content' => ($encode) ? \base64_encode($string) : $string
             ];
         }
 
@@ -345,11 +345,11 @@ class Image
         foreach ($features as $key => $feature) {
             $maxResults = $this->maxResult($feature);
 
-            if (array_key_exists($feature, $this->featureShortNames)) {
+            if (\array_key_exists($feature, $this->featureShortNames)) {
                 $feature = $this->featureShortNames[$feature];
             }
 
-            $result[] = array_filter([
+            $result[] = \array_filter([
                 'type' => $feature,
                 'maxResults' => $maxResults
             ]);

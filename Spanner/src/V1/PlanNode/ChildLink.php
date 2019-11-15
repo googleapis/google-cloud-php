@@ -175,5 +175,5 @@ class ChildLink extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ChildLink::class, \Google\Cloud\Spanner\V1\PlanNode_ChildLink::class);
+\class_alias(ChildLink::class, \Google\Cloud\Spanner\V1\PlanNode_ChildLink::class);
 

@@ -11,6 +11,6 @@ if (false) {
      */
     class Action_PublishFindingsToCloudDataCatalog {}
 }
-class_exists(Action\PublishFindingsToCloudDataCatalog::class);
-@trigger_error('Google\Cloud\Dlp\V2\Action_PublishFindingsToCloudDataCatalog is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\Action\PublishFindingsToCloudDataCatalog instead', E_USER_DEPRECATED);
+\class_exists(Action\PublishFindingsToCloudDataCatalog::class);
+@\trigger_error('Google\Cloud\Dlp\V2\Action_PublishFindingsToCloudDataCatalog is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\Action\PublishFindingsToCloudDataCatalog instead', E_USER_DEPRECATED);
 

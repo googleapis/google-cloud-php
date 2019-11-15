@@ -107,11 +107,11 @@ class KeyRange
         $this->startType = $this->fromDefinition($options['startType'], 'start');
         $this->endType = $this->fromDefinition($options['endType'], 'end');
 
-        $this->start = ($options['start'] === null || is_array($options['start']))
+        $this->start = ($options['start'] === null || \is_array($options['start']))
             ? $options['start']
             : [$options['start']];
 
-        $this->end = ($options['end'] === null || is_array($options['end']))
+        $this->end = ($options['end'] === null || \is_array($options['end']))
             ? $options['end']
             : [$options['end']];
     }
@@ -208,10 +208,10 @@ class KeyRange
      */
     public function setEnd($type, array $end)
     {
-        if (!in_array($type, array_keys($this->definition))) {
-            throw new \InvalidArgumentException(sprintf(
+        if (!\in_array($type, \array_keys($this->definition))) {
+            throw new \InvalidArgumentException(\sprintf(
                 'Invalid KeyRange type. Allowed values are %s',
-                implode(', ', array_keys($this->definition))
+                \implode(', ', \array_keys($this->definition))
             ));
         }
 
@@ -268,25 +268,25 @@ class KeyRange
     {
         $startType = null;
         $start = null;
-        if (array_key_exists('startClosed', $range)) {
+        if (\array_key_exists('startClosed', $range)) {
             $startType = self::TYPE_CLOSED;
             $start = $range['startClosed'];
-        } elseif (array_key_exists('startOpen', $range)) {
+        } elseif (\array_key_exists('startOpen', $range)) {
             $startType = self::TYPE_OPEN;
             $start = $range['startOpen'];
         }
 
         $endType = null;
         $end = null;
-        if (array_key_exists('endClosed', $range)) {
+        if (\array_key_exists('endClosed', $range)) {
             $endType = self::TYPE_CLOSED;
             $end = $range['endClosed'];
-        } elseif (array_key_exists('endOpen', $range)) {
+        } elseif (\array_key_exists('endOpen', $range)) {
             $endType = self::TYPE_OPEN;
             $end = $range['endOpen'];
         }
 
-        return new self(array_filter([
+        return new self(\array_filter([
             'startType' => $startType,
             'start' => $start,
             'endType' => $endType,
@@ -303,11 +303,11 @@ class KeyRange
      */
     private function fromDefinition($type, $startOrEnd)
     {
-        if (!array_key_exists($type, $this->definition)) {
-            throw new \InvalidArgumentException(sprintf(
+        if (!\array_key_exists($type, $this->definition)) {
+            throw new \InvalidArgumentException(\sprintf(
                 'Invalid KeyRange %s type. Allowed values are %s.',
                 $startOrEnd,
-                implode(', ', array_keys($this->definition))
+                \implode(', ', \array_keys($this->definition))
             ));
         }
 

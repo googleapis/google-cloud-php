@@ -55,7 +55,7 @@ class ExponentialBackoff
         // @todo revisit this approach
         // @codeCoverageIgnoreStart
         $this->delayFunction = static function ($delay) {
-            usleep($delay);
+            \usleep($delay);
         };
         // @codeCoverageIgnoreEnd
     }
@@ -77,10 +77,10 @@ class ExponentialBackoff
 
         while (true) {
             try {
-                return call_user_func_array($function, $arguments);
+                return \call_user_func_array($function, $arguments);
             } catch (\Exception $exception) {
                 if ($this->retryFunction) {
-                    if (!call_user_func($this->retryFunction, $exception)) {
+                    if (!\call_user_func($this->retryFunction, $exception)) {
                         throw $exception;
                     }
                 }
@@ -128,8 +128,8 @@ class ExponentialBackoff
      */
     public static function calculateDelay($attempt)
     {
-        return min(
-            mt_rand(0, 1000000) + (pow(2, $attempt) * 1000000),
+        return \min(
+            \mt_rand(0, 1000000) + (\pow(2, $attempt) * 1000000),
             self::MAX_DELAY_MICROSECONDS
         );
     }

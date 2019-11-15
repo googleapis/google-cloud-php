@@ -27,7 +27,7 @@ class StackTraceTest extends TestCase
 {
     public function testCreateFromBacktrace()
     {
-        $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
+        $backtrace = \debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
         $stackTrace = new StackTrace($backtrace);
         $data = $stackTrace->info();
         $this->assertStackFramesJsonFormat($data);
@@ -35,8 +35,8 @@ class StackTraceTest extends TestCase
 
     public function testCreateWithClosure()
     {
-        $backtrace = call_user_func(function () {
-            return debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
+        $backtrace = \call_user_func(function () {
+            return \debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
         });
         $stackTrace = new StackTrace($backtrace);
         $data = $stackTrace->info();
@@ -55,11 +55,11 @@ class StackTraceTest extends TestCase
 
     private function assertStackFrameJsonFormat($sf)
     {
-        $this->assertEmpty(array_diff(array_keys($sf), ['lineNumber', 'fileName', 'functionName']));
-        if (array_key_exists('fileName', $sf)) {
+        $this->assertEmpty(\array_diff(\array_keys($sf), ['lineNumber', 'fileName', 'functionName']));
+        if (\array_key_exists('fileName', $sf)) {
             $this->assertArrayHasKey('value', $sf['fileName']);
         }
-        if (array_key_exists('functionName', $sf)) {
+        if (\array_key_exists('functionName', $sf)) {
             $this->assertArrayHasKey('value', $sf['functionName']);
         }
     }

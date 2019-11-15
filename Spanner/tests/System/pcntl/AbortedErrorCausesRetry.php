@@ -14,7 +14,7 @@ $db2 = SpannerTestCase::getDatabaseInstance($dbName);
 $delay = 50000;
 
 if ($childPID1 = pcntl_fork()) {
-    usleep(1 * $delay);
+    \usleep(1 * $delay);
 
     $iteration = 0;
     $db1->runTransaction(function ($t) use ($id, $tableName, $delay, &$iteration) {
@@ -24,7 +24,7 @@ if ($childPID1 = pcntl_fork()) {
         ])->rows()->current();
 
         if ($iteration === 0) {
-            usleep(3 * $delay);
+            \usleep(3 * $delay);
         }
 
         $row['number'] += 1;
@@ -35,7 +35,7 @@ if ($childPID1 = pcntl_fork()) {
     echo $iteration;
     pcntl_waitpid($childPID1, $status1);
 } else {
-    usleep(1 * $delay);
+    \usleep(1 * $delay);
 
     $db2->runTransaction(function ($t) use ($id, $tableName) {
         $row = $t->execute('SELECT id, number FROM ' . $tableName . ' WHERE ID = @id', [

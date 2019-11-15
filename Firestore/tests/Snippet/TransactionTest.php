@@ -218,13 +218,13 @@ class TransactionTest extends SnippetTestCase
             ->willReturn([
                 [
                     'found' => [
-                        'name' => sprintf(self::DOCUMENT_TEMPLATE, self::PROJECT, self::DATABASE_ID, 'john'),
+                        'name' => \sprintf(self::DOCUMENT_TEMPLATE, self::PROJECT, self::DATABASE_ID, 'john'),
                         'fields' => []
                     ],
                     'readTime' => (new \DateTime)->format(Timestamp::FORMAT)
                 ], [
                     'found' => [
-                        'name' => sprintf(self::DOCUMENT_TEMPLATE, self::PROJECT, self::DATABASE_ID, 'dave'),
+                        'name' => \sprintf(self::DOCUMENT_TEMPLATE, self::PROJECT, self::DATABASE_ID, 'dave'),
                         'fields' => []
                     ],
                     'readTime' => (new \DateTime)->format(Timestamp::FORMAT)
@@ -247,7 +247,7 @@ class TransactionTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn([
                 [
-                    'missing' => sprintf(self::DOCUMENT_TEMPLATE, self::PROJECT, self::DATABASE_ID, 'deleted-user'),
+                    'missing' => \sprintf(self::DOCUMENT_TEMPLATE, self::PROJECT, self::DATABASE_ID, 'deleted-user'),
                     'readTime' => (new \DateTime)->format(Timestamp::FORMAT)
                 ]
             ]);

@@ -23,7 +23,7 @@ trait JsonTestTrait
     {
         foreach ($array1 as $key => $value) {
             $this->assertArrayHasKey($key, $array2);
-            if (is_array($value)) {
+            if (\is_array($value)) {
                 $this->assertProducesEquivalentJson($value, $array2[$key]);
             } else {
                 $this->assertEquals($value, $array2[$key]);

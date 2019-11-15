@@ -138,5 +138,5 @@ class WebEntity extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(WebEntity::class, \Google\Cloud\Vision\V1\WebDetection_WebEntity::class);
+\class_alias(WebEntity::class, \Google\Cloud\Vision\V1\WebDetection_WebEntity::class);
 

@@ -112,5 +112,5 @@ class KAnonymityEquivalenceClass extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(KAnonymityEquivalenceClass::class, \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_KAnonymityResult_KAnonymityEquivalenceClass::class);
+\class_alias(KAnonymityEquivalenceClass::class, \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_KAnonymityResult_KAnonymityEquivalenceClass::class);
 

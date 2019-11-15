@@ -23,7 +23,7 @@ class Tables
         \GPBMetadata\Google\Cloud\Automl\V1Beta1\Temporal::initOnce();
         \GPBMetadata\Google\Protobuf\Struct::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0ae90e0a28676f6f676c652f636c6f75642f6175746f6d6c2f7631626574" .
             "61312f7461626c65732e70726f746f121b676f6f676c652e636c6f75642e" .
             "6175746f6d6c2e763162657461311a30676f6f676c652f636c6f75642f61" .

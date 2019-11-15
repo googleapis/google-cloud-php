@@ -30,7 +30,7 @@ class Report
 
     public static function getReporter()
     {
-        return new self(php_sapi_name());
+        return new self(\php_sapi_name());
     }
 
     public function report($message)
@@ -49,34 +49,34 @@ class Report
         $oppCounts = [];
 
         foreach ($latency as $opKey => $arrDurations) {
-            $oppCounts[$opKey] = count($arrDurations);
+            $oppCounts[$opKey] = \count($arrDurations);
             $overallOpCount += $oppCounts[$opKey];
         }
 
-        $this->report(sprintf(
+        $this->report(\sprintf(
             '[OVERALL] Throughput (Ops/sec), %s' . PHP_EOL,
             $overallOpCount / $duration
         ));
 
         $template = '[%s], %s: %s.' . PHP_EOL;
         foreach ($oppCounts as $opKey => $intOpCounts) {
-            $strUpperOp = strtoupper($opKey);
+            $strUpperOp = \strtoupper($opKey);
 
-            $this->report(sprintf(
+            $this->report(\sprintf(
                 $template,
                 $strUpperOp,
                 'Operations',
                 $intOpCounts
             ));
 
-            $this->report(sprintf(
+            $this->report(\sprintf(
                 $template,
                 $strUpperOp,
                 'AverageLatency(us)',
                 $this->average($latency[$opKey])
             ));
 
-            $this->report(sprintf(
+            $this->report(\sprintf(
                 $template,
                 $strUpperOp,
                 'LatencyVariance(us)',
@@ -84,9 +84,9 @@ class Report
             ));
 
             $minLatency = $latency[$opKey]
-                ? min($latency[$opKey])
+                ? \min($latency[$opKey])
                 : 0;
-            $this->report(sprintf(
+            $this->report(\sprintf(
                 $template,
                 $strUpperOp,
                 'MinLatency(us)',
@@ -94,37 +94,37 @@ class Report
             ));
 
             $maxLatency = $latency[$opKey]
-                ? max($latency[$opKey])
+                ? \max($latency[$opKey])
                 : 0;
-            $this->report(sprintf(
+            $this->report(\sprintf(
                 $template,
                 $strUpperOp,
                 'MaxLatency(us)',
                 $maxLatency
             ));
 
-            $this->report(sprintf(
+            $this->report(\sprintf(
                 $template,
                 $strUpperOp,
                 '50thPercentile(us)',
                 $this->percentile($latency[$opKey], 0.50)
             ));
 
-            $this->report(sprintf(
+            $this->report(\sprintf(
                 $template,
                 $strUpperOp,
                 '95thPercentile(us)',
                 $this->percentile($latency[$opKey], 0.95)
             ));
 
-            $this->report(sprintf(
+            $this->report(\sprintf(
                 $template,
                 $strUpperOp,
                 '99thPercentile(us)',
                 $this->percentile($latency[$opKey], 0.99)
             ));
 
-            $this->report(sprintf(
+            $this->report(\sprintf(
                 $template,
                 $strUpperOp,
                 '99.9thPercentile(us)',
@@ -142,8 +142,8 @@ class Report
 
     private function average(array $input)
     {
-        $val = count($input) > 0
-            ? array_sum($input) / count($input)
+        $val = \count($input) > 0
+            ? \array_sum($input) / \count($input)
             : 0;
 
         return $val * 1000;
@@ -153,15 +153,15 @@ class Report
     {
         $mean = $this->average($input);
         foreach ($input as &$val) {
-            $val = pow($val - $mean, 2);
+            $val = \pow($val - $mean, 2);
         }
-        return sqrt($this->average($input)) * 1000;
+        return \sqrt($this->average($input)) * 1000;
     }
 
     private function percentile(array $input, $pct)
     {
-        sort($input);
-        $i = floor($pct * count($input));
+        \sort($input);
+        $i = \floor($pct * \count($input));
 
         $val = isset($input[$i]) ? $input[$i] : 0;
 

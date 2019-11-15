@@ -112,5 +112,5 @@ class Regex extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Regex::class, \Google\Cloud\Dlp\V2\CustomInfoType_Regex::class);
+\class_alias(Regex::class, \Google\Cloud\Dlp\V2\CustomInfoType_Regex::class);
 

@@ -162,7 +162,7 @@ class Address extends \Google\Protobuf\Internal\Message
     public function getCurrentValue()
     {
         $wrapper = $this->getCurrent();
-        return is_null($wrapper) ? null : $wrapper->getValue();
+        return \is_null($wrapper) ? null : $wrapper->getValue();
     }
 
     /**
@@ -191,7 +191,7 @@ class Address extends \Google\Protobuf\Internal\Message
      */
     public function setCurrentValue($var)
     {
-        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
+        $wrappedVar = \is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
         return $this->setCurrent($wrappedVar);
     }
 

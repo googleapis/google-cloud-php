@@ -213,5 +213,5 @@ class KMapEstimationHistogramBucket extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(KMapEstimationHistogramBucket::class, \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_KMapEstimationResult_KMapEstimationHistogramBucket::class);
+\class_alias(KMapEstimationHistogramBucket::class, \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_KMapEstimationResult_KMapEstimationHistogramBucket::class);
 

@@ -39,8 +39,8 @@ class SysvBreakpointStorage implements BreakpointStorageInterface
      */
     public function __construct()
     {
-        $this->sysvKey = ftok(__FILE__, 'A');
-        $this->semid = sem_get($this->sysvKey, 1, 0600, 1);
+        $this->sysvKey = \ftok(__FILE__, 'A');
+        $this->semid = \sem_get($this->sysvKey, 1, 0600, 1);
     }
 
     /**
@@ -54,14 +54,14 @@ class SysvBreakpointStorage implements BreakpointStorageInterface
     public function save(Debuggee $debuggee, array $breakpoints)
     {
         /** @var resource|bool */
-        $shmid = shm_attach($this->sysvKey);
+        $shmid = \shm_attach($this->sysvKey);
         if ($shmid === false) {
             throw new \RuntimeException(
                 'Failed to attach to the shared memory'
             );
         }
-        $result = shm_put_var($shmid, self::VAR_KEY, [$debuggee->id(), $breakpoints]);
-        shm_detach($shmid);
+        $result = \shm_put_var($shmid, self::VAR_KEY, [$debuggee->id(), $breakpoints]);
+        \shm_detach($shmid);
         return $result;
     }
 
@@ -75,16 +75,16 @@ class SysvBreakpointStorage implements BreakpointStorageInterface
     public function load()
     {
         /** @var resource|bool */
-        $shmid = shm_attach($this->sysvKey);
+        $shmid = \shm_attach($this->sysvKey);
         if ($shmid === false) {
             throw new \RuntimeException(
                 'Failed to attach to the shared memory'
             );
         }
-        if (!shm_has_var($shmid, self::VAR_KEY)) {
+        if (!\shm_has_var($shmid, self::VAR_KEY)) {
             $result = [null, []];
         } else {
-            $result = shm_get_var($shmid, self::VAR_KEY);
+            $result = \shm_get_var($shmid, self::VAR_KEY);
         }
         return $result;
     }

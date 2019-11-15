@@ -234,9 +234,9 @@ class Face extends AbstractFeature
         $this->info = $info;
         $this->landmarks = new Landmarks($info['landmarks']);
 
-        $class = get_class($this);
+        $class = \get_class($this);
         $err = "The class {$class} is no longer supported";
-        @trigger_error($err, E_USER_DEPRECATED);
+        @\trigger_error($err, E_USER_DEPRECATED);
     }
 
     /**

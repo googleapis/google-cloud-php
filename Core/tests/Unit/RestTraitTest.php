@@ -62,7 +62,7 @@ class RestTraitTest extends TestCase
         $this->implementation->setRequestWrapper($this->requestWrapper->reveal());
         $actualResponse = $this->implementation->send('resource', 'method');
 
-        $this->assertEquals(json_decode($responseBody, true), $actualResponse);
+        $this->assertEquals(\json_decode($responseBody, true), $actualResponse);
     }
 
     public function testSendsRequestWithOptions()
@@ -80,7 +80,7 @@ class RestTraitTest extends TestCase
         $this->implementation->setRequestWrapper($this->requestWrapper->reveal());
         $actualResponse = $this->implementation->send('resource', 'method', $restOptions);
 
-        $this->assertEquals(json_decode($responseBody, true), $actualResponse);
+        $this->assertEquals(\json_decode($responseBody, true), $actualResponse);
     }
 
     public function testSendsRequestNotFoundWhitelisted()

@@ -14,7 +14,7 @@ class FindingTypeStats
         if (static::$is_initialized == true) {
           return;
         }
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0afd020a3f676f6f676c652f636c6f75642f776562736563757269747973" .
             "63616e6e65722f7631626574612f66696e64696e675f747970655f737461" .
             "74732e70726f746f1226676f6f676c652e636c6f75642e77656273656375" .

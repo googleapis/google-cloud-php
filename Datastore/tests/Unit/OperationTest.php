@@ -248,7 +248,7 @@ class OperationTest extends TestCase
 
     public function testLookupFound()
     {
-        $body = json_decode(file_get_contents(Fixtures::ENTITY_BATCH_LOOKUP_FIXTURE()), true);
+        $body = \json_decode(\file_get_contents(Fixtures::ENTITY_BATCH_LOOKUP_FIXTURE()), true);
         $this->connection->lookup(Argument::any())->willReturn([
             'found' => $body
         ]);
@@ -259,7 +259,7 @@ class OperationTest extends TestCase
         $res = $this->operation->lookup([$key]);
 
         $this->assertInternalType('array', $res);
-        $this->assertTrue(isset($res['found']) && is_array($res['found']));
+        $this->assertTrue(isset($res['found']) && \is_array($res['found']));
 
         $this->assertInstanceOf(Entity::class, $res['found'][0]);
         $this->assertEquals($res['found'][0]['Number'], $body[0]['entity']['properties']['Number']['stringValue']);
@@ -270,7 +270,7 @@ class OperationTest extends TestCase
 
     public function testLookupMissing()
     {
-        $body = json_decode(file_get_contents(Fixtures::ENTITY_BATCH_LOOKUP_FIXTURE()), true);
+        $body = \json_decode(\file_get_contents(Fixtures::ENTITY_BATCH_LOOKUP_FIXTURE()), true);
         $this->connection->lookup(Argument::any())->willReturn([
             'missing' => $body
         ]);
@@ -282,7 +282,7 @@ class OperationTest extends TestCase
         $res = $this->operation->lookup([$key]);
 
         $this->assertInternalType('array', $res);
-        $this->assertTrue(isset($res['missing']) && is_array($res['missing']));
+        $this->assertTrue(isset($res['missing']) && \is_array($res['missing']));
 
         $this->assertInstanceOf(Key::class, $res['missing'][0]);
         $this->assertInstanceOf(Key::class, $res['missing'][1]);
@@ -290,7 +290,7 @@ class OperationTest extends TestCase
 
     public function testLookupDeferred()
     {
-        $body = json_decode(file_get_contents(Fixtures::ENTITY_BATCH_LOOKUP_FIXTURE()), true);
+        $body = \json_decode(\file_get_contents(Fixtures::ENTITY_BATCH_LOOKUP_FIXTURE()), true);
         $this->connection->lookup(Argument::any())->willReturn([
             'deferred' => [ $body[0]['entity']['key'] ]
         ]);
@@ -302,7 +302,7 @@ class OperationTest extends TestCase
         $res = $this->operation->lookup([$key]);
 
         $this->assertInternalType('array', $res);
-        $this->assertTrue(isset($res['deferred']) && is_array($res['deferred']));
+        $this->assertTrue(isset($res['deferred']) && \is_array($res['deferred']));
         $this->assertInstanceOf(Key::class, $res['deferred'][0]);
     }
 
@@ -349,7 +349,7 @@ class OperationTest extends TestCase
 
     public function testLookupWithSort()
     {
-        $data = json_decode(file_get_contents(Fixtures::ENTITY_LOOKUP_BIGSORT_FIXTURE()), true);
+        $data = \json_decode(\file_get_contents(Fixtures::ENTITY_LOOKUP_BIGSORT_FIXTURE()), true);
 
         $keys = [];
         foreach ($data['keys'] as $key) {
@@ -377,7 +377,7 @@ class OperationTest extends TestCase
 
     public function testLookupWithoutSort()
     {
-        $data = json_decode(file_get_contents(Fixtures::ENTITY_LOOKUP_BIGSORT_FIXTURE()), true);
+        $data = \json_decode(\file_get_contents(Fixtures::ENTITY_LOOKUP_BIGSORT_FIXTURE()), true);
 
         $keys = [];
         foreach ($data['keys'] as $key) {
@@ -404,7 +404,7 @@ class OperationTest extends TestCase
 
     public function testLookupWithSortAndMissingKey()
     {
-        $data = json_decode(file_get_contents(Fixtures::ENTITY_LOOKUP_BIGSORT_FIXTURE()), true);
+        $data = \json_decode(\file_get_contents(Fixtures::ENTITY_LOOKUP_BIGSORT_FIXTURE()), true);
 
         // Move an entity to missing.
         $missing = $data['entities'][5];
@@ -454,7 +454,7 @@ class OperationTest extends TestCase
 
     public function testRunQuery()
     {
-        $queryResult = json_decode(file_get_contents(Fixtures::QUERY_RESULTS_FIXTURE()), true);
+        $queryResult = \json_decode(\file_get_contents(Fixtures::QUERY_RESULTS_FIXTURE()), true);
         $this->connection->runQuery(Argument::type('array'))
             ->willReturn($queryResult['notPaged']);
 
@@ -470,7 +470,7 @@ class OperationTest extends TestCase
 
         $this->assertInstanceOf(EntityIterator::class, $res);
 
-        $arr = iterator_to_array($res);
+        $arr = \iterator_to_array($res);
         $this->assertCount(2, $arr);
         $this->assertInstanceOf(Entity::class, $arr[0]);
     }
@@ -480,7 +480,7 @@ class OperationTest extends TestCase
      */
     public function testRunQueryPaged($query)
     {
-        $queryResult = json_decode(file_get_contents(Fixtures::QUERY_RESULTS_FIXTURE()), true);
+        $queryResult = \json_decode(\file_get_contents(Fixtures::QUERY_RESULTS_FIXTURE()), true);
         $this->connection->runQuery(Argument::type('array'))
             ->will(function ($args, $mock) use ($queryResult) {
                 // The 2nd call will return the 2nd page of results!
@@ -497,7 +497,7 @@ class OperationTest extends TestCase
 
         $this->assertInstanceOf(EntityIterator::class, $res);
 
-        $arr = iterator_to_array($res);
+        $arr = \iterator_to_array($res);
         $this->assertCount(3, $arr);
         $this->assertInstanceOf(Entity::class, $arr[0]);
     }
@@ -515,7 +515,7 @@ class OperationTest extends TestCase
 
     public function testRunQueryNoResults()
     {
-        $queryResult = json_decode(file_get_contents(Fixtures::QUERY_RESULTS_FIXTURE()), true);
+        $queryResult = \json_decode(\file_get_contents(Fixtures::QUERY_RESULTS_FIXTURE()), true);
         $this->connection->runQuery(Argument::type('array'))
             ->willReturn($queryResult['noResults']);
 
@@ -530,7 +530,7 @@ class OperationTest extends TestCase
 
         $this->assertInstanceOf(EntityIterator::class, $res);
 
-        $arr = iterator_to_array($res);
+        $arr = \iterator_to_array($res);
         $this->assertCount(0, $arr);
     }
 
@@ -545,7 +545,7 @@ class OperationTest extends TestCase
         $q->queryObject()->willReturn([]);
 
         $res = $this->operation->runQuery($q->reveal(), ['transaction' => 'foo']);
-        iterator_to_array($res);
+        \iterator_to_array($res);
     }
 
     public function testRunQueryWithReadOptionsFromReadConsistency()
@@ -559,7 +559,7 @@ class OperationTest extends TestCase
         $q->queryObject()->willReturn([]);
 
         $res = $this->operation->runQuery($q->reveal(), ['readConsistency' => 'foo']);
-        iterator_to_array($res);
+        \iterator_to_array($res);
     }
 
     public function testRunQueryWithoutReadOptions()
@@ -575,7 +575,7 @@ class OperationTest extends TestCase
         $q->queryObject()->willReturn([]);
 
         $res = $this->operation->runQuery($q->reveal());
-        iterator_to_array($res);
+        \iterator_to_array($res);
     }
 
     public function testCommit()
@@ -583,7 +583,7 @@ class OperationTest extends TestCase
         $this->connection->commit(Argument::allOf(
             Argument::withEntry('mode', 'NON_TRANSACTIONAL'),
             Argument::that(function ($arg) {
-                return count($arg['mutations']) === 0;
+                return \count($arg['mutations']) === 0;
             })
         ))->shouldBeCalled()->willReturn(['foo']);
 
@@ -597,7 +597,7 @@ class OperationTest extends TestCase
         $this->connection->commit(Argument::allOf(
             Argument::withEntry('mode', 'TRANSACTIONAL'),
             Argument::that(function ($arg) {
-                return count($arg['mutations']) === 0;
+                return \count($arg['mutations']) === 0;
             })
         ))->shouldBeCalled()->willReturn(['foo']);
 
@@ -611,7 +611,7 @@ class OperationTest extends TestCase
     public function testCommitWithMutation()
     {
         $this->connection->commit(Argument::that(function ($arg) {
-            return count($arg['mutations']) === 1;
+            return \count($arg['mutations']) === 1;
         }))->shouldBeCalled()->willReturn(['foo']);
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
@@ -673,7 +673,7 @@ class OperationTest extends TestCase
         $id = 12345;
 
         $this->connection->commit(Argument::that(function ($arg) {
-            if (count($arg['mutations']) !== 1) {
+            if (\count($arg['mutations']) !== 1) {
                 return false;
             }
 
@@ -772,7 +772,7 @@ class OperationTest extends TestCase
 
     public function testMapEntityResult()
     {
-        $res = json_decode(file_get_contents(Fixtures::ENTITY_RESULT_FIXTURE()), true);
+        $res = \json_decode(\file_get_contents(Fixtures::ENTITY_RESULT_FIXTURE()), true);
 
         $this->connection->lookup(Argument::type('array'))
             ->willReturn([
@@ -793,7 +793,7 @@ class OperationTest extends TestCase
 
     public function testMapEntityResultWithoutProperties()
     {
-        $res = json_decode(file_get_contents(Fixtures::ENTITY_RESULT_NO_PROPERTIES_FIXTURE()), true);
+        $res = \json_decode(\file_get_contents(Fixtures::ENTITY_RESULT_NO_PROPERTIES_FIXTURE()), true);
 
         $this->connection->lookup(Argument::type('array'))
             ->willReturn([
@@ -813,7 +813,7 @@ class OperationTest extends TestCase
 
     public function testMapEntityResultArrayOfClassNames()
     {
-        $res = json_decode(file_get_contents(Fixtures::ENTITY_RESULT_FIXTURE()), true);
+        $res = \json_decode(\file_get_contents(Fixtures::ENTITY_RESULT_FIXTURE()), true);
 
         $this->connection->lookup(Argument::type('array'))
             ->willReturn([
@@ -838,7 +838,7 @@ class OperationTest extends TestCase
      */
     public function testMapEntityResultArrayOfClassNamesMissingKindMapItem()
     {
-        $res = json_decode(file_get_contents(Fixtures::ENTITY_RESULT_FIXTURE()), true);
+        $res = \json_decode(\file_get_contents(Fixtures::ENTITY_RESULT_FIXTURE()), true);
 
         $this->connection->lookup(Argument::type('array'))
             ->willReturn([

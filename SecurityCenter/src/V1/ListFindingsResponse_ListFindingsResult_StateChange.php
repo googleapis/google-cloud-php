@@ -11,6 +11,6 @@ if (false) {
      */
     class ListFindingsResponse_ListFindingsResult_StateChange {}
 }
-class_exists(ListFindingsResponse\ListFindingsResult\StateChange::class);
-@trigger_error('Google\Cloud\SecurityCenter\V1\ListFindingsResponse_ListFindingsResult_StateChange is deprecated and will be removed in a future release. Use Google\Cloud\SecurityCenter\V1\ListFindingsResponse\ListFindingsResult\StateChange instead', E_USER_DEPRECATED);
+\class_exists(ListFindingsResponse\ListFindingsResult\StateChange::class);
+@\trigger_error('Google\Cloud\SecurityCenter\V1\ListFindingsResponse_ListFindingsResult_StateChange is deprecated and will be removed in a future release. Use Google\Cloud\SecurityCenter\V1\ListFindingsResponse\ListFindingsResult\StateChange instead', E_USER_DEPRECATED);
 

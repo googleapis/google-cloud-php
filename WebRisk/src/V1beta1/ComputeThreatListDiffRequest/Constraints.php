@@ -150,5 +150,5 @@ class Constraints extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Constraints::class, \Google\Cloud\WebRisk\V1beta1\ComputeThreatListDiffRequest_Constraints::class);
+\class_alias(Constraints::class, \Google\Cloud\WebRisk\V1beta1\ComputeThreatListDiffRequest_Constraints::class);
 

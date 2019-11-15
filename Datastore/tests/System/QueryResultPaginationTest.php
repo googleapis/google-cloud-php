@@ -38,23 +38,23 @@ class QueryResultPaginationTest extends DatastoreTestCase
             return;
         }
 
-        $ancestorKind = uniqid(self::TESTING_PREFIX);
+        $ancestorKind = \uniqid(self::TESTING_PREFIX);
 
         $client = self::$restClient;
-        self::$parentKey = $client->key($ancestorKind, uniqid('pagination-'));
-        self::$testKind = uniqid('test-kind-');
+        self::$parentKey = $client->key($ancestorKind, \uniqid('pagination-'));
+        self::$testKind = \uniqid('test-kind-');
 
         // seed a large set.
         $set = [];
         for ($i = 0; $i < self::$expectedTotal; $i++) {
-            $key = $client->key(self::$testKind, uniqid('name-'));
+            $key = $client->key(self::$testKind, \uniqid('name-'));
             $key->ancestorKey(self::$parentKey);
 
             $set[] = $client->entity($key, [
-                'a' => rand(1, 10)
+                'a' => \rand(1, 10)
             ]);
 
-            if (count($set) === 100) {
+            if (\count($set) === 100) {
                 $client->insertBatch($set);
                 $set = [];
             }
@@ -80,7 +80,7 @@ class QueryResultPaginationTest extends DatastoreTestCase
         foreach ($client->runQuery($q) as $entity) {
             $set[] = $entity->key();
 
-            if (count($set) === 100) {
+            if (\count($set) === 100) {
                 $client->deleteBatch($set);
                 $set = [];
             }
@@ -92,7 +92,7 @@ class QueryResultPaginationTest extends DatastoreTestCase
      */
     public function testGqlQueryPagination(DatastoreClient $client)
     {
-        $q = $client->gqlQuery(sprintf(
+        $q = $client->gqlQuery(\sprintf(
             'SELECT * FROM `%s`',
             self::$testKind
         ));
@@ -121,7 +121,7 @@ class QueryResultPaginationTest extends DatastoreTestCase
         $parentKind = $end['kind'];
         $parentId = self::$parentKey->pathEndIdentifier();
 
-        $queryString = sprintf(
+        $queryString = \sprintf(
             'SELECT * FROM `%s` WHERE __key__ HAS ANCESTOR KEY(`%s`, "%s")',
             self::$testKind,
             $parentKind,
@@ -148,7 +148,7 @@ class QueryResultPaginationTest extends DatastoreTestCase
     {
         $res = $client->runQuery($query);
 
-        $count = count(iterator_to_array($res));
+        $count = \count(\iterator_to_array($res));
 
         $this->assertEquals($expected, $count);
     }
@@ -160,7 +160,7 @@ class QueryResultPaginationTest extends DatastoreTestCase
         $pages = 0;
         $totalRows = 0;
         foreach ($res->iterateByPage() as $page) {
-            $totalRows += count($page);
+            $totalRows += \count($page);
             $pages++;
         }
 

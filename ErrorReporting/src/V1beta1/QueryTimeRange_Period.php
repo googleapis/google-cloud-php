@@ -11,6 +11,6 @@ if (false) {
      */
     class QueryTimeRange_Period {}
 }
-class_exists(QueryTimeRange\Period::class);
-@trigger_error('Google\Cloud\ErrorReporting\V1beta1\QueryTimeRange_Period is deprecated and will be removed in the next major release. Use Google\Cloud\ErrorReporting\V1beta1\QueryTimeRange\Period instead', E_USER_DEPRECATED);
+\class_exists(QueryTimeRange\Period::class);
+@\trigger_error('Google\Cloud\ErrorReporting\V1beta1\QueryTimeRange_Period is deprecated and will be removed in the next major release. Use Google\Cloud\ErrorReporting\V1beta1\QueryTimeRange\Period instead', E_USER_DEPRECATED);
 

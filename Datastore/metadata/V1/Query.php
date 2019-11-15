@@ -18,7 +18,7 @@ class Query
         \GPBMetadata\Google\Datastore\V1\Entity::initOnce();
         \GPBMetadata\Google\Protobuf\Wrappers::initOnce();
         \GPBMetadata\Google\Type\Latlng::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0ac1150a1f676f6f676c652f6461746173746f72652f76312f7175657279" .
             "2e70726f746f1213676f6f676c652e6461746173746f72652e76311a2067" .
             "6f6f676c652f6461746173746f72652f76312f656e746974792e70726f74" .

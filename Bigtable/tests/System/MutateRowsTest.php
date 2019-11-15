@@ -49,7 +49,7 @@ class MutateRowsTest extends BigtableTestCase
                 ]
             ]
         ];
-        $rows = iterator_to_array(self::$table->readRows(['rowKeys' => ['rk1']])->readAll());
+        $rows = \iterator_to_array(self::$table->readRows(['rowKeys' => ['rk1']])->readAll());
         $this->assertEquals($readRows, $rows);
     }
 
@@ -69,7 +69,7 @@ class MutateRowsTest extends BigtableTestCase
                 ]
             ]
         ];
-        $rows = iterator_to_array(self::$table->readRows(['rowKeys' => ['rk10']])->readAll());
+        $rows = \iterator_to_array(self::$table->readRows(['rowKeys' => ['rk10']])->readAll());
         $this->assertEquals($readRows, $rows);
     }
 
@@ -88,7 +88,7 @@ class MutateRowsTest extends BigtableTestCase
         self::$table->upsert($insertRows);
         $mutations = (new Mutations)->deleteRow();
         self::$table->mutateRows(['rk2' => $mutations]);
-        $rows = iterator_to_array(self::$table->readRows(['rowKeys' => ['rk2']])->readAll());
+        $rows = \iterator_to_array(self::$table->readRows(['rowKeys' => ['rk2']])->readAll());
         $this->assertEquals([], $rows);
     }
 
@@ -113,7 +113,7 @@ class MutateRowsTest extends BigtableTestCase
         self::$table->upsert($insertRows);
         $mutations = (new Mutations)->deleteFromFamily('cf2');
         self::$table->mutateRows(['rk3' => $mutations]);
-        $rows = iterator_to_array(self::$table->readRows(['rowKeys' => ['rk3']])->readAll());
+        $rows = \iterator_to_array(self::$table->readRows(['rowKeys' => ['rk3']])->readAll());
         $expectedRows = [
             'rk3' => [
                 'cf1' => [
@@ -147,7 +147,7 @@ class MutateRowsTest extends BigtableTestCase
         self::$table->upsert($insertRows);
         $mutations = (new Mutations)->deleteFromColumn('cf1', 'cq2');
         self::$table->mutateRows(['rk4' => $mutations]);
-        $rows = iterator_to_array(self::$table->readRows(['rowKeys' => ['rk4']])->readAll());
+        $rows = \iterator_to_array(self::$table->readRows(['rowKeys' => ['rk4']])->readAll());
         $expectedRows = [
             'rk4' => [
                 'cf1' => [
@@ -203,7 +203,7 @@ class MutateRowsTest extends BigtableTestCase
         self::$table->upsert($insertRows);
         $mutations = (new Mutations)->deleteFromColumn('cf1', 'cq2', ['start' => 21000, 'end' => 40000]);
         self::$table->mutateRows(['rk5' => $mutations]);
-        $rows = iterator_to_array(self::$table->readRows(['rowKeys' => ['rk5']])->readAll());
+        $rows = \iterator_to_array(self::$table->readRows(['rowKeys' => ['rk5']])->readAll());
         $expectedRows = [
             'rk5' => [
                 'cf1' => [

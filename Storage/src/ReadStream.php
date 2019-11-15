@@ -61,8 +61,8 @@ class ReadStream implements StreamInterface
     private function getSizeFromMetadata()
     {
         foreach ($this->stream->getMetadata('wrapper_data') as $value) {
-            if (substr($value, 0, 15) == "Content-Length:") {
-                return (int) substr($value, 16);
+            if (\substr($value, 0, 15) == "Content-Length:") {
+                return (int) \substr($value, 16);
             }
         }
         return 0;
@@ -84,7 +84,7 @@ class ReadStream implements StreamInterface
         do {
             $moreData = $this->stream->read($length);
             $data .= $moreData;
-            $readLength = strlen($moreData);
+            $readLength = \strlen($moreData);
             $length -= $readLength;
         } while ($length > 0 && $readLength > 0);
 

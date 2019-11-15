@@ -87,5 +87,5 @@ class QuasiIdentifierField extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(QuasiIdentifierField::class, \Google\Cloud\Dlp\V2\StatisticalTable_QuasiIdentifierField::class);
+\class_alias(QuasiIdentifierField::class, \Google\Cloud\Dlp\V2\StatisticalTable_QuasiIdentifierField::class);
 

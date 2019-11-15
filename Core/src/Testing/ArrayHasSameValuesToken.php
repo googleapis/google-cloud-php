@@ -45,8 +45,8 @@ class ArrayHasSameValuesToken implements TokenInterface
 
     private function compare(array $value, array $argument)
     {
-        array_multisort($value);
-        array_multisort($argument);
+        \array_multisort($value);
+        \array_multisort($argument);
 
         return $value == $argument;
     }
@@ -76,6 +76,6 @@ class ArrayHasSameValuesToken implements TokenInterface
             $string = 'same(%s)';
         }
 
-        return sprintf($string, $this->util->stringify($this->value));
+        return \sprintf($string, $this->util->stringify($this->value));
     }
 }

@@ -176,5 +176,5 @@ class ConfidenceMetricsEntry extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ConfidenceMetricsEntry::class, \Google\Cloud\AutoMl\V1beta1\TextExtractionEvaluationMetrics_ConfidenceMetricsEntry::class);
+\class_alias(ConfidenceMetricsEntry::class, \Google\Cloud\AutoMl\V1beta1\TextExtractionEvaluationMetrics_ConfidenceMetricsEntry::class);
 

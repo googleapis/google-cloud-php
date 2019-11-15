@@ -40,7 +40,7 @@ class SpeechHelpersTraitTest extends TestCase
      */
     public function testCreateAudioStreamFromResource($resource, $chunkSize, $expectedData)
     {
-        if (is_null($chunkSize)) {
+        if (\is_null($chunkSize)) {
             $audioData = $this->implementation->call(
                 'createAudioStreamFromResource',
                 [$resource]
@@ -52,7 +52,7 @@ class SpeechHelpersTraitTest extends TestCase
             );
         }
 
-        $this->assertSame($expectedData, iterator_to_array($audioData));
+        $this->assertSame($expectedData, \iterator_to_array($audioData));
     }
 
     public function createAudioStreamDataProvider()
@@ -60,16 +60,16 @@ class SpeechHelpersTraitTest extends TestCase
         $data = "abcdefghijklmnop";
         return [
             [$this->createResource($data), null, [$data]],
-            [$this->createResource($data), strlen($data), [$data]],
+            [$this->createResource($data), \strlen($data), [$data]],
             [$this->createResource($data), 5, ["abcde", "fghij", "klmno", "p"]],
         ];
     }
 
     private function createResource($data)
     {
-        $resource = fopen('php://memory', 'r+');
-        fwrite($resource, $data);
-        rewind($resource);
+        $resource = \fopen('php://memory', 'r+');
+        \fwrite($resource, $data);
+        \rewind($resource);
         return $resource;
     }
 }

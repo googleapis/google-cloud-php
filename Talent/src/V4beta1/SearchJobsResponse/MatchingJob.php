@@ -247,5 +247,5 @@ class MatchingJob extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(MatchingJob::class, \Google\Cloud\Talent\V4beta1\SearchJobsResponse_MatchingJob::class);
+\class_alias(MatchingJob::class, \Google\Cloud\Talent\V4beta1\SearchJobsResponse_MatchingJob::class);
 

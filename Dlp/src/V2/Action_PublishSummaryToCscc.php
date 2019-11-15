@@ -11,6 +11,6 @@ if (false) {
      */
     class Action_PublishSummaryToCscc {}
 }
-class_exists(Action\PublishSummaryToCscc::class);
-@trigger_error('Google\Cloud\Dlp\V2\Action_PublishSummaryToCscc is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\Action\PublishSummaryToCscc instead', E_USER_DEPRECATED);
+\class_exists(Action\PublishSummaryToCscc::class);
+@\trigger_error('Google\Cloud\Dlp\V2\Action_PublishSummaryToCscc is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\Action\PublishSummaryToCscc instead', E_USER_DEPRECATED);
 

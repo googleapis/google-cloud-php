@@ -19,7 +19,7 @@ class Image
         \GPBMetadata\Google\Cloud\Automl\V1\AnnotationSpec::initOnce();
         \GPBMetadata\Google\Cloud\Automl\V1\Classification::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0ac7080a22676f6f676c652f636c6f75642f6175746f6d6c2f76312f696d" .
             "6167652e70726f746f1216676f6f676c652e636c6f75642e6175746f6d6c" .
             "2e76311a19676f6f676c652f6170692f7265736f757263652e70726f746f" .

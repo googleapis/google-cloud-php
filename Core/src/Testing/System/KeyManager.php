@@ -70,11 +70,11 @@ class KeyManager
         $res = $this->requestWrapper->send(
             new Request(
                 'GET',
-                sprintf($uri, $projectId)
+                \sprintf($uri, $projectId)
             )
         );
 
-        return json_decode($res->getBody(), true);
+        return \json_decode($res->getBody(), true);
     }
 
     /**
@@ -109,7 +109,7 @@ class KeyManager
             $this->requestWrapper->send(
                 new Request(
                     'POST',
-                    sprintf(
+                    \sprintf(
                         'https://cloudkms.googleapis.com/v1/projects/%s/locations/us-west1/keyRings?keyRingId=%s',
                         $this->projectId,
                         $keyRingId
@@ -139,20 +139,20 @@ class KeyManager
             $response = $this->requestWrapper->send(
                 new Request(
                     'POST',
-                    sprintf(
+                    \sprintf(
                         $uri,
                         $this->projectId,
                         $keyRingId,
                         $cryptoKeyId
                     ),
                     [],
-                    json_encode(['purpose' => 'ENCRYPT_DECRYPT'])
+                    \json_encode(['purpose' => 'ENCRYPT_DECRYPT'])
                 )
             );
 
-            $name = json_decode((string) $response->getBody(), true)['name'];
+            $name = \json_decode((string) $response->getBody(), true)['name'];
         } catch (ConflictException $ex) {
-            $name = sprintf(
+            $name = \sprintf(
                 'projects/%s/locations/us-west1/keyRings/%s/cryptoKeys/%s' ,
                 $this->projectId,
                 $keyRingId,
@@ -178,14 +178,14 @@ class KeyManager
         $this->requestWrapper->send(
             new Request(
                 'POST',
-                sprintf(
+                \sprintf(
                     $uri,
                     $this->projectId,
                     $keyRingId,
                     $cryptoKeyId
                 ),
                 [],
-                json_encode($policy)
+                \json_encode($policy)
             )
         );
 

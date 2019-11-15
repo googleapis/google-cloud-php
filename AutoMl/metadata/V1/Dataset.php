@@ -20,7 +20,7 @@ class Dataset
         \GPBMetadata\Google\Cloud\Automl\V1\Translation::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         \GPBMetadata\Google\Api\Annotations::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0aa60a0a24676f6f676c652f636c6f75642f6175746f6d6c2f76312f6461" .
             "74617365742e70726f746f1216676f6f676c652e636c6f75642e6175746f" .
             "6d6c2e76311a22676f6f676c652f636c6f75642f6175746f6d6c2f76312f" .

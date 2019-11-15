@@ -11,6 +11,6 @@ if (false) {
      */
     class Mutation_Write {}
 }
-class_exists(Mutation\Write::class);
-@trigger_error('Google\Cloud\Spanner\V1\Mutation_Write is deprecated and will be removed in the next major release. Use Google\Cloud\Spanner\V1\Mutation\Write instead', E_USER_DEPRECATED);
+\class_exists(Mutation\Write::class);
+@\trigger_error('Google\Cloud\Spanner\V1\Mutation_Write is deprecated and will be removed in the next major release. Use Google\Cloud\Spanner\V1\Mutation\Write instead', E_USER_DEPRECATED);
 

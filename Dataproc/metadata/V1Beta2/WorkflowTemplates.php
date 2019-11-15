@@ -23,7 +23,7 @@ class WorkflowTemplates
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0adc3b0a36676f6f676c652f636c6f75642f6461746170726f632f763162" .
             "657461322f776f726b666c6f775f74656d706c617465732e70726f746f12" .
             "1d676f6f676c652e636c6f75642e6461746170726f632e76316265746132" .

@@ -157,5 +157,5 @@ class DeltaPresenceEstimationConfig extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DeltaPresenceEstimationConfig::class, \Google\Cloud\Dlp\V2\PrivacyMetric_DeltaPresenceEstimationConfig::class);
+\class_alias(DeltaPresenceEstimationConfig::class, \Google\Cloud\Dlp\V2\PrivacyMetric_DeltaPresenceEstimationConfig::class);
 

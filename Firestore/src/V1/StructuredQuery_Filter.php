@@ -11,6 +11,6 @@ if (false) {
      */
     class StructuredQuery_Filter {}
 }
-class_exists(StructuredQuery\Filter::class);
-@trigger_error('Google\Cloud\Firestore\V1\StructuredQuery_Filter is deprecated and will be removed in the next major release. Use Google\Cloud\Firestore\V1\StructuredQuery\Filter instead', E_USER_DEPRECATED);
+\class_exists(StructuredQuery\Filter::class);
+@\trigger_error('Google\Cloud\Firestore\V1\StructuredQuery_Filter is deprecated and will be removed in the next major release. Use Google\Cloud\Firestore\V1\StructuredQuery\Filter instead', E_USER_DEPRECATED);
 

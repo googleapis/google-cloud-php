@@ -45,7 +45,7 @@ class PathTraitTest extends TestCase
         $path = 'foo/bar';
 
         $this->assertEquals(
-            sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, self::DOCUMENT),
+            \sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, self::DOCUMENT),
             $this->impl->call('fullName', [self::PROJECT, self::DATABASE, self::DOCUMENT])
         );
     }
@@ -53,7 +53,7 @@ class PathTraitTest extends TestCase
     public function testRootName()
     {
         $this->assertEquals(
-            sprintf('projects/%s/databases/%s/documents', self::PROJECT, self::DATABASE),
+            \sprintf('projects/%s/databases/%s/documents', self::PROJECT, self::DATABASE),
             $this->impl->call('fullName', [self::PROJECT, self::DATABASE])
         );
     }
@@ -61,7 +61,7 @@ class PathTraitTest extends TestCase
     public function testDatabaseName()
     {
         $this->assertEquals(
-            sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
+            \sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             $this->impl->call('databaseName', [self::PROJECT, self::DATABASE])
         );
     }
@@ -70,9 +70,9 @@ class PathTraitTest extends TestCase
     {
         $relativeName = 'foo/bar';
         $this->assertEquals(
-            sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, $relativeName),
+            \sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, $relativeName),
             $this->impl->call('fullNameFromDatabase', [
-                sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
+                \sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
                 $relativeName
             ])
         );
@@ -80,17 +80,17 @@ class PathTraitTest extends TestCase
 
     public function testDatabaseFromName()
     {
-        $path = sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, self::DOCUMENT);
+        $path = \sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, self::DOCUMENT);
 
         $this->assertEquals(
-            sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
+            \sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             $this->impl->call('databaseFromName', [$path])
         );
     }
 
     public function testDatabaseIdFromName()
     {
-        $path = sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, self::DOCUMENT);
+        $path = \sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, self::DOCUMENT);
 
         $this->assertEquals(
             self::DATABASE,
@@ -105,7 +105,7 @@ class PathTraitTest extends TestCase
 
     public function testProjectIdFromName()
     {
-        $path = sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, self::DOCUMENT);
+        $path = \sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, self::DOCUMENT);
 
         $this->assertEquals(
             self::PROJECT,
@@ -132,7 +132,7 @@ class PathTraitTest extends TestCase
     {
         return [
             [self::DOCUMENT],
-            [sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, self::DOCUMENT)]
+            [\sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, self::DOCUMENT)]
         ];
     }
 
@@ -151,8 +151,8 @@ class PathTraitTest extends TestCase
         return [
             [self::COLLECTION],
             [self::ROOT],
-            [sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, self::ROOT)],
-            [sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, self::COLLECTION)],
+            [\sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, self::ROOT)],
+            [\sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, self::COLLECTION)],
         ];
     }
 
@@ -181,8 +181,8 @@ class PathTraitTest extends TestCase
         return [
             [self::COLLECTION],
             [self::ROOT],
-            [sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, self::ROOT)],
-            [sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, self::COLLECTION)],
+            [\sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, self::ROOT)],
+            [\sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, self::COLLECTION)],
         ];
     }
 
@@ -190,7 +190,7 @@ class PathTraitTest extends TestCase
     {
         return [
             [self::DOCUMENT],
-            [sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, self::DOCUMENT)]
+            [\sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, self::DOCUMENT)]
         ];
     }
 
@@ -206,10 +206,10 @@ class PathTraitTest extends TestCase
     {
         return [
             [self::ROOT],
-            [sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, self::ROOT), self::ROOT],
+            [\sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, self::ROOT), self::ROOT],
             [
-                sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, self::COLLECTION),
-                array_reverse(explode('/', self::COLLECTION))[0]
+                \sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, self::COLLECTION),
+                \array_reverse(\explode('/', self::COLLECTION))[0]
             ],
             ['', null]
         ];
@@ -217,7 +217,7 @@ class PathTraitTest extends TestCase
 
     public function testChildPath()
     {
-        $path = sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, self::ROOT);
+        $path = \sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, self::ROOT);
         $child = 'foo';
 
         $this->assertEquals(
@@ -228,7 +228,7 @@ class PathTraitTest extends TestCase
 
     public function testParentPath()
     {
-        $path = sprintf('projects/%s/databases/%s/documents', self::PROJECT, self::DATABASE);
+        $path = \sprintf('projects/%s/databases/%s/documents', self::PROJECT, self::DATABASE);
         $child = $path . '/foo';
 
         $this->assertEquals(
@@ -239,7 +239,7 @@ class PathTraitTest extends TestCase
 
     public function testRandomName()
     {
-        $path = sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, self::ROOT);
+        $path = \sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, self::ROOT);
 
         $random = $this->impl->call('randomName', [$path]);
 
@@ -250,7 +250,7 @@ class PathTraitTest extends TestCase
             ])
         );
 
-        $this->assertEquals(20, strlen(array_reverse(explode('/', $random))[0]));
+        $this->assertEquals(20, \strlen(\array_reverse(\explode('/', $random))[0]));
     }
 
     /**
@@ -264,14 +264,14 @@ class PathTraitTest extends TestCase
     public function relativeNames()
     {
         return [
-            [sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, self::ROOT), self::ROOT],
-            [sprintf('projects/%s/databases/%s/documents', self::PROJECT, self::DATABASE), ''],
+            [\sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, self::ROOT), self::ROOT],
+            [\sprintf('projects/%s/databases/%s/documents', self::PROJECT, self::DATABASE), ''],
             [
-                sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, self::COLLECTION),
+                \sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, self::COLLECTION),
                 self::COLLECTION
             ],
             [
-                sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, self::DOCUMENT),
+                \sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, self::DOCUMENT),
                 self::DOCUMENT
             ]
         ];

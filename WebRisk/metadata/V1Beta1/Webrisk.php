@@ -16,7 +16,7 @@ class Webrisk
         }
         \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0abe180a2a676f6f676c652f636c6f75642f7765627269736b2f76316265" .
             "7461312f7765627269736b2e70726f746f121c676f6f676c652e636c6f75" .
             "642e7765627269736b2e763162657461311a1f676f6f676c652f70726f74" .

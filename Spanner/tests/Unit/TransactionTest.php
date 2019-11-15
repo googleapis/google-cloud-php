@@ -199,7 +199,7 @@ class TransactionTest extends TestCase
 
         $res = $this->transaction->execute($sql);
         $this->assertInstanceOf(Result::class, $res);
-        $rows = iterator_to_array($res->rows());
+        $rows = \iterator_to_array($res->rows());
         $this->assertEquals(10, $rows[0]['ID']);
     }
 
@@ -402,7 +402,7 @@ class TransactionTest extends TestCase
         $res = $this->transaction->read($table, new KeySet(['all' => true]), ['ID']);
 
         $this->assertInstanceOf(Result::class, $res);
-        $rows = iterator_to_array($res->rows());
+        $rows = \iterator_to_array($res->rows());
         $this->assertEquals(10, $rows[0]['ID']);
     }
 

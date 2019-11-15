@@ -11,6 +11,6 @@ if (false) {
      */
     class LogSink_VersionFormat {}
 }
-class_exists(LogSink\VersionFormat::class);
-@trigger_error('Google\Cloud\Logging\V2\LogSink_VersionFormat is deprecated and will be removed in the next major release. Use Google\Cloud\Logging\V2\LogSink\VersionFormat instead', E_USER_DEPRECATED);
+\class_exists(LogSink\VersionFormat::class);
+@\trigger_error('Google\Cloud\Logging\V2\LogSink_VersionFormat is deprecated and will be removed in the next major release. Use Google\Cloud\Logging\V2\LogSink\VersionFormat instead', E_USER_DEPRECATED);
 

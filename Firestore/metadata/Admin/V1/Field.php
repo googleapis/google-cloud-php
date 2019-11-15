@@ -16,7 +16,7 @@ class Field
         }
         \GPBMetadata\Google\Firestore\Admin\V1\Index::initOnce();
         \GPBMetadata\Google\Api\Annotations::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0a8b040a25676f6f676c652f6669726573746f72652f61646d696e2f7631" .
             "2f6669656c642e70726f746f1219676f6f676c652e6669726573746f7265" .
             "2e61646d696e2e76311a1c676f6f676c652f6170692f616e6e6f74617469" .

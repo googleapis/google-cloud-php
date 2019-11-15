@@ -68,7 +68,7 @@ class GeoPointTest extends TestCase
      */
     public function testInvalidType($method)
     {
-        $method = 'set' . ucfirst($method);
+        $method = 'set' . \ucfirst($method);
         $point = new GeoPoint(1.1, 2.2);
         $point->$method('foo');
     }
@@ -79,7 +79,7 @@ class GeoPointTest extends TestCase
      */
     public function testSetNullValue($method)
     {
-        $method = 'set' . ucfirst($method);
+        $method = 'set' . \ucfirst($method);
         $point = new GeoPoint(1.1, 2.2, true);
         $point->$method(null);
     }

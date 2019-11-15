@@ -34,7 +34,7 @@ class SnapshotTest extends SpannerTestCase
     {
         parent::setUpBeforeClass();
 
-        self::$tableName = uniqid(self::TABLE_NAME);
+        self::$tableName = \uniqid(self::TABLE_NAME);
 
         self::$database->updateDdl(
             'CREATE TABLE ' . self::$tableName . ' (
@@ -86,9 +86,9 @@ class SnapshotTest extends SpannerTestCase
         ];
 
         $db->insert(self::$tableName, $row);
-        sleep(1);
+        \sleep(1);
         $ts = new Timestamp(new \DateTimeImmutable);
-        sleep(1);
+        \sleep(1);
 
         $newRow = $row;
         $newRow['number'] = 2;
@@ -119,9 +119,9 @@ class SnapshotTest extends SpannerTestCase
         ];
 
         $db->insert(self::$tableName, $row);
-        sleep(1);
+        \sleep(1);
         $ts = new Timestamp(new \DateTimeImmutable('now', new \DateTimeZone('UTC')));
-        sleep(2);
+        \sleep(2);
 
         $newRow = $row;
         $newRow['number'] = 2;
@@ -151,9 +151,9 @@ class SnapshotTest extends SpannerTestCase
         ];
 
         $db->insert(self::$tableName, $row);
-        sleep(1);
+        \sleep(1);
         $ts = new Timestamp(new \DateTimeImmutable);
-        sleep(1);
+        \sleep(1);
 
         $newRow = $row;
         $newRow['number'] = 2;
@@ -186,9 +186,9 @@ class SnapshotTest extends SpannerTestCase
         ];
 
         $db->insert(self::$tableName, $row);
-        sleep(1);
+        \sleep(1);
         $ts = new Timestamp(new \DateTimeImmutable);
-        sleep(1);
+        \sleep(1);
 
         $newRow = $row;
         $newRow['number'] = 2;

@@ -11,6 +11,6 @@ if (false) {
      */
     class AnalyzeDataSourceRiskDetails_KAnonymityResult_KAnonymityHistogramBucket {}
 }
-class_exists(AnalyzeDataSourceRiskDetails\KAnonymityResult\KAnonymityHistogramBucket::class);
-@trigger_error('Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_KAnonymityResult_KAnonymityHistogramBucket is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\KAnonymityResult\KAnonymityHistogramBucket instead', E_USER_DEPRECATED);
+\class_exists(AnalyzeDataSourceRiskDetails\KAnonymityResult\KAnonymityHistogramBucket::class);
+@\trigger_error('Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_KAnonymityResult_KAnonymityHistogramBucket is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\KAnonymityResult\KAnonymityHistogramBucket instead', E_USER_DEPRECATED);
 

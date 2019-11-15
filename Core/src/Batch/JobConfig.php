@@ -52,7 +52,7 @@ class JobConfig
      */
     public function getJobFromId($identifier)
     {
-        return array_key_exists($identifier, $this->identifierToId)
+        return \array_key_exists($identifier, $this->identifierToId)
             ? $this->jobs[$identifier]
             : null;
     }
@@ -66,7 +66,7 @@ class JobConfig
      */
     public function getJobFromIdNum($idNum)
     {
-        return array_key_exists($idNum, $this->idToIdentifier)
+        return \array_key_exists($idNum, $this->idToIdentifier)
             ? $this->jobs[$this->idToIdentifier[$idNum]]
             : null;
     }
@@ -81,13 +81,13 @@ class JobConfig
      */
     public function registerJob($identifier, $callback)
     {
-        if (array_key_exists($identifier, $this->identifierToId)) {
+        if (\array_key_exists($identifier, $this->identifierToId)) {
             $idNum = $this->identifierToId[$identifier];
         } else {
-            $idNum = count($this->identifierToId) + 1;
+            $idNum = \count($this->identifierToId) + 1;
             $this->idToIdentifier[$idNum] = $identifier;
         }
-        $this->jobs[$identifier] = call_user_func(
+        $this->jobs[$identifier] = \call_user_func(
             $callback,
             $idNum
         );

@@ -124,7 +124,7 @@ class WriteBatch
     public function create($document, array $fields, array $options = [])
     {
         // Record whether the document is empty before any filtering.
-        $emptyDocument = count($fields) === 0;
+        $emptyDocument = \count($fields) === 0;
 
         list ($fields, $sentinels, $metadata) = $this->filterFields($fields);
 
@@ -196,7 +196,7 @@ class WriteBatch
         $merge = $this->pluck('merge', $options, false) ?: false;
 
         // Record whether the document is empty before any filtering.
-        $emptyDocument = count($fields) === 0;
+        $emptyDocument = \count($fields) === 0;
 
         list ($fields, $sentinels, $metadata) = $this->filterFields($fields);
 
@@ -210,7 +210,7 @@ class WriteBatch
         // - if the user provided only transform sentinel values AND did not specify merge behavior
         // - if the user provided only delete sentinel field values.
 
-        $updateNotRequired = count($fields) === 0
+        $updateNotRequired = \count($fields) === 0
             && !$emptyDocument
             && !$metadata['hasUpdateMask']
             && $metadata['hasTransform'];
@@ -228,7 +228,7 @@ class WriteBatch
                 $write['updateMask'] = $this->pathsToStrings($this->encodeFieldPaths($fields), $sentinels);
             }
 
-            $this->writes[] = $this->createDatabaseWrite(self::TYPE_SET, $document, array_merge($options, $write));
+            $this->writes[] = $this->createDatabaseWrite(self::TYPE_SET, $document, \array_merge($options, $write));
         }
 
         // document transform operations are enqueued as a separate mutation.
@@ -327,13 +327,13 @@ class WriteBatch
             $paths[] = $path;
 
             $keys = $path->path();
-            $num = count($keys);
+            $num = \count($keys);
 
             // Construct a nested array to represent a nested field path.
             // For instance, `a.b.c` = 'foo' will become
             // `['a' => ['b' => ['c' => 'foo']]]`
             $val = $field['value'];
-            foreach (array_reverse($keys) as $index => $key) {
+            foreach (\array_reverse($keys) as $index => $key) {
                 if ($num >= $index + 1) {
                     $val = [
                         $key => $val
@@ -344,12 +344,12 @@ class WriteBatch
             $fields = $this->arrayMergeRecursive($fields, $val);
         }
 
-        if (count(array_unique($paths)) !== count($paths)) {
+        if (\count(\array_unique($paths)) !== \count($paths)) {
             throw new \InvalidArgumentException('Duplicate field paths are not allowed.');
         }
 
         // Record whether the document is empty before any filtering.
-        $emptyDocument = count($fields) === 0;
+        $emptyDocument = \count($fields) === 0;
 
         list ($fields, $sentinels, $metadata) = $this->filterFields($fields, $paths);
 
@@ -432,7 +432,7 @@ class WriteBatch
     {
         unset($options['merge'], $options['precondition']);
 
-        $response = $this->connection->commit(array_filter([
+        $response = $this->connection->commit(\array_filter([
             'database' => $this->database,
             'writes' => $this->writes,
             'transaction' => $this->transaction
@@ -511,7 +511,7 @@ class WriteBatch
 
             $args = $transform->args();
             if (!$transform->sendRaw()) {
-                if (is_array($args) && !$this->isAssoc($args)) {
+                if (\is_array($args) && !$this->isAssoc($args)) {
                     $args = $this->valueMapper->encodeArrayValue($args);
                 } else {
                     $args = $this->valueMapper->encodeValue($args);
@@ -549,7 +549,7 @@ class WriteBatch
     {
         $mask = $this->pluck('updateMask', $options, false);
         if ($mask !== null) {
-            sort($mask);
+            \sort($mask);
             $mask = ['fieldPaths' => $mask];
         }
 
@@ -649,7 +649,7 @@ class WriteBatch
 
             // @codeCoverageIgnoreStart
             default:
-                throw new \InvalidArgumentException(sprintf(
+                throw new \InvalidArgumentException(\sprintf(
                     'Write operation type `%s is not valid. Allowed values are update, delete, verify, transform.',
                     $type
                 ));
@@ -713,7 +713,7 @@ class WriteBatch
         foreach ($fields as $key => $value) {
             $currentPath = $path->child($key);
 
-            if (is_array($value) && !empty($value)) {
+            if (\is_array($value) && !empty($value)) {
                 list($fields[$key], $sentinels, $metadata) = $this->filterFieldsRecursive(
                     $value,
                     $sentinels,
@@ -732,7 +732,7 @@ class WriteBatch
 
                 // Sentinels cannot be used within a non-associative array.
                 if ($inArray) {
-                    throw new \InvalidArgumentException(sprintf(
+                    throw new \InvalidArgumentException(\sprintf(
                         '%s values cannot be used anywhere within a non-associative array value. ' .
                         'Invalid value found at %s.',
                         FieldValue::class,
@@ -744,10 +744,10 @@ class WriteBatch
                 // (i.e. the only case where `$inputPaths` would be available)
                 $illegalNestedDelete = $inputPaths
                     && $value instanceof DeleteFieldValue
-                    && !in_array($currentPath, $inputPaths);
+                    && !\in_array($currentPath, $inputPaths);
 
                 if ($illegalNestedDelete) {
-                    throw new \InvalidArgumentException(sprintf(
+                    throw new \InvalidArgumentException(\sprintf(
                         '%s::deleteField() values cannot be nested. ' .
                         'Invalid value found at %s.',
                         FieldValue::class,
@@ -758,10 +758,10 @@ class WriteBatch
                 // Values of type `DocumentTransformInterface` cannot contain nested transforms.
                 if ($value instanceof DocumentTransformInterface) {
                     $args = $value->args();
-                    if (is_array($args) && !$this->isAssoc($args)) {
+                    if (\is_array($args) && !$this->isAssoc($args)) {
                         foreach ($args as $arg) {
                             if ($arg instanceof DocumentTransformInterface) {
-                                throw new \InvalidArgumentException(sprintf(
+                                throw new \InvalidArgumentException(\sprintf(
                                     'Document transforms cannot contain %s values. ' .
                                     'Invalid value found at %s.',
                                     FieldValue::class,
@@ -847,8 +847,8 @@ class WriteBatch
         foreach ($fields as $key => $val) {
             $currentPath = $path->child($key);
 
-            if (is_array($val) && $this->isAssoc($val)) {
-                $output = array_merge(
+            if (\is_array($val) && $this->isAssoc($val)) {
+                $output = \array_merge(
                     $output,
                     $this->encodeFieldPaths($val, $currentPath)
                 );
@@ -888,7 +888,7 @@ class WriteBatch
 
         foreach ($paths as $path) {
             $path = $path->pathString();
-            if (!in_array($path, $excluded)) {
+            if (!\in_array($path, $excluded)) {
                 $out[] = $path;
             }
         }
@@ -901,7 +901,7 @@ class WriteBatch
         }
 
         // Remove any duplicate values before returning.
-        return array_unique($out);
+        return \array_unique($out);
     }
 
     /**
@@ -912,25 +912,25 @@ class WriteBatch
      */
     private function checkPrefixes(array $paths)
     {
-        sort($paths);
+        \sort($paths);
 
-        for ($i = 1; $i < count($paths); $i++) {
+        for ($i = 1; $i < \count($paths); $i++) {
             $prefix = $paths[$i-1];
             $suffix = $paths[$i];
 
-            $prefix = explode('.', $prefix);
-            $suffix = explode('.', $suffix);
+            $prefix = \explode('.', $prefix);
+            $suffix = \explode('.', $suffix);
 
-            $isPrefix = count($prefix) < count($suffix)
-                && $prefix === array_slice($suffix, 0, count($prefix));
+            $isPrefix = \count($prefix) < \count($suffix)
+                && $prefix === \array_slice($suffix, 0, \count($prefix));
 
             if ($isPrefix) {
-                throw new \InvalidArgumentException(sprintf(
+                throw new \InvalidArgumentException(\sprintf(
                     'Field path conflict detected for field path `%s`. ' .
                     'Conflicts occur when a field path descends from another ' .
                     'path. For instance `a.b` is not allowed when `a` is also ' .
                     'provided.',
-                    implode('.', $prefix)
+                    \implode('.', $prefix)
                 ));
             }
         }

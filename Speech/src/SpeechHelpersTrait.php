@@ -44,14 +44,14 @@ trait SpeechHelpersTrait
             return $audio;
         }
         $recognitionAudio = new $recognitionAudioClass();
-        if (is_string($audio)) {
-            if (in_array(parse_url($audio, PHP_URL_SCHEME), self::$urlSchemes)) {
+        if (\is_string($audio)) {
+            if (\in_array(\parse_url($audio, PHP_URL_SCHEME), self::$urlSchemes)) {
                 $recognitionAudio->setUri($audio);
             } else {
                 $recognitionAudio->setContent($audio);
             }
-        } elseif (is_resource($audio)) {
-            $recognitionAudio->setContent(stream_get_contents($audio));
+        } elseif (\is_resource($audio)) {
+            $recognitionAudio->setContent(\stream_get_contents($audio));
         } else {
             throw new InvalidArgumentException(
                 'Given $audio is not valid. ' .
@@ -71,18 +71,18 @@ trait SpeechHelpersTrait
     private function createStreamingRequestsHelper($requestClass, $audio)
     {
         // First, convert string/resource audio into an iterable
-        if (is_string($audio)) {
+        if (\is_string($audio)) {
             $audio = [$audio];
         }
-        if (is_resource($audio)) {
+        if (\is_resource($audio)) {
             $audio = $this->createAudioStreamFromResource($audio);
         }
 
         // For each chuck in iterable $audio, convert to a request if necessary
         foreach ($audio as $audioChunk) {
-            if (is_object($audioChunk) && $audioChunk instanceof $requestClass) {
+            if (\is_object($audioChunk) && $audioChunk instanceof $requestClass) {
                 yield $audioChunk;
-            } elseif (is_string($audioChunk)) {
+            } elseif (\is_string($audioChunk)) {
                 $request = new $requestClass();
                 $request->setAudioContent($audioChunk);
                 yield $request;
@@ -106,9 +106,9 @@ trait SpeechHelpersTrait
      */
     public function createAudioStreamFromResource($resource, $chunkSize = 32000)
     {
-        while (!feof($resource)) {
-            $chunk = fread($resource, $chunkSize);
-            if (strlen($chunk) > 0) {
+        while (!\feof($resource)) {
+            $chunk = \fread($resource, $chunkSize);
+            if (\strlen($chunk) > 0) {
                 yield $chunk;
             }
         }

@@ -11,6 +11,6 @@ if (false) {
      */
     class WebDetection_WebImage {}
 }
-class_exists(WebDetection\WebImage::class);
-@trigger_error('Google\Cloud\Vision\V1\WebDetection_WebImage is deprecated and will be removed in a future release. Use Google\Cloud\Vision\V1\WebDetection\WebImage instead', E_USER_DEPRECATED);
+\class_exists(WebDetection\WebImage::class);
+@\trigger_error('Google\Cloud\Vision\V1\WebDetection_WebImage is deprecated and will be removed in a future release. Use Google\Cloud\Vision\V1\WebDetection\WebImage instead', E_USER_DEPRECATED);
 

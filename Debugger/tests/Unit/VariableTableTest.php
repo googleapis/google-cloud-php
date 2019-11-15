@@ -186,7 +186,7 @@ class VariableTableTest extends TestCase
     public function testLimitsStringLength()
     {
         $variableTable = new VariableTable();
-        $var = str_repeat("1234567890", 100);
+        $var = \str_repeat("1234567890", 100);
         $variable = $variableTable->register('foo', $var);
         $data = $variable->info();
         $this->assertStringEndsWith('...', $data['value']);
@@ -197,7 +197,7 @@ class VariableTableTest extends TestCase
         $variableTable = new VariableTable([], [
             'maxValueLength' => 15
         ]);
-        $var = str_repeat("1234567890", 10);
+        $var = \str_repeat("1234567890", 10);
         $variable = $variableTable->register('foo', $var);
         $data = $variable->info();
         $this->assertEquals('123456789012...', $data['value']);
@@ -273,7 +273,7 @@ class VariableTableTest extends TestCase
         $variableTable = new VariableTable();
         for ($i = 0; $i < 1000; $i++) {
             try {
-                $v = $variableTable->register('var' . $i, array_fill(0, $i + 1, $i), $i);
+                $v = $variableTable->register('var' . $i, \array_fill(0, $i + 1, $i), $i);
             } catch (BufferFullException $e) {
                 $exceptionThrown = true;
             }
@@ -281,7 +281,7 @@ class VariableTableTest extends TestCase
         $this->assertTrue($exceptionThrown);
         $variables = $variableTable->variables();
         $this->assertNotEmpty($variables);
-        $this->assertLessThan(1000, count($variableTable->variables()));
+        $this->assertLessThan(1000, \count($variableTable->variables()));
 
         $bufferFullReference = $variableTable->bufferFullVariable();
         $index = $bufferFullReference->info()['varTableIndex'];

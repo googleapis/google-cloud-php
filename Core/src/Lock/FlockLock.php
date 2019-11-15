@@ -59,7 +59,7 @@ class FlockLock implements LockInterface
      */
     public function __construct($fileName, array $options = [])
     {
-        if (!is_string($fileName)) {
+        if (!\is_string($fileName)) {
             throw new \InvalidArgumentException('$fileName must be a string.');
         }
 
@@ -68,9 +68,9 @@ class FlockLock implements LockInterface
         ];
         $this->exclusive = $options['exclusive'];
 
-        $this->filePath = sprintf(
+        $this->filePath = \sprintf(
             self::FILE_PATH_TEMPLATE,
-            sys_get_temp_dir(),
+            \sys_get_temp_dir(),
             $fileName
         );
     }
@@ -95,8 +95,8 @@ class FlockLock implements LockInterface
 
         $this->handle = $this->initializeHandle();
 
-        if (!flock($this->handle, $this->lockType($options))) {
-            fclose($this->handle);
+        if (!\flock($this->handle, $this->lockType($options))) {
+            \fclose($this->handle);
             $this->handle = null;
 
             throw new \RuntimeException('Failed to acquire lock.');
@@ -113,8 +113,8 @@ class FlockLock implements LockInterface
     public function release()
     {
         if ($this->handle) {
-            $released = flock($this->handle, LOCK_UN);
-            fclose($this->handle);
+            $released = \flock($this->handle, LOCK_UN);
+            \fclose($this->handle);
             $this->handle = null;
 
             if (!$released) {
@@ -131,7 +131,7 @@ class FlockLock implements LockInterface
      */
     private function initializeHandle()
     {
-        $handle = @fopen($this->filePath, 'c');
+        $handle = @\fopen($this->filePath, 'c');
 
         if (!$handle) {
             throw new \RuntimeException('Failed to open lock file.');

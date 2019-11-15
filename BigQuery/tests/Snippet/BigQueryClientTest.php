@@ -320,7 +320,7 @@ class BigQueryClientTest extends SnippetTestCase
         $res = $snippet->invoke('jobs');
 
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
-        $this->assertEquals('job', trim($res->output()));
+        $this->assertEquals('job', \trim($res->output()));
     }
 
     public function testDataset()
@@ -352,7 +352,7 @@ class BigQueryClientTest extends SnippetTestCase
         $res = $snippet->invoke('datasets');
 
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
-        $this->assertEquals('dataset', trim($res->output()));
+        $this->assertEquals('dataset', \trim($res->output()));
     }
 
     public function testCreateDataset()
@@ -430,7 +430,7 @@ class BigQueryClientTest extends SnippetTestCase
 
     public function testGetServiceAccount()
     {
-        $expectedEmail = uniqid() . '@bigquery-encryption.iam.gserviceaccount.com';
+        $expectedEmail = \uniqid() . '@bigquery-encryption.iam.gserviceaccount.com';
         $snippet = $this->snippetFromMethod(BigQueryClient::class, 'getServiceAccount');
         $snippet->addLocal('bigQuery', $this->client);
         $this->connection->getServiceAccount(['projectId' => self::PROJECT_ID])

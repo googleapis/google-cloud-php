@@ -61,7 +61,7 @@ class ValueMapperTest extends TestCase
 
     public function encodedValues()
     {
-        $now = time();
+        $now = \time();
 
         return [
             [
@@ -189,14 +189,14 @@ class ValueMapperTest extends TestCase
 
     public function decodedValues()
     {
-        $stream = fopen('php://memory', 'r+');
-        fwrite($stream, 'hello');
-        rewind($stream);
+        $stream = \fopen('php://memory', 'r+');
+        \fwrite($stream, 'hello');
+        \rewind($stream);
 
         $blobValue = 'hello world';
         $blob = new Blob($blobValue);
 
-        $datetime = \DateTimeImmutable::createFromFormat('U.u', (string) microtime(true));
+        $datetime = \DateTimeImmutable::createFromFormat('U.u', (string) \microtime(true));
         $timestamp = new Timestamp($datetime);
         $now = (string) $datetime->format('U');
         $nanos = (int) $datetime->format('u') * 1000;

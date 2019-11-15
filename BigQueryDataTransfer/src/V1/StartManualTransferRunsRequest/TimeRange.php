@@ -125,5 +125,5 @@ class TimeRange extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TimeRange::class, \Google\Cloud\BigQuery\DataTransfer\V1\StartManualTransferRunsRequest_TimeRange::class);
+\class_alias(TimeRange::class, \Google\Cloud\BigQuery\DataTransfer\V1\StartManualTransferRunsRequest_TimeRange::class);
 

@@ -16,38 +16,38 @@ function getInputArgs()
         throw new \RuntimeException('must provide row id.');
     }
 
-    array_shift($argv);
+    \array_shift($argv);
     return $argv;
 }
 
 function setupIterationTracker($tmpFile)
 {
-    $pid = getmypid();
-    register_shutdown_function(function () use ($tmpFile, $pid) {
-        if ($pid !== getmypid()) {
+    $pid = \getmypid();
+    \register_shutdown_function(function () use ($tmpFile, $pid) {
+        if ($pid !== \getmypid()) {
             return;
         }
 
-        $h = fopen($tmpFile, 'r+');
-        flock($h, LOCK_UN);
+        $h = \fopen($tmpFile, 'r+');
+        \flock($h, LOCK_UN);
 
-        unlink($tmpFile);
+        \unlink($tmpFile);
     });
 
-    file_put_contents($tmpFile, '0');
+    \file_put_contents($tmpFile, '0');
 }
 
 function updateIterationTracker($tmpFile, $iterations)
 {
-    $fp = fopen($tmpFile, 'c+');
-    if (flock($fp, LOCK_EX)) {
-        fseek($fp, 0);
-        $val = (int) fread($fp, 900);
+    $fp = \fopen($tmpFile, 'c+');
+    if (\flock($fp, LOCK_EX)) {
+        \fseek($fp, 0);
+        $val = (int) \fread($fp, 900);
         $val += $iterations;
 
-        fseek($fp, 0);
-        fwrite($fp, $val);
+        \fseek($fp, 0);
+        \fwrite($fp, $val);
 
-        flock($fp, LOCK_UN);
+        \flock($fp, LOCK_UN);
     }
 }

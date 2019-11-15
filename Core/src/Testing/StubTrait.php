@@ -49,8 +49,8 @@ trait StubTrait
      */
     public function ___setProperty($prop, $value)
     {
-        if (!in_array($prop, json_decode($this->___props))) {
-            throw new \RuntimeException(sprintf('Property %s cannot be overloaded', $prop));
+        if (!\in_array($prop, \json_decode($this->___props))) {
+            throw new \RuntimeException(\sprintf('Property %s cannot be overloaded', $prop));
         }
 
         $property = $this->___getPropertyReflector($prop);

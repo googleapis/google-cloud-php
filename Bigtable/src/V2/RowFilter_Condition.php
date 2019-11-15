@@ -11,6 +11,6 @@ if (false) {
      */
     class RowFilter_Condition {}
 }
-class_exists(RowFilter\Condition::class);
-@trigger_error('Google\Cloud\Bigtable\V2\RowFilter_Condition is deprecated and will be removed in the next major release. Use Google\Cloud\Bigtable\V2\RowFilter\Condition instead', E_USER_DEPRECATED);
+\class_exists(RowFilter\Condition::class);
+@\trigger_error('Google\Cloud\Bigtable\V2\RowFilter_Condition is deprecated and will be removed in the next major release. Use Google\Cloud\Bigtable\V2\RowFilter\Condition instead', E_USER_DEPRECATED);
 

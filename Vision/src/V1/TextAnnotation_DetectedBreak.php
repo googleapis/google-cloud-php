@@ -11,6 +11,6 @@ if (false) {
      */
     class TextAnnotation_DetectedBreak {}
 }
-class_exists(TextAnnotation\DetectedBreak::class);
-@trigger_error('Google\Cloud\Vision\V1\TextAnnotation_DetectedBreak is deprecated and will be removed in a future release. Use Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak instead', E_USER_DEPRECATED);
+\class_exists(TextAnnotation\DetectedBreak::class);
+@\trigger_error('Google\Cloud\Vision\V1\TextAnnotation_DetectedBreak is deprecated and will be removed in a future release. Use Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak instead', E_USER_DEPRECATED);
 

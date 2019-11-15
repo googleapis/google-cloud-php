@@ -155,5 +155,5 @@ class Interleave extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Interleave::class, \Google\Cloud\Bigtable\V2\RowFilter_Interleave::class);
+\class_alias(Interleave::class, \Google\Cloud\Bigtable\V2\RowFilter_Interleave::class);
 

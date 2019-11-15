@@ -11,6 +11,6 @@ if (false) {
      */
     class RowFilter_Interleave {}
 }
-class_exists(RowFilter\Interleave::class);
-@trigger_error('Google\Cloud\Bigtable\V2\RowFilter_Interleave is deprecated and will be removed in the next major release. Use Google\Cloud\Bigtable\V2\RowFilter\Interleave instead', E_USER_DEPRECATED);
+\class_exists(RowFilter\Interleave::class);
+@\trigger_error('Google\Cloud\Bigtable\V2\RowFilter_Interleave is deprecated and will be removed in the next major release. Use Google\Cloud\Bigtable\V2\RowFilter\Interleave instead', E_USER_DEPRECATED);
 

@@ -100,5 +100,5 @@ class ListAssetsResult extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ListAssetsResult::class, \Google\Cloud\SecurityCenter\V1\ListAssetsResponse_ListAssetsResult::class);
+\class_alias(ListAssetsResult::class, \Google\Cloud\SecurityCenter\V1\ListAssetsResponse_ListAssetsResult::class);
 

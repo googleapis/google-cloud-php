@@ -125,7 +125,7 @@ class DatasetTest extends TestCase
             ->shouldBeCalledTimes(1);
 
         $dataset = $this->getDataset($this->connection);
-        $tables = iterator_to_array($dataset->tables());
+        $tables = \iterator_to_array($dataset->tables());
 
         $this->assertEmpty($tables);
     }
@@ -141,7 +141,7 @@ class DatasetTest extends TestCase
             ->shouldBeCalledTimes(1);
 
         $dataset = $this->getDataset($this->connection);
-        $tables = iterator_to_array($dataset->tables());
+        $tables = \iterator_to_array($dataset->tables());
 
         $this->assertEquals($this->tableId, $tables[0]->id());
     }
@@ -161,7 +161,7 @@ class DatasetTest extends TestCase
             ])->shouldBeCalledTimes(2);
 
         $dataset = $this->getDataset($this->connection);
-        $tables = iterator_to_array($dataset->tables());
+        $tables = \iterator_to_array($dataset->tables());
 
         $this->assertEquals($this->tableId, $tables[1]->id());
     }
@@ -244,7 +244,7 @@ class DatasetTest extends TestCase
         $dataset = $this->getDataset($this->connection);
         $models = $dataset->models();
         $this->assertInstanceOf(ItemIterator::class, $models);
-        $modelsArray = iterator_to_array($models);
+        $modelsArray = \iterator_to_array($models);
 
         $this->assertEquals($this->modelId, $modelsArray[0]->id());
     }
@@ -264,7 +264,7 @@ class DatasetTest extends TestCase
             ])->shouldBeCalledTimes(2);
 
         $dataset = $this->getDataset($this->connection);
-        $models = iterator_to_array($dataset->models());
+        $models = \iterator_to_array($dataset->models());
 
         $this->assertEquals($this->modelId, $models[0]->id());
         $this->assertEquals('testModelId2', $models[1]->id());

@@ -88,7 +88,7 @@ class VariableTable
     public function __construct(array $initialVariables = [], array $options = [])
     {
         $this->variables = $initialVariables;
-        $this->nextIndex = count($this->variables);
+        $this->nextIndex = \count($this->variables);
         $this->setOptions($options);
         $this->sharedVariableIndex = [];
     }
@@ -184,7 +184,7 @@ class VariableTable
      */
     public function info()
     {
-        return array_map(function ($v) {
+        return \array_map(function ($v) {
             return $v->info();
         }, $this->variables);
     }
@@ -216,19 +216,19 @@ class VariableTable
         // If the variable already exists in the table (via object hash), then
         // return a reference Variable to that VariableTable entry.
         $hash = $hash ?: $this->calculateHash($value);
-        if ($hash && array_key_exists($hash, $this->sharedVariableIndex)) {
+        if ($hash && \array_key_exists($hash, $this->sharedVariableIndex)) {
             return new Variable($name, $type, [
                 'varTableIndex' => $this->sharedVariableIndex[$hash]
             ]);
         }
 
-        switch (gettype($value)) {
+        switch (\gettype($value)) {
             case 'object':
                 $variableValue = "$type ($hash)";
-                $members = $this->doRegisterMembers(get_object_vars($value), $depth);
+                $members = $this->doRegisterMembers(\get_object_vars($value), $depth);
                 break;
             case 'array':
-                $arraySize = count($value);
+                $arraySize = \count($value);
                 $variableValue = "array ($arraySize)";
                 $members = $this->doRegisterMembers($value, $depth);
                 break;
@@ -274,22 +274,22 @@ class VariableTable
     private function truncatedStringValue($value)
     {
         $ret = (string)$value;
-        if (strlen($ret) > $this->maxValueLength) {
-            $ret = substr($ret, 0, $this->maxValueLength - 3) . '...';
+        if (\strlen($ret) > $this->maxValueLength) {
+            $ret = \substr($ret, 0, $this->maxValueLength - 3) . '...';
         }
         return $ret;
     }
 
     private function calcuateType($value)
     {
-        return is_object($value)
-            ? get_class($value)
-            : gettype($value);
+        return \is_object($value)
+            ? \get_class($value)
+            : \gettype($value);
     }
 
     private function calculateHash($value)
     {
-        return is_object($value) ? spl_object_hash($value) : null;
+        return \is_object($value) ? \spl_object_hash($value) : null;
     }
 
     private function doRegisterMembers($array, $depth)

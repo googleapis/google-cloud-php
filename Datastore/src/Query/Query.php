@@ -164,7 +164,7 @@ class Query implements QueryInterface
      */
     public function projection($properties)
     {
-        if (!is_array($properties)) {
+        if (!\is_array($properties)) {
             $properties = [$properties];
         }
 
@@ -212,7 +212,7 @@ class Query implements QueryInterface
      */
     public function kind($kinds)
     {
-        if (!is_array($kinds)) {
+        if (!\is_array($kinds)) {
             $kinds = [$kinds];
         }
 
@@ -339,7 +339,7 @@ class Query implements QueryInterface
      */
     public function distinctOn($property)
     {
-        if (!is_array($property)) {
+        if (!\is_array($property)) {
             $property = [$property];
         }
 
@@ -459,7 +459,7 @@ class Query implements QueryInterface
      */
     public function queryObject()
     {
-        return array_filter($this->query);
+        return \array_filter($this->query);
     }
 
     /**
@@ -517,15 +517,15 @@ class Query implements QueryInterface
      */
     private function mapOperator($operator)
     {
-        if (array_key_exists($operator, $this->shortOperators)) {
+        if (\array_key_exists($operator, $this->shortOperators)) {
             $operator = $this->shortOperators[$operator];
         }
 
-        if (!in_array($operator, $this->allowedOperators)) {
-            throw new InvalidArgumentException(sprintf(
+        if (!\in_array($operator, $this->allowedOperators)) {
+            throw new InvalidArgumentException(\sprintf(
                 'Invalid operator `%s` given. Valid operators are %s.',
                 $operator,
-                implode(', ', $this->allowedOperators)
+                \implode(', ', $this->allowedOperators)
             ));
         }
 

@@ -22,7 +22,7 @@ class AnnotationPayload
         \GPBMetadata\Google\Cloud\Automl\V1Beta1\Translation::initOnce();
         \GPBMetadata\Google\Protobuf\Any::initOnce();
         \GPBMetadata\Google\Api\Annotations::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0a900a0a34676f6f676c652f636c6f75642f6175746f6d6c2f7631626574" .
             "61312f616e6e6f746174696f6e5f7061796c6f61642e70726f746f121b67" .
             "6f6f676c652e636c6f75642e6175746f6d6c2e763162657461311a2b676f" .

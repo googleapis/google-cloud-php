@@ -44,7 +44,7 @@ class EncryptionTraitTest extends TestCase
 
         $res = $this->impl->call('signString', [$pkey, $testString]);
 
-        $this->assertTrue($this->verifySignature($pkey, $testString, urlencode(base64_encode($res))));
+        $this->assertTrue($this->verifySignature($pkey, $testString, \urlencode(\base64_encode($res))));
     }
 
     public function testSignStringWithOpenSsl()
@@ -55,7 +55,7 @@ class EncryptionTraitTest extends TestCase
 
         $res = $this->impl->call('signString', [$pkey, $testString, true]);
 
-        $this->assertTrue($this->verifySignature($pkey, $testString, urlencode(base64_encode($res))));
+        $this->assertTrue($this->verifySignature($pkey, $testString, \urlencode(\base64_encode($res))));
     }
 
     /**
@@ -71,10 +71,10 @@ class EncryptionTraitTest extends TestCase
 
     public function encryptionProvider()
     {
-        $key = base64_encode('abcd');
-        $hash = base64_encode(hash('SHA256', base64_decode($key), true));
-        $destinationKey = base64_encode('efgh');
-        $destinationHash = base64_encode(hash('SHA256', base64_decode($destinationKey), true));
+        $key = \base64_encode('abcd');
+        $hash = \base64_encode(\hash('SHA256', \base64_decode($key), true));
+        $destinationKey = \base64_encode('efgh');
+        $destinationHash = \base64_encode(\hash('SHA256', \base64_decode($destinationKey), true));
 
         return [
             [
@@ -101,7 +101,7 @@ class EncryptionTraitTest extends TestCase
             [
                 [
                     'restOptions' => [
-                        'headers' => array_merge(
+                        'headers' => \array_merge(
                             $this->getEncryptionHeaders($destinationKey, $destinationHash),
                             $this->getCopySourceEncryptionHeaders($key, $hash)
                         )

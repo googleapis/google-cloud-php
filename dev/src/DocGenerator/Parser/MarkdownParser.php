@@ -41,8 +41,8 @@ class MarkdownParser implements ParserInterface
         $this->markdown = Parsedown::instance();
         $this->id = $id;
 
-        set_error_handler(function($number, $error){
-            if (preg_match('/^DOMDocument::loadHTML\(\): (.+)$/', $error, $m) === 1) {
+        \set_error_handler(function($number, $error){
+            if (\preg_match('/^DOMDocument::loadHTML\(\): (.+)$/', $error, $m) === 1) {
                 throw new \Exception($m[1]);
             }
         });
@@ -96,7 +96,7 @@ class MarkdownParser implements ParserInterface
         if (!$alt) {
             return;
         }
-        if (strpos($alt->textContent, self::ROOT_README_TRIGGER) === false) {
+        if (\strpos($alt->textContent, self::ROOT_README_TRIGGER) === false) {
             return;
         }
 

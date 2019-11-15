@@ -11,6 +11,6 @@ if (false) {
      */
     class RecordCondition_Expressions_LogicalOperator {}
 }
-class_exists(RecordCondition\Expressions\LogicalOperator::class);
-@trigger_error('Google\Cloud\Dlp\V2\RecordCondition_Expressions_LogicalOperator is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\RecordCondition\Expressions\LogicalOperator instead', E_USER_DEPRECATED);
+\class_exists(RecordCondition\Expressions\LogicalOperator::class);
+@\trigger_error('Google\Cloud\Dlp\V2\RecordCondition_Expressions_LogicalOperator is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\RecordCondition\Expressions\LogicalOperator instead', E_USER_DEPRECATED);
 

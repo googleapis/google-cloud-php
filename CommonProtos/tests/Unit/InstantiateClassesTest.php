@@ -41,9 +41,9 @@ class InstantiateClassesTest extends TestCase
     public function classesProvider()
     {
         $directoryPrefix = __DIR__ . '/../../src';
-        $directoryPrefixLength = strlen($directoryPrefix);
+        $directoryPrefixLength = \strlen($directoryPrefix);
         $phpFileSuffix = '.php';
-        $phpFileSuffixLength = strlen($phpFileSuffix);
+        $phpFileSuffixLength = \strlen($phpFileSuffix);
         $phpFileSuffixRegex = '#.+\.php$#';
 
         $dir = new RecursiveDirectoryIterator($directoryPrefix);
@@ -52,9 +52,9 @@ class InstantiateClassesTest extends TestCase
         foreach ($reg as $files) {
             $file = $files[0];
             // Remove prefix and suffix
-            $trimmedFile = substr($file, $directoryPrefixLength, -$phpFileSuffixLength);
+            $trimmedFile = \substr($file, $directoryPrefixLength, -$phpFileSuffixLength);
             // Prepend standard '\Google\Cloud' portion of namespace, then replace '/' with '\'
-            $fullyQualifiedName = "\\Google\\Cloud" . str_replace("/", "\\", $trimmedFile);
+            $fullyQualifiedName = "\\Google\\Cloud" . \str_replace("/", "\\", $trimmedFile);
             yield [$fullyQualifiedName];
         }
     }

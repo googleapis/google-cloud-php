@@ -11,6 +11,6 @@ if (false) {
      */
     class CloudStorageOptions_FileSet {}
 }
-class_exists(CloudStorageOptions\FileSet::class);
-@trigger_error('Google\Cloud\Dlp\V2\CloudStorageOptions_FileSet is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\CloudStorageOptions\FileSet instead', E_USER_DEPRECATED);
+\class_exists(CloudStorageOptions\FileSet::class);
+@\trigger_error('Google\Cloud\Dlp\V2\CloudStorageOptions_FileSet is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\CloudStorageOptions\FileSet instead', E_USER_DEPRECATED);
 

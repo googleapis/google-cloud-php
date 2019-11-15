@@ -11,6 +11,6 @@ if (false) {
      */
     class Intent_Message_CarouselSelect_Item {}
 }
-class_exists(Intent\Message\CarouselSelect\Item::class);
-@trigger_error('Google\Cloud\Dialogflow\V2\Intent_Message_CarouselSelect_Item is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\Intent\Message\CarouselSelect\Item instead', E_USER_DEPRECATED);
+\class_exists(Intent\Message\CarouselSelect\Item::class);
+@\trigger_error('Google\Cloud\Dialogflow\V2\Intent_Message_CarouselSelect_Item is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\Intent\Message\CarouselSelect\Item instead', E_USER_DEPRECATED);
 

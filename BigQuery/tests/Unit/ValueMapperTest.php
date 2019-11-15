@@ -45,8 +45,8 @@ class ValueMapperTest extends TestCase
      */
     public function testToParameterThrowsExceptionWithUnhandledType()
     {
-        $f = fopen('php://temp', 'r');
-        fclose($f);
+        $f = \fopen('php://temp', 'r');
+        \fclose($f);
         $mapper = new ValueMapper(false);
         $mapper->toParameter($f);
     }
@@ -216,7 +216,7 @@ class ValueMapperTest extends TestCase
     {
         $mapper = new ValueMapper(false);
         $actual = $mapper->fromBigQuery(
-            ['v' => base64_encode('abcd')],
+            ['v' => \base64_encode('abcd')],
             ['type' => 'BYTES']
         );
 
@@ -259,8 +259,8 @@ class ValueMapperTest extends TestCase
      */
     public function testMapsToParameter($value, $expected)
     {
-        if (is_resource($value)) {
-            rewind($value);
+        if (\is_resource($value)) {
+            \rewind($value);
         }
         $mapper = new ValueMapper(false);
         $actual = $mapper->toParameter($value);
@@ -274,9 +274,9 @@ class ValueMapperTest extends TestCase
         $int = 1234;
         $float = 1.234;
         $string = 'string';
-        $resource = fopen('php://temp', 'r+');
-        fwrite($resource, $string);
-        rewind($resource);
+        $resource = \fopen('php://temp', 'r+');
+        \fwrite($resource, $string);
+        \rewind($resource);
         $dt = new \DateTime();
         $date = new Date($dt);
         $array = [1, 2, 3];
@@ -337,7 +337,7 @@ class ValueMapperTest extends TestCase
                         'type' => 'BYTES'
                     ],
                     'parameterValue' => [
-                        'value' => base64_encode(stream_get_contents($resource))
+                        'value' => \base64_encode(\stream_get_contents($resource))
                     ]
                 ]
             ],

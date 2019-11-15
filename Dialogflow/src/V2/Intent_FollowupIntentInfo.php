@@ -11,6 +11,6 @@ if (false) {
      */
     class Intent_FollowupIntentInfo {}
 }
-class_exists(Intent\FollowupIntentInfo::class);
-@trigger_error('Google\Cloud\Dialogflow\V2\Intent_FollowupIntentInfo is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\Intent\FollowupIntentInfo instead', E_USER_DEPRECATED);
+\class_exists(Intent\FollowupIntentInfo::class);
+@\trigger_error('Google\Cloud\Dialogflow\V2\Intent_FollowupIntentInfo is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\Intent\FollowupIntentInfo instead', E_USER_DEPRECATED);
 

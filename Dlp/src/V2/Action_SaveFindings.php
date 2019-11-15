@@ -11,6 +11,6 @@ if (false) {
      */
     class Action_SaveFindings {}
 }
-class_exists(Action\SaveFindings::class);
-@trigger_error('Google\Cloud\Dlp\V2\Action_SaveFindings is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\Action\SaveFindings instead', E_USER_DEPRECATED);
+\class_exists(Action\SaveFindings::class);
+@\trigger_error('Google\Cloud\Dlp\V2\Action_SaveFindings is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\Action\SaveFindings instead', E_USER_DEPRECATED);
 

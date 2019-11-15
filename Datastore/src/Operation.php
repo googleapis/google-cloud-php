@@ -150,11 +150,11 @@ class Operation
         }
 
         $path = [];
-        if (count($options['ancestors']) > 0) {
+        if (\count($options['ancestors']) > 0) {
             $path = $options['ancestors'];
         }
 
-        $path[] = array_filter([
+        $path[] = \array_filter([
             'kind' => $kind,
             'id' => $options['id'],
             'name' => $options['name']
@@ -218,25 +218,25 @@ class Operation
             'className' => null
         ];
 
-        if ($key && !is_string($key) && !($key instanceof Key)) {
+        if ($key && !\is_string($key) && !($key instanceof Key)) {
             throw new \InvalidArgumentException(
                 '$key must be an instance of Key or a string'
             );
         }
 
-        if (is_string($key)) {
+        if (\is_string($key)) {
             $key = $this->key($key);
         }
 
         $className = $options['className'];
-        if (!is_null($className) && !is_subclass_of($className, EntityInterface::class)) {
-            throw new \InvalidArgumentException(sprintf(
+        if (!\is_null($className) && !\is_subclass_of($className, EntityInterface::class)) {
+            throw new \InvalidArgumentException(\sprintf(
                 'Given classname %s must implement EntityInterface',
                 $className
             ));
         }
 
-        if (is_null($className)) {
+        if (\is_null($className)) {
             $className = Entity::class;
         }
 
@@ -284,7 +284,7 @@ class Operation
         // @todo replace with json schema
         $this->validateBatch($keys, Key::class, function ($key) {
             if ($key->state() !== Key::STATE_INCOMPLETE) {
-                throw new \InvalidArgumentException(sprintf(
+                throw new \InvalidArgumentException(\sprintf(
                     'Given $key is in an invalid state. Can only allocate IDs for incomplete keys. ' .
                     'Given path was %s',
                     (string) $key
@@ -308,7 +308,7 @@ class Operation
                     continue;
                 }
 
-                $end = end($key['path']);
+                $end = \end($key['path']);
                 $id = $end['id'];
                 $keys[$index]->setLastElementIdentifier($id);
             }
@@ -354,7 +354,7 @@ class Operation
         $serviceKeys = [];
         $this->validateBatch($keys, Key::class, function ($key) use (&$serviceKeys) {
             if ($key->state() !== Key::STATE_NAMED) {
-                throw new \InvalidArgumentException(sprintf(
+                throw new \InvalidArgumentException(\sprintf(
                     'Given $key is in an invalid state. Can only lookup records when given a complete key. ' .
                     'Given path was %s',
                     (string) $key
@@ -440,7 +440,7 @@ class Operation
                 if (isset($res['batch']['moreResults'])) {
                     $moreResultsType = $res['batch']['moreResults'];
                     // Transform gRPC enum to string
-                    if (is_numeric($moreResultsType)) {
+                    if (\is_numeric($moreResultsType)) {
                         $moreResultsType = MoreResultsType::name($moreResultsType);
                     }
 
@@ -591,13 +591,13 @@ class Operation
         } elseif ($input instanceof Key) {
             $data = $input->keyObject();
         } else {
-            throw new \InvalidArgumentException(sprintf(
+            throw new \InvalidArgumentException(\sprintf(
                 'Input must be a Key or Entity, %s given',
-                get_class($input)
+                \get_class($input)
             ));
         }
 
-        return array_filter([
+        return \array_filter([
             $operation => $data,
             'baseVersion' => $baseVersion
         ]);
@@ -632,7 +632,7 @@ class Operation
 
         foreach ($entities as $entity) {
             if (!$entity->populatedByService() && !$allowOverwrite) {
-                throw new \InvalidArgumentException(sprintf(
+                throw new \InvalidArgumentException(\sprintf(
                     'Given entity cannot be saved because it may overwrite an '.
                     'existing record. When updating manually created entities, '.
                     'please set the options `$allowOverwrite` flag to `true`. '.
@@ -670,10 +670,10 @@ class Operation
             'namespaceId' => $namespaceId
         ]);
 
-        if (is_array($class)) {
+        if (\is_array($class)) {
             $lastPathElement = $key->pathEnd();
-            if (!array_key_exists($lastPathElement['kind'], $class)) {
-                throw new \InvalidArgumentException(sprintf(
+            if (!\array_key_exists($lastPathElement['kind'], $class)) {
+                throw new \InvalidArgumentException(\sprintf(
                     'No class found for kind %s',
                     $lastPathElement['kind']
                 ));
@@ -729,12 +729,12 @@ class Operation
             'transaction' => null
         ];
 
-        $readOptions = array_filter([
+        $readOptions = \array_filter([
             'readConsistency' => $options['readConsistency'],
             'transaction' => $options['transaction']
         ]);
 
-        return array_filter([
+        return \array_filter([
             'readOptions' => $readOptions
         ]);
     }

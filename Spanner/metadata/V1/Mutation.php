@@ -17,7 +17,7 @@ class Mutation
         \GPBMetadata\Google\Protobuf\Struct::initOnce();
         \GPBMetadata\Google\Spanner\V1\Keys::initOnce();
         \GPBMetadata\Google\Api\Annotations::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0adb050a20676f6f676c652f7370616e6e65722f76312f6d75746174696f" .
             "6e2e70726f746f1211676f6f676c652e7370616e6e65722e76311a1c676f" .
             "6f676c652f7370616e6e65722f76312f6b6579732e70726f746f1a1c676f" .

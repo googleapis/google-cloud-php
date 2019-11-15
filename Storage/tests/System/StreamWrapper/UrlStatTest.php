@@ -31,45 +31,45 @@ class UrlStatTest extends StreamWrapperTestCase
         parent::setUpBeforeClass();
         self::$fileUrl = self::generateUrl(self::$object->name());
         self::$dirUrl = self::generateUrl('some_folder/');
-        mkdir(self::$dirUrl);
+        \mkdir(self::$dirUrl);
     }
 
     public function testUrlStatFile()
     {
-        $stat = stat(self::$fileUrl);
+        $stat = \stat(self::$fileUrl);
         $this->assertEquals(33206, $stat['mode']);
     }
 
     public function testUrlStatDirectory()
     {
-        $stat = stat(self::$dirUrl);
+        $stat = \stat(self::$dirUrl);
         $this->assertEquals(16895, $stat['mode']);
     }
 
     public function testStatOnOpenFileForWrite()
     {
-        $fd = fopen(self::$fileUrl, 'w');
-        $stat = fstat($fd);
+        $fd = \fopen(self::$fileUrl, 'w');
+        $stat = \fstat($fd);
         $this->assertEquals(33206, $stat['mode']);
     }
 
     public function testStatOnOpenFileForRead()
     {
-        $fd = fopen(self::$fileUrl, 'r');
-        $stat = fstat($fd);
+        $fd = \fopen(self::$fileUrl, 'r');
+        $stat = \fstat($fd);
         $this->assertEquals(33060, $stat['mode']);
     }
 
     public function testIsWritable()
     {
-        $this->assertTrue(is_writable(self::$dirUrl));
-        $this->assertTrue(is_writable(self::$fileUrl));
+        $this->assertTrue(\is_writable(self::$dirUrl));
+        $this->assertTrue(\is_writable(self::$fileUrl));
     }
 
     public function testIsReadable()
     {
-        $this->assertTrue(is_readable(self::$dirUrl));
-        $this->assertTrue(is_readable(self::$fileUrl));
+        $this->assertTrue(\is_readable(self::$dirUrl));
+        $this->assertTrue(\is_readable(self::$fileUrl));
     }
 
     public function testFileExists()
@@ -80,27 +80,27 @@ class UrlStatTest extends StreamWrapperTestCase
 
     public function testIsLink()
     {
-        $this->assertFalse(is_link(self::$dirUrl));
-        $this->assertFalse(is_link(self::$fileUrl));
+        $this->assertFalse(\is_link(self::$dirUrl));
+        $this->assertFalse(\is_link(self::$fileUrl));
     }
 
     public function testIsExecutable()
     {
         // php returns false for is_executable if the file is a directory
         // https://github.com/php/php-src/blob/master/ext/standard/filestat.c#L907
-        $this->assertFalse(is_executable(self::$dirUrl));
-        $this->assertFalse(is_executable(self::$fileUrl));
+        $this->assertFalse(\is_executable(self::$dirUrl));
+        $this->assertFalse(\is_executable(self::$fileUrl));
     }
 
     public function testIsFile()
     {
-        $this->assertTrue(is_file(self::$fileUrl));
-        $this->assertFalse(is_file(self::$dirUrl));
+        $this->assertTrue(\is_file(self::$fileUrl));
+        $this->assertFalse(\is_file(self::$dirUrl));
     }
 
     public function testIsDir()
     {
-        $this->assertTrue(is_dir(self::$dirUrl));
-        $this->assertFalse(is_dir(self::$fileUrl));
+        $this->assertTrue(\is_dir(self::$dirUrl));
+        $this->assertFalse(\is_dir(self::$fileUrl));
     }
 }

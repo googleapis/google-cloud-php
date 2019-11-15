@@ -11,6 +11,6 @@ if (false) {
      */
     class UptimeCheckConfig_TcpCheck {}
 }
-class_exists(UptimeCheckConfig\TcpCheck::class);
-@trigger_error('Google\Cloud\Monitoring\V3\UptimeCheckConfig_TcpCheck is deprecated and will be removed in the next major release. Use Google\Cloud\Monitoring\V3\UptimeCheckConfig\TcpCheck instead', E_USER_DEPRECATED);
+\class_exists(UptimeCheckConfig\TcpCheck::class);
+@\trigger_error('Google\Cloud\Monitoring\V3\UptimeCheckConfig_TcpCheck is deprecated and will be removed in the next major release. Use Google\Cloud\Monitoring\V3\UptimeCheckConfig\TcpCheck instead', E_USER_DEPRECATED);
 

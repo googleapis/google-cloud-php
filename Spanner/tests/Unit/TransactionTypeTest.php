@@ -60,7 +60,7 @@ class TransactionTypeTest extends TestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->timestamp = (new Timestamp(\DateTime::createFromFormat('U', time()), 500000005))->formatAsString();
+        $this->timestamp = (new Timestamp(\DateTime::createFromFormat('U', \time()), 500000005))->formatAsString();
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
 

@@ -81,6 +81,6 @@ class QuerySnapshotTest extends TestCase
         ];
         $this->snapshot->___setProperty('rows', $rows);
 
-        $this->assertEquals($rows, iterator_to_array($this->snapshot));
+        $this->assertEquals($rows, \iterator_to_array($this->snapshot));
     }
 }

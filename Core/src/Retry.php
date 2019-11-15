@@ -75,12 +75,12 @@ class Retry
         $continue = true;
         do {
             try {
-                $res = call_user_func_array($function, $arguments);
+                $res = \call_user_func_array($function, $arguments);
                 $continue = false;
                 return $res;
             } catch (\Exception $exception) {
                 if ($this->retryFunction) {
-                    if (!call_user_func($this->retryFunction, $exception)) {
+                    if (!\call_user_func($this->retryFunction, $exception)) {
                         throw $exception;
                     }
                 }
@@ -92,7 +92,7 @@ class Retry
                         'nanos' => 0
                     ];
 
-                    time_nanosleep($delay['seconds'], $delay['nanos']);
+                    \time_nanosleep($delay['seconds'], $delay['nanos']);
 
                     $retryAttempt++;
                 } else {

@@ -31,7 +31,7 @@ trait DatastoreTrait
      */
     private function partitionId($projectId, $namespaceId)
     {
-        return array_filter([
+        return \array_filter([
             'projectId' => $projectId,
             'namespaceId' => $namespaceId
         ]);

@@ -11,6 +11,6 @@ if (false) {
      */
     class ImportedDataInfo_TableDefinition {}
 }
-class_exists(ImportedDataInfo\TableDefinition::class);
-@trigger_error('Google\Cloud\BigQuery\DataTransfer\V1\ImportedDataInfo_TableDefinition is deprecated and will be removed in a future release. Use Google\Cloud\BigQuery\DataTransfer\V1\ImportedDataInfo\TableDefinition instead', E_USER_DEPRECATED);
+\class_exists(ImportedDataInfo\TableDefinition::class);
+@\trigger_error('Google\Cloud\BigQuery\DataTransfer\V1\ImportedDataInfo_TableDefinition is deprecated and will be removed in a future release. Use Google\Cloud\BigQuery\DataTransfer\V1\ImportedDataInfo\TableDefinition instead', E_USER_DEPRECATED);
 

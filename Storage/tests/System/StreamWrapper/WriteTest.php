@@ -28,12 +28,12 @@ class WriteTest extends StreamWrapperTestCase
     public function setUp()
     {
         $this->fileUrl = self::generateUrl('output.txt');
-        unlink($this->fileUrl);
+        \unlink($this->fileUrl);
     }
 
     public function tearDown()
     {
-        unlink($this->fileUrl);
+        \unlink($this->fileUrl);
     }
 
     public function testFilePutContents()
@@ -41,7 +41,7 @@ class WriteTest extends StreamWrapperTestCase
         $this->assertFileNotExists($this->fileUrl);
 
         $output = 'This is a test';
-        $this->assertEquals(strlen($output), file_put_contents($this->fileUrl, $output));
+        $this->assertEquals(\strlen($output), \file_put_contents($this->fileUrl, $output));
 
         $this->assertFileExists($this->fileUrl);
     }
@@ -51,9 +51,9 @@ class WriteTest extends StreamWrapperTestCase
         $this->assertFileNotExists($this->fileUrl);
 
         $output = 'This is a test';
-        $fd = fopen($this->fileUrl, 'w');
-        $this->assertEquals(strlen($output), fwrite($fd, $output));
-        $this->assertTrue(fclose($fd));
+        $fd = \fopen($this->fileUrl, 'w');
+        $this->assertEquals(\strlen($output), \fwrite($fd, $output));
+        $this->assertTrue(\fclose($fd));
 
         $this->assertFileExists($this->fileUrl);
     }
@@ -62,11 +62,11 @@ class WriteTest extends StreamWrapperTestCase
     {
         $this->assertFileNotExists($this->fileUrl);
 
-        $fp = fopen($this->fileUrl, 'w');
+        $fp = \fopen($this->fileUrl, 'w');
         for ($i = 0; $i < 20000; $i++) {
-            fwrite($fp, "Line Number: $i\n");
+            \fwrite($fp, "Line Number: $i\n");
         }
-        fclose($fp);
+        \fclose($fp);
 
         $this->assertFileExists($this->fileUrl);
     }

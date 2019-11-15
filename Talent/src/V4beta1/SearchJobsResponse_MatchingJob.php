@@ -11,6 +11,6 @@ if (false) {
      */
     class SearchJobsResponse_MatchingJob {}
 }
-class_exists(SearchJobsResponse\MatchingJob::class);
-@trigger_error('Google\Cloud\Talent\V4beta1\SearchJobsResponse_MatchingJob is deprecated and will be removed in the next major release. Use Google\Cloud\Talent\V4beta1\SearchJobsResponse\MatchingJob instead', E_USER_DEPRECATED);
+\class_exists(SearchJobsResponse\MatchingJob::class);
+@\trigger_error('Google\Cloud\Talent\V4beta1\SearchJobsResponse_MatchingJob is deprecated and will be removed in the next major release. Use Google\Cloud\Talent\V4beta1\SearchJobsResponse\MatchingJob instead', E_USER_DEPRECATED);
 

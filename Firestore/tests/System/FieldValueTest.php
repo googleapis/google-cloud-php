@@ -69,7 +69,7 @@ class FieldValueTest extends FirestoreTestCase
      */
     public function testTransform($initialValue, $fieldValue, $expectedValue)
     {
-        $field = uniqid('transform-field');
+        $field = \uniqid('transform-field');
         $this->document->update([
             ['path' => $field, 'value' => $initialValue]
         ]);

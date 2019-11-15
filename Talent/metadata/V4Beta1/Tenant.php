@@ -17,7 +17,7 @@ class Tenant
         \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0a95040a28676f6f676c652f636c6f75642f74616c656e742f7634626574" .
             "61312f74656e616e742e70726f746f121b676f6f676c652e636c6f75642e" .
             "74616c656e742e763462657461311a1f676f6f676c652f6170692f666965" .

@@ -11,6 +11,6 @@ if (false) {
      */
     class Mutation_DeleteFromColumn {}
 }
-class_exists(Mutation\DeleteFromColumn::class);
-@trigger_error('Google\Cloud\Bigtable\V2\Mutation_DeleteFromColumn is deprecated and will be removed in the next major release. Use Google\Cloud\Bigtable\V2\Mutation\DeleteFromColumn instead', E_USER_DEPRECATED);
+\class_exists(Mutation\DeleteFromColumn::class);
+@\trigger_error('Google\Cloud\Bigtable\V2\Mutation_DeleteFromColumn is deprecated and will be removed in the next major release. Use Google\Cloud\Bigtable\V2\Mutation\DeleteFromColumn instead', E_USER_DEPRECATED);
 

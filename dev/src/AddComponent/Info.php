@@ -76,13 +76,13 @@ class Info
 
         $info['cloudPage'] = $this->askCloudPage(
             'Please enter the URI of the service homepage',
-            sprintf('https://cloud.google.com/%s', $info['shortName']),
+            \sprintf('https://cloud.google.com/%s', $info['shortName']),
             $info
         );
 
         $default = $info['cloudPage'] . '/docs';
-        $default = explode('://', $default);
-        $default[1] = str_replace('//', '/', $default[1]);
+        $default = \explode('://', $default);
+        $default[1] = \str_replace('//', '/', $default[1]);
 
         $info['docsPage'] = $this->askCloudPage(
             'Please enter the URI of the documentation homepage',
@@ -90,15 +90,15 @@ class Info
             $info
         );
 
-        $default = str_replace(' ', '', ucwords(str_replace('-', ' ', $info['shortName'])));
+        $default = \str_replace(' ', '', \ucwords(\str_replace('-', ' ', $info['shortName'])));
         $base = $this->rootPath;
         $q = $this->question(
             'Please enter the directory name, relative to the google-cloud-php root, where the component is found. Be sure to verify correct casing.',
             $default
         )->setValidator(function ($answer) use ($base) {
-            $path = realpath($base . '/' . $answer);
+            $path = \realpath($base . '/' . $answer);
 
-            if (!is_dir($path)) {
+            if (!\is_dir($path)) {
                 throw new \RuntimeException(
                     $path .' does not exist or is not a folder.'
                 );
@@ -126,7 +126,7 @@ class Info
 
         $this->output->writeln('Confirm entered data');
         foreach ($info as $key => $val) {
-            $this->output->writeln(sprintf('<info>%s</info>: %s', $key, $val));
+            $this->output->writeln(\sprintf('<info>%s</info>: %s', $key, $val));
         }
 
         if (!$this->askQuestion($this->confirm('Does everything look correct? Choosing no will restart the wizard.'))) {
@@ -164,15 +164,15 @@ class Info
 
     private function uriValidate($answer)
     {
-        if (strpos($answer, '://') === false) {
+        if (\strpos($answer, '://') === false) {
             $answer = 'https://'. $answer;
         }
 
-        if (strpos($answer, 'http://') !== false) {
+        if (\strpos($answer, 'http://') !== false) {
             $confirm = $this->confirm('You entered http as the protocol. Should we change this to https?');
 
             if ($this->askQuestion($confirm)) {
-                $answer = str_replace('http://', 'https://', $answer);
+                $answer = \str_replace('http://', 'https://', $answer);
             }
         }
 
@@ -212,13 +212,13 @@ class Info
     private function askComponentName(array $info)
     {
         $validator = function ($answer) {
-            $answer = trim($answer);
+            $answer = \trim($answer);
 
-            if (strpos($answer, 'google/') === 0) {
-                $answer = str_replace('google/', '', $answer);
+            if (\strpos($answer, 'google/') === 0) {
+                $answer = \str_replace('google/', '', $answer);
             }
 
-            if (strpos($answer, 'cloud-') !== 0) {
+            if (\strpos($answer, 'cloud-') !== 0) {
                 $confirm = $this->confirm(
                     'You entered a non-standard name. Standard name convention is `cloud-<name>`. Accept non-standard name?',
                     false
@@ -245,7 +245,7 @@ class Info
 
     private function askDisplayName(array $info)
     {
-        $name = 'Google '. ucwords(str_replace('-', ' ', $info['name']));
+        $name = 'Google '. \ucwords(\str_replace('-', ' ', $info['name']));
 
 
         return $this->ask(

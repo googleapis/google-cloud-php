@@ -74,5 +74,5 @@ class Chain extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Chain::class, \Google\Cloud\Bigtable\V2\RowFilter_Chain::class);
+\class_alias(Chain::class, \Google\Cloud\Bigtable\V2\RowFilter_Chain::class);
 

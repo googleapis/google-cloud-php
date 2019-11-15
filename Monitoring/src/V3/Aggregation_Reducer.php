@@ -11,6 +11,6 @@ if (false) {
      */
     class Aggregation_Reducer {}
 }
-class_exists(Aggregation\Reducer::class);
-@trigger_error('Google\Cloud\Monitoring\V3\Aggregation_Reducer is deprecated and will be removed in the next major release. Use Google\Cloud\Monitoring\V3\Aggregation\Reducer instead', E_USER_DEPRECATED);
+\class_exists(Aggregation\Reducer::class);
+@\trigger_error('Google\Cloud\Monitoring\V3\Aggregation_Reducer is deprecated and will be removed in the next major release. Use Google\Cloud\Monitoring\V3\Aggregation\Reducer instead', E_USER_DEPRECATED);
 

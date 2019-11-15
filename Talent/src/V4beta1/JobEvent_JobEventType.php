@@ -11,6 +11,6 @@ if (false) {
      */
     class JobEvent_JobEventType {}
 }
-class_exists(JobEvent\JobEventType::class);
-@trigger_error('Google\Cloud\Talent\V4beta1\JobEvent_JobEventType is deprecated and will be removed in the next major release. Use Google\Cloud\Talent\V4beta1\JobEvent\JobEventType instead', E_USER_DEPRECATED);
+\class_exists(JobEvent\JobEventType::class);
+@\trigger_error('Google\Cloud\Talent\V4beta1\JobEvent_JobEventType is deprecated and will be removed in the next major release. Use Google\Cloud\Talent\V4beta1\JobEvent\JobEventType instead', E_USER_DEPRECATED);
 

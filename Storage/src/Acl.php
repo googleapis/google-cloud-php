@@ -69,8 +69,8 @@ class Acl
             'objectAccessControls'
         ];
 
-        if (!in_array($type, $validTypes)) {
-            throw new InvalidArgumentException('type must be one of the following: ' . implode(', ', $validTypes));
+        if (!\in_array($type, $validTypes)) {
+            throw new InvalidArgumentException('type must be one of the following: ' . \implode(', ', $validTypes));
         }
 
         $this->connection = $connection;

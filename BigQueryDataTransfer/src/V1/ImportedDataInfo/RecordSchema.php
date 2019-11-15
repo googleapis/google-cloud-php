@@ -66,5 +66,5 @@ class RecordSchema extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RecordSchema::class, \Google\Cloud\BigQuery\DataTransfer\V1\ImportedDataInfo_RecordSchema::class);
+\class_alias(RecordSchema::class, \Google\Cloud\BigQuery\DataTransfer\V1\ImportedDataInfo_RecordSchema::class);
 

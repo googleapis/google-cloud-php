@@ -67,7 +67,7 @@ class ComponentManager
     {
         $components = $this->components ?: $this->loadComponents();
 
-        return array_keys($components);
+        return \array_keys($components);
     }
 
     /**
@@ -81,7 +81,7 @@ class ComponentManager
     {
         $components = $this->components ?: $this->loadComponents();
 
-        array_walk($components, function (&$component) {
+        \array_walk($components, function (&$component) {
             $name = $component['composer']['name'];
             $component = $component['composer']['extra']['component'];
             $component['displayName'] = $name;
@@ -105,7 +105,7 @@ class ComponentManager
         $modules = $manifest['modules'];
 
         if ($componentId) {
-            $modules = array_filter($modules, function ($module) use ($componentId) {
+            $modules = \array_filter($modules, function ($module) use ($componentId) {
                 return $module['id'] === $componentId;
             });
         }
@@ -124,7 +124,7 @@ class ComponentManager
     {
         $components = $this->components ?: $this->loadComponents();
 
-        array_walk($components, function (&$component) {
+        \array_walk($components, function (&$component) {
             $component = $component['version'];
         });
 
@@ -141,7 +141,7 @@ class ComponentManager
         $components = [];
         foreach ($modules as $module) {
             $components[$module['id']] = [
-                'version' => array_shift($module['versions']),
+                'version' => \array_shift($module['versions']),
                 'name' => $module['name'],
                 'defaultService' => $module['defaultService']
             ];
@@ -149,7 +149,7 @@ class ComponentManager
 
         // List all composer.json files in subdirectories directly below repository root,
         // add root composer.json.
-        $composerFiles = array_merge(glob($this->rootPath . '/*/composer.json'), [$this->rootPath .'/composer.json']);
+        $composerFiles = \array_merge(\glob($this->rootPath . '/*/composer.json'), [$this->rootPath .'/composer.json']);
         foreach ($composerFiles as $composerPath) {
             $composer = $this->loadJsonFromFile($composerPath);
 
@@ -180,9 +180,9 @@ class ComponentManager
 
     protected function loadJsonFromFile($path)
     {
-        $json = json_decode(@file_get_contents($path), true);
-        if (json_last_error() !== JSON_ERROR_NONE) {
-            throw new \RuntimeException(sprintf(
+        $json = \json_decode(@\file_get_contents($path), true);
+        if (\json_last_error() !== JSON_ERROR_NONE) {
+            throw new \RuntimeException(\sprintf(
                 'Could not load manifest from %s. Check that the file exists and is valid JSON.',
                 $path
             ));

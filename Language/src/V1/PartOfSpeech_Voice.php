@@ -11,6 +11,6 @@ if (false) {
      */
     class PartOfSpeech_Voice {}
 }
-class_exists(PartOfSpeech\Voice::class);
-@trigger_error('Google\Cloud\Language\V1\PartOfSpeech_Voice is deprecated and will be removed in the next major release. Use Google\Cloud\Language\V1\PartOfSpeech\Voice instead', E_USER_DEPRECATED);
+\class_exists(PartOfSpeech\Voice::class);
+@\trigger_error('Google\Cloud\Language\V1\PartOfSpeech_Voice is deprecated and will be removed in the next major release. Use Google\Cloud\Language\V1\PartOfSpeech\Voice instead', E_USER_DEPRECATED);
 

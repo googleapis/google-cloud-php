@@ -113,7 +113,7 @@ class WriteTest extends SpannerTestCase
         }
 
         // test result from executeSql
-        $exec = $db->execute(sprintf('SELECT %s FROM %s WHERE id = @id', $field, self::TABLE_NAME), [
+        $exec = $db->execute(\sprintf('SELECT %s FROM %s WHERE id = @id', $field, self::TABLE_NAME), [
             'parameters' => [
                 'id' => $id
             ]
@@ -149,7 +149,7 @@ class WriteTest extends SpannerTestCase
 
         $this->assertEquals($value->formatAsString(), $row[$field]->formatAsString());
 
-        $exec = $db->execute(sprintf('SELECT %s FROM %s WHERE id = @id', $field, self::TABLE_NAME), [
+        $exec = $db->execute(\sprintf('SELECT %s FROM %s WHERE id = @id', $field, self::TABLE_NAME), [
             'parameters' => [
                 'id' => $id
             ]
@@ -179,16 +179,16 @@ class WriteTest extends SpannerTestCase
         $read = $db->read(self::TABLE_NAME, $keyset, [$field]);
         $row = $read->rows()->current();
 
-        $this->assertTrue(is_nan($row[$field]));
+        $this->assertTrue(\is_nan($row[$field]));
 
-        $exec = $db->execute(sprintf('SELECT %s FROM %s WHERE id = @id', $field, self::TABLE_NAME), [
+        $exec = $db->execute(\sprintf('SELECT %s FROM %s WHERE id = @id', $field, self::TABLE_NAME), [
             'parameters' => [
                 'id' => $id
             ]
         ]);
 
         $row = $exec->rows()->current();
-        $this->assertTrue(is_nan($row[$field]));
+        $this->assertTrue(\is_nan($row[$field]));
     }
 
     public function nullFieldValueProvider()
@@ -225,7 +225,7 @@ class WriteTest extends SpannerTestCase
         $this->assertNull($row[$field]);
 
         // test result from executeSql
-        $exec = $db->execute(sprintf('SELECT %s FROM %s WHERE id = @id', $field, self::TABLE_NAME), [
+        $exec = $db->execute(\sprintf('SELECT %s FROM %s WHERE id = @id', $field, self::TABLE_NAME), [
             'parameters' => [
                 'id' => $id
             ]
@@ -303,7 +303,7 @@ class WriteTest extends SpannerTestCase
         $this->assertEquals($value, $row[$field]);
 
         // test result from executeSql
-        $exec = $db->execute(sprintf('SELECT %s FROM %s WHERE id = @id', $field, self::TABLE_NAME), [
+        $exec = $db->execute(\sprintf('SELECT %s FROM %s WHERE id = @id', $field, self::TABLE_NAME), [
             'parameters' => [
                 'id' => $id
             ]
@@ -344,7 +344,7 @@ class WriteTest extends SpannerTestCase
         $read = $db->read(self::TABLE_NAME, $keyset, [$field]);
 
         // test result from executeSql
-        $exec = $db->execute(sprintf('SELECT %s FROM %s WHERE id = @id', $field, self::TABLE_NAME), [
+        $exec = $db->execute(\sprintf('SELECT %s FROM %s WHERE id = @id', $field, self::TABLE_NAME), [
             'parameters' => [
                 'id' => $id
             ]
@@ -354,11 +354,11 @@ class WriteTest extends SpannerTestCase
         $row2 = $exec->rows()->current();
 
         foreach ($row2[$field] as $item) {
-            if (is_null($item)) {
+            if (\is_null($item)) {
                 continue;
             }
 
-            $this->assertInstanceOf(get_class($value[0]), $item);
+            $this->assertInstanceOf(\get_class($value[0]), $item);
         }
     }
 
@@ -369,7 +369,7 @@ class WriteTest extends SpannerTestCase
     {
         $db = self::$database;
 
-        $db->insert(uniqid(self::TESTING_PREFIX), ['foo' => 'bar']);
+        $db->insert(\uniqid(self::TESTING_PREFIX), ['foo' => 'bar']);
     }
 
     /**
@@ -379,7 +379,7 @@ class WriteTest extends SpannerTestCase
     {
         $db = self::$database;
 
-        $db->insert(self::TABLE_NAME, [uniqid(self::TESTING_PREFIX) => 'bar']);
+        $db->insert(self::TABLE_NAME, [\uniqid(self::TESTING_PREFIX) => 'bar']);
     }
 
     /**
@@ -419,16 +419,16 @@ class WriteTest extends SpannerTestCase
 
     public function randomBytesProvider()
     {
-        if (version_compare(phpversion(), 7) === -1) {
+        if (\version_compare(\phpversion(), 7) === -1) {
             $this->markTestSkipped('This test can only be run on php 7+');
         }
 
         return [
-            [$this->randId(), new Bytes(base64_encode(random_bytes(rand(100, 9999))))],
-            [$this->randId(), new Bytes(base64_encode(random_bytes(rand(100, 9999))))],
-            [$this->randId(), new Bytes(base64_encode(random_bytes(rand(100, 9999))))],
-            [$this->randId(), new Bytes(base64_encode(random_bytes(rand(100, 9999))))],
-            [$this->randId(), new Bytes(base64_encode(random_bytes(rand(100, 9999))))],
+            [$this->randId(), new Bytes(\base64_encode(\random_bytes(\rand(100, 9999))))],
+            [$this->randId(), new Bytes(\base64_encode(\random_bytes(\rand(100, 9999))))],
+            [$this->randId(), new Bytes(\base64_encode(\random_bytes(\rand(100, 9999))))],
+            [$this->randId(), new Bytes(\base64_encode(\random_bytes(\rand(100, 9999))))],
+            [$this->randId(), new Bytes(\base64_encode(\random_bytes(\rand(100, 9999))))],
         ];
     }
 
@@ -455,7 +455,7 @@ class WriteTest extends SpannerTestCase
     public function testSetFieldToNull()
     {
         $id = $this->randId();
-        $str = base64_encode(random_bytes(rand(100, 9999)));
+        $str = \base64_encode(\random_bytes(\rand(100, 9999)));
         $row = self::$database->insert(self::TABLE_NAME, [
             'id' => $id,
             'stringField' => $str
@@ -524,7 +524,7 @@ class WriteTest extends SpannerTestCase
      */
     public function testTimestampPrecisionLocale($timestamp)
     {
-        setlocale(LC_ALL, 'fr_FR.UTF-8');
+        \setlocale(LC_ALL, 'fr_FR.UTF-8');
         try {
             $id = $this->randId();
 
@@ -559,7 +559,7 @@ class WriteTest extends SpannerTestCase
             $this->assertEquals($timestamp->nanoSeconds(), $res2->nanoSeconds());
             $this->assertEquals($timestamp->formatAsString(), $res2->formatAsString());
         } finally {
-            setlocale(LC_ALL, null);
+            \setlocale(LC_ALL, null);
         }
     }
 
@@ -568,7 +568,7 @@ class WriteTest extends SpannerTestCase
         $today = new \DateTime;
         $str = $today->format('Y-m-d\TH:i:s');
 
-        $todayLowMs = \DateTime::createFromFormat('U.u', time() . '.012345');
+        $todayLowMs = \DateTime::createFromFormat('U.u', \time() . '.012345');
 
         $r = new \ReflectionClass(Timestamp::class);
         return [
@@ -589,7 +589,7 @@ class WriteTest extends SpannerTestCase
     public function testExecuteUpdate()
     {
         $id = $this->randId();
-        $randStr = base64_encode(random_bytes(500));
+        $randStr = \base64_encode(\random_bytes(500));
 
         $db = self::$database;
         $db->runTransaction(function ($t) use ($id, $randStr) {
@@ -623,7 +623,7 @@ class WriteTest extends SpannerTestCase
     public function testExecuteSqlDml()
     {
         $id = $this->randId();
-        $randStr = base64_encode(random_bytes(500));
+        $randStr = \base64_encode(\random_bytes(500));
 
         $db = self::$database;
         $db->runTransaction(function ($t) use ($id, $randStr) {
@@ -634,7 +634,7 @@ class WriteTest extends SpannerTestCase
                 ]
             ]);
 
-            iterator_to_array($res);
+            \iterator_to_array($res);
 
             $this->assertEquals(1, $res->stats()['rowCountExact']);
 
@@ -656,7 +656,7 @@ class WriteTest extends SpannerTestCase
     public function testExecuteUpdateTransaction()
     {
         $id = $this->randId();
-        $randStr = base64_encode(random_bytes(500));
+        $randStr = \base64_encode(\random_bytes(500));
 
         $db = self::$database;
         $db->runTransaction(function ($t) use ($id, $randStr) {
@@ -695,7 +695,7 @@ class WriteTest extends SpannerTestCase
     public function testExecuteUpdateTransactionRollback()
     {
         $id = $this->randId();
-        $randStr = base64_encode(random_bytes(500));
+        $randStr = \base64_encode(\random_bytes(500));
 
         $db = self::$database;
         $db->runTransaction(function ($t) use ($id, $randStr) {
@@ -735,7 +735,7 @@ class WriteTest extends SpannerTestCase
     {
         $id = $this->randId();
         $id2 = $this->randId();
-        $randStr = base64_encode(random_bytes(500));
+        $randStr = \base64_encode(\random_bytes(500));
 
         $db = self::$database;
         $db->runTransaction(function ($t) use ($id, $id2, $randStr) {
@@ -756,7 +756,7 @@ class WriteTest extends SpannerTestCase
             $t->commit();
         });
 
-        $rows = iterator_to_array($db->execute('SELECT * FROM ' . self::TABLE_NAME . ' WHERE id = @id OR id = @id2', [
+        $rows = \iterator_to_array($db->execute('SELECT * FROM ' . self::TABLE_NAME . ' WHERE id = @id OR id = @id2', [
             'parameters' => [
                 'id' => $id,
                 'id2' => $id2
@@ -773,8 +773,8 @@ class WriteTest extends SpannerTestCase
     {
         $id = $this->randId();
         $id2 = $this->randId();
-        $randStr = base64_encode(random_bytes(500));
-        $randStr2 = base64_encode(random_bytes(500));
+        $randStr = \base64_encode(\random_bytes(500));
+        $randStr2 = \base64_encode(\random_bytes(500));
 
         $db = self::$database;
         $db->runTransaction(function ($t) use ($id, $id2, $randStr, $randStr2) {
@@ -799,7 +799,7 @@ class WriteTest extends SpannerTestCase
             $t->commit();
         });
 
-        $row = iterator_to_array($db->execute('SELECT stringField FROM ' . self::TABLE_NAME . ' WHERE id = @id', [
+        $row = \iterator_to_array($db->execute('SELECT stringField FROM ' . self::TABLE_NAME . ' WHERE id = @id', [
             'parameters' => [
                 'id' => $id,
                 'id2' => $id2
@@ -816,8 +816,8 @@ class WriteTest extends SpannerTestCase
     public function testPdml()
     {
         $id = $this->randId();
-        $randStr = base64_encode(random_bytes(500));
-        $randStr2 = base64_encode(random_bytes(500));
+        $randStr = \base64_encode(\random_bytes(500));
+        $randStr2 = \base64_encode(\random_bytes(500));
         $db = self::$database;
 
         $db->insert(self::TABLE_NAME, [
@@ -854,7 +854,7 @@ class WriteTest extends SpannerTestCase
     public function testExecuteUpdateBatchSingleStatement()
     {
         $id = $this->randId();
-        $randStr = base64_encode(random_bytes(500));
+        $randStr = \base64_encode(\random_bytes(500));
 
         $db = self::$database;
         $res = $db->runTransaction(function ($t) use ($id, $randStr) {

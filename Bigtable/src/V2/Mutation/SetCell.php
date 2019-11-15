@@ -192,5 +192,5 @@ class SetCell extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SetCell::class, \Google\Cloud\Bigtable\V2\Mutation_SetCell::class);
+\class_alias(SetCell::class, \Google\Cloud\Bigtable\V2\Mutation_SetCell::class);
 

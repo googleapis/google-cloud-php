@@ -44,13 +44,13 @@ class TasksServiceSmokeTest extends SystemTestCase
      */
     public function smokeTest()
     {
-        $projectId = getenv('PROJECT_ID');
+        $projectId = \getenv('PROJECT_ID');
         if ($projectId === false) {
             $this->fail('Environment variable PROJECT_ID must be set for smoke test');
         }
         $client = new CloudTasksClient();
         $location = 'us-central1';
-        $queue = uniqid();
+        $queue = \uniqid();
         $queueName = $client::queueName($projectId, $location, $queue);
         $locationName = $client::locationName($projectId, $location);
         $queue = new Queue([

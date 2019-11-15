@@ -11,6 +11,6 @@ if (false) {
      */
     class StructuredQuery_Projection {}
 }
-class_exists(StructuredQuery\Projection::class);
-@trigger_error('Google\Cloud\Firestore\V1beta1\StructuredQuery_Projection is deprecated and will be removed in the next major release. Use Google\Cloud\Firestore\V1beta1\StructuredQuery\Projection instead', E_USER_DEPRECATED);
+\class_exists(StructuredQuery\Projection::class);
+@\trigger_error('Google\Cloud\Firestore\V1beta1\StructuredQuery_Projection is deprecated and will be removed in the next major release. Use Google\Cloud\Firestore\V1beta1\StructuredQuery\Projection instead', E_USER_DEPRECATED);
 

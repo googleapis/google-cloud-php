@@ -11,6 +11,6 @@ if (false) {
      */
     class JobTrigger_Trigger {}
 }
-class_exists(JobTrigger\Trigger::class);
-@trigger_error('Google\Cloud\Dlp\V2\JobTrigger_Trigger is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\JobTrigger\Trigger instead', E_USER_DEPRECATED);
+\class_exists(JobTrigger\Trigger::class);
+@\trigger_error('Google\Cloud\Dlp\V2\JobTrigger_Trigger is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\JobTrigger\Trigger instead', E_USER_DEPRECATED);
 

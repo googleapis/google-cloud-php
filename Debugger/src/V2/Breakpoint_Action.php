@@ -11,6 +11,6 @@ if (false) {
      */
     class Breakpoint_Action {}
 }
-class_exists(Breakpoint\Action::class);
-@trigger_error('Google\Cloud\Debugger\V2\Breakpoint_Action is deprecated and will be removed in the next major release. Use Google\Cloud\Debugger\V2\Breakpoint\Action instead', E_USER_DEPRECATED);
+\class_exists(Breakpoint\Action::class);
+@\trigger_error('Google\Cloud\Debugger\V2\Breakpoint_Action is deprecated and will be removed in the next major release. Use Google\Cloud\Debugger\V2\Breakpoint\Action instead', E_USER_DEPRECATED);
 

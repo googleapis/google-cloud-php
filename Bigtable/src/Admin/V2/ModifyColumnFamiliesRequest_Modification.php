@@ -11,6 +11,6 @@ if (false) {
      */
     class ModifyColumnFamiliesRequest_Modification {}
 }
-class_exists(ModifyColumnFamiliesRequest\Modification::class);
-@trigger_error('Google\Cloud\Bigtable\Admin\V2\ModifyColumnFamiliesRequest_Modification is deprecated and will be removed in the next major release. Use Google\Cloud\Bigtable\Admin\V2\ModifyColumnFamiliesRequest\Modification instead', E_USER_DEPRECATED);
+\class_exists(ModifyColumnFamiliesRequest\Modification::class);
+@\trigger_error('Google\Cloud\Bigtable\Admin\V2\ModifyColumnFamiliesRequest_Modification is deprecated and will be removed in the next major release. Use Google\Cloud\Bigtable\Admin\V2\ModifyColumnFamiliesRequest\Modification instead', E_USER_DEPRECATED);
 

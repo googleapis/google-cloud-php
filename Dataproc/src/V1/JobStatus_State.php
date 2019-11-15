@@ -11,6 +11,6 @@ if (false) {
      */
     class JobStatus_State {}
 }
-class_exists(JobStatus\State::class);
-@trigger_error('Google\Cloud\Dataproc\V1\JobStatus_State is deprecated and will be removed in the next major release. Use Google\Cloud\Dataproc\V1\JobStatus\State instead', E_USER_DEPRECATED);
+\class_exists(JobStatus\State::class);
+@\trigger_error('Google\Cloud\Dataproc\V1\JobStatus_State is deprecated and will be removed in the next major release. Use Google\Cloud\Dataproc\V1\JobStatus\State instead', E_USER_DEPRECATED);
 

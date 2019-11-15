@@ -19,7 +19,7 @@ class Assets
         \GPBMetadata\Google\Protobuf\Any::initOnce();
         \GPBMetadata\Google\Protobuf\Struct::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0aed060a22676f6f676c652f636c6f75642f61737365742f76312f617373" .
             "6574732e70726f746f1215676f6f676c652e636c6f75642e61737365742e" .
             "76311a1a676f6f676c652f69616d2f76312f706f6c6963792e70726f746f" .

@@ -18,7 +18,7 @@ class Oslogin
         \GPBMetadata\Google\Cloud\Oslogin\Common\Common::initOnce();
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0af5100a25676f6f676c652f636c6f75642f6f736c6f67696e2f76312f6f" .
             "736c6f67696e2e70726f746f1217676f6f676c652e636c6f75642e6f736c" .
             "6f67696e2e76311a28676f6f676c652f636c6f75642f6f736c6f67696e2f" .

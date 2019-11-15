@@ -122,7 +122,7 @@ class Agent
         ];
         $storage = $options['storage'] ?: $this->defaultStorage();
         $this->sourceRoot = $options['sourceRoot']
-            ?: dirname(debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1)[0]['file']);
+            ?: \dirname(\debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1)[0]['file']);
         $this->maxDepth = $options['maxDepth'];
         $this->evaluationOptions = $this->pluckArray([
             'maxMemberDepth',
@@ -159,8 +159,8 @@ class Agent
             return;
         }
 
-        if (!extension_loaded('stackdriver_debugger')) {
-            trigger_error('Breakpoints set but "stackdriver_debugger" extension not loaded', E_USER_WARNING);
+        if (!\extension_loaded('stackdriver_debugger')) {
+            \trigger_error('Breakpoints set but "stackdriver_debugger" extension not loaded', E_USER_WARNING);
             return;
         }
 
@@ -226,7 +226,7 @@ class Agent
      */
     public function handleSnapshot(array $snapshot)
     {
-        if (array_key_exists($snapshot['id'], $this->breakpointsById)) {
+        if (\array_key_exists($snapshot['id'], $this->breakpointsById)) {
             $breakpoint = $this->breakpointsById[$snapshot['id']];
             $evaluatedExpressions = $snapshot['evaluatedExpressions'];
             $stackframes = $snapshot['stackframes'];

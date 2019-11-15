@@ -11,6 +11,6 @@ if (false) {
      */
     class Span_Attributes {}
 }
-class_exists(Span\Attributes::class);
-@trigger_error('Google\Cloud\Trace\V2\Span_Attributes is deprecated and will be removed in a future release. Use Google\Cloud\Trace\V2\Span\Attributes instead', E_USER_DEPRECATED);
+\class_exists(Span\Attributes::class);
+@\trigger_error('Google\Cloud\Trace\V2\Span_Attributes is deprecated and will be removed in a future release. Use Google\Cloud\Trace\V2\Span\Attributes instead', E_USER_DEPRECATED);
 

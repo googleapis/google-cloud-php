@@ -61,7 +61,7 @@ trait VisionHelpersTrait
         $features = $this->buildFeatureList(Feature::class, $features);
         $request->setFeatures($features);
         $imageContext = $this->pluck('imageContext', $optionalArgs, false);
-        if (!is_null($imageContext)) {
+        if (!\is_null($imageContext)) {
             $request->setImageContext($imageContext);
         }
         return $callback([$request], $optionalArgs)->getResponses()[0];
@@ -76,7 +76,7 @@ trait VisionHelpersTrait
     {
         $features = [];
         foreach ($featureTypes as $featureType) {
-            if (is_int($featureType)) {
+            if (\is_int($featureType)) {
                 $feature = new $featureClass();
                 $feature->setType($featureType);
             } else {
@@ -95,20 +95,20 @@ trait VisionHelpersTrait
      */
     private function createImageHelper($imageClass, $imageSourceClass, $imageInput)
     {
-        if (is_object($imageInput) && is_a($imageInput, $imageClass)) {
+        if (\is_object($imageInput) && \is_a($imageInput, $imageClass)) {
             return $imageInput;
         }
         $image = new $imageClass();
-        if (is_string($imageInput)) {
-            if (in_array(parse_url($imageInput, PHP_URL_SCHEME), $this->urlSchemes)) {
+        if (\is_string($imageInput)) {
+            if (\in_array(\parse_url($imageInput, PHP_URL_SCHEME), $this->urlSchemes)) {
                 $imageSource = new $imageSourceClass();
                 $imageSource->setImageUri($imageInput);
                 $image->setSource($imageSource);
             } else {
                 $image->setContent($imageInput);
             }
-        } elseif (is_resource($imageInput)) {
-            $image->setContent(stream_get_contents($imageInput));
+        } elseif (\is_resource($imageInput)) {
+            $image->setContent(\stream_get_contents($imageInput));
         } else {
             throw new InvalidArgumentException(
                 'Given image is not valid. ' .

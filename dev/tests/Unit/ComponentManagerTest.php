@@ -45,7 +45,7 @@ class ComponentManagerTest extends TestCase
 
     public function testComponents()
     {
-        $this->assertEquals(array_keys($this->components), $this->cm->components());
+        $this->assertEquals(\array_keys($this->components), $this->cm->components());
     }
 
     public function testComponentsExtra()
@@ -63,13 +63,13 @@ class ComponentManagerTest extends TestCase
     public function testComponentsExtraSingleComponent()
     {
         $components = $this->components;
-        array_walk($components, function (&$component) {
+        \array_walk($components, function (&$component) {
             $name = $component['composer']['name'];
             $component = $component['composer']['extra']['component'];
             $component['displayName'] = $name;
         });
 
-        $componentId = array_keys($this->components)[0];
+        $componentId = \array_keys($this->components)[0];
         $component = $components[$componentId];
 
         $this->assertEquals([$componentId => $component], $this->cm->componentsExtra($componentId));
@@ -82,9 +82,9 @@ class ComponentManagerTest extends TestCase
 
     public function testComponentsManifestSingleComponent()
     {
-        $componentId = array_keys($this->components)[0];
+        $componentId = \array_keys($this->components)[0];
 
-        $modules = array_filter($this->manifest['modules'], function ($module) use ($componentId) {
+        $modules = \array_filter($this->manifest['modules'], function ($module) use ($componentId) {
             return $componentId === $module['id'];
         });
 
@@ -104,7 +104,7 @@ class ComponentManagerTest extends TestCase
 
     public function testComponentsSingleVersion()
     {
-        $componentId = array_keys($this->components)[0];
+        $componentId = \array_keys($this->components)[0];
 
         $versions = [];
         foreach ($this->manifest['modules'] as $module) {
@@ -134,7 +134,7 @@ class ComponentManagerTest extends TestCase
         $manifest = $cm->___getProperty('manifest');
         $components = $cm->___getProperty('components');
 
-        $this->assertEquals(count($manifest['modules']), count($components));
+        $this->assertEquals(\count($manifest['modules']), \count($components));
     }
 
     private $components = [

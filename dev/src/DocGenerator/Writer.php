@@ -34,29 +34,29 @@ class Writer
     {
         $path = $this->buildOutputPath($currentFile);
 
-        if (!is_dir(dirname($path))) {
-            @mkdir(dirname($path), 0777, true);
+        if (!\is_dir(\dirname($path))) {
+            @\mkdir(\dirname($path), 0777, true);
         }
 
         $options = $this->pretty
             ? JSON_PRETTY_PRINT
             : 0;
 
-        $content = json_encode($this->content, $options);
+        $content = \json_encode($this->content, $options);
 
-        file_put_contents($path, $content);
+        \file_put_contents($path, $content);
     }
 
     private function buildOutputPath($currentFile)
     {
-        $pathInfo = pathinfo($currentFile);
+        $pathInfo = \pathinfo($currentFile);
         $servicePath = $pathInfo['dirname'] . '/' . $pathInfo['filename'] . '.json';
 
-        if (strpos($servicePath, '/') !== 0) {
+        if (\strpos($servicePath, '/') !== 0) {
             $servicePath = '/' . $servicePath;
         }
 
-        $servicePath = strtolower($servicePath);
+        $servicePath = \strtolower($servicePath);
 
         return $this->outputPath . $servicePath;
     }

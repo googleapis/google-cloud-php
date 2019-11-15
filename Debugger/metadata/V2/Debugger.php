@@ -19,7 +19,7 @@ class Debugger
         \GPBMetadata\Google\Devtools\Clouddebugger\V2\Data::initOnce();
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Api\Annotations::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0ae5160a2f676f6f676c652f646576746f6f6c732f636c6f756464656275" .
             "676765722f76322f64656275676765722e70726f746f1220676f6f676c65" .
             "2e646576746f6f6c732e636c6f756464656275676765722e76321a1f676f" .

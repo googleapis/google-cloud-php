@@ -35,7 +35,7 @@ class IamConfigurationTest extends StorageTestCase
 
     public function testUniformBucketLevelAccess()
     {
-        $bucket = self::createBucket(self::$client, uniqid(self::TESTING_PREFIX));
+        $bucket = self::createBucket(self::$client, \uniqid(self::TESTING_PREFIX));
         $bucket->update($this->bucketConfig());
 
         $this->assertTrue($bucket->info()['iamConfiguration']['uniformBucketLevelAccess']['enabled']);
@@ -50,7 +50,7 @@ class IamConfigurationTest extends StorageTestCase
      */
     public function testUniformBucketLevelAccessAclFails()
     {
-        $bucket = self::createBucket(self::$client, uniqid(self::TESTING_PREFIX));
+        $bucket = self::createBucket(self::$client, \uniqid(self::TESTING_PREFIX));
         $bucket->update($this->bucketConfig());
 
         $bucket->acl()->get();
@@ -61,9 +61,9 @@ class IamConfigurationTest extends StorageTestCase
      */
     public function testObjectPolicyOnlyAclFails()
     {
-        $bucket = self::createBucket(self::$client, uniqid(self::TESTING_PREFIX));
+        $bucket = self::createBucket(self::$client, \uniqid(self::TESTING_PREFIX));
 
-        $keyfile = json_decode(file_get_contents(getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH')), true);
+        $keyfile = \json_decode(\file_get_contents(\getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH')), true);
         $client = $keyfile['client_email'];
 
         // Ensure that the bucket IAM policy grants permission to the current
@@ -102,7 +102,7 @@ class IamConfigurationTest extends StorageTestCase
 
     public function testCreateBucketWithUniformBucketLevelAccessAndInsertObject()
     {
-        $bucket = self::createBucket(self::$client, uniqid(self::TESTING_PREFIX), $this->bucketConfig());
+        $bucket = self::createBucket(self::$client, \uniqid(self::TESTING_PREFIX), $this->bucketConfig());
 
         $object = $bucket->upload('foobar', [
             'name' => 'test.txt'

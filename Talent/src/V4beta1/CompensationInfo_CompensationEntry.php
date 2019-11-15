@@ -11,6 +11,6 @@ if (false) {
      */
     class CompensationInfo_CompensationEntry {}
 }
-class_exists(CompensationInfo\CompensationEntry::class);
-@trigger_error('Google\Cloud\Talent\V4beta1\CompensationInfo_CompensationEntry is deprecated and will be removed in the next major release. Use Google\Cloud\Talent\V4beta1\CompensationInfo\CompensationEntry instead', E_USER_DEPRECATED);
+\class_exists(CompensationInfo\CompensationEntry::class);
+@\trigger_error('Google\Cloud\Talent\V4beta1\CompensationInfo_CompensationEntry is deprecated and will be removed in the next major release. Use Google\Cloud\Talent\V4beta1\CompensationInfo\CompensationEntry instead', E_USER_DEPRECATED);
 

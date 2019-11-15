@@ -48,27 +48,27 @@ class SysvConfigStorageTest extends TestCase
             );
         }
         $this->storage = new SysvConfigStorage();
-        $this->originalShmSize = getenv('GOOGLE_CLOUD_BATCH_SHM_SIZE');
-        $this->originalPerm = getenv('GOOGLE_CLOUD_BATCH_PERM');
-        $this->originalProject = getenv('GOOGLE_CLOUD_BATCH_PROJECT');
+        $this->originalShmSize = \getenv('GOOGLE_CLOUD_BATCH_SHM_SIZE');
+        $this->originalPerm = \getenv('GOOGLE_CLOUD_BATCH_PERM');
+        $this->originalProject = \getenv('GOOGLE_CLOUD_BATCH_PROJECT');
     }
 
     public function tearDown()
     {
         if ($this->originalShmSize === false) {
-            putenv("GOOGLE_CLOUD_BATCH_SHM_SIZE");
+            \putenv("GOOGLE_CLOUD_BATCH_SHM_SIZE");
         } else {
-            putenv("GOOGLE_CLOUD_BATCH_SHM_SIZE=$this->originalShmSize");
+            \putenv("GOOGLE_CLOUD_BATCH_SHM_SIZE=$this->originalShmSize");
         }
         if ($this->originalPerm === false) {
-            putenv("GOOGLE_CLOUD_BATCH_PERM");
+            \putenv("GOOGLE_CLOUD_BATCH_PERM");
         } else {
-            putenv("GOOGLE_CLOUD_BATCH_PERM=$this->originalPerm");
+            \putenv("GOOGLE_CLOUD_BATCH_PERM=$this->originalPerm");
         }
         if ($this->originalProject === false) {
-            putenv("GOOGLE_CLOUD_BATCH_PROJECT");
+            \putenv("GOOGLE_CLOUD_BATCH_PROJECT");
         } else {
-            putenv("GOOGLE_CLOUD_BATCH_PROJECT=$this->originalProject");
+            \putenv("GOOGLE_CLOUD_BATCH_PROJECT=$this->originalProject");
         }
     }
 
@@ -108,9 +108,9 @@ class SysvConfigStorageTest extends TestCase
 
     public function testDefaultValues()
     {
-        putenv('GOOGLE_CLOUD_BATCH_SHM_SIZE');
-        putenv('GOOGLE_CLOUD_BATCH_PERM');
-        putenv('GOOGLE_CLOUD_BATCH_PROJECT');
+        \putenv('GOOGLE_CLOUD_BATCH_SHM_SIZE');
+        \putenv('GOOGLE_CLOUD_BATCH_PERM');
+        \putenv('GOOGLE_CLOUD_BATCH_PROJECT');
         $r = new \ReflectionObject($this->storage);
         $p = $r->getProperty('shmSize');
         $p->setAccessible(true);
@@ -125,9 +125,9 @@ class SysvConfigStorageTest extends TestCase
 
     public function testEnvVarCustomization()
     {
-        putenv('GOOGLE_CLOUD_BATCH_SHM_SIZE=10');
-        putenv('GOOGLE_CLOUD_BATCH_PERM=0666');
-        putenv('GOOGLE_CLOUD_BATCH_PROJECT=B');
+        \putenv('GOOGLE_CLOUD_BATCH_SHM_SIZE=10');
+        \putenv('GOOGLE_CLOUD_BATCH_PERM=0666');
+        \putenv('GOOGLE_CLOUD_BATCH_PROJECT=B');
         $storage = new SysvConfigStorage();
         $r = new \ReflectionObject($storage);
         $p = $r->getProperty('shmSize');

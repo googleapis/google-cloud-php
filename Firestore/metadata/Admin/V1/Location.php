@@ -16,7 +16,7 @@ class Location
         }
         \GPBMetadata\Google\Type\Latlng::initOnce();
         \GPBMetadata\Google\Api\Annotations::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0abd020a28676f6f676c652f6669726573746f72652f61646d696e2f7631" .
             "2f6c6f636174696f6e2e70726f746f1219676f6f676c652e666972657374" .
             "6f72652e61646d696e2e76311a1c676f6f676c652f6170692f616e6e6f74" .

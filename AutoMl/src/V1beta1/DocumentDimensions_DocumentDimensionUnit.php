@@ -11,6 +11,6 @@ if (false) {
      */
     class DocumentDimensions_DocumentDimensionUnit {}
 }
-class_exists(DocumentDimensions\DocumentDimensionUnit::class);
-@trigger_error('Google\Cloud\AutoMl\V1beta1\DocumentDimensions_DocumentDimensionUnit is deprecated and will be removed in the next major release. Use Google\Cloud\AutoMl\V1beta1\DocumentDimensions\DocumentDimensionUnit instead', E_USER_DEPRECATED);
+\class_exists(DocumentDimensions\DocumentDimensionUnit::class);
+@\trigger_error('Google\Cloud\AutoMl\V1beta1\DocumentDimensions_DocumentDimensionUnit is deprecated and will be removed in the next major release. Use Google\Cloud\AutoMl\V1beta1\DocumentDimensions\DocumentDimensionUnit instead', E_USER_DEPRECATED);
 

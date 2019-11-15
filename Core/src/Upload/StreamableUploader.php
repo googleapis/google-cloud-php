@@ -51,7 +51,7 @@ class StreamableUploader extends ResumableUploader
         } else {
             $rangeEnd = '*';
             $data = $this->data->getContents();
-            $writeSize = strlen($data);
+            $writeSize = \strlen($data);
         }
 
         // do the streaming write
@@ -81,6 +81,6 @@ class StreamableUploader extends ResumableUploader
         // reset the buffer with the remaining contents
         $this->rangeStart += $writeSize;
 
-        return json_decode($response->getBody(), true);
+        return \json_decode($response->getBody(), true);
     }
 }

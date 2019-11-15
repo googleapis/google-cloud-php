@@ -84,7 +84,7 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
             Argument::withEntry('transaction', self::TRANSACTION),
             Argument::withEntry('mode', 'TRANSACTIONAL'),
             Argument::that(function ($args) {
-                $value = 'name|'.serialize('Bob');
+                $value = 'name|'.\serialize('Bob');
 
                 return $args['mutations'][0]['upsert']['key']['partitionId']['namespaceId'] === 'sessions'
                     && $args['mutations'][0]['upsert']['key']['path'][0]['kind'] === 'PHPSESSID'
@@ -98,7 +98,7 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
 
         $res = $snippet->invoke();
-        session_write_close();
+        \session_write_close();
 
         $this->assertEquals('Bob', $res->output());
     }
@@ -130,14 +130,14 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
         $this->connection->commit(Argument::any())
             ->shouldBeCalled()
             ->will(function () {
-                trigger_error('oops!', E_USER_WARNING);
+                \trigger_error('oops!', E_USER_WARNING);
             });
 
         $this->refreshOperation($this->client, $this->connection->reveal());
         $snippet->addLocal('datastore', $this->client);
 
         $res = $snippet->invoke();
-        session_write_close();
+        \session_write_close();
 
         $this->assertEquals('Bob', $res->output());
     }

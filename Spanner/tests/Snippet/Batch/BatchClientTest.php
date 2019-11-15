@@ -68,7 +68,7 @@ class BatchClientTest extends SnippetTestCase
 
     public function testPubSubExample()
     {
-        $time = time();
+        $time = \time();
         $query = 'SELECT * FROM Users WHERE firstName = %s AND location = %s';
         $opts = [
             'parameters' => [
@@ -79,7 +79,7 @@ class BatchClientTest extends SnippetTestCase
 
         $publisher = $this->snippetFromClass(BatchClient::class, 1);
         $subscriber = $this->snippetFromClass(BatchClient::class, 2);
-        $snapshotString = base64_encode(json_encode([
+        $snapshotString = \base64_encode(\json_encode([
             'sessionName' => self::SESSION,
             'transactionId' => self::TRANSACTION,
             'readTimestamp' => (new Timestamp(\DateTime::createFromFormat('U', (string) $time)))->formatAsString()
@@ -190,7 +190,7 @@ class BatchClientTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(BatchClient::class, 'snapshot');
         $snippet->addLocal('batch', $this->client);
 
-        $time = time();
+        $time = \time();
 
         $this->connection->createSession(Argument::any())
             ->shouldBeCalledTimes(1)
@@ -214,7 +214,7 @@ class BatchClientTest extends SnippetTestCase
     {
         $timestamp = new Timestamp(new \DateTime);
 
-        $identifier = base64_encode(json_encode([
+        $identifier = \base64_encode(\json_encode([
             'sessionName' => self::SESSION,
             'transactionId' => self::TRANSACTION,
             'readTimestamp' => (string) $timestamp

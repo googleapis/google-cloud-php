@@ -114,7 +114,7 @@ class BootstrapTest extends TestCase
      */
     public function testExceptionHandler($exception)
     {
-        $expectedMessage = sprintf('PHP Notice: %s', (string)$exception);
+        $expectedMessage = \sprintf('PHP Notice: %s', (string)$exception);
         $expectedContext = [
             'context' => [
                 'reportLocation' => [
@@ -143,7 +143,7 @@ class BootstrapTest extends TestCase
     public function testExceptionHandlerWithoutLogger(
         $exception
     ) {
-        $expectedMessage = sprintf('PHP Notice: %s', (string)$exception);
+        $expectedMessage = \sprintf('PHP Notice: %s', (string)$exception);
         Bootstrap::$psrLogger = null;
         Bootstrap::exceptionHandler($exception);
         $this->assertEquals($expectedMessage . PHP_EOL, MockValues::$stderr);
@@ -175,7 +175,7 @@ class BootstrapTest extends TestCase
         $this->psrBatchLogger->getMetadataProvider()
             ->willReturn($metadataProvider)
             ->shouldBeCalledTimes(2);
-        $expectedMessage = sprintf(
+        $expectedMessage = \sprintf(
             '%s: %s in %s on line %d',
             Bootstrap::getErrorPrefix($error['type']),
             $error['message'],
@@ -260,7 +260,7 @@ class BootstrapTest extends TestCase
 
         $fatalErrors = [E_ERROR, E_PARSE, E_COMPILE_ERROR, E_COMPILE_WARNING,
                         E_CORE_ERROR, E_CORE_WARNING];
-        if (!in_array($error['type'], $fatalErrors, true)) {
+        if (!\in_array($error['type'], $fatalErrors, true)) {
             // The shutdownHandler should not do anything, so it should pass
             // with the empty psrBatchLogger mock.
             Bootstrap::$psrLogger = $this->psrBatchLogger->reveal();
@@ -270,7 +270,7 @@ class BootstrapTest extends TestCase
         $this->psrBatchLogger->getMetadataProvider()
             ->willReturn($metadataProvider)
             ->shouldBeCalledTimes(2);
-        $expectedMessage = sprintf(
+        $expectedMessage = \sprintf(
             '%s: %s in %s on line %d',
             Bootstrap::getErrorPrefix($error['type']),
             $error['message'],

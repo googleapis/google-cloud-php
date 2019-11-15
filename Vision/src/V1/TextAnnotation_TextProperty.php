@@ -11,6 +11,6 @@ if (false) {
      */
     class TextAnnotation_TextProperty {}
 }
-class_exists(TextAnnotation\TextProperty::class);
-@trigger_error('Google\Cloud\Vision\V1\TextAnnotation_TextProperty is deprecated and will be removed in a future release. Use Google\Cloud\Vision\V1\TextAnnotation\TextProperty instead', E_USER_DEPRECATED);
+\class_exists(TextAnnotation\TextProperty::class);
+@\trigger_error('Google\Cloud\Vision\V1\TextAnnotation_TextProperty is deprecated and will be removed in a future release. Use Google\Cloud\Vision\V1\TextAnnotation\TextProperty instead', E_USER_DEPRECATED);
 

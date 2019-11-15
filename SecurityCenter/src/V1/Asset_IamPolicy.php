@@ -11,6 +11,6 @@ if (false) {
      */
     class Asset_IamPolicy {}
 }
-class_exists(Asset\IamPolicy::class);
-@trigger_error('Google\Cloud\SecurityCenter\V1\Asset_IamPolicy is deprecated and will be removed in a future release. Use Google\Cloud\SecurityCenter\V1\Asset\IamPolicy instead', E_USER_DEPRECATED);
+\class_exists(Asset\IamPolicy::class);
+@\trigger_error('Google\Cloud\SecurityCenter\V1\Asset_IamPolicy is deprecated and will be removed in a future release. Use Google\Cloud\SecurityCenter\V1\Asset\IamPolicy instead', E_USER_DEPRECATED);
 

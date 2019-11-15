@@ -11,6 +11,6 @@ if (false) {
      */
     class ClassificationEvaluationMetrics_ConfidenceMetricsEntry {}
 }
-class_exists(ClassificationEvaluationMetrics\ConfidenceMetricsEntry::class);
-@trigger_error('Google\Cloud\AutoMl\V1\ClassificationEvaluationMetrics_ConfidenceMetricsEntry is deprecated and will be removed in the next major release. Use Google\Cloud\AutoMl\V1\ClassificationEvaluationMetrics\ConfidenceMetricsEntry instead', E_USER_DEPRECATED);
+\class_exists(ClassificationEvaluationMetrics\ConfidenceMetricsEntry::class);
+@\trigger_error('Google\Cloud\AutoMl\V1\ClassificationEvaluationMetrics_ConfidenceMetricsEntry is deprecated and will be removed in the next major release. Use Google\Cloud\AutoMl\V1\ClassificationEvaluationMetrics\ConfidenceMetricsEntry instead', E_USER_DEPRECATED);
 

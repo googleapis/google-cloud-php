@@ -11,6 +11,6 @@ if (false) {
      */
     class StructuredQuery_Direction {}
 }
-class_exists(StructuredQuery\Direction::class);
-@trigger_error('Google\Cloud\Firestore\V1\StructuredQuery_Direction is deprecated and will be removed in the next major release. Use Google\Cloud\Firestore\V1\StructuredQuery\Direction instead', E_USER_DEPRECATED);
+\class_exists(StructuredQuery\Direction::class);
+@\trigger_error('Google\Cloud\Firestore\V1\StructuredQuery_Direction is deprecated and will be removed in the next major release. Use Google\Cloud\Firestore\V1\StructuredQuery\Direction instead', E_USER_DEPRECATED);
 

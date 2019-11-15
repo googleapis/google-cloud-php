@@ -473,10 +473,10 @@ class Landmarks extends AbstractFeature
 
     private function getLandmark($type)
     {
-        $result = array_filter($this->info, function ($landmark) use ($type) {
+        $result = \array_filter($this->info, function ($landmark) use ($type) {
             return $type === $landmark['type'];
         });
 
-        return array_shift($result)['position'];
+        return \array_shift($result)['position'];
     }
 }

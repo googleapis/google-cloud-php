@@ -11,6 +11,6 @@ if (false) {
      */
     class ColumnSpec_CorrelatedColumn {}
 }
-class_exists(ColumnSpec\CorrelatedColumn::class);
-@trigger_error('Google\Cloud\AutoMl\V1beta1\ColumnSpec_CorrelatedColumn is deprecated and will be removed in the next major release. Use Google\Cloud\AutoMl\V1beta1\ColumnSpec\CorrelatedColumn instead', E_USER_DEPRECATED);
+\class_exists(ColumnSpec\CorrelatedColumn::class);
+@\trigger_error('Google\Cloud\AutoMl\V1beta1\ColumnSpec_CorrelatedColumn is deprecated and will be removed in the next major release. Use Google\Cloud\AutoMl\V1beta1\ColumnSpec\CorrelatedColumn instead', E_USER_DEPRECATED);
 

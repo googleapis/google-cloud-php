@@ -82,8 +82,8 @@ class CollectionReferenceTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(CollectionReference::class, 'id');
         $snippet->addLocal('collection', $this->collection);
         $res = $snippet->invoke('id');
-        $parts = explode('/', self::NAME);
-        $this->assertEquals(array_pop($parts), $res->returnVal());
+        $parts = \explode('/', self::NAME);
+        $this->assertEquals(\array_pop($parts), $res->returnVal());
     }
 
     public function testDocument()
@@ -120,8 +120,8 @@ class CollectionReferenceTest extends SnippetTestCase
 
     public function testListDocuments()
     {
-        $parts = explode('/', self::NAME);
-        $id = end($parts);
+        $parts = \explode('/', self::NAME);
+        $id = \end($parts);
 
         $docName = self::NAME . '/foo';
 
@@ -138,7 +138,7 @@ class CollectionReferenceTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(CollectionReference::class, 'listDocuments');
         $snippet->addLocal('collection', $this->collection);
         $res = $snippet->invoke('documents');
-        $docs = iterator_to_array($res->returnVal());
+        $docs = \iterator_to_array($res->returnVal());
 
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
         $this->assertContainsOnlyInstancesOf(DocumentReference::class, $docs);

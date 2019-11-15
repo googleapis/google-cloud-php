@@ -41,5 +41,5 @@ class PublishFindingsToCloudDataCatalog extends \Google\Protobuf\Internal\Messag
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PublishFindingsToCloudDataCatalog::class, \Google\Cloud\Dlp\V2\Action_PublishFindingsToCloudDataCatalog::class);
+\class_alias(PublishFindingsToCloudDataCatalog::class, \Google\Cloud\Dlp\V2\Action_PublishFindingsToCloudDataCatalog::class);
 

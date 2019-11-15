@@ -86,8 +86,8 @@ class Operation
         return [
             $operation => [
                 'table' => $table,
-                'columns' => array_keys($mutation),
-                'values' => $this->mapper->encodeValuesAsSimpleType(array_values($mutation))
+                'columns' => \array_keys($mutation),
+                'values' => $this->mapper->encodeValuesAsSimpleType(\array_values($mutation))
             ]
         ];
     }
@@ -215,7 +215,7 @@ class Operation
         ] + $options);
 
         // Iterate through the result to ensure we have query statistics available.
-        iterator_to_array($res->rows());
+        \iterator_to_array($res->rows());
 
         $stats = $res->stats();
         if (!$stats) {
@@ -289,7 +289,7 @@ class Operation
 
         $errorStatement = null;
         if (isset($res['status']) && $res['status']['code'] !== Code::OK) {
-            $errIndex = count($res['resultSets']);
+            $errIndex = \count($res['resultSets']);
             $errorStatement = $statements[$errIndex];
         }
 
@@ -654,7 +654,7 @@ class Operation
      */
     private function partitionOptions(array $options)
     {
-        $options['partitionOptions'] = array_filter([
+        $options['partitionOptions'] = \array_filter([
             'partitionSizeBytes' => $this->pluck('partitionSizeBytes', $options, false),
             'maxPartitions' => $this->pluck('maxPartitions', $options, false)
         ]);
@@ -719,7 +719,7 @@ class Operation
     public function __debugInfo()
     {
         return [
-            'connection' => get_class($this->connection),
+            'connection' => \get_class($this->connection),
         ];
     }
 }

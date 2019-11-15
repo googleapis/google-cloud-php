@@ -51,7 +51,7 @@ class PartitionedDmlTest extends SpannerTestCase
 
         $res = $db->execute('SELECT id FROM ' . self::PDML_TABLE . ' t WHERE t.stringField != @stringValue', $opts);
 
-        $this->assertCount(0, iterator_to_array($res));
+        $this->assertCount(0, \iterator_to_array($res));
     }
 
     private function seedTable()

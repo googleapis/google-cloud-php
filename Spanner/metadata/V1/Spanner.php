@@ -27,7 +27,7 @@ class Spanner
         \GPBMetadata\Google\Spanner\V1\ResultSet::initOnce();
         \GPBMetadata\Google\Spanner\V1\Transaction::initOnce();
         \GPBMetadata\Google\Spanner\V1\Type::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0ad33b0a1f676f6f676c652f7370616e6e65722f76312f7370616e6e6572" .
             "2e70726f746f1211676f6f676c652e7370616e6e65722e76311a17676f6f" .
             "676c652f6170692f636c69656e742e70726f746f1a1f676f6f676c652f61" .

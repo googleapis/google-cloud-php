@@ -413,10 +413,10 @@ class ServiceBuilder
      */
     private function createClient($class, $packageName, array $config = [])
     {
-        if (class_exists($class)) {
+        if (\class_exists($class)) {
             return new $class($this->resolveConfig($config + $this->config));
         }
-        throw new \Exception(sprintf(
+        throw new \Exception(\sprintf(
             'The google/cloud-%s package is missing and must be installed.',
             $packageName
         ));
@@ -442,6 +442,6 @@ class ServiceBuilder
                 : [HttpHandlerFactory::build(), 'async'];
         }
 
-        return array_merge($this->config, $config);
+        return \array_merge($this->config, $config);
     }
 }

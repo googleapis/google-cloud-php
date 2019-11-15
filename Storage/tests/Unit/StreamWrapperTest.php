@@ -63,10 +63,10 @@ class StreamWrapperTest extends TestCase
     {
         $this->mockObjectData("existing_file.txt", "some data to read");
 
-        $fp = fopen('gs://my_bucket/existing_file.txt', 'r');
-        $this->assertEquals("some da", fread($fp, 7));
-        $this->assertEquals("ta to read", fread($fp, 1000));
-        fclose($fp);
+        $fp = \fopen('gs://my_bucket/existing_file.txt', 'r');
+        $this->assertEquals("some da", \fread($fp, 7));
+        $this->assertEquals("ta to read", \fread($fp, 1000));
+        \fclose($fp);
     }
 
     /**
@@ -76,7 +76,7 @@ class StreamWrapperTest extends TestCase
     {
         $this->mockDownloadException('non-existent/file.txt', NotFoundException::class);
 
-        $fp = @fopen('gs://my_bucket/non-existent/file.txt', 'r');
+        $fp = @\fopen('gs://my_bucket/non-existent/file.txt', 'r');
         $this->assertFalse($fp);
     }
 
@@ -85,7 +85,7 @@ class StreamWrapperTest extends TestCase
      */
     public function testUnknownOpenMode()
     {
-        $fp = @fopen('gs://my_bucket/existing_file.txt', 'a');
+        $fp = @\fopen('gs://my_bucket/existing_file.txt', 'a');
         $this->assertFalse($fp);
     }
 
@@ -96,7 +96,7 @@ class StreamWrapperTest extends TestCase
     {
         $this->mockObjectData("file_get_contents.txt", "some data to read");
 
-        $this->assertEquals('some data to read', file_get_contents('gs://my_bucket/file_get_contents.txt'));
+        $this->assertEquals('some data to read', \file_get_contents('gs://my_bucket/file_get_contents.txt'));
     }
 
     /**
@@ -106,10 +106,10 @@ class StreamWrapperTest extends TestCase
     {
         $this->mockObjectData("some_long_file.txt", "line1.\nline2.");
 
-        $fp = fopen('gs://my_bucket/some_long_file.txt', 'r');
-        $this->assertEquals("line1.\n", fgets($fp));
-        $this->assertEquals("line2.", fgets($fp));
-        fclose($fp);
+        $fp = \fopen('gs://my_bucket/some_long_file.txt', 'r');
+        $this->assertEquals("line1.\n", \fgets($fp));
+        $this->assertEquals("line2.", \fgets($fp));
+        \fclose($fp);
     }
 
     /**
@@ -122,10 +122,10 @@ class StreamWrapperTest extends TestCase
         $uploader->getResumeUri()->willReturn('https://resume-uri/');
         $this->bucket->getStreamableUploader("", Argument::type('array'))->willReturn($uploader->reveal());
 
-        $fp = fopen('gs://my_bucket/output.txt', 'w');
-        $this->assertEquals(6, fwrite($fp, "line1."));
-        $this->assertEquals(6, fwrite($fp, "line2."));
-        fclose($fp);
+        $fp = \fopen('gs://my_bucket/output.txt', 'w');
+        $this->assertEquals(6, \fwrite($fp, "line1."));
+        $this->assertEquals(6, \fwrite($fp, "line2."));
+        \fclose($fp);
     }
 
     /**
@@ -138,7 +138,7 @@ class StreamWrapperTest extends TestCase
         $uploader->getResumeUri()->willReturn('https://resume-uri/');
         $this->bucket->getStreamableUploader("", Argument::type('array'))->willReturn($uploader->reveal());
 
-        file_put_contents('gs://my_bucket/file_put_contents.txt', 'Some data.');
+        \file_put_contents('gs://my_bucket/file_put_contents.txt', 'Some data.');
     }
 
     /**
@@ -149,9 +149,9 @@ class StreamWrapperTest extends TestCase
         $uploader  = $this->prophesize(StreamableUploader::class);
         $this->bucket->getStreamableUploader("", Argument::type('array'))->willReturn($uploader->reveal());
 
-        $fp = fopen('gs://my_bucket/output.txt', 'w');
-        $this->assertEquals(-1, fseek($fp, 100));
-        fclose($fp);
+        $fp = \fopen('gs://my_bucket/output.txt', 'w');
+        $this->assertEquals(-1, \fseek($fp, 100));
+        \fclose($fp);
     }
 
     /**
@@ -160,9 +160,9 @@ class StreamWrapperTest extends TestCase
     public function testSeekOnReadableStream()
     {
         $this->mockObjectData("some_long_file.txt", "line1.\nline2.");
-        $fp = fopen('gs://my_bucket/some_long_file.txt', 'r');
-        $this->assertEquals(-1, fseek($fp, 100));
-        fclose($fp);
+        $fp = \fopen('gs://my_bucket/some_long_file.txt', 'r');
+        $this->assertEquals(-1, \fseek($fp, 100));
+        \fclose($fp);
     }
 
     /**
@@ -171,10 +171,10 @@ class StreamWrapperTest extends TestCase
     public function testFstat()
     {
         $this->mockObjectData("some_long_file.txt", "line1.\nline2.");
-        $fp = fopen('gs://my_bucket/some_long_file.txt', 'r');
-        $stat = fstat($fp);
+        $fp = \fopen('gs://my_bucket/some_long_file.txt', 'r');
+        $stat = \fstat($fp);
         $this->assertEquals(33206, $stat['mode']);
-        fclose($fp);
+        \fclose($fp);
     }
 
     /**
@@ -191,7 +191,7 @@ class StreamWrapperTest extends TestCase
         $this->bucket->object('some_long_file.txt')->willReturn($object->reveal());
         $this->bucket->isWritable()->willReturn(true);
 
-        $stat = stat('gs://my_bucket/some_long_file.txt');
+        $stat = \stat('gs://my_bucket/some_long_file.txt');
         $this->assertEquals(33206, $stat['mode']);
     }
 
@@ -205,7 +205,7 @@ class StreamWrapperTest extends TestCase
         $object->info()->willThrow(NotFoundException::class);
         $this->bucket->object('non-existent/file.txt')->willReturn($object->reveal());
 
-        stat('gs://my_bucket/non-existent/file.txt');
+        \stat('gs://my_bucket/non-existent/file.txt');
     }
 
     /**
@@ -216,7 +216,7 @@ class StreamWrapperTest extends TestCase
         $obj = $this->prophesize(StorageObject::class);
         $obj->delete()->willReturn(true)->shouldBeCalled();
         $this->bucket->object('some_long_file.txt')->willReturn($obj->reveal());
-        $this->assertTrue(unlink('gs://my_bucket/some_long_file.txt'));
+        $this->assertTrue(\unlink('gs://my_bucket/some_long_file.txt'));
     }
 
     /**
@@ -227,7 +227,7 @@ class StreamWrapperTest extends TestCase
         $obj = $this->prophesize(StorageObject::class);
         $obj->delete()->willThrow(NotFoundException::class);
         $this->bucket->object('some_long_file.txt')->willReturn($obj->reveal());
-        $this->assertFalse(unlink('gs://my_bucket/some_long_file.txt'));
+        $this->assertFalse(\unlink('gs://my_bucket/some_long_file.txt'));
     }
 
     /**
@@ -236,7 +236,7 @@ class StreamWrapperTest extends TestCase
     public function testMkdir()
     {
         $this->bucket->upload('', ['name' => 'foo/bar/', 'predefinedAcl' => 'publicRead'])->shouldBeCalled();
-        $this->assertTrue(mkdir('gs://my_bucket/foo/bar'));
+        $this->assertTrue(\mkdir('gs://my_bucket/foo/bar'));
     }
 
     /**
@@ -245,7 +245,7 @@ class StreamWrapperTest extends TestCase
     public function testMkdirProjectPrivate()
     {
         $this->bucket->upload('', ['name' => 'foo/bar/', 'predefinedAcl' => 'projectPrivate'])->shouldBeCalled();
-        $this->assertTrue(mkdir('gs://my_bucket/foo/bar', 0740));
+        $this->assertTrue(\mkdir('gs://my_bucket/foo/bar', 0740));
     }
 
     /**
@@ -254,7 +254,7 @@ class StreamWrapperTest extends TestCase
     public function testMkdirPrivate()
     {
         $this->bucket->upload('', ['name' => 'foo/bar/', 'predefinedAcl' => 'private'])->shouldBeCalled();
-        $this->assertTrue(mkdir('gs://my_bucket/foo/bar', 0700));
+        $this->assertTrue(\mkdir('gs://my_bucket/foo/bar', 0700));
     }
 
     /**
@@ -264,7 +264,7 @@ class StreamWrapperTest extends TestCase
     {
         $this->bucket->upload('', ['name' => 'foo/bar/', 'predefinedAcl' => 'publicRead'])
             ->willThrow(NotFoundException::class);
-        $this->assertFalse(mkdir('gs://my_bucket/foo/bar'));
+        $this->assertFalse(\mkdir('gs://my_bucket/foo/bar'));
     }
 
     /**
@@ -280,7 +280,7 @@ class StreamWrapperTest extends TestCase
         ])->willReturn($this->bucket);
         $this->bucket->upload('', ['name' => 'foo/bar/', 'predefinedAcl' => 'publicRead'])->shouldBeCalled();
 
-        $this->assertTrue(mkdir('gs://my_bucket/foo/bar', 0777, STREAM_MKDIR_RECURSIVE));
+        $this->assertTrue(\mkdir('gs://my_bucket/foo/bar', 0777, STREAM_MKDIR_RECURSIVE));
     }
 
     /**
@@ -291,7 +291,7 @@ class StreamWrapperTest extends TestCase
         $obj = $this->prophesize(StorageObject::class);
         $obj->delete()->willReturn(true)->shouldBeCalled();
         $this->bucket->object('foo/bar/')->willReturn($obj->reveal());
-        $this->assertTrue(rmdir('gs://my_bucket/foo/bar'));
+        $this->assertTrue(\rmdir('gs://my_bucket/foo/bar'));
     }
 
     /**
@@ -302,7 +302,7 @@ class StreamWrapperTest extends TestCase
         $obj = $this->prophesize(StorageObject::class);
         $obj->delete()->willThrow(NotFoundException::class);
         $this->bucket->object('foo/bar/')->willReturn($obj->reveal());
-        $this->assertFalse(rmdir('gs://my_bucket/foo/bar'));
+        $this->assertFalse(\rmdir('gs://my_bucket/foo/bar'));
     }
 
     /**
@@ -311,13 +311,13 @@ class StreamWrapperTest extends TestCase
     public function testDirectoryListing()
     {
         $this->mockDirectoryListing('foo/', ['foo/file1.txt', 'foo/file2.txt', 'foo/file3.txt', 'foo/file4.txt']);
-        $fd = opendir('gs://my_bucket/foo/');
-        $this->assertEquals('foo/file1.txt', readdir($fd));
-        $this->assertEquals('foo/file2.txt', readdir($fd));
-        $this->assertEquals('foo/file3.txt', readdir($fd));
-        rewinddir($fd);
-        $this->assertEquals('foo/file1.txt', readdir($fd));
-        closedir($fd);
+        $fd = \opendir('gs://my_bucket/foo/');
+        $this->assertEquals('foo/file1.txt', \readdir($fd));
+        $this->assertEquals('foo/file2.txt', \readdir($fd));
+        $this->assertEquals('foo/file3.txt', \readdir($fd));
+        \rewinddir($fd);
+        $this->assertEquals('foo/file1.txt', \readdir($fd));
+        \closedir($fd);
     }
 
     /**
@@ -327,7 +327,7 @@ class StreamWrapperTest extends TestCase
     {
         $files = ['foo/file1.txt', 'foo/file2.txt', 'foo/file3.txt', 'foo/file4.txt'];
         $this->mockDirectoryListing('foo/', $files);
-        $this->assertEquals($files, scandir('gs://my_bucket/foo/'));
+        $this->assertEquals($files, \scandir('gs://my_bucket/foo/'));
     }
 
     public function testRenameFile()
@@ -337,7 +337,7 @@ class StreamWrapperTest extends TestCase
         $object->rename('new_location/foo.txt', ['destinationBucket' => 'my_bucket'])->shouldBeCalled();
         $this->bucket->object('foo.txt')->willReturn($object->reveal());
 
-        $this->assertTrue(rename('gs://my_bucket/foo.txt', 'gs://my_bucket/new_location/foo.txt'));
+        $this->assertTrue(\rename('gs://my_bucket/foo.txt', 'gs://my_bucket/new_location/foo.txt'));
     }
 
     public function testRenameToDifferentBucket()
@@ -347,7 +347,7 @@ class StreamWrapperTest extends TestCase
         $object->rename('bar/foo.txt', ['destinationBucket' => 'another_bucket'])->shouldBeCalled();
         $this->bucket->object('foo.txt')->willReturn($object->reveal());
 
-        $this->assertTrue(rename('gs://my_bucket/foo.txt', 'gs://another_bucket/bar/foo.txt'));
+        $this->assertTrue(\rename('gs://my_bucket/foo.txt', 'gs://another_bucket/bar/foo.txt'));
     }
 
     public function testRenameDirectory()
@@ -366,7 +366,7 @@ class StreamWrapperTest extends TestCase
         $object->rename('nested/folder/asdf/bar.txt', ['destinationBucket' => 'another_bucket'])->shouldBeCalled();
         $this->bucket->object('foo/asdf/bar.txt')->willReturn($object->reveal());
 
-        $this->assertTrue(rename('gs://my_bucket/foo', 'gs://another_bucket/nested/folder'));
+        $this->assertTrue(\rename('gs://my_bucket/foo', 'gs://another_bucket/nested/folder'));
     }
 
     public function testCanSpecifyChunkSizeViaContext()
@@ -378,14 +378,14 @@ class StreamWrapperTest extends TestCase
         $uploader->getResumeUri()->willReturn('https://resume-uri/');
         $this->bucket->getStreamableUploader("", Argument::type('array'))->willReturn($uploader->reveal());
 
-        $context = stream_context_create(array(
+        $context = \stream_context_create(array(
             'gs' => array(
                 'chunkSize' => 5
             )
         ));
-        $fp = fopen('gs://my_bucket/existing_file.txt', 'w', false, $context);
-        $this->assertEquals(9, fwrite($fp, "123456789"));
-        fclose($fp);
+        $fp = \fopen('gs://my_bucket/existing_file.txt', 'w', false, $context);
+        $this->assertEquals(9, \fwrite($fp, "123456789"));
+        \fclose($fp);
     }
 
     private function mockObjectData($file, $data, $bucket = null)

@@ -11,6 +11,6 @@ if (false) {
      */
     class OrganizationSettings_AssetDiscoveryConfig_InclusionMode {}
 }
-class_exists(OrganizationSettings\AssetDiscoveryConfig\InclusionMode::class);
-@trigger_error('Google\Cloud\SecurityCenter\V1\OrganizationSettings_AssetDiscoveryConfig_InclusionMode is deprecated and will be removed in a future release. Use Google\Cloud\SecurityCenter\V1\OrganizationSettings\AssetDiscoveryConfig\InclusionMode instead', E_USER_DEPRECATED);
+\class_exists(OrganizationSettings\AssetDiscoveryConfig\InclusionMode::class);
+@\trigger_error('Google\Cloud\SecurityCenter\V1\OrganizationSettings_AssetDiscoveryConfig_InclusionMode is deprecated and will be removed in a future release. Use Google\Cloud\SecurityCenter\V1\OrganizationSettings\AssetDiscoveryConfig\InclusionMode instead', E_USER_DEPRECATED);
 

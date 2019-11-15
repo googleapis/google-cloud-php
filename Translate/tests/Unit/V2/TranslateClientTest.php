@@ -288,7 +288,7 @@ class TranslateClientTest extends TestCase
 
     private function getTranslateApiData($translatedText, $source = null, $model = 'base')
     {
-        return array_filter([
+        return \array_filter([
             'translatedText' => $translatedText,
             'detectedSourceLanguage' => $source,
             'model' => $model
@@ -307,7 +307,7 @@ class TranslateClientTest extends TestCase
 
     private function getDetectionApiData($language, $confidence)
     {
-        return array_filter([
+        return \array_filter([
             [
                 'language' => $language,
                 'isReliable' => false,
@@ -318,7 +318,7 @@ class TranslateClientTest extends TestCase
 
     private function getDetectionExpectedData($textToDetect, $detectedLanguage, $confidence = null)
     {
-        return array_filter([
+        return \array_filter([
             'input' => $textToDetect,
             'languageCode' => $detectedLanguage,
             'confidence' => $confidence
@@ -327,7 +327,7 @@ class TranslateClientTest extends TestCase
 
     private function getLanguageApiData($languageCode, $name = null)
     {
-        return array_filter([
+        return \array_filter([
             'language' => $languageCode,
             'name' => $name
         ]);

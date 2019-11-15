@@ -56,7 +56,7 @@ class Scanner implements ScannerInterface
     public function __construct(Parser $parser, $basePath, array $exclude = [])
     {
         $this->parser = $parser;
-        if (is_string($basePath)) {
+        if (\is_string($basePath)) {
             $basePath = [$basePath];
         }
         $this->basePath = $basePath;
@@ -89,7 +89,7 @@ class Scanner implements ScannerInterface
             );
 
             foreach ($fileList as $item) {
-                array_push($files, realPath($item->getPathName()));
+                \array_push($files, \realPath($item->getPathName()));
             }
         }
 
@@ -99,7 +99,7 @@ class Scanner implements ScannerInterface
     private function checkExclude($className, array $exclude)
     {
         foreach ($exclude as $pattern) {
-            if (preg_match($pattern, $className)) {
+            if (\preg_match($pattern, $className)) {
                 return true;
             }
         }
@@ -146,12 +146,12 @@ class Scanner implements ScannerInterface
         $snippets = [];
         foreach ($classes as $class) {
             try {
-                $snippets = array_merge(
+                $snippets = \array_merge(
                     $snippets,
                     $this->parser->allExamples(new \ReflectionClass($class))
                 );
             } catch (\ReflectionException $e) {
-                throw new \RuntimeException(sprintf(
+                throw new \RuntimeException(\sprintf(
                     "Error in class %s: %s",
                     $class,
                     $e->getMessage()

@@ -85,8 +85,8 @@ class LoggerTest extends SnippetTestCase
 
         $res = $snippet->invoke('entries');
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
-        $this->assertEquals('foo', explode(PHP_EOL, $res->output())[0]);
-        $this->assertEquals('bar', explode(PHP_EOL, $res->output())[1]);
+        $this->assertEquals('foo', \explode(PHP_EOL, $res->output())[0]);
+        $this->assertEquals('bar', \explode(PHP_EOL, $res->output())[1]);
     }
 
     public function testEntriesWithFilter()
@@ -95,7 +95,7 @@ class LoggerTest extends SnippetTestCase
         $snippet->addLocal('logger', $this->logger);
 
         $this->connection->listEntries(Argument::that(function ($arg) {
-            if (!isset($arg['filter']) || strpos($arg['filter'], 'AND') === false) {
+            if (!isset($arg['filter']) || \strpos($arg['filter'], 'AND') === false) {
                 return false;
             }
 
@@ -111,8 +111,8 @@ class LoggerTest extends SnippetTestCase
 
         $res = $snippet->invoke('entries');
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
-        $this->assertEquals('foo', explode(PHP_EOL, $res->output())[0]);
-        $this->assertEquals('bar', explode(PHP_EOL, $res->output())[1]);
+        $this->assertEquals('foo', \explode(PHP_EOL, $res->output())[0]);
+        $this->assertEquals('bar', \explode(PHP_EOL, $res->output())[1]);
     }
 
     public function testEntry()

@@ -247,8 +247,8 @@ class CacheSessionPool implements SessionPoolInterface
 
         // Create a session if needed.
         if ($toCreate) {
-            $createdSessions = $this->createSessions(count($toCreate))[0];
-            $hasCreatedSessions = count($createdSessions) > 0;
+            $createdSessions = $this->createSessions(\count($toCreate))[0];
+            $hasCreatedSessions = \count($createdSessions) > 0;
 
             $session = $this->config['lock']->synchronize(function () use (
                 $toCreate,
@@ -258,7 +258,7 @@ class CacheSessionPool implements SessionPoolInterface
                 $session = null;
                 $item = $this->cacheItemPool->getItem($this->cacheKey);
                 $data = $item->get();
-                $data['queue'] = array_merge($data['queue'], $createdSessions);
+                $data['queue'] = \array_merge($data['queue'], $createdSessions);
 
                 // Now that we've created the session, we can remove it from
                 // the list of intent.
@@ -267,7 +267,7 @@ class CacheSessionPool implements SessionPoolInterface
                 }
 
                 if ($hasCreatedSessions) {
-                    $session = array_shift($data['queue']);
+                    $session = \array_shift($data['queue']);
                     $data['inUse'][$session['name']] = $session + [
                         'lastActive' => $this->time()
                     ];
@@ -318,7 +318,7 @@ class CacheSessionPool implements SessionPoolInterface
 
             if (isset($data['inUse'][$name])) {
                 unset($data['inUse'][$name]);
-                array_push($data['queue'], [
+                \array_push($data['queue'], [
                     'name' => $name,
                     'expiration' => $session->expiration()
                         ?: $this->time() + SessionPoolInterface::SESSION_EXPIRATION_SECONDS
@@ -376,12 +376,12 @@ class CacheSessionPool implements SessionPoolInterface
             $item = $this->cacheItemPool->getItem($this->cacheKey);
             $data = (array) $item->get() ?: $this->initialize();
             $toDelete = [];
-            $queueCount = count($data['queue']);
-            $availableCount = max($queueCount - $this->config['minSessions'], 0);
-            $countToDelete = ceil($availableCount * ($percent * 0.01));
+            $queueCount = \count($data['queue']);
+            $availableCount = \max($queueCount - $this->config['minSessions'], 0);
+            $countToDelete = \ceil($availableCount * ($percent * 0.01));
 
             if ($countToDelete) {
-                $toDelete = array_splice($data['queue'], (int) -$countToDelete);
+                $toDelete = \array_splice($data['queue'], (int) -$countToDelete);
             }
 
             $this->cacheItemPool->save($item->set($data));
@@ -400,7 +400,7 @@ class CacheSessionPool implements SessionPoolInterface
             }
         }
 
-        return count($toDelete);
+        return \count($toDelete);
     }
 
     /**
@@ -430,12 +430,12 @@ class CacheSessionPool implements SessionPoolInterface
         }
 
         $exception = null;
-        list ($createdSessions, $exception) = $this->createSessions(count($toCreate));
+        list ($createdSessions, $exception) = $this->createSessions(\count($toCreate));
 
         $this->config['lock']->synchronize(function () use ($toCreate, $createdSessions) {
             $item = $this->cacheItemPool->getItem($this->cacheKey);
             $data = $item->get();
-            $data['queue'] = array_merge($data['queue'], $createdSessions);
+            $data['queue'] = \array_merge($data['queue'], $createdSessions);
 
             // Now that we've created the sessions, we can remove them from
             // the list of intent.
@@ -450,7 +450,7 @@ class CacheSessionPool implements SessionPoolInterface
             throw $exception;
         }
 
-        return count($toCreate);
+        return \count($toCreate);
     }
 
     /**
@@ -485,7 +485,7 @@ class CacheSessionPool implements SessionPoolInterface
     {
         $this->database = $database;
         $identity = $database->identity();
-        $this->cacheKey = sprintf(
+        $this->cacheKey = \sprintf(
             self::CACHE_KEY_TEMPLATE,
             $identity['projectId'],
             $identity['instance'],
@@ -514,7 +514,7 @@ class CacheSessionPool implements SessionPoolInterface
      */
     protected function time()
     {
-        return time();
+        return \time();
     }
 
     /**
@@ -530,7 +530,7 @@ class CacheSessionPool implements SessionPoolInterface
         $time = $this->time();
 
         for ($i = 0; $i < $number; $i++) {
-            $toCreate[uniqid($time . '_', true)] = $time;
+            $toCreate[\uniqid($time . '_', true)] = $time;
         }
 
         return $toCreate;
@@ -567,7 +567,7 @@ class CacheSessionPool implements SessionPoolInterface
                 unset($data['inUse'][$key]);
             } elseif ($session['lastActive'] + self::DURATION_TWENTY_MINUTES < $this->time()) {
                 unset($session['lastActive']);
-                array_push($data['queue'], $session);
+                \array_push($data['queue'], $session);
                 unset($data['inUse'][$key]);
             }
         }
@@ -598,9 +598,9 @@ class CacheSessionPool implements SessionPoolInterface
      */
     private function getSessionCount(array $data)
     {
-        return count($data['queue'])
-            + count($data['inUse'])
-            + count($data['toCreate']);
+        return \count($data['queue'])
+            + \count($data['inUse'])
+            + \count($data['toCreate']);
     }
 
     /**
@@ -611,7 +611,7 @@ class CacheSessionPool implements SessionPoolInterface
      */
     private function getSession(array &$data)
     {
-        $session = array_shift($data['queue']);
+        $session = \array_shift($data['queue']);
 
         if ($session) {
             if ($session['expiration'] - self::DURATION_ONE_MINUTE < $this->time()) {
@@ -748,7 +748,7 @@ class CacheSessionPool implements SessionPoolInterface
             }
 
             $elapsedCycles++;
-            usleep($this->config['sleepIntervalSeconds'] * 1000000);
+            \usleep($this->config['sleepIntervalSeconds'] * 1000000);
         }
     }
 
@@ -761,7 +761,7 @@ class CacheSessionPool implements SessionPoolInterface
     {
         if ($this->isSysvIPCLoaded()) {
             return new SemaphoreLock(
-                $this->getSysvKey(crc32($this->cacheKey))
+                $this->getSysvKey(\crc32($this->cacheKey))
             );
         }
 
@@ -825,7 +825,7 @@ class CacheSessionPool implements SessionPoolInterface
     private function manageSessionsToDelete(array &$data)
     {
         $secondsSinceLastWindow = $this->time() - $data['windowStart'];
-        $inUseCount = count($data['inUse']);
+        $inUseCount = \count($data['inUse']);
 
         if ($secondsSinceLastWindow < self::WINDOW_SIZE + 1) {
             if ($data['maxInUseSessions'] < $inUseCount) {
@@ -835,17 +835,17 @@ class CacheSessionPool implements SessionPoolInterface
             return;
         }
 
-        $totalCount = $inUseCount + count($data['queue']) + count($data['toCreate']);
+        $totalCount = $inUseCount + \count($data['queue']) + \count($data['toCreate']);
         $windowsPassed = (int) ($secondsSinceLastWindow / self::WINDOW_SIZE);
-        $deletionCount = min(
-            $totalCount - (int) round($data['maxInUseSessions'] / $windowsPassed),
+        $deletionCount = \min(
+            $totalCount - (int) \round($data['maxInUseSessions'] / $windowsPassed),
             $totalCount - $this->config['minSessions']
         );
         $data['maxInUseSessions'] = $inUseCount;
         $data['windowStart'] = $this->time();
 
         if ($deletionCount) {
-            $this->deleteQueue += array_splice(
+            $this->deleteQueue += \array_splice(
                 $data['queue'],
                 (int) -$deletionCount
             );

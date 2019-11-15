@@ -11,6 +11,6 @@ if (false) {
      */
     class ImportedDataInfo_RecordSchema {}
 }
-class_exists(ImportedDataInfo\RecordSchema::class);
-@trigger_error('Google\Cloud\BigQuery\DataTransfer\V1\ImportedDataInfo_RecordSchema is deprecated and will be removed in a future release. Use Google\Cloud\BigQuery\DataTransfer\V1\ImportedDataInfo\RecordSchema instead', E_USER_DEPRECATED);
+\class_exists(ImportedDataInfo\RecordSchema::class);
+@\trigger_error('Google\Cloud\BigQuery\DataTransfer\V1\ImportedDataInfo_RecordSchema is deprecated and will be removed in a future release. Use Google\Cloud\BigQuery\DataTransfer\V1\ImportedDataInfo\RecordSchema instead', E_USER_DEPRECATED);
 

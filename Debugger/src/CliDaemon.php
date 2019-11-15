@@ -56,21 +56,21 @@ class CliDaemon
         $sourceRoot = $options['sourceRoot'];
 
         if ($config) {
-            if (!file_exists($config)) {
+            if (!\file_exists($config)) {
                 throw new \UnexpectedValueException("Config file '$config' does not exist.");
             }
             // Load the config file. The config file should return a configured
             // Daemon instance.
             $this->daemon = require_once $config;
 
-            if (!is_object($this->daemon) || get_class($this->daemon) !== Daemon::class) {
+            if (!\is_object($this->daemon) || \get_class($this->daemon) !== Daemon::class) {
                 throw new \UnexpectedValueException('Config file does not return a Daemon instance.');
             }
         } elseif ($sourceRoot) {
-            if (!file_exists($sourceRoot)) {
+            if (!\file_exists($sourceRoot)) {
                 throw new \UnexpectedValueException("Source root '$sourceRoot' does not exist.");
             }
-            if (!is_dir($sourceRoot)) {
+            if (!\is_dir($sourceRoot)) {
                 throw new \UnexpectedValueException("Source root '$sourceRoot' is not a directory.");
             }
             $this->daemon = new Daemon([

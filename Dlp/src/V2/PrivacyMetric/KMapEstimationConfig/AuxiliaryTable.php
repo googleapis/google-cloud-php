@@ -148,5 +148,5 @@ class AuxiliaryTable extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AuxiliaryTable::class, \Google\Cloud\Dlp\V2\PrivacyMetric_KMapEstimationConfig_AuxiliaryTable::class);
+\class_alias(AuxiliaryTable::class, \Google\Cloud\Dlp\V2\PrivacyMetric_KMapEstimationConfig_AuxiliaryTable::class);
 

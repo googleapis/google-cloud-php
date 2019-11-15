@@ -14,7 +14,7 @@ class DroppedLabels
         if (static::$is_initialized == true) {
           return;
         }
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0af4020a29676f6f676c652f6d6f6e69746f72696e672f76332f64726f70" .
             "7065645f6c6162656c732e70726f746f1214676f6f676c652e6d6f6e6974" .
             "6f72696e672e7633227c0a0d44726f707065644c6162656c73123d0a056c" .

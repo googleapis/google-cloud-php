@@ -163,7 +163,7 @@ class AvailabilitySignal extends \Google\Protobuf\Internal\Message
     public function getFilterSatisfiedValue()
     {
         $wrapper = $this->getFilterSatisfied();
-        return is_null($wrapper) ? null : $wrapper->getValue();
+        return \is_null($wrapper) ? null : $wrapper->getValue();
     }
 
     /**
@@ -210,7 +210,7 @@ class AvailabilitySignal extends \Google\Protobuf\Internal\Message
      */
     public function setFilterSatisfiedValue($var)
     {
-        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
+        $wrappedVar = \is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
         return $this->setFilterSatisfied($wrappedVar);
     }
 

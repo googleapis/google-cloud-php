@@ -32,10 +32,10 @@ class OperationsTest extends SpannerTestCase
 
     public static function setUpBeforeClass()
     {
-        self::$id1 = rand(1000, 9999);
-        self::$id2 = rand(1, 999);
-        self::$name1 = uniqid(self::TESTING_PREFIX);
-        self::$name2 = uniqid(self::TESTING_PREFIX);
+        self::$id1 = \rand(1000, 9999);
+        self::$id2 = \rand(1, 999);
+        self::$name1 = \uniqid(self::TESTING_PREFIX);
+        self::$name2 = \uniqid(self::TESTING_PREFIX);
 
         parent::setUpBeforeClass();
 
@@ -137,7 +137,7 @@ class OperationsTest extends SpannerTestCase
         $keySet = self::$client->keySet(['keys' => [99999]]);
 
         $res = $db->read(self::TEST_TABLE_NAME, $keySet, ['id','name']);
-        $this->assertEmpty(iterator_to_array($res->rows()));
+        $this->assertEmpty(\iterator_to_array($res->rows()));
     }
 
     public function testEmptyReadOnIndex()
@@ -150,7 +150,7 @@ class OperationsTest extends SpannerTestCase
             'index' => self::TEST_INDEX_NAME
         ]);
 
-        $this->assertEmpty(iterator_to_array($res->rows()));
+        $this->assertEmpty(\iterator_to_array($res->rows()));
     }
 
     public function testReadSingleKeyFromIndex()
@@ -175,7 +175,7 @@ class OperationsTest extends SpannerTestCase
         ]);
 
         $res = $db->read(self::TEST_TABLE_NAME, $keySet, ['id','name']);
-        $this->assertEmpty(iterator_to_array($res->rows()));
+        $this->assertEmpty(\iterator_to_array($res->rows()));
     }
 
     public function testReadNonExistentSingleKeyFromIndex()
@@ -188,7 +188,7 @@ class OperationsTest extends SpannerTestCase
             'index' => self::TEST_INDEX_NAME
         ]);
 
-        $this->assertEmpty(iterator_to_array($res->rows()));
+        $this->assertEmpty(\iterator_to_array($res->rows()));
     }
 
     private function getRow()

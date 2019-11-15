@@ -168,5 +168,5 @@ class Card extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Card::class, \Google\Cloud\Dialogflow\V2\Intent_Message_Card::class);
+\class_alias(Card::class, \Google\Cloud\Dialogflow\V2\Intent_Message_Card::class);
 

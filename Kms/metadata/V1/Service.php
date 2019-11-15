@@ -18,7 +18,7 @@ class Service
         \GPBMetadata\Google\Cloud\Kms\V1\Resources::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         \GPBMetadata\Google\Api\Client::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0af53d0a21676f6f676c652f636c6f75642f6b6d732f76312f7365727669" .
             "63652e70726f746f1213676f6f676c652e636c6f75642e6b6d732e76311a" .
             "23676f6f676c652f636c6f75642f6b6d732f76312f7265736f7572636573" .

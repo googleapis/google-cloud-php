@@ -68,7 +68,7 @@ class FirestoreClientTest extends TestCase
 
     public function testBatchCorrectDatabaseName()
     {
-        $db = sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE);
+        $db = \sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE);
         $this->connection->commit(Argument::withEntry('database', $db))
             ->shouldBeCalled()
             ->willReturn([[]]);
@@ -107,7 +107,7 @@ class FirestoreClientTest extends TestCase
 
         $this->assertInstanceOf(ItemIterator::class, $collections);
 
-        $arr = iterator_to_array($collections);
+        $arr = \iterator_to_array($collections);
         $this->assertInstanceOf(CollectionReference::class, $arr[0]);
         $this->assertEquals($arr[0]->id(), $collectionIds[0]);
         $this->assertEquals($arr[1]->id(), $collectionIds[1]);
@@ -179,7 +179,7 @@ class FirestoreClientTest extends TestCase
      */
     public function testInvalidPath($method, $name)
     {
-        call_user_func([$this->client, $method], $name);
+        \call_user_func([$this->client, $method], $name);
     }
 
     public function paths()
@@ -287,9 +287,9 @@ class FirestoreClientTest extends TestCase
     {
         $tpl = 'projects/'. self::PROJECT .'/databases/'. self::DATABASE .'/documents/a/%s';
         $names = [
-            sprintf($tpl, 'a'),
-            sprintf($tpl, 'b'),
-            sprintf($tpl, 'c'),
+            \sprintf($tpl, 'a'),
+            \sprintf($tpl, 'b'),
+            \sprintf($tpl, 'c'),
         ];
 
         $res = [

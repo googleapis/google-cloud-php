@@ -71,6 +71,6 @@ class SimpleJob implements JobInterface
         if ($this->bootstrapFile) {
             require_once $this->bootstrapFile;
         }
-        call_user_func($this->func);
+        \call_user_func($this->func);
     }
 }

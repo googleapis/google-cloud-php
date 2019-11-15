@@ -19,7 +19,7 @@ class ResultSet
         \GPBMetadata\Google\Spanner\V1\Transaction::initOnce();
         \GPBMetadata\Google\Spanner\V1\Type::initOnce();
         \GPBMetadata\Google\Api\Annotations::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0a8e080a22676f6f676c652f7370616e6e65722f76312f726573756c745f" .
             "7365742e70726f746f1211676f6f676c652e7370616e6e65722e76311a22" .
             "676f6f676c652f7370616e6e65722f76312f71756572795f706c616e2e70" .

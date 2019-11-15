@@ -89,7 +89,7 @@ class QuerySnapshot implements \IteratorAggregate
      */
     public function size()
     {
-        return count($this->rows);
+        return \count($this->rows);
     }
 
     /**

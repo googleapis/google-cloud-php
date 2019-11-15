@@ -105,5 +105,5 @@ class ContentMatcher extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ContentMatcher::class, \Google\Cloud\Monitoring\V3\UptimeCheckConfig_ContentMatcher::class);
+\class_alias(ContentMatcher::class, \Google\Cloud\Monitoring\V3\UptimeCheckConfig_ContentMatcher::class);
 

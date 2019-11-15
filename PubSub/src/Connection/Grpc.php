@@ -149,7 +149,7 @@ class Grpc implements ConnectionInterface
     public function updateTopic(array $args)
     {
         $updateMaskPaths = [];
-        foreach (explode(',', $this->pluck('updateMask', $args)) as $path) {
+        foreach (\explode(',', $this->pluck('updateMask', $args)) as $path) {
             $updateMaskPaths[] = Serializer::toSnakeCase($path);
         }
 
@@ -246,7 +246,7 @@ class Grpc implements ConnectionInterface
     public function updateSubscription(array $args)
     {
         $updateMaskPaths = [];
-        foreach (explode(',', $this->pluck('updateMask', $args)) as $path) {
+        foreach (\explode(',', $this->pluck('updateMask', $args)) as $path) {
             $updateMaskPaths[] = Serializer::toSnakeCase($path);
         }
 
@@ -502,9 +502,9 @@ class Grpc implements ConnectionInterface
 
     private function transformDuration($v)
     {
-        if (is_string($v)) {
-            $d = explode('.', trim($v, 's'));
-            if (count($d) !== 2) {
+        if (\is_string($v)) {
+            $d = \explode('.', \trim($v, 's'));
+            if (\count($d) !== 2) {
                 return null;
             }
 

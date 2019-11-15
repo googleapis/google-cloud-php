@@ -64,7 +64,7 @@ class PubSubClientTest extends SnippetTestCase
 
         $this->assertInstanceOf(PubSubClient::class, $res->returnVal());
 
-        putenv('PUBSUB_EMULATOR_HOST');
+        \putenv('PUBSUB_EMULATOR_HOST');
     }
 
     public function testCreateTopic()
@@ -242,7 +242,7 @@ class PubSubClientTest extends SnippetTestCase
         $message = [
             "message" => [
                 "attributes" => [],
-                "data" => base64_encode('content'),
+                "data" => \base64_encode('content'),
                 "message_id" => "message-id",
                 "publish_time" => (new \DateTime)->format('c'),
             ],
@@ -251,7 +251,7 @@ class PubSubClientTest extends SnippetTestCase
 
         $snippet = $this->snippetFromMethod(PubSubClient::class, 'consume');
         $snippet->addLocal('pubsub', $this->client);
-        $snippet->setLine(0, '$httpPostRequestBody = \''. json_encode($message) .'\';');
+        $snippet->setLine(0, '$httpPostRequestBody = \''. \json_encode($message) .'\';');
 
         $res = $snippet->invoke('message');
         $this->assertInstanceOf(Message::class, $res->returnVal());

@@ -54,7 +54,7 @@ class SemaphoreLock implements LockInterface
             throw new \RuntimeException('SystemV IPC extensions are required.');
         }
 
-        if (!is_int($key)) {
+        if (!\is_int($key)) {
             throw new \InvalidArgumentException('The provided key must be an integer.');
         }
 
@@ -85,7 +85,7 @@ class SemaphoreLock implements LockInterface
 
         $this->semaphoreId = $this->initializeId();
 
-        if (!sem_acquire($this->semaphoreId, !$options['blocking'])) {
+        if (!\sem_acquire($this->semaphoreId, !$options['blocking'])) {
             $this->semaphoreId = null;
 
             throw new \RuntimeException('Failed to acquire lock.');
@@ -102,7 +102,7 @@ class SemaphoreLock implements LockInterface
     public function release()
     {
         if ($this->semaphoreId) {
-            $released = sem_release($this->semaphoreId);
+            $released = \sem_release($this->semaphoreId);
             $this->semaphoreId = null;
 
             if (!$released) {
@@ -119,7 +119,7 @@ class SemaphoreLock implements LockInterface
      */
     private function initializeId()
     {
-        $semaphoreId = sem_get($this->key);
+        $semaphoreId = \sem_get($this->key);
 
         if (!$semaphoreId) {
             throw new \RuntimeException('Failed to generate semaphore ID.');

@@ -34,5 +34,5 @@ class DataLearningType
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DataLearningType::class, \Google\Cloud\Talent\V4beta1\Company_DataLearningType::class);
+\class_alias(DataLearningType::class, \Google\Cloud\Talent\V4beta1\Company_DataLearningType::class);
 

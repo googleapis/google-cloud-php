@@ -62,5 +62,5 @@ class ApplicationStatus
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ApplicationStatus::class, \Google\Cloud\Talent\V4beta1\JobApplication_ApplicationStatus::class);
+\class_alias(ApplicationStatus::class, \Google\Cloud\Talent\V4beta1\JobApplication_ApplicationStatus::class);
 

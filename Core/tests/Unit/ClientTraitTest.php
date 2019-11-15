@@ -125,18 +125,18 @@ class ClientTraitTest extends TestCase
     public function testConfigureAuthentication()
     {
         $keyFilePath = Fixtures::JSON_KEY_FIXTURE();
-        putenv("GOOGLE_APPLICATION_CREDENTIALS=$keyFilePath"); // for application default credentials
+        \putenv("GOOGLE_APPLICATION_CREDENTIALS=$keyFilePath"); // for application default credentials
 
         $conf = $this->impl->call('configureAuthentication', [[]]);
 
-        $this->assertEquals(json_decode(file_get_contents($keyFilePath), true), $conf['keyFile']);
+        $this->assertEquals(\json_decode(\file_get_contents($keyFilePath), true), $conf['keyFile']);
         $this->assertEquals('example_project', $this->impl->___getProperty('projectId'));
     }
 
     public function testConfigureAuthenticationWithKeyFile()
     {
         $keyFilePath = Fixtures::JSON_KEY_FIXTURE();
-        $keyFile = json_decode(file_get_contents($keyFilePath), true);
+        $keyFile = \json_decode(\file_get_contents($keyFilePath), true);
         $keyFile['project_id'] = 'test';
 
         $conf = $this->impl->call('configureAuthentication', [[
@@ -150,7 +150,7 @@ class ClientTraitTest extends TestCase
     public function testConfigureAuthenticationWithKeyFilePath()
     {
         $keyFilePath = Fixtures::JSON_KEY_FIXTURE();
-        $keyFile = json_decode(file_get_contents($keyFilePath), true);
+        $keyFile = \json_decode(\file_get_contents($keyFilePath), true);
 
         $conf = $this->impl->call('configureAuthentication', [[
             'keyFilePath' => $keyFilePath
@@ -201,26 +201,26 @@ class ClientTraitTest extends TestCase
     {
         $projectId = 'project-from-env';
 
-        $originalOldEnv = getenv('GCLOUD_PROJECT');
-        $originalEnv = getenv('GOOGLE_CLOUD_PROJECT');
+        $originalOldEnv = \getenv('GCLOUD_PROJECT');
+        $originalEnv = \getenv('GOOGLE_CLOUD_PROJECT');
 
         try {
-            putenv('GOOGLE_CLOUD_PROJECT=' . $projectId);
-            putenv('GCLOUD_PROJECT=invalid-value');
+            \putenv('GOOGLE_CLOUD_PROJECT=' . $projectId);
+            \putenv('GCLOUD_PROJECT=invalid-value');
             $res = $this->impl->call('detectProjectId', [[]]);
 
             $this->assertEquals($res, $projectId);
         } finally {
             if ($originalOldEnv === false) {
-                putenv('GCLOUD_PROJECT');
+                \putenv('GCLOUD_PROJECT');
             } else {
-                putenv('GCLOUD_PROJECT=' . $originalOldEnv);
+                \putenv('GCLOUD_PROJECT=' . $originalOldEnv);
             }
 
             if ($originalEnv === false) {
-                putenv('GOOGLE_CLOUD_PROJECT');
+                \putenv('GOOGLE_CLOUD_PROJECT');
             } else {
-                putenv('GOOGLE_CLOUD_PROJECT=' . $originalEnv);
+                \putenv('GOOGLE_CLOUD_PROJECT=' . $originalEnv);
             }
         }
     }
@@ -229,28 +229,28 @@ class ClientTraitTest extends TestCase
     {
         $projectId = 'project-from-env';
 
-        $originalEnv = getenv('GCLOUD_PROJECT');
+        $originalEnv = \getenv('GCLOUD_PROJECT');
 
-        $originalOldEnv = getenv('GCLOUD_PROJECT');
-        $originalEnv = getenv('GOOGLE_CLOUD_PROJECT');
+        $originalOldEnv = \getenv('GCLOUD_PROJECT');
+        $originalEnv = \getenv('GOOGLE_CLOUD_PROJECT');
 
         try {
-            putenv('GCLOUD_PROJECT=' . $projectId);
-            putenv('GOOGLE_CLOUD_PROJECT');
+            \putenv('GCLOUD_PROJECT=' . $projectId);
+            \putenv('GOOGLE_CLOUD_PROJECT');
             $res = $this->impl->call('detectProjectId', [[]]);
 
             $this->assertEquals($res, $projectId);
         } finally {
             if ($originalOldEnv === false) {
-                putenv('GCLOUD_PROJECT');
+                \putenv('GCLOUD_PROJECT');
             } else {
-                putenv('GCLOUD_PROJECT=' . $originalOldEnv);
+                \putenv('GCLOUD_PROJECT=' . $originalOldEnv);
             }
 
             if ($originalEnv === false) {
-                putenv('GOOGLE_CLOUD_PROJECT');
+                \putenv('GOOGLE_CLOUD_PROJECT');
             } else {
-                putenv('GOOGLE_CLOUD_PROJECT=' . $originalEnv);
+                \putenv('GOOGLE_CLOUD_PROJECT=' . $originalEnv);
             }
         }
     }

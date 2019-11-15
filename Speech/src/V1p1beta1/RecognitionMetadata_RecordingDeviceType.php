@@ -11,6 +11,6 @@ if (false) {
      */
     class RecognitionMetadata_RecordingDeviceType {}
 }
-class_exists(RecognitionMetadata\RecordingDeviceType::class);
-@trigger_error('Google\Cloud\Speech\V1p1beta1\RecognitionMetadata_RecordingDeviceType is deprecated and will be removed in a future release. Use Google\Cloud\Speech\V1p1beta1\RecognitionMetadata\RecordingDeviceType instead', E_USER_DEPRECATED);
+\class_exists(RecognitionMetadata\RecordingDeviceType::class);
+@\trigger_error('Google\Cloud\Speech\V1p1beta1\RecognitionMetadata_RecordingDeviceType is deprecated and will be removed in a future release. Use Google\Cloud\Speech\V1p1beta1\RecognitionMetadata\RecordingDeviceType instead', E_USER_DEPRECATED);
 

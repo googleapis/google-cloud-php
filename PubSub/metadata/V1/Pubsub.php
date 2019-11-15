@@ -20,7 +20,7 @@ class Pubsub
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0a9b410a1d676f6f676c652f7075627375622f76312f7075627375622e70" .
             "726f746f1210676f6f676c652e7075627375622e76311a17676f6f676c65" .
             "2f6170692f636c69656e742e70726f746f1a1e676f6f676c652f70726f74" .

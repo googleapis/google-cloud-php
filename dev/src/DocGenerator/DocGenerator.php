@@ -82,24 +82,24 @@ class DocGenerator
         $rootPath = $this->executionPath;
         foreach ($this->files as $file) {
             $currentFileArr = $this->isComponent
-                ? explode("/$basePath/", $file)
-                : explode("$rootPath", $file);
+                ? \explode("/$basePath/", $file)
+                : \explode("$rootPath", $file);
 
             if (isset($currentFileArr[1])) {
-                $currentFile = str_replace('src/', '', $currentFileArr[1]);
+                $currentFile = \str_replace('src/', '', $currentFileArr[1]);
             } else {
                 throw new \Exception(
-                    sprintf('Failed to determine currentFile: %s', $file)
+                    \sprintf('Failed to determine currentFile: %s', $file)
                 );
             }
 
-            $isPhp = strrpos($file, '.php') == strlen($file) - strlen('.php');
-            $pathInfo = pathinfo($currentFile);
+            $isPhp = \strrpos($file, '.php') == \strlen($file) - \strlen('.php');
+            $pathInfo = \pathinfo($currentFile);
             $servicePath = $pathInfo['dirname'] === '.'
-                ? strtolower($pathInfo['filename'])
-                : strtolower($pathInfo['dirname'] . '/' . $pathInfo['filename']);
+                ? \strtolower($pathInfo['filename'])
+                : \strtolower($pathInfo['dirname'] . '/' . $pathInfo['filename']);
             $id = $this->isComponent
-                ? strtolower($basePath) . '/' . $servicePath
+                ? \strtolower($basePath) . '/' . $servicePath
                 : $servicePath;
 
             if ($isPhp) {
@@ -115,7 +115,7 @@ class DocGenerator
                     $this->isComponent
                 );
             } else {
-                $content = file_get_contents($file);
+                $content = \file_get_contents($file);
                 $parser = new MarkdownParser($currentFile, $content, $id);
             }
 

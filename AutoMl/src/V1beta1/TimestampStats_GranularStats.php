@@ -11,6 +11,6 @@ if (false) {
      */
     class TimestampStats_GranularStats {}
 }
-class_exists(TimestampStats\GranularStats::class);
-@trigger_error('Google\Cloud\AutoMl\V1beta1\TimestampStats_GranularStats is deprecated and will be removed in the next major release. Use Google\Cloud\AutoMl\V1beta1\TimestampStats\GranularStats instead', E_USER_DEPRECATED);
+\class_exists(TimestampStats\GranularStats::class);
+@\trigger_error('Google\Cloud\AutoMl\V1beta1\TimestampStats_GranularStats is deprecated and will be removed in the next major release. Use Google\Cloud\AutoMl\V1beta1\TimestampStats\GranularStats instead', E_USER_DEPRECATED);
 

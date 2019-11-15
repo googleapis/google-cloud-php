@@ -105,5 +105,5 @@ class CorrelatedColumn extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CorrelatedColumn::class, \Google\Cloud\AutoMl\V1beta1\ColumnSpec_CorrelatedColumn::class);
+\class_alias(CorrelatedColumn::class, \Google\Cloud\AutoMl\V1beta1\ColumnSpec_CorrelatedColumn::class);
 

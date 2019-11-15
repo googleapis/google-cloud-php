@@ -11,6 +11,6 @@ if (false) {
      */
     class PushConfig_OidcToken {}
 }
-class_exists(PushConfig\OidcToken::class);
-@trigger_error('Google\Cloud\PubSub\V1\PushConfig_OidcToken is deprecated and will be removed in the next major release. Use Google\Cloud\PubSub\V1\PushConfig\OidcToken instead', E_USER_DEPRECATED);
+\class_exists(PushConfig\OidcToken::class);
+@\trigger_error('Google\Cloud\PubSub\V1\PushConfig_OidcToken is deprecated and will be removed in the next major release. Use Google\Cloud\PubSub\V1\PushConfig\OidcToken instead', E_USER_DEPRECATED);
 

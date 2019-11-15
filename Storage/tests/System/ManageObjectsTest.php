@@ -32,8 +32,8 @@ class ManageObjectsTest extends StorageTestCase
     {
         $foundObjects = [];
         $objectsToCreate = [
-            uniqid(self::TESTING_PREFIX),
-            uniqid(self::TESTING_PREFIX)
+            \uniqid(self::TESTING_PREFIX),
+            \uniqid(self::TESTING_PREFIX)
         ];
 
         foreach ($objectsToCreate as $objectToCreate) {
@@ -55,7 +55,7 @@ class ManageObjectsTest extends StorageTestCase
 
     public function testObjectExists()
     {
-        $object = self::$bucket->upload(self::DATA, ['name' => uniqid(self::TESTING_PREFIX)]);
+        $object = self::$bucket->upload(self::DATA, ['name' => \uniqid(self::TESTING_PREFIX)]);
         $this->assertTrue($object->exists());
         $object->delete();
         $this->assertFalse($object->exists());
@@ -75,7 +75,7 @@ class ManageObjectsTest extends StorageTestCase
 
     public function testCopiesObject()
     {
-        $name = uniqid(self::TESTING_PREFIX);
+        $name = \uniqid(self::TESTING_PREFIX);
         $copiedObject = self::$object->copy(self::$bucket, [
             'name' => $name
         ]);
@@ -90,7 +90,7 @@ class ManageObjectsTest extends StorageTestCase
      */
     public function testRenamesObject($object)
     {
-        $name = uniqid(self::TESTING_PREFIX);
+        $name = \uniqid(self::TESTING_PREFIX);
         $newObject = $object->rename($name);
         $this->assertFalse($object->exists());
 
@@ -105,7 +105,7 @@ class ManageObjectsTest extends StorageTestCase
     {
         $expectedContent = $object->downloadAsString();
         $expectedContent .= self::$object->downloadAsString();
-        $name = uniqid(self::TESTING_PREFIX) . '.txt';
+        $name = \uniqid(self::TESTING_PREFIX) . '.txt';
         $composedObject = self::$bucket->compose(
             [$object, self::$object],
             $name
@@ -117,17 +117,17 @@ class ManageObjectsTest extends StorageTestCase
 
     public function testRotatesCustomerSuppliedEncrpytion()
     {
-        $key = base64_encode(openssl_random_pseudo_bytes(32));
+        $key = \base64_encode(\openssl_random_pseudo_bytes(32));
         $options = [
-            'name' => uniqid(self::TESTING_PREFIX),
+            'name' => \uniqid(self::TESTING_PREFIX),
             'encryptionKey' => $key
         ];
         $object = self::$bucket->upload(self::DATA, $options);
 
-        $dkey = base64_encode(openssl_random_pseudo_bytes(32));
-        $dsha = base64_encode(hash('SHA256', base64_decode($dkey), true));
+        $dkey = \base64_encode(\openssl_random_pseudo_bytes(32));
+        $dsha = \base64_encode(\hash('SHA256', \base64_decode($dkey), true));
         $rewriteOptions = [
-            'name' => uniqid(self::TESTING_PREFIX),
+            'name' => \uniqid(self::TESTING_PREFIX),
             'encryptionKey' => $key,
             'destinationEncryptionKey' => $dkey
         ];
@@ -170,7 +170,7 @@ class ManageObjectsTest extends StorageTestCase
 
     public function testDownloadsPublicFileWithUnauthenticatedClient()
     {
-        $objectName = uniqid(self::TESTING_PREFIX);
+        $objectName = \uniqid(self::TESTING_PREFIX);
         self::$bucket->upload(self::DATA, [
             'name' => $objectName,
             'predefinedAcl' => 'publicRead'
@@ -189,7 +189,7 @@ class ManageObjectsTest extends StorageTestCase
      */
     public function testThrowsExceptionWhenDownloadsPrivateFileWithUnauthenticatedClient()
     {
-        $objectName = uniqid(self::TESTING_PREFIX);
+        $objectName = \uniqid(self::TESTING_PREFIX);
         self::$bucket->upload(self::DATA, [
             'name' => $objectName,
             'predefinedAcl' => 'private'

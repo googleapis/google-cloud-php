@@ -9,7 +9,7 @@ use Google\Cloud\Spanner\Spanner\Tests\SystemTestCase;
 
 list ($dbName, $tableName, $id) = getInputArgs();
 
-$tmpFile = sys_get_temp_dir() . '/ConcurrentTransactionsIncremementValueWithRead.txt';
+$tmpFile = \sys_get_temp_dir() . '/ConcurrentTransactionsIncremementValueWithRead.txt';
 setupIterationTracker($tmpFile);
 
 $db1 = SpannerTestCase::getDatabaseInstance($dbName);
@@ -35,19 +35,19 @@ $callable = function (Database $db, KeySet $keyset, array $columns, $tableName) 
 
 $delay = 50000;
 if ($childPID1 = pcntl_fork()) {
-    usleep(2 * $delay);
+    \usleep(2 * $delay);
 
     $callable($db1, $keyset, $columns, $tableName);
 
     pcntl_waitpid($childPID1, $status1);
 } else {
-    usleep(2 * $delay);
+    \usleep(2 * $delay);
 
     $callable($db2, $keyset, $columns, $tableName);
 
     exit(0);
 }
 
-echo file_get_contents($tmpFile);
+echo \file_get_contents($tmpFile);
 
 exit(0);

@@ -47,17 +47,17 @@ class BigtableTestCase extends TestCase
 
     public static function setUpBeforeClass()
     {
-        $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
+        $keyFilePath = \getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
         self::$instanceAdminClient = new InstanceAdminClient([
             'credentials' => $keyFilePath
         ]);
         self::$tableAdminClient = new TableAdminClient([
             'credentials' => $keyFilePath
         ]);
-        $keyFileData = json_decode(file_get_contents($keyFilePath), true);
+        $keyFileData = \json_decode(\file_get_contents($keyFilePath), true);
         self::$projectId = $keyFileData['project_id'];
-        self::$instanceId = uniqid(self::INSTANCE_ID_PREFIX);
-        self::$clusterId = uniqid(self::CLUSTER_ID_PREFIX);
+        self::$instanceId = \uniqid(self::INSTANCE_ID_PREFIX);
+        self::$clusterId = \uniqid(self::CLUSTER_ID_PREFIX);
         self::$table = (new BigtableClient([
             'projectId' => self::$projectId,
             'credentials' => $keyFilePath

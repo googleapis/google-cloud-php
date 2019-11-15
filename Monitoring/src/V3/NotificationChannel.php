@@ -453,7 +453,7 @@ class NotificationChannel extends \Google\Protobuf\Internal\Message
     public function getEnabledValue()
     {
         $wrapper = $this->getEnabled();
-        return is_null($wrapper) ? null : $wrapper->getValue();
+        return \is_null($wrapper) ? null : $wrapper->getValue();
     }
 
     /**
@@ -492,7 +492,7 @@ class NotificationChannel extends \Google\Protobuf\Internal\Message
      */
     public function setEnabledValue($var)
     {
-        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
+        $wrappedVar = \is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
         return $this->setEnabled($wrappedVar);
     }
 

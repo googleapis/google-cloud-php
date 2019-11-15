@@ -142,5 +142,5 @@ class Result extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Result::class, \Google\Cloud\Vision\V1\ProductSearchResults_Result::class);
+\class_alias(Result::class, \Google\Cloud\Vision\V1\ProductSearchResults_Result::class);
 

@@ -11,6 +11,6 @@ if (false) {
      */
     class ScanRunErrorTrace_Code {}
 }
-class_exists(ScanRunErrorTrace\Code::class);
-@trigger_error('Google\Cloud\WebSecurityScanner\V1beta\ScanRunErrorTrace_Code is deprecated and will be removed in a future release. Use Google\Cloud\WebSecurityScanner\V1beta\ScanRunErrorTrace\Code instead', E_USER_DEPRECATED);
+\class_exists(ScanRunErrorTrace\Code::class);
+@\trigger_error('Google\Cloud\WebSecurityScanner\V1beta\ScanRunErrorTrace_Code is deprecated and will be removed in a future release. Use Google\Cloud\WebSecurityScanner\V1beta\ScanRunErrorTrace\Code instead', E_USER_DEPRECATED);
 

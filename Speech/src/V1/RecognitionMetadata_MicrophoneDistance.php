@@ -11,6 +11,6 @@ if (false) {
      */
     class RecognitionMetadata_MicrophoneDistance {}
 }
-class_exists(RecognitionMetadata\MicrophoneDistance::class);
-@trigger_error('Google\Cloud\Speech\V1\RecognitionMetadata_MicrophoneDistance is deprecated and will be removed in a future release. Use Google\Cloud\Speech\V1\RecognitionMetadata\MicrophoneDistance instead', E_USER_DEPRECATED);
+\class_exists(RecognitionMetadata\MicrophoneDistance::class);
+@\trigger_error('Google\Cloud\Speech\V1\RecognitionMetadata_MicrophoneDistance is deprecated and will be removed in a future release. Use Google\Cloud\Speech\V1\RecognitionMetadata\MicrophoneDistance instead', E_USER_DEPRECATED);
 

@@ -76,13 +76,13 @@ class DocumentReferenceTest extends TestCase
 
     public function testId()
     {
-        $this->assertEquals(array_reverse(explode('/', self::NAME))[0], $this->document->id());
+        $this->assertEquals(\array_reverse(\explode('/', self::NAME))[0], $this->document->id());
     }
 
     public function testCreate()
     {
         $this->connection->commit([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
+            'database' => \sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             'writes' => [
                 [
                     'currentDocument' => ['exists' => false],
@@ -106,7 +106,7 @@ class DocumentReferenceTest extends TestCase
     public function testSet()
     {
         $this->connection->commit([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
+            'database' => \sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             'writes' => [
                 [
                     'update' => [
@@ -129,7 +129,7 @@ class DocumentReferenceTest extends TestCase
     public function testUpdate()
     {
         $this->connection->commit([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
+            'database' => \sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             'writes' => [
                 [
                     'updateMask' => [
@@ -176,7 +176,7 @@ class DocumentReferenceTest extends TestCase
     public function testDelete()
     {
         $this->connection->commit([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
+            'database' => \sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             'writes' => [
                 [
                     'delete' => self::NAME
@@ -192,7 +192,7 @@ class DocumentReferenceTest extends TestCase
     public function testSnapshot()
     {
         $this->connection->batchGetDocuments([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
+            'database' => \sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             'documents' => [self::NAME]
         ])->shouldBeCalled()->willReturn(new \ArrayIterator([
             [
@@ -243,7 +243,7 @@ class DocumentReferenceTest extends TestCase
 
         $this->document->___setProperty('connection', $this->connection->reveal());
 
-        $collections = iterator_to_array($this->document->collections());
+        $collections = \iterator_to_array($this->document->collections());
         $this->assertContainsOnlyInstancesOf(CollectionReference::class, $collections);
         $this->assertCount(3, $collections);
         $this->assertEquals(self::NAME .'/c', $collections[0]->name());
@@ -253,7 +253,7 @@ class DocumentReferenceTest extends TestCase
 
     public function testWriteResult()
     {
-        $time = time();
+        $time = \time();
         $ts = \DateTime::createFromFormat('U', $time)->format(Timestamp::FORMAT);
         $ts2 = \DateTime::createFromFormat('U', $time+100)->format(Timestamp::FORMAT);
 

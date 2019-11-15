@@ -21,7 +21,7 @@ class CloudRedis
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0ad1290a27676f6f676c652f636c6f75642f72656469732f76312f636c6f" .
             "75645f72656469732e70726f746f1215676f6f676c652e636c6f75642e72" .
             "656469732e76311a17676f6f676c652f6170692f636c69656e742e70726f" .

@@ -304,12 +304,12 @@ class Rest implements ConnectionInterface
         }
 
         if (!$args['name']) {
-            $args['name'] = basename($args['data']->getMetadata('uri'));
+            $args['name'] = \basename($args['data']->getMetadata('uri'));
         }
 
         $validate = $this->chooseValidationMethod($args);
         if ($validate === 'md5') {
-            $args['metadata']['md5Hash'] = base64_encode(Psr7\hash($args['data'], 'md5', true));
+            $args['metadata']['md5Hash'] = \base64_encode(Psr7\hash($args['data'], 'md5', true));
         } elseif ($validate === 'crc32') {
             $args['metadata']['crc32c'] = $this->crcFromStream($args['data']);
         }
@@ -330,8 +330,8 @@ class Rest implements ConnectionInterface
             'uploadProgressCallback'
         ];
 
-        $args['uploaderOptions'] = array_intersect_key($args, array_flip($uploaderOptionKeys));
-        $args = array_diff_key($args, array_flip($uploaderOptionKeys));
+        $args['uploaderOptions'] = \array_intersect_key($args, \array_flip($uploaderOptionKeys));
+        $args = \array_diff_key($args, \array_flip($uploaderOptionKeys));
 
         return $args;
     }
@@ -461,7 +461,7 @@ class Rest implements ConnectionInterface
             'userProject' => null
         ];
 
-        $requestOptions = array_intersect_key($args, [
+        $requestOptions = \array_intersect_key($args, [
             'restOptions' => null,
             'retries' => null,
             'restRetryFunction' => null,
@@ -500,7 +500,7 @@ class Rest implements ConnectionInterface
         }
 
         $validate = $args['validate'];
-        if (in_array($validate, [false, 'crc32', 'md5'], true)) {
+        if (\in_array($validate, [false, 'crc32', 'md5'], true)) {
             return $validate;
         }
 
@@ -545,7 +545,7 @@ class Rest implements ConnectionInterface
 
         $data->seek($pos);
 
-        return base64_encode($crc32c->hash(true));
+        return \base64_encode($crc32c->hash(true));
     }
 
     /**
@@ -557,7 +557,7 @@ class Rest implements ConnectionInterface
      */
     protected function crc32cExtensionLoaded()
     {
-        return extension_loaded('crc32c');
+        return \extension_loaded('crc32c');
     }
 
     /**

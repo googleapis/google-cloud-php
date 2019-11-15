@@ -92,7 +92,7 @@ class ResumableUploader extends AbstractUploader
         parent::__construct($requestWrapper, $data, $uri, $options);
 
         // Set uploadProgressCallback if it's passed as an option.
-        if (isset($options['uploadProgressCallback']) && is_callable($options['uploadProgressCallback'])) {
+        if (isset($options['uploadProgressCallback']) && \is_callable($options['uploadProgressCallback'])) {
             $this->uploadProgressCallback = $options['uploadProgressCallback'];
         } elseif (isset($options['uploadProgressCallback'])) {
             throw new \InvalidArgumentException('$options.uploadProgressCallback must be a callable.');
@@ -185,12 +185,12 @@ class ResumableUploader extends AbstractUploader
                     "Upload failed. Please use this URI to resume your upload: $this->resumeUri",
                     $ex->getCode(),
                     null,
-                    json_decode($ex->getMessage(), true) ?: []
+                    \json_decode($ex->getMessage(), true) ?: []
                 );
             }
 
-            if (is_callable($this->uploadProgressCallback)) {
-                call_user_func($this->uploadProgressCallback, $currStreamLimitSize);
+            if (\is_callable($this->uploadProgressCallback)) {
+                \call_user_func($this->uploadProgressCallback, $currStreamLimitSize);
             }
 
             $rangeStart = $this->getRangeStart($response->getHeaderLine('Range'));
@@ -265,6 +265,6 @@ class ResumableUploader extends AbstractUploader
             return null;
         }
 
-        return (int) explode('-', $rangeHeader)[1] + 1;
+        return (int) \explode('-', $rangeHeader)[1] + 1;
     }
 }

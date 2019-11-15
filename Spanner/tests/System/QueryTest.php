@@ -264,7 +264,7 @@ class QueryTest extends SpannerTestCase
 
         $row = $res->rows()->current();
         $this->assertInstanceOf(Bytes::class, $row['foo']);
-        $this->assertEquals($str, base64_decode($bytes->formatAsString()));
+        $this->assertEquals($str, \base64_decode($bytes->formatAsString()));
         $this->assertEquals($str, (string)$bytes->get());
     }
 
@@ -562,7 +562,7 @@ class QueryTest extends SpannerTestCase
         ]);
 
         $row = $res->rows()->current();
-        $this->assertTrue(is_nan($row['foo']));
+        $this->assertTrue(\is_nan($row['foo']));
     }
 
     /**
@@ -582,7 +582,7 @@ class QueryTest extends SpannerTestCase
         $row = $res->rows()->current();
         $this->assertEquals($vals[0], $row['foo'][0]);
         $this->assertEquals($vals[1], $row['foo'][1]);
-        $this->assertTrue(is_nan($row['foo'][2]));
+        $this->assertTrue(\is_nan($row['foo'][2]));
     }
 
     public function arrayTypes()

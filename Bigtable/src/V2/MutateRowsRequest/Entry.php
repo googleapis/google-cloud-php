@@ -110,5 +110,5 @@ class Entry extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Entry::class, \Google\Cloud\Bigtable\V2\MutateRowsRequest_Entry::class);
+\class_alias(Entry::class, \Google\Cloud\Bigtable\V2\MutateRowsRequest_Entry::class);
 

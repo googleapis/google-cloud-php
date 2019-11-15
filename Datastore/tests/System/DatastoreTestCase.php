@@ -46,8 +46,8 @@ class DatastoreTestCase extends TestCase
         self::$localDeletionQueue = new DeletionQueue(true);
 
         $config = [
-            'keyFilePath' => getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH'),
-            'namespaceId' => uniqid(self::TESTING_PREFIX)
+            'keyFilePath' => \getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH'),
+            'namespaceId' => \uniqid(self::TESTING_PREFIX)
         ];
 
         self::$restClient = new DatastoreClient($config + [

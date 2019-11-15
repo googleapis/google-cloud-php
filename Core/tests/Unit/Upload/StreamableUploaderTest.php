@@ -78,7 +78,7 @@ class StreamableUploaderTest extends TestCase
         $upload->shouldHaveBeenCalledTimes(1);
 
         // finish the upload
-        $this->assertEquals(json_decode($this->successBody, true), $uploader->upload());
+        $this->assertEquals(\json_decode($this->successBody, true), $uploader->upload());
         $upload->shouldHaveBeenCalledTimes(2);
     }
 
@@ -97,7 +97,7 @@ class StreamableUploaderTest extends TestCase
             'http://www.example.com'
         );
 
-        $this->assertEquals(json_decode($this->successBody, true), $uploader->upload());
+        $this->assertEquals(\json_decode($this->successBody, true), $uploader->upload());
     }
 
     public function testGetResumeUri()

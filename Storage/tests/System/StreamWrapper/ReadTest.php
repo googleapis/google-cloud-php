@@ -32,10 +32,10 @@ class ReadTest extends StreamWrapperTestCase
 
     public function testFread()
     {
-        $fd = fopen($this->file, 'r');
+        $fd = \fopen($this->file, 'r');
         $expected = 'somedata';
-        $this->assertEquals($expected, fread($fd, strlen($expected)));
-        $this->assertTrue(fclose($fd));
+        $this->assertEquals($expected, \fread($fd, \strlen($expected)));
+        $this->assertTrue(\fclose($fd));
     }
 
     public function testFileGetContents()
@@ -45,18 +45,18 @@ class ReadTest extends StreamWrapperTestCase
 
     public function testGetLines()
     {
-        $fd = fopen($this->file, 'r');
+        $fd = \fopen($this->file, 'r');
         $expected = 'somedata';
-        $this->assertEquals($expected, fgets($fd));
-        $this->assertTrue(fclose($fd));
+        $this->assertEquals($expected, \fgets($fd));
+        $this->assertTrue(\fclose($fd));
     }
 
     public function testEof()
     {
-        $fd = fopen($this->file, 'r');
-        $this->assertFalse(feof($fd));
-        fread($fd, 1000);
-        $this->assertTrue(feof($fd));
-        $this->assertTrue(fclose($fd));
+        $fd = \fopen($this->file, 'r');
+        $this->assertFalse(\feof($fd));
+        \fread($fd, 1000);
+        $this->assertTrue(\feof($fd));
+        $this->assertTrue(\fclose($fd));
     }
 }

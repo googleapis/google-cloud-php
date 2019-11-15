@@ -34,7 +34,7 @@ class GetAllDocumentsTest extends FirestoreTestCase
     {
         parent::setupBeforeClass();
 
-        $c = self::$client->collection(uniqid(self::COLLECTION_NAME));
+        $c = self::$client->collection(\uniqid(self::COLLECTION_NAME));
         self::$localDeletionQueue->add($c);
 
         for ($i = 0; $i < 5; $i++) {
@@ -64,7 +64,7 @@ class GetAllDocumentsTest extends FirestoreTestCase
             // check order
             $this->assertEquals($paths[$i]->name(), $name);
 
-            $exist = array_key_exists($name, self::$refsExist);
+            $exist = \array_key_exists($name, self::$refsExist);
 
             $this->assertEquals($exist, $document->exists());
         }
@@ -87,7 +87,7 @@ class GetAllDocumentsTest extends FirestoreTestCase
             // check order
             $this->assertEquals($paths[$i]->name(), $name);
 
-            $exist = array_key_exists($name, self::$refsExist);
+            $exist = \array_key_exists($name, self::$refsExist);
 
             $this->assertEquals($exist, $document->exists());
         }
@@ -95,8 +95,8 @@ class GetAllDocumentsTest extends FirestoreTestCase
 
     private function interleave()
     {
-        $exist = array_values(self::$refsExist);
-        $nonExist = array_values(self::$refsNonExist);
+        $exist = \array_values(self::$refsExist);
+        $nonExist = \array_values(self::$refsNonExist);
         $docs = [];
         foreach ($exist as $i => $doc) {
             $docs[] = $doc;

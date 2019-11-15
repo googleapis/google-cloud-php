@@ -11,6 +11,6 @@ if (false) {
      */
     class Job_ProcessingOptions {}
 }
-class_exists(Job\ProcessingOptions::class);
-@trigger_error('Google\Cloud\Talent\V4beta1\Job_ProcessingOptions is deprecated and will be removed in the next major release. Use Google\Cloud\Talent\V4beta1\Job\ProcessingOptions instead', E_USER_DEPRECATED);
+\class_exists(Job\ProcessingOptions::class);
+@\trigger_error('Google\Cloud\Talent\V4beta1\Job_ProcessingOptions is deprecated and will be removed in the next major release. Use Google\Cloud\Talent\V4beta1\Job\ProcessingOptions instead', E_USER_DEPRECATED);
 

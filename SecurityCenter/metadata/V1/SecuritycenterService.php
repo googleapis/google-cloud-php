@@ -29,7 +29,7 @@ class SecuritycenterService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         \GPBMetadata\Google\Protobuf\Struct::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0ad13e0a3b676f6f676c652f636c6f75642f736563757269747963656e74" .
             "65722f76312f736563757269747963656e7465725f736572766963652e70" .
             "726f746f121e676f6f676c652e636c6f75642e736563757269747963656e" .

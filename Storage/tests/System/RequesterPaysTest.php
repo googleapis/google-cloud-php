@@ -51,14 +51,14 @@ class RequesterPaysTest extends StorageTestCase
     {
         parent::setupBeforeClass();
 
-        $requesterKeyFilePath = getenv('GOOGLE_CLOUD_PHP_WHITELIST_TESTS_KEY_PATH');
-        $ownerKeyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
-        self::$requesterKeyFile = json_decode(file_get_contents($requesterKeyFilePath), true);
+        $requesterKeyFilePath = \getenv('GOOGLE_CLOUD_PHP_WHITELIST_TESTS_KEY_PATH');
+        $ownerKeyFilePath = \getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
+        self::$requesterKeyFile = \json_decode(\file_get_contents($requesterKeyFilePath), true);
         self::$requesterEmail = self::$requesterKeyFile['client_email'];
         self::$requesterProject = self::$requesterKeyFile['project_id'];
-        self::$ownerKeyFile = json_decode(file_get_contents($ownerKeyFilePath), true);
+        self::$ownerKeyFile = \json_decode(\file_get_contents($ownerKeyFilePath), true);
         self::$ownerEmail = self::$ownerKeyFile['client_email'];
-        self::$bucketName = uniqid(self::TESTING_PREFIX);
+        self::$bucketName = \uniqid(self::TESTING_PREFIX);
         $client = self::$client;
 
         // Owner bucket instance is a bucket class with requester pays turned on
@@ -71,16 +71,16 @@ class RequesterPaysTest extends StorageTestCase
             'keyFile' => self::$requesterKeyFile
         ]);
 
-        self::$topic = self::$pubsubClient->createTopic(uniqid(self::TESTING_PREFIX));
+        self::$topic = self::$pubsubClient->createTopic(\uniqid(self::TESTING_PREFIX));
         self::$deletionQueue->add(self::$topic);
 
-        self::$content = uniqid(self::TESTING_PREFIX);
+        self::$content = \uniqid(self::TESTING_PREFIX);
         self::$object1 = self::$ownerBucketInstance->upload(self::$content, [
-            'name' => uniqid(self::TESTING_PREFIX),
+            'name' => \uniqid(self::TESTING_PREFIX),
         ]);
 
         self::$object2 = self::$ownerBucketInstance->upload(self::$content, [
-            'name' => uniqid(self::TESTING_PREFIX)
+            'name' => \uniqid(self::TESTING_PREFIX)
         ]);
 
         // set bucket policy
@@ -119,7 +119,7 @@ class RequesterPaysTest extends StorageTestCase
             $guzzle = new Client;
 
             try {
-                $uri = sprintf('https://storage.googleapis.com/%s/%s', $bucket, $object);
+                $uri = \sprintf('https://storage.googleapis.com/%s/%s', $bucket, $object);
                 $res = $guzzle->request('GET', $uri);
                 return (string) $res->getBody();
             } catch (ClientException $e) {
@@ -127,9 +127,9 @@ class RequesterPaysTest extends StorageTestCase
             }
         };
 
-        $bucket = self::createBucket(self::$client, uniqid(self::TESTING_PREFIX));
+        $bucket = self::createBucket(self::$client, \uniqid(self::TESTING_PREFIX));
         $object = $bucket->upload(self::$content, [
-            'name' => uniqid(self::TESTING_PREFIX),
+            'name' => \uniqid(self::TESTING_PREFIX),
             'predefinedAcl' => 'publicRead',
             'metadata' => [
                 'cacheControl' => 'private'
@@ -231,13 +231,13 @@ class RequesterPaysTest extends StorageTestCase
             'bucket-upload' => [
                 function (Bucket $bucket) {
                     $bucket->upload(self::$content, [
-                        'name' => uniqid(self::TESTING_PREFIX)
+                        'name' => \uniqid(self::TESTING_PREFIX)
                     ]);
                 },
             ],
             'bucket-objects' => [
                 function (Bucket $bucket) {
-                    iterator_to_array($bucket->objects());
+                    \iterator_to_array($bucket->objects());
                 },
             ],
             'bucket-update' => [
@@ -247,7 +247,7 @@ class RequesterPaysTest extends StorageTestCase
             ],
             'bucket-compose' => [
                 function (Bucket $bucket) {
-                    $bucket->compose([self::$object1, self::$object2], uniqid(self::TESTING_PREFIX), [
+                    $bucket->compose([self::$object1, self::$object2], \uniqid(self::TESTING_PREFIX), [
                         'metadata' => ['contentType' => 'text/plain']
                     ]);
                 },
@@ -380,14 +380,14 @@ class RequesterPaysTest extends StorageTestCase
             'resumable-upload' => [
                 function (Bucket $bucket) {
                     $bucket->getResumableUploader(self::$content, [
-                        'name' => uniqid(self::TESTING_PREFIX)
+                        'name' => \uniqid(self::TESTING_PREFIX)
                     ])->upload();
                 },
             ],
             'streamable-upload' => [
                 function (Bucket $bucket) {
                     $bucket->getStreamableUploader(self::$content, [
-                        'name' => uniqid(self::TESTING_PREFIX)
+                        'name' => \uniqid(self::TESTING_PREFIX)
                     ])->upload();
                 },
             ],

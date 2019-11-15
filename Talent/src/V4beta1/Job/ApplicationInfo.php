@@ -166,5 +166,5 @@ class ApplicationInfo extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ApplicationInfo::class, \Google\Cloud\Talent\V4beta1\Job_ApplicationInfo::class);
+\class_alias(ApplicationInfo::class, \Google\Cloud\Talent\V4beta1\Job_ApplicationInfo::class);
 

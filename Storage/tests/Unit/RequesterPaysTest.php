@@ -407,7 +407,7 @@ class RequesterPaysTest extends TestCase
             // if no exception, something is wrong.
             $this->assertTrue(false);
         } catch (\Exception $e) {
-            parse_str($e->getMessage(), $query);
+            \parse_str($e->getMessage(), $query);
             $this->assertEquals(self::USER_PROJECT, $query['userProject']);
         }
     }

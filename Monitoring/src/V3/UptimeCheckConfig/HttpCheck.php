@@ -362,5 +362,5 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(HttpCheck::class, \Google\Cloud\Monitoring\V3\UptimeCheckConfig_HttpCheck::class);
+\class_alias(HttpCheck::class, \Google\Cloud\Monitoring\V3\UptimeCheckConfig_HttpCheck::class);
 

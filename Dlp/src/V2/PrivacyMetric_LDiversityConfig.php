@@ -11,6 +11,6 @@ if (false) {
      */
     class PrivacyMetric_LDiversityConfig {}
 }
-class_exists(PrivacyMetric\LDiversityConfig::class);
-@trigger_error('Google\Cloud\Dlp\V2\PrivacyMetric_LDiversityConfig is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\PrivacyMetric\LDiversityConfig instead', E_USER_DEPRECATED);
+\class_exists(PrivacyMetric\LDiversityConfig::class);
+@\trigger_error('Google\Cloud\Dlp\V2\PrivacyMetric_LDiversityConfig is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\PrivacyMetric\LDiversityConfig instead', E_USER_DEPRECATED);
 

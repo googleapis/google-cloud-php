@@ -29,25 +29,25 @@ class MatchingFileIteratorTest extends TestCase
     {
         // There are many files that end in Connection/RestTest.php in the test/unit folder
         $iterator = new MatchingFileIterator(
-            realpath($this->sourcePath([__DIR__, '../../..'])),
+            \realpath($this->sourcePath([__DIR__, '../../..'])),
             $this->sourcePath(['Connection', 'RestTest.php'])
         );
-        $matches = iterator_to_array($iterator);
-        $this->assertGreaterThan(2, count($matches));
+        $matches = \iterator_to_array($iterator);
+        $this->assertGreaterThan(2, \count($matches));
     }
 
     public function testNoMatches()
     {
         $iterator = new MatchingFileIterator(
-            realpath($this->sourcePath([__DIR__, '..'])),
+            \realpath($this->sourcePath([__DIR__, '..'])),
             $this->sourcePath(['Connection', 'file-not-exists.php'])
         );
-        $matches = iterator_to_array($iterator);
+        $matches = \iterator_to_array($iterator);
         $this->assertEmpty($matches);
     }
 
     private function sourcePath($parts)
     {
-        return implode(DIRECTORY_SEPARATOR, $parts);
+        return \implode(DIRECTORY_SEPARATOR, $parts);
     }
 }

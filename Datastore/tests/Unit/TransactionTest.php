@@ -183,7 +183,7 @@ class TransactionTest extends TestCase
         $query->queryKey()->willReturn('gqlQuery');
         $query->queryObject()->willReturn(['queryString' => 'SELECT 1=1']);
 
-        $res = iterator_to_array($transaction->runQuery($query->reveal()));
+        $res = \iterator_to_array($transaction->runQuery($query->reveal()));
         $this->assertContainsOnlyInstancesOf(Entity::class, $res);
     }
 
@@ -320,7 +320,7 @@ class TransactionTest extends TestCase
     public function partialKeyMutationsProvider()
     {
         $res = $this->mutationsProviderProvider(12345, true);
-        return array_filter($res, function ($case) {
+        return \array_filter($res, function ($case) {
             return $case[0] !== 'update';
         });
     }

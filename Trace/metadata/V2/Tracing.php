@@ -18,7 +18,7 @@ class Tracing
         \GPBMetadata\Google\Devtools\Cloudtrace\V2\Trace::initOnce();
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0afa050a2b676f6f676c652f646576746f6f6c732f636c6f756474726163" .
             "652f76322f74726163696e672e70726f746f121d676f6f676c652e646576" .
             "746f6f6c732e636c6f756474726163652e76321a29676f6f676c652f6465" .

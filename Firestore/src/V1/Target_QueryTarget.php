@@ -11,6 +11,6 @@ if (false) {
      */
     class Target_QueryTarget {}
 }
-class_exists(Target\QueryTarget::class);
-@trigger_error('Google\Cloud\Firestore\V1\Target_QueryTarget is deprecated and will be removed in the next major release. Use Google\Cloud\Firestore\V1\Target\QueryTarget instead', E_USER_DEPRECATED);
+\class_exists(Target\QueryTarget::class);
+@\trigger_error('Google\Cloud\Firestore\V1\Target_QueryTarget is deprecated and will be removed in the next major release. Use Google\Cloud\Firestore\V1\Target\QueryTarget instead', E_USER_DEPRECATED);
 

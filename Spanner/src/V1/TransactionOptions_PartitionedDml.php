@@ -11,6 +11,6 @@ if (false) {
      */
     class TransactionOptions_PartitionedDml {}
 }
-class_exists(TransactionOptions\PartitionedDml::class);
-@trigger_error('Google\Cloud\Spanner\V1\TransactionOptions_PartitionedDml is deprecated and will be removed in the next major release. Use Google\Cloud\Spanner\V1\TransactionOptions\PartitionedDml instead', E_USER_DEPRECATED);
+\class_exists(TransactionOptions\PartitionedDml::class);
+@\trigger_error('Google\Cloud\Spanner\V1\TransactionOptions_PartitionedDml is deprecated and will be removed in the next major release. Use Google\Cloud\Spanner\V1\TransactionOptions\PartitionedDml instead', E_USER_DEPRECATED);
 

@@ -116,7 +116,7 @@ class StackFrame
      */
     public function addLocal(Variable $variable)
     {
-        array_push($this->locals, $variable);
+        \array_push($this->locals, $variable);
     }
 
     /**
@@ -145,10 +145,10 @@ class StackFrame
         return [
             'function' => $this->function,
             'location' => $this->location->info(),
-            'arguments' => array_map(function ($v) {
+            'arguments' => \array_map(function ($v) {
                 return $v->info();
             }, $this->arguments),
-            'locals' => array_map(function ($v) {
+            'locals' => \array_map(function ($v) {
                 return $v->info();
             }, $this->locals)
         ];

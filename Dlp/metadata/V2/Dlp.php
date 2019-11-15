@@ -27,7 +27,7 @@ class Dlp
         \GPBMetadata\Google\Type\Dayofweek::initOnce();
         \GPBMetadata\Google\Type\Timeofday::initOnce();
         \GPBMetadata\Google\Api\Client::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0abc93020a1f676f6f676c652f707269766163792f646c702f76322f646c" .
             "702e70726f746f1215676f6f676c652e707269766163792e646c702e7632" .
             "1a1f676f6f676c652f6170692f6669656c645f6265686176696f722e7072" .

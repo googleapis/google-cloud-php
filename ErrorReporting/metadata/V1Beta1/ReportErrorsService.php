@@ -17,7 +17,7 @@ class ReportErrorsService
         \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Devtools\Clouderrorreporting\V1Beta1\Common::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0ae7080a47676f6f676c652f646576746f6f6c732f636c6f75646572726f" .
             "727265706f7274696e672f763162657461312f7265706f72745f6572726f" .
             "72735f736572766963652e70726f746f122b676f6f676c652e646576746f" .

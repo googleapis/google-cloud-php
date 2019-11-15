@@ -11,6 +11,6 @@ if (false) {
      */
     class ClusterStatus_Substate {}
 }
-class_exists(ClusterStatus\Substate::class);
-@trigger_error('Google\Cloud\Dataproc\V1beta2\ClusterStatus_Substate is deprecated and will be removed in the next major release. Use Google\Cloud\Dataproc\V1beta2\ClusterStatus\Substate instead', E_USER_DEPRECATED);
+\class_exists(ClusterStatus\Substate::class);
+@\trigger_error('Google\Cloud\Dataproc\V1beta2\ClusterStatus_Substate is deprecated and will be removed in the next major release. Use Google\Cloud\Dataproc\V1beta2\ClusterStatus\Substate instead', E_USER_DEPRECATED);
 

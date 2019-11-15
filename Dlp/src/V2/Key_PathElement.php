@@ -11,6 +11,6 @@ if (false) {
      */
     class Key_PathElement {}
 }
-class_exists(Key\PathElement::class);
-@trigger_error('Google\Cloud\Dlp\V2\Key_PathElement is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\Key\PathElement instead', E_USER_DEPRECATED);
+\class_exists(Key\PathElement::class);
+@\trigger_error('Google\Cloud\Dlp\V2\Key_PathElement is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\Key\PathElement instead', E_USER_DEPRECATED);
 

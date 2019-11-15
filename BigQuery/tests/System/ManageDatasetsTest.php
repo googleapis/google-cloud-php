@@ -27,8 +27,8 @@ class ManageDatasetsTest extends BigQueryTestCase
     {
         $foundDatasets = [];
         $datasetsToCreate = [
-            uniqid(self::TESTING_PREFIX),
-            uniqid(self::TESTING_PREFIX)
+            \uniqid(self::TESTING_PREFIX),
+            \uniqid(self::TESTING_PREFIX)
         ];
 
         foreach ($datasetsToCreate as $datasetToCreate) {
@@ -52,11 +52,11 @@ class ManageDatasetsTest extends BigQueryTestCase
     {
         $foundDatasets = [];
         $datasetsToCreate = [
-            uniqid(self::TESTING_PREFIX),
+            \uniqid(self::TESTING_PREFIX),
         ];
 
-        $labelKey = uniqid(self::TESTING_PREFIX);
-        $labelValue = uniqid(self::TESTING_PREFIX);
+        $labelKey = \uniqid(self::TESTING_PREFIX);
+        $labelValue = \uniqid(self::TESTING_PREFIX);
 
         foreach ($datasetsToCreate as $datasetToCreate) {
             $this->createDataset(self::$client, $datasetToCreate, [
@@ -85,7 +85,7 @@ class ManageDatasetsTest extends BigQueryTestCase
 
     public function testCreatesDataset()
     {
-        $id = uniqid(self::TESTING_PREFIX);
+        $id = \uniqid(self::TESTING_PREFIX);
         $options = [
             'friendlyName' => 'Test',
             'description' => 'Test'

@@ -38,7 +38,7 @@ class ObjectPageIteratorTest extends TestCase
             ['test' => 'call']
         );
 
-        $pagesArray = iterator_to_array($pages);
+        $pagesArray = \iterator_to_array($pages);
 
         $this->assertEquals(self::$prefixes, $pages->prefixes());
         $this->assertEquals(self::$items, $pagesArray[0]);

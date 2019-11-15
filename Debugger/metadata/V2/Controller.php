@@ -19,7 +19,7 @@ class Controller
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Devtools\Clouddebugger\V2\Data::initOnce();
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0abe0e0a31676f6f676c652f646576746f6f6c732f636c6f756464656275" .
             "676765722f76322f636f6e74726f6c6c65722e70726f746f1220676f6f67" .
             "6c652e646576746f6f6c732e636c6f756464656275676765722e76321a17" .

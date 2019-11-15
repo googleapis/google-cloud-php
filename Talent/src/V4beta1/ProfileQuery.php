@@ -995,7 +995,7 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
     public function getHirableFilterValue()
     {
         $wrapper = $this->getHirableFilter();
-        return is_null($wrapper) ? null : $wrapper->getValue();
+        return \is_null($wrapper) ? null : $wrapper->getValue();
     }
 
     /**
@@ -1024,7 +1024,7 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      */
     public function setHirableFilterValue($var)
     {
-        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
+        $wrappedVar = \is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
         return $this->setHirableFilter($wrappedVar);
     }
 

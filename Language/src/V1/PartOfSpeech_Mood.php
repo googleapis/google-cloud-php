@@ -11,6 +11,6 @@ if (false) {
      */
     class PartOfSpeech_Mood {}
 }
-class_exists(PartOfSpeech\Mood::class);
-@trigger_error('Google\Cloud\Language\V1\PartOfSpeech_Mood is deprecated and will be removed in the next major release. Use Google\Cloud\Language\V1\PartOfSpeech\Mood instead', E_USER_DEPRECATED);
+\class_exists(PartOfSpeech\Mood::class);
+@\trigger_error('Google\Cloud\Language\V1\PartOfSpeech_Mood is deprecated and will be removed in the next major release. Use Google\Cloud\Language\V1\PartOfSpeech\Mood instead', E_USER_DEPRECATED);
 

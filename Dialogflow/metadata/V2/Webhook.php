@@ -20,7 +20,7 @@ class Webhook
         \GPBMetadata\Google\Cloud\Dialogflow\V2\SessionEntityType::initOnce();
         \GPBMetadata\Google\Protobuf\Struct::initOnce();
         \GPBMetadata\Google\Api\Annotations::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0aaa080a28676f6f676c652f636c6f75642f6469616c6f67666c6f772f76" .
             "322f776562686f6f6b2e70726f746f121a676f6f676c652e636c6f75642e" .
             "6469616c6f67666c6f772e76321a27676f6f676c652f636c6f75642f6469" .

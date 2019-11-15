@@ -18,7 +18,7 @@ class AuditLog
         \GPBMetadata\Google\Protobuf\Any::initOnce();
         \GPBMetadata\Google\Protobuf\Struct::initOnce();
         \GPBMetadata\Google\Rpc\Status::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0a92070a22676f6f676c652f636c6f75642f61756469742f61756469745f" .
             "6c6f672e70726f746f1212676f6f676c652e636c6f75642e61756469741a" .
             "19676f6f676c652f70726f746f6275662f616e792e70726f746f1a1c676f" .

@@ -15,7 +15,7 @@ class TextSegment
           return;
         }
         \GPBMetadata\Google\Api\Annotations::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0ad4020a29676f6f676c652f636c6f75642f6175746f6d6c2f76312f7465" .
             "78745f7365676d656e742e70726f746f1216676f6f676c652e636c6f7564" .
             "2e6175746f6d6c2e763122480a0b546578745365676d656e74120f0a0763" .

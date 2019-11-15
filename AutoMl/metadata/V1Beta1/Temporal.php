@@ -16,7 +16,7 @@ class Temporal
         }
         \GPBMetadata\Google\Protobuf\Duration::initOnce();
         \GPBMetadata\Google\Api\Annotations::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0a90030a2a676f6f676c652f636c6f75642f6175746f6d6c2f7631626574" .
             "61312f74656d706f72616c2e70726f746f121b676f6f676c652e636c6f75" .
             "642e6175746f6d6c2e763162657461311a1c676f6f676c652f6170692f61" .

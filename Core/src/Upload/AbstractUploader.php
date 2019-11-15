@@ -100,7 +100,7 @@ abstract class AbstractUploader
         $this->uri = $uri;
         $this->metadata = isset($options['metadata']) ? $options['metadata'] : [];
         $this->chunkSize = isset($options['chunkSize']) ? $options['chunkSize'] : null;
-        $this->requestOptions = array_intersect_key($options, [
+        $this->requestOptions = \array_intersect_key($options, [
             'restOptions' => null,
             'retries' => null,
             'requestTimeout' => null

@@ -57,7 +57,7 @@ class StackTrace
     {
         return [
             'stackFrames' => [
-                'frame' => array_map([$this, 'mapStackFrame'], $this->backtrace)
+                'frame' => \array_map([$this, 'mapStackFrame'], $this->backtrace)
             ]
         ];
     }

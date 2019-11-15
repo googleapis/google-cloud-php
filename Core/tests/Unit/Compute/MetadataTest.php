@@ -45,8 +45,8 @@ class MetadataTest extends TestCase
         $this->metadata->setReader(new StreamReader);
 
         $this->assertNotEquals(
-            get_class($beforeReader),
-            get_class($this->metadata->___getProperty('reader'))
+            \get_class($beforeReader),
+            \get_class($this->metadata->___getProperty('reader'))
         );
     }
 

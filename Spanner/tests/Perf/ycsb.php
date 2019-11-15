@@ -19,7 +19,7 @@ namespace Google\Cloud\Spanner\Tests\Perf;
 
 use Google\Cloud\Spanner\SpannerClient;
 
-if (!class_exists(SpannerClient::class)) {
+if (!\class_exists(SpannerClient::class)) {
     $possibleLocations = [
         __DIR__ . '/../../vendor/autoload.php',
         __DIR__ . '/../../../vendor/autoload.php'
@@ -27,7 +27,7 @@ if (!class_exists(SpannerClient::class)) {
 
     $found = false;
     foreach ($possibleLocations as $path) {
-        if (file_exists($path)) {
+        if (\file_exists($path)) {
             $found = true;
             include $path;
 
@@ -70,20 +70,20 @@ foreach (Config::$operations as $operation) {
     }
 
     $totalWeight += $weight;
-    $operationCode = explode('proportion', $operation);
+    $operationCode = \explode('proportion', $operation);
     $operations[] = $operationCode[0];
 
     $weights[] = $totalWeight;
     $latency[$operationCode[0]] = [];
 }
 
-$timeStart = microtime(true);
+$timeStart = \microtime(true);
 
 $testOp = new Operation($database, $parameters, $totalWeight, $weights, $operations, $latency);
 $loadTime = $testOp->load();
 $latency = $testOp->run();
 
-$timeEnd = microtime(true) - $timeStart;
+$timeEnd = \microtime(true) - $timeStart;
 
 $report->report('[OVERALL] Operation run time: ' . $timeEnd . PHP_EOL);
 $report->report('[OVERALL] Load time: ' . $loadTime . PHP_EOL);

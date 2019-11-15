@@ -43,7 +43,7 @@ class FileBreakpointStorage implements BreakpointStorageInterface
     public function __construct($filename = null)
     {
         $filename = $filename ?: self::DEFAULT_FILENAME;
-        $this->filename = implode(DIRECTORY_SEPARATOR, [sys_get_temp_dir(), $filename]);
+        $this->filename = \implode(DIRECTORY_SEPARATOR, [\sys_get_temp_dir(), $filename]);
         $this->lockFilename = $filename . '.lock';
     }
 
@@ -67,7 +67,7 @@ class FileBreakpointStorage implements BreakpointStorageInterface
         // single Daemon that can call this.
         try {
             $success = $this->getLock(true)->synchronize(function () use ($data) {
-                return file_put_contents($this->filename, serialize($data)) !== false;
+                return \file_put_contents($this->filename, \serialize($data)) !== false;
             });
         } catch (\RuntimeException $e) {
             // Do nothing
@@ -91,11 +91,11 @@ class FileBreakpointStorage implements BreakpointStorageInterface
         // skip debugging for this request.
         try {
             $contents = $this->getLock()->synchronize(function () {
-                return file_get_contents($this->filename);
+                return \file_get_contents($this->filename);
             }, [
                 'blocking' => false
             ]);
-            $data = unserialize($contents);
+            $data = \unserialize($contents);
             $debuggeeId = $data['debuggeeId'];
             $breakpoints = $data['breakpoints'];
         } catch (\RuntimeException $e) {

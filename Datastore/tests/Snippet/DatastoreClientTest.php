@@ -100,7 +100,7 @@ class DatastoreClientTest extends SnippetTestCase
 
         $this->assertInstanceOf(DatastoreClient::class, $res->returnVal());
 
-        $this->assertEquals('localhost:8900', getenv('DATASTORE_EMULATOR_HOST'));
+        $this->assertEquals('localhost:8900', \getenv('DATASTORE_EMULATOR_HOST'));
     }
 
     public function testKey()
@@ -357,7 +357,7 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
 
         $this->connection->commit(Argument::that(function ($args) {
-            return array_keys($args['mutations'][0])[0] === 'insert';
+            return \array_keys($args['mutations'][0])[0] === 'insert';
         }))
             ->shouldBeCalled()
             ->willReturn([
@@ -381,7 +381,7 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
 
         $this->connection->commit(Argument::that(function ($args) {
-            return array_keys($args['mutations'][0])[0] === 'insert';
+            return \array_keys($args['mutations'][0])[0] === 'insert';
         }))
             ->shouldBeCalled();
 
@@ -405,7 +405,7 @@ class DatastoreClientTest extends SnippetTestCase
         ]));
 
         $this->connection->commit(Argument::that(function ($args) {
-            return array_keys($args['mutations'][0])[0] === 'update';
+            return \array_keys($args['mutations'][0])[0] === 'update';
         }))
             ->shouldBeCalled()
             ->willReturn([
@@ -431,7 +431,7 @@ class DatastoreClientTest extends SnippetTestCase
         ]);
 
         $this->connection->commit(Argument::that(function ($args) {
-            return array_keys($args['mutations'][0])[0] === 'update';
+            return \array_keys($args['mutations'][0])[0] === 'update';
         }))->shouldBeCalled();
 
         $this->refreshOperation($this->client, $this->connection->reveal(), [
@@ -447,7 +447,7 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
 
         $this->connection->commit(Argument::that(function ($args) {
-            return array_keys($args['mutations'][0])[0] === 'upsert';
+            return \array_keys($args['mutations'][0])[0] === 'upsert';
         }))
             ->shouldBeCalled()
             ->willReturn([
@@ -469,7 +469,7 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
 
         $this->connection->commit(Argument::that(function ($args) {
-            return array_keys($args['mutations'][0])[0] === 'upsert';
+            return \array_keys($args['mutations'][0])[0] === 'upsert';
         }))->shouldBeCalled();
 
         $this->refreshOperation($this->client, $this->connection->reveal(), [
@@ -485,7 +485,7 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
 
         $this->connection->commit(Argument::that(function ($args) {
-            return array_keys($args['mutations'][0])[0] === 'delete';
+            return \array_keys($args['mutations'][0])[0] === 'delete';
         }))
             ->shouldBeCalled()
             ->willReturn([
@@ -507,7 +507,7 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
 
         $this->connection->commit(Argument::that(function ($args) {
-            return array_keys($args['mutations'][0])[0] === 'delete';
+            return \array_keys($args['mutations'][0])[0] === 'delete';
         }))->shouldBeCalled();
 
         $this->refreshOperation($this->client, $this->connection->reveal(), [
@@ -596,8 +596,8 @@ class DatastoreClientTest extends SnippetTestCase
         ]);
 
         $res = $snippet->invoke();
-        $this->assertEquals("Bob", explode("\n", $res->output())[0]);
-        $this->assertEquals("John", explode("\n", $res->output())[1]);
+        $this->assertEquals("Bob", \explode("\n", $res->output())[0]);
+        $this->assertEquals("John", \explode("\n", $res->output())[1]);
     }
 
     public function testQuery()
@@ -697,7 +697,7 @@ class DatastoreClientTest extends SnippetTestCase
                 echo 'missing opts';
                 return false;
             }
-            if (!array_key_exists($type, $args['transactionOptions'])) {
+            if (!\array_key_exists($type, $args['transactionOptions'])) {
                 echo 'missing key';
                 return false;
             }
@@ -705,7 +705,7 @@ class DatastoreClientTest extends SnippetTestCase
             if (!empty((array) $options)) {
                 return $options === $args['transactionOptions'][$type];
             } else {
-                return is_object($args['transactionOptions'][$type])
+                return \is_object($args['transactionOptions'][$type])
                     && empty((array) $args['transactionOptions'][$type]);
             }
 

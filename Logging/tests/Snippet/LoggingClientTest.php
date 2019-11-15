@@ -91,8 +91,8 @@ class LoggingClientTest extends SnippetTestCase
 
         $res = $snippet->invoke('sinks');
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
-        $this->assertEquals('Sink 1', explode(PHP_EOL, $res->output())[0]);
-        $this->assertEquals('Sink 2', explode(PHP_EOL, $res->output())[1]);
+        $this->assertEquals('Sink 1', \explode(PHP_EOL, $res->output())[0]);
+        $this->assertEquals('Sink 2', \explode(PHP_EOL, $res->output())[1]);
     }
 
     public function testCreateMetric()
@@ -137,8 +137,8 @@ class LoggingClientTest extends SnippetTestCase
 
         $res = $snippet->invoke('metrics');
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
-        $this->assertEquals('Metric 1', explode(PHP_EOL, $res->output())[0]);
-        $this->assertEquals('Metric 2', explode(PHP_EOL, $res->output())[1]);
+        $this->assertEquals('Metric 1', \explode(PHP_EOL, $res->output())[0]);
+        $this->assertEquals('Metric 2', \explode(PHP_EOL, $res->output())[1]);
     }
 
     public function testEntries()
@@ -159,8 +159,8 @@ class LoggingClientTest extends SnippetTestCase
 
         $res = $snippet->invoke('entries');
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
-        $this->assertEquals('Entry 1', explode(PHP_EOL, $res->output())[0]);
-        $this->assertEquals('Entry 2', explode(PHP_EOL, $res->output())[1]);
+        $this->assertEquals('Entry 1', \explode(PHP_EOL, $res->output())[0]);
+        $this->assertEquals('Entry 2', \explode(PHP_EOL, $res->output())[1]);
     }
 
     public function testEntriesWithFilter()
@@ -169,7 +169,7 @@ class LoggingClientTest extends SnippetTestCase
         $snippet->addLocal('logging', $this->client);
 
         $this->connection->listEntries(Argument::that(function ($arg) {
-            return strpos($arg['filter'], 'logName') !== false;
+            return \strpos($arg['filter'], 'logName') !== false;
         }))
             ->shouldBeCalled()
             ->willReturn([
@@ -183,8 +183,8 @@ class LoggingClientTest extends SnippetTestCase
 
         $res = $snippet->invoke('entries');
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
-        $this->assertEquals('Entry 1', explode(PHP_EOL, $res->output())[0]);
-        $this->assertEquals('Entry 2', explode(PHP_EOL, $res->output())[1]);
+        $this->assertEquals('Entry 1', \explode(PHP_EOL, $res->output())[0]);
+        $this->assertEquals('Entry 2', \explode(PHP_EOL, $res->output())[1]);
     }
 
     public function testPsrLogger()

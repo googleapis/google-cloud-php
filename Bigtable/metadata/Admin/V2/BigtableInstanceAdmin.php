@@ -22,7 +22,7 @@ class BigtableInstanceAdmin
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0a852f0a36676f6f676c652f6269677461626c652f61646d696e2f76322f" .
             "6269677461626c655f696e7374616e63655f61646d696e2e70726f746f12" .
             "18676f6f676c652e6269677461626c652e61646d696e2e76321a27676f6f" .

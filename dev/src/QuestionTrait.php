@@ -64,13 +64,13 @@ trait QuestionTrait
     private function choice($question, array $options, $default = null)
     {
         if ($default !== null) {
-            if (!in_array($default, $options)) {
+            if (!\in_array($default, $options)) {
                 throw new \RuntimeException(
                     'default choice `'. $default .'` is not an allowed choice. (This is a developer problem)'
                 );
             }
 
-            $key = array_search($default, $options);
+            $key = \array_search($default, $options);
             $options[$key] = $options[$key] . $this->choiceDefaultText;
             $default = $options[$key];
         }
@@ -80,12 +80,12 @@ trait QuestionTrait
 
     private function removeDefaultFromChoice($answer)
     {
-        return explode($this->choiceDefaultText, $answer)[0];
+        return \explode($this->choiceDefaultText, $answer)[0];
     }
 
     private function confirm($question, $defaultToYes = true)
     {
-        $choices = implode('/', [
+        $choices = \implode('/', [
             ($defaultToYes) ? 'y [default]' : 'y',
             (!$defaultToYes) ? 'n [default]' : 'n',
         ]);
@@ -97,7 +97,7 @@ trait QuestionTrait
     {
         return function ($answer) use ($callables) {
             foreach ($callables as $callable) {
-                $answer = call_user_func($callable, $answer);
+                $answer = \call_user_func($callable, $answer);
             }
 
             return $answer;
@@ -129,8 +129,8 @@ trait QuestionTrait
     private function removeDefaultNotice($default, $notice = '(default)')
     {
         return function ($answer) use ($default, $notice) {
-            if (strpos($answer, $notice) !== false) {
-                $answer = trim(str_replace($notice, '', $answer));
+            if (\strpos($answer, $notice) !== false) {
+                $answer = \trim(\str_replace($notice, '', $answer));
             }
 
             return $answer;

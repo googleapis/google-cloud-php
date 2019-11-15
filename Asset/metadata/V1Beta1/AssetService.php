@@ -18,7 +18,7 @@ class AssetService
         \GPBMetadata\Google\Cloud\Asset\V1Beta1\Assets::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0a820e0a2e676f6f676c652f636c6f75642f61737365742f763162657461" .
             "312f61737365745f736572766963652e70726f746f121a676f6f676c652e" .
             "636c6f75642e61737365742e763162657461311a27676f6f676c652f636c" .

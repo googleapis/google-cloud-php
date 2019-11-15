@@ -35,8 +35,8 @@ class ReadTest extends SpannerTestCase
     {
         parent::setupBeforeClass();
 
-        self::$readTableName = uniqid(self::TESTING_PREFIX);
-        self::$rangeTableName = uniqid(self::TESTING_PREFIX);
+        self::$readTableName = \uniqid(self::TESTING_PREFIX);
+        self::$rangeTableName = \uniqid(self::TESTING_PREFIX);
 
         $create = 'CREATE TABLE %s (
             id INT64 NOT NULL,
@@ -47,12 +47,12 @@ class ReadTest extends SpannerTestCase
 
         $stmts = [];
         foreach ([self::$readTableName, self::$rangeTableName] as $table) {
-            $index1 = ['table' => $table, 'name' => uniqid(self::TESTING_PREFIX), 'type' => 'simple'];
-            $index2 = ['table' => $table, 'name' => uniqid(self::TESTING_PREFIX), 'type' => 'complex'];
+            $index1 = ['table' => $table, 'name' => \uniqid(self::TESTING_PREFIX), 'type' => 'simple'];
+            $index2 = ['table' => $table, 'name' => \uniqid(self::TESTING_PREFIX), 'type' => 'complex'];
 
-            $stmts[] = sprintf($create, $table);
-            $stmts[] = sprintf($idx, $index1['name'], $table, 'id');
-            $stmts[] = sprintf($idx, $index2['name'], $table, 'id, val');
+            $stmts[] = \sprintf($create, $table);
+            $stmts[] = \sprintf($idx, $index1['name'], $table, 'id');
+            $stmts[] = \sprintf($idx, $index2['name'], $table, 'id, val');
 
             self::$indexes[] = $index1;
             self::$indexes[] = $index2;
@@ -79,8 +79,8 @@ class ReadTest extends SpannerTestCase
 
         $keyset = new KeySet(['ranges' => [$range]]);
 
-        $res = $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]));
-        $rows = iterator_to_array($res->rows());
+        $res = $db->read(self::$rangeTableName, $keyset, \array_keys(self::$dataset[0]));
+        $rows = \iterator_to_array($res->rows());
         $this->assertNotContains(self::$dataset[0], $rows);
         $this->assertNotContains(self::$dataset[10], $rows);
     }
@@ -101,8 +101,8 @@ class ReadTest extends SpannerTestCase
 
         $keyset = new KeySet(['ranges' => [$range]]);
 
-        $res = $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]));
-        $rows = iterator_to_array($res->rows());
+        $res = $db->read(self::$rangeTableName, $keyset, \array_keys(self::$dataset[0]));
+        $rows = \iterator_to_array($res->rows());
         $this->assertContains(self::$dataset[0], $rows);
         $this->assertContains(self::$dataset[10], $rows);
     }
@@ -122,8 +122,8 @@ class ReadTest extends SpannerTestCase
 
         $keyset = new KeySet(['ranges' => [$range]]);
 
-        $res = $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]));
-        $rows = iterator_to_array($res->rows());
+        $res = $db->read(self::$rangeTableName, $keyset, \array_keys(self::$dataset[0]));
+        $rows = \iterator_to_array($res->rows());
         $this->assertNotContains(self::$dataset[0], $rows);
         $this->assertContains(self::$dataset[10], $rows);
     }
@@ -143,8 +143,8 @@ class ReadTest extends SpannerTestCase
 
         $keyset = new KeySet(['ranges' => [$range]]);
 
-        $res = $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]));
-        $rows = iterator_to_array($res->rows());
+        $res = $db->read(self::$rangeTableName, $keyset, \array_keys(self::$dataset[0]));
+        $rows = \iterator_to_array($res->rows());
         $this->assertContains(self::$dataset[0], $rows);
         $this->assertNotContains(self::$dataset[10], $rows);
     }
@@ -163,8 +163,8 @@ class ReadTest extends SpannerTestCase
 
         $keyset = new KeySet(['ranges' => [$range]]);
 
-        $res = $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]));
-        $rows = iterator_to_array($res->rows());
+        $res = $db->read(self::$rangeTableName, $keyset, \array_keys(self::$dataset[0]));
+        $rows = \iterator_to_array($res->rows());
         $this->assertNotContains(self::$dataset[0], $rows);
         $this->assertNotContains(self::$dataset[10], $rows);
     }
@@ -185,8 +185,8 @@ class ReadTest extends SpannerTestCase
 
         $keyset = new KeySet(['ranges' => [$range]]);
 
-        $res = $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]));
-        $rows = iterator_to_array($res->rows());
+        $res = $db->read(self::$rangeTableName, $keyset, \array_keys(self::$dataset[0]));
+        $rows = \iterator_to_array($res->rows());
         $this->assertContains(self::$dataset[0], $rows);
         $this->assertContains(self::$dataset[10], $rows);
     }
@@ -205,10 +205,10 @@ class ReadTest extends SpannerTestCase
 
         $keyset = new KeySet(['ranges' => [$range]]);
 
-        $res = $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]), [
+        $res = $db->read(self::$rangeTableName, $keyset, \array_keys(self::$dataset[0]), [
             'index' => $this->getIndexName(self::$rangeTableName, 'complex')
         ]);
-        $rows = iterator_to_array($res->rows());
+        $rows = \iterator_to_array($res->rows());
         $this->assertNotContains(self::$dataset[0], $rows);
         $this->assertNotContains(self::$dataset[10], $rows);
     }
@@ -229,10 +229,10 @@ class ReadTest extends SpannerTestCase
 
         $keyset = new KeySet(['ranges' => [$range]]);
 
-        $res = $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]), [
+        $res = $db->read(self::$rangeTableName, $keyset, \array_keys(self::$dataset[0]), [
             'index' => $this->getIndexName(self::$rangeTableName, 'complex')
         ]);
-        $rows = iterator_to_array($res->rows());
+        $rows = \iterator_to_array($res->rows());
         $this->assertContains(self::$dataset[0], $rows);
         $this->assertContains(self::$dataset[10], $rows);
     }
@@ -252,10 +252,10 @@ class ReadTest extends SpannerTestCase
 
         $keyset = new KeySet(['ranges' => [$range]]);
 
-        $res = $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]), [
+        $res = $db->read(self::$rangeTableName, $keyset, \array_keys(self::$dataset[0]), [
             'index' => $this->getIndexName(self::$rangeTableName, 'complex')
         ]);
-        $rows = iterator_to_array($res->rows());
+        $rows = \iterator_to_array($res->rows());
         $this->assertNotContains(self::$dataset[0], $rows);
         $this->assertContains(self::$dataset[10], $rows);
     }
@@ -275,10 +275,10 @@ class ReadTest extends SpannerTestCase
 
         $keyset = new KeySet(['ranges' => [$range]]);
 
-        $res = $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]), [
+        $res = $db->read(self::$rangeTableName, $keyset, \array_keys(self::$dataset[0]), [
             'index' => $this->getIndexName(self::$rangeTableName, 'complex')
         ]);
-        $rows = iterator_to_array($res->rows());
+        $rows = \iterator_to_array($res->rows());
         $this->assertContains(self::$dataset[0], $rows);
         $this->assertNotContains(self::$dataset[10], $rows);
     }
@@ -297,10 +297,10 @@ class ReadTest extends SpannerTestCase
 
         $keyset = new KeySet(['ranges' => [$range]]);
 
-        $res = $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]), [
+        $res = $db->read(self::$rangeTableName, $keyset, \array_keys(self::$dataset[0]), [
             'index' => $this->getIndexName(self::$rangeTableName, 'complex')
         ]);
-        $rows = iterator_to_array($res->rows());
+        $rows = \iterator_to_array($res->rows());
         $this->assertNotContains(self::$dataset[0], $rows);
         $this->assertNotContains(self::$dataset[10], $rows);
     }
@@ -321,10 +321,10 @@ class ReadTest extends SpannerTestCase
 
         $keyset = new KeySet(['ranges' => [$range]]);
 
-        $res = $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]), [
+        $res = $db->read(self::$rangeTableName, $keyset, \array_keys(self::$dataset[0]), [
             'index' => $this->getIndexName(self::$rangeTableName, 'complex')
         ]);
-        $rows = iterator_to_array($res->rows());
+        $rows = \iterator_to_array($res->rows());
         $this->assertContains(self::$dataset[0], $rows);
         $this->assertContains(self::$dataset[10], $rows);
     }
@@ -338,13 +338,13 @@ class ReadTest extends SpannerTestCase
 
         $res = function ($limit) use ($db) {
             $keyset = new KeySet(['all' => true]);
-            return $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]), [
+            return $db->read(self::$rangeTableName, $keyset, \array_keys(self::$dataset[0]), [
                 'limit' => $limit
             ])->rows();
         };
 
-        $limitCount = count(iterator_to_array($res(10)));
-        $unlimitCount = count(iterator_to_array($res(null)));
+        $limitCount = \count(\iterator_to_array($res(10)));
+        $unlimitCount = \count(\iterator_to_array($res(null)));
 
         $this->assertEquals(10, $limitCount);
         $this->assertNotEquals($limitCount, $unlimitCount);
@@ -359,14 +359,14 @@ class ReadTest extends SpannerTestCase
 
         $res = function ($limit) use ($db) {
             $keyset = new KeySet(['all' => true]);
-            return $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]), [
+            return $db->read(self::$rangeTableName, $keyset, \array_keys(self::$dataset[0]), [
                 'limit' => $limit,
                 'index' => $this->getIndexName(self::$rangeTableName, 'complex')
             ])->rows();
         };
 
-        $limitCount = count(iterator_to_array($res(10)));
-        $unlimitCount = count(iterator_to_array($res(null)));
+        $limitCount = \count(\iterator_to_array($res(10)));
+        $unlimitCount = \count(\iterator_to_array($res(null)));
 
         $this->assertEquals(10, $limitCount);
         $this->assertNotEquals($limitCount, $unlimitCount);
@@ -382,17 +382,17 @@ class ReadTest extends SpannerTestCase
         $db = self::$database;
         $db->insertBatch(self::$readTableName, $dataset);
 
-        $indexes = array_rand($dataset, 4);
+        $indexes = \array_rand($dataset, 4);
         $points = [];
         $keys = [];
-        array_walk($indexes, function ($index) use ($dataset, &$points, &$keys) {
+        \array_walk($indexes, function ($index) use ($dataset, &$points, &$keys) {
             $points[] = $dataset[$index];
             $keys[] = $dataset[$index]['id'];
         });
 
         $keyset = new KeySet(['keys' => $keys]);
 
-        $res = $db->read(self::$readTableName, $keyset, array_keys($dataset[0]));
+        $res = $db->read(self::$readTableName, $keyset, \array_keys($dataset[0]));
         $rows = $res->rows();
         foreach ($rows as $index => $row) {
             $this->assertContains($row, $dataset);
@@ -410,17 +410,17 @@ class ReadTest extends SpannerTestCase
         $db = self::$database;
         $db->insertBatch(self::$readTableName, $dataset);
 
-        $indexes = array_rand($dataset, 4);
+        $indexes = \array_rand($dataset, 4);
         $points = [];
         $keys = [];
-        array_walk($indexes, function ($index) use ($dataset, &$points, &$keys) {
+        \array_walk($indexes, function ($index) use ($dataset, &$points, &$keys) {
             $points[] = $dataset[$index];
-            $keys[] = array_values($dataset[$index]);
+            $keys[] = \array_values($dataset[$index]);
         });
 
         $keyset = new KeySet(['keys' => $keys]);
 
-        $res = $db->read(self::$readTableName, $keyset, array_keys($dataset[0]), [
+        $res = $db->read(self::$readTableName, $keyset, \array_keys($dataset[0]), [
             'index' => $this->getIndexName(self::$readTableName, 'complex')
         ]);
         $rows = $res->rows();
@@ -436,7 +436,7 @@ class ReadTest extends SpannerTestCase
      */
     public function testReadInvalidDatabase()
     {
-        $db = self::$client->connect('google-cloud-php-system-tests', uniqid(self::TESTING_PREFIX));
+        $db = self::$client->connect('google-cloud-php-system-tests', \uniqid(self::TESTING_PREFIX));
         $keyset = new KeySet(['all' => true]);
 
         $db->read(self::TEST_TABLE_NAME, $keyset, [])->rows()->current();
@@ -463,7 +463,7 @@ class ReadTest extends SpannerTestCase
         $db = self::$database;
         $keyset = new KeySet(['all' => true]);
 
-        $db->read(self::TEST_TABLE_NAME, $keyset, [uniqid('id')])->rows()->current();
+        $db->read(self::TEST_TABLE_NAME, $keyset, [\uniqid('id')])->rows()->current();
     }
 
     /**
@@ -475,7 +475,7 @@ class ReadTest extends SpannerTestCase
         $db = self::$database;
         $keyset = new KeySet(['all' => true]);
 
-        $db->read(self::TEST_TABLE_NAME, $keyset, [uniqid('id')], [
+        $db->read(self::TEST_TABLE_NAME, $keyset, [\uniqid('id')], [
             'timeoutMillis' => 1
         ])->rows()->current();
     }
@@ -487,7 +487,7 @@ class ReadTest extends SpannerTestCase
             $id = ($ordered) ? $i : self::randId();
             $dataset[] = [
                 'id' => $id,
-                'val' => uniqid(self::TESTING_PREFIX)
+                'val' => \uniqid(self::TESTING_PREFIX)
             ];
         }
 
@@ -496,7 +496,7 @@ class ReadTest extends SpannerTestCase
 
     private function getIndexName($table, $type)
     {
-        $res = array_filter(self::$indexes, function ($index) use ($table, $type) {
+        $res = \array_filter(self::$indexes, function ($index) use ($table, $type) {
             return $index['table'] === $table && $index['type'] === $type;
         });
 
@@ -504,6 +504,6 @@ class ReadTest extends SpannerTestCase
             throw new \RuntimeException('index not found');
         }
 
-        return current($res)['name'];
+        return \current($res)['name'];
     }
 }

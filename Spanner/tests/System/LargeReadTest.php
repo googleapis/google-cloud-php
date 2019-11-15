@@ -42,18 +42,18 @@ class LargeReadTest extends SpannerTestCase
     {
         parent::setupBeforeClass();
 
-        self::$tableName = uniqid(self::TESTING_PREFIX);
+        self::$tableName = \uniqid(self::TESTING_PREFIX);
 
         $str = '';
         foreach (self::$data as $letter) {
-            $str .= str_repeat($letter, self::NUM);
+            $str .= \str_repeat($letter, self::NUM);
         }
 
         self::$str = $str;
 
         $db = self::$database;
 
-        $db->updateDdl(sprintf(
+        $db->updateDdl(\sprintf(
             'CREATE TABLE %s (
                 id INT64 NOT NULL,
                 stringColumn STRING(MAX) NOT NULL,
@@ -92,7 +92,7 @@ class LargeReadTest extends SpannerTestCase
         $db = self::$database;
 
         $keyset = new KeySet(['all' => true]);
-        $read = $db->read(self::$tableName, $keyset, array_keys(self::$row));
+        $read = $db->read(self::$tableName, $keyset, \array_keys(self::$row));
 
         foreach ($read->rows() as $row) {
             $this->runAssertionsOnRow($row);
@@ -116,14 +116,14 @@ class LargeReadTest extends SpannerTestCase
     private function runAssertionsOnRow(array $row)
     {
         $this->assertEquals(self::$str, $row['stringColumn']);
-        $this->assertEquals(self::$str, base64_decode((string) $row['bytesColumn']));
+        $this->assertEquals(self::$str, \base64_decode((string) $row['bytesColumn']));
 
         foreach ($row['stringArrayColumn'] as $str) {
             $this->assertEquals(self::$str, $str);
         }
 
         foreach ($row['bytesArrayColumn'] as $bytes) {
-            $this->assertEquals(self::$str, base64_decode((string) $bytes));
+            $this->assertEquals(self::$str, \base64_decode((string) $bytes));
         }
     }
 
@@ -140,7 +140,7 @@ class LargeReadTest extends SpannerTestCase
     private static function randomArrayOfStrings()
     {
         $res = [];
-        for ($i=0; $i <= rand(1, 4); $i++) {
+        for ($i=0; $i <= \rand(1, 4); $i++) {
             $res[] = self::randomString();
         }
 
@@ -150,7 +150,7 @@ class LargeReadTest extends SpannerTestCase
     private static function randomArrayOfBytes(&$str)
     {
         $res = [];
-        for ($i=0; $i <= rand(1, 4); $i++) {
+        for ($i=0; $i <= \rand(1, 4); $i++) {
             $res[] = self::randomBytes($str);
         }
 

@@ -103,5 +103,5 @@ class UnaryFilter extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(UnaryFilter::class, \Google\Cloud\Firestore\V1beta1\StructuredQuery_UnaryFilter::class);
+\class_alias(UnaryFilter::class, \Google\Cloud\Firestore\V1beta1\StructuredQuery_UnaryFilter::class);
 

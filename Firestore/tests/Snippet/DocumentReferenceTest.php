@@ -93,8 +93,8 @@ class DocumentReferenceTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(DocumentReference::class, 'id');
         $snippet->addLocal('document', $this->document);
         $res = $snippet->invoke('id');
-        $parts = explode('/', self::DOCUMENT);
-        $this->assertEquals(array_pop($parts), $res->returnVal());
+        $parts = \explode('/', self::DOCUMENT);
+        $this->assertEquals(\array_pop($parts), $res->returnVal());
     }
 
     public function testCreate()

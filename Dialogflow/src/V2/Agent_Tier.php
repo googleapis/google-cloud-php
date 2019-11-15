@@ -11,6 +11,6 @@ if (false) {
      */
     class Agent_Tier {}
 }
-class_exists(Agent\Tier::class);
-@trigger_error('Google\Cloud\Dialogflow\V2\Agent_Tier is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\Agent\Tier instead', E_USER_DEPRECATED);
+\class_exists(Agent\Tier::class);
+@\trigger_error('Google\Cloud\Dialogflow\V2\Agent_Tier is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\Agent\Tier instead', E_USER_DEPRECATED);
 

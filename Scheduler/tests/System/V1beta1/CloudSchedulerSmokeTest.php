@@ -50,8 +50,8 @@ class CloudSchedulerSmokeTest extends TestCase
             return;
         }
 
-        $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
-        $keyFileData = json_decode(file_get_contents($keyFilePath), true);
+        $keyFilePath = \getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
+        $keyFileData = \json_decode(\file_get_contents($keyFilePath), true);
 
         self::$grpcClient = new CloudSchedulerClient([
             'credentials' => $keyFilePath,
@@ -77,7 +77,7 @@ class CloudSchedulerSmokeTest extends TestCase
         $target = new AppEngineHttpTarget;
         $target->setRelativeUri('/');
         $job = new Job;
-        $job->setName($client->jobName(self::$projectId, self::$location, uniqid('job')));
+        $job->setName($client->jobName(self::$projectId, self::$location, \uniqid('job')));
         $job->setAppEngineHttpTarget($target);
         $job->setSchedule('* * * * *');
 

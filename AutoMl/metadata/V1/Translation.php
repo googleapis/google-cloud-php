@@ -17,7 +17,7 @@ class Translation
         \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Cloud\Automl\V1\DataItems::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0aca050a28676f6f676c652f636c6f75642f6175746f6d6c2f76312f7472" .
             "616e736c6174696f6e2e70726f746f1216676f6f676c652e636c6f75642e" .
             "6175746f6d6c2e76311a1f676f6f676c652f6170692f6669656c645f6265" .

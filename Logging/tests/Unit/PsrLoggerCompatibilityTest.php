@@ -42,11 +42,11 @@ class PsrLoggerCompatibilityTest extends LoggerInterfaceTest
             ->will(function ($entries) {
                 $map = Logger::getLogLevelMap();
                 $entry = $entries[0]['entries'][0];
-                $severity = is_int($entry['severity'])
-                    ? strtolower($map[$entry['severity']])
+                $severity = \is_int($entry['severity'])
+                    ? \strtolower($map[$entry['severity']])
                     : $entry['severity'];
 
-                self::$logs[] = sprintf(
+                self::$logs[] = \sprintf(
                     '%s %s',
                     $severity,
                     $entry['jsonPayload']['message']

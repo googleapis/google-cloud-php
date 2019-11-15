@@ -29,7 +29,7 @@ class CacheSessionPoolTest extends SnippetTestCase
 {
     public function testClass()
     {
-        if (!extension_loaded('grpc')) {
+        if (!\extension_loaded('grpc')) {
             $this->markTestSkipped('Must have the grpc extension installed to run this test.');
         }
 
@@ -42,7 +42,7 @@ class CacheSessionPoolTest extends SnippetTestCase
 
     public function testClassLabels()
     {
-        if (!extension_loaded('grpc')) {
+        if (!\extension_loaded('grpc')) {
             $this->markTestSkipped('Must have the grpc extension installed to run this test.');
         }
 

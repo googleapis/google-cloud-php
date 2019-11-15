@@ -11,6 +11,6 @@ if (false) {
      */
     class AnalyzeDataSourceRiskDetails_LDiversityResult {}
 }
-class_exists(AnalyzeDataSourceRiskDetails\LDiversityResult::class);
-@trigger_error('Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_LDiversityResult is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\LDiversityResult instead', E_USER_DEPRECATED);
+\class_exists(AnalyzeDataSourceRiskDetails\LDiversityResult::class);
+@\trigger_error('Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_LDiversityResult is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\LDiversityResult instead', E_USER_DEPRECATED);
 

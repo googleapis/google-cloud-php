@@ -237,7 +237,7 @@ class ConformanceTest extends TestCase
 
         $this->executeAndHandleError($test, function ($test) use ($query) {
             foreach ($test['clauses'] as $clause) {
-                $name = array_keys($clause)[0];
+                $name = \array_keys($clause)[0];
                 switch ($name) {
                     case 'select':
                         $fields = [];
@@ -249,7 +249,7 @@ class ConformanceTest extends TestCase
                         break;
 
                     case 'where':
-                        $path = count($clause['where']['path']['field']) === 1
+                        $path = \count($clause['where']['path']['field']) === 1
                             ? $clause['where']['path']['field'][0]
                             : new FieldPath($clause['where']['path']['field']);
 
@@ -273,7 +273,7 @@ class ConformanceTest extends TestCase
                         break;
 
                     case 'orderBy':
-                        $path = count($clause['orderBy']['path']['field']) === 1
+                        $path = \count($clause['orderBy']['path']['field']) === 1
                             ? $clause['orderBy']['path']['field'][0]
                             : new FieldPath($clause['orderBy']['path']['field']);
 
@@ -402,7 +402,7 @@ class ConformanceTest extends TestCase
 
     private function injectSentinels($fields)
     {
-        if (!is_array($fields)) {
+        if (!\is_array($fields)) {
             return $fields;
         }
 
@@ -415,9 +415,9 @@ class ConformanceTest extends TestCase
 
     private function injectSentinel($value)
     {
-        if (is_array($value) && !empty($value)) {
-            if (in_array(array_values($value)[0], ['ArrayUnion', 'ArrayRemove'], true)) {
-                $type = lcfirst(array_shift($value));
+        if (\is_array($value) && !empty($value)) {
+            if (\in_array(\array_values($value)[0], ['ArrayUnion', 'ArrayRemove'], true)) {
+                $type = \lcfirst(\array_shift($value));
                 return FieldValue::$type($this->injectSentinels($value));
             }
 
@@ -442,7 +442,7 @@ class ConformanceTest extends TestCase
     private function injectPbValues(array $request, $parent = null)
     {
         foreach ($request as $key => &$clause) {
-            if (is_array($clause)) {
+            if (\is_array($clause)) {
                 $clause = $this->injectPbValues($clause, $key);
                 continue;
             }
@@ -496,9 +496,9 @@ class ConformanceTest extends TestCase
                 ? (object) []
                 : [];
         }
-        $json = str_replace('{}', '"EMPTY_MAP"', $json);
+        $json = \str_replace('{}', '"EMPTY_MAP"', $json);
 
-        return json_decode($json, true);
+        return \json_decode($json, true);
     }
 
     private function setupCases(array $types, array $excludes)
@@ -507,16 +507,16 @@ class ConformanceTest extends TestCase
             return self::$cases;
         }
 
-        $files = glob(__DIR__ . '/conformance/v1/*.json');
+        $files = \glob(__DIR__ . '/conformance/v1/*.json');
 
         $cases = [];
         foreach ($files as $fileName) {
-            $file = json_decode(file_get_contents($fileName), true);
+            $file = \json_decode(\file_get_contents($fileName), true);
 
             foreach ($file['tests'] as $test) {
-                $matches = array_values(array_intersect($types, array_keys($test)));
+                $matches = \array_values(\array_intersect($types, \array_keys($test)));
                 if (!$matches) {
-                    if (in_array($test['description'], $excludes)) {
+                    if (\in_array($test['description'], $excludes)) {
                         self::$skipped[] = [$test['description']];
                         continue;
                     }
@@ -526,7 +526,7 @@ class ConformanceTest extends TestCase
 
                 $type = $matches[0];
 
-                if (in_array($test['description'], $excludes)) {
+                if (\in_array($test['description'], $excludes)) {
                     self::$skipped[] = [$test['description']];
                     continue;
                 }
@@ -560,11 +560,11 @@ class ConformanceTest extends TestCase
 
     public function cases($type)
     {
-        if (strpos($type, 'test') === 0) {
-            $type = lcfirst(str_replace('test', '', $type));
+        if (\strpos($type, 'test') === 0) {
+            $type = \lcfirst(\str_replace('test', '', $type));
         }
 
-        $cases = array_filter(
+        $cases = \array_filter(
             $this->setupCases($this->testTypes, $this->excludes),
             function ($case) use ($type) {
                 return $case['type'] === $type;

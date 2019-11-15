@@ -15,7 +15,7 @@ class SecurityMarks
           return;
         }
         \GPBMetadata\Google\Api\Annotations::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0ad1030a33676f6f676c652f636c6f75642f736563757269747963656e74" .
             "65722f76312f73656375726974795f6d61726b732e70726f746f121e676f" .
             "6f676c652e636c6f75642e736563757269747963656e7465722e76312294" .

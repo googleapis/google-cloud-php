@@ -60,7 +60,7 @@ class WriteTest extends FirestoreTestCase
      */
     public function testTimestampPrecisionLocale($timestamp)
     {
-        setlocale(LC_ALL, 'fr_FR.UTF-8');
+        \setlocale(LC_ALL, 'fr_FR.UTF-8');
         try {
             $doc = self::$collection->add([
                 'timestampField' => $timestamp
@@ -83,7 +83,7 @@ class WriteTest extends FirestoreTestCase
             $this->assertEquals($timestamp->nanoSeconds(), $res2->nanoSeconds());
             $this->assertEquals($timestamp->formatAsString(), $res2->formatAsString());
         } finally {
-            setlocale(LC_ALL, null);
+            \setlocale(LC_ALL, null);
         }
     }
 

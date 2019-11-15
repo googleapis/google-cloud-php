@@ -11,6 +11,6 @@ if (false) {
      */
     class ReadOptions_ReadConsistency {}
 }
-class_exists(ReadOptions\ReadConsistency::class);
-@trigger_error('Google\Cloud\Datastore\V1\ReadOptions_ReadConsistency is deprecated and will be removed in the next major release. Use Google\Cloud\Datastore\V1\ReadOptions\ReadConsistency instead', E_USER_DEPRECATED);
+\class_exists(ReadOptions\ReadConsistency::class);
+@\trigger_error('Google\Cloud\Datastore\V1\ReadOptions_ReadConsistency is deprecated and will be removed in the next major release. Use Google\Cloud\Datastore\V1\ReadOptions\ReadConsistency instead', E_USER_DEPRECATED);
 

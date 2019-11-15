@@ -53,7 +53,7 @@ class BytesTest extends SnippetTestCase
         $snippet->addLocal('bytes', $this->bytes);
         $res = $snippet->invoke();
 
-        $this->assertEquals(base64_encode(self::BYTES), $res->output());
+        $this->assertEquals(\base64_encode(self::BYTES), $res->output());
     }
 
     public function testGet()
@@ -80,6 +80,6 @@ class BytesTest extends SnippetTestCase
         $snippet->addLocal('bytes', $this->bytes);
         $res = $snippet->invoke();
 
-        $this->assertEquals(base64_encode(self::BYTES), $res->output());
+        $this->assertEquals(\base64_encode(self::BYTES), $res->output());
     }
 }

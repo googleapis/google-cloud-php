@@ -36,7 +36,7 @@ class ClusterControllerSmokeTest extends GeneratedTest
      */
     public function listClustersTest()
     {
-        $projectId = getenv('PROJECT_ID');
+        $projectId = \getenv('PROJECT_ID');
         if (false === $projectId) {
             $this->fail('Environment variable PROJECT_ID must be set for smoke test');
         }

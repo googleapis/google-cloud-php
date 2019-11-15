@@ -29,8 +29,8 @@ class ManageTablesTest extends BigQueryTestCase
     {
         $foundTables = [];
         $tablesToCreate = [
-            uniqid(self::TESTING_PREFIX),
-            uniqid(self::TESTING_PREFIX)
+            \uniqid(self::TESTING_PREFIX),
+            \uniqid(self::TESTING_PREFIX)
         ];
 
         foreach ($tablesToCreate as $tableToCreate) {
@@ -52,7 +52,7 @@ class ManageTablesTest extends BigQueryTestCase
 
     public function testCreatesTable()
     {
-        $id = uniqid(self::TESTING_PREFIX);
+        $id = \uniqid(self::TESTING_PREFIX);
         $options = [
             'friendlyName' => 'Test',
             'description' => 'Test'
@@ -95,7 +95,7 @@ class ManageTablesTest extends BigQueryTestCase
     public function testExtractsTable()
     {
         $object = self::$bucket->object(
-            uniqid(self::TESTING_PREFIX)
+            \uniqid(self::TESTING_PREFIX)
         );
 
         $extractJobConfig = self::$table->extract($object)

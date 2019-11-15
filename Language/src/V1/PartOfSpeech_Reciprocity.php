@@ -11,6 +11,6 @@ if (false) {
      */
     class PartOfSpeech_Reciprocity {}
 }
-class_exists(PartOfSpeech\Reciprocity::class);
-@trigger_error('Google\Cloud\Language\V1\PartOfSpeech_Reciprocity is deprecated and will be removed in the next major release. Use Google\Cloud\Language\V1\PartOfSpeech\Reciprocity instead', E_USER_DEPRECATED);
+\class_exists(PartOfSpeech\Reciprocity::class);
+@\trigger_error('Google\Cloud\Language\V1\PartOfSpeech_Reciprocity is deprecated and will be removed in the next major release. Use Google\Cloud\Language\V1\PartOfSpeech\Reciprocity instead', E_USER_DEPRECATED);
 

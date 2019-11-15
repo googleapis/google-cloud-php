@@ -172,5 +172,5 @@ class LDiversityEquivalenceClass extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(LDiversityEquivalenceClass::class, \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_LDiversityResult_LDiversityEquivalenceClass::class);
+\class_alias(LDiversityEquivalenceClass::class, \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_LDiversityResult_LDiversityEquivalenceClass::class);
 

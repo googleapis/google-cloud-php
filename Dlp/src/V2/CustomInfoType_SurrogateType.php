@@ -11,6 +11,6 @@ if (false) {
      */
     class CustomInfoType_SurrogateType {}
 }
-class_exists(CustomInfoType\SurrogateType::class);
-@trigger_error('Google\Cloud\Dlp\V2\CustomInfoType_SurrogateType is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\CustomInfoType\SurrogateType instead', E_USER_DEPRECATED);
+\class_exists(CustomInfoType\SurrogateType::class);
+@\trigger_error('Google\Cloud\Dlp\V2\CustomInfoType_SurrogateType is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\CustomInfoType\SurrogateType instead', E_USER_DEPRECATED);
 

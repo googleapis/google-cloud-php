@@ -17,7 +17,7 @@ class RunAssetDiscoveryResponse
         \GPBMetadata\Google\Protobuf\Duration::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         \GPBMetadata\Google\Api\Annotations::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0af1040a41676f6f676c652f636c6f75642f736563757269747963656e74" .
             "65722f76312f72756e5f61737365745f646973636f766572795f72657370" .
             "6f6e73652e70726f746f121e676f6f676c652e636c6f75642e7365637572" .

@@ -24,7 +24,7 @@ class Filters
         \GPBMetadata\Google\Type\Date::initOnce();
         \GPBMetadata\Google\Type\Latlng::initOnce();
         \GPBMetadata\Google\Type\Timeofday::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0aa7270a29676f6f676c652f636c6f75642f74616c656e742f7634626574" .
             "61312f66696c746572732e70726f746f121b676f6f676c652e636c6f7564" .
             "2e74616c656e742e763462657461311a1f676f6f676c652f6170692f6669" .

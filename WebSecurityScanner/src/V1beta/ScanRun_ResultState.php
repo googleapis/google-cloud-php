@@ -11,6 +11,6 @@ if (false) {
      */
     class ScanRun_ResultState {}
 }
-class_exists(ScanRun\ResultState::class);
-@trigger_error('Google\Cloud\WebSecurityScanner\V1beta\ScanRun_ResultState is deprecated and will be removed in a future release. Use Google\Cloud\WebSecurityScanner\V1beta\ScanRun\ResultState instead', E_USER_DEPRECATED);
+\class_exists(ScanRun\ResultState::class);
+@\trigger_error('Google\Cloud\WebSecurityScanner\V1beta\ScanRun_ResultState is deprecated and will be removed in a future release. Use Google\Cloud\WebSecurityScanner\V1beta\ScanRun\ResultState instead', E_USER_DEPRECATED);
 

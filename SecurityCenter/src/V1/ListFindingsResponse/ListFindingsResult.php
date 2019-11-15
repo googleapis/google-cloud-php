@@ -100,5 +100,5 @@ class ListFindingsResult extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ListFindingsResult::class, \Google\Cloud\SecurityCenter\V1\ListFindingsResponse_ListFindingsResult::class);
+\class_alias(ListFindingsResult::class, \Google\Cloud\SecurityCenter\V1\ListFindingsResponse_ListFindingsResult::class);
 

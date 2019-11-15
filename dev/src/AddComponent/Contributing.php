@@ -46,6 +46,6 @@ class Contributing
         $source = $this->rootPath . '/dev/src/AddComponent/templates/' . self::CONTRIBUTING_TPL;
         $dest = $this->path .'/CONTRIBUTING.md';
 
-        copy($source, $dest);
+        \copy($source, $dest);
     }
 }

@@ -20,7 +20,7 @@ class Jobs
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0a833d0a28676f6f676c652f636c6f75642f6461746170726f632f763162" .
             "657461322f6a6f62732e70726f746f121d676f6f676c652e636c6f75642e" .
             "6461746170726f632e763162657461321a17676f6f676c652f6170692f63" .

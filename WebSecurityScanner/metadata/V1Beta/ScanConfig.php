@@ -18,7 +18,7 @@ class ScanConfig
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Websecurityscanner\V1Beta\ScanRun::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0acb100a38676f6f676c652f636c6f75642f776562736563757269747973" .
             "63616e6e65722f7631626574612f7363616e5f636f6e6669672e70726f74" .
             "6f1226676f6f676c652e636c6f75642e7765627365637572697479736361" .

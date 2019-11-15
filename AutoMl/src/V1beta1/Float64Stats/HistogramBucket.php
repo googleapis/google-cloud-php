@@ -142,5 +142,5 @@ class HistogramBucket extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(HistogramBucket::class, \Google\Cloud\AutoMl\V1beta1\Float64Stats_HistogramBucket::class);
+\class_alias(HistogramBucket::class, \Google\Cloud\AutoMl\V1beta1\Float64Stats_HistogramBucket::class);
 

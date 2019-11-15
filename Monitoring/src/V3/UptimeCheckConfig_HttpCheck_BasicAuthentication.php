@@ -11,6 +11,6 @@ if (false) {
      */
     class UptimeCheckConfig_HttpCheck_BasicAuthentication {}
 }
-class_exists(UptimeCheckConfig\HttpCheck\BasicAuthentication::class);
-@trigger_error('Google\Cloud\Monitoring\V3\UptimeCheckConfig_HttpCheck_BasicAuthentication is deprecated and will be removed in the next major release. Use Google\Cloud\Monitoring\V3\UptimeCheckConfig\HttpCheck\BasicAuthentication instead', E_USER_DEPRECATED);
+\class_exists(UptimeCheckConfig\HttpCheck\BasicAuthentication::class);
+@\trigger_error('Google\Cloud\Monitoring\V3\UptimeCheckConfig_HttpCheck_BasicAuthentication is deprecated and will be removed in the next major release. Use Google\Cloud\Monitoring\V3\UptimeCheckConfig\HttpCheck\BasicAuthentication instead', E_USER_DEPRECATED);
 

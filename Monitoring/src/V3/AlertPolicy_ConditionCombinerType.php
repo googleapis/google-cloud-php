@@ -11,6 +11,6 @@ if (false) {
      */
     class AlertPolicy_ConditionCombinerType {}
 }
-class_exists(AlertPolicy\ConditionCombinerType::class);
-@trigger_error('Google\Cloud\Monitoring\V3\AlertPolicy_ConditionCombinerType is deprecated and will be removed in the next major release. Use Google\Cloud\Monitoring\V3\AlertPolicy\ConditionCombinerType instead', E_USER_DEPRECATED);
+\class_exists(AlertPolicy\ConditionCombinerType::class);
+@\trigger_error('Google\Cloud\Monitoring\V3\AlertPolicy_ConditionCombinerType is deprecated and will be removed in the next major release. Use Google\Cloud\Monitoring\V3\AlertPolicy\ConditionCombinerType instead', E_USER_DEPRECATED);
 

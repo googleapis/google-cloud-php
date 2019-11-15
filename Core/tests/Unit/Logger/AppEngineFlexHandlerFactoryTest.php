@@ -44,7 +44,7 @@ class AppEngineFlexHandlerFactoryTest extends TestCase
 
     private function skipIfNotMonologVersion($expected)
     {
-        $version = defined('Monolog\Logger::API') ? Logger::API : 1;
+        $version = \defined('Monolog\Logger::API') ? Logger::API : 1;
 
         if ($expected !== $version) {
             $this->markTestSkipped("Monolog {$expected} only");

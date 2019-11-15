@@ -15,7 +15,7 @@ class Geometry
           return;
         }
         \GPBMetadata\Google\Api\Annotations::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0aff020a2a676f6f676c652f636c6f75642f6175746f6d6c2f7631626574" .
             "61312f67656f6d657472792e70726f746f121b676f6f676c652e636c6f75" .
             "642e6175746f6d6c2e7631626574613122280a104e6f726d616c697a6564" .

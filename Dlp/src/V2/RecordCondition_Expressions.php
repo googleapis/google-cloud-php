@@ -11,6 +11,6 @@ if (false) {
      */
     class RecordCondition_Expressions {}
 }
-class_exists(RecordCondition\Expressions::class);
-@trigger_error('Google\Cloud\Dlp\V2\RecordCondition_Expressions is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\RecordCondition\Expressions instead', E_USER_DEPRECATED);
+\class_exists(RecordCondition\Expressions::class);
+@\trigger_error('Google\Cloud\Dlp\V2\RecordCondition_Expressions is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\RecordCondition\Expressions instead', E_USER_DEPRECATED);
 

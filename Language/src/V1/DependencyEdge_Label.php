@@ -11,6 +11,6 @@ if (false) {
      */
     class DependencyEdge_Label {}
 }
-class_exists(DependencyEdge\Label::class);
-@trigger_error('Google\Cloud\Language\V1\DependencyEdge_Label is deprecated and will be removed in the next major release. Use Google\Cloud\Language\V1\DependencyEdge\Label instead', E_USER_DEPRECATED);
+\class_exists(DependencyEdge\Label::class);
+@\trigger_error('Google\Cloud\Language\V1\DependencyEdge_Label is deprecated and will be removed in the next major release. Use Google\Cloud\Language\V1\DependencyEdge\Label instead', E_USER_DEPRECATED);
 

@@ -41,7 +41,7 @@ trait ValidateTrait
     ) {
         foreach ($input as $element) {
             if (!($element instanceof $type)) {
-                throw new InvalidArgumentException(sprintf(
+                throw new InvalidArgumentException(\sprintf(
                     'Each member of input array must be an instance of %s',
                     $type
                 ));
@@ -64,10 +64,10 @@ trait ValidateTrait
     private function arrayHasKeys(array $input, array $keys)
     {
         foreach ($keys as $key) {
-            if (!array_key_exists($key, $input)) {
-                throw new \InvalidArgumentException(sprintf(
+            if (!\array_key_exists($key, $input)) {
+                throw new \InvalidArgumentException(\sprintf(
                     'Input missing required one or more required keys. Required keys are %s',
-                    implode(', ', $keys)
+                    \implode(', ', $keys)
                 ));
             }
         }

@@ -103,7 +103,7 @@ class TableTest extends TestCase
     public function testMutateRows()
     {
         $statuses = [];
-        for ($i=0; $i<count($this->entries); $i++) {
+        for ($i=0; $i<\count($this->entries); $i++) {
             $status = new Status;
             $status->setCode(Code::OK);
             $statuses[] = $status;
@@ -220,7 +220,7 @@ class TableTest extends TestCase
     public function testUpsert()
     {
         $statuses = [];
-        for ($i=0; $i<count($this->entries); $i++) {
+        for ($i=0; $i<\count($this->entries); $i++) {
             $status = new Status;
             $status->setCode(Code::OK);
             $statuses[] = $status;
@@ -769,7 +769,7 @@ class TableTest extends TestCase
                 $this->serverStream->reveal()
             );
         $rowKeyStream = $this->table->sampleRowKeys();
-        $rowKeys = iterator_to_array($rowKeyStream);
+        $rowKeys = \iterator_to_array($rowKeyStream);
         $expectedRowKeys = [
             [
                 'rowKey' => 'rk1',

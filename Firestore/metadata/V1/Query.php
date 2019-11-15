@@ -17,7 +17,7 @@ class Query
         \GPBMetadata\Google\Firestore\V1\Document::initOnce();
         \GPBMetadata\Google\Protobuf\Wrappers::initOnce();
         \GPBMetadata\Google\Api\Annotations::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0ae6110a1f676f6f676c652f6669726573746f72652f76312f7175657279" .
             "2e70726f746f1213676f6f676c652e6669726573746f72652e76311a1e67" .
             "6f6f676c652f70726f746f6275662f77726170706572732e70726f746f1a" .

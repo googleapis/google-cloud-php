@@ -31,7 +31,7 @@ class BigQueryTest extends TestCase
 
     public function setUp()
     {
-        $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
+        $keyFilePath = \getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
         $this->client = new BigQueryClient([
             'keyFilePath' => $keyFilePath
         ]);
@@ -43,7 +43,7 @@ class BigQueryTest extends TestCase
      */
     public function testPerf($query)
     {
-        $start = microtime(true);
+        $start = \microtime(true);
         $config = $this->client->query($query);
         $queryResults = $this->client->runQuery($config);
 
@@ -54,22 +54,22 @@ class BigQueryTest extends TestCase
         foreach ($queryResults as $row) {
             $rows++;
             if ($cols == 0) {
-                $firstByteDur = microtime(true) - $start;
-                $cols = count($row);
-            } elseif ($cols != count($row)) {
-                throw new Exception("expected $cols cols, found " . count($row));
+                $firstByteDur = \microtime(true) - $start;
+                $cols = \count($row);
+            } elseif ($cols != \count($row)) {
+                throw new Exception("expected $cols cols, found " . \count($row));
             }
         }
 
-        $totalDur = microtime(true)-$start;
+        $totalDur = \microtime(true)-$start;
         echo "query $query: $rows rows, $cols cols, first byte $firstByteDur, total $totalDur" . PHP_EOL;
     }
 
     public function queries()
     {
-        $queries = json_decode(file_get_contents(__DIR__ . '/fixtures/' . self::SOURCE), true);
+        $queries = \json_decode(\file_get_contents(__DIR__ . '/fixtures/' . self::SOURCE), true);
         foreach ($queries as $key => $q) {
-            $queries[$key] = is_array($q)
+            $queries[$key] = \is_array($q)
                 ? $q
                 : [$q];
         }

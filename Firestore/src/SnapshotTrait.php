@@ -107,7 +107,7 @@ trait SnapshotTrait
     {
         if (isset($options['readTime'])) {
             if (!($options['readTime'] instanceof Timestamp)) {
-                throw new \InvalidArgumentException(sprintf(
+                throw new \InvalidArgumentException(\sprintf(
                     '`$options.readTime` must be an instance of %s',
                     Timestamp::class
                 ));
@@ -122,7 +122,7 @@ trait SnapshotTrait
         ] + $options)->current();
 
         if (!isset($snapshot['found'])) {
-            throw new NotFoundException(sprintf(
+            throw new NotFoundException(\sprintf(
                 'Document %s does not exist',
                 $name
             ));
@@ -159,7 +159,7 @@ trait SnapshotTrait
                 $path = $path->name();
             }
 
-            if (!is_string($path)) {
+            if (!\is_string($path)) {
                 throw new \InvalidArgumentException(
                     'All members of $paths must be strings or instances of DocumentReference.'
                 );
@@ -275,7 +275,7 @@ trait SnapshotTrait
         }
 
         if (!$this->isCollection($name)) {
-            throw new \InvalidArgumentException(sprintf(
+            throw new \InvalidArgumentException(\sprintf(
                 'Given path `%s` is not a valid collection path.',
                 $name
             ));

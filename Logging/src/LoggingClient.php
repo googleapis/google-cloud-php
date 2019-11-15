@@ -141,7 +141,7 @@ class LoggingClient
      **/
     public static function psrBatchLogger($name, array $options = [])
     {
-        $client = array_key_exists('clientConfig', $options)
+        $client = \array_key_exists('clientConfig', $options)
             ? new self($options['clientConfig'])
             : new self();
         // Force enabling batch.
@@ -466,7 +466,7 @@ class LoggingClient
             unset($options['projectIds']);
         }
         if (isset($options['resourceNames'])) {
-            $options['resourceNames'] = array_merge($resourceNames, $options['projectIds']);
+            $options['resourceNames'] = \array_merge($resourceNames, $options['projectIds']);
         } else {
             $options['resourceNames'] = $resourceNames;
         }

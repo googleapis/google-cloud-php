@@ -70,5 +70,5 @@ class DeleteFromFamily extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DeleteFromFamily::class, \Google\Cloud\Bigtable\V2\Mutation_DeleteFromFamily::class);
+\class_alias(DeleteFromFamily::class, \Google\Cloud\Bigtable\V2\Mutation_DeleteFromFamily::class);
 

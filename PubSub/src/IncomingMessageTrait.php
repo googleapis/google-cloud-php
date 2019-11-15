@@ -41,7 +41,7 @@ trait IncomingMessageTrait
         }
 
         if (isset($message['message']['data']) && $encode) {
-            $message['message']['data'] = base64_decode($message['message']['data']);
+            $message['message']['data'] = \base64_decode($message['message']['data']);
         }
 
         $subscription = null;

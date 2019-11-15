@@ -60,7 +60,7 @@ class PsrLoggerTest extends TestCase
         $this->connection->writeEntries([
             'entries' => [
                 [
-                    'severity' => array_flip(Logger::getLogLevelMap())[$level],
+                    'severity' => \array_flip(Logger::getLogLevelMap())[$level],
                     'jsonPayload' => ['message' => $this->textPayload],
                     'logName' => $this->formattedName,
                     'resource' => $this->resource,
@@ -192,7 +192,7 @@ class PsrLoggerTest extends TestCase
 
     public function testLogAppendsThrowableWhenPassedThroughAsContext()
     {
-        if (!is_subclass_of('Error', 'Throwable')) {
+        if (!\is_subclass_of('Error', 'Throwable')) {
             $this->markTestSkipped('This test requires PHP 7+');
         }
 
@@ -223,7 +223,7 @@ class PsrLoggerTest extends TestCase
 
     public function testSerializesCorrectly()
     {
-        $expectedDebugResource = fopen('php://temp', 'wb');
+        $expectedDebugResource = \fopen('php://temp', 'wb');
         $options = [
             'metadataProvider' => new EmptyMetadataProvider,
             'batchEnabled' => true,
@@ -243,11 +243,11 @@ class PsrLoggerTest extends TestCase
         $options['messageKey'] = 'message';
         $options['batchMethod'] = 'writeBatch';
         $options['logName'] = $this->logName;
-        $psrLogger = unserialize(serialize($psrLogger));
-        $debugResourceMetadata = stream_get_meta_data(
+        $psrLogger = \unserialize(\serialize($psrLogger));
+        $debugResourceMetadata = \stream_get_meta_data(
             PHPUnit_Framework_Assert::readAttribute($psrLogger, 'debugOutputResource')
         );
-        $expectedDebugResourceMetadata = stream_get_meta_data($expectedDebugResource);
+        $expectedDebugResourceMetadata = \stream_get_meta_data($expectedDebugResource);
 
         $this->assertEquals($debugResourceMetadata['uri'], $expectedDebugResourceMetadata['uri']);
         $this->assertEquals($debugResourceMetadata['mode'], $expectedDebugResourceMetadata['mode']);

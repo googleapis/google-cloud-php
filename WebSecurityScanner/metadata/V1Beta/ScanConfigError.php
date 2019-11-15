@@ -14,7 +14,7 @@ class ScanConfigError
         if (static::$is_initialized == true) {
           return;
         }
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0aaa0e0a3e676f6f676c652f636c6f75642f776562736563757269747973" .
             "63616e6e65722f7631626574612f7363616e5f636f6e6669675f6572726f" .
             "722e70726f746f1226676f6f676c652e636c6f75642e7765627365637572" .

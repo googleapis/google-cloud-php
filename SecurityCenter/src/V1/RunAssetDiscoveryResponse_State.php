@@ -11,6 +11,6 @@ if (false) {
      */
     class RunAssetDiscoveryResponse_State {}
 }
-class_exists(RunAssetDiscoveryResponse\State::class);
-@trigger_error('Google\Cloud\SecurityCenter\V1\RunAssetDiscoveryResponse_State is deprecated and will be removed in a future release. Use Google\Cloud\SecurityCenter\V1\RunAssetDiscoveryResponse\State instead', E_USER_DEPRECATED);
+\class_exists(RunAssetDiscoveryResponse\State::class);
+@\trigger_error('Google\Cloud\SecurityCenter\V1\RunAssetDiscoveryResponse_State is deprecated and will be removed in a future release. Use Google\Cloud\SecurityCenter\V1\RunAssetDiscoveryResponse\State instead', E_USER_DEPRECATED);
 

@@ -11,6 +11,6 @@ if (false) {
      */
     class PrivacyMetric_KMapEstimationConfig_TaggedField {}
 }
-class_exists(PrivacyMetric\KMapEstimationConfig\TaggedField::class);
-@trigger_error('Google\Cloud\Dlp\V2\PrivacyMetric_KMapEstimationConfig_TaggedField is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\PrivacyMetric\KMapEstimationConfig\TaggedField instead', E_USER_DEPRECATED);
+\class_exists(PrivacyMetric\KMapEstimationConfig\TaggedField::class);
+@\trigger_error('Google\Cloud\Dlp\V2\PrivacyMetric_KMapEstimationConfig_TaggedField is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\PrivacyMetric\KMapEstimationConfig\TaggedField instead', E_USER_DEPRECATED);
 

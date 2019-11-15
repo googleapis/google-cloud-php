@@ -29,7 +29,7 @@ class WriteAndListEntryTest extends LoggingTestCase
      */
     public function testWriteTextEntry($client)
     {
-        $logger = $client->logger(uniqid(self::TESTING_PREFIX));
+        $logger = $client->logger(\uniqid(self::TESTING_PREFIX));
         self::$deletionQueue->add($logger);
         $data = 'test';
         $entry = $logger->entry($data);
@@ -38,9 +38,9 @@ class WriteAndListEntryTest extends LoggingTestCase
 
         $backoff = new ExponentialBackoff(8);
         $entries = $backoff->execute(function () use ($logger) {
-            $entries = iterator_to_array($logger->entries());
+            $entries = \iterator_to_array($logger->entries());
 
-            if (count($entries) === 0) {
+            if (\count($entries) === 0) {
                 throw new \Exception('Entries not found in the allotted number of attempts.');
             }
 
@@ -55,7 +55,7 @@ class WriteAndListEntryTest extends LoggingTestCase
      */
     public function testWriteJsonEntry($client)
     {
-        $logger = $client->logger(uniqid(self::TESTING_PREFIX));
+        $logger = $client->logger(\uniqid(self::TESTING_PREFIX));
         self::$deletionQueue->add($logger);
         $data = [
             'test' => true,
@@ -70,9 +70,9 @@ class WriteAndListEntryTest extends LoggingTestCase
 
         $backoff = new ExponentialBackoff(8);
         $entries = $backoff->execute(function () use ($logger) {
-            $entries = iterator_to_array($logger->entries());
+            $entries = \iterator_to_array($logger->entries());
 
-            if (count($entries) === 0) {
+            if (\count($entries) === 0) {
                 throw new \Exception('Entries not found in the allotted number of attempts.');
             }
 
@@ -87,7 +87,7 @@ class WriteAndListEntryTest extends LoggingTestCase
      */
     public function testWritesMultipleTextEntries($client)
     {
-        $logger = $client->logger(uniqid(self::TESTING_PREFIX));
+        $logger = $client->logger(\uniqid(self::TESTING_PREFIX));
         self::$deletionQueue->add($logger);
         $data = 'test';
         $entriesToWrite = [
@@ -99,9 +99,9 @@ class WriteAndListEntryTest extends LoggingTestCase
 
         $backoff = new ExponentialBackoff(8);
         $entries = $backoff->execute(function () use ($entriesToWrite, $logger) {
-            $entries = iterator_to_array($logger->entries());
+            $entries = \iterator_to_array($logger->entries());
 
-            if (count($entries) !== count($entriesToWrite)) {
+            if (\count($entries) !== \count($entriesToWrite)) {
                 throw new \Exception('Entries not found in the allotted number of attempts.');
             }
 
@@ -117,7 +117,7 @@ class WriteAndListEntryTest extends LoggingTestCase
      */
     public function testWritesEntryWithMetadata($client)
     {
-        $logger = $client->logger(uniqid(self::TESTING_PREFIX));
+        $logger = $client->logger(\uniqid(self::TESTING_PREFIX));
         self::$deletionQueue->add($logger);
         $data = 'test';
         $httpRequest = [
@@ -139,9 +139,9 @@ class WriteAndListEntryTest extends LoggingTestCase
 
         $backoff = new ExponentialBackoff(8);
         $entries = $backoff->execute(function () use ($logger) {
-            $entries = iterator_to_array($logger->entries());
+            $entries = \iterator_to_array($logger->entries());
 
-            if (count($entries) === 0) {
+            if (\count($entries) === 0) {
                 throw new \Exception('Entries not found in the allotted number of attempts.');
             }
 
@@ -223,7 +223,7 @@ class WriteAndListEntryTest extends LoggingTestCase
 
     private function assertPsrLoggerWrites($client, $level)
     {
-        $logName = uniqid(self::TESTING_PREFIX);
+        $logName = \uniqid(self::TESTING_PREFIX);
         $psrLogger = $client->psrLogger($logName);
         $logger = $client->logger($logName);
         self::$deletionQueue->add($logger);
@@ -240,9 +240,9 @@ class WriteAndListEntryTest extends LoggingTestCase
 
         $backoff = new ExponentialBackoff(8);
         $entries = $backoff->execute(function () use ($logger) {
-            $entries = iterator_to_array($logger->entries());
+            $entries = \iterator_to_array($logger->entries());
 
-            if (count($entries) === 0) {
+            if (\count($entries) === 0) {
                 throw new \Exception('Entries not found in the allotted number of attempts.');
             }
 

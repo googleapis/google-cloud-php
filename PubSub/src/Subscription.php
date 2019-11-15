@@ -158,7 +158,7 @@ class Subscription
         if ($this->isFullyQualifiedName('topic', $topicName)) {
             $this->topicName = $topicName;
         } else {
-            $this->topicName = !is_null($topicName)
+            $this->topicName = !\is_null($topicName)
                 ? $this->formatName('topic', $topicName, $projectId)
                 : null;
         }
@@ -373,12 +373,12 @@ class Subscription
             $iterator = new \RecursiveIteratorIterator(new \RecursiveArrayIterator($subscription));
             foreach ($iterator as $leafValue) {
                 $keys = [];
-                foreach (range(0, $iterator->getDepth()) as $depth) {
+                foreach (\range(0, $iterator->getDepth()) as $depth) {
                     $keys[] = $iterator->getSubIterator($depth)->key();
                 }
 
-                $path = implode('.', $keys);
-                if (!in_array($path, $excludes)) {
+                $path = \implode('.', $keys);
+                if (!\in_array($path, $excludes)) {
                     $updateMaskPaths[] = $path;
                 }
             }
@@ -391,7 +391,7 @@ class Subscription
             'subscription' => [
                 'name' => $this->name
             ] + $subscription,
-            'updateMask' => implode(',', $updateMaskPaths)
+            'updateMask' => \implode(',', $updateMaskPaths)
         ] + $options);
     }
 
@@ -826,7 +826,7 @@ class Subscription
     {
         if (isset($options['messageRetentionDuration']) && $options['messageRetentionDuration'] instanceof Duration) {
             $duration = $options['messageRetentionDuration']->get();
-            $options['messageRetentionDuration'] = sprintf(
+            $options['messageRetentionDuration'] = \sprintf(
                 '%s.%ss',
                 $duration['seconds'],
                 $this->convertNanoSecondsToFraction($duration['nanos'], false)
@@ -835,7 +835,7 @@ class Subscription
 
         if (isset($options['expirationPolicy']['ttl']) && $options['expirationPolicy']['ttl'] instanceof Duration) {
             $duration = $options['expirationPolicy']['ttl']->get();
-            $options['expirationPolicy']['ttl'] = sprintf(
+            $options['expirationPolicy']['ttl'] = \sprintf(
                 '%s.%ss',
                 $duration['seconds'],
                 $this->convertNanoSecondsToFraction($duration['nanos'], false)
@@ -858,7 +858,7 @@ class Subscription
             'topicName' => $this->topicName,
             'projectId' => $this->projectId,
             'info' => $this->info,
-            'connection' => get_class($this->connection)
+            'connection' => \get_class($this->connection)
         ];
     }
 }

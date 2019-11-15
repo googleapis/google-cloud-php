@@ -37,11 +37,11 @@ class AdminTest extends SpannerTestCase
         $client = self::$client;
 
         $instances = $client->instances();
-        $instance = array_filter(iterator_to_array($instances), function ($instance) {
+        $instance = \array_filter(\iterator_to_array($instances), function ($instance) {
             return $this->parseName($instance->name()) === self::INSTANCE_NAME;
         });
 
-        $this->assertInstanceOf(Instance::class, current($instance));
+        $this->assertInstanceOf(Instance::class, \current($instance));
 
         $instance = self::$instance;
         $this->assertTrue($instance->exists());
@@ -50,7 +50,7 @@ class AdminTest extends SpannerTestCase
 
         $this->assertEquals(Instance::STATE_READY, $instance->state());
 
-        $displayName = uniqid(self::TESTING_PREFIX);
+        $displayName = \uniqid(self::TESTING_PREFIX);
         $op = $instance->update([
             'displayName' => $displayName
         ]);
@@ -69,7 +69,7 @@ class AdminTest extends SpannerTestCase
     {
         $instance = self::$instance;
 
-        $dbName = uniqid(self::TESTING_PREFIX);
+        $dbName = \uniqid(self::TESTING_PREFIX);
         $op = $instance->createDatabase($dbName);
 
         $this->assertInstanceOf(LongRunningOperation::class, $op);
@@ -81,11 +81,11 @@ class AdminTest extends SpannerTestCase
         });
 
         $databases = $instance->databases();
-        $database = array_filter(iterator_to_array($databases), function ($db) use ($dbName) {
+        $database = \array_filter(\iterator_to_array($databases), function ($db) use ($dbName) {
             return $this->parseDbName($db->name()) === $dbName;
         });
 
-        $this->assertInstanceOf(Database::class, current($database));
+        $this->assertInstanceOf(Database::class, \current($database));
 
         $this->assertTrue($db->exists());
 
@@ -110,7 +110,7 @@ class AdminTest extends SpannerTestCase
 
         $this->assertContainsOnly(InstanceConfiguration::class, $configurations);
 
-        $res = iterator_to_array($configurations);
+        $res = \iterator_to_array($configurations);
         $firstConfigName = $res[0]->name();
 
         $config = $client->instanceConfiguration($firstConfigName);

@@ -11,6 +11,6 @@ if (false) {
      */
     class PartOfSpeech_Number {}
 }
-class_exists(PartOfSpeech\Number::class);
-@trigger_error('Google\Cloud\Language\V1\PartOfSpeech_Number is deprecated and will be removed in the next major release. Use Google\Cloud\Language\V1\PartOfSpeech\Number instead', E_USER_DEPRECATED);
+\class_exists(PartOfSpeech\Number::class);
+@\trigger_error('Google\Cloud\Language\V1\PartOfSpeech_Number is deprecated and will be removed in the next major release. Use Google\Cloud\Language\V1\PartOfSpeech\Number instead', E_USER_DEPRECATED);
 

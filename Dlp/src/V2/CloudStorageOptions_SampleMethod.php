@@ -11,6 +11,6 @@ if (false) {
      */
     class CloudStorageOptions_SampleMethod {}
 }
-class_exists(CloudStorageOptions\SampleMethod::class);
-@trigger_error('Google\Cloud\Dlp\V2\CloudStorageOptions_SampleMethod is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\CloudStorageOptions\SampleMethod instead', E_USER_DEPRECATED);
+\class_exists(CloudStorageOptions\SampleMethod::class);
+@\trigger_error('Google\Cloud\Dlp\V2\CloudStorageOptions_SampleMethod is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\CloudStorageOptions\SampleMethod instead', E_USER_DEPRECATED);
 

@@ -51,7 +51,7 @@ trait JobConfigurationTrait
         array $config,
         $location
     ) {
-        $this->config = array_replace_recursive([
+        $this->config = \array_replace_recursive([
             'projectId' => $projectId,
             'jobReference' => ['projectId' => $projectId]
         ], $config);
@@ -134,7 +134,7 @@ trait JobConfigurationTrait
     public function toArray()
     {
         if ($this->jobIdPrefix) {
-            $this->config['jobReference']['jobId'] = sprintf(
+            $this->config['jobReference']['jobId'] = \sprintf(
                 '%s-%s',
                 $this->jobIdPrefix,
                 $this->config['jobReference']['jobId']

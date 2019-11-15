@@ -47,7 +47,7 @@ class MatchingFileIterator extends \FilterIterator
         parent::__construct(
             new \RecursiveIteratorIterator(
                 new \RecursiveDirectoryIterator(
-                    realpath($searchPath),
+                    \realpath($searchPath),
                     \FilesystemIterator::SKIP_DOTS
                 )
             )
@@ -67,6 +67,6 @@ class MatchingFileIterator extends \FilterIterator
         $candidate = $this->getInnerIterator()->current();
 
         // Check that the candidate file (a full file path) ends in the pattern we are searching for.
-        return strrpos($candidate, $this->file) === strlen($candidate) - strlen($this->file);
+        return \strrpos($candidate, $this->file) === \strlen($candidate) - \strlen($this->file);
     }
 }

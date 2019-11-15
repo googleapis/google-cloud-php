@@ -11,6 +11,6 @@ if (false) {
      */
     class DataSource_AuthorizationType {}
 }
-class_exists(DataSource\AuthorizationType::class);
-@trigger_error('Google\Cloud\BigQuery\DataTransfer\V1\DataSource_AuthorizationType is deprecated and will be removed in a future release. Use Google\Cloud\BigQuery\DataTransfer\V1\DataSource\AuthorizationType instead', E_USER_DEPRECATED);
+\class_exists(DataSource\AuthorizationType::class);
+@\trigger_error('Google\Cloud\BigQuery\DataTransfer\V1\DataSource_AuthorizationType is deprecated and will be removed in a future release. Use Google\Cloud\BigQuery\DataTransfer\V1\DataSource\AuthorizationType instead', E_USER_DEPRECATED);
 

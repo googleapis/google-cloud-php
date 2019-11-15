@@ -26,16 +26,16 @@ trait PathTrait
 
     private function pathIsGapic($path)
     {
-        $parts = explode('/', $path);
-        $last = array_pop($parts);
-        return preg_match($this->GAPIC_PATH_REGEX, $last) === 1;
+        $parts = \explode('/', $path);
+        $last = \array_pop($parts);
+        return \preg_match($this->GAPIC_PATH_REGEX, $last) === 1;
     }
 
     private function getVersionFromPath($path)
     {
-        $parts = explode('/', $path);
-        $last = array_pop($parts);
-        return (preg_match($this->GAPIC_PATH_REGEX, $last) === 1)
+        $parts = \explode('/', $path);
+        $last = \array_pop($parts);
+        return (\preg_match($this->GAPIC_PATH_REGEX, $last) === 1)
             ? $last
             : null;
     }
@@ -43,14 +43,14 @@ trait PathTrait
     private function scanDirectory($path, array $excludes = [])
     {
         $excludes = ['..', '.', '.DS_Store', 'VERSION', 'LICENSE', 'CONTRIBUTING.md', '.github'] + $excludes;
-        return array_diff(scandir($path), $excludes);
+        return \array_diff(\scandir($path), $excludes);
     }
 
     private function directoryHasPhpFile(array $choices)
     {
         $res = false;
         foreach ($choices as $choice) {
-            $res = strpos($choice, '.php') !== false;
+            $res = \strpos($choice, '.php') !== false;
             if ($res) {
                 return $res;
             }

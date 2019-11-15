@@ -11,6 +11,6 @@ if (false) {
      */
     class PrivacyMetric_KMapEstimationConfig_AuxiliaryTable_QuasiIdField {}
 }
-class_exists(PrivacyMetric\KMapEstimationConfig\AuxiliaryTable\QuasiIdField::class);
-@trigger_error('Google\Cloud\Dlp\V2\PrivacyMetric_KMapEstimationConfig_AuxiliaryTable_QuasiIdField is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\PrivacyMetric\KMapEstimationConfig\AuxiliaryTable\QuasiIdField instead', E_USER_DEPRECATED);
+\class_exists(PrivacyMetric\KMapEstimationConfig\AuxiliaryTable\QuasiIdField::class);
+@\trigger_error('Google\Cloud\Dlp\V2\PrivacyMetric_KMapEstimationConfig_AuxiliaryTable_QuasiIdField is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\PrivacyMetric\KMapEstimationConfig\AuxiliaryTable\QuasiIdField instead', E_USER_DEPRECATED);
 

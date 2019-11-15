@@ -169,7 +169,7 @@ class TopicTest extends TestCase
         $this->connection->publishMessage(Argument::allOf(
             Argument::withEntry('foo', 'bar'),
             Argument::that(function ($options) use ($message) {
-                $message['data'] = base64_encode($message['data']);
+                $message['data'] = \base64_encode($message['data']);
 
                 return $options['messages'] === [$message];
             })
@@ -206,8 +206,8 @@ class TopicTest extends TestCase
         $this->connection->publishMessage(Argument::allOf(
             Argument::withEntry('foo', 'bar'),
             Argument::that(function ($options) use ($messages) {
-                $messages[0]['data'] = base64_encode($messages[0]['data']);
-                $messages[1]['data'] = base64_encode($messages[1]['data']);
+                $messages[0]['data'] = \base64_encode($messages[0]['data']);
+                $messages[1]['data'] = \base64_encode($messages[1]['data']);
 
                 return $options['messages'] === $messages;
             })
@@ -313,7 +313,7 @@ class TopicTest extends TestCase
 
         $this->assertInstanceOf(ItemIterator::class, $subscriptions);
 
-        $arr = iterator_to_array($subscriptions);
+        $arr = \iterator_to_array($subscriptions);
         $this->assertInstanceOf(Subscription::class, $arr[0]);
         $this->assertEquals($arr[0]->name(), $subscriptionResult[0]);
         $this->assertEquals($arr[1]->name(), $subscriptionResult[1]);

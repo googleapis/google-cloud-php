@@ -84,7 +84,7 @@ class CollectionGroupTest extends FirestoreTestCase
 
         $query = $query->orderBy(FieldPath::documentId())
             ->startAfter(['a/b'])
-            ->endBefore([sprintf('a/b/%s/cg-doc3', $group)]);
+            ->endBefore([\sprintf('a/b/%s/cg-doc3', $group)]);
 
         $this->assertEquals(
             ['cg-doc2'],
@@ -105,7 +105,7 @@ class CollectionGroupTest extends FirestoreTestCase
         ]);
 
         $query = $query->where(FieldPath::documentId(), '>', 'a/b')
-            ->where(FieldPath::documentId(), '<', sprintf(
+            ->where(FieldPath::documentId(), '<', \sprintf(
                 'a/b/%s/cg-doc3',
                 $group
             ));
@@ -141,11 +141,11 @@ class CollectionGroupTest extends FirestoreTestCase
     {
         // Create a random collection name, but make sure
         // it starts with 'b' for predictable ordering.
-        $collectionGroup = 'b' . uniqid(self::COLLECTION_NAME);
+        $collectionGroup = 'b' . \uniqid(self::COLLECTION_NAME);
         $query = self::$client->collectionGroup($collectionGroup);
 
         foreach ($paths as &$path) {
-            $path = sprintf($path, $collectionGroup);
+            $path = \sprintf($path, $collectionGroup);
         }
 
         $batch = self::$client->batch();
@@ -169,7 +169,7 @@ class CollectionGroupTest extends FirestoreTestCase
         foreach ($documents as $document) {
             $ids[] = $document->id();
         }
-        sort($ids);
+        \sort($ids);
 
         return $ids;
     }

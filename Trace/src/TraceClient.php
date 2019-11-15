@@ -183,7 +183,7 @@ class TraceClient
     private function transformSpan(Span $span)
     {
         $data = $span->info();
-        $data['name'] = sprintf(
+        $data['name'] = \sprintf(
             'projects/%s/traces/%s/spans/%s',
             $this->projectId,
             $span->traceId(),

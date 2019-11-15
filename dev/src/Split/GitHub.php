@@ -61,7 +61,7 @@ class GitHub
      */
     public function doesTagExist($target, $tagName)
     {
-        $res = $this->client->get(sprintf(
+        $res = $this->client->get(\sprintf(
             self::GITHUB_RELEASES_ENDPOINT,
             $this->cleanTarget($target), $tagName
         ), [
@@ -90,7 +90,7 @@ class GitHub
             'body' => $notes
         ];
 
-        $res = $this->client->post(sprintf(
+        $res = $this->client->post(\sprintf(
             self::GITHUB_RELEASE_CREATE_ENDPOINT,
             $this->cleanTarget($target)
         ), [
@@ -118,19 +118,19 @@ class GitHub
     {
         $cmd = [
             'git push -q',
-            sprintf('https://%s@github.com/%s', $this->token, $target),
-            sprintf('%s:%s', $ref, $targetBranch)
+            \sprintf('https://%s@github.com/%s', $this->token, $target),
+            \sprintf('%s:%s', $ref, $targetBranch)
         ];
 
         if ($force) {
             $cmd[] = '--force';
         }
 
-        return $this->shell->execute(implode(' ' , $cmd));
+        return $this->shell->execute(\implode(' ' , $cmd));
     }
 
     private function cleanTarget($target)
     {
-        return str_replace('.git', '', $target);
+        return \str_replace('.git', '', $target);
     }
 }

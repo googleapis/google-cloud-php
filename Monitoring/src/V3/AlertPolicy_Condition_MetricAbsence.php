@@ -11,6 +11,6 @@ if (false) {
      */
     class AlertPolicy_Condition_MetricAbsence {}
 }
-class_exists(AlertPolicy\Condition\MetricAbsence::class);
-@trigger_error('Google\Cloud\Monitoring\V3\AlertPolicy_Condition_MetricAbsence is deprecated and will be removed in the next major release. Use Google\Cloud\Monitoring\V3\AlertPolicy\Condition\MetricAbsence instead', E_USER_DEPRECATED);
+\class_exists(AlertPolicy\Condition\MetricAbsence::class);
+@\trigger_error('Google\Cloud\Monitoring\V3\AlertPolicy_Condition_MetricAbsence is deprecated and will be removed in the next major release. Use Google\Cloud\Monitoring\V3\AlertPolicy\Condition\MetricAbsence instead', E_USER_DEPRECATED);
 

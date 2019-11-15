@@ -62,18 +62,18 @@ class RequestBuilder
 
         // Append service definition base path if bare apiEndpoint domain is given.
         if (isset($this->service['basePath'])) {
-            $uriParts = parse_url($baseUri) + ['path' => null];
+            $uriParts = \parse_url($baseUri) + ['path' => null];
             if (!$uriParts['path'] || $uriParts['path'] === '/') {
                 $uriParts['path'] = $this->service['basePath'];
 
                 // Recreate the URI from its modified parts and ensure it ends in a single slash.
-                $this->baseUri = rtrim((string) Uri::fromParts($uriParts), '/') . '/';
+                $this->baseUri = \rtrim((string) Uri::fromParts($uriParts), '/') . '/';
 
                 return;
             }
         }
 
-        $this->baseUri = rtrim($baseUri, '/') . '/';
+        $this->baseUri = \rtrim($baseUri, '/') . '/';
     }
 
     /**
@@ -90,9 +90,9 @@ class RequestBuilder
     {
         $root = $this->resourceRoot;
 
-        array_push($root, 'resources');
-        $root = array_merge($root, explode('.', $resource));
-        array_push($root, 'methods', $method);
+        \array_push($root, 'resources');
+        $root = \array_merge($root, \explode('.', $resource));
+        \array_push($root, 'methods', $method);
 
         $action = $this->service;
         foreach ($root as $rootItem) {
@@ -108,12 +108,12 @@ class RequestBuilder
 
         if (isset($action['parameters'])) {
             foreach ($action['parameters'] as $parameter => $parameterOptions) {
-                if ($parameterOptions['location'] === 'path' && array_key_exists($parameter, $options)) {
+                if ($parameterOptions['location'] === 'path' && \array_key_exists($parameter, $options)) {
                     $path[$parameter] = $options[$parameter];
                     unset($options[$parameter]);
                 }
 
-                if ($parameterOptions['location'] === 'query' && array_key_exists($parameter, $options)) {
+                if ($parameterOptions['location'] === 'query' && \array_key_exists($parameter, $options)) {
                     $query[$parameter] = $options[$parameter];
                 }
             }
@@ -121,7 +121,7 @@ class RequestBuilder
 
         if (isset($this->service['parameters'])) {
             foreach ($this->service['parameters'] as $parameter => $parameterOptions) {
-                if ($parameterOptions['location'] === 'query' && array_key_exists($parameter, $options)) {
+                if ($parameterOptions['location'] === 'query' && \array_key_exists($parameter, $options)) {
                     $query[$parameter] = $options[$parameter];
                 }
             }
@@ -131,7 +131,7 @@ class RequestBuilder
             $schema = $action['request']['$ref'];
 
             foreach ($this->service['schemas'][$schema]['properties'] as $property => $propertyOptions) {
-                if (array_key_exists($property, $options)) {
+                if (\array_key_exists($property, $options)) {
                     $body[$property] = $options[$property];
                 }
             }
@@ -157,7 +157,7 @@ class RequestBuilder
     private function loadServiceDefinition($servicePath)
     {
         return $this->jsonDecode(
-            file_get_contents($servicePath, true),
+            \file_get_contents($servicePath, true),
             true
         );
     }

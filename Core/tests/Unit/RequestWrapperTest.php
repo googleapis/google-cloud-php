@@ -200,7 +200,7 @@ class RequestWrapperTest extends TestCase
     {
         $config = [
             'authHttpHandler' => function ($request, $options = []) {
-                return new Response(200, [], json_encode(['access_token' => 'abc']));
+                return new Response(200, [], \json_encode(['access_token' => 'abc']));
             },
             'httpHandler' => function ($request, $options = []) {
                 return new Response(200, []);
@@ -208,14 +208,14 @@ class RequestWrapperTest extends TestCase
         ];
 
         $keyFilePath = Fixtures::JSON_KEY_FIXTURE();
-        putenv("GOOGLE_APPLICATION_CREDENTIALS=$keyFilePath"); // for application default credentials
+        \putenv("GOOGLE_APPLICATION_CREDENTIALS=$keyFilePath"); // for application default credentials
 
         $credentialsFetcher = $this->prophesize(FetchAuthTokenInterface::class);
         $credentialsFetcher->fetchAuthToken(Argument::any())
             ->willReturn(['access_token' => 'abc']);
 
         return [
-            [$config + ['keyFile' => json_decode(file_get_contents($keyFilePath), true)]], // keyFile
+            [$config + ['keyFile' => \json_decode(\file_get_contents($keyFilePath), true)]], // keyFile
             [$config + ['keyFilePath' => $keyFilePath]], //keyFilePath
             [$config + ['credentialsFetcher' => $credentialsFetcher->reveal()]], // user supplied fetcher
             [$config] // application default
@@ -226,7 +226,7 @@ class RequestWrapperTest extends TestCase
     {
         $config = [
             'authHttpHandler' => function ($request, $options = []) {
-                return new Response(200, [], json_encode(['access_token' => 'abc']));
+                return new Response(200, [], \json_encode(['access_token' => 'abc']));
             },
             'httpHandler' => function ($request, $options = []) {
                 return new Response(200, []);
@@ -236,7 +236,7 @@ class RequestWrapperTest extends TestCase
         $keyFilePath = Fixtures::JSON_KEY_FIXTURE();
 
         return [
-            [$config + ['keyFile' => json_decode(file_get_contents($keyFilePath), true)]], // keyFile
+            [$config + ['keyFile' => \json_decode(\file_get_contents($keyFilePath), true)]], // keyFile
             [$config + ['keyFilePath' => $keyFilePath]], //keyFilePath
         ];
     }
@@ -249,7 +249,7 @@ class RequestWrapperTest extends TestCase
                 $userAgent = $request->getHeaderLine('User-Agent');
                 $this->assertEquals('gcloud-php/' . self::VERSION, $userAgent);
                 $xGoogApiClient = $request->getHeaderLine('x-goog-api-client');
-                $this->assertEquals('gl-php/' . phpversion() . ' gccl/' . self::VERSION, $xGoogApiClient);
+                $this->assertEquals('gl-php/' . \phpversion() . ' gccl/' . self::VERSION, $xGoogApiClient);
                 return new Response(200);
             },
             'accessToken' => 'abc'
@@ -286,7 +286,7 @@ class RequestWrapperTest extends TestCase
                 $userAgent = $request->getHeaderLine('User-Agent');
                 $xGoogApiClient = $request->getHeaderLine('x-goog-api-client');
                 $this->assertEquals('gcloud-php/' . $version, $userAgent);
-                $this->assertEquals('gl-php/' . phpversion() . ' gccl/' . $version, $xGoogApiClient);
+                $this->assertEquals('gl-php/' . \phpversion() . ' gccl/' . $version, $xGoogApiClient);
                 $this->assertEmpty($authHeader);
                 return new Response(200);
             },
@@ -322,7 +322,7 @@ class RequestWrapperTest extends TestCase
     {
         $requestWrapper = new RequestWrapper([
             'httpHandler' => function ($request, $options = []) {
-                $msg = str_repeat('0', 121);
+                $msg = \str_repeat('0', 121);
                 $jsonMsg = '{"msg":"' . $msg . '"}';
 
                 throw new RequestException(
@@ -338,7 +338,7 @@ class RequestWrapperTest extends TestCase
                 new Request('GET', 'http://www.example.com')
             );
         } catch (\Exception $ex) {
-            $this->assertGreaterThan(120, strlen($ex->getMessage()));
+            $this->assertGreaterThan(120, \strlen($ex->getMessage()));
         }
     }
 

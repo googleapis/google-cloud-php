@@ -95,14 +95,14 @@ trait ResultTestTrait
     private function resultGenerator($chunks)
     {
         foreach ($chunks as $chunk) {
-            yield json_decode($chunk, true);
+            yield \json_decode($chunk, true);
         }
     }
 
     private function getStreamingDataFixture()
     {
-        return json_decode(
-            file_get_contents(Fixtures::STREAMING_READ_ACCEPTANCE_FIXTURE()),
+        return \json_decode(
+            \file_get_contents(Fixtures::STREAMING_READ_ACCEPTANCE_FIXTURE()),
             true
         );
     }

@@ -144,5 +144,5 @@ class IndexField extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(IndexField::class, \Google\Cloud\Firestore\Admin\V1\Index_IndexField::class);
+\class_alias(IndexField::class, \Google\Cloud\Firestore\Admin\V1\Index_IndexField::class);
 

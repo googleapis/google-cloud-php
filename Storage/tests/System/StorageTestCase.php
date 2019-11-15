@@ -47,7 +47,7 @@ class StorageTestCase extends SystemTestCase
         }
 
         $config = [
-            'keyFilePath' => getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH'),
+            'keyFilePath' => \getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH'),
             'transport' => 'rest'
         ];
 
@@ -57,20 +57,20 @@ class StorageTestCase extends SystemTestCase
         ]);
         self::$pubsubClient = new PubSubClient($config);
 
-        self::$mainBucketName = getenv('BUCKET') ?: uniqid(self::TESTING_PREFIX);
+        self::$mainBucketName = \getenv('BUCKET') ?: \uniqid(self::TESTING_PREFIX);
         self::$bucket = self::createBucket(
             self::$client,
             self::$mainBucketName,
             ['location' => 'us-west1']
         );
-        self::$object = self::$bucket->upload('somedata', ['name' => uniqid(self::TESTING_PREFIX)]);
+        self::$object = self::$bucket->upload('somedata', ['name' => \uniqid(self::TESTING_PREFIX)]);
 
         self::$hasSetUp = true;
     }
 
     protected static function getProjectId($keyFilePath)
     {
-        $data = json_decode(file_get_contents($keyFilePath), true);
+        $data = \json_decode(\file_get_contents($keyFilePath), true);
         return $data['project_id'];
     }
 }

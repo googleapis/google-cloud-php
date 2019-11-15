@@ -101,7 +101,7 @@ class Attributes implements \ArrayAccess
     {
         $data = [];
         foreach ($this->attributes as $key => $value) {
-            switch (gettype($value)) {
+            switch (\gettype($value)) {
                 case 'boolean':
                     $data[$key] = [
                         'boolValue' => $value

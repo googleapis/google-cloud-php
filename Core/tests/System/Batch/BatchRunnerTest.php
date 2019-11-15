@@ -42,64 +42,64 @@ class BatchRunnerTest extends TestCase
 
     public static function delTree($dir)
     {
-        $files = array_diff(scandir($dir), array('.', '..'));
+        $files = \array_diff(\scandir($dir), array('.', '..'));
         foreach ($files as $file) {
             $target = "$dir/$file";
-            (is_dir($target)) ? self::delTree($target) : unlink($target);
+            (\is_dir($target)) ? self::delTree($target) : \unlink($target);
         }
-        return rmdir($dir);
+        return \rmdir($dir);
     }
 
     public static function setUpBeforeClass()
     {
-        self::$testDir = sprintf(
+        self::$testDir = \sprintf(
             '%s/google-cloud-system-test-%d',
-            sys_get_temp_dir(),
-            getmypid()
+            \sys_get_temp_dir(),
+            \getmypid()
         );
-        @mkdir(self::$testDir);
-        putenv('GOOGLE_CLOUD_BATCH_DAEMON_FAILURE_DIR=' . self::$testDir);
+        @\mkdir(self::$testDir);
+        \putenv('GOOGLE_CLOUD_BATCH_DAEMON_FAILURE_DIR=' . self::$testDir);
         $daemon_command = __DIR__
             . '/../../../bin/google-cloud-batch daemon';
-        self::$commandFile = tempnam(
-            sys_get_temp_dir(),
+        self::$commandFile = \tempnam(
+            \sys_get_temp_dir(),
             'batch-daemon-system-test'
         );
-        self::$targetFile = tempnam(
-            sys_get_temp_dir(),
+        self::$targetFile = \tempnam(
+            \sys_get_temp_dir(),
             'batch-daemon-system-test'
         );
         self::$run_daemon =
-            getenv('GOOGLE_CLOUD_PHP_TESTS_WITHOUT_DAEMON') === false;
-        if (extension_loaded('sysvmsg')
-            && extension_loaded('sysvsem')
-            && extension_loaded('sysvshm') && self::$run_daemon) {
+            \getenv('GOOGLE_CLOUD_PHP_TESTS_WITHOUT_DAEMON') === false;
+        if (\extension_loaded('sysvmsg')
+            && \extension_loaded('sysvsem')
+            && \extension_loaded('sysvshm') && self::$run_daemon) {
             $descriptorSpec = array(
                 0 => array('file', 'php://stdin', 'r'),
                 1 => array('file', 'php://stdout', 'w'),
                 1 => array('file', 'php://stderr', 'w')
             );
-            self::$daemon = proc_open(
+            self::$daemon = \proc_open(
                 $daemon_command,
                 $descriptorSpec,
                 $pipes
             );
-            putenv('IS_BATCH_DAEMON_RUNNING=true');
+            \putenv('IS_BATCH_DAEMON_RUNNING=true');
         } else {
             // Use in-memory implementation.
-            putenv('IS_BATCH_DAEMON_RUNNING');
+            \putenv('IS_BATCH_DAEMON_RUNNING');
         }
     }
 
     public static function tearDownAfterClass()
     {
-        @proc_terminate(self::$daemon);
-        @proc_close(self::$daemon);
-        @unlink(self::$targetFile);
-        @unlink(self::$commandFile);
+        @\proc_terminate(self::$daemon);
+        @\proc_close(self::$daemon);
+        @\unlink(self::$targetFile);
+        @\unlink(self::$commandFile);
         self::delTree(self::$testDir);
-        putenv('GOOGLE_CLOUD_BATCH_DAEMON_FAILURE_DIR');
-        putenv('IS_BATCH_DAEMON_RUNNING');
+        \putenv('GOOGLE_CLOUD_BATCH_DAEMON_FAILURE_DIR');
+        \putenv('IS_BATCH_DAEMON_RUNNING');
     }
 
     public function setup()
@@ -119,8 +119,8 @@ class BatchRunnerTest extends TestCase
 
     public function getResult()
     {
-        usleep(100000);
-        return file_get_contents(self::$targetFile);
+        \usleep(100000);
+        return \file_get_contents(self::$targetFile);
     }
 
     public function assertResultContains($expected)
@@ -138,12 +138,12 @@ class BatchRunnerTest extends TestCase
         $this->assertResultContains('ORANGE');
 
         // This item should be picked by the call period.
-        sleep(1);
+        \sleep(1);
         $this->runner->submitItem('batch-daemon-system-test', 'peach');
         $this->assertResultContains('PEACH');
 
         // Failure simulation
-        file_put_contents(self::$commandFile, 'fail');
+        \file_put_contents(self::$commandFile, 'fail');
 
         $this->runner->submitItem('batch-daemon-system-test', 'banana');
         $this->runner->submitItem('batch-daemon-system-test', 'lemon');
@@ -152,11 +152,11 @@ class BatchRunnerTest extends TestCase
         $this->assertNotContains('LEMON', $result);
 
         // Retry simulation
-        unlink(self::$commandFile);
+        \unlink(self::$commandFile);
         if (self::$run_daemon) {
             $retry_command = __DIR__
                 . '/../../../bin/google-cloud-batch retry';
-            exec($retry_command);
+            \exec($retry_command);
         } else {
             // The in-memory implementation doesn't share the JobConfig with
             // other processes, so we need to run retryAll in the same process.

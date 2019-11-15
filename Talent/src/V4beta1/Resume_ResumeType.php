@@ -11,6 +11,6 @@ if (false) {
      */
     class Resume_ResumeType {}
 }
-class_exists(Resume\ResumeType::class);
-@trigger_error('Google\Cloud\Talent\V4beta1\Resume_ResumeType is deprecated and will be removed in the next major release. Use Google\Cloud\Talent\V4beta1\Resume\ResumeType instead', E_USER_DEPRECATED);
+\class_exists(Resume\ResumeType::class);
+@\trigger_error('Google\Cloud\Talent\V4beta1\Resume_ResumeType is deprecated and will be removed in the next major release. Use Google\Cloud\Talent\V4beta1\Resume\ResumeType instead', E_USER_DEPRECATED);
 

@@ -45,13 +45,13 @@ class ResultPrinter extends \PHPUnit_TextUI_ResultPrinter
         Container::reset();
 
         if (!empty($uncovered)) {
-            $this->writeWithColor('bg-red', sprintf("NOTICE: %s uncovered snippets!", count($uncovered)));
+            $this->writeWithColor('bg-red', \sprintf("NOTICE: %s uncovered snippets!", \count($uncovered)));
 
             if ($this->verbose) {
                 $i = 0;
                 foreach ($uncovered as $snippet) {
                     $fqn = $snippet->fqn();
-                    $type = (strpos($fqn, '::') !== false)
+                    $type = (\strpos($fqn, '::') !== false)
                         ? 'Method'
                         : 'Class';
 
@@ -67,7 +67,7 @@ class ResultPrinter extends \PHPUnit_TextUI_ResultPrinter
                 $this->write("Run command with `--verbose` flag to see uncovered snippets.");
             }
 
-            if (extension_loaded('grpc')) {
+            if (\extension_loaded('grpc')) {
                 exit(1);
             }
         }

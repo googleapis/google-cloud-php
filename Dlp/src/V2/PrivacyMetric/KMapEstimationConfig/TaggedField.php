@@ -178,5 +178,5 @@ class TaggedField extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TaggedField::class, \Google\Cloud\Dlp\V2\PrivacyMetric_KMapEstimationConfig_TaggedField::class);
+\class_alias(TaggedField::class, \Google\Cloud\Dlp\V2\PrivacyMetric_KMapEstimationConfig_TaggedField::class);
 

@@ -92,39 +92,39 @@ class TableOfContents
     private function stripDirectories($path, array $files)
     {
         foreach ($files as $i => $file) {
-            if (is_dir($path .'/'. $file)) {
+            if (\is_dir($path .'/'. $file)) {
                 unset($files[$i]);
             }
         }
 
-        return array_values($files);
+        return \array_values($files);
     }
 
     private function buildToc($path)
     {
         $this->output->writeln($this->formatter->formatSection(
             'Table of Contents',
-            sprintf('Working in directory `%s`', realpath($path)) . PHP_EOL
+            \sprintf('Working in directory `%s`', \realpath($path)) . PHP_EOL
         ));
 
         $files = $this->scanDirectory($path);
 
-        if (strpos($path, 'Gapic') !== false || strpos($path, 'resources') !== false) {
+        if (\strpos($path, 'Gapic') !== false || \strpos($path, 'resources') !== false) {
             return [];
         }
 
-        $choices = $this->stripDirectories($path, array_values($files));
+        $choices = $this->stripDirectories($path, \array_values($files));
 
-        if (count($choices) === 0) {
+        if (\count($choices) === 0) {
             // No choices, so instead skip to iterating over subdirs
             $this->output->writeln($this->formatter->formatSection(
                 'Table of Contents',
-                sprintf('Eliding directory with no files:`%s`', realpath($path)) . PHP_EOL
+                \sprintf('Eliding directory with no files:`%s`', \realpath($path)) . PHP_EOL
             ));
             $tocs = [];
             foreach ($files as $file) {
-                if (is_dir($path .'/'. $file)) {
-                    $tocs = array_merge($tocs, $this->buildToc($path .'/'. $file));
+                if (\is_dir($path .'/'. $file)) {
+                    $tocs = \array_merge($tocs, $this->buildToc($path .'/'. $file));
                 }
             }
             return $tocs;
@@ -138,7 +138,7 @@ class TableOfContents
         }
 
         $entries = $this->buildSingleTocEntry(new \SplFileInfo($mainSelection), $path, true);
-        if (count($entries) !== 1) {
+        if (\count($entries) !== 1) {
             throw new \RuntimeException("Unexpected number of entries for main: $mainSelection");
         }
         $main = $entries[0];
@@ -157,11 +157,11 @@ class TableOfContents
     {
         $this->output->writeln($this->formatter->formatSection(
             'Table of Contents',
-            sprintf('Working in directory `%s`', realpath($path)) . PHP_EOL
+            \sprintf('Working in directory `%s`', \realpath($path)) . PHP_EOL
         ));
 
         $files = $this->scanDirectory($path);
-        $choices = $this->stripDirectories($path, array_values($files));
+        $choices = $this->stripDirectories($path, \array_values($files));
         $q = $this->buildMainServiceQuestion($choices);
         $mainSelection = $this->askQuestion($q);
         if ($mainSelection === self::SKIP_TEXT) {
@@ -169,7 +169,7 @@ class TableOfContents
         }
 
         $entries = $this->buildSingleTocEntry(new \SplFileInfo($mainSelection), $path, true);
-        if (count($entries) !== 1) {
+        if (\count($entries) !== 1) {
             throw new \RuntimeException("Unexpected number of entries for main: $mainSelection");
         }
         $main = $entries[0];
@@ -180,7 +180,7 @@ class TableOfContents
             'type' => $main['type']
         ];
 
-        $services = array_merge($services, $this->buildServices($path, $files, [$mainSelection, 'README.md']));
+        $services = \array_merge($services, $this->buildServices($path, $files, [$mainSelection, 'README.md']));
 
         $parent = $this->calculateParent($services[0]['type']);
         $pattern = $parent .'/\w{1,}';
@@ -196,22 +196,22 @@ class TableOfContents
     private function buildServices($path, $files, $exclude = [])
     {
         foreach ($exclude as $ex) {
-            $i = array_search($ex, $files);
+            $i = \array_search($ex, $files);
             unset($files[$i]);
         }
 
         $services = [];
         foreach ($files as $file) {
-            $services = array_merge($services, $this->buildSingleTocEntry(new \SplFileInfo($file), $path));
+            $services = \array_merge($services, $this->buildSingleTocEntry(new \SplFileInfo($file), $path));
         }
         return $services;
     }
 
     private function calculateParent($child)
     {
-        $parts = explode('/', $child);
-        array_pop($parts);
-        return implode('/', $parts);
+        $parts = \explode('/', $child);
+        \array_pop($parts);
+        return \implode('/', $parts);
     }
 
     private function buildMainServiceQuestion($choices)
@@ -235,7 +235,7 @@ class TableOfContents
         };
 
         $validator = function ($answer) use ($choices) {
-            if (!array_key_exists((int)$answer, $choices)) {
+            if (!\array_key_exists((int)$answer, $choices)) {
                 throw new \RuntimeException('Invalid selection.');
             }
 
@@ -257,42 +257,42 @@ class TableOfContents
 
     private function buildSingleTocEntry(\SplFileInfo $file, $path, $isMain = false)
     {
-        if (is_dir($path .'/'. $file)) {
+        if (\is_dir($path .'/'. $file)) {
             return $this->buildToc($path .'/'. $file);
         }
 
         $file = new \SplFileInfo($file);
-        if (!in_array($file->getExtension(), ['php', 'md'])) {
+        if (!\in_array($file->getExtension(), ['php', 'md'])) {
             return [];
         }
 
-        $file = trim($file, '/');
+        $file = \trim($file, '/');
 
         if (!$isMain) {
-            $q = $this->confirm(sprintf('Should %s be included in the table of contents?', $file));
+            $q = $this->confirm(\sprintf('Should %s be included in the table of contents?', $file));
             $include = $this->askQuestion($q);
             if (!$include) {
                 return [];
             }
         }
 
-        $withoutExt = explode('.', $file)[0];
-        $base = trim(substr($path, strlen($this->rootPath)), '/');
+        $withoutExt = \explode('.', $file)[0];
+        $base = \trim(\substr($path, \strlen($this->rootPath)), '/');
 
-        if (strpos($file, 'README.md') !== false) {
-            $parts = explode('/', $path);
-            $last = array_pop($parts);
+        if (\strpos($file, 'README.md') !== false) {
+            $parts = \explode('/', $path);
+            $last = \array_pop($parts);
 
             if ($this->pathIsGapic($path)) {
-                $last = strtolower($last);
+                $last = \strtolower($last);
             }
             $suggestedTitle = $last;
         } else {
-            $suggestedTitle = basename($withoutExt);
+            $suggestedTitle = \basename($withoutExt);
         }
 
         $title = $this->ask('Enter the service title', $suggestedTitle);
-        $type = $this->removeSrcDir(strtolower($base .'/'. $withoutExt));
+        $type = $this->removeSrcDir(\strtolower($base .'/'. $withoutExt));
 
         return [[
             'title' => $title,
@@ -302,27 +302,27 @@ class TableOfContents
 
     private function removeSrcDir($type)
     {
-        $parts = explode('/', $type);
-        $i = array_search('src', $parts);
+        $parts = \explode('/', $type);
+        $i = \array_search('src', $parts);
         if ($i !== false) {
             unset($parts[$i]);
         }
-        return implode('/', $parts);
+        return \implode('/', $parts);
     }
 
     private function writeToc($name, array $toc)
     {
         $path = $this->rootPath .'/'. self::TOC_PATH .'/'. $name .'.json';
-        file_put_contents($path, json_encode($toc, JSON_PRETTY_PRINT) . PHP_EOL);
+        \file_put_contents($path, \json_encode($toc, JSON_PRETTY_PRINT) . PHP_EOL);
     }
 
     private function addToIncludes($name)
     {
         $path = $this->rootPath .'/'. self::TOC_PATH .'/google-cloud.json';
-        $toc = json_decode(file_get_contents($path), true);
+        $toc = \json_decode(\file_get_contents($path), true);
         $toc['includes'][] = $name;
-        sort($toc['includes']);
-        $toc['includes'] = array_unique($toc['includes']);
+        \sort($toc['includes']);
+        $toc['includes'] = \array_unique($toc['includes']);
 
         $this->writeToc('google-cloud', $toc);
     }

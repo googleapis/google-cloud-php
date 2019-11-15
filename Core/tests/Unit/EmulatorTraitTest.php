@@ -62,7 +62,7 @@ class EmulatorTraitTest extends TestCase
     {
         $host = 'localhost:9000';
         $this->assertEquals(
-            sprintf('http://%s/', $host),
+            \sprintf('http://%s/', $host),
             $this->impl->call('emulatorBaseUri', [$host])
         );
     }

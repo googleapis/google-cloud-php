@@ -19,7 +19,7 @@ class Metric
         \GPBMetadata\Google\Api\Metric::initOnce();
         \GPBMetadata\Google\Api\MonitoredResource::initOnce();
         \GPBMetadata\Google\Monitoring\V3\Common::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0a94060a21676f6f676c652f6d6f6e69746f72696e672f76332f6d657472" .
             "69632e70726f746f1214676f6f676c652e6d6f6e69746f72696e672e7633" .
             "1a16676f6f676c652f6170692f6c6162656c2e70726f746f1a17676f6f67" .

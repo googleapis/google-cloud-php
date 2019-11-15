@@ -113,5 +113,5 @@ class InfoTypeLimit extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(InfoTypeLimit::class, \Google\Cloud\Dlp\V2\InspectConfig_FindingLimits_InfoTypeLimit::class);
+\class_alias(InfoTypeLimit::class, \Google\Cloud\Dlp\V2\InspectConfig_FindingLimits_InfoTypeLimit::class);
 

@@ -24,7 +24,7 @@ class MetricService
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Rpc\Status::initOnce();
         \GPBMetadata\Google\Api\Client::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0aef1b0a29676f6f676c652f6d6f6e69746f72696e672f76332f6d657472" .
             "69635f736572766963652e70726f746f1214676f6f676c652e6d6f6e6974" .
             "6f72696e672e76331a17676f6f676c652f6170692f6d65747269632e7072" .

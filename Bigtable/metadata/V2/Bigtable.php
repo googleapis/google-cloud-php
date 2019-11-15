@@ -18,7 +18,7 @@ class Bigtable
         \GPBMetadata\Google\Bigtable\V2\Data::initOnce();
         \GPBMetadata\Google\Protobuf\Wrappers::initOnce();
         \GPBMetadata\Google\Rpc\Status::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
+        $pool->internalAddGeneratedFile(\hex2bin(
             "0a95180a21676f6f676c652f6269677461626c652f76322f626967746162" .
             "6c652e70726f746f1212676f6f676c652e6269677461626c652e76321a1d" .
             "676f6f676c652f6269677461626c652f76322f646174612e70726f746f1a" .

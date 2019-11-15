@@ -11,6 +11,6 @@ if (false) {
      */
     class ListTimeSeriesRequest_TimeSeriesView {}
 }
-class_exists(ListTimeSeriesRequest\TimeSeriesView::class);
-@trigger_error('Google\Cloud\Monitoring\V3\ListTimeSeriesRequest_TimeSeriesView is deprecated and will be removed in the next major release. Use Google\Cloud\Monitoring\V3\ListTimeSeriesRequest\TimeSeriesView instead', E_USER_DEPRECATED);
+\class_exists(ListTimeSeriesRequest\TimeSeriesView::class);
+@\trigger_error('Google\Cloud\Monitoring\V3\ListTimeSeriesRequest_TimeSeriesView is deprecated and will be removed in the next major release. Use Google\Cloud\Monitoring\V3\ListTimeSeriesRequest\TimeSeriesView instead', E_USER_DEPRECATED);
 

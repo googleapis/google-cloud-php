@@ -176,9 +176,9 @@ class FirestoreSessionHandlerTest extends TestCase
             ->shouldBeCalledTimes(1)
             ->willReturn([
                 'found' => [
-                    'createTime' => date('Y-m-d'),
-                    'updateTime' => date('Y-m-d'),
-                    'readTime' => date('Y-m-d'),
+                    'createTime' => \date('Y-m-d'),
+                    'updateTime' => \date('Y-m-d'),
+                    'readTime' => \date('Y-m-d'),
                     'fields' => ['data' => 'sessiondata']
                 ]
             ]);
@@ -213,7 +213,7 @@ class FirestoreSessionHandlerTest extends TestCase
         $this->valueMapper->encodeValues(Argument::type('array'))
             ->will(function ($args) use ($phpunit) {
                 $phpunit->assertEquals('sessiondata', $args[0]['data']);
-                $phpunit->assertTrue(is_int($args[0]['t']));
+                $phpunit->assertTrue(\is_int($args[0]['t']));
                 return ['data' => ['stringValue' => 'sessiondata']];
             });
         $this->connection->beginTransaction(['database' => $this->dbName()])
@@ -254,7 +254,7 @@ class FirestoreSessionHandlerTest extends TestCase
         $this->valueMapper->encodeValues(Argument::type('array'))
             ->will(function ($args) use ($phpunit) {
                 $phpunit->assertEquals('sessiondata', $args[0]['data']);
-                $phpunit->assertTrue(is_int($args[0]['t']));
+                $phpunit->assertTrue(\is_int($args[0]['t']));
                 return ['data' => ['stringValue' => 'sessiondata']];
             });
         $this->connection->beginTransaction(['database' => $this->dbName()])
@@ -369,10 +369,10 @@ class FirestoreSessionHandlerTest extends TestCase
                 'document' => [
                     'name' => $this->documentName(),
                     'fields' => [],
-                    'createTime' => date('Y-m-d'),
-                    'updateTime' => date('Y-m-d'),
+                    'createTime' => \date('Y-m-d'),
+                    'updateTime' => \date('Y-m-d'),
                 ],
-                'readTime' => date('Y-m-d'),
+                'readTime' => \date('Y-m-d'),
             ]);
         $this->documents->next()
             ->shouldBeCalledTimes(1);
@@ -451,7 +451,7 @@ class FirestoreSessionHandlerTest extends TestCase
 
     private function dbName()
     {
-        return sprintf(
+        return \sprintf(
             'projects/%s/databases/%s',
             self::PROJECT,
             self::DATABASE
@@ -460,7 +460,7 @@ class FirestoreSessionHandlerTest extends TestCase
 
     private function documentName()
     {
-        return sprintf(
+        return \sprintf(
             '%s/documents/%s:%s/sessionid',
             $this->dbName(),
             self::SESSION_SAVE_PATH,

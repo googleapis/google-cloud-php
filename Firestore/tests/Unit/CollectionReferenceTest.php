@@ -63,7 +63,7 @@ class CollectionReferenceTest extends TestCase
 
     public function testId()
     {
-        $this->assertEquals(array_reverse(explode('/', self::NAME))[0], $this->collection->id());
+        $this->assertEquals(\array_reverse(\explode('/', self::NAME))[0], $this->collection->id());
     }
 
     public function testDocument()
@@ -80,17 +80,17 @@ class CollectionReferenceTest extends TestCase
         $doc = $this->collection->newDocument();
         $this->assertInstanceOf(DocumentReference::class, $doc);
 
-        $parent = explode('/', $doc->name());
-        $id = array_pop($parent);
-        $this->assertEquals(self::NAME, implode('/', $parent));
-        $this->assertEquals(20, strlen($id));
+        $parent = \explode('/', $doc->name());
+        $id = \array_pop($parent);
+        $this->assertEquals(self::NAME, \implode('/', $parent));
+        $this->assertEquals(20, \strlen($id));
     }
 
     public function testAdd()
     {
         $this->connection->commit(Argument::that(function ($args) {
             $expected = [
-                'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
+                'database' => \sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
                 'writes' => [
                     [
                         'currentDocument' => ['exists' => false],
@@ -117,8 +117,8 @@ class CollectionReferenceTest extends TestCase
 
     public function testListDocuments()
     {
-        $parts = explode('/', self::NAME);
-        $id = end($parts);
+        $parts = \explode('/', self::NAME);
+        $id = \end($parts);
 
         $docName = self::NAME . '/foo';
 
@@ -137,7 +137,7 @@ class CollectionReferenceTest extends TestCase
         $this->collection->___setProperty('connection', $this->connection->reveal());
 
         $res = $this->collection->listDocuments();
-        $docs = iterator_to_array($res);
+        $docs = \iterator_to_array($res);
 
         $this->assertInstanceOf(ItemIterator::class, $res);
         $this->assertInstanceOf(DocumentReference::class, $docs[0]);
@@ -155,7 +155,7 @@ class CollectionReferenceTest extends TestCase
     public function testRandomNames(DocumentReference $doc)
     {
         $id = $doc->id();
-        $this->assertEquals(1, preg_match('/[0-9a-zA-Z]{20}/', $id));
+        $this->assertEquals(1, \preg_match('/[0-9a-zA-Z]{20}/', $id));
     }
 
     public function randomNames()

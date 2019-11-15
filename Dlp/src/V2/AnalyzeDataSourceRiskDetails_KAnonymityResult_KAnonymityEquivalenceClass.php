@@ -11,6 +11,6 @@ if (false) {
      */
     class AnalyzeDataSourceRiskDetails_KAnonymityResult_KAnonymityEquivalenceClass {}
 }
-class_exists(AnalyzeDataSourceRiskDetails\KAnonymityResult\KAnonymityEquivalenceClass::class);
-@trigger_error('Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_KAnonymityResult_KAnonymityEquivalenceClass is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\KAnonymityResult\KAnonymityEquivalenceClass instead', E_USER_DEPRECATED);
+\class_exists(AnalyzeDataSourceRiskDetails\KAnonymityResult\KAnonymityEquivalenceClass::class);
+@\trigger_error('Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_KAnonymityResult_KAnonymityEquivalenceClass is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\KAnonymityResult\KAnonymityEquivalenceClass instead', E_USER_DEPRECATED);
 

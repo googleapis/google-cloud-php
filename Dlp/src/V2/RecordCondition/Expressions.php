@@ -102,5 +102,5 @@ class Expressions extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Expressions::class, \Google\Cloud\Dlp\V2\RecordCondition_Expressions::class);
+\class_alias(Expressions::class, \Google\Cloud\Dlp\V2\RecordCondition_Expressions::class);
 
