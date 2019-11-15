@@ -18,6 +18,7 @@ import os
 import synthtool as s
 import synthtool.gcp as gcp
 import logging
+import re
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -138,3 +139,70 @@ s.replace(
     'tests/**/Admin/Instance/V1/*Test.php',
     '@group instance',
     '@group spanner-admin-instance')
+
+## START fixing commit() breaking change
+
+# move $mutations back into commit() signature
+s.replace(
+    "src/*/Gapic/SpannerGapicClient.php",
+    re.escape("public function commit($session, array $optionalArgs = [])"),
+    "public function commit($session, $mutations, array $optionalArgs = [])"
+)
+
+# set request value from signature rather than optional args
+s.replace(
+    "src/*/Gapic/SpannerGapicClient.php",
+    re.escape("""if (isset($optionalArgs['mutations'])) {
+            $request->setMutations($optionalArgs['mutations']);
+        }""" + "\n"),
+    "$request->setMutations($mutations);"
+)
+
+# fix sample code
+s.replace(
+    "src/*/Gapic/SpannerGapicClient.php",
+    re.escape("""$formattedSession = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+     *     $response = $spannerClient->commit($formattedSession);"""),
+    """$formattedSession = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+     *     $mutation = new \\\Google\\\Cloud\\\Spanner\\\V1\\\Mutation();
+     *     $response = $spannerClient->commit($formattedSession, [$mutation]);"""
+)
+
+# remove $mutations from optional args documentation
+s.replace(
+    "src/*/Gapic/SpannerGapicClient.php",
+    re.escape("""@type Mutation[] $mutations
+     *          The mutations to be executed when this transaction commits. All
+     *          mutations are applied atomically, in the order they appear in
+     *          this list.
+     *     """),
+     ""
+)
+
+# add $mutations to parameter documentation
+s.replace(
+    "src/*/Gapic/SpannerGapicClient.php",
+    re.escape("""@param string $session      Required. The session in which the transaction to be committed is running.
+     * @param array  $optionalArgs {"""),
+    """@param string     $session      Required. The session in which the transaction to be committed is running.
+     * @param Mutation[] $mutations    The mutations to be executed when this transaction commits. All
+     *                                 mutations are applied atomically, in the order they appear in
+     *                                 this list.
+     * @param array      $optionalArgs {"""
+)
+
+# fix test commitTest()
+s.replace(
+    "tests/Unit/V1/SpannerClientTest.php",
+    re.escape("$response = $client->commit($formattedSession);"),
+    """$mutation = new \\\Google\\\Cloud\\\Spanner\\\V1\\\Mutation();
+        $response = $client->commit($formattedSession, [$mutation]);"""
+)
+
+# fix test commitExceptionTest()
+s.replace(
+    "tests/Unit/V1/SpannerClientTest.php",
+    re.escape("$client->commit($formattedSession);"),
+    """$mutation = new \\\Google\\\Cloud\\\Spanner\\\V1\\\Mutation();
+            $client->commit($formattedSession, [$mutation]);"""
+)
