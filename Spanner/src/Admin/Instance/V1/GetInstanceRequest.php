@@ -22,6 +22,14 @@ class GetInstanceRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+    /**
+     * If field_mask is present, specifies the subset of [][Instance] fields that
+     * should be returned.
+     * If absent, all [][Instance] fields are returned.
+     *
+     * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 2;</code>
+     */
+    private $field_mask = null;
 
     /**
      * Constructor.
@@ -32,6 +40,10 @@ class GetInstanceRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The name of the requested instance. Values are of the form
      *           `projects/<project>/instances/<instance>`.
+     *     @type \Google\Protobuf\FieldMask $field_mask
+     *           If field_mask is present, specifies the subset of [][Instance] fields that
+     *           should be returned.
+     *           If absent, all [][Instance] fields are returned.
      * }
      */
     public function __construct($data = NULL) {
@@ -63,6 +75,36 @@ class GetInstanceRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * If field_mask is present, specifies the subset of [][Instance] fields that
+     * should be returned.
+     * If absent, all [][Instance] fields are returned.
+     *
+     * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 2;</code>
+     * @return \Google\Protobuf\FieldMask
+     */
+    public function getFieldMask()
+    {
+        return $this->field_mask;
+    }
+
+    /**
+     * If field_mask is present, specifies the subset of [][Instance] fields that
+     * should be returned.
+     * If absent, all [][Instance] fields are returned.
+     *
+     * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 2;</code>
+     * @param \Google\Protobuf\FieldMask $var
+     * @return $this
+     */
+    public function setFieldMask($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\FieldMask::class);
+        $this->field_mask = $var;
 
         return $this;
     }

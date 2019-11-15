@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [BatchCreateSessions][google.spanner.v1.Spanner.BatchCreateSessions].
+ * The request for
+ * [BatchCreateSessions][google.spanner.v1.Spanner.BatchCreateSessions].
  *
  * Generated from protobuf message <code>google.spanner.v1.BatchCreateSessionsRequest</code>
  */
@@ -32,7 +33,8 @@ class BatchCreateSessionsRequest extends \Google\Protobuf\Internal\Message
      * The API may return fewer than the requested number of sessions. If a
      * specific number of sessions are desired, the client can make additional
      * calls to BatchCreateSessions (adjusting
-     * [session_count][google.spanner.v1.BatchCreateSessionsRequest.session_count] as necessary).
+     * [session_count][google.spanner.v1.BatchCreateSessionsRequest.session_count]
+     * as necessary).
      *
      * Generated from protobuf field <code>int32 session_count = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -53,7 +55,8 @@ class BatchCreateSessionsRequest extends \Google\Protobuf\Internal\Message
      *           The API may return fewer than the requested number of sessions. If a
      *           specific number of sessions are desired, the client can make additional
      *           calls to BatchCreateSessions (adjusting
-     *           [session_count][google.spanner.v1.BatchCreateSessionsRequest.session_count] as necessary).
+     *           [session_count][google.spanner.v1.BatchCreateSessionsRequest.session_count]
+     *           as necessary).
      * }
      */
     public function __construct($data = NULL) {
@@ -118,7 +121,8 @@ class BatchCreateSessionsRequest extends \Google\Protobuf\Internal\Message
      * The API may return fewer than the requested number of sessions. If a
      * specific number of sessions are desired, the client can make additional
      * calls to BatchCreateSessions (adjusting
-     * [session_count][google.spanner.v1.BatchCreateSessionsRequest.session_count] as necessary).
+     * [session_count][google.spanner.v1.BatchCreateSessionsRequest.session_count]
+     * as necessary).
      *
      * Generated from protobuf field <code>int32 session_count = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -133,7 +137,8 @@ class BatchCreateSessionsRequest extends \Google\Protobuf\Internal\Message
      * The API may return fewer than the requested number of sessions. If a
      * specific number of sessions are desired, the client can make additional
      * calls to BatchCreateSessions (adjusting
-     * [session_count][google.spanner.v1.BatchCreateSessionsRequest.session_count] as necessary).
+     * [session_count][google.spanner.v1.BatchCreateSessionsRequest.session_count]
+     * as necessary).
      *
      * Generated from protobuf field <code>int32 session_count = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
