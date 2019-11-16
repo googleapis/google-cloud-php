@@ -317,7 +317,7 @@ class TraceServiceGapicClient
      *
      * @param string $name         Required. The name of the project where the spans belong. The format is
      *                             `projects/[PROJECT_ID]`.
-     * @param Span[] $spans        A list of new spans. The span names must not match existing
+     * @param Span[] $spans        Required. A list of new spans. The span names must not match existing
      *                             spans, or the results are undefined.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -383,7 +383,7 @@ class TraceServiceGapicClient
      * @param string            $spanId       The [SPAN_ID] portion of the span's resource name.
      * @param TruncatableString $displayName  A description of the span's operation (up to 128 bytes).
      *                                        Stackdriver Trace displays the description in the
-     *                                        {% dynamic print site_values.console_name %}.
+     *                                        Google Cloud Platform Console.
      *                                        For example, the display name can be a qualified method name or a file name
      *                                        and a line number where the operation is called. A best practice is to use
      *                                        the same display name within an application and at the same call point.
@@ -411,14 +411,14 @@ class TraceServiceGapicClient
      *     @type Links $links
      *          Links associated with the span. You can have up to 128 links per Span.
      *     @type Status $status
-     *          An optional final status for this span.
+     *          Optional. The final status for this span.
      *     @type BoolValue $sameProcessAsParentSpan
-     *          (Optional) Set this parameter to indicate whether this span is in
+     *          Optional. Set this parameter to indicate whether this span is in
      *          the same process as its parent. If you do not set this parameter,
      *          Stackdriver Trace is unable to take advantage of this helpful
      *          information.
      *     @type Int32Value $childSpanCount
-     *          An optional number of child spans that were generated while this span
+     *          Optional. The number of child spans that were generated while this span
      *          was active. If set, allows implementation to detect missing child spans.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
