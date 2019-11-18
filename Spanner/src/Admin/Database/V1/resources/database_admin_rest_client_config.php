@@ -73,17 +73,6 @@ return [
             ],
         ],
         'google.spanner.admin.database.v1.DatabaseAdmin' => [
-            'ListDatabases' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{parent=projects/*/instances/*}/databases',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
             'CreateDatabase' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/instances/*}/databases',
@@ -194,6 +183,17 @@ return [
                     'resource' => [
                         'getters' => [
                             'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'ListDatabases' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/instances/*}/databases',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],

@@ -83,6 +83,19 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> labels = 7;</code>
      */
     private $labels;
+    /**
+     * Output only. The endpoint URIs based on the instance config.
+     * For example, instances located in a specific cloud region (or multi region)
+     * such as nam3, would have a nam3 specific endpoint URI.
+     * This URI is to be used implictly by SDK clients, with fallback to default
+     * URI. These endpoints are intended to optimize the network routing between
+     * the client and the instance's serving resources.
+     * If multiple endpoints are present, client may establish connections using
+     * any of the given URIs.
+     *
+     * Generated from protobuf field <code>repeated string endpoint_uris = 8;</code>
+     */
+    private $endpoint_uris;
 
     /**
      * Constructor.
@@ -134,6 +147,15 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           specific characters being disallowed.  For example, representing labels
      *           as the string:  name + "_" + value  would prove problematic if we were to
      *           allow "_" in a future release.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $endpoint_uris
+     *           Output only. The endpoint URIs based on the instance config.
+     *           For example, instances located in a specific cloud region (or multi region)
+     *           such as nam3, would have a nam3 specific endpoint URI.
+     *           This URI is to be used implictly by SDK clients, with fallback to default
+     *           URI. These endpoints are intended to optimize the network routing between
+     *           the client and the instance's serving resources.
+     *           If multiple endpoints are present, client may establish connections using
+     *           any of the given URIs.
      * }
      */
     public function __construct($data = NULL) {
@@ -357,6 +379,46 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The endpoint URIs based on the instance config.
+     * For example, instances located in a specific cloud region (or multi region)
+     * such as nam3, would have a nam3 specific endpoint URI.
+     * This URI is to be used implictly by SDK clients, with fallback to default
+     * URI. These endpoints are intended to optimize the network routing between
+     * the client and the instance's serving resources.
+     * If multiple endpoints are present, client may establish connections using
+     * any of the given URIs.
+     *
+     * Generated from protobuf field <code>repeated string endpoint_uris = 8;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getEndpointUris()
+    {
+        return $this->endpoint_uris;
+    }
+
+    /**
+     * Output only. The endpoint URIs based on the instance config.
+     * For example, instances located in a specific cloud region (or multi region)
+     * such as nam3, would have a nam3 specific endpoint URI.
+     * This URI is to be used implictly by SDK clients, with fallback to default
+     * URI. These endpoints are intended to optimize the network routing between
+     * the client and the instance's serving resources.
+     * If multiple endpoints are present, client may establish connections using
+     * any of the given URIs.
+     *
+     * Generated from protobuf field <code>repeated string endpoint_uris = 8;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setEndpointUris($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->endpoint_uris = $arr;
 
         return $this;
     }
