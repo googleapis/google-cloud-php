@@ -1,5 +1,93 @@
 # Changelog
 
+## 0.119.0
+
+<details><summary>google/cloud-automl 0.8.1</summary>
+
+
+
+### Bug Fixes
+
+* update metadata to include operations and documentation ([#2476](https://www.github.com/googleapis/google-cloud-php/issues/2476)) ([0f4b19c](https://www.github.com/googleapis/google-cloud-php/commit/0f4b19cc1094e8f8743c9b768707047e17e1c487))
+
+</details>
+
+<details><summary>google/cloud-dataproc 0.16.0</summary>
+
+
+
+### Features
+
+* update rest configuration uri templates. ([#2446](https://www.github.com/googleapis/google-cloud-php/issues/2446)) ([3973abe](https://www.github.com/googleapis/google-cloud-php/commit/3973abe46b0c37c8ce801d4fcbb9e4596cadf1d7))
+
+</details>
+
+<details><summary>google/cloud-debugger 0.20.0</summary>
+
+
+
+### Features
+
+* update timeouts and documentation. ([#2466](https://www.github.com/googleapis/google-cloud-php/issues/2466)) ([169e249](https://www.github.com/googleapis/google-cloud-php/commit/169e24966851753b0404800d43e953d3e6437d34))
+
+</details>
+
+<details><summary>google/cloud-dlp 0.23.0</summary>
+
+
+
+### Features
+
+* add publishToStackdriver option. ([#2451](https://www.github.com/googleapis/google-cloud-php/issues/2451)) ([149d35e](https://www.github.com/googleapis/google-cloud-php/commit/149d35e01c78622cfaf8f4f349f099e57400dbd8))
+
+</details>
+
+<details><summary>google/cloud-iot 0.10.0</summary>
+
+
+
+### Features
+
+* update retry configurations and docs ([#2453](https://www.github.com/googleapis/google-cloud-php/issues/2453)) ([e32a7db](https://www.github.com/googleapis/google-cloud-php/commit/e32a7db4c0f55e6bad3be0e33ecd4585ceafeaa1))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.19.0</summary>
+
+
+
+### Features
+
+* update timeout and retry configuration ([#2455](https://www.github.com/googleapis/google-cloud-php/issues/2455)) ([ba1dfa0](https://www.github.com/googleapis/google-cloud-php/commit/ba1dfa07e9d363187068003bfb5477add01d4a3a))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.22.0</summary>
+
+
+
+### Features
+
+* update generated clients ([#2469](https://www.github.com/googleapis/google-cloud-php/issues/2469)) ([f42ea21](https://www.github.com/googleapis/google-cloud-php/commit/f42ea21c82930f645d2eb4fc473d6283a74ed415))
+* update generated clients ([#2473](https://www.github.com/googleapis/google-cloud-php/issues/2473)) ([e44252c](https://www.github.com/googleapis/google-cloud-php/commit/e44252c78c76da58554c801ed2e86183ea5667ee))
+
+
+### Reverts
+
+* Revert "feat: update generated clients (#2469)" (#2471) ([e5fe3bc](https://www.github.com/googleapis/google-cloud-php/commit/e5fe3bc6e0989aa68a6ff773ea5395828704cc06)), closes [#2469](https://www.github.com/googleapis/google-cloud-php/issues/2469) [#2471](https://www.github.com/googleapis/google-cloud-php/issues/2471)
+
+</details>
+
+<details><summary>google/cloud-talent 0.8.1</summary>
+
+
+
+### Bug Fixes
+
+* update documentation ([#2444](https://www.github.com/googleapis/google-cloud-php/issues/2444)) ([7515d6b](https://www.github.com/googleapis/google-cloud-php/commit/7515d6b49022e7ba30daf8faeb78159ff6232c83))
+
+</details>
+
 ## 0.118.0
 
 <details><summary>google/cloud-automl 0.8.0</summary>
