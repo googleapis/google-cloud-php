@@ -68,13 +68,8 @@
 
 ### Features
 
-* update generated clients ([#2469](https://www.github.com/googleapis/google-cloud-php/issues/2469)) ([f42ea21](https://www.github.com/googleapis/google-cloud-php/commit/f42ea21c82930f645d2eb4fc473d6283a74ed415))
 * update generated clients ([#2473](https://www.github.com/googleapis/google-cloud-php/issues/2473)) ([e44252c](https://www.github.com/googleapis/google-cloud-php/commit/e44252c78c76da58554c801ed2e86183ea5667ee))
 
-
-### Reverts
-
-* Revert "feat: update generated clients (#2469)" (#2471) ([e5fe3bc](https://www.github.com/googleapis/google-cloud-php/commit/e5fe3bc6e0989aa68a6ff773ea5395828704cc06)), closes [#2469](https://www.github.com/googleapis/google-cloud-php/issues/2469) [#2471](https://www.github.com/googleapis/google-cloud-php/issues/2471)
 
 </details>
 
