@@ -43,8 +43,7 @@ class ErrorContext extends \Google\Protobuf\Internal\Message
      * report the error, usually the place where it was logged.
      * For a logged exception this would be the source line where the
      * exception is logged, usually close to the place where it was
-     * caught. This value is in contrast to `Exception.cause_location`,
-     * which describes the source line where the exception was thrown.
+     * caught.
      *
      * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.SourceLocation report_location = 3;</code>
      */
@@ -73,8 +72,7 @@ class ErrorContext extends \Google\Protobuf\Internal\Message
      *           report the error, usually the place where it was logged.
      *           For a logged exception this would be the source line where the
      *           exception is logged, usually close to the place where it was
-     *           caught. This value is in contrast to `Exception.cause_location`,
-     *           which describes the source line where the exception was thrown.
+     *           caught.
      * }
      */
     public function __construct($data = NULL) {
@@ -155,8 +153,7 @@ class ErrorContext extends \Google\Protobuf\Internal\Message
      * report the error, usually the place where it was logged.
      * For a logged exception this would be the source line where the
      * exception is logged, usually close to the place where it was
-     * caught. This value is in contrast to `Exception.cause_location`,
-     * which describes the source line where the exception was thrown.
+     * caught.
      *
      * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.SourceLocation report_location = 3;</code>
      * @return \Google\Cloud\ErrorReporting\V1beta1\SourceLocation
@@ -171,8 +168,7 @@ class ErrorContext extends \Google\Protobuf\Internal\Message
      * report the error, usually the place where it was logged.
      * For a logged exception this would be the source line where the
      * exception is logged, usually close to the place where it was
-     * caught. This value is in contrast to `Exception.cause_location`,
-     * which describes the source line where the exception was thrown.
+     * caught.
      *
      * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.SourceLocation report_location = 3;</code>
      * @param \Google\Cloud\ErrorReporting\V1beta1\SourceLocation $var

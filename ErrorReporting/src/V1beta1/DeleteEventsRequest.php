@@ -16,13 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeleteEventsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Required] The resource name of the Google Cloud Platform project. Written
+     * Required. The resource name of the Google Cloud Platform project. Written
      * as `projects/` plus the
      * [Google Cloud Platform project
      * ID](https://support.google.com/cloud/answer/6158840).
      * Example: `projects/my-project-123`.
      *
-     * Generated from protobuf field <code>string project_name = 1;</code>
+     * Generated from protobuf field <code>string project_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $project_name = '';
 
@@ -33,7 +33,7 @@ class DeleteEventsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $project_name
-     *           [Required] The resource name of the Google Cloud Platform project. Written
+     *           Required. The resource name of the Google Cloud Platform project. Written
      *           as `projects/` plus the
      *           [Google Cloud Platform project
      *           ID](https://support.google.com/cloud/answer/6158840).
@@ -46,13 +46,13 @@ class DeleteEventsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Required] The resource name of the Google Cloud Platform project. Written
+     * Required. The resource name of the Google Cloud Platform project. Written
      * as `projects/` plus the
      * [Google Cloud Platform project
      * ID](https://support.google.com/cloud/answer/6158840).
      * Example: `projects/my-project-123`.
      *
-     * Generated from protobuf field <code>string project_name = 1;</code>
+     * Generated from protobuf field <code>string project_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getProjectName()
@@ -61,13 +61,13 @@ class DeleteEventsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Required] The resource name of the Google Cloud Platform project. Written
+     * Required. The resource name of the Google Cloud Platform project. Written
      * as `projects/` plus the
      * [Google Cloud Platform project
      * ID](https://support.google.com/cloud/answer/6158840).
      * Example: `projects/my-project-123`.
      *
-     * Generated from protobuf field <code>string project_name = 1;</code>
+     * Generated from protobuf field <code>string project_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

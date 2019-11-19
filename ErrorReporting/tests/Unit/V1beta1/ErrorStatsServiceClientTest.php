@@ -32,7 +32,6 @@ use Google\Cloud\ErrorReporting\V1beta1\ErrorEvent;
 use Google\Cloud\ErrorReporting\V1beta1\ErrorGroupStats;
 use Google\Cloud\ErrorReporting\V1beta1\ListEventsResponse;
 use Google\Cloud\ErrorReporting\V1beta1\ListGroupStatsResponse;
-use Google\Cloud\ErrorReporting\V1beta1\QueryTimeRange;
 use Google\Protobuf\Any;
 use Google\Rpc\Code;
 use stdClass;
@@ -94,9 +93,8 @@ class ErrorStatsServiceClientTest extends GeneratedTest
 
         // Mock request
         $formattedProjectName = $client->projectName('[PROJECT]');
-        $timeRange = new QueryTimeRange();
 
-        $response = $client->listGroupStats($formattedProjectName, $timeRange);
+        $response = $client->listGroupStats($formattedProjectName);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -111,9 +109,6 @@ class ErrorStatsServiceClientTest extends GeneratedTest
         $actualValue = $actualRequestObject->getProjectName();
 
         $this->assertProtobufEquals($formattedProjectName, $actualValue);
-        $actualValue = $actualRequestObject->getTimeRange();
-
-        $this->assertProtobufEquals($timeRange, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -141,10 +136,9 @@ class ErrorStatsServiceClientTest extends GeneratedTest
 
         // Mock request
         $formattedProjectName = $client->projectName('[PROJECT]');
-        $timeRange = new QueryTimeRange();
 
         try {
-            $client->listGroupStats($formattedProjectName, $timeRange);
+            $client->listGroupStats($formattedProjectName);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
