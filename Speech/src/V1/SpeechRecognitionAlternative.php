@@ -16,13 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. Transcript text representing the words that the user spoke.
+     * Transcript text representing the words that the user spoke.
      *
      * Generated from protobuf field <code>string transcript = 1;</code>
      */
     private $transcript = '';
     /**
-     * Output only. The confidence estimate between 0.0 and 1.0. A higher number
+     * The confidence estimate between 0.0 and 1.0. A higher number
      * indicates an estimated greater likelihood that the recognized words are
      * correct. This field is set only for the top alternative of a non-streaming
      * result or, of a streaming result where `is_final=true`.
@@ -34,7 +34,7 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
      */
     private $confidence = 0.0;
     /**
-     * Output only. A list of word-specific information for each recognized word.
+     * A list of word-specific information for each recognized word.
      * Note: When `enable_speaker_diarization` is true, you will see all the words
      * from the beginning of the audio.
      *
@@ -49,9 +49,9 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $transcript
-     *           Output only. Transcript text representing the words that the user spoke.
+     *           Transcript text representing the words that the user spoke.
      *     @type float $confidence
-     *           Output only. The confidence estimate between 0.0 and 1.0. A higher number
+     *           The confidence estimate between 0.0 and 1.0. A higher number
      *           indicates an estimated greater likelihood that the recognized words are
      *           correct. This field is set only for the top alternative of a non-streaming
      *           result or, of a streaming result where `is_final=true`.
@@ -59,7 +59,7 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
      *           to be always provided.
      *           The default of 0.0 is a sentinel value indicating `confidence` was not set.
      *     @type \Google\Cloud\Speech\V1\WordInfo[]|\Google\Protobuf\Internal\RepeatedField $words
-     *           Output only. A list of word-specific information for each recognized word.
+     *           A list of word-specific information for each recognized word.
      *           Note: When `enable_speaker_diarization` is true, you will see all the words
      *           from the beginning of the audio.
      * }
@@ -70,7 +70,7 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Transcript text representing the words that the user spoke.
+     * Transcript text representing the words that the user spoke.
      *
      * Generated from protobuf field <code>string transcript = 1;</code>
      * @return string
@@ -81,7 +81,7 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Transcript text representing the words that the user spoke.
+     * Transcript text representing the words that the user spoke.
      *
      * Generated from protobuf field <code>string transcript = 1;</code>
      * @param string $var
@@ -96,7 +96,7 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The confidence estimate between 0.0 and 1.0. A higher number
+     * The confidence estimate between 0.0 and 1.0. A higher number
      * indicates an estimated greater likelihood that the recognized words are
      * correct. This field is set only for the top alternative of a non-streaming
      * result or, of a streaming result where `is_final=true`.
@@ -113,7 +113,7 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The confidence estimate between 0.0 and 1.0. A higher number
+     * The confidence estimate between 0.0 and 1.0. A higher number
      * indicates an estimated greater likelihood that the recognized words are
      * correct. This field is set only for the top alternative of a non-streaming
      * result or, of a streaming result where `is_final=true`.
@@ -134,7 +134,7 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A list of word-specific information for each recognized word.
+     * A list of word-specific information for each recognized word.
      * Note: When `enable_speaker_diarization` is true, you will see all the words
      * from the beginning of the audio.
      *
@@ -147,7 +147,7 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A list of word-specific information for each recognized word.
+     * A list of word-specific information for each recognized word.
      * Note: When `enable_speaker_diarization` is true, you will see all the words
      * from the beginning of the audio.
      *

@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class WordInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. Time offset relative to the beginning of the audio,
+     * Time offset relative to the beginning of the audio,
      * and corresponding to the start of the spoken word.
      * This field is only set if `enable_word_time_offsets=true` and only
      * in the top hypothesis.
@@ -27,7 +27,7 @@ class WordInfo extends \Google\Protobuf\Internal\Message
      */
     private $start_time = null;
     /**
-     * Output only. Time offset relative to the beginning of the audio,
+     * Time offset relative to the beginning of the audio,
      * and corresponding to the end of the spoken word.
      * This field is only set if `enable_word_time_offsets=true` and only
      * in the top hypothesis.
@@ -38,11 +38,21 @@ class WordInfo extends \Google\Protobuf\Internal\Message
      */
     private $end_time = null;
     /**
-     * Output only. The word corresponding to this set of information.
+     * The word corresponding to this set of information.
      *
      * Generated from protobuf field <code>string word = 3;</code>
      */
     private $word = '';
+    /**
+     * A distinct integer value is assigned for every speaker within
+     * the audio. This field specifies which one of those speakers was detected to
+     * have spoken this word. Value ranges from '1' to diarization_speaker_count.
+     * speaker_tag is set if enable_speaker_diarization = 'true' and only in the
+     * top alternative.
+     *
+     * Generated from protobuf field <code>int32 speaker_tag = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $speaker_tag = 0;
 
     /**
      * Constructor.
@@ -51,21 +61,27 @@ class WordInfo extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Protobuf\Duration $start_time
-     *           Output only. Time offset relative to the beginning of the audio,
+     *           Time offset relative to the beginning of the audio,
      *           and corresponding to the start of the spoken word.
      *           This field is only set if `enable_word_time_offsets=true` and only
      *           in the top hypothesis.
      *           This is an experimental feature and the accuracy of the time offset can
      *           vary.
      *     @type \Google\Protobuf\Duration $end_time
-     *           Output only. Time offset relative to the beginning of the audio,
+     *           Time offset relative to the beginning of the audio,
      *           and corresponding to the end of the spoken word.
      *           This field is only set if `enable_word_time_offsets=true` and only
      *           in the top hypothesis.
      *           This is an experimental feature and the accuracy of the time offset can
      *           vary.
      *     @type string $word
-     *           Output only. The word corresponding to this set of information.
+     *           The word corresponding to this set of information.
+     *     @type int $speaker_tag
+     *           A distinct integer value is assigned for every speaker within
+     *           the audio. This field specifies which one of those speakers was detected to
+     *           have spoken this word. Value ranges from '1' to diarization_speaker_count.
+     *           speaker_tag is set if enable_speaker_diarization = 'true' and only in the
+     *           top alternative.
      * }
      */
     public function __construct($data = NULL) {
@@ -74,7 +90,7 @@ class WordInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Time offset relative to the beginning of the audio,
+     * Time offset relative to the beginning of the audio,
      * and corresponding to the start of the spoken word.
      * This field is only set if `enable_word_time_offsets=true` and only
      * in the top hypothesis.
@@ -90,7 +106,7 @@ class WordInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Time offset relative to the beginning of the audio,
+     * Time offset relative to the beginning of the audio,
      * and corresponding to the start of the spoken word.
      * This field is only set if `enable_word_time_offsets=true` and only
      * in the top hypothesis.
@@ -110,7 +126,7 @@ class WordInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Time offset relative to the beginning of the audio,
+     * Time offset relative to the beginning of the audio,
      * and corresponding to the end of the spoken word.
      * This field is only set if `enable_word_time_offsets=true` and only
      * in the top hypothesis.
@@ -126,7 +142,7 @@ class WordInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Time offset relative to the beginning of the audio,
+     * Time offset relative to the beginning of the audio,
      * and corresponding to the end of the spoken word.
      * This field is only set if `enable_word_time_offsets=true` and only
      * in the top hypothesis.
@@ -146,7 +162,7 @@ class WordInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The word corresponding to this set of information.
+     * The word corresponding to this set of information.
      *
      * Generated from protobuf field <code>string word = 3;</code>
      * @return string
@@ -157,7 +173,7 @@ class WordInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The word corresponding to this set of information.
+     * The word corresponding to this set of information.
      *
      * Generated from protobuf field <code>string word = 3;</code>
      * @param string $var
@@ -167,6 +183,40 @@ class WordInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->word = $var;
+
+        return $this;
+    }
+
+    /**
+     * A distinct integer value is assigned for every speaker within
+     * the audio. This field specifies which one of those speakers was detected to
+     * have spoken this word. Value ranges from '1' to diarization_speaker_count.
+     * speaker_tag is set if enable_speaker_diarization = 'true' and only in the
+     * top alternative.
+     *
+     * Generated from protobuf field <code>int32 speaker_tag = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getSpeakerTag()
+    {
+        return $this->speaker_tag;
+    }
+
+    /**
+     * A distinct integer value is assigned for every speaker within
+     * the audio. This field specifies which one of those speakers was detected to
+     * have spoken this word. Value ranges from '1' to diarization_speaker_count.
+     * speaker_tag is set if enable_speaker_diarization = 'true' and only in the
+     * top alternative.
+     *
+     * Generated from protobuf field <code>int32 speaker_tag = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSpeakerTag($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->speaker_tag = $var;
 
         return $this;
     }
