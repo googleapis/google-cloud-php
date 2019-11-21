@@ -19,14 +19,14 @@ class BatchWriteSpansRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the project where the spans belong. The format is
      * `projects/[PROJECT_ID]`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
-     * A list of new spans. The span names must not match existing
+     * Required. A list of new spans. The span names must not match existing
      * spans, or the results are undefined.
      *
-     * Generated from protobuf field <code>repeated .google.devtools.cloudtrace.v2.Span spans = 2;</code>
+     * Generated from protobuf field <code>repeated .google.devtools.cloudtrace.v2.Span spans = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $spans;
 
@@ -40,7 +40,7 @@ class BatchWriteSpansRequest extends \Google\Protobuf\Internal\Message
      *           Required. The name of the project where the spans belong. The format is
      *           `projects/[PROJECT_ID]`.
      *     @type \Google\Cloud\Trace\V2\Span[]|\Google\Protobuf\Internal\RepeatedField $spans
-     *           A list of new spans. The span names must not match existing
+     *           Required. A list of new spans. The span names must not match existing
      *           spans, or the results are undefined.
      * }
      */
@@ -53,7 +53,7 @@ class BatchWriteSpansRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the project where the spans belong. The format is
      * `projects/[PROJECT_ID]`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -65,7 +65,7 @@ class BatchWriteSpansRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the project where the spans belong. The format is
      * `projects/[PROJECT_ID]`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -78,10 +78,10 @@ class BatchWriteSpansRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of new spans. The span names must not match existing
+     * Required. A list of new spans. The span names must not match existing
      * spans, or the results are undefined.
      *
-     * Generated from protobuf field <code>repeated .google.devtools.cloudtrace.v2.Span spans = 2;</code>
+     * Generated from protobuf field <code>repeated .google.devtools.cloudtrace.v2.Span spans = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSpans()
@@ -90,10 +90,10 @@ class BatchWriteSpansRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of new spans. The span names must not match existing
+     * Required. A list of new spans. The span names must not match existing
      * spans, or the results are undefined.
      *
-     * Generated from protobuf field <code>repeated .google.devtools.cloudtrace.v2.Span spans = 2;</code>
+     * Generated from protobuf field <code>repeated .google.devtools.cloudtrace.v2.Span spans = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Trace\V2\Span[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

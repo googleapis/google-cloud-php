@@ -47,7 +47,7 @@ class Span extends \Google\Protobuf\Internal\Message
     /**
      * A description of the span's operation (up to 128 bytes).
      * Stackdriver Trace displays the description in the
-     * {% dynamic print site_values.console_name %}.
+     * Google Cloud Platform Console.
      * For example, the display name can be a qualified method name or a file name
      * and a line number where the operation is called. A best practice is to use
      * the same display name within an application and at the same call point.
@@ -99,25 +99,25 @@ class Span extends \Google\Protobuf\Internal\Message
      */
     private $links = null;
     /**
-     * An optional final status for this span.
+     * Optional. The final status for this span.
      *
-     * Generated from protobuf field <code>.google.rpc.Status status = 11;</code>
+     * Generated from protobuf field <code>.google.rpc.Status status = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $status = null;
     /**
-     * (Optional) Set this parameter to indicate whether this span is in
+     * Optional. Set this parameter to indicate whether this span is in
      * the same process as its parent. If you do not set this parameter,
      * Stackdriver Trace is unable to take advantage of this helpful
      * information.
      *
-     * Generated from protobuf field <code>.google.protobuf.BoolValue same_process_as_parent_span = 12;</code>
+     * Generated from protobuf field <code>.google.protobuf.BoolValue same_process_as_parent_span = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $same_process_as_parent_span = null;
     /**
-     * An optional number of child spans that were generated while this span
+     * Optional. The number of child spans that were generated while this span
      * was active. If set, allows implementation to detect missing child spans.
      *
-     * Generated from protobuf field <code>.google.protobuf.Int32Value child_span_count = 13;</code>
+     * Generated from protobuf field <code>.google.protobuf.Int32Value child_span_count = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $child_span_count = null;
 
@@ -142,7 +142,7 @@ class Span extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Trace\V2\TruncatableString $display_name
      *           A description of the span's operation (up to 128 bytes).
      *           Stackdriver Trace displays the description in the
-     *           {% dynamic print site_values.console_name %}.
+     *           Google Cloud Platform Console.
      *           For example, the display name can be a qualified method name or a file name
      *           and a line number where the operation is called. A best practice is to use
      *           the same display name within an application and at the same call point.
@@ -166,14 +166,14 @@ class Span extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Trace\V2\Span\Links $links
      *           Links associated with the span. You can have up to 128 links per Span.
      *     @type \Google\Rpc\Status $status
-     *           An optional final status for this span.
+     *           Optional. The final status for this span.
      *     @type \Google\Protobuf\BoolValue $same_process_as_parent_span
-     *           (Optional) Set this parameter to indicate whether this span is in
+     *           Optional. Set this parameter to indicate whether this span is in
      *           the same process as its parent. If you do not set this parameter,
      *           Stackdriver Trace is unable to take advantage of this helpful
      *           information.
      *     @type \Google\Protobuf\Int32Value $child_span_count
-     *           An optional number of child spans that were generated while this span
+     *           Optional. The number of child spans that were generated while this span
      *           was active. If set, allows implementation to detect missing child spans.
      * }
      */
@@ -275,7 +275,7 @@ class Span extends \Google\Protobuf\Internal\Message
     /**
      * A description of the span's operation (up to 128 bytes).
      * Stackdriver Trace displays the description in the
-     * {% dynamic print site_values.console_name %}.
+     * Google Cloud Platform Console.
      * For example, the display name can be a qualified method name or a file name
      * and a line number where the operation is called. A best practice is to use
      * the same display name within an application and at the same call point.
@@ -292,7 +292,7 @@ class Span extends \Google\Protobuf\Internal\Message
     /**
      * A description of the span's operation (up to 128 bytes).
      * Stackdriver Trace displays the description in the
-     * {% dynamic print site_values.console_name %}.
+     * Google Cloud Platform Console.
      * For example, the display name can be a qualified method name or a file name
      * and a line number where the operation is called. A best practice is to use
      * the same display name within an application and at the same call point.
@@ -479,9 +479,9 @@ class Span extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional final status for this span.
+     * Optional. The final status for this span.
      *
-     * Generated from protobuf field <code>.google.rpc.Status status = 11;</code>
+     * Generated from protobuf field <code>.google.rpc.Status status = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Rpc\Status
      */
     public function getStatus()
@@ -490,9 +490,9 @@ class Span extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional final status for this span.
+     * Optional. The final status for this span.
      *
-     * Generated from protobuf field <code>.google.rpc.Status status = 11;</code>
+     * Generated from protobuf field <code>.google.rpc.Status status = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Rpc\Status $var
      * @return $this
      */
@@ -505,12 +505,12 @@ class Span extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (Optional) Set this parameter to indicate whether this span is in
+     * Optional. Set this parameter to indicate whether this span is in
      * the same process as its parent. If you do not set this parameter,
      * Stackdriver Trace is unable to take advantage of this helpful
      * information.
      *
-     * Generated from protobuf field <code>.google.protobuf.BoolValue same_process_as_parent_span = 12;</code>
+     * Generated from protobuf field <code>.google.protobuf.BoolValue same_process_as_parent_span = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\BoolValue
      */
     public function getSameProcessAsParentSpan()
@@ -521,12 +521,12 @@ class Span extends \Google\Protobuf\Internal\Message
     /**
      * Returns the unboxed value from <code>getSameProcessAsParentSpan()</code>
 
-     * (Optional) Set this parameter to indicate whether this span is in
+     * Optional. Set this parameter to indicate whether this span is in
      * the same process as its parent. If you do not set this parameter,
      * Stackdriver Trace is unable to take advantage of this helpful
      * information.
      *
-     * Generated from protobuf field <code>.google.protobuf.BoolValue same_process_as_parent_span = 12;</code>
+     * Generated from protobuf field <code>.google.protobuf.BoolValue same_process_as_parent_span = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool|null
      */
     public function getSameProcessAsParentSpanValue()
@@ -536,12 +536,12 @@ class Span extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (Optional) Set this parameter to indicate whether this span is in
+     * Optional. Set this parameter to indicate whether this span is in
      * the same process as its parent. If you do not set this parameter,
      * Stackdriver Trace is unable to take advantage of this helpful
      * information.
      *
-     * Generated from protobuf field <code>.google.protobuf.BoolValue same_process_as_parent_span = 12;</code>
+     * Generated from protobuf field <code>.google.protobuf.BoolValue same_process_as_parent_span = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\BoolValue $var
      * @return $this
      */
@@ -556,12 +556,12 @@ class Span extends \Google\Protobuf\Internal\Message
     /**
      * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
 
-     * (Optional) Set this parameter to indicate whether this span is in
+     * Optional. Set this parameter to indicate whether this span is in
      * the same process as its parent. If you do not set this parameter,
      * Stackdriver Trace is unable to take advantage of this helpful
      * information.
      *
-     * Generated from protobuf field <code>.google.protobuf.BoolValue same_process_as_parent_span = 12;</code>
+     * Generated from protobuf field <code>.google.protobuf.BoolValue same_process_as_parent_span = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool|null $var
      * @return $this
      */
@@ -572,10 +572,10 @@ class Span extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional number of child spans that were generated while this span
+     * Optional. The number of child spans that were generated while this span
      * was active. If set, allows implementation to detect missing child spans.
      *
-     * Generated from protobuf field <code>.google.protobuf.Int32Value child_span_count = 13;</code>
+     * Generated from protobuf field <code>.google.protobuf.Int32Value child_span_count = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Int32Value
      */
     public function getChildSpanCount()
@@ -586,10 +586,10 @@ class Span extends \Google\Protobuf\Internal\Message
     /**
      * Returns the unboxed value from <code>getChildSpanCount()</code>
 
-     * An optional number of child spans that were generated while this span
+     * Optional. The number of child spans that were generated while this span
      * was active. If set, allows implementation to detect missing child spans.
      *
-     * Generated from protobuf field <code>.google.protobuf.Int32Value child_span_count = 13;</code>
+     * Generated from protobuf field <code>.google.protobuf.Int32Value child_span_count = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|null
      */
     public function getChildSpanCountValue()
@@ -599,10 +599,10 @@ class Span extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional number of child spans that were generated while this span
+     * Optional. The number of child spans that were generated while this span
      * was active. If set, allows implementation to detect missing child spans.
      *
-     * Generated from protobuf field <code>.google.protobuf.Int32Value child_span_count = 13;</code>
+     * Generated from protobuf field <code>.google.protobuf.Int32Value child_span_count = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Int32Value $var
      * @return $this
      */
@@ -617,10 +617,10 @@ class Span extends \Google\Protobuf\Internal\Message
     /**
      * Sets the field by wrapping a primitive type in a Google\Protobuf\Int32Value object.
 
-     * An optional number of child spans that were generated while this span
+     * Optional. The number of child spans that were generated while this span
      * was active. If set, allows implementation to detect missing child spans.
      *
-     * Generated from protobuf field <code>.google.protobuf.Int32Value child_span_count = 13;</code>
+     * Generated from protobuf field <code>.google.protobuf.Int32Value child_span_count = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int|null $var
      * @return $this
      */
