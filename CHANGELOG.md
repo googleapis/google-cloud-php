@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.120.0
+
+<details><summary>google/cloud-speech 0.28.0</summary>
+
+
+
+### Features
+
+* add speaker tag to wordinfo and update timeouts ([#2481](https://www.github.com/googleapis/google-cloud-php/issues/2481)) ([b977437](https://www.github.com/googleapis/google-cloud-php/commit/b977437241630d725450fc0436c9b743a3208b4e))
+
+</details>
+
+<details><summary>google/cloud-trace 0.16.0</summary>
+
+
+
+### Features
+
+* update metadata, documentation and rest configuration. ([#2477](https://www.github.com/googleapis/google-cloud-php/issues/2477)) ([3926eaf](https://www.github.com/googleapis/google-cloud-php/commit/3926eafa474c7f8f8b78bc594af21bf2b6c663a0))
+
+</details>
+
 ## 0.119.0
 
 <details><summary>google/cloud-automl 0.8.1</summary>
