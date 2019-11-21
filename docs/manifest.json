@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.120.0",
                 "v0.119.0",
                 "v0.118.0",
                 "v0.117.0",
@@ -1309,6 +1310,7 @@
             "name": "google/cloud-speech",
             "defaultService": "speech/speechclient",
             "versions": [
+                "v0.28.0",
                 "v0.27.0",
                 "v0.26.0",
                 "v0.25.0",
@@ -1495,6 +1497,7 @@
             "name": "google/cloud-trace",
             "defaultService": "trace/traceclient",
             "versions": [
+                "v0.16.0",
                 "v0.15.0",
                 "v0.14.4",
                 "v0.14.3",
