@@ -1,0 +1,1 @@
+{"id":"bigtable\/admin\/v2\/gcrule_union","type":"","title":"Google\\Cloud\\Bigtable\\Admin\\V2\\GcRule_Union","name":"GcRule_Union","description":"<p>This class is deprecated. Use Google\\Cloud\\Bigtable\\Admin\\V2\\GcRule\\Union instead.<\/p>","examples":[],"resources":[],"methods":[]}
