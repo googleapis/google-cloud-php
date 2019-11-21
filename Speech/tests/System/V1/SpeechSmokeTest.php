@@ -47,7 +47,7 @@ class SpeechSmokeTest extends GeneratedTest
         $config->setLanguageCode($languageCode);
         $config->setSampleRateHertz($sampleRateHertz);
         $config->setEncoding($encoding);
-        $uri = 'gs://gapic-toolkit/hello.flac';
+        $uri = 'gs://cloud-samples-data/speech/brooklyn_bridge.flac';
         $audio = new RecognitionAudio();
         $audio->setUri($uri);
         $speechClient->recognize($config, $audio);
