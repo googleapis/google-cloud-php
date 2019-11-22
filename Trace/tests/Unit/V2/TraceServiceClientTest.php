@@ -167,13 +167,13 @@ class TraceServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->spanName('[PROJECT]', '[TRACE]', '[SPAN]');
+        $name = 'name3373707';
         $spanId = 'spanId-2011840976';
         $displayName = new TruncatableString();
         $startTime = new Timestamp();
         $endTime = new Timestamp();
 
-        $response = $client->createSpan($formattedName, $spanId, $displayName, $startTime, $endTime);
+        $response = $client->createSpan($name, $spanId, $displayName, $startTime, $endTime);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -183,7 +183,7 @@ class TraceServiceClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getName();
 
-        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertProtobufEquals($name, $actualValue);
         $actualValue = $actualRequestObject->getSpanId();
 
         $this->assertProtobufEquals($spanId, $actualValue);
@@ -223,14 +223,14 @@ class TraceServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->spanName('[PROJECT]', '[TRACE]', '[SPAN]');
+        $name = 'name3373707';
         $spanId = 'spanId-2011840976';
         $displayName = new TruncatableString();
         $startTime = new Timestamp();
         $endTime = new Timestamp();
 
         try {
-            $client->createSpan($formattedName, $spanId, $displayName, $startTime, $endTime);
+            $client->createSpan($name, $spanId, $displayName, $startTime, $endTime);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
