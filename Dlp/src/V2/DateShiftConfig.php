@@ -36,7 +36,7 @@ class DateShiftConfig extends \Google\Protobuf\Internal\Message
     private $lower_bound_days = 0;
     /**
      * Points to the field that contains the context, for example, an entity id.
-     * If set, must also set method. If set, shift will be consistent for the
+     * If set, must also set cryptoKey. If set, shift will be consistent for the
      * given context.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId context = 3;</code>
@@ -61,11 +61,12 @@ class DateShiftConfig extends \Google\Protobuf\Internal\Message
      *           [Required]
      *     @type \Google\Cloud\Dlp\V2\FieldId $context
      *           Points to the field that contains the context, for example, an entity id.
-     *           If set, must also set method. If set, shift will be consistent for the
+     *           If set, must also set cryptoKey. If set, shift will be consistent for the
      *           given context.
      *     @type \Google\Cloud\Dlp\V2\CryptoKey $crypto_key
      *           Causes the shift to be computed based on this key and the context. This
-     *           results in the same shift for the same context and crypto_key.
+     *           results in the same shift for the same context and crypto_key. If
+     *           set, must also set context. Can only be applied to table items.
      * }
      */
     public function __construct($data = NULL) {
@@ -137,7 +138,7 @@ class DateShiftConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Points to the field that contains the context, for example, an entity id.
-     * If set, must also set method. If set, shift will be consistent for the
+     * If set, must also set cryptoKey. If set, shift will be consistent for the
      * given context.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId context = 3;</code>
@@ -150,7 +151,7 @@ class DateShiftConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Points to the field that contains the context, for example, an entity id.
-     * If set, must also set method. If set, shift will be consistent for the
+     * If set, must also set cryptoKey. If set, shift will be consistent for the
      * given context.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId context = 3;</code>
@@ -167,7 +168,8 @@ class DateShiftConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Causes the shift to be computed based on this key and the context. This
-     * results in the same shift for the same context and crypto_key.
+     * results in the same shift for the same context and crypto_key. If
+     * set, must also set context. Can only be applied to table items.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CryptoKey crypto_key = 4;</code>
      * @return \Google\Cloud\Dlp\V2\CryptoKey
@@ -179,7 +181,8 @@ class DateShiftConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Causes the shift to be computed based on this key and the context. This
-     * results in the same shift for the same context and crypto_key.
+     * results in the same shift for the same context and crypto_key. If
+     * set, must also set context. Can only be applied to table items.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CryptoKey crypto_key = 4;</code>
      * @param \Google\Cloud\Dlp\V2\CryptoKey $var

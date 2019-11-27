@@ -68,6 +68,13 @@ class ReidentifyContentRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string reidentify_template_name = 6;</code>
      */
     private $reidentify_template_name = '';
+    /**
+     * The geographic location to process content reidentification.  Reserved for
+     * future extensions.
+     *
+     * Generated from protobuf field <code>string location_id = 7;</code>
+     */
+    private $location_id = '';
 
     /**
      * Constructor.
@@ -104,6 +111,9 @@ class ReidentifyContentRequest extends \Google\Protobuf\Internal\Message
      *           that are set in this request will replace their corresponding fields in the
      *           template. Repeated fields are appended. Singular sub-messages and groups
      *           are recursively merged.
+     *     @type string $location_id
+     *           The geographic location to process content reidentification.  Reserved for
+     *           future extensions.
      * }
      */
     public function __construct($data = NULL) {
@@ -297,6 +307,34 @@ class ReidentifyContentRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->reidentify_template_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * The geographic location to process content reidentification.  Reserved for
+     * future extensions.
+     *
+     * Generated from protobuf field <code>string location_id = 7;</code>
+     * @return string
+     */
+    public function getLocationId()
+    {
+        return $this->location_id;
+    }
+
+    /**
+     * The geographic location to process content reidentification.  Reserved for
+     * future extensions.
+     *
+     * Generated from protobuf field <code>string location_id = 7;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLocationId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->location_id = $var;
 
         return $this;
     }

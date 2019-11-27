@@ -36,6 +36,13 @@ class CreateJobTriggerRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string trigger_id = 3;</code>
      */
     private $trigger_id = '';
+    /**
+     * The geographic location to store the job trigger. Reserved for
+     * future extensions.
+     *
+     * Generated from protobuf field <code>string location_id = 4;</code>
+     */
+    private $location_id = '';
 
     /**
      * Constructor.
@@ -52,6 +59,9 @@ class CreateJobTriggerRequest extends \Google\Protobuf\Internal\Message
      *           numbers, and hyphens; that is, it must match the regular
      *           expression: `[a-zA-Z\\d-_]+`. The maximum length is 100
      *           characters. Can be empty to allow the system to generate one.
+     *     @type string $location_id
+     *           The geographic location to store the job trigger. Reserved for
+     *           future extensions.
      * }
      */
     public function __construct($data = NULL) {
@@ -139,6 +149,34 @@ class CreateJobTriggerRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->trigger_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * The geographic location to store the job trigger. Reserved for
+     * future extensions.
+     *
+     * Generated from protobuf field <code>string location_id = 4;</code>
+     * @return string
+     */
+    public function getLocationId()
+    {
+        return $this->location_id;
+    }
+
+    /**
+     * The geographic location to store the job trigger. Reserved for
+     * future extensions.
+     *
+     * Generated from protobuf field <code>string location_id = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLocationId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->location_id = $var;
 
         return $this;
     }

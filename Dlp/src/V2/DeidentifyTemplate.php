@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The DeidentifyTemplates contains instructions on how to deidentify content.
+ * DeidentifyTemplates contains instructions on how to de-identify content.
  * See https://cloud.google.com/dlp/docs/concepts-templates to learn more.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.DeidentifyTemplate</code>
@@ -38,13 +38,13 @@ class DeidentifyTemplate extends \Google\Protobuf\Internal\Message
      */
     private $description = '';
     /**
-     * The creation timestamp of a inspectTemplate, output only field.
+     * The creation timestamp of an inspectTemplate, output only field.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4;</code>
      */
     private $create_time = null;
     /**
-     * The last update timestamp of a inspectTemplate, output only field.
+     * The last update timestamp of an inspectTemplate, output only field.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5;</code>
      */
@@ -72,9 +72,9 @@ class DeidentifyTemplate extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           Short description (max 256 chars).
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           The creation timestamp of a inspectTemplate, output only field.
+     *           The creation timestamp of an inspectTemplate, output only field.
      *     @type \Google\Protobuf\Timestamp $update_time
-     *           The last update timestamp of a inspectTemplate, output only field.
+     *           The last update timestamp of an inspectTemplate, output only field.
      *     @type \Google\Cloud\Dlp\V2\DeidentifyConfig $deidentify_config
      *           ///////////// // The core content of the template  // ///////////////
      * }
@@ -169,7 +169,7 @@ class DeidentifyTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The creation timestamp of a inspectTemplate, output only field.
+     * The creation timestamp of an inspectTemplate, output only field.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4;</code>
      * @return \Google\Protobuf\Timestamp
@@ -180,7 +180,7 @@ class DeidentifyTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The creation timestamp of a inspectTemplate, output only field.
+     * The creation timestamp of an inspectTemplate, output only field.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -195,7 +195,7 @@ class DeidentifyTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The last update timestamp of a inspectTemplate, output only field.
+     * The last update timestamp of an inspectTemplate, output only field.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5;</code>
      * @return \Google\Protobuf\Timestamp
@@ -206,7 +206,7 @@ class DeidentifyTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The last update timestamp of a inspectTemplate, output only field.
+     * The last update timestamp of an inspectTemplate, output only field.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5;</code>
      * @param \Google\Protobuf\Timestamp $var

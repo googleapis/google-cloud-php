@@ -52,6 +52,13 @@ class ListStoredInfoTypesRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string order_by = 4;</code>
      */
     private $order_by = '';
+    /**
+     * The geographic location where stored infoTypes will be retrieved from.
+     * Use `-` for all locations. Reserved for future extensions.
+     *
+     * Generated from protobuf field <code>string location_id = 5;</code>
+     */
+    private $location_id = '';
 
     /**
      * Constructor.
@@ -80,6 +87,9 @@ class ListStoredInfoTypesRequest extends \Google\Protobuf\Internal\Message
      *           - `state`: corresponds to the state of the resource.
      *           - `name`: corresponds to resource name.
      *           - `display_name`: corresponds to info type's display name.
+     *     @type string $location_id
+     *           The geographic location where stored infoTypes will be retrieved from.
+     *           Use `-` for all locations. Reserved for future extensions.
      * }
      */
     public function __construct($data = NULL) {
@@ -213,6 +223,34 @@ class ListStoredInfoTypesRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->order_by = $var;
+
+        return $this;
+    }
+
+    /**
+     * The geographic location where stored infoTypes will be retrieved from.
+     * Use `-` for all locations. Reserved for future extensions.
+     *
+     * Generated from protobuf field <code>string location_id = 5;</code>
+     * @return string
+     */
+    public function getLocationId()
+    {
+        return $this->location_id;
+    }
+
+    /**
+     * The geographic location where stored infoTypes will be retrieved from.
+     * Use `-` for all locations. Reserved for future extensions.
+     *
+     * Generated from protobuf field <code>string location_id = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLocationId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->location_id = $var;
 
         return $this;
     }
