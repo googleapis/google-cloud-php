@@ -11,10 +11,8 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Options for beginning a new transaction.
  * Transactions can be created explicitly with calls to
- * [Datastore.BeginTransaction][google.datastore.v1.Datastore.BeginTransaction]
- * or implicitly by setting
- * [ReadOptions.new_transaction][google.datastore.v1.ReadOptions.new_transaction]
- * in read requests.
+ * [Datastore.BeginTransaction][google.datastore.v1.Datastore.BeginTransaction] or implicitly by setting
+ * [ReadOptions.new_transaction][google.datastore.v1.ReadOptions.new_transaction] in read requests.
  *
  * Generated from protobuf message <code>google.datastore.v1.TransactionOptions</code>
  */

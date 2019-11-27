@@ -16,16 +16,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class RollbackRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The ID of the project against which to make the request.
+     * Required. The ID of the project against which to make the request.
      *
-     * Generated from protobuf field <code>string project_id = 8;</code>
+     * Generated from protobuf field <code>string project_id = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $project_id = '';
     /**
-     * The transaction identifier, returned by a call to
+     * Required. The transaction identifier, returned by a call to
      * [Datastore.BeginTransaction][google.datastore.v1.Datastore.BeginTransaction].
      *
-     * Generated from protobuf field <code>bytes transaction = 1;</code>
+     * Generated from protobuf field <code>bytes transaction = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $transaction = '';
 
@@ -36,9 +36,9 @@ class RollbackRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $project_id
-     *           The ID of the project against which to make the request.
+     *           Required. The ID of the project against which to make the request.
      *     @type string $transaction
-     *           The transaction identifier, returned by a call to
+     *           Required. The transaction identifier, returned by a call to
      *           [Datastore.BeginTransaction][google.datastore.v1.Datastore.BeginTransaction].
      * }
      */
@@ -48,9 +48,9 @@ class RollbackRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ID of the project against which to make the request.
+     * Required. The ID of the project against which to make the request.
      *
-     * Generated from protobuf field <code>string project_id = 8;</code>
+     * Generated from protobuf field <code>string project_id = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getProjectId()
@@ -59,9 +59,9 @@ class RollbackRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ID of the project against which to make the request.
+     * Required. The ID of the project against which to make the request.
      *
-     * Generated from protobuf field <code>string project_id = 8;</code>
+     * Generated from protobuf field <code>string project_id = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -74,10 +74,10 @@ class RollbackRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The transaction identifier, returned by a call to
+     * Required. The transaction identifier, returned by a call to
      * [Datastore.BeginTransaction][google.datastore.v1.Datastore.BeginTransaction].
      *
-     * Generated from protobuf field <code>bytes transaction = 1;</code>
+     * Generated from protobuf field <code>bytes transaction = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getTransaction()
@@ -86,10 +86,10 @@ class RollbackRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The transaction identifier, returned by a call to
+     * Required. The transaction identifier, returned by a call to
      * [Datastore.BeginTransaction][google.datastore.v1.Datastore.BeginTransaction].
      *
-     * Generated from protobuf field <code>bytes transaction = 1;</code>
+     * Generated from protobuf field <code>bytes transaction = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

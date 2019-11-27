@@ -17,8 +17,8 @@ class ArrayValue extends \Google\Protobuf\Internal\Message
 {
     /**
      * Values in the array.
-     * The order of this array may not be preserved if it contains a mix of
-     * indexed and unindexed values.
+     * The order of values in an array is preserved as long as all values have
+     * identical settings for 'exclude_from_indexes'.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.Value values = 1;</code>
      */
@@ -32,8 +32,8 @@ class ArrayValue extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Datastore\V1\Value[]|\Google\Protobuf\Internal\RepeatedField $values
      *           Values in the array.
-     *           The order of this array may not be preserved if it contains a mix of
-     *           indexed and unindexed values.
+     *           The order of values in an array is preserved as long as all values have
+     *           identical settings for 'exclude_from_indexes'.
      * }
      */
     public function __construct($data = NULL) {
@@ -43,8 +43,8 @@ class ArrayValue extends \Google\Protobuf\Internal\Message
 
     /**
      * Values in the array.
-     * The order of this array may not be preserved if it contains a mix of
-     * indexed and unindexed values.
+     * The order of values in an array is preserved as long as all values have
+     * identical settings for 'exclude_from_indexes'.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.Value values = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -56,8 +56,8 @@ class ArrayValue extends \Google\Protobuf\Internal\Message
 
     /**
      * Values in the array.
-     * The order of this array may not be preserved if it contains a mix of
-     * indexed and unindexed values.
+     * The order of values in an array is preserved as long as all values have
+     * identical settings for 'exclude_from_indexes'.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.Value values = 1;</code>
      * @param \Google\Cloud\Datastore\V1\Value[]|\Google\Protobuf\Internal\RepeatedField $var
