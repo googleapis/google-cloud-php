@@ -19,7 +19,8 @@ namespace Google\Cloud\Storage\Tests\System\StreamWrapper;
 
 /**
  * @group storage
- * @group streamWrapper
+ * @group storage-stream-wrapper
+ * @group storage-stream-wrapper-directory
  */
 class DirectoryTest extends StreamWrapperTestCase
 {
@@ -31,6 +32,7 @@ class DirectoryTest extends StreamWrapperTestCase
         self::$bucket->upload('somedata', ['name' => 'some_folder/1.txt']);
         self::$bucket->upload('somedata', ['name' => 'some_folder/2.txt']);
         self::$bucket->upload('somedata', ['name' => 'some_folder/3.txt']);
+        self::$bucket->upload('somedata', ['name' => 'some_folder/nest/3.txt']);
     }
 
     public function testMkDir()
@@ -39,6 +41,14 @@ class DirectoryTest extends StreamWrapperTestCase
         $this->assertTrue(mkdir($dir));
         $this->assertFileExists($dir . '/');
         $this->assertTrue(is_dir($dir . '/'));
+    }
+
+    public function testIsDir()
+    {
+        $dir = self::generateUrl('test_directory');
+        $this->assertTrue(mkdir($dir));
+        $this->assertFileExists($dir);
+        $this->assertTrue(is_dir($dir));
     }
 
     public function testRmDir()
@@ -63,10 +73,10 @@ class DirectoryTest extends StreamWrapperTestCase
     {
         $dir = self::generateUrl('some_folder');
         $fd = opendir($dir);
-        $this->assertEquals('some_folder/1.txt', readdir($fd));
-        $this->assertEquals('some_folder/2.txt', readdir($fd));
+        $this->assertEquals('1.txt', readdir($fd));
+        $this->assertEquals('2.txt', readdir($fd));
         rewinddir($fd);
-        $this->assertEquals('some_folder/1.txt', readdir($fd));
+        $this->assertEquals('1.txt', readdir($fd));
         closedir($fd);
     }
 
@@ -74,9 +84,10 @@ class DirectoryTest extends StreamWrapperTestCase
     {
         $dir = self::generateUrl('some_folder');
         $expected = [
-            'some_folder/1.txt',
-            'some_folder/2.txt',
-            'some_folder/3.txt',
+            '1.txt',
+            '2.txt',
+            '3.txt',
+            'nest',
         ];
         $this->assertEquals($expected, scandir($dir));
         $this->assertEquals(array_reverse($expected), scandir($dir, SCANDIR_SORT_DESCENDING));
