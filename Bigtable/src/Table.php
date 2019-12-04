@@ -222,8 +222,8 @@ class Table
      * ```
      * $rows = $table->readRows();
      *
-     * foreach ($rows as $row) {
-     *     print_r($row) . PHP_EOL;
+     * foreach ($rows as $key => $row) {
+     *     echo $key . ': ' . print_r($row, true) . PHP_EOL;
      * }
      * ```
      *
@@ -238,8 +238,8 @@ class Table
      *     ]
      * ]);
      *
-     * foreach ($rows as $row) {
-     *     print_r($row) . PHP_EOL;
+     * foreach ($rows as $key => $row) {
+     *     echo $key . ': ' . print_r($row, true) . PHP_EOL;
      * }
      * ```
      *

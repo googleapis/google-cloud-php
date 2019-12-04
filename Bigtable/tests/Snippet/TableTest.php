@@ -19,7 +19,6 @@ namespace Google\Cloud\Bigtable\Tests\Snippet;
 
 use Google\ApiCore\ServerStream;
 use Google\Cloud\Bigtable\DataUtil;
-use Google\Cloud\Bigtable\Filter;
 use Google\Cloud\Bigtable\Mutations;
 use Google\Cloud\Bigtable\ReadModifyWriteRowRules;
 use Google\Cloud\Bigtable\Table;
@@ -181,7 +180,7 @@ class TableTest extends SnippetTestCase
             ]
         ];
         $this->assertEquals(
-            print_r($expectedRows, true),
+            'rk1: ' . print_r($expectedRows, true) . PHP_EOL,
             $res->output()
         );
     }
@@ -215,7 +214,7 @@ class TableTest extends SnippetTestCase
             ]
         ];
         $this->assertEquals(
-            print_r($expectedRows, true),
+            'rk1: ' . print_r($expectedRows, true) . PHP_EOL,
             $res->output()
         );
     }
