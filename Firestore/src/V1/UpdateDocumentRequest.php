@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateDocumentRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The updated document.
+     * Required. The updated document.
      * Creates the document if it does not already exist.
      *
-     * Generated from protobuf field <code>.google.firestore.v1.Document document = 1;</code>
+     * Generated from protobuf field <code>.google.firestore.v1.Document document = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $document = null;
     /**
@@ -56,7 +56,7 @@ class UpdateDocumentRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Firestore\V1\Document $document
-     *           The updated document.
+     *           Required. The updated document.
      *           Creates the document if it does not already exist.
      *     @type \Google\Cloud\Firestore\V1\DocumentMask $update_mask
      *           The fields to update.
@@ -80,10 +80,10 @@ class UpdateDocumentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The updated document.
+     * Required. The updated document.
      * Creates the document if it does not already exist.
      *
-     * Generated from protobuf field <code>.google.firestore.v1.Document document = 1;</code>
+     * Generated from protobuf field <code>.google.firestore.v1.Document document = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Firestore\V1\Document
      */
     public function getDocument()
@@ -92,10 +92,10 @@ class UpdateDocumentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The updated document.
+     * Required. The updated document.
      * Creates the document if it does not already exist.
      *
-     * Generated from protobuf field <code>.google.firestore.v1.Document document = 1;</code>
+     * Generated from protobuf field <code>.google.firestore.v1.Document document = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Firestore\V1\Document $var
      * @return $this
      */
