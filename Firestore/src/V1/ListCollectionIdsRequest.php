@@ -16,12 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListCollectionIdsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The parent document. In the format:
+     * Required. The parent document. In the format:
      * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      * For example:
      * `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $parent = '';
     /**
@@ -45,7 +45,7 @@ class ListCollectionIdsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The parent document. In the format:
+     *           Required. The parent document. In the format:
      *           `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      *           For example:
      *           `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
@@ -62,12 +62,12 @@ class ListCollectionIdsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The parent document. In the format:
+     * Required. The parent document. In the format:
      * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      * For example:
      * `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getParent()
@@ -76,12 +76,12 @@ class ListCollectionIdsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The parent document. In the format:
+     * Required. The parent document. In the format:
      * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      * For example:
      * `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

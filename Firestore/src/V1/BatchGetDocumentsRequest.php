@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class BatchGetDocumentsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The database name. In the format:
+     * Required. The database name. In the format:
      * `projects/{project_id}/databases/{database_id}`.
      *
-     * Generated from protobuf field <code>string database = 1;</code>
+     * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $database = '';
     /**
@@ -48,7 +48,7 @@ class BatchGetDocumentsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $database
-     *           The database name. In the format:
+     *           Required. The database name. In the format:
      *           `projects/{project_id}/databases/{database_id}`.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $documents
      *           The names of the documents to retrieve. In the format:
@@ -77,10 +77,10 @@ class BatchGetDocumentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The database name. In the format:
+     * Required. The database name. In the format:
      * `projects/{project_id}/databases/{database_id}`.
      *
-     * Generated from protobuf field <code>string database = 1;</code>
+     * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getDatabase()
@@ -89,10 +89,10 @@ class BatchGetDocumentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The database name. In the format:
+     * Required. The database name. In the format:
      * `projects/{project_id}/databases/{database_id}`.
      *
-     * Generated from protobuf field <code>string database = 1;</code>
+     * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

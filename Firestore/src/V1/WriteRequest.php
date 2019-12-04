@@ -22,11 +22,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class WriteRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The database name. In the format:
+     * Required. The database name. In the format:
      * `projects/{project_id}/databases/{database_id}`.
      * This is only required in the first message.
      *
-     * Generated from protobuf field <code>string database = 1;</code>
+     * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $database = '';
     /**
@@ -76,7 +76,7 @@ class WriteRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $database
-     *           The database name. In the format:
+     *           Required. The database name. In the format:
      *           `projects/{project_id}/databases/{database_id}`.
      *           This is only required in the first message.
      *     @type string $stream_id
@@ -110,11 +110,11 @@ class WriteRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The database name. In the format:
+     * Required. The database name. In the format:
      * `projects/{project_id}/databases/{database_id}`.
      * This is only required in the first message.
      *
-     * Generated from protobuf field <code>string database = 1;</code>
+     * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getDatabase()
@@ -123,11 +123,11 @@ class WriteRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The database name. In the format:
+     * Required. The database name. In the format:
      * `projects/{project_id}/databases/{database_id}`.
      * This is only required in the first message.
      *
-     * Generated from protobuf field <code>string database = 1;</code>
+     * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
