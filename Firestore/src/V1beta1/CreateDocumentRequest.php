@@ -16,17 +16,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateDocumentRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The parent resource. For example:
+     * Required. The parent resource. For example:
      * `projects/{project_id}/databases/{database_id}/documents` or
      * `projects/{project_id}/databases/{database_id}/documents/chatrooms/{chatroom_id}`
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $parent = '';
     /**
-     * The collection ID, relative to `parent`, to list. For example: `chatrooms`.
+     * Required. The collection ID, relative to `parent`, to list. For example: `chatrooms`.
      *
-     * Generated from protobuf field <code>string collection_id = 2;</code>
+     * Generated from protobuf field <code>string collection_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $collection_id = '';
     /**
@@ -37,9 +37,9 @@ class CreateDocumentRequest extends \Google\Protobuf\Internal\Message
      */
     private $document_id = '';
     /**
-     * The document to create. `name` must not be set.
+     * Required. The document to create. `name` must not be set.
      *
-     * Generated from protobuf field <code>.google.firestore.v1beta1.Document document = 4;</code>
+     * Generated from protobuf field <code>.google.firestore.v1beta1.Document document = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $document = null;
     /**
@@ -58,16 +58,16 @@ class CreateDocumentRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The parent resource. For example:
+     *           Required. The parent resource. For example:
      *           `projects/{project_id}/databases/{database_id}/documents` or
      *           `projects/{project_id}/databases/{database_id}/documents/chatrooms/{chatroom_id}`
      *     @type string $collection_id
-     *           The collection ID, relative to `parent`, to list. For example: `chatrooms`.
+     *           Required. The collection ID, relative to `parent`, to list. For example: `chatrooms`.
      *     @type string $document_id
      *           The client-assigned document ID to use for this document.
      *           Optional. If not specified, an ID will be assigned by the service.
      *     @type \Google\Cloud\Firestore\V1beta1\Document $document
-     *           The document to create. `name` must not be set.
+     *           Required. The document to create. `name` must not be set.
      *     @type \Google\Cloud\Firestore\V1beta1\DocumentMask $mask
      *           The fields to return. If not set, returns all fields.
      *           If the document has a field that is not present in this mask, that field
@@ -80,11 +80,11 @@ class CreateDocumentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The parent resource. For example:
+     * Required. The parent resource. For example:
      * `projects/{project_id}/databases/{database_id}/documents` or
      * `projects/{project_id}/databases/{database_id}/documents/chatrooms/{chatroom_id}`
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getParent()
@@ -93,11 +93,11 @@ class CreateDocumentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The parent resource. For example:
+     * Required. The parent resource. For example:
      * `projects/{project_id}/databases/{database_id}/documents` or
      * `projects/{project_id}/databases/{database_id}/documents/chatrooms/{chatroom_id}`
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -110,9 +110,9 @@ class CreateDocumentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The collection ID, relative to `parent`, to list. For example: `chatrooms`.
+     * Required. The collection ID, relative to `parent`, to list. For example: `chatrooms`.
      *
-     * Generated from protobuf field <code>string collection_id = 2;</code>
+     * Generated from protobuf field <code>string collection_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getCollectionId()
@@ -121,9 +121,9 @@ class CreateDocumentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The collection ID, relative to `parent`, to list. For example: `chatrooms`.
+     * Required. The collection ID, relative to `parent`, to list. For example: `chatrooms`.
      *
-     * Generated from protobuf field <code>string collection_id = 2;</code>
+     * Generated from protobuf field <code>string collection_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -164,9 +164,9 @@ class CreateDocumentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The document to create. `name` must not be set.
+     * Required. The document to create. `name` must not be set.
      *
-     * Generated from protobuf field <code>.google.firestore.v1beta1.Document document = 4;</code>
+     * Generated from protobuf field <code>.google.firestore.v1beta1.Document document = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Firestore\V1beta1\Document
      */
     public function getDocument()
@@ -175,9 +175,9 @@ class CreateDocumentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The document to create. `name` must not be set.
+     * Required. The document to create. `name` must not be set.
      *
-     * Generated from protobuf field <code>.google.firestore.v1beta1.Document document = 4;</code>
+     * Generated from protobuf field <code>.google.firestore.v1beta1.Document document = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Firestore\V1beta1\Document $var
      * @return $this
      */

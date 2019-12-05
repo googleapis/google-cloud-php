@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetIndexRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A name of the form
+     * Required. A name of the form
      * `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{index_id}`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
 
@@ -30,7 +30,7 @@ class GetIndexRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           A name of the form
+     *           Required. A name of the form
      *           `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{index_id}`
      * }
      */
@@ -40,10 +40,10 @@ class GetIndexRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A name of the form
+     * Required. A name of the form
      * `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{index_id}`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -52,10 +52,10 @@ class GetIndexRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A name of the form
+     * Required. A name of the form
      * `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{index_id}`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

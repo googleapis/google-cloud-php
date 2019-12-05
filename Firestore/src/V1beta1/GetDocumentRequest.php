@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetDocumentRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The resource name of the Document to get. In the format:
+     * Required. The resource name of the Document to get. In the format:
      * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $name = '';
     /**
@@ -39,7 +39,7 @@ class GetDocumentRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The resource name of the Document to get. In the format:
+     *           Required. The resource name of the Document to get. In the format:
      *           `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      *     @type \Google\Cloud\Firestore\V1beta1\DocumentMask $mask
      *           The fields to return. If not set, returns all fields.
@@ -58,10 +58,10 @@ class GetDocumentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the Document to get. In the format:
+     * Required. The resource name of the Document to get. In the format:
      * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getName()
@@ -70,10 +70,10 @@ class GetDocumentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the Document to get. In the format:
+     * Required. The resource name of the Document to get. In the format:
      * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

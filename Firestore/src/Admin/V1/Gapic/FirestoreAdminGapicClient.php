@@ -387,9 +387,9 @@ class FirestoreAdminGapicClient
      * }
      * ```
      *
-     * @param string $parent       A parent name of the form
+     * @param string $parent       Required. A parent name of the form
      *                             `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}`
-     * @param Index  $index        The composite index to create.
+     * @param Index  $index        Required. The composite index to create.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -455,7 +455,7 @@ class FirestoreAdminGapicClient
      * }
      * ```
      *
-     * @param string $parent       A parent name of the form
+     * @param string $parent       Required. A parent name of the form
      *                             `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}`
      * @param array  $optionalArgs {
      *                             Optional.
@@ -526,7 +526,7 @@ class FirestoreAdminGapicClient
      * }
      * ```
      *
-     * @param string $name         A name of the form
+     * @param string $name         Required. A name of the form
      *                             `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{index_id}`
      * @param array  $optionalArgs {
      *                             Optional.
@@ -577,7 +577,7 @@ class FirestoreAdminGapicClient
      * }
      * ```
      *
-     * @param string $name         A name of the form
+     * @param string $name         Required. A name of the form
      *                             `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{index_id}`
      * @param array  $optionalArgs {
      *                             Optional.
@@ -630,7 +630,7 @@ class FirestoreAdminGapicClient
      * }
      * ```
      *
-     * @param string $name         Database to import into. Should be of the form:
+     * @param string $name         Required. Database to import into. Should be of the form:
      *                             `projects/{project_id}/databases/{database_id}`.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -703,7 +703,7 @@ class FirestoreAdminGapicClient
      * }
      * ```
      *
-     * @param string $name         Database to export. Should be of the form:
+     * @param string $name         Required. Database to export. Should be of the form:
      *                             `projects/{project_id}/databases/{database_id}`.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -771,7 +771,7 @@ class FirestoreAdminGapicClient
      * }
      * ```
      *
-     * @param string $name         A name of the form
+     * @param string $name         Required. A name of the form
      *                             `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_id}`
      * @param array  $optionalArgs {
      *                             Optional.
@@ -842,7 +842,7 @@ class FirestoreAdminGapicClient
      * }
      * ```
      *
-     * @param string $parent       A parent name of the form
+     * @param string $parent       Required. A parent name of the form
      *                             `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}`
      * @param array  $optionalArgs {
      *                             Optional.
@@ -929,7 +929,7 @@ class FirestoreAdminGapicClient
      * }
      * ```
      *
-     * @param Field $field        The field to be updated.
+     * @param Field $field        Required. The field to be updated.
      * @param array $optionalArgs {
      *                            Optional.
      *

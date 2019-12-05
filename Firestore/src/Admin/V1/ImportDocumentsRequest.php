@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class ImportDocumentsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Database to import into. Should be of the form:
+     * Required. Database to import into. Should be of the form:
      * `projects/{project_id}/databases/{database_id}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
@@ -47,7 +47,7 @@ class ImportDocumentsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Database to import into. Should be of the form:
+     *           Required. Database to import into. Should be of the form:
      *           `projects/{project_id}/databases/{database_id}`.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $collection_ids
      *           Which collection ids to import. Unspecified means all collections included
@@ -66,10 +66,10 @@ class ImportDocumentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Database to import into. Should be of the form:
+     * Required. Database to import into. Should be of the form:
      * `projects/{project_id}/databases/{database_id}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -78,10 +78,10 @@ class ImportDocumentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Database to import into. Should be of the form:
+     * Required. Database to import into. Should be of the form:
      * `projects/{project_id}/databases/{database_id}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

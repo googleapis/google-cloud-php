@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListFieldsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A parent name of the form
+     * Required. A parent name of the form
      * `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}`
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -54,7 +54,7 @@ class ListFieldsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           A parent name of the form
+     *           Required. A parent name of the form
      *           `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}`
      *     @type string $filter
      *           The filter to apply to list results. Currently,
@@ -76,10 +76,10 @@ class ListFieldsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A parent name of the form
+     * Required. A parent name of the form
      * `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}`
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -88,10 +88,10 @@ class ListFieldsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A parent name of the form
+     * Required. A parent name of the form
      * `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}`
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
