@@ -408,7 +408,7 @@ class FirestoreGapicClient
      * }
      * ```
      *
-     * @param string $name         The resource name of the Document to get. In the format:
+     * @param string $name         Required. The resource name of the Document to get. In the format:
      *                             `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -494,13 +494,13 @@ class FirestoreGapicClient
      * }
      * ```
      *
-     * @param string $parent       The parent resource name. In the format:
+     * @param string $parent       Required. The parent resource name. In the format:
      *                             `projects/{project_id}/databases/{database_id}/documents` or
      *                             `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      *                             For example:
      *                             `projects/my-project/databases/my-database/documents` or
      *                             `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
-     * @param string $collectionId The collection ID, relative to `parent`, to list. For example: `chatrooms`
+     * @param string $collectionId Required. The collection ID, relative to `parent`, to list. For example: `chatrooms`
      *                             or `messages`.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -598,14 +598,14 @@ class FirestoreGapicClient
      * }
      * ```
      *
-     * @param string $parent       The parent resource. For example:
+     * @param string $parent       Required. The parent resource. For example:
      *                             `projects/{project_id}/databases/{database_id}/documents` or
      *                             `projects/{project_id}/databases/{database_id}/documents/chatrooms/{chatroom_id}`
-     * @param string $collectionId The collection ID, relative to `parent`, to list. For example: `chatrooms`.
+     * @param string $collectionId Required. The collection ID, relative to `parent`, to list. For example: `chatrooms`.
      * @param string $documentId   The client-assigned document ID to use for this document.
      *
      * Optional. If not specified, an ID will be assigned by the service.
-     * @param Document $document     The document to create. `name` must not be set.
+     * @param Document $document     Required. The document to create. `name` must not be set.
      * @param array    $optionalArgs {
      *                               Optional.
      *
@@ -660,7 +660,7 @@ class FirestoreGapicClient
      * }
      * ```
      *
-     * @param Document     $document   The updated document.
+     * @param Document     $document   Required. The updated document.
      *                                 Creates the document if it does not already exist.
      * @param DocumentMask $updateMask The fields to update.
      *                                 None of the field paths in the mask may contain a reserved name.
@@ -733,7 +733,7 @@ class FirestoreGapicClient
      * }
      * ```
      *
-     * @param string $name         The resource name of the Document to delete. In the format:
+     * @param string $name         Required. The resource name of the Document to delete. In the format:
      *                             `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -796,7 +796,7 @@ class FirestoreGapicClient
      * }
      * ```
      *
-     * @param string   $database     The database name. In the format:
+     * @param string   $database     Required. The database name. In the format:
      *                               `projects/{project_id}/databases/{database_id}`.
      * @param string[] $documents    The names of the documents to retrieve. In the format:
      *                               `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
@@ -877,7 +877,7 @@ class FirestoreGapicClient
      * }
      * ```
      *
-     * @param string $database     The database name. In the format:
+     * @param string $database     Required. The database name. In the format:
      *                             `projects/{project_id}/databases/{database_id}`.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -935,7 +935,7 @@ class FirestoreGapicClient
      * }
      * ```
      *
-     * @param string  $database The database name. In the format:
+     * @param string  $database Required. The database name. In the format:
      *                          `projects/{project_id}/databases/{database_id}`.
      * @param Write[] $writes   The writes to apply.
      *
@@ -996,9 +996,9 @@ class FirestoreGapicClient
      * }
      * ```
      *
-     * @param string $database     The database name. In the format:
+     * @param string $database     Required. The database name. In the format:
      *                             `projects/{project_id}/databases/{database_id}`.
-     * @param string $transaction  The transaction to roll back.
+     * @param string $transaction  Required. The transaction to roll back.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1051,7 +1051,7 @@ class FirestoreGapicClient
      * }
      * ```
      *
-     * @param string $parent       The parent resource name. In the format:
+     * @param string $parent       Required. The parent resource name. In the format:
      *                             `projects/{project_id}/databases/{database_id}/documents` or
      *                             `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      *                             For example:
@@ -1277,7 +1277,7 @@ class FirestoreGapicClient
      * }
      * ```
      *
-     * @param string $parent       The parent document. In the format:
+     * @param string $parent       Required. The parent document. In the format:
      *                             `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      *                             For example:
      *                             `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`

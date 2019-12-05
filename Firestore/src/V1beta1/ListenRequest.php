@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListenRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The database name. In the format:
+     * Required. The database name. In the format:
      * `projects/{project_id}/databases/{database_id}`.
      *
-     * Generated from protobuf field <code>string database = 1;</code>
+     * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $database = '';
     /**
@@ -37,7 +37,7 @@ class ListenRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $database
-     *           The database name. In the format:
+     *           Required. The database name. In the format:
      *           `projects/{project_id}/databases/{database_id}`.
      *     @type \Google\Cloud\Firestore\V1beta1\Target $add_target
      *           A target to add to this stream.
@@ -53,10 +53,10 @@ class ListenRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The database name. In the format:
+     * Required. The database name. In the format:
      * `projects/{project_id}/databases/{database_id}`.
      *
-     * Generated from protobuf field <code>string database = 1;</code>
+     * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getDatabase()
@@ -65,10 +65,10 @@ class ListenRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The database name. In the format:
+     * Required. The database name. In the format:
      * `projects/{project_id}/databases/{database_id}`.
      *
-     * Generated from protobuf field <code>string database = 1;</code>
+     * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
