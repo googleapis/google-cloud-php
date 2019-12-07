@@ -22,7 +22,8 @@ class CheckValidCredsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The data source in the form:
-     * `projects/{project_id}/dataSources/{data_source_id}`
+     * `projects/{project_id}/dataSources/{data_source_id}` or
+     * `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -36,7 +37,8 @@ class CheckValidCredsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The data source in the form:
-     *           `projects/{project_id}/dataSources/{data_source_id}`
+     *           `projects/{project_id}/dataSources/{data_source_id}` or
+     *           `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,7 +48,8 @@ class CheckValidCredsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The data source in the form:
-     * `projects/{project_id}/dataSources/{data_source_id}`
+     * `projects/{project_id}/dataSources/{data_source_id}` or
+     * `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -58,7 +61,8 @@ class CheckValidCredsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The data source in the form:
-     * `projects/{project_id}/dataSources/{data_source_id}`
+     * `projects/{project_id}/dataSources/{data_source_id}` or
+     * `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

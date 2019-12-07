@@ -59,6 +59,16 @@ class UpdateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string version_info = 5;</code>
      */
     private $version_info = '';
+    /**
+     * Optional service account name. If this field is set and
+     * "service_account_name" is set in update_mask, transfer config will be
+     * updated to use this service account credentials. It requires that
+     * requesting user calling this API has permissions to act as this service
+     * account.
+     *
+     * Generated from protobuf field <code>string service_account_name = 6;</code>
+     */
+    private $service_account_name = '';
 
     /**
      * Constructor.
@@ -93,6 +103,12 @@ class UpdateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      *           must use the "none+gsession" response type. which be return a
      *           version_info back in the authorization response which be be put in a JWT
      *           claim in the token request.
+     *     @type string $service_account_name
+     *           Optional service account name. If this field is set and
+     *           "service_account_name" is set in update_mask, transfer config will be
+     *           updated to use this service account credentials. It requires that
+     *           requesting user calling this API has permissions to act as this service
+     *           account.
      * }
      */
     public function __construct($data = NULL) {
@@ -238,6 +254,40 @@ class UpdateTransferConfigRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->version_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional service account name. If this field is set and
+     * "service_account_name" is set in update_mask, transfer config will be
+     * updated to use this service account credentials. It requires that
+     * requesting user calling this API has permissions to act as this service
+     * account.
+     *
+     * Generated from protobuf field <code>string service_account_name = 6;</code>
+     * @return string
+     */
+    public function getServiceAccountName()
+    {
+        return $this->service_account_name;
+    }
+
+    /**
+     * Optional service account name. If this field is set and
+     * "service_account_name" is set in update_mask, transfer config will be
+     * updated to use this service account credentials. It requires that
+     * requesting user calling this API has permissions to act as this service
+     * account.
+     *
+     * Generated from protobuf field <code>string service_account_name = 6;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setServiceAccountName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->service_account_name = $var;
 
         return $this;
     }

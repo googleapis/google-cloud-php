@@ -17,7 +17,8 @@ class GetTransferConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The field will contain name of the resource requested, for example:
-     * `projects/{project_id}/transferConfigs/{config_id}`
+     * `projects/{project_id}/transferConfigs/{config_id}` or
+     * `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -31,7 +32,8 @@ class GetTransferConfigRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The field will contain name of the resource requested, for example:
-     *           `projects/{project_id}/transferConfigs/{config_id}`
+     *           `projects/{project_id}/transferConfigs/{config_id}` or
+     *           `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
      * }
      */
     public function __construct($data = NULL) {
@@ -41,7 +43,8 @@ class GetTransferConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The field will contain name of the resource requested, for example:
-     * `projects/{project_id}/transferConfigs/{config_id}`
+     * `projects/{project_id}/transferConfigs/{config_id}` or
+     * `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -53,7 +56,8 @@ class GetTransferConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The field will contain name of the resource requested, for example:
-     * `projects/{project_id}/transferConfigs/{config_id}`
+     * `projects/{project_id}/transferConfigs/{config_id}` or
+     * `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

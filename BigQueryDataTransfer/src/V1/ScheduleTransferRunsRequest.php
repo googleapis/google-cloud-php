@@ -17,7 +17,8 @@ class ScheduleTransferRunsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Transfer configuration name in the form:
-     * `projects/{project_id}/transferConfigs/{config_id}`.
+     * `projects/{project_id}/transferConfigs/{config_id}` or
+     * `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -45,7 +46,8 @@ class ScheduleTransferRunsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. Transfer configuration name in the form:
-     *           `projects/{project_id}/transferConfigs/{config_id}`.
+     *           `projects/{project_id}/transferConfigs/{config_id}` or
+     *           `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
      *     @type \Google\Protobuf\Timestamp $start_time
      *           Required. Start time of the range of transfer runs. For example,
      *           `"2017-05-25T00:00:00+00:00"`.
@@ -61,7 +63,8 @@ class ScheduleTransferRunsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Transfer configuration name in the form:
-     * `projects/{project_id}/transferConfigs/{config_id}`.
+     * `projects/{project_id}/transferConfigs/{config_id}` or
+     * `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -73,7 +76,8 @@ class ScheduleTransferRunsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Transfer configuration name in the form:
-     * `projects/{project_id}/transferConfigs/{config_id}`.
+     * `projects/{project_id}/transferConfigs/{config_id}` or
+     * `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
