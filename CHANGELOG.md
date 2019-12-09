@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.120.1
+
+<details><summary>google/cloud-bigtable 1.1.1</summary>
+
+
+
+### Bug Fixes
+
+* demonstrate row key in sample ([#2501](https://www.github.com/googleapis/google-cloud-php/issues/2501)) ([331799f](https://www.github.com/googleapis/google-cloud-php/commit/331799f3652c85eb7a82fa5e199f8cf17256367c))
+
+</details>
+
+<details><summary>google/cloud-talent 0.8.2</summary>
+
+
+
+### Bug Fixes
+
+* add back in HTTP bindings for operation calls ([#2495](https://www.github.com/googleapis/google-cloud-php/issues/2495)) ([cb280a7](https://www.github.com/googleapis/google-cloud-php/commit/cb280a7d50b9fffdec5d8a5b8a1dff98163b3089))
+
+</details>
+
 ## 0.120.0
 
 <details><summary>google/cloud-speech 0.28.0</summary>
