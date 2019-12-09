@@ -346,7 +346,7 @@ class StreamWrapper
                     // since the service call returns nested results and we only
                     // want to yield results directly within the requested directory,
                     // check if we've already yielded this value.
-                    if (in_array($parts[0], $yielded)) {
+                    if ($parts[0] === "" || in_array($parts[0], $yielded)) {
                         continue;
                     }
 
