@@ -9,17 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for
- * [Datastore.BeginTransaction][google.datastore.v1.Datastore.BeginTransaction].
+ * The request for [Datastore.BeginTransaction][google.datastore.v1.Datastore.BeginTransaction].
  *
  * Generated from protobuf message <code>google.datastore.v1.BeginTransactionRequest</code>
  */
 class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The ID of the project against which to make the request.
+     * Required. The ID of the project against which to make the request.
      *
-     * Generated from protobuf field <code>string project_id = 8;</code>
+     * Generated from protobuf field <code>string project_id = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $project_id = '';
     /**
@@ -36,7 +35,7 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $project_id
-     *           The ID of the project against which to make the request.
+     *           Required. The ID of the project against which to make the request.
      *     @type \Google\Cloud\Datastore\V1\TransactionOptions $transaction_options
      *           Options for a new transaction.
      * }
@@ -47,9 +46,9 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ID of the project against which to make the request.
+     * Required. The ID of the project against which to make the request.
      *
-     * Generated from protobuf field <code>string project_id = 8;</code>
+     * Generated from protobuf field <code>string project_id = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getProjectId()
@@ -58,9 +57,9 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ID of the project against which to make the request.
+     * Required. The ID of the project against which to make the request.
      *
-     * Generated from protobuf field <code>string project_id = 8;</code>
+     * Generated from protobuf field <code>string project_id = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

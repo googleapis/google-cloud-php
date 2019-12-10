@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class LookupRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The ID of the project against which to make the request.
+     * Required. The ID of the project against which to make the request.
      *
-     * Generated from protobuf field <code>string project_id = 8;</code>
+     * Generated from protobuf field <code>string project_id = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $project_id = '';
     /**
@@ -28,9 +28,9 @@ class LookupRequest extends \Google\Protobuf\Internal\Message
      */
     private $read_options = null;
     /**
-     * Keys of entities to look up.
+     * Required. Keys of entities to look up.
      *
-     * Generated from protobuf field <code>repeated .google.datastore.v1.Key keys = 3;</code>
+     * Generated from protobuf field <code>repeated .google.datastore.v1.Key keys = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $keys;
 
@@ -41,11 +41,11 @@ class LookupRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $project_id
-     *           The ID of the project against which to make the request.
+     *           Required. The ID of the project against which to make the request.
      *     @type \Google\Cloud\Datastore\V1\ReadOptions $read_options
      *           The options for this lookup request.
      *     @type \Google\Cloud\Datastore\V1\Key[]|\Google\Protobuf\Internal\RepeatedField $keys
-     *           Keys of entities to look up.
+     *           Required. Keys of entities to look up.
      * }
      */
     public function __construct($data = NULL) {
@@ -54,9 +54,9 @@ class LookupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ID of the project against which to make the request.
+     * Required. The ID of the project against which to make the request.
      *
-     * Generated from protobuf field <code>string project_id = 8;</code>
+     * Generated from protobuf field <code>string project_id = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getProjectId()
@@ -65,9 +65,9 @@ class LookupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ID of the project against which to make the request.
+     * Required. The ID of the project against which to make the request.
      *
-     * Generated from protobuf field <code>string project_id = 8;</code>
+     * Generated from protobuf field <code>string project_id = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -106,9 +106,9 @@ class LookupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Keys of entities to look up.
+     * Required. Keys of entities to look up.
      *
-     * Generated from protobuf field <code>repeated .google.datastore.v1.Key keys = 3;</code>
+     * Generated from protobuf field <code>repeated .google.datastore.v1.Key keys = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getKeys()
@@ -117,9 +117,9 @@ class LookupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Keys of entities to look up.
+     * Required. Keys of entities to look up.
      *
-     * Generated from protobuf field <code>repeated .google.datastore.v1.Key keys = 3;</code>
+     * Generated from protobuf field <code>repeated .google.datastore.v1.Key keys = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Datastore\V1\Key[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
