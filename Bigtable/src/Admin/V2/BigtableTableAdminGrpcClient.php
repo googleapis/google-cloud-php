@@ -264,7 +264,7 @@ class BigtableTableAdminGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Gets the access control policy for an instance resource. Returns an empty
+     * Gets the access control policy for a table resource. Returns an empty
      * policy if an table exists but does not have a policy set.
      * @param \Google\Cloud\Iam\V1\GetIamPolicyRequest $argument input argument
      * @param array $metadata metadata
