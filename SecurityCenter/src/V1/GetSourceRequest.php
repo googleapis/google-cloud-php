@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetSourceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Relative resource name of the source. Its format is
+     * Required. Relative resource name of the source. Its format is
      * "organizations/[organization_id]/source/[source_id]".
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
 
@@ -30,7 +30,7 @@ class GetSourceRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Relative resource name of the source. Its format is
+     *           Required. Relative resource name of the source. Its format is
      *           "organizations/[organization_id]/source/[source_id]".
      * }
      */
@@ -40,10 +40,10 @@ class GetSourceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Relative resource name of the source. Its format is
+     * Required. Relative resource name of the source. Its format is
      * "organizations/[organization_id]/source/[source_id]".
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -52,10 +52,10 @@ class GetSourceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Relative resource name of the source. Its format is
+     * Required. Relative resource name of the source. Its format is
      * "organizations/[organization_id]/source/[source_id]".
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
