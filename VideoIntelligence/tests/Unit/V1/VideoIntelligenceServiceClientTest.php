@@ -122,6 +122,12 @@ class VideoIntelligenceServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.videointelligence.v1.VideoIntelligenceService/AnnotateVideo', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInputUri();
+
+        $this->assertProtobufEquals($inputUri, $actualValue);
+        $actualValue = $actualApiRequestObject->getFeatures();
+
+        $this->assertProtobufEquals($features, $actualValue);
 
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/annotateVideoTest');

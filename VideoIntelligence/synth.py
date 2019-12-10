@@ -27,9 +27,15 @@ common = gcp.CommonTemplates()
 for version in ['V1', 'V1beta2']:
     lower_version = version.lower()
 
+    if version == 'V1':
+        extension = '.legacy.yaml'
+    else:
+        extension = '.yaml'
+
     library = gapic.php_library(
         service='videointelligence',
         version=lower_version,
+        config_path=f'/google/cloud/videointelligence/artman_videointelligence_{lower_version}{extension}',
         artman_output_name=f'google-cloud-video-intelligence-{lower_version}')
 
     # copy all src including partial veneer classes
