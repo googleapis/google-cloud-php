@@ -259,21 +259,21 @@ class DatastoreGapicClient
      * $datastoreClient = new Google\Cloud\Datastore\V1\DatastoreClient();
      * try {
      *     $projectId = '';
-     *     $response = $datastoreClient->runQuery($projectId);
+     *     $partitionId = new Google\Cloud\Datastore\V1\PartitionId();
+     *     $response = $datastoreClient->runQuery($projectId, $partitionId);
      * } finally {
      *     $datastoreClient->close();
      * }
      * ```
      *
-     * @param string $projectId    Required. The ID of the project against which to make the request.
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string      $projectId    Required. The ID of the project against which to make the request.
+     * @param PartitionId $partitionId  Entities are partitioned into subsets, identified by a partition ID.
+     *                                  Queries are scoped to a single partition.
+     *                                  This partition ID is normalized with the standard default context
+     *                                  partition ID.
+     * @param array       $optionalArgs {
+     *                                  Optional.
      *
-     *     @type PartitionId $partitionId
-     *          Entities are partitioned into subsets, identified by a partition ID.
-     *          Queries are scoped to a single partition.
-     *          This partition ID is normalized with the standard default context
-     *          partition ID.
      *     @type ReadOptions $readOptions
      *          The options for this query.
      *     @type Query $query
@@ -292,13 +292,11 @@ class DatastoreGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function runQuery($projectId, array $optionalArgs = [])
+    public function runQuery($projectId, $partitionId, array $optionalArgs = [])
     {
         $request = new RunQueryRequest();
         $request->setProjectId($projectId);
-        if (isset($optionalArgs['partitionId'])) {
-            $request->setPartitionId($optionalArgs['partitionId']);
-        }
+        $request->setPartitionId($partitionId);
         if (isset($optionalArgs['readOptions'])) {
             $request->setReadOptions($optionalArgs['readOptions']);
         }
@@ -388,37 +386,37 @@ class DatastoreGapicClient
      * $datastoreClient = new Google\Cloud\Datastore\V1\DatastoreClient();
      * try {
      *     $projectId = '';
-     *     $response = $datastoreClient->commit($projectId);
+     *     $mode = Google\Cloud\Datastore\V1\CommitRequest\Mode::MODE_UNSPECIFIED;
+     *     $mutations = [];
+     *     $response = $datastoreClient->commit($projectId, $mode, $mutations);
      * } finally {
      *     $datastoreClient->close();
      * }
      * ```
      *
-     * @param string $projectId    Required. The ID of the project against which to make the request.
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string     $projectId Required. The ID of the project against which to make the request.
+     * @param int        $mode      The type of commit to perform. Defaults to `TRANSACTIONAL`.
+     *                              For allowed values, use constants defined on {@see \Google\Cloud\Datastore\V1\CommitRequest\Mode}
+     * @param Mutation[] $mutations The mutations to perform.
      *
-     *     @type int $mode
-     *          The type of commit to perform. Defaults to `TRANSACTIONAL`.
-     *          For allowed values, use constants defined on {@see \Google\Cloud\Datastore\V1\CommitRequest\Mode}
+     * When mode is `TRANSACTIONAL`, mutations affecting a single entity are
+     * applied in order. The following sequences of mutations affecting a single
+     * entity are not permitted in a single `Commit` request:
+     *
+     * - `insert` followed by `insert`
+     * - `update` followed by `insert`
+     * - `upsert` followed by `insert`
+     * - `delete` followed by `update`
+     *
+     * When mode is `NON_TRANSACTIONAL`, no two mutations may affect a single
+     * entity.
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
      *     @type string $transaction
      *          The identifier of the transaction associated with the commit. A
      *          transaction identifier is returned by a call to
      *          [Datastore.BeginTransaction][google.datastore.v1.Datastore.BeginTransaction].
-     *     @type Mutation[] $mutations
-     *          The mutations to perform.
-     *
-     *          When mode is `TRANSACTIONAL`, mutations affecting a single entity are
-     *          applied in order. The following sequences of mutations affecting a single
-     *          entity are not permitted in a single `Commit` request:
-     *
-     *          - `insert` followed by `insert`
-     *          - `update` followed by `insert`
-     *          - `upsert` followed by `insert`
-     *          - `delete` followed by `update`
-     *
-     *          When mode is `NON_TRANSACTIONAL`, no two mutations may affect a single
-     *          entity.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -431,18 +429,14 @@ class DatastoreGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function commit($projectId, array $optionalArgs = [])
+    public function commit($projectId, $mode, $mutations, array $optionalArgs = [])
     {
         $request = new CommitRequest();
         $request->setProjectId($projectId);
-        if (isset($optionalArgs['mode'])) {
-            $request->setMode($optionalArgs['mode']);
-        }
+        $request->setMode($mode);
+        $request->setMutations($mutations);
         if (isset($optionalArgs['transaction'])) {
             $request->setTransaction($optionalArgs['transaction']);
-        }
-        if (isset($optionalArgs['mutations'])) {
-            $request->setMutations($optionalArgs['mutations']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor([

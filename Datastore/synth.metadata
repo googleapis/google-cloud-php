@@ -1,5 +1,5 @@
 {
-  "updateTime": "2019-11-27T10:59:35.826694Z",
+  "updateTime": "2019-12-10T02:49:52.120209Z",
   "sources": [
     {
       "generator": {
@@ -12,8 +12,8 @@
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "d8896a3d8a191702a9e39f29cf4c2e16fa05f76d",
-        "internalRef": "282674885"
+        "sha": "6cc9499e225a4f6a5e34fe07e390f67055d7991c",
+        "internalRef": "284643689"
       }
     }
   ],
@@ -25,7 +25,7 @@
         "apiVersion": "v1",
         "language": "php",
         "generator": "gapic",
-        "config": "google/datastore/artman_datastore.yaml"
+        "config": "google/datastore/artman_datastore.legacy.yaml"
       }
     }
   ]

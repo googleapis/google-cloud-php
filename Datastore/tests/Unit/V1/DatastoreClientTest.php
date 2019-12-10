@@ -29,8 +29,10 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Datastore\V1\AllocateIdsResponse;
 use Google\Cloud\Datastore\V1\BeginTransactionResponse;
+use Google\Cloud\Datastore\V1\CommitRequest\Mode;
 use Google\Cloud\Datastore\V1\CommitResponse;
 use Google\Cloud\Datastore\V1\LookupResponse;
+use Google\Cloud\Datastore\V1\PartitionId;
 use Google\Cloud\Datastore\V1\ReserveIdsResponse;
 use Google\Cloud\Datastore\V1\RollbackResponse;
 use Google\Cloud\Datastore\V1\RunQueryResponse;
@@ -166,8 +168,9 @@ class DatastoreClientTest extends GeneratedTest
 
         // Mock request
         $projectId = 'projectId-1969970175';
+        $partitionId = new PartitionId();
 
-        $response = $client->runQuery($projectId);
+        $response = $client->runQuery($projectId, $partitionId);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -178,6 +181,9 @@ class DatastoreClientTest extends GeneratedTest
         $actualValue = $actualRequestObject->getProjectId();
 
         $this->assertProtobufEquals($projectId, $actualValue);
+        $actualValue = $actualRequestObject->getPartitionId();
+
+        $this->assertProtobufEquals($partitionId, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -206,9 +212,10 @@ class DatastoreClientTest extends GeneratedTest
 
         // Mock request
         $projectId = 'projectId-1969970175';
+        $partitionId = new PartitionId();
 
         try {
-            $client->runQuery($projectId);
+            $client->runQuery($projectId, $partitionId);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -312,8 +319,10 @@ class DatastoreClientTest extends GeneratedTest
 
         // Mock request
         $projectId = 'projectId-1969970175';
+        $mode = Mode::MODE_UNSPECIFIED;
+        $mutations = [];
 
-        $response = $client->commit($projectId);
+        $response = $client->commit($projectId, $mode, $mutations);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -324,6 +333,12 @@ class DatastoreClientTest extends GeneratedTest
         $actualValue = $actualRequestObject->getProjectId();
 
         $this->assertProtobufEquals($projectId, $actualValue);
+        $actualValue = $actualRequestObject->getMode();
+
+        $this->assertProtobufEquals($mode, $actualValue);
+        $actualValue = $actualRequestObject->getMutations();
+
+        $this->assertProtobufEquals($mutations, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -352,9 +367,11 @@ class DatastoreClientTest extends GeneratedTest
 
         // Mock request
         $projectId = 'projectId-1969970175';
+        $mode = Mode::MODE_UNSPECIFIED;
+        $mutations = [];
 
         try {
-            $client->commit($projectId);
+            $client->commit($projectId, $mode, $mutations);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
