@@ -275,6 +275,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $disabled = true;
         $userId = 147132913;
         $datasetRegion = 'datasetRegion959248539';
+        $notificationPubsubTopic = 'notificationPubsubTopic1794281191';
         $expectedResponse = new TransferConfig();
         $expectedResponse->setName($name);
         $expectedResponse->setDestinationDatasetId($destinationDatasetId);
@@ -285,6 +286,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $expectedResponse->setDisabled($disabled);
         $expectedResponse->setUserId($userId);
         $expectedResponse->setDatasetRegion($datasetRegion);
+        $expectedResponse->setNotificationPubsubTopic($notificationPubsubTopic);
         $transport->addResponse($expectedResponse);
 
         // Mock request
@@ -369,6 +371,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $disabled = true;
         $userId = 147132913;
         $datasetRegion = 'datasetRegion959248539';
+        $notificationPubsubTopic = 'notificationPubsubTopic1794281191';
         $expectedResponse = new TransferConfig();
         $expectedResponse->setName($name);
         $expectedResponse->setDestinationDatasetId($destinationDatasetId);
@@ -379,6 +382,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $expectedResponse->setDisabled($disabled);
         $expectedResponse->setUserId($userId);
         $expectedResponse->setDatasetRegion($datasetRegion);
+        $expectedResponse->setNotificationPubsubTopic($notificationPubsubTopic);
         $transport->addResponse($expectedResponse);
 
         // Mock request
@@ -533,6 +537,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $disabled = true;
         $userId = 147132913;
         $datasetRegion = 'datasetRegion959248539';
+        $notificationPubsubTopic = 'notificationPubsubTopic1794281191';
         $expectedResponse = new TransferConfig();
         $expectedResponse->setName($name2);
         $expectedResponse->setDestinationDatasetId($destinationDatasetId);
@@ -543,6 +548,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $expectedResponse->setDisabled($disabled);
         $expectedResponse->setUserId($userId);
         $expectedResponse->setDatasetRegion($datasetRegion);
+        $expectedResponse->setNotificationPubsubTopic($notificationPubsubTopic);
         $transport->addResponse($expectedResponse);
 
         // Mock request
@@ -778,12 +784,14 @@ class DataTransferServiceClientTest extends GeneratedTest
         $dataSourceId = 'dataSourceId-1015796374';
         $userId = 147132913;
         $schedule = 'schedule-697920873';
+        $notificationPubsubTopic = 'notificationPubsubTopic1794281191';
         $expectedResponse = new TransferRun();
         $expectedResponse->setName($name2);
         $expectedResponse->setDestinationDatasetId($destinationDatasetId);
         $expectedResponse->setDataSourceId($dataSourceId);
         $expectedResponse->setUserId($userId);
         $expectedResponse->setSchedule($schedule);
+        $expectedResponse->setNotificationPubsubTopic($notificationPubsubTopic);
         $transport->addResponse($expectedResponse);
 
         // Mock request

@@ -20,7 +20,8 @@ class ListTransferRunsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Name of transfer configuration for which transfer runs should be retrieved.
      * Format of transfer configuration resource name is:
-     * `projects/{project_id}/transferConfigs/{config_id}`.
+     * `projects/{project_id}/transferConfigs/{config_id}` or
+     * `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -63,7 +64,8 @@ class ListTransferRunsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. Name of transfer configuration for which transfer runs should be retrieved.
      *           Format of transfer configuration resource name is:
-     *           `projects/{project_id}/transferConfigs/{config_id}`.
+     *           `projects/{project_id}/transferConfigs/{config_id}` or
+     *           `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
      *     @type int[]|\Google\Protobuf\Internal\RepeatedField $states
      *           When specified, only transfer runs with requested states are returned.
      *     @type string $page_token
@@ -86,7 +88,8 @@ class ListTransferRunsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Name of transfer configuration for which transfer runs should be retrieved.
      * Format of transfer configuration resource name is:
-     * `projects/{project_id}/transferConfigs/{config_id}`.
+     * `projects/{project_id}/transferConfigs/{config_id}` or
+     * `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -99,7 +102,8 @@ class ListTransferRunsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Name of transfer configuration for which transfer runs should be retrieved.
      * Format of transfer configuration resource name is:
-     * `projects/{project_id}/transferConfigs/{config_id}`.
+     * `projects/{project_id}/transferConfigs/{config_id}` or
+     * `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

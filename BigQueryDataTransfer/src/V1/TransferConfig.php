@@ -121,6 +121,20 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string dataset_region = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $dataset_region = '';
+    /**
+     * Pub/Sub topic where notifications will be sent after transfer runs
+     * associated with this transfer config finish.
+     *
+     * Generated from protobuf field <code>string notification_pubsub_topic = 15;</code>
+     */
+    private $notification_pubsub_topic = '';
+    /**
+     * Email notifications will be sent according to these preferences
+     * to the email address of the user who owns this transfer config.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.EmailPreferences email_preferences = 18;</code>
+     */
+    private $email_preferences = null;
     protected $destination;
 
     /**
@@ -180,6 +194,12 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      *           Deprecated. Unique ID of the user on whose behalf transfer is done.
      *     @type string $dataset_region
      *           Output only. Region in which BigQuery dataset is located.
+     *     @type string $notification_pubsub_topic
+     *           Pub/Sub topic where notifications will be sent after transfer runs
+     *           associated with this transfer config finish.
+     *     @type \Google\Cloud\BigQuery\DataTransfer\V1\EmailPreferences $email_preferences
+     *           Email notifications will be sent according to these preferences
+     *           to the email address of the user who owns this transfer config.
      * }
      */
     public function __construct($data = NULL) {
@@ -593,6 +613,62 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->dataset_region = $var;
+
+        return $this;
+    }
+
+    /**
+     * Pub/Sub topic where notifications will be sent after transfer runs
+     * associated with this transfer config finish.
+     *
+     * Generated from protobuf field <code>string notification_pubsub_topic = 15;</code>
+     * @return string
+     */
+    public function getNotificationPubsubTopic()
+    {
+        return $this->notification_pubsub_topic;
+    }
+
+    /**
+     * Pub/Sub topic where notifications will be sent after transfer runs
+     * associated with this transfer config finish.
+     *
+     * Generated from protobuf field <code>string notification_pubsub_topic = 15;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setNotificationPubsubTopic($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->notification_pubsub_topic = $var;
+
+        return $this;
+    }
+
+    /**
+     * Email notifications will be sent according to these preferences
+     * to the email address of the user who owns this transfer config.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.EmailPreferences email_preferences = 18;</code>
+     * @return \Google\Cloud\BigQuery\DataTransfer\V1\EmailPreferences
+     */
+    public function getEmailPreferences()
+    {
+        return $this->email_preferences;
+    }
+
+    /**
+     * Email notifications will be sent according to these preferences
+     * to the email address of the user who owns this transfer config.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.EmailPreferences email_preferences = 18;</code>
+     * @param \Google\Cloud\BigQuery\DataTransfer\V1\EmailPreferences $var
+     * @return $this
+     */
+    public function setEmailPreferences($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\DataTransfer\V1\EmailPreferences::class);
+        $this->email_preferences = $var;
 
         return $this;
     }

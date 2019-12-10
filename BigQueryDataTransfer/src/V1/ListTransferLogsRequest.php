@@ -17,7 +17,8 @@ class ListTransferLogsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Transfer run name in the form:
-     * `projects/{project_id}/transferConfigs/{config_Id}/runs/{run_id}`.
+     * `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or
+     * `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -54,7 +55,8 @@ class ListTransferLogsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. Transfer run name in the form:
-     *           `projects/{project_id}/transferConfigs/{config_Id}/runs/{run_id}`.
+     *           `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or
+     *           `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
      *     @type string $page_token
      *           Pagination token, which can be used to request a specific page
      *           of `ListTransferLogsRequest` list results. For multiple-page
@@ -75,7 +77,8 @@ class ListTransferLogsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Transfer run name in the form:
-     * `projects/{project_id}/transferConfigs/{config_Id}/runs/{run_id}`.
+     * `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or
+     * `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -87,7 +90,8 @@ class ListTransferLogsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Transfer run name in the form:
-     * `projects/{project_id}/transferConfigs/{config_Id}/runs/{run_id}`.
+     * `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or
+     * `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
