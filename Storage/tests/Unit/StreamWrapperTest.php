@@ -29,7 +29,7 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @group storage
- * @group storage-streamwrapper
+ * @group storage-stream-wrapper
  */
 class StreamWrapperTest extends TestCase
 {
