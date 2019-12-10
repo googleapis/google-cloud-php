@@ -44,6 +44,13 @@ class InspectContentRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string inspect_template_name = 4;</code>
      */
     private $inspect_template_name = '';
+    /**
+     * The geographic location to process content inspection. Reserved for future
+     * extensions.
+     *
+     * Generated from protobuf field <code>string location_id = 5;</code>
+     */
+    private $location_id = '';
 
     /**
      * Constructor.
@@ -64,6 +71,9 @@ class InspectContentRequest extends \Google\Protobuf\Internal\Message
      *           that are set in this request will replace their corresponding fields in the
      *           template. Repeated fields are appended. Singular sub-messages and groups
      *           are recursively merged.
+     *     @type string $location_id
+     *           The geographic location to process content inspection. Reserved for future
+     *           extensions.
      * }
      */
     public function __construct($data = NULL) {
@@ -181,6 +191,34 @@ class InspectContentRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->inspect_template_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * The geographic location to process content inspection. Reserved for future
+     * extensions.
+     *
+     * Generated from protobuf field <code>string location_id = 5;</code>
+     * @return string
+     */
+    public function getLocationId()
+    {
+        return $this->location_id;
+    }
+
+    /**
+     * The geographic location to process content inspection. Reserved for future
+     * extensions.
+     *
+     * Generated from protobuf field <code>string location_id = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLocationId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->location_id = $var;
 
         return $this;
     }

@@ -7,10 +7,22 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{parent=projects/*}/content:inspect',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*}/locations/{location_id}/content:inspect',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                    'location_id' => [
+                        'getters' => [
+                            'getLocationId',
                         ],
                     ],
                 ],
@@ -19,10 +31,22 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{parent=projects/*}/image:redact',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*}/locations/{location_id}/image:redact',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                    'location_id' => [
+                        'getters' => [
+                            'getLocationId',
                         ],
                     ],
                 ],
@@ -31,10 +55,22 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{parent=projects/*}/content:deidentify',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*}/locations/{location_id}/content:deidentify',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                    'location_id' => [
+                        'getters' => [
+                            'getLocationId',
                         ],
                     ],
                 ],
@@ -43,10 +79,22 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{parent=projects/*}/content:reidentify',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*}/locations/{location_id}/content:reidentify',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                    'location_id' => [
+                        'getters' => [
+                            'getLocationId',
                         ],
                     ],
                 ],
@@ -54,6 +102,19 @@ return [
             'ListInfoTypes' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/infoTypes',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/locations/{location_id}/infoTypes',
+                    ],
+                ],
+                'placeholders' => [
+                    'location_id' => [
+                        'getters' => [
+                            'getLocationId',
+                        ],
+                    ],
+                ],
             ],
             'CreateInspectTemplate' => [
                 'method' => 'post',
@@ -62,7 +123,17 @@ return [
                 'additionalBindings' => [
                     [
                         'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=organizations/*}/locations/{location_id}/inspectTemplates',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
                         'uriTemplate' => '/v2/{parent=projects/*}/inspectTemplates',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*}/locations/{location_id}/inspectTemplates',
                         'body' => '*',
                     ],
                 ],
@@ -70,6 +141,11 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                    'location_id' => [
+                        'getters' => [
+                            'getLocationId',
                         ],
                     ],
                 ],
@@ -81,7 +157,17 @@ return [
                 'additionalBindings' => [
                     [
                         'method' => 'patch',
+                        'uriTemplate' => '/v2/{name=organizations/*/locations/*/inspectTemplates/*}',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'patch',
                         'uriTemplate' => '/v2/{name=projects/*/inspectTemplates/*}',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/inspectTemplates/*}',
                         'body' => '*',
                     ],
                 ],
@@ -99,7 +185,15 @@ return [
                 'additionalBindings' => [
                     [
                         'method' => 'get',
+                        'uriTemplate' => '/v2/{name=organizations/*/locations/*/inspectTemplates/*}',
+                    ],
+                    [
+                        'method' => 'get',
                         'uriTemplate' => '/v2/{name=projects/*/inspectTemplates/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/inspectTemplates/*}',
                     ],
                 ],
                 'placeholders' => [
@@ -116,13 +210,26 @@ return [
                 'additionalBindings' => [
                     [
                         'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=organizations/*}/locations/{location_id}/inspectTemplates',
+                    ],
+                    [
+                        'method' => 'get',
                         'uriTemplate' => '/v2/{parent=projects/*}/inspectTemplates',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=projects/*}/locations/{location_id}/inspectTemplates',
                     ],
                 ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                    'location_id' => [
+                        'getters' => [
+                            'getLocationId',
                         ],
                     ],
                 ],
@@ -133,7 +240,15 @@ return [
                 'additionalBindings' => [
                     [
                         'method' => 'delete',
+                        'uriTemplate' => '/v2/{name=organizations/*/locations/*/inspectTemplates/*}',
+                    ],
+                    [
+                        'method' => 'delete',
                         'uriTemplate' => '/v2/{name=projects/*/inspectTemplates/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/inspectTemplates/*}',
                     ],
                 ],
                 'placeholders' => [
@@ -151,7 +266,17 @@ return [
                 'additionalBindings' => [
                     [
                         'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=organizations/*}/locations/{location_id}/deidentifyTemplates',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
                         'uriTemplate' => '/v2/{parent=projects/*}/deidentifyTemplates',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*}/locations/{location_id}/deidentifyTemplates',
                         'body' => '*',
                     ],
                 ],
@@ -159,6 +284,11 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                    'location_id' => [
+                        'getters' => [
+                            'getLocationId',
                         ],
                     ],
                 ],
@@ -170,7 +300,17 @@ return [
                 'additionalBindings' => [
                     [
                         'method' => 'patch',
+                        'uriTemplate' => '/v2/{name=organizations/*/locations/*/deidentifyTemplates/*}',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'patch',
                         'uriTemplate' => '/v2/{name=projects/*/deidentifyTemplates/*}',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/deidentifyTemplates/*}',
                         'body' => '*',
                     ],
                 ],
@@ -188,7 +328,15 @@ return [
                 'additionalBindings' => [
                     [
                         'method' => 'get',
+                        'uriTemplate' => '/v2/{name=organizations/*/locations/*/deidentifyTemplates/*}',
+                    ],
+                    [
+                        'method' => 'get',
                         'uriTemplate' => '/v2/{name=projects/*/deidentifyTemplates/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/deidentifyTemplates/*}',
                     ],
                 ],
                 'placeholders' => [
@@ -205,13 +353,26 @@ return [
                 'additionalBindings' => [
                     [
                         'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=organizations/*}/locations/{location_id}/deidentifyTemplates',
+                    ],
+                    [
+                        'method' => 'get',
                         'uriTemplate' => '/v2/{parent=projects/*}/deidentifyTemplates',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=projects/*}/locations/{location_id}/deidentifyTemplates',
                     ],
                 ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                    'location_id' => [
+                        'getters' => [
+                            'getLocationId',
                         ],
                     ],
                 ],
@@ -222,7 +383,15 @@ return [
                 'additionalBindings' => [
                     [
                         'method' => 'delete',
+                        'uriTemplate' => '/v2/{name=organizations/*/locations/*/deidentifyTemplates/*}',
+                    ],
+                    [
+                        'method' => 'delete',
                         'uriTemplate' => '/v2/{name=projects/*/deidentifyTemplates/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/deidentifyTemplates/*}',
                     ],
                 ],
                 'placeholders' => [
@@ -237,10 +406,22 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{parent=projects/*}/dlpJobs',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*}/locations/{location_id}/dlpJobs',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                    'location_id' => [
+                        'getters' => [
+                            'getLocationId',
                         ],
                     ],
                 ],
@@ -248,10 +429,21 @@ return [
             'ListDlpJobs' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{parent=projects/*}/dlpJobs',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=projects/*}/locations/{location_id}/dlpJobs',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                    'location_id' => [
+                        'getters' => [
+                            'getLocationId',
                         ],
                     ],
                 ],
@@ -259,6 +451,12 @@ return [
             'GetDlpJob' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{name=projects/*/dlpJobs/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/dlpJobs/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -270,6 +468,12 @@ return [
             'DeleteDlpJob' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v2/{name=projects/*/dlpJobs/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/dlpJobs/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -282,6 +486,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{name=projects/*/dlpJobs/*}:cancel',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/dlpJobs/*}:cancel',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -293,10 +504,21 @@ return [
             'ListJobTriggers' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{parent=projects/*}/jobTriggers',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=projects/*}/locations/{location_id}/jobTriggers',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                    'location_id' => [
+                        'getters' => [
+                            'getLocationId',
                         ],
                     ],
                 ],
@@ -304,6 +526,12 @@ return [
             'GetJobTrigger' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{name=projects/*/jobTriggers/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/jobTriggers/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -315,6 +543,12 @@ return [
             'DeleteJobTrigger' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v2/{name=projects/*/jobTriggers/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/jobTriggers/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -327,6 +561,13 @@ return [
                 'method' => 'patch',
                 'uriTemplate' => '/v2/{name=projects/*/jobTriggers/*}',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/jobTriggers/*}',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -339,10 +580,22 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{parent=projects/*}/jobTriggers',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*}/locations/{location_id}/jobTriggers',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                    'location_id' => [
+                        'getters' => [
+                            'getLocationId',
                         ],
                     ],
                 ],
@@ -354,7 +607,17 @@ return [
                 'additionalBindings' => [
                     [
                         'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=organizations/*}/locations/{location_id}/storedInfoTypes',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
                         'uriTemplate' => '/v2/{parent=projects/*}/storedInfoTypes',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*}/locations/{location_id}/storedInfoTypes',
                         'body' => '*',
                     ],
                 ],
@@ -362,6 +625,11 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                    'location_id' => [
+                        'getters' => [
+                            'getLocationId',
                         ],
                     ],
                 ],
@@ -373,7 +641,17 @@ return [
                 'additionalBindings' => [
                     [
                         'method' => 'patch',
+                        'uriTemplate' => '/v2/{name=organizations/*/locations/*/storedInfoTypes/*}',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'patch',
                         'uriTemplate' => '/v2/{name=projects/*/storedInfoTypes/*}',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/storedInfoTypes/*}',
                         'body' => '*',
                     ],
                 ],
@@ -391,7 +669,15 @@ return [
                 'additionalBindings' => [
                     [
                         'method' => 'get',
+                        'uriTemplate' => '/v2/{name=organizations/*/locations/*/storedInfoTypes/*}',
+                    ],
+                    [
+                        'method' => 'get',
                         'uriTemplate' => '/v2/{name=projects/*/storedInfoTypes/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/storedInfoTypes/*}',
                     ],
                 ],
                 'placeholders' => [
@@ -408,13 +694,26 @@ return [
                 'additionalBindings' => [
                     [
                         'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=organizations/*}/locations/{location_id}/storedInfoTypes',
+                    ],
+                    [
+                        'method' => 'get',
                         'uriTemplate' => '/v2/{parent=projects/*}/storedInfoTypes',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=projects/*}/locations/{location_id}/storedInfoTypes',
                     ],
                 ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                    'location_id' => [
+                        'getters' => [
+                            'getLocationId',
                         ],
                     ],
                 ],
@@ -425,7 +724,15 @@ return [
                 'additionalBindings' => [
                     [
                         'method' => 'delete',
+                        'uriTemplate' => '/v2/{name=organizations/*/locations/*/storedInfoTypes/*}',
+                    ],
+                    [
+                        'method' => 'delete',
                         'uriTemplate' => '/v2/{name=projects/*/storedInfoTypes/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/storedInfoTypes/*}',
                     ],
                 ],
                 'placeholders' => [
