@@ -19,7 +19,8 @@ namespace Google\Cloud\Storage\Tests\System\StreamWrapper;
 
 /**
  * @group storage
- * @group streamWrapper
+ * @group storage-stream-wrapper
+ * @group storage-stream-wrapper-write
  */
 class WriteTest extends StreamWrapperTestCase
 {

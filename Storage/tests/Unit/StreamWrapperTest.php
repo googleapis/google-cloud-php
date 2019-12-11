@@ -25,12 +25,11 @@ use Google\Cloud\Storage\StorageObject;
 use Google\Cloud\Storage\StreamWrapper;
 use GuzzleHttp\Psr7;
 use Prophecy\Argument;
-use Prophecy\Promise\CallbackPromise;
-use Prophecy\Prophecy\ObjectProphecy;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @group storage
+ * @group storage-stream-wrapper
  */
 class StreamWrapperTest extends TestCase
 {
@@ -188,7 +187,16 @@ class StreamWrapperTest extends TestCase
             'updated' => '2017-01-19T19:31:35.833Z',
             'timeCreated' => '2017-01-19T19:31:35.833Z'
         ]);
-        $this->bucket->object('some_long_file.txt')->willReturn($object->reveal());
+        $this->bucket->objects(Argument::allOf(
+            Argument::withEntry('prefix', 'some_long_file.txt/'),
+            Argument::withEntry('resultLimit', 1),
+            Argument::withEntry('fields', Argument::any())
+        ))->willReturn(new \ArrayIterator());
+
+        $this->bucket->object('some_long_file.txt')
+            ->shouldBeCalled()
+            ->willReturn($object->reveal());
+
         $this->bucket->isWritable()->willReturn(true);
 
         $stat = stat('gs://my_bucket/some_long_file.txt');
@@ -203,7 +211,14 @@ class StreamWrapperTest extends TestCase
     {
         $object = $this->prophesize(StorageObject::class);
         $object->info()->willThrow(NotFoundException::class);
-        $this->bucket->object('non-existent/file.txt')->willReturn($object->reveal());
+        $this->bucket->object('non-existent/file.txt')
+            ->shouldBeCalled()
+            ->willReturn($object->reveal());
+        $this->bucket->objects(Argument::allOf(
+            Argument::withEntry('prefix', 'non-existent/file.txt/'),
+            Argument::withEntry('resultLimit', 1),
+            Argument::withEntry('fields', Argument::any())
+        ))->shouldBeCalled()->willReturn(new \ArrayIterator());
 
         stat('gs://my_bucket/non-existent/file.txt');
     }
@@ -310,13 +325,13 @@ class StreamWrapperTest extends TestCase
      */
     public function testDirectoryListing()
     {
-        $this->mockDirectoryListing('foo/', ['foo/file1.txt', 'foo/file2.txt', 'foo/file3.txt', 'foo/file4.txt']);
+        $this->mockDirectoryListing('foo', ['foo/file1.txt', 'foo/file2.txt', 'foo/file3.txt', 'foo/file4.txt']);
         $fd = opendir('gs://my_bucket/foo/');
-        $this->assertEquals('foo/file1.txt', readdir($fd));
-        $this->assertEquals('foo/file2.txt', readdir($fd));
-        $this->assertEquals('foo/file3.txt', readdir($fd));
+        $this->assertEquals('file1.txt', readdir($fd));
+        $this->assertEquals('file2.txt', readdir($fd));
+        $this->assertEquals('file3.txt', readdir($fd));
         rewinddir($fd);
-        $this->assertEquals('foo/file1.txt', readdir($fd));
+        $this->assertEquals('file1.txt', readdir($fd));
         closedir($fd);
     }
 
@@ -326,45 +341,50 @@ class StreamWrapperTest extends TestCase
     public function testDirectoryListingViaScan()
     {
         $files = ['foo/file1.txt', 'foo/file2.txt', 'foo/file3.txt', 'foo/file4.txt'];
-        $this->mockDirectoryListing('foo/', $files);
-        $this->assertEquals($files, scandir('gs://my_bucket/foo/'));
+        $expected = ['file1.txt', 'file2.txt', 'file3.txt', 'file4.txt'];
+        $this->mockDirectoryListing('foo', $files);
+        $this->assertEquals($expected, scandir('gs://my_bucket/foo/'));
     }
 
     public function testRenameFile()
     {
-        $this->mockDirectoryListing('foo.txt', ['foo.txt']);
         $object = $this->prophesize(StorageObject::class);
+        $object->name()->willReturn('foo.txt');
         $object->rename('new_location/foo.txt', ['destinationBucket' => 'my_bucket'])->shouldBeCalled();
-        $this->bucket->object('foo.txt')->willReturn($object->reveal());
+        $this->mockDirectoryListing('foo.txt', [$object->reveal()], false);
 
         $this->assertTrue(rename('gs://my_bucket/foo.txt', 'gs://my_bucket/new_location/foo.txt'));
     }
 
     public function testRenameToDifferentBucket()
     {
-        $this->mockDirectoryListing('foo.txt', ['foo.txt']);
         $object = $this->prophesize(StorageObject::class);
+        $object->name()->willReturn('foo.txt');
         $object->rename('bar/foo.txt', ['destinationBucket' => 'another_bucket'])->shouldBeCalled();
-        $this->bucket->object('foo.txt')->willReturn($object->reveal());
+        $this->mockDirectoryListing('foo.txt', [$object->reveal()], false);
 
         $this->assertTrue(rename('gs://my_bucket/foo.txt', 'gs://another_bucket/bar/foo.txt'));
     }
 
     public function testRenameDirectory()
     {
-        $this->mockDirectoryListing('foo', ['foo/bar1.txt', 'foo/bar2.txt', 'foo/asdf/bar.txt']);
+        $object1 = $this->prophesize(StorageObject::class);
+        $object1->name()->willReturn('foo/bar1.txt');
+        $object1->rename('nested/folder/bar1.txt', ['destinationBucket' => 'another_bucket'])->shouldBeCalled();
 
-        $object = $this->prophesize(StorageObject::class);
-        $object->rename('nested/folder/bar1.txt', ['destinationBucket' => 'another_bucket'])->shouldBeCalled();
-        $this->bucket->object('foo/bar1.txt')->willReturn($object->reveal());
+        $object2 = $this->prophesize(StorageObject::class);
+        $object2->name()->willReturn('foo/bar2.txt');
+        $object2->rename('nested/folder/bar2.txt', ['destinationBucket' => 'another_bucket'])->shouldBeCalled();
 
-        $object = $this->prophesize(StorageObject::class);
-        $object->rename('nested/folder/bar2.txt', ['destinationBucket' => 'another_bucket'])->shouldBeCalled();
-        $this->bucket->object('foo/bar2.txt')->willReturn($object->reveal());
+        $object3 = $this->prophesize(StorageObject::class);
+        $object3->name()->willReturn('foo/asdf/bar.txt');
+        $object3->rename('nested/folder/asdf/bar.txt', ['destinationBucket' => 'another_bucket'])->shouldBeCalled();
 
-        $object = $this->prophesize(StorageObject::class);
-        $object->rename('nested/folder/asdf/bar.txt', ['destinationBucket' => 'another_bucket'])->shouldBeCalled();
-        $this->bucket->object('foo/asdf/bar.txt')->willReturn($object->reveal());
+        $this->mockDirectoryListing('foo', [
+            $object1->reveal(),
+            $object2->reveal(),
+            $object3->reveal()
+        ], false);
 
         $this->assertTrue(rename('gs://my_bucket/foo', 'gs://another_bucket/nested/folder'));
     }
@@ -405,24 +425,29 @@ class StreamWrapperTest extends TestCase
         $this->bucket->object($file)->willReturn($object->reveal());
     }
 
-    private function mockDirectoryListing($path, $filesToReturn)
+    private function mockDirectoryListing($path, $filesToReturn, $appendSlash = true)
     {
-        $test = $this;
-        $this->bucket->objects(
-            Argument::that(function ($options) use ($path) {
-                return $options['prefix'] == $path;
-            })
-        )->will(function () use ($test, $filesToReturn) {
-            return $test->fileListGenerator($filesToReturn);
-        });
+        if ($appendSlash && substr($path, -1) !== '/') {
+            $path = $path . '/';
+        }
+
+        $that = $this;
+        $this->bucket->objects(Argument::withEntry('prefix', $path))
+            ->will(function () use ($that, $filesToReturn) {
+                return $that->fileListGenerator($filesToReturn);
+            });
     }
 
-    private function fileListGenerator($fileToReturn)
+    private function fileListGenerator($filesToReturn)
     {
-        foreach ($fileToReturn as $file) {
-            $obj = $this->prophesize(StorageObject::class);
-            $obj->name()->willReturn($file);
-            yield $obj->reveal();
+        foreach ($filesToReturn as $file) {
+            if (is_string($file)) {
+                $obj = $this->prophesize(StorageObject::class);
+                $obj->name()->willReturn($file);
+                yield $obj->reveal();
+            } else {
+                yield $file;
+            }
         }
     }
 }
