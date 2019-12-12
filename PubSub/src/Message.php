@@ -50,7 +50,7 @@ class Message
     private $ackId;
 
     /**
-     * @var int|null
+     * @var int
      */
     private $deliveryAttempt;
 
@@ -81,7 +81,7 @@ class Message
      *     @type string $ackId The message ackId. This is only set when messages
      *           are pulled from the PubSub service.
      *     @type string $deliveryAttempt Delivery attempt counter is 1 + (the
-     *           sum of number of NACKs and number of  ack_deadline exceeds) for
+     *           sum of number of NACKs and number of ack_deadline exceeds) for
      *           this message. If a DeadLetterPolicy is not set on the
      *           subscription, this will be 0.
      *     @type Subscription $subscription The subscription the message was
@@ -100,7 +100,7 @@ class Message
 
         $metadata += [
             'ackId' => null,
-            'deliveryAttempt' => null,
+            'deliveryAttempt' => 0,
             'subscription' => null,
         ];
 
@@ -235,7 +235,7 @@ class Message
      * echo $message->deliveryAttempt();
      * ```
      *
-     * @return int|null
+     * @return int
      */
     public function deliveryAttempt()
     {

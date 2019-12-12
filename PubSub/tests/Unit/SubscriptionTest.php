@@ -316,6 +316,37 @@ class SubscriptionTest extends TestCase
         $this->assertEquals(4, $result[0]->deliveryAttempt());
     }
 
+    public function testPullNoDeliveryAttempt()
+    {
+        $messages = [
+            'receivedMessages' => [
+                [
+                    'message' => [],
+                    'ackId' => 'foo',
+                ], [
+                    'message' => []
+                ]
+            ]
+        ];
+
+        $this->connection->pull(Argument::withEntry('foo', 'bar'))
+            ->willReturn($messages)
+            ->shouldBeCalledTimes(1);
+
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
+
+        $result = $this->subscription->pull([
+            'foo' => 'bar'
+        ]);
+
+        $this->assertContainsOnlyInstancesOf(Message::class, $result);
+        $this->assertInstanceOf(Message::class, $result[0]);
+        $this->assertInstanceOf(Message::class, $result[1]);
+
+        $this->assertEquals('foo', $result[0]->ackId());
+        $this->assertEquals(0, $result[0]->deliveryAttempt());
+    }
+
     public function testPullWithCustomArgs()
     {
         $messages = [
