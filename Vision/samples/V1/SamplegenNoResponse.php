@@ -38,7 +38,7 @@ function sampleDeleteProductSet()
 
     try {
         $productSearchClient->deleteProductSet($formattedName);
-        // Deleted product set.
+        printf('Deleted product set.'.PHP_EOL);
     } finally {
         $productSearchClient->close();
     }

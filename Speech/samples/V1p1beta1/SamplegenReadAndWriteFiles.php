@@ -20,8 +20,8 @@
  */
 
 // sample-metadata
-//   title: Showing repeated fields (in request and response)
-//   description: Showing repeated fields (in request and response)
+//   title: Read binary file into bytes field & write string in response to file
+//   description: Read binary file into bytes field & write string in response to file
 //   usage: php samples/V1p1beta1/SamplegenReadAndWriteFiles.php
 // [START samplegen_read_and_write_files]
 require __DIR__.'/../../vendor/autoload.php';
@@ -31,7 +31,7 @@ use Google\Cloud\Speech\V1p1beta1\RecognitionAudio;
 use Google\Cloud\Speech\V1p1beta1\RecognitionConfig;
 use Google\Cloud\Speech\V1p1beta1\RecognitionConfig\AudioEncoding;
 
-/** Showing repeated fields (in request and response) */
+/** Read binary file into bytes field & write string in response to file */
 function sampleRecognize()
 {
     $speechClient = new SpeechClient();

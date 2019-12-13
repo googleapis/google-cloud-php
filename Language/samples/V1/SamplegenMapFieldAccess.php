@@ -48,22 +48,20 @@ function sampleAnalyzeEntities()
     try {
         $response = $languageServiceClient->analyzeEntities($document);
         foreach ($response->getEntities() as $entity) {
-            // Each detected entity has a map of metadata:
-            $map = $entity->getMetadata();
             // Access value by key:
-            printf('URL: %s'.PHP_EOL, $map['wikipedia_url']);
+            printf('URL: %s'.PHP_EOL, $entity->getMetadata()['wikipedia_url']);
             // Loop over keys and values:
-            foreach ($map as $key => $value) {
+            foreach ($entity->getMetadata() as $key => $value) {
                 printf('%s: %s'.PHP_EOL, $key, $value);
             }
 
             // Loop over just keys:
-            foreach (array_keys($map) as $theKey) {
+            foreach (array_keys($entity->getMetadata()) as $theKey) {
                 printf('Key: %s'.PHP_EOL, $theKey);
             }
 
             // Loop over just values:
-            foreach ($map as $theValue) {
+            foreach ($entity->getMetadata() as $theValue) {
                 printf('Value: %s'.PHP_EOL, $theValue);
             }
         }

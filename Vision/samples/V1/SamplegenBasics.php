@@ -29,7 +29,11 @@ require __DIR__.'/../../vendor/autoload.php';
 use Google\Cloud\Vision\V1\ProductSearchClient;
 use Google\Cloud\Vision\V1\ProductSet;
 
-/** This is the sample description */
+/**
+ * This is the sample description.
+ *
+ * @param string $displayName Description of the parameter
+ */
 function sampleCreateProductSet($displayName)
 {
     $productSearchClient = new ProductSearchClient();
