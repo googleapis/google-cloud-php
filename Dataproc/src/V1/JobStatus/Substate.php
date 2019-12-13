@@ -37,7 +37,7 @@ class Substate
     const QUEUED = 2;
     /**
      * The agent-reported status is out of date, which may be caused by a
-     * loss of communication between the agent and Cloud Dataproc. If the
+     * loss of communication between the agent and Dataproc. If the
      * agent does not send a timely update, the job will fail.
      * Applies to RUNNING state.
      *

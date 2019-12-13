@@ -23,7 +23,7 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      */
     private $project_id = '';
     /**
-     * Required. The Cloud Dataproc region in which to handle the request.
+     * Required. The Dataproc region in which to handle the request.
      *
      * Generated from protobuf field <code>string region = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -82,7 +82,7 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      *           Required. The ID of the Google Cloud Platform project that the job
      *           belongs to.
      *     @type string $region
-     *           Required. The Cloud Dataproc region in which to handle the request.
+     *           Required. The Dataproc region in which to handle the request.
      *     @type int $page_size
      *           Optional. The number of results to return in each response.
      *     @type string $page_token
@@ -142,7 +142,7 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Cloud Dataproc region in which to handle the request.
+     * Required. The Dataproc region in which to handle the request.
      *
      * Generated from protobuf field <code>string region = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -153,7 +153,7 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Cloud Dataproc region in which to handle the request.
+     * Required. The Dataproc region in which to handle the request.
      *
      * Generated from protobuf field <code>string region = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

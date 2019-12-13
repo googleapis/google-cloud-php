@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Cloud Dataproc job status.
+ * Dataproc job status.
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1.JobStatus</code>
  */
