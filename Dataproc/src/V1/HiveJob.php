@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A Cloud Dataproc job for running [Apache Hive](https://hive.apache.org/)
+ * A Dataproc job for running [Apache Hive](https://hive.apache.org/)
  * queries on YARN.
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1.HiveJob</code>
@@ -33,7 +33,7 @@ class HiveJob extends \Google\Protobuf\Internal\Message
     private $script_variables;
     /**
      * Optional. A mapping of property names and values, used to configure Hive.
-     * Properties that conflict with values set by the Cloud Dataproc API may be
+     * Properties that conflict with values set by the Dataproc API may be
      * overwritten. Can include properties set in /etc/hadoop/conf/&#42;-site.xml,
      * /etc/hive/conf/hive-site.xml, and classes in user code.
      *
@@ -69,7 +69,7 @@ class HiveJob extends \Google\Protobuf\Internal\Message
      *           Hive command: `SET name="value";`).
      *     @type array|\Google\Protobuf\Internal\MapField $properties
      *           Optional. A mapping of property names and values, used to configure Hive.
-     *           Properties that conflict with values set by the Cloud Dataproc API may be
+     *           Properties that conflict with values set by the Dataproc API may be
      *           overwritten. Can include properties set in /etc/hadoop/conf/&#42;-site.xml,
      *           /etc/hive/conf/hive-site.xml, and classes in user code.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $jar_file_uris
@@ -195,7 +195,7 @@ class HiveJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A mapping of property names and values, used to configure Hive.
-     * Properties that conflict with values set by the Cloud Dataproc API may be
+     * Properties that conflict with values set by the Dataproc API may be
      * overwritten. Can include properties set in /etc/hadoop/conf/&#42;-site.xml,
      * /etc/hive/conf/hive-site.xml, and classes in user code.
      *
@@ -209,7 +209,7 @@ class HiveJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A mapping of property names and values, used to configure Hive.
-     * Properties that conflict with values set by the Cloud Dataproc API may be
+     * Properties that conflict with values set by the Dataproc API may be
      * overwritten. Can include properties set in /etc/hadoop/conf/&#42;-site.xml,
      * /etc/hive/conf/hive-site.xml, and classes in user code.
      *

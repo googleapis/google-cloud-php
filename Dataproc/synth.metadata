@@ -1,19 +1,19 @@
 {
-  "updateTime": "2019-11-09T10:59:39.205565Z",
+  "updateTime": "2019-12-13T10:59:35.243908Z",
   "sources": [
     {
       "generator": {
         "name": "artman",
-        "version": "0.41.1",
-        "dockerImage": "googleapis/artman@sha256:545c758c76c3f779037aa259023ec3d1ef2d57d2c8cd00a222cb187d63ceac5e"
+        "version": "0.42.3",
+        "dockerImage": "googleapis/artman@sha256:feed210b5723c6f524b52ef6d7740a030f2d1a8f7c29a71c5e5b4481ceaad7f5"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "34e661f58d58fa57da8ed113a3d8bb3de26b307d",
-        "internalRef": "279417429"
+        "sha": "2085a0d3c76180ee843cf2ecef2b94ca5266be31",
+        "internalRef": "285233245"
       }
     }
   ],
@@ -37,6 +37,857 @@
         "generator": "gapic",
         "config": "google/cloud/dataproc/artman_dataproc_v1beta2.yaml"
       }
+    }
+  ],
+  "newFiles": [
+    {
+      "path": "synth.metadata"
+    },
+    {
+      "path": "synth.py"
+    },
+    {
+      "path": "LICENSE"
+    },
+    {
+      "path": "README.md"
+    },
+    {
+      "path": ".gitattributes"
+    },
+    {
+      "path": "phpunit-system.xml.dist"
+    },
+    {
+      "path": "CONTRIBUTING.md"
+    },
+    {
+      "path": "VERSION"
+    },
+    {
+      "path": "phpunit-snippets.xml.dist"
+    },
+    {
+      "path": "phpunit.xml.dist"
+    },
+    {
+      "path": "composer.json"
+    },
+    {
+      "path": ".github/pull_request_template.md"
+    },
+    {
+      "path": "tests/System/ClusterControllerClientTest.php"
+    },
+    {
+      "path": "tests/System/bootstrap.php"
+    },
+    {
+      "path": "tests/System/V1/ClusterControllerSmokeTest.php"
+    },
+    {
+      "path": "tests/System/V1beta2/ClusterControllerSmokeTest.php"
+    },
+    {
+      "path": "tests/Unit/V1/JobControllerClientTest.php"
+    },
+    {
+      "path": "tests/Unit/V1/WorkflowTemplateServiceClientTest.php"
+    },
+    {
+      "path": "tests/Unit/V1/ClusterControllerClientTest.php"
+    },
+    {
+      "path": "tests/Unit/V1beta2/JobControllerClientTest.php"
+    },
+    {
+      "path": "tests/Unit/V1beta2/WorkflowTemplateServiceClientTest.php"
+    },
+    {
+      "path": "tests/Unit/V1beta2/ClusterControllerClientTest.php"
+    },
+    {
+      "path": "tests/Unit/V1beta2/AutoscalingPolicyServiceClientTest.php"
+    },
+    {
+      "path": "metadata/V1/Operations.php"
+    },
+    {
+      "path": "metadata/V1/AutoscalingPolicies.php"
+    },
+    {
+      "path": "metadata/V1/Shared.php"
+    },
+    {
+      "path": "metadata/V1/Jobs.php"
+    },
+    {
+      "path": "metadata/V1/WorkflowTemplates.php"
+    },
+    {
+      "path": "metadata/V1/Clusters.php"
+    },
+    {
+      "path": "metadata/V1Beta2/Operations.php"
+    },
+    {
+      "path": "metadata/V1Beta2/AutoscalingPolicies.php"
+    },
+    {
+      "path": "metadata/V1Beta2/Shared.php"
+    },
+    {
+      "path": "metadata/V1Beta2/Jobs.php"
+    },
+    {
+      "path": "metadata/V1Beta2/WorkflowTemplates.php"
+    },
+    {
+      "path": "metadata/V1Beta2/Clusters.php"
+    },
+    {
+      "path": "src/V1/GetAutoscalingPolicyRequest.php"
+    },
+    {
+      "path": "src/V1/UpdateWorkflowTemplateRequest.php"
+    },
+    {
+      "path": "src/V1/ListAutoscalingPoliciesRequest.php"
+    },
+    {
+      "path": "src/V1/AcceleratorConfig.php"
+    },
+    {
+      "path": "src/V1/ClusterSelector.php"
+    },
+    {
+      "path": "src/V1/DeleteWorkflowTemplateRequest.php"
+    },
+    {
+      "path": "src/V1/GetClusterRequest.php"
+    },
+    {
+      "path": "src/V1/YarnApplication.php"
+    },
+    {
+      "path": "src/V1/SparkJob.php"
+    },
+    {
+      "path": "src/V1/HadoopJob.php"
+    },
+    {
+      "path": "src/V1/README.md"
+    },
+    {
+      "path": "src/V1/ListAutoscalingPoliciesResponse.php"
+    },
+    {
+      "path": "src/V1/CreateWorkflowTemplateRequest.php"
+    },
+    {
+      "path": "src/V1/LoggingConfig_Level.php"
+    },
+    {
+      "path": "src/V1/WorkflowTemplatePlacement.php"
+    },
+    {
+      "path": "src/V1/UpdateClusterRequest.php"
+    },
+    {
+      "path": "src/V1/ClusterOperationStatus_State.php"
+    },
+    {
+      "path": "src/V1/JobStatus.php"
+    },
+    {
+      "path": "src/V1/DiagnoseClusterRequest.php"
+    },
+    {
+      "path": "src/V1/JobStatus_Substate.php"
+    },
+    {
+      "path": "src/V1/YarnApplication_State.php"
+    },
+    {
+      "path": "src/V1/GceClusterConfig.php"
+    },
+    {
+      "path": "src/V1/ListWorkflowTemplatesResponse.php"
+    },
+    {
+      "path": "src/V1/WorkflowNode.php"
+    },
+    {
+      "path": "src/V1/ManagedGroupConfig.php"
+    },
+    {
+      "path": "src/V1/DeleteClusterRequest.php"
+    },
+    {
+      "path": "src/V1/ListClustersRequest.php"
+    },
+    {
+      "path": "src/V1/ClusterStatus.php"
+    },
+    {
+      "path": "src/V1/SoftwareConfig.php"
+    },
+    {
+      "path": "src/V1/ClusterControllerGrpcClient.php"
+    },
+    {
+      "path": "src/V1/JobPlacement.php"
+    },
+    {
+      "path": "src/V1/PySparkJob.php"
+    },
+    {
+      "path": "src/V1/ClusterStatus_Substate.php"
+    },
+    {
+      "path": "src/V1/CancelJobRequest.php"
+    },
+    {
+      "path": "src/V1/ClusterControllerClient.php"
+    },
+    {
+      "path": "src/V1/SparkSqlJob.php"
+    },
+    {
+      "path": "src/V1/ClusterMetrics.php"
+    },
+    {
+      "path": "src/V1/ClusterStatus_State.php"
+    },
+    {
+      "path": "src/V1/ParameterValidation.php"
+    },
+    {
+      "path": "src/V1/PigJob.php"
+    },
+    {
+      "path": "src/V1/JobControllerClient.php"
+    },
+    {
+      "path": "src/V1/ListClustersResponse.php"
+    },
+    {
+      "path": "src/V1/DeleteJobRequest.php"
+    },
+    {
+      "path": "src/V1/InstantiateInlineWorkflowTemplateRequest.php"
+    },
+    {
+      "path": "src/V1/InstanceGroupAutoscalingPolicyConfig.php"
+    },
+    {
+      "path": "src/V1/CreateAutoscalingPolicyRequest.php"
+    },
+    {
+      "path": "src/V1/BasicYarnAutoscalingConfig.php"
+    },
+    {
+      "path": "src/V1/HiveJob.php"
+    },
+    {
+      "path": "src/V1/ListWorkflowTemplatesRequest.php"
+    },
+    {
+      "path": "src/V1/ManagedCluster.php"
+    },
+    {
+      "path": "src/V1/QueryList.php"
+    },
+    {
+      "path": "src/V1/TemplateParameter.php"
+    },
+    {
+      "path": "src/V1/GetJobRequest.php"
+    },
+    {
+      "path": "src/V1/ClusterOperationStatus.php"
+    },
+    {
+      "path": "src/V1/WorkflowTemplateServiceClient.php"
+    },
+    {
+      "path": "src/V1/EncryptionConfig.php"
+    },
+    {
+      "path": "src/V1/DeleteAutoscalingPolicyRequest.php"
+    },
+    {
+      "path": "src/V1/WorkflowNode_NodeState.php"
+    },
+    {
+      "path": "src/V1/JobStatus_State.php"
+    },
+    {
+      "path": "src/V1/Cluster.php"
+    },
+    {
+      "path": "src/V1/SecurityConfig.php"
+    },
+    {
+      "path": "src/V1/ListJobsResponse.php"
+    },
+    {
+      "path": "src/V1/ListJobsRequest_JobStateMatcher.php"
+    },
+    {
+      "path": "src/V1/JobReference.php"
+    },
+    {
+      "path": "src/V1/WorkflowMetadata.php"
+    },
+    {
+      "path": "src/V1/Component.php"
+    },
+    {
+      "path": "src/V1/AutoscalingPolicyServiceGrpcClient.php"
+    },
+    {
+      "path": "src/V1/UpdateJobRequest.php"
+    },
+    {
+      "path": "src/V1/GetWorkflowTemplateRequest.php"
+    },
+    {
+      "path": "src/V1/AutoscalingPolicy.php"
+    },
+    {
+      "path": "src/V1/WorkflowTemplate.php"
+    },
+    {
+      "path": "src/V1/NodeInitializationAction.php"
+    },
+    {
+      "path": "src/V1/BasicAutoscalingAlgorithm.php"
+    },
+    {
+      "path": "src/V1/SubmitJobRequest.php"
+    },
+    {
+      "path": "src/V1/Job.php"
+    },
+    {
+      "path": "src/V1/WorkflowGraph.php"
+    },
+    {
+      "path": "src/V1/JobControllerGrpcClient.php"
+    },
+    {
+      "path": "src/V1/ValueValidation.php"
+    },
+    {
+      "path": "src/V1/WorkflowTemplateServiceGrpcClient.php"
+    },
+    {
+      "path": "src/V1/UpdateAutoscalingPolicyRequest.php"
+    },
+    {
+      "path": "src/V1/KerberosConfig.php"
+    },
+    {
+      "path": "src/V1/WorkflowMetadata_State.php"
+    },
+    {
+      "path": "src/V1/InstantiateWorkflowTemplateRequest.php"
+    },
+    {
+      "path": "src/V1/ClusterOperation.php"
+    },
+    {
+      "path": "src/V1/DiskConfig.php"
+    },
+    {
+      "path": "src/V1/ClusterConfig.php"
+    },
+    {
+      "path": "src/V1/CreateClusterRequest.php"
+    },
+    {
+      "path": "src/V1/ClusterOperationMetadata.php"
+    },
+    {
+      "path": "src/V1/OrderedJob.php"
+    },
+    {
+      "path": "src/V1/InstanceGroupConfig.php"
+    },
+    {
+      "path": "src/V1/RegexValidation.php"
+    },
+    {
+      "path": "src/V1/JobScheduling.php"
+    },
+    {
+      "path": "src/V1/ListJobsRequest.php"
+    },
+    {
+      "path": "src/V1/LoggingConfig.php"
+    },
+    {
+      "path": "src/V1/DiagnoseClusterResults.php"
+    },
+    {
+      "path": "src/V1/AutoscalingConfig.php"
+    },
+    {
+      "path": "src/V1/Gapic/ClusterControllerGapicClient.php"
+    },
+    {
+      "path": "src/V1/Gapic/WorkflowTemplateServiceGapicClient.php"
+    },
+    {
+      "path": "src/V1/Gapic/JobControllerGapicClient.php"
+    },
+    {
+      "path": "src/V1/WorkflowNode/NodeState.php"
+    },
+    {
+      "path": "src/V1/YarnApplication/State.php"
+    },
+    {
+      "path": "src/V1/resources/cluster_controller_client_config.json"
+    },
+    {
+      "path": "src/V1/resources/workflow_template_service_client_config.json"
+    },
+    {
+      "path": "src/V1/resources/workflow_template_service_rest_client_config.php"
+    },
+    {
+      "path": "src/V1/resources/job_controller_descriptor_config.php"
+    },
+    {
+      "path": "src/V1/resources/job_controller_rest_client_config.php"
+    },
+    {
+      "path": "src/V1/resources/cluster_controller_descriptor_config.php"
+    },
+    {
+      "path": "src/V1/resources/cluster_controller_rest_client_config.php"
+    },
+    {
+      "path": "src/V1/resources/workflow_template_service_descriptor_config.php"
+    },
+    {
+      "path": "src/V1/resources/job_controller_client_config.json"
+    },
+    {
+      "path": "src/V1/ClusterStatus/State.php"
+    },
+    {
+      "path": "src/V1/ClusterStatus/Substate.php"
+    },
+    {
+      "path": "src/V1/JobStatus/State.php"
+    },
+    {
+      "path": "src/V1/JobStatus/Substate.php"
+    },
+    {
+      "path": "src/V1/ListJobsRequest/JobStateMatcher.php"
+    },
+    {
+      "path": "src/V1/LoggingConfig/Level.php"
+    },
+    {
+      "path": "src/V1/ClusterOperationStatus/State.php"
+    },
+    {
+      "path": "src/V1/WorkflowMetadata/State.php"
+    },
+    {
+      "path": "src/V1beta2/GetAutoscalingPolicyRequest.php"
+    },
+    {
+      "path": "src/V1beta2/UpdateWorkflowTemplateRequest.php"
+    },
+    {
+      "path": "src/V1beta2/ListAutoscalingPoliciesRequest.php"
+    },
+    {
+      "path": "src/V1beta2/LifecycleConfig.php"
+    },
+    {
+      "path": "src/V1beta2/AcceleratorConfig.php"
+    },
+    {
+      "path": "src/V1beta2/ClusterSelector.php"
+    },
+    {
+      "path": "src/V1beta2/AutoscalingPolicyServiceClient.php"
+    },
+    {
+      "path": "src/V1beta2/ReservationAffinity.php"
+    },
+    {
+      "path": "src/V1beta2/DeleteWorkflowTemplateRequest.php"
+    },
+    {
+      "path": "src/V1beta2/GetClusterRequest.php"
+    },
+    {
+      "path": "src/V1beta2/YarnApplication.php"
+    },
+    {
+      "path": "src/V1beta2/SparkRJob.php"
+    },
+    {
+      "path": "src/V1beta2/SparkJob.php"
+    },
+    {
+      "path": "src/V1beta2/HadoopJob.php"
+    },
+    {
+      "path": "src/V1beta2/README.md"
+    },
+    {
+      "path": "src/V1beta2/ListAutoscalingPoliciesResponse.php"
+    },
+    {
+      "path": "src/V1beta2/CreateWorkflowTemplateRequest.php"
+    },
+    {
+      "path": "src/V1beta2/LoggingConfig_Level.php"
+    },
+    {
+      "path": "src/V1beta2/WorkflowTemplatePlacement.php"
+    },
+    {
+      "path": "src/V1beta2/UpdateClusterRequest.php"
+    },
+    {
+      "path": "src/V1beta2/ClusterOperationStatus_State.php"
+    },
+    {
+      "path": "src/V1beta2/JobStatus.php"
+    },
+    {
+      "path": "src/V1beta2/DiagnoseClusterRequest.php"
+    },
+    {
+      "path": "src/V1beta2/JobStatus_Substate.php"
+    },
+    {
+      "path": "src/V1beta2/YarnApplication_State.php"
+    },
+    {
+      "path": "src/V1beta2/GceClusterConfig.php"
+    },
+    {
+      "path": "src/V1beta2/ListWorkflowTemplatesResponse.php"
+    },
+    {
+      "path": "src/V1beta2/WorkflowNode.php"
+    },
+    {
+      "path": "src/V1beta2/ManagedGroupConfig.php"
+    },
+    {
+      "path": "src/V1beta2/DeleteClusterRequest.php"
+    },
+    {
+      "path": "src/V1beta2/ListClustersRequest.php"
+    },
+    {
+      "path": "src/V1beta2/ClusterStatus.php"
+    },
+    {
+      "path": "src/V1beta2/SoftwareConfig.php"
+    },
+    {
+      "path": "src/V1beta2/ClusterControllerGrpcClient.php"
+    },
+    {
+      "path": "src/V1beta2/JobPlacement.php"
+    },
+    {
+      "path": "src/V1beta2/PySparkJob.php"
+    },
+    {
+      "path": "src/V1beta2/ClusterStatus_Substate.php"
+    },
+    {
+      "path": "src/V1beta2/CancelJobRequest.php"
+    },
+    {
+      "path": "src/V1beta2/ClusterControllerClient.php"
+    },
+    {
+      "path": "src/V1beta2/SparkSqlJob.php"
+    },
+    {
+      "path": "src/V1beta2/ClusterMetrics.php"
+    },
+    {
+      "path": "src/V1beta2/ClusterStatus_State.php"
+    },
+    {
+      "path": "src/V1beta2/ParameterValidation.php"
+    },
+    {
+      "path": "src/V1beta2/PigJob.php"
+    },
+    {
+      "path": "src/V1beta2/JobControllerClient.php"
+    },
+    {
+      "path": "src/V1beta2/ListClustersResponse.php"
+    },
+    {
+      "path": "src/V1beta2/DeleteJobRequest.php"
+    },
+    {
+      "path": "src/V1beta2/InstantiateInlineWorkflowTemplateRequest.php"
+    },
+    {
+      "path": "src/V1beta2/InstanceGroupAutoscalingPolicyConfig.php"
+    },
+    {
+      "path": "src/V1beta2/CreateAutoscalingPolicyRequest.php"
+    },
+    {
+      "path": "src/V1beta2/BasicYarnAutoscalingConfig.php"
+    },
+    {
+      "path": "src/V1beta2/HiveJob.php"
+    },
+    {
+      "path": "src/V1beta2/ListWorkflowTemplatesRequest.php"
+    },
+    {
+      "path": "src/V1beta2/ManagedCluster.php"
+    },
+    {
+      "path": "src/V1beta2/QueryList.php"
+    },
+    {
+      "path": "src/V1beta2/TemplateParameter.php"
+    },
+    {
+      "path": "src/V1beta2/ReservationAffinity_Type.php"
+    },
+    {
+      "path": "src/V1beta2/GetJobRequest.php"
+    },
+    {
+      "path": "src/V1beta2/ClusterOperationStatus.php"
+    },
+    {
+      "path": "src/V1beta2/WorkflowTemplateServiceClient.php"
+    },
+    {
+      "path": "src/V1beta2/EncryptionConfig.php"
+    },
+    {
+      "path": "src/V1beta2/DeleteAutoscalingPolicyRequest.php"
+    },
+    {
+      "path": "src/V1beta2/WorkflowNode_NodeState.php"
+    },
+    {
+      "path": "src/V1beta2/JobStatus_State.php"
+    },
+    {
+      "path": "src/V1beta2/Cluster.php"
+    },
+    {
+      "path": "src/V1beta2/SecurityConfig.php"
+    },
+    {
+      "path": "src/V1beta2/ListJobsResponse.php"
+    },
+    {
+      "path": "src/V1beta2/ListJobsRequest_JobStateMatcher.php"
+    },
+    {
+      "path": "src/V1beta2/JobReference.php"
+    },
+    {
+      "path": "src/V1beta2/WorkflowMetadata.php"
+    },
+    {
+      "path": "src/V1beta2/Component.php"
+    },
+    {
+      "path": "src/V1beta2/AutoscalingPolicyServiceGrpcClient.php"
+    },
+    {
+      "path": "src/V1beta2/UpdateJobRequest.php"
+    },
+    {
+      "path": "src/V1beta2/GetWorkflowTemplateRequest.php"
+    },
+    {
+      "path": "src/V1beta2/AutoscalingPolicy.php"
+    },
+    {
+      "path": "src/V1beta2/WorkflowTemplate.php"
+    },
+    {
+      "path": "src/V1beta2/NodeInitializationAction.php"
+    },
+    {
+      "path": "src/V1beta2/BasicAutoscalingAlgorithm.php"
+    },
+    {
+      "path": "src/V1beta2/SubmitJobRequest.php"
+    },
+    {
+      "path": "src/V1beta2/Job.php"
+    },
+    {
+      "path": "src/V1beta2/WorkflowGraph.php"
+    },
+    {
+      "path": "src/V1beta2/JobControllerGrpcClient.php"
+    },
+    {
+      "path": "src/V1beta2/ValueValidation.php"
+    },
+    {
+      "path": "src/V1beta2/WorkflowTemplateServiceGrpcClient.php"
+    },
+    {
+      "path": "src/V1beta2/UpdateAutoscalingPolicyRequest.php"
+    },
+    {
+      "path": "src/V1beta2/KerberosConfig.php"
+    },
+    {
+      "path": "src/V1beta2/WorkflowMetadata_State.php"
+    },
+    {
+      "path": "src/V1beta2/InstantiateWorkflowTemplateRequest.php"
+    },
+    {
+      "path": "src/V1beta2/ClusterOperation.php"
+    },
+    {
+      "path": "src/V1beta2/DiskConfig.php"
+    },
+    {
+      "path": "src/V1beta2/ClusterConfig.php"
+    },
+    {
+      "path": "src/V1beta2/CreateClusterRequest.php"
+    },
+    {
+      "path": "src/V1beta2/ClusterOperationMetadata.php"
+    },
+    {
+      "path": "src/V1beta2/EndpointConfig.php"
+    },
+    {
+      "path": "src/V1beta2/OrderedJob.php"
+    },
+    {
+      "path": "src/V1beta2/InstanceGroupConfig.php"
+    },
+    {
+      "path": "src/V1beta2/RegexValidation.php"
+    },
+    {
+      "path": "src/V1beta2/JobScheduling.php"
+    },
+    {
+      "path": "src/V1beta2/ListJobsRequest.php"
+    },
+    {
+      "path": "src/V1beta2/LoggingConfig.php"
+    },
+    {
+      "path": "src/V1beta2/DiagnoseClusterResults.php"
+    },
+    {
+      "path": "src/V1beta2/AutoscalingConfig.php"
+    },
+    {
+      "path": "src/V1beta2/Gapic/ClusterControllerGapicClient.php"
+    },
+    {
+      "path": "src/V1beta2/Gapic/WorkflowTemplateServiceGapicClient.php"
+    },
+    {
+      "path": "src/V1beta2/Gapic/AutoscalingPolicyServiceGapicClient.php"
+    },
+    {
+      "path": "src/V1beta2/Gapic/JobControllerGapicClient.php"
+    },
+    {
+      "path": "src/V1beta2/WorkflowNode/NodeState.php"
+    },
+    {
+      "path": "src/V1beta2/YarnApplication/State.php"
+    },
+    {
+      "path": "src/V1beta2/resources/cluster_controller_client_config.json"
+    },
+    {
+      "path": "src/V1beta2/resources/autoscaling_policy_service_rest_client_config.php"
+    },
+    {
+      "path": "src/V1beta2/resources/workflow_template_service_client_config.json"
+    },
+    {
+      "path": "src/V1beta2/resources/workflow_template_service_rest_client_config.php"
+    },
+    {
+      "path": "src/V1beta2/resources/job_controller_descriptor_config.php"
+    },
+    {
+      "path": "src/V1beta2/resources/job_controller_rest_client_config.php"
+    },
+    {
+      "path": "src/V1beta2/resources/autoscaling_policy_service_descriptor_config.php"
+    },
+    {
+      "path": "src/V1beta2/resources/cluster_controller_descriptor_config.php"
+    },
+    {
+      "path": "src/V1beta2/resources/cluster_controller_rest_client_config.php"
+    },
+    {
+      "path": "src/V1beta2/resources/autoscaling_policy_service_client_config.json"
+    },
+    {
+      "path": "src/V1beta2/resources/workflow_template_service_descriptor_config.php"
+    },
+    {
+      "path": "src/V1beta2/resources/job_controller_client_config.json"
+    },
+    {
+      "path": "src/V1beta2/ReservationAffinity/Type.php"
+    },
+    {
+      "path": "src/V1beta2/ClusterStatus/State.php"
+    },
+    {
+      "path": "src/V1beta2/ClusterStatus/Substate.php"
+    },
+    {
+      "path": "src/V1beta2/JobStatus/State.php"
+    },
+    {
+      "path": "src/V1beta2/JobStatus/Substate.php"
+    },
+    {
+      "path": "src/V1beta2/ListJobsRequest/JobStateMatcher.php"
+    },
+    {
+      "path": "src/V1beta2/LoggingConfig/Level.php"
+    },
+    {
+      "path": "src/V1beta2/ClusterOperationStatus/State.php"
+    },
+    {
+      "path": "src/V1beta2/WorkflowMetadata/State.php"
+    },
+    {
+      "path": "__pycache__/synth.cpython-36.pyc"
     }
   ]
 }

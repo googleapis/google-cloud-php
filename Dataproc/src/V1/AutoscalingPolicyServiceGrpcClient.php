@@ -21,7 +21,7 @@ namespace Google\Cloud\Dataproc\V1;
 
 /**
  * The API interface for managing autoscaling policies in the
- * Google Cloud Dataproc API.
+ * Dataproc API.
  */
 class AutoscalingPolicyServiceGrpcClient extends \Grpc\BaseStub {
 

@@ -21,7 +21,7 @@ namespace Google\Cloud\Dataproc\V1;
 
 /**
  * The API interface for managing Workflow Templates in the
- * Cloud Dataproc API.
+ * Dataproc API.
  */
 class WorkflowTemplateServiceGrpcClient extends \Grpc\BaseStub {
 
