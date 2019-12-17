@@ -45,6 +45,16 @@ class Asset extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.iam.v1.Policy iam_policy = 4;</code>
      */
     private $iam_policy = null;
+    /**
+     * Asset's ancestry path in Cloud Resource Manager (CRM) hierarchy,
+     * represented as a list of relative resource names. Ancestry path starts with
+     * the closest CRM ancestor and ends at root. If the asset is a CRM
+     * project/folder/organization, this starts from the asset itself.
+     * Example: ["projects/123456789", "folders/5432", "organizations/1234"]
+     *
+     * Generated from protobuf field <code>repeated string ancestors = 10;</code>
+     */
+    private $ancestors;
 
     /**
      * Constructor.
@@ -65,6 +75,12 @@ class Asset extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Iam\V1\Policy $iam_policy
      *           Representation of the actual Cloud IAM policy set on a cloud resource. For
      *           each resource, there must be at most one Cloud IAM policy set on it.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $ancestors
+     *           Asset's ancestry path in Cloud Resource Manager (CRM) hierarchy,
+     *           represented as a list of relative resource names. Ancestry path starts with
+     *           the closest CRM ancestor and ends at root. If the asset is a CRM
+     *           project/folder/organization, this starts from the asset itself.
+     *           Example: ["projects/123456789", "folders/5432", "organizations/1234"]
      * }
      */
     public function __construct($data = NULL) {
@@ -182,6 +198,40 @@ class Asset extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Iam\V1\Policy::class);
         $this->iam_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Asset's ancestry path in Cloud Resource Manager (CRM) hierarchy,
+     * represented as a list of relative resource names. Ancestry path starts with
+     * the closest CRM ancestor and ends at root. If the asset is a CRM
+     * project/folder/organization, this starts from the asset itself.
+     * Example: ["projects/123456789", "folders/5432", "organizations/1234"]
+     *
+     * Generated from protobuf field <code>repeated string ancestors = 10;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAncestors()
+    {
+        return $this->ancestors;
+    }
+
+    /**
+     * Asset's ancestry path in Cloud Resource Manager (CRM) hierarchy,
+     * represented as a list of relative resource names. Ancestry path starts with
+     * the closest CRM ancestor and ends at root. If the asset is a CRM
+     * project/folder/organization, this starts from the asset itself.
+     * Example: ["projects/123456789", "folders/5432", "organizations/1234"]
+     *
+     * Generated from protobuf field <code>repeated string ancestors = 10;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAncestors($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->ancestors = $arr;
 
         return $this;
     }

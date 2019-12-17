@@ -31,11 +31,25 @@ class ContentType
      * Generated from protobuf enum <code>IAM_POLICY = 2;</code>
      */
     const IAM_POLICY = 2;
+    /**
+     * The Cloud Organization Policy set on an asset.
+     *
+     * Generated from protobuf enum <code>ORG_POLICY = 4;</code>
+     */
+    const ORG_POLICY = 4;
+    /**
+     * The Cloud Access context mananger Policy set on an asset.
+     *
+     * Generated from protobuf enum <code>ACCESS_POLICY = 5;</code>
+     */
+    const ACCESS_POLICY = 5;
 
     private static $valueToName = [
         self::CONTENT_TYPE_UNSPECIFIED => 'CONTENT_TYPE_UNSPECIFIED',
         self::RESOURCE => 'RESOURCE',
         self::IAM_POLICY => 'IAM_POLICY',
+        self::ORG_POLICY => 'ORG_POLICY',
+        self::ACCESS_POLICY => 'ACCESS_POLICY',
     ];
 
     public static function name($value)

@@ -21,7 +21,7 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
      * "projects/my-project-id"), or a project number (such as "projects/12345"),
      * or a folder number (such as "folders/123").
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -36,9 +36,9 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
     private $read_time = null;
     /**
      * A list of asset types of which to take a snapshot for. For example:
-     * "compute.googleapis.com/Disk". If specified, only matching assets will be returned.
-     * See [Introduction to Cloud Asset
-     * Inventory](https://cloud.google.com/resource-manager/docs/cloud-asset-inventory/overview)
+     * "compute.googleapis.com/Disk". If specified, only matching assets will be
+     * returned. See [Introduction to Cloud Asset
+     * Inventory](https://cloud.google.com/asset-inventory/docs/overview)
      * for all supported asset types.
      *
      * Generated from protobuf field <code>repeated string asset_types = 3;</code>
@@ -55,7 +55,7 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
      * Required. Output configuration indicating where the results will be output
      * to. All results will be in newline delimited JSON format.
      *
-     * Generated from protobuf field <code>.google.cloud.asset.v1.OutputConfig output_config = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.asset.v1.OutputConfig output_config = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $output_config = null;
 
@@ -78,9 +78,9 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
      *           query may get different results.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $asset_types
      *           A list of asset types of which to take a snapshot for. For example:
-     *           "compute.googleapis.com/Disk". If specified, only matching assets will be returned.
-     *           See [Introduction to Cloud Asset
-     *           Inventory](https://cloud.google.com/resource-manager/docs/cloud-asset-inventory/overview)
+     *           "compute.googleapis.com/Disk". If specified, only matching assets will be
+     *           returned. See [Introduction to Cloud Asset
+     *           Inventory](https://cloud.google.com/asset-inventory/docs/overview)
      *           for all supported asset types.
      *     @type int $content_type
      *           Asset content type. If not specified, no content but the asset name will be
@@ -101,7 +101,7 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
      * "projects/my-project-id"), or a project number (such as "projects/12345"),
      * or a folder number (such as "folders/123").
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -115,7 +115,7 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
      * "projects/my-project-id"), or a project number (such as "projects/12345"),
      * or a folder number (such as "folders/123").
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -163,9 +163,9 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * A list of asset types of which to take a snapshot for. For example:
-     * "compute.googleapis.com/Disk". If specified, only matching assets will be returned.
-     * See [Introduction to Cloud Asset
-     * Inventory](https://cloud.google.com/resource-manager/docs/cloud-asset-inventory/overview)
+     * "compute.googleapis.com/Disk". If specified, only matching assets will be
+     * returned. See [Introduction to Cloud Asset
+     * Inventory](https://cloud.google.com/asset-inventory/docs/overview)
      * for all supported asset types.
      *
      * Generated from protobuf field <code>repeated string asset_types = 3;</code>
@@ -178,9 +178,9 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * A list of asset types of which to take a snapshot for. For example:
-     * "compute.googleapis.com/Disk". If specified, only matching assets will be returned.
-     * See [Introduction to Cloud Asset
-     * Inventory](https://cloud.google.com/resource-manager/docs/cloud-asset-inventory/overview)
+     * "compute.googleapis.com/Disk". If specified, only matching assets will be
+     * returned. See [Introduction to Cloud Asset
+     * Inventory](https://cloud.google.com/asset-inventory/docs/overview)
      * for all supported asset types.
      *
      * Generated from protobuf field <code>repeated string asset_types = 3;</code>
@@ -227,7 +227,7 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
      * Required. Output configuration indicating where the results will be output
      * to. All results will be in newline delimited JSON format.
      *
-     * Generated from protobuf field <code>.google.cloud.asset.v1.OutputConfig output_config = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.asset.v1.OutputConfig output_config = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Asset\V1\OutputConfig
      */
     public function getOutputConfig()
@@ -239,7 +239,7 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
      * Required. Output configuration indicating where the results will be output
      * to. All results will be in newline delimited JSON format.
      *
-     * Generated from protobuf field <code>.google.cloud.asset.v1.OutputConfig output_config = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.asset.v1.OutputConfig output_config = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Asset\V1\OutputConfig $var
      * @return $this
      */

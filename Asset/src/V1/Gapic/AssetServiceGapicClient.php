@@ -40,10 +40,19 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Asset\V1\BatchGetAssetsHistoryRequest;
 use Google\Cloud\Asset\V1\BatchGetAssetsHistoryResponse;
 use Google\Cloud\Asset\V1\ContentType;
+use Google\Cloud\Asset\V1\CreateFeedRequest;
+use Google\Cloud\Asset\V1\DeleteFeedRequest;
 use Google\Cloud\Asset\V1\ExportAssetsRequest;
+use Google\Cloud\Asset\V1\Feed;
+use Google\Cloud\Asset\V1\GetFeedRequest;
+use Google\Cloud\Asset\V1\ListFeedsRequest;
+use Google\Cloud\Asset\V1\ListFeedsResponse;
 use Google\Cloud\Asset\V1\OutputConfig;
 use Google\Cloud\Asset\V1\TimeWindow;
+use Google\Cloud\Asset\V1\UpdateFeedRequest;
 use Google\LongRunning\Operation;
+use Google\Protobuf\FieldMask;
+use Google\Protobuf\GPBEmpty;
 use Google\Protobuf\Timestamp;
 
 /**
@@ -128,6 +137,7 @@ class AssetServiceGapicClient
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
+    private static $feedNameTemplate;
     private static $projectNameTemplate;
     private static $pathTemplateMap;
 
@@ -152,6 +162,15 @@ class AssetServiceGapicClient
         ];
     }
 
+    private static function getFeedNameTemplate()
+    {
+        if (null == self::$feedNameTemplate) {
+            self::$feedNameTemplate = new PathTemplate('projects/{project}/feeds/{feed}');
+        }
+
+        return self::$feedNameTemplate;
+    }
+
     private static function getProjectNameTemplate()
     {
         if (null == self::$projectNameTemplate) {
@@ -165,11 +184,30 @@ class AssetServiceGapicClient
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
+                'feed' => self::getFeedNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a feed resource.
+     *
+     * @param string $project
+     * @param string $feed
+     *
+     * @return string The formatted feed resource.
+     * @experimental
+     */
+    public static function feedName($project, $feed)
+    {
+        return self::getFeedNameTemplate()->render([
+            'project' => $project,
+            'feed' => $feed,
+        ]);
     }
 
     /**
@@ -192,6 +230,7 @@ class AssetServiceGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - feed: projects/{project}/feeds/{feed}
      * - project: projects/{project}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
@@ -389,9 +428,9 @@ class AssetServiceGapicClient
      *          query may get different results.
      *     @type string[] $assetTypes
      *          A list of asset types of which to take a snapshot for. For example:
-     *          "compute.googleapis.com/Disk". If specified, only matching assets will be returned.
-     *          See [Introduction to Cloud Asset
-     *          Inventory](https://cloud.google.com/resource-manager/docs/cloud-asset-inventory/overview)
+     *          "compute.googleapis.com/Disk". If specified, only matching assets will be
+     *          returned. See [Introduction to Cloud Asset
+     *          Inventory](https://cloud.google.com/asset-inventory/docs/overview)
      *          for all supported asset types.
      *     @type int $contentType
      *          Asset content type. If not specified, no content but the asset name will be
@@ -464,7 +503,7 @@ class AssetServiceGapicClient
      * @param string     $parent         Required. The relative name of the root asset. It can only be an
      *                                   organization number (such as "organizations/123"), a project ID (such as
      *                                   "projects/my-project-id")", or a project number (such as "projects/12345").
-     * @param int        $contentType    Required. The content type.
+     * @param int        $contentType    Optional. The content type.
      *                                   For allowed values, use constants defined on {@see \Google\Cloud\Asset\V1\ContentType}
      * @param TimeWindow $readTimeWindow Optional. The time window for the asset history. Both start_time and
      *                                   end_time are optional and if set, it must be after 2018-10-02 UTC. If
@@ -480,7 +519,8 @@ class AssetServiceGapicClient
      *          `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
      *          See [Resource
      *          Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
-     *          and [Resource Name Format](https://cloud.google.com/resource-manager/docs/cloud-asset-inventory/resource-name-format)
+     *          and [Resource Name
+     *          Format](https://cloud.google.com/asset-inventory/docs/resource-name-format)
      *          for more info.
      *
      *          The request becomes a no-op if the asset name list is empty, and the max
@@ -517,6 +557,287 @@ class AssetServiceGapicClient
         return $this->startCall(
             'BatchGetAssetsHistory',
             BatchGetAssetsHistoryResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Creates a feed in a parent project/folder/organization to listen to its
+     * asset updates.
+     *
+     * Sample code:
+     * ```
+     * $assetServiceClient = new AssetServiceClient();
+     * try {
+     *     $parent = '';
+     *     $feedId = '';
+     *     $feed = new Feed();
+     *     $response = $assetServiceClient->createFeed($parent, $feedId, $feed);
+     * } finally {
+     *     $assetServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The name of the project/folder/organization where this feed
+     *                             should be created in. It can only be an organization number (such as
+     *                             "organizations/123"), a folder number (such as "folders/123"), a project ID
+     *                             (such as "projects/my-project-id")", or a project number (such as
+     *                             "projects/12345").
+     * @param string $feedId       Required. This is the client-assigned asset feed identifier and it needs to
+     *                             be unique under a specific parent project/folder/organization.
+     * @param Feed   $feed         Required. The feed details. The field `name` must be empty and it will be generated
+     *                             in the format of:
+     *                             projects/project_number/feeds/feed_id
+     *                             folders/folder_number/feeds/feed_id
+     *                             organizations/organization_number/feeds/feed_id
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Asset\V1\Feed
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function createFeed($parent, $feedId, $feed, array $optionalArgs = [])
+    {
+        $request = new CreateFeedRequest();
+        $request->setParent($parent);
+        $request->setFeedId($feedId);
+        $request->setFeed($feed);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'CreateFeed',
+            Feed::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Gets details about an asset feed.
+     *
+     * Sample code:
+     * ```
+     * $assetServiceClient = new AssetServiceClient();
+     * try {
+     *     $formattedName = $assetServiceClient->feedName('[PROJECT]', '[FEED]');
+     *     $response = $assetServiceClient->getFeed($formattedName);
+     * } finally {
+     *     $assetServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the Feed and it must be in the format of:
+     *                             projects/project_number/feeds/feed_id
+     *                             folders/folder_number/feeds/feed_id
+     *                             organizations/organization_number/feeds/feed_id
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Asset\V1\Feed
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function getFeed($name, array $optionalArgs = [])
+    {
+        $request = new GetFeedRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'GetFeed',
+            Feed::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Lists all asset feeds in a parent project/folder/organization.
+     *
+     * Sample code:
+     * ```
+     * $assetServiceClient = new AssetServiceClient();
+     * try {
+     *     $parent = '';
+     *     $response = $assetServiceClient->listFeeds($parent);
+     * } finally {
+     *     $assetServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The parent project/folder/organization whose feeds are to be
+     *                             listed. It can only be using project/folder/organization number (such as
+     *                             "folders/12345")", or a project ID (such as "projects/my-project-id").
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Asset\V1\ListFeedsResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function listFeeds($parent, array $optionalArgs = [])
+    {
+        $request = new ListFeedsRequest();
+        $request->setParent($parent);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'ListFeeds',
+            ListFeedsResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Updates an asset feed configuration.
+     *
+     * Sample code:
+     * ```
+     * $assetServiceClient = new AssetServiceClient();
+     * try {
+     *     $feed = new Feed();
+     *     $updateMask = new FieldMask();
+     *     $response = $assetServiceClient->updateFeed($feed, $updateMask);
+     * } finally {
+     *     $assetServiceClient->close();
+     * }
+     * ```
+     *
+     * @param Feed      $feed         Required. The new values of feed details. It must match an existing feed and the
+     *                                field `name` must be in the format of:
+     *                                projects/project_number/feeds/feed_id or
+     *                                folders/folder_number/feeds/feed_id or
+     *                                organizations/organization_number/feeds/feed_id.
+     * @param FieldMask $updateMask   Required. Only updates the `feed` fields indicated by this mask.
+     *                                The field mask must not be empty, and it must not contain fields that
+     *                                are immutable or only set by the server.
+     * @param array     $optionalArgs {
+     *                                Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Asset\V1\Feed
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function updateFeed($feed, $updateMask, array $optionalArgs = [])
+    {
+        $request = new UpdateFeedRequest();
+        $request->setFeed($feed);
+        $request->setUpdateMask($updateMask);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'feed.name' => $request->getFeed()->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'UpdateFeed',
+            Feed::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Deletes an asset feed.
+     *
+     * Sample code:
+     * ```
+     * $assetServiceClient = new AssetServiceClient();
+     * try {
+     *     $formattedName = $assetServiceClient->feedName('[PROJECT]', '[FEED]');
+     *     $assetServiceClient->deleteFeed($formattedName);
+     * } finally {
+     *     $assetServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the feed and it must be in the format of:
+     *                             projects/project_number/feeds/feed_id
+     *                             folders/folder_number/feeds/feed_id
+     *                             organizations/organization_number/feeds/feed_id
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function deleteFeed($name, array $optionalArgs = [])
+    {
+        $request = new DeleteFeedRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteFeed',
+            GPBEmpty::class,
             $optionalArgs,
             $request
         )->wait();
