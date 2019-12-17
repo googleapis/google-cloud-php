@@ -1,5 +1,107 @@
 # Changelog
 
+## 0.121.0
+
+<details><summary>google/cloud-asset 0.5.0</summary>
+
+
+
+### Features
+
+* add bigquery destination, update GCS destination, support Real Time Feed API ([#2463](https://www.github.com/googleapis/google-cloud-php/issues/2463)) ([e80f302](https://www.github.com/googleapis/google-cloud-php/commit/e80f30227ceac7f8adaf3c19d85708ab28bf2db2))
+
+</details>
+
+<details><summary>google/cloud-bigquerydatatransfer 0.15.0</summary>
+
+
+
+### Features
+
+* update client ([#2507](https://www.github.com/googleapis/google-cloud-php/issues/2507)) ([c5b25d4](https://www.github.com/googleapis/google-cloud-php/commit/c5b25d4419927bcf7cb56af00c91b282d68b2336))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.1.1</summary>
+
+
+
+### Bug Fixes
+
+* demonstrate row key in sample ([#2501](https://www.github.com/googleapis/google-cloud-php/issues/2501)) ([331799f](https://www.github.com/googleapis/google-cloud-php/commit/331799f3652c85eb7a82fa5e199f8cf17256367c))
+
+</details>
+
+<details><summary>google/cloud-datastore 1.10.1</summary>
+
+
+
+### Bug Fixes
+
+* add http annotations for operations ([#2488](https://www.github.com/googleapis/google-cloud-php/issues/2488)) ([0065969](https://www.github.com/googleapis/google-cloud-php/commit/006596900e32e398447b6854e65bc508e9a14b89))
+
+</details>
+
+<details><summary>google/cloud-dlp 0.24.0</summary>
+
+
+
+### Features
+
+* add locationId to request messages ([#2489](https://www.github.com/googleapis/google-cloud-php/issues/2489)) ([1ed49dd](https://www.github.com/googleapis/google-cloud-php/commit/1ed49dd7dde7dbcde018c5f29f5b3e8f86dc2f15))
+
+</details>
+
+<details><summary>google/cloud-speech 0.29.0</summary>
+
+
+
+### Features
+
+* update timeouts ([#2505](https://www.github.com/googleapis/google-cloud-php/issues/2505)) ([4b9377f](https://www.github.com/googleapis/google-cloud-php/commit/4b9377fe252a4cb772eb9d7cacdb36da91ea7abf))
+
+</details>
+
+<details><summary>google/cloud-storage 1.16.1</summary>
+
+
+
+### Bug Fixes
+
+* fix is_dir() and scandir() behavior in stream wrapper ([#2496](https://www.github.com/googleapis/google-cloud-php/issues/2496)) ([67f0029](https://www.github.com/googleapis/google-cloud-php/commit/67f002993127efd66e03f03519c8290c12fb35af))
+
+</details>
+
+<details><summary>google/cloud-talent 0.8.2</summary>
+
+
+
+### Bug Fixes
+
+* add back in HTTP bindings for operation calls ([#2495](https://www.github.com/googleapis/google-cloud-php/issues/2495)) ([cb280a7](https://www.github.com/googleapis/google-cloud-php/commit/cb280a7d50b9fffdec5d8a5b8a1dff98163b3089))
+
+</details>
+
+<details><summary>google/cloud-videointelligence 1.7.1</summary>
+
+
+
+### Bug Fixes
+
+* update unit tests ([#2487](https://www.github.com/googleapis/google-cloud-php/issues/2487)) ([a9722bb](https://www.github.com/googleapis/google-cloud-php/commit/a9722bb0c47798b3265feb952c4b0664cb29fb6d))
+
+</details>
+
+<details><summary>google/cloud-vision 0.24.1</summary>
+
+
+
+### Bug Fixes
+
+* make vision test more resilient ([#2512](https://www.github.com/googleapis/google-cloud-php/issues/2512)) ([f7bd9f7](https://www.github.com/googleapis/google-cloud-php/commit/f7bd9f7849b35b21c9a5970aa7406fa5144c6a7a))
+
+</details>
+
 ## 0.120.0
 
 <details><summary>google/cloud-speech 0.28.0</summary>
