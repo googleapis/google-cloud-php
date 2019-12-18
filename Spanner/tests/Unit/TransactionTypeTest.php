@@ -30,6 +30,7 @@ use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Snapshot;
+use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\SpannerClient;
@@ -44,6 +45,7 @@ class TransactionTypeTest extends TestCase
 {
     use GrpcTestTrait;
     use ResultTestTrait;
+    use StubCreationTrait;
     use TimeTrait;
 
     const PROJECT = 'my-project';
@@ -62,7 +64,7 @@ class TransactionTypeTest extends TestCase
 
         $this->timestamp = (new Timestamp(\DateTime::createFromFormat('U', time()), 500000005))->formatAsString();
 
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->connection = $this->getConnStub();
 
         $this->connection->createSession(Argument::any())
             ->willReturn(['name' => SpannerClient::sessionName(

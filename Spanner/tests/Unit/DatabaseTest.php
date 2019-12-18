@@ -38,6 +38,7 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
+use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\SpannerClient;
@@ -53,6 +54,7 @@ class DatabaseTest extends TestCase
     use GrpcTestTrait;
     use OperationRefreshTrait;
     use ResultGeneratorTrait;
+    use StubCreationTrait;
 
     const PROJECT = 'my-awesome-project';
     const DATABASE = 'my-database';
@@ -72,7 +74,7 @@ class DatabaseTest extends TestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->connection = $this->getConnStub();
         $this->instance = $this->prophesize(Instance::class);
         $this->sessionPool = $this->prophesize(SessionPoolInterface::class);
         $this->lro = $this->prophesize(LongRunningConnectionInterface::class);

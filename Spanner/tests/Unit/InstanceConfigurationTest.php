@@ -21,8 +21,8 @@ use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
-use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\InstanceConfiguration;
+use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 
@@ -33,6 +33,7 @@ use Prophecy\Argument;
 class InstanceConfigurationTest extends TestCase
 {
     use GrpcTestTrait;
+    use StubCreationTrait;
 
     const PROJECT_ID = 'test-project';
     const NAME = 'test-config';
@@ -44,7 +45,7 @@ class InstanceConfigurationTest extends TestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->connection = $this->getConnStub();
         $this->configuration = TestHelpers::stub(InstanceConfiguration::class, [
             $this->connection->reveal(),
             self::PROJECT_ID,
