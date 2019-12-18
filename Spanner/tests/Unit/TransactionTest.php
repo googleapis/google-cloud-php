@@ -17,20 +17,20 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit;
 
-use Prophecy\Argument;
-use PHPUnit\Framework\TestCase;
-use Google\Cloud\Spanner\KeySet;
-use Google\Cloud\Spanner\Result;
-use Google\Cloud\Spanner\Database;
-use Google\Cloud\Spanner\Operation;
-use Google\Cloud\Spanner\Transaction;
-use Google\Cloud\Spanner\BatchDmlResult;
-use Google\Cloud\Spanner\Session\Session;
-use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
-use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
+use Google\Cloud\Core\Testing\TestHelpers;
+use Google\Cloud\Spanner\BatchDmlResult;
+use Google\Cloud\Spanner\Database;
+use Google\Cloud\Spanner\KeySet;
+use Google\Cloud\Spanner\Operation;
+use Google\Cloud\Spanner\Result;
+use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
-use Google\Cloud\Spanner\Connection\ConnectionInterface;
+use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
+use Google\Cloud\Spanner\Tests\StubCreationTrait;
+use Google\Cloud\Spanner\Transaction;
+use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group spanner
@@ -40,6 +40,7 @@ class TransactionTest extends TestCase
     use GrpcTestTrait;
     use OperationRefreshTrait;
     use ResultGeneratorTrait;
+    use StubCreationTrait;
 
     const TIMESTAMP = '2017-01-09T18:05:22.534799Z';
 
@@ -61,7 +62,7 @@ class TransactionTest extends TestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->connection = $this->getConnStub();
         $this->operation = new Operation($this->connection->reveal(), false);
 
         $this->session = new Session(

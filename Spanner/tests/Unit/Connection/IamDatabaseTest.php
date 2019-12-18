@@ -18,8 +18,8 @@
 namespace Google\Cloud\Spanner\Tests\Unit\Connection;
 
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Connection\IamDatabase;
+use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -28,13 +28,15 @@ use PHPUnit\Framework\TestCase;
  */
 class IamDatabaseTest extends TestCase
 {
+    use StubCreationTrait;
+
     private $connection;
 
     private $iam;
 
     public function setUp()
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->connection = $this->getConnStub();
 
         $this->iam = TestHelpers::stub(IamDatabase::class, [$this->connection->reveal()]);
     }

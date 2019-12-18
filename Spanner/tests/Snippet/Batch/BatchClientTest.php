@@ -29,6 +29,7 @@ use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
+use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Prophecy\Argument;
 
@@ -40,6 +41,7 @@ class BatchClientTest extends SnippetTestCase
 {
     use GrpcTestTrait;
     use OperationRefreshTrait;
+    use StubCreationTrait;
 
     const DATABASE = 'projects/my-awesome-project/instances/my-instance/databases/my-database';
     const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
@@ -52,7 +54,7 @@ class BatchClientTest extends SnippetTestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->connection = $this->getConnStub();
         $this->client = TestHelpers::stub(BatchClient::class, [
             new Operation($this->connection->reveal(), false),
             self::DATABASE

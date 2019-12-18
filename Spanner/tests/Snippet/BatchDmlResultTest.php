@@ -17,18 +17,18 @@
 
 namespace Google\Cloud\Spanner\Tests\Snippet;
 
-use Prophecy\Argument;
-use Google\Cloud\Core\TimeTrait;
-use Google\Cloud\Spanner\Database;
-use Google\Cloud\Spanner\Instance;
-use Google\Cloud\Spanner\BatchDmlResult;
-use Google\Cloud\Spanner\Session\Session;
-use Google\Cloud\Core\Testing\TestHelpers;
+use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\TestHelpers;
+use Google\Cloud\Core\TimeTrait;
+use Google\Cloud\Spanner\BatchDmlResult;
+use Google\Cloud\Spanner\Database;
+use Google\Cloud\Spanner\Instance;
+use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
-use Google\Cloud\Spanner\Connection\ConnectionInterface;
-use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
+use Google\Cloud\Spanner\Tests\StubCreationTrait;
+use Prophecy\Argument;
 
 /**
  * @group spanner
@@ -36,6 +36,7 @@ use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 class BatchDmlResultTest extends SnippetTestCase
 {
     use GrpcTestTrait;
+    use StubCreationTrait;
     use TimeTrait;
 
     private $result;
@@ -66,7 +67,7 @@ class BatchDmlResultTest extends SnippetTestCase
 
     public function testClass()
     {
-        $connection = $this->prophesize(ConnectionInterface::class);
+        $connection = $this->getConnStub();
         $connection->executeBatchDml(Argument::any())
             ->shouldBeCalled()
             ->willReturn([

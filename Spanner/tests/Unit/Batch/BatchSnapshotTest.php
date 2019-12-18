@@ -22,13 +22,13 @@ use Google\Cloud\Spanner\Batch\BatchSnapshot;
 use Google\Cloud\Spanner\Batch\PartitionInterface;
 use Google\Cloud\Spanner\Batch\QueryPartition;
 use Google\Cloud\Spanner\Batch\ReadPartition;
-use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
+use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\V1\SpannerClient;
 use PHPUnit\Framework\TestCase;
@@ -43,6 +43,7 @@ class BatchSnapshotTest extends TestCase
 {
     use OperationRefreshTrait;
     use ResultGeneratorTrait;
+    use StubCreationTrait;
 
     const DATABASE = 'projects/my-awesome-project/instances/my-instance/databases/my-database';
     const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
@@ -64,7 +65,7 @@ class BatchSnapshotTest extends TestCase
 
         $this->timestamp = new Timestamp(new \DateTime());
 
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->connection = $this->getConnStub();
         $this->snapshot = TestHelpers::stub(BatchSnapshot::class, [
             new Operation($this->connection->reveal(), false),
             $this->session->reveal(),

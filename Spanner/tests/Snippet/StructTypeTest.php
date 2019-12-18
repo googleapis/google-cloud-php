@@ -23,13 +23,13 @@ use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\ArrayType;
-use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\StructType;
 use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
+use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Prophecy\Argument;
 
 /**
@@ -40,6 +40,7 @@ class StructTypeTest extends SnippetTestCase
 {
     use GrpcTestTrait;
     use OperationRefreshTrait;
+    use StubCreationTrait;
 
     const PROJECT = 'my-awesome-project';
     const DATABASE = 'my-database';
@@ -64,7 +65,7 @@ class StructTypeTest extends SnippetTestCase
         $sessionPool->setDatabase(Argument::any())
             ->willReturn(null);
 
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->connection = $this->getConnStub();
         $this->database = TestHelpers::stub(Database::class, [
             $this->connection->reveal(),
             $instance->reveal(),

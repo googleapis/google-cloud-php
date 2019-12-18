@@ -24,12 +24,12 @@ use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Batch\BatchSnapshot;
 use Google\Cloud\Spanner\Batch\QueryPartition;
 use Google\Cloud\Spanner\Batch\ReadPartition;
-use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Google\Cloud\Spanner\Tests\StubCreationTrait;
 
 /**
  * @group spanner
@@ -39,6 +39,7 @@ use Prophecy\Argument;
 class BatchClientTest extends TestCase
 {
     use OperationRefreshTrait;
+    use StubCreationTrait;
     use TimeTrait;
 
     const DATABASE = 'projects/my-awesome-project/instances/my-instance/databases/my-database';
@@ -50,7 +51,7 @@ class BatchClientTest extends TestCase
 
     public function setUp()
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->connection = $this->getConnStub();
         $this->client = TestHelpers::stub(BatchClient::class, [
             new Operation($this->connection->reveal(), false),
             self::DATABASE

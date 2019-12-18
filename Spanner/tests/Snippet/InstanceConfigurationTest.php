@@ -21,8 +21,8 @@ use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
-use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\InstanceConfiguration;
+use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Prophecy\Argument;
 
 /**
@@ -32,6 +32,7 @@ use Prophecy\Argument;
 class InstanceConfigurationTest extends SnippetTestCase
 {
     use GrpcTestTrait;
+    use StubCreationTrait;
 
     const PROJECT = 'my-awesome-project';
     const CONFIG = 'regional-europe-west';
@@ -43,7 +44,7 @@ class InstanceConfigurationTest extends SnippetTestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->connection = $this->getConnStub();
         $this->config = TestHelpers::stub(InstanceConfiguration::class, [
             $this->connection->reveal(),
             self::PROJECT,
