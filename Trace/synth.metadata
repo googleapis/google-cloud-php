@@ -1,19 +1,19 @@
 {
-  "updateTime": "2019-11-16T11:03:11.101577Z",
+  "updateTime": "2019-12-18T11:03:30.508451Z",
   "sources": [
     {
       "generator": {
         "name": "artman",
-        "version": "0.41.1",
-        "dockerImage": "googleapis/artman@sha256:545c758c76c3f779037aa259023ec3d1ef2d57d2c8cd00a222cb187d63ceac5e"
+        "version": "0.42.3",
+        "dockerImage": "googleapis/artman@sha256:feed210b5723c6f524b52ef6d7740a030f2d1a8f7c29a71c5e5b4481ceaad7f5"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "c89394342a9ef70acaf73a6959e04b943fbc817b",
-        "internalRef": "280761373"
+        "sha": "3352100a15ede383f5ab3c34599f7a10a3d066fe",
+        "internalRef": "286065440"
       }
     }
   ],
@@ -27,6 +27,287 @@
         "generator": "gapic",
         "config": "google/devtools/cloudtrace/artman_cloudtrace_v2.yaml"
       }
+    }
+  ],
+  "newFiles": [
+    {
+      "path": ".gitattributes"
+    },
+    {
+      "path": "README.md"
+    },
+    {
+      "path": "phpunit-system.xml.dist"
+    },
+    {
+      "path": "synth.py"
+    },
+    {
+      "path": "LICENSE"
+    },
+    {
+      "path": "synth.metadata"
+    },
+    {
+      "path": "phpunit-snippets.xml.dist"
+    },
+    {
+      "path": "CONTRIBUTING.md"
+    },
+    {
+      "path": "VERSION"
+    },
+    {
+      "path": "phpunit.xml.dist"
+    },
+    {
+      "path": "composer.json"
+    },
+    {
+      "path": "metadata/V1/Trace.php"
+    },
+    {
+      "path": "metadata/V2/Trace.php"
+    },
+    {
+      "path": "metadata/V2/Tracing.php"
+    },
+    {
+      "path": "__pycache__/synth.cpython-36.pyc"
+    },
+    {
+      "path": ".github/pull_request_template.md"
+    },
+    {
+      "path": "src/Span.php"
+    },
+    {
+      "path": "src/TraceClient.php"
+    },
+    {
+      "path": "src/Attributes.php"
+    },
+    {
+      "path": "src/StackTrace.php"
+    },
+    {
+      "path": "src/MessageEvent.php"
+    },
+    {
+      "path": "src/AttributeTrait.php"
+    },
+    {
+      "path": "src/TimestampTrait.php"
+    },
+    {
+      "path": "src/Trace.php"
+    },
+    {
+      "path": "src/Annotation.php"
+    },
+    {
+      "path": "src/Status.php"
+    },
+    {
+      "path": "src/TimeEvent.php"
+    },
+    {
+      "path": "src/Link.php"
+    },
+    {
+      "path": "src/V2/Span.php"
+    },
+    {
+      "path": "src/V2/Module.php"
+    },
+    {
+      "path": "src/V2/BatchWriteSpansRequest.php"
+    },
+    {
+      "path": "src/V2/StackTrace.php"
+    },
+    {
+      "path": "src/V2/Span_TimeEvents.php"
+    },
+    {
+      "path": "src/V2/StackTrace_StackFrames.php"
+    },
+    {
+      "path": "src/V2/README.md"
+    },
+    {
+      "path": "src/V2/Span_Links.php"
+    },
+    {
+      "path": "src/V2/TruncatableString.php"
+    },
+    {
+      "path": "src/V2/TraceServiceGrpcClient.php"
+    },
+    {
+      "path": "src/V2/Span_TimeEvent_MessageEvent.php"
+    },
+    {
+      "path": "src/V2/Span_TimeEvent.php"
+    },
+    {
+      "path": "src/V2/Span_Link.php"
+    },
+    {
+      "path": "src/V2/Span_Link_Type.php"
+    },
+    {
+      "path": "src/V2/Span_TimeEvent_MessageEvent_Type.php"
+    },
+    {
+      "path": "src/V2/TraceServiceClient.php"
+    },
+    {
+      "path": "src/V2/Span_Attributes.php"
+    },
+    {
+      "path": "src/V2/StackTrace_StackFrame.php"
+    },
+    {
+      "path": "src/V2/Span_TimeEvent_Annotation.php"
+    },
+    {
+      "path": "src/V2/AttributeValue.php"
+    },
+    {
+      "path": "src/V2/StackTrace/StackFrames.php"
+    },
+    {
+      "path": "src/V2/StackTrace/StackFrame.php"
+    },
+    {
+      "path": "src/V2/Gapic/TraceServiceGapicClient.php"
+    },
+    {
+      "path": "src/V2/Span/Attributes.php"
+    },
+    {
+      "path": "src/V2/Span/TimeEvent.php"
+    },
+    {
+      "path": "src/V2/Span/Link.php"
+    },
+    {
+      "path": "src/V2/Span/TimeEvents.php"
+    },
+    {
+      "path": "src/V2/Span/Links.php"
+    },
+    {
+      "path": "src/V2/Span/TimeEvent/MessageEvent.php"
+    },
+    {
+      "path": "src/V2/Span/TimeEvent/Annotation.php"
+    },
+    {
+      "path": "src/V2/Span/TimeEvent/MessageEvent/Type.php"
+    },
+    {
+      "path": "src/V2/Span/Link/Type.php"
+    },
+    {
+      "path": "src/V2/resources/trace_service_rest_client_config.php"
+    },
+    {
+      "path": "src/V2/resources/trace_service_client_config.json"
+    },
+    {
+      "path": "src/V2/resources/trace_service_descriptor_config.php"
+    },
+    {
+      "path": "src/Connection/Rest.php"
+    },
+    {
+      "path": "src/Connection/Grpc.php"
+    },
+    {
+      "path": "src/Connection/ConnectionInterface.php"
+    },
+    {
+      "path": "src/Connection/ServiceDefinition/trace-v2.json"
+    },
+    {
+      "path": "tests/Snippet/TraceTest.php"
+    },
+    {
+      "path": "tests/Snippet/AttributesTest.php"
+    },
+    {
+      "path": "tests/Snippet/LinkTest.php"
+    },
+    {
+      "path": "tests/Snippet/StatusTest.php"
+    },
+    {
+      "path": "tests/Snippet/MessageEventTest.php"
+    },
+    {
+      "path": "tests/Snippet/SpanTest.php"
+    },
+    {
+      "path": "tests/Snippet/StackTraceTest.php"
+    },
+    {
+      "path": "tests/Snippet/TraceClientTest.php"
+    },
+    {
+      "path": "tests/Snippet/AnnotationTest.php"
+    },
+    {
+      "path": "tests/Unit/TraceTest.php"
+    },
+    {
+      "path": "tests/Unit/AttributeTraitTest.php"
+    },
+    {
+      "path": "tests/Unit/AttributesTest.php"
+    },
+    {
+      "path": "tests/Unit/TimestampTraitTest.php"
+    },
+    {
+      "path": "tests/Unit/LinkTest.php"
+    },
+    {
+      "path": "tests/Unit/StatusTest.php"
+    },
+    {
+      "path": "tests/Unit/MessageEventTest.php"
+    },
+    {
+      "path": "tests/Unit/SpanTest.php"
+    },
+    {
+      "path": "tests/Unit/StackTraceTest.php"
+    },
+    {
+      "path": "tests/Unit/TraceClientTest.php"
+    },
+    {
+      "path": "tests/Unit/AnnotationTest.php"
+    },
+    {
+      "path": "tests/Unit/V2/TraceServiceClientTest.php"
+    },
+    {
+      "path": "tests/Unit/Connection/RestTest.php"
+    },
+    {
+      "path": "tests/Unit/Connection/GrpcTest.php"
+    },
+    {
+      "path": "tests/System/bootstrap.php"
+    },
+    {
+      "path": "tests/System/BasicTest.php"
+    },
+    {
+      "path": "tests/System/V2/TraceServiceSmokeTest.php"
     }
   ]
 }

@@ -108,7 +108,6 @@ class TraceServiceGapicClient
         'https://www.googleapis.com/auth/trace.append',
     ];
     private static $projectNameTemplate;
-    private static $spanNameTemplate;
     private static $pathTemplateMap;
 
     private static function getClientDefaults()
@@ -139,21 +138,11 @@ class TraceServiceGapicClient
         return self::$projectNameTemplate;
     }
 
-    private static function getSpanNameTemplate()
-    {
-        if (null == self::$spanNameTemplate) {
-            self::$spanNameTemplate = new PathTemplate('projects/{project}/traces/{trace}/spans/{span}');
-        }
-
-        return self::$spanNameTemplate;
-    }
-
     private static function getPathTemplateMap()
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'project' => self::getProjectNameTemplate(),
-                'span' => self::getSpanNameTemplate(),
             ];
         }
 
@@ -177,31 +166,10 @@ class TraceServiceGapicClient
     }
 
     /**
-     * Formats a string containing the fully-qualified path to represent
-     * a span resource.
-     *
-     * @param string $project
-     * @param string $trace
-     * @param string $span
-     *
-     * @return string The formatted span resource.
-     * @experimental
-     */
-    public static function spanName($project, $trace, $span)
-    {
-        return self::getSpanNameTemplate()->render([
-            'project' => $project,
-            'trace' => $trace,
-            'span' => $span,
-        ]);
-    }
-
-    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - project: projects/{project}
-     * - span: projects/{project}/traces/{trace}/spans/{span}.
+     * - project: projects/{project}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
@@ -360,12 +328,12 @@ class TraceServiceGapicClient
      * ```
      * $traceServiceClient = new TraceServiceClient();
      * try {
-     *     $formattedName = $traceServiceClient->spanName('[PROJECT]', '[TRACE]', '[SPAN]');
+     *     $name = '';
      *     $spanId = '';
      *     $displayName = new TruncatableString();
      *     $startTime = new Timestamp();
      *     $endTime = new Timestamp();
-     *     $response = $traceServiceClient->createSpan($formattedName, $spanId, $displayName, $startTime, $endTime);
+     *     $response = $traceServiceClient->createSpan($name, $spanId, $displayName, $startTime, $endTime);
      * } finally {
      *     $traceServiceClient->close();
      * }
