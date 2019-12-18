@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.121.1
+
+<details><summary>google/cloud-firestore 1.10.1</summary>
+
+
+
+### Bug Fixes
+
+* fix compatibility with phpspec/prophecy v1.10 ([#2525](https://www.github.com/googleapis/google-cloud-php/issues/2525)) ([ca739c4](https://www.github.com/googleapis/google-cloud-php/commit/ca739c486895bef6b8f243529668e483eae83147))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.22.1</summary>
+
+
+
+### Bug Fixes
+
+* fix compatibility with phpspec/prophecy v1.10 ([#2525](https://www.github.com/googleapis/google-cloud-php/issues/2525)) ([ca739c4](https://www.github.com/googleapis/google-cloud-php/commit/ca739c486895bef6b8f243529668e483eae83147))
+
+</details>
+
 ## 0.121.0
 
 <details><summary>google/cloud-asset 0.5.0</summary>
