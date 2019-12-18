@@ -513,23 +513,6 @@ class FirestoreClientTest extends TestCase
         }, ['maxRetries' => 2]);
     }
 
-    /**
-     * @expectedException RuntimeException
-     */
-    public function testInvalidNestedTransaction()
-    {
-        $transactionId = 'foobar';
-        $this->connection->beginTransaction(Argument::any())->willReturn([
-            'transaction' => $transactionId
-        ]);
-
-        $this->client->___setProperty('connection', $this->connection->reveal());
-
-        $this->client->runTransaction(function ($t) {
-            $this->client->runTransaction($this->noop());
-        });
-    }
-
     public function testGeoPoint()
     {
         $lat = 1.1;
