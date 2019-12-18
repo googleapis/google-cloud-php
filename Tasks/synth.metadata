@@ -1,19 +1,19 @@
 {
-  "updateTime": "2019-11-08T21:16:39.052239Z",
+  "updateTime": "2019-12-18T11:03:05.286208Z",
   "sources": [
     {
       "generator": {
         "name": "artman",
-        "version": "0.41.1",
-        "dockerImage": "googleapis/artman@sha256:545c758c76c3f779037aa259023ec3d1ef2d57d2c8cd00a222cb187d63ceac5e"
+        "version": "0.42.3",
+        "dockerImage": "googleapis/artman@sha256:feed210b5723c6f524b52ef6d7740a030f2d1a8f7c29a71c5e5b4481ceaad7f5"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "2642d8688bab8981c8a5153b7578f9ff8460a37c",
-        "internalRef": "279326626"
+        "sha": "3352100a15ede383f5ab3c34599f7a10a3d066fe",
+        "internalRef": "286065440"
       }
     }
   ],
@@ -47,6 +47,461 @@
         "generator": "gapic",
         "config": "google/cloud/tasks/artman_cloudtasks_v2beta3.yaml"
       }
+    }
+  ],
+  "newFiles": [
+    {
+      "path": ".gitattributes"
+    },
+    {
+      "path": "README.md"
+    },
+    {
+      "path": "phpunit-system.xml.dist"
+    },
+    {
+      "path": "synth.py"
+    },
+    {
+      "path": "LICENSE"
+    },
+    {
+      "path": "synth.metadata"
+    },
+    {
+      "path": "phpunit-snippets.xml.dist"
+    },
+    {
+      "path": "CONTRIBUTING.md"
+    },
+    {
+      "path": "VERSION"
+    },
+    {
+      "path": "phpunit.xml.dist"
+    },
+    {
+      "path": "composer.json"
+    },
+    {
+      "path": "metadata/V2Beta3/Cloudtasks.php"
+    },
+    {
+      "path": "metadata/V2Beta3/Target.php"
+    },
+    {
+      "path": "metadata/V2Beta3/Task.php"
+    },
+    {
+      "path": "metadata/V2Beta3/Queue.php"
+    },
+    {
+      "path": "metadata/V2Beta2/Cloudtasks.php"
+    },
+    {
+      "path": "metadata/V2Beta2/Target.php"
+    },
+    {
+      "path": "metadata/V2Beta2/Task.php"
+    },
+    {
+      "path": "metadata/V2Beta2/Queue.php"
+    },
+    {
+      "path": "metadata/V2/Cloudtasks.php"
+    },
+    {
+      "path": "metadata/V2/Target.php"
+    },
+    {
+      "path": "metadata/V2/Task.php"
+    },
+    {
+      "path": "metadata/V2/Queue.php"
+    },
+    {
+      "path": "__pycache__/synth.cpython-36.pyc"
+    },
+    {
+      "path": ".github/pull_request_template.md"
+    },
+    {
+      "path": "src/V2beta3/ResumeQueueRequest.php"
+    },
+    {
+      "path": "src/V2beta3/RateLimits.php"
+    },
+    {
+      "path": "src/V2beta3/RunTaskRequest.php"
+    },
+    {
+      "path": "src/V2beta3/ListQueuesResponse.php"
+    },
+    {
+      "path": "src/V2beta3/HttpMethod.php"
+    },
+    {
+      "path": "src/V2beta3/StackdriverLoggingConfig.php"
+    },
+    {
+      "path": "src/V2beta3/AppEngineHttpRequest.php"
+    },
+    {
+      "path": "src/V2beta3/README.md"
+    },
+    {
+      "path": "src/V2beta3/AppEngineHttpQueue.php"
+    },
+    {
+      "path": "src/V2beta3/Queue_State.php"
+    },
+    {
+      "path": "src/V2beta3/OidcToken.php"
+    },
+    {
+      "path": "src/V2beta3/Task.php"
+    },
+    {
+      "path": "src/V2beta3/PauseQueueRequest.php"
+    },
+    {
+      "path": "src/V2beta3/UpdateQueueRequest.php"
+    },
+    {
+      "path": "src/V2beta3/PurgeQueueRequest.php"
+    },
+    {
+      "path": "src/V2beta3/Task_View.php"
+    },
+    {
+      "path": "src/V2beta3/RetryConfig.php"
+    },
+    {
+      "path": "src/V2beta3/GetTaskRequest.php"
+    },
+    {
+      "path": "src/V2beta3/CreateTaskRequest.php"
+    },
+    {
+      "path": "src/V2beta3/DeleteTaskRequest.php"
+    },
+    {
+      "path": "src/V2beta3/ListTasksRequest.php"
+    },
+    {
+      "path": "src/V2beta3/CloudTasksClient.php"
+    },
+    {
+      "path": "src/V2beta3/CloudTasksGrpcClient.php"
+    },
+    {
+      "path": "src/V2beta3/DeleteQueueRequest.php"
+    },
+    {
+      "path": "src/V2beta3/CreateQueueRequest.php"
+    },
+    {
+      "path": "src/V2beta3/OAuthToken.php"
+    },
+    {
+      "path": "src/V2beta3/ListQueuesRequest.php"
+    },
+    {
+      "path": "src/V2beta3/HttpRequest.php"
+    },
+    {
+      "path": "src/V2beta3/GetQueueRequest.php"
+    },
+    {
+      "path": "src/V2beta3/AppEngineRouting.php"
+    },
+    {
+      "path": "src/V2beta3/Attempt.php"
+    },
+    {
+      "path": "src/V2beta3/ListTasksResponse.php"
+    },
+    {
+      "path": "src/V2beta3/Queue.php"
+    },
+    {
+      "path": "src/V2beta3/Queue/State.php"
+    },
+    {
+      "path": "src/V2beta3/Gapic/CloudTasksGapicClient.php"
+    },
+    {
+      "path": "src/V2beta3/Task/View.php"
+    },
+    {
+      "path": "src/V2beta3/resources/cloud_tasks_rest_client_config.php"
+    },
+    {
+      "path": "src/V2beta3/resources/cloud_tasks_descriptor_config.php"
+    },
+    {
+      "path": "src/V2beta3/resources/cloud_tasks_client_config.json"
+    },
+    {
+      "path": "src/V2beta2/ResumeQueueRequest.php"
+    },
+    {
+      "path": "src/V2beta2/RateLimits.php"
+    },
+    {
+      "path": "src/V2beta2/TaskStatus.php"
+    },
+    {
+      "path": "src/V2beta2/LeaseTasksResponse.php"
+    },
+    {
+      "path": "src/V2beta2/RunTaskRequest.php"
+    },
+    {
+      "path": "src/V2beta2/PullTarget.php"
+    },
+    {
+      "path": "src/V2beta2/AttemptStatus.php"
+    },
+    {
+      "path": "src/V2beta2/ListQueuesResponse.php"
+    },
+    {
+      "path": "src/V2beta2/HttpMethod.php"
+    },
+    {
+      "path": "src/V2beta2/AppEngineHttpRequest.php"
+    },
+    {
+      "path": "src/V2beta2/README.md"
+    },
+    {
+      "path": "src/V2beta2/Queue_State.php"
+    },
+    {
+      "path": "src/V2beta2/Task.php"
+    },
+    {
+      "path": "src/V2beta2/PauseQueueRequest.php"
+    },
+    {
+      "path": "src/V2beta2/UpdateQueueRequest.php"
+    },
+    {
+      "path": "src/V2beta2/PurgeQueueRequest.php"
+    },
+    {
+      "path": "src/V2beta2/Task_View.php"
+    },
+    {
+      "path": "src/V2beta2/RetryConfig.php"
+    },
+    {
+      "path": "src/V2beta2/GetTaskRequest.php"
+    },
+    {
+      "path": "src/V2beta2/CreateTaskRequest.php"
+    },
+    {
+      "path": "src/V2beta2/DeleteTaskRequest.php"
+    },
+    {
+      "path": "src/V2beta2/AcknowledgeTaskRequest.php"
+    },
+    {
+      "path": "src/V2beta2/ListTasksRequest.php"
+    },
+    {
+      "path": "src/V2beta2/CancelLeaseRequest.php"
+    },
+    {
+      "path": "src/V2beta2/LeaseTasksRequest.php"
+    },
+    {
+      "path": "src/V2beta2/RenewLeaseRequest.php"
+    },
+    {
+      "path": "src/V2beta2/CloudTasksClient.php"
+    },
+    {
+      "path": "src/V2beta2/CloudTasksGrpcClient.php"
+    },
+    {
+      "path": "src/V2beta2/DeleteQueueRequest.php"
+    },
+    {
+      "path": "src/V2beta2/CreateQueueRequest.php"
+    },
+    {
+      "path": "src/V2beta2/AppEngineHttpTarget.php"
+    },
+    {
+      "path": "src/V2beta2/ListQueuesRequest.php"
+    },
+    {
+      "path": "src/V2beta2/GetQueueRequest.php"
+    },
+    {
+      "path": "src/V2beta2/PullMessage.php"
+    },
+    {
+      "path": "src/V2beta2/AppEngineRouting.php"
+    },
+    {
+      "path": "src/V2beta2/ListTasksResponse.php"
+    },
+    {
+      "path": "src/V2beta2/Queue.php"
+    },
+    {
+      "path": "src/V2beta2/Queue/State.php"
+    },
+    {
+      "path": "src/V2beta2/Gapic/CloudTasksGapicClient.php"
+    },
+    {
+      "path": "src/V2beta2/Task/View.php"
+    },
+    {
+      "path": "src/V2beta2/resources/cloud_tasks_rest_client_config.php"
+    },
+    {
+      "path": "src/V2beta2/resources/cloud_tasks_descriptor_config.php"
+    },
+    {
+      "path": "src/V2beta2/resources/cloud_tasks_client_config.json"
+    },
+    {
+      "path": "src/V2/ResumeQueueRequest.php"
+    },
+    {
+      "path": "src/V2/RateLimits.php"
+    },
+    {
+      "path": "src/V2/RunTaskRequest.php"
+    },
+    {
+      "path": "src/V2/ListQueuesResponse.php"
+    },
+    {
+      "path": "src/V2/HttpMethod.php"
+    },
+    {
+      "path": "src/V2/AppEngineHttpRequest.php"
+    },
+    {
+      "path": "src/V2/README.md"
+    },
+    {
+      "path": "src/V2/Queue_State.php"
+    },
+    {
+      "path": "src/V2/OidcToken.php"
+    },
+    {
+      "path": "src/V2/Task.php"
+    },
+    {
+      "path": "src/V2/PauseQueueRequest.php"
+    },
+    {
+      "path": "src/V2/UpdateQueueRequest.php"
+    },
+    {
+      "path": "src/V2/PurgeQueueRequest.php"
+    },
+    {
+      "path": "src/V2/Task_View.php"
+    },
+    {
+      "path": "src/V2/RetryConfig.php"
+    },
+    {
+      "path": "src/V2/GetTaskRequest.php"
+    },
+    {
+      "path": "src/V2/CreateTaskRequest.php"
+    },
+    {
+      "path": "src/V2/DeleteTaskRequest.php"
+    },
+    {
+      "path": "src/V2/ListTasksRequest.php"
+    },
+    {
+      "path": "src/V2/CloudTasksClient.php"
+    },
+    {
+      "path": "src/V2/CloudTasksGrpcClient.php"
+    },
+    {
+      "path": "src/V2/DeleteQueueRequest.php"
+    },
+    {
+      "path": "src/V2/CreateQueueRequest.php"
+    },
+    {
+      "path": "src/V2/OAuthToken.php"
+    },
+    {
+      "path": "src/V2/ListQueuesRequest.php"
+    },
+    {
+      "path": "src/V2/HttpRequest.php"
+    },
+    {
+      "path": "src/V2/GetQueueRequest.php"
+    },
+    {
+      "path": "src/V2/AppEngineRouting.php"
+    },
+    {
+      "path": "src/V2/Attempt.php"
+    },
+    {
+      "path": "src/V2/ListTasksResponse.php"
+    },
+    {
+      "path": "src/V2/Queue.php"
+    },
+    {
+      "path": "src/V2/Queue/State.php"
+    },
+    {
+      "path": "src/V2/Gapic/CloudTasksGapicClient.php"
+    },
+    {
+      "path": "src/V2/Task/View.php"
+    },
+    {
+      "path": "src/V2/resources/cloud_tasks_rest_client_config.php"
+    },
+    {
+      "path": "src/V2/resources/cloud_tasks_descriptor_config.php"
+    },
+    {
+      "path": "src/V2/resources/cloud_tasks_client_config.json"
+    },
+    {
+      "path": "tests/Unit/V2beta3/CloudTasksClientTest.php"
+    },
+    {
+      "path": "tests/Unit/V2beta2/CloudTasksClientTest.php"
+    },
+    {
+      "path": "tests/Unit/V2/CloudTasksClientTest.php"
+    },
+    {
+      "path": "tests/System/bootstrap.php"
+    },
+    {
+      "path": "tests/System/V2beta3/TasksServiceSmokeTest.php"
+    },
+    {
+      "path": "tests/System/V2beta2/TasksServiceSmokeTest.php"
+    },
+    {
+      "path": "tests/System/V2/TasksServiceSmokeTest.php"
     }
   ]
 }
