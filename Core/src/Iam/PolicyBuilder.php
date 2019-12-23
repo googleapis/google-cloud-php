@@ -128,20 +128,7 @@ class PolicyBuilder
      */
     public function setBindings(array $bindings = [])
     {
-        $this->bindings = [];
-        foreach ($bindings as $binding) {
-            $newBinding = [
-                'role' => $binding['role'],
-                'members' => $binding['members'],
-            ];
-
-            if ($binding['condition']) {
-                $newBinding['condition'] = $binding['condition'];
-            }
-
-            $this->bindings[] = $newBinding;
-        }
-
+        $this->bindings = $bindings;
         return $this;
     }
 
