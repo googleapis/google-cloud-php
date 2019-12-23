@@ -18,7 +18,7 @@
 namespace Google\Cloud\Core\Iam;
 
 use InvalidArgumentException;
-use Google\Cloud\Core\Exception;
+use Google\Cloud\Core\Exception\InvalidOperationException;
 
 /**
  * Helper class for creating valid IAM policies
@@ -281,7 +281,19 @@ class PolicyBuilder
     private function validatePolicyVersion()
     {
         if ($this->version && $this->version > 1) {
-            throw new InvalidArgumentException("Helper methods cannot be invoked on policies with version {$this->version}.");
+            throw new InvalidOperationException("Helper methods cannot be invoked on policies with version {$this->version}.");
+        }
+
+        $this->validateConditions();
+    }
+
+    private function validateConditions()
+    {
+        if (!$this->bindings) return;
+        foreach ($this->bindings as $binding) {
+            if ($binding['condition']) {
+                throw new InvalidOperationException("Helper methods cannot be invoked on policies containing conditions.");
+            }
         }
     }
 }
