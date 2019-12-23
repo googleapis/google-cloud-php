@@ -41,6 +41,18 @@ class IamBucketTest extends TestCase
         $this->assertEquals($args, $iam->$methodName($args));
     }
 
+    public function testRequestedPolicyVersion()
+    {
+        $connection = $this->prophesize(ConnectionInterface::class);
+        $connection->getBucketIamPolicy(['optionsRequestedPolicyVersion' => 3])
+            ->willReturn(['version' => 3])
+            ->shouldBeCalledTimes(1);
+
+        $iam = new IamBucket($connection->reveal());
+        $args = ['requestedPolicyVersion' => 3];
+        $this->assertEquals(['version' => 3], $iam->getPolicy($args));
+    }
+
     public function methodProvider()
     {
         $args = ['foo' => 'bar'];
