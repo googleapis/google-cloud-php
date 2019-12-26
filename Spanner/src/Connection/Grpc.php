@@ -23,10 +23,14 @@ use Google\ApiCore\Serializer;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Core\LongRunning\OperationResponseTrait;
+use Google\Cloud\Spanner\Admin\Database\V1\CreateDatabaseMetadata;
+use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlMetadata;
 use Google\Cloud\Spanner\Admin\Database\V1\Database;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceMetadata;
 use Google\Cloud\Spanner\Admin\Instance\V1\Instance;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceMetadata;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\SpannerClient as ManualSpannerClient;
 use Google\Cloud\Spanner\V1\CreateSessionRequest;
@@ -104,18 +108,30 @@ class Grpc implements ConnectionInterface
         [
             'method' => 'updateDatabaseDdl',
             'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.UpdateDatabaseDdlMetadata',
-            'message' => GPBEmpty::class
+            'message' => UpdateDatabaseDdlMetadata::class
         ], [
             'method' => 'createDatabase',
             'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.CreateDatabaseMetadata',
-            'message' => Database::class
+            'message' => CreateDatabaseMetadata::class
         ], [
             'method' => 'createInstance',
             'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.CreateInstanceMetadata',
-            'message' => Instance::class
+            'message' => CreateInstanceMetadata::class
         ], [
             'method' => 'updateInstance',
             'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.UpdateInstanceMetadata',
+            'message' => UpdateInstanceMetadata::class
+        ], [
+            'method' => 'updateDatabaseDdl',
+            'typeUrl' => 'type.googleapis.com/google.protobuf.Empty',
+            'message' => GPBEmpty::class
+        ], [
+            'method' => 'createDatabase',
+            'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.Database',
+            'message' => Database::class
+        ], [
+            'method' => 'createInstance',
+            'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.Instance',
             'message' => Instance::class
         ]
     ];
