@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for
- * [DeleteInstance][google.spanner.admin.instance.v1.InstanceAdmin.DeleteInstance].
+ * The request for [DeleteInstance][google.spanner.admin.instance.v1.InstanceAdmin.DeleteInstance].
  *
  * Generated from protobuf message <code>google.spanner.admin.instance.v1.DeleteInstanceRequest</code>
  */
@@ -20,7 +19,7 @@ class DeleteInstanceRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the instance to be deleted. Values are of the form
      * `projects/<project>/instances/<instance>`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
 
@@ -44,7 +43,7 @@ class DeleteInstanceRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the instance to be deleted. Values are of the form
      * `projects/<project>/instances/<instance>`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -56,7 +55,7 @@ class DeleteInstanceRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the instance to be deleted. Values are of the form
      * `projects/<project>/instances/<instance>`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

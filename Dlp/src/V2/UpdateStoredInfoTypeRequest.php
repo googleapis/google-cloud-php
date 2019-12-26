@@ -16,11 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateStoredInfoTypeRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Resource name of organization and storedInfoType to be updated, for
+     * Required. Resource name of organization and storedInfoType to be updated, for
      * example `organizations/433245324/storedInfoTypes/432452342` or
      * projects/project-id/storedInfoTypes/432452342.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
@@ -45,7 +45,7 @@ class UpdateStoredInfoTypeRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Resource name of organization and storedInfoType to be updated, for
+     *           Required. Resource name of organization and storedInfoType to be updated, for
      *           example `organizations/433245324/storedInfoTypes/432452342` or
      *           projects/project-id/storedInfoTypes/432452342.
      *     @type \Google\Cloud\Dlp\V2\StoredInfoTypeConfig $config
@@ -62,11 +62,11 @@ class UpdateStoredInfoTypeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource name of organization and storedInfoType to be updated, for
+     * Required. Resource name of organization and storedInfoType to be updated, for
      * example `organizations/433245324/storedInfoTypes/432452342` or
      * projects/project-id/storedInfoTypes/432452342.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -75,11 +75,11 @@ class UpdateStoredInfoTypeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource name of organization and storedInfoType to be updated, for
+     * Required. Resource name of organization and storedInfoType to be updated, for
      * example `organizations/433245324/storedInfoTypes/432452342` or
      * projects/project-id/storedInfoTypes/432452342.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

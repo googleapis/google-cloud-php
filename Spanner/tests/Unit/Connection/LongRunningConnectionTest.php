@@ -18,8 +18,8 @@
 namespace Google\Cloud\Spanner\Tests\Unit\Connection;
 
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Connection\LongRunningConnection;
+use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -28,12 +28,14 @@ use PHPUnit\Framework\TestCase;
  */
 class LongRunningConnectionTest extends TestCase
 {
+    use StubCreationTrait;
+
     private $connection;
     private $lro;
 
     public function setUp()
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->connection = $this->getConnStub();
         $this->lro = TestHelpers::stub(LongRunningConnection::class, [
             $this->connection->reveal()
         ]);

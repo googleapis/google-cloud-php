@@ -16,16 +16,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class RollbackRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The database name. In the format:
+     * Required. The database name. In the format:
      * `projects/{project_id}/databases/{database_id}`.
      *
-     * Generated from protobuf field <code>string database = 1;</code>
+     * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $database = '';
     /**
-     * The transaction to roll back.
+     * Required. The transaction to roll back.
      *
-     * Generated from protobuf field <code>bytes transaction = 2;</code>
+     * Generated from protobuf field <code>bytes transaction = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $transaction = '';
 
@@ -36,10 +36,10 @@ class RollbackRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $database
-     *           The database name. In the format:
+     *           Required. The database name. In the format:
      *           `projects/{project_id}/databases/{database_id}`.
      *     @type string $transaction
-     *           The transaction to roll back.
+     *           Required. The transaction to roll back.
      * }
      */
     public function __construct($data = NULL) {
@@ -48,10 +48,10 @@ class RollbackRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The database name. In the format:
+     * Required. The database name. In the format:
      * `projects/{project_id}/databases/{database_id}`.
      *
-     * Generated from protobuf field <code>string database = 1;</code>
+     * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getDatabase()
@@ -60,10 +60,10 @@ class RollbackRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The database name. In the format:
+     * Required. The database name. In the format:
      * `projects/{project_id}/databases/{database_id}`.
      *
-     * Generated from protobuf field <code>string database = 1;</code>
+     * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -76,9 +76,9 @@ class RollbackRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The transaction to roll back.
+     * Required. The transaction to roll back.
      *
-     * Generated from protobuf field <code>bytes transaction = 2;</code>
+     * Generated from protobuf field <code>bytes transaction = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getTransaction()
@@ -87,9 +87,9 @@ class RollbackRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The transaction to roll back.
+     * Required. The transaction to roll back.
      *
-     * Generated from protobuf field <code>bytes transaction = 2;</code>
+     * Generated from protobuf field <code>bytes transaction = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

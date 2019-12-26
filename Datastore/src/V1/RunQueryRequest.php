@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class RunQueryRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The ID of the project against which to make the request.
+     * Required. The ID of the project against which to make the request.
      *
-     * Generated from protobuf field <code>string project_id = 8;</code>
+     * Generated from protobuf field <code>string project_id = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $project_id = '';
     /**
@@ -45,7 +45,7 @@ class RunQueryRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $project_id
-     *           The ID of the project against which to make the request.
+     *           Required. The ID of the project against which to make the request.
      *     @type \Google\Cloud\Datastore\V1\PartitionId $partition_id
      *           Entities are partitioned into subsets, identified by a partition ID.
      *           Queries are scoped to a single partition.
@@ -65,9 +65,9 @@ class RunQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ID of the project against which to make the request.
+     * Required. The ID of the project against which to make the request.
      *
-     * Generated from protobuf field <code>string project_id = 8;</code>
+     * Generated from protobuf field <code>string project_id = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getProjectId()
@@ -76,9 +76,9 @@ class RunQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ID of the project against which to make the request.
+     * Required. The ID of the project against which to make the request.
      *
-     * Generated from protobuf field <code>string project_id = 8;</code>
+     * Generated from protobuf field <code>string project_id = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

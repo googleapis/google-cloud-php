@@ -19,7 +19,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The zone where the Compute Engine cluster will be located.
      * On a create request, it is required in the "global" region. If omitted
-     * in a non-global Cloud Dataproc region, the service will pick a zone in the
+     * in a non-global Dataproc region, the service will pick a zone in the
      * corresponding Compute Engine region. On a get request, zone will
      * always be present.
      * A full URL, partial URI, or short name are valid. Examples:
@@ -67,15 +67,16 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      */
     private $internal_ip_only = false;
     /**
-     * Optional. The service account of the instances. Defaults to the default
-     * Compute Engine service account. Custom service accounts need
-     * permissions equivalent to the following IAM roles:
-     * * roles/logging.logWriter
-     * * roles/storage.objectAdmin
-     * (see
-     * https://cloud.google.com/compute/docs/access/service-accounts#custom_service_accounts
-     * for more information).
-     * Example: `[account_id]&#64;[project_id].iam.gserviceaccount.com`
+     * Optional. The [Dataproc service
+     * account](/dataproc/docs/concepts/configuring-clusters/service-accounts#service_accounts_in_cloud_dataproc)
+     * (also see [VM Data Plane
+     * identity](/dataproc/docs/concepts/iam/dataproc-principals#vm_service_account_data_plane_identity))
+     * used by Dataproc cluster VM instances to access Google Cloud Platform
+     * services.
+     * If not specified, the
+     * [Compute Engine default service
+     * account](/compute/docs/access/service-accounts#default_service_account)
+     * is used.
      *
      * Generated from protobuf field <code>string service_account = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -121,7 +122,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      *     @type string $zone_uri
      *           Optional. The zone where the Compute Engine cluster will be located.
      *           On a create request, it is required in the "global" region. If omitted
-     *           in a non-global Cloud Dataproc region, the service will pick a zone in the
+     *           in a non-global Dataproc region, the service will pick a zone in the
      *           corresponding Compute Engine region. On a get request, zone will
      *           always be present.
      *           A full URL, partial URI, or short name are valid. Examples:
@@ -153,15 +154,16 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      *           subnetwork enabled networks, and all off-cluster dependencies must be
      *           configured to be accessible without external IP addresses.
      *     @type string $service_account
-     *           Optional. The service account of the instances. Defaults to the default
-     *           Compute Engine service account. Custom service accounts need
-     *           permissions equivalent to the following IAM roles:
-     *           * roles/logging.logWriter
-     *           * roles/storage.objectAdmin
-     *           (see
-     *           https://cloud.google.com/compute/docs/access/service-accounts#custom_service_accounts
-     *           for more information).
-     *           Example: `[account_id]&#64;[project_id].iam.gserviceaccount.com`
+     *           Optional. The [Dataproc service
+     *           account](/dataproc/docs/concepts/configuring-clusters/service-accounts#service_accounts_in_cloud_dataproc)
+     *           (also see [VM Data Plane
+     *           identity](/dataproc/docs/concepts/iam/dataproc-principals#vm_service_account_data_plane_identity))
+     *           used by Dataproc cluster VM instances to access Google Cloud Platform
+     *           services.
+     *           If not specified, the
+     *           [Compute Engine default service
+     *           account](/compute/docs/access/service-accounts#default_service_account)
+     *           is used.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $service_account_scopes
      *           Optional. The URIs of service account scopes to be included in
      *           Compute Engine instances. The following base set of scopes is always
@@ -191,7 +193,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The zone where the Compute Engine cluster will be located.
      * On a create request, it is required in the "global" region. If omitted
-     * in a non-global Cloud Dataproc region, the service will pick a zone in the
+     * in a non-global Dataproc region, the service will pick a zone in the
      * corresponding Compute Engine region. On a get request, zone will
      * always be present.
      * A full URL, partial URI, or short name are valid. Examples:
@@ -210,7 +212,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The zone where the Compute Engine cluster will be located.
      * On a create request, it is required in the "global" region. If omitted
-     * in a non-global Cloud Dataproc region, the service will pick a zone in the
+     * in a non-global Dataproc region, the service will pick a zone in the
      * corresponding Compute Engine region. On a get request, zone will
      * always be present.
      * A full URL, partial URI, or short name are valid. Examples:
@@ -345,15 +347,16 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The service account of the instances. Defaults to the default
-     * Compute Engine service account. Custom service accounts need
-     * permissions equivalent to the following IAM roles:
-     * * roles/logging.logWriter
-     * * roles/storage.objectAdmin
-     * (see
-     * https://cloud.google.com/compute/docs/access/service-accounts#custom_service_accounts
-     * for more information).
-     * Example: `[account_id]&#64;[project_id].iam.gserviceaccount.com`
+     * Optional. The [Dataproc service
+     * account](/dataproc/docs/concepts/configuring-clusters/service-accounts#service_accounts_in_cloud_dataproc)
+     * (also see [VM Data Plane
+     * identity](/dataproc/docs/concepts/iam/dataproc-principals#vm_service_account_data_plane_identity))
+     * used by Dataproc cluster VM instances to access Google Cloud Platform
+     * services.
+     * If not specified, the
+     * [Compute Engine default service
+     * account](/compute/docs/access/service-accounts#default_service_account)
+     * is used.
      *
      * Generated from protobuf field <code>string service_account = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -364,15 +367,16 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The service account of the instances. Defaults to the default
-     * Compute Engine service account. Custom service accounts need
-     * permissions equivalent to the following IAM roles:
-     * * roles/logging.logWriter
-     * * roles/storage.objectAdmin
-     * (see
-     * https://cloud.google.com/compute/docs/access/service-accounts#custom_service_accounts
-     * for more information).
-     * Example: `[account_id]&#64;[project_id].iam.gserviceaccount.com`
+     * Optional. The [Dataproc service
+     * account](/dataproc/docs/concepts/configuring-clusters/service-accounts#service_accounts_in_cloud_dataproc)
+     * (also see [VM Data Plane
+     * identity](/dataproc/docs/concepts/iam/dataproc-principals#vm_service_account_data_plane_identity))
+     * used by Dataproc cluster VM instances to access Google Cloud Platform
+     * services.
+     * If not specified, the
+     * [Compute Engine default service
+     * account](/compute/docs/access/service-accounts#default_service_account)
+     * is used.
      *
      * Generated from protobuf field <code>string service_account = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

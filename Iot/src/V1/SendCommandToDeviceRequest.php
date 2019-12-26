@@ -16,17 +16,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class SendCommandToDeviceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The name of the device. For example,
+     * Required. The name of the device. For example,
      * `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
      * `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
-     * The command data to send to the device.
+     * Required. The command data to send to the device.
      *
-     * Generated from protobuf field <code>bytes binary_data = 2;</code>
+     * Generated from protobuf field <code>bytes binary_data = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $binary_data = '';
     /**
@@ -47,11 +47,11 @@ class SendCommandToDeviceRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The name of the device. For example,
+     *           Required. The name of the device. For example,
      *           `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
      *           `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
      *     @type string $binary_data
-     *           The command data to send to the device.
+     *           Required. The command data to send to the device.
      *     @type string $subfolder
      *           Optional subfolder for the command. If empty, the command will be delivered
      *           to the /devices/{device-id}/commands topic, otherwise it will be delivered
@@ -66,11 +66,11 @@ class SendCommandToDeviceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the device. For example,
+     * Required. The name of the device. For example,
      * `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
      * `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -79,11 +79,11 @@ class SendCommandToDeviceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the device. For example,
+     * Required. The name of the device. For example,
      * `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
      * `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -96,9 +96,9 @@ class SendCommandToDeviceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The command data to send to the device.
+     * Required. The command data to send to the device.
      *
-     * Generated from protobuf field <code>bytes binary_data = 2;</code>
+     * Generated from protobuf field <code>bytes binary_data = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getBinaryData()
@@ -107,9 +107,9 @@ class SendCommandToDeviceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The command data to send to the device.
+     * Required. The command data to send to the device.
      *
-     * Generated from protobuf field <code>bytes binary_data = 2;</code>
+     * Generated from protobuf field <code>bytes binary_data = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

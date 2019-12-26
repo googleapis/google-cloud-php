@@ -16,21 +16,21 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The parent resource name. In the format:
+     * Required. The parent resource name. In the format:
      * `projects/{project_id}/databases/{database_id}/documents` or
      * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      * For example:
      * `projects/my-project/databases/my-database/documents` or
      * `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $parent = '';
     /**
-     * The collection ID, relative to `parent`, to list. For example: `chatrooms`
+     * Required. The collection ID, relative to `parent`, to list. For example: `chatrooms`
      * or `messages`.
      *
-     * Generated from protobuf field <code>string collection_id = 2;</code>
+     * Generated from protobuf field <code>string collection_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $collection_id = '';
     /**
@@ -79,14 +79,14 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The parent resource name. In the format:
+     *           Required. The parent resource name. In the format:
      *           `projects/{project_id}/databases/{database_id}/documents` or
      *           `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      *           For example:
      *           `projects/my-project/databases/my-database/documents` or
      *           `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
      *     @type string $collection_id
-     *           The collection ID, relative to `parent`, to list. For example: `chatrooms`
+     *           Required. The collection ID, relative to `parent`, to list. For example: `chatrooms`
      *           or `messages`.
      *     @type int $page_size
      *           The maximum number of documents to return.
@@ -118,14 +118,14 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The parent resource name. In the format:
+     * Required. The parent resource name. In the format:
      * `projects/{project_id}/databases/{database_id}/documents` or
      * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      * For example:
      * `projects/my-project/databases/my-database/documents` or
      * `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getParent()
@@ -134,14 +134,14 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The parent resource name. In the format:
+     * Required. The parent resource name. In the format:
      * `projects/{project_id}/databases/{database_id}/documents` or
      * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      * For example:
      * `projects/my-project/databases/my-database/documents` or
      * `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -154,10 +154,10 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The collection ID, relative to `parent`, to list. For example: `chatrooms`
+     * Required. The collection ID, relative to `parent`, to list. For example: `chatrooms`
      * or `messages`.
      *
-     * Generated from protobuf field <code>string collection_id = 2;</code>
+     * Generated from protobuf field <code>string collection_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getCollectionId()
@@ -166,10 +166,10 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The collection ID, relative to `parent`, to list. For example: `chatrooms`
+     * Required. The collection ID, relative to `parent`, to list. For example: `chatrooms`
      * or `messages`.
      *
-     * Generated from protobuf field <code>string collection_id = 2;</code>
+     * Generated from protobuf field <code>string collection_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

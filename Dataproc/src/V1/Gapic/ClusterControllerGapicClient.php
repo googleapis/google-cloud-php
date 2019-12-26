@@ -295,7 +295,7 @@ class ClusterControllerGapicClient
      *
      * @param string  $projectId    Required. The ID of the Google Cloud Platform project that the cluster
      *                              belongs to.
-     * @param string  $region       Required. The Cloud Dataproc region in which to handle the request.
+     * @param string  $region       Required. The Dataproc region in which to handle the request.
      * @param Cluster $cluster      Required. The cluster to create.
      * @param array   $optionalArgs {
      *                              Optional.
@@ -392,7 +392,7 @@ class ClusterControllerGapicClient
      *
      * @param string    $projectId   Required. The ID of the Google Cloud Platform project the
      *                               cluster belongs to.
-     * @param string    $region      Required. The Cloud Dataproc region in which to handle the request.
+     * @param string    $region      Required. The Dataproc region in which to handle the request.
      * @param string    $clusterName Required. The cluster name.
      * @param Cluster   $cluster     Required. The changes to the cluster.
      * @param FieldMask $updateMask  Required. Specifies the path, relative to `Cluster`, of
@@ -551,7 +551,7 @@ class ClusterControllerGapicClient
      *
      * @param string $projectId    Required. The ID of the Google Cloud Platform project that the cluster
      *                             belongs to.
-     * @param string $region       Required. The Cloud Dataproc region in which to handle the request.
+     * @param string $region       Required. The Dataproc region in which to handle the request.
      * @param string $clusterName  Required. The cluster name.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -622,7 +622,7 @@ class ClusterControllerGapicClient
      *
      * @param string $projectId    Required. The ID of the Google Cloud Platform project that the cluster
      *                             belongs to.
-     * @param string $region       Required. The Cloud Dataproc region in which to handle the request.
+     * @param string $region       Required. The Dataproc region in which to handle the request.
      * @param string $clusterName  Required. The cluster name.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -686,7 +686,7 @@ class ClusterControllerGapicClient
      *
      * @param string $projectId    Required. The ID of the Google Cloud Platform project that the cluster
      *                             belongs to.
-     * @param string $region       Required. The Cloud Dataproc region in which to handle the request.
+     * @param string $region       Required. The Dataproc region in which to handle the request.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -804,7 +804,7 @@ class ClusterControllerGapicClient
      *
      * @param string $projectId    Required. The ID of the Google Cloud Platform project that the cluster
      *                             belongs to.
-     * @param string $region       Required. The Cloud Dataproc region in which to handle the request.
+     * @param string $region       Required. The Dataproc region in which to handle the request.
      * @param string $clusterName  Required. The cluster name.
      * @param array  $optionalArgs {
      *                             Optional.

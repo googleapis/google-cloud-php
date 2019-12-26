@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateJobTriggerRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The parent resource name, for example projects/my-project-id.
+     * Required. The parent resource name, for example projects/my-project-id.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -36,6 +36,13 @@ class CreateJobTriggerRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string trigger_id = 3;</code>
      */
     private $trigger_id = '';
+    /**
+     * The geographic location to store the job trigger. Reserved for
+     * future extensions.
+     *
+     * Generated from protobuf field <code>string location_id = 4;</code>
+     */
+    private $location_id = '';
 
     /**
      * Constructor.
@@ -44,7 +51,7 @@ class CreateJobTriggerRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The parent resource name, for example projects/my-project-id.
+     *           Required. The parent resource name, for example projects/my-project-id.
      *     @type \Google\Cloud\Dlp\V2\JobTrigger $job_trigger
      *           The JobTrigger to create.
      *     @type string $trigger_id
@@ -52,6 +59,9 @@ class CreateJobTriggerRequest extends \Google\Protobuf\Internal\Message
      *           numbers, and hyphens; that is, it must match the regular
      *           expression: `[a-zA-Z\\d-_]+`. The maximum length is 100
      *           characters. Can be empty to allow the system to generate one.
+     *     @type string $location_id
+     *           The geographic location to store the job trigger. Reserved for
+     *           future extensions.
      * }
      */
     public function __construct($data = NULL) {
@@ -60,9 +70,9 @@ class CreateJobTriggerRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The parent resource name, for example projects/my-project-id.
+     * Required. The parent resource name, for example projects/my-project-id.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -71,9 +81,9 @@ class CreateJobTriggerRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The parent resource name, for example projects/my-project-id.
+     * Required. The parent resource name, for example projects/my-project-id.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -139,6 +149,34 @@ class CreateJobTriggerRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->trigger_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * The geographic location to store the job trigger. Reserved for
+     * future extensions.
+     *
+     * Generated from protobuf field <code>string location_id = 4;</code>
+     * @return string
+     */
+    public function getLocationId()
+    {
+        return $this->location_id;
+    }
+
+    /**
+     * The geographic location to store the job trigger. Reserved for
+     * future extensions.
+     *
+     * Generated from protobuf field <code>string location_id = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLocationId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->location_id = $var;
 
         return $this;
     }

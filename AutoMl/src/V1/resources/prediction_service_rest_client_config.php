@@ -15,6 +15,18 @@ return [
                     ],
                 ],
             ],
+            'BatchPredict' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/models/*}:batchPredict',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.iam.v1.IAMPolicy' => [
             'SetIamPolicy' => [

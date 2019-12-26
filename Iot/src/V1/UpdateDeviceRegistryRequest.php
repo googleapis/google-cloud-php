@@ -16,21 +16,21 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateDeviceRegistryRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The new values for the device registry. The `id` field must be empty, and
+     * Required. The new values for the device registry. The `id` field must be empty, and
      * the `name` field must indicate the path of the resource. For example,
      * `projects/example-project/locations/us-central1/registries/my-registry`.
      *
-     * Generated from protobuf field <code>.google.cloud.iot.v1.DeviceRegistry device_registry = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.iot.v1.DeviceRegistry device_registry = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $device_registry = null;
     /**
-     * Only updates the `device_registry` fields indicated by this mask.
+     * Required. Only updates the `device_registry` fields indicated by this mask.
      * The field mask must not be empty, and it must not contain fields that
      * are immutable or only set by the server.
      * Mutable top-level fields: `event_notification_config`, `http_config`,
      * `mqtt_config`, and `state_notification_config`.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $update_mask = null;
 
@@ -41,11 +41,11 @@ class UpdateDeviceRegistryRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Iot\V1\DeviceRegistry $device_registry
-     *           The new values for the device registry. The `id` field must be empty, and
+     *           Required. The new values for the device registry. The `id` field must be empty, and
      *           the `name` field must indicate the path of the resource. For example,
      *           `projects/example-project/locations/us-central1/registries/my-registry`.
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Only updates the `device_registry` fields indicated by this mask.
+     *           Required. Only updates the `device_registry` fields indicated by this mask.
      *           The field mask must not be empty, and it must not contain fields that
      *           are immutable or only set by the server.
      *           Mutable top-level fields: `event_notification_config`, `http_config`,
@@ -58,11 +58,11 @@ class UpdateDeviceRegistryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The new values for the device registry. The `id` field must be empty, and
+     * Required. The new values for the device registry. The `id` field must be empty, and
      * the `name` field must indicate the path of the resource. For example,
      * `projects/example-project/locations/us-central1/registries/my-registry`.
      *
-     * Generated from protobuf field <code>.google.cloud.iot.v1.DeviceRegistry device_registry = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.iot.v1.DeviceRegistry device_registry = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Iot\V1\DeviceRegistry
      */
     public function getDeviceRegistry()
@@ -71,11 +71,11 @@ class UpdateDeviceRegistryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The new values for the device registry. The `id` field must be empty, and
+     * Required. The new values for the device registry. The `id` field must be empty, and
      * the `name` field must indicate the path of the resource. For example,
      * `projects/example-project/locations/us-central1/registries/my-registry`.
      *
-     * Generated from protobuf field <code>.google.cloud.iot.v1.DeviceRegistry device_registry = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.iot.v1.DeviceRegistry device_registry = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Iot\V1\DeviceRegistry $var
      * @return $this
      */
@@ -88,13 +88,13 @@ class UpdateDeviceRegistryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Only updates the `device_registry` fields indicated by this mask.
+     * Required. Only updates the `device_registry` fields indicated by this mask.
      * The field mask must not be empty, and it must not contain fields that
      * are immutable or only set by the server.
      * Mutable top-level fields: `event_notification_config`, `http_config`,
      * `mqtt_config`, and `state_notification_config`.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask
      */
     public function getUpdateMask()
@@ -103,13 +103,13 @@ class UpdateDeviceRegistryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Only updates the `device_registry` fields indicated by this mask.
+     * Required. Only updates the `device_registry` fields indicated by this mask.
      * The field mask must not be empty, and it must not contain fields that
      * are immutable or only set by the server.
      * Mutable top-level fields: `event_notification_config`, `http_config`,
      * `mqtt_config`, and `state_notification_config`.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var
      * @return $this
      */

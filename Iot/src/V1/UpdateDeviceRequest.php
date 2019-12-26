@@ -16,21 +16,21 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateDeviceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The new values for the device. The `id` and `num_id` fields must
+     * Required. The new values for the device. The `id` and `num_id` fields must
      * be empty, and the field `name` must specify the name path. For example,
      * `projects/p0/locations/us-central1/registries/registry0/devices/device0`or
      * `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
      *
-     * Generated from protobuf field <code>.google.cloud.iot.v1.Device device = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.iot.v1.Device device = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $device = null;
     /**
-     * Only updates the `device` fields indicated by this mask.
+     * Required. Only updates the `device` fields indicated by this mask.
      * The field mask must not be empty, and it must not contain fields that
      * are immutable or only set by the server.
      * Mutable top-level fields: `credentials`, `blocked`, and `metadata`
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $update_mask = null;
 
@@ -41,12 +41,12 @@ class UpdateDeviceRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Iot\V1\Device $device
-     *           The new values for the device. The `id` and `num_id` fields must
+     *           Required. The new values for the device. The `id` and `num_id` fields must
      *           be empty, and the field `name` must specify the name path. For example,
      *           `projects/p0/locations/us-central1/registries/registry0/devices/device0`or
      *           `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Only updates the `device` fields indicated by this mask.
+     *           Required. Only updates the `device` fields indicated by this mask.
      *           The field mask must not be empty, and it must not contain fields that
      *           are immutable or only set by the server.
      *           Mutable top-level fields: `credentials`, `blocked`, and `metadata`
@@ -58,12 +58,12 @@ class UpdateDeviceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The new values for the device. The `id` and `num_id` fields must
+     * Required. The new values for the device. The `id` and `num_id` fields must
      * be empty, and the field `name` must specify the name path. For example,
      * `projects/p0/locations/us-central1/registries/registry0/devices/device0`or
      * `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
      *
-     * Generated from protobuf field <code>.google.cloud.iot.v1.Device device = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.iot.v1.Device device = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Iot\V1\Device
      */
     public function getDevice()
@@ -72,12 +72,12 @@ class UpdateDeviceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The new values for the device. The `id` and `num_id` fields must
+     * Required. The new values for the device. The `id` and `num_id` fields must
      * be empty, and the field `name` must specify the name path. For example,
      * `projects/p0/locations/us-central1/registries/registry0/devices/device0`or
      * `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
      *
-     * Generated from protobuf field <code>.google.cloud.iot.v1.Device device = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.iot.v1.Device device = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Iot\V1\Device $var
      * @return $this
      */
@@ -90,12 +90,12 @@ class UpdateDeviceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Only updates the `device` fields indicated by this mask.
+     * Required. Only updates the `device` fields indicated by this mask.
      * The field mask must not be empty, and it must not contain fields that
      * are immutable or only set by the server.
      * Mutable top-level fields: `credentials`, `blocked`, and `metadata`
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask
      */
     public function getUpdateMask()
@@ -104,12 +104,12 @@ class UpdateDeviceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Only updates the `device` fields indicated by this mask.
+     * Required. Only updates the `device` fields indicated by this mask.
      * The field mask must not be empty, and it must not contain fields that
      * are immutable or only set by the server.
      * Mutable top-level fields: `credentials`, `blocked`, and `metadata`
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var
      * @return $this
      */

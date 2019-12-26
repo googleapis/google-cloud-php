@@ -32,13 +32,13 @@ class UpdateDatabaseDdlRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The database to update.
      *
-     * Generated from protobuf field <code>string database = 1;</code>
+     * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $database = '';
     /**
-     * DDL statements to be applied to the database.
+     * Required. DDL statements to be applied to the database.
      *
-     * Generated from protobuf field <code>repeated string statements = 2;</code>
+     * Generated from protobuf field <code>repeated string statements = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $statements;
     /**
@@ -75,7 +75,7 @@ class UpdateDatabaseDdlRequest extends \Google\Protobuf\Internal\Message
      *     @type string $database
      *           Required. The database to update.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $statements
-     *           DDL statements to be applied to the database.
+     *           Required. DDL statements to be applied to the database.
      *     @type string $operation_id
      *           If empty, the new update request is assigned an
      *           automatically-generated operation ID. Otherwise, `operation_id`
@@ -106,7 +106,7 @@ class UpdateDatabaseDdlRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The database to update.
      *
-     * Generated from protobuf field <code>string database = 1;</code>
+     * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getDatabase()
@@ -117,7 +117,7 @@ class UpdateDatabaseDdlRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The database to update.
      *
-     * Generated from protobuf field <code>string database = 1;</code>
+     * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -130,9 +130,9 @@ class UpdateDatabaseDdlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * DDL statements to be applied to the database.
+     * Required. DDL statements to be applied to the database.
      *
-     * Generated from protobuf field <code>repeated string statements = 2;</code>
+     * Generated from protobuf field <code>repeated string statements = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getStatements()
@@ -141,9 +141,9 @@ class UpdateDatabaseDdlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * DDL statements to be applied to the database.
+     * Required. DDL statements to be applied to the database.
      *
-     * Generated from protobuf field <code>repeated string statements = 2;</code>
+     * Generated from protobuf field <code>repeated string statements = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

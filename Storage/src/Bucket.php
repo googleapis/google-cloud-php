@@ -851,14 +851,16 @@ class Bucket
      *           that objects need to be retained, in seconds. Retention
      *           duration must be greater than zero and less than 100 years.
      *     @type array $iamConfiguration The bucket's IAM configuration.
-     *     @type bool $iamConfiguration.bucketPolicyOnly.enabled If set and
+     *     @type bool $iamConfiguration.bucketPolicyOnly.enabled this is an alias
+     *           for $iamConfiguration.uniformBucketLevelAccess.
+     *     @type bool $iamConfiguration.uniformBucketLevelAccess.enabled If set and
      *           true, access checks only use bucket-level IAM policies or
      *           above. When enabled, requests attempting to view or manipulate
      *           ACLs will fail with error code 400. **NOTE**: Before using
-     *           Bucket Policy Only, please review the
-     *           [feature documentation](https://cloud.google.com/storage/docs/bucket-policy-only),
+     *           Uniform bucket-level access, please review the
+     *           [feature documentation](https://cloud.google.com/storage/docs/uniform-bucket-level-access),
      *           as well as
-     *           [Should You Use Bucket Policy Only](https://cloud.google.com/storage/docs/bucket-policy-only#should-you-use)
+     *           [Should You Use uniform bucket-level access](https://cloud.google.com/storage/docs/uniform-bucket-level-access#should-you-use)
      * }
      * @codingStandardsIgnoreEnd
      * @return array

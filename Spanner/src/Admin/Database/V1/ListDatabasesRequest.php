@@ -20,7 +20,7 @@ class ListDatabasesRequest extends \Google\Protobuf\Internal\Message
      * Required. The instance whose databases should be listed.
      * Values are of the form `projects/<project>/instances/<instance>`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -68,7 +68,7 @@ class ListDatabasesRequest extends \Google\Protobuf\Internal\Message
      * Required. The instance whose databases should be listed.
      * Values are of the form `projects/<project>/instances/<instance>`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -80,7 +80,7 @@ class ListDatabasesRequest extends \Google\Protobuf\Internal\Message
      * Required. The instance whose databases should be listed.
      * Values are of the form `projects/<project>/instances/<instance>`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

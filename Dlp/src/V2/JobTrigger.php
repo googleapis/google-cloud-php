@@ -19,7 +19,7 @@ class JobTrigger extends \Google\Protobuf\Internal\Message
     /**
      * Unique resource name for the triggeredJob, assigned by the service when the
      * triggeredJob is created, for example
-     * `projects/dlp-test-project/triggeredJobs/53234423`.
+     * `projects/dlp-test-project/jobTriggers/53234423`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -88,7 +88,7 @@ class JobTrigger extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Unique resource name for the triggeredJob, assigned by the service when the
      *           triggeredJob is created, for example
-     *           `projects/dlp-test-project/triggeredJobs/53234423`.
+     *           `projects/dlp-test-project/jobTriggers/53234423`.
      *     @type string $display_name
      *           Display name (max 100 chars)
      *     @type string $description
@@ -121,7 +121,7 @@ class JobTrigger extends \Google\Protobuf\Internal\Message
     /**
      * Unique resource name for the triggeredJob, assigned by the service when the
      * triggeredJob is created, for example
-     * `projects/dlp-test-project/triggeredJobs/53234423`.
+     * `projects/dlp-test-project/jobTriggers/53234423`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -134,7 +134,7 @@ class JobTrigger extends \Google\Protobuf\Internal\Message
     /**
      * Unique resource name for the triggeredJob, assigned by the service when the
      * triggeredJob is created, for example
-     * `projects/dlp-test-project/triggeredJobs/53234423`.
+     * `projects/dlp-test-project/jobTriggers/53234423`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

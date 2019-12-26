@@ -14,14 +14,14 @@ class Mutation
         if (static::$is_initialized == true) {
           return;
         }
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Protobuf\Struct::initOnce();
         \GPBMetadata\Google\Spanner\V1\Keys::initOnce();
+        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(hex2bin(
             "0adb050a20676f6f676c652f7370616e6e65722f76312f6d75746174696f" .
             "6e2e70726f746f1211676f6f676c652e7370616e6e65722e76311a1c676f" .
-            "6f676c652f70726f746f6275662f7374727563742e70726f746f1a1c676f" .
-            "6f676c652f7370616e6e65722f76312f6b6579732e70726f746f22c6030a" .
+            "6f676c652f7370616e6e65722f76312f6b6579732e70726f746f1a1c676f" .
+            "6f676c652f6170692f616e6e6f746174696f6e732e70726f746f22c6030a" .
             "084d75746174696f6e12330a06696e7365727418012001280b32212e676f" .
             "6f676c652e7370616e6e65722e76312e4d75746174696f6e2e5772697465" .
             "480012330a0675706461746518022001280b32212e676f6f676c652e7370" .

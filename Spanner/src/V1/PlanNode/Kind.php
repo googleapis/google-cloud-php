@@ -7,8 +7,8 @@ namespace Google\Cloud\Spanner\V1\PlanNode;
 use UnexpectedValueException;
 
 /**
- * The kind of [PlanNode][google.spanner.v1.PlanNode]. Distinguishes between
- * the two different kinds of nodes that can appear in a query plan.
+ * The kind of [PlanNode][google.spanner.v1.PlanNode]. Distinguishes between the two different kinds of
+ * nodes that can appear in a query plan.
  *
  * Protobuf type <code>google.spanner.v1.PlanNode.Kind</code>
  */

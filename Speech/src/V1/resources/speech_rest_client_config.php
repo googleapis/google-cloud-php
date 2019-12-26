@@ -15,25 +15,13 @@ return [
             ],
         ],
         'google.longrunning.Operations' => [
-            'ListOperations' => [
+            'GetOperation' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1/operations',
+                'uriTemplate' => '/v1/operations/{name=**}',
                 'additionalBindings' => [
                     [
                         'method' => 'get',
-                        'uriTemplate' => '/v1beta1/operations',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1p1beta1/operations',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1p1beta1/{name=projects/*/locations/*}/operations',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1/{name=projects/*/locations/*}/operations',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}',
                     ],
                 ],
                 'placeholders' => [
@@ -44,25 +32,13 @@ return [
                     ],
                 ],
             ],
-            'GetOperation' => [
+            'ListOperations' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1/operations/{name=**}',
+                'uriTemplate' => '/v1/operations',
                 'additionalBindings' => [
                     [
                         'method' => 'get',
-                        'uriTemplate' => '/v1beta1/operations/{name=**}',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1p1beta1/operations/{name=**}',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1p1beta1/{name=projects/*/locations/*/operations/*}',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*}/operations',
                     ],
                 ],
                 'placeholders' => [

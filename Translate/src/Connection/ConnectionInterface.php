@@ -15,29 +15,26 @@
  * limitations under the License.
  */
 
+//@codeCoverageIgnoreStart
+
 namespace Google\Cloud\Translate\Connection;
 
-/**
- * Represents a connection to
- * [Google Cloud Translation](https://cloud.google.com/translation/).
- */
-interface ConnectionInterface
-{
-    /**
-     * @param array $args
-     * @return array
-     */
-    public function listDetections(array $args = []);
+use Google\Cloud\Translate\V2;
 
+if (false) {
     /**
-     * @param array $args
-     * @return array
+     * This class is deprecated. Use Google\Cloud\Translate\V2\Connection\ConnectionInterface instead.
+     * @deprecated
      */
-    public function listLanguages(array $args = []);
-
-    /**
-     * @param array $args
-     * @return array
-     */
-    public function listTranslations(array $args = []);
+    interface ConnectionInterface {}
 }
+
+class_exists(V2\ConnectionInterface::class);
+@trigger_error(
+    'Google\Cloud\Translate\ConnectionInterface is deprecated and will be ' .
+    'removed in a future release. Use ' .
+    'Google\Cloud\Translate\V2\ConnectionInterface instead',
+    E_USER_DEPRECATED
+);
+
+//@codeCoverageIgnoreEnd

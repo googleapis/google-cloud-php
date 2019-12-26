@@ -18,9 +18,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateDlpJobRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The parent resource name, for example projects/my-project-id.
+     * Required. The parent resource name, for example projects/my-project-id.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -32,6 +32,13 @@ class CreateDlpJobRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string job_id = 4;</code>
      */
     private $job_id = '';
+    /**
+     * The geographic location to store and process the job. Reserved for
+     * future extensions.
+     *
+     * Generated from protobuf field <code>string location_id = 5;</code>
+     */
+    private $location_id = '';
     protected $job;
 
     /**
@@ -41,7 +48,7 @@ class CreateDlpJobRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The parent resource name, for example projects/my-project-id.
+     *           Required. The parent resource name, for example projects/my-project-id.
      *     @type \Google\Cloud\Dlp\V2\InspectJobConfig $inspect_job
      *     @type \Google\Cloud\Dlp\V2\RiskAnalysisJobConfig $risk_job
      *     @type string $job_id
@@ -49,6 +56,9 @@ class CreateDlpJobRequest extends \Google\Protobuf\Internal\Message
      *           numbers, and hyphens; that is, it must match the regular
      *           expression: `[a-zA-Z\\d-_]+`. The maximum length is 100
      *           characters. Can be empty to allow the system to generate one.
+     *     @type string $location_id
+     *           The geographic location to store and process the job. Reserved for
+     *           future extensions.
      * }
      */
     public function __construct($data = NULL) {
@@ -57,9 +67,9 @@ class CreateDlpJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The parent resource name, for example projects/my-project-id.
+     * Required. The parent resource name, for example projects/my-project-id.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -68,9 +78,9 @@ class CreateDlpJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The parent resource name, for example projects/my-project-id.
+     * Required. The parent resource name, for example projects/my-project-id.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -154,6 +164,34 @@ class CreateDlpJobRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->job_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * The geographic location to store and process the job. Reserved for
+     * future extensions.
+     *
+     * Generated from protobuf field <code>string location_id = 5;</code>
+     * @return string
+     */
+    public function getLocationId()
+    {
+        return $this->location_id;
+    }
+
+    /**
+     * The geographic location to store and process the job. Reserved for
+     * future extensions.
+     *
+     * Generated from protobuf field <code>string location_id = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLocationId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->location_id = $var;
 
         return $this;
     }

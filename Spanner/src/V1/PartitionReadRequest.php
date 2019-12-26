@@ -18,7 +18,7 @@ class PartitionReadRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The session used to create the partitions.
      *
-     * Generated from protobuf field <code>string session = 1;</code>
+     * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $session = '';
     /**
@@ -31,7 +31,7 @@ class PartitionReadRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the table in the database to be read.
      *
-     * Generated from protobuf field <code>string table = 3;</code>
+     * Generated from protobuf field <code>string table = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $table = '';
     /**
@@ -63,7 +63,7 @@ class PartitionReadRequest extends \Google\Protobuf\Internal\Message
      * It is not an error for the `key_set` to name rows that do not
      * exist in the database. Read yields nothing for nonexistent rows.
      *
-     * Generated from protobuf field <code>.google.spanner.v1.KeySet key_set = 6;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.KeySet key_set = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $key_set = null;
     /**
@@ -118,7 +118,7 @@ class PartitionReadRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The session used to create the partitions.
      *
-     * Generated from protobuf field <code>string session = 1;</code>
+     * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getSession()
@@ -129,7 +129,7 @@ class PartitionReadRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The session used to create the partitions.
      *
-     * Generated from protobuf field <code>string session = 1;</code>
+     * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -172,7 +172,7 @@ class PartitionReadRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the table in the database to be read.
      *
-     * Generated from protobuf field <code>string table = 3;</code>
+     * Generated from protobuf field <code>string table = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getTable()
@@ -183,7 +183,7 @@ class PartitionReadRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the table in the database to be read.
      *
-     * Generated from protobuf field <code>string table = 3;</code>
+     * Generated from protobuf field <code>string table = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -270,7 +270,7 @@ class PartitionReadRequest extends \Google\Protobuf\Internal\Message
      * It is not an error for the `key_set` to name rows that do not
      * exist in the database. Read yields nothing for nonexistent rows.
      *
-     * Generated from protobuf field <code>.google.spanner.v1.KeySet key_set = 6;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.KeySet key_set = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Spanner\V1\KeySet
      */
     public function getKeySet()
@@ -289,7 +289,7 @@ class PartitionReadRequest extends \Google\Protobuf\Internal\Message
      * It is not an error for the `key_set` to name rows that do not
      * exist in the database. Read yields nothing for nonexistent rows.
      *
-     * Generated from protobuf field <code>.google.spanner.v1.KeySet key_set = 6;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.KeySet key_set = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Spanner\V1\KeySet $var
      * @return $this
      */

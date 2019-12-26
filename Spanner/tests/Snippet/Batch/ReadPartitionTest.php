@@ -22,9 +22,9 @@ use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Batch\ReadPartition;
-use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
+use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Prophecy\Argument;
 
@@ -38,6 +38,7 @@ class ReadPartitionTest extends SnippetTestCase
     use PartitionSharedSnippetTestTrait {
         provideGetters as private getters;
     }
+    use StubCreationTrait;
 
     const DATABASE = 'projects/my-awesome-project/instances/my-instance/databases/my-database';
     const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
@@ -62,7 +63,7 @@ class ReadPartitionTest extends SnippetTestCase
 
     public function testClass()
     {
-        $connection = $this->prophesize(ConnectionInterface::class);
+        $connection = $this->getConnStub();
         $connection->createSession(Argument::any())
             ->shouldBeCalledTimes(1)
             ->willReturn([

@@ -19,9 +19,16 @@ class RedactImageRequest extends \Google\Protobuf\Internal\Message
     /**
      * The parent resource name, for example projects/my-project-id.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      */
     private $parent = '';
+    /**
+     * The geographic location to process the request. Reserved for future
+     * extensions.
+     *
+     * Generated from protobuf field <code>string location_id = 8;</code>
+     */
+    private $location_id = '';
     /**
      * Configuration for the inspector.
      *
@@ -56,6 +63,9 @@ class RedactImageRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           The parent resource name, for example projects/my-project-id.
+     *     @type string $location_id
+     *           The geographic location to process the request. Reserved for future
+     *           extensions.
      *     @type \Google\Cloud\Dlp\V2\InspectConfig $inspect_config
      *           Configuration for the inspector.
      *     @type \Google\Cloud\Dlp\V2\RedactImageRequest\ImageRedactionConfig[]|\Google\Protobuf\Internal\RepeatedField $image_redaction_configs
@@ -75,7 +85,7 @@ class RedactImageRequest extends \Google\Protobuf\Internal\Message
     /**
      * The parent resource name, for example projects/my-project-id.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -86,7 +96,7 @@ class RedactImageRequest extends \Google\Protobuf\Internal\Message
     /**
      * The parent resource name, for example projects/my-project-id.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -94,6 +104,34 @@ class RedactImageRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->parent = $var;
+
+        return $this;
+    }
+
+    /**
+     * The geographic location to process the request. Reserved for future
+     * extensions.
+     *
+     * Generated from protobuf field <code>string location_id = 8;</code>
+     * @return string
+     */
+    public function getLocationId()
+    {
+        return $this->location_id;
+    }
+
+    /**
+     * The geographic location to process the request. Reserved for future
+     * extensions.
+     *
+     * Generated from protobuf field <code>string location_id = 8;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLocationId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->location_id = $var;
 
         return $this;
     }

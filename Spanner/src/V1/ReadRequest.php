@@ -19,7 +19,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The session in which the read should be performed.
      *
-     * Generated from protobuf field <code>string session = 1;</code>
+     * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $session = '';
     /**
@@ -32,7 +32,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the table in the database to be read.
      *
-     * Generated from protobuf field <code>string table = 3;</code>
+     * Generated from protobuf field <code>string table = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $table = '';
     /**
@@ -47,10 +47,10 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      */
     private $index = '';
     /**
-     * The columns of [table][google.spanner.v1.ReadRequest.table] to be returned
-     * for each row matching this request.
+     * Required. The columns of [table][google.spanner.v1.ReadRequest.table] to be
+     * returned for each row matching this request.
      *
-     * Generated from protobuf field <code>repeated string columns = 5;</code>
+     * Generated from protobuf field <code>repeated string columns = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $columns;
     /**
@@ -69,7 +69,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      * It is not an error for the `key_set` to name rows that do not
      * exist in the database. Read yields nothing for nonexistent rows.
      *
-     * Generated from protobuf field <code>.google.spanner.v1.KeySet key_set = 6;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.KeySet key_set = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $key_set = null;
     /**
@@ -122,8 +122,8 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      *           See [key_set][google.spanner.v1.ReadRequest.key_set] for further
      *           information.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $columns
-     *           The columns of [table][google.spanner.v1.ReadRequest.table] to be returned
-     *           for each row matching this request.
+     *           Required. The columns of [table][google.spanner.v1.ReadRequest.table] to be
+     *           returned for each row matching this request.
      *     @type \Google\Cloud\Spanner\V1\KeySet $key_set
      *           Required. `key_set` identifies the rows to be yielded. `key_set` names the
      *           primary keys of the rows in [table][google.spanner.v1.ReadRequest.table] to
@@ -165,7 +165,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The session in which the read should be performed.
      *
-     * Generated from protobuf field <code>string session = 1;</code>
+     * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getSession()
@@ -176,7 +176,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The session in which the read should be performed.
      *
-     * Generated from protobuf field <code>string session = 1;</code>
+     * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -219,7 +219,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the table in the database to be read.
      *
-     * Generated from protobuf field <code>string table = 3;</code>
+     * Generated from protobuf field <code>string table = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getTable()
@@ -230,7 +230,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the table in the database to be read.
      *
-     * Generated from protobuf field <code>string table = 3;</code>
+     * Generated from protobuf field <code>string table = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -279,10 +279,10 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The columns of [table][google.spanner.v1.ReadRequest.table] to be returned
-     * for each row matching this request.
+     * Required. The columns of [table][google.spanner.v1.ReadRequest.table] to be
+     * returned for each row matching this request.
      *
-     * Generated from protobuf field <code>repeated string columns = 5;</code>
+     * Generated from protobuf field <code>repeated string columns = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getColumns()
@@ -291,10 +291,10 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The columns of [table][google.spanner.v1.ReadRequest.table] to be returned
-     * for each row matching this request.
+     * Required. The columns of [table][google.spanner.v1.ReadRequest.table] to be
+     * returned for each row matching this request.
      *
-     * Generated from protobuf field <code>repeated string columns = 5;</code>
+     * Generated from protobuf field <code>repeated string columns = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -322,7 +322,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      * It is not an error for the `key_set` to name rows that do not
      * exist in the database. Read yields nothing for nonexistent rows.
      *
-     * Generated from protobuf field <code>.google.spanner.v1.KeySet key_set = 6;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.KeySet key_set = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Spanner\V1\KeySet
      */
     public function getKeySet()
@@ -346,7 +346,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      * It is not an error for the `key_set` to name rows that do not
      * exist in the database. Read yields nothing for nonexistent rows.
      *
-     * Generated from protobuf field <code>.google.spanner.v1.KeySet key_set = 6;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.KeySet key_set = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Spanner\V1\KeySet $var
      * @return $this
      */

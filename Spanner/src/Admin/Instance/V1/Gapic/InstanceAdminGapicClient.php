@@ -663,6 +663,10 @@ class InstanceAdminGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
+     *     @type FieldMask $fieldMask
+     *          If field_mask is present, specifies the subset of [][google.spanner.admin.instance.v1.Instance] fields that
+     *          should be returned.
+     *          If absent, all [][google.spanner.admin.instance.v1.Instance] fields are returned.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -679,6 +683,9 @@ class InstanceAdminGapicClient
     {
         $request = new GetInstanceRequest();
         $request->setName($name);
+        if (isset($optionalArgs['fieldMask'])) {
+            $request->setFieldMask($optionalArgs['fieldMask']);
+        }
 
         $requestParams = new RequestParamsHeaderDescriptor([
           'name' => $request->getName(),
@@ -775,7 +782,7 @@ class InstanceAdminGapicClient
      * @param string   $parent       Required. The name of the project in which to create the instance. Values
      *                               are of the form `projects/<project>`.
      * @param string   $instanceId   Required. The ID of the instance to create.  Valid identifiers are of the
-     *                               form `[a-z][-a-z0-9]*[a-z0-9]` and must be between 6 and 30 characters in
+     *                               form `[a-z][-a-z0-9]*[a-z0-9]` and must be between 2 and 64 characters in
      *                               length.
      * @param Instance $instance     Required. The instance to create.  The name may be omitted, but if
      *                               specified must be `<parent>/instances/<instance_id>`.
@@ -831,9 +838,9 @@ class InstanceAdminGapicClient
      * Until completion of the returned operation:
      *
      *   * Cancelling the operation sets its metadata's
-     *     [cancel_time][google.spanner.admin.instance.v1.UpdateInstanceMetadata.cancel_time],
-     *     and begins restoring resources to their pre-request values. The
-     *     operation is guaranteed to succeed at undoing all resource changes,
+     *     [cancel_time][google.spanner.admin.instance.v1.UpdateInstanceMetadata.cancel_time], and begins
+     *     restoring resources to their pre-request values. The operation
+     *     is guaranteed to succeed at undoing all resource changes,
      *     after which point it terminates with a `CANCELLED` status.
      *   * All other attempts to modify the instance are rejected.
      *   * Reading the instance via the API continues to give the pre-request
@@ -899,15 +906,11 @@ class InstanceAdminGapicClient
      * ```
      *
      * @param Instance  $instance     Required. The instance to update, which must always include the instance
-     *                                name.  Otherwise, only fields mentioned in
-     *                                [][google.spanner.admin.instance.v1.UpdateInstanceRequest.field_mask] need
-     *                                be included.
-     * @param FieldMask $fieldMask    Required. A mask specifying which fields in
-     *                                [][google.spanner.admin.instance.v1.UpdateInstanceRequest.instance] should
-     *                                be updated. The field mask must always be specified; this prevents any
-     *                                future fields in
-     *                                [][google.spanner.admin.instance.v1.Instance] from being erased
-     *                                accidentally by clients that do not know about them.
+     *                                name.  Otherwise, only fields mentioned in [][google.spanner.admin.instance.v1.UpdateInstanceRequest.field_mask] need be included.
+     * @param FieldMask $fieldMask    Required. A mask specifying which fields in [][google.spanner.admin.instance.v1.UpdateInstanceRequest.instance] should be updated.
+     *                                The field mask must always be specified; this prevents any future fields in
+     *                                [][google.spanner.admin.instance.v1.Instance] from being erased accidentally by clients that do not know
+     *                                about them.
      * @param array     $optionalArgs {
      *                                Optional.
      *
@@ -1014,9 +1017,9 @@ class InstanceAdminGapicClient
      * ```
      * $instanceAdminClient = new InstanceAdminClient();
      * try {
-     *     $formattedResource = $instanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
+     *     $resource = '';
      *     $policy = new Policy();
-     *     $response = $instanceAdminClient->setIamPolicy($formattedResource, $policy);
+     *     $response = $instanceAdminClient->setIamPolicy($resource, $policy);
      * } finally {
      *     $instanceAdminClient->close();
      * }
@@ -1075,8 +1078,8 @@ class InstanceAdminGapicClient
      * ```
      * $instanceAdminClient = new InstanceAdminClient();
      * try {
-     *     $formattedResource = $instanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
-     *     $response = $instanceAdminClient->getIamPolicy($formattedResource);
+     *     $resource = '';
+     *     $response = $instanceAdminClient->getIamPolicy($resource);
      * } finally {
      *     $instanceAdminClient->close();
      * }
@@ -1137,9 +1140,9 @@ class InstanceAdminGapicClient
      * ```
      * $instanceAdminClient = new InstanceAdminClient();
      * try {
-     *     $formattedResource = $instanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
+     *     $resource = '';
      *     $permissions = [];
-     *     $response = $instanceAdminClient->testIamPermissions($formattedResource, $permissions);
+     *     $response = $instanceAdminClient->testIamPermissions($resource, $permissions);
      * } finally {
      *     $instanceAdminClient->close();
      * }

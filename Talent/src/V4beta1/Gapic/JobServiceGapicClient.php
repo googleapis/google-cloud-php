@@ -1770,7 +1770,7 @@ class JobServiceGapicClient
      * The format is "projects/{project_id}/tenants/{tenant_id}". For example,
      * "projects/foo/tenant/bar". If tenant id is unspecified, a default tenant
      * is created. For example, "projects/foo".
-     * @param Job[] $jobs         The jobs to be updated.
+     * @param Job[] $jobs         Required. The jobs to be updated.
      * @param array $optionalArgs {
      *                            Optional.
      *

@@ -19,7 +19,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Required. A unique identifier for the instance, which cannot be changed
      * after the instance is created. Values are of the form
      * `projects/<project>/instances/[a-z][-a-z0-9]*[a-z0-9]`. The final
-     * segment of the name must be between 6 and 30 characters in length.
+     * segment of the name must be between 2 and 64 characters in length.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -30,7 +30,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * also [InstanceConfig][google.spanner.admin.instance.v1.InstanceConfig] and
      * [ListInstanceConfigs][google.spanner.admin.instance.v1.InstanceAdmin.ListInstanceConfigs].
      *
-     * Generated from protobuf field <code>string config = 2;</code>
+     * Generated from protobuf field <code>string config = 2 [(.google.api.resource_reference) = {</code>
      */
     private $config = '';
     /**
@@ -52,10 +52,10 @@ class Instance extends \Google\Protobuf\Internal\Message
     private $node_count = 0;
     /**
      * Output only. The current instance state. For
-     * [CreateInstance][google.spanner.admin.instance.v1.InstanceAdmin.CreateInstance],
-     * the state must be either omitted or set to `CREATING`. For
-     * [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance],
-     * the state must be either omitted or set to `READY`.
+     * [CreateInstance][google.spanner.admin.instance.v1.InstanceAdmin.CreateInstance], the state must be
+     * either omitted or set to `CREATING`. For
+     * [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance], the state must be
+     * either omitted or set to `READY`.
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance.State state = 6;</code>
      */
@@ -83,6 +83,19 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> labels = 7;</code>
      */
     private $labels;
+    /**
+     * Output only. The endpoint URIs based on the instance config.
+     * For example, instances located in a specific cloud region (or multi region)
+     * such as nam3, would have a nam3 specific endpoint URI.
+     * This URI is to be used implictly by SDK clients, with fallback to default
+     * URI. These endpoints are intended to optimize the network routing between
+     * the client and the instance's serving resources.
+     * If multiple endpoints are present, client may establish connections using
+     * any of the given URIs.
+     *
+     * Generated from protobuf field <code>repeated string endpoint_uris = 8;</code>
+     */
+    private $endpoint_uris;
 
     /**
      * Constructor.
@@ -94,7 +107,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Required. A unique identifier for the instance, which cannot be changed
      *           after the instance is created. Values are of the form
      *           `projects/<project>/instances/[a-z][-a-z0-9]*[a-z0-9]`. The final
-     *           segment of the name must be between 6 and 30 characters in length.
+     *           segment of the name must be between 2 and 64 characters in length.
      *     @type string $config
      *           Required. The name of the instance's configuration. Values are of the form
      *           `projects/<project>/instanceConfigs/<configuration>`. See
@@ -111,10 +124,10 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           for more information about nodes.
      *     @type int $state
      *           Output only. The current instance state. For
-     *           [CreateInstance][google.spanner.admin.instance.v1.InstanceAdmin.CreateInstance],
-     *           the state must be either omitted or set to `CREATING`. For
-     *           [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance],
-     *           the state must be either omitted or set to `READY`.
+     *           [CreateInstance][google.spanner.admin.instance.v1.InstanceAdmin.CreateInstance], the state must be
+     *           either omitted or set to `CREATING`. For
+     *           [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance], the state must be
+     *           either omitted or set to `READY`.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Cloud Labels are a flexible and lightweight mechanism for organizing cloud
      *           resources into groups that reflect a customer's organizational needs and
@@ -134,6 +147,15 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           specific characters being disallowed.  For example, representing labels
      *           as the string:  name + "_" + value  would prove problematic if we were to
      *           allow "_" in a future release.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $endpoint_uris
+     *           Output only. The endpoint URIs based on the instance config.
+     *           For example, instances located in a specific cloud region (or multi region)
+     *           such as nam3, would have a nam3 specific endpoint URI.
+     *           This URI is to be used implictly by SDK clients, with fallback to default
+     *           URI. These endpoints are intended to optimize the network routing between
+     *           the client and the instance's serving resources.
+     *           If multiple endpoints are present, client may establish connections using
+     *           any of the given URIs.
      * }
      */
     public function __construct($data = NULL) {
@@ -145,7 +167,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Required. A unique identifier for the instance, which cannot be changed
      * after the instance is created. Values are of the form
      * `projects/<project>/instances/[a-z][-a-z0-9]*[a-z0-9]`. The final
-     * segment of the name must be between 6 and 30 characters in length.
+     * segment of the name must be between 2 and 64 characters in length.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -159,7 +181,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Required. A unique identifier for the instance, which cannot be changed
      * after the instance is created. Values are of the form
      * `projects/<project>/instances/[a-z][-a-z0-9]*[a-z0-9]`. The final
-     * segment of the name must be between 6 and 30 characters in length.
+     * segment of the name must be between 2 and 64 characters in length.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -179,7 +201,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * also [InstanceConfig][google.spanner.admin.instance.v1.InstanceConfig] and
      * [ListInstanceConfigs][google.spanner.admin.instance.v1.InstanceAdmin.ListInstanceConfigs].
      *
-     * Generated from protobuf field <code>string config = 2;</code>
+     * Generated from protobuf field <code>string config = 2 [(.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getConfig()
@@ -193,7 +215,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * also [InstanceConfig][google.spanner.admin.instance.v1.InstanceConfig] and
      * [ListInstanceConfigs][google.spanner.admin.instance.v1.InstanceAdmin.ListInstanceConfigs].
      *
-     * Generated from protobuf field <code>string config = 2;</code>
+     * Generated from protobuf field <code>string config = 2 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -269,10 +291,10 @@ class Instance extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The current instance state. For
-     * [CreateInstance][google.spanner.admin.instance.v1.InstanceAdmin.CreateInstance],
-     * the state must be either omitted or set to `CREATING`. For
-     * [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance],
-     * the state must be either omitted or set to `READY`.
+     * [CreateInstance][google.spanner.admin.instance.v1.InstanceAdmin.CreateInstance], the state must be
+     * either omitted or set to `CREATING`. For
+     * [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance], the state must be
+     * either omitted or set to `READY`.
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance.State state = 6;</code>
      * @return int
@@ -284,10 +306,10 @@ class Instance extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The current instance state. For
-     * [CreateInstance][google.spanner.admin.instance.v1.InstanceAdmin.CreateInstance],
-     * the state must be either omitted or set to `CREATING`. For
-     * [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance],
-     * the state must be either omitted or set to `READY`.
+     * [CreateInstance][google.spanner.admin.instance.v1.InstanceAdmin.CreateInstance], the state must be
+     * either omitted or set to `CREATING`. For
+     * [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance], the state must be
+     * either omitted or set to `READY`.
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance.State state = 6;</code>
      * @param int $var
@@ -357,6 +379,46 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The endpoint URIs based on the instance config.
+     * For example, instances located in a specific cloud region (or multi region)
+     * such as nam3, would have a nam3 specific endpoint URI.
+     * This URI is to be used implictly by SDK clients, with fallback to default
+     * URI. These endpoints are intended to optimize the network routing between
+     * the client and the instance's serving resources.
+     * If multiple endpoints are present, client may establish connections using
+     * any of the given URIs.
+     *
+     * Generated from protobuf field <code>repeated string endpoint_uris = 8;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getEndpointUris()
+    {
+        return $this->endpoint_uris;
+    }
+
+    /**
+     * Output only. The endpoint URIs based on the instance config.
+     * For example, instances located in a specific cloud region (or multi region)
+     * such as nam3, would have a nam3 specific endpoint URI.
+     * This URI is to be used implictly by SDK clients, with fallback to default
+     * URI. These endpoints are intended to optimize the network routing between
+     * the client and the instance's serving resources.
+     * If multiple endpoints are present, client may establish connections using
+     * any of the given URIs.
+     *
+     * Generated from protobuf field <code>repeated string endpoint_uris = 8;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setEndpointUris($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->endpoint_uris = $arr;
 
         return $this;
     }

@@ -19,7 +19,7 @@ class BatchCreateSessionsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The database in which the new sessions are created.
      *
-     * Generated from protobuf field <code>string database = 1;</code>
+     * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $database = '';
     /**
@@ -36,7 +36,7 @@ class BatchCreateSessionsRequest extends \Google\Protobuf\Internal\Message
      * [session_count][google.spanner.v1.BatchCreateSessionsRequest.session_count]
      * as necessary).
      *
-     * Generated from protobuf field <code>int32 session_count = 3;</code>
+     * Generated from protobuf field <code>int32 session_count = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $session_count = 0;
 
@@ -67,7 +67,7 @@ class BatchCreateSessionsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The database in which the new sessions are created.
      *
-     * Generated from protobuf field <code>string database = 1;</code>
+     * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getDatabase()
@@ -78,7 +78,7 @@ class BatchCreateSessionsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The database in which the new sessions are created.
      *
-     * Generated from protobuf field <code>string database = 1;</code>
+     * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -124,7 +124,7 @@ class BatchCreateSessionsRequest extends \Google\Protobuf\Internal\Message
      * [session_count][google.spanner.v1.BatchCreateSessionsRequest.session_count]
      * as necessary).
      *
-     * Generated from protobuf field <code>int32 session_count = 3;</code>
+     * Generated from protobuf field <code>int32 session_count = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getSessionCount()
@@ -140,7 +140,7 @@ class BatchCreateSessionsRequest extends \Google\Protobuf\Internal\Message
      * [session_count][google.spanner.v1.BatchCreateSessionsRequest.session_count]
      * as necessary).
      *
-     * Generated from protobuf field <code>int32 session_count = 3;</code>
+     * Generated from protobuf field <code>int32 session_count = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */

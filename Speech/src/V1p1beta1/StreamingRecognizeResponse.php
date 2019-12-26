@@ -51,14 +51,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. If set, returns a [google.rpc.Status][google.rpc.Status]
-     * message that specifies the error for the operation.
+     * If set, returns a [google.rpc.Status][google.rpc.Status] message that
+     * specifies the error for the operation.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 1;</code>
      */
     private $error = null;
     /**
-     * Output only. This repeated list contains zero or more results that
+     * This repeated list contains zero or more results that
      * correspond to consecutive portions of the audio currently being processed.
      * It contains zero or one `is_final=true` result (the newly settled portion),
      * followed by zero or more `is_final=false` results (the interim results).
@@ -67,7 +67,7 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
      */
     private $results;
     /**
-     * Output only. Indicates the type of speech event.
+     * Indicates the type of speech event.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.StreamingRecognizeResponse.SpeechEventType speech_event_type = 4;</code>
      */
@@ -80,15 +80,15 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Rpc\Status $error
-     *           Output only. If set, returns a [google.rpc.Status][google.rpc.Status]
-     *           message that specifies the error for the operation.
+     *           If set, returns a [google.rpc.Status][google.rpc.Status] message that
+     *           specifies the error for the operation.
      *     @type \Google\Cloud\Speech\V1p1beta1\StreamingRecognitionResult[]|\Google\Protobuf\Internal\RepeatedField $results
-     *           Output only. This repeated list contains zero or more results that
+     *           This repeated list contains zero or more results that
      *           correspond to consecutive portions of the audio currently being processed.
      *           It contains zero or one `is_final=true` result (the newly settled portion),
      *           followed by zero or more `is_final=false` results (the interim results).
      *     @type int $speech_event_type
-     *           Output only. Indicates the type of speech event.
+     *           Indicates the type of speech event.
      * }
      */
     public function __construct($data = NULL) {
@@ -97,8 +97,8 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. If set, returns a [google.rpc.Status][google.rpc.Status]
-     * message that specifies the error for the operation.
+     * If set, returns a [google.rpc.Status][google.rpc.Status] message that
+     * specifies the error for the operation.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 1;</code>
      * @return \Google\Rpc\Status
@@ -109,8 +109,8 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. If set, returns a [google.rpc.Status][google.rpc.Status]
-     * message that specifies the error for the operation.
+     * If set, returns a [google.rpc.Status][google.rpc.Status] message that
+     * specifies the error for the operation.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 1;</code>
      * @param \Google\Rpc\Status $var
@@ -125,7 +125,7 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. This repeated list contains zero or more results that
+     * This repeated list contains zero or more results that
      * correspond to consecutive portions of the audio currently being processed.
      * It contains zero or one `is_final=true` result (the newly settled portion),
      * followed by zero or more `is_final=false` results (the interim results).
@@ -139,7 +139,7 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. This repeated list contains zero or more results that
+     * This repeated list contains zero or more results that
      * correspond to consecutive portions of the audio currently being processed.
      * It contains zero or one `is_final=true` result (the newly settled portion),
      * followed by zero or more `is_final=false` results (the interim results).
@@ -157,7 +157,7 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Indicates the type of speech event.
+     * Indicates the type of speech event.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.StreamingRecognizeResponse.SpeechEventType speech_event_type = 4;</code>
      * @return int
@@ -168,7 +168,7 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Indicates the type of speech event.
+     * Indicates the type of speech event.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.StreamingRecognizeResponse.SpeechEventType speech_event_type = 4;</code>
      * @param int $var

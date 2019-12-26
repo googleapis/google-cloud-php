@@ -97,6 +97,21 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string schedule = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $schedule = '';
+    /**
+     * Output only. Pub/Sub topic where a notification will be sent after this
+     * transfer run finishes
+     *
+     * Generated from protobuf field <code>string notification_pubsub_topic = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $notification_pubsub_topic = '';
+    /**
+     * Output only. Email notifications will be sent according to these
+     * preferences to the email address of the user who owns the transfer config
+     * this run was derived from.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.EmailPreferences email_preferences = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $email_preferences = null;
     protected $destination;
 
     /**
@@ -141,6 +156,13 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      *           scheduled manually, this is empty.
      *           NOTE: the system might choose to delay the schedule depending on the
      *           current load, so `schedule_time` doesn't always match this.
+     *     @type string $notification_pubsub_topic
+     *           Output only. Pub/Sub topic where a notification will be sent after this
+     *           transfer run finishes
+     *     @type \Google\Cloud\BigQuery\DataTransfer\V1\EmailPreferences $email_preferences
+     *           Output only. Email notifications will be sent according to these
+     *           preferences to the email address of the user who owns the transfer config
+     *           this run was derived from.
      * }
      */
     public function __construct($data = NULL) {
@@ -502,6 +524,64 @@ class TransferRun extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->schedule = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Pub/Sub topic where a notification will be sent after this
+     * transfer run finishes
+     *
+     * Generated from protobuf field <code>string notification_pubsub_topic = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getNotificationPubsubTopic()
+    {
+        return $this->notification_pubsub_topic;
+    }
+
+    /**
+     * Output only. Pub/Sub topic where a notification will be sent after this
+     * transfer run finishes
+     *
+     * Generated from protobuf field <code>string notification_pubsub_topic = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setNotificationPubsubTopic($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->notification_pubsub_topic = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Email notifications will be sent according to these
+     * preferences to the email address of the user who owns the transfer config
+     * this run was derived from.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.EmailPreferences email_preferences = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\BigQuery\DataTransfer\V1\EmailPreferences
+     */
+    public function getEmailPreferences()
+    {
+        return $this->email_preferences;
+    }
+
+    /**
+     * Output only. Email notifications will be sent according to these
+     * preferences to the email address of the user who owns the transfer config
+     * this run was derived from.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.EmailPreferences email_preferences = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\BigQuery\DataTransfer\V1\EmailPreferences $var
+     * @return $this
+     */
+    public function setEmailPreferences($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\DataTransfer\V1\EmailPreferences::class);
+        $this->email_preferences = $var;
 
         return $this;
     }

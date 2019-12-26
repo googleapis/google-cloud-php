@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateFieldRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The field to be updated.
+     * Required. The field to be updated.
      *
-     * Generated from protobuf field <code>.google.firestore.admin.v1.Field field = 1;</code>
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Field field = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $field = null;
     /**
@@ -36,7 +36,7 @@ class UpdateFieldRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Firestore\Admin\V1\Field $field
-     *           The field to be updated.
+     *           Required. The field to be updated.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           A mask, relative to the field. If specified, only configuration specified
      *           by this field_mask will be updated in the field.
@@ -48,9 +48,9 @@ class UpdateFieldRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The field to be updated.
+     * Required. The field to be updated.
      *
-     * Generated from protobuf field <code>.google.firestore.admin.v1.Field field = 1;</code>
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Field field = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Firestore\Admin\V1\Field
      */
     public function getField()
@@ -59,9 +59,9 @@ class UpdateFieldRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The field to be updated.
+     * Required. The field to be updated.
      *
-     * Generated from protobuf field <code>.google.firestore.admin.v1.Field field = 1;</code>
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Field field = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Firestore\Admin\V1\Field $var
      * @return $this
      */

@@ -11,42 +11,49 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * The response for
  * [ExecuteBatchDml][google.spanner.v1.Spanner.ExecuteBatchDml]. Contains a list
- * of [ResultSet][google.spanner.v1.ResultSet], one for each DML statement that
- * has successfully executed. If a statement fails, the error is returned as
- * part of the response payload. Clients can determine whether all DML
- * statements have run successfully, or if a statement failed, using one of the
- * following approaches:
- *   1. Check if 'status' field is OkStatus.
- *   2. Check if result_sets_size() equals the number of statements in
- *      [ExecuteBatchDmlRequest][Spanner.ExecuteBatchDmlRequest].
- * Example 1: A request with 5 DML statements, all executed successfully.
- * Result: A response with 5 ResultSets, one for each statement in the same
- * order, and an OK status.
- * Example 2: A request with 5 DML statements. The 3rd statement has a syntax
- * error.
- * Result: A response with 2 ResultSets, for the first 2 statements that
- * run successfully, and a syntax error (INVALID_ARGUMENT) status. From
- * result_set_size() client can determine that the 3rd statement has failed.
+ * of [ResultSet][google.spanner.v1.ResultSet] messages, one for each DML
+ * statement that has successfully executed, in the same order as the statements
+ * in the request. If a statement fails, the status in the response body
+ * identifies the cause of the failure.
+ * To check for DML statements that failed, use the following approach:
+ * 1. Check the status in the response message. The
+ * [google.rpc.Code][google.rpc.Code] enum
+ *    value `OK` indicates that all statements were executed successfully.
+ * 2. If the status was not `OK`, check the number of result sets in the
+ *    response. If the response contains `N`
+ *    [ResultSet][google.spanner.v1.ResultSet] messages, then statement `N+1` in
+ *    the request failed.
+ * Example 1:
+ * * Request: 5 DML statements, all executed successfully.
+ * * Response: 5 [ResultSet][google.spanner.v1.ResultSet] messages, with the
+ * status `OK`.
+ * Example 2:
+ * * Request: 5 DML statements. The third statement has a syntax error.
+ * * Response: 2 [ResultSet][google.spanner.v1.ResultSet] messages, and a syntax
+ * error (`INVALID_ARGUMENT`)
+ *   status. The number of [ResultSet][google.spanner.v1.ResultSet] messages
+ *   indicates that the third statement failed, and the fourth and fifth
+ *   statements were not executed.
  *
  * Generated from protobuf message <code>google.spanner.v1.ExecuteBatchDmlResponse</code>
  */
 class ExecuteBatchDmlResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * ResultSets, one for each statement in the request that ran successfully, in
-     * the same order as the statements in the request. Each
-     * [ResultSet][google.spanner.v1.ResultSet] will not contain any rows. The
-     * [ResultSetStats][google.spanner.v1.ResultSetStats] in each
-     * [ResultSet][google.spanner.v1.ResultSet] will contain the number of rows
+     * One [ResultSet][google.spanner.v1.ResultSet] for each statement in the
+     * request that ran successfully, in the same order as the statements in the
+     * request. Each [ResultSet][google.spanner.v1.ResultSet] does not contain any
+     * rows. The [ResultSetStats][google.spanner.v1.ResultSetStats] in each
+     * [ResultSet][google.spanner.v1.ResultSet] contain the number of rows
      * modified by the statement.
-     * Only the first ResultSet in the response contains a valid
-     * [ResultSetMetadata][google.spanner.v1.ResultSetMetadata].
+     * Only the first [ResultSet][google.spanner.v1.ResultSet] in the response
+     * contains valid [ResultSetMetadata][google.spanner.v1.ResultSetMetadata].
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.ResultSet result_sets = 1;</code>
      */
     private $result_sets;
     /**
-     * If all DML statements are executed successfully, status will be OK.
+     * If all DML statements are executed successfully, the status is `OK`.
      * Otherwise, the error status of the first failed statement.
      *
      * Generated from protobuf field <code>.google.rpc.Status status = 2;</code>
@@ -60,16 +67,16 @@ class ExecuteBatchDmlResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Spanner\V1\ResultSet[]|\Google\Protobuf\Internal\RepeatedField $result_sets
-     *           ResultSets, one for each statement in the request that ran successfully, in
-     *           the same order as the statements in the request. Each
-     *           [ResultSet][google.spanner.v1.ResultSet] will not contain any rows. The
-     *           [ResultSetStats][google.spanner.v1.ResultSetStats] in each
-     *           [ResultSet][google.spanner.v1.ResultSet] will contain the number of rows
+     *           One [ResultSet][google.spanner.v1.ResultSet] for each statement in the
+     *           request that ran successfully, in the same order as the statements in the
+     *           request. Each [ResultSet][google.spanner.v1.ResultSet] does not contain any
+     *           rows. The [ResultSetStats][google.spanner.v1.ResultSetStats] in each
+     *           [ResultSet][google.spanner.v1.ResultSet] contain the number of rows
      *           modified by the statement.
-     *           Only the first ResultSet in the response contains a valid
-     *           [ResultSetMetadata][google.spanner.v1.ResultSetMetadata].
+     *           Only the first [ResultSet][google.spanner.v1.ResultSet] in the response
+     *           contains valid [ResultSetMetadata][google.spanner.v1.ResultSetMetadata].
      *     @type \Google\Rpc\Status $status
-     *           If all DML statements are executed successfully, status will be OK.
+     *           If all DML statements are executed successfully, the status is `OK`.
      *           Otherwise, the error status of the first failed statement.
      * }
      */
@@ -79,14 +86,14 @@ class ExecuteBatchDmlResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * ResultSets, one for each statement in the request that ran successfully, in
-     * the same order as the statements in the request. Each
-     * [ResultSet][google.spanner.v1.ResultSet] will not contain any rows. The
-     * [ResultSetStats][google.spanner.v1.ResultSetStats] in each
-     * [ResultSet][google.spanner.v1.ResultSet] will contain the number of rows
+     * One [ResultSet][google.spanner.v1.ResultSet] for each statement in the
+     * request that ran successfully, in the same order as the statements in the
+     * request. Each [ResultSet][google.spanner.v1.ResultSet] does not contain any
+     * rows. The [ResultSetStats][google.spanner.v1.ResultSetStats] in each
+     * [ResultSet][google.spanner.v1.ResultSet] contain the number of rows
      * modified by the statement.
-     * Only the first ResultSet in the response contains a valid
-     * [ResultSetMetadata][google.spanner.v1.ResultSetMetadata].
+     * Only the first [ResultSet][google.spanner.v1.ResultSet] in the response
+     * contains valid [ResultSetMetadata][google.spanner.v1.ResultSetMetadata].
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.ResultSet result_sets = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -97,14 +104,14 @@ class ExecuteBatchDmlResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * ResultSets, one for each statement in the request that ran successfully, in
-     * the same order as the statements in the request. Each
-     * [ResultSet][google.spanner.v1.ResultSet] will not contain any rows. The
-     * [ResultSetStats][google.spanner.v1.ResultSetStats] in each
-     * [ResultSet][google.spanner.v1.ResultSet] will contain the number of rows
+     * One [ResultSet][google.spanner.v1.ResultSet] for each statement in the
+     * request that ran successfully, in the same order as the statements in the
+     * request. Each [ResultSet][google.spanner.v1.ResultSet] does not contain any
+     * rows. The [ResultSetStats][google.spanner.v1.ResultSetStats] in each
+     * [ResultSet][google.spanner.v1.ResultSet] contain the number of rows
      * modified by the statement.
-     * Only the first ResultSet in the response contains a valid
-     * [ResultSetMetadata][google.spanner.v1.ResultSetMetadata].
+     * Only the first [ResultSet][google.spanner.v1.ResultSet] in the response
+     * contains valid [ResultSetMetadata][google.spanner.v1.ResultSetMetadata].
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.ResultSet result_sets = 1;</code>
      * @param \Google\Cloud\Spanner\V1\ResultSet[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -119,7 +126,7 @@ class ExecuteBatchDmlResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If all DML statements are executed successfully, status will be OK.
+     * If all DML statements are executed successfully, the status is `OK`.
      * Otherwise, the error status of the first failed statement.
      *
      * Generated from protobuf field <code>.google.rpc.Status status = 2;</code>
@@ -131,7 +138,7 @@ class ExecuteBatchDmlResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If all DML statements are executed successfully, status will be OK.
+     * If all DML statements are executed successfully, the status is `OK`.
      * Otherwise, the error status of the first failed statement.
      *
      * Generated from protobuf field <code>.google.rpc.Status status = 2;</code>

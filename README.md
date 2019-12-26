@@ -574,7 +574,7 @@ $ composer require google/cloud-tasks
 ```php
 require 'vendor/autoload.php';
 
-use Google\Cloud\Translate\TranslateClient;
+use Google\Cloud\Translate\V2\TranslateClient;
 
 $translate = new TranslateClient([
     'key' => 'your_key'

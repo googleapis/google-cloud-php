@@ -22,8 +22,8 @@ use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Spanner\CommitTimestamp;
-use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\SpannerClient;
+use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Prophecy\Argument;
 
 /**
@@ -33,6 +33,7 @@ use Prophecy\Argument;
 class CommitTimestampTest extends SnippetTestCase
 {
     use GrpcTestTrait;
+    use StubCreationTrait;
 
     const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
 
@@ -46,7 +47,7 @@ class CommitTimestampTest extends SnippetTestCase
         $id = 'abc';
 
         $client = TestHelpers::stub(SpannerClient::class);
-        $conn = $this->prophesize(ConnectionInterface::class);
+        $conn = $this->getConnStub();
         $conn->createSession(Argument::any())
             ->willReturn([
                 'name' => self::SESSION

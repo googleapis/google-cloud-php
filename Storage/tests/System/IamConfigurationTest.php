@@ -33,22 +33,22 @@ class IamConfigurationTest extends StorageTestCase
         $this->guzzle = new Client;
     }
 
-    public function testBucketPolicyOnly()
+    public function testUniformBucketLevelAccess()
     {
         $bucket = self::createBucket(self::$client, uniqid(self::TESTING_PREFIX));
         $bucket->update($this->bucketConfig());
 
-        $this->assertTrue($bucket->info()['iamConfiguration']['bucketPolicyOnly']['enabled']);
+        $this->assertTrue($bucket->info()['iamConfiguration']['uniformBucketLevelAccess']['enabled']);
 
         $bucket->update($this->bucketConfig(false));
 
-        $this->assertFalse($bucket->info()['iamConfiguration']['bucketPolicyOnly']['enabled']);
+        $this->assertFalse($bucket->info()['iamConfiguration']['uniformBucketLevelAccess']['enabled']);
     }
 
     /**
      * @expectedException Google\Cloud\Core\Exception\BadRequestException
      */
-    public function testBucketPolicyOnlyAclFails()
+    public function testUniformBucketLevelAccessAclFails()
     {
         $bucket = self::createBucket(self::$client, uniqid(self::TESTING_PREFIX));
         $bucket->update($this->bucketConfig());
@@ -100,7 +100,7 @@ class IamConfigurationTest extends StorageTestCase
         $object->acl()->get();
     }
 
-    public function testCreateBucketWithBucketPolicyOnlyAndInsertObject()
+    public function testCreateBucketWithUniformBucketLevelAccessAndInsertObject()
     {
         $bucket = self::createBucket(self::$client, uniqid(self::TESTING_PREFIX), $this->bucketConfig());
 
@@ -116,7 +116,7 @@ class IamConfigurationTest extends StorageTestCase
     {
         return [
             'iamConfiguration' => [
-                'bucketPolicyOnly' => [
+                'uniformBucketLevelAccess' => [
                     'enabled' => $enabled
                 ]
             ]

@@ -18,7 +18,7 @@ class ListSessionsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The database in which to list sessions.
      *
-     * Generated from protobuf field <code>string database = 1;</code>
+     * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $database = '';
     /**
@@ -84,7 +84,7 @@ class ListSessionsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The database in which to list sessions.
      *
-     * Generated from protobuf field <code>string database = 1;</code>
+     * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getDatabase()
@@ -95,7 +95,7 @@ class ListSessionsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The database in which to list sessions.
      *
-     * Generated from protobuf field <code>string database = 1;</code>
+     * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

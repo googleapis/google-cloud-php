@@ -16,11 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetStoredInfoTypeRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Resource name of the organization and storedInfoType to be read, for
+     * Required. Resource name of the organization and storedInfoType to be read, for
      * example `organizations/433245324/storedInfoTypes/432452342` or
      * projects/project-id/storedInfoTypes/432452342.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
 
@@ -31,7 +31,7 @@ class GetStoredInfoTypeRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Resource name of the organization and storedInfoType to be read, for
+     *           Required. Resource name of the organization and storedInfoType to be read, for
      *           example `organizations/433245324/storedInfoTypes/432452342` or
      *           projects/project-id/storedInfoTypes/432452342.
      * }
@@ -42,11 +42,11 @@ class GetStoredInfoTypeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource name of the organization and storedInfoType to be read, for
+     * Required. Resource name of the organization and storedInfoType to be read, for
      * example `organizations/433245324/storedInfoTypes/432452342` or
      * projects/project-id/storedInfoTypes/432452342.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -55,11 +55,11 @@ class GetStoredInfoTypeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource name of the organization and storedInfoType to be read, for
+     * Required. Resource name of the organization and storedInfoType to be read, for
      * example `organizations/433245324/storedInfoTypes/432452342` or
      * projects/project-id/storedInfoTypes/432452342.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

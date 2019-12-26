@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The parent resource name, for example `projects/my-project-id`.
+     * Required. The parent resource name, for example `projects/my-project-id`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -76,6 +76,13 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string filter = 5;</code>
      */
     private $filter = '';
+    /**
+     * The geographic location where job triggers will be retrieved from.
+     * Use `-` for all locations. Reserved for future extensions.
+     *
+     * Generated from protobuf field <code>string location_id = 7;</code>
+     */
+    private $location_id = '';
 
     /**
      * Constructor.
@@ -84,7 +91,7 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The parent resource name, for example `projects/my-project-id`.
+     *           Required. The parent resource name, for example `projects/my-project-id`.
      *     @type string $page_token
      *           Optional page token to continue retrieval. Comes from previous call
      *           to ListJobTriggers. `order_by` field must not
@@ -124,6 +131,9 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      *           * inspected_storage = cloud_storage AND (state = PAUSED OR state = HEALTHY)
      *           * last_run_time > \"2017-12-12T00:00:00+00:00\"
      *           The length of this field should be no more than 500 characters.
+     *     @type string $location_id
+     *           The geographic location where job triggers will be retrieved from.
+     *           Use `-` for all locations. Reserved for future extensions.
      * }
      */
     public function __construct($data = NULL) {
@@ -132,9 +142,9 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The parent resource name, for example `projects/my-project-id`.
+     * Required. The parent resource name, for example `projects/my-project-id`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -143,9 +153,9 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The parent resource name, for example `projects/my-project-id`.
+     * Required. The parent resource name, for example `projects/my-project-id`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -319,6 +329,34 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->filter = $var;
+
+        return $this;
+    }
+
+    /**
+     * The geographic location where job triggers will be retrieved from.
+     * Use `-` for all locations. Reserved for future extensions.
+     *
+     * Generated from protobuf field <code>string location_id = 7;</code>
+     * @return string
+     */
+    public function getLocationId()
+    {
+        return $this->location_id;
+    }
+
+    /**
+     * The geographic location where job triggers will be retrieved from.
+     * Use `-` for all locations. Reserved for future extensions.
+     *
+     * Generated from protobuf field <code>string location_id = 7;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLocationId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->location_id = $var;
 
         return $this;
     }

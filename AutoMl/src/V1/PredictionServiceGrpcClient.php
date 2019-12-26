@@ -40,8 +40,18 @@ class PredictionServiceGrpcClient extends \Grpc\BaseStub {
      * Perform an online prediction. The prediction result will be directly
      * returned in the response.
      * Available for following ML problems, and their expected request payloads:
+     * * Image Classification - Image in .JPEG, .GIF or .PNG format, image_bytes
+     *                          up to 30MB.
+     * * Image Object Detection - Image in .JPEG, .GIF or .PNG format, image_bytes
+     *                            up to 30MB.
+     * * Text Classification - TextSnippet, content up to 60,000 characters,
+     *                         UTF-8 encoded.
+     * * Text Extraction - TextSnippet, content up to 30,000 characters,
+     *                     UTF-8 NFC encoded.
      * * Translation - TextSnippet, content up to 25,000 characters, UTF-8
      *                 encoded.
+     * * Text Sentiment - TextSnippet, content up 500 characters, UTF-8
+     *                     encoded.
      * @param \Google\Cloud\AutoMl\V1\PredictRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -51,6 +61,31 @@ class PredictionServiceGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.cloud.automl.v1.PredictionService/Predict',
         $argument,
         ['\Google\Cloud\AutoMl\V1\PredictResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Perform a batch prediction. Unlike the online
+     * [Predict][google.cloud.automl.v1.PredictionService.Predict], batch
+     * prediction result won't be immediately available in the response. Instead,
+     * a long running operation object is returned. User can poll the operation
+     * result via [GetOperation][google.longrunning.Operations.GetOperation]
+     * method. Once the operation is done,
+     * [BatchPredictResult][google.cloud.automl.v1.BatchPredictResult] is returned
+     * in the [response][google.longrunning.Operation.response] field. Available
+     * for following ML problems:
+     * * Image Classification
+     * * Image Object Detection
+     * * Text Extraction
+     * @param \Google\Cloud\AutoMl\V1\BatchPredictRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function BatchPredict(\Google\Cloud\AutoMl\V1\BatchPredictRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.automl.v1.PredictionService/BatchPredict',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
         $metadata, $options);
     }
 

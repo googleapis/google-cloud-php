@@ -14,7 +14,7 @@ class Storage
         if (static::$is_initialized == true) {
           return;
         }
-        \GPBMetadata\Google\Api\Annotations::initOnce();
+        \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(hex2bin(
             "0aaf240a23676f6f676c652f707269766163792f646c702f76322f73746f" .

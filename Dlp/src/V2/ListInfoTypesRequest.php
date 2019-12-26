@@ -30,6 +30,13 @@ class ListInfoTypesRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string filter = 2;</code>
      */
     private $filter = '';
+    /**
+     * The geographic location to list info types. Reserved for future
+     * extensions.
+     *
+     * Generated from protobuf field <code>string location_id = 3;</code>
+     */
+    private $location_id = '';
 
     /**
      * Constructor.
@@ -44,6 +51,9 @@ class ListInfoTypesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $filter
      *           Optional filter to only return infoTypes supported by certain parts of the
      *           API. Defaults to supported_by=INSPECT.
+     *     @type string $location_id
+     *           The geographic location to list info types. Reserved for future
+     *           extensions.
      * }
      */
     public function __construct($data = NULL) {
@@ -105,6 +115,34 @@ class ListInfoTypesRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->filter = $var;
+
+        return $this;
+    }
+
+    /**
+     * The geographic location to list info types. Reserved for future
+     * extensions.
+     *
+     * Generated from protobuf field <code>string location_id = 3;</code>
+     * @return string
+     */
+    public function getLocationId()
+    {
+        return $this->location_id;
+    }
+
+    /**
+     * The geographic location to list info types. Reserved for future
+     * extensions.
+     *
+     * Generated from protobuf field <code>string location_id = 3;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLocationId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->location_id = $var;
 
         return $this;
     }

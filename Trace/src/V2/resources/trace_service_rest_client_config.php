@@ -17,7 +17,7 @@ return [
             ],
             'CreateSpan' => [
                 'method' => 'post',
-                'uriTemplate' => '/v2/{name=projects/*/traces/*}/spans',
+                'uriTemplate' => '/v2/{name=projects/*/traces/*/spans/*}',
                 'body' => '*',
                 'placeholders' => [
                     'name' => [

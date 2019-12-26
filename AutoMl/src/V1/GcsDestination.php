@@ -23,7 +23,7 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
      * The requesting user must have write permission to the bucket.
      * The directory is created if it doesn't exist.
      *
-     * Generated from protobuf field <code>string output_uri_prefix = 1;</code>
+     * Generated from protobuf field <code>string output_uri_prefix = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $output_uri_prefix = '';
 
@@ -55,7 +55,7 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
      * The requesting user must have write permission to the bucket.
      * The directory is created if it doesn't exist.
      *
-     * Generated from protobuf field <code>string output_uri_prefix = 1;</code>
+     * Generated from protobuf field <code>string output_uri_prefix = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getOutputUriPrefix()
@@ -71,7 +71,7 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
      * The requesting user must have write permission to the bucket.
      * The directory is created if it doesn't exist.
      *
-     * Generated from protobuf field <code>string output_uri_prefix = 1;</code>
+     * Generated from protobuf field <code>string output_uri_prefix = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

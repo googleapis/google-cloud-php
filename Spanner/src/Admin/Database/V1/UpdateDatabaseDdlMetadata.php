@@ -19,7 +19,7 @@ class UpdateDatabaseDdlMetadata extends \Google\Protobuf\Internal\Message
     /**
      * The database being modified.
      *
-     * Generated from protobuf field <code>string database = 1;</code>
+     * Generated from protobuf field <code>string database = 1 [(.google.api.resource_reference) = {</code>
      */
     private $database = '';
     /**
@@ -63,7 +63,7 @@ class UpdateDatabaseDdlMetadata extends \Google\Protobuf\Internal\Message
     /**
      * The database being modified.
      *
-     * Generated from protobuf field <code>string database = 1;</code>
+     * Generated from protobuf field <code>string database = 1 [(.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getDatabase()
@@ -74,7 +74,7 @@ class UpdateDatabaseDdlMetadata extends \Google\Protobuf\Internal\Message
     /**
      * The database being modified.
      *
-     * Generated from protobuf field <code>string database = 1;</code>
+     * Generated from protobuf field <code>string database = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

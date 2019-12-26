@@ -27,7 +27,7 @@ common = gcp.CommonTemplates()
 library = gapic.php_library(
     service='datastore',
     version='v1',
-    config_path='/google/datastore/artman_datastore.yaml',
+    config_path='/google/datastore/artman_datastore.legacy.yaml',
     artman_output_name='google-cloud-datastore-v1')
 
 # copy all src including partial veneer classes

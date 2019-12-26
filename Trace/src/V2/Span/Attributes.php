@@ -17,8 +17,8 @@ class Attributes extends \Google\Protobuf\Internal\Message
 {
     /**
      * The set of attributes. Each attribute's key can be up to 128 bytes
-     * long. The value can be a string up to 256 bytes, an integer, or the
-     * Boolean values `true` and `false`. For example:
+     * long. The value can be a string up to 256 bytes, a signed 64-bit integer,
+     * or the Boolean values `true` and `false`. For example:
      *     "/instance_id": "my-instance"
      *     "/http/user_agent": ""
      *     "/http/request_bytes": 300
@@ -44,8 +44,8 @@ class Attributes extends \Google\Protobuf\Internal\Message
      *
      *     @type array|\Google\Protobuf\Internal\MapField $attribute_map
      *           The set of attributes. Each attribute's key can be up to 128 bytes
-     *           long. The value can be a string up to 256 bytes, an integer, or the
-     *           Boolean values `true` and `false`. For example:
+     *           long. The value can be a string up to 256 bytes, a signed 64-bit integer,
+     *           or the Boolean values `true` and `false`. For example:
      *               "/instance_id": "my-instance"
      *               "/http/user_agent": ""
      *               "/http/request_bytes": 300
@@ -63,8 +63,8 @@ class Attributes extends \Google\Protobuf\Internal\Message
 
     /**
      * The set of attributes. Each attribute's key can be up to 128 bytes
-     * long. The value can be a string up to 256 bytes, an integer, or the
-     * Boolean values `true` and `false`. For example:
+     * long. The value can be a string up to 256 bytes, a signed 64-bit integer,
+     * or the Boolean values `true` and `false`. For example:
      *     "/instance_id": "my-instance"
      *     "/http/user_agent": ""
      *     "/http/request_bytes": 300
@@ -80,8 +80,8 @@ class Attributes extends \Google\Protobuf\Internal\Message
 
     /**
      * The set of attributes. Each attribute's key can be up to 128 bytes
-     * long. The value can be a string up to 256 bytes, an integer, or the
-     * Boolean values `true` and `false`. For example:
+     * long. The value can be a string up to 256 bytes, a signed 64-bit integer,
+     * or the Boolean values `true` and `false`. For example:
      *     "/instance_id": "my-instance"
      *     "/http/user_agent": ""
      *     "/http/request_bytes": 300

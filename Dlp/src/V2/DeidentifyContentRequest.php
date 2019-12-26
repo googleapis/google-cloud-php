@@ -18,7 +18,7 @@ class DeidentifyContentRequest extends \Google\Protobuf\Internal\Message
     /**
      * The parent resource name, for example projects/my-project-id.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -63,6 +63,13 @@ class DeidentifyContentRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string deidentify_template_name = 6;</code>
      */
     private $deidentify_template_name = '';
+    /**
+     * The geographic location to process de-identification. Reserved for future
+     * extensions.
+     *
+     * Generated from protobuf field <code>string location_id = 7;</code>
+     */
+    private $location_id = '';
 
     /**
      * Constructor.
@@ -94,6 +101,9 @@ class DeidentifyContentRequest extends \Google\Protobuf\Internal\Message
      *           that are set in this request will replace their corresponding fields in the
      *           template. Repeated fields are appended. Singular sub-messages and groups
      *           are recursively merged.
+     *     @type string $location_id
+     *           The geographic location to process de-identification. Reserved for future
+     *           extensions.
      * }
      */
     public function __construct($data = NULL) {
@@ -104,7 +114,7 @@ class DeidentifyContentRequest extends \Google\Protobuf\Internal\Message
     /**
      * The parent resource name, for example projects/my-project-id.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -115,7 +125,7 @@ class DeidentifyContentRequest extends \Google\Protobuf\Internal\Message
     /**
      * The parent resource name, for example projects/my-project-id.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -277,6 +287,34 @@ class DeidentifyContentRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->deidentify_template_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * The geographic location to process de-identification. Reserved for future
+     * extensions.
+     *
+     * Generated from protobuf field <code>string location_id = 7;</code>
+     * @return string
+     */
+    public function getLocationId()
+    {
+        return $this->location_id;
+    }
+
+    /**
+     * The geographic location to process de-identification. Reserved for future
+     * extensions.
+     *
+     * Generated from protobuf field <code>string location_id = 7;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLocationId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->location_id = $var;
 
         return $this;
     }

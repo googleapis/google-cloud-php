@@ -73,17 +73,6 @@ return [
             ],
         ],
         'google.spanner.admin.database.v1.DatabaseAdmin' => [
-            'ListDatabases' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{parent=projects/*/instances/*}/databases',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
             'CreateDatabase' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/instances/*}/databases',
@@ -145,6 +134,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{resource=projects/*/instances/*/databases/*}:setIamPolicy',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/instances/*/backups/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'resource' => [
                         'getters' => [
@@ -157,6 +153,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{resource=projects/*/instances/*/databases/*}:getIamPolicy',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/instances/*/backups/*}:getIamPolicy',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'resource' => [
                         'getters' => [
@@ -169,10 +172,28 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{resource=projects/*/instances/*/databases/*}:testIamPermissions',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/instances/*/backups/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'resource' => [
                         'getters' => [
                             'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'ListDatabases' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/instances/*}/databases',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],

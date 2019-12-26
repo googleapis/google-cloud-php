@@ -81,7 +81,7 @@ class LanguageServiceGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Analyzes the syntax of the text and provides sentence boundaries and
-     * tokenization along with part of speech tags, dependency trees, and other
+     * tokenization along with part-of-speech tags, dependency trees, and other
      * properties.
      * @param \Google\Cloud\Language\V1beta2\AnalyzeSyntaxRequest $argument input argument
      * @param array $metadata metadata

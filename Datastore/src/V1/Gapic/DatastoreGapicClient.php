@@ -208,8 +208,8 @@ class DatastoreGapicClient
      * }
      * ```
      *
-     * @param string $projectId    The ID of the project against which to make the request.
-     * @param Key[]  $keys         Keys of entities to look up.
+     * @param string $projectId    Required. The ID of the project against which to make the request.
+     * @param Key[]  $keys         Required. Keys of entities to look up.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -266,7 +266,7 @@ class DatastoreGapicClient
      * }
      * ```
      *
-     * @param string      $projectId    The ID of the project against which to make the request.
+     * @param string      $projectId    Required. The ID of the project against which to make the request.
      * @param PartitionId $partitionId  Entities are partitioned into subsets, identified by a partition ID.
      *                                  Queries are scoped to a single partition.
      *                                  This partition ID is normalized with the standard default context
@@ -336,7 +336,7 @@ class DatastoreGapicClient
      * }
      * ```
      *
-     * @param string $projectId    The ID of the project against which to make the request.
+     * @param string $projectId    Required. The ID of the project against which to make the request.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -394,7 +394,7 @@ class DatastoreGapicClient
      * }
      * ```
      *
-     * @param string     $projectId The ID of the project against which to make the request.
+     * @param string     $projectId Required. The ID of the project against which to make the request.
      * @param int        $mode      The type of commit to perform. Defaults to `TRANSACTIONAL`.
      *                              For allowed values, use constants defined on {@see \Google\Cloud\Datastore\V1\CommitRequest\Mode}
      * @param Mutation[] $mutations The mutations to perform.
@@ -469,8 +469,8 @@ class DatastoreGapicClient
      * }
      * ```
      *
-     * @param string $projectId    The ID of the project against which to make the request.
-     * @param string $transaction  The transaction identifier, returned by a call to
+     * @param string $projectId    Required. The ID of the project against which to make the request.
+     * @param string $transaction  Required. The transaction identifier, returned by a call to
      *                             [Datastore.BeginTransaction][google.datastore.v1.Datastore.BeginTransaction].
      * @param array  $optionalArgs {
      *                             Optional.
@@ -524,8 +524,8 @@ class DatastoreGapicClient
      * }
      * ```
      *
-     * @param string $projectId    The ID of the project against which to make the request.
-     * @param Key[]  $keys         A list of keys with incomplete key paths for which to allocate IDs.
+     * @param string $projectId    Required. The ID of the project against which to make the request.
+     * @param Key[]  $keys         Required. A list of keys with incomplete key paths for which to allocate IDs.
      *                             No key may be reserved/read-only.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -579,8 +579,8 @@ class DatastoreGapicClient
      * }
      * ```
      *
-     * @param string $projectId    The ID of the project against which to make the request.
-     * @param Key[]  $keys         A list of keys with complete key paths whose numeric IDs should not be
+     * @param string $projectId    Required. The ID of the project against which to make the request.
+     * @param Key[]  $keys         Required. A list of keys with complete key paths whose numeric IDs should not be
      *                             auto-allocated.
      * @param array  $optionalArgs {
      *                             Optional.

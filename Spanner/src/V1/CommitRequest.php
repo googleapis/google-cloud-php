@@ -18,7 +18,7 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The session in which the transaction to be committed is running.
      *
-     * Generated from protobuf field <code>string session = 1;</code>
+     * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $session = '';
     /**
@@ -65,7 +65,7 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The session in which the transaction to be committed is running.
      *
-     * Generated from protobuf field <code>string session = 1;</code>
+     * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getSession()
@@ -76,7 +76,7 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The session in which the transaction to be committed is running.
      *
-     * Generated from protobuf field <code>string session = 1;</code>
+     * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

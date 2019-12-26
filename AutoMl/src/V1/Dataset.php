@@ -79,6 +79,16 @@ class Dataset extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\AutoMl\V1\TranslationDatasetMetadata $translation_dataset_metadata
      *           Metadata for a dataset used for translation.
+     *     @type \Google\Cloud\AutoMl\V1\ImageClassificationDatasetMetadata $image_classification_dataset_metadata
+     *           Metadata for a dataset used for image classification.
+     *     @type \Google\Cloud\AutoMl\V1\TextClassificationDatasetMetadata $text_classification_dataset_metadata
+     *           Metadata for a dataset used for text classification.
+     *     @type \Google\Cloud\AutoMl\V1\ImageObjectDetectionDatasetMetadata $image_object_detection_dataset_metadata
+     *           Metadata for a dataset used for image object detection.
+     *     @type \Google\Cloud\AutoMl\V1\TextExtractionDatasetMetadata $text_extraction_dataset_metadata
+     *           Metadata for a dataset used for text extraction.
+     *     @type \Google\Cloud\AutoMl\V1\TextSentimentDatasetMetadata $text_sentiment_dataset_metadata
+     *           Metadata for a dataset used for text sentiment.
      *     @type string $name
      *           Output only. The resource name of the dataset.
      *           Form: `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`
@@ -133,6 +143,136 @@ class Dataset extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1\TranslationDatasetMetadata::class);
         $this->writeOneof(23, $var);
+
+        return $this;
+    }
+
+    /**
+     * Metadata for a dataset used for image classification.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1.ImageClassificationDatasetMetadata image_classification_dataset_metadata = 24;</code>
+     * @return \Google\Cloud\AutoMl\V1\ImageClassificationDatasetMetadata
+     */
+    public function getImageClassificationDatasetMetadata()
+    {
+        return $this->readOneof(24);
+    }
+
+    /**
+     * Metadata for a dataset used for image classification.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1.ImageClassificationDatasetMetadata image_classification_dataset_metadata = 24;</code>
+     * @param \Google\Cloud\AutoMl\V1\ImageClassificationDatasetMetadata $var
+     * @return $this
+     */
+    public function setImageClassificationDatasetMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1\ImageClassificationDatasetMetadata::class);
+        $this->writeOneof(24, $var);
+
+        return $this;
+    }
+
+    /**
+     * Metadata for a dataset used for text classification.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1.TextClassificationDatasetMetadata text_classification_dataset_metadata = 25;</code>
+     * @return \Google\Cloud\AutoMl\V1\TextClassificationDatasetMetadata
+     */
+    public function getTextClassificationDatasetMetadata()
+    {
+        return $this->readOneof(25);
+    }
+
+    /**
+     * Metadata for a dataset used for text classification.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1.TextClassificationDatasetMetadata text_classification_dataset_metadata = 25;</code>
+     * @param \Google\Cloud\AutoMl\V1\TextClassificationDatasetMetadata $var
+     * @return $this
+     */
+    public function setTextClassificationDatasetMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1\TextClassificationDatasetMetadata::class);
+        $this->writeOneof(25, $var);
+
+        return $this;
+    }
+
+    /**
+     * Metadata for a dataset used for image object detection.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1.ImageObjectDetectionDatasetMetadata image_object_detection_dataset_metadata = 26;</code>
+     * @return \Google\Cloud\AutoMl\V1\ImageObjectDetectionDatasetMetadata
+     */
+    public function getImageObjectDetectionDatasetMetadata()
+    {
+        return $this->readOneof(26);
+    }
+
+    /**
+     * Metadata for a dataset used for image object detection.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1.ImageObjectDetectionDatasetMetadata image_object_detection_dataset_metadata = 26;</code>
+     * @param \Google\Cloud\AutoMl\V1\ImageObjectDetectionDatasetMetadata $var
+     * @return $this
+     */
+    public function setImageObjectDetectionDatasetMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1\ImageObjectDetectionDatasetMetadata::class);
+        $this->writeOneof(26, $var);
+
+        return $this;
+    }
+
+    /**
+     * Metadata for a dataset used for text extraction.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1.TextExtractionDatasetMetadata text_extraction_dataset_metadata = 28;</code>
+     * @return \Google\Cloud\AutoMl\V1\TextExtractionDatasetMetadata
+     */
+    public function getTextExtractionDatasetMetadata()
+    {
+        return $this->readOneof(28);
+    }
+
+    /**
+     * Metadata for a dataset used for text extraction.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1.TextExtractionDatasetMetadata text_extraction_dataset_metadata = 28;</code>
+     * @param \Google\Cloud\AutoMl\V1\TextExtractionDatasetMetadata $var
+     * @return $this
+     */
+    public function setTextExtractionDatasetMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1\TextExtractionDatasetMetadata::class);
+        $this->writeOneof(28, $var);
+
+        return $this;
+    }
+
+    /**
+     * Metadata for a dataset used for text sentiment.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1.TextSentimentDatasetMetadata text_sentiment_dataset_metadata = 30;</code>
+     * @return \Google\Cloud\AutoMl\V1\TextSentimentDatasetMetadata
+     */
+    public function getTextSentimentDatasetMetadata()
+    {
+        return $this->readOneof(30);
+    }
+
+    /**
+     * Metadata for a dataset used for text sentiment.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1.TextSentimentDatasetMetadata text_sentiment_dataset_metadata = 30;</code>
+     * @param \Google\Cloud\AutoMl\V1\TextSentimentDatasetMetadata $var
+     * @return $this
+     */
+    public function setTextSentimentDatasetMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1\TextSentimentDatasetMetadata::class);
+        $this->writeOneof(30, $var);
 
         return $this;
     }

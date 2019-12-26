@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class ReidentifyContentRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The parent resource name.
+     * Required. The parent resource name.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -29,6 +29,7 @@ class ReidentifyContentRequest extends \Google\Protobuf\Internal\Message
      * the transformations used to de-identify the items and executing the
      * reverse. This requires that only reversible transformations
      * be provided here. The reversible transformations are:
+     *  - `CryptoDeterministicConfig`
      *  - `CryptoReplaceFfxFpeConfig`
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DeidentifyConfig reidentify_config = 2;</code>
@@ -67,6 +68,13 @@ class ReidentifyContentRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string reidentify_template_name = 6;</code>
      */
     private $reidentify_template_name = '';
+    /**
+     * The geographic location to process content reidentification.  Reserved for
+     * future extensions.
+     *
+     * Generated from protobuf field <code>string location_id = 7;</code>
+     */
+    private $location_id = '';
 
     /**
      * Constructor.
@@ -75,7 +83,7 @@ class ReidentifyContentRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The parent resource name.
+     *           Required. The parent resource name.
      *     @type \Google\Cloud\Dlp\V2\DeidentifyConfig $reidentify_config
      *           Configuration for the re-identification of the content item.
      *           This field shares the same proto message type that is used for
@@ -84,6 +92,7 @@ class ReidentifyContentRequest extends \Google\Protobuf\Internal\Message
      *           the transformations used to de-identify the items and executing the
      *           reverse. This requires that only reversible transformations
      *           be provided here. The reversible transformations are:
+     *            - `CryptoDeterministicConfig`
      *            - `CryptoReplaceFfxFpeConfig`
      *     @type \Google\Cloud\Dlp\V2\InspectConfig $inspect_config
      *           Configuration for the inspector.
@@ -102,6 +111,9 @@ class ReidentifyContentRequest extends \Google\Protobuf\Internal\Message
      *           that are set in this request will replace their corresponding fields in the
      *           template. Repeated fields are appended. Singular sub-messages and groups
      *           are recursively merged.
+     *     @type string $location_id
+     *           The geographic location to process content reidentification.  Reserved for
+     *           future extensions.
      * }
      */
     public function __construct($data = NULL) {
@@ -110,9 +122,9 @@ class ReidentifyContentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The parent resource name.
+     * Required. The parent resource name.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -121,9 +133,9 @@ class ReidentifyContentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The parent resource name.
+     * Required. The parent resource name.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -143,6 +155,7 @@ class ReidentifyContentRequest extends \Google\Protobuf\Internal\Message
      * the transformations used to de-identify the items and executing the
      * reverse. This requires that only reversible transformations
      * be provided here. The reversible transformations are:
+     *  - `CryptoDeterministicConfig`
      *  - `CryptoReplaceFfxFpeConfig`
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DeidentifyConfig reidentify_config = 2;</code>
@@ -161,6 +174,7 @@ class ReidentifyContentRequest extends \Google\Protobuf\Internal\Message
      * the transformations used to de-identify the items and executing the
      * reverse. This requires that only reversible transformations
      * be provided here. The reversible transformations are:
+     *  - `CryptoDeterministicConfig`
      *  - `CryptoReplaceFfxFpeConfig`
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DeidentifyConfig reidentify_config = 2;</code>
@@ -293,6 +307,34 @@ class ReidentifyContentRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->reidentify_template_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * The geographic location to process content reidentification.  Reserved for
+     * future extensions.
+     *
+     * Generated from protobuf field <code>string location_id = 7;</code>
+     * @return string
+     */
+    public function getLocationId()
+    {
+        return $this->location_id;
+    }
+
+    /**
+     * The geographic location to process content reidentification.  Reserved for
+     * future extensions.
+     *
+     * Generated from protobuf field <code>string location_id = 7;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLocationId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->location_id = $var;
 
         return $this;
     }
