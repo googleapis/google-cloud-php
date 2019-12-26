@@ -281,7 +281,8 @@ class PolicyBuilder
     private function validatePolicyVersion()
     {
         if ($this->version && $this->version > 1) {
-            throw new InvalidOperationException("Helper methods cannot be invoked on policies with version {$this->version}.");
+            throw new InvalidOperationException("Helper methods cannot be " .
+                "invoked on policies with version {$this->version}.");
         }
 
         $this->validateConditions();
@@ -295,7 +296,8 @@ class PolicyBuilder
 
         foreach ($this->bindings as $binding) {
             if ($binding['condition']) {
-                throw new InvalidOperationException("Helper methods cannot be invoked on policies containing conditions.");
+                throw new InvalidOperationException("Helper methods cannot " .
+                    "be invoked on policies containing conditions.");
             }
         }
     }
