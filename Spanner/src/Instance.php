@@ -178,7 +178,15 @@ class Instance
      * echo $info['nodeCount'];
      * ```
      *
-     * @param array $options [optional] Configuration options.
+     * @param array $options [optional] {
+     *     Configuration options
+     *
+     *     @type string[] $fieldMask A list of `Instance` fields that should be returned.
+     *           Eligible values are: `name`, `displayName`, `endpointUris`, `labels`, `config`, `nodeCount`, `state`.
+     *           If absent, all fields are returned.
+     *           Note: This parameter will only apply when service call is required (`info` values are not present).
+     * }
+     *
      * @return array
      */
     public function info(array $options = [])
@@ -228,14 +236,25 @@ class Instance
      * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.admin.instance.v1#google.spanner.admin.instance.v1.GetInstanceRequest GetInstanceRequest
      * @codingStandardsIgnoreEnd
      *
-     * @param array $options [optional] Configuration options.
+     * @param array $options [optional] {
+     *     Configuration options
+     *
+     *     @type string[] $fieldMask A list of `Instance` fields that should be returned.
+     *           Eligible values are: `name`, `displayName`, `endpointUris`, `labels`, `config`, `nodeCount`, `state`.
+     *           If absent, all fields are returned.
+     * }
      * @return array
      */
     public function reload(array $options = [])
     {
+        $fieldMask = [];
+        if (isset($options['fieldMask'])) {
+            $fieldMask = $this->pluck('fieldMask', $options);
+        }
         $this->info = $this->connection->getInstance($options + [
             'name' => $this->name,
-            'projectId' => $this->projectId
+            'projectId' => $this->projectId,
+            'fieldMask' => $fieldMask
         ]);
 
         return $this->info;
