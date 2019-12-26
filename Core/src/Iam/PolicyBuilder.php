@@ -289,7 +289,10 @@ class PolicyBuilder
 
     private function validateConditions()
     {
-        if (!$this->bindings) return;
+        if (!$this->bindings) {
+            return;
+        }
+
         foreach ($this->bindings as $binding) {
             if ($binding['condition']) {
                 throw new InvalidOperationException("Helper methods cannot be invoked on policies containing conditions.");
