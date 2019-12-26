@@ -141,8 +141,7 @@ class InstanceTest extends TestCase
 
         $this->connection->getInstance(Argument::allOf(
             Argument::withEntry('name', $this->instance->name()),
-            Argument::withEntry('projectId', self::PROJECT_ID),
-            Argument::withEntry('fieldMask', [])
+            Argument::withEntry('projectId', self::PROJECT_ID)
         ))
             ->shouldBeCalledTimes(1)
             ->willReturn($instance);

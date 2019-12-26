@@ -124,21 +124,11 @@ class GrpcTest extends TestCase
 
     public function testGetInstance()
     {
-        $fieldNames = [];
-
-        $mask = [];
-        foreach (array_values($fieldNames) as $key) {
-            $mask[] = Serializer::toSnakeCase($key);
-        }
-
-        $fieldMask = $this->serializer->decodeMessage(new FieldMask, ['paths' => $mask]);
         $this->assertCallCorrect('getInstance', [
             'name' => self::INSTANCE,
-            'projectId' => self::PROJECT,
-            'fieldMask' => $fieldNames
+            'projectId' => self::PROJECT
         ], $this->expectResourceHeader(self::PROJECT, [
-            self::INSTANCE,
-            ['fieldMask' => $fieldMask]
+            self::INSTANCE
         ]));
     }
 

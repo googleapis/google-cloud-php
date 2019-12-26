@@ -247,14 +247,9 @@ class Instance
      */
     public function reload(array $options = [])
     {
-        $fieldMask = [];
-        if (isset($options['fieldMask'])) {
-            $fieldMask = $this->pluck('fieldMask', $options);
-        }
         $this->info = $this->connection->getInstance($options + [
             'name' => $this->name,
             'projectId' => $this->projectId,
-            'fieldMask' => $fieldMask
         ]);
 
         return $this->info;
