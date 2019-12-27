@@ -30,6 +30,15 @@ class Write extends \Google\Protobuf\Internal\Message
      */
     private $update_mask = null;
     /**
+     * The transforms to perform after update.
+     * This field can be set only when the operation is `update`. If present, this
+     * write is equivalent to performing `update` and `transform` to the same
+     * document atomically and in order.
+     *
+     * Generated from protobuf field <code>repeated .google.firestore.v1.DocumentTransform.FieldTransform update_transforms = 7;</code>
+     */
+    private $update_transforms;
+    /**
      * An optional precondition on the document.
      * The write will fail if this is set and not met by the target document.
      *
@@ -64,6 +73,11 @@ class Write extends \Google\Protobuf\Internal\Message
      *           Fields referenced in the mask, but not present in the input document, are
      *           deleted from the document on the server.
      *           The field paths in this mask must not contain a reserved field name.
+     *     @type \Google\Cloud\Firestore\V1\DocumentTransform\FieldTransform[]|\Google\Protobuf\Internal\RepeatedField $update_transforms
+     *           The transforms to perform after update.
+     *           This field can be set only when the operation is `update`. If present, this
+     *           write is equivalent to performing `update` and `transform` to the same
+     *           document atomically and in order.
      *     @type \Google\Cloud\Firestore\V1\Precondition $current_document
      *           An optional precondition on the document.
      *           The write will fail if this is set and not met by the target document.
@@ -198,6 +212,38 @@ class Write extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1\DocumentMask::class);
         $this->update_mask = $var;
+
+        return $this;
+    }
+
+    /**
+     * The transforms to perform after update.
+     * This field can be set only when the operation is `update`. If present, this
+     * write is equivalent to performing `update` and `transform` to the same
+     * document atomically and in order.
+     *
+     * Generated from protobuf field <code>repeated .google.firestore.v1.DocumentTransform.FieldTransform update_transforms = 7;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getUpdateTransforms()
+    {
+        return $this->update_transforms;
+    }
+
+    /**
+     * The transforms to perform after update.
+     * This field can be set only when the operation is `update`. If present, this
+     * write is equivalent to performing `update` and `transform` to the same
+     * document atomically and in order.
+     *
+     * Generated from protobuf field <code>repeated .google.firestore.v1.DocumentTransform.FieldTransform update_transforms = 7;</code>
+     * @param \Google\Cloud\Firestore\V1\DocumentTransform\FieldTransform[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setUpdateTransforms($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Firestore\V1\DocumentTransform\FieldTransform::class);
+        $this->update_transforms = $arr;
 
         return $this;
     }
