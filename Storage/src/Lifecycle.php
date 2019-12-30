@@ -90,7 +90,8 @@ class Lifecycle implements \ArrayAccess, \IteratorAggregate
      *     @type string[] $matchesStorageClass Objects having any of the storage
      *           classes specified by this condition will be matched. Values
      *           include `"MULTI_REGIONAL"`, `"REGIONAL"`, `"NEARLINE"`,
-     *           `"COLDLINE"`, `"STANDARD"`, and `"DURABLE_REDUCED_AVAILABILITY"`.
+     *           `"ARCHIVE"`, `"COLDLINE"`, `"STANDARD"`, and
+     *           `"DURABLE_REDUCED_AVAILABILITY"`.
      *     @type int $numNewerVersions Relevant only for versioned objects. If
      *           the value is N, this condition is satisfied when there are at
      *           least N versions (including the live version) newer than this

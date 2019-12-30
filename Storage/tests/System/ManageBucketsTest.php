@@ -205,7 +205,7 @@ class ManageBucketsTest extends StorageTestCase
     }
 
     /**
-     * @group location
+     * @group storage-bucket-location
      * @dataProvider locationTypes
      */
     public function testBucketLocationType($storageClass, $location, $expectedLocationType, $updateStorageClass)
@@ -257,6 +257,11 @@ class ManageBucketsTest extends StorageTestCase
                 'NEARLINE'
             ], [
                 'COLDLINE',
+                'nam4',
+                'dual-region',
+                'STANDARD'
+            ], [
+                'ARCHIVE',
                 'nam4',
                 'dual-region',
                 'STANDARD'
