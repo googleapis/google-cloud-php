@@ -42,7 +42,7 @@ class SpanTest extends TestCase
         $span = new Span(self::TRACE_ID, ['spanId' => '1234']);
         $info = $span->info();
         $this->assertArrayHasKey('spanId', $info);
-        $this->assertEquals('1234', $info['spanId']);
+        $this->assertSame('0000000000001234', $info['spanId']);
     }
 
     public function testReadsAttributes()
