@@ -18,6 +18,7 @@
 namespace Google\Cloud\Core\Testing\Snippet\Coverage;
 
 use Google\Cloud\Core\Testing\Snippet\Container;
+use PHPUnit\Framework\TestResult;
 
 /**
  * Augments the PHPUnit test run report with snippet info.
@@ -27,7 +28,7 @@ use Google\Cloud\Core\Testing\Snippet\Container;
  * @experimental
  * @internal
  */
-class ResultPrinter extends \PHPUnit_TextUI_ResultPrinter
+class ResultPrinter extends \PHPUnit\TextUI\ResultPrinter
 {
     /**
      * Show snippet results.
@@ -37,7 +38,7 @@ class ResultPrinter extends \PHPUnit_TextUI_ResultPrinter
      * @experimental
      * @internal
      */
-    public function printResult(\PHPUnit_Framework_TestResult $result)
+    public function printResult(TestResult $result): void
     {
         parent::printResult($result);
 
