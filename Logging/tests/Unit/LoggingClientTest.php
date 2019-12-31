@@ -30,7 +30,7 @@ use Google\Cloud\Logging\Metric;
 use Google\Cloud\Logging\PsrLogger;
 use Google\Cloud\Logging\Sink;
 use PHPUnit\Framework\TestCase;
-use PHPUnit_Framework_Assert;
+use PHPUnit\Framework\Assert;
 use Prophecy\Argument;
 
 /**
@@ -335,7 +335,7 @@ class LoggingClientTest extends TestCase
         foreach ($options as $name => $value) {
             $this->assertEquals(
                 $value,
-                PHPUnit_Framework_Assert::readAttribute($psrLogger, $name),
+                Assert::readAttribute($psrLogger, $name),
                 "$name assertion failed."
             );
         }

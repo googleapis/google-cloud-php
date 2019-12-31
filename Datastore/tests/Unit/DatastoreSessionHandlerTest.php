@@ -118,7 +118,7 @@ class DatastoreSessionHandlerTest extends TestCase
     }
 
     /**
-     * @expectedException PHPUnit_Framework_Error_Warning
+     * @expectedException \PHPUnit\Framework\Error\Warning
      */
     public function testReadWithException()
     {
@@ -211,7 +211,7 @@ class DatastoreSessionHandlerTest extends TestCase
     }
 
     /**
-     * @expectedException PHPUnit_Framework_Error_Warning
+     * @expectedException \PHPUnit\Framework\Error\Warning
      */
     public function testWriteWithException()
     {
@@ -402,7 +402,7 @@ class DatastoreSessionHandlerTest extends TestCase
     }
 
     /**
-     * @expectedException PHPUnit_Framework_Error_Warning
+     * @expectedException \PHPUnit\Framework\Error\Warning
      */
     public function testDestroyWithException()
     {
@@ -522,7 +522,7 @@ class DatastoreSessionHandlerTest extends TestCase
     }
 
     /**
-     * @expectedException PHPUnit_Framework_Error_Warning
+     * @expectedException \PHPUnit\Framework\Error\Warning
      */
     public function testGcWithException()
     {

@@ -15,9 +15,12 @@
  * limitations under the License.
  */
 
-class GcTestListener extends PHPUnit_Framework_BaseTestListener
+use PHPUnit\Framework\BaseTestListener;
+use PHPUnit\Framework\TestSuite;
+
+class GcTestListener extends BaseTestListener
 {
-    public function endTestSuite(\PHPUnit_Framework_TestSuite $suite)
+    public function endTestSuite(TestSuite $suite)
     {
         gc_collect_cycles();
     }

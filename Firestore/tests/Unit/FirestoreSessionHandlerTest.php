@@ -68,7 +68,7 @@ class FirestoreSessionHandlerTest extends TestCase
     }
 
     /**
-     * @expectedException PHPUnit_Framework_Error_Warning
+     * @expectedException \PHPUnit\Framework\Error\Warning
      */
     public function testOpenWithException()
     {
@@ -145,7 +145,7 @@ class FirestoreSessionHandlerTest extends TestCase
     }
 
     /**
-     * @expectedException PHPUnit_Framework_Error_Warning
+     * @expectedException \PHPUnit\Framework\Error\Warning
      */
     public function testReadWithException()
     {
@@ -246,7 +246,7 @@ class FirestoreSessionHandlerTest extends TestCase
     }
 
     /**
-     * @expectedException PHPUnit_Framework_Error_Warning
+     * @expectedException \PHPUnit\Framework\Error\Warning
      */
     public function testWriteWithException()
     {
@@ -311,7 +311,7 @@ class FirestoreSessionHandlerTest extends TestCase
     }
 
     /**
-     * @expectedException PHPUnit_Framework_Error_Warning
+     * @expectedException \PHPUnit\Framework\Error\Warning
      */
     public function testDestroyWithException()
     {
@@ -425,7 +425,7 @@ class FirestoreSessionHandlerTest extends TestCase
     }
 
     /**
-     * @expectedException PHPUnit_Framework_Error_Warning
+     * @expectedException \PHPUnit\Framework\Error\Warning
      */
     public function testGcWithException()
     {

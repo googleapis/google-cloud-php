@@ -328,7 +328,7 @@ class ClientTraitTest extends TestCase
     }
 
     /**
-     * @expectedException PHPUnit_Framework_Error_Notice
+     * @expectedException \PHPUnit\Framework\Error\Notice
      * @expectedExceptionMessageRegExp /A keyfile was given/
      */
     public function testDetectProjectIdWithKeyfileMissingProjectId()

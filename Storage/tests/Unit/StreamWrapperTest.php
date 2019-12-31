@@ -205,7 +205,7 @@ class StreamWrapperTest extends TestCase
 
     /**
      * @group storageInfo
-     * @expectedException PHPUnit_Framework_Error_Warning
+     * @expectedException \PHPUnit\Framework\Error\Warning
      */
     public function testStatOnNonExistentFile()
     {

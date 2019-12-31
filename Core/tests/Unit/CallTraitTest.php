@@ -33,7 +33,7 @@ class CallTraitTest extends TestCase
     }
 
     /**
-     * @expectedException PHPUnit_Framework_Error
+     * @expectedException \PHPUnit\Framework\Error\Error
      */
     public function testErr()
     {
