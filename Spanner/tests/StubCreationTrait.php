@@ -33,5 +33,5 @@ trait StubCreationTrait
         return $c;
     }
 
-    abstract protected function prophesize($classOrInterface = null);
+    abstract protected function prophesize($classOrInterface = null): \Prophecy\Prophecy\ObjectProphecy;
 }
