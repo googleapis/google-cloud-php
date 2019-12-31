@@ -131,7 +131,7 @@ class LanguageClientTest extends SnippetTestCase
         $snippet->addLocal('language', $this->client);
 
         $res = $snippet->invoke();
-        $this->assertEquals('1.0', $res->output());
+        $this->assertSame('1', $res->output());
     }
 
     public function testClassifyText()
