@@ -9,7 +9,15 @@ jobs:
         - travis_retry composer install
         - ./dev/google-cloud credentials
         - composer --no-interaction --dev remove google/protobuf google/gax
-    
+
+    - php: 7.1
+      fast_finish: true
+      install:
+        - composer self-update
+        - travis_retry composer install
+        - ./dev/google-cloud credentials
+        - composer --no-interaction --dev remove google/protobuf google/gax
+
     - php: 7.2
       fast_finish: true
       install:
