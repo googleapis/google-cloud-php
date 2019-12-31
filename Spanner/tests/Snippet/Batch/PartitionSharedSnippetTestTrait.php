@@ -26,7 +26,7 @@ trait PartitionSharedSnippetTestTrait
     private $token = 'token';
     private $options = ['hello' => 'world'];
 
-    public abstract function setUp();
+    abstract public function setUp();
 
     /**
      * @dataProvider provideSerializeSnippetIndex
