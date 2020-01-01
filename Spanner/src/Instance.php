@@ -181,7 +181,7 @@ class Instance
      * @param array $options [optional] {
      *     Configuration options
      *
-     *     @type string[] $fieldMask A list of `Instance` fields that should be returned.
+     *     @type string|string[] $fieldMask One or a list of `Instance` fields that should be returned.
      *           Eligible values are: `name`, `displayName`, `endpointUris`, `labels`, `config`, `nodeCount`, `state`.
      *           If absent, all fields are returned.
      *           Note: This parameter will only apply when service call is required (`info` values are not present).
@@ -239,7 +239,7 @@ class Instance
      * @param array $options [optional] {
      *     Configuration options
      *
-     *     @type string[] $fieldMask A list of `Instance` fields that should be returned.
+     *     @type string|string[] $fieldMask One or a list of `Instance` fields that should be returned.
      *           Eligible values are: `name`, `displayName`, `endpointUris`, `labels`, `config`, `nodeCount`, `state`.
      *           If absent, all fields are returned.
      * }
@@ -249,7 +249,7 @@ class Instance
     {
         $this->info = $this->connection->getInstance($options + [
             'name' => $this->name,
-            'projectId' => $this->projectId,
+            'projectId' => $this->projectId
         ]);
 
         return $this->info;

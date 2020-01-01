@@ -228,8 +228,12 @@ class Grpc implements ConnectionInterface
 
         if (isset($args['fieldMask'])) {
             $mask = [];
-            foreach (array_values($args['fieldMask']) as $field) {
-                $mask[] = Serializer::toSnakeCase($field);
+            if (is_array($args['fieldMask'])) {
+                foreach (array_values($args['fieldMask']) as $field) {
+                    $mask[] = Serializer::toSnakeCase($field);
+                }
+            } else {
+                $mask[] = Serializer::toSnakeCase($args['fieldMask']);
             }
             $fieldMask = $this->serializer->decodeMessage(new FieldMask(), ['paths' => $mask]);
             $args['fieldMask'] = $fieldMask;
