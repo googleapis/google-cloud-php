@@ -141,7 +141,9 @@ class SpannerClient
             'projectIdRequired' => true
         ];
 
-        $this->connection = new Grpc($this->configureAuthentication($config));
+        $config['enableCaching'] = 'true' == strtolower(getenv('GOOGLE_CLOUD_ENABLE_RESOURCE_BASED_ROUTING'));
+
+        $this->connection = $this->getGrpc($config);
         $this->returnInt64AsObject = $config['returnInt64AsObject'];
 
         $this->setLroProperties(new LongRunningConnection($this->connection), [
@@ -570,5 +572,16 @@ class SpannerClient
     public function commitTimestamp()
     {
         return new CommitTimestamp;
+    }
+
+    /**
+     * Construct an instance of Google\Cloud\Spanner\Connection\Grpc class. Allows for tests to intercept.
+     *
+     * @param array $config
+     * @return Grpc
+     */
+    protected function getGrpc(array $config)
+    {
+        return new Grpc($this->configureAuthentication($config));
     }
 }

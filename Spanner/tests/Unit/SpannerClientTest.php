@@ -39,6 +39,7 @@ use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use ReflectionObject;
 
 /**
  * @group spanner
@@ -63,6 +64,17 @@ class SpannerClientTest extends TestCase
         $this->client = TestHelpers::stub(SpannerClient::class, [
             ['projectId' => self::PROJECT]
         ]);
+    }
+
+    public function testResourceCachingEnvVar()
+    {
+        $this->assertTrue(putenv("GOOGLE_CLOUD_ENABLE_RESOURCE_BASED_ROUTING=true"));
+        
+        $client = TestHelpers::stub(SpannerClientStub::class, [
+            ['projectId' => self::PROJECT]
+        ]);
+
+        $this->assertTrue($client->config['enableCaching']);
     }
 
     public function testBatch()
@@ -314,3 +326,16 @@ class SpannerClientTest extends TestCase
         $this->assertInstanceOf(CommitTimestamp::class, $t);
     }
 }
+
+//@codingStandardsIgnoreStart
+class SpannerClientStub extends SpannerClient
+{
+    public $config;
+
+    protected function getGrpc(array $config)
+    {
+        $this->config = $config;
+        return parent::getGrpc($config);
+    }
+}
+//@codingStandardsIgnoreEnd

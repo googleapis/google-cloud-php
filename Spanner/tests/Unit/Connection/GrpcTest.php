@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit\Connection;
 
+use Google\ApiCore\ApiException;
+use Google\ApiCore\ApiStatus;
 use Google\ApiCore\Call;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\Serializer;
@@ -49,6 +51,7 @@ use Google\Protobuf\NullValue;
 use Google\Protobuf\Struct;
 use Google\Protobuf\Timestamp;
 use Google\Protobuf\Value;
+use Google\Rpc\Code;
 use GuzzleHttp\Promise\PromiseInterface;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -75,6 +78,9 @@ class GrpcTest extends TestCase
     private $successMessage;
     private $lro;
 
+    private $grpc;
+    private $getInstance;
+
     public function setUp()
     {
         $this->checkAndSkipGrpcTests();
@@ -83,6 +89,57 @@ class GrpcTest extends TestCase
         $this->serializer = new Serializer;
         $this->successMessage = 'success';
         $this->lro = $this->prophesize(OperationResponse::class)->reveal();
+
+        // $this->grpc = TestHelpers::stub(GrpcStub::class, [['enableCaching' => true]]);
+    }
+
+    public function testCacheResourceEnpointUrisIsEmpty()
+    {
+        $grpc = new GrpcStub(['enableCaching' => true, 'expectedReturn' => []]);
+        $grpc->getSession(['database' => self::DATABASE, 'name' => self::SESSION]);
+        // make sure `getSession` request is ony sent once.
+        $grpc->getSession(['database' => self::DATABASE, 'name' => self::SESSION]);
+
+        $this->assertEquals($grpc->calledTimes, 1);
+        $this->assertFalse(isset($grpc->config['apiEndpoint']));
+    }
+
+    public function testCacheResourceValidEndpointUri()
+    {
+        $instanceEndpointUri = 'some.endpoit.uri';
+        $grpc = new GrpcStub([
+            'enableCaching' => true,
+            'expectedReturn' => ['endpointUris' => [$instanceEndpointUri]]
+        ]);
+        $grpc->getSession(['database' => self::DATABASE, 'name' => self::SESSION]);
+        // make sure `getSession` request is ony sent once.
+        $grpc->getSession(['database' => self::DATABASE, 'name' => self::SESSION]);
+
+        $this->assertEquals($grpc->calledTimes, 1);
+        $this->assertEquals($grpc->config['apiEndpoint'], $instanceEndpointUri);
+    }
+
+    public function testCacheResourcePermissionError()
+    {
+        $exception = new ApiException('error', Code::PERMISSION_DENIED, ApiStatus::PERMISSION_DENIED);
+        $grpc = new GrpcStub(['enableCaching' => true, 'expectedReturn' => $exception]);
+        
+        $grpc->getSession(['database' => self::DATABASE, 'name' => self::SESSION]);
+        
+        $this->assertEquals($grpc->calledTimes, 1);
+        $this->assertFalse(isset($grpc->config['apiEndpoint']));
+    }
+
+    public function testCacheResourceOtherError()
+    {
+        $this->setExpectedException(ApiException::class);
+        $exception = new ApiException('error', Code::UNAUTHENTICATED, ApiStatus::UNAUTHENTICATED);
+        $grpc = new GrpcStub(['enableCaching' => true, 'expectedReturn' => $exception]);
+        
+        $grpc->getSession(['database' => self::DATABASE, 'name' => self::SESSION]);
+        
+        $this->assertEquals($grpc->calledTimes, 1);
+        $this->assertFalse(isset($grpc->config['apiEndpoint']));
     }
 
     public function testApiEndpoint()
@@ -91,6 +148,7 @@ class GrpcTest extends TestCase
 
         $grpc = new GrpcStub(['apiEndpoint' => $expected]);
 
+        $grpc->deleteInstance(['name' => self::INSTANCE]);
         $this->assertEquals($expected, $grpc->config['apiEndpoint']);
     }
 
@@ -335,7 +393,7 @@ class GrpcTest extends TestCase
         $grpc = new Grpc(['gapicSpannerClient' => $client->reveal()]);
 
         $promise = $grpc->createSessionAsync([
-            'database' => 'database1',
+            'database' => self::DATABASE,
             'session' => [
                 'labels' => [ 'foo' => 'bar' ]
             ]
@@ -389,7 +447,7 @@ class GrpcTest extends TestCase
         $promise = $this->prophesize(PromiseInterface::class)
             ->reveal();
         $sessionName = 'session1';
-        $databaseName = 'database1';
+        $databaseName = self::DATABASE;
         $request = new DeleteSessionRequest();
         $request->setName($sessionName);
         $client = $this->prophesize(SpannerClient::class);
@@ -1061,12 +1119,40 @@ class GrpcTest extends TestCase
 class GrpcStub extends Grpc
 {
     public $config;
+    public $calledTimes = 0;
+    private $expectedReturn = [];
+
+    public function __construct(array $args)
+    {
+        if (isset($args['expectedReturn'])) {
+            $this->expectedReturn = $args['expectedReturn'];
+            unset($args['expectedReturn']);
+        } 
+        
+        parent::__construct($args);
+    }
 
     protected function constructGapic($gapicName, array $config)
     {
         $this->config = $config;
 
         return parent::constructGapic($gapicName, $config);
+    }
+
+    public function send(callable $request, array $args, $whitelisted = false)
+    {
+        return null;
+    }
+
+    public function getInstance(array $args)
+    {
+        $this->calledTimes+=1;
+
+        if ($this->expectedReturn instanceOf ApiException) {
+            throw $this->expectedReturn;
+        }
+
+        return $this->expectedReturn;
     }
 }
 //@codingStandardsIgnoreEnd
