@@ -19,13 +19,13 @@ class KeyRing extends \Google\Protobuf\Internal\Message
      * Output only. The resource name for the [KeyRing][google.cloud.kms.v1.KeyRing] in the format
      * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $name = '';
     /**
      * Output only. The time at which this [KeyRing][google.cloud.kms.v1.KeyRing] was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $create_time = null;
 
@@ -51,7 +51,7 @@ class KeyRing extends \Google\Protobuf\Internal\Message
      * Output only. The resource name for the [KeyRing][google.cloud.kms.v1.KeyRing] in the format
      * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getName()
@@ -63,7 +63,7 @@ class KeyRing extends \Google\Protobuf\Internal\Message
      * Output only. The resource name for the [KeyRing][google.cloud.kms.v1.KeyRing] in the format
      * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -78,7 +78,7 @@ class KeyRing extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The time at which this [KeyRing][google.cloud.kms.v1.KeyRing] was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getCreateTime()
@@ -89,7 +89,7 @@ class KeyRing extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The time at which this [KeyRing][google.cloud.kms.v1.KeyRing] was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */

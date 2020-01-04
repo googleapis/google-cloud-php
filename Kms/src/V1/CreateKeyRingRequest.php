@@ -19,20 +19,20 @@ class CreateKeyRingRequest extends \Google\Protobuf\Internal\Message
      * Required. The resource name of the location associated with the
      * [KeyRings][google.cloud.kms.v1.KeyRing], in the format `projects/&#42;&#47;locations/&#42;`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
      * Required. It must be unique within a location and match the regular
      * expression `[a-zA-Z0-9_-]{1,63}`
      *
-     * Generated from protobuf field <code>string key_ring_id = 2;</code>
+     * Generated from protobuf field <code>string key_ring_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $key_ring_id = '';
     /**
-     * A [KeyRing][google.cloud.kms.v1.KeyRing] with initial field values.
+     * Required. A [KeyRing][google.cloud.kms.v1.KeyRing] with initial field values.
      *
-     * Generated from protobuf field <code>.google.cloud.kms.v1.KeyRing key_ring = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.kms.v1.KeyRing key_ring = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $key_ring = null;
 
@@ -49,7 +49,7 @@ class CreateKeyRingRequest extends \Google\Protobuf\Internal\Message
      *           Required. It must be unique within a location and match the regular
      *           expression `[a-zA-Z0-9_-]{1,63}`
      *     @type \Google\Cloud\Kms\V1\KeyRing $key_ring
-     *           A [KeyRing][google.cloud.kms.v1.KeyRing] with initial field values.
+     *           Required. A [KeyRing][google.cloud.kms.v1.KeyRing] with initial field values.
      * }
      */
     public function __construct($data = NULL) {
@@ -61,7 +61,7 @@ class CreateKeyRingRequest extends \Google\Protobuf\Internal\Message
      * Required. The resource name of the location associated with the
      * [KeyRings][google.cloud.kms.v1.KeyRing], in the format `projects/&#42;&#47;locations/&#42;`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -73,7 +73,7 @@ class CreateKeyRingRequest extends \Google\Protobuf\Internal\Message
      * Required. The resource name of the location associated with the
      * [KeyRings][google.cloud.kms.v1.KeyRing], in the format `projects/&#42;&#47;locations/&#42;`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -89,7 +89,7 @@ class CreateKeyRingRequest extends \Google\Protobuf\Internal\Message
      * Required. It must be unique within a location and match the regular
      * expression `[a-zA-Z0-9_-]{1,63}`
      *
-     * Generated from protobuf field <code>string key_ring_id = 2;</code>
+     * Generated from protobuf field <code>string key_ring_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getKeyRingId()
@@ -101,7 +101,7 @@ class CreateKeyRingRequest extends \Google\Protobuf\Internal\Message
      * Required. It must be unique within a location and match the regular
      * expression `[a-zA-Z0-9_-]{1,63}`
      *
-     * Generated from protobuf field <code>string key_ring_id = 2;</code>
+     * Generated from protobuf field <code>string key_ring_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -114,9 +114,9 @@ class CreateKeyRingRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A [KeyRing][google.cloud.kms.v1.KeyRing] with initial field values.
+     * Required. A [KeyRing][google.cloud.kms.v1.KeyRing] with initial field values.
      *
-     * Generated from protobuf field <code>.google.cloud.kms.v1.KeyRing key_ring = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.kms.v1.KeyRing key_ring = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Kms\V1\KeyRing
      */
     public function getKeyRing()
@@ -125,9 +125,9 @@ class CreateKeyRingRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A [KeyRing][google.cloud.kms.v1.KeyRing] with initial field values.
+     * Required. A [KeyRing][google.cloud.kms.v1.KeyRing] with initial field values.
      *
-     * Generated from protobuf field <code>.google.cloud.kms.v1.KeyRing key_ring = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.kms.v1.KeyRing key_ring = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Kms\V1\KeyRing $var
      * @return $this
      */

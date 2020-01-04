@@ -19,13 +19,13 @@ class CreateCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
      * Required. The [name][google.cloud.kms.v1.CryptoKey.name] of the [CryptoKey][google.cloud.kms.v1.CryptoKey] associated with
      * the [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion].
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * A [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with initial field values.
+     * Required. A [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with initial field values.
      *
-     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion crypto_key_version = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion crypto_key_version = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $crypto_key_version = null;
 
@@ -39,7 +39,7 @@ class CreateCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
      *           Required. The [name][google.cloud.kms.v1.CryptoKey.name] of the [CryptoKey][google.cloud.kms.v1.CryptoKey] associated with
      *           the [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion].
      *     @type \Google\Cloud\Kms\V1\CryptoKeyVersion $crypto_key_version
-     *           A [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with initial field values.
+     *           Required. A [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with initial field values.
      * }
      */
     public function __construct($data = NULL) {
@@ -51,7 +51,7 @@ class CreateCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
      * Required. The [name][google.cloud.kms.v1.CryptoKey.name] of the [CryptoKey][google.cloud.kms.v1.CryptoKey] associated with
      * the [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion].
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -63,7 +63,7 @@ class CreateCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
      * Required. The [name][google.cloud.kms.v1.CryptoKey.name] of the [CryptoKey][google.cloud.kms.v1.CryptoKey] associated with
      * the [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion].
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -76,9 +76,9 @@ class CreateCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with initial field values.
+     * Required. A [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with initial field values.
      *
-     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion crypto_key_version = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion crypto_key_version = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Kms\V1\CryptoKeyVersion
      */
     public function getCryptoKeyVersion()
@@ -87,9 +87,9 @@ class CreateCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with initial field values.
+     * Required. A [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with initial field values.
      *
-     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion crypto_key_version = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion crypto_key_version = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Kms\V1\CryptoKeyVersion $var
      * @return $this
      */

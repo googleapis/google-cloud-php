@@ -19,20 +19,20 @@ class CreateCryptoKeyRequest extends \Google\Protobuf\Internal\Message
      * Required. The [name][google.cloud.kms.v1.KeyRing.name] of the KeyRing associated with the
      * [CryptoKeys][google.cloud.kms.v1.CryptoKey].
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
      * Required. It must be unique within a KeyRing and match the regular
      * expression `[a-zA-Z0-9_-]{1,63}`
      *
-     * Generated from protobuf field <code>string crypto_key_id = 2;</code>
+     * Generated from protobuf field <code>string crypto_key_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $crypto_key_id = '';
     /**
-     * A [CryptoKey][google.cloud.kms.v1.CryptoKey] with initial field values.
+     * Required. A [CryptoKey][google.cloud.kms.v1.CryptoKey] with initial field values.
      *
-     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKey crypto_key = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKey crypto_key = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $crypto_key = null;
     /**
@@ -59,7 +59,7 @@ class CreateCryptoKeyRequest extends \Google\Protobuf\Internal\Message
      *           Required. It must be unique within a KeyRing and match the regular
      *           expression `[a-zA-Z0-9_-]{1,63}`
      *     @type \Google\Cloud\Kms\V1\CryptoKey $crypto_key
-     *           A [CryptoKey][google.cloud.kms.v1.CryptoKey] with initial field values.
+     *           Required. A [CryptoKey][google.cloud.kms.v1.CryptoKey] with initial field values.
      *     @type bool $skip_initial_version_creation
      *           If set to true, the request will create a [CryptoKey][google.cloud.kms.v1.CryptoKey] without any
      *           [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion]. You must manually call
@@ -77,7 +77,7 @@ class CreateCryptoKeyRequest extends \Google\Protobuf\Internal\Message
      * Required. The [name][google.cloud.kms.v1.KeyRing.name] of the KeyRing associated with the
      * [CryptoKeys][google.cloud.kms.v1.CryptoKey].
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -89,7 +89,7 @@ class CreateCryptoKeyRequest extends \Google\Protobuf\Internal\Message
      * Required. The [name][google.cloud.kms.v1.KeyRing.name] of the KeyRing associated with the
      * [CryptoKeys][google.cloud.kms.v1.CryptoKey].
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -105,7 +105,7 @@ class CreateCryptoKeyRequest extends \Google\Protobuf\Internal\Message
      * Required. It must be unique within a KeyRing and match the regular
      * expression `[a-zA-Z0-9_-]{1,63}`
      *
-     * Generated from protobuf field <code>string crypto_key_id = 2;</code>
+     * Generated from protobuf field <code>string crypto_key_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getCryptoKeyId()
@@ -117,7 +117,7 @@ class CreateCryptoKeyRequest extends \Google\Protobuf\Internal\Message
      * Required. It must be unique within a KeyRing and match the regular
      * expression `[a-zA-Z0-9_-]{1,63}`
      *
-     * Generated from protobuf field <code>string crypto_key_id = 2;</code>
+     * Generated from protobuf field <code>string crypto_key_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -130,9 +130,9 @@ class CreateCryptoKeyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A [CryptoKey][google.cloud.kms.v1.CryptoKey] with initial field values.
+     * Required. A [CryptoKey][google.cloud.kms.v1.CryptoKey] with initial field values.
      *
-     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKey crypto_key = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKey crypto_key = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Kms\V1\CryptoKey
      */
     public function getCryptoKey()
@@ -141,9 +141,9 @@ class CreateCryptoKeyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A [CryptoKey][google.cloud.kms.v1.CryptoKey] with initial field values.
+     * Required. A [CryptoKey][google.cloud.kms.v1.CryptoKey] with initial field values.
      *
-     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKey crypto_key = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKey crypto_key = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Kms\V1\CryptoKey $var
      * @return $this
      */

@@ -16,15 +16,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateCryptoKeyPrimaryVersionRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The resource name of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to update.
+     * Required. The resource name of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to update.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
-     * The id of the child [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use as primary.
+     * Required. The id of the child [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use as primary.
      *
-     * Generated from protobuf field <code>string crypto_key_version_id = 2;</code>
+     * Generated from protobuf field <code>string crypto_key_version_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $crypto_key_version_id = '';
 
@@ -35,9 +35,9 @@ class UpdateCryptoKeyPrimaryVersionRequest extends \Google\Protobuf\Internal\Mes
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The resource name of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to update.
+     *           Required. The resource name of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to update.
      *     @type string $crypto_key_version_id
-     *           The id of the child [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use as primary.
+     *           Required. The id of the child [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use as primary.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,9 +46,9 @@ class UpdateCryptoKeyPrimaryVersionRequest extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * The resource name of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to update.
+     * Required. The resource name of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to update.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -57,9 +57,9 @@ class UpdateCryptoKeyPrimaryVersionRequest extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * The resource name of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to update.
+     * Required. The resource name of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to update.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -72,9 +72,9 @@ class UpdateCryptoKeyPrimaryVersionRequest extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * The id of the child [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use as primary.
+     * Required. The id of the child [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use as primary.
      *
-     * Generated from protobuf field <code>string crypto_key_version_id = 2;</code>
+     * Generated from protobuf field <code>string crypto_key_version_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getCryptoKeyVersionId()
@@ -83,9 +83,9 @@ class UpdateCryptoKeyPrimaryVersionRequest extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * The id of the child [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use as primary.
+     * Required. The id of the child [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use as primary.
      *
-     * Generated from protobuf field <code>string crypto_key_version_id = 2;</code>
+     * Generated from protobuf field <code>string crypto_key_version_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

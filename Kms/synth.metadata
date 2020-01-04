@@ -1,19 +1,19 @@
 {
-  "updateTime": "2019-08-14T10:01:11.994295Z",
+  "updateTime": "2020-01-04T11:00:15.992326Z",
   "sources": [
     {
       "generator": {
         "name": "artman",
-        "version": "0.29.1",
-        "dockerImage": "googleapis/artman@sha256:b2a73f4dda03ef8fcaa973e3ba26d0cf34091f6c22c70add663af325931aef4d"
+        "version": "0.43.0",
+        "dockerImage": "googleapis/artman@sha256:264654a37596a44b0668b8ce6ac41082d713f6ee150b3fc6425fa78cc64e4f20"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "3406d1e899f1f41123b3fa9210ad4bef25c9a720",
-        "internalRef": "263234709"
+        "sha": "91ef2d9dd69807b0b79555f22566fb2d81e49ff9",
+        "internalRef": "287999179"
       }
     }
   ],
@@ -27,6 +27,254 @@
         "generator": "gapic",
         "config": "google/cloud/kms/artman_cloudkms.yaml"
       }
+    }
+  ],
+  "newFiles": [
+    {
+      "path": "phpunit-system.xml.dist"
+    },
+    {
+      "path": "composer.json"
+    },
+    {
+      "path": "phpunit.xml.dist"
+    },
+    {
+      "path": "phpunit-snippets.xml.dist"
+    },
+    {
+      "path": "CONTRIBUTING.md"
+    },
+    {
+      "path": "README.md"
+    },
+    {
+      "path": "synth.metadata"
+    },
+    {
+      "path": "LICENSE"
+    },
+    {
+      "path": "VERSION"
+    },
+    {
+      "path": ".gitattributes"
+    },
+    {
+      "path": "synth.py"
+    },
+    {
+      "path": ".github/pull_request_template.md"
+    },
+    {
+      "path": "__pycache__/synth.cpython-36.pyc"
+    },
+    {
+      "path": "src/V1/ListImportJobsResponse.php"
+    },
+    {
+      "path": "src/V1/UpdateCryptoKeyVersionRequest.php"
+    },
+    {
+      "path": "src/V1/ListCryptoKeyVersionsRequest.php"
+    },
+    {
+      "path": "src/V1/CreateKeyRingRequest.php"
+    },
+    {
+      "path": "src/V1/PublicKey.php"
+    },
+    {
+      "path": "src/V1/AsymmetricSignRequest.php"
+    },
+    {
+      "path": "src/V1/KeyOperationAttestation_AttestationFormat.php"
+    },
+    {
+      "path": "src/V1/Digest.php"
+    },
+    {
+      "path": "src/V1/ProtectionLevel.php"
+    },
+    {
+      "path": "src/V1/GetCryptoKeyRequest.php"
+    },
+    {
+      "path": "src/V1/ListCryptoKeysResponse.php"
+    },
+    {
+      "path": "src/V1/CryptoKeyVersion_CryptoKeyVersionState.php"
+    },
+    {
+      "path": "src/V1/CryptoKeyVersionTemplate.php"
+    },
+    {
+      "path": "src/V1/KeyManagementServiceClient.php"
+    },
+    {
+      "path": "src/V1/GetImportJobRequest.php"
+    },
+    {
+      "path": "src/V1/UpdateCryptoKeyRequest.php"
+    },
+    {
+      "path": "src/V1/KeyOperationAttestation.php"
+    },
+    {
+      "path": "src/V1/ImportCryptoKeyVersionRequest.php"
+    },
+    {
+      "path": "src/V1/ImportJob_ImportMethod.php"
+    },
+    {
+      "path": "src/V1/CryptoKey.php"
+    },
+    {
+      "path": "src/V1/CreateCryptoKeyRequest.php"
+    },
+    {
+      "path": "src/V1/KeyRing.php"
+    },
+    {
+      "path": "src/V1/AsymmetricDecryptRequest.php"
+    },
+    {
+      "path": "src/V1/ImportJob_WrappingPublicKey.php"
+    },
+    {
+      "path": "src/V1/AsymmetricSignResponse.php"
+    },
+    {
+      "path": "src/V1/AsymmetricDecryptResponse.php"
+    },
+    {
+      "path": "src/V1/GetKeyRingRequest.php"
+    },
+    {
+      "path": "src/V1/DestroyCryptoKeyVersionRequest.php"
+    },
+    {
+      "path": "src/V1/EncryptResponse.php"
+    },
+    {
+      "path": "src/V1/CryptoKeyVersion.php"
+    },
+    {
+      "path": "src/V1/ListKeyRingsResponse.php"
+    },
+    {
+      "path": "src/V1/GetCryptoKeyVersionRequest.php"
+    },
+    {
+      "path": "src/V1/ListCryptoKeyVersionsResponse.php"
+    },
+    {
+      "path": "src/V1/CreateImportJobRequest.php"
+    },
+    {
+      "path": "src/V1/CryptoKey_CryptoKeyPurpose.php"
+    },
+    {
+      "path": "src/V1/README.md"
+    },
+    {
+      "path": "src/V1/EncryptRequest.php"
+    },
+    {
+      "path": "src/V1/RestoreCryptoKeyVersionRequest.php"
+    },
+    {
+      "path": "src/V1/KeyManagementServiceGrpcClient.php"
+    },
+    {
+      "path": "src/V1/ListKeyRingsRequest.php"
+    },
+    {
+      "path": "src/V1/ListImportJobsRequest.php"
+    },
+    {
+      "path": "src/V1/DecryptResponse.php"
+    },
+    {
+      "path": "src/V1/ListCryptoKeysRequest.php"
+    },
+    {
+      "path": "src/V1/GetPublicKeyRequest.php"
+    },
+    {
+      "path": "src/V1/DecryptRequest.php"
+    },
+    {
+      "path": "src/V1/ImportJob_ImportJobState.php"
+    },
+    {
+      "path": "src/V1/CryptoKeyVersion_CryptoKeyVersionAlgorithm.php"
+    },
+    {
+      "path": "src/V1/CreateCryptoKeyVersionRequest.php"
+    },
+    {
+      "path": "src/V1/CryptoKeyVersion_CryptoKeyVersionView.php"
+    },
+    {
+      "path": "src/V1/UpdateCryptoKeyPrimaryVersionRequest.php"
+    },
+    {
+      "path": "src/V1/LocationMetadata.php"
+    },
+    {
+      "path": "src/V1/ImportJob.php"
+    },
+    {
+      "path": "src/V1/Gapic/KeyManagementServiceGapicClient.php"
+    },
+    {
+      "path": "src/V1/KeyOperationAttestation/AttestationFormat.php"
+    },
+    {
+      "path": "src/V1/CryptoKeyVersion/CryptoKeyVersionView.php"
+    },
+    {
+      "path": "src/V1/CryptoKeyVersion/CryptoKeyVersionAlgorithm.php"
+    },
+    {
+      "path": "src/V1/CryptoKeyVersion/CryptoKeyVersionState.php"
+    },
+    {
+      "path": "src/V1/resources/key_management_service_client_config.json"
+    },
+    {
+      "path": "src/V1/resources/key_management_service_rest_client_config.php"
+    },
+    {
+      "path": "src/V1/resources/key_management_service_descriptor_config.php"
+    },
+    {
+      "path": "src/V1/ImportJob/WrappingPublicKey.php"
+    },
+    {
+      "path": "src/V1/ImportJob/ImportJobState.php"
+    },
+    {
+      "path": "src/V1/ImportJob/ImportMethod.php"
+    },
+    {
+      "path": "src/V1/CryptoKey/CryptoKeyPurpose.php"
+    },
+    {
+      "path": "tests/System/bootstrap.php"
+    },
+    {
+      "path": "tests/System/V1/KeyManagementServiceClientSmokeTest.php"
+    },
+    {
+      "path": "tests/Unit/V1/KeyManagementServiceClientTest.php"
+    },
+    {
+      "path": "metadata/V1/Resources.php"
+    },
+    {
+      "path": "metadata/V1/Service.php"
     }
   ]
 }

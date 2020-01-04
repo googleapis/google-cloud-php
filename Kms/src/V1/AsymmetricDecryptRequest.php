@@ -19,14 +19,14 @@ class AsymmetricDecryptRequest extends \Google\Protobuf\Internal\Message
      * Required. The resource name of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
      * decryption.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
      * Required. The data encrypted with the named [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s public
      * key using OAEP.
      *
-     * Generated from protobuf field <code>bytes ciphertext = 3;</code>
+     * Generated from protobuf field <code>bytes ciphertext = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $ciphertext = '';
 
@@ -53,7 +53,7 @@ class AsymmetricDecryptRequest extends \Google\Protobuf\Internal\Message
      * Required. The resource name of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
      * decryption.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -65,7 +65,7 @@ class AsymmetricDecryptRequest extends \Google\Protobuf\Internal\Message
      * Required. The resource name of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
      * decryption.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -81,7 +81,7 @@ class AsymmetricDecryptRequest extends \Google\Protobuf\Internal\Message
      * Required. The data encrypted with the named [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s public
      * key using OAEP.
      *
-     * Generated from protobuf field <code>bytes ciphertext = 3;</code>
+     * Generated from protobuf field <code>bytes ciphertext = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getCiphertext()
@@ -93,7 +93,7 @@ class AsymmetricDecryptRequest extends \Google\Protobuf\Internal\Message
      * Required. The data encrypted with the named [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s public
      * key using OAEP.
      *
-     * Generated from protobuf field <code>bytes ciphertext = 3;</code>
+     * Generated from protobuf field <code>bytes ciphertext = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
