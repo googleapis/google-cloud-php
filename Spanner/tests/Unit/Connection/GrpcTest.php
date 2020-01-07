@@ -132,6 +132,42 @@ class GrpcTest extends TestCase
         ]));
     }
 
+    public function testGetInstanceWithFieldMaskArray()
+    {
+        $fieldNames = ['name', 'displayName', 'nodeCount'];
+
+        $mask = [];
+        foreach (array_values($fieldNames) as $key) {
+            $mask[] = Serializer::toSnakeCase($key);
+        }
+
+        $fieldMask = $this->serializer->decodeMessage(new FieldMask, ['paths' => $mask]);
+        $this->assertCallCorrect('getInstance', [
+            'name' => self::INSTANCE,
+            'projectId' => self::PROJECT,
+            'fieldMask' => $fieldNames
+        ], $this->expectResourceHeader(self::PROJECT, [
+            self::INSTANCE,
+            ['fieldMask' => $fieldMask]
+        ]));
+    }
+
+    public function testGetInstanceWithFieldMaskString()
+    {
+        $fieldNames = 'nodeCount';
+        $mask[] = Serializer::toSnakeCase($fieldNames);
+
+        $fieldMask = $this->serializer->decodeMessage(new FieldMask, ['paths' => $mask]);
+        $this->assertCallCorrect('getInstance', [
+            'name' => self::INSTANCE,
+            'projectId' => self::PROJECT,
+            'fieldMask' => $fieldNames
+        ], $this->expectResourceHeader(self::PROJECT, [
+            self::INSTANCE,
+            ['fieldMask' => $fieldMask]
+        ]));
+    }
+
     public function testCreateInstance()
     {
         list ($args, $instance) = $this->instance();

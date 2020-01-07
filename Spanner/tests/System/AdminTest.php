@@ -60,6 +60,19 @@ class AdminTest extends SpannerTestCase
 
         $instance = $client->instance(self::INSTANCE_NAME);
         $this->assertEquals($displayName, $instance->info()['displayName']);
+
+        $requestedFieldNames = ['name', 'state'];
+        $expectedInfo = [
+            'endpointUris' => [],
+            'labels' => [],
+            'name' => $instance->name(),
+            'displayName' => '',
+            'nodeCount' => 0,
+            'state' => Instance::STATE_READY,
+            'config' => ''
+        ];
+        $info = $instance->reload(['fieldMask' => $requestedFieldNames]);
+        $this->assertEquals($expectedInfo, $info);
     }
 
     /**

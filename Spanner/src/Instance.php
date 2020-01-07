@@ -178,7 +178,15 @@ class Instance
      * echo $info['nodeCount'];
      * ```
      *
-     * @param array $options [optional] Configuration options.
+     * @param array $options [optional] {
+     *     Configuration options
+     *
+     *     @type string|string[] $fieldMask One or a list of `Instance` fields that should be returned.
+     *           Eligible values are: `name`, `displayName`, `endpointUris`, `labels`, `config`, `nodeCount`, `state`.
+     *           If absent, all fields are returned.
+     *           Note: This parameter will only apply when service call is required (`info` values are not present).
+     * }
+     *
      * @return array
      */
     public function info(array $options = [])
@@ -228,7 +236,13 @@ class Instance
      * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.admin.instance.v1#google.spanner.admin.instance.v1.GetInstanceRequest GetInstanceRequest
      * @codingStandardsIgnoreEnd
      *
-     * @param array $options [optional] Configuration options.
+     * @param array $options [optional] {
+     *     Configuration options
+     *
+     *     @type string|string[] $fieldMask One or a list of `Instance` fields that should be returned.
+     *           Eligible values are: `name`, `displayName`, `endpointUris`, `labels`, `config`, `nodeCount`, `state`.
+     *           If absent, all fields are returned.
+     * }
      * @return array
      */
     public function reload(array $options = [])
