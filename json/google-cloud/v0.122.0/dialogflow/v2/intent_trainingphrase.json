@@ -1,0 +1,1 @@
+{"id":"dialogflow\/v2\/intent_trainingphrase","type":"","title":"Google\\Cloud\\Dialogflow\\V2\\Intent_TrainingPhrase","name":"Intent_TrainingPhrase","description":"<p>This class is deprecated. Use Google\\Cloud\\Dialogflow\\V2\\Intent\\TrainingPhrase instead.<\/p>","examples":[],"resources":[],"methods":[]}
