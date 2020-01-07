@@ -388,11 +388,22 @@ class StreamWrapper
             // If the file name is empty, we were trying to create a bucket. In this case,
             // don't create the placeholder file.
             if ($this->file != '') {
+                $bucketInfo = $this->bucket->info();
+                $ublEnabled = isset($bucketInfo['iamConfiguration']['uniformBucketLevelAccess']) &&
+                    $bucketInfo['iamConfiguration']['uniformBucketLevelAccess']['enabled'] === true;
+
+                // if bucket has uniform bucket level access enabled, don't set ACLs.
+                $acl = [];
+                if (!$ublEnabled) {
+                    $acl = [
+                        'predefinedAcl' => $predefinedAcl
+                    ];
+                }
+
                 // Fake a directory by creating an empty placeholder file whose name ends in '/'
                 $this->bucket->upload('', [
                     'name' => $this->file,
-                    'predefinedAcl' => $predefinedAcl
-                ]);
+                ] + $acl);
             }
         } catch (ServiceException $e) {
             return false;
