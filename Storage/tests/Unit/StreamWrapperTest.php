@@ -250,7 +250,18 @@ class StreamWrapperTest extends TestCase
      */
     public function testMkdir()
     {
+        $this->mockBucketInfoUbl(false);
         $this->bucket->upload('', ['name' => 'foo/bar/', 'predefinedAcl' => 'publicRead'])->shouldBeCalled();
+        $this->assertTrue(mkdir('gs://my_bucket/foo/bar'));
+    }
+
+    /**
+     * @group storageDirectory
+     */
+    public function testMkdirWithUbl()
+    {
+        $this->mockBucketInfoUbl(true);
+        $this->bucket->upload('', ['name' => 'foo/bar/'])->shouldBeCalled();
         $this->assertTrue(mkdir('gs://my_bucket/foo/bar'));
     }
 
@@ -259,6 +270,7 @@ class StreamWrapperTest extends TestCase
      */
     public function testMkdirProjectPrivate()
     {
+        $this->mockBucketInfoUbl(false);
         $this->bucket->upload('', ['name' => 'foo/bar/', 'predefinedAcl' => 'projectPrivate'])->shouldBeCalled();
         $this->assertTrue(mkdir('gs://my_bucket/foo/bar', 0740));
     }
@@ -268,6 +280,7 @@ class StreamWrapperTest extends TestCase
      */
     public function testMkdirPrivate()
     {
+        $this->mockBucketInfoUbl(false);
         $this->bucket->upload('', ['name' => 'foo/bar/', 'predefinedAcl' => 'private'])->shouldBeCalled();
         $this->assertTrue(mkdir('gs://my_bucket/foo/bar', 0700));
     }
@@ -277,6 +290,7 @@ class StreamWrapperTest extends TestCase
      */
     public function testMkdirOnBadDirectory()
     {
+        $this->mockBucketInfoUbl(false);
         $this->bucket->upload('', ['name' => 'foo/bar/', 'predefinedAcl' => 'publicRead'])
             ->willThrow(NotFoundException::class);
         $this->assertFalse(mkdir('gs://my_bucket/foo/bar'));
@@ -289,6 +303,7 @@ class StreamWrapperTest extends TestCase
     {
         $this->bucket->exists()->willReturn(false);
         $this->bucket->name()->willReturn('my_bucket');
+        $this->mockBucketInfoUbl(false);
         $this->client->createBucket('my_bucket', [
             'predefinedAcl' => 'publicRead',
             'predefinedDefaultObjectAcl' => 'publicRead'
@@ -449,5 +464,16 @@ class StreamWrapperTest extends TestCase
                 yield $file;
             }
         }
+    }
+
+    private function mockBucketInfoUbl($enabled = false)
+    {
+        $this->bucket->info()->willReturn([
+            'iamConfiguration' => [
+                'uniformBucketLevelAccess' => [
+                    'enabled' => $enabled
+                ]
+            ]
+        ]);
     }
 }

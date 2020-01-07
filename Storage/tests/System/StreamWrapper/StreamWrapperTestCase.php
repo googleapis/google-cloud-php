@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Storage\Tests\System\StreamWrapper;
 
-use Google\Cloud\Storage\Storage\Tests\SystemTestCase;
+use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\Tests\System\StorageTestCase;
 
 /**
@@ -38,9 +38,10 @@ class StreamWrapperTestCase extends StorageTestCase
         parent::tearDownAfterClass();
     }
 
-    protected static function generateUrl($file)
+    protected static function generateUrl($file, Bucket $bucket = null)
     {
-        $bucketName = self::$bucket->name();
+        $bucket = $bucket ?: self::$bucket;
+        $bucketName = $bucket->name();
         return "gs://$bucketName/$file";
     }
 }

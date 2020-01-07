@@ -43,6 +43,26 @@ class DirectoryTest extends StreamWrapperTestCase
         $this->assertTrue(is_dir($dir . '/'));
     }
 
+    public function testMkDirWithUbl()
+    {
+        $bucket = self::createBucket(
+            self::$client,
+            uniqid(self::TESTING_PREFIX),
+            [
+                'iamConfiguration' => [
+                    'uniformBucketLevelAccess' => [
+                        'enabled' => true
+                    ]
+                ]
+            ]
+        );
+
+        $dir = self::generateUrl('test_directory', $bucket);
+        $this->assertTrue(mkdir($dir));
+        $this->assertFileExists($dir . '/');
+        $this->assertTrue(is_dir($dir . '/'));
+    }
+
     public function testIsDir()
     {
         $dir = self::generateUrl('test_directory');
