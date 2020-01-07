@@ -1,5 +1,47 @@
 # Changelog
 
+## 0.122.0
+
+<details><summary>google/cloud-firestore 1.10.1</summary>
+
+
+
+### Bug Fixes
+
+* fix compatibility with phpspec/prophecy v1.10 ([#2525](https://www.github.com/googleapis/google-cloud-php/issues/2525)) ([ca739c4](https://www.github.com/googleapis/google-cloud-php/commit/ca739c486895bef6b8f243529668e483eae83147))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.23.0</summary>
+
+
+
+### Features
+
+* enable 'FieldMask' param in Instance::reload() method options ([#2530](https://www.github.com/googleapis/google-cloud-php/issues/2530)) ([006487a](https://www.github.com/googleapis/google-cloud-php/commit/006487a23046acb0db983cc59f16d0b808affa70))
+
+
+### Bug Fixes
+
+* fix compatibility with phpspec/prophecy v1.10 ([#2525](https://www.github.com/googleapis/google-cloud-php/issues/2525)) ([ca739c4](https://www.github.com/googleapis/google-cloud-php/commit/ca739c486895bef6b8f243529668e483eae83147))
+
+</details>
+
+<details><summary>google/cloud-storage 1.17.0</summary>
+
+
+
+### Features
+
+* add support for ARCHIVE storage class ([#2428](https://www.github.com/googleapis/google-cloud-php/issues/2428)) ([bb0e3d9](https://www.github.com/googleapis/google-cloud-php/commit/bb0e3d9de9766be3ef47308afc71292008a16ba5))
+
+
+### Bug Fixes
+
+* allow mkdir() via stream wrapper when UBL is enabled ([#2541](https://www.github.com/googleapis/google-cloud-php/issues/2541)) ([aef45e7](https://www.github.com/googleapis/google-cloud-php/commit/aef45e789ff45d774fa7bd184d3ca2166a1f5603))
+
+</details>
+
 ## 0.121.0
 
 <details><summary>google/cloud-asset 0.5.0</summary>
