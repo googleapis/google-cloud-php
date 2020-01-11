@@ -22,23 +22,22 @@ use Google\Protobuf\Internal\GPBUtil;
 class StatisticalTable extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Auxiliary table location. [required]
+     * Required. Auxiliary table location.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.BigQueryTable table = 3;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.BigQueryTable table = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $table = null;
     /**
-     * Quasi-identifier columns. [required]
+     * Required. Quasi-identifier columns.
      *
-     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.StatisticalTable.QuasiIdentifierField quasi_ids = 1;</code>
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.StatisticalTable.QuasiIdentifierField quasi_ids = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $quasi_ids;
     /**
-     * The relative frequency column must contain a floating-point number
+     * Required. The relative frequency column must contain a floating-point number
      * between 0 and 1 (inclusive). Null values are assumed to be zero.
-     * [required]
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId relative_frequency = 2;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId relative_frequency = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $relative_frequency = null;
 
@@ -49,13 +48,12 @@ class StatisticalTable extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Dlp\V2\BigQueryTable $table
-     *           Auxiliary table location. [required]
+     *           Required. Auxiliary table location.
      *     @type \Google\Cloud\Dlp\V2\StatisticalTable\QuasiIdentifierField[]|\Google\Protobuf\Internal\RepeatedField $quasi_ids
-     *           Quasi-identifier columns. [required]
+     *           Required. Quasi-identifier columns.
      *     @type \Google\Cloud\Dlp\V2\FieldId $relative_frequency
-     *           The relative frequency column must contain a floating-point number
+     *           Required. The relative frequency column must contain a floating-point number
      *           between 0 and 1 (inclusive). Null values are assumed to be zero.
-     *           [required]
      * }
      */
     public function __construct($data = NULL) {
@@ -64,9 +62,9 @@ class StatisticalTable extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Auxiliary table location. [required]
+     * Required. Auxiliary table location.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.BigQueryTable table = 3;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.BigQueryTable table = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Dlp\V2\BigQueryTable
      */
     public function getTable()
@@ -75,9 +73,9 @@ class StatisticalTable extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Auxiliary table location. [required]
+     * Required. Auxiliary table location.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.BigQueryTable table = 3;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.BigQueryTable table = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dlp\V2\BigQueryTable $var
      * @return $this
      */
@@ -90,9 +88,9 @@ class StatisticalTable extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Quasi-identifier columns. [required]
+     * Required. Quasi-identifier columns.
      *
-     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.StatisticalTable.QuasiIdentifierField quasi_ids = 1;</code>
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.StatisticalTable.QuasiIdentifierField quasi_ids = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getQuasiIds()
@@ -101,9 +99,9 @@ class StatisticalTable extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Quasi-identifier columns. [required]
+     * Required. Quasi-identifier columns.
      *
-     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.StatisticalTable.QuasiIdentifierField quasi_ids = 1;</code>
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.StatisticalTable.QuasiIdentifierField quasi_ids = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dlp\V2\StatisticalTable\QuasiIdentifierField[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -116,11 +114,10 @@ class StatisticalTable extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The relative frequency column must contain a floating-point number
+     * Required. The relative frequency column must contain a floating-point number
      * between 0 and 1 (inclusive). Null values are assumed to be zero.
-     * [required]
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId relative_frequency = 2;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId relative_frequency = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Dlp\V2\FieldId
      */
     public function getRelativeFrequency()
@@ -129,11 +126,10 @@ class StatisticalTable extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The relative frequency column must contain a floating-point number
+     * Required. The relative frequency column must contain a floating-point number
      * between 0 and 1 (inclusive). Null values are assumed to be zero.
-     * [required]
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId relative_frequency = 2;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId relative_frequency = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dlp\V2\FieldId $var
      * @return $this
      */

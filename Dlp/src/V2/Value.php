@@ -29,13 +29,21 @@ class Value extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int|string $integer_value
+     *           integer
      *     @type float $float_value
+     *           float
      *     @type string $string_value
+     *           string
      *     @type bool $boolean_value
+     *           boolean
      *     @type \Google\Protobuf\Timestamp $timestamp_value
+     *           timestamp
      *     @type \Google\Type\TimeOfDay $time_value
+     *           time of day
      *     @type \Google\Type\Date $date_value
+     *           date
      *     @type int $day_of_week_value
+     *           day of week
      * }
      */
     public function __construct($data = NULL) {
@@ -44,6 +52,8 @@ class Value extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * integer
+     *
      * Generated from protobuf field <code>int64 integer_value = 1;</code>
      * @return int|string
      */
@@ -53,6 +63,8 @@ class Value extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * integer
+     *
      * Generated from protobuf field <code>int64 integer_value = 1;</code>
      * @param int|string $var
      * @return $this
@@ -66,6 +78,8 @@ class Value extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * float
+     *
      * Generated from protobuf field <code>double float_value = 2;</code>
      * @return float
      */
@@ -75,6 +89,8 @@ class Value extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * float
+     *
      * Generated from protobuf field <code>double float_value = 2;</code>
      * @param float $var
      * @return $this
@@ -88,6 +104,8 @@ class Value extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * string
+     *
      * Generated from protobuf field <code>string string_value = 3;</code>
      * @return string
      */
@@ -97,6 +115,8 @@ class Value extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * string
+     *
      * Generated from protobuf field <code>string string_value = 3;</code>
      * @param string $var
      * @return $this
@@ -110,6 +130,8 @@ class Value extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * boolean
+     *
      * Generated from protobuf field <code>bool boolean_value = 4;</code>
      * @return bool
      */
@@ -119,6 +141,8 @@ class Value extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * boolean
+     *
      * Generated from protobuf field <code>bool boolean_value = 4;</code>
      * @param bool $var
      * @return $this
@@ -132,6 +156,8 @@ class Value extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * timestamp
+     *
      * Generated from protobuf field <code>.google.protobuf.Timestamp timestamp_value = 5;</code>
      * @return \Google\Protobuf\Timestamp
      */
@@ -141,6 +167,8 @@ class Value extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * timestamp
+     *
      * Generated from protobuf field <code>.google.protobuf.Timestamp timestamp_value = 5;</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
@@ -154,6 +182,8 @@ class Value extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * time of day
+     *
      * Generated from protobuf field <code>.google.type.TimeOfDay time_value = 6;</code>
      * @return \Google\Type\TimeOfDay
      */
@@ -163,6 +193,8 @@ class Value extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * time of day
+     *
      * Generated from protobuf field <code>.google.type.TimeOfDay time_value = 6;</code>
      * @param \Google\Type\TimeOfDay $var
      * @return $this
@@ -176,6 +208,8 @@ class Value extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * date
+     *
      * Generated from protobuf field <code>.google.type.Date date_value = 7;</code>
      * @return \Google\Type\Date
      */
@@ -185,6 +219,8 @@ class Value extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * date
+     *
      * Generated from protobuf field <code>.google.type.Date date_value = 7;</code>
      * @param \Google\Type\Date $var
      * @return $this
@@ -198,6 +234,8 @@ class Value extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * day of week
+     *
      * Generated from protobuf field <code>.google.type.DayOfWeek day_of_week_value = 8;</code>
      * @return int
      */
@@ -207,6 +245,8 @@ class Value extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * day of week
+     *
      * Generated from protobuf field <code>.google.type.DayOfWeek day_of_week_value = 8;</code>
      * @param int $var
      * @return $this

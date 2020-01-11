@@ -14,6 +14,8 @@ use UnexpectedValueException;
 class StoredInfoTypeState
 {
     /**
+     * Unused
+     *
      * Generated from protobuf enum <code>STORED_INFO_TYPE_STATE_UNSPECIFIED = 0;</code>
      */
     const STORED_INFO_TYPE_STATE_UNSPECIFIED = 0;

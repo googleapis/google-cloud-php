@@ -17,9 +17,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class UnwrappedCryptoKey extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A 128/192/256 bit key. [required]
+     * Required. A 128/192/256 bit key.
      *
-     * Generated from protobuf field <code>bytes key = 1;</code>
+     * Generated from protobuf field <code>bytes key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $key = '';
 
@@ -30,7 +30,7 @@ class UnwrappedCryptoKey extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $key
-     *           A 128/192/256 bit key. [required]
+     *           Required. A 128/192/256 bit key.
      * }
      */
     public function __construct($data = NULL) {
@@ -39,9 +39,9 @@ class UnwrappedCryptoKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A 128/192/256 bit key. [required]
+     * Required. A 128/192/256 bit key.
      *
-     * Generated from protobuf field <code>bytes key = 1;</code>
+     * Generated from protobuf field <code>bytes key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getKey()
@@ -50,9 +50,9 @@ class UnwrappedCryptoKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A 128/192/256 bit key. [required]
+     * Required. A 128/192/256 bit key.
      *
-     * Generated from protobuf field <code>bytes key = 1;</code>
+     * Generated from protobuf field <code>bytes key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

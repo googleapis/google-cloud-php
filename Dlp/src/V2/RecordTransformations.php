@@ -24,7 +24,7 @@ class RecordTransformations extends \Google\Protobuf\Internal\Message
     private $field_transformations;
     /**
      * Configuration defining which records get suppressed entirely. Records that
-     * match any suppression rule are omitted from the output [optional].
+     * match any suppression rule are omitted from the output.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.RecordSuppression record_suppressions = 2;</code>
      */
@@ -40,7 +40,7 @@ class RecordTransformations extends \Google\Protobuf\Internal\Message
      *           Transform the record by applying various field transformations.
      *     @type \Google\Cloud\Dlp\V2\RecordSuppression[]|\Google\Protobuf\Internal\RepeatedField $record_suppressions
      *           Configuration defining which records get suppressed entirely. Records that
-     *           match any suppression rule are omitted from the output [optional].
+     *           match any suppression rule are omitted from the output.
      * }
      */
     public function __construct($data = NULL) {
@@ -76,7 +76,7 @@ class RecordTransformations extends \Google\Protobuf\Internal\Message
 
     /**
      * Configuration defining which records get suppressed entirely. Records that
-     * match any suppression rule are omitted from the output [optional].
+     * match any suppression rule are omitted from the output.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.RecordSuppression record_suppressions = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -88,7 +88,7 @@ class RecordTransformations extends \Google\Protobuf\Internal\Message
 
     /**
      * Configuration defining which records get suppressed entirely. Records that
-     * match any suppression rule are omitted from the output [optional].
+     * match any suppression rule are omitted from the output.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.RecordSuppression record_suppressions = 2;</code>
      * @param \Google\Cloud\Dlp\V2\RecordSuppression[]|\Google\Protobuf\Internal\RepeatedField $var

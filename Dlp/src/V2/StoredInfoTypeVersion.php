@@ -41,10 +41,10 @@ class StoredInfoTypeVersion extends \Google\Protobuf\Internal\Message
      * anomalies detected in the storedInfoType data that render it unusable. Only
      * the five most recent errors will be displayed, with the most recent error
      * appearing first.
-     * <p>For example, some of the data for stored custom dictionaries is put in
+     * For example, some of the data for stored custom dictionaries is put in
      * the user's Google Cloud Storage bucket, and if this data is modified or
      * deleted by the user or another system, the dictionary becomes invalid.
-     * <p>If any errors occur, fix the problem indicated by the error message and
+     * If any errors occur, fix the problem indicated by the error message and
      * use the UpdateStoredInfoType API method to create another version of the
      * storedInfoType to continue using it, reusing the same `config` if it was
      * not the source of the error.
@@ -78,10 +78,10 @@ class StoredInfoTypeVersion extends \Google\Protobuf\Internal\Message
      *           anomalies detected in the storedInfoType data that render it unusable. Only
      *           the five most recent errors will be displayed, with the most recent error
      *           appearing first.
-     *           <p>For example, some of the data for stored custom dictionaries is put in
+     *           For example, some of the data for stored custom dictionaries is put in
      *           the user's Google Cloud Storage bucket, and if this data is modified or
      *           deleted by the user or another system, the dictionary becomes invalid.
-     *           <p>If any errors occur, fix the problem indicated by the error message and
+     *           If any errors occur, fix the problem indicated by the error message and
      *           use the UpdateStoredInfoType API method to create another version of the
      *           storedInfoType to continue using it, reusing the same `config` if it was
      *           not the source of the error.
@@ -181,10 +181,10 @@ class StoredInfoTypeVersion extends \Google\Protobuf\Internal\Message
      * anomalies detected in the storedInfoType data that render it unusable. Only
      * the five most recent errors will be displayed, with the most recent error
      * appearing first.
-     * <p>For example, some of the data for stored custom dictionaries is put in
+     * For example, some of the data for stored custom dictionaries is put in
      * the user's Google Cloud Storage bucket, and if this data is modified or
      * deleted by the user or another system, the dictionary becomes invalid.
-     * <p>If any errors occur, fix the problem indicated by the error message and
+     * If any errors occur, fix the problem indicated by the error message and
      * use the UpdateStoredInfoType API method to create another version of the
      * storedInfoType to continue using it, reusing the same `config` if it was
      * not the source of the error.
@@ -202,10 +202,10 @@ class StoredInfoTypeVersion extends \Google\Protobuf\Internal\Message
      * anomalies detected in the storedInfoType data that render it unusable. Only
      * the five most recent errors will be displayed, with the most recent error
      * appearing first.
-     * <p>For example, some of the data for stored custom dictionaries is put in
+     * For example, some of the data for stored custom dictionaries is put in
      * the user's Google Cloud Storage bucket, and if this data is modified or
      * deleted by the user or another system, the dictionary becomes invalid.
-     * <p>If any errors occur, fix the problem indicated by the error message and
+     * If any errors occur, fix the problem indicated by the error message and
      * use the UpdateStoredInfoType API method to create another version of the
      * storedInfoType to continue using it, reusing the same `config` if it was
      * not the source of the error.

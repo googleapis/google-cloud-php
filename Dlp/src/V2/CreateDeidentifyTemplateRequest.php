@@ -23,9 +23,9 @@ class CreateDeidentifyTemplateRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * The DeidentifyTemplate to create.
+     * Required. The DeidentifyTemplate to create.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.DeidentifyTemplate deidentify_template = 2;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.DeidentifyTemplate deidentify_template = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $deidentify_template = null;
     /**
@@ -55,7 +55,7 @@ class CreateDeidentifyTemplateRequest extends \Google\Protobuf\Internal\Message
      *           Required. The parent resource name, for example projects/my-project-id or
      *           organizations/my-org-id.
      *     @type \Google\Cloud\Dlp\V2\DeidentifyTemplate $deidentify_template
-     *           The DeidentifyTemplate to create.
+     *           Required. The DeidentifyTemplate to create.
      *     @type string $template_id
      *           The template id can contain uppercase and lowercase letters,
      *           numbers, and hyphens; that is, it must match the regular
@@ -100,9 +100,9 @@ class CreateDeidentifyTemplateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The DeidentifyTemplate to create.
+     * Required. The DeidentifyTemplate to create.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.DeidentifyTemplate deidentify_template = 2;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.DeidentifyTemplate deidentify_template = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Dlp\V2\DeidentifyTemplate
      */
     public function getDeidentifyTemplate()
@@ -111,9 +111,9 @@ class CreateDeidentifyTemplateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The DeidentifyTemplate to create.
+     * Required. The DeidentifyTemplate to create.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.DeidentifyTemplate deidentify_template = 2;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.DeidentifyTemplate deidentify_template = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dlp\V2\DeidentifyTemplate $var
      * @return $this
      */

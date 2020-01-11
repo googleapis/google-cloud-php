@@ -7,11 +7,15 @@ namespace Google\Cloud\Dlp\V2\TimePartConfig;
 use UnexpectedValueException;
 
 /**
+ * Components that make up time.
+ *
  * Protobuf type <code>google.privacy.dlp.v2.TimePartConfig.TimePart</code>
  */
 class TimePart
 {
     /**
+     * Unused
+     *
      * Generated from protobuf enum <code>TIME_PART_UNSPECIFIED = 0;</code>
      */
     const TIME_PART_UNSPECIFIED = 0;

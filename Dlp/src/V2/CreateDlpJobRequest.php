@@ -50,7 +50,9 @@ class CreateDlpJobRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The parent resource name, for example projects/my-project-id.
      *     @type \Google\Cloud\Dlp\V2\InspectJobConfig $inspect_job
+     *           Set to control what and how to inspect.
      *     @type \Google\Cloud\Dlp\V2\RiskAnalysisJobConfig $risk_job
+     *           Set to choose what metric to calculate.
      *     @type string $job_id
      *           The job id can contain uppercase and lowercase letters,
      *           numbers, and hyphens; that is, it must match the regular
@@ -93,6 +95,8 @@ class CreateDlpJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Set to control what and how to inspect.
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectJobConfig inspect_job = 2;</code>
      * @return \Google\Cloud\Dlp\V2\InspectJobConfig
      */
@@ -102,6 +106,8 @@ class CreateDlpJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Set to control what and how to inspect.
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectJobConfig inspect_job = 2;</code>
      * @param \Google\Cloud\Dlp\V2\InspectJobConfig $var
      * @return $this
@@ -115,6 +121,8 @@ class CreateDlpJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Set to choose what metric to calculate.
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.RiskAnalysisJobConfig risk_job = 3;</code>
      * @return \Google\Cloud\Dlp\V2\RiskAnalysisJobConfig
      */
@@ -124,6 +132,8 @@ class CreateDlpJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Set to choose what metric to calculate.
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.RiskAnalysisJobConfig risk_job = 3;</code>
      * @param \Google\Cloud\Dlp\V2\RiskAnalysisJobConfig $var
      * @return $this

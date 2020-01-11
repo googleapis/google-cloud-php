@@ -17,10 +17,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class QuasiIdentifierField extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Identifies the column.
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId field = 1;</code>
      */
     private $field = null;
     /**
+     * A column can be tagged with a custom tag. In this case, the user must
+     * indicate an auxiliary table that contains statistical information on
+     * the possible values of this column (below).
+     *
      * Generated from protobuf field <code>string custom_tag = 2;</code>
      */
     private $custom_tag = '';
@@ -32,7 +38,11 @@ class QuasiIdentifierField extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Dlp\V2\FieldId $field
+     *           Identifies the column.
      *     @type string $custom_tag
+     *           A column can be tagged with a custom tag. In this case, the user must
+     *           indicate an auxiliary table that contains statistical information on
+     *           the possible values of this column (below).
      * }
      */
     public function __construct($data = NULL) {
@@ -41,6 +51,8 @@ class QuasiIdentifierField extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Identifies the column.
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId field = 1;</code>
      * @return \Google\Cloud\Dlp\V2\FieldId
      */
@@ -50,6 +62,8 @@ class QuasiIdentifierField extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Identifies the column.
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId field = 1;</code>
      * @param \Google\Cloud\Dlp\V2\FieldId $var
      * @return $this
@@ -63,6 +77,10 @@ class QuasiIdentifierField extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * A column can be tagged with a custom tag. In this case, the user must
+     * indicate an auxiliary table that contains statistical information on
+     * the possible values of this column (below).
+     *
      * Generated from protobuf field <code>string custom_tag = 2;</code>
      * @return string
      */
@@ -72,6 +90,10 @@ class QuasiIdentifierField extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * A column can be tagged with a custom tag. In this case, the user must
+     * indicate an auxiliary table that contains statistical information on
+     * the possible values of this column (below).
+     *
      * Generated from protobuf field <code>string custom_tag = 2;</code>
      * @param string $var
      * @return $this

@@ -25,9 +25,9 @@ class InfoTypeTransformation extends \Google\Protobuf\Internal\Message
      */
     private $info_types;
     /**
-     * Primitive transformation to apply to the infoType. [required]
+     * Required. Primitive transformation to apply to the infoType.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.PrimitiveTransformation primitive_transformation = 2;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.PrimitiveTransformation primitive_transformation = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $primitive_transformation = null;
 
@@ -42,7 +42,7 @@ class InfoTypeTransformation extends \Google\Protobuf\Internal\Message
      *           this transformation to apply to all findings that correspond to
      *           infoTypes that were requested in `InspectConfig`.
      *     @type \Google\Cloud\Dlp\V2\PrimitiveTransformation $primitive_transformation
-     *           Primitive transformation to apply to the infoType. [required]
+     *           Required. Primitive transformation to apply to the infoType.
      * }
      */
     public function __construct($data = NULL) {
@@ -81,9 +81,9 @@ class InfoTypeTransformation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Primitive transformation to apply to the infoType. [required]
+     * Required. Primitive transformation to apply to the infoType.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.PrimitiveTransformation primitive_transformation = 2;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.PrimitiveTransformation primitive_transformation = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Dlp\V2\PrimitiveTransformation
      */
     public function getPrimitiveTransformation()
@@ -92,9 +92,9 @@ class InfoTypeTransformation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Primitive transformation to apply to the infoType. [required]
+     * Required. Primitive transformation to apply to the infoType.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.PrimitiveTransformation primitive_transformation = 2;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.PrimitiveTransformation primitive_transformation = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dlp\V2\PrimitiveTransformation $var
      * @return $this
      */

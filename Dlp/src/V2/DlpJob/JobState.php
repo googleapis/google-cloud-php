@@ -7,11 +7,15 @@ namespace Google\Cloud\Dlp\V2\DlpJob;
 use UnexpectedValueException;
 
 /**
+ * Possible states of a job.
+ *
  * Protobuf type <code>google.privacy.dlp.v2.DlpJob.JobState</code>
  */
 class JobState
 {
     /**
+     * Unused.
+     *
      * Generated from protobuf enum <code>JOB_STATE_UNSPECIFIED = 0;</code>
      */
     const JOB_STATE_UNSPECIFIED = 0;

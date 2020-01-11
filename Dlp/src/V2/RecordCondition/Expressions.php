@@ -34,6 +34,7 @@ class Expressions extends \Google\Protobuf\Internal\Message
      *           The operator to apply to the result of conditions. Default and currently
      *           only supported value is `AND`.
      *     @type \Google\Cloud\Dlp\V2\RecordCondition\Conditions $conditions
+     *           Conditions to apply to the expression.
      * }
      */
     public function __construct($data = NULL) {
@@ -70,6 +71,8 @@ class Expressions extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Conditions to apply to the expression.
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.RecordCondition.Conditions conditions = 3;</code>
      * @return \Google\Cloud\Dlp\V2\RecordCondition\Conditions
      */
@@ -79,6 +82,8 @@ class Expressions extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Conditions to apply to the expression.
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.RecordCondition.Conditions conditions = 3;</code>
      * @param \Google\Cloud\Dlp\V2\RecordCondition\Conditions $var
      * @return $this

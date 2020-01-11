@@ -23,9 +23,9 @@ class CreateStoredInfoTypeRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Configuration of the storedInfoType to create.
+     * Required. Configuration of the storedInfoType to create.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.StoredInfoTypeConfig config = 2;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.StoredInfoTypeConfig config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $config = null;
     /**
@@ -55,7 +55,7 @@ class CreateStoredInfoTypeRequest extends \Google\Protobuf\Internal\Message
      *           Required. The parent resource name, for example projects/my-project-id or
      *           organizations/my-org-id.
      *     @type \Google\Cloud\Dlp\V2\StoredInfoTypeConfig $config
-     *           Configuration of the storedInfoType to create.
+     *           Required. Configuration of the storedInfoType to create.
      *     @type string $stored_info_type_id
      *           The storedInfoType ID can contain uppercase and lowercase letters,
      *           numbers, and hyphens; that is, it must match the regular
@@ -100,9 +100,9 @@ class CreateStoredInfoTypeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Configuration of the storedInfoType to create.
+     * Required. Configuration of the storedInfoType to create.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.StoredInfoTypeConfig config = 2;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.StoredInfoTypeConfig config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Dlp\V2\StoredInfoTypeConfig
      */
     public function getConfig()
@@ -111,9 +111,9 @@ class CreateStoredInfoTypeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Configuration of the storedInfoType to create.
+     * Required. Configuration of the storedInfoType to create.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.StoredInfoTypeConfig config = 2;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.StoredInfoTypeConfig config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dlp\V2\StoredInfoTypeConfig $var
      * @return $this
      */

@@ -17,14 +17,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class TransientCryptoKey extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Name of the key. [required]
+     * Required. Name of the key.
      * This is an arbitrary string used to differentiate different keys.
      * A unique key is generated per name: two separate `TransientCryptoKey`
      * protos share the same generated key if their names are the same.
      * When the data crypto key is generated, this name is not used in any way
      * (repeating the api call will result in a different key being generated).
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $name = '';
 
@@ -35,7 +35,7 @@ class TransientCryptoKey extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Name of the key. [required]
+     *           Required. Name of the key.
      *           This is an arbitrary string used to differentiate different keys.
      *           A unique key is generated per name: two separate `TransientCryptoKey`
      *           protos share the same generated key if their names are the same.
@@ -49,14 +49,14 @@ class TransientCryptoKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the key. [required]
+     * Required. Name of the key.
      * This is an arbitrary string used to differentiate different keys.
      * A unique key is generated per name: two separate `TransientCryptoKey`
      * protos share the same generated key if their names are the same.
      * When the data crypto key is generated, this name is not used in any way
      * (repeating the api call will result in a different key being generated).
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getName()
@@ -65,14 +65,14 @@ class TransientCryptoKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the key. [required]
+     * Required. Name of the key.
      * This is an arbitrary string used to differentiate different keys.
      * A unique key is generated per name: two separate `TransientCryptoKey`
      * protos share the same generated key if their names are the same.
      * When the data crypto key is generated, this name is not used in any way
      * (repeating the api call will result in a different key being generated).
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

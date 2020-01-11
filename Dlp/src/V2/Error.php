@@ -11,13 +11,14 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Details information about an error encountered during job execution or
  * the results of an unsuccessful activation of the JobTrigger.
- * Output only field.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.Error</code>
  */
 class Error extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Detailed error codes and messages.
+     *
      * Generated from protobuf field <code>.google.rpc.Status details = 1;</code>
      */
     private $details = null;
@@ -35,6 +36,7 @@ class Error extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Rpc\Status $details
+     *           Detailed error codes and messages.
      *     @type \Google\Protobuf\Timestamp[]|\Google\Protobuf\Internal\RepeatedField $timestamps
      *           The times the error occurred.
      * }
@@ -45,6 +47,8 @@ class Error extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Detailed error codes and messages.
+     *
      * Generated from protobuf field <code>.google.rpc.Status details = 1;</code>
      * @return \Google\Rpc\Status
      */
@@ -54,6 +58,8 @@ class Error extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Detailed error codes and messages.
+     *
      * Generated from protobuf field <code>.google.rpc.Status details = 1;</code>
      * @param \Google\Rpc\Status $var
      * @return $this

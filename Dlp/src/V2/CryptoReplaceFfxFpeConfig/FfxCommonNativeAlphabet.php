@@ -16,6 +16,8 @@ use UnexpectedValueException;
 class FfxCommonNativeAlphabet
 {
     /**
+     * Unused.
+     *
      * Generated from protobuf enum <code>FFX_COMMON_NATIVE_ALPHABET_UNSPECIFIED = 0;</code>
      */
     const FFX_COMMON_NATIVE_ALPHABET_UNSPECIFIED = 0;

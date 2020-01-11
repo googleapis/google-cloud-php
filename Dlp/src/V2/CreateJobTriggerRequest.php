@@ -22,9 +22,9 @@ class CreateJobTriggerRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * The JobTrigger to create.
+     * Required. The JobTrigger to create.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.JobTrigger job_trigger = 2;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.JobTrigger job_trigger = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $job_trigger = null;
     /**
@@ -53,7 +53,7 @@ class CreateJobTriggerRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The parent resource name, for example projects/my-project-id.
      *     @type \Google\Cloud\Dlp\V2\JobTrigger $job_trigger
-     *           The JobTrigger to create.
+     *           Required. The JobTrigger to create.
      *     @type string $trigger_id
      *           The trigger id can contain uppercase and lowercase letters,
      *           numbers, and hyphens; that is, it must match the regular
@@ -96,9 +96,9 @@ class CreateJobTriggerRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The JobTrigger to create.
+     * Required. The JobTrigger to create.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.JobTrigger job_trigger = 2;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.JobTrigger job_trigger = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Dlp\V2\JobTrigger
      */
     public function getJobTrigger()
@@ -107,9 +107,9 @@ class CreateJobTriggerRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The JobTrigger to create.
+     * Required. The JobTrigger to create.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.JobTrigger job_trigger = 2;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.JobTrigger job_trigger = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dlp\V2\JobTrigger $var
      * @return $this
      */

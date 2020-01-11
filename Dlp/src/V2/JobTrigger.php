@@ -45,36 +45,36 @@ class JobTrigger extends \Google\Protobuf\Internal\Message
      */
     private $triggers;
     /**
-     * A stream of errors encountered when the trigger was activated. Repeated
+     * Output only. A stream of errors encountered when the trigger was activated. Repeated
      * errors may result in the JobTrigger automatically being paused.
      * Will return the last 100 errors. Whenever the JobTrigger is modified
-     * this list will be cleared. Output only field.
+     * this list will be cleared.
      *
-     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Error errors = 6;</code>
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Error errors = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $errors;
     /**
-     * The creation timestamp of a triggeredJob, output only field.
+     * Output only. The creation timestamp of a triggeredJob.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $create_time = null;
     /**
-     * The last update timestamp of a triggeredJob, output only field.
+     * Output only. The last update timestamp of a triggeredJob.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $update_time = null;
     /**
-     * The timestamp of the last time this trigger executed, output only field.
+     * Output only. The timestamp of the last time this trigger executed.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp last_run_time = 9;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_run_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $last_run_time = null;
     /**
-     * A status for this trigger. [required]
+     * Required. A status for this trigger.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.JobTrigger.Status status = 10;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.JobTrigger.Status status = 10 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $status = 0;
     protected $job;
@@ -94,23 +94,24 @@ class JobTrigger extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           User provided description (max 256 chars)
      *     @type \Google\Cloud\Dlp\V2\InspectJobConfig $inspect_job
+     *           For inspect jobs, a snapshot of the configuration.
      *     @type \Google\Cloud\Dlp\V2\JobTrigger\Trigger[]|\Google\Protobuf\Internal\RepeatedField $triggers
      *           A list of triggers which will be OR'ed together. Only one in the list
      *           needs to trigger for a job to be started. The list may contain only
      *           a single Schedule trigger and must have at least one object.
      *     @type \Google\Cloud\Dlp\V2\Error[]|\Google\Protobuf\Internal\RepeatedField $errors
-     *           A stream of errors encountered when the trigger was activated. Repeated
+     *           Output only. A stream of errors encountered when the trigger was activated. Repeated
      *           errors may result in the JobTrigger automatically being paused.
      *           Will return the last 100 errors. Whenever the JobTrigger is modified
-     *           this list will be cleared. Output only field.
+     *           this list will be cleared.
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           The creation timestamp of a triggeredJob, output only field.
+     *           Output only. The creation timestamp of a triggeredJob.
      *     @type \Google\Protobuf\Timestamp $update_time
-     *           The last update timestamp of a triggeredJob, output only field.
+     *           Output only. The last update timestamp of a triggeredJob.
      *     @type \Google\Protobuf\Timestamp $last_run_time
-     *           The timestamp of the last time this trigger executed, output only field.
+     *           Output only. The timestamp of the last time this trigger executed.
      *     @type int $status
-     *           A status for this trigger. [required]
+     *           Required. A status for this trigger.
      * }
      */
     public function __construct($data = NULL) {
@@ -201,6 +202,8 @@ class JobTrigger extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * For inspect jobs, a snapshot of the configuration.
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectJobConfig inspect_job = 4;</code>
      * @return \Google\Cloud\Dlp\V2\InspectJobConfig
      */
@@ -210,6 +213,8 @@ class JobTrigger extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * For inspect jobs, a snapshot of the configuration.
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectJobConfig inspect_job = 4;</code>
      * @param \Google\Cloud\Dlp\V2\InspectJobConfig $var
      * @return $this
@@ -253,12 +258,12 @@ class JobTrigger extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A stream of errors encountered when the trigger was activated. Repeated
+     * Output only. A stream of errors encountered when the trigger was activated. Repeated
      * errors may result in the JobTrigger automatically being paused.
      * Will return the last 100 errors. Whenever the JobTrigger is modified
-     * this list will be cleared. Output only field.
+     * this list will be cleared.
      *
-     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Error errors = 6;</code>
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Error errors = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getErrors()
@@ -267,12 +272,12 @@ class JobTrigger extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A stream of errors encountered when the trigger was activated. Repeated
+     * Output only. A stream of errors encountered when the trigger was activated. Repeated
      * errors may result in the JobTrigger automatically being paused.
      * Will return the last 100 errors. Whenever the JobTrigger is modified
-     * this list will be cleared. Output only field.
+     * this list will be cleared.
      *
-     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Error errors = 6;</code>
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Error errors = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Dlp\V2\Error[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -285,9 +290,9 @@ class JobTrigger extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The creation timestamp of a triggeredJob, output only field.
+     * Output only. The creation timestamp of a triggeredJob.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getCreateTime()
@@ -296,9 +301,9 @@ class JobTrigger extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The creation timestamp of a triggeredJob, output only field.
+     * Output only. The creation timestamp of a triggeredJob.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -311,9 +316,9 @@ class JobTrigger extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The last update timestamp of a triggeredJob, output only field.
+     * Output only. The last update timestamp of a triggeredJob.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getUpdateTime()
@@ -322,9 +327,9 @@ class JobTrigger extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The last update timestamp of a triggeredJob, output only field.
+     * Output only. The last update timestamp of a triggeredJob.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -337,9 +342,9 @@ class JobTrigger extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The timestamp of the last time this trigger executed, output only field.
+     * Output only. The timestamp of the last time this trigger executed.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp last_run_time = 9;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_run_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getLastRunTime()
@@ -348,9 +353,9 @@ class JobTrigger extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The timestamp of the last time this trigger executed, output only field.
+     * Output only. The timestamp of the last time this trigger executed.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp last_run_time = 9;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_run_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -363,9 +368,9 @@ class JobTrigger extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A status for this trigger. [required]
+     * Required. A status for this trigger.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.JobTrigger.Status status = 10;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.JobTrigger.Status status = 10 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getStatus()
@@ -374,9 +379,9 @@ class JobTrigger extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A status for this trigger. [required]
+     * Required. A status for this trigger.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.JobTrigger.Status status = 10;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.JobTrigger.Status status = 10 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */

@@ -17,10 +17,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class SummaryResult extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Number of transformations counted by this result.
+     *
      * Generated from protobuf field <code>int64 count = 1;</code>
      */
     private $count = 0;
     /**
+     * Outcome of the transformation.
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.TransformationSummary.TransformationResultCode code = 2;</code>
      */
     private $code = 0;
@@ -39,7 +43,9 @@ class SummaryResult extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int|string $count
+     *           Number of transformations counted by this result.
      *     @type int $code
+     *           Outcome of the transformation.
      *     @type string $details
      *           A place for warnings or errors to show up if a transformation didn't
      *           work as expected.
@@ -51,6 +57,8 @@ class SummaryResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Number of transformations counted by this result.
+     *
      * Generated from protobuf field <code>int64 count = 1;</code>
      * @return int|string
      */
@@ -60,6 +68,8 @@ class SummaryResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Number of transformations counted by this result.
+     *
      * Generated from protobuf field <code>int64 count = 1;</code>
      * @param int|string $var
      * @return $this
@@ -73,6 +83,8 @@ class SummaryResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Outcome of the transformation.
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.TransformationSummary.TransformationResultCode code = 2;</code>
      * @return int
      */
@@ -82,6 +94,8 @@ class SummaryResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Outcome of the transformation.
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.TransformationSummary.TransformationResultCode code = 2;</code>
      * @param int $var
      * @return $this

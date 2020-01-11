@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListInfoTypesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional BCP-47 language code for localized infoType friendly
+     * BCP-47 language code for localized infoType friendly
      * names. If omitted, or if localized strings are not available,
      * en-US strings will be returned.
      *
@@ -24,7 +24,7 @@ class ListInfoTypesRequest extends \Google\Protobuf\Internal\Message
      */
     private $language_code = '';
     /**
-     * Optional filter to only return infoTypes supported by certain parts of the
+     * filter to only return infoTypes supported by certain parts of the
      * API. Defaults to supported_by=INSPECT.
      *
      * Generated from protobuf field <code>string filter = 2;</code>
@@ -45,11 +45,11 @@ class ListInfoTypesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $language_code
-     *           Optional BCP-47 language code for localized infoType friendly
+     *           BCP-47 language code for localized infoType friendly
      *           names. If omitted, or if localized strings are not available,
      *           en-US strings will be returned.
      *     @type string $filter
-     *           Optional filter to only return infoTypes supported by certain parts of the
+     *           filter to only return infoTypes supported by certain parts of the
      *           API. Defaults to supported_by=INSPECT.
      *     @type string $location_id
      *           The geographic location to list info types. Reserved for future
@@ -62,7 +62,7 @@ class ListInfoTypesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional BCP-47 language code for localized infoType friendly
+     * BCP-47 language code for localized infoType friendly
      * names. If omitted, or if localized strings are not available,
      * en-US strings will be returned.
      *
@@ -75,7 +75,7 @@ class ListInfoTypesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional BCP-47 language code for localized infoType friendly
+     * BCP-47 language code for localized infoType friendly
      * names. If omitted, or if localized strings are not available,
      * en-US strings will be returned.
      *
@@ -92,7 +92,7 @@ class ListInfoTypesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional filter to only return infoTypes supported by certain parts of the
+     * filter to only return infoTypes supported by certain parts of the
      * API. Defaults to supported_by=INSPECT.
      *
      * Generated from protobuf field <code>string filter = 2;</code>
@@ -104,7 +104,7 @@ class ListInfoTypesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional filter to only return infoTypes supported by certain parts of the
+     * filter to only return infoTypes supported by certain parts of the
      * API. Defaults to supported_by=INSPECT.
      *
      * Generated from protobuf field <code>string filter = 2;</code>

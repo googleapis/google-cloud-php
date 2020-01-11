@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * Histogram of l-diversity equivalence class sensitive value frequencies.
+ *
  * Generated from protobuf message <code>google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.LDiversityResult.LDiversityHistogramBucket</code>
  */
 class LDiversityHistogramBucket extends \Google\Protobuf\Internal\Message

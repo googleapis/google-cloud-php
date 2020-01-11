@@ -14,6 +14,8 @@ use UnexpectedValueException;
 class RelationalOperator
 {
     /**
+     * Unused
+     *
      * Generated from protobuf enum <code>RELATIONAL_OPERATOR_UNSPECIFIED = 0;</code>
      */
     const RELATIONAL_OPERATOR_UNSPECIFIED = 0;

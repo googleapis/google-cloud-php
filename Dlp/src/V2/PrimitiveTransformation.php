@@ -24,16 +24,27 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Dlp\V2\ReplaceValueConfig $replace_config
+     *           Replace
      *     @type \Google\Cloud\Dlp\V2\RedactConfig $redact_config
+     *           Redact
      *     @type \Google\Cloud\Dlp\V2\CharacterMaskConfig $character_mask_config
+     *           Mask
      *     @type \Google\Cloud\Dlp\V2\CryptoReplaceFfxFpeConfig $crypto_replace_ffx_fpe_config
+     *           Ffx-Fpe
      *     @type \Google\Cloud\Dlp\V2\FixedSizeBucketingConfig $fixed_size_bucketing_config
+     *           Fixed size bucketing
      *     @type \Google\Cloud\Dlp\V2\BucketingConfig $bucketing_config
+     *           Bucketing
      *     @type \Google\Cloud\Dlp\V2\ReplaceWithInfoTypeConfig $replace_with_info_type_config
+     *           Replace with infotype
      *     @type \Google\Cloud\Dlp\V2\TimePartConfig $time_part_config
+     *           Time extraction
      *     @type \Google\Cloud\Dlp\V2\CryptoHashConfig $crypto_hash_config
+     *           Crypto
      *     @type \Google\Cloud\Dlp\V2\DateShiftConfig $date_shift_config
+     *           Date Shift
      *     @type \Google\Cloud\Dlp\V2\CryptoDeterministicConfig $crypto_deterministic_config
+     *           Deterministic Crypto
      * }
      */
     public function __construct($data = NULL) {
@@ -42,6 +53,8 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Replace
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.ReplaceValueConfig replace_config = 1;</code>
      * @return \Google\Cloud\Dlp\V2\ReplaceValueConfig
      */
@@ -51,6 +64,8 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Replace
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.ReplaceValueConfig replace_config = 1;</code>
      * @param \Google\Cloud\Dlp\V2\ReplaceValueConfig $var
      * @return $this
@@ -64,6 +79,8 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Redact
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.RedactConfig redact_config = 2;</code>
      * @return \Google\Cloud\Dlp\V2\RedactConfig
      */
@@ -73,6 +90,8 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Redact
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.RedactConfig redact_config = 2;</code>
      * @param \Google\Cloud\Dlp\V2\RedactConfig $var
      * @return $this
@@ -86,6 +105,8 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Mask
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CharacterMaskConfig character_mask_config = 3;</code>
      * @return \Google\Cloud\Dlp\V2\CharacterMaskConfig
      */
@@ -95,6 +116,8 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Mask
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CharacterMaskConfig character_mask_config = 3;</code>
      * @param \Google\Cloud\Dlp\V2\CharacterMaskConfig $var
      * @return $this
@@ -108,6 +131,8 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Ffx-Fpe
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CryptoReplaceFfxFpeConfig crypto_replace_ffx_fpe_config = 4;</code>
      * @return \Google\Cloud\Dlp\V2\CryptoReplaceFfxFpeConfig
      */
@@ -117,6 +142,8 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Ffx-Fpe
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CryptoReplaceFfxFpeConfig crypto_replace_ffx_fpe_config = 4;</code>
      * @param \Google\Cloud\Dlp\V2\CryptoReplaceFfxFpeConfig $var
      * @return $this
@@ -130,6 +157,8 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Fixed size bucketing
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FixedSizeBucketingConfig fixed_size_bucketing_config = 5;</code>
      * @return \Google\Cloud\Dlp\V2\FixedSizeBucketingConfig
      */
@@ -139,6 +168,8 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Fixed size bucketing
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FixedSizeBucketingConfig fixed_size_bucketing_config = 5;</code>
      * @param \Google\Cloud\Dlp\V2\FixedSizeBucketingConfig $var
      * @return $this
@@ -152,6 +183,8 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Bucketing
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.BucketingConfig bucketing_config = 6;</code>
      * @return \Google\Cloud\Dlp\V2\BucketingConfig
      */
@@ -161,6 +194,8 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Bucketing
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.BucketingConfig bucketing_config = 6;</code>
      * @param \Google\Cloud\Dlp\V2\BucketingConfig $var
      * @return $this
@@ -174,6 +209,8 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Replace with infotype
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.ReplaceWithInfoTypeConfig replace_with_info_type_config = 7;</code>
      * @return \Google\Cloud\Dlp\V2\ReplaceWithInfoTypeConfig
      */
@@ -183,6 +220,8 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Replace with infotype
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.ReplaceWithInfoTypeConfig replace_with_info_type_config = 7;</code>
      * @param \Google\Cloud\Dlp\V2\ReplaceWithInfoTypeConfig $var
      * @return $this
@@ -196,6 +235,8 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Time extraction
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.TimePartConfig time_part_config = 8;</code>
      * @return \Google\Cloud\Dlp\V2\TimePartConfig
      */
@@ -205,6 +246,8 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Time extraction
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.TimePartConfig time_part_config = 8;</code>
      * @param \Google\Cloud\Dlp\V2\TimePartConfig $var
      * @return $this
@@ -218,6 +261,8 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Crypto
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CryptoHashConfig crypto_hash_config = 9;</code>
      * @return \Google\Cloud\Dlp\V2\CryptoHashConfig
      */
@@ -227,6 +272,8 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Crypto
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CryptoHashConfig crypto_hash_config = 9;</code>
      * @param \Google\Cloud\Dlp\V2\CryptoHashConfig $var
      * @return $this
@@ -240,6 +287,8 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Date Shift
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DateShiftConfig date_shift_config = 11;</code>
      * @return \Google\Cloud\Dlp\V2\DateShiftConfig
      */
@@ -249,6 +298,8 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Date Shift
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DateShiftConfig date_shift_config = 11;</code>
      * @param \Google\Cloud\Dlp\V2\DateShiftConfig $var
      * @return $this
@@ -262,6 +313,8 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Deterministic Crypto
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CryptoDeterministicConfig crypto_deterministic_config = 12;</code>
      * @return \Google\Cloud\Dlp\V2\CryptoDeterministicConfig
      */
@@ -271,6 +324,8 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Deterministic Crypto
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CryptoDeterministicConfig crypto_deterministic_config = 12;</code>
      * @param \Google\Cloud\Dlp\V2\CryptoDeterministicConfig $var
      * @return $this

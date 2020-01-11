@@ -14,6 +14,8 @@ use UnexpectedValueException;
 class InfoTypeSupportedBy
 {
     /**
+     * Unused.
+     *
      * Generated from protobuf enum <code>ENUM_TYPE_UNSPECIFIED = 0;</code>
      */
     const ENUM_TYPE_UNSPECIFIED = 0;

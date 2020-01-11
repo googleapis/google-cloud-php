@@ -50,6 +50,8 @@ class TransformationSummary extends \Google\Protobuf\Internal\Message
      */
     private $record_suppress = null;
     /**
+     * Collection of all transformations that took place or had an error.
+     *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.TransformationSummary.SummaryResult results = 4;</code>
      */
     private $results;
@@ -79,6 +81,7 @@ class TransformationSummary extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dlp\V2\RecordSuppression $record_suppress
      *           The specific suppression option these stats apply to.
      *     @type \Google\Cloud\Dlp\V2\TransformationSummary\SummaryResult[]|\Google\Protobuf\Internal\RepeatedField $results
+     *           Collection of all transformations that took place or had an error.
      *     @type int|string $transformed_bytes
      *           Total size in bytes that were transformed in some way.
      * }
@@ -223,6 +226,8 @@ class TransformationSummary extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Collection of all transformations that took place or had an error.
+     *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.TransformationSummary.SummaryResult results = 4;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
@@ -232,6 +237,8 @@ class TransformationSummary extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Collection of all transformations that took place or had an error.
+     *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.TransformationSummary.SummaryResult results = 4;</code>
      * @param \Google\Cloud\Dlp\V2\TransformationSummary\SummaryResult[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this

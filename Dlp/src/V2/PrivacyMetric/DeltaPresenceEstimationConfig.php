@@ -19,15 +19,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeltaPresenceEstimationConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Fields considered to be quasi-identifiers. No two fields can have the
-     * same tag. [required]
+     * Required. Fields considered to be quasi-identifiers. No two fields can have the
+     * same tag.
      *
-     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.QuasiId quasi_ids = 1;</code>
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.QuasiId quasi_ids = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $quasi_ids;
     /**
      * ISO 3166-1 alpha-2 region code to use in the statistical modeling.
-     * Required if no column is tagged with a region-specific InfoType (like
+     * Set if no column is tagged with a region-specific InfoType (like
      * US_ZIP_5) or a region code.
      *
      * Generated from protobuf field <code>string region_code = 2;</code>
@@ -49,11 +49,11 @@ class DeltaPresenceEstimationConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Dlp\V2\QuasiId[]|\Google\Protobuf\Internal\RepeatedField $quasi_ids
-     *           Fields considered to be quasi-identifiers. No two fields can have the
-     *           same tag. [required]
+     *           Required. Fields considered to be quasi-identifiers. No two fields can have the
+     *           same tag.
      *     @type string $region_code
      *           ISO 3166-1 alpha-2 region code to use in the statistical modeling.
-     *           Required if no column is tagged with a region-specific InfoType (like
+     *           Set if no column is tagged with a region-specific InfoType (like
      *           US_ZIP_5) or a region code.
      *     @type \Google\Cloud\Dlp\V2\StatisticalTable[]|\Google\Protobuf\Internal\RepeatedField $auxiliary_tables
      *           Several auxiliary tables can be used in the analysis. Each custom_tag
@@ -67,10 +67,10 @@ class DeltaPresenceEstimationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Fields considered to be quasi-identifiers. No two fields can have the
-     * same tag. [required]
+     * Required. Fields considered to be quasi-identifiers. No two fields can have the
+     * same tag.
      *
-     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.QuasiId quasi_ids = 1;</code>
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.QuasiId quasi_ids = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getQuasiIds()
@@ -79,10 +79,10 @@ class DeltaPresenceEstimationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Fields considered to be quasi-identifiers. No two fields can have the
-     * same tag. [required]
+     * Required. Fields considered to be quasi-identifiers. No two fields can have the
+     * same tag.
      *
-     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.QuasiId quasi_ids = 1;</code>
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.QuasiId quasi_ids = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dlp\V2\QuasiId[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -96,7 +96,7 @@ class DeltaPresenceEstimationConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * ISO 3166-1 alpha-2 region code to use in the statistical modeling.
-     * Required if no column is tagged with a region-specific InfoType (like
+     * Set if no column is tagged with a region-specific InfoType (like
      * US_ZIP_5) or a region code.
      *
      * Generated from protobuf field <code>string region_code = 2;</code>
@@ -109,7 +109,7 @@ class DeltaPresenceEstimationConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * ISO 3166-1 alpha-2 region code to use in the statistical modeling.
-     * Required if no column is tagged with a region-specific InfoType (like
+     * Set if no column is tagged with a region-specific InfoType (like
      * US_ZIP_5) or a region code.
      *
      * Generated from protobuf field <code>string region_code = 2;</code>

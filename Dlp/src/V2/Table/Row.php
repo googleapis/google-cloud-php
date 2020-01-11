@@ -9,11 +9,15 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * Values of the row.
+ *
  * Generated from protobuf message <code>google.privacy.dlp.v2.Table.Row</code>
  */
 class Row extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Individual cells.
+     *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Value values = 1;</code>
      */
     private $values;
@@ -25,6 +29,7 @@ class Row extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Dlp\V2\Value[]|\Google\Protobuf\Internal\RepeatedField $values
+     *           Individual cells.
      * }
      */
     public function __construct($data = NULL) {
@@ -33,6 +38,8 @@ class Row extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Individual cells.
+     *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Value values = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
@@ -42,6 +49,8 @@ class Row extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Individual cells.
+     *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Value values = 1;</code>
      * @param \Google\Cloud\Dlp\V2\Value[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
