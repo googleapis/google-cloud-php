@@ -42,7 +42,7 @@ class BatchPublisherTest extends TestCase
     {
         $expected = $expected ?: $message;
 
-        $jobId = sprintf(OrderingKeyBatchJob::ID_TEMPLATE, $orderingKey ?: 'default');
+        $jobId = sprintf(OrderingKeyBatchJob::ID_TEMPLATE, self::TOPIC_NAME, $orderingKey ?: 'default');
 
         $runner = $this->prophesize(BatchRunner::class);
         $runner->submitItem($jobId, $expected)
@@ -111,6 +111,10 @@ class BatchPublisherTest extends TestCase
 
         $messageActualCount = 0;
         $connection->publishMessage(Argument::that(function ($args) use (&$messageActualCount) {
+            if (empty($args['messages'])) {
+                return false;
+            }
+
             foreach ($args['messages'] as $message) {
                 // invalid ordering key
                 if (isset($message['orderingKey']) && !in_array($message['orderingKey'], ['a', 'b'])) {
@@ -131,7 +135,8 @@ class BatchPublisherTest extends TestCase
         }
 
         $jobCount = 0;
-        foreach ($publisher->___getProperty('jobs') as $jobId => $job) {
+        $jobs = $publisher->___getProperty('jobs');
+        foreach ($jobs as $jobId => $job) {
             $job->flush();
             $jobCount++;
         }

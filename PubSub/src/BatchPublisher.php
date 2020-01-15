@@ -183,7 +183,7 @@ class BatchPublisher
         if (!isset($this->jobs[$orderingKey])) {
             $options = $this->publishOptions;
             $options['batchRunner'] = $this->batchRunner;
-            $this->jobs[$orderingKey] = new OrderingKeyBatchJob($this, $orderingKey, $options);
+            $this->jobs[$orderingKey] = new OrderingKeyBatchJob($this, $orderingKey, $this->topicName, $options);
         }
 
         return $this->jobs[$orderingKey];

@@ -34,7 +34,7 @@ class OrderingKeyBatchJob
 {
     use BatchTrait;
 
-    const ID_TEMPLATE = 'pubsub-ordering-key-%s';
+    const ID_TEMPLATE = 'pubsub-topic-%s-ordering-key-%s';
 
     /**
      * @var BatchPublisher
@@ -46,12 +46,12 @@ class OrderingKeyBatchJob
      * @param string $orderingKey The ordering key
      * @param array $options client and publish options.
      */
-    public function __construct(BatchPublisher $publisher, $orderingKey, array $options)
+    public function __construct(BatchPublisher $publisher, $orderingKey, $topicName, array $options)
     {
         $this->publisher = $publisher;
 
         $this->setCommonBatchProperties($options + [
-            'identifier' => sprintf(self::ID_TEMPLATE, $orderingKey),
+            'identifier' => sprintf(self::ID_TEMPLATE, $topicName, $orderingKey),
             'batchMethod' => [$publisher, 'publishDeferred']
         ]);
     }
