@@ -71,7 +71,7 @@
     "replace": {
         "google/cloud-asset": "0.5.0",
         "google/cloud-automl": "0.8.1",
-        "google/cloud-bigquery": "1.12.1",
+        "google/cloud-bigquery": "1.12.2",
         "google/cloud-bigquerydatatransfer": "0.15.0",
         "google/cloud-bigtable": "1.1.1",
         "google/cloud-common-protos": "0.2.0",
