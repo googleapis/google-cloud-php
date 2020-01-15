@@ -17,12 +17,17 @@
 
 namespace Google\Cloud\BigQuery\Tests\System;
 
+use Google\Cloud\Core\Testing\System\KeyManager;
+
 /**
  * @group bigquery
  * @group bigquery-dataset
  */
 class ManageDatasetsTest extends BigQueryTestCase
 {
+    const KEY_RING_ID = 'bq-kms-kr';
+    const CRYPTO_KEY_ID = 'bq-dataset-key1';
+
     public function testListDatasets()
     {
         $foundDatasets = [];
@@ -108,6 +113,32 @@ class ManageDatasetsTest extends BigQueryTestCase
         $info = self::$dataset->update($metadata);
 
         $this->assertEquals($metadata['friendlyName'], $info['friendlyName']);
+    }
+
+    public function testSetDatasetDefaultEncryption()
+    {
+        $encryption = new KeyManager(
+            json_decode(file_get_contents(getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH')), true)
+        );
+
+        $project = $encryption->getProject();
+        $encryption->setServiceAccountEmail(sprintf(
+            self::ENCRYPTION_SERVICE_ACCOUNT_EMAIL_TEMPLATE,
+            $project['projectNumber']
+        ));
+
+        list($keyName) = $encryption->getKeyNames(
+            self::KEY_RING_ID,
+            [self::CRYPTO_KEY_ID]
+        );
+
+        $info = self::$dataset->update([
+            'defaultEncryptionConfiguration' => [
+                'kmsKeyName' => $keyName
+            ]
+        ]);
+
+        $this->assertEquals($keyName, $info['defaultEncryptionConfiguration']['kmsKeyName']);
     }
 
     /**

@@ -18,6 +18,7 @@
 namespace Google\Cloud\BigQuery\Tests\System;
 
 use Google\Cloud\BigQuery\Model;
+use Google\Cloud\Core\Testing\System\KeyManager;
 
 /**
  * @group bigquery
@@ -25,8 +26,15 @@ use Google\Cloud\BigQuery\Model;
  */
 class ManageModelsTest extends BigQueryTestCase
 {
+    const KEY_RING_ID = 'bq-kms-kr';
+    const CRYPTO_KEY_ID1 = 'bq-model-key1';
+    const CRYPTO_KEY_ID2 = 'bq-model-key2';
+
     private static $model;
     private static $modelId;
+
+    private static $keyName1;
+    private static $keyName2;
 
     public static function setUpBeforeClass()
     {
@@ -34,19 +42,40 @@ class ManageModelsTest extends BigQueryTestCase
 
         self::$modelId = uniqid(self::TESTING_PREFIX);
 
+        $encryption = new KeyManager(
+            json_decode(file_get_contents(getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH')), true)
+        );
+
+        $project = $encryption->getProject();
+        $encryption->setServiceAccountEmail(sprintf(
+            self::ENCRYPTION_SERVICE_ACCOUNT_EMAIL_TEMPLATE,
+            $project['projectNumber']
+        ));
+
+        list(self::$keyName1, self::$keyName2) = $encryption->getKeyNames(
+            self::KEY_RING_ID,
+            [self::CRYPTO_KEY_ID1, self::CRYPTO_KEY_ID2]
+        );
+
         $queryTpl = "CREATE MODEL `%s.%s`" .
             " OPTIONS (" .
             "  model_type='linear_reg'," .
             "  max_iterations=1, " .
             "  learn_rate=0.4," .
-            "  learn_rate_strategy='constant'" .
+            "  learn_rate_strategy='constant'," .
+            "  kms_key_name='%s'" .
             ") AS (" .
               " SELECT 'a' AS f1, 2.0 AS label" .
               " UNION ALL" .
               " SELECT 'b' AS f2, 3.8 AS label " .
             ")";
 
-        $query = sprintf($queryTpl, self::$dataset->id(), self::$modelId);
+        $query = sprintf(
+            $queryTpl,
+            self::$dataset->id(),
+            self::$modelId,
+            self::$keyName1
+        );
         $config = self::$client->query($query);
         self::$client->runQuery($config);
 
@@ -87,5 +116,27 @@ class ManageModelsTest extends BigQueryTestCase
         $this->assertNotEmpty(array_filter($models, function ($model) {
             return $model->id() === self::$modelId;
         }));
+    }
+
+    public function testSetsModelCmekKeyName()
+    {
+        $this->assertKeyName(self::$keyName1, self::$model->info());
+
+        $info = self::$model->update([
+            'friendlyName' => 'whatever',
+            'encryptionConfiguration' => [
+                'kmsKeyName' => self::$keyName2
+            ]
+        ]);
+
+        $this->assertKeyName(self::$keyName2, $info);
+    }
+
+    private function assertKeyName($expected, array $info)
+    {
+        $this->assertEquals(
+            $expected,
+            $info['encryptionConfiguration']['kmsKeyName']
+        );
     }
 }
