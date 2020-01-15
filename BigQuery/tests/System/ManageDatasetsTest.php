@@ -118,8 +118,7 @@ class ManageDatasetsTest extends BigQueryTestCase
     public function testSetDatasetDefaultEncryption()
     {
         $encryption = new KeyManager(
-            json_decode(file_get_contents(getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH')), true),
-            'bq-145106218721@bigquery-encryption.iam.gserviceaccount.com'
+            json_decode(file_get_contents(getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH')), true)
         );
 
         $project = $encryption->getProject();
