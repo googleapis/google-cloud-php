@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListAssetsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Name of the organization assets should belong to. Its format is
+     * Required. Name of the organization assets should belong to. Its format is
      * "organizations/[organization_id]".
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -43,25 +43,28 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      * * integer literals without quotes.
      * * boolean literals `true` and `false` without quotes.
      * The following are the allowed field and operator combinations:
-     * name | `=`
-     * update_time | `=`, `>`, `<`, `>=`, `<=`
+     * * name: `=`
+     * * update_time: `=`, `>`, `<`, `>=`, `<=`
      *   Usage: This should be milliseconds since epoch or an RFC3339 string.
      *   Examples:
      *     "update_time = \"2019-06-10T16:07:18-07:00\""
      *     "update_time = 1560208038000"
-     * create_time | `=`, `>`, `<`, `>=`, `<=`
+     * * create_time: `=`, `>`, `<`, `>=`, `<=`
      *   Usage: This should be milliseconds since epoch or an RFC3339 string.
      *   Examples:
      *     "create_time = \"2019-06-10T16:07:18-07:00\""
      *     "create_time = 1560208038000"
-     * iam_policy.policy_blob | '=', ':'
-     * resource_properties | '=', ':', `>`, `<`, `>=`, `<=`
-     * security_marks | '=', ':'
-     * security_center_properties.resource_name | '=', ':'
-     * security_center_properties.resource_type | '=', ':'
-     * security_center_properties.resource_parent | '=', ':'
-     * security_center_properties.resource_project | '=', ':'
-     * security_center_properties.resource_owners | '=', ':'
+     * * iam_policy.policy_blob: `=`, `:`
+     * * resource_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
+     * * security_marks.marks: `=`, `:`
+     * * security_center_properties.resource_name: `=`, `:`
+     * * security_center_properties.resource_display_name: `=`, `:`
+     * * security_center_properties.resource_type: `=`, `:`
+     * * security_center_properties.resource_parent: `=`, `:`
+     * * security_center_properties.resource_parent_display_name: `=`, `:`
+     * * security_center_properties.resource_project: `=`, `:`
+     * * security_center_properties.resource_project_display_name: `=`, `:`
+     * * security_center_properties.resource_owners: `=`, `:`
      * For example, `resource_properties.size = 100` is a valid filter string.
      *
      * Generated from protobuf field <code>string filter = 2;</code>
@@ -80,10 +83,13 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      * name
      * update_time
      * resource_properties
-     * security_marks
+     * security_marks.marks
      * security_center_properties.resource_name
+     * security_center_properties.resource_display_name
      * security_center_properties.resource_parent
+     * security_center_properties.resource_parent_display_name
      * security_center_properties.resource_project
+     * security_center_properties.resource_project_display_name
      * security_center_properties.resource_type
      *
      * Generated from protobuf field <code>string order_by = 3;</code>
@@ -124,12 +130,11 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      */
     private $compare_duration = null;
     /**
-     * Optional.
-     * A field mask to specify the ListAssetsResult fields to be listed in the
+     * Optional. A field mask to specify the ListAssetsResult fields to be listed in the
      * response.
      * An empty field mask will list all fields.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 7;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $field_mask = null;
     /**
@@ -155,7 +160,7 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Name of the organization assets should belong to. Its format is
+     *           Required. Name of the organization assets should belong to. Its format is
      *           "organizations/[organization_id]".
      *     @type string $filter
      *           Expression that defines the filter to apply across assets.
@@ -178,25 +183,28 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      *           * integer literals without quotes.
      *           * boolean literals `true` and `false` without quotes.
      *           The following are the allowed field and operator combinations:
-     *           name | `=`
-     *           update_time | `=`, `>`, `<`, `>=`, `<=`
+     *           * name: `=`
+     *           * update_time: `=`, `>`, `<`, `>=`, `<=`
      *             Usage: This should be milliseconds since epoch or an RFC3339 string.
      *             Examples:
      *               "update_time = \"2019-06-10T16:07:18-07:00\""
      *               "update_time = 1560208038000"
-     *           create_time | `=`, `>`, `<`, `>=`, `<=`
+     *           * create_time: `=`, `>`, `<`, `>=`, `<=`
      *             Usage: This should be milliseconds since epoch or an RFC3339 string.
      *             Examples:
      *               "create_time = \"2019-06-10T16:07:18-07:00\""
      *               "create_time = 1560208038000"
-     *           iam_policy.policy_blob | '=', ':'
-     *           resource_properties | '=', ':', `>`, `<`, `>=`, `<=`
-     *           security_marks | '=', ':'
-     *           security_center_properties.resource_name | '=', ':'
-     *           security_center_properties.resource_type | '=', ':'
-     *           security_center_properties.resource_parent | '=', ':'
-     *           security_center_properties.resource_project | '=', ':'
-     *           security_center_properties.resource_owners | '=', ':'
+     *           * iam_policy.policy_blob: `=`, `:`
+     *           * resource_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
+     *           * security_marks.marks: `=`, `:`
+     *           * security_center_properties.resource_name: `=`, `:`
+     *           * security_center_properties.resource_display_name: `=`, `:`
+     *           * security_center_properties.resource_type: `=`, `:`
+     *           * security_center_properties.resource_parent: `=`, `:`
+     *           * security_center_properties.resource_parent_display_name: `=`, `:`
+     *           * security_center_properties.resource_project: `=`, `:`
+     *           * security_center_properties.resource_project_display_name: `=`, `:`
+     *           * security_center_properties.resource_owners: `=`, `:`
      *           For example, `resource_properties.size = 100` is a valid filter string.
      *     @type string $order_by
      *           Expression that defines what fields and order to use for sorting. The
@@ -211,10 +219,13 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      *           name
      *           update_time
      *           resource_properties
-     *           security_marks
+     *           security_marks.marks
      *           security_center_properties.resource_name
+     *           security_center_properties.resource_display_name
      *           security_center_properties.resource_parent
+     *           security_center_properties.resource_parent_display_name
      *           security_center_properties.resource_project
+     *           security_center_properties.resource_project_display_name
      *           security_center_properties.resource_type
      *     @type \Google\Protobuf\Timestamp $read_time
      *           Time used as a reference point when filtering assets. The filter is limited
@@ -243,8 +254,7 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      *           is "UNUSED",  which will be the state_change set for all assets present at
      *           read_time.
      *     @type \Google\Protobuf\FieldMask $field_mask
-     *           Optional.
-     *           A field mask to specify the ListAssetsResult fields to be listed in the
+     *           Optional. A field mask to specify the ListAssetsResult fields to be listed in the
      *           response.
      *           An empty field mask will list all fields.
      *     @type string $page_token
@@ -262,10 +272,10 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the organization assets should belong to. Its format is
+     * Required. Name of the organization assets should belong to. Its format is
      * "organizations/[organization_id]".
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -274,10 +284,10 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the organization assets should belong to. Its format is
+     * Required. Name of the organization assets should belong to. Its format is
      * "organizations/[organization_id]".
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -310,25 +320,28 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      * * integer literals without quotes.
      * * boolean literals `true` and `false` without quotes.
      * The following are the allowed field and operator combinations:
-     * name | `=`
-     * update_time | `=`, `>`, `<`, `>=`, `<=`
+     * * name: `=`
+     * * update_time: `=`, `>`, `<`, `>=`, `<=`
      *   Usage: This should be milliseconds since epoch or an RFC3339 string.
      *   Examples:
      *     "update_time = \"2019-06-10T16:07:18-07:00\""
      *     "update_time = 1560208038000"
-     * create_time | `=`, `>`, `<`, `>=`, `<=`
+     * * create_time: `=`, `>`, `<`, `>=`, `<=`
      *   Usage: This should be milliseconds since epoch or an RFC3339 string.
      *   Examples:
      *     "create_time = \"2019-06-10T16:07:18-07:00\""
      *     "create_time = 1560208038000"
-     * iam_policy.policy_blob | '=', ':'
-     * resource_properties | '=', ':', `>`, `<`, `>=`, `<=`
-     * security_marks | '=', ':'
-     * security_center_properties.resource_name | '=', ':'
-     * security_center_properties.resource_type | '=', ':'
-     * security_center_properties.resource_parent | '=', ':'
-     * security_center_properties.resource_project | '=', ':'
-     * security_center_properties.resource_owners | '=', ':'
+     * * iam_policy.policy_blob: `=`, `:`
+     * * resource_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
+     * * security_marks.marks: `=`, `:`
+     * * security_center_properties.resource_name: `=`, `:`
+     * * security_center_properties.resource_display_name: `=`, `:`
+     * * security_center_properties.resource_type: `=`, `:`
+     * * security_center_properties.resource_parent: `=`, `:`
+     * * security_center_properties.resource_parent_display_name: `=`, `:`
+     * * security_center_properties.resource_project: `=`, `:`
+     * * security_center_properties.resource_project_display_name: `=`, `:`
+     * * security_center_properties.resource_owners: `=`, `:`
      * For example, `resource_properties.size = 100` is a valid filter string.
      *
      * Generated from protobuf field <code>string filter = 2;</code>
@@ -360,25 +373,28 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      * * integer literals without quotes.
      * * boolean literals `true` and `false` without quotes.
      * The following are the allowed field and operator combinations:
-     * name | `=`
-     * update_time | `=`, `>`, `<`, `>=`, `<=`
+     * * name: `=`
+     * * update_time: `=`, `>`, `<`, `>=`, `<=`
      *   Usage: This should be milliseconds since epoch or an RFC3339 string.
      *   Examples:
      *     "update_time = \"2019-06-10T16:07:18-07:00\""
      *     "update_time = 1560208038000"
-     * create_time | `=`, `>`, `<`, `>=`, `<=`
+     * * create_time: `=`, `>`, `<`, `>=`, `<=`
      *   Usage: This should be milliseconds since epoch or an RFC3339 string.
      *   Examples:
      *     "create_time = \"2019-06-10T16:07:18-07:00\""
      *     "create_time = 1560208038000"
-     * iam_policy.policy_blob | '=', ':'
-     * resource_properties | '=', ':', `>`, `<`, `>=`, `<=`
-     * security_marks | '=', ':'
-     * security_center_properties.resource_name | '=', ':'
-     * security_center_properties.resource_type | '=', ':'
-     * security_center_properties.resource_parent | '=', ':'
-     * security_center_properties.resource_project | '=', ':'
-     * security_center_properties.resource_owners | '=', ':'
+     * * iam_policy.policy_blob: `=`, `:`
+     * * resource_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
+     * * security_marks.marks: `=`, `:`
+     * * security_center_properties.resource_name: `=`, `:`
+     * * security_center_properties.resource_display_name: `=`, `:`
+     * * security_center_properties.resource_type: `=`, `:`
+     * * security_center_properties.resource_parent: `=`, `:`
+     * * security_center_properties.resource_parent_display_name: `=`, `:`
+     * * security_center_properties.resource_project: `=`, `:`
+     * * security_center_properties.resource_project_display_name: `=`, `:`
+     * * security_center_properties.resource_owners: `=`, `:`
      * For example, `resource_properties.size = 100` is a valid filter string.
      *
      * Generated from protobuf field <code>string filter = 2;</code>
@@ -406,10 +422,13 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      * name
      * update_time
      * resource_properties
-     * security_marks
+     * security_marks.marks
      * security_center_properties.resource_name
+     * security_center_properties.resource_display_name
      * security_center_properties.resource_parent
+     * security_center_properties.resource_parent_display_name
      * security_center_properties.resource_project
+     * security_center_properties.resource_project_display_name
      * security_center_properties.resource_type
      *
      * Generated from protobuf field <code>string order_by = 3;</code>
@@ -433,10 +452,13 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      * name
      * update_time
      * resource_properties
-     * security_marks
+     * security_marks.marks
      * security_center_properties.resource_name
+     * security_center_properties.resource_display_name
      * security_center_properties.resource_parent
+     * security_center_properties.resource_parent_display_name
      * security_center_properties.resource_project
+     * security_center_properties.resource_project_display_name
      * security_center_properties.resource_type
      *
      * Generated from protobuf field <code>string order_by = 3;</code>
@@ -548,12 +570,11 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * A field mask to specify the ListAssetsResult fields to be listed in the
+     * Optional. A field mask to specify the ListAssetsResult fields to be listed in the
      * response.
      * An empty field mask will list all fields.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 7;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\FieldMask
      */
     public function getFieldMask()
@@ -562,12 +583,11 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * A field mask to specify the ListAssetsResult fields to be listed in the
+     * Optional. A field mask to specify the ListAssetsResult fields to be listed in the
      * response.
      * An empty field mask will list all fields.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 7;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\FieldMask $var
      * @return $this
      */

@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateOrganizationSettingsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The organization settings resource to update.
+     * Required. The organization settings resource to update.
      *
-     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.OrganizationSettings organization_settings = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.OrganizationSettings organization_settings = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $organization_settings = null;
     /**
@@ -36,7 +36,7 @@ class UpdateOrganizationSettingsRequest extends \Google\Protobuf\Internal\Messag
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\SecurityCenter\V1\OrganizationSettings $organization_settings
-     *           The organization settings resource to update.
+     *           Required. The organization settings resource to update.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           The FieldMask to use when updating the settings resource.
      *            If empty all mutable fields will be updated.
@@ -48,9 +48,9 @@ class UpdateOrganizationSettingsRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * The organization settings resource to update.
+     * Required. The organization settings resource to update.
      *
-     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.OrganizationSettings organization_settings = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.OrganizationSettings organization_settings = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\SecurityCenter\V1\OrganizationSettings
      */
     public function getOrganizationSettings()
@@ -59,9 +59,9 @@ class UpdateOrganizationSettingsRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * The organization settings resource to update.
+     * Required. The organization settings resource to update.
      *
-     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.OrganizationSettings organization_settings = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.OrganizationSettings organization_settings = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\SecurityCenter\V1\OrganizationSettings $var
      * @return $this
      */

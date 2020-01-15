@@ -550,9 +550,9 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $parent       Resource name of the new source's parent. Its format should be
+     * @param string $parent       Required. Resource name of the new source's parent. Its format should be
      *                             "organizations/[organization_id]".
-     * @param Source $source       The Source being created, only the display_name and description will be
+     * @param Source $source       Required. The Source being created, only the display_name and description will be
      *                             used. All other fields will be ignored.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -607,12 +607,12 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string  $parent       Resource name of the new finding's parent. Its format should be
+     * @param string  $parent       Required. Resource name of the new finding's parent. Its format should be
      *                              "organizations/[organization_id]/sources/[source_id]".
-     * @param string  $findingId    Unique identifier provided by the client within the parent scope.
+     * @param string  $findingId    Required. Unique identifier provided by the client within the parent scope.
      *                              It must be alphanumeric and less than or equal to 32 characters and
      *                              greater than 0 characters in length.
-     * @param Finding $finding      The Finding being created. The name and security_marks will be ignored as
+     * @param Finding $finding      Required. The Finding being created. The name and security_marks will be ignored as
      *                              they are both output only fields on this resource.
      * @param array   $optionalArgs {
      *                              Optional.
@@ -722,7 +722,7 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $name         Name of the organization to get organization settings for. Its format is
+     * @param string $name         Required. Name of the organization to get organization settings for. Its format is
      *                             "organizations/[organization_id]/organizationSettings".
      * @param array  $optionalArgs {
      *                             Optional.
@@ -773,7 +773,7 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $name         Relative resource name of the source. Its format is
+     * @param string $name         Required. Relative resource name of the source. Its format is
      *                             "organizations/[organization_id]/source/[source_id]".
      * @param array  $optionalArgs {
      *                             Optional.
@@ -841,9 +841,9 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $parent  Name of the organization to groupBy. Its format is
+     * @param string $parent  Required. Name of the organization to groupBy. Its format is
      *                        "organizations/[organization_id]".
-     * @param string $groupBy Expression that defines what assets fields to use for grouping. The string
+     * @param string $groupBy Required. Expression that defines what assets fields to use for grouping. The string
      *                        value should follow SQL syntax: comma separated list of fields. For
      *                        example:
      *                        "security_center_properties.resource_project,security_center_properties.project".
@@ -851,12 +851,16 @@ class SecurityCenterGapicClient
      * The following fields are supported when compare_duration is not set:
      *
      * * security_center_properties.resource_project
+     * * security_center_properties.resource_project_display_name
      * * security_center_properties.resource_type
      * * security_center_properties.resource_parent
+     * * security_center_properties.resource_parent_display_name
      *
      * The following fields are supported when compare_duration is set:
      *
      * * security_center_properties.resource_type
+     * * security_center_properties.resource_project_display_name
+     * * security_center_properties.resource_parent_display_name
      * @param array $optionalArgs {
      *                            Optional.
      *
@@ -888,29 +892,33 @@ class SecurityCenterGapicClient
      *          * boolean literals `true` and `false` without quotes.
      *
      *          The following field and operator combinations are supported:
-     *          name | '='
-     *          update_time | '=', '>', '<', '>=', '<='
+     *
+     *          * name: `=`
+     *          * update_time: `=`, `>`, `<`, `>=`, `<=`
      *
      *            Usage: This should be milliseconds since epoch or an RFC3339 string.
      *            Examples:
      *              "update_time = \"2019-06-10T16:07:18-07:00\""
      *              "update_time = 1560208038000"
      *
-     *          create_time |  '=', '>', '<', '>=', '<='
+     *          * create_time: `=`, `>`, `<`, `>=`, `<=`
      *
      *            Usage: This should be milliseconds since epoch or an RFC3339 string.
      *            Examples:
      *              "create_time = \"2019-06-10T16:07:18-07:00\""
      *              "create_time = 1560208038000"
      *
-     *          iam_policy.policy_blob | '=', ':'
-     *          resource_properties | '=', ':', '>', '<', '>=', '<='
-     *          security_marks | '=', ':'
-     *          security_center_properties.resource_name | '=', ':'
-     *          security_center_properties.resource_type | '=', ':'
-     *          security_center_properties.resource_parent | '=', ':'
-     *          security_center_properties.resource_project | '=', ':'
-     *          security_center_properties.resource_owners | '=', ':'
+     *          * iam_policy.policy_blob: `=`, `:`
+     *          * resource_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
+     *          * security_marks.marks: `=`, `:`
+     *          * security_center_properties.resource_name: `=`, `:`
+     *          * security_center_properties.resource_display_name: `=`, `:`
+     *          * security_center_properties.resource_type: `=`, `:`
+     *          * security_center_properties.resource_parent: `=`, `:`
+     *          * security_center_properties.resource_parent_display_name: `=`, `:`
+     *          * security_center_properties.resource_project: `=`, `:`
+     *          * security_center_properties.resource_project_display_name: `=`, `:`
+     *          * security_center_properties.resource_owners: `=`, `:`
      *
      *          For example, `resource_properties.size = 100` is a valid filter string.
      *     @type Duration $compareDuration
@@ -1008,7 +1016,7 @@ class SecurityCenterGapicClient
      * specified properties.
      *
      * To group across all sources provide a `-` as the source id.
-     * Example: /v1/organizations/123/sources/-/findings
+     * Example: /v1/organizations/{organization_id}/sources/-/findings
      *
      * Sample code:
      * ```
@@ -1037,11 +1045,11 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $parent  Name of the source to groupBy. Its format is
+     * @param string $parent  Required. Name of the source to groupBy. Its format is
      *                        "organizations/[organization_id]/sources/[source_id]". To groupBy across
      *                        all sources provide a source_id of `-`. For example:
-     *                        organizations/123/sources/-
-     * @param string $groupBy Expression that defines what assets fields to use for grouping (including
+     *                        organizations/{organization_id}/sources/-
+     * @param string $groupBy Required. Expression that defines what assets fields to use for grouping (including
      *                        `state_change`). The string value should follow SQL syntax: comma separated
      *                        list of fields. For example: "parent,resource_name".
      *
@@ -1084,21 +1092,22 @@ class SecurityCenterGapicClient
      *          * boolean literals `true` and `false` without quotes.
      *
      *          The following field and operator combinations are supported:
-     *          name | `=`
-     *          parent | '=', ':'
-     *          resource_name | '=', ':'
-     *          state | '=', ':'
-     *          category | '=', ':'
-     *          external_uri | '=', ':'
-     *          event_time | `=`, `>`, `<`, `>=`, `<=`
+     *
+     *          * name: `=`
+     *          * parent: `=`, `:`
+     *          * resource_name: `=`, `:`
+     *          * state: `=`, `:`
+     *          * category: `=`, `:`
+     *          * external_uri: `=`, `:`
+     *          * event_time: `=`, `>`, `<`, `>=`, `<=`
      *
      *            Usage: This should be milliseconds since epoch or an RFC3339 string.
      *            Examples:
      *              "event_time = \"2019-06-10T16:07:18-07:00\""
      *              "event_time = 1560208038000"
      *
-     *          security_marks | '=', ':'
-     *          source_properties | '=', ':', `>`, `<`, `>=`, `<=`
+     *          * security_marks.marks: `=`, `:`
+     *          * source_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
      *
      *          For example, `source_properties.size = 100` is a valid filter string.
      *     @type Timestamp $readTime
@@ -1219,7 +1228,7 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $parent       Name of the organization assets should belong to. Its format is
+     * @param string $parent       Required. Name of the organization assets should belong to. Its format is
      *                             "organizations/[organization_id]".
      * @param array  $optionalArgs {
      *                             Optional.
@@ -1252,29 +1261,33 @@ class SecurityCenterGapicClient
      *          * boolean literals `true` and `false` without quotes.
      *
      *          The following are the allowed field and operator combinations:
-     *          name | `=`
-     *          update_time | `=`, `>`, `<`, `>=`, `<=`
+     *
+     *          * name: `=`
+     *          * update_time: `=`, `>`, `<`, `>=`, `<=`
      *
      *            Usage: This should be milliseconds since epoch or an RFC3339 string.
      *            Examples:
      *              "update_time = \"2019-06-10T16:07:18-07:00\""
      *              "update_time = 1560208038000"
      *
-     *          create_time | `=`, `>`, `<`, `>=`, `<=`
+     *          * create_time: `=`, `>`, `<`, `>=`, `<=`
      *
      *            Usage: This should be milliseconds since epoch or an RFC3339 string.
      *            Examples:
      *              "create_time = \"2019-06-10T16:07:18-07:00\""
      *              "create_time = 1560208038000"
      *
-     *          iam_policy.policy_blob | '=', ':'
-     *          resource_properties | '=', ':', `>`, `<`, `>=`, `<=`
-     *          security_marks | '=', ':'
-     *          security_center_properties.resource_name | '=', ':'
-     *          security_center_properties.resource_type | '=', ':'
-     *          security_center_properties.resource_parent | '=', ':'
-     *          security_center_properties.resource_project | '=', ':'
-     *          security_center_properties.resource_owners | '=', ':'
+     *          * iam_policy.policy_blob: `=`, `:`
+     *          * resource_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
+     *          * security_marks.marks: `=`, `:`
+     *          * security_center_properties.resource_name: `=`, `:`
+     *          * security_center_properties.resource_display_name: `=`, `:`
+     *          * security_center_properties.resource_type: `=`, `:`
+     *          * security_center_properties.resource_parent: `=`, `:`
+     *          * security_center_properties.resource_parent_display_name: `=`, `:`
+     *          * security_center_properties.resource_project: `=`, `:`
+     *          * security_center_properties.resource_project_display_name: `=`, `:`
+     *          * security_center_properties.resource_owners: `=`, `:`
      *
      *          For example, `resource_properties.size = 100` is a valid filter string.
      *     @type string $orderBy
@@ -1291,10 +1304,13 @@ class SecurityCenterGapicClient
      *          name
      *          update_time
      *          resource_properties
-     *          security_marks
+     *          security_marks.marks
      *          security_center_properties.resource_name
+     *          security_center_properties.resource_display_name
      *          security_center_properties.resource_parent
+     *          security_center_properties.resource_parent_display_name
      *          security_center_properties.resource_project
+     *          security_center_properties.resource_project_display_name
      *          security_center_properties.resource_type
      *     @type Timestamp $readTime
      *          Time used as a reference point when filtering assets. The filter is limited
@@ -1327,9 +1343,7 @@ class SecurityCenterGapicClient
      *          is "UNUSED",  which will be the state_change set for all assets present at
      *          read_time.
      *     @type FieldMask $fieldMask
-     *          Optional.
-     *
-     *          A field mask to specify the ListAssetsResult fields to be listed in the
+     *          Optional. A field mask to specify the ListAssetsResult fields to be listed in the
      *          response.
      *          An empty field mask will list all fields.
      *     @type string $pageToken
@@ -1398,7 +1412,7 @@ class SecurityCenterGapicClient
      * Lists an organization or source's findings.
      *
      * To list across all sources provide a `-` as the source id.
-     * Example: /v1/organizations/123/sources/-/findings
+     * Example: /v1/organizations/{organization_id}/sources/-/findings
      *
      * Sample code:
      * ```
@@ -1426,10 +1440,10 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $parent       Name of the source the findings belong to. Its format is
+     * @param string $parent       Required. Name of the source the findings belong to. Its format is
      *                             "organizations/[organization_id]/sources/[source_id]". To list across all
      *                             sources provide a source_id of `-`. For example:
-     *                             organizations/123/sources/-
+     *                             organizations/{organization_id}/sources/-
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1459,21 +1473,22 @@ class SecurityCenterGapicClient
      *          * boolean literals `true` and `false` without quotes.
      *
      *          The following field and operator combinations are supported:
-     *          name | `=`
-     *          parent | '=', ':'
-     *          resource_name | '=', ':'
-     *          state | '=', ':'
-     *          category | '=', ':'
-     *          external_uri | '=', ':'
-     *          event_time | `=`, `>`, `<`, `>=`, `<=`
+     *
+     *          name: `=`
+     *          parent: `=`, `:`
+     *          resource_name: `=`, `:`
+     *          state: `=`, `:`
+     *          category: `=`, `:`
+     *          external_uri: `=`, `:`
+     *          event_time: `=`, `>`, `<`, `>=`, `<=`
      *
      *            Usage: This should be milliseconds since epoch or an RFC3339 string.
      *            Examples:
      *              "event_time = \"2019-06-10T16:07:18-07:00\""
      *              "event_time = 1560208038000"
      *
-     *          security_marks | '=', ':'
-     *          source_properties | '=', ':', `>`, `<`, `>=`, `<=`
+     *          security_marks.marks: `=`, `:`
+     *          source_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
      *
      *          For example, `source_properties.size = 100` is a valid filter string.
      *     @type string $orderBy
@@ -1494,7 +1509,7 @@ class SecurityCenterGapicClient
      *          resource_name
      *          event_time
      *          source_properties
-     *          security_marks
+     *          security_marks.marks
      *     @type Timestamp $readTime
      *          Time used as a reference point when filtering findings. The filter is
      *          limited to findings existing at the supplied time and their values are
@@ -1526,9 +1541,7 @@ class SecurityCenterGapicClient
      *          is "UNUSED", which will be the state_change set for all findings present at
      *          read_time.
      *     @type FieldMask $fieldMask
-     *          Optional.
-     *
-     *          A field mask to specify the Finding fields to be listed in the response.
+     *          Optional. A field mask to specify the Finding fields to be listed in the response.
      *          An empty field mask will list all fields.
      *     @type string $pageToken
      *          A page token is used to specify a page of values to be returned.
@@ -1621,7 +1634,7 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $parent       Resource name of the parent of sources to list. Its format should be
+     * @param string $parent       Required. Resource name of the parent of sources to list. Its format should be
      *                             "organizations/[organization_id]".
      * @param array  $optionalArgs {
      *                             Optional.
@@ -1720,7 +1733,7 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $parent       Name of the organization to run asset discovery for. Its format is
+     * @param string $parent       Required. Name of the organization to run asset discovery for. Its format is
      *                             "organizations/[organization_id]".
      * @param array  $optionalArgs {
      *                             Optional.
@@ -1773,13 +1786,13 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string    $name         The relative resource name of the finding. See:
+     * @param string    $name         Required. The relative resource name of the finding. See:
      *                                https://cloud.google.com/apis/design/resource_names#relative_resource_name
      *                                Example:
-     *                                "organizations/123/sources/456/finding/789".
-     * @param int       $state        The desired State of the finding.
+     *                                "organizations/{organization_id}/sources/{source_id}/finding/{finding_id}".
+     * @param int       $state        Required. The desired State of the finding.
      *                                For allowed values, use constants defined on {@see \Google\Cloud\SecurityCenter\V1\Finding\State}
-     * @param Timestamp $startTime    The time at which the updated state takes effect.
+     * @param Timestamp $startTime    Required. The time at which the updated state takes effect.
      * @param array     $optionalArgs {
      *                                Optional.
      *
@@ -1946,7 +1959,7 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param Finding $finding The finding resource to update or create if it does not already exist.
+     * @param Finding $finding Required. The finding resource to update or create if it does not already exist.
      *                         parent, security_marks, and update_time will be ignored.
      *
      * In the case of creation, the finding id portion of the name must be
@@ -2012,7 +2025,7 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param OrganizationSettings $organizationSettings The organization settings resource to update.
+     * @param OrganizationSettings $organizationSettings Required. The organization settings resource to update.
      * @param array                $optionalArgs         {
      *                                                   Optional.
      *
@@ -2069,7 +2082,7 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param Source $source       The source resource to update.
+     * @param Source $source       Required. The source resource to update.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -2126,7 +2139,7 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param SecurityMarks $securityMarks The security marks resource to update.
+     * @param SecurityMarks $securityMarks Required. The security marks resource to update.
      * @param array         $optionalArgs  {
      *                                     Optional.
      *
