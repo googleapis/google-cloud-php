@@ -165,7 +165,9 @@ class BatchPublisher
 
         $topic = self::$topics[$this->topicName];
 
-        return $topic->publishBatch($messages, $options);
+        return !empty($messages)
+            ? $topic->publishBatch($messages, $options)
+            : [];
     }
 
     /**

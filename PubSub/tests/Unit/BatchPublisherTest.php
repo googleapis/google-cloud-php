@@ -90,7 +90,7 @@ class BatchPublisherTest extends TestCase
 
         $publisher = TestHelpers::stub(BatchPublisher::class, [
             self::TOPIC_NAME,
-        ], ['client', 'jobs']);
+        ], ['client', 'jobs', 'topics']);
 
         $connection = $this->prophesize(ConnectionInterface::class);
 
