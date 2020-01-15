@@ -441,13 +441,10 @@ class BigtableGapicClient
      * }
      * ```
      *
-     * @param string $tableName Required. The unique name of the table to which the mutation should be applied.
-     *                          Values are of the form
-     *                          `projects/<project>/instances/<instance>/tables/<table>`.
-     * @param string $rowKey    Required. The key of the row to which the mutation should be applied.
-     *
-     * Classified as IDENTIFYING_ID to provide context around data accesses for
-     * auditing systems.
+     * @param string     $tableName    Required. The unique name of the table to which the mutation should be applied.
+     *                                 Values are of the form
+     *                                 `projects/<project>/instances/<instance>/tables/<table>`.
+     * @param string     $rowKey       Required. The key of the row to which the mutation should be applied.
      * @param Mutation[] $mutations    Required. Changes to be atomically applied to the specified row. Entries are applied
      *                                 in order, meaning that earlier mutations can be masked by later ones.
      *                                 Must contain at least one entry and at most 100000.
@@ -576,16 +573,13 @@ class BigtableGapicClient
      * }
      * ```
      *
-     * @param string $tableName Required. The unique name of the table to which the conditional mutation should be
-     *                          applied.
-     *                          Values are of the form
-     *                          `projects/<project>/instances/<instance>/tables/<table>`.
-     * @param string $rowKey    Required. The key of the row to which the conditional mutation should be applied.
-     *
-     * Classified as IDENTIFYING_ID to provide context around data accesses for
-     * auditing systems.
-     * @param array $optionalArgs {
-     *                            Optional.
+     * @param string $tableName    Required. The unique name of the table to which the conditional mutation should be
+     *                             applied.
+     *                             Values are of the form
+     *                             `projects/<project>/instances/<instance>/tables/<table>`.
+     * @param string $rowKey       Required. The key of the row to which the conditional mutation should be applied.
+     * @param array  $optionalArgs {
+     *                             Optional.
      *
      *     @type string $appProfileId
      *          This value specifies routing for replication. If not specified, the
@@ -672,14 +666,11 @@ class BigtableGapicClient
      * }
      * ```
      *
-     * @param string $tableName Required. The unique name of the table to which the read/modify/write rules should be
-     *                          applied.
-     *                          Values are of the form
-     *                          `projects/<project>/instances/<instance>/tables/<table>`.
-     * @param string $rowKey    Required. The key of the row to which the read/modify/write rules should be applied.
-     *
-     * Classified as IDENTIFYING_ID to provide context around data accesses for
-     * auditing systems.
+     * @param string                $tableName    Required. The unique name of the table to which the read/modify/write rules should be
+     *                                            applied.
+     *                                            Values are of the form
+     *                                            `projects/<project>/instances/<instance>/tables/<table>`.
+     * @param string                $rowKey       Required. The key of the row to which the read/modify/write rules should be applied.
      * @param ReadModifyWriteRule[] $rules        Required. Rules specifying how the specified row's contents are to be transformed
      *                                            into writes. Entries are applied in order, meaning that earlier rules will
      *                                            affect the results of later ones.
