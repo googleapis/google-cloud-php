@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.122.1
+
+<details><summary>google/cloud-bigquery 1.12.2</summary>
+
+
+
+### Bug Fixes
+
+* add tests for dataset and model encryption config ([#2377](https://www.github.com/googleapis/google-cloud-php/issues/2377)) ([87b309d](https://www.github.com/googleapis/google-cloud-php/commit/87b309df78f3c1f0d23c9841863c77dc637ee2fd))
+
+</details>
+
 ## 0.122.0
 
 <details><summary>google/cloud-firestore 1.10.1</summary>
