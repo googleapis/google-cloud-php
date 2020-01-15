@@ -81,6 +81,17 @@ s.replace(
     r'Copyright \d{4}',
     r'Copyright 2019')
 
+clients = ['ApplicationService', 'CompanyService', 'Completion', 'EventService', 'JobService', 'ProfileService', 'TenantService']
+for client in clients:
+    s.replace(
+        f'src/V*/{client}Client.php',
+        r'Copyright \d{4}',
+        'Copyright 2019')
+    s.replace(
+        f'src/V*/{client}GrpcClient.php',
+        r'Copyright \d{4}',
+        'Copyright 2019')
+
 # Use correct namespace
 s.replace(
     'src/V4beta1/Gapic/*.php',

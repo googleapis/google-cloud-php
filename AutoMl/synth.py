@@ -74,18 +74,26 @@ s.replace(
 )
 
 # fix year
-s.replace(
-    '**/Gapic/*GapicClient.php',
-    r'Copyright \d{4}',
-    r'Copyright 2019')
-s.replace(
-    'tests/**/V1beta1/*Test.php',
-    r'Copyright \d{4}',
-    r'Copyright 2019')
-s.replace(
-    'tests/**/V1/*Test.php',
-    r'Copyright \d{4}',
-    r'Copyright 2019')
+clients = ['AutoMl', 'PredictionService']
+versions = ['V1', 'V1beta1']
+for client in clients:
+    for version in versions:
+        s.replace(
+            f'src/{version}/Gapic/{client}GapicClient.php',
+            r'Copyright \d{4}',
+            'Copyright 2019')
+        s.replace(
+            f'src/{version}/{client}Client.php',
+            r'Copyright \d{4}',
+            'Copyright 2019')
+        s.replace(
+            f'src/{version}/{client}GrpcClient.php',
+            r'Copyright \d{4}',
+            'Copyright 2019')
+        s.replace(
+            f'tests/**/{version}/{client}ClientTest.php',
+            r'Copyright \d{4}',
+            'Copyright 2019')
 
 # temporary namespace fix for V1
 s.replace(
