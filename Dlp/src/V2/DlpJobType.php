@@ -7,13 +7,15 @@ namespace Google\Cloud\Dlp\V2;
 use UnexpectedValueException;
 
 /**
- * An enum to represent the various type of DLP jobs.
+ * An enum to represent the various types of DLP jobs.
  *
  * Protobuf type <code>google.privacy.dlp.v2.DlpJobType</code>
  */
 class DlpJobType
 {
     /**
+     * Unused
+     *
      * Generated from protobuf enum <code>DLP_JOB_TYPE_UNSPECIFIED = 0;</code>
      */
     const DLP_JOB_TYPE_UNSPECIFIED = 0;

@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * Histogram of value frequencies in the column.
+ *
  * Generated from protobuf message <code>google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.CategoricalStatsResult.CategoricalStatsHistogramBucket</code>
  */
 class CategoricalStatsHistogramBucket extends \Google\Protobuf\Internal\Message

@@ -7,15 +7,21 @@ namespace Google\Cloud\Dlp\V2\RecordCondition\Expressions;
 use UnexpectedValueException;
 
 /**
+ * Logical operators for conditional checks.
+ *
  * Protobuf type <code>google.privacy.dlp.v2.RecordCondition.Expressions.LogicalOperator</code>
  */
 class LogicalOperator
 {
     /**
+     * Unused
+     *
      * Generated from protobuf enum <code>LOGICAL_OPERATOR_UNSPECIFIED = 0;</code>
      */
     const LOGICAL_OPERATOR_UNSPECIFIED = 0;
     /**
+     * Conditional AND
+     *
      * Generated from protobuf enum <code>AND = 1;</code>
      */
     const PBAND = 1;

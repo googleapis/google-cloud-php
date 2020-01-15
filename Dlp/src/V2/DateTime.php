@@ -17,21 +17,27 @@ use Google\Protobuf\Internal\GPBUtil;
 class DateTime extends \Google\Protobuf\Internal\Message
 {
     /**
-     * One or more of the following must be set. All fields are optional, but
-     * when set must be valid date or time values.
+     * One or more of the following must be set.
+     * Must be a valid date or time value.
      *
      * Generated from protobuf field <code>.google.type.Date date = 1;</code>
      */
     private $date = null;
     /**
+     * Day of week
+     *
      * Generated from protobuf field <code>.google.type.DayOfWeek day_of_week = 2;</code>
      */
     private $day_of_week = 0;
     /**
+     * Time of day
+     *
      * Generated from protobuf field <code>.google.type.TimeOfDay time = 3;</code>
      */
     private $time = null;
     /**
+     * Time zone
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DateTime.TimeZone time_zone = 4;</code>
      */
     private $time_zone = null;
@@ -43,11 +49,14 @@ class DateTime extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Type\Date $date
-     *           One or more of the following must be set. All fields are optional, but
-     *           when set must be valid date or time values.
+     *           One or more of the following must be set.
+     *           Must be a valid date or time value.
      *     @type int $day_of_week
+     *           Day of week
      *     @type \Google\Type\TimeOfDay $time
+     *           Time of day
      *     @type \Google\Cloud\Dlp\V2\DateTime\TimeZone $time_zone
+     *           Time zone
      * }
      */
     public function __construct($data = NULL) {
@@ -56,8 +65,8 @@ class DateTime extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * One or more of the following must be set. All fields are optional, but
-     * when set must be valid date or time values.
+     * One or more of the following must be set.
+     * Must be a valid date or time value.
      *
      * Generated from protobuf field <code>.google.type.Date date = 1;</code>
      * @return \Google\Type\Date
@@ -68,8 +77,8 @@ class DateTime extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * One or more of the following must be set. All fields are optional, but
-     * when set must be valid date or time values.
+     * One or more of the following must be set.
+     * Must be a valid date or time value.
      *
      * Generated from protobuf field <code>.google.type.Date date = 1;</code>
      * @param \Google\Type\Date $var
@@ -84,6 +93,8 @@ class DateTime extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Day of week
+     *
      * Generated from protobuf field <code>.google.type.DayOfWeek day_of_week = 2;</code>
      * @return int
      */
@@ -93,6 +104,8 @@ class DateTime extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Day of week
+     *
      * Generated from protobuf field <code>.google.type.DayOfWeek day_of_week = 2;</code>
      * @param int $var
      * @return $this
@@ -106,6 +119,8 @@ class DateTime extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Time of day
+     *
      * Generated from protobuf field <code>.google.type.TimeOfDay time = 3;</code>
      * @return \Google\Type\TimeOfDay
      */
@@ -115,6 +130,8 @@ class DateTime extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Time of day
+     *
      * Generated from protobuf field <code>.google.type.TimeOfDay time = 3;</code>
      * @param \Google\Type\TimeOfDay $var
      * @return $this
@@ -128,6 +145,8 @@ class DateTime extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Time zone
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DateTime.TimeZone time_zone = 4;</code>
      * @return \Google\Cloud\Dlp\V2\DateTime\TimeZone
      */
@@ -137,6 +156,8 @@ class DateTime extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Time zone
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DateTime.TimeZone time_zone = 4;</code>
      * @param \Google\Cloud\Dlp\V2\DateTime\TimeZone $var
      * @return $this

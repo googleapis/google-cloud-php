@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * Configuration to control the number of findings returned.
+ *
  * Generated from protobuf message <code>google.privacy.dlp.v2.InspectConfig.FindingLimits</code>
  */
 class FindingLimits extends \Google\Protobuf\Internal\Message

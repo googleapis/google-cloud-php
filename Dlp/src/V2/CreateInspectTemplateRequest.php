@@ -23,9 +23,9 @@ class CreateInspectTemplateRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * The InspectTemplate to create.
+     * Required. The InspectTemplate to create.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectTemplate inspect_template = 2;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectTemplate inspect_template = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $inspect_template = null;
     /**
@@ -55,7 +55,7 @@ class CreateInspectTemplateRequest extends \Google\Protobuf\Internal\Message
      *           Required. The parent resource name, for example projects/my-project-id or
      *           organizations/my-org-id.
      *     @type \Google\Cloud\Dlp\V2\InspectTemplate $inspect_template
-     *           The InspectTemplate to create.
+     *           Required. The InspectTemplate to create.
      *     @type string $template_id
      *           The template id can contain uppercase and lowercase letters,
      *           numbers, and hyphens; that is, it must match the regular
@@ -100,9 +100,9 @@ class CreateInspectTemplateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The InspectTemplate to create.
+     * Required. The InspectTemplate to create.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectTemplate inspect_template = 2;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectTemplate inspect_template = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Dlp\V2\InspectTemplate
      */
     public function getInspectTemplate()
@@ -111,9 +111,9 @@ class CreateInspectTemplateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The InspectTemplate to create.
+     * Required. The InspectTemplate to create.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectTemplate inspect_template = 2;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectTemplate inspect_template = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dlp\V2\InspectTemplate $var
      * @return $this
      */

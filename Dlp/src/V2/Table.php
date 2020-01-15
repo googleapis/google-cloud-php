@@ -18,10 +18,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class Table extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Headers of the table.
+     *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FieldId headers = 1;</code>
      */
     private $headers;
     /**
+     * Rows of the table.
+     *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Table.Row rows = 2;</code>
      */
     private $rows;
@@ -33,7 +37,9 @@ class Table extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Dlp\V2\FieldId[]|\Google\Protobuf\Internal\RepeatedField $headers
+     *           Headers of the table.
      *     @type \Google\Cloud\Dlp\V2\Table\Row[]|\Google\Protobuf\Internal\RepeatedField $rows
+     *           Rows of the table.
      * }
      */
     public function __construct($data = NULL) {
@@ -42,6 +48,8 @@ class Table extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Headers of the table.
+     *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FieldId headers = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
@@ -51,6 +59,8 @@ class Table extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Headers of the table.
+     *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FieldId headers = 1;</code>
      * @param \Google\Cloud\Dlp\V2\FieldId[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
@@ -64,6 +74,8 @@ class Table extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Rows of the table.
+     *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Table.Row rows = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
@@ -73,6 +85,8 @@ class Table extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Rows of the table.
+     *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Table.Row rows = 2;</code>
      * @param \Google\Cloud\Dlp\V2\Table\Row[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this

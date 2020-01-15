@@ -33,7 +33,7 @@ class Action extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dlp\V2\Action\PublishFindingsToCloudDataCatalog $publish_findings_to_cloud_data_catalog
      *           Publish findings to Cloud Datahub.
      *     @type \Google\Cloud\Dlp\V2\Action\JobNotificationEmails $job_notification_emails
-     *           Enable email notification to project owners and editors on job's
+     *           Enable email notification for project owners and editors on job's
      *           completion/failure.
      *     @type \Google\Cloud\Dlp\V2\Action\PublishToStackdriver $publish_to_stackdriver
      *           Enable Stackdriver metric dlp.googleapis.com/finding_count.
@@ -149,7 +149,7 @@ class Action extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Enable email notification to project owners and editors on job's
+     * Enable email notification for project owners and editors on job's
      * completion/failure.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Action.JobNotificationEmails job_notification_emails = 8;</code>
@@ -161,7 +161,7 @@ class Action extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Enable email notification to project owners and editors on job's
+     * Enable email notification for project owners and editors on job's
      * completion/failure.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Action.JobNotificationEmails job_notification_emails = 8;</code>

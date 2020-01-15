@@ -20,15 +20,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class KmsWrappedCryptoKey extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The wrapped data crypto key. [required]
+     * Required. The wrapped data crypto key.
      *
-     * Generated from protobuf field <code>bytes wrapped_key = 1;</code>
+     * Generated from protobuf field <code>bytes wrapped_key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $wrapped_key = '';
     /**
-     * The resource name of the KMS CryptoKey to use for unwrapping. [required]
+     * Required. The resource name of the KMS CryptoKey to use for unwrapping.
      *
-     * Generated from protobuf field <code>string crypto_key_name = 2;</code>
+     * Generated from protobuf field <code>string crypto_key_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $crypto_key_name = '';
 
@@ -39,9 +39,9 @@ class KmsWrappedCryptoKey extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $wrapped_key
-     *           The wrapped data crypto key. [required]
+     *           Required. The wrapped data crypto key.
      *     @type string $crypto_key_name
-     *           The resource name of the KMS CryptoKey to use for unwrapping. [required]
+     *           Required. The resource name of the KMS CryptoKey to use for unwrapping.
      * }
      */
     public function __construct($data = NULL) {
@@ -50,9 +50,9 @@ class KmsWrappedCryptoKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The wrapped data crypto key. [required]
+     * Required. The wrapped data crypto key.
      *
-     * Generated from protobuf field <code>bytes wrapped_key = 1;</code>
+     * Generated from protobuf field <code>bytes wrapped_key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getWrappedKey()
@@ -61,9 +61,9 @@ class KmsWrappedCryptoKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The wrapped data crypto key. [required]
+     * Required. The wrapped data crypto key.
      *
-     * Generated from protobuf field <code>bytes wrapped_key = 1;</code>
+     * Generated from protobuf field <code>bytes wrapped_key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -76,9 +76,9 @@ class KmsWrappedCryptoKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the KMS CryptoKey to use for unwrapping. [required]
+     * Required. The resource name of the KMS CryptoKey to use for unwrapping.
      *
-     * Generated from protobuf field <code>string crypto_key_name = 2;</code>
+     * Generated from protobuf field <code>string crypto_key_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getCryptoKeyName()
@@ -87,9 +87,9 @@ class KmsWrappedCryptoKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the KMS CryptoKey to use for unwrapping. [required]
+     * Required. The resource name of the KMS CryptoKey to use for unwrapping.
      *
-     * Generated from protobuf field <code>string crypto_key_name = 2;</code>
+     * Generated from protobuf field <code>string crypto_key_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

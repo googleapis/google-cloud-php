@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class QuasiId extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Identifies the column. [required]
+     * Required. Identifies the column.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId field = 1;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId field = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $field = null;
     protected $tag;
@@ -30,7 +30,7 @@ class QuasiId extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Dlp\V2\FieldId $field
-     *           Identifies the column. [required]
+     *           Required. Identifies the column.
      *     @type \Google\Cloud\Dlp\V2\InfoType $info_type
      *           A column can be tagged with a InfoType to use the relevant public
      *           dataset as a statistical model of population, if available. We
@@ -52,9 +52,9 @@ class QuasiId extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifies the column. [required]
+     * Required. Identifies the column.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId field = 1;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId field = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Dlp\V2\FieldId
      */
     public function getField()
@@ -63,9 +63,9 @@ class QuasiId extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifies the column. [required]
+     * Required. Identifies the column.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId field = 1;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId field = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dlp\V2\FieldId $var
      * @return $this
      */

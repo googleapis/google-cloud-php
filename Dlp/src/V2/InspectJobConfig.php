@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * Controls what and how to inspect for findings.
+ *
  * Generated from protobuf message <code>google.privacy.dlp.v2.InspectJobConfig</code>
  */
 class InspectJobConfig extends \Google\Protobuf\Internal\Message

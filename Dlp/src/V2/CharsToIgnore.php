@@ -25,7 +25,10 @@ class CharsToIgnore extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $characters_to_skip
+     *           Characters to not transform when masking.
      *     @type int $common_characters_to_ignore
+     *           Common characters to not transform when masking. Useful to avoid removing
+     *           punctuation.
      * }
      */
     public function __construct($data = NULL) {
@@ -34,6 +37,8 @@ class CharsToIgnore extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Characters to not transform when masking.
+     *
      * Generated from protobuf field <code>string characters_to_skip = 1;</code>
      * @return string
      */
@@ -43,6 +48,8 @@ class CharsToIgnore extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Characters to not transform when masking.
+     *
      * Generated from protobuf field <code>string characters_to_skip = 1;</code>
      * @param string $var
      * @return $this
@@ -56,6 +63,9 @@ class CharsToIgnore extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Common characters to not transform when masking. Useful to avoid removing
+     * punctuation.
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CharsToIgnore.CommonCharsToIgnore common_characters_to_ignore = 2;</code>
      * @return int
      */
@@ -65,6 +75,9 @@ class CharsToIgnore extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Common characters to not transform when masking. Useful to avoid removing
+     * punctuation.
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CharsToIgnore.CommonCharsToIgnore common_characters_to_ignore = 2;</code>
      * @param int $var
      * @return $this

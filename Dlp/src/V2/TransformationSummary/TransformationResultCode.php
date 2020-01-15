@@ -14,14 +14,20 @@ use UnexpectedValueException;
 class TransformationResultCode
 {
     /**
+     * Unused
+     *
      * Generated from protobuf enum <code>TRANSFORMATION_RESULT_CODE_UNSPECIFIED = 0;</code>
      */
     const TRANSFORMATION_RESULT_CODE_UNSPECIFIED = 0;
     /**
+     * Transformation completed without an error.
+     *
      * Generated from protobuf enum <code>SUCCESS = 1;</code>
      */
     const SUCCESS = 1;
     /**
+     * Transformation had an error.
+     *
      * Generated from protobuf enum <code>ERROR = 2;</code>
      */
     const ERROR = 2;

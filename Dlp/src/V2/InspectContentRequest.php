@@ -35,7 +35,7 @@ class InspectContentRequest extends \Google\Protobuf\Internal\Message
      */
     private $item = null;
     /**
-     * Optional template to use. Any configuration directly specified in
+     * Template to use. Any configuration directly specified in
      * inspect_config will override those set in the template. Singular fields
      * that are set in this request will replace their corresponding fields in the
      * template. Repeated fields are appended. Singular sub-messages and groups
@@ -66,7 +66,7 @@ class InspectContentRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dlp\V2\ContentItem $item
      *           The item to inspect.
      *     @type string $inspect_template_name
-     *           Optional template to use. Any configuration directly specified in
+     *           Template to use. Any configuration directly specified in
      *           inspect_config will override those set in the template. Singular fields
      *           that are set in this request will replace their corresponding fields in the
      *           template. Repeated fields are appended. Singular sub-messages and groups
@@ -162,7 +162,7 @@ class InspectContentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional template to use. Any configuration directly specified in
+     * Template to use. Any configuration directly specified in
      * inspect_config will override those set in the template. Singular fields
      * that are set in this request will replace their corresponding fields in the
      * template. Repeated fields are appended. Singular sub-messages and groups
@@ -177,7 +177,7 @@ class InspectContentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional template to use. Any configuration directly specified in
+     * Template to use. Any configuration directly specified in
      * inspect_config will override those set in the template. Singular fields
      * that are set in this request will replace their corresponding fields in the
      * template. Repeated fields are appended. Singular sub-messages and groups

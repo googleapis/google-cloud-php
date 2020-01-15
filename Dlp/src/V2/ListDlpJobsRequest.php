@@ -22,12 +22,12 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Optional. Allows filtering.
+     * Allows filtering.
      * Supported syntax:
      * * Filter expressions are made up of one or more restrictions.
      * * Restrictions can be combined by `AND` or `OR` logical operators. A
      * sequence of restrictions implicitly uses `AND`.
-     * * A restriction has the form of `<field> <operator> <value>`.
+     * * A restriction has the form of `{field} {operator} {value}`.
      * * Supported fields/values for inspect jobs:
      *     - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED
      *     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY
@@ -68,7 +68,7 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
      */
     private $type = 0;
     /**
-     * Optional comma separated list of fields to order by,
+     * Comma separated list of fields to order by,
      * followed by `asc` or `desc` postfix. This list is case-insensitive,
      * default sorting order is ascending, redundant space characters are
      * insignificant.
@@ -99,12 +99,12 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The parent resource name, for example projects/my-project-id.
      *     @type string $filter
-     *           Optional. Allows filtering.
+     *           Allows filtering.
      *           Supported syntax:
      *           * Filter expressions are made up of one or more restrictions.
      *           * Restrictions can be combined by `AND` or `OR` logical operators. A
      *           sequence of restrictions implicitly uses `AND`.
-     *           * A restriction has the form of `<field> <operator> <value>`.
+     *           * A restriction has the form of `{field} {operator} {value}`.
      *           * Supported fields/values for inspect jobs:
      *               - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED
      *               - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY
@@ -129,7 +129,7 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
      *     @type int $type
      *           The type of job. Defaults to `DlpJobType.INSPECT`
      *     @type string $order_by
-     *           Optional comma separated list of fields to order by,
+     *           Comma separated list of fields to order by,
      *           followed by `asc` or `desc` postfix. This list is case-insensitive,
      *           default sorting order is ascending, redundant space characters are
      *           insignificant.
@@ -176,12 +176,12 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Allows filtering.
+     * Allows filtering.
      * Supported syntax:
      * * Filter expressions are made up of one or more restrictions.
      * * Restrictions can be combined by `AND` or `OR` logical operators. A
      * sequence of restrictions implicitly uses `AND`.
-     * * A restriction has the form of `<field> <operator> <value>`.
+     * * A restriction has the form of `{field} {operator} {value}`.
      * * Supported fields/values for inspect jobs:
      *     - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED
      *     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY
@@ -209,12 +209,12 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Allows filtering.
+     * Allows filtering.
      * Supported syntax:
      * * Filter expressions are made up of one or more restrictions.
      * * Restrictions can be combined by `AND` or `OR` logical operators. A
      * sequence of restrictions implicitly uses `AND`.
-     * * A restriction has the form of `<field> <operator> <value>`.
+     * * A restriction has the form of `{field} {operator} {value}`.
      * * Supported fields/values for inspect jobs:
      *     - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED
      *     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY
@@ -324,7 +324,7 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional comma separated list of fields to order by,
+     * Comma separated list of fields to order by,
      * followed by `asc` or `desc` postfix. This list is case-insensitive,
      * default sorting order is ascending, redundant space characters are
      * insignificant.
@@ -344,7 +344,7 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional comma separated list of fields to order by,
+     * Comma separated list of fields to order by,
      * followed by `asc` or `desc` postfix. This list is case-insensitive,
      * default sorting order is ascending, redundant space characters are
      * insignificant.

@@ -22,7 +22,7 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Optional page token to continue retrieval. Comes from previous call
+     * Page token to continue retrieval. Comes from previous call
      * to ListJobTriggers. `order_by` field must not
      * change for subsequent calls.
      *
@@ -30,13 +30,13 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_token = '';
     /**
-     * Optional size of the page, can be limited by a server.
+     * Size of the page, can be limited by a server.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      */
     private $page_size = 0;
     /**
-     * Optional comma separated list of triggeredJob fields to order by,
+     * Comma separated list of triggeredJob fields to order by,
      * followed by `asc` or `desc` postfix. This list is case-insensitive,
      * default sorting order is ascending, redundant space characters are
      * insignificant.
@@ -53,12 +53,12 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      */
     private $order_by = '';
     /**
-     * Optional. Allows filtering.
+     * Allows filtering.
      * Supported syntax:
      * * Filter expressions are made up of one or more restrictions.
      * * Restrictions can be combined by `AND` or `OR` logical operators. A
      * sequence of restrictions implicitly uses `AND`.
-     * * A restriction has the form of `<field> <operator> <value>`.
+     * * A restriction has the form of `{field} {operator} {value}`.
      * * Supported fields/values for inspect jobs:
      *     - `status` - HEALTHY|PAUSED|CANCELLED
      *     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY
@@ -93,13 +93,13 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The parent resource name, for example `projects/my-project-id`.
      *     @type string $page_token
-     *           Optional page token to continue retrieval. Comes from previous call
+     *           Page token to continue retrieval. Comes from previous call
      *           to ListJobTriggers. `order_by` field must not
      *           change for subsequent calls.
      *     @type int $page_size
-     *           Optional size of the page, can be limited by a server.
+     *           Size of the page, can be limited by a server.
      *     @type string $order_by
-     *           Optional comma separated list of triggeredJob fields to order by,
+     *           Comma separated list of triggeredJob fields to order by,
      *           followed by `asc` or `desc` postfix. This list is case-insensitive,
      *           default sorting order is ascending, redundant space characters are
      *           insignificant.
@@ -112,12 +112,12 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      *           - `display_name`: corresponds to JobTrigger's display name.
      *           - `status`: corresponds to JobTrigger's status.
      *     @type string $filter
-     *           Optional. Allows filtering.
+     *           Allows filtering.
      *           Supported syntax:
      *           * Filter expressions are made up of one or more restrictions.
      *           * Restrictions can be combined by `AND` or `OR` logical operators. A
      *           sequence of restrictions implicitly uses `AND`.
-     *           * A restriction has the form of `<field> <operator> <value>`.
+     *           * A restriction has the form of `{field} {operator} {value}`.
      *           * Supported fields/values for inspect jobs:
      *               - `status` - HEALTHY|PAUSED|CANCELLED
      *               - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY
@@ -168,7 +168,7 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional page token to continue retrieval. Comes from previous call
+     * Page token to continue retrieval. Comes from previous call
      * to ListJobTriggers. `order_by` field must not
      * change for subsequent calls.
      *
@@ -181,7 +181,7 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional page token to continue retrieval. Comes from previous call
+     * Page token to continue retrieval. Comes from previous call
      * to ListJobTriggers. `order_by` field must not
      * change for subsequent calls.
      *
@@ -198,7 +198,7 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional size of the page, can be limited by a server.
+     * Size of the page, can be limited by a server.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      * @return int
@@ -209,7 +209,7 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional size of the page, can be limited by a server.
+     * Size of the page, can be limited by a server.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      * @param int $var
@@ -224,7 +224,7 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional comma separated list of triggeredJob fields to order by,
+     * Comma separated list of triggeredJob fields to order by,
      * followed by `asc` or `desc` postfix. This list is case-insensitive,
      * default sorting order is ascending, redundant space characters are
      * insignificant.
@@ -246,7 +246,7 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional comma separated list of triggeredJob fields to order by,
+     * Comma separated list of triggeredJob fields to order by,
      * followed by `asc` or `desc` postfix. This list is case-insensitive,
      * default sorting order is ascending, redundant space characters are
      * insignificant.
@@ -272,12 +272,12 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Allows filtering.
+     * Allows filtering.
      * Supported syntax:
      * * Filter expressions are made up of one or more restrictions.
      * * Restrictions can be combined by `AND` or `OR` logical operators. A
      * sequence of restrictions implicitly uses `AND`.
-     * * A restriction has the form of `<field> <operator> <value>`.
+     * * A restriction has the form of `{field} {operator} {value}`.
      * * Supported fields/values for inspect jobs:
      *     - `status` - HEALTHY|PAUSED|CANCELLED
      *     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY
@@ -301,12 +301,12 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Allows filtering.
+     * Allows filtering.
      * Supported syntax:
      * * Filter expressions are made up of one or more restrictions.
      * * Restrictions can be combined by `AND` or `OR` logical operators. A
      * sequence of restrictions implicitly uses `AND`.
-     * * A restriction has the form of `<field> <operator> <value>`.
+     * * A restriction has the form of `{field} {operator} {value}`.
      * * Supported fields/values for inspect jobs:
      *     - `status` - HEALTHY|PAUSED|CANCELLED
      *     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY

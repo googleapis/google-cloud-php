@@ -19,6 +19,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class SaveFindings extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Location to store findings outside of DLP.
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.OutputStorageConfig output_config = 1;</code>
      */
     private $output_config = null;
@@ -30,6 +32,7 @@ class SaveFindings extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Dlp\V2\OutputStorageConfig $output_config
+     *           Location to store findings outside of DLP.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,6 +41,8 @@ class SaveFindings extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Location to store findings outside of DLP.
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.OutputStorageConfig output_config = 1;</code>
      * @return \Google\Cloud\Dlp\V2\OutputStorageConfig
      */
@@ -47,6 +52,8 @@ class SaveFindings extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Location to store findings outside of DLP.
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.OutputStorageConfig output_config = 1;</code>
      * @param \Google\Cloud\Dlp\V2\OutputStorageConfig $var
      * @return $this

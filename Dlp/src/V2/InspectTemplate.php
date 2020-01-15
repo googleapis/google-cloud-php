@@ -19,12 +19,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class InspectTemplate extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The template name. Output only.
+     * Output only. The template name.
      * The template will have one of the following formats:
      * `projects/PROJECT_ID/inspectTemplates/TEMPLATE_ID` OR
-     * `organizations/ORGANIZATION_ID/inspectTemplates/TEMPLATE_ID`
+     * `organizations/ORGANIZATION_ID/inspectTemplates/TEMPLATE_ID`;
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $name = '';
     /**
@@ -40,15 +40,15 @@ class InspectTemplate extends \Google\Protobuf\Internal\Message
      */
     private $description = '';
     /**
-     * The creation timestamp of an inspectTemplate, output only field.
+     * Output only. The creation timestamp of an inspectTemplate.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $create_time = null;
     /**
-     * The last update timestamp of an inspectTemplate, output only field.
+     * Output only. The last update timestamp of an inspectTemplate.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $update_time = null;
     /**
@@ -65,18 +65,18 @@ class InspectTemplate extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The template name. Output only.
+     *           Output only. The template name.
      *           The template will have one of the following formats:
      *           `projects/PROJECT_ID/inspectTemplates/TEMPLATE_ID` OR
-     *           `organizations/ORGANIZATION_ID/inspectTemplates/TEMPLATE_ID`
+     *           `organizations/ORGANIZATION_ID/inspectTemplates/TEMPLATE_ID`;
      *     @type string $display_name
      *           Display name (max 256 chars).
      *     @type string $description
      *           Short description (max 256 chars).
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           The creation timestamp of an inspectTemplate, output only field.
+     *           Output only. The creation timestamp of an inspectTemplate.
      *     @type \Google\Protobuf\Timestamp $update_time
-     *           The last update timestamp of an inspectTemplate, output only field.
+     *           Output only. The last update timestamp of an inspectTemplate.
      *     @type \Google\Cloud\Dlp\V2\InspectConfig $inspect_config
      *           The core content of the template. Configuration of the scanning process.
      * }
@@ -87,12 +87,12 @@ class InspectTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The template name. Output only.
+     * Output only. The template name.
      * The template will have one of the following formats:
      * `projects/PROJECT_ID/inspectTemplates/TEMPLATE_ID` OR
-     * `organizations/ORGANIZATION_ID/inspectTemplates/TEMPLATE_ID`
+     * `organizations/ORGANIZATION_ID/inspectTemplates/TEMPLATE_ID`;
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getName()
@@ -101,12 +101,12 @@ class InspectTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The template name. Output only.
+     * Output only. The template name.
      * The template will have one of the following formats:
      * `projects/PROJECT_ID/inspectTemplates/TEMPLATE_ID` OR
-     * `organizations/ORGANIZATION_ID/inspectTemplates/TEMPLATE_ID`
+     * `organizations/ORGANIZATION_ID/inspectTemplates/TEMPLATE_ID`;
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -171,9 +171,9 @@ class InspectTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The creation timestamp of an inspectTemplate, output only field.
+     * Output only. The creation timestamp of an inspectTemplate.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getCreateTime()
@@ -182,9 +182,9 @@ class InspectTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The creation timestamp of an inspectTemplate, output only field.
+     * Output only. The creation timestamp of an inspectTemplate.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -197,9 +197,9 @@ class InspectTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The last update timestamp of an inspectTemplate, output only field.
+     * Output only. The last update timestamp of an inspectTemplate.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getUpdateTime()
@@ -208,9 +208,9 @@ class InspectTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The last update timestamp of an inspectTemplate, output only field.
+     * Output only. The last update timestamp of an inspectTemplate.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */

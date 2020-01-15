@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * Histogram of k-anonymity equivalence classes.
+ *
  * Generated from protobuf message <code>google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.KAnonymityResult.KAnonymityHistogramBucket</code>
  */
 class KAnonymityHistogramBucket extends \Google\Protobuf\Internal\Message

@@ -17,6 +17,8 @@ use UnexpectedValueException;
 class Status
 {
     /**
+     * Unused.
+     *
      * Generated from protobuf enum <code>STATUS_UNSPECIFIED = 0;</code>
      */
     const STATUS_UNSPECIFIED = 0;

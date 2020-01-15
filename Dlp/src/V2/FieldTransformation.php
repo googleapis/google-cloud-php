@@ -16,15 +16,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class FieldTransformation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Input field(s) to apply the transformation to. [required]
+     * Required. Input field(s) to apply the transformation to.
      *
-     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FieldId fields = 1;</code>
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FieldId fields = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $fields;
     /**
      * Only apply the transformation if the condition evaluates to true for the
      * given `RecordCondition`. The conditions are allowed to reference fields
-     * that are not used in the actual transformation. [optional]
+     * that are not used in the actual transformation.
      * Example Use Cases:
      * - Apply a different bucket transformation to an age column if the zip code
      * column for the same record is within a specific range.
@@ -42,11 +42,11 @@ class FieldTransformation extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Dlp\V2\FieldId[]|\Google\Protobuf\Internal\RepeatedField $fields
-     *           Input field(s) to apply the transformation to. [required]
+     *           Required. Input field(s) to apply the transformation to.
      *     @type \Google\Cloud\Dlp\V2\RecordCondition $condition
      *           Only apply the transformation if the condition evaluates to true for the
      *           given `RecordCondition`. The conditions are allowed to reference fields
-     *           that are not used in the actual transformation. [optional]
+     *           that are not used in the actual transformation.
      *           Example Use Cases:
      *           - Apply a different bucket transformation to an age column if the zip code
      *           column for the same record is within a specific range.
@@ -64,9 +64,9 @@ class FieldTransformation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input field(s) to apply the transformation to. [required]
+     * Required. Input field(s) to apply the transformation to.
      *
-     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FieldId fields = 1;</code>
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FieldId fields = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getFields()
@@ -75,9 +75,9 @@ class FieldTransformation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input field(s) to apply the transformation to. [required]
+     * Required. Input field(s) to apply the transformation to.
      *
-     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FieldId fields = 1;</code>
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FieldId fields = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dlp\V2\FieldId[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -92,7 +92,7 @@ class FieldTransformation extends \Google\Protobuf\Internal\Message
     /**
      * Only apply the transformation if the condition evaluates to true for the
      * given `RecordCondition`. The conditions are allowed to reference fields
-     * that are not used in the actual transformation. [optional]
+     * that are not used in the actual transformation.
      * Example Use Cases:
      * - Apply a different bucket transformation to an age column if the zip code
      * column for the same record is within a specific range.
@@ -109,7 +109,7 @@ class FieldTransformation extends \Google\Protobuf\Internal\Message
     /**
      * Only apply the transformation if the condition evaluates to true for the
      * given `RecordCondition`. The conditions are allowed to reference fields
-     * that are not used in the actual transformation. [optional]
+     * that are not used in the actual transformation.
      * Example Use Cases:
      * - Apply a different bucket transformation to an age column if the zip code
      * column for the same record is within a specific range.

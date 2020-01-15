@@ -14,6 +14,8 @@ use UnexpectedValueException;
 class OutputSchema
 {
     /**
+     * Unused.
+     *
      * Generated from protobuf enum <code>OUTPUT_SCHEMA_UNSPECIFIED = 0;</code>
      */
     const OUTPUT_SCHEMA_UNSPECIFIED = 0;

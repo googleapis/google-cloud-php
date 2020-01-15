@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * but requires more configuration. This message is provided as a convenience to
  * the user for simple bucketing strategies.
  * The transformed value will be a hyphenated string of
- * <lower_bound>-<upper_bound>, i.e if lower_bound = 10 and upper_bound = 20
+ * {lower_bound}-{upper_bound}, i.e if lower_bound = 10 and upper_bound = 20
  * all values that are within this bucket will be replaced with "10-20".
  * This can be used on data of type: double, long.
  * If the bound Value type differs from the type of data
@@ -27,29 +27,28 @@ use Google\Protobuf\Internal\GPBUtil;
 class FixedSizeBucketingConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Lower bound value of buckets. All values less than `lower_bound` are
+     * Required. Lower bound value of buckets. All values less than `lower_bound` are
      * grouped together into a single bucket; for example if `lower_bound` = 10,
-     * then all values less than 10 are replaced with the value “-10”. [Required].
+     * then all values less than 10 are replaced with the value “-10”.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.Value lower_bound = 1;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.Value lower_bound = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $lower_bound = null;
     /**
-     * Upper bound value of buckets. All values greater than upper_bound are
+     * Required. Upper bound value of buckets. All values greater than upper_bound are
      * grouped together into a single bucket; for example if `upper_bound` = 89,
      * then all values greater than 89 are replaced with the value “89+”.
-     * [Required].
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.Value upper_bound = 2;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.Value upper_bound = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $upper_bound = null;
     /**
-     * Size of each bucket (except for minimum and maximum buckets). So if
+     * Required. Size of each bucket (except for minimum and maximum buckets). So if
      * `lower_bound` = 10, `upper_bound` = 89, and `bucket_size` = 10, then the
      * following buckets would be used: -10, 10-20, 20-30, 30-40, 40-50, 50-60,
-     * 60-70, 70-80, 80-89, 89+. Precision up to 2 decimals works. [Required].
+     * 60-70, 70-80, 80-89, 89+. Precision up to 2 decimals works.
      *
-     * Generated from protobuf field <code>double bucket_size = 3;</code>
+     * Generated from protobuf field <code>double bucket_size = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $bucket_size = 0.0;
 
@@ -60,19 +59,18 @@ class FixedSizeBucketingConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Dlp\V2\Value $lower_bound
-     *           Lower bound value of buckets. All values less than `lower_bound` are
+     *           Required. Lower bound value of buckets. All values less than `lower_bound` are
      *           grouped together into a single bucket; for example if `lower_bound` = 10,
-     *           then all values less than 10 are replaced with the value “-10”. [Required].
+     *           then all values less than 10 are replaced with the value “-10”.
      *     @type \Google\Cloud\Dlp\V2\Value $upper_bound
-     *           Upper bound value of buckets. All values greater than upper_bound are
+     *           Required. Upper bound value of buckets. All values greater than upper_bound are
      *           grouped together into a single bucket; for example if `upper_bound` = 89,
      *           then all values greater than 89 are replaced with the value “89+”.
-     *           [Required].
      *     @type float $bucket_size
-     *           Size of each bucket (except for minimum and maximum buckets). So if
+     *           Required. Size of each bucket (except for minimum and maximum buckets). So if
      *           `lower_bound` = 10, `upper_bound` = 89, and `bucket_size` = 10, then the
      *           following buckets would be used: -10, 10-20, 20-30, 30-40, 40-50, 50-60,
-     *           60-70, 70-80, 80-89, 89+. Precision up to 2 decimals works. [Required].
+     *           60-70, 70-80, 80-89, 89+. Precision up to 2 decimals works.
      * }
      */
     public function __construct($data = NULL) {
@@ -81,11 +79,11 @@ class FixedSizeBucketingConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Lower bound value of buckets. All values less than `lower_bound` are
+     * Required. Lower bound value of buckets. All values less than `lower_bound` are
      * grouped together into a single bucket; for example if `lower_bound` = 10,
-     * then all values less than 10 are replaced with the value “-10”. [Required].
+     * then all values less than 10 are replaced with the value “-10”.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.Value lower_bound = 1;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.Value lower_bound = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Dlp\V2\Value
      */
     public function getLowerBound()
@@ -94,11 +92,11 @@ class FixedSizeBucketingConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Lower bound value of buckets. All values less than `lower_bound` are
+     * Required. Lower bound value of buckets. All values less than `lower_bound` are
      * grouped together into a single bucket; for example if `lower_bound` = 10,
-     * then all values less than 10 are replaced with the value “-10”. [Required].
+     * then all values less than 10 are replaced with the value “-10”.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.Value lower_bound = 1;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.Value lower_bound = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dlp\V2\Value $var
      * @return $this
      */
@@ -111,12 +109,11 @@ class FixedSizeBucketingConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Upper bound value of buckets. All values greater than upper_bound are
+     * Required. Upper bound value of buckets. All values greater than upper_bound are
      * grouped together into a single bucket; for example if `upper_bound` = 89,
      * then all values greater than 89 are replaced with the value “89+”.
-     * [Required].
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.Value upper_bound = 2;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.Value upper_bound = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Dlp\V2\Value
      */
     public function getUpperBound()
@@ -125,12 +122,11 @@ class FixedSizeBucketingConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Upper bound value of buckets. All values greater than upper_bound are
+     * Required. Upper bound value of buckets. All values greater than upper_bound are
      * grouped together into a single bucket; for example if `upper_bound` = 89,
      * then all values greater than 89 are replaced with the value “89+”.
-     * [Required].
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.Value upper_bound = 2;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.Value upper_bound = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dlp\V2\Value $var
      * @return $this
      */
@@ -143,12 +139,12 @@ class FixedSizeBucketingConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Size of each bucket (except for minimum and maximum buckets). So if
+     * Required. Size of each bucket (except for minimum and maximum buckets). So if
      * `lower_bound` = 10, `upper_bound` = 89, and `bucket_size` = 10, then the
      * following buckets would be used: -10, 10-20, 20-30, 30-40, 40-50, 50-60,
-     * 60-70, 70-80, 80-89, 89+. Precision up to 2 decimals works. [Required].
+     * 60-70, 70-80, 80-89, 89+. Precision up to 2 decimals works.
      *
-     * Generated from protobuf field <code>double bucket_size = 3;</code>
+     * Generated from protobuf field <code>double bucket_size = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return float
      */
     public function getBucketSize()
@@ -157,12 +153,12 @@ class FixedSizeBucketingConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Size of each bucket (except for minimum and maximum buckets). So if
+     * Required. Size of each bucket (except for minimum and maximum buckets). So if
      * `lower_bound` = 10, `upper_bound` = 89, and `bucket_size` = 10, then the
      * following buckets would be used: -10, 10-20, 20-30, 30-40, 40-50, 50-60,
-     * 60-70, 70-80, 80-89, 89+. Precision up to 2 decimals works. [Required].
+     * 60-70, 70-80, 80-89, 89+. Precision up to 2 decimals works.
      *
-     * Generated from protobuf field <code>double bucket_size = 3;</code>
+     * Generated from protobuf field <code>double bucket_size = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param float $var
      * @return $this
      */

@@ -32,19 +32,19 @@ use Google\Protobuf\Internal\GPBUtil;
 class Condition extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Field within the record this condition is evaluated against. [required]
+     * Required. Field within the record this condition is evaluated against.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId field = 1;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId field = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $field = null;
     /**
-     * Operator used to compare the field or infoType to the value. [required]
+     * Required. Operator used to compare the field or infoType to the value.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.RelationalOperator operator = 3;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.RelationalOperator operator = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $operator = 0;
     /**
-     * Value to compare against. [Required, except for `EXISTS` tests.]
+     * Value to compare against. [Mandatory, except for `EXISTS` tests.]
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Value value = 4;</code>
      */
@@ -57,11 +57,11 @@ class Condition extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Dlp\V2\FieldId $field
-     *           Field within the record this condition is evaluated against. [required]
+     *           Required. Field within the record this condition is evaluated against.
      *     @type int $operator
-     *           Operator used to compare the field or infoType to the value. [required]
+     *           Required. Operator used to compare the field or infoType to the value.
      *     @type \Google\Cloud\Dlp\V2\Value $value
-     *           Value to compare against. [Required, except for `EXISTS` tests.]
+     *           Value to compare against. [Mandatory, except for `EXISTS` tests.]
      * }
      */
     public function __construct($data = NULL) {
@@ -70,9 +70,9 @@ class Condition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Field within the record this condition is evaluated against. [required]
+     * Required. Field within the record this condition is evaluated against.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId field = 1;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId field = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Dlp\V2\FieldId
      */
     public function getField()
@@ -81,9 +81,9 @@ class Condition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Field within the record this condition is evaluated against. [required]
+     * Required. Field within the record this condition is evaluated against.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId field = 1;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId field = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dlp\V2\FieldId $var
      * @return $this
      */
@@ -96,9 +96,9 @@ class Condition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Operator used to compare the field or infoType to the value. [required]
+     * Required. Operator used to compare the field or infoType to the value.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.RelationalOperator operator = 3;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.RelationalOperator operator = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getOperator()
@@ -107,9 +107,9 @@ class Condition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Operator used to compare the field or infoType to the value. [required]
+     * Required. Operator used to compare the field or infoType to the value.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.RelationalOperator operator = 3;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.RelationalOperator operator = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */
@@ -122,7 +122,7 @@ class Condition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Value to compare against. [Required, except for `EXISTS` tests.]
+     * Value to compare against. [Mandatory, except for `EXISTS` tests.]
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Value value = 4;</code>
      * @return \Google\Cloud\Dlp\V2\Value
@@ -133,7 +133,7 @@ class Condition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Value to compare against. [Required, except for `EXISTS` tests.]
+     * Value to compare against. [Mandatory, except for `EXISTS` tests.]
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Value value = 4;</code>
      * @param \Google\Cloud\Dlp\V2\Value $var

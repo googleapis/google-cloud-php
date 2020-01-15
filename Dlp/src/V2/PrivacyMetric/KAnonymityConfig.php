@@ -26,7 +26,7 @@ class KAnonymityConfig extends \Google\Protobuf\Internal\Message
      */
     private $quasi_ids;
     /**
-     * Optional message indicating that multiple rows might be associated to a
+     * Message indicating that multiple rows might be associated to a
      * single individual. If the same entity_id is associated to multiple
      * quasi-identifier tuples over distinct rows, we consider the entire
      * collection of tuples as the composite quasi-identifier. This collection
@@ -53,7 +53,7 @@ class KAnonymityConfig extends \Google\Protobuf\Internal\Message
      *           supported so long as they are not structs themselves or nested within
      *           a repeated field.
      *     @type \Google\Cloud\Dlp\V2\EntityId $entity_id
-     *           Optional message indicating that multiple rows might be associated to a
+     *           Message indicating that multiple rows might be associated to a
      *           single individual. If the same entity_id is associated to multiple
      *           quasi-identifier tuples over distinct rows, we consider the entire
      *           collection of tuples as the composite quasi-identifier. This collection
@@ -104,7 +104,7 @@ class KAnonymityConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional message indicating that multiple rows might be associated to a
+     * Message indicating that multiple rows might be associated to a
      * single individual. If the same entity_id is associated to multiple
      * quasi-identifier tuples over distinct rows, we consider the entire
      * collection of tuples as the composite quasi-identifier. This collection
@@ -123,7 +123,7 @@ class KAnonymityConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional message indicating that multiple rows might be associated to a
+     * Message indicating that multiple rows might be associated to a
      * single individual. If the same entity_id is associated to multiple
      * quasi-identifier tuples over distinct rows, we consider the entire
      * collection of tuples as the composite quasi-identifier. This collection

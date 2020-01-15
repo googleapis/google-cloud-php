@@ -40,6 +40,8 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      */
     private $min_likelihood = 0;
     /**
+     * Configuration to control the number of findings returned.
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectConfig.FindingLimits limits = 3;</code>
      */
     private $limits = null;
@@ -100,6 +102,7 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      *           POSSIBLE.
      *           See https://cloud.google.com/dlp/docs/likelihood to learn more.
      *     @type \Google\Cloud\Dlp\V2\InspectConfig\FindingLimits $limits
+     *           Configuration to control the number of findings returned.
      *     @type bool $include_quote
      *           When true, a contextual quote from the data that triggered a finding is
      *           included in the response; see Finding.quote.
@@ -195,6 +198,8 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Configuration to control the number of findings returned.
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectConfig.FindingLimits limits = 3;</code>
      * @return \Google\Cloud\Dlp\V2\InspectConfig\FindingLimits
      */
@@ -204,6 +209,8 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Configuration to control the number of findings returned.
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectConfig.FindingLimits limits = 3;</code>
      * @param \Google\Cloud\Dlp\V2\InspectConfig\FindingLimits $var
      * @return $this
