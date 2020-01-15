@@ -22,7 +22,7 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      * Output only. The resource name for this [CryptoKey][google.cloud.kms.v1.CryptoKey] in the format
      * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $name = '';
     /**
@@ -31,23 +31,23 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      * in [EncryptRequest.name][google.cloud.kms.v1.EncryptRequest.name].
      * The [CryptoKey][google.cloud.kms.v1.CryptoKey]'s primary version can be updated via
      * [UpdateCryptoKeyPrimaryVersion][google.cloud.kms.v1.KeyManagementService.UpdateCryptoKeyPrimaryVersion].
-     * All keys with [purpose][google.cloud.kms.v1.CryptoKey.purpose]
-     * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT] have a
+     * Keys with [purpose][google.cloud.kms.v1.CryptoKey.purpose]
+     * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT] may have a
      * primary. For other keys, this field will be omitted.
      *
-     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion primary = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion primary = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $primary = null;
     /**
-     * The immutable purpose of this [CryptoKey][google.cloud.kms.v1.CryptoKey].
+     * Immutable. The immutable purpose of this [CryptoKey][google.cloud.kms.v1.CryptoKey].
      *
-     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose purpose = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose purpose = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $purpose = 0;
     /**
      * Output only. The time at which this [CryptoKey][google.cloud.kms.v1.CryptoKey] was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $create_time = null;
     /**
@@ -98,11 +98,11 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      *           in [EncryptRequest.name][google.cloud.kms.v1.EncryptRequest.name].
      *           The [CryptoKey][google.cloud.kms.v1.CryptoKey]'s primary version can be updated via
      *           [UpdateCryptoKeyPrimaryVersion][google.cloud.kms.v1.KeyManagementService.UpdateCryptoKeyPrimaryVersion].
-     *           All keys with [purpose][google.cloud.kms.v1.CryptoKey.purpose]
-     *           [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT] have a
+     *           Keys with [purpose][google.cloud.kms.v1.CryptoKey.purpose]
+     *           [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT] may have a
      *           primary. For other keys, this field will be omitted.
      *     @type int $purpose
-     *           The immutable purpose of this [CryptoKey][google.cloud.kms.v1.CryptoKey].
+     *           Immutable. The immutable purpose of this [CryptoKey][google.cloud.kms.v1.CryptoKey].
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The time at which this [CryptoKey][google.cloud.kms.v1.CryptoKey] was created.
      *     @type \Google\Protobuf\Timestamp $next_rotation_time
@@ -118,7 +118,8 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      *           automatic rotation. For other keys, this field must be omitted.
      *     @type \Google\Protobuf\Duration $rotation_period
      *           [next_rotation_time][google.cloud.kms.v1.CryptoKey.next_rotation_time] will be advanced by this period when the service
-     *           automatically rotates a key. Must be at least one day.
+     *           automatically rotates a key. Must be at least 24 hours and at most
+     *           876,000 hours.
      *           If [rotation_period][google.cloud.kms.v1.CryptoKey.rotation_period] is set, [next_rotation_time][google.cloud.kms.v1.CryptoKey.next_rotation_time] must also be set.
      *           Keys with [purpose][google.cloud.kms.v1.CryptoKey.purpose]
      *           [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT] support
@@ -142,7 +143,7 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      * Output only. The resource name for this [CryptoKey][google.cloud.kms.v1.CryptoKey] in the format
      * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getName()
@@ -154,7 +155,7 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      * Output only. The resource name for this [CryptoKey][google.cloud.kms.v1.CryptoKey] in the format
      * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -172,11 +173,11 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      * in [EncryptRequest.name][google.cloud.kms.v1.EncryptRequest.name].
      * The [CryptoKey][google.cloud.kms.v1.CryptoKey]'s primary version can be updated via
      * [UpdateCryptoKeyPrimaryVersion][google.cloud.kms.v1.KeyManagementService.UpdateCryptoKeyPrimaryVersion].
-     * All keys with [purpose][google.cloud.kms.v1.CryptoKey.purpose]
-     * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT] have a
+     * Keys with [purpose][google.cloud.kms.v1.CryptoKey.purpose]
+     * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT] may have a
      * primary. For other keys, this field will be omitted.
      *
-     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion primary = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion primary = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Kms\V1\CryptoKeyVersion
      */
     public function getPrimary()
@@ -190,11 +191,11 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      * in [EncryptRequest.name][google.cloud.kms.v1.EncryptRequest.name].
      * The [CryptoKey][google.cloud.kms.v1.CryptoKey]'s primary version can be updated via
      * [UpdateCryptoKeyPrimaryVersion][google.cloud.kms.v1.KeyManagementService.UpdateCryptoKeyPrimaryVersion].
-     * All keys with [purpose][google.cloud.kms.v1.CryptoKey.purpose]
-     * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT] have a
+     * Keys with [purpose][google.cloud.kms.v1.CryptoKey.purpose]
+     * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT] may have a
      * primary. For other keys, this field will be omitted.
      *
-     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion primary = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion primary = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Kms\V1\CryptoKeyVersion $var
      * @return $this
      */
@@ -207,9 +208,9 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The immutable purpose of this [CryptoKey][google.cloud.kms.v1.CryptoKey].
+     * Immutable. The immutable purpose of this [CryptoKey][google.cloud.kms.v1.CryptoKey].
      *
-     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose purpose = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose purpose = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return int
      */
     public function getPurpose()
@@ -218,9 +219,9 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The immutable purpose of this [CryptoKey][google.cloud.kms.v1.CryptoKey].
+     * Immutable. The immutable purpose of this [CryptoKey][google.cloud.kms.v1.CryptoKey].
      *
-     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose purpose = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose purpose = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param int $var
      * @return $this
      */
@@ -235,7 +236,7 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The time at which this [CryptoKey][google.cloud.kms.v1.CryptoKey] was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getCreateTime()
@@ -246,7 +247,7 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The time at which this [CryptoKey][google.cloud.kms.v1.CryptoKey] was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -304,7 +305,8 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
 
     /**
      * [next_rotation_time][google.cloud.kms.v1.CryptoKey.next_rotation_time] will be advanced by this period when the service
-     * automatically rotates a key. Must be at least one day.
+     * automatically rotates a key. Must be at least 24 hours and at most
+     * 876,000 hours.
      * If [rotation_period][google.cloud.kms.v1.CryptoKey.rotation_period] is set, [next_rotation_time][google.cloud.kms.v1.CryptoKey.next_rotation_time] must also be set.
      * Keys with [purpose][google.cloud.kms.v1.CryptoKey.purpose]
      * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT] support
@@ -320,7 +322,8 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
 
     /**
      * [next_rotation_time][google.cloud.kms.v1.CryptoKey.next_rotation_time] will be advanced by this period when the service
-     * automatically rotates a key. Must be at least one day.
+     * automatically rotates a key. Must be at least 24 hours and at most
+     * 876,000 hours.
      * If [rotation_period][google.cloud.kms.v1.CryptoKey.rotation_period] is set, [next_rotation_time][google.cloud.kms.v1.CryptoKey.next_rotation_time] must also be set.
      * Keys with [purpose][google.cloud.kms.v1.CryptoKey.purpose]
      * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT] support

@@ -19,36 +19,41 @@ class ListKeyRingsRequest extends \Google\Protobuf\Internal\Message
      * Required. The resource name of the location associated with the
      * [KeyRings][google.cloud.kms.v1.KeyRing], in the format `projects/&#42;&#47;locations/&#42;`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * Optional limit on the number of [KeyRings][google.cloud.kms.v1.KeyRing] to include in the
+     * Optional. Optional limit on the number of [KeyRings][google.cloud.kms.v1.KeyRing] to include in the
      * response.  Further [KeyRings][google.cloud.kms.v1.KeyRing] can subsequently be obtained by
      * including the [ListKeyRingsResponse.next_page_token][google.cloud.kms.v1.ListKeyRingsResponse.next_page_token] in a subsequent
      * request.  If unspecified, the server will pick an appropriate default.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
     /**
-     * Optional pagination token, returned earlier via
+     * Optional. Optional pagination token, returned earlier via
      * [ListKeyRingsResponse.next_page_token][google.cloud.kms.v1.ListKeyRingsResponse.next_page_token].
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_token = '';
     /**
-     * Optional. Only include resources that match the filter in the response.
+     * Optional. Only include resources that match the filter in the response. For
+     * more information, see
+     * [Sorting and filtering list
+     * results](https://cloud.google.com/kms/docs/sorting-and-filtering).
      *
-     * Generated from protobuf field <code>string filter = 4;</code>
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $filter = '';
     /**
      * Optional. Specify how the results should be sorted. If not specified, the
-     * results will be sorted in the default order.
+     * results will be sorted in the default order.  For more information, see
+     * [Sorting and filtering list
+     * results](https://cloud.google.com/kms/docs/sorting-and-filtering).
      *
-     * Generated from protobuf field <code>string order_by = 5;</code>
+     * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $order_by = '';
 
@@ -62,18 +67,23 @@ class ListKeyRingsRequest extends \Google\Protobuf\Internal\Message
      *           Required. The resource name of the location associated with the
      *           [KeyRings][google.cloud.kms.v1.KeyRing], in the format `projects/&#42;&#47;locations/&#42;`.
      *     @type int $page_size
-     *           Optional limit on the number of [KeyRings][google.cloud.kms.v1.KeyRing] to include in the
+     *           Optional. Optional limit on the number of [KeyRings][google.cloud.kms.v1.KeyRing] to include in the
      *           response.  Further [KeyRings][google.cloud.kms.v1.KeyRing] can subsequently be obtained by
      *           including the [ListKeyRingsResponse.next_page_token][google.cloud.kms.v1.ListKeyRingsResponse.next_page_token] in a subsequent
      *           request.  If unspecified, the server will pick an appropriate default.
      *     @type string $page_token
-     *           Optional pagination token, returned earlier via
+     *           Optional. Optional pagination token, returned earlier via
      *           [ListKeyRingsResponse.next_page_token][google.cloud.kms.v1.ListKeyRingsResponse.next_page_token].
      *     @type string $filter
-     *           Optional. Only include resources that match the filter in the response.
+     *           Optional. Only include resources that match the filter in the response. For
+     *           more information, see
+     *           [Sorting and filtering list
+     *           results](https://cloud.google.com/kms/docs/sorting-and-filtering).
      *     @type string $order_by
      *           Optional. Specify how the results should be sorted. If not specified, the
-     *           results will be sorted in the default order.
+     *           results will be sorted in the default order.  For more information, see
+     *           [Sorting and filtering list
+     *           results](https://cloud.google.com/kms/docs/sorting-and-filtering).
      * }
      */
     public function __construct($data = NULL) {
@@ -85,7 +95,7 @@ class ListKeyRingsRequest extends \Google\Protobuf\Internal\Message
      * Required. The resource name of the location associated with the
      * [KeyRings][google.cloud.kms.v1.KeyRing], in the format `projects/&#42;&#47;locations/&#42;`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -97,7 +107,7 @@ class ListKeyRingsRequest extends \Google\Protobuf\Internal\Message
      * Required. The resource name of the location associated with the
      * [KeyRings][google.cloud.kms.v1.KeyRing], in the format `projects/&#42;&#47;locations/&#42;`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -110,12 +120,12 @@ class ListKeyRingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional limit on the number of [KeyRings][google.cloud.kms.v1.KeyRing] to include in the
+     * Optional. Optional limit on the number of [KeyRings][google.cloud.kms.v1.KeyRing] to include in the
      * response.  Further [KeyRings][google.cloud.kms.v1.KeyRing] can subsequently be obtained by
      * including the [ListKeyRingsResponse.next_page_token][google.cloud.kms.v1.ListKeyRingsResponse.next_page_token] in a subsequent
      * request.  If unspecified, the server will pick an appropriate default.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getPageSize()
@@ -124,12 +134,12 @@ class ListKeyRingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional limit on the number of [KeyRings][google.cloud.kms.v1.KeyRing] to include in the
+     * Optional. Optional limit on the number of [KeyRings][google.cloud.kms.v1.KeyRing] to include in the
      * response.  Further [KeyRings][google.cloud.kms.v1.KeyRing] can subsequently be obtained by
      * including the [ListKeyRingsResponse.next_page_token][google.cloud.kms.v1.ListKeyRingsResponse.next_page_token] in a subsequent
      * request.  If unspecified, the server will pick an appropriate default.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -142,10 +152,10 @@ class ListKeyRingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional pagination token, returned earlier via
+     * Optional. Optional pagination token, returned earlier via
      * [ListKeyRingsResponse.next_page_token][google.cloud.kms.v1.ListKeyRingsResponse.next_page_token].
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPageToken()
@@ -154,10 +164,10 @@ class ListKeyRingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional pagination token, returned earlier via
+     * Optional. Optional pagination token, returned earlier via
      * [ListKeyRingsResponse.next_page_token][google.cloud.kms.v1.ListKeyRingsResponse.next_page_token].
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -170,9 +180,12 @@ class ListKeyRingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Only include resources that match the filter in the response.
+     * Optional. Only include resources that match the filter in the response. For
+     * more information, see
+     * [Sorting and filtering list
+     * results](https://cloud.google.com/kms/docs/sorting-and-filtering).
      *
-     * Generated from protobuf field <code>string filter = 4;</code>
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getFilter()
@@ -181,9 +194,12 @@ class ListKeyRingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Only include resources that match the filter in the response.
+     * Optional. Only include resources that match the filter in the response. For
+     * more information, see
+     * [Sorting and filtering list
+     * results](https://cloud.google.com/kms/docs/sorting-and-filtering).
      *
-     * Generated from protobuf field <code>string filter = 4;</code>
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -197,9 +213,11 @@ class ListKeyRingsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Specify how the results should be sorted. If not specified, the
-     * results will be sorted in the default order.
+     * results will be sorted in the default order.  For more information, see
+     * [Sorting and filtering list
+     * results](https://cloud.google.com/kms/docs/sorting-and-filtering).
      *
-     * Generated from protobuf field <code>string order_by = 5;</code>
+     * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getOrderBy()
@@ -209,9 +227,11 @@ class ListKeyRingsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Specify how the results should be sorted. If not specified, the
-     * results will be sorted in the default order.
+     * results will be sorted in the default order.  For more information, see
+     * [Sorting and filtering list
+     * results](https://cloud.google.com/kms/docs/sorting-and-filtering).
      *
-     * Generated from protobuf field <code>string order_by = 5;</code>
+     * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

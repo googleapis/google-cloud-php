@@ -41,57 +41,55 @@ class ImportJob extends \Google\Protobuf\Internal\Message
      * Output only. The resource name for this [ImportJob][google.cloud.kms.v1.ImportJob] in the format
      * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;importJobs/&#42;`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $name = '';
     /**
-     * Required and immutable. The wrapping method to be used for incoming
-     * key material.
+     * Required. Immutable. The wrapping method to be used for incoming key material.
      *
-     * Generated from protobuf field <code>.google.cloud.kms.v1.ImportJob.ImportMethod import_method = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.kms.v1.ImportJob.ImportMethod import_method = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $import_method = 0;
     /**
-     * Required and immutable. The protection level of the [ImportJob][google.cloud.kms.v1.ImportJob]. This
-     * must match the
+     * Required. Immutable. The protection level of the [ImportJob][google.cloud.kms.v1.ImportJob]. This must match the
      * [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level] of the
      * [version_template][google.cloud.kms.v1.CryptoKey.version_template] on the [CryptoKey][google.cloud.kms.v1.CryptoKey] you
      * attempt to import into.
      *
-     * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 9;</code>
+     * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 9 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $protection_level = 0;
     /**
      * Output only. The time at which this [ImportJob][google.cloud.kms.v1.ImportJob] was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $create_time = null;
     /**
      * Output only. The time this [ImportJob][google.cloud.kms.v1.ImportJob]'s key material was generated.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp generate_time = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp generate_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $generate_time = null;
     /**
      * Output only. The time at which this [ImportJob][google.cloud.kms.v1.ImportJob] is scheduled for
      * expiration and can no longer be used to import key material.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $expire_time = null;
     /**
      * Output only. The time this [ImportJob][google.cloud.kms.v1.ImportJob] expired. Only present if
      * [state][google.cloud.kms.v1.ImportJob.state] is [EXPIRED][google.cloud.kms.v1.ImportJob.ImportJobState.EXPIRED].
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp expire_event_time = 10;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp expire_event_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $expire_event_time = null;
     /**
      * Output only. The current state of the [ImportJob][google.cloud.kms.v1.ImportJob], indicating if it can
      * be used.
      *
-     * Generated from protobuf field <code>.google.cloud.kms.v1.ImportJob.ImportJobState state = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.kms.v1.ImportJob.ImportJobState state = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $state = 0;
     /**
@@ -99,7 +97,7 @@ class ImportJob extends \Google\Protobuf\Internal\Message
      * import. Only returned if [state][google.cloud.kms.v1.ImportJob.state] is
      * [ACTIVE][google.cloud.kms.v1.ImportJob.ImportJobState.ACTIVE].
      *
-     * Generated from protobuf field <code>.google.cloud.kms.v1.ImportJob.WrappingPublicKey public_key = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.kms.v1.ImportJob.WrappingPublicKey public_key = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $public_key = null;
     /**
@@ -109,7 +107,7 @@ class ImportJob extends \Google\Protobuf\Internal\Message
      * Only present if the chosen [ImportMethod][google.cloud.kms.v1.ImportJob.ImportMethod] is one with a protection
      * level of [HSM][google.cloud.kms.v1.ProtectionLevel.HSM].
      *
-     * Generated from protobuf field <code>.google.cloud.kms.v1.KeyOperationAttestation attestation = 8;</code>
+     * Generated from protobuf field <code>.google.cloud.kms.v1.KeyOperationAttestation attestation = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $attestation = null;
 
@@ -123,11 +121,9 @@ class ImportJob extends \Google\Protobuf\Internal\Message
      *           Output only. The resource name for this [ImportJob][google.cloud.kms.v1.ImportJob] in the format
      *           `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;importJobs/&#42;`.
      *     @type int $import_method
-     *           Required and immutable. The wrapping method to be used for incoming
-     *           key material.
+     *           Required. Immutable. The wrapping method to be used for incoming key material.
      *     @type int $protection_level
-     *           Required and immutable. The protection level of the [ImportJob][google.cloud.kms.v1.ImportJob]. This
-     *           must match the
+     *           Required. Immutable. The protection level of the [ImportJob][google.cloud.kms.v1.ImportJob]. This must match the
      *           [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level] of the
      *           [version_template][google.cloud.kms.v1.CryptoKey.version_template] on the [CryptoKey][google.cloud.kms.v1.CryptoKey] you
      *           attempt to import into.
@@ -165,7 +161,7 @@ class ImportJob extends \Google\Protobuf\Internal\Message
      * Output only. The resource name for this [ImportJob][google.cloud.kms.v1.ImportJob] in the format
      * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;importJobs/&#42;`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getName()
@@ -177,7 +173,7 @@ class ImportJob extends \Google\Protobuf\Internal\Message
      * Output only. The resource name for this [ImportJob][google.cloud.kms.v1.ImportJob] in the format
      * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;importJobs/&#42;`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -190,10 +186,9 @@ class ImportJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required and immutable. The wrapping method to be used for incoming
-     * key material.
+     * Required. Immutable. The wrapping method to be used for incoming key material.
      *
-     * Generated from protobuf field <code>.google.cloud.kms.v1.ImportJob.ImportMethod import_method = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.kms.v1.ImportJob.ImportMethod import_method = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return int
      */
     public function getImportMethod()
@@ -202,10 +197,9 @@ class ImportJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required and immutable. The wrapping method to be used for incoming
-     * key material.
+     * Required. Immutable. The wrapping method to be used for incoming key material.
      *
-     * Generated from protobuf field <code>.google.cloud.kms.v1.ImportJob.ImportMethod import_method = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.kms.v1.ImportJob.ImportMethod import_method = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param int $var
      * @return $this
      */
@@ -218,13 +212,12 @@ class ImportJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required and immutable. The protection level of the [ImportJob][google.cloud.kms.v1.ImportJob]. This
-     * must match the
+     * Required. Immutable. The protection level of the [ImportJob][google.cloud.kms.v1.ImportJob]. This must match the
      * [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level] of the
      * [version_template][google.cloud.kms.v1.CryptoKey.version_template] on the [CryptoKey][google.cloud.kms.v1.CryptoKey] you
      * attempt to import into.
      *
-     * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 9;</code>
+     * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 9 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return int
      */
     public function getProtectionLevel()
@@ -233,13 +226,12 @@ class ImportJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required and immutable. The protection level of the [ImportJob][google.cloud.kms.v1.ImportJob]. This
-     * must match the
+     * Required. Immutable. The protection level of the [ImportJob][google.cloud.kms.v1.ImportJob]. This must match the
      * [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level] of the
      * [version_template][google.cloud.kms.v1.CryptoKey.version_template] on the [CryptoKey][google.cloud.kms.v1.CryptoKey] you
      * attempt to import into.
      *
-     * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 9;</code>
+     * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 9 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param int $var
      * @return $this
      */
@@ -254,7 +246,7 @@ class ImportJob extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The time at which this [ImportJob][google.cloud.kms.v1.ImportJob] was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getCreateTime()
@@ -265,7 +257,7 @@ class ImportJob extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The time at which this [ImportJob][google.cloud.kms.v1.ImportJob] was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -280,7 +272,7 @@ class ImportJob extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The time this [ImportJob][google.cloud.kms.v1.ImportJob]'s key material was generated.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp generate_time = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp generate_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getGenerateTime()
@@ -291,7 +283,7 @@ class ImportJob extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The time this [ImportJob][google.cloud.kms.v1.ImportJob]'s key material was generated.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp generate_time = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp generate_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -307,7 +299,7 @@ class ImportJob extends \Google\Protobuf\Internal\Message
      * Output only. The time at which this [ImportJob][google.cloud.kms.v1.ImportJob] is scheduled for
      * expiration and can no longer be used to import key material.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getExpireTime()
@@ -319,7 +311,7 @@ class ImportJob extends \Google\Protobuf\Internal\Message
      * Output only. The time at which this [ImportJob][google.cloud.kms.v1.ImportJob] is scheduled for
      * expiration and can no longer be used to import key material.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -335,7 +327,7 @@ class ImportJob extends \Google\Protobuf\Internal\Message
      * Output only. The time this [ImportJob][google.cloud.kms.v1.ImportJob] expired. Only present if
      * [state][google.cloud.kms.v1.ImportJob.state] is [EXPIRED][google.cloud.kms.v1.ImportJob.ImportJobState.EXPIRED].
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp expire_event_time = 10;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp expire_event_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getExpireEventTime()
@@ -347,7 +339,7 @@ class ImportJob extends \Google\Protobuf\Internal\Message
      * Output only. The time this [ImportJob][google.cloud.kms.v1.ImportJob] expired. Only present if
      * [state][google.cloud.kms.v1.ImportJob.state] is [EXPIRED][google.cloud.kms.v1.ImportJob.ImportJobState.EXPIRED].
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp expire_event_time = 10;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp expire_event_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -363,7 +355,7 @@ class ImportJob extends \Google\Protobuf\Internal\Message
      * Output only. The current state of the [ImportJob][google.cloud.kms.v1.ImportJob], indicating if it can
      * be used.
      *
-     * Generated from protobuf field <code>.google.cloud.kms.v1.ImportJob.ImportJobState state = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.kms.v1.ImportJob.ImportJobState state = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getState()
@@ -375,7 +367,7 @@ class ImportJob extends \Google\Protobuf\Internal\Message
      * Output only. The current state of the [ImportJob][google.cloud.kms.v1.ImportJob], indicating if it can
      * be used.
      *
-     * Generated from protobuf field <code>.google.cloud.kms.v1.ImportJob.ImportJobState state = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.kms.v1.ImportJob.ImportJobState state = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */
@@ -392,7 +384,7 @@ class ImportJob extends \Google\Protobuf\Internal\Message
      * import. Only returned if [state][google.cloud.kms.v1.ImportJob.state] is
      * [ACTIVE][google.cloud.kms.v1.ImportJob.ImportJobState.ACTIVE].
      *
-     * Generated from protobuf field <code>.google.cloud.kms.v1.ImportJob.WrappingPublicKey public_key = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.kms.v1.ImportJob.WrappingPublicKey public_key = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Kms\V1\ImportJob\WrappingPublicKey
      */
     public function getPublicKey()
@@ -405,7 +397,7 @@ class ImportJob extends \Google\Protobuf\Internal\Message
      * import. Only returned if [state][google.cloud.kms.v1.ImportJob.state] is
      * [ACTIVE][google.cloud.kms.v1.ImportJob.ImportJobState.ACTIVE].
      *
-     * Generated from protobuf field <code>.google.cloud.kms.v1.ImportJob.WrappingPublicKey public_key = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.kms.v1.ImportJob.WrappingPublicKey public_key = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Kms\V1\ImportJob\WrappingPublicKey $var
      * @return $this
      */
@@ -424,7 +416,7 @@ class ImportJob extends \Google\Protobuf\Internal\Message
      * Only present if the chosen [ImportMethod][google.cloud.kms.v1.ImportJob.ImportMethod] is one with a protection
      * level of [HSM][google.cloud.kms.v1.ProtectionLevel.HSM].
      *
-     * Generated from protobuf field <code>.google.cloud.kms.v1.KeyOperationAttestation attestation = 8;</code>
+     * Generated from protobuf field <code>.google.cloud.kms.v1.KeyOperationAttestation attestation = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Kms\V1\KeyOperationAttestation
      */
     public function getAttestation()
@@ -439,7 +431,7 @@ class ImportJob extends \Google\Protobuf\Internal\Message
      * Only present if the chosen [ImportMethod][google.cloud.kms.v1.ImportJob.ImportMethod] is one with a protection
      * level of [HSM][google.cloud.kms.v1.ProtectionLevel.HSM].
      *
-     * Generated from protobuf field <code>.google.cloud.kms.v1.KeyOperationAttestation attestation = 8;</code>
+     * Generated from protobuf field <code>.google.cloud.kms.v1.KeyOperationAttestation attestation = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Kms\V1\KeyOperationAttestation $var
      * @return $this
      */

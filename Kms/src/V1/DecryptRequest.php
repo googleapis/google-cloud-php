@@ -19,21 +19,21 @@ class DecryptRequest extends \Google\Protobuf\Internal\Message
      * Required. The resource name of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to use for decryption.
      * The server will choose the appropriate version.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
      * Required. The encrypted data originally returned in
      * [EncryptResponse.ciphertext][google.cloud.kms.v1.EncryptResponse.ciphertext].
      *
-     * Generated from protobuf field <code>bytes ciphertext = 2;</code>
+     * Generated from protobuf field <code>bytes ciphertext = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $ciphertext = '';
     /**
-     * Optional data that must match the data originally supplied in
+     * Optional. Optional data that must match the data originally supplied in
      * [EncryptRequest.additional_authenticated_data][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data].
      *
-     * Generated from protobuf field <code>bytes additional_authenticated_data = 3;</code>
+     * Generated from protobuf field <code>bytes additional_authenticated_data = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $additional_authenticated_data = '';
 
@@ -50,7 +50,7 @@ class DecryptRequest extends \Google\Protobuf\Internal\Message
      *           Required. The encrypted data originally returned in
      *           [EncryptResponse.ciphertext][google.cloud.kms.v1.EncryptResponse.ciphertext].
      *     @type string $additional_authenticated_data
-     *           Optional data that must match the data originally supplied in
+     *           Optional. Optional data that must match the data originally supplied in
      *           [EncryptRequest.additional_authenticated_data][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data].
      * }
      */
@@ -63,7 +63,7 @@ class DecryptRequest extends \Google\Protobuf\Internal\Message
      * Required. The resource name of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to use for decryption.
      * The server will choose the appropriate version.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -75,7 +75,7 @@ class DecryptRequest extends \Google\Protobuf\Internal\Message
      * Required. The resource name of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to use for decryption.
      * The server will choose the appropriate version.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -91,7 +91,7 @@ class DecryptRequest extends \Google\Protobuf\Internal\Message
      * Required. The encrypted data originally returned in
      * [EncryptResponse.ciphertext][google.cloud.kms.v1.EncryptResponse.ciphertext].
      *
-     * Generated from protobuf field <code>bytes ciphertext = 2;</code>
+     * Generated from protobuf field <code>bytes ciphertext = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getCiphertext()
@@ -103,7 +103,7 @@ class DecryptRequest extends \Google\Protobuf\Internal\Message
      * Required. The encrypted data originally returned in
      * [EncryptResponse.ciphertext][google.cloud.kms.v1.EncryptResponse.ciphertext].
      *
-     * Generated from protobuf field <code>bytes ciphertext = 2;</code>
+     * Generated from protobuf field <code>bytes ciphertext = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -116,10 +116,10 @@ class DecryptRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional data that must match the data originally supplied in
+     * Optional. Optional data that must match the data originally supplied in
      * [EncryptRequest.additional_authenticated_data][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data].
      *
-     * Generated from protobuf field <code>bytes additional_authenticated_data = 3;</code>
+     * Generated from protobuf field <code>bytes additional_authenticated_data = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getAdditionalAuthenticatedData()
@@ -128,10 +128,10 @@ class DecryptRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional data that must match the data originally supplied in
+     * Optional. Optional data that must match the data originally supplied in
      * [EncryptRequest.additional_authenticated_data][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data].
      *
-     * Generated from protobuf field <code>bytes additional_authenticated_data = 3;</code>
+     * Generated from protobuf field <code>bytes additional_authenticated_data = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

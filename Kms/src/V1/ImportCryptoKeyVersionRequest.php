@@ -19,7 +19,7 @@ class ImportCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
      * Required. The [name][google.cloud.kms.v1.CryptoKey.name] of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to
      * be imported into.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -28,14 +28,14 @@ class ImportCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
      * [version_template][google.cloud.kms.v1.CryptoKey.version_template] of the [CryptoKey][google.cloud.kms.v1.CryptoKey] this
      * version imports into.
      *
-     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm algorithm = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm algorithm = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $algorithm = 0;
     /**
      * Required. The [name][google.cloud.kms.v1.ImportJob.name] of the [ImportJob][google.cloud.kms.v1.ImportJob] that was used to
      * wrap this key material.
      *
-     * Generated from protobuf field <code>string import_job = 4;</code>
+     * Generated from protobuf field <code>string import_job = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $import_job = '';
     protected $wrapped_key_material;
@@ -72,6 +72,10 @@ class ImportCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
      *                 using AES-KWP (RFC 5649).
      *             </li>
      *           </ol>
+     *           If importing symmetric key material, it is expected that the unwrapped
+     *           key contains plain bytes. If importing asymmetric key material, it is
+     *           expected that the unwrapped key is in PKCS#8-encoded DER format (the
+     *           PrivateKeyInfo structure from RFC 5208).
      *           This format is the same as the format produced by PKCS#11 mechanism
      *           CKM_RSA_AES_KEY_WRAP.
      * }
@@ -85,7 +89,7 @@ class ImportCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
      * Required. The [name][google.cloud.kms.v1.CryptoKey.name] of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to
      * be imported into.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -97,7 +101,7 @@ class ImportCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
      * Required. The [name][google.cloud.kms.v1.CryptoKey.name] of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to
      * be imported into.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -115,7 +119,7 @@ class ImportCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
      * [version_template][google.cloud.kms.v1.CryptoKey.version_template] of the [CryptoKey][google.cloud.kms.v1.CryptoKey] this
      * version imports into.
      *
-     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm algorithm = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm algorithm = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getAlgorithm()
@@ -129,7 +133,7 @@ class ImportCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
      * [version_template][google.cloud.kms.v1.CryptoKey.version_template] of the [CryptoKey][google.cloud.kms.v1.CryptoKey] this
      * version imports into.
      *
-     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm algorithm = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm algorithm = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */
@@ -145,7 +149,7 @@ class ImportCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
      * Required. The [name][google.cloud.kms.v1.ImportJob.name] of the [ImportJob][google.cloud.kms.v1.ImportJob] that was used to
      * wrap this key material.
      *
-     * Generated from protobuf field <code>string import_job = 4;</code>
+     * Generated from protobuf field <code>string import_job = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getImportJob()
@@ -157,7 +161,7 @@ class ImportCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
      * Required. The [name][google.cloud.kms.v1.ImportJob.name] of the [ImportJob][google.cloud.kms.v1.ImportJob] that was used to
      * wrap this key material.
      *
-     * Generated from protobuf field <code>string import_job = 4;</code>
+     * Generated from protobuf field <code>string import_job = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -184,6 +188,10 @@ class ImportCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
      *       using AES-KWP (RFC 5649).
      *   </li>
      * </ol>
+     * If importing symmetric key material, it is expected that the unwrapped
+     * key contains plain bytes. If importing asymmetric key material, it is
+     * expected that the unwrapped key is in PKCS#8-encoded DER format (the
+     * PrivateKeyInfo structure from RFC 5208).
      * This format is the same as the format produced by PKCS#11 mechanism
      * CKM_RSA_AES_KEY_WRAP.
      *
@@ -210,6 +218,10 @@ class ImportCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
      *       using AES-KWP (RFC 5649).
      *   </li>
      * </ol>
+     * If importing symmetric key material, it is expected that the unwrapped
+     * key contains plain bytes. If importing asymmetric key material, it is
+     * expected that the unwrapped key is in PKCS#8-encoded DER format (the
+     * PrivateKeyInfo structure from RFC 5208).
      * This format is the same as the format produced by PKCS#11 mechanism
      * CKM_RSA_AES_KEY_WRAP.
      *

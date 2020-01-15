@@ -26,7 +26,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      * Output only. The resource name for this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] in the format
      * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;&#47;cryptoKeyVersions/&#42;`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $name = '';
     /**
@@ -39,14 +39,14 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      * Output only. The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] describing how crypto operations are
      * performed with this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
      *
-     * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $protection_level = 0;
     /**
      * Output only. The [CryptoKeyVersionAlgorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm] that this
      * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] supports.
      *
-     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm algorithm = 10;</code>
+     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm algorithm = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $algorithm = 0;
     /**
@@ -55,20 +55,20 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      * on the HSM, independently of Google. Only provided for key versions with
      * [protection_level][google.cloud.kms.v1.CryptoKeyVersion.protection_level] [HSM][google.cloud.kms.v1.ProtectionLevel.HSM].
      *
-     * Generated from protobuf field <code>.google.cloud.kms.v1.KeyOperationAttestation attestation = 8;</code>
+     * Generated from protobuf field <code>.google.cloud.kms.v1.KeyOperationAttestation attestation = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $attestation = null;
     /**
      * Output only. The time at which this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $create_time = null;
     /**
      * Output only. The time this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s key material was
      * generated.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp generate_time = 11;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp generate_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $generate_time = null;
     /**
@@ -76,7 +76,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      * for destruction. Only present if [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
      * [DESTROY_SCHEDULED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROY_SCHEDULED].
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp destroy_time = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp destroy_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $destroy_time = null;
     /**
@@ -84,7 +84,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      * destroyed. Only present if [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
      * [DESTROYED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROYED].
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp destroy_event_time = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp destroy_event_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $destroy_event_time = null;
     /**
@@ -92,14 +92,14 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]. Only present if the underlying key material was
      * imported.
      *
-     * Generated from protobuf field <code>string import_job = 14;</code>
+     * Generated from protobuf field <code>string import_job = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $import_job = '';
     /**
      * Output only. The time at which this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s key material
      * was imported.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp import_time = 15;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp import_time = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $import_time = null;
     /**
@@ -107,7 +107,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      * [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
      * [IMPORT_FAILED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.IMPORT_FAILED].
      *
-     * Generated from protobuf field <code>string import_failure_reason = 16;</code>
+     * Generated from protobuf field <code>string import_failure_reason = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $import_failure_reason = '';
 
@@ -168,7 +168,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      * Output only. The resource name for this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] in the format
      * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;&#47;cryptoKeyVersions/&#42;`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getName()
@@ -180,7 +180,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      * Output only. The resource name for this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] in the format
      * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;&#47;cryptoKeyVersions/&#42;`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -222,7 +222,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      * Output only. The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] describing how crypto operations are
      * performed with this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
      *
-     * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getProtectionLevel()
@@ -234,7 +234,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      * Output only. The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] describing how crypto operations are
      * performed with this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
      *
-     * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */
@@ -250,7 +250,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      * Output only. The [CryptoKeyVersionAlgorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm] that this
      * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] supports.
      *
-     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm algorithm = 10;</code>
+     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm algorithm = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getAlgorithm()
@@ -262,7 +262,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      * Output only. The [CryptoKeyVersionAlgorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm] that this
      * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] supports.
      *
-     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm algorithm = 10;</code>
+     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm algorithm = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */
@@ -280,7 +280,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      * on the HSM, independently of Google. Only provided for key versions with
      * [protection_level][google.cloud.kms.v1.CryptoKeyVersion.protection_level] [HSM][google.cloud.kms.v1.ProtectionLevel.HSM].
      *
-     * Generated from protobuf field <code>.google.cloud.kms.v1.KeyOperationAttestation attestation = 8;</code>
+     * Generated from protobuf field <code>.google.cloud.kms.v1.KeyOperationAttestation attestation = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Kms\V1\KeyOperationAttestation
      */
     public function getAttestation()
@@ -294,7 +294,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      * on the HSM, independently of Google. Only provided for key versions with
      * [protection_level][google.cloud.kms.v1.CryptoKeyVersion.protection_level] [HSM][google.cloud.kms.v1.ProtectionLevel.HSM].
      *
-     * Generated from protobuf field <code>.google.cloud.kms.v1.KeyOperationAttestation attestation = 8;</code>
+     * Generated from protobuf field <code>.google.cloud.kms.v1.KeyOperationAttestation attestation = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Kms\V1\KeyOperationAttestation $var
      * @return $this
      */
@@ -309,7 +309,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The time at which this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getCreateTime()
@@ -320,7 +320,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The time at which this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -336,7 +336,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      * Output only. The time this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s key material was
      * generated.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp generate_time = 11;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp generate_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getGenerateTime()
@@ -348,7 +348,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      * Output only. The time this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s key material was
      * generated.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp generate_time = 11;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp generate_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -365,7 +365,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      * for destruction. Only present if [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
      * [DESTROY_SCHEDULED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROY_SCHEDULED].
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp destroy_time = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp destroy_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getDestroyTime()
@@ -378,7 +378,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      * for destruction. Only present if [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
      * [DESTROY_SCHEDULED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROY_SCHEDULED].
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp destroy_time = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp destroy_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -395,7 +395,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      * destroyed. Only present if [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
      * [DESTROYED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROYED].
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp destroy_event_time = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp destroy_event_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getDestroyEventTime()
@@ -408,7 +408,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      * destroyed. Only present if [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
      * [DESTROYED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROYED].
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp destroy_event_time = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp destroy_event_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -425,7 +425,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]. Only present if the underlying key material was
      * imported.
      *
-     * Generated from protobuf field <code>string import_job = 14;</code>
+     * Generated from protobuf field <code>string import_job = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getImportJob()
@@ -438,7 +438,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]. Only present if the underlying key material was
      * imported.
      *
-     * Generated from protobuf field <code>string import_job = 14;</code>
+     * Generated from protobuf field <code>string import_job = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -454,7 +454,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      * Output only. The time at which this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s key material
      * was imported.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp import_time = 15;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp import_time = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getImportTime()
@@ -466,7 +466,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      * Output only. The time at which this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s key material
      * was imported.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp import_time = 15;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp import_time = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -483,7 +483,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      * [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
      * [IMPORT_FAILED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.IMPORT_FAILED].
      *
-     * Generated from protobuf field <code>string import_failure_reason = 16;</code>
+     * Generated from protobuf field <code>string import_failure_reason = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getImportFailureReason()
@@ -496,7 +496,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      * [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
      * [IMPORT_FAILED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.IMPORT_FAILED].
      *
-     * Generated from protobuf field <code>string import_failure_reason = 16;</code>
+     * Generated from protobuf field <code>string import_failure_reason = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */

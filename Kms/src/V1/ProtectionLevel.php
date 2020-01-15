@@ -33,11 +33,18 @@ class ProtectionLevel
      * Generated from protobuf enum <code>HSM = 2;</code>
      */
     const HSM = 2;
+    /**
+     * Crypto operations are performed by an external key manager.
+     *
+     * Generated from protobuf enum <code>EXTERNAL = 3;</code>
+     */
+    const EXTERNAL = 3;
 
     private static $valueToName = [
         self::PROTECTION_LEVEL_UNSPECIFIED => 'PROTECTION_LEVEL_UNSPECIFIED',
         self::SOFTWARE => 'SOFTWARE',
         self::HSM => 'HSM',
+        self::EXTERNAL => 'EXTERNAL',
     ];
 
     public static function name($value)

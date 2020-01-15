@@ -21,7 +21,7 @@ class EncryptRequest extends \Google\Protobuf\Internal\Message
      * If a [CryptoKey][google.cloud.kms.v1.CryptoKey] is specified, the server will use its
      * [primary version][google.cloud.kms.v1.CryptoKey.primary].
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
@@ -33,11 +33,11 @@ class EncryptRequest extends \Google\Protobuf\Internal\Message
      * plaintext and additional_authenticated_data fields must be no larger than
      * 8KiB.
      *
-     * Generated from protobuf field <code>bytes plaintext = 2;</code>
+     * Generated from protobuf field <code>bytes plaintext = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $plaintext = '';
     /**
-     * Optional data that, if specified, must also be provided during decryption
+     * Optional. Optional data that, if specified, must also be provided during decryption
      * through [DecryptRequest.additional_authenticated_data][google.cloud.kms.v1.DecryptRequest.additional_authenticated_data].
      * The maximum size depends on the key version's
      * [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level]. For
@@ -46,7 +46,7 @@ class EncryptRequest extends \Google\Protobuf\Internal\Message
      * plaintext and additional_authenticated_data fields must be no larger than
      * 8KiB.
      *
-     * Generated from protobuf field <code>bytes additional_authenticated_data = 3;</code>
+     * Generated from protobuf field <code>bytes additional_authenticated_data = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $additional_authenticated_data = '';
 
@@ -70,7 +70,7 @@ class EncryptRequest extends \Google\Protobuf\Internal\Message
      *           plaintext and additional_authenticated_data fields must be no larger than
      *           8KiB.
      *     @type string $additional_authenticated_data
-     *           Optional data that, if specified, must also be provided during decryption
+     *           Optional. Optional data that, if specified, must also be provided during decryption
      *           through [DecryptRequest.additional_authenticated_data][google.cloud.kms.v1.DecryptRequest.additional_authenticated_data].
      *           The maximum size depends on the key version's
      *           [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level]. For
@@ -91,7 +91,7 @@ class EncryptRequest extends \Google\Protobuf\Internal\Message
      * If a [CryptoKey][google.cloud.kms.v1.CryptoKey] is specified, the server will use its
      * [primary version][google.cloud.kms.v1.CryptoKey.primary].
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -105,7 +105,7 @@ class EncryptRequest extends \Google\Protobuf\Internal\Message
      * If a [CryptoKey][google.cloud.kms.v1.CryptoKey] is specified, the server will use its
      * [primary version][google.cloud.kms.v1.CryptoKey.primary].
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -126,7 +126,7 @@ class EncryptRequest extends \Google\Protobuf\Internal\Message
      * plaintext and additional_authenticated_data fields must be no larger than
      * 8KiB.
      *
-     * Generated from protobuf field <code>bytes plaintext = 2;</code>
+     * Generated from protobuf field <code>bytes plaintext = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getPlaintext()
@@ -143,7 +143,7 @@ class EncryptRequest extends \Google\Protobuf\Internal\Message
      * plaintext and additional_authenticated_data fields must be no larger than
      * 8KiB.
      *
-     * Generated from protobuf field <code>bytes plaintext = 2;</code>
+     * Generated from protobuf field <code>bytes plaintext = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -156,7 +156,7 @@ class EncryptRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional data that, if specified, must also be provided during decryption
+     * Optional. Optional data that, if specified, must also be provided during decryption
      * through [DecryptRequest.additional_authenticated_data][google.cloud.kms.v1.DecryptRequest.additional_authenticated_data].
      * The maximum size depends on the key version's
      * [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level]. For
@@ -165,7 +165,7 @@ class EncryptRequest extends \Google\Protobuf\Internal\Message
      * plaintext and additional_authenticated_data fields must be no larger than
      * 8KiB.
      *
-     * Generated from protobuf field <code>bytes additional_authenticated_data = 3;</code>
+     * Generated from protobuf field <code>bytes additional_authenticated_data = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getAdditionalAuthenticatedData()
@@ -174,7 +174,7 @@ class EncryptRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional data that, if specified, must also be provided during decryption
+     * Optional. Optional data that, if specified, must also be provided during decryption
      * through [DecryptRequest.additional_authenticated_data][google.cloud.kms.v1.DecryptRequest.additional_authenticated_data].
      * The maximum size depends on the key version's
      * [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level]. For
@@ -183,7 +183,7 @@ class EncryptRequest extends \Google\Protobuf\Internal\Message
      * plaintext and additional_authenticated_data fields must be no larger than
      * 8KiB.
      *
-     * Generated from protobuf field <code>bytes additional_authenticated_data = 3;</code>
+     * Generated from protobuf field <code>bytes additional_authenticated_data = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
