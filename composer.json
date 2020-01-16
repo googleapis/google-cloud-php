@@ -93,7 +93,7 @@
         "google/cloud-pubsub": "1.19.0",
         "google/cloud-redis": "0.11.0",
         "google/cloud-scheduler": "1.1.0",
-        "google/cloud-secret-manager": "master",
+        "google/cloud-secret-manager": "0.1.0",
         "google/cloud-security-center": "0.3.0",
         "google/cloud-spanner": "1.23.0",
         "google/cloud-speech": "0.30.0",

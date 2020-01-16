@@ -1235,6 +1235,7 @@
             "name": "google/cloud-secret-manager",
             "defaultService": "secretmanager/readme",
             "versions": [
+                "v0.1.0",
                 "master"
             ]
         },

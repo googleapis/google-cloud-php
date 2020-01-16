@@ -43,7 +43,17 @@
 
 ### Bug Fixes
 
-* update metadata and documentation ([#2574](https://www.github.com/googleapis/google-cloud-php/issues/2574)) ([6ad24c1](https://www.github.com/googleapis/google-cloud-php/commit/6ad24c1b0735442b9f4552944ba2010e4393d0cc))
+* update metadata and documentation ([#2574](https://www.github.com/googleapis/google-cloud-php/issues/2574)) ([39035fe](https://www.github.com/googleapis/google-cloud-php/commit/39035fe66f4ae9aa4ccfc0c0d57665b2dbc4b0df))
+
+</details>
+
+<details><summary>google/cloud-secret-manager 0.1.0</summary>
+
+
+
+### Features
+
+* introduce secret manager client ([#2582](https://www.github.com/googleapis/google-cloud-php/issues/2582)) ([2fa7fd8](https://www.github.com/googleapis/google-cloud-php/commit/2fa7fd81fb3385f440ae590482590b5783fac9cb))
 
 </details>
 
