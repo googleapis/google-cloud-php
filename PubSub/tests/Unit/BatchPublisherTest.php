@@ -83,6 +83,8 @@ class BatchPublisherTest extends TestCase
 
     public function testPublishDeferred()
     {
+        $daemonRunning = getenv("IS_BATCH_DAEMON_RUNNING");
+        putenv("IS_BATCH_DAEMON_RUNNING=");
         $client = TestHelpers::stub(PubSubClient::class, [], [
             'encode', 'connection'
         ]);
@@ -133,6 +135,7 @@ class BatchPublisherTest extends TestCase
         foreach ($messages as $message) {
             $publisher->publish($message);
         }
+        sleep(1);
 
         $jobCount = 0;
         $jobs = $publisher->___getProperty('jobs');
@@ -142,6 +145,8 @@ class BatchPublisherTest extends TestCase
         }
         $this->assertEquals(3, $jobCount);
         $this->assertEquals(count($messages), $messageActualCount);
+
+        putenv("IS_BATCH_DAEMON_RUNNING=" . $daemonRunning);
     }
 }
 
