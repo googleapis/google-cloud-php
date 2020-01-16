@@ -16,24 +16,24 @@ use Google\Protobuf\Internal\GPBUtil;
 class SetFindingStateRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The relative resource name of the finding. See:
+     * Required. The relative resource name of the finding. See:
      * https://cloud.google.com/apis/design/resource_names#relative_resource_name
      * Example:
-     * "organizations/123/sources/456/finding/789".
+     * "organizations/{organization_id}/sources/{source_id}/finding/{finding_id}".
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
-     * The desired State of the finding.
+     * Required. The desired State of the finding.
      *
-     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Finding.State state = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Finding.State state = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $state = 0;
     /**
-     * The time at which the updated state takes effect.
+     * Required. The time at which the updated state takes effect.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $start_time = null;
 
@@ -44,14 +44,14 @@ class SetFindingStateRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The relative resource name of the finding. See:
+     *           Required. The relative resource name of the finding. See:
      *           https://cloud.google.com/apis/design/resource_names#relative_resource_name
      *           Example:
-     *           "organizations/123/sources/456/finding/789".
+     *           "organizations/{organization_id}/sources/{source_id}/finding/{finding_id}".
      *     @type int $state
-     *           The desired State of the finding.
+     *           Required. The desired State of the finding.
      *     @type \Google\Protobuf\Timestamp $start_time
-     *           The time at which the updated state takes effect.
+     *           Required. The time at which the updated state takes effect.
      * }
      */
     public function __construct($data = NULL) {
@@ -60,12 +60,12 @@ class SetFindingStateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The relative resource name of the finding. See:
+     * Required. The relative resource name of the finding. See:
      * https://cloud.google.com/apis/design/resource_names#relative_resource_name
      * Example:
-     * "organizations/123/sources/456/finding/789".
+     * "organizations/{organization_id}/sources/{source_id}/finding/{finding_id}".
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -74,12 +74,12 @@ class SetFindingStateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The relative resource name of the finding. See:
+     * Required. The relative resource name of the finding. See:
      * https://cloud.google.com/apis/design/resource_names#relative_resource_name
      * Example:
-     * "organizations/123/sources/456/finding/789".
+     * "organizations/{organization_id}/sources/{source_id}/finding/{finding_id}".
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -92,9 +92,9 @@ class SetFindingStateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The desired State of the finding.
+     * Required. The desired State of the finding.
      *
-     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Finding.State state = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Finding.State state = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getState()
@@ -103,9 +103,9 @@ class SetFindingStateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The desired State of the finding.
+     * Required. The desired State of the finding.
      *
-     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Finding.State state = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Finding.State state = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */
@@ -118,9 +118,9 @@ class SetFindingStateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time at which the updated state takes effect.
+     * Required. The time at which the updated state takes effect.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getStartTime()
@@ -129,9 +129,9 @@ class SetFindingStateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time at which the updated state takes effect.
+     * Required. The time at which the updated state takes effect.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */

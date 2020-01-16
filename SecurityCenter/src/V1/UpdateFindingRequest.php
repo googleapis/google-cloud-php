@@ -16,13 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateFindingRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The finding resource to update or create if it does not already exist.
+     * Required. The finding resource to update or create if it does not already exist.
      * parent, security_marks, and update_time will be ignored.
      * In the case of creation, the finding id portion of the name must be
      * alphanumeric and less than or equal to 32 characters and greater than 0
      * characters in length.
      *
-     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Finding finding = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Finding finding = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $finding = null;
     /**
@@ -44,7 +44,7 @@ class UpdateFindingRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\SecurityCenter\V1\Finding $finding
-     *           The finding resource to update or create if it does not already exist.
+     *           Required. The finding resource to update or create if it does not already exist.
      *           parent, security_marks, and update_time will be ignored.
      *           In the case of creation, the finding id portion of the name must be
      *           alphanumeric and less than or equal to 32 characters and greater than 0
@@ -64,13 +64,13 @@ class UpdateFindingRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The finding resource to update or create if it does not already exist.
+     * Required. The finding resource to update or create if it does not already exist.
      * parent, security_marks, and update_time will be ignored.
      * In the case of creation, the finding id portion of the name must be
      * alphanumeric and less than or equal to 32 characters and greater than 0
      * characters in length.
      *
-     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Finding finding = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Finding finding = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\SecurityCenter\V1\Finding
      */
     public function getFinding()
@@ -79,13 +79,13 @@ class UpdateFindingRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The finding resource to update or create if it does not already exist.
+     * Required. The finding resource to update or create if it does not already exist.
      * parent, security_marks, and update_time will be ignored.
      * In the case of creation, the finding id portion of the name must be
      * alphanumeric and less than or equal to 32 characters and greater than 0
      * characters in length.
      *
-     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Finding finding = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Finding finding = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\SecurityCenter\V1\Finding $var
      * @return $this
      */

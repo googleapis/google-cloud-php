@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateSecurityMarksRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The security marks resource to update.
+     * Required. The security marks resource to update.
      *
-     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.SecurityMarks security_marks = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.SecurityMarks security_marks = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $security_marks = null;
     /**
@@ -46,7 +46,7 @@ class UpdateSecurityMarksRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\SecurityCenter\V1\SecurityMarks $security_marks
-     *           The security marks resource to update.
+     *           Required. The security marks resource to update.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           The FieldMask to use when updating the security marks resource.
      *           The field mask must not contain duplicate fields.
@@ -64,9 +64,9 @@ class UpdateSecurityMarksRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The security marks resource to update.
+     * Required. The security marks resource to update.
      *
-     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.SecurityMarks security_marks = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.SecurityMarks security_marks = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\SecurityCenter\V1\SecurityMarks
      */
     public function getSecurityMarks()
@@ -75,9 +75,9 @@ class UpdateSecurityMarksRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The security marks resource to update.
+     * Required. The security marks resource to update.
      *
-     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.SecurityMarks security_marks = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.SecurityMarks security_marks = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\SecurityCenter\V1\SecurityMarks $var
      * @return $this
      */

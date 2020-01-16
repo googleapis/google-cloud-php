@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class GroupAssetsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Name of the organization to groupBy. Its format is
+     * Required. Name of the organization to groupBy. Its format is
      * "organizations/[organization_id]".
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -43,43 +43,50 @@ class GroupAssetsRequest extends \Google\Protobuf\Internal\Message
      * * integer literals without quotes.
      * * boolean literals `true` and `false` without quotes.
      * The following field and operator combinations are supported:
-     * name | '='
-     * update_time | '=', '>', '<', '>=', '<='
+     * * name: `=`
+     * * update_time: `=`, `>`, `<`, `>=`, `<=`
      *   Usage: This should be milliseconds since epoch or an RFC3339 string.
      *   Examples:
      *     "update_time = \"2019-06-10T16:07:18-07:00\""
      *     "update_time = 1560208038000"
-     * create_time |  '=', '>', '<', '>=', '<='
+     * * create_time: `=`, `>`, `<`, `>=`, `<=`
      *   Usage: This should be milliseconds since epoch or an RFC3339 string.
      *   Examples:
      *     "create_time = \"2019-06-10T16:07:18-07:00\""
      *     "create_time = 1560208038000"
-     * iam_policy.policy_blob | '=', ':'
-     * resource_properties | '=', ':', '>', '<', '>=', '<='
-     * security_marks | '=', ':'
-     * security_center_properties.resource_name | '=', ':'
-     * security_center_properties.resource_type | '=', ':'
-     * security_center_properties.resource_parent | '=', ':'
-     * security_center_properties.resource_project | '=', ':'
-     * security_center_properties.resource_owners | '=', ':'
+     * * iam_policy.policy_blob: `=`, `:`
+     * * resource_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
+     * * security_marks.marks: `=`, `:`
+     * * security_center_properties.resource_name: `=`, `:`
+     * * security_center_properties.resource_display_name: `=`, `:`
+     * * security_center_properties.resource_type: `=`, `:`
+     * * security_center_properties.resource_parent: `=`, `:`
+     * * security_center_properties.resource_parent_display_name: `=`, `:`
+     * * security_center_properties.resource_project: `=`, `:`
+     * * security_center_properties.resource_project_display_name: `=`, `:`
+     * * security_center_properties.resource_owners: `=`, `:`
      * For example, `resource_properties.size = 100` is a valid filter string.
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      */
     private $filter = '';
     /**
-     * Expression that defines what assets fields to use for grouping. The string
+     * Required. Expression that defines what assets fields to use for grouping. The string
      * value should follow SQL syntax: comma separated list of fields. For
      * example:
      * "security_center_properties.resource_project,security_center_properties.project".
      * The following fields are supported when compare_duration is not set:
      * * security_center_properties.resource_project
+     * * security_center_properties.resource_project_display_name
      * * security_center_properties.resource_type
      * * security_center_properties.resource_parent
+     * * security_center_properties.resource_parent_display_name
      * The following fields are supported when compare_duration is set:
      * * security_center_properties.resource_type
+     * * security_center_properties.resource_project_display_name
+     * * security_center_properties.resource_parent_display_name
      *
-     * Generated from protobuf field <code>string group_by = 3;</code>
+     * Generated from protobuf field <code>string group_by = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $group_by = '';
     /**
@@ -141,7 +148,7 @@ class GroupAssetsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Name of the organization to groupBy. Its format is
+     *           Required. Name of the organization to groupBy. Its format is
      *           "organizations/[organization_id]".
      *     @type string $filter
      *           Expression that defines the filter to apply across assets.
@@ -164,37 +171,44 @@ class GroupAssetsRequest extends \Google\Protobuf\Internal\Message
      *           * integer literals without quotes.
      *           * boolean literals `true` and `false` without quotes.
      *           The following field and operator combinations are supported:
-     *           name | '='
-     *           update_time | '=', '>', '<', '>=', '<='
+     *           * name: `=`
+     *           * update_time: `=`, `>`, `<`, `>=`, `<=`
      *             Usage: This should be milliseconds since epoch or an RFC3339 string.
      *             Examples:
      *               "update_time = \"2019-06-10T16:07:18-07:00\""
      *               "update_time = 1560208038000"
-     *           create_time |  '=', '>', '<', '>=', '<='
+     *           * create_time: `=`, `>`, `<`, `>=`, `<=`
      *             Usage: This should be milliseconds since epoch or an RFC3339 string.
      *             Examples:
      *               "create_time = \"2019-06-10T16:07:18-07:00\""
      *               "create_time = 1560208038000"
-     *           iam_policy.policy_blob | '=', ':'
-     *           resource_properties | '=', ':', '>', '<', '>=', '<='
-     *           security_marks | '=', ':'
-     *           security_center_properties.resource_name | '=', ':'
-     *           security_center_properties.resource_type | '=', ':'
-     *           security_center_properties.resource_parent | '=', ':'
-     *           security_center_properties.resource_project | '=', ':'
-     *           security_center_properties.resource_owners | '=', ':'
+     *           * iam_policy.policy_blob: `=`, `:`
+     *           * resource_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
+     *           * security_marks.marks: `=`, `:`
+     *           * security_center_properties.resource_name: `=`, `:`
+     *           * security_center_properties.resource_display_name: `=`, `:`
+     *           * security_center_properties.resource_type: `=`, `:`
+     *           * security_center_properties.resource_parent: `=`, `:`
+     *           * security_center_properties.resource_parent_display_name: `=`, `:`
+     *           * security_center_properties.resource_project: `=`, `:`
+     *           * security_center_properties.resource_project_display_name: `=`, `:`
+     *           * security_center_properties.resource_owners: `=`, `:`
      *           For example, `resource_properties.size = 100` is a valid filter string.
      *     @type string $group_by
-     *           Expression that defines what assets fields to use for grouping. The string
+     *           Required. Expression that defines what assets fields to use for grouping. The string
      *           value should follow SQL syntax: comma separated list of fields. For
      *           example:
      *           "security_center_properties.resource_project,security_center_properties.project".
      *           The following fields are supported when compare_duration is not set:
      *           * security_center_properties.resource_project
+     *           * security_center_properties.resource_project_display_name
      *           * security_center_properties.resource_type
      *           * security_center_properties.resource_parent
+     *           * security_center_properties.resource_parent_display_name
      *           The following fields are supported when compare_duration is set:
      *           * security_center_properties.resource_type
+     *           * security_center_properties.resource_project_display_name
+     *           * security_center_properties.resource_parent_display_name
      *     @type \Google\Protobuf\Duration $compare_duration
      *           When compare_duration is set, the GroupResult's "state_change" property is
      *           updated to indicate whether the asset was added, removed, or remained
@@ -238,10 +252,10 @@ class GroupAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the organization to groupBy. Its format is
+     * Required. Name of the organization to groupBy. Its format is
      * "organizations/[organization_id]".
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -250,10 +264,10 @@ class GroupAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the organization to groupBy. Its format is
+     * Required. Name of the organization to groupBy. Its format is
      * "organizations/[organization_id]".
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -286,25 +300,28 @@ class GroupAssetsRequest extends \Google\Protobuf\Internal\Message
      * * integer literals without quotes.
      * * boolean literals `true` and `false` without quotes.
      * The following field and operator combinations are supported:
-     * name | '='
-     * update_time | '=', '>', '<', '>=', '<='
+     * * name: `=`
+     * * update_time: `=`, `>`, `<`, `>=`, `<=`
      *   Usage: This should be milliseconds since epoch or an RFC3339 string.
      *   Examples:
      *     "update_time = \"2019-06-10T16:07:18-07:00\""
      *     "update_time = 1560208038000"
-     * create_time |  '=', '>', '<', '>=', '<='
+     * * create_time: `=`, `>`, `<`, `>=`, `<=`
      *   Usage: This should be milliseconds since epoch or an RFC3339 string.
      *   Examples:
      *     "create_time = \"2019-06-10T16:07:18-07:00\""
      *     "create_time = 1560208038000"
-     * iam_policy.policy_blob | '=', ':'
-     * resource_properties | '=', ':', '>', '<', '>=', '<='
-     * security_marks | '=', ':'
-     * security_center_properties.resource_name | '=', ':'
-     * security_center_properties.resource_type | '=', ':'
-     * security_center_properties.resource_parent | '=', ':'
-     * security_center_properties.resource_project | '=', ':'
-     * security_center_properties.resource_owners | '=', ':'
+     * * iam_policy.policy_blob: `=`, `:`
+     * * resource_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
+     * * security_marks.marks: `=`, `:`
+     * * security_center_properties.resource_name: `=`, `:`
+     * * security_center_properties.resource_display_name: `=`, `:`
+     * * security_center_properties.resource_type: `=`, `:`
+     * * security_center_properties.resource_parent: `=`, `:`
+     * * security_center_properties.resource_parent_display_name: `=`, `:`
+     * * security_center_properties.resource_project: `=`, `:`
+     * * security_center_properties.resource_project_display_name: `=`, `:`
+     * * security_center_properties.resource_owners: `=`, `:`
      * For example, `resource_properties.size = 100` is a valid filter string.
      *
      * Generated from protobuf field <code>string filter = 2;</code>
@@ -336,25 +353,28 @@ class GroupAssetsRequest extends \Google\Protobuf\Internal\Message
      * * integer literals without quotes.
      * * boolean literals `true` and `false` without quotes.
      * The following field and operator combinations are supported:
-     * name | '='
-     * update_time | '=', '>', '<', '>=', '<='
+     * * name: `=`
+     * * update_time: `=`, `>`, `<`, `>=`, `<=`
      *   Usage: This should be milliseconds since epoch or an RFC3339 string.
      *   Examples:
      *     "update_time = \"2019-06-10T16:07:18-07:00\""
      *     "update_time = 1560208038000"
-     * create_time |  '=', '>', '<', '>=', '<='
+     * * create_time: `=`, `>`, `<`, `>=`, `<=`
      *   Usage: This should be milliseconds since epoch or an RFC3339 string.
      *   Examples:
      *     "create_time = \"2019-06-10T16:07:18-07:00\""
      *     "create_time = 1560208038000"
-     * iam_policy.policy_blob | '=', ':'
-     * resource_properties | '=', ':', '>', '<', '>=', '<='
-     * security_marks | '=', ':'
-     * security_center_properties.resource_name | '=', ':'
-     * security_center_properties.resource_type | '=', ':'
-     * security_center_properties.resource_parent | '=', ':'
-     * security_center_properties.resource_project | '=', ':'
-     * security_center_properties.resource_owners | '=', ':'
+     * * iam_policy.policy_blob: `=`, `:`
+     * * resource_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
+     * * security_marks.marks: `=`, `:`
+     * * security_center_properties.resource_name: `=`, `:`
+     * * security_center_properties.resource_display_name: `=`, `:`
+     * * security_center_properties.resource_type: `=`, `:`
+     * * security_center_properties.resource_parent: `=`, `:`
+     * * security_center_properties.resource_parent_display_name: `=`, `:`
+     * * security_center_properties.resource_project: `=`, `:`
+     * * security_center_properties.resource_project_display_name: `=`, `:`
+     * * security_center_properties.resource_owners: `=`, `:`
      * For example, `resource_properties.size = 100` is a valid filter string.
      *
      * Generated from protobuf field <code>string filter = 2;</code>
@@ -370,18 +390,22 @@ class GroupAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Expression that defines what assets fields to use for grouping. The string
+     * Required. Expression that defines what assets fields to use for grouping. The string
      * value should follow SQL syntax: comma separated list of fields. For
      * example:
      * "security_center_properties.resource_project,security_center_properties.project".
      * The following fields are supported when compare_duration is not set:
      * * security_center_properties.resource_project
+     * * security_center_properties.resource_project_display_name
      * * security_center_properties.resource_type
      * * security_center_properties.resource_parent
+     * * security_center_properties.resource_parent_display_name
      * The following fields are supported when compare_duration is set:
      * * security_center_properties.resource_type
+     * * security_center_properties.resource_project_display_name
+     * * security_center_properties.resource_parent_display_name
      *
-     * Generated from protobuf field <code>string group_by = 3;</code>
+     * Generated from protobuf field <code>string group_by = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getGroupBy()
@@ -390,18 +414,22 @@ class GroupAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Expression that defines what assets fields to use for grouping. The string
+     * Required. Expression that defines what assets fields to use for grouping. The string
      * value should follow SQL syntax: comma separated list of fields. For
      * example:
      * "security_center_properties.resource_project,security_center_properties.project".
      * The following fields are supported when compare_duration is not set:
      * * security_center_properties.resource_project
+     * * security_center_properties.resource_project_display_name
      * * security_center_properties.resource_type
      * * security_center_properties.resource_parent
+     * * security_center_properties.resource_parent_display_name
      * The following fields are supported when compare_duration is set:
      * * security_center_properties.resource_type
+     * * security_center_properties.resource_project_display_name
+     * * security_center_properties.resource_parent_display_name
      *
-     * Generated from protobuf field <code>string group_by = 3;</code>
+     * Generated from protobuf field <code>string group_by = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

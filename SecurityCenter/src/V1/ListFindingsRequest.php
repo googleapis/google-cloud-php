@@ -16,12 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListFindingsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Name of the source the findings belong to. Its format is
+     * Required. Name of the source the findings belong to. Its format is
      * "organizations/[organization_id]/sources/[source_id]". To list across all
      * sources provide a source_id of `-`. For example:
-     * organizations/123/sources/-
+     * organizations/{organization_id}/sources/-
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -43,19 +43,19 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
      * * integer literals without quotes.
      * * boolean literals `true` and `false` without quotes.
      * The following field and operator combinations are supported:
-     * name | `=`
-     * parent | '=', ':'
-     * resource_name | '=', ':'
-     * state | '=', ':'
-     * category | '=', ':'
-     * external_uri | '=', ':'
-     * event_time | `=`, `>`, `<`, `>=`, `<=`
+     * name: `=`
+     * parent: `=`, `:`
+     * resource_name: `=`, `:`
+     * state: `=`, `:`
+     * category: `=`, `:`
+     * external_uri: `=`, `:`
+     * event_time: `=`, `>`, `<`, `>=`, `<=`
      *   Usage: This should be milliseconds since epoch or an RFC3339 string.
      *   Examples:
      *     "event_time = \"2019-06-10T16:07:18-07:00\""
      *     "event_time = 1560208038000"
-     * security_marks | '=', ':'
-     * source_properties | '=', ':', `>`, `<`, `>=`, `<=`
+     * security_marks.marks: `=`, `:`
+     * source_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
      * For example, `source_properties.size = 100` is a valid filter string.
      *
      * Generated from protobuf field <code>string filter = 2;</code>
@@ -78,7 +78,7 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
      * resource_name
      * event_time
      * source_properties
-     * security_marks
+     * security_marks.marks
      *
      * Generated from protobuf field <code>string order_by = 3;</code>
      */
@@ -118,11 +118,10 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
      */
     private $compare_duration = null;
     /**
-     * Optional.
-     * A field mask to specify the Finding fields to be listed in the response.
+     * Optional. A field mask to specify the Finding fields to be listed in the response.
      * An empty field mask will list all fields.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 7;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $field_mask = null;
     /**
@@ -148,10 +147,10 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Name of the source the findings belong to. Its format is
+     *           Required. Name of the source the findings belong to. Its format is
      *           "organizations/[organization_id]/sources/[source_id]". To list across all
      *           sources provide a source_id of `-`. For example:
-     *           organizations/123/sources/-
+     *           organizations/{organization_id}/sources/-
      *     @type string $filter
      *           Expression that defines the filter to apply across findings.
      *           The expression is a list of one or more restrictions combined via logical
@@ -171,19 +170,19 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
      *           * integer literals without quotes.
      *           * boolean literals `true` and `false` without quotes.
      *           The following field and operator combinations are supported:
-     *           name | `=`
-     *           parent | '=', ':'
-     *           resource_name | '=', ':'
-     *           state | '=', ':'
-     *           category | '=', ':'
-     *           external_uri | '=', ':'
-     *           event_time | `=`, `>`, `<`, `>=`, `<=`
+     *           name: `=`
+     *           parent: `=`, `:`
+     *           resource_name: `=`, `:`
+     *           state: `=`, `:`
+     *           category: `=`, `:`
+     *           external_uri: `=`, `:`
+     *           event_time: `=`, `>`, `<`, `>=`, `<=`
      *             Usage: This should be milliseconds since epoch or an RFC3339 string.
      *             Examples:
      *               "event_time = \"2019-06-10T16:07:18-07:00\""
      *               "event_time = 1560208038000"
-     *           security_marks | '=', ':'
-     *           source_properties | '=', ':', `>`, `<`, `>=`, `<=`
+     *           security_marks.marks: `=`, `:`
+     *           source_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
      *           For example, `source_properties.size = 100` is a valid filter string.
      *     @type string $order_by
      *           Expression that defines what fields and order to use for sorting. The
@@ -202,7 +201,7 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
      *           resource_name
      *           event_time
      *           source_properties
-     *           security_marks
+     *           security_marks.marks
      *     @type \Google\Protobuf\Timestamp $read_time
      *           Time used as a reference point when filtering findings. The filter is
      *           limited to findings existing at the supplied time and their values are
@@ -230,8 +229,7 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
      *           is "UNUSED", which will be the state_change set for all findings present at
      *           read_time.
      *     @type \Google\Protobuf\FieldMask $field_mask
-     *           Optional.
-     *           A field mask to specify the Finding fields to be listed in the response.
+     *           Optional. A field mask to specify the Finding fields to be listed in the response.
      *           An empty field mask will list all fields.
      *     @type string $page_token
      *           The value returned by the last `ListFindingsResponse`; indicates
@@ -248,12 +246,12 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the source the findings belong to. Its format is
+     * Required. Name of the source the findings belong to. Its format is
      * "organizations/[organization_id]/sources/[source_id]". To list across all
      * sources provide a source_id of `-`. For example:
-     * organizations/123/sources/-
+     * organizations/{organization_id}/sources/-
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -262,12 +260,12 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the source the findings belong to. Its format is
+     * Required. Name of the source the findings belong to. Its format is
      * "organizations/[organization_id]/sources/[source_id]". To list across all
      * sources provide a source_id of `-`. For example:
-     * organizations/123/sources/-
+     * organizations/{organization_id}/sources/-
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -298,19 +296,19 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
      * * integer literals without quotes.
      * * boolean literals `true` and `false` without quotes.
      * The following field and operator combinations are supported:
-     * name | `=`
-     * parent | '=', ':'
-     * resource_name | '=', ':'
-     * state | '=', ':'
-     * category | '=', ':'
-     * external_uri | '=', ':'
-     * event_time | `=`, `>`, `<`, `>=`, `<=`
+     * name: `=`
+     * parent: `=`, `:`
+     * resource_name: `=`, `:`
+     * state: `=`, `:`
+     * category: `=`, `:`
+     * external_uri: `=`, `:`
+     * event_time: `=`, `>`, `<`, `>=`, `<=`
      *   Usage: This should be milliseconds since epoch or an RFC3339 string.
      *   Examples:
      *     "event_time = \"2019-06-10T16:07:18-07:00\""
      *     "event_time = 1560208038000"
-     * security_marks | '=', ':'
-     * source_properties | '=', ':', `>`, `<`, `>=`, `<=`
+     * security_marks.marks: `=`, `:`
+     * source_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
      * For example, `source_properties.size = 100` is a valid filter string.
      *
      * Generated from protobuf field <code>string filter = 2;</code>
@@ -340,19 +338,19 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
      * * integer literals without quotes.
      * * boolean literals `true` and `false` without quotes.
      * The following field and operator combinations are supported:
-     * name | `=`
-     * parent | '=', ':'
-     * resource_name | '=', ':'
-     * state | '=', ':'
-     * category | '=', ':'
-     * external_uri | '=', ':'
-     * event_time | `=`, `>`, `<`, `>=`, `<=`
+     * name: `=`
+     * parent: `=`, `:`
+     * resource_name: `=`, `:`
+     * state: `=`, `:`
+     * category: `=`, `:`
+     * external_uri: `=`, `:`
+     * event_time: `=`, `>`, `<`, `>=`, `<=`
      *   Usage: This should be milliseconds since epoch or an RFC3339 string.
      *   Examples:
      *     "event_time = \"2019-06-10T16:07:18-07:00\""
      *     "event_time = 1560208038000"
-     * security_marks | '=', ':'
-     * source_properties | '=', ':', `>`, `<`, `>=`, `<=`
+     * security_marks.marks: `=`, `:`
+     * source_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
      * For example, `source_properties.size = 100` is a valid filter string.
      *
      * Generated from protobuf field <code>string filter = 2;</code>
@@ -384,7 +382,7 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
      * resource_name
      * event_time
      * source_properties
-     * security_marks
+     * security_marks.marks
      *
      * Generated from protobuf field <code>string order_by = 3;</code>
      * @return string
@@ -411,7 +409,7 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
      * resource_name
      * event_time
      * source_properties
-     * security_marks
+     * security_marks.marks
      *
      * Generated from protobuf field <code>string order_by = 3;</code>
      * @param string $var
@@ -522,11 +520,10 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * A field mask to specify the Finding fields to be listed in the response.
+     * Optional. A field mask to specify the Finding fields to be listed in the response.
      * An empty field mask will list all fields.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 7;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\FieldMask
      */
     public function getFieldMask()
@@ -535,11 +532,10 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * A field mask to specify the Finding fields to be listed in the response.
+     * Optional. A field mask to specify the Finding fields to be listed in the response.
      * An empty field mask will list all fields.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 7;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\FieldMask $var
      * @return $this
      */

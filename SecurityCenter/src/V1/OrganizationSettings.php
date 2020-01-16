@@ -20,7 +20,7 @@ class OrganizationSettings extends \Google\Protobuf\Internal\Message
      * The relative resource name of the settings. See:
      * https://cloud.google.com/apis/design/resource_names#relative_resource_name
      * Example:
-     * "organizations/123/organizationSettings".
+     * "organizations/{organization_id}/organizationSettings".
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -51,7 +51,7 @@ class OrganizationSettings extends \Google\Protobuf\Internal\Message
      *           The relative resource name of the settings. See:
      *           https://cloud.google.com/apis/design/resource_names#relative_resource_name
      *           Example:
-     *           "organizations/123/organizationSettings".
+     *           "organizations/{organization_id}/organizationSettings".
      *     @type bool $enable_asset_discovery
      *           A flag that indicates if Asset Discovery should be enabled. If the flag is
      *           set to `true`, then discovery of assets will occur. If it is set to `false,
@@ -70,7 +70,7 @@ class OrganizationSettings extends \Google\Protobuf\Internal\Message
      * The relative resource name of the settings. See:
      * https://cloud.google.com/apis/design/resource_names#relative_resource_name
      * Example:
-     * "organizations/123/organizationSettings".
+     * "organizations/{organization_id}/organizationSettings".
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -84,7 +84,7 @@ class OrganizationSettings extends \Google\Protobuf\Internal\Message
      * The relative resource name of the settings. See:
      * https://cloud.google.com/apis/design/resource_names#relative_resource_name
      * Example:
-     * "organizations/123/organizationSettings".
+     * "organizations/{organization_id}/organizationSettings".
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateSourceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The source resource to update.
+     * Required. The source resource to update.
      *
-     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Source source = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Source source = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $source = null;
     /**
@@ -36,7 +36,7 @@ class UpdateSourceRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\SecurityCenter\V1\Source $source
-     *           The source resource to update.
+     *           Required. The source resource to update.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           The FieldMask to use when updating the source resource.
      *           If empty all mutable fields will be updated.
@@ -48,9 +48,9 @@ class UpdateSourceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The source resource to update.
+     * Required. The source resource to update.
      *
-     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Source source = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Source source = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\SecurityCenter\V1\Source
      */
     public function getSource()
@@ -59,9 +59,9 @@ class UpdateSourceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The source resource to update.
+     * Required. The source resource to update.
      *
-     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Source source = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Source source = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\SecurityCenter\V1\Source $var
      * @return $this
      */

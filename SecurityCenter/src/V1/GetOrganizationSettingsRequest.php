@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetOrganizationSettingsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Name of the organization to get organization settings for. Its format is
+     * Required. Name of the organization to get organization settings for. Its format is
      * "organizations/[organization_id]/organizationSettings".
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
 
@@ -30,7 +30,7 @@ class GetOrganizationSettingsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Name of the organization to get organization settings for. Its format is
+     *           Required. Name of the organization to get organization settings for. Its format is
      *           "organizations/[organization_id]/organizationSettings".
      * }
      */
@@ -40,10 +40,10 @@ class GetOrganizationSettingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the organization to get organization settings for. Its format is
+     * Required. Name of the organization to get organization settings for. Its format is
      * "organizations/[organization_id]/organizationSettings".
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -52,10 +52,10 @@ class GetOrganizationSettingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the organization to get organization settings for. Its format is
+     * Required. Name of the organization to get organization settings for. Its format is
      * "organizations/[organization_id]/organizationSettings".
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
