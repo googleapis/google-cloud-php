@@ -23,7 +23,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      * The relative resource name of this asset. See:
      * https://cloud.google.com/apis/design/resource_names#relative_resource_name
      * Example:
-     * "organizations/123/assets/456".
+     * "organizations/{organization_id}/assets/{asset_id}".
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -81,7 +81,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      *           The relative resource name of this asset. See:
      *           https://cloud.google.com/apis/design/resource_names#relative_resource_name
      *           Example:
-     *           "organizations/123/assets/456".
+     *           "organizations/{organization_id}/assets/{asset_id}".
      *     @type \Google\Cloud\SecurityCenter\V1\Asset\SecurityCenterProperties $security_center_properties
      *           Cloud SCC managed properties. These properties are managed by
      *           Cloud SCC and cannot be modified by the user.
@@ -111,7 +111,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      * The relative resource name of this asset. See:
      * https://cloud.google.com/apis/design/resource_names#relative_resource_name
      * Example:
-     * "organizations/123/assets/456".
+     * "organizations/{organization_id}/assets/{asset_id}".
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -125,7 +125,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      * The relative resource name of this asset. See:
      * https://cloud.google.com/apis/design/resource_names#relative_resource_name
      * Example:
-     * "organizations/123/assets/456".
+     * "organizations/{organization_id}/assets/{asset_id}".
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

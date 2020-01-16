@@ -27,6 +27,12 @@ class ListFindingsResult extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.ListFindingsResponse.ListFindingsResult.StateChange state_change = 2;</code>
      */
     private $state_change = 0;
+    /**
+     * Output only. Resource that is associated with this finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.ListFindingsResponse.ListFindingsResult.Resource resource = 3;</code>
+     */
+    private $resource = null;
 
     /**
      * Constructor.
@@ -38,6 +44,8 @@ class ListFindingsResult extends \Google\Protobuf\Internal\Message
      *           Finding matching the search request.
      *     @type int $state_change
      *           State change of the finding between the points in time.
+     *     @type \Google\Cloud\SecurityCenter\V1\ListFindingsResponse\ListFindingsResult\Resource $resource
+     *           Output only. Resource that is associated with this finding.
      * }
      */
     public function __construct($data = NULL) {
@@ -93,6 +101,32 @@ class ListFindingsResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\SecurityCenter\V1\ListFindingsResponse_ListFindingsResult_StateChange::class);
         $this->state_change = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Resource that is associated with this finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.ListFindingsResponse.ListFindingsResult.Resource resource = 3;</code>
+     * @return \Google\Cloud\SecurityCenter\V1\ListFindingsResponse\ListFindingsResult\Resource
+     */
+    public function getResource()
+    {
+        return $this->resource;
+    }
+
+    /**
+     * Output only. Resource that is associated with this finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.ListFindingsResponse.ListFindingsResult.Resource resource = 3;</code>
+     * @param \Google\Cloud\SecurityCenter\V1\ListFindingsResponse\ListFindingsResult\Resource $var
+     * @return $this
+     */
+    public function setResource($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1\ListFindingsResponse_ListFindingsResult_Resource::class);
+        $this->resource = $var;
 
         return $this;
     }

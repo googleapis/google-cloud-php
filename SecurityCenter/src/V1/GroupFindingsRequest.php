@@ -16,12 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Name of the source to groupBy. Its format is
+     * Required. Name of the source to groupBy. Its format is
      * "organizations/[organization_id]/sources/[source_id]". To groupBy across
      * all sources provide a source_id of `-`. For example:
-     * organizations/123/sources/-
+     * organizations/{organization_id}/sources/-
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -43,26 +43,26 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      * * integer literals without quotes.
      * * boolean literals `true` and `false` without quotes.
      * The following field and operator combinations are supported:
-     * name | `=`
-     * parent | '=', ':'
-     * resource_name | '=', ':'
-     * state | '=', ':'
-     * category | '=', ':'
-     * external_uri | '=', ':'
-     * event_time | `=`, `>`, `<`, `>=`, `<=`
+     * * name: `=`
+     * * parent: `=`, `:`
+     * * resource_name: `=`, `:`
+     * * state: `=`, `:`
+     * * category: `=`, `:`
+     * * external_uri: `=`, `:`
+     * * event_time: `=`, `>`, `<`, `>=`, `<=`
      *   Usage: This should be milliseconds since epoch or an RFC3339 string.
      *   Examples:
      *     "event_time = \"2019-06-10T16:07:18-07:00\""
      *     "event_time = 1560208038000"
-     * security_marks | '=', ':'
-     * source_properties | '=', ':', `>`, `<`, `>=`, `<=`
+     * * security_marks.marks: `=`, `:`
+     * * source_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
      * For example, `source_properties.size = 100` is a valid filter string.
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      */
     private $filter = '';
     /**
-     * Expression that defines what assets fields to use for grouping (including
+     * Required. Expression that defines what assets fields to use for grouping (including
      * `state_change`). The string value should follow SQL syntax: comma separated
      * list of fields. For example: "parent,resource_name".
      * The following fields are supported:
@@ -73,7 +73,7 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      * The following fields are supported when compare_duration is set:
      * * state_change
      *
-     * Generated from protobuf field <code>string group_by = 3;</code>
+     * Generated from protobuf field <code>string group_by = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $group_by = '';
     /**
@@ -134,10 +134,10 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Name of the source to groupBy. Its format is
+     *           Required. Name of the source to groupBy. Its format is
      *           "organizations/[organization_id]/sources/[source_id]". To groupBy across
      *           all sources provide a source_id of `-`. For example:
-     *           organizations/123/sources/-
+     *           organizations/{organization_id}/sources/-
      *     @type string $filter
      *           Expression that defines the filter to apply across findings.
      *           The expression is a list of one or more restrictions combined via logical
@@ -157,22 +157,22 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      *           * integer literals without quotes.
      *           * boolean literals `true` and `false` without quotes.
      *           The following field and operator combinations are supported:
-     *           name | `=`
-     *           parent | '=', ':'
-     *           resource_name | '=', ':'
-     *           state | '=', ':'
-     *           category | '=', ':'
-     *           external_uri | '=', ':'
-     *           event_time | `=`, `>`, `<`, `>=`, `<=`
+     *           * name: `=`
+     *           * parent: `=`, `:`
+     *           * resource_name: `=`, `:`
+     *           * state: `=`, `:`
+     *           * category: `=`, `:`
+     *           * external_uri: `=`, `:`
+     *           * event_time: `=`, `>`, `<`, `>=`, `<=`
      *             Usage: This should be milliseconds since epoch or an RFC3339 string.
      *             Examples:
      *               "event_time = \"2019-06-10T16:07:18-07:00\""
      *               "event_time = 1560208038000"
-     *           security_marks | '=', ':'
-     *           source_properties | '=', ':', `>`, `<`, `>=`, `<=`
+     *           * security_marks.marks: `=`, `:`
+     *           * source_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
      *           For example, `source_properties.size = 100` is a valid filter string.
      *     @type string $group_by
-     *           Expression that defines what assets fields to use for grouping (including
+     *           Required. Expression that defines what assets fields to use for grouping (including
      *           `state_change`). The string value should follow SQL syntax: comma separated
      *           list of fields. For example: "parent,resource_name".
      *           The following fields are supported:
@@ -224,12 +224,12 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the source to groupBy. Its format is
+     * Required. Name of the source to groupBy. Its format is
      * "organizations/[organization_id]/sources/[source_id]". To groupBy across
      * all sources provide a source_id of `-`. For example:
-     * organizations/123/sources/-
+     * organizations/{organization_id}/sources/-
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -238,12 +238,12 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the source to groupBy. Its format is
+     * Required. Name of the source to groupBy. Its format is
      * "organizations/[organization_id]/sources/[source_id]". To groupBy across
      * all sources provide a source_id of `-`. For example:
-     * organizations/123/sources/-
+     * organizations/{organization_id}/sources/-
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -274,19 +274,19 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      * * integer literals without quotes.
      * * boolean literals `true` and `false` without quotes.
      * The following field and operator combinations are supported:
-     * name | `=`
-     * parent | '=', ':'
-     * resource_name | '=', ':'
-     * state | '=', ':'
-     * category | '=', ':'
-     * external_uri | '=', ':'
-     * event_time | `=`, `>`, `<`, `>=`, `<=`
+     * * name: `=`
+     * * parent: `=`, `:`
+     * * resource_name: `=`, `:`
+     * * state: `=`, `:`
+     * * category: `=`, `:`
+     * * external_uri: `=`, `:`
+     * * event_time: `=`, `>`, `<`, `>=`, `<=`
      *   Usage: This should be milliseconds since epoch or an RFC3339 string.
      *   Examples:
      *     "event_time = \"2019-06-10T16:07:18-07:00\""
      *     "event_time = 1560208038000"
-     * security_marks | '=', ':'
-     * source_properties | '=', ':', `>`, `<`, `>=`, `<=`
+     * * security_marks.marks: `=`, `:`
+     * * source_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
      * For example, `source_properties.size = 100` is a valid filter string.
      *
      * Generated from protobuf field <code>string filter = 2;</code>
@@ -316,19 +316,19 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      * * integer literals without quotes.
      * * boolean literals `true` and `false` without quotes.
      * The following field and operator combinations are supported:
-     * name | `=`
-     * parent | '=', ':'
-     * resource_name | '=', ':'
-     * state | '=', ':'
-     * category | '=', ':'
-     * external_uri | '=', ':'
-     * event_time | `=`, `>`, `<`, `>=`, `<=`
+     * * name: `=`
+     * * parent: `=`, `:`
+     * * resource_name: `=`, `:`
+     * * state: `=`, `:`
+     * * category: `=`, `:`
+     * * external_uri: `=`, `:`
+     * * event_time: `=`, `>`, `<`, `>=`, `<=`
      *   Usage: This should be milliseconds since epoch or an RFC3339 string.
      *   Examples:
      *     "event_time = \"2019-06-10T16:07:18-07:00\""
      *     "event_time = 1560208038000"
-     * security_marks | '=', ':'
-     * source_properties | '=', ':', `>`, `<`, `>=`, `<=`
+     * * security_marks.marks: `=`, `:`
+     * * source_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
      * For example, `source_properties.size = 100` is a valid filter string.
      *
      * Generated from protobuf field <code>string filter = 2;</code>
@@ -344,7 +344,7 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Expression that defines what assets fields to use for grouping (including
+     * Required. Expression that defines what assets fields to use for grouping (including
      * `state_change`). The string value should follow SQL syntax: comma separated
      * list of fields. For example: "parent,resource_name".
      * The following fields are supported:
@@ -355,7 +355,7 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      * The following fields are supported when compare_duration is set:
      * * state_change
      *
-     * Generated from protobuf field <code>string group_by = 3;</code>
+     * Generated from protobuf field <code>string group_by = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getGroupBy()
@@ -364,7 +364,7 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Expression that defines what assets fields to use for grouping (including
+     * Required. Expression that defines what assets fields to use for grouping (including
      * `state_change`). The string value should follow SQL syntax: comma separated
      * list of fields. For example: "parent,resource_name".
      * The following fields are supported:
@@ -375,7 +375,7 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      * The following fields are supported when compare_duration is set:
      * * state_change
      *
-     * Generated from protobuf field <code>string group_by = 3;</code>
+     * Generated from protobuf field <code>string group_by = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

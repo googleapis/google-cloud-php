@@ -53,6 +53,24 @@ class SecurityCenterProperties extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string resource_owners = 5;</code>
      */
     private $resource_owners;
+    /**
+     * The user defined display name for this resource.
+     *
+     * Generated from protobuf field <code>string resource_display_name = 6;</code>
+     */
+    private $resource_display_name = '';
+    /**
+     * The user defined display name for the parent of this resource.
+     *
+     * Generated from protobuf field <code>string resource_parent_display_name = 7;</code>
+     */
+    private $resource_parent_display_name = '';
+    /**
+     * The user defined display name for the project of this resource.
+     *
+     * Generated from protobuf field <code>string resource_project_display_name = 8;</code>
+     */
+    private $resource_project_display_name = '';
 
     /**
      * Constructor.
@@ -77,6 +95,12 @@ class SecurityCenterProperties extends \Google\Protobuf\Internal\Message
      *           https://cloud.google.com/apis/design/resource_names#full_resource_name
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $resource_owners
      *           Owners of the Google Cloud resource.
+     *     @type string $resource_display_name
+     *           The user defined display name for this resource.
+     *     @type string $resource_parent_display_name
+     *           The user defined display name for the parent of this resource.
+     *     @type string $resource_project_display_name
+     *           The user defined display name for the project of this resource.
      * }
      */
     public function __construct($data = NULL) {
@@ -224,6 +248,84 @@ class SecurityCenterProperties extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->resource_owners = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The user defined display name for this resource.
+     *
+     * Generated from protobuf field <code>string resource_display_name = 6;</code>
+     * @return string
+     */
+    public function getResourceDisplayName()
+    {
+        return $this->resource_display_name;
+    }
+
+    /**
+     * The user defined display name for this resource.
+     *
+     * Generated from protobuf field <code>string resource_display_name = 6;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setResourceDisplayName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->resource_display_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * The user defined display name for the parent of this resource.
+     *
+     * Generated from protobuf field <code>string resource_parent_display_name = 7;</code>
+     * @return string
+     */
+    public function getResourceParentDisplayName()
+    {
+        return $this->resource_parent_display_name;
+    }
+
+    /**
+     * The user defined display name for the parent of this resource.
+     *
+     * Generated from protobuf field <code>string resource_parent_display_name = 7;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setResourceParentDisplayName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->resource_parent_display_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * The user defined display name for the project of this resource.
+     *
+     * Generated from protobuf field <code>string resource_project_display_name = 8;</code>
+     * @return string
+     */
+    public function getResourceProjectDisplayName()
+    {
+        return $this->resource_project_display_name;
+    }
+
+    /**
+     * The user defined display name for the project of this resource.
+     *
+     * Generated from protobuf field <code>string resource_project_display_name = 8;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setResourceProjectDisplayName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->resource_project_display_name = $var;
 
         return $this;
     }
