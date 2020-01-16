@@ -1,19 +1,19 @@
 {
-  "updateTime": "2019-12-06T11:01:46.590698Z",
+  "updateTime": "2020-01-16T11:02:51.039611Z",
   "sources": [
     {
       "generator": {
         "name": "artman",
-        "version": "0.42.1",
-        "dockerImage": "googleapis/artman@sha256:c773192618c608a7a0415dd95282f841f8e6bcdef7dd760a988c93b77a64bd57"
+        "version": "0.44.0",
+        "dockerImage": "googleapis/artman@sha256:10a6d0342b8d62544810ac5ad86c3b21049ec0696608ac60175da8e513234344"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "b10e4547017ca529ac8d183e839f3c272e1c13de",
-        "internalRef": "284059574"
+        "sha": "0735b4b096872960568d1f366bfa75b7b0e1f1a3",
+        "internalRef": "289939042"
       }
     }
   ],
@@ -37,6 +37,341 @@
         "generator": "gapic",
         "config": "google/cloud/speech/artman_speech_v1p1beta1.yaml"
       }
+    }
+  ],
+  "newFiles": [
+    {
+      "path": ".gitattributes"
+    },
+    {
+      "path": "README.md"
+    },
+    {
+      "path": "VERSION"
+    },
+    {
+      "path": "CONTRIBUTING.md"
+    },
+    {
+      "path": "phpunit-system.xml.dist"
+    },
+    {
+      "path": "LICENSE"
+    },
+    {
+      "path": "phpunit-snippets.xml.dist"
+    },
+    {
+      "path": "synth.metadata"
+    },
+    {
+      "path": "synth.py"
+    },
+    {
+      "path": "phpunit.xml.dist"
+    },
+    {
+      "path": "composer.json"
+    },
+    {
+      "path": ".github/pull_request_template.md"
+    },
+    {
+      "path": "tests/Snippet/ResultTest.php"
+    },
+    {
+      "path": "tests/Snippet/OperationTest.php"
+    },
+    {
+      "path": "tests/Snippet/SpeechClientTest.php"
+    },
+    {
+      "path": "tests/Snippet/fixtures/demo.flac"
+    },
+    {
+      "path": "tests/Snippet/V1/SpeechClientTest.php"
+    },
+    {
+      "path": "tests/System/bootstrap.php"
+    },
+    {
+      "path": "tests/System/V1p1beta1/SpeechSmokeTest.php"
+    },
+    {
+      "path": "tests/System/V1/SpeechSmokeTest.php"
+    },
+    {
+      "path": "tests/Unit/HttpStreamWrapper.php"
+    },
+    {
+      "path": "tests/Unit/SpeechHelpersTraitTest.php"
+    },
+    {
+      "path": "tests/Unit/ResultTest.php"
+    },
+    {
+      "path": "tests/Unit/OperationTest.php"
+    },
+    {
+      "path": "tests/Unit/SpeechClientTest.php"
+    },
+    {
+      "path": "tests/Unit/V1p1beta1/SpeechClientTest.php"
+    },
+    {
+      "path": "tests/Unit/data/brooklyn.flac"
+    },
+    {
+      "path": "tests/Unit/V1/SpeechClientExtensionTest.php"
+    },
+    {
+      "path": "tests/Unit/V1/SpeechClientTest.php"
+    },
+    {
+      "path": "tests/Unit/Connection/RestTest.php"
+    },
+    {
+      "path": "metadata/V1P1Beta1/CloudSpeech.php"
+    },
+    {
+      "path": "metadata/V1/CloudSpeech.php"
+    },
+    {
+      "path": "src/SpeechHelpersTrait.php"
+    },
+    {
+      "path": "src/Result.php"
+    },
+    {
+      "path": "src/Operation.php"
+    },
+    {
+      "path": "src/SpeechClient.php"
+    },
+    {
+      "path": "src/V1p1beta1/LongRunningRecognizeMetadata.php"
+    },
+    {
+      "path": "src/V1p1beta1/StreamingRecognizeResponse.php"
+    },
+    {
+      "path": "src/V1p1beta1/LongRunningRecognizeResponse.php"
+    },
+    {
+      "path": "src/V1p1beta1/RecognitionMetadata_InteractionType.php"
+    },
+    {
+      "path": "src/V1p1beta1/SpeechRecognitionResult.php"
+    },
+    {
+      "path": "src/V1p1beta1/StreamingRecognizeRequest.php"
+    },
+    {
+      "path": "src/V1p1beta1/RecognitionMetadata.php"
+    },
+    {
+      "path": "src/V1p1beta1/README.md"
+    },
+    {
+      "path": "src/V1p1beta1/RecognitionMetadata_OriginalMediaType.php"
+    },
+    {
+      "path": "src/V1p1beta1/RecognitionConfig_AudioEncoding.php"
+    },
+    {
+      "path": "src/V1p1beta1/RecognizeRequest.php"
+    },
+    {
+      "path": "src/V1p1beta1/RecognitionMetadata_MicrophoneDistance.php"
+    },
+    {
+      "path": "src/V1p1beta1/LongRunningRecognizeRequest.php"
+    },
+    {
+      "path": "src/V1p1beta1/StreamingRecognizeResponse_SpeechEventType.php"
+    },
+    {
+      "path": "src/V1p1beta1/StreamingRecognitionResult.php"
+    },
+    {
+      "path": "src/V1p1beta1/SpeechGrpcClient.php"
+    },
+    {
+      "path": "src/V1p1beta1/SpeakerDiarizationConfig.php"
+    },
+    {
+      "path": "src/V1p1beta1/StreamingRecognitionConfig.php"
+    },
+    {
+      "path": "src/V1p1beta1/SpeechRecognitionAlternative.php"
+    },
+    {
+      "path": "src/V1p1beta1/WordInfo.php"
+    },
+    {
+      "path": "src/V1p1beta1/RecognitionConfig.php"
+    },
+    {
+      "path": "src/V1p1beta1/SpeechContext.php"
+    },
+    {
+      "path": "src/V1p1beta1/RecognitionAudio.php"
+    },
+    {
+      "path": "src/V1p1beta1/SpeechClient.php"
+    },
+    {
+      "path": "src/V1p1beta1/RecognitionMetadata_RecordingDeviceType.php"
+    },
+    {
+      "path": "src/V1p1beta1/RecognizeResponse.php"
+    },
+    {
+      "path": "src/V1p1beta1/RecognitionMetadata/OriginalMediaType.php"
+    },
+    {
+      "path": "src/V1p1beta1/RecognitionMetadata/InteractionType.php"
+    },
+    {
+      "path": "src/V1p1beta1/RecognitionMetadata/MicrophoneDistance.php"
+    },
+    {
+      "path": "src/V1p1beta1/RecognitionMetadata/RecordingDeviceType.php"
+    },
+    {
+      "path": "src/V1p1beta1/RecognitionConfig/AudioEncoding.php"
+    },
+    {
+      "path": "src/V1p1beta1/StreamingRecognizeResponse/SpeechEventType.php"
+    },
+    {
+      "path": "src/V1p1beta1/Gapic/SpeechGapicClient.php"
+    },
+    {
+      "path": "src/V1p1beta1/resources/speech_descriptor_config.php"
+    },
+    {
+      "path": "src/V1p1beta1/resources/speech_client_config.json"
+    },
+    {
+      "path": "src/V1p1beta1/resources/speech_rest_client_config.php"
+    },
+    {
+      "path": "src/V1/LongRunningRecognizeMetadata.php"
+    },
+    {
+      "path": "src/V1/StreamingRecognizeResponse.php"
+    },
+    {
+      "path": "src/V1/LongRunningRecognizeResponse.php"
+    },
+    {
+      "path": "src/V1/RecognitionMetadata_InteractionType.php"
+    },
+    {
+      "path": "src/V1/SpeechRecognitionResult.php"
+    },
+    {
+      "path": "src/V1/StreamingRecognizeRequest.php"
+    },
+    {
+      "path": "src/V1/RecognitionMetadata.php"
+    },
+    {
+      "path": "src/V1/README.md"
+    },
+    {
+      "path": "src/V1/RecognitionMetadata_OriginalMediaType.php"
+    },
+    {
+      "path": "src/V1/RecognitionConfig_AudioEncoding.php"
+    },
+    {
+      "path": "src/V1/RecognizeRequest.php"
+    },
+    {
+      "path": "src/V1/RecognitionMetadata_MicrophoneDistance.php"
+    },
+    {
+      "path": "src/V1/LongRunningRecognizeRequest.php"
+    },
+    {
+      "path": "src/V1/StreamingRecognizeResponse_SpeechEventType.php"
+    },
+    {
+      "path": "src/V1/StreamingRecognitionResult.php"
+    },
+    {
+      "path": "src/V1/SpeechGrpcClient.php"
+    },
+    {
+      "path": "src/V1/SpeakerDiarizationConfig.php"
+    },
+    {
+      "path": "src/V1/StreamingRecognitionConfig.php"
+    },
+    {
+      "path": "src/V1/SpeechRecognitionAlternative.php"
+    },
+    {
+      "path": "src/V1/WordInfo.php"
+    },
+    {
+      "path": "src/V1/RecognitionConfig.php"
+    },
+    {
+      "path": "src/V1/SpeechContext.php"
+    },
+    {
+      "path": "src/V1/RecognitionAudio.php"
+    },
+    {
+      "path": "src/V1/SpeechClient.php"
+    },
+    {
+      "path": "src/V1/RecognitionMetadata_RecordingDeviceType.php"
+    },
+    {
+      "path": "src/V1/RecognizeResponse.php"
+    },
+    {
+      "path": "src/V1/RecognitionMetadata/OriginalMediaType.php"
+    },
+    {
+      "path": "src/V1/RecognitionMetadata/InteractionType.php"
+    },
+    {
+      "path": "src/V1/RecognitionMetadata/MicrophoneDistance.php"
+    },
+    {
+      "path": "src/V1/RecognitionMetadata/RecordingDeviceType.php"
+    },
+    {
+      "path": "src/V1/RecognitionConfig/AudioEncoding.php"
+    },
+    {
+      "path": "src/V1/StreamingRecognizeResponse/SpeechEventType.php"
+    },
+    {
+      "path": "src/V1/Gapic/SpeechGapicClient.php"
+    },
+    {
+      "path": "src/V1/resources/speech_descriptor_config.php"
+    },
+    {
+      "path": "src/V1/resources/speech_client_config.json"
+    },
+    {
+      "path": "src/V1/resources/speech_rest_client_config.php"
+    },
+    {
+      "path": "src/Connection/Rest.php"
+    },
+    {
+      "path": "src/Connection/ConnectionInterface.php"
+    },
+    {
+      "path": "src/Connection/ServiceDefinition/speech-v1.json"
     }
   ]
 }
