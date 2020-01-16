@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.123.0",
                 "v0.122.0",
                 "v0.121.0",
                 "v0.120.0",
@@ -212,6 +213,7 @@
             "name": "google/cloud-bigquery",
             "defaultService": "bigquery/bigqueryclient",
             "versions": [
+                "v1.12.2",
                 "v1.12.1",
                 "v1.12.0",
                 "v1.11.0",
@@ -258,6 +260,7 @@
             "name": "google/cloud-bigquerydatatransfer",
             "defaultService": "bigquerydatatransfer/readme",
             "versions": [
+                "v0.15.1",
                 "v0.15.0",
                 "v0.14.0",
                 "v0.13.0",
@@ -475,6 +478,7 @@
             "name": "google/cloud-dataproc",
             "defaultService": "dataproc/readme",
             "versions": [
+                "v0.16.1",
                 "v0.16.0",
                 "v0.15.1",
                 "v0.15.0",
@@ -858,6 +862,7 @@
             "name": "google/cloud-kms",
             "defaultService": "kms/readme",
             "versions": [
+                "v1.8.0",
                 "v1.7.0",
                 "v1.6.0",
                 "v1.5.0",
@@ -1230,6 +1235,7 @@
             "name": "google/cloud-secret-manager",
             "defaultService": "secretmanager/readme",
             "versions": [
+                "v0.1.0",
                 "master"
             ]
         },
@@ -1238,6 +1244,7 @@
             "name": "google/cloud-security-center",
             "defaultService": "securitycenter/readme",
             "versions": [
+                "v0.3.0",
                 "v0.2.0",
                 "v0.1.1",
                 "v0.1.0",
@@ -1327,6 +1334,7 @@
             "name": "google/cloud-speech",
             "defaultService": "speech/speechclient",
             "versions": [
+                "v0.30.0",
                 "v0.29.0",
                 "v0.28.0",
                 "v0.27.0",
