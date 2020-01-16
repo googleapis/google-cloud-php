@@ -42,7 +42,7 @@ class OrderingKeyBatchJob
     private $publisher;
 
     /**
-     * @param BatchPublisher The batch publisher
+     * @param BatchPublisher $publisher The batch publisher
      * @param string $orderingKey The ordering key
      * @param array $options client and publish options.
      */
