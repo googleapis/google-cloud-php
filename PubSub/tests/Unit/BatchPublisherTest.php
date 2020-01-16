@@ -92,6 +92,11 @@ class BatchPublisherTest extends TestCase
 
         $publisher = TestHelpers::stub(BatchPublisher::class, [
             self::TOPIC_NAME,
+            [
+                'batchOptions' => [
+                    'callPeriod' => 100
+                ]
+            ]
         ], ['client', 'jobs', 'topics']);
 
         $connection = $this->prophesize(ConnectionInterface::class);
@@ -112,22 +117,31 @@ class BatchPublisherTest extends TestCase
         ];
 
         $messageActualCount = 0;
-        $connection->publishMessage(Argument::that(function ($args) use (&$messageActualCount) {
+        $batchCount = 0;
+        $connection->publishMessage(Argument::that(function ($args) use (
+            &$messageActualCount,
+            &$batchCount,
+            $messages
+        ) {
+            $batchCount = count($args['messages']);
             if (empty($args['messages'])) {
                 return false;
             }
 
-            foreach ($args['messages'] as $message) {
-                // invalid ordering key
-                if (isset($message['orderingKey']) && !in_array($message['orderingKey'], ['a', 'b'])) {
-                    return false;
-                }
+            $firstMessage = current($args['messages']);
+            $orderingKey = isset($firstMessage['orderingKey'])
+                ? $firstMessage['orderingKey']
+                : null;
 
-                $messageActualCount++;
-            }
+            $expectedCount = count(array_filter($args['messages'], function ($message) use ($orderingKey) {
+                return $orderingKey
+                    ? isset($message['orderingKey']) && $message['orderingKey'] === $orderingKey
+                    : !isset($message['orderingKey']);
+            }));
 
-            return true;
-        }))->shouldBeCalledTimes(3)->willReturn(['messageIds' => ['a']]);
+            $messageActualCount = $messageActualCount + $batchCount;
+            return $batchCount === $expectedCount;
+        }))->shouldBeCalledTimes(3)->willReturn(['messageIds' => array_fill(0, $batchCount, 'a')]);
 
         $client->___setProperty('connection', $connection->reveal());
         $publisher->___setProperty('client', $client);
