@@ -1,0 +1,32 @@
+{
+  "updateTime": "2020-01-15T18:49:17.216780Z",
+  "sources": [
+    {
+      "generator": {
+        "name": "artman",
+        "version": "0.44.0",
+        "dockerImage": "googleapis/artman@sha256:10a6d0342b8d62544810ac5ad86c3b21049ec0696608ac60175da8e513234344"
+      }
+    },
+    {
+      "git": {
+        "name": "googleapis",
+        "remote": "https://github.com/googleapis/googleapis.git",
+        "sha": "50b0e8286ac988b0593bd890eb31fef6ea2f5767",
+        "internalRef": "289876944"
+      }
+    }
+  ],
+  "destinations": [
+    {
+      "client": {
+        "source": "googleapis",
+        "apiName": "secrets",
+        "apiVersion": "v1beta1",
+        "language": "php",
+        "generator": "gapic",
+        "config": "google/cloud/secrets/artman_secretmanager_v1beta1.yaml"
+      }
+    }
+  ]
+}

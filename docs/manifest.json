@@ -1226,6 +1226,14 @@
             ]
         },
         {
+            "id": "cloud-secret-manager",
+            "name": "google/cloud-secret-manager",
+            "defaultService": "secretmanager/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-security-center",
             "name": "google/cloud-security-center",
             "defaultService": "securitycenter/readme",

@@ -7,7 +7,7 @@
             "type": "securitycenter\/readme"
         },
         {
-            "title": "v1beta1",
+            "title": "v1",
             "type": "securitycenter\/v1\/readme",
             "nav": [
                 {
