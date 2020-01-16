@@ -53,6 +53,7 @@ This client supports the following Google Cloud Platform services at an [Alpha](
 * [Google Cloud Web Security Scanner](#google-cloud-web-security-scanner-alpha) (Alpha)
 * [Google Stackdriver Debugger](#google-stackdriver-debugger-alpha) (Alpha)
 * [Google Stackdriver Trace](#google-stackdriver-trace-alpha) (Alpha)
+* [Secret Manager](#secret-manager-alpha) (Alpha)
 
 If you need support for other Google APIs, please check out the [Google APIs Client Library for PHP](https://github.com/google/google-api-php-client).
 
@@ -1579,6 +1580,49 @@ foreach($traceClient->traces() as $trace) {
 
 ```
 $ composer require google/cloud-trace
+```
+
+## Secret Manager (Alpha)
+
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/secretmanager/readme)
+- [Official Documentation](https://cloud.google.com/secret-manager/docs/)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\SecretManager\V1beta1\Replication;
+use Google\Cloud\SecretManager\V1beta1\Replication\Automatic;
+use Google\Cloud\SecretManager\V1beta1\Secret;
+use Google\Cloud\SecretManager\V1beta1\SecretManagerServiceClient;
+
+$client = new SecretManagerServiceClient();
+
+$secret = $client->createSecret(
+    SecretManagerServiceClient::projectName('[MY_PROJECT_ID]'),
+    '[MY_SECRET_ID]',
+    [
+        'secret' => new Secret([
+            'replication' => new Replication([
+                'automatic' => new Automatic()
+            ])
+        ])
+    ]
+);
+
+printf(
+    'Created secret: %s' . PHP_EOL,
+    $secret->getName()
+);
+```
+
+#### google/cloud-secret-manager
+
+[Secret Manager](https://github.com/googleapis/google-cloud-php-secret-manager) can be installed separately by requiring the [`google/cloud-secret-manager`](https://packagist.org/packages/google/cloud-secret-manager) composer package:
+
+```
+$ composer require google/cloud-secret-manager
 ```
 
 ## Caching Access Tokens
