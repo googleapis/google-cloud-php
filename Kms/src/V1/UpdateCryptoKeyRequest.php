@@ -18,7 +18,7 @@ class UpdateCryptoKeyRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. [CryptoKey][google.cloud.kms.v1.CryptoKey] with updated values.
      *
-     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKey crypto_key = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKey crypto_key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $crypto_key = null;
     /**
@@ -48,7 +48,7 @@ class UpdateCryptoKeyRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. [CryptoKey][google.cloud.kms.v1.CryptoKey] with updated values.
      *
-     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKey crypto_key = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKey crypto_key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Kms\V1\CryptoKey
      */
     public function getCryptoKey()
@@ -59,7 +59,7 @@ class UpdateCryptoKeyRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. [CryptoKey][google.cloud.kms.v1.CryptoKey] with updated values.
      *
-     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKey crypto_key = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKey crypto_key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Kms\V1\CryptoKey $var
      * @return $this
      */
