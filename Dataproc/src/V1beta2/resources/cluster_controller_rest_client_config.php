@@ -5,7 +5,7 @@ return [
         'google.cloud.dataproc.v1beta2.ClusterController' => [
             'CreateCluster' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1beta2/projects/{project_id=*}/regions/{region=*}/clusters',
+                'uriTemplate' => '/v1beta2/projects/{project_id}/regions/{region}/clusters',
                 'body' => 'cluster',
                 'placeholders' => [
                     'project_id' => [
@@ -22,7 +22,7 @@ return [
             ],
             'UpdateCluster' => [
                 'method' => 'patch',
-                'uriTemplate' => '/v1beta2/projects/{project_id=*}/regions/{region=*}/clusters/{cluster_name=*}',
+                'uriTemplate' => '/v1beta2/projects/{project_id}/regions/{region}/clusters/{cluster_name}',
                 'body' => 'cluster',
                 'placeholders' => [
                     'cluster_name' => [
@@ -44,7 +44,7 @@ return [
             ],
             'DeleteCluster' => [
                 'method' => 'delete',
-                'uriTemplate' => '/v1beta2/projects/{project_id=*}/regions/{region=*}/clusters/{cluster_name=*}',
+                'uriTemplate' => '/v1beta2/projects/{project_id}/regions/{region}/clusters/{cluster_name}',
                 'placeholders' => [
                     'cluster_name' => [
                         'getters' => [
@@ -65,7 +65,7 @@ return [
             ],
             'GetCluster' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1beta2/projects/{project_id=*}/regions/{region=*}/clusters/{cluster_name=*}',
+                'uriTemplate' => '/v1beta2/projects/{project_id}/regions/{region}/clusters/{cluster_name}',
                 'placeholders' => [
                     'cluster_name' => [
                         'getters' => [
@@ -86,7 +86,7 @@ return [
             ],
             'ListClusters' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1beta2/projects/{project_id=*}/regions/{region=*}/clusters',
+                'uriTemplate' => '/v1beta2/projects/{project_id}/regions/{region}/clusters',
                 'placeholders' => [
                     'project_id' => [
                         'getters' => [
@@ -102,7 +102,7 @@ return [
             ],
             'DiagnoseCluster' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1beta2/projects/{project_id=*}/regions/{region=*}/clusters/{cluster_name=*}:diagnose',
+                'uriTemplate' => '/v1beta2/projects/{project_id}/regions/{region}/clusters/{cluster_name}:diagnose',
                 'body' => '*',
                 'placeholders' => [
                     'cluster_name' => [

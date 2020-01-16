@@ -5,7 +5,7 @@ return [
         'google.cloud.dataproc.v1beta2.JobController' => [
             'SubmitJob' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1beta2/projects/{project_id=*}/regions/{region=*}/jobs:submit',
+                'uriTemplate' => '/v1beta2/projects/{project_id}/regions/{region}/jobs:submit',
                 'body' => '*',
                 'placeholders' => [
                     'project_id' => [
@@ -22,7 +22,7 @@ return [
             ],
             'GetJob' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1beta2/projects/{project_id=*}/regions/{region=*}/jobs/{job_id=*}',
+                'uriTemplate' => '/v1beta2/projects/{project_id}/regions/{region}/jobs/{job_id}',
                 'placeholders' => [
                     'project_id' => [
                         'getters' => [
@@ -43,7 +43,7 @@ return [
             ],
             'ListJobs' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1beta2/projects/{project_id=*}/regions/{region=*}/jobs',
+                'uriTemplate' => '/v1beta2/projects/{project_id}/regions/{region}/jobs',
                 'placeholders' => [
                     'project_id' => [
                         'getters' => [
@@ -59,7 +59,7 @@ return [
             ],
             'UpdateJob' => [
                 'method' => 'patch',
-                'uriTemplate' => '/v1beta2/projects/{project_id=*}/regions/{region=*}/jobs/{job_id=*}',
+                'uriTemplate' => '/v1beta2/projects/{project_id}/regions/{region}/jobs/{job_id}',
                 'body' => 'job',
                 'placeholders' => [
                     'project_id' => [
@@ -81,7 +81,7 @@ return [
             ],
             'CancelJob' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1beta2/projects/{project_id=*}/regions/{region=*}/jobs/{job_id=*}:cancel',
+                'uriTemplate' => '/v1beta2/projects/{project_id}/regions/{region}/jobs/{job_id}:cancel',
                 'body' => '*',
                 'placeholders' => [
                     'project_id' => [
@@ -103,7 +103,7 @@ return [
             ],
             'DeleteJob' => [
                 'method' => 'delete',
-                'uriTemplate' => '/v1beta2/projects/{project_id=*}/regions/{region=*}/jobs/{job_id=*}',
+                'uriTemplate' => '/v1beta2/projects/{project_id}/regions/{region}/jobs/{job_id}',
                 'placeholders' => [
                     'project_id' => [
                         'getters' => [
