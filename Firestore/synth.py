@@ -97,47 +97,34 @@ s.replace(
     r"public function \1Value"
 )
 
-# fix year
-s.replace(
-    '**/V1beta1/Gapic/*GapicClient.php',
-    r'Copyright \d{4}',
-    'Copyright 2017')
-s.replace(
-    '**/V1beta1/FirestoreClient.php',
-    r'Copyright \d{4}',
-    'Copyright 2017')
-s.replace(
-    'tests/**/V1beta1/*Test.php',
-    r'Copyright \d{4}',
-    'Copyright 2018')
+yearFixes = [
+    {
+        "year": "2017",
+        "files": [
+            "src/V1beta1/Gapic/*GapicClient.php",
+            "src/V1beta1/*Client.php",
+            "tests/**/V1beta1/*Test.php"
+        ]
+    }, {
+        "year": "2019",
+        "files": [
+            "src/V1/Gapic/*GapicClient.php",
+            "src/V1/*Client.php",
+            "tests/**/V1/*Test.php",
+            "src/Admin/V1/*Client.php",
+            'src/Admin/V1/Gapic/*GapicClient.php',
+        ]
+    }
+]
 
-# fix year
-s.replace(
-    '**/V1/Gapic/*GapicClient.php',
-    r'Copyright \d{4}',
-    'Copyright 2019')
-s.replace(
-    '**/V1/FirestoreClient.php',
-    r'Copyright \d{4}',
-    'Copyright 2019')
-s.replace(
-    'tests/**/V1/*Test.php',
-    r'Copyright \d{4}',
-    'Copyright 2019')
-
-# fix year
-s.replace(
-    'src/Admin/V1/Gapic/*GapicClient.php',
-    r'Copyright \d{4}',
-    'Copyright 2019')
-s.replace(
-    'src/Admin/V1/FirestoreAdminGrpcClient.php',
-    r'Copyright \d{4}',
-    'Copyright 2019')
-s.replace(
-    'tests/Unit/Admin/V1/FirestoreAdminClientTest.php',
-    r'Copyright \d{4}',
-    'Copyright 2019')
+for fix in yearFixes:
+    year = fix.get("year")
+    for path in fix.get("files"):
+        s.replace(
+            path,
+            r'Copyright \d{4}',
+            f'Copyright {year}'
+        )
 
 # fix test group
 s.replace(
