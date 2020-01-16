@@ -117,10 +117,8 @@ class BatchPublisherTest extends TestCase
         ];
 
         $messageActualCount = 0;
-        $batchCount = 0;
         $connection->publishMessage(Argument::that(function ($args) use (
             &$messageActualCount,
-            &$batchCount,
             $messages
         ) {
             $batchCount = count($args['messages']);
@@ -141,7 +139,7 @@ class BatchPublisherTest extends TestCase
 
             $messageActualCount = $messageActualCount + $batchCount;
             return $batchCount === $expectedCount;
-        }))->shouldBeCalledTimes(3)->willReturn(['messageIds' => array_fill(0, $batchCount, 'a')]);
+        }))->shouldBeCalledTimes(3)->willReturn(['messageIds' => ['a']]);
 
         $client->___setProperty('connection', $connection->reveal());
         $publisher->___setProperty('client', $client);
