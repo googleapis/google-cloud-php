@@ -1,19 +1,19 @@
 {
-  "updateTime": "2019-12-05T11:00:05.539228Z",
+  "updateTime": "2020-01-16T11:00:13.947246Z",
   "sources": [
     {
       "generator": {
         "name": "artman",
-        "version": "0.42.1",
-        "dockerImage": "googleapis/artman@sha256:c773192618c608a7a0415dd95282f841f8e6bcdef7dd760a988c93b77a64bd57"
+        "version": "0.44.0",
+        "dockerImage": "googleapis/artman@sha256:10a6d0342b8d62544810ac5ad86c3b21049ec0696608ac60175da8e513234344"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "c0ac9b55f2e2efd0ee525b3a6591a1b09330e55a",
-        "internalRef": "283845474"
+        "sha": "0735b4b096872960568d1f366bfa75b7b0e1f1a3",
+        "internalRef": "289939042"
       }
     }
   ],
@@ -47,6 +47,1598 @@
         "generator": "gapic",
         "config": "google/firestore/admin/artman_firestore_v1.yaml"
       }
+    }
+  ],
+  "newFiles": [
+    {
+      "path": ".gitattributes"
+    },
+    {
+      "path": "README.md"
+    },
+    {
+      "path": "VERSION"
+    },
+    {
+      "path": "CONTRIBUTING.md"
+    },
+    {
+      "path": "phpunit-system.xml.dist"
+    },
+    {
+      "path": "phpunit-snippets.xml.dist"
+    },
+    {
+      "path": "synth.metadata"
+    },
+    {
+      "path": "synth.py"
+    },
+    {
+      "path": "phpunit.xml.dist"
+    },
+    {
+      "path": "composer.json"
+    },
+    {
+      "path": ".github/pull_request_template.md"
+    },
+    {
+      "path": "tests/Snippet/WriteBatchTest.php"
+    },
+    {
+      "path": "tests/Snippet/DocumentReferenceTest.php"
+    },
+    {
+      "path": "tests/Snippet/TransactionTest.php"
+    },
+    {
+      "path": "tests/Snippet/FirestoreSessionHandlerTest.php"
+    },
+    {
+      "path": "tests/Snippet/FieldPathTest.php"
+    },
+    {
+      "path": "tests/Snippet/DocumentSnapshotTest.php"
+    },
+    {
+      "path": "tests/Snippet/CollectionReferenceTest.php"
+    },
+    {
+      "path": "tests/Snippet/QueryTest.php"
+    },
+    {
+      "path": "tests/Snippet/FirestoreClientTest.php"
+    },
+    {
+      "path": "tests/Snippet/QuerySnapshotTest.php"
+    },
+    {
+      "path": "tests/Snippet/DocumentReferenceStub.php"
+    },
+    {
+      "path": "tests/Snippet/FieldValueTest.php"
+    },
+    {
+      "path": "tests/System/CollectionGroupTest.php"
+    },
+    {
+      "path": "tests/System/TransactionTest.php"
+    },
+    {
+      "path": "tests/System/FirestoreTestCase.php"
+    },
+    {
+      "path": "tests/System/README.md"
+    },
+    {
+      "path": "tests/System/WriteTest.php"
+    },
+    {
+      "path": "tests/System/FirestoreSessionHandlerTest.php"
+    },
+    {
+      "path": "tests/System/ValueMapperTest.php"
+    },
+    {
+      "path": "tests/System/bootstrap.php"
+    },
+    {
+      "path": "tests/System/GetAllDocumentsTest.php"
+    },
+    {
+      "path": "tests/System/DocumentAndCollectionTest.php"
+    },
+    {
+      "path": "tests/System/QueryTest.php"
+    },
+    {
+      "path": "tests/System/FieldValueTest.php"
+    },
+    {
+      "path": "tests/System/Admin/V1/FirestoreAdminClientSmokeTest.php"
+    },
+    {
+      "path": "tests/Unit/WriteBatchTest.php"
+    },
+    {
+      "path": "tests/Unit/DocumentReferenceTest.php"
+    },
+    {
+      "path": "tests/Unit/TransactionTest.php"
+    },
+    {
+      "path": "tests/Unit/ConformanceTest.php"
+    },
+    {
+      "path": "tests/Unit/FirestoreSessionHandlerTest.php"
+    },
+    {
+      "path": "tests/Unit/SnapshotTraitTest.php"
+    },
+    {
+      "path": "tests/Unit/ValueMapperTest.php"
+    },
+    {
+      "path": "tests/Unit/FieldPathTest.php"
+    },
+    {
+      "path": "tests/Unit/DocumentSnapshotTest.php"
+    },
+    {
+      "path": "tests/Unit/PathTraitTest.php"
+    },
+    {
+      "path": "tests/Unit/CollectionReferenceTest.php"
+    },
+    {
+      "path": "tests/Unit/QueryTest.php"
+    },
+    {
+      "path": "tests/Unit/FirestoreClientTest.php"
+    },
+    {
+      "path": "tests/Unit/QuerySnapshotTest.php"
+    },
+    {
+      "path": "tests/Unit/FieldValueTest.php"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-arrayremove.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/listen-empty.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-fp-dup-transforms.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-select.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-arrayremove-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-st-alone.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-st-multi.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-del-merge-alone.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-split.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-del-noarray-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-st-alone.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-cursor-vals-2.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-cursor-docsnap.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-del-alone.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-arrayremove-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-arrayunion-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-all-transforms.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-nested-transform-and-nested-value.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-quoting.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-prefix-2.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-uptime.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-cursor-vals-1b.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-mergeall-empty.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-mergeall-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/delete-exists-precond.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-arrayremove-noarray.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-arrayunion-multi.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-fp-dup.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-del-noarray.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/listen-filter-nop.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-order.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-offset-limit-last-wins.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-fp-del.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-no-paths.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/listen-doc-remove.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-arrayunion-noarray-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-arrayunion-with-st.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-st.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-arrayunion-alone.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-arrayunion-multi.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-arrayunion-multi.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-cursor-vals-1a.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-arrayremove-with-st.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-cursor-endbefore-empty-map.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-nested-transform-and-nested-value.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-arrayremove-multi.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-cursor-docsnap-where-neq.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-arrayremove-alone.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-st-mergeall.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-st-multi.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-st-noarray-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-st-with-empty-map.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-st-noarray.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-arrayunion-noarray.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-st.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-del-wo-merge.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-arrayunion-noarray-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-del-nonleaf.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-del.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-st-multi.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/listen-add-mod-del-add.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-split-top-level.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-all-transforms.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-del-mergeall.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-arrayremove-noarray-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-arrayremove-with-st.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-st-where.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-complex.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-arrayremove-noarray.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/delete-time-precond.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-prefix-1.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-arrayunion-with-st.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/listen-target-remove.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-where-2.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-uptime.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-st-noarray-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-offset-limit.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-arrayunion-multi.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-st-noarray.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-arrayunion.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-del-noarray.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-arrayremove.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-arrayunion-where.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-del-where.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-special-chars.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-st-dot.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-arrayremove-noarray-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-arrayremove-multi.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-arrayunion-with-st.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-del-dot.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-st-noarray-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-cursor-vals-last-wins.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-del.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-del-alone.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-empty.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-arrayunion.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-del-merge.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-prefix-3.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-merge-prefix.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-invalid-operator.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-special-chars.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-nodel.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/listen-add-three.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-prefix-1.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-prefix-2.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-basic.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-complex.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-arrayunion-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-del-noarray-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-st-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-st-merge-nowrite.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-complex.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-special-chars.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-st-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-fp-empty-component.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-fp-empty-component.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-fp-multi.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-del-noarray.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-merge-present.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/listen-removed-target-ids.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-st-alone.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-st-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-arrayunion-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-all-transforms.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-st.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-nosplit.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-cursor-docsnap-order.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-arrayunion-noarray-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/delete-no-precond.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-st-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-cursor-startat-empty.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-arrayremove-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-arrayremove-noarray.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-st-alone-mergeall.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-no-paths.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/listen-reset.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-where-NaN.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-merge-fp.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-basic.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-cursor-docsnap-orderby-name.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-cursor-startat-empty-map.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-bad-null.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-del-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-del-nomerge.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-arrayunion-noarray.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-st-alone.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-wrong-collection.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-exists-precond.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-st-noarray.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-st-multi.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/listen-nomod.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-cursor-no-order.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-arrayremove-multi.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-fp-empty.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-arrayunion-noarray-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-arrayremove.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-exists-precond.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-arrayunion-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-basic.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-arrayunion-cursor.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-arrayremove-multi.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-bad-NaN.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-merge.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-arrayunion.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-invalid-path-where.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-empty.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-st-noarray.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-st-with-empty-map.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-prefix-3.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-arrayunion-noarray.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-arrayremove.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-nosplit.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/listen-target-add-nop.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-invalid-path-select.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-select-last-wins.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-badchar.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-arrayremove-with-st.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-all-transforms.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-del-noarray-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/listen-add-one.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/listen-nocurrent.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-arrayremove-with-st.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-arrayremove-noarray.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-nodel.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-where-null.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-cursor-docsnap-where-eq.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-arrayunion-noarray.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-arrayremove-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-arrayremove-cursor.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-arrayremove-where.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-cursor-vals-docid.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-fp-nosplit.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-merge-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-complex.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-del-cursor.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-arrayremove-alone.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-st-noarray-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-where.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-arrayremove-noarray-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-st-merge-both.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-arrayremove-noarray-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-select-empty.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-arrayunion-with-st.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-merge-nonleaf.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-st-cursor.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-st-with-empty-map.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/listen-multi-docs.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-del-noarray.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-st-merge-nonleaf-alone.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-mergeall.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-cursor-endbefore-empty.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-st-merge-nonleaf.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-arrayunion-alone.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-st-with-empty-map.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-st.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/get-basic.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-del-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-arrayunion.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/listen-target-add-wrong-id.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-del-noarray-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-invalid-path-order.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-cursor-docsnap-where-neq-orderby.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-basic.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-st-nomerge.json"
+    },
+    {
+      "path": "tests/Unit/Admin/V1/FirestoreAdminClientTest.php"
+    },
+    {
+      "path": "tests/Unit/V1/FirestoreClientTest.php"
+    },
+    {
+      "path": "tests/Unit/V1beta1/FirestoreClientTest.php"
+    },
+    {
+      "path": "tests/Unit/Connection/GrpcTest.php"
+    },
+    {
+      "path": "metadata/Admin/V1/Location.php"
+    },
+    {
+      "path": "metadata/Admin/V1/Index.php"
+    },
+    {
+      "path": "metadata/Admin/V1/Field.php"
+    },
+    {
+      "path": "metadata/Admin/V1/FirestoreAdmin.php"
+    },
+    {
+      "path": "metadata/Admin/V1/Operation.php"
+    },
+    {
+      "path": "metadata/V1/Write.php"
+    },
+    {
+      "path": "metadata/V1/Common.php"
+    },
+    {
+      "path": "metadata/V1/Query.php"
+    },
+    {
+      "path": "metadata/V1/Firestore.php"
+    },
+    {
+      "path": "metadata/V1/Document.php"
+    },
+    {
+      "path": "metadata/V1Beta1/Write.php"
+    },
+    {
+      "path": "metadata/V1Beta1/Common.php"
+    },
+    {
+      "path": "metadata/V1Beta1/Query.php"
+    },
+    {
+      "path": "metadata/V1Beta1/Firestore.php"
+    },
+    {
+      "path": "metadata/V1Beta1/Document.php"
+    },
+    {
+      "path": "src/CollectionReference.php"
+    },
+    {
+      "path": "src/DocumentReference.php"
+    },
+    {
+      "path": "src/FieldValue.php"
+    },
+    {
+      "path": "src/PathTrait.php"
+    },
+    {
+      "path": "src/FieldPath.php"
+    },
+    {
+      "path": "src/FirestoreSessionHandler.php"
+    },
+    {
+      "path": "src/SnapshotTrait.php"
+    },
+    {
+      "path": "src/FirestoreClient.php"
+    },
+    {
+      "path": "src/Transaction.php"
+    },
+    {
+      "path": "src/QuerySnapshot.php"
+    },
+    {
+      "path": "src/Query.php"
+    },
+    {
+      "path": "src/ValueMapper.php"
+    },
+    {
+      "path": "src/WriteBatch.php"
+    },
+    {
+      "path": "src/DocumentSnapshot.php"
+    },
+    {
+      "path": "src/FieldValue/DocumentTransformTrait.php"
+    },
+    {
+      "path": "src/FieldValue/FieldValueTrait.php"
+    },
+    {
+      "path": "src/FieldValue/DeleteFieldValue.php"
+    },
+    {
+      "path": "src/FieldValue/DocumentTransformInterface.php"
+    },
+    {
+      "path": "src/FieldValue/ArrayUnionValue.php"
+    },
+    {
+      "path": "src/FieldValue/ServerTimestampValue.php"
+    },
+    {
+      "path": "src/FieldValue/IncrementValue.php"
+    },
+    {
+      "path": "src/FieldValue/ArrayRemoveValue.php"
+    },
+    {
+      "path": "src/FieldValue/FieldValueInterface.php"
+    },
+    {
+      "path": "src/Admin/V1/ListFieldsRequest.php"
+    },
+    {
+      "path": "src/Admin/V1/UpdateFieldRequest.php"
+    },
+    {
+      "path": "src/Admin/V1/Progress.php"
+    },
+    {
+      "path": "src/Admin/V1/FirestoreAdminGrpcClient.php"
+    },
+    {
+      "path": "src/Admin/V1/OperationState.php"
+    },
+    {
+      "path": "src/Admin/V1/FirestoreAdminClient.php"
+    },
+    {
+      "path": "src/Admin/V1/CreateIndexRequest.php"
+    },
+    {
+      "path": "src/Admin/V1/ListIndexesRequest.php"
+    },
+    {
+      "path": "src/Admin/V1/Index_IndexField.php"
+    },
+    {
+      "path": "src/Admin/V1/Index_State.php"
+    },
+    {
+      "path": "src/Admin/V1/Index.php"
+    },
+    {
+      "path": "src/Admin/V1/ListIndexesResponse.php"
+    },
+    {
+      "path": "src/Admin/V1/Index_IndexField_Order.php"
+    },
+    {
+      "path": "src/Admin/V1/Index_IndexField_ArrayConfig.php"
+    },
+    {
+      "path": "src/Admin/V1/Field.php"
+    },
+    {
+      "path": "src/Admin/V1/ExportDocumentsMetadata.php"
+    },
+    {
+      "path": "src/Admin/V1/GetIndexRequest.php"
+    },
+    {
+      "path": "src/Admin/V1/LocationMetadata.php"
+    },
+    {
+      "path": "src/Admin/V1/FieldOperationMetadata_IndexConfigDelta.php"
+    },
+    {
+      "path": "src/Admin/V1/ImportDocumentsRequest.php"
+    },
+    {
+      "path": "src/Admin/V1/ExportDocumentsRequest.php"
+    },
+    {
+      "path": "src/Admin/V1/DeleteIndexRequest.php"
+    },
+    {
+      "path": "src/Admin/V1/Index_QueryScope.php"
+    },
+    {
+      "path": "src/Admin/V1/FieldOperationMetadata_IndexConfigDelta_ChangeType.php"
+    },
+    {
+      "path": "src/Admin/V1/GetFieldRequest.php"
+    },
+    {
+      "path": "src/Admin/V1/Field_IndexConfig.php"
+    },
+    {
+      "path": "src/Admin/V1/ListFieldsResponse.php"
+    },
+    {
+      "path": "src/Admin/V1/FieldOperationMetadata.php"
+    },
+    {
+      "path": "src/Admin/V1/IndexOperationMetadata.php"
+    },
+    {
+      "path": "src/Admin/V1/ImportDocumentsMetadata.php"
+    },
+    {
+      "path": "src/Admin/V1/ExportDocumentsResponse.php"
+    },
+    {
+      "path": "src/Admin/V1/Gapic/FirestoreAdminGapicClient.php"
+    },
+    {
+      "path": "src/Admin/V1/resources/firestore_admin_descriptor_config.php"
+    },
+    {
+      "path": "src/Admin/V1/resources/firestore_admin_rest_client_config.php"
+    },
+    {
+      "path": "src/Admin/V1/resources/firestore_admin_client_config.json"
+    },
+    {
+      "path": "src/Admin/V1/Field/IndexConfig.php"
+    },
+    {
+      "path": "src/Admin/V1/Index/State.php"
+    },
+    {
+      "path": "src/Admin/V1/Index/QueryScope.php"
+    },
+    {
+      "path": "src/Admin/V1/Index/IndexField.php"
+    },
+    {
+      "path": "src/Admin/V1/Index/IndexField/Order.php"
+    },
+    {
+      "path": "src/Admin/V1/Index/IndexField/ArrayConfig.php"
+    },
+    {
+      "path": "src/Admin/V1/FieldOperationMetadata/IndexConfigDelta.php"
+    },
+    {
+      "path": "src/Admin/V1/FieldOperationMetadata/IndexConfigDelta/ChangeType.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery_UnaryFilter_Operator.php"
+    },
+    {
+      "path": "src/V1/TransactionOptions_ReadWrite.php"
+    },
+    {
+      "path": "src/V1/DocumentTransform.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery_FieldReference.php"
+    },
+    {
+      "path": "src/V1/ExistenceFilter.php"
+    },
+    {
+      "path": "src/V1/Target_QueryTarget.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery_FieldFilter.php"
+    },
+    {
+      "path": "src/V1/ListCollectionIdsResponse.php"
+    },
+    {
+      "path": "src/V1/CommitResponse.php"
+    },
+    {
+      "path": "src/V1/WriteResult.php"
+    },
+    {
+      "path": "src/V1/FirestoreGrpcClient.php"
+    },
+    {
+      "path": "src/V1/DocumentChange.php"
+    },
+    {
+      "path": "src/V1/README.md"
+    },
+    {
+      "path": "src/V1/DeleteDocumentRequest.php"
+    },
+    {
+      "path": "src/V1/CommitRequest.php"
+    },
+    {
+      "path": "src/V1/WriteRequest.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery_CompositeFilter_Operator.php"
+    },
+    {
+      "path": "src/V1/WriteResponse.php"
+    },
+    {
+      "path": "src/V1/Value.php"
+    },
+    {
+      "path": "src/V1/MapValue.php"
+    },
+    {
+      "path": "src/V1/Write.php"
+    },
+    {
+      "path": "src/V1/ArrayValue.php"
+    },
+    {
+      "path": "src/V1/TargetChange_TargetChangeType.php"
+    },
+    {
+      "path": "src/V1/BatchGetDocumentsRequest.php"
+    },
+    {
+      "path": "src/V1/UpdateDocumentRequest.php"
+    },
+    {
+      "path": "src/V1/DocumentTransform_FieldTransform_ServerValue.php"
+    },
+    {
+      "path": "src/V1/RollbackRequest.php"
+    },
+    {
+      "path": "src/V1/TransactionOptions.php"
+    },
+    {
+      "path": "src/V1/BatchGetDocumentsResponse.php"
+    },
+    {
+      "path": "src/V1/ListenRequest.php"
+    },
+    {
+      "path": "src/V1/DocumentDelete.php"
+    },
+    {
+      "path": "src/V1/Cursor.php"
+    },
+    {
+      "path": "src/V1/CreateDocumentRequest.php"
+    },
+    {
+      "path": "src/V1/FirestoreClient.php"
+    },
+    {
+      "path": "src/V1/BeginTransactionResponse.php"
+    },
+    {
+      "path": "src/V1/ListDocumentsRequest.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery_Filter.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery_CollectionSelector.php"
+    },
+    {
+      "path": "src/V1/GetDocumentRequest.php"
+    },
+    {
+      "path": "src/V1/TransactionOptions_ReadOnly.php"
+    },
+    {
+      "path": "src/V1/Target_DocumentsTarget.php"
+    },
+    {
+      "path": "src/V1/RunQueryResponse.php"
+    },
+    {
+      "path": "src/V1/DocumentRemove.php"
+    },
+    {
+      "path": "src/V1/ListCollectionIdsRequest.php"
+    },
+    {
+      "path": "src/V1/DocumentMask.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery_Order.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery_UnaryFilter.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery_CompositeFilter.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery_Projection.php"
+    },
+    {
+      "path": "src/V1/ListenResponse.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery_Direction.php"
+    },
+    {
+      "path": "src/V1/DocumentTransform_FieldTransform.php"
+    },
+    {
+      "path": "src/V1/ListDocumentsResponse.php"
+    },
+    {
+      "path": "src/V1/Precondition.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery_FieldFilter_Operator.php"
+    },
+    {
+      "path": "src/V1/Target.php"
+    },
+    {
+      "path": "src/V1/Document.php"
+    },
+    {
+      "path": "src/V1/TargetChange.php"
+    },
+    {
+      "path": "src/V1/RunQueryRequest.php"
+    },
+    {
+      "path": "src/V1/BeginTransactionRequest.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery/FieldFilter.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery/FieldReference.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery/CompositeFilter.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery/CollectionSelector.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery/Filter.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery/Projection.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery/Order.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery/UnaryFilter.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery/Direction.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery/FieldFilter/Operator.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery/CompositeFilter/Operator.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery/UnaryFilter/Operator.php"
+    },
+    {
+      "path": "src/V1/DocumentTransform/FieldTransform.php"
+    },
+    {
+      "path": "src/V1/DocumentTransform/FieldTransform/ServerValue.php"
+    },
+    {
+      "path": "src/V1/Target/DocumentsTarget.php"
+    },
+    {
+      "path": "src/V1/Target/QueryTarget.php"
+    },
+    {
+      "path": "src/V1/Gapic/FirestoreGapicClient.php"
+    },
+    {
+      "path": "src/V1/resources/firestore_client_config.json"
+    },
+    {
+      "path": "src/V1/resources/firestore_rest_client_config.php"
+    },
+    {
+      "path": "src/V1/resources/firestore_descriptor_config.php"
+    },
+    {
+      "path": "src/V1/TargetChange/TargetChangeType.php"
+    },
+    {
+      "path": "src/V1/TransactionOptions/ReadOnly.php"
+    },
+    {
+      "path": "src/V1/TransactionOptions/ReadWrite.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery_UnaryFilter_Operator.php"
+    },
+    {
+      "path": "src/V1beta1/TransactionOptions_ReadWrite.php"
+    },
+    {
+      "path": "src/V1beta1/DocumentTransform.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery_FieldReference.php"
+    },
+    {
+      "path": "src/V1beta1/ExistenceFilter.php"
+    },
+    {
+      "path": "src/V1beta1/Target_QueryTarget.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery_FieldFilter.php"
+    },
+    {
+      "path": "src/V1beta1/ListCollectionIdsResponse.php"
+    },
+    {
+      "path": "src/V1beta1/CommitResponse.php"
+    },
+    {
+      "path": "src/V1beta1/WriteResult.php"
+    },
+    {
+      "path": "src/V1beta1/FirestoreGrpcClient.php"
+    },
+    {
+      "path": "src/V1beta1/DocumentChange.php"
+    },
+    {
+      "path": "src/V1beta1/README.md"
+    },
+    {
+      "path": "src/V1beta1/DeleteDocumentRequest.php"
+    },
+    {
+      "path": "src/V1beta1/CommitRequest.php"
+    },
+    {
+      "path": "src/V1beta1/WriteRequest.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery_CompositeFilter_Operator.php"
+    },
+    {
+      "path": "src/V1beta1/WriteResponse.php"
+    },
+    {
+      "path": "src/V1beta1/Value.php"
+    },
+    {
+      "path": "src/V1beta1/MapValue.php"
+    },
+    {
+      "path": "src/V1beta1/Write.php"
+    },
+    {
+      "path": "src/V1beta1/ArrayValue.php"
+    },
+    {
+      "path": "src/V1beta1/TargetChange_TargetChangeType.php"
+    },
+    {
+      "path": "src/V1beta1/BatchGetDocumentsRequest.php"
+    },
+    {
+      "path": "src/V1beta1/UpdateDocumentRequest.php"
+    },
+    {
+      "path": "src/V1beta1/DocumentTransform_FieldTransform_ServerValue.php"
+    },
+    {
+      "path": "src/V1beta1/RollbackRequest.php"
+    },
+    {
+      "path": "src/V1beta1/TransactionOptions.php"
+    },
+    {
+      "path": "src/V1beta1/BatchGetDocumentsResponse.php"
+    },
+    {
+      "path": "src/V1beta1/ListenRequest.php"
+    },
+    {
+      "path": "src/V1beta1/DocumentDelete.php"
+    },
+    {
+      "path": "src/V1beta1/Cursor.php"
+    },
+    {
+      "path": "src/V1beta1/CreateDocumentRequest.php"
+    },
+    {
+      "path": "src/V1beta1/FirestoreClient.php"
+    },
+    {
+      "path": "src/V1beta1/BeginTransactionResponse.php"
+    },
+    {
+      "path": "src/V1beta1/ListDocumentsRequest.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery_Filter.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery_CollectionSelector.php"
+    },
+    {
+      "path": "src/V1beta1/GetDocumentRequest.php"
+    },
+    {
+      "path": "src/V1beta1/TransactionOptions_ReadOnly.php"
+    },
+    {
+      "path": "src/V1beta1/Target_DocumentsTarget.php"
+    },
+    {
+      "path": "src/V1beta1/RunQueryResponse.php"
+    },
+    {
+      "path": "src/V1beta1/DocumentRemove.php"
+    },
+    {
+      "path": "src/V1beta1/ListCollectionIdsRequest.php"
+    },
+    {
+      "path": "src/V1beta1/DocumentMask.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery_Order.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery_UnaryFilter.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery_CompositeFilter.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery_Projection.php"
+    },
+    {
+      "path": "src/V1beta1/ListenResponse.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery_Direction.php"
+    },
+    {
+      "path": "src/V1beta1/DocumentTransform_FieldTransform.php"
+    },
+    {
+      "path": "src/V1beta1/ListDocumentsResponse.php"
+    },
+    {
+      "path": "src/V1beta1/Precondition.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery_FieldFilter_Operator.php"
+    },
+    {
+      "path": "src/V1beta1/Target.php"
+    },
+    {
+      "path": "src/V1beta1/Document.php"
+    },
+    {
+      "path": "src/V1beta1/TargetChange.php"
+    },
+    {
+      "path": "src/V1beta1/RunQueryRequest.php"
+    },
+    {
+      "path": "src/V1beta1/BeginTransactionRequest.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery/FieldFilter.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery/FieldReference.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery/CompositeFilter.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery/CollectionSelector.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery/Filter.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery/Projection.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery/Order.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery/UnaryFilter.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery/Direction.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery/FieldFilter/Operator.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery/CompositeFilter/Operator.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery/UnaryFilter/Operator.php"
+    },
+    {
+      "path": "src/V1beta1/DocumentTransform/FieldTransform.php"
+    },
+    {
+      "path": "src/V1beta1/DocumentTransform/FieldTransform/ServerValue.php"
+    },
+    {
+      "path": "src/V1beta1/Target/DocumentsTarget.php"
+    },
+    {
+      "path": "src/V1beta1/Target/QueryTarget.php"
+    },
+    {
+      "path": "src/V1beta1/Gapic/FirestoreGapicClient.php"
+    },
+    {
+      "path": "src/V1beta1/resources/firestore_client_config.json"
+    },
+    {
+      "path": "src/V1beta1/resources/firestore_rest_client_config.php"
+    },
+    {
+      "path": "src/V1beta1/resources/firestore_descriptor_config.php"
+    },
+    {
+      "path": "src/V1beta1/TargetChange/TargetChangeType.php"
+    },
+    {
+      "path": "src/V1beta1/TransactionOptions/ReadOnly.php"
+    },
+    {
+      "path": "src/V1beta1/TransactionOptions/ReadWrite.php"
+    },
+    {
+      "path": "src/Connection/ConnectionInterface.php"
+    },
+    {
+      "path": "src/Connection/Grpc.php"
     }
   ]
 }
