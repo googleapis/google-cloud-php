@@ -1,5 +1,72 @@
 # Changelog
 
+## 0.123.0
+
+<details><summary>google/cloud-bigquery 1.12.2</summary>
+
+
+
+### Bug Fixes
+
+* add tests for dataset and model encryption config ([#2377](https://www.github.com/googleapis/google-cloud-php/issues/2377)) ([87b309d](https://www.github.com/googleapis/google-cloud-php/commit/87b309df78f3c1f0d23c9841863c77dc637ee2fd))
+
+</details>
+
+<details><summary>google/cloud-bigquerydatatransfer 0.15.1</summary>
+
+
+
+### Bug Fixes
+
+* update metadata ([#2543](https://www.github.com/googleapis/google-cloud-php/issues/2543)) ([0e6da4d](https://www.github.com/googleapis/google-cloud-php/commit/0e6da4d3835e477b7297d1fa8be1a102536ba0d4))
+
+</details>
+
+<details><summary>google/cloud-dataproc 0.16.1</summary>
+
+
+
+### Bug Fixes
+
+* update rest transport URI bindings ([#2527](https://www.github.com/googleapis/google-cloud-php/issues/2527)) ([79e9dc7](https://www.github.com/googleapis/google-cloud-php/commit/79e9dc769680955b91cf5188fe6a88e8dc0ec7a5))
+
+</details>
+
+<details><summary>google/cloud-kms 1.8.0</summary>
+
+
+
+### Features
+
+* add external protection level, update documentation ([#2538](https://www.github.com/googleapis/google-cloud-php/issues/2538)) ([fe62c50](https://www.github.com/googleapis/google-cloud-php/commit/fe62c50f4df7670182b5e36434b54944c34ca8f1))
+
+
+### Bug Fixes
+
+* update metadata and documentation ([#2574](https://www.github.com/googleapis/google-cloud-php/issues/2574)) ([6ad24c1](https://www.github.com/googleapis/google-cloud-php/commit/6ad24c1b0735442b9f4552944ba2010e4393d0cc))
+
+</details>
+
+<details><summary>google/cloud-security-center 0.3.0</summary>
+
+
+
+### Features
+
+* update SecurityCenter client ([#2567](https://www.github.com/googleapis/google-cloud-php/issues/2567)) ([2fa7fd8](https://www.github.com/googleapis/google-cloud-php/commit/2fa7fd81fb3385f440ae590482590b5783fac9cb))
+
+</details>
+
+<details><summary>google/cloud-speech 0.30.0</summary>
+
+
+
+### Features
+
+* update v1pv1beta1 timeouts ([#2576](https://www.github.com/googleapis/google-cloud-php/issues/2576)) ([c18cc32](https://www.github.com/googleapis/google-cloud-php/commit/c18cc326161147d6cc4a452f1ceef8bde1352b6d))
+
+</details>
+
 ## 0.122.0
 
 <details><summary>google/cloud-firestore 1.10.1</summary>
