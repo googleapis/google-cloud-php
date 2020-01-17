@@ -21,7 +21,7 @@ class Session extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The labels for the session.
      *  * Label keys must be between 1 and 63 characters long and must conform to
@@ -39,14 +39,14 @@ class Session extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The approximate timestamp when the session is last used. It is
      * typically earlier than the actual last use time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp approximate_last_use_time = 4;</code>
      */
-    private $approximate_last_use_time = null;
+    protected $approximate_last_use_time = null;
 
     /**
      * Constructor.

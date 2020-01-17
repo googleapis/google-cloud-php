@@ -21,13 +21,13 @@ class BatchCreateSessionsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $database = '';
+    protected $database = '';
     /**
      * Parameters to be applied to each created session.
      *
      * Generated from protobuf field <code>.google.spanner.v1.Session session_template = 2;</code>
      */
-    private $session_template = null;
+    protected $session_template = null;
     /**
      * Required. The number of sessions to be created in this batch call.
      * The API may return fewer than the requested number of sessions. If a
@@ -38,7 +38,7 @@ class BatchCreateSessionsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 session_count = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $session_count = 0;
+    protected $session_count = 0;
 
     /**
      * Constructor.

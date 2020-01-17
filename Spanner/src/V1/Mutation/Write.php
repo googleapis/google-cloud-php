@@ -21,7 +21,7 @@ class Write extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string table = 1;</code>
      */
-    private $table = '';
+    protected $table = '';
     /**
      * The names of the columns in [table][google.spanner.v1.Mutation.Write.table] to be written.
      * The list of columns must contain enough columns to allow

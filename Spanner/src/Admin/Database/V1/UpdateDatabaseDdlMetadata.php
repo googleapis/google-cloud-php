@@ -21,7 +21,7 @@ class UpdateDatabaseDdlMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string database = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $database = '';
+    protected $database = '';
     /**
      * For an update this list contains all the statements. For an
      * individual statement, this list contains only that statement.

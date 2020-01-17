@@ -24,13 +24,13 @@ class Database extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The current database state.
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.Database.State state = 2;</code>
      */
-    private $state = 0;
+    protected $state = 0;
 
     /**
      * Constructor.

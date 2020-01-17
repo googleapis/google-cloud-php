@@ -20,7 +20,7 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $session = '';
+    protected $session = '';
     /**
      * The mutations to be executed when this transaction commits. All
      * mutations are applied atomically, in the order they appear in

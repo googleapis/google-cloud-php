@@ -20,7 +20,7 @@ class ResultSetStats extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.v1.QueryPlan query_plan = 1;</code>
      */
-    private $query_plan = null;
+    protected $query_plan = null;
     /**
      * Aggregated statistics from the execution of the query. Only present when
      * the query is profiled. For example, a query could return the statistics as
@@ -33,7 +33,7 @@ class ResultSetStats extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Struct query_stats = 2;</code>
      */
-    private $query_stats = null;
+    protected $query_stats = null;
     protected $row_count;
 
     /**

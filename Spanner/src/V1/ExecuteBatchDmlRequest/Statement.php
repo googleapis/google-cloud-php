@@ -20,7 +20,7 @@ class Statement extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string sql = 1;</code>
      */
-    private $sql = '';
+    protected $sql = '';
     /**
      * Parameter names and values that bind to placeholders in the DML string.
      * A parameter placeholder consists of the `&#64;` character followed by the
@@ -33,7 +33,7 @@ class Statement extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Struct params = 2;</code>
      */
-    private $params = null;
+    protected $params = null;
     /**
      * It is not always possible for Cloud Spanner to infer the right SQL type
      * from a JSON value.  For example, values of type `BYTES` and values

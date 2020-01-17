@@ -21,7 +21,7 @@ class ReadOnly extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool return_read_timestamp = 6;</code>
      */
-    private $return_read_timestamp = false;
+    protected $return_read_timestamp = false;
     protected $timestamp_bound;
 
     /**

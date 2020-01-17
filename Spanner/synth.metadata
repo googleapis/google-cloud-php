@@ -1,19 +1,19 @@
 {
-  "updateTime": "2019-11-15T16:20:54.678520Z",
+  "updateTime": "2020-01-17T11:04:26.440966Z",
   "sources": [
     {
       "generator": {
         "name": "artman",
-        "version": "0.41.1",
-        "dockerImage": "googleapis/artman@sha256:545c758c76c3f779037aa259023ec3d1ef2d57d2c8cd00a222cb187d63ceac5e"
+        "version": "0.44.1",
+        "dockerImage": "googleapis/artman@sha256:5599b61e56a372d21b671969ee915fbca0f6c3a0daaeb898d01f8f685f1bbc8b"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "f6808ff4e8b966cd571e99279d4a2780ed97dff2",
-        "internalRef": "280581337"
+        "sha": "58e770d568a2b78168ddc19a874178fee8265a9d",
+        "internalRef": "290146169"
       }
     }
   ],
@@ -47,6 +47,785 @@
         "generator": "gapic",
         "config": "google/spanner/admin/instance/artman_spanner_admin_instance.yaml"
       }
+    }
+  ],
+  "newFiles": [
+    {
+      "path": ".gitattributes"
+    },
+    {
+      "path": ".github/pull_request_template.md"
+    },
+    {
+      "path": "CONTRIBUTING.md"
+    },
+    {
+      "path": "LICENSE"
+    },
+    {
+      "path": "README.md"
+    },
+    {
+      "path": "VERSION"
+    },
+    {
+      "path": "composer.json"
+    },
+    {
+      "path": "metadata/Admin/Database/V1/SpannerDatabaseAdmin.php"
+    },
+    {
+      "path": "metadata/Admin/Instance/V1/SpannerInstanceAdmin.php"
+    },
+    {
+      "path": "metadata/V1/Keys.php"
+    },
+    {
+      "path": "metadata/V1/Mutation.php"
+    },
+    {
+      "path": "metadata/V1/QueryPlan.php"
+    },
+    {
+      "path": "metadata/V1/ResultSet.php"
+    },
+    {
+      "path": "metadata/V1/Spanner.php"
+    },
+    {
+      "path": "metadata/V1/Transaction.php"
+    },
+    {
+      "path": "metadata/V1/Type.php"
+    },
+    {
+      "path": "phpunit-snippets.xml.dist"
+    },
+    {
+      "path": "phpunit-system.xml.dist"
+    },
+    {
+      "path": "phpunit.xml.dist"
+    },
+    {
+      "path": "src/Admin/Database/V1/CreateDatabaseMetadata.php"
+    },
+    {
+      "path": "src/Admin/Database/V1/CreateDatabaseRequest.php"
+    },
+    {
+      "path": "src/Admin/Database/V1/Database.php"
+    },
+    {
+      "path": "src/Admin/Database/V1/Database/State.php"
+    },
+    {
+      "path": "src/Admin/Database/V1/DatabaseAdminClient.php"
+    },
+    {
+      "path": "src/Admin/Database/V1/DatabaseAdminGrpcClient.php"
+    },
+    {
+      "path": "src/Admin/Database/V1/Database_State.php"
+    },
+    {
+      "path": "src/Admin/Database/V1/DropDatabaseRequest.php"
+    },
+    {
+      "path": "src/Admin/Database/V1/Gapic/DatabaseAdminGapicClient.php"
+    },
+    {
+      "path": "src/Admin/Database/V1/GetDatabaseDdlRequest.php"
+    },
+    {
+      "path": "src/Admin/Database/V1/GetDatabaseDdlResponse.php"
+    },
+    {
+      "path": "src/Admin/Database/V1/GetDatabaseRequest.php"
+    },
+    {
+      "path": "src/Admin/Database/V1/ListDatabasesRequest.php"
+    },
+    {
+      "path": "src/Admin/Database/V1/ListDatabasesResponse.php"
+    },
+    {
+      "path": "src/Admin/Database/V1/README.md"
+    },
+    {
+      "path": "src/Admin/Database/V1/UpdateDatabaseDdlMetadata.php"
+    },
+    {
+      "path": "src/Admin/Database/V1/UpdateDatabaseDdlRequest.php"
+    },
+    {
+      "path": "src/Admin/Database/V1/resources/database_admin_client_config.json"
+    },
+    {
+      "path": "src/Admin/Database/V1/resources/database_admin_descriptor_config.php"
+    },
+    {
+      "path": "src/Admin/Database/V1/resources/database_admin_rest_client_config.php"
+    },
+    {
+      "path": "src/Admin/Instance/V1/CreateInstanceMetadata.php"
+    },
+    {
+      "path": "src/Admin/Instance/V1/CreateInstanceRequest.php"
+    },
+    {
+      "path": "src/Admin/Instance/V1/DeleteInstanceRequest.php"
+    },
+    {
+      "path": "src/Admin/Instance/V1/Gapic/InstanceAdminGapicClient.php"
+    },
+    {
+      "path": "src/Admin/Instance/V1/GetInstanceConfigRequest.php"
+    },
+    {
+      "path": "src/Admin/Instance/V1/GetInstanceRequest.php"
+    },
+    {
+      "path": "src/Admin/Instance/V1/Instance.php"
+    },
+    {
+      "path": "src/Admin/Instance/V1/Instance/State.php"
+    },
+    {
+      "path": "src/Admin/Instance/V1/InstanceAdminClient.php"
+    },
+    {
+      "path": "src/Admin/Instance/V1/InstanceAdminGrpcClient.php"
+    },
+    {
+      "path": "src/Admin/Instance/V1/InstanceConfig.php"
+    },
+    {
+      "path": "src/Admin/Instance/V1/Instance_State.php"
+    },
+    {
+      "path": "src/Admin/Instance/V1/ListInstanceConfigsRequest.php"
+    },
+    {
+      "path": "src/Admin/Instance/V1/ListInstanceConfigsResponse.php"
+    },
+    {
+      "path": "src/Admin/Instance/V1/ListInstancesRequest.php"
+    },
+    {
+      "path": "src/Admin/Instance/V1/ListInstancesResponse.php"
+    },
+    {
+      "path": "src/Admin/Instance/V1/README.md"
+    },
+    {
+      "path": "src/Admin/Instance/V1/ReplicaInfo.php"
+    },
+    {
+      "path": "src/Admin/Instance/V1/ReplicaInfo/ReplicaType.php"
+    },
+    {
+      "path": "src/Admin/Instance/V1/ReplicaInfo_ReplicaType.php"
+    },
+    {
+      "path": "src/Admin/Instance/V1/UpdateInstanceMetadata.php"
+    },
+    {
+      "path": "src/Admin/Instance/V1/UpdateInstanceRequest.php"
+    },
+    {
+      "path": "src/Admin/Instance/V1/resources/instance_admin_client_config.json"
+    },
+    {
+      "path": "src/Admin/Instance/V1/resources/instance_admin_descriptor_config.php"
+    },
+    {
+      "path": "src/Admin/Instance/V1/resources/instance_admin_rest_client_config.php"
+    },
+    {
+      "path": "src/ArrayType.php"
+    },
+    {
+      "path": "src/Batch/BatchClient.php"
+    },
+    {
+      "path": "src/Batch/BatchSnapshot.php"
+    },
+    {
+      "path": "src/Batch/PartitionInterface.php"
+    },
+    {
+      "path": "src/Batch/PartitionTrait.php"
+    },
+    {
+      "path": "src/Batch/QueryPartition.php"
+    },
+    {
+      "path": "src/Batch/ReadPartition.php"
+    },
+    {
+      "path": "src/BatchDmlResult.php"
+    },
+    {
+      "path": "src/Bytes.php"
+    },
+    {
+      "path": "src/CommitTimestamp.php"
+    },
+    {
+      "path": "src/Connection/ConnectionInterface.php"
+    },
+    {
+      "path": "src/Connection/Grpc.php"
+    },
+    {
+      "path": "src/Connection/IamDatabase.php"
+    },
+    {
+      "path": "src/Connection/IamInstance.php"
+    },
+    {
+      "path": "src/Connection/LongRunningConnection.php"
+    },
+    {
+      "path": "src/Database.php"
+    },
+    {
+      "path": "src/Date.php"
+    },
+    {
+      "path": "src/Duration.php"
+    },
+    {
+      "path": "src/Instance.php"
+    },
+    {
+      "path": "src/InstanceConfiguration.php"
+    },
+    {
+      "path": "src/KeyRange.php"
+    },
+    {
+      "path": "src/KeySet.php"
+    },
+    {
+      "path": "src/Operation.php"
+    },
+    {
+      "path": "src/Result.php"
+    },
+    {
+      "path": "src/Session/CacheSessionPool.php"
+    },
+    {
+      "path": "src/Session/Session.php"
+    },
+    {
+      "path": "src/Session/SessionPoolInterface.php"
+    },
+    {
+      "path": "src/Snapshot.php"
+    },
+    {
+      "path": "src/SnapshotTrait.php"
+    },
+    {
+      "path": "src/SpannerClient.php"
+    },
+    {
+      "path": "src/StructType.php"
+    },
+    {
+      "path": "src/StructValue.php"
+    },
+    {
+      "path": "src/Timestamp.php"
+    },
+    {
+      "path": "src/Transaction.php"
+    },
+    {
+      "path": "src/TransactionConfigurationTrait.php"
+    },
+    {
+      "path": "src/TransactionalReadInterface.php"
+    },
+    {
+      "path": "src/TransactionalReadTrait.php"
+    },
+    {
+      "path": "src/V1/BatchCreateSessionsRequest.php"
+    },
+    {
+      "path": "src/V1/BatchCreateSessionsResponse.php"
+    },
+    {
+      "path": "src/V1/BeginTransactionRequest.php"
+    },
+    {
+      "path": "src/V1/CommitRequest.php"
+    },
+    {
+      "path": "src/V1/CommitResponse.php"
+    },
+    {
+      "path": "src/V1/CreateSessionRequest.php"
+    },
+    {
+      "path": "src/V1/DeleteSessionRequest.php"
+    },
+    {
+      "path": "src/V1/ExecuteBatchDmlRequest.php"
+    },
+    {
+      "path": "src/V1/ExecuteBatchDmlRequest/Statement.php"
+    },
+    {
+      "path": "src/V1/ExecuteBatchDmlRequest_Statement.php"
+    },
+    {
+      "path": "src/V1/ExecuteBatchDmlResponse.php"
+    },
+    {
+      "path": "src/V1/ExecuteSqlRequest.php"
+    },
+    {
+      "path": "src/V1/ExecuteSqlRequest/QueryMode.php"
+    },
+    {
+      "path": "src/V1/ExecuteSqlRequest_QueryMode.php"
+    },
+    {
+      "path": "src/V1/Gapic/SpannerGapicClient.php"
+    },
+    {
+      "path": "src/V1/GetSessionRequest.php"
+    },
+    {
+      "path": "src/V1/KeyRange.php"
+    },
+    {
+      "path": "src/V1/KeySet.php"
+    },
+    {
+      "path": "src/V1/ListSessionsRequest.php"
+    },
+    {
+      "path": "src/V1/ListSessionsResponse.php"
+    },
+    {
+      "path": "src/V1/Mutation.php"
+    },
+    {
+      "path": "src/V1/Mutation/Delete.php"
+    },
+    {
+      "path": "src/V1/Mutation/Write.php"
+    },
+    {
+      "path": "src/V1/Mutation_Delete.php"
+    },
+    {
+      "path": "src/V1/Mutation_Write.php"
+    },
+    {
+      "path": "src/V1/PartialResultSet.php"
+    },
+    {
+      "path": "src/V1/Partition.php"
+    },
+    {
+      "path": "src/V1/PartitionOptions.php"
+    },
+    {
+      "path": "src/V1/PartitionQueryRequest.php"
+    },
+    {
+      "path": "src/V1/PartitionReadRequest.php"
+    },
+    {
+      "path": "src/V1/PartitionResponse.php"
+    },
+    {
+      "path": "src/V1/PlanNode.php"
+    },
+    {
+      "path": "src/V1/PlanNode/ChildLink.php"
+    },
+    {
+      "path": "src/V1/PlanNode/Kind.php"
+    },
+    {
+      "path": "src/V1/PlanNode/ShortRepresentation.php"
+    },
+    {
+      "path": "src/V1/PlanNode_ChildLink.php"
+    },
+    {
+      "path": "src/V1/PlanNode_Kind.php"
+    },
+    {
+      "path": "src/V1/PlanNode_ShortRepresentation.php"
+    },
+    {
+      "path": "src/V1/QueryPlan.php"
+    },
+    {
+      "path": "src/V1/README.md"
+    },
+    {
+      "path": "src/V1/ReadRequest.php"
+    },
+    {
+      "path": "src/V1/ResultSet.php"
+    },
+    {
+      "path": "src/V1/ResultSetMetadata.php"
+    },
+    {
+      "path": "src/V1/ResultSetStats.php"
+    },
+    {
+      "path": "src/V1/RollbackRequest.php"
+    },
+    {
+      "path": "src/V1/Session.php"
+    },
+    {
+      "path": "src/V1/SpannerClient.php"
+    },
+    {
+      "path": "src/V1/SpannerGrpcClient.php"
+    },
+    {
+      "path": "src/V1/StructType.php"
+    },
+    {
+      "path": "src/V1/StructType/Field.php"
+    },
+    {
+      "path": "src/V1/StructType_Field.php"
+    },
+    {
+      "path": "src/V1/Transaction.php"
+    },
+    {
+      "path": "src/V1/TransactionOptions.php"
+    },
+    {
+      "path": "src/V1/TransactionOptions/PartitionedDml.php"
+    },
+    {
+      "path": "src/V1/TransactionOptions/ReadOnly.php"
+    },
+    {
+      "path": "src/V1/TransactionOptions/ReadWrite.php"
+    },
+    {
+      "path": "src/V1/TransactionOptions_PartitionedDml.php"
+    },
+    {
+      "path": "src/V1/TransactionOptions_ReadOnly.php"
+    },
+    {
+      "path": "src/V1/TransactionOptions_ReadWrite.php"
+    },
+    {
+      "path": "src/V1/TransactionSelector.php"
+    },
+    {
+      "path": "src/V1/Type.php"
+    },
+    {
+      "path": "src/V1/TypeCode.php"
+    },
+    {
+      "path": "src/V1/resources/spanner_client_config.json"
+    },
+    {
+      "path": "src/V1/resources/spanner_descriptor_config.php"
+    },
+    {
+      "path": "src/V1/resources/spanner_grpc_config.json"
+    },
+    {
+      "path": "src/V1/resources/spanner_rest_client_config.php"
+    },
+    {
+      "path": "src/ValueInterface.php"
+    },
+    {
+      "path": "src/ValueMapper.php"
+    },
+    {
+      "path": "synth.metadata"
+    },
+    {
+      "path": "synth.py"
+    },
+    {
+      "path": "tests/OperationRefreshTrait.php"
+    },
+    {
+      "path": "tests/Perf/Config.php"
+    },
+    {
+      "path": "tests/Perf/Operation.php"
+    },
+    {
+      "path": "tests/Perf/README.md"
+    },
+    {
+      "path": "tests/Perf/Report.php"
+    },
+    {
+      "path": "tests/Perf/pkb/workloada"
+    },
+    {
+      "path": "tests/Perf/pkb/workloadb"
+    },
+    {
+      "path": "tests/Perf/ycsb.php"
+    },
+    {
+      "path": "tests/ResultGeneratorTrait.php"
+    },
+    {
+      "path": "tests/Snippet/ArrayTypeTest.php"
+    },
+    {
+      "path": "tests/Snippet/Batch/BatchClientTest.php"
+    },
+    {
+      "path": "tests/Snippet/Batch/BatchSnapshotTest.php"
+    },
+    {
+      "path": "tests/Snippet/Batch/PartitionSharedSnippetTestTrait.php"
+    },
+    {
+      "path": "tests/Snippet/Batch/QueryPartitionTest.php"
+    },
+    {
+      "path": "tests/Snippet/Batch/ReadPartitionTest.php"
+    },
+    {
+      "path": "tests/Snippet/BatchDmlResultTest.php"
+    },
+    {
+      "path": "tests/Snippet/BytesTest.php"
+    },
+    {
+      "path": "tests/Snippet/CommitTimestampTest.php"
+    },
+    {
+      "path": "tests/Snippet/DatabaseTest.php"
+    },
+    {
+      "path": "tests/Snippet/DateTest.php"
+    },
+    {
+      "path": "tests/Snippet/DurationTest.php"
+    },
+    {
+      "path": "tests/Snippet/InstanceConfigurationTest.php"
+    },
+    {
+      "path": "tests/Snippet/InstanceTest.php"
+    },
+    {
+      "path": "tests/Snippet/KeyRangeTest.php"
+    },
+    {
+      "path": "tests/Snippet/KeySetTest.php"
+    },
+    {
+      "path": "tests/Snippet/ResultTest.php"
+    },
+    {
+      "path": "tests/Snippet/Session/CacheSessionPoolTest.php"
+    },
+    {
+      "path": "tests/Snippet/SnapshotTest.php"
+    },
+    {
+      "path": "tests/Snippet/SpannerClientTest.php"
+    },
+    {
+      "path": "tests/Snippet/StructTypeTest.php"
+    },
+    {
+      "path": "tests/Snippet/StructValueTest.php"
+    },
+    {
+      "path": "tests/Snippet/TimestampTest.php"
+    },
+    {
+      "path": "tests/Snippet/TransactionTest.php"
+    },
+    {
+      "path": "tests/Snippet/TransactionalReadMethodsTest.php"
+    },
+    {
+      "path": "tests/StubCreationTrait.php"
+    },
+    {
+      "path": "tests/System/AdminTest.php"
+    },
+    {
+      "path": "tests/System/BatchTest.php"
+    },
+    {
+      "path": "tests/System/LargeReadTest.php"
+    },
+    {
+      "path": "tests/System/OperationsTest.php"
+    },
+    {
+      "path": "tests/System/PartitionedDmlTest.php"
+    },
+    {
+      "path": "tests/System/QueryTest.php"
+    },
+    {
+      "path": "tests/System/ReadTest.php"
+    },
+    {
+      "path": "tests/System/SessionTest.php"
+    },
+    {
+      "path": "tests/System/SnapshotTest.php"
+    },
+    {
+      "path": "tests/System/SpannerTestCase.php"
+    },
+    {
+      "path": "tests/System/TransactionTest.php"
+    },
+    {
+      "path": "tests/System/WriteTest.php"
+    },
+    {
+      "path": "tests/System/bootstrap.php"
+    },
+    {
+      "path": "tests/System/pcntl/AbortedErrorCausesRetry.php"
+    },
+    {
+      "path": "tests/System/pcntl/ConcurrentTransactionsIncrementValueWithExecute.php"
+    },
+    {
+      "path": "tests/System/pcntl/ConcurrentTransactionsIncrementValueWithRead.php"
+    },
+    {
+      "path": "tests/System/pcntl/forked-process-test.php"
+    },
+    {
+      "path": "tests/Unit/Admin/Database/V1/DatabaseAdminClientTest.php"
+    },
+    {
+      "path": "tests/Unit/Admin/Instance/V1/InstanceAdminClientTest.php"
+    },
+    {
+      "path": "tests/Unit/ArrayTypeTest.php"
+    },
+    {
+      "path": "tests/Unit/Batch/BatchClientTest.php"
+    },
+    {
+      "path": "tests/Unit/Batch/BatchSnapshotTest.php"
+    },
+    {
+      "path": "tests/Unit/BytesTest.php"
+    },
+    {
+      "path": "tests/Unit/CommitTimestampTest.php"
+    },
+    {
+      "path": "tests/Unit/Connection/GrpcTest.php"
+    },
+    {
+      "path": "tests/Unit/Connection/IamDatabaseTest.php"
+    },
+    {
+      "path": "tests/Unit/Connection/IamInstanceTest.php"
+    },
+    {
+      "path": "tests/Unit/Connection/LongRunningConnectionTest.php"
+    },
+    {
+      "path": "tests/Unit/DatabaseTest.php"
+    },
+    {
+      "path": "tests/Unit/DateTest.php"
+    },
+    {
+      "path": "tests/Unit/DurationTest.php"
+    },
+    {
+      "path": "tests/Unit/Fixtures.php"
+    },
+    {
+      "path": "tests/Unit/InstanceConfigurationTest.php"
+    },
+    {
+      "path": "tests/Unit/InstanceTest.php"
+    },
+    {
+      "path": "tests/Unit/KeyRangeTest.php"
+    },
+    {
+      "path": "tests/Unit/KeySetTest.php"
+    },
+    {
+      "path": "tests/Unit/OperationTest.php"
+    },
+    {
+      "path": "tests/Unit/ResultTest.php"
+    },
+    {
+      "path": "tests/Unit/ResultTestTrait.php"
+    },
+    {
+      "path": "tests/Unit/Session/CacheSessionPoolTest.php"
+    },
+    {
+      "path": "tests/Unit/SnapshotTest.php"
+    },
+    {
+      "path": "tests/Unit/SpannerClientTest.php"
+    },
+    {
+      "path": "tests/Unit/StructTypeTest.php"
+    },
+    {
+      "path": "tests/Unit/StructValueTest.php"
+    },
+    {
+      "path": "tests/Unit/TimestampTest.php"
+    },
+    {
+      "path": "tests/Unit/TransactionConfigurationTraitTest.php"
+    },
+    {
+      "path": "tests/Unit/TransactionTest.php"
+    },
+    {
+      "path": "tests/Unit/TransactionTypeTest.php"
+    },
+    {
+      "path": "tests/Unit/V1/SpannerClientPartialVeneerTest.php"
+    },
+    {
+      "path": "tests/Unit/V1/SpannerClientTest.php"
+    },
+    {
+      "path": "tests/Unit/ValueMapperTest.php"
+    },
+    {
+      "path": "tests/Unit/fixtures/instance.json"
+    },
+    {
+      "path": "tests/Unit/fixtures/streaming-read-acceptance-test.json"
     }
   ]
 }

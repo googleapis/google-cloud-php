@@ -20,7 +20,7 @@ class Delete extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string table = 1;</code>
      */
-    private $table = '';
+    protected $table = '';
     /**
      * Required. The primary keys of the rows within [table][google.spanner.v1.Mutation.Delete.table] to delete.
      * Delete is idempotent. The transaction will succeed even if some or all
@@ -28,7 +28,7 @@ class Delete extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.v1.KeySet key_set = 2;</code>
      */
-    private $key_set = null;
+    protected $key_set = null;
 
     /**
      * Constructor.

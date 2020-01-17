@@ -21,7 +21,7 @@ class CreateInstanceMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance instance = 1;</code>
      */
-    private $instance = null;
+    protected $instance = null;
     /**
      * The time at which the
      * [CreateInstance][google.spanner.admin.instance.v1.InstanceAdmin.CreateInstance] request was
@@ -29,7 +29,7 @@ class CreateInstanceMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * The time at which this operation was cancelled. If set, this operation is
      * in the process of undoing itself (which is guaranteed to succeed) and
@@ -37,13 +37,13 @@ class CreateInstanceMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp cancel_time = 3;</code>
      */
-    private $cancel_time = null;
+    protected $cancel_time = null;
     /**
      * The time at which this operation failed or was completed successfully.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 4;</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
 
     /**
      * Constructor.

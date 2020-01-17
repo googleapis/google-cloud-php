@@ -21,7 +21,7 @@ class ResultSet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
     /**
      * Each element in `rows` is a row whose format is defined by
      * [metadata.row_type][google.spanner.v1.ResultSetMetadata.row_type]. The ith element
@@ -45,7 +45,7 @@ class ResultSet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.v1.ResultSetStats stats = 3;</code>
      */
-    private $stats = null;
+    protected $stats = null;
 
     /**
      * Constructor.

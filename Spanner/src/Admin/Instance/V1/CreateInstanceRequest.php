@@ -21,7 +21,7 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The ID of the instance to create.  Valid identifiers are of the
      * form `[a-z][-a-z0-9]*[a-z0-9]` and must be between 2 and 64 characters in
@@ -29,14 +29,14 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instance_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $instance_id = '';
+    protected $instance_id = '';
     /**
      * Required. The instance to create.  The name may be omitted, but if
      * specified must be `<parent>/instances/<instance_id>`.
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance instance = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $instance = null;
+    protected $instance = null;
 
     /**
      * Constructor.

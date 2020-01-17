@@ -26,13 +26,13 @@ class Field extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The type of the field.
      *
      * Generated from protobuf field <code>.google.spanner.v1.Type type = 2;</code>
      */
-    private $type = null;
+    protected $type = null;
 
     /**
      * Constructor.

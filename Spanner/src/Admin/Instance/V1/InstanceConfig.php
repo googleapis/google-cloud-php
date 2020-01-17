@@ -23,13 +23,13 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The name of this instance configuration as it appears in UIs.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * The geographic placement of nodes in this instance configuration and their
      * replication properties.

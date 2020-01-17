@@ -26,14 +26,14 @@ class ResultSetMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.v1.StructType row_type = 1;</code>
      */
-    private $row_type = null;
+    protected $row_type = null;
     /**
      * If the read or SQL query began a transaction as a side-effect, the
      * information about the new transaction is yielded here.
      *
      * Generated from protobuf field <code>.google.spanner.v1.Transaction transaction = 2;</code>
      */
-    private $transaction = null;
+    protected $transaction = null;
 
     /**
      * Constructor.

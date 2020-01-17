@@ -21,7 +21,7 @@ class ChildLink extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 child_index = 1;</code>
      */
-    private $child_index = 0;
+    protected $child_index = 0;
     /**
      * The type of the link. For example, in Hash Joins this could be used to
      * distinguish between the build child and the probe child, or in the case
@@ -30,7 +30,7 @@ class ChildLink extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string type = 2;</code>
      */
-    private $type = '';
+    protected $type = '';
     /**
      * Only present if the child node is [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] and corresponds
      * to an output variable of the parent node. The field carries the name of
@@ -43,7 +43,7 @@ class ChildLink extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string variable = 3;</code>
      */
-    private $variable = '';
+    protected $variable = '';
 
     /**
      * Constructor.

@@ -21,13 +21,13 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $session = '';
+    protected $session = '';
     /**
      * Required. Options for the new transaction.
      *
      * Generated from protobuf field <code>.google.spanner.v1.TransactionOptions options = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $options = null;
+    protected $options = null;
 
     /**
      * Constructor.

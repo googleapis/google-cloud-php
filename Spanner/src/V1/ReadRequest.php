@@ -21,20 +21,20 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $session = '';
+    protected $session = '';
     /**
      * The transaction to use. If none is provided, the default is a
      * temporary read-only transaction with strong concurrency.
      *
      * Generated from protobuf field <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
      */
-    private $transaction = null;
+    protected $transaction = null;
     /**
      * Required. The name of the table in the database to be read.
      *
      * Generated from protobuf field <code>string table = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $table = '';
+    protected $table = '';
     /**
      * If non-empty, the name of an index on
      * [table][google.spanner.v1.ReadRequest.table]. This index is used instead of
@@ -45,7 +45,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string index = 4;</code>
      */
-    private $index = '';
+    protected $index = '';
     /**
      * Required. The columns of [table][google.spanner.v1.ReadRequest.table] to be
      * returned for each row matching this request.
@@ -71,7 +71,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.v1.KeySet key_set = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $key_set = null;
+    protected $key_set = null;
     /**
      * If greater than zero, only the first `limit` rows are yielded. If `limit`
      * is zero, the default is no limit. A limit cannot be specified if
@@ -79,7 +79,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 limit = 8;</code>
      */
-    private $limit = 0;
+    protected $limit = 0;
     /**
      * If this request is resuming a previously interrupted read,
      * `resume_token` should be copied from the last
@@ -90,7 +90,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes resume_token = 9;</code>
      */
-    private $resume_token = '';
+    protected $resume_token = '';
     /**
      * If present, results will be restricted to the specified partition
      * previously created using PartitionRead().    There must be an exact
@@ -99,7 +99,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes partition_token = 10;</code>
      */
-    private $partition_token = '';
+    protected $partition_token = '';
 
     /**
      * Constructor.

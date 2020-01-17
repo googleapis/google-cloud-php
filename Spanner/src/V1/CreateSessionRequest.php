@@ -20,13 +20,13 @@ class CreateSessionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $database = '';
+    protected $database = '';
     /**
      * The session to create.
      *
      * Generated from protobuf field <code>.google.spanner.v1.Session session = 2;</code>
      */
-    private $session = null;
+    protected $session = null;
 
     /**
      * Constructor.

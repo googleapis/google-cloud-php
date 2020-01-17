@@ -22,7 +22,7 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. A `CREATE DATABASE` statement, which specifies the ID of the
      * new database.  The database ID must conform to the regular expression
@@ -32,7 +32,7 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string create_statement = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $create_statement = '';
+    protected $create_statement = '';
     /**
      * An optional list of DDL statements to run inside the newly created
      * database. Statements can create tables, indexes, etc. These

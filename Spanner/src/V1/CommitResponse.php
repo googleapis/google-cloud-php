@@ -20,7 +20,7 @@ class CommitResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp commit_timestamp = 1;</code>
      */
-    private $commit_timestamp = null;
+    protected $commit_timestamp = null;
 
     /**
      * Constructor.

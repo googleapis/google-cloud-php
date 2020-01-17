@@ -21,14 +21,14 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Number of instances to be returned in the response. If 0 or less, defaults
      * to the server's maximum allowed page size.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * If non-empty, `page_token` should contain a
      * [next_page_token][google.spanner.admin.instance.v1.ListInstancesResponse.next_page_token] from a
@@ -36,7 +36,7 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * An expression for filtering the results of the request. Filter rules are
      * case insensitive. The fields eligible for filtering are:
@@ -57,7 +57,7 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 4;</code>
      */
-    private $filter = '';
+    protected $filter = '';
 
     /**
      * Constructor.

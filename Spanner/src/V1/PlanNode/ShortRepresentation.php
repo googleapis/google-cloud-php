@@ -21,7 +21,7 @@ class ShortRepresentation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 1;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * A mapping of (subquery variable name) -> (subquery node id) for cases
      * where the `description` string of this node references a `SCALAR`

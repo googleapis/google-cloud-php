@@ -20,7 +20,7 @@ class ExecuteBatchDmlRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $session = '';
+    protected $session = '';
     /**
      * Required. The transaction to use. Must be a read-write transaction.
      * To protect against replays, single-use transactions are not supported. The
@@ -29,7 +29,7 @@ class ExecuteBatchDmlRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.v1.TransactionSelector transaction = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $transaction = null;
+    protected $transaction = null;
     /**
      * Required. The list of statements to execute in this batch. Statements are
      * executed serially, such that the effects of statement `i` are visible to
@@ -51,7 +51,7 @@ class ExecuteBatchDmlRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 seqno = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $seqno = 0;
+    protected $seqno = 0;
 
     /**
      * Constructor.
