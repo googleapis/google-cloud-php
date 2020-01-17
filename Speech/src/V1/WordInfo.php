@@ -25,7 +25,7 @@ class WordInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration start_time = 1;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * Time offset relative to the beginning of the audio,
      * and corresponding to the end of the spoken word.
@@ -36,13 +36,13 @@ class WordInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration end_time = 2;</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * The word corresponding to this set of information.
      *
      * Generated from protobuf field <code>string word = 3;</code>
      */
-    private $word = '';
+    protected $word = '';
     /**
      * A distinct integer value is assigned for every speaker within
      * the audio. This field specifies which one of those speakers was detected to
@@ -52,7 +52,7 @@ class WordInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 speaker_tag = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $speaker_tag = 0;
+    protected $speaker_tag = 0;
 
     /**
      * Constructor.

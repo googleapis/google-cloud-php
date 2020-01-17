@@ -21,13 +21,13 @@ class RecognizeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.RecognitionConfig config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $config = null;
+    protected $config = null;
     /**
      * Required. The audio data to be recognized.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.RecognitionAudio audio = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $audio = null;
+    protected $audio = null;
 
     /**
      * Constructor.

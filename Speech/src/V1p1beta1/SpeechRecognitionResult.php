@@ -31,7 +31,7 @@ class SpeechRecognitionResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 channel_tag = 2;</code>
      */
-    private $channel_tag = 0;
+    protected $channel_tag = 0;
     /**
      * The [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag
      * of the language in this result. This language code was detected to have
@@ -39,7 +39,7 @@ class SpeechRecognitionResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language_code = 5;</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
 
     /**
      * Constructor.

@@ -23,19 +23,19 @@ class LongRunningRecognizeMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 progress_percent = 1;</code>
      */
-    private $progress_percent = 0;
+    protected $progress_percent = 0;
     /**
      * Time when the request was received.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * Time of the most recent processing update.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_update_time = 3;</code>
      */
-    private $last_update_time = null;
+    protected $last_update_time = null;
 
     /**
      * Constructor.

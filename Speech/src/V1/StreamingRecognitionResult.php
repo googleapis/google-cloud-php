@@ -34,7 +34,7 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool is_final = 2;</code>
      */
-    private $is_final = false;
+    protected $is_final = false;
     /**
      * An estimate of the likelihood that the recognizer will not
      * change its guess about this interim result. Values range from 0.0
@@ -44,14 +44,14 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float stability = 3;</code>
      */
-    private $stability = 0.0;
+    protected $stability = 0.0;
     /**
      * Time offset of the end of this result relative to the
      * beginning of the audio.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration result_end_time = 4;</code>
      */
-    private $result_end_time = null;
+    protected $result_end_time = null;
     /**
      * For multi-channel audio, this is the channel number corresponding to the
      * recognized result for the audio from that channel.
@@ -59,7 +59,7 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 channel_tag = 5;</code>
      */
-    private $channel_tag = 0;
+    protected $channel_tag = 0;
     /**
      * The [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag of
      * the language in this result. This language code was detected to have the
@@ -67,7 +67,7 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language_code = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
 
     /**
      * Constructor.

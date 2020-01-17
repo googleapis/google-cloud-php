@@ -20,7 +20,7 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string transcript = 1;</code>
      */
-    private $transcript = '';
+    protected $transcript = '';
     /**
      * The confidence estimate between 0.0 and 1.0. A higher number
      * indicates an estimated greater likelihood that the recognized words are
@@ -32,7 +32,7 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float confidence = 2;</code>
      */
-    private $confidence = 0.0;
+    protected $confidence = 0.0;
     /**
      * A list of word-specific information for each recognized word.
      * Note: When `enable_speaker_diarization` is true, you will see all the words

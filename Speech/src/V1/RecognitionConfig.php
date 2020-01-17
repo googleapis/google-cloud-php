@@ -23,7 +23,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1.RecognitionConfig.AudioEncoding encoding = 1;</code>
      */
-    private $encoding = 0;
+    protected $encoding = 0;
     /**
      * Sample rate in Hertz of the audio data sent in all
      * `RecognitionAudio` messages. Valid values are: 8000-48000.
@@ -35,7 +35,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 sample_rate_hertz = 2;</code>
      */
-    private $sample_rate_hertz = 0;
+    protected $sample_rate_hertz = 0;
     /**
      * The number of channels in the input audio data.
      * ONLY set this for MULTI-CHANNEL recognition.
@@ -49,7 +49,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 audio_channel_count = 7;</code>
      */
-    private $audio_channel_count = 0;
+    protected $audio_channel_count = 0;
     /**
      * This needs to be set to `true` explicitly and `audio_channel_count` > 1
      * to get each channel recognized separately. The recognition result will
@@ -60,7 +60,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_separate_recognition_per_channel = 12;</code>
      */
-    private $enable_separate_recognition_per_channel = false;
+    protected $enable_separate_recognition_per_channel = false;
     /**
      * Required. The language of the supplied audio as a
      * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag.
@@ -71,7 +71,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language_code = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
     /**
      * Maximum number of recognition hypotheses to be returned.
      * Specifically, the maximum number of `SpeechRecognitionAlternative` messages
@@ -82,7 +82,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_alternatives = 4;</code>
      */
-    private $max_alternatives = 0;
+    protected $max_alternatives = 0;
     /**
      * If set to `true`, the server will attempt to filter out
      * profanities, replacing all but the initial character in each filtered word
@@ -91,7 +91,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool profanity_filter = 5;</code>
      */
-    private $profanity_filter = false;
+    protected $profanity_filter = false;
     /**
      * Array of [SpeechContext][google.cloud.speech.v1.SpeechContext].
      * A means to provide context to assist the speech recognition. For more
@@ -110,7 +110,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_word_time_offsets = 8;</code>
      */
-    private $enable_word_time_offsets = false;
+    protected $enable_word_time_offsets = false;
     /**
      * If 'true', adds punctuation to recognition result hypotheses.
      * This feature is only available in select languages. Setting this for
@@ -122,7 +122,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_automatic_punctuation = 11;</code>
      */
-    private $enable_automatic_punctuation = false;
+    protected $enable_automatic_punctuation = false;
     /**
      * Config to enable speaker diarization and set additional
      * parameters to make diarization better suited for your application.
@@ -135,13 +135,13 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1.SpeakerDiarizationConfig diarization_config = 19;</code>
      */
-    private $diarization_config = null;
+    protected $diarization_config = null;
     /**
      * Metadata regarding this request.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1.RecognitionMetadata metadata = 9;</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
     /**
      * Which model to select for the given request. Select the model
      * best suited to your domain to get best results. If a model is not
@@ -178,7 +178,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string model = 13;</code>
      */
-    private $model = '';
+    protected $model = '';
     /**
      * Set to true to use an enhanced model for speech recognition.
      * If `use_enhanced` is set to true and the `model` field is not set, then
@@ -190,7 +190,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool use_enhanced = 14;</code>
      */
-    private $use_enhanced = false;
+    protected $use_enhanced = false;
 
     /**
      * Constructor.

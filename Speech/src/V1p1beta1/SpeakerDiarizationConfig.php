@@ -22,7 +22,7 @@ class SpeakerDiarizationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_speaker_diarization = 1;</code>
      */
-    private $enable_speaker_diarization = false;
+    protected $enable_speaker_diarization = false;
     /**
      * Minimum number of speakers in the conversation. This range gives you more
      * flexibility by allowing the system to automatically determine the correct
@@ -30,7 +30,7 @@ class SpeakerDiarizationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 min_speaker_count = 2;</code>
      */
-    private $min_speaker_count = 0;
+    protected $min_speaker_count = 0;
     /**
      * Maximum number of speakers in the conversation. This range gives you more
      * flexibility by allowing the system to automatically determine the correct
@@ -38,7 +38,7 @@ class SpeakerDiarizationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_speaker_count = 3;</code>
      */
-    private $max_speaker_count = 0;
+    protected $max_speaker_count = 0;
 
     /**
      * Constructor.

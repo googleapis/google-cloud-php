@@ -20,7 +20,7 @@ class RecognitionMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1.RecognitionMetadata.InteractionType interaction_type = 1;</code>
      */
-    private $interaction_type = 0;
+    protected $interaction_type = 0;
     /**
      * The industry vertical to which this speech recognition request most
      * closely applies. This is most indicative of the topics contained
@@ -29,25 +29,25 @@ class RecognitionMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>uint32 industry_naics_code_of_audio = 3;</code>
      */
-    private $industry_naics_code_of_audio = 0;
+    protected $industry_naics_code_of_audio = 0;
     /**
      * The audio type that most closely describes the audio being recognized.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1.RecognitionMetadata.MicrophoneDistance microphone_distance = 4;</code>
      */
-    private $microphone_distance = 0;
+    protected $microphone_distance = 0;
     /**
      * The original media the speech was recorded on.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1.RecognitionMetadata.OriginalMediaType original_media_type = 5;</code>
      */
-    private $original_media_type = 0;
+    protected $original_media_type = 0;
     /**
      * The type of device the speech was recorded with.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1.RecognitionMetadata.RecordingDeviceType recording_device_type = 6;</code>
      */
-    private $recording_device_type = 0;
+    protected $recording_device_type = 0;
     /**
      * The device used to make the recording.  Examples 'Nexus 5X' or
      * 'Polycom SoundStation IP 6000' or 'POTS' or 'VoIP' or
@@ -55,7 +55,7 @@ class RecognitionMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string recording_device_name = 7;</code>
      */
-    private $recording_device_name = '';
+    protected $recording_device_name = '';
     /**
      * Mime type of the original audio file.  For example `audio/m4a`,
      * `audio/x-alaw-basic`, `audio/mp3`, `audio/3gpp`.
@@ -64,14 +64,14 @@ class RecognitionMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string original_mime_type = 8;</code>
      */
-    private $original_mime_type = '';
+    protected $original_mime_type = '';
     /**
      * Description of the content. Eg. "Recordings of federal supreme court
      * hearings from 2012".
      *
      * Generated from protobuf field <code>string audio_topic = 10;</code>
      */
-    private $audio_topic = '';
+    protected $audio_topic = '';
 
     /**
      * Constructor.

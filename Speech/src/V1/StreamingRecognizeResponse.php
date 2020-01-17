@@ -56,7 +56,7 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 1;</code>
      */
-    private $error = null;
+    protected $error = null;
     /**
      * This repeated list contains zero or more results that
      * correspond to consecutive portions of the audio currently being processed.
@@ -71,7 +71,7 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1.StreamingRecognizeResponse.SpeechEventType speech_event_type = 4;</code>
      */
-    private $speech_event_type = 0;
+    protected $speech_event_type = 0;
 
     /**
      * Constructor.

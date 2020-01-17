@@ -22,7 +22,7 @@ class StreamingRecognitionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.RecognitionConfig config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $config = null;
+    protected $config = null;
     /**
      * If `false` or omitted, the recognizer will perform continuous
      * recognition (continuing to wait for and process audio even if the user
@@ -37,7 +37,7 @@ class StreamingRecognitionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool single_utterance = 2;</code>
      */
-    private $single_utterance = false;
+    protected $single_utterance = false;
     /**
      * If `true`, interim results (tentative hypotheses) may be
      * returned as they become available (these interim results are indicated with
@@ -46,7 +46,7 @@ class StreamingRecognitionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool interim_results = 3;</code>
      */
-    private $interim_results = false;
+    protected $interim_results = false;
 
     /**
      * Constructor.

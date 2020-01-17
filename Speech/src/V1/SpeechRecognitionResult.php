@@ -31,7 +31,7 @@ class SpeechRecognitionResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 channel_tag = 2;</code>
      */
-    private $channel_tag = 0;
+    protected $channel_tag = 0;
 
     /**
      * Constructor.
