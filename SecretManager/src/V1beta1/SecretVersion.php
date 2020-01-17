@@ -23,13 +23,13 @@ class SecretVersion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The time at which the [SecretVersion][google.cloud.secrets.v1beta1.SecretVersion] was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time this [SecretVersion][google.cloud.secrets.v1beta1.SecretVersion] was destroyed.
      * Only present if [state][google.cloud.secrets.v1beta1.SecretVersion.state] is
@@ -37,13 +37,13 @@ class SecretVersion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp destroy_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $destroy_time = null;
+    protected $destroy_time = null;
     /**
      * Output only. The current state of the [SecretVersion][google.cloud.secrets.v1beta1.SecretVersion].
      *
      * Generated from protobuf field <code>.google.cloud.secrets.v1beta1.SecretVersion.State state = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
 
     /**
      * Constructor.

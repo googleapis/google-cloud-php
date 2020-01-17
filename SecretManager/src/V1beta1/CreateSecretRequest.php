@@ -21,19 +21,19 @@ class CreateSecretRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. This must be unique within the project.
      *
      * Generated from protobuf field <code>string secret_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $secret_id = '';
+    protected $secret_id = '';
     /**
      * A [Secret][google.cloud.secrets.v1beta1.Secret] with initial field values.
      *
      * Generated from protobuf field <code>.google.cloud.secrets.v1beta1.Secret secret = 3;</code>
      */
-    private $secret = null;
+    protected $secret = null;
 
     /**
      * Constructor.

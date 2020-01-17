@@ -21,7 +21,7 @@ class SecretPayload extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes data = 1;</code>
      */
-    private $data = '';
+    protected $data = '';
 
     /**
      * Constructor.

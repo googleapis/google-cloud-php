@@ -1,19 +1,19 @@
 {
-  "updateTime": "2020-01-15T18:49:17.216780Z",
+  "updateTime": "2020-01-17T11:03:42.407576Z",
   "sources": [
     {
       "generator": {
         "name": "artman",
-        "version": "0.44.0",
-        "dockerImage": "googleapis/artman@sha256:10a6d0342b8d62544810ac5ad86c3b21049ec0696608ac60175da8e513234344"
+        "version": "0.44.1",
+        "dockerImage": "googleapis/artman@sha256:5599b61e56a372d21b671969ee915fbca0f6c3a0daaeb898d01f8f685f1bbc8b"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "50b0e8286ac988b0593bd890eb31fef6ea2f5767",
-        "internalRef": "289876944"
+        "sha": "58e770d568a2b78168ddc19a874178fee8265a9d",
+        "internalRef": "290146169"
       }
     }
   ],
@@ -27,6 +27,149 @@
         "generator": "gapic",
         "config": "google/cloud/secrets/artman_secretmanager_v1beta1.yaml"
       }
+    }
+  ],
+  "newFiles": [
+    {
+      "path": ".gitattributes"
+    },
+    {
+      "path": ".github/pull_request_template.md"
+    },
+    {
+      "path": "CONTRIBUTING.md"
+    },
+    {
+      "path": "LICENSE"
+    },
+    {
+      "path": "README.md"
+    },
+    {
+      "path": "VERSION"
+    },
+    {
+      "path": "composer.json"
+    },
+    {
+      "path": "metadata/V1Beta1/Resources.php"
+    },
+    {
+      "path": "metadata/V1Beta1/Service.php"
+    },
+    {
+      "path": "phpunit.xml.dist"
+    },
+    {
+      "path": "src/V1beta1/AccessSecretVersionRequest.php"
+    },
+    {
+      "path": "src/V1beta1/AccessSecretVersionResponse.php"
+    },
+    {
+      "path": "src/V1beta1/AddSecretVersionRequest.php"
+    },
+    {
+      "path": "src/V1beta1/CreateSecretRequest.php"
+    },
+    {
+      "path": "src/V1beta1/DeleteSecretRequest.php"
+    },
+    {
+      "path": "src/V1beta1/DestroySecretVersionRequest.php"
+    },
+    {
+      "path": "src/V1beta1/DisableSecretVersionRequest.php"
+    },
+    {
+      "path": "src/V1beta1/EnableSecretVersionRequest.php"
+    },
+    {
+      "path": "src/V1beta1/Gapic/SecretManagerServiceGapicClient.php"
+    },
+    {
+      "path": "src/V1beta1/GetSecretRequest.php"
+    },
+    {
+      "path": "src/V1beta1/GetSecretVersionRequest.php"
+    },
+    {
+      "path": "src/V1beta1/ListSecretVersionsRequest.php"
+    },
+    {
+      "path": "src/V1beta1/ListSecretVersionsResponse.php"
+    },
+    {
+      "path": "src/V1beta1/ListSecretsRequest.php"
+    },
+    {
+      "path": "src/V1beta1/ListSecretsResponse.php"
+    },
+    {
+      "path": "src/V1beta1/README.md"
+    },
+    {
+      "path": "src/V1beta1/Replication.php"
+    },
+    {
+      "path": "src/V1beta1/Replication/Automatic.php"
+    },
+    {
+      "path": "src/V1beta1/Replication/UserManaged.php"
+    },
+    {
+      "path": "src/V1beta1/Replication/UserManaged/Replica.php"
+    },
+    {
+      "path": "src/V1beta1/Replication_Automatic.php"
+    },
+    {
+      "path": "src/V1beta1/Replication_UserManaged.php"
+    },
+    {
+      "path": "src/V1beta1/Replication_UserManaged_Replica.php"
+    },
+    {
+      "path": "src/V1beta1/Secret.php"
+    },
+    {
+      "path": "src/V1beta1/SecretManagerServiceClient.php"
+    },
+    {
+      "path": "src/V1beta1/SecretManagerServiceGrpcClient.php"
+    },
+    {
+      "path": "src/V1beta1/SecretPayload.php"
+    },
+    {
+      "path": "src/V1beta1/SecretVersion.php"
+    },
+    {
+      "path": "src/V1beta1/SecretVersion/State.php"
+    },
+    {
+      "path": "src/V1beta1/SecretVersion_State.php"
+    },
+    {
+      "path": "src/V1beta1/UpdateSecretRequest.php"
+    },
+    {
+      "path": "src/V1beta1/resources/secret_manager_service_client_config.json"
+    },
+    {
+      "path": "src/V1beta1/resources/secret_manager_service_descriptor_config.php"
+    },
+    {
+      "path": "src/V1beta1/resources/secret_manager_service_rest_client_config.php"
+    },
+    {
+      "path": "synth.metadata"
+    },
+    {
+      "path": "synth.py"
+    },
+    {
+      "path": "tests/Unit/V1beta1/SecretManagerServiceClientTest.php"
     }
   ]
 }

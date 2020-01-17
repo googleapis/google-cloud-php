@@ -28,13 +28,13 @@ class ListSecretVersionsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
-    private $next_page_token = '';
+    protected $next_page_token = '';
     /**
      * The total number of [SecretVersions][google.cloud.secrets.v1beta1.SecretVersion].
      *
      * Generated from protobuf field <code>int32 total_size = 3;</code>
      */
-    private $total_size = 0;
+    protected $total_size = 0;
 
     /**
      * Constructor.
