@@ -1,19 +1,19 @@
 {
-  "updateTime": "2019-11-16T10:58:59.170327Z",
+  "updateTime": "2020-01-17T10:59:03.325819Z",
   "sources": [
     {
       "generator": {
         "name": "artman",
-        "version": "0.41.1",
-        "dockerImage": "googleapis/artman@sha256:545c758c76c3f779037aa259023ec3d1ef2d57d2c8cd00a222cb187d63ceac5e"
+        "version": "0.44.1",
+        "dockerImage": "googleapis/artman@sha256:5599b61e56a372d21b671969ee915fbca0f6c3a0daaeb898d01f8f685f1bbc8b"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "c89394342a9ef70acaf73a6959e04b943fbc817b",
-        "internalRef": "280761373"
+        "sha": "58e770d568a2b78168ddc19a874178fee8265a9d",
+        "internalRef": "290146169"
       }
     }
   ],
@@ -37,6 +37,1040 @@
         "generator": "gapic",
         "config": "google/cloud/automl/artman_automl_v1.yaml"
       }
+    }
+  ],
+  "newFiles": [
+    {
+      "path": "metadata/V1/AnnotationPayload.php"
+    },
+    {
+      "path": "metadata/V1/AnnotationSpec.php"
+    },
+    {
+      "path": "metadata/V1/Classification.php"
+    },
+    {
+      "path": "metadata/V1/DataItems.php"
+    },
+    {
+      "path": "metadata/V1/Dataset.php"
+    },
+    {
+      "path": "metadata/V1/Detection.php"
+    },
+    {
+      "path": "metadata/V1/Geometry.php"
+    },
+    {
+      "path": "metadata/V1/Image.php"
+    },
+    {
+      "path": "metadata/V1/Io.php"
+    },
+    {
+      "path": "metadata/V1/Model.php"
+    },
+    {
+      "path": "metadata/V1/ModelEvaluation.php"
+    },
+    {
+      "path": "metadata/V1/Operations.php"
+    },
+    {
+      "path": "metadata/V1/PredictionService.php"
+    },
+    {
+      "path": "metadata/V1/Service.php"
+    },
+    {
+      "path": "metadata/V1/Text.php"
+    },
+    {
+      "path": "metadata/V1/TextExtraction.php"
+    },
+    {
+      "path": "metadata/V1/TextSegment.php"
+    },
+    {
+      "path": "metadata/V1/TextSentiment.php"
+    },
+    {
+      "path": "metadata/V1/Translation.php"
+    },
+    {
+      "path": "metadata/V1Beta1/AnnotationPayload.php"
+    },
+    {
+      "path": "metadata/V1Beta1/AnnotationSpec.php"
+    },
+    {
+      "path": "metadata/V1Beta1/Classification.php"
+    },
+    {
+      "path": "metadata/V1Beta1/ColumnSpec.php"
+    },
+    {
+      "path": "metadata/V1Beta1/DataItems.php"
+    },
+    {
+      "path": "metadata/V1Beta1/DataStats.php"
+    },
+    {
+      "path": "metadata/V1Beta1/DataTypes.php"
+    },
+    {
+      "path": "metadata/V1Beta1/Dataset.php"
+    },
+    {
+      "path": "metadata/V1Beta1/Detection.php"
+    },
+    {
+      "path": "metadata/V1Beta1/Geometry.php"
+    },
+    {
+      "path": "metadata/V1Beta1/Image.php"
+    },
+    {
+      "path": "metadata/V1Beta1/Io.php"
+    },
+    {
+      "path": "metadata/V1Beta1/Model.php"
+    },
+    {
+      "path": "metadata/V1Beta1/ModelEvaluation.php"
+    },
+    {
+      "path": "metadata/V1Beta1/Operations.php"
+    },
+    {
+      "path": "metadata/V1Beta1/PredictionService.php"
+    },
+    {
+      "path": "metadata/V1Beta1/Ranges.php"
+    },
+    {
+      "path": "metadata/V1Beta1/Regression.php"
+    },
+    {
+      "path": "metadata/V1Beta1/Service.php"
+    },
+    {
+      "path": "metadata/V1Beta1/TableSpec.php"
+    },
+    {
+      "path": "metadata/V1Beta1/Tables.php"
+    },
+    {
+      "path": "metadata/V1Beta1/Temporal.php"
+    },
+    {
+      "path": "metadata/V1Beta1/Text.php"
+    },
+    {
+      "path": "metadata/V1Beta1/TextExtraction.php"
+    },
+    {
+      "path": "metadata/V1Beta1/TextSegment.php"
+    },
+    {
+      "path": "metadata/V1Beta1/TextSentiment.php"
+    },
+    {
+      "path": "metadata/V1Beta1/Translation.php"
+    },
+    {
+      "path": "metadata/V1Beta1/Video.php"
+    },
+    {
+      "path": "src/V1/AnnotationPayload.php"
+    },
+    {
+      "path": "src/V1/AnnotationSpec.php"
+    },
+    {
+      "path": "src/V1/AutoMlClient.php"
+    },
+    {
+      "path": "src/V1/AutoMlGrpcClient.php"
+    },
+    {
+      "path": "src/V1/BatchPredictInputConfig.php"
+    },
+    {
+      "path": "src/V1/BatchPredictOperationMetadata.php"
+    },
+    {
+      "path": "src/V1/BatchPredictOperationMetadata/BatchPredictOutputInfo.php"
+    },
+    {
+      "path": "src/V1/BatchPredictOperationMetadata_BatchPredictOutputInfo.php"
+    },
+    {
+      "path": "src/V1/BatchPredictOutputConfig.php"
+    },
+    {
+      "path": "src/V1/BatchPredictRequest.php"
+    },
+    {
+      "path": "src/V1/BatchPredictResult.php"
+    },
+    {
+      "path": "src/V1/BoundingBoxMetricsEntry.php"
+    },
+    {
+      "path": "src/V1/BoundingBoxMetricsEntry/ConfidenceMetricsEntry.php"
+    },
+    {
+      "path": "src/V1/BoundingBoxMetricsEntry_ConfidenceMetricsEntry.php"
+    },
+    {
+      "path": "src/V1/BoundingPoly.php"
+    },
+    {
+      "path": "src/V1/ClassificationAnnotation.php"
+    },
+    {
+      "path": "src/V1/ClassificationEvaluationMetrics.php"
+    },
+    {
+      "path": "src/V1/ClassificationEvaluationMetrics/ConfidenceMetricsEntry.php"
+    },
+    {
+      "path": "src/V1/ClassificationEvaluationMetrics/ConfusionMatrix.php"
+    },
+    {
+      "path": "src/V1/ClassificationEvaluationMetrics/ConfusionMatrix/Row.php"
+    },
+    {
+      "path": "src/V1/ClassificationEvaluationMetrics_ConfidenceMetricsEntry.php"
+    },
+    {
+      "path": "src/V1/ClassificationEvaluationMetrics_ConfusionMatrix.php"
+    },
+    {
+      "path": "src/V1/ClassificationEvaluationMetrics_ConfusionMatrix_Row.php"
+    },
+    {
+      "path": "src/V1/ClassificationType.php"
+    },
+    {
+      "path": "src/V1/CreateDatasetOperationMetadata.php"
+    },
+    {
+      "path": "src/V1/CreateDatasetRequest.php"
+    },
+    {
+      "path": "src/V1/CreateModelOperationMetadata.php"
+    },
+    {
+      "path": "src/V1/CreateModelRequest.php"
+    },
+    {
+      "path": "src/V1/Dataset.php"
+    },
+    {
+      "path": "src/V1/DeleteDatasetRequest.php"
+    },
+    {
+      "path": "src/V1/DeleteModelRequest.php"
+    },
+    {
+      "path": "src/V1/DeleteOperationMetadata.php"
+    },
+    {
+      "path": "src/V1/DeployModelOperationMetadata.php"
+    },
+    {
+      "path": "src/V1/DeployModelRequest.php"
+    },
+    {
+      "path": "src/V1/Document.php"
+    },
+    {
+      "path": "src/V1/Document/Layout.php"
+    },
+    {
+      "path": "src/V1/Document/Layout/TextSegmentType.php"
+    },
+    {
+      "path": "src/V1/DocumentDimensions.php"
+    },
+    {
+      "path": "src/V1/DocumentDimensions/DocumentDimensionUnit.php"
+    },
+    {
+      "path": "src/V1/DocumentDimensions_DocumentDimensionUnit.php"
+    },
+    {
+      "path": "src/V1/DocumentInputConfig.php"
+    },
+    {
+      "path": "src/V1/Document_Layout.php"
+    },
+    {
+      "path": "src/V1/Document_Layout_TextSegmentType.php"
+    },
+    {
+      "path": "src/V1/ExamplePayload.php"
+    },
+    {
+      "path": "src/V1/ExportDataOperationMetadata.php"
+    },
+    {
+      "path": "src/V1/ExportDataOperationMetadata/ExportDataOutputInfo.php"
+    },
+    {
+      "path": "src/V1/ExportDataOperationMetadata_ExportDataOutputInfo.php"
+    },
+    {
+      "path": "src/V1/ExportDataRequest.php"
+    },
+    {
+      "path": "src/V1/ExportModelOperationMetadata.php"
+    },
+    {
+      "path": "src/V1/ExportModelOperationMetadata/ExportModelOutputInfo.php"
+    },
+    {
+      "path": "src/V1/ExportModelOperationMetadata_ExportModelOutputInfo.php"
+    },
+    {
+      "path": "src/V1/ExportModelRequest.php"
+    },
+    {
+      "path": "src/V1/Gapic/AutoMlGapicClient.php"
+    },
+    {
+      "path": "src/V1/Gapic/PredictionServiceGapicClient.php"
+    },
+    {
+      "path": "src/V1/GcsDestination.php"
+    },
+    {
+      "path": "src/V1/GcsSource.php"
+    },
+    {
+      "path": "src/V1/GetAnnotationSpecRequest.php"
+    },
+    {
+      "path": "src/V1/GetDatasetRequest.php"
+    },
+    {
+      "path": "src/V1/GetModelEvaluationRequest.php"
+    },
+    {
+      "path": "src/V1/GetModelRequest.php"
+    },
+    {
+      "path": "src/V1/Image.php"
+    },
+    {
+      "path": "src/V1/ImageClassificationDatasetMetadata.php"
+    },
+    {
+      "path": "src/V1/ImageClassificationModelDeploymentMetadata.php"
+    },
+    {
+      "path": "src/V1/ImageClassificationModelMetadata.php"
+    },
+    {
+      "path": "src/V1/ImageObjectDetectionAnnotation.php"
+    },
+    {
+      "path": "src/V1/ImageObjectDetectionDatasetMetadata.php"
+    },
+    {
+      "path": "src/V1/ImageObjectDetectionEvaluationMetrics.php"
+    },
+    {
+      "path": "src/V1/ImageObjectDetectionModelDeploymentMetadata.php"
+    },
+    {
+      "path": "src/V1/ImageObjectDetectionModelMetadata.php"
+    },
+    {
+      "path": "src/V1/ImportDataOperationMetadata.php"
+    },
+    {
+      "path": "src/V1/ImportDataRequest.php"
+    },
+    {
+      "path": "src/V1/InputConfig.php"
+    },
+    {
+      "path": "src/V1/ListDatasetsRequest.php"
+    },
+    {
+      "path": "src/V1/ListDatasetsResponse.php"
+    },
+    {
+      "path": "src/V1/ListModelEvaluationsRequest.php"
+    },
+    {
+      "path": "src/V1/ListModelEvaluationsResponse.php"
+    },
+    {
+      "path": "src/V1/ListModelsRequest.php"
+    },
+    {
+      "path": "src/V1/ListModelsResponse.php"
+    },
+    {
+      "path": "src/V1/Model.php"
+    },
+    {
+      "path": "src/V1/Model/DeploymentState.php"
+    },
+    {
+      "path": "src/V1/ModelEvaluation.php"
+    },
+    {
+      "path": "src/V1/ModelExportOutputConfig.php"
+    },
+    {
+      "path": "src/V1/Model_DeploymentState.php"
+    },
+    {
+      "path": "src/V1/NormalizedVertex.php"
+    },
+    {
+      "path": "src/V1/OperationMetadata.php"
+    },
+    {
+      "path": "src/V1/OutputConfig.php"
+    },
+    {
+      "path": "src/V1/PredictRequest.php"
+    },
+    {
+      "path": "src/V1/PredictResponse.php"
+    },
+    {
+      "path": "src/V1/PredictionServiceClient.php"
+    },
+    {
+      "path": "src/V1/PredictionServiceGrpcClient.php"
+    },
+    {
+      "path": "src/V1/TextClassificationDatasetMetadata.php"
+    },
+    {
+      "path": "src/V1/TextClassificationModelMetadata.php"
+    },
+    {
+      "path": "src/V1/TextExtractionAnnotation.php"
+    },
+    {
+      "path": "src/V1/TextExtractionDatasetMetadata.php"
+    },
+    {
+      "path": "src/V1/TextExtractionEvaluationMetrics.php"
+    },
+    {
+      "path": "src/V1/TextExtractionEvaluationMetrics/ConfidenceMetricsEntry.php"
+    },
+    {
+      "path": "src/V1/TextExtractionEvaluationMetrics_ConfidenceMetricsEntry.php"
+    },
+    {
+      "path": "src/V1/TextExtractionModelMetadata.php"
+    },
+    {
+      "path": "src/V1/TextSegment.php"
+    },
+    {
+      "path": "src/V1/TextSentimentAnnotation.php"
+    },
+    {
+      "path": "src/V1/TextSentimentDatasetMetadata.php"
+    },
+    {
+      "path": "src/V1/TextSentimentEvaluationMetrics.php"
+    },
+    {
+      "path": "src/V1/TextSentimentModelMetadata.php"
+    },
+    {
+      "path": "src/V1/TextSnippet.php"
+    },
+    {
+      "path": "src/V1/TranslationAnnotation.php"
+    },
+    {
+      "path": "src/V1/TranslationDatasetMetadata.php"
+    },
+    {
+      "path": "src/V1/TranslationEvaluationMetrics.php"
+    },
+    {
+      "path": "src/V1/TranslationModelMetadata.php"
+    },
+    {
+      "path": "src/V1/UndeployModelOperationMetadata.php"
+    },
+    {
+      "path": "src/V1/UndeployModelRequest.php"
+    },
+    {
+      "path": "src/V1/UpdateDatasetRequest.php"
+    },
+    {
+      "path": "src/V1/UpdateModelRequest.php"
+    },
+    {
+      "path": "src/V1/resources/auto_ml_client_config.json"
+    },
+    {
+      "path": "src/V1/resources/auto_ml_descriptor_config.php"
+    },
+    {
+      "path": "src/V1/resources/auto_ml_rest_client_config.php"
+    },
+    {
+      "path": "src/V1/resources/prediction_service_client_config.json"
+    },
+    {
+      "path": "src/V1/resources/prediction_service_descriptor_config.php"
+    },
+    {
+      "path": "src/V1/resources/prediction_service_rest_client_config.php"
+    },
+    {
+      "path": "src/V1beta1/AnnotationPayload.php"
+    },
+    {
+      "path": "src/V1beta1/AnnotationSpec.php"
+    },
+    {
+      "path": "src/V1beta1/ArrayStats.php"
+    },
+    {
+      "path": "src/V1beta1/AutoMlClient.php"
+    },
+    {
+      "path": "src/V1beta1/AutoMlGrpcClient.php"
+    },
+    {
+      "path": "src/V1beta1/BatchPredictInputConfig.php"
+    },
+    {
+      "path": "src/V1beta1/BatchPredictOperationMetadata.php"
+    },
+    {
+      "path": "src/V1beta1/BatchPredictOperationMetadata/BatchPredictOutputInfo.php"
+    },
+    {
+      "path": "src/V1beta1/BatchPredictOperationMetadata_BatchPredictOutputInfo.php"
+    },
+    {
+      "path": "src/V1beta1/BatchPredictOutputConfig.php"
+    },
+    {
+      "path": "src/V1beta1/BatchPredictRequest.php"
+    },
+    {
+      "path": "src/V1beta1/BatchPredictResult.php"
+    },
+    {
+      "path": "src/V1beta1/BigQueryDestination.php"
+    },
+    {
+      "path": "src/V1beta1/BigQuerySource.php"
+    },
+    {
+      "path": "src/V1beta1/BoundingBoxMetricsEntry.php"
+    },
+    {
+      "path": "src/V1beta1/BoundingBoxMetricsEntry/ConfidenceMetricsEntry.php"
+    },
+    {
+      "path": "src/V1beta1/BoundingBoxMetricsEntry_ConfidenceMetricsEntry.php"
+    },
+    {
+      "path": "src/V1beta1/BoundingPoly.php"
+    },
+    {
+      "path": "src/V1beta1/CategoryStats.php"
+    },
+    {
+      "path": "src/V1beta1/CategoryStats/SingleCategoryStats.php"
+    },
+    {
+      "path": "src/V1beta1/CategoryStats_SingleCategoryStats.php"
+    },
+    {
+      "path": "src/V1beta1/ClassificationAnnotation.php"
+    },
+    {
+      "path": "src/V1beta1/ClassificationEvaluationMetrics.php"
+    },
+    {
+      "path": "src/V1beta1/ClassificationEvaluationMetrics/ConfidenceMetricsEntry.php"
+    },
+    {
+      "path": "src/V1beta1/ClassificationEvaluationMetrics/ConfusionMatrix.php"
+    },
+    {
+      "path": "src/V1beta1/ClassificationEvaluationMetrics/ConfusionMatrix/Row.php"
+    },
+    {
+      "path": "src/V1beta1/ClassificationEvaluationMetrics_ConfidenceMetricsEntry.php"
+    },
+    {
+      "path": "src/V1beta1/ClassificationEvaluationMetrics_ConfusionMatrix.php"
+    },
+    {
+      "path": "src/V1beta1/ClassificationEvaluationMetrics_ConfusionMatrix_Row.php"
+    },
+    {
+      "path": "src/V1beta1/ClassificationType.php"
+    },
+    {
+      "path": "src/V1beta1/ColumnSpec.php"
+    },
+    {
+      "path": "src/V1beta1/ColumnSpec/CorrelatedColumn.php"
+    },
+    {
+      "path": "src/V1beta1/ColumnSpec_CorrelatedColumn.php"
+    },
+    {
+      "path": "src/V1beta1/CorrelationStats.php"
+    },
+    {
+      "path": "src/V1beta1/CreateDatasetRequest.php"
+    },
+    {
+      "path": "src/V1beta1/CreateModelOperationMetadata.php"
+    },
+    {
+      "path": "src/V1beta1/CreateModelRequest.php"
+    },
+    {
+      "path": "src/V1beta1/DataStats.php"
+    },
+    {
+      "path": "src/V1beta1/DataType.php"
+    },
+    {
+      "path": "src/V1beta1/Dataset.php"
+    },
+    {
+      "path": "src/V1beta1/DeleteDatasetRequest.php"
+    },
+    {
+      "path": "src/V1beta1/DeleteModelRequest.php"
+    },
+    {
+      "path": "src/V1beta1/DeleteOperationMetadata.php"
+    },
+    {
+      "path": "src/V1beta1/DeployModelOperationMetadata.php"
+    },
+    {
+      "path": "src/V1beta1/DeployModelRequest.php"
+    },
+    {
+      "path": "src/V1beta1/Document.php"
+    },
+    {
+      "path": "src/V1beta1/Document/Layout.php"
+    },
+    {
+      "path": "src/V1beta1/Document/Layout/TextSegmentType.php"
+    },
+    {
+      "path": "src/V1beta1/DocumentDimensions.php"
+    },
+    {
+      "path": "src/V1beta1/DocumentDimensions/DocumentDimensionUnit.php"
+    },
+    {
+      "path": "src/V1beta1/DocumentDimensions_DocumentDimensionUnit.php"
+    },
+    {
+      "path": "src/V1beta1/DocumentInputConfig.php"
+    },
+    {
+      "path": "src/V1beta1/Document_Layout.php"
+    },
+    {
+      "path": "src/V1beta1/Document_Layout_TextSegmentType.php"
+    },
+    {
+      "path": "src/V1beta1/DoubleRange.php"
+    },
+    {
+      "path": "src/V1beta1/ExamplePayload.php"
+    },
+    {
+      "path": "src/V1beta1/ExportDataOperationMetadata.php"
+    },
+    {
+      "path": "src/V1beta1/ExportDataOperationMetadata/ExportDataOutputInfo.php"
+    },
+    {
+      "path": "src/V1beta1/ExportDataOperationMetadata_ExportDataOutputInfo.php"
+    },
+    {
+      "path": "src/V1beta1/ExportDataRequest.php"
+    },
+    {
+      "path": "src/V1beta1/ExportEvaluatedExamplesOperationMetadata.php"
+    },
+    {
+      "path": "src/V1beta1/ExportEvaluatedExamplesOperationMetadata/ExportEvaluatedExamplesOutputInfo.php"
+    },
+    {
+      "path": "src/V1beta1/ExportEvaluatedExamplesOperationMetadata_ExportEvaluatedExamplesOutputInfo.php"
+    },
+    {
+      "path": "src/V1beta1/ExportEvaluatedExamplesOutputConfig.php"
+    },
+    {
+      "path": "src/V1beta1/ExportEvaluatedExamplesRequest.php"
+    },
+    {
+      "path": "src/V1beta1/ExportModelOperationMetadata.php"
+    },
+    {
+      "path": "src/V1beta1/ExportModelOperationMetadata/ExportModelOutputInfo.php"
+    },
+    {
+      "path": "src/V1beta1/ExportModelOperationMetadata_ExportModelOutputInfo.php"
+    },
+    {
+      "path": "src/V1beta1/ExportModelRequest.php"
+    },
+    {
+      "path": "src/V1beta1/Float64Stats.php"
+    },
+    {
+      "path": "src/V1beta1/Float64Stats/HistogramBucket.php"
+    },
+    {
+      "path": "src/V1beta1/Float64Stats_HistogramBucket.php"
+    },
+    {
+      "path": "src/V1beta1/Gapic/AutoMlGapicClient.php"
+    },
+    {
+      "path": "src/V1beta1/Gapic/PredictionServiceGapicClient.php"
+    },
+    {
+      "path": "src/V1beta1/GcrDestination.php"
+    },
+    {
+      "path": "src/V1beta1/GcsDestination.php"
+    },
+    {
+      "path": "src/V1beta1/GcsSource.php"
+    },
+    {
+      "path": "src/V1beta1/GetAnnotationSpecRequest.php"
+    },
+    {
+      "path": "src/V1beta1/GetColumnSpecRequest.php"
+    },
+    {
+      "path": "src/V1beta1/GetDatasetRequest.php"
+    },
+    {
+      "path": "src/V1beta1/GetModelEvaluationRequest.php"
+    },
+    {
+      "path": "src/V1beta1/GetModelRequest.php"
+    },
+    {
+      "path": "src/V1beta1/GetTableSpecRequest.php"
+    },
+    {
+      "path": "src/V1beta1/Image.php"
+    },
+    {
+      "path": "src/V1beta1/ImageClassificationDatasetMetadata.php"
+    },
+    {
+      "path": "src/V1beta1/ImageClassificationModelDeploymentMetadata.php"
+    },
+    {
+      "path": "src/V1beta1/ImageClassificationModelMetadata.php"
+    },
+    {
+      "path": "src/V1beta1/ImageObjectDetectionAnnotation.php"
+    },
+    {
+      "path": "src/V1beta1/ImageObjectDetectionDatasetMetadata.php"
+    },
+    {
+      "path": "src/V1beta1/ImageObjectDetectionEvaluationMetrics.php"
+    },
+    {
+      "path": "src/V1beta1/ImageObjectDetectionModelDeploymentMetadata.php"
+    },
+    {
+      "path": "src/V1beta1/ImageObjectDetectionModelMetadata.php"
+    },
+    {
+      "path": "src/V1beta1/ImportDataOperationMetadata.php"
+    },
+    {
+      "path": "src/V1beta1/ImportDataRequest.php"
+    },
+    {
+      "path": "src/V1beta1/InputConfig.php"
+    },
+    {
+      "path": "src/V1beta1/ListColumnSpecsRequest.php"
+    },
+    {
+      "path": "src/V1beta1/ListColumnSpecsResponse.php"
+    },
+    {
+      "path": "src/V1beta1/ListDatasetsRequest.php"
+    },
+    {
+      "path": "src/V1beta1/ListDatasetsResponse.php"
+    },
+    {
+      "path": "src/V1beta1/ListModelEvaluationsRequest.php"
+    },
+    {
+      "path": "src/V1beta1/ListModelEvaluationsResponse.php"
+    },
+    {
+      "path": "src/V1beta1/ListModelsRequest.php"
+    },
+    {
+      "path": "src/V1beta1/ListModelsResponse.php"
+    },
+    {
+      "path": "src/V1beta1/ListTableSpecsRequest.php"
+    },
+    {
+      "path": "src/V1beta1/ListTableSpecsResponse.php"
+    },
+    {
+      "path": "src/V1beta1/Model.php"
+    },
+    {
+      "path": "src/V1beta1/Model/DeploymentState.php"
+    },
+    {
+      "path": "src/V1beta1/ModelEvaluation.php"
+    },
+    {
+      "path": "src/V1beta1/ModelExportOutputConfig.php"
+    },
+    {
+      "path": "src/V1beta1/Model_DeploymentState.php"
+    },
+    {
+      "path": "src/V1beta1/NormalizedVertex.php"
+    },
+    {
+      "path": "src/V1beta1/OperationMetadata.php"
+    },
+    {
+      "path": "src/V1beta1/OutputConfig.php"
+    },
+    {
+      "path": "src/V1beta1/PredictRequest.php"
+    },
+    {
+      "path": "src/V1beta1/PredictResponse.php"
+    },
+    {
+      "path": "src/V1beta1/PredictionServiceClient.php"
+    },
+    {
+      "path": "src/V1beta1/PredictionServiceGrpcClient.php"
+    },
+    {
+      "path": "src/V1beta1/README.md"
+    },
+    {
+      "path": "src/V1beta1/RegressionEvaluationMetrics.php"
+    },
+    {
+      "path": "src/V1beta1/Row.php"
+    },
+    {
+      "path": "src/V1beta1/StringStats.php"
+    },
+    {
+      "path": "src/V1beta1/StringStats/UnigramStats.php"
+    },
+    {
+      "path": "src/V1beta1/StringStats_UnigramStats.php"
+    },
+    {
+      "path": "src/V1beta1/StructStats.php"
+    },
+    {
+      "path": "src/V1beta1/StructType.php"
+    },
+    {
+      "path": "src/V1beta1/TableSpec.php"
+    },
+    {
+      "path": "src/V1beta1/TablesAnnotation.php"
+    },
+    {
+      "path": "src/V1beta1/TablesDatasetMetadata.php"
+    },
+    {
+      "path": "src/V1beta1/TablesModelColumnInfo.php"
+    },
+    {
+      "path": "src/V1beta1/TablesModelMetadata.php"
+    },
+    {
+      "path": "src/V1beta1/TextClassificationDatasetMetadata.php"
+    },
+    {
+      "path": "src/V1beta1/TextClassificationModelMetadata.php"
+    },
+    {
+      "path": "src/V1beta1/TextExtractionAnnotation.php"
+    },
+    {
+      "path": "src/V1beta1/TextExtractionDatasetMetadata.php"
+    },
+    {
+      "path": "src/V1beta1/TextExtractionEvaluationMetrics.php"
+    },
+    {
+      "path": "src/V1beta1/TextExtractionEvaluationMetrics/ConfidenceMetricsEntry.php"
+    },
+    {
+      "path": "src/V1beta1/TextExtractionEvaluationMetrics_ConfidenceMetricsEntry.php"
+    },
+    {
+      "path": "src/V1beta1/TextExtractionModelMetadata.php"
+    },
+    {
+      "path": "src/V1beta1/TextSegment.php"
+    },
+    {
+      "path": "src/V1beta1/TextSentimentAnnotation.php"
+    },
+    {
+      "path": "src/V1beta1/TextSentimentDatasetMetadata.php"
+    },
+    {
+      "path": "src/V1beta1/TextSentimentEvaluationMetrics.php"
+    },
+    {
+      "path": "src/V1beta1/TextSentimentModelMetadata.php"
+    },
+    {
+      "path": "src/V1beta1/TextSnippet.php"
+    },
+    {
+      "path": "src/V1beta1/TimeSegment.php"
+    },
+    {
+      "path": "src/V1beta1/TimestampStats.php"
+    },
+    {
+      "path": "src/V1beta1/TimestampStats/GranularStats.php"
+    },
+    {
+      "path": "src/V1beta1/TimestampStats_GranularStats.php"
+    },
+    {
+      "path": "src/V1beta1/TranslationAnnotation.php"
+    },
+    {
+      "path": "src/V1beta1/TranslationDatasetMetadata.php"
+    },
+    {
+      "path": "src/V1beta1/TranslationEvaluationMetrics.php"
+    },
+    {
+      "path": "src/V1beta1/TranslationModelMetadata.php"
+    },
+    {
+      "path": "src/V1beta1/TypeCode.php"
+    },
+    {
+      "path": "src/V1beta1/UndeployModelOperationMetadata.php"
+    },
+    {
+      "path": "src/V1beta1/UndeployModelRequest.php"
+    },
+    {
+      "path": "src/V1beta1/UpdateColumnSpecRequest.php"
+    },
+    {
+      "path": "src/V1beta1/UpdateDatasetRequest.php"
+    },
+    {
+      "path": "src/V1beta1/UpdateTableSpecRequest.php"
+    },
+    {
+      "path": "src/V1beta1/VideoClassificationAnnotation.php"
+    },
+    {
+      "path": "src/V1beta1/VideoClassificationDatasetMetadata.php"
+    },
+    {
+      "path": "src/V1beta1/VideoClassificationModelMetadata.php"
+    },
+    {
+      "path": "src/V1beta1/VideoObjectTrackingAnnotation.php"
+    },
+    {
+      "path": "src/V1beta1/VideoObjectTrackingDatasetMetadata.php"
+    },
+    {
+      "path": "src/V1beta1/VideoObjectTrackingEvaluationMetrics.php"
+    },
+    {
+      "path": "src/V1beta1/VideoObjectTrackingModelMetadata.php"
+    },
+    {
+      "path": "src/V1beta1/resources/auto_ml_client_config.json"
+    },
+    {
+      "path": "src/V1beta1/resources/auto_ml_descriptor_config.php"
+    },
+    {
+      "path": "src/V1beta1/resources/auto_ml_rest_client_config.php"
+    },
+    {
+      "path": "src/V1beta1/resources/prediction_service_client_config.json"
+    },
+    {
+      "path": "src/V1beta1/resources/prediction_service_descriptor_config.php"
+    },
+    {
+      "path": "src/V1beta1/resources/prediction_service_rest_client_config.php"
+    },
+    {
+      "path": "synth.metadata"
+    },
+    {
+      "path": "synth.py"
+    },
+    {
+      "path": "tests/System/V1/AutoMlSmokeTest.php"
+    },
+    {
+      "path": "tests/System/V1beta1/AutoMlSmokeTest.php"
+    },
+    {
+      "path": "tests/Unit/V1/AutoMlClientTest.php"
+    },
+    {
+      "path": "tests/Unit/V1/PredictionServiceClientTest.php"
+    },
+    {
+      "path": "tests/Unit/V1beta1/AutoMlClientTest.php"
+    },
+    {
+      "path": "tests/Unit/V1beta1/PredictionServiceClientTest.php"
     }
   ]
 }

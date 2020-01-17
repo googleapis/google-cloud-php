@@ -20,13 +20,13 @@ class Document extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.DocumentInputConfig input_config = 1;</code>
      */
-    private $input_config = null;
+    protected $input_config = null;
     /**
      * The plain text version of this document.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TextSnippet document_text = 2;</code>
      */
-    private $document_text = null;
+    protected $document_text = null;
     /**
      * Describes the layout of the document.
      * Sorted by [page_number][].
@@ -39,13 +39,13 @@ class Document extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.DocumentDimensions document_dimensions = 4;</code>
      */
-    private $document_dimensions = null;
+    protected $document_dimensions = null;
     /**
      * Number of pages in the document.
      *
      * Generated from protobuf field <code>int32 page_count = 5;</code>
      */
-    private $page_count = 0;
+    protected $page_count = 0;
 
     /**
      * Constructor.

@@ -20,19 +20,19 @@ class DocumentDimensions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.DocumentDimensions.DocumentDimensionUnit unit = 1;</code>
      */
-    private $unit = 0;
+    protected $unit = 0;
     /**
      * Width value of the document, works together with the unit.
      *
      * Generated from protobuf field <code>float width = 2;</code>
      */
-    private $width = 0.0;
+    protected $width = 0.0;
     /**
      * Height value of the document, works together with the unit.
      *
      * Generated from protobuf field <code>float height = 3;</code>
      */
-    private $height = 0.0;
+    protected $height = 0.0;
 
     /**
      * Constructor.

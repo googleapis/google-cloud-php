@@ -39,20 +39,20 @@ class VideoClassificationAnnotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string type = 1;</code>
      */
-    private $type = '';
+    protected $type = '';
     /**
      * Output only . The classification details of this annotation.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ClassificationAnnotation classification_annotation = 2;</code>
      */
-    private $classification_annotation = null;
+    protected $classification_annotation = null;
     /**
      * Output only . The time segment of the video to which the
      * annotation applies.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TimeSegment time_segment = 3;</code>
      */
-    private $time_segment = null;
+    protected $time_segment = null;
 
     /**
      * Constructor.

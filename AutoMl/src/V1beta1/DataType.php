@@ -21,14 +21,14 @@ class DataType extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TypeCode type_code = 1;</code>
      */
-    private $type_code = 0;
+    protected $type_code = 0;
     /**
      * If true, this DataType can also be `NULL`. In .CSV files `NULL` value is
      * expressed as an empty string.
      *
      * Generated from protobuf field <code>bool nullable = 4;</code>
      */
-    private $nullable = false;
+    protected $nullable = false;
     protected $details;
 
     /**

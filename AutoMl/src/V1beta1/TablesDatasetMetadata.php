@@ -20,7 +20,7 @@ class TablesDatasetMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string primary_table_spec_id = 1;</code>
      */
-    private $primary_table_spec_id = '';
+    protected $primary_table_spec_id = '';
     /**
      * column_spec_id of the primary table's column that should be used as the
      * training & prediction target.
@@ -35,7 +35,7 @@ class TablesDatasetMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string target_column_spec_id = 2;</code>
      */
-    private $target_column_spec_id = '';
+    protected $target_column_spec_id = '';
     /**
      * column_spec_id of the primary table's column that should be used as the
      * weight column, i.e. the higher the value the more important the row will be
@@ -49,7 +49,7 @@ class TablesDatasetMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string weight_column_spec_id = 3;</code>
      */
-    private $weight_column_spec_id = '';
+    protected $weight_column_spec_id = '';
     /**
      * column_spec_id of the primary table column which specifies a possible ML
      * use of the row, i.e. the column will be used to split the rows into TRAIN,
@@ -67,7 +67,7 @@ class TablesDatasetMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string ml_use_column_spec_id = 4;</code>
      */
-    private $ml_use_column_spec_id = '';
+    protected $ml_use_column_spec_id = '';
     /**
      * Output only. Correlations between
      * [TablesDatasetMetadata.target_column_spec_id][google.cloud.automl.v1beta1.TablesDatasetMetadata.target_column_spec_id],
@@ -91,7 +91,7 @@ class TablesDatasetMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp stats_update_time = 7;</code>
      */
-    private $stats_update_time = null;
+    protected $stats_update_time = null;
 
     /**
      * Constructor.

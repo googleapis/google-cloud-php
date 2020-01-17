@@ -21,7 +21,7 @@ class ExportEvaluatedExamplesOperationMetadata extends \Google\Protobuf\Internal
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ExportEvaluatedExamplesOperationMetadata.ExportEvaluatedExamplesOutputInfo output_info = 2;</code>
      */
-    private $output_info = null;
+    protected $output_info = null;
 
     /**
      * Constructor.

@@ -22,7 +22,7 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The ID of the annotation spec that the model evaluation applies to. The
      * The ID is empty for the overall model evaluation.
@@ -35,7 +35,7 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string annotation_spec_id = 2;</code>
      */
-    private $annotation_spec_id = '';
+    protected $annotation_spec_id = '';
     /**
      * Output only. The value of
      * [display_name][google.cloud.automl.v1beta1.AnnotationSpec.display_name] at
@@ -51,13 +51,13 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 15;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Output only. Timestamp when this model evaluation was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The number of examples used for model evaluation, i.e. for
      * which ground truth from time of model creation is compared against the
@@ -70,7 +70,7 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 evaluated_example_count = 6;</code>
      */
-    private $evaluated_example_count = 0;
+    protected $evaluated_example_count = 0;
     protected $metrics;
 
     /**

@@ -20,13 +20,13 @@ class CreateDatasetRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The dataset to create.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.Dataset dataset = 2;</code>
      */
-    private $dataset = null;
+    protected $dataset = null;
 
     /**
      * Constructor.

@@ -22,13 +22,13 @@ class CorrelatedColumn extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string column_spec_id = 1;</code>
      */
-    private $column_spec_id = '';
+    protected $column_spec_id = '';
     /**
      * Correlation between this and the in-context column.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.CorrelationStats correlation_stats = 2;</code>
      */
-    private $correlation_stats = null;
+    protected $correlation_stats = null;
 
     /**
      * Constructor.

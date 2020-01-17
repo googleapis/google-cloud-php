@@ -21,7 +21,7 @@ class ArrayStats extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.DataStats member_stats = 2;</code>
      */
-    private $member_stats = null;
+    protected $member_stats = null;
 
     /**
      * Constructor.

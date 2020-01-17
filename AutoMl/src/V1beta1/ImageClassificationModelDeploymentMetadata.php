@@ -24,7 +24,7 @@ class ImageClassificationModelDeploymentMetadata extends \Google\Protobuf\Intern
      *
      * Generated from protobuf field <code>int64 node_count = 1;</code>
      */
-    private $node_count = 0;
+    protected $node_count = 0;
 
     /**
      * Constructor.

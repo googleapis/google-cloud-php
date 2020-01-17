@@ -20,7 +20,7 @@ class TextClassificationModelMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ClassificationType classification_type = 3;</code>
      */
-    private $classification_type = 0;
+    protected $classification_type = 0;
 
     /**
      * Constructor.

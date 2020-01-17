@@ -28,7 +28,7 @@ class TablesModelMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ColumnSpec target_column_spec = 2;</code>
      */
-    private $target_column_spec = null;
+    protected $target_column_spec = null;
     /**
      * Column specs of the dataset's primary table's columns, on which
      * the model is trained and which are used as the input for predictions.
@@ -73,7 +73,7 @@ class TablesModelMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string optimization_objective = 4;</code>
      */
-    private $optimization_objective = '';
+    protected $optimization_objective = '';
     /**
      * Output only. Auxiliary information for each of the
      * input_feature_column_specs with respect to this particular model.
@@ -96,7 +96,7 @@ class TablesModelMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 train_budget_milli_node_hours = 6;</code>
      */
-    private $train_budget_milli_node_hours = 0;
+    protected $train_budget_milli_node_hours = 0;
     /**
      * Output only. The actual training cost of the model, expressed in milli
      * node hours, i.e. 1,000 value in this field means 1 node hour. Guaranteed
@@ -104,7 +104,7 @@ class TablesModelMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 train_cost_milli_node_hours = 7;</code>
      */
-    private $train_cost_milli_node_hours = 0;
+    protected $train_cost_milli_node_hours = 0;
     /**
      * Use the entire training budget. This disables the early stopping feature.
      * By default, the early stopping feature is enabled, which means that AutoML
@@ -112,7 +112,7 @@ class TablesModelMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool disable_early_stopping = 12;</code>
      */
-    private $disable_early_stopping = false;
+    protected $disable_early_stopping = false;
     protected $additional_optimization_objective_config;
 
     /**

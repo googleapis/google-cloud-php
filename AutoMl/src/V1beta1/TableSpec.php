@@ -30,7 +30,7 @@ class TableSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * column_spec_id of the time column. Only used if the parent dataset's
      * ml_use_column_spec_id is not set. Used to split rows into TRAIN, VALIDATE
@@ -43,27 +43,27 @@ class TableSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string time_column_spec_id = 2;</code>
      */
-    private $time_column_spec_id = '';
+    protected $time_column_spec_id = '';
     /**
      * Output only. The number of rows (i.e. examples) in the table.
      *
      * Generated from protobuf field <code>int64 row_count = 3;</code>
      */
-    private $row_count = 0;
+    protected $row_count = 0;
     /**
      * Output only. The number of valid rows (i.e. without values that don't match
      * DataType-s of their columns).
      *
      * Generated from protobuf field <code>int64 valid_row_count = 4;</code>
      */
-    private $valid_row_count = 0;
+    protected $valid_row_count = 0;
     /**
      * Output only. The number of columns of the table. That is, the number of
      * child ColumnSpec-s.
      *
      * Generated from protobuf field <code>int64 column_count = 7;</code>
      */
-    private $column_count = 0;
+    protected $column_count = 0;
     /**
      * Output only. Input configs via which data currently residing in the table
      * had been imported.
@@ -77,7 +77,7 @@ class TableSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 6;</code>
      */
-    private $etag = '';
+    protected $etag = '';
 
     /**
      * Constructor.

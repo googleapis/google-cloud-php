@@ -21,7 +21,7 @@ class Model extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The name of the model to show in the interface. The name can be
      * up to 32 characters long and can consist only of ASCII Latin letters A-Z
@@ -30,33 +30,33 @@ class Model extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Required. The resource ID of the dataset used to create the model. The dataset must
      * come from the same ancestor project and location.
      *
      * Generated from protobuf field <code>string dataset_id = 3;</code>
      */
-    private $dataset_id = '';
+    protected $dataset_id = '';
     /**
      * Output only. Timestamp when the model training finished  and can be used for prediction.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Timestamp when this model was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 11;</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. Deployment state of the model. A model can only serve
      * prediction requests after it gets deployed.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.Model.DeploymentState deployment_state = 8;</code>
      */
-    private $deployment_state = 0;
+    protected $deployment_state = 0;
     protected $model_metadata;
 
     /**

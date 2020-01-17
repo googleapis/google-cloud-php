@@ -21,7 +21,7 @@ class TextSnippet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string content = 1;</code>
      */
-    private $content = '';
+    protected $content = '';
     /**
      * Optional. The format of
      * [content][google.cloud.automl.v1.TextSnippet.content]. Currently the only
@@ -31,13 +31,13 @@ class TextSnippet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string mime_type = 2;</code>
      */
-    private $mime_type = '';
+    protected $mime_type = '';
     /**
      * Output only. HTTP URI where you can download the content.
      *
      * Generated from protobuf field <code>string content_uri = 4;</code>
      */
-    private $content_uri = '';
+    protected $content_uri = '';
 
     /**
      * Constructor.

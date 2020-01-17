@@ -22,7 +22,7 @@ class CorrelationStats extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double cramers_v = 1;</code>
      */
-    private $cramers_v = 0.0;
+    protected $cramers_v = 0.0;
 
     /**
      * Constructor.

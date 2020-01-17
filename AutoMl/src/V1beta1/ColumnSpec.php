@@ -25,13 +25,13 @@ class ColumnSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The data type of elements stored in the column.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.DataType data_type = 2;</code>
      */
-    private $data_type = null;
+    protected $data_type = null;
     /**
      * Output only. The name of the column to show in the interface. The name can
      * be up to 100 characters long and can consist only of ASCII Latin letters
@@ -40,7 +40,7 @@ class ColumnSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 3;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Output only. Stats of the series of values in the column.
      * This field may be stale, see the ancestor's
@@ -49,7 +49,7 @@ class ColumnSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.DataStats data_stats = 4;</code>
      */
-    private $data_stats = null;
+    protected $data_stats = null;
     /**
      * Deprecated.
      *
@@ -62,7 +62,7 @@ class ColumnSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 6;</code>
      */
-    private $etag = '';
+    protected $etag = '';
 
     /**
      * Constructor.

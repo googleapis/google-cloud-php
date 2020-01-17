@@ -38,7 +38,7 @@ class PredictResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1.ExamplePayload preprocessed_input = 3;</code>
      */
-    private $preprocessed_input = null;
+    protected $preprocessed_input = null;
     /**
      * Additional domain-specific prediction response metadata.
      * * For Image Object Detection:

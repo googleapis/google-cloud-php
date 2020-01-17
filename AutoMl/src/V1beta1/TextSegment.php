@@ -20,14 +20,14 @@ class TextSegment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string content = 3;</code>
      */
-    private $content = '';
+    protected $content = '';
     /**
      * Required. Zero-based character index of the first character of the text
      * segment (counting characters from the beginning of the text).
      *
      * Generated from protobuf field <code>int64 start_offset = 1;</code>
      */
-    private $start_offset = 0;
+    protected $start_offset = 0;
     /**
      * Required. Zero-based character index of the first character past the end of
      * the text segment (counting character from the beginning of the text).
@@ -35,7 +35,7 @@ class TextSegment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 end_offset = 2;</code>
      */
-    private $end_offset = 0;
+    protected $end_offset = 0;
 
     /**
      * Constructor.

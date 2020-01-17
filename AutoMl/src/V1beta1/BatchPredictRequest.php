@@ -21,20 +21,20 @@ class BatchPredictRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The input configuration for batch prediction.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.BatchPredictInputConfig input_config = 3;</code>
      */
-    private $input_config = null;
+    protected $input_config = null;
     /**
      * Required. The Configuration specifying where output predictions should
      * be written.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.BatchPredictOutputConfig output_config = 4;</code>
      */
-    private $output_config = null;
+    protected $output_config = null;
     /**
      * Additional domain-specific parameters for the predictions, any string must
      * be up to 25000 characters long.

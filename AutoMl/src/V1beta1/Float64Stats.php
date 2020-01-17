@@ -20,13 +20,13 @@ class Float64Stats extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double mean = 1;</code>
      */
-    private $mean = 0.0;
+    protected $mean = 0.0;
     /**
      * The standard deviation of the series.
      *
      * Generated from protobuf field <code>double standard_deviation = 2;</code>
      */
-    private $standard_deviation = 0.0;
+    protected $standard_deviation = 0.0;
     /**
      * Ordered from 0 to k k-quantile values of the data series of n values.
      * The value at index i is, approximately, the i*n/k-th smallest value in the

@@ -20,21 +20,21 @@ class HistogramBucket extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double min = 1;</code>
      */
-    private $min = 0.0;
+    protected $min = 0.0;
     /**
      * The maximum value of the bucket, exclusive unless max = `"Infinity"`, in
      * which case it's inclusive.
      *
      * Generated from protobuf field <code>double max = 2;</code>
      */
-    private $max = 0.0;
+    protected $max = 0.0;
     /**
      * The number of data values that are in the bucket, i.e. are between
      * min and max values.
      *
      * Generated from protobuf field <code>int64 count = 3;</code>
      */
-    private $count = 0;
+    protected $count = 0;
 
     /**
      * Constructor.

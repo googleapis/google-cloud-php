@@ -20,7 +20,7 @@ class TranslationAnnotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TextSnippet translated_content = 1;</code>
      */
-    private $translated_content = null;
+    protected $translated_content = null;
 
     /**
      * Constructor.

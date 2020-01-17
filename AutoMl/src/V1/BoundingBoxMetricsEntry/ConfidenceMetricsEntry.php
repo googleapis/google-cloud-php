@@ -20,25 +20,25 @@ class ConfidenceMetricsEntry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float confidence_threshold = 1;</code>
      */
-    private $confidence_threshold = 0.0;
+    protected $confidence_threshold = 0.0;
     /**
      * Output only. Recall under the given confidence threshold.
      *
      * Generated from protobuf field <code>float recall = 2;</code>
      */
-    private $recall = 0.0;
+    protected $recall = 0.0;
     /**
      * Output only. Precision under the given confidence threshold.
      *
      * Generated from protobuf field <code>float precision = 3;</code>
      */
-    private $precision = 0.0;
+    protected $precision = 0.0;
     /**
      * Output only. The harmonic mean of recall and precision.
      *
      * Generated from protobuf field <code>float f1_score = 4;</code>
      */
-    private $f1_score = 0.0;
+    protected $f1_score = 0.0;
 
     /**
      * Constructor.

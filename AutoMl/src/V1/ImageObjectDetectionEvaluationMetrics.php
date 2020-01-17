@@ -22,7 +22,7 @@ class ImageObjectDetectionEvaluationMetrics extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>int32 evaluated_bounding_box_count = 1;</code>
      */
-    private $evaluated_bounding_box_count = 0;
+    protected $evaluated_bounding_box_count = 0;
     /**
      * Output only. The bounding boxes match metrics for each
      * Intersection-over-union threshold 0.05,0.10,...,0.95,0.96,0.97,0.98,0.99
@@ -38,7 +38,7 @@ class ImageObjectDetectionEvaluationMetrics extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>float bounding_box_mean_average_precision = 3;</code>
      */
-    private $bounding_box_mean_average_precision = 0.0;
+    protected $bounding_box_mean_average_precision = 0.0;
 
     /**
      * Constructor.

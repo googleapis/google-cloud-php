@@ -20,26 +20,26 @@ class ListTableSpecsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Mask specifying which fields to read.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 2;</code>
      */
-    private $field_mask = null;
+    protected $field_mask = null;
     /**
      * Filter expression, see go/filtering.
      *
      * Generated from protobuf field <code>string filter = 3;</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * Requested page size. The server can return fewer results than requested.
      * If unspecified, the server will pick a default size.
      *
      * Generated from protobuf field <code>int32 page_size = 4;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * A token identifying a page of results for the server to return.
      * Typically obtained from the
@@ -48,7 +48,7 @@ class ListTableSpecsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 6;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * Constructor.

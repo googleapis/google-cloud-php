@@ -23,7 +23,7 @@ class ExportModelOutputInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string gcs_output_directory = 1;</code>
      */
-    private $gcs_output_directory = '';
+    protected $gcs_output_directory = '';
 
     /**
      * Constructor.

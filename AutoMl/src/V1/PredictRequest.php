@@ -21,14 +21,14 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Payload to perform a prediction on. The payload must match the
      * problem type that the model was trained to solve.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1.ExamplePayload payload = 2;</code>
      */
-    private $payload = null;
+    protected $payload = null;
     /**
      * Additional domain-specific parameters, any string must be up to 25000
      * characters long.

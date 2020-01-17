@@ -23,21 +23,21 @@ class TranslationModelMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string base_model = 1;</code>
      */
-    private $base_model = '';
+    protected $base_model = '';
     /**
      * Output only. Inferred from the dataset.
      * The source languge (The BCP-47 language code) that is used for training.
      *
      * Generated from protobuf field <code>string source_language_code = 2;</code>
      */
-    private $source_language_code = '';
+    protected $source_language_code = '';
     /**
      * Output only. The target languge (The BCP-47 language code) that is used for
      * training.
      *
      * Generated from protobuf field <code>string target_language_code = 3;</code>
      */
-    private $target_language_code = '';
+    protected $target_language_code = '';
 
     /**
      * Constructor.

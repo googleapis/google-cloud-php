@@ -20,13 +20,13 @@ class TranslationDatasetMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source_language_code = 1;</code>
      */
-    private $source_language_code = '';
+    protected $source_language_code = '';
     /**
      * Required. The BCP-47 language code of the target language.
      *
      * Generated from protobuf field <code>string target_language_code = 2;</code>
      */
-    private $target_language_code = '';
+    protected $target_language_code = '';
 
     /**
      * Constructor.

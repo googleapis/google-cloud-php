@@ -21,7 +21,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 progress_percent = 13;</code>
      */
-    private $progress_percent = 0;
+    protected $progress_percent = 0;
     /**
      * Output only. Partial failures encountered.
      * E.g. single files that couldn't be read.
@@ -36,13 +36,13 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Time when the operation was updated for the last time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4;</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     protected $details;
 
     /**

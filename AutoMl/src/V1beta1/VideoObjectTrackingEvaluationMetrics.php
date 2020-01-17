@@ -22,14 +22,14 @@ class VideoObjectTrackingEvaluationMetrics extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>int32 evaluated_frame_count = 1;</code>
      */
-    private $evaluated_frame_count = 0;
+    protected $evaluated_frame_count = 0;
     /**
      * Output only. The total number of bounding boxes (i.e. summed over all
      * frames) the ground truth used to create this evaluation had.
      *
      * Generated from protobuf field <code>int32 evaluated_bounding_box_count = 2;</code>
      */
-    private $evaluated_bounding_box_count = 0;
+    protected $evaluated_bounding_box_count = 0;
     /**
      * Output only. The bounding boxes match metrics for each
      * Intersection-over-union threshold 0.05,0.10,...,0.95,0.96,0.97,0.98,0.99
@@ -45,7 +45,7 @@ class VideoObjectTrackingEvaluationMetrics extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>float bounding_box_mean_average_precision = 6;</code>
      */
-    private $bounding_box_mean_average_precision = 0.0;
+    protected $bounding_box_mean_average_precision = 0.0;
 
     /**
      * Constructor.

@@ -20,32 +20,32 @@ class RegressionEvaluationMetrics extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float root_mean_squared_error = 1;</code>
      */
-    private $root_mean_squared_error = 0.0;
+    protected $root_mean_squared_error = 0.0;
     /**
      * Output only. Mean Absolute Error (MAE).
      *
      * Generated from protobuf field <code>float mean_absolute_error = 2;</code>
      */
-    private $mean_absolute_error = 0.0;
+    protected $mean_absolute_error = 0.0;
     /**
      * Output only. Mean absolute percentage error. Only set if all ground truth
      * values are are positive.
      *
      * Generated from protobuf field <code>float mean_absolute_percentage_error = 3;</code>
      */
-    private $mean_absolute_percentage_error = 0.0;
+    protected $mean_absolute_percentage_error = 0.0;
     /**
      * Output only. R squared.
      *
      * Generated from protobuf field <code>float r_squared = 4;</code>
      */
-    private $r_squared = 0.0;
+    protected $r_squared = 0.0;
     /**
      * Output only. Root mean squared log error.
      *
      * Generated from protobuf field <code>float root_mean_squared_log_error = 5;</code>
      */
-    private $root_mean_squared_log_error = 0.0;
+    protected $root_mean_squared_log_error = 0.0;
 
     /**
      * Constructor.

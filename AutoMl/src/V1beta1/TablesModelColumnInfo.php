@@ -22,14 +22,14 @@ class TablesModelColumnInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string column_spec_name = 1;</code>
      */
-    private $column_spec_name = '';
+    protected $column_spec_name = '';
     /**
      * Output only. The display name of the column (same as the display_name of
      * its ColumnSpec).
      *
      * Generated from protobuf field <code>string column_display_name = 2;</code>
      */
-    private $column_display_name = '';
+    protected $column_display_name = '';
     /**
      * Output only. When given as part of a Model (always populated):
      * Measurement of how much model predictions correctness on the TEST data
@@ -50,7 +50,7 @@ class TablesModelColumnInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float feature_importance = 3;</code>
      */
-    private $feature_importance = 0.0;
+    protected $feature_importance = 0.0;
 
     /**
      * Constructor.

@@ -44,7 +44,7 @@ class ModelExportOutputConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string model_format = 4;</code>
      */
-    private $model_format = '';
+    protected $model_format = '';
     /**
      * Additional model-type and format specific parameters describing the
      * requirements for the to be exported model files, any string must be up to

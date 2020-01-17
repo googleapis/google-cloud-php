@@ -22,13 +22,13 @@ class ExportModelRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The desired output location and configuration.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ModelExportOutputConfig output_config = 3;</code>
      */
-    private $output_config = null;
+    protected $output_config = null;
 
     /**
      * Constructor.

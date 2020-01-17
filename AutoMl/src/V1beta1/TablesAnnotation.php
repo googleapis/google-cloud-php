@@ -24,7 +24,7 @@ class TablesAnnotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float score = 1;</code>
      */
-    private $score = 0.0;
+    protected $score = 0.0;
     /**
      * Output only. Only populated when
      * [target_column_spec][google.cloud.automl.v1beta1.TablesModelMetadata.target_column_spec]
@@ -33,7 +33,7 @@ class TablesAnnotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.DoubleRange prediction_interval = 4;</code>
      */
-    private $prediction_interval = null;
+    protected $prediction_interval = null;
     /**
      * The predicted value of the row's
      * [target_column][google.cloud.automl.v1beta1.TablesModelMetadata.target_column_spec].
@@ -44,7 +44,7 @@ class TablesAnnotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Value value = 2;</code>
      */
-    private $value = null;
+    protected $value = null;
     /**
      * Output only. Auxiliary information for each of the model's
      * [input_feature_column_specs][google.cloud.automl.v1beta1.TablesModelMetadata.input_feature_column_specs]

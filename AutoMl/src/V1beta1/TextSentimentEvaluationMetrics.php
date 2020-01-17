@@ -20,47 +20,47 @@ class TextSentimentEvaluationMetrics extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float precision = 1;</code>
      */
-    private $precision = 0.0;
+    protected $precision = 0.0;
     /**
      * Output only. Recall.
      *
      * Generated from protobuf field <code>float recall = 2;</code>
      */
-    private $recall = 0.0;
+    protected $recall = 0.0;
     /**
      * Output only. The harmonic mean of recall and precision.
      *
      * Generated from protobuf field <code>float f1_score = 3;</code>
      */
-    private $f1_score = 0.0;
+    protected $f1_score = 0.0;
     /**
      * Output only. Mean absolute error. Only set for the overall model
      * evaluation, not for evaluation of a single annotation spec.
      *
      * Generated from protobuf field <code>float mean_absolute_error = 4;</code>
      */
-    private $mean_absolute_error = 0.0;
+    protected $mean_absolute_error = 0.0;
     /**
      * Output only. Mean squared error. Only set for the overall model
      * evaluation, not for evaluation of a single annotation spec.
      *
      * Generated from protobuf field <code>float mean_squared_error = 5;</code>
      */
-    private $mean_squared_error = 0.0;
+    protected $mean_squared_error = 0.0;
     /**
      * Output only. Linear weighted kappa. Only set for the overall model
      * evaluation, not for evaluation of a single annotation spec.
      *
      * Generated from protobuf field <code>float linear_kappa = 6;</code>
      */
-    private $linear_kappa = 0.0;
+    protected $linear_kappa = 0.0;
     /**
      * Output only. Quadratic weighted kappa. Only set for the overall model
      * evaluation, not for evaluation of a single annotation spec.
      *
      * Generated from protobuf field <code>float quadratic_kappa = 7;</code>
      */
-    private $quadratic_kappa = 0.0;
+    protected $quadratic_kappa = 0.0;
     /**
      * Output only. Confusion matrix of the evaluation.
      * Only set for the overall model evaluation, not for evaluation of a single
@@ -68,7 +68,7 @@ class TextSentimentEvaluationMetrics extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ClassificationEvaluationMetrics.ConfusionMatrix confusion_matrix = 8;</code>
      */
-    private $confusion_matrix = null;
+    protected $confusion_matrix = null;
     /**
      * Output only. The annotation spec ids used for this evaluation.
      * Deprecated .

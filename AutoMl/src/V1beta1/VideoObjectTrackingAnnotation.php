@@ -26,21 +26,21 @@ class VideoObjectTrackingAnnotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instance_id = 1;</code>
      */
-    private $instance_id = '';
+    protected $instance_id = '';
     /**
      * Required. A time (frame) of a video to which this annotation pertains.
      * Represented as the duration since the video's start.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration time_offset = 2;</code>
      */
-    private $time_offset = null;
+    protected $time_offset = null;
     /**
      * Required. The rectangle representing the object location on the frame (i.e.
      * at the time_offset of the video).
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.BoundingPoly bounding_box = 3;</code>
      */
-    private $bounding_box = null;
+    protected $bounding_box = null;
     /**
      * Output only. The confidence that this annotation is positive for the video at
      * the time_offset, value in [0, 1], higher means higher positivity
@@ -50,7 +50,7 @@ class VideoObjectTrackingAnnotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float score = 4;</code>
      */
-    private $score = 0.0;
+    protected $score = 0.0;
 
     /**
      * Constructor.

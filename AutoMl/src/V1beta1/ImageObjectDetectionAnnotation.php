@@ -20,14 +20,14 @@ class ImageObjectDetectionAnnotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.BoundingPoly bounding_box = 1;</code>
      */
-    private $bounding_box = null;
+    protected $bounding_box = null;
     /**
      * Output only. The confidence that this annotation is positive for the parent example,
      * value in [0, 1], higher means higher positivity confidence.
      *
      * Generated from protobuf field <code>float score = 2;</code>
      */
-    private $score = 0.0;
+    protected $score = 0.0;
 
     /**
      * Constructor.

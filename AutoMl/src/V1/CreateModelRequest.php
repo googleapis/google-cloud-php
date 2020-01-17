@@ -21,13 +21,13 @@ class CreateModelRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The model to create.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1.Model model = 4;</code>
      */
-    private $model = null;
+    protected $model = null;
 
     /**
      * Constructor.

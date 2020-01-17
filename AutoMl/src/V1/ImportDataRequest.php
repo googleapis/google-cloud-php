@@ -22,14 +22,14 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The desired input location and its domain specific semantics,
      * if any.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1.InputConfig input_config = 3;</code>
      */
-    private $input_config = null;
+    protected $input_config = null;
 
     /**
      * Constructor.

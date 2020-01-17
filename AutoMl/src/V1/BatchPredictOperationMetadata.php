@@ -21,13 +21,13 @@ class BatchPredictOperationMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1.BatchPredictInputConfig input_config = 1;</code>
      */
-    private $input_config = null;
+    protected $input_config = null;
     /**
      * Output only. Information further describing this batch predict's output.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1.BatchPredictOperationMetadata.BatchPredictOutputInfo output_info = 2;</code>
      */
-    private $output_info = null;
+    protected $output_info = null;
 
     /**
      * Constructor.

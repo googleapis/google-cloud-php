@@ -24,7 +24,7 @@ class ImageClassificationModelMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string base_model_id = 1;</code>
      */
-    private $base_model_id = '';
+    protected $base_model_id = '';
     /**
      * The train budget of creating this model, expressed in milli node
      * hours i.e. 1,000 value in this field means 1 node hour. The actual
@@ -43,7 +43,7 @@ class ImageClassificationModelMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 train_budget_milli_node_hours = 16;</code>
      */
-    private $train_budget_milli_node_hours = 0;
+    protected $train_budget_milli_node_hours = 0;
     /**
      * Output only. The actual train cost of creating this model, expressed in
      * milli node hours, i.e. 1,000 value in this field means 1 node hour.
@@ -51,14 +51,14 @@ class ImageClassificationModelMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 train_cost_milli_node_hours = 17;</code>
      */
-    private $train_cost_milli_node_hours = 0;
+    protected $train_cost_milli_node_hours = 0;
     /**
      * Output only. The reason that this create model operation stopped,
      * e.g. `BUDGET_REACHED`, `MODEL_CONVERGED`.
      *
      * Generated from protobuf field <code>string stop_reason = 5;</code>
      */
-    private $stop_reason = '';
+    protected $stop_reason = '';
     /**
      * Optional. Type of the model. The available values are:
      * *   `cloud` - Model to be used via prediction calls to AutoML API.
@@ -100,14 +100,14 @@ class ImageClassificationModelMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string model_type = 7;</code>
      */
-    private $model_type = '';
+    protected $model_type = '';
     /**
      * Output only. An approximate number of online prediction QPS that can
      * be supported by this model per each node on which it is deployed.
      *
      * Generated from protobuf field <code>double node_qps = 13;</code>
      */
-    private $node_qps = 0.0;
+    protected $node_qps = 0.0;
     /**
      * Output only. The number of nodes this model is deployed on. A node is an
      * abstraction of a machine resource, which can handle online prediction QPS
@@ -115,7 +115,7 @@ class ImageClassificationModelMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 node_count = 14;</code>
      */
-    private $node_count = 0;
+    protected $node_count = 0;
 
     /**
      * Constructor.

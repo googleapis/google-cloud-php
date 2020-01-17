@@ -24,7 +24,7 @@ class TextSentimentDatasetMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 sentiment_max = 1;</code>
      */
-    private $sentiment_max = 0;
+    protected $sentiment_max = 0;
 
     /**
      * Constructor.

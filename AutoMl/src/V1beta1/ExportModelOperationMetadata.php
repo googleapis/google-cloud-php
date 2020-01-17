@@ -21,7 +21,7 @@ class ExportModelOperationMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ExportModelOperationMetadata.ExportModelOutputInfo output_info = 2;</code>
      */
-    private $output_info = null;
+    protected $output_info = null;
 
     /**
      * Constructor.

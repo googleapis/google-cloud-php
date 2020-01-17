@@ -22,7 +22,7 @@ class Dataset extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The name of the dataset to show in the interface. The name can be
      * up to 32 characters long and can consist only of ASCII Latin letters A-Z
@@ -31,33 +31,33 @@ class Dataset extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * User-provided description of the dataset. The description can be up to
      * 25000 characters long.
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. The number of examples in the dataset.
      *
      * Generated from protobuf field <code>int32 example_count = 21;</code>
      */
-    private $example_count = 0;
+    protected $example_count = 0;
     /**
      * Output only. Timestamp when this dataset was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 14;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Used to perform consistent read-modify-write updates. If not set, a blind
      * "overwrite" update happens.
      *
      * Generated from protobuf field <code>string etag = 17;</code>
      */
-    private $etag = '';
+    protected $etag = '';
     protected $dataset_metadata;
 
     /**

@@ -20,13 +20,13 @@ class GetColumnSpecRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Mask specifying which fields to read.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 2;</code>
      */
-    private $field_mask = null;
+    protected $field_mask = null;
 
     /**
      * Constructor.

@@ -23,7 +23,7 @@ class ExportEvaluatedExamplesOutputInfo extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>string bigquery_output_dataset = 2;</code>
      */
-    private $bigquery_output_dataset = '';
+    protected $bigquery_output_dataset = '';
 
     /**
      * Constructor.

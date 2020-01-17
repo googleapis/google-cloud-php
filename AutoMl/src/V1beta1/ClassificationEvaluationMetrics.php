@@ -23,7 +23,7 @@ class ClassificationEvaluationMetrics extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float au_prc = 1;</code>
      */
-    private $au_prc = 0.0;
+    protected $au_prc = 0.0;
     /**
      * Output only. The Area Under Precision-Recall Curve metric based on priors.
      * Micro-averaged for the overall evaluation.
@@ -31,20 +31,20 @@ class ClassificationEvaluationMetrics extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float base_au_prc = 2 [deprecated = true];</code>
      */
-    private $base_au_prc = 0.0;
+    protected $base_au_prc = 0.0;
     /**
      * Output only. The Area Under Receiver Operating Characteristic curve metric.
      * Micro-averaged for the overall evaluation.
      *
      * Generated from protobuf field <code>float au_roc = 6;</code>
      */
-    private $au_roc = 0.0;
+    protected $au_roc = 0.0;
     /**
      * Output only. The Log Loss metric.
      *
      * Generated from protobuf field <code>float log_loss = 7;</code>
      */
-    private $log_loss = 0.0;
+    protected $log_loss = 0.0;
     /**
      * Output only. Metrics for each confidence_threshold in
      * 0.00,0.05,0.10,...,0.95,0.96,0.97,0.98,0.99 and
@@ -65,7 +65,7 @@ class ClassificationEvaluationMetrics extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ClassificationEvaluationMetrics.ConfusionMatrix confusion_matrix = 4;</code>
      */
-    private $confusion_matrix = null;
+    protected $confusion_matrix = null;
     /**
      * Output only. The annotation spec ids used for this evaluation.
      *

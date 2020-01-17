@@ -21,7 +21,7 @@ class ConfidenceMetricsEntry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float confidence_threshold = 1;</code>
      */
-    private $confidence_threshold = 0.0;
+    protected $confidence_threshold = 0.0;
     /**
      * Output only. Metrics are computed with an assumption that the model
      * always returns at most this many predictions (ordered by their score,
@@ -29,32 +29,32 @@ class ConfidenceMetricsEntry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 position_threshold = 14;</code>
      */
-    private $position_threshold = 0;
+    protected $position_threshold = 0;
     /**
      * Output only. Recall (True Positive Rate) for the given confidence
      * threshold.
      *
      * Generated from protobuf field <code>float recall = 2;</code>
      */
-    private $recall = 0.0;
+    protected $recall = 0.0;
     /**
      * Output only. Precision for the given confidence threshold.
      *
      * Generated from protobuf field <code>float precision = 3;</code>
      */
-    private $precision = 0.0;
+    protected $precision = 0.0;
     /**
      * Output only. False Positive Rate for the given confidence threshold.
      *
      * Generated from protobuf field <code>float false_positive_rate = 8;</code>
      */
-    private $false_positive_rate = 0.0;
+    protected $false_positive_rate = 0.0;
     /**
      * Output only. The harmonic mean of recall and precision.
      *
      * Generated from protobuf field <code>float f1_score = 4;</code>
      */
-    private $f1_score = 0.0;
+    protected $f1_score = 0.0;
     /**
      * Output only. The Recall (True Positive Rate) when only considering the
      * label that has the highest prediction score and not below the confidence
@@ -62,7 +62,7 @@ class ConfidenceMetricsEntry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float recall_at1 = 5;</code>
      */
-    private $recall_at1 = 0.0;
+    protected $recall_at1 = 0.0;
     /**
      * Output only. The precision when only considering the label that has the
      * highest prediction score and not below the confidence threshold for each
@@ -70,7 +70,7 @@ class ConfidenceMetricsEntry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float precision_at1 = 6;</code>
      */
-    private $precision_at1 = 0.0;
+    protected $precision_at1 = 0.0;
     /**
      * Output only. The False Positive Rate when only considering the label that
      * has the highest prediction score and not below the confidence threshold
@@ -78,7 +78,7 @@ class ConfidenceMetricsEntry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float false_positive_rate_at1 = 9;</code>
      */
-    private $false_positive_rate_at1 = 0.0;
+    protected $false_positive_rate_at1 = 0.0;
     /**
      * Output only. The harmonic mean of
      * [recall_at1][google.cloud.automl.v1beta1.ClassificationEvaluationMetrics.ConfidenceMetricsEntry.recall_at1]
@@ -87,35 +87,35 @@ class ConfidenceMetricsEntry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float f1_score_at1 = 7;</code>
      */
-    private $f1_score_at1 = 0.0;
+    protected $f1_score_at1 = 0.0;
     /**
      * Output only. The number of model created labels that match a ground truth
      * label.
      *
      * Generated from protobuf field <code>int64 true_positive_count = 10;</code>
      */
-    private $true_positive_count = 0;
+    protected $true_positive_count = 0;
     /**
      * Output only. The number of model created labels that do not match a
      * ground truth label.
      *
      * Generated from protobuf field <code>int64 false_positive_count = 11;</code>
      */
-    private $false_positive_count = 0;
+    protected $false_positive_count = 0;
     /**
      * Output only. The number of ground truth labels that are not matched
      * by a model created label.
      *
      * Generated from protobuf field <code>int64 false_negative_count = 12;</code>
      */
-    private $false_negative_count = 0;
+    protected $false_negative_count = 0;
     /**
      * Output only. The number of labels that were not created by the model,
      * but if they would, they would not match a ground truth label.
      *
      * Generated from protobuf field <code>int64 true_negative_count = 13;</code>
      */
-    private $true_negative_count = 0;
+    protected $true_negative_count = 0;
 
     /**
      * Constructor.

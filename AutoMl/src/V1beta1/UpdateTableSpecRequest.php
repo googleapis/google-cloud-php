@@ -20,13 +20,13 @@ class UpdateTableSpecRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TableSpec table_spec = 1;</code>
      */
-    private $table_spec = null;
+    protected $table_spec = null;
     /**
      * The update mask applies to the resource.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * Constructor.

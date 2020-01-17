@@ -20,13 +20,13 @@ class DoubleRange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double start = 1;</code>
      */
-    private $start = 0.0;
+    protected $start = 0.0;
     /**
      * End of the range, exclusive.
      *
      * Generated from protobuf field <code>double end = 2;</code>
      */
-    private $end = 0.0;
+    protected $end = 0.0;
 
     /**
      * Constructor.

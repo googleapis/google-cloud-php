@@ -20,19 +20,19 @@ class DataStats extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 distinct_value_count = 1;</code>
      */
-    private $distinct_value_count = 0;
+    protected $distinct_value_count = 0;
     /**
      * The number of values that are null.
      *
      * Generated from protobuf field <code>int64 null_value_count = 2;</code>
      */
-    private $null_value_count = 0;
+    protected $null_value_count = 0;
     /**
      * The number of values that are valid.
      *
      * Generated from protobuf field <code>int64 valid_value_count = 9;</code>
      */
-    private $valid_value_count = 0;
+    protected $valid_value_count = 0;
     protected $stats;
 
     /**

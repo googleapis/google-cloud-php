@@ -20,7 +20,7 @@ class ListDatasetsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * An expression for filtering the results of the request.
      *   * `dataset_metadata` - for existence of the case (e.g.
@@ -30,14 +30,14 @@ class ListDatasetsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 3;</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * Requested page size. Server may return fewer results than requested.
      * If unspecified, server will pick a default size.
      *
      * Generated from protobuf field <code>int32 page_size = 4;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * A token identifying a page of results for the server to return
      * Typically obtained via
@@ -46,7 +46,7 @@ class ListDatasetsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 6;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * Constructor.
