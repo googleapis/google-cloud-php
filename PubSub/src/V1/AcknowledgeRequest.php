@@ -21,7 +21,7 @@ class AcknowledgeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string subscription = 1;</code>
      */
-    private $subscription = '';
+    protected $subscription = '';
     /**
      * The acknowledgment ID for the messages being acknowledged that was returned
      * by the Pub/Sub system in the `Pull` response. Must not be empty.

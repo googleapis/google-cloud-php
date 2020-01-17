@@ -25,7 +25,7 @@ class Topic extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and
      * managing labels</a>.
@@ -40,7 +40,7 @@ class Topic extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.pubsub.v1.MessageStoragePolicy message_storage_policy = 3;</code>
      */
-    private $message_storage_policy = null;
+    protected $message_storage_policy = null;
     /**
      * The resource name of the Cloud KMS CryptoKey to be used to protect access
      * to messages published on this topic.
@@ -48,7 +48,7 @@ class Topic extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kms_key_name = 5;</code>
      */
-    private $kms_key_name = '';
+    protected $kms_key_name = '';
 
     /**
      * Constructor.

@@ -1,19 +1,19 @@
 {
-  "updateTime": "2019-11-13T11:00:58.128308Z",
+  "updateTime": "2020-01-17T11:02:59.631874Z",
   "sources": [
     {
       "generator": {
         "name": "artman",
-        "version": "0.41.1",
-        "dockerImage": "googleapis/artman@sha256:545c758c76c3f779037aa259023ec3d1ef2d57d2c8cd00a222cb187d63ceac5e"
+        "version": "0.44.1",
+        "dockerImage": "googleapis/artman@sha256:5599b61e56a372d21b671969ee915fbca0f6c3a0daaeb898d01f8f685f1bbc8b"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "88bbf96b90089994ed16208a0f38cdd07f743742",
-        "internalRef": "280134477"
+        "sha": "58e770d568a2b78168ddc19a874178fee8265a9d",
+        "internalRef": "290146169"
       }
     }
   ],
@@ -27,6 +27,335 @@
         "generator": "gapic",
         "config": "google/pubsub/artman_pubsub.yaml"
       }
+    }
+  ],
+  "newFiles": [
+    {
+      "path": ".gitattributes"
+    },
+    {
+      "path": ".github/pull_request_template.md"
+    },
+    {
+      "path": "CONTRIBUTING.md"
+    },
+    {
+      "path": "LICENSE"
+    },
+    {
+      "path": "README.md"
+    },
+    {
+      "path": "VERSION"
+    },
+    {
+      "path": "composer.json"
+    },
+    {
+      "path": "metadata/V1/Pubsub.php"
+    },
+    {
+      "path": "phpunit-snippets.xml.dist"
+    },
+    {
+      "path": "phpunit-system.xml.dist"
+    },
+    {
+      "path": "phpunit.xml.dist"
+    },
+    {
+      "path": "src/BatchPublisher.php"
+    },
+    {
+      "path": "src/Connection/ConnectionInterface.php"
+    },
+    {
+      "path": "src/Connection/Grpc.php"
+    },
+    {
+      "path": "src/Connection/IamSubscription.php"
+    },
+    {
+      "path": "src/Connection/IamTopic.php"
+    },
+    {
+      "path": "src/Connection/Rest.php"
+    },
+    {
+      "path": "src/Connection/ServiceDefinition/pubsub-v1.json"
+    },
+    {
+      "path": "src/IncomingMessageTrait.php"
+    },
+    {
+      "path": "src/Message.php"
+    },
+    {
+      "path": "src/PubSubClient.php"
+    },
+    {
+      "path": "src/ResourceNameTrait.php"
+    },
+    {
+      "path": "src/Snapshot.php"
+    },
+    {
+      "path": "src/Subscription.php"
+    },
+    {
+      "path": "src/Topic.php"
+    },
+    {
+      "path": "src/V1/AcknowledgeRequest.php"
+    },
+    {
+      "path": "src/V1/CreateSnapshotRequest.php"
+    },
+    {
+      "path": "src/V1/DeadLetterPolicy.php"
+    },
+    {
+      "path": "src/V1/DeleteSnapshotRequest.php"
+    },
+    {
+      "path": "src/V1/DeleteSubscriptionRequest.php"
+    },
+    {
+      "path": "src/V1/DeleteTopicRequest.php"
+    },
+    {
+      "path": "src/V1/ExpirationPolicy.php"
+    },
+    {
+      "path": "src/V1/Gapic/PublisherGapicClient.php"
+    },
+    {
+      "path": "src/V1/Gapic/SubscriberGapicClient.php"
+    },
+    {
+      "path": "src/V1/GetSnapshotRequest.php"
+    },
+    {
+      "path": "src/V1/GetSubscriptionRequest.php"
+    },
+    {
+      "path": "src/V1/GetTopicRequest.php"
+    },
+    {
+      "path": "src/V1/ListSnapshotsRequest.php"
+    },
+    {
+      "path": "src/V1/ListSnapshotsResponse.php"
+    },
+    {
+      "path": "src/V1/ListSubscriptionsRequest.php"
+    },
+    {
+      "path": "src/V1/ListSubscriptionsResponse.php"
+    },
+    {
+      "path": "src/V1/ListTopicSnapshotsRequest.php"
+    },
+    {
+      "path": "src/V1/ListTopicSnapshotsResponse.php"
+    },
+    {
+      "path": "src/V1/ListTopicSubscriptionsRequest.php"
+    },
+    {
+      "path": "src/V1/ListTopicSubscriptionsResponse.php"
+    },
+    {
+      "path": "src/V1/ListTopicsRequest.php"
+    },
+    {
+      "path": "src/V1/ListTopicsResponse.php"
+    },
+    {
+      "path": "src/V1/MessageStoragePolicy.php"
+    },
+    {
+      "path": "src/V1/ModifyAckDeadlineRequest.php"
+    },
+    {
+      "path": "src/V1/ModifyPushConfigRequest.php"
+    },
+    {
+      "path": "src/V1/PublishRequest.php"
+    },
+    {
+      "path": "src/V1/PublishResponse.php"
+    },
+    {
+      "path": "src/V1/PublisherClient.php"
+    },
+    {
+      "path": "src/V1/PublisherGrpcClient.php"
+    },
+    {
+      "path": "src/V1/PubsubMessage.php"
+    },
+    {
+      "path": "src/V1/PullRequest.php"
+    },
+    {
+      "path": "src/V1/PullResponse.php"
+    },
+    {
+      "path": "src/V1/PushConfig.php"
+    },
+    {
+      "path": "src/V1/PushConfig/OidcToken.php"
+    },
+    {
+      "path": "src/V1/PushConfig_OidcToken.php"
+    },
+    {
+      "path": "src/V1/README.md"
+    },
+    {
+      "path": "src/V1/ReceivedMessage.php"
+    },
+    {
+      "path": "src/V1/SeekRequest.php"
+    },
+    {
+      "path": "src/V1/SeekResponse.php"
+    },
+    {
+      "path": "src/V1/Snapshot.php"
+    },
+    {
+      "path": "src/V1/StreamingPullRequest.php"
+    },
+    {
+      "path": "src/V1/StreamingPullResponse.php"
+    },
+    {
+      "path": "src/V1/SubscriberClient.php"
+    },
+    {
+      "path": "src/V1/SubscriberGrpcClient.php"
+    },
+    {
+      "path": "src/V1/Subscription.php"
+    },
+    {
+      "path": "src/V1/Topic.php"
+    },
+    {
+      "path": "src/V1/UpdateSnapshotRequest.php"
+    },
+    {
+      "path": "src/V1/UpdateSubscriptionRequest.php"
+    },
+    {
+      "path": "src/V1/UpdateTopicRequest.php"
+    },
+    {
+      "path": "src/V1/resources/publisher_client_config.json"
+    },
+    {
+      "path": "src/V1/resources/publisher_descriptor_config.php"
+    },
+    {
+      "path": "src/V1/resources/publisher_rest_client_config.php"
+    },
+    {
+      "path": "src/V1/resources/subscriber_client_config.json"
+    },
+    {
+      "path": "src/V1/resources/subscriber_descriptor_config.php"
+    },
+    {
+      "path": "src/V1/resources/subscriber_rest_client_config.php"
+    },
+    {
+      "path": "synth.metadata"
+    },
+    {
+      "path": "synth.py"
+    },
+    {
+      "path": "tests/Snippet/BatchPublisherTest.php"
+    },
+    {
+      "path": "tests/Snippet/MessageTest.php"
+    },
+    {
+      "path": "tests/Snippet/PubSubClientTest.php"
+    },
+    {
+      "path": "tests/Snippet/SnapshotTest.php"
+    },
+    {
+      "path": "tests/Snippet/SubscriptionTest.php"
+    },
+    {
+      "path": "tests/Snippet/TopicTest.php"
+    },
+    {
+      "path": "tests/System/ManageIAMPoliciesTest.php"
+    },
+    {
+      "path": "tests/System/ManageSubscriptionsTest.php"
+    },
+    {
+      "path": "tests/System/ManageTopicsTest.php"
+    },
+    {
+      "path": "tests/System/PubSubTestCase.php"
+    },
+    {
+      "path": "tests/System/PublishAndPullTest.php"
+    },
+    {
+      "path": "tests/System/V1/PublisherSmokeTest.php"
+    },
+    {
+      "path": "tests/System/bootstrap.php"
+    },
+    {
+      "path": "tests/Unit/BatchPublisherTest.php"
+    },
+    {
+      "path": "tests/Unit/Connection/GrpcTest.php"
+    },
+    {
+      "path": "tests/Unit/Connection/IamSubscriptionTest.php"
+    },
+    {
+      "path": "tests/Unit/Connection/IamTopicTest.php"
+    },
+    {
+      "path": "tests/Unit/Connection/RestTest.php"
+    },
+    {
+      "path": "tests/Unit/IncomingMessageTraitTest.php"
+    },
+    {
+      "path": "tests/Unit/MessageTest.php"
+    },
+    {
+      "path": "tests/Unit/PubSubClientTest.php"
+    },
+    {
+      "path": "tests/Unit/ResourceNameTraitTest.php"
+    },
+    {
+      "path": "tests/Unit/SnapshotTest.php"
+    },
+    {
+      "path": "tests/Unit/SubscriptionTest.php"
+    },
+    {
+      "path": "tests/Unit/TopicTest.php"
+    },
+    {
+      "path": "tests/Unit/V1/PublisherClientTest.php"
+    },
+    {
+      "path": "tests/Unit/V1/SubscriberClientTest.php"
     }
   ]
 }

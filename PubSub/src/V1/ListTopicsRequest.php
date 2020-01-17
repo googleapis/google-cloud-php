@@ -21,13 +21,13 @@ class ListTopicsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project = 1;</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Maximum number of topics to return.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * The value returned by the last `ListTopicsResponse`; indicates that this is
      * a continuation of a prior `ListTopics` call, and that the system should
@@ -35,7 +35,7 @@ class ListTopicsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * Constructor.

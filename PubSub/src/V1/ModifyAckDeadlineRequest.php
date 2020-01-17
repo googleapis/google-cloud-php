@@ -21,7 +21,7 @@ class ModifyAckDeadlineRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string subscription = 1;</code>
      */
-    private $subscription = '';
+    protected $subscription = '';
     /**
      * List of acknowledgment IDs.
      *
@@ -40,7 +40,7 @@ class ModifyAckDeadlineRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 ack_deadline_seconds = 3;</code>
      */
-    private $ack_deadline_seconds = 0;
+    protected $ack_deadline_seconds = 0;
 
     /**
      * Constructor.

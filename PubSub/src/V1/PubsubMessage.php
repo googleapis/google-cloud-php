@@ -28,7 +28,7 @@ class PubsubMessage extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes data = 1;</code>
      */
-    private $data = '';
+    protected $data = '';
     /**
      * Optional attributes for this message.
      *
@@ -43,7 +43,7 @@ class PubsubMessage extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string message_id = 3;</code>
      */
-    private $message_id = '';
+    protected $message_id = '';
     /**
      * The time at which the message was published, populated by the server when
      * it receives the `Publish` call. It must not be populated by the
@@ -51,7 +51,7 @@ class PubsubMessage extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp publish_time = 4;</code>
      */
-    private $publish_time = null;
+    protected $publish_time = null;
     /**
      * Identifies related messages for which publish order should be respected.
      * If a `Subscription` has `enable_message_ordering` set to `true`, messages
@@ -63,7 +63,7 @@ class PubsubMessage extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string ordering_key = 5;</code>
      */
-    private $ordering_key = '';
+    protected $ordering_key = '';
 
     /**
      * Constructor.

@@ -21,7 +21,7 @@ class PushConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string push_endpoint = 1;</code>
      */
-    private $push_endpoint = '';
+    protected $push_endpoint = '';
     /**
      * Endpoint configuration attributes that can be used to control different
      * aspects of the message delivery.

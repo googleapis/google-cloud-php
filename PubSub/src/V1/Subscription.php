@@ -25,7 +25,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The name of the topic from which this subscription is receiving messages.
      * Format is `projects/{project}/topics/{topic}`.
@@ -34,7 +34,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string topic = 2;</code>
      */
-    private $topic = '';
+    protected $topic = '';
     /**
      * If push delivery is used with this subscription, this field is
      * used to configure it. An empty `pushConfig` signifies that the subscriber
@@ -42,7 +42,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.pubsub.v1.PushConfig push_config = 4;</code>
      */
-    private $push_config = null;
+    protected $push_config = null;
     /**
      * The approximate amount of time (on a best-effort basis) Pub/Sub waits for
      * the subscriber to acknowledge receipt before resending the message. In the
@@ -64,7 +64,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 ack_deadline_seconds = 5;</code>
      */
-    private $ack_deadline_seconds = 0;
+    protected $ack_deadline_seconds = 0;
     /**
      * Indicates whether to retain acknowledged messages. If true, then
      * messages are not expunged from the subscription's backlog, even if they are
@@ -76,7 +76,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool retain_acked_messages = 7;</code>
      */
-    private $retain_acked_messages = false;
+    protected $retain_acked_messages = false;
     /**
      * How long to retain unacknowledged messages in the subscription's backlog,
      * from the moment a message is published.
@@ -87,7 +87,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration message_retention_duration = 8;</code>
      */
-    private $message_retention_duration = null;
+    protected $message_retention_duration = null;
     /**
      * See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and
      * managing labels</a>.
@@ -106,7 +106,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_message_ordering = 10;</code>
      */
-    private $enable_message_ordering = false;
+    protected $enable_message_ordering = false;
     /**
      * A policy that specifies the conditions for this subscription's expiration.
      * A subscription is considered active as long as any connected subscriber is
@@ -117,7 +117,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.pubsub.v1.ExpirationPolicy expiration_policy = 11;</code>
      */
-    private $expiration_policy = null;
+    protected $expiration_policy = null;
     /**
      * A policy that specifies the conditions for dead lettering messages in
      * this subscription. If dead_letter_policy is not set, dead lettering
@@ -132,7 +132,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.pubsub.v1.DeadLetterPolicy dead_letter_policy = 13;</code>
      */
-    private $dead_letter_policy = null;
+    protected $dead_letter_policy = null;
 
     /**
      * Constructor.

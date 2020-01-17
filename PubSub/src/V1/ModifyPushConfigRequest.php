@@ -21,7 +21,7 @@ class ModifyPushConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string subscription = 1;</code>
      */
-    private $subscription = '';
+    protected $subscription = '';
     /**
      * The push configuration for future deliveries.
      * An empty `pushConfig` indicates that the Pub/Sub system should
@@ -31,7 +31,7 @@ class ModifyPushConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.pubsub.v1.PushConfig push_config = 2;</code>
      */
-    private $push_config = null;
+    protected $push_config = null;
 
     /**
      * Constructor.

@@ -26,7 +26,7 @@ class ExpirationPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration ttl = 1;</code>
      */
-    private $ttl = null;
+    protected $ttl = null;
 
     /**
      * Constructor.

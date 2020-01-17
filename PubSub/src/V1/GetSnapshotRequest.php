@@ -21,7 +21,7 @@ class GetSnapshotRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string snapshot = 1;</code>
      */
-    private $snapshot = '';
+    protected $snapshot = '';
 
     /**
      * Constructor.

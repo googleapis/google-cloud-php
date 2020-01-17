@@ -26,7 +26,7 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The subscription whose backlog the snapshot retains.
      * Specifically, the created snapshot is guaranteed to retain:
@@ -40,7 +40,7 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string subscription = 2;</code>
      */
-    private $subscription = '';
+    protected $subscription = '';
     /**
      * See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and
      * managing labels</a>.

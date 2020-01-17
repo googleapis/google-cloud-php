@@ -21,13 +21,13 @@ class ListTopicSnapshotsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string topic = 1;</code>
      */
-    private $topic = '';
+    protected $topic = '';
     /**
      * Maximum number of snapshot names to return.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * The value returned by the last `ListTopicSnapshotsResponse`; indicates
      * that this is a continuation of a prior `ListTopicSnapshots` call, and
@@ -35,7 +35,7 @@ class ListTopicSnapshotsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * Constructor.

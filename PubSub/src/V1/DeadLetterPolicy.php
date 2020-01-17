@@ -30,7 +30,7 @@ class DeadLetterPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string dead_letter_topic = 1;</code>
      */
-    private $dead_letter_topic = '';
+    protected $dead_letter_topic = '';
     /**
      * The maximum number of delivery attempts for any message. The value must be
      * between 5 and 100.
@@ -44,7 +44,7 @@ class DeadLetterPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_delivery_attempts = 2;</code>
      */
-    private $max_delivery_attempts = 0;
+    protected $max_delivery_attempts = 0;
 
     /**
      * Constructor.

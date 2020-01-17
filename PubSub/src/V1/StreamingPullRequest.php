@@ -25,7 +25,7 @@ class StreamingPullRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string subscription = 1;</code>
      */
-    private $subscription = '';
+    protected $subscription = '';
     /**
      * List of acknowledgement IDs for acknowledging previously received messages
      * (received on this stream or a different stream). If an ack ID has expired,
@@ -70,7 +70,7 @@ class StreamingPullRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 stream_ack_deadline_seconds = 5;</code>
      */
-    private $stream_ack_deadline_seconds = 0;
+    protected $stream_ack_deadline_seconds = 0;
 
     /**
      * Constructor.

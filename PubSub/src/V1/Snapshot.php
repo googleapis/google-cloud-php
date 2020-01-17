@@ -25,13 +25,13 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The name of the topic from which this snapshot is retaining messages.
      *
      * Generated from protobuf field <code>string topic = 2;</code>
      */
-    private $topic = '';
+    protected $topic = '';
     /**
      * The snapshot is guaranteed to exist up until this time.
      * A newly-created snapshot expires no later than 7 days from the time of its
@@ -46,7 +46,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 3;</code>
      */
-    private $expire_time = null;
+    protected $expire_time = null;
     /**
      * See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and
      * managing labels</a>.

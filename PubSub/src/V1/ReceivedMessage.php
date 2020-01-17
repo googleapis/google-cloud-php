@@ -20,13 +20,13 @@ class ReceivedMessage extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string ack_id = 1;</code>
      */
-    private $ack_id = '';
+    protected $ack_id = '';
     /**
      * The message.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.PubsubMessage message = 2;</code>
      */
-    private $message = null;
+    protected $message = null;
     /**
      * Delivery attempt counter is 1 + (the sum of number of NACKs and number of
      * ack_deadline exceeds) for this message.
@@ -44,7 +44,7 @@ class ReceivedMessage extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 delivery_attempt = 3;</code>
      */
-    private $delivery_attempt = 0;
+    protected $delivery_attempt = 0;
 
     /**
      * Constructor.

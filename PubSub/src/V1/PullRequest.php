@@ -21,7 +21,7 @@ class PullRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string subscription = 1;</code>
      */
-    private $subscription = '';
+    protected $subscription = '';
     /**
      * If this field set to true, the system will respond immediately even if
      * it there are no messages available to return in the `Pull` response.
@@ -30,7 +30,7 @@ class PullRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool return_immediately = 2;</code>
      */
-    private $return_immediately = false;
+    protected $return_immediately = false;
     /**
      * The maximum number of messages to return for this request. Must be a
      * positive integer. The Pub/Sub system may return fewer than the number
@@ -38,7 +38,7 @@ class PullRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_messages = 3;</code>
      */
-    private $max_messages = 0;
+    protected $max_messages = 0;
 
     /**
      * Constructor.

@@ -21,7 +21,7 @@ class GetSubscriptionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string subscription = 1;</code>
      */
-    private $subscription = '';
+    protected $subscription = '';
 
     /**
      * Constructor.
