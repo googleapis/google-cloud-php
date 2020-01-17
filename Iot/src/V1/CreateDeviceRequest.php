@@ -22,7 +22,7 @@ class CreateDeviceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The device registration details. The field `name` must be empty. The server
      * generates `name` from the device registry `id` and the
@@ -30,7 +30,7 @@ class CreateDeviceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.iot.v1.Device device = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $device = null;
+    protected $device = null;
 
     /**
      * Constructor.

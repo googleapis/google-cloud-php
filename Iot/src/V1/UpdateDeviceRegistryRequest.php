@@ -22,7 +22,7 @@ class UpdateDeviceRegistryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.iot.v1.DeviceRegistry device_registry = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $device_registry = null;
+    protected $device_registry = null;
     /**
      * Required. Only updates the `device_registry` fields indicated by this mask.
      * The field mask must not be empty, and it must not contain fields that
@@ -32,7 +32,7 @@ class UpdateDeviceRegistryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * Constructor.

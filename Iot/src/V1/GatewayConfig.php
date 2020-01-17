@@ -20,27 +20,27 @@ class GatewayConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.iot.v1.GatewayType gateway_type = 1;</code>
      */
-    private $gateway_type = 0;
+    protected $gateway_type = 0;
     /**
      * Indicates how to authorize and/or authenticate devices to access the
      * gateway.
      *
      * Generated from protobuf field <code>.google.cloud.iot.v1.GatewayAuthMethod gateway_auth_method = 2;</code>
      */
-    private $gateway_auth_method = 0;
+    protected $gateway_auth_method = 0;
     /**
      * [Output only] The ID of the gateway the device accessed most recently.
      *
      * Generated from protobuf field <code>string last_accessed_gateway_id = 3;</code>
      */
-    private $last_accessed_gateway_id = '';
+    protected $last_accessed_gateway_id = '';
     /**
      * [Output only] The most recent time at which the device accessed the gateway
      * specified in `last_accessed_gateway`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_accessed_gateway_time = 4;</code>
      */
-    private $last_accessed_gateway_time = null;
+    protected $last_accessed_gateway_time = null;
 
     /**
      * Constructor.

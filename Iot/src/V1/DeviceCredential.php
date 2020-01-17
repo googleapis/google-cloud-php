@@ -22,7 +22,7 @@ class DeviceCredential extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expiration_time = 6;</code>
      */
-    private $expiration_time = null;
+    protected $expiration_time = null;
     protected $credential;
 
     /**

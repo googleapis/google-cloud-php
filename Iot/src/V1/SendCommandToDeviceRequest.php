@@ -22,13 +22,13 @@ class SendCommandToDeviceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The command data to send to the device.
      *
      * Generated from protobuf field <code>bytes binary_data = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $binary_data = '';
+    protected $binary_data = '';
     /**
      * Optional subfolder for the command. If empty, the command will be delivered
      * to the /devices/{device-id}/commands topic, otherwise it will be delivered
@@ -38,7 +38,7 @@ class SendCommandToDeviceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string subfolder = 3;</code>
      */
-    private $subfolder = '';
+    protected $subfolder = '';
 
     /**
      * Constructor.

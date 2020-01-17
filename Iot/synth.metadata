@@ -1,19 +1,19 @@
 {
-  "updateTime": "2019-11-14T19:22:28.579186Z",
+  "updateTime": "2020-01-17T11:01:59.629248Z",
   "sources": [
     {
       "generator": {
         "name": "artman",
-        "version": "0.41.1",
-        "dockerImage": "googleapis/artman@sha256:545c758c76c3f779037aa259023ec3d1ef2d57d2c8cd00a222cb187d63ceac5e"
+        "version": "0.44.1",
+        "dockerImage": "googleapis/artman@sha256:5599b61e56a372d21b671969ee915fbca0f6c3a0daaeb898d01f8f685f1bbc8b"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "1935fb8889686f5c9d107f11b3c6870fc3aa7cdc",
-        "internalRef": "280451656"
+        "sha": "58e770d568a2b78168ddc19a874178fee8265a9d",
+        "internalRef": "290146169"
       }
     }
   ],
@@ -27,6 +27,218 @@
         "generator": "gapic",
         "config": "google/cloud/iot/artman_cloudiot.yaml"
       }
+    }
+  ],
+  "newFiles": [
+    {
+      "path": ".gitattributes"
+    },
+    {
+      "path": ".github/pull_request_template.md"
+    },
+    {
+      "path": "CONTRIBUTING.md"
+    },
+    {
+      "path": "LICENSE"
+    },
+    {
+      "path": "README.md"
+    },
+    {
+      "path": "VERSION"
+    },
+    {
+      "path": "composer.json"
+    },
+    {
+      "path": "metadata/V1/DeviceManager.php"
+    },
+    {
+      "path": "metadata/V1/Resources.php"
+    },
+    {
+      "path": "phpunit-snippets.xml.dist"
+    },
+    {
+      "path": "phpunit-system.xml.dist"
+    },
+    {
+      "path": "phpunit.xml.dist"
+    },
+    {
+      "path": "src/V1/BindDeviceToGatewayRequest.php"
+    },
+    {
+      "path": "src/V1/BindDeviceToGatewayResponse.php"
+    },
+    {
+      "path": "src/V1/CreateDeviceRegistryRequest.php"
+    },
+    {
+      "path": "src/V1/CreateDeviceRequest.php"
+    },
+    {
+      "path": "src/V1/DeleteDeviceRegistryRequest.php"
+    },
+    {
+      "path": "src/V1/DeleteDeviceRequest.php"
+    },
+    {
+      "path": "src/V1/Device.php"
+    },
+    {
+      "path": "src/V1/DeviceConfig.php"
+    },
+    {
+      "path": "src/V1/DeviceCredential.php"
+    },
+    {
+      "path": "src/V1/DeviceManagerClient.php"
+    },
+    {
+      "path": "src/V1/DeviceManagerGrpcClient.php"
+    },
+    {
+      "path": "src/V1/DeviceRegistry.php"
+    },
+    {
+      "path": "src/V1/DeviceState.php"
+    },
+    {
+      "path": "src/V1/EventNotificationConfig.php"
+    },
+    {
+      "path": "src/V1/Gapic/DeviceManagerGapicClient.php"
+    },
+    {
+      "path": "src/V1/GatewayAuthMethod.php"
+    },
+    {
+      "path": "src/V1/GatewayConfig.php"
+    },
+    {
+      "path": "src/V1/GatewayListOptions.php"
+    },
+    {
+      "path": "src/V1/GatewayType.php"
+    },
+    {
+      "path": "src/V1/GetDeviceRegistryRequest.php"
+    },
+    {
+      "path": "src/V1/GetDeviceRequest.php"
+    },
+    {
+      "path": "src/V1/HttpConfig.php"
+    },
+    {
+      "path": "src/V1/HttpState.php"
+    },
+    {
+      "path": "src/V1/ListDeviceConfigVersionsRequest.php"
+    },
+    {
+      "path": "src/V1/ListDeviceConfigVersionsResponse.php"
+    },
+    {
+      "path": "src/V1/ListDeviceRegistriesRequest.php"
+    },
+    {
+      "path": "src/V1/ListDeviceRegistriesResponse.php"
+    },
+    {
+      "path": "src/V1/ListDeviceStatesRequest.php"
+    },
+    {
+      "path": "src/V1/ListDeviceStatesResponse.php"
+    },
+    {
+      "path": "src/V1/ListDevicesRequest.php"
+    },
+    {
+      "path": "src/V1/ListDevicesResponse.php"
+    },
+    {
+      "path": "src/V1/LogLevel.php"
+    },
+    {
+      "path": "src/V1/ModifyCloudToDeviceConfigRequest.php"
+    },
+    {
+      "path": "src/V1/MqttConfig.php"
+    },
+    {
+      "path": "src/V1/MqttState.php"
+    },
+    {
+      "path": "src/V1/PublicKeyCertificate.php"
+    },
+    {
+      "path": "src/V1/PublicKeyCertificateFormat.php"
+    },
+    {
+      "path": "src/V1/PublicKeyCredential.php"
+    },
+    {
+      "path": "src/V1/PublicKeyFormat.php"
+    },
+    {
+      "path": "src/V1/README.md"
+    },
+    {
+      "path": "src/V1/RegistryCredential.php"
+    },
+    {
+      "path": "src/V1/SendCommandToDeviceRequest.php"
+    },
+    {
+      "path": "src/V1/SendCommandToDeviceResponse.php"
+    },
+    {
+      "path": "src/V1/StateNotificationConfig.php"
+    },
+    {
+      "path": "src/V1/UnbindDeviceFromGatewayRequest.php"
+    },
+    {
+      "path": "src/V1/UnbindDeviceFromGatewayResponse.php"
+    },
+    {
+      "path": "src/V1/UpdateDeviceRegistryRequest.php"
+    },
+    {
+      "path": "src/V1/UpdateDeviceRequest.php"
+    },
+    {
+      "path": "src/V1/X509CertificateDetails.php"
+    },
+    {
+      "path": "src/V1/resources/device_manager_client_config.json"
+    },
+    {
+      "path": "src/V1/resources/device_manager_descriptor_config.php"
+    },
+    {
+      "path": "src/V1/resources/device_manager_rest_client_config.php"
+    },
+    {
+      "path": "synth.metadata"
+    },
+    {
+      "path": "synth.py"
+    },
+    {
+      "path": "tests/System/V1/DeviceManagerSmokeTest.php"
+    },
+    {
+      "path": "tests/System/bootstrap.php"
+    },
+    {
+      "path": "tests/Unit/V1/DeviceManagerClientPartialVeneerTest.php"
+    },
+    {
+      "path": "tests/Unit/V1/DeviceManagerClientTest.php"
     }
   ]
 }

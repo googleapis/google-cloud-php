@@ -22,7 +22,7 @@ class ModifyCloudToDeviceConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The version number to update. If this value is zero, it will not check the
      * version number of the server and will always update the current version;
@@ -32,13 +32,13 @@ class ModifyCloudToDeviceConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 version_to_update = 2;</code>
      */
-    private $version_to_update = 0;
+    protected $version_to_update = 0;
     /**
      * Required. The configuration data for the device.
      *
      * Generated from protobuf field <code>bytes binary_data = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $binary_data = '';
+    protected $binary_data = '';
 
     /**
      * Constructor.

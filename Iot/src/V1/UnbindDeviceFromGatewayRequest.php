@@ -21,14 +21,14 @@ class UnbindDeviceFromGatewayRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The value of `gateway_id` can be either the device numeric ID or the
      * user-defined device identifier.
      *
      * Generated from protobuf field <code>string gateway_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $gateway_id = '';
+    protected $gateway_id = '';
     /**
      * Required. The device to disassociate from the specified gateway. The value of
      * `device_id` can be either the device numeric ID or the user-defined device
@@ -36,7 +36,7 @@ class UnbindDeviceFromGatewayRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string device_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $device_id = '';
+    protected $device_id = '';
 
     /**
      * Constructor.

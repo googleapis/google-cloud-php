@@ -21,7 +21,7 @@ class Device extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1;</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * The resource path name. For example,
      * `projects/p1/locations/us-central1/registries/registry0/devices/dev0` or
@@ -31,14 +31,14 @@ class Device extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 2;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * [Output only] A server-defined unique numeric ID for the device. This is a
      * more compact way to identify devices, and it is globally unique.
      *
      * Generated from protobuf field <code>uint64 num_id = 3;</code>
      */
-    private $num_id = 0;
+    protected $num_id = 0;
     /**
      * The credentials used to authenticate this device. To allow credential
      * rotation without interruption, multiple device credentials can be bound to
@@ -59,7 +59,7 @@ class Device extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_heartbeat_time = 7;</code>
      */
-    private $last_heartbeat_time = null;
+    protected $last_heartbeat_time = null;
     /**
      * [Output only] The last time a telemetry event was received. Timestamps are
      * periodically collected and written to storage; they may be stale by a few
@@ -67,7 +67,7 @@ class Device extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_event_time = 8;</code>
      */
-    private $last_event_time = null;
+    protected $last_event_time = null;
     /**
      * [Output only] The last time a state event was received. Timestamps are
      * periodically collected and written to storage; they may be stale by a few
@@ -75,7 +75,7 @@ class Device extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_state_time = 20;</code>
      */
-    private $last_state_time = null;
+    protected $last_state_time = null;
     /**
      * [Output only] The last time a cloud-to-device config version acknowledgment
      * was received from the device. This field is only for configurations
@@ -83,14 +83,14 @@ class Device extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_config_ack_time = 14;</code>
      */
-    private $last_config_ack_time = null;
+    protected $last_config_ack_time = null;
     /**
      * [Output only] The last time a cloud-to-device config version was sent to
      * the device.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_config_send_time = 18;</code>
      */
-    private $last_config_send_time = null;
+    protected $last_config_send_time = null;
     /**
      * If a device is blocked, connections or requests from this device will fail.
      * Can be used to temporarily prevent the device from connecting if, for
@@ -98,7 +98,7 @@ class Device extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool blocked = 19;</code>
      */
-    private $blocked = false;
+    protected $blocked = false;
     /**
      * [Output only] The time the most recent error occurred, such as a failure to
      * publish to Cloud Pub/Sub. This field is the timestamp of
@@ -106,7 +106,7 @@ class Device extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_error_time = 10;</code>
      */
-    private $last_error_time = null;
+    protected $last_error_time = null;
     /**
      * [Output only] The error message of the most recent error, such as a failure
      * to publish to Cloud Pub/Sub. 'last_error_time' is the timestamp of this
@@ -116,7 +116,7 @@ class Device extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.rpc.Status last_error_status = 11;</code>
      */
-    private $last_error_status = null;
+    protected $last_error_status = null;
     /**
      * The most recent device configuration, which is eventually sent from
      * Cloud IoT Core to the device. If not present on creation, the
@@ -126,14 +126,14 @@ class Device extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.iot.v1.DeviceConfig config = 13;</code>
      */
-    private $config = null;
+    protected $config = null;
     /**
      * [Output only] The state most recently received from the device. If no state
      * has been reported, this field is not present.
      *
      * Generated from protobuf field <code>.google.cloud.iot.v1.DeviceState state = 16;</code>
      */
-    private $state = null;
+    protected $state = null;
     /**
      * **Beta Feature**
      * The logging verbosity for device activity. If unspecified,
@@ -141,7 +141,7 @@ class Device extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.iot.v1.LogLevel log_level = 21;</code>
      */
-    private $log_level = 0;
+    protected $log_level = 0;
     /**
      * The metadata key-value pairs assigned to the device. This metadata is not
      * interpreted or indexed by Cloud IoT Core. It can be used to add contextual
@@ -161,7 +161,7 @@ class Device extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.iot.v1.GatewayConfig gateway_config = 24;</code>
      */
-    private $gateway_config = null;
+    protected $gateway_config = null;
 
     /**
      * Constructor.

@@ -22,7 +22,7 @@ class ListDeviceStatesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The number of states to list. States are listed in descending order of
      * update time. The maximum number of states retained is 10. If this
@@ -30,7 +30,7 @@ class ListDeviceStatesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 num_states = 2;</code>
      */
-    private $num_states = 0;
+    protected $num_states = 0;
 
     /**
      * Constructor.

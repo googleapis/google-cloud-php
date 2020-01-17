@@ -22,14 +22,14 @@ class GetDeviceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The fields of the `Device` resource to be returned in the response. If the
      * field mask is unset or empty, all fields are returned.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 2;</code>
      */
-    private $field_mask = null;
+    protected $field_mask = null;
 
     /**
      * Constructor.

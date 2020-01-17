@@ -22,7 +22,7 @@ class ListDeviceConfigVersionsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The number of versions to list. Versions are listed in decreasing order of
      * the version number. The maximum number of versions retained is 10. If this
@@ -30,7 +30,7 @@ class ListDeviceConfigVersionsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 num_versions = 2;</code>
      */
-    private $num_versions = 0;
+    protected $num_versions = 0;
 
     /**
      * Constructor.

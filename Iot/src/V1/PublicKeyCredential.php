@@ -20,13 +20,13 @@ class PublicKeyCredential extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.iot.v1.PublicKeyFormat format = 1;</code>
      */
-    private $format = 0;
+    protected $format = 0;
     /**
      * The key data.
      *
      * Generated from protobuf field <code>string key = 2;</code>
      */
-    private $key = '';
+    protected $key = '';
 
     /**
      * Constructor.

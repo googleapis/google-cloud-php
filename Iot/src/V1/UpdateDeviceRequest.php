@@ -23,7 +23,7 @@ class UpdateDeviceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.iot.v1.Device device = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $device = null;
+    protected $device = null;
     /**
      * Required. Only updates the `device` fields indicated by this mask.
      * The field mask must not be empty, and it must not contain fields that
@@ -32,7 +32,7 @@ class UpdateDeviceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * Constructor.

@@ -21,7 +21,7 @@ class MqttConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.iot.v1.MqttState mqtt_enabled_state = 1;</code>
      */
-    private $mqtt_enabled_state = 0;
+    protected $mqtt_enabled_state = 0;
 
     /**
      * Constructor.

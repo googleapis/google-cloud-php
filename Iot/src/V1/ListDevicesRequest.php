@@ -21,7 +21,7 @@ class ListDevicesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * A list of device numeric IDs. If empty, this field is ignored. Maximum
      * IDs: 10,000.
@@ -43,13 +43,13 @@ class ListDevicesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 4;</code>
      */
-    private $field_mask = null;
+    protected $field_mask = null;
     /**
      * Options related to gateways.
      *
      * Generated from protobuf field <code>.google.cloud.iot.v1.GatewayListOptions gateway_list_options = 6;</code>
      */
-    private $gateway_list_options = null;
+    protected $gateway_list_options = null;
     /**
      * The maximum number of devices to return in the response. If this value
      * is zero, the service will select a default size. A call may return fewer
@@ -58,7 +58,7 @@ class ListDevicesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 100;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * The value returned by the last `ListDevicesResponse`; indicates
      * that this is a continuation of a prior `ListDevices` call and
@@ -66,7 +66,7 @@ class ListDevicesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 101;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * Constructor.
