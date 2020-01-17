@@ -24,7 +24,7 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. A copy of the "primary" [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] that will be used
      * by [Encrypt][google.cloud.kms.v1.KeyManagementService.Encrypt] when this [CryptoKey][google.cloud.kms.v1.CryptoKey] is given
@@ -37,19 +37,19 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion primary = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $primary = null;
+    protected $primary = null;
     /**
      * Immutable. The immutable purpose of this [CryptoKey][google.cloud.kms.v1.CryptoKey].
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose purpose = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $purpose = 0;
+    protected $purpose = 0;
     /**
      * Output only. The time at which this [CryptoKey][google.cloud.kms.v1.CryptoKey] was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * At [next_rotation_time][google.cloud.kms.v1.CryptoKey.next_rotation_time], the Key Management Service will automatically:
      * 1. Create a new version of this [CryptoKey][google.cloud.kms.v1.CryptoKey].
@@ -64,7 +64,7 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp next_rotation_time = 7;</code>
      */
-    private $next_rotation_time = null;
+    protected $next_rotation_time = null;
     /**
      * A template describing settings for new [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] instances.
      * The properties of new [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] instances created by either
@@ -73,7 +73,7 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersionTemplate version_template = 11;</code>
      */
-    private $version_template = null;
+    protected $version_template = null;
     /**
      * Labels with user-defined metadata. For more information, see
      * [Labeling Keys](/kms/docs/labeling-keys).

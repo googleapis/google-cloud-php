@@ -21,7 +21,7 @@ class ImportCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The [algorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm] of
      * the key being imported. This does not need to match the
@@ -30,14 +30,14 @@ class ImportCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm algorithm = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $algorithm = 0;
+    protected $algorithm = 0;
     /**
      * Required. The [name][google.cloud.kms.v1.ImportJob.name] of the [ImportJob][google.cloud.kms.v1.ImportJob] that was used to
      * wrap this key material.
      *
      * Generated from protobuf field <code>string import_job = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $import_job = '';
+    protected $import_job = '';
     protected $wrapped_key_material;
 
     /**

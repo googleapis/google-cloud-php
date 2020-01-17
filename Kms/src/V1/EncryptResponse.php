@@ -21,13 +21,13 @@ class EncryptResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The encrypted data.
      *
      * Generated from protobuf field <code>bytes ciphertext = 2;</code>
      */
-    private $ciphertext = '';
+    protected $ciphertext = '';
 
     /**
      * Constructor.

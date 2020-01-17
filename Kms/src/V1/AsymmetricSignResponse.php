@@ -20,7 +20,7 @@ class AsymmetricSignResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes signature = 1;</code>
      */
-    private $signature = '';
+    protected $signature = '';
 
     /**
      * Constructor.

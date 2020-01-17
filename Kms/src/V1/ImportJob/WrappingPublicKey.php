@@ -25,7 +25,7 @@ class WrappingPublicKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string pem = 1;</code>
      */
-    private $pem = '';
+    protected $pem = '';
 
     /**
      * Constructor.

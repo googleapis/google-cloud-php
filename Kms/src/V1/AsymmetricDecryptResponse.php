@@ -20,7 +20,7 @@ class AsymmetricDecryptResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes plaintext = 1;</code>
      */
-    private $plaintext = '';
+    protected $plaintext = '';
 
     /**
      * Constructor.

@@ -25,14 +25,14 @@ class PublicKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string pem = 1;</code>
      */
-    private $pem = '';
+    protected $pem = '';
     /**
      * The [Algorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm] associated
      * with this key.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm algorithm = 2;</code>
      */
-    private $algorithm = 0;
+    protected $algorithm = 0;
 
     /**
      * Constructor.

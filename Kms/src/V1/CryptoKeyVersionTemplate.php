@@ -24,7 +24,7 @@ class CryptoKeyVersionTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 1;</code>
      */
-    private $protection_level = 0;
+    protected $protection_level = 0;
     /**
      * Required. [Algorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm] to use
      * when creating a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] based on this template.
@@ -34,7 +34,7 @@ class CryptoKeyVersionTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm algorithm = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $algorithm = 0;
+    protected $algorithm = 0;
 
     /**
      * Constructor.

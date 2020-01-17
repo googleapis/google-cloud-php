@@ -20,7 +20,7 @@ class AsymmetricSignRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The digest of the data to sign. The digest must be produced with
      * the same digest algorithm as specified by the key version's
@@ -28,7 +28,7 @@ class AsymmetricSignRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.Digest digest = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $digest = null;
+    protected $digest = null;
 
     /**
      * Constructor.

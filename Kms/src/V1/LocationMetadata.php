@@ -22,7 +22,7 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool hsm_available = 1;</code>
      */
-    private $hsm_available = false;
+    protected $hsm_available = false;
 
     /**
      * Constructor.

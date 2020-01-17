@@ -21,21 +21,21 @@ class DecryptRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The encrypted data originally returned in
      * [EncryptResponse.ciphertext][google.cloud.kms.v1.EncryptResponse.ciphertext].
      *
      * Generated from protobuf field <code>bytes ciphertext = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $ciphertext = '';
+    protected $ciphertext = '';
     /**
      * Optional. Optional data that must match the data originally supplied in
      * [EncryptRequest.additional_authenticated_data][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data].
      *
      * Generated from protobuf field <code>bytes additional_authenticated_data = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $additional_authenticated_data = '';
+    protected $additional_authenticated_data = '';
 
     /**
      * Constructor.

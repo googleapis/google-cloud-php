@@ -22,14 +22,14 @@ class KeyOperationAttestation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.KeyOperationAttestation.AttestationFormat format = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $format = 0;
+    protected $format = 0;
     /**
      * Output only. The attestation data provided by the HSM when the key
      * operation was performed.
      *
      * Generated from protobuf field <code>bytes content = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $content = '';
+    protected $content = '';
 
     /**
      * Constructor.
