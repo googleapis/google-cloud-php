@@ -1,19 +1,19 @@
 {
-  "updateTime": "2020-01-15T18:01:21.887560Z",
+  "updateTime": "2020-01-17T11:03:59.448843Z",
   "sources": [
     {
       "generator": {
         "name": "artman",
-        "version": "0.44.0",
-        "dockerImage": "googleapis/artman@sha256:10a6d0342b8d62544810ac5ad86c3b21049ec0696608ac60175da8e513234344"
+        "version": "0.44.1",
+        "dockerImage": "googleapis/artman@sha256:5599b61e56a372d21b671969ee915fbca0f6c3a0daaeb898d01f8f685f1bbc8b"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "50b0e8286ac988b0593bd890eb31fef6ea2f5767",
-        "internalRef": "289876944"
+        "sha": "58e770d568a2b78168ddc19a874178fee8265a9d",
+        "internalRef": "290146169"
       }
     }
   ],
@@ -27,6 +27,230 @@
         "generator": "gapic",
         "config": "google/cloud/securitycenter/artman_securitycenter_v1.yaml"
       }
+    }
+  ],
+  "newFiles": [
+    {
+      "path": ".gitattributes"
+    },
+    {
+      "path": ".github/pull_request_template.md"
+    },
+    {
+      "path": "CONTRIBUTING.md"
+    },
+    {
+      "path": "LICENSE"
+    },
+    {
+      "path": "README.md"
+    },
+    {
+      "path": "VERSION"
+    },
+    {
+      "path": "composer.json"
+    },
+    {
+      "path": "metadata/V1/Asset.php"
+    },
+    {
+      "path": "metadata/V1/Finding.php"
+    },
+    {
+      "path": "metadata/V1/OrganizationSettings.php"
+    },
+    {
+      "path": "metadata/V1/RunAssetDiscoveryResponse.php"
+    },
+    {
+      "path": "metadata/V1/SecurityMarks.php"
+    },
+    {
+      "path": "metadata/V1/SecuritycenterService.php"
+    },
+    {
+      "path": "metadata/V1/Source.php"
+    },
+    {
+      "path": "phpunit.xml.dist"
+    },
+    {
+      "path": "src/V1/Asset.php"
+    },
+    {
+      "path": "src/V1/Asset/IamPolicy.php"
+    },
+    {
+      "path": "src/V1/Asset/SecurityCenterProperties.php"
+    },
+    {
+      "path": "src/V1/Asset_IamPolicy.php"
+    },
+    {
+      "path": "src/V1/Asset_SecurityCenterProperties.php"
+    },
+    {
+      "path": "src/V1/CreateFindingRequest.php"
+    },
+    {
+      "path": "src/V1/CreateSourceRequest.php"
+    },
+    {
+      "path": "src/V1/Finding.php"
+    },
+    {
+      "path": "src/V1/Finding/State.php"
+    },
+    {
+      "path": "src/V1/Finding_State.php"
+    },
+    {
+      "path": "src/V1/Gapic/SecurityCenterGapicClient.php"
+    },
+    {
+      "path": "src/V1/GetOrganizationSettingsRequest.php"
+    },
+    {
+      "path": "src/V1/GetSourceRequest.php"
+    },
+    {
+      "path": "src/V1/GroupAssetsRequest.php"
+    },
+    {
+      "path": "src/V1/GroupAssetsResponse.php"
+    },
+    {
+      "path": "src/V1/GroupFindingsRequest.php"
+    },
+    {
+      "path": "src/V1/GroupFindingsResponse.php"
+    },
+    {
+      "path": "src/V1/GroupResult.php"
+    },
+    {
+      "path": "src/V1/ListAssetsRequest.php"
+    },
+    {
+      "path": "src/V1/ListAssetsResponse.php"
+    },
+    {
+      "path": "src/V1/ListAssetsResponse/ListAssetsResult.php"
+    },
+    {
+      "path": "src/V1/ListAssetsResponse/ListAssetsResult/StateChange.php"
+    },
+    {
+      "path": "src/V1/ListAssetsResponse_ListAssetsResult.php"
+    },
+    {
+      "path": "src/V1/ListAssetsResponse_ListAssetsResult_StateChange.php"
+    },
+    {
+      "path": "src/V1/ListFindingsRequest.php"
+    },
+    {
+      "path": "src/V1/ListFindingsResponse.php"
+    },
+    {
+      "path": "src/V1/ListFindingsResponse/ListFindingsResult.php"
+    },
+    {
+      "path": "src/V1/ListFindingsResponse/ListFindingsResult/Resource.php"
+    },
+    {
+      "path": "src/V1/ListFindingsResponse/ListFindingsResult/StateChange.php"
+    },
+    {
+      "path": "src/V1/ListFindingsResponse_ListFindingsResult.php"
+    },
+    {
+      "path": "src/V1/ListFindingsResponse_ListFindingsResult_Resource.php"
+    },
+    {
+      "path": "src/V1/ListFindingsResponse_ListFindingsResult_StateChange.php"
+    },
+    {
+      "path": "src/V1/ListSourcesRequest.php"
+    },
+    {
+      "path": "src/V1/ListSourcesResponse.php"
+    },
+    {
+      "path": "src/V1/OrganizationSettings.php"
+    },
+    {
+      "path": "src/V1/OrganizationSettings/AssetDiscoveryConfig.php"
+    },
+    {
+      "path": "src/V1/OrganizationSettings/AssetDiscoveryConfig/InclusionMode.php"
+    },
+    {
+      "path": "src/V1/OrganizationSettings_AssetDiscoveryConfig.php"
+    },
+    {
+      "path": "src/V1/OrganizationSettings_AssetDiscoveryConfig_InclusionMode.php"
+    },
+    {
+      "path": "src/V1/README.md"
+    },
+    {
+      "path": "src/V1/RunAssetDiscoveryRequest.php"
+    },
+    {
+      "path": "src/V1/RunAssetDiscoveryResponse.php"
+    },
+    {
+      "path": "src/V1/RunAssetDiscoveryResponse/State.php"
+    },
+    {
+      "path": "src/V1/RunAssetDiscoveryResponse_State.php"
+    },
+    {
+      "path": "src/V1/SecurityCenterClient.php"
+    },
+    {
+      "path": "src/V1/SecurityCenterGrpcClient.php"
+    },
+    {
+      "path": "src/V1/SecurityMarks.php"
+    },
+    {
+      "path": "src/V1/SetFindingStateRequest.php"
+    },
+    {
+      "path": "src/V1/Source.php"
+    },
+    {
+      "path": "src/V1/UpdateFindingRequest.php"
+    },
+    {
+      "path": "src/V1/UpdateOrganizationSettingsRequest.php"
+    },
+    {
+      "path": "src/V1/UpdateSecurityMarksRequest.php"
+    },
+    {
+      "path": "src/V1/UpdateSourceRequest.php"
+    },
+    {
+      "path": "src/V1/resources/security_center_client_config.json"
+    },
+    {
+      "path": "src/V1/resources/security_center_descriptor_config.php"
+    },
+    {
+      "path": "src/V1/resources/security_center_rest_client_config.php"
+    },
+    {
+      "path": "synth.metadata"
+    },
+    {
+      "path": "synth.py"
+    },
+    {
+      "path": "tests/Unit/V1/SecurityCenterClientTest.php"
     }
   ]
 }

@@ -26,7 +26,7 @@ class GroupResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 count = 2;</code>
      */
-    private $count = 0;
+    protected $count = 0;
 
     /**
      * Constructor.

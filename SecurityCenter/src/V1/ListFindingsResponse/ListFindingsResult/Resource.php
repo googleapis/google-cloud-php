@@ -22,31 +22,31 @@ class Resource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The full resource name of project that the resource belongs to.
      *
      * Generated from protobuf field <code>string project_name = 2;</code>
      */
-    private $project_name = '';
+    protected $project_name = '';
     /**
      * The human readable name of project that the resource belongs to.
      *
      * Generated from protobuf field <code>string project_display_name = 3;</code>
      */
-    private $project_display_name = '';
+    protected $project_display_name = '';
     /**
      * The full resource name of resource's parent.
      *
      * Generated from protobuf field <code>string parent_name = 4;</code>
      */
-    private $parent_name = '';
+    protected $parent_name = '';
     /**
      * The human readable name of resource's parent.
      *
      * Generated from protobuf field <code>string parent_display_name = 5;</code>
      */
-    private $parent_display_name = '';
+    protected $parent_display_name = '';
 
     /**
      * Constructor.

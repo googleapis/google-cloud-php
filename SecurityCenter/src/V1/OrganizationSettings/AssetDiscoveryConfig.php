@@ -26,7 +26,7 @@ class AssetDiscoveryConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.OrganizationSettings.AssetDiscoveryConfig.InclusionMode inclusion_mode = 2;</code>
      */
-    private $inclusion_mode = 0;
+    protected $inclusion_mode = 0;
 
     /**
      * Constructor.

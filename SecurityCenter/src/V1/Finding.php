@@ -28,7 +28,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The relative resource name of the source the finding belongs to. See:
      * https://cloud.google.com/apis/design/resource_names#relative_resource_name
@@ -38,7 +38,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 2;</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * For findings on Google Cloud Platform (GCP) resources, the full resource
      * name of the GCP resource this finding is for. See:
@@ -49,13 +49,13 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string resource_name = 3;</code>
      */
-    private $resource_name = '';
+    protected $resource_name = '';
     /**
      * The state of the finding.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Finding.State state = 4;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * The additional taxonomy group within findings from a given source.
      * This field is immutable after creation time.
@@ -63,7 +63,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string category = 5;</code>
      */
-    private $category = '';
+    protected $category = '';
     /**
      * The URI that, if available, points to a web page outside of Cloud SCC
      * where additional information about the finding can be found. This field is
@@ -71,7 +71,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string external_uri = 6;</code>
      */
-    private $external_uri = '';
+    protected $external_uri = '';
     /**
      * Source specific properties. These properties are managed by the source
      * that writes the finding. The key names in the source_properties map must be
@@ -88,7 +88,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.SecurityMarks security_marks = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $security_marks = null;
+    protected $security_marks = null;
     /**
      * The time at which the event took place. For example, if the finding
      * represents an open firewall it would capture the time the detector believes
@@ -96,13 +96,13 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp event_time = 9;</code>
      */
-    private $event_time = null;
+    protected $event_time = null;
     /**
      * The time at which the finding was created in Cloud SCC.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 10;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
 
     /**
      * Constructor.

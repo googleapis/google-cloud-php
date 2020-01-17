@@ -27,14 +27,14 @@ class Asset extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Cloud SCC managed properties. These properties are managed by
      * Cloud SCC and cannot be modified by the user.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Asset.SecurityCenterProperties security_center_properties = 2;</code>
      */
-    private $security_center_properties = null;
+    protected $security_center_properties = null;
     /**
      * Resource managed properties. These properties are managed and defined by
      * the GCP resource and cannot be modified by the user.
@@ -48,20 +48,20 @@ class Asset extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.SecurityMarks security_marks = 8;</code>
      */
-    private $security_marks = null;
+    protected $security_marks = null;
     /**
      * The time at which the asset was created in Cloud SCC.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 9;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * The time at which the asset was last updated, added, or deleted in Cloud
      * SCC.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 10;</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * IAM Policy information associated with the GCP resource described by the
      * Cloud SCC asset. This information is managed and defined by the GCP
@@ -69,7 +69,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Asset.IamPolicy iam_policy = 11;</code>
      */
-    private $iam_policy = null;
+    protected $iam_policy = null;
 
     /**
      * Constructor.

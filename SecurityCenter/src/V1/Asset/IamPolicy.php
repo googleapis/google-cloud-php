@@ -24,7 +24,7 @@ class IamPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string policy_blob = 1;</code>
      */
-    private $policy_blob = '';
+    protected $policy_blob = '';
 
     /**
      * Constructor.

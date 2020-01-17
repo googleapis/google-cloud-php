@@ -20,19 +20,19 @@ class ListFindingsResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Finding finding = 1;</code>
      */
-    private $finding = null;
+    protected $finding = null;
     /**
      * State change of the finding between the points in time.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.ListFindingsResponse.ListFindingsResult.StateChange state_change = 2;</code>
      */
-    private $state_change = 0;
+    protected $state_change = 0;
     /**
      * Output only. Resource that is associated with this finding.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.ListFindingsResponse.ListFindingsResult.Resource resource = 3;</code>
      */
-    private $resource = null;
+    protected $resource = null;
 
     /**
      * Constructor.
