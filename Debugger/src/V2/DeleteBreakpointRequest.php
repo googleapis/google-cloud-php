@@ -20,20 +20,20 @@ class DeleteBreakpointRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string debuggee_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $debuggee_id = '';
+    protected $debuggee_id = '';
     /**
      * Required. ID of the breakpoint to delete.
      *
      * Generated from protobuf field <code>string breakpoint_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $breakpoint_id = '';
+    protected $breakpoint_id = '';
     /**
      * Required. The client version making the call.
      * Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      *
      * Generated from protobuf field <code>string client_version = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $client_version = '';
+    protected $client_version = '';
 
     /**
      * Constructor.

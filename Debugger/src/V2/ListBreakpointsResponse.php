@@ -30,7 +30,7 @@ class ListBreakpointsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string next_wait_token = 2;</code>
      */
-    private $next_wait_token = '';
+    protected $next_wait_token = '';
 
     /**
      * Constructor.

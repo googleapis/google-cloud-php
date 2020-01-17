@@ -24,19 +24,19 @@ class StatusMessage extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool is_error = 1;</code>
      */
-    private $is_error = false;
+    protected $is_error = false;
     /**
      * Reference to which the message applies.
      *
      * Generated from protobuf field <code>.google.devtools.clouddebugger.v2.StatusMessage.Reference refers_to = 2;</code>
      */
-    private $refers_to = 0;
+    protected $refers_to = 0;
     /**
      * Status message text.
      *
      * Generated from protobuf field <code>.google.devtools.clouddebugger.v2.FormatMessage description = 3;</code>
      */
-    private $description = null;
+    protected $description = null;
 
     /**
      * Constructor.

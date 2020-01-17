@@ -21,7 +21,7 @@ class BreakpointActionValue extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.devtools.clouddebugger.v2.Breakpoint.Action value = 1;</code>
      */
-    private $value = 0;
+    protected $value = 0;
 
     /**
      * Constructor.

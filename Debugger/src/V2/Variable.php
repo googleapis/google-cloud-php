@@ -101,13 +101,13 @@ class Variable extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Simple value of the variable.
      *
      * Generated from protobuf field <code>string value = 2;</code>
      */
-    private $value = '';
+    protected $value = '';
     /**
      * Variable type (e.g. `MyClass`). If the variable is split with
      * `var_table_index`, `type` goes next to `value`. The interpretation of
@@ -116,7 +116,7 @@ class Variable extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string type = 6;</code>
      */
-    private $type = '';
+    protected $type = '';
     /**
      * Members contained or pointed to by the variable.
      *
@@ -130,7 +130,7 @@ class Variable extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Int32Value var_table_index = 4;</code>
      */
-    private $var_table_index = null;
+    protected $var_table_index = null;
     /**
      * Status associated with the variable. This field will usually stay
      * unset. A status of a single variable only applies to that variable or
@@ -149,7 +149,7 @@ class Variable extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.devtools.clouddebugger.v2.StatusMessage status = 5;</code>
      */
-    private $status = null;
+    protected $status = null;
 
     /**
      * Constructor.
@@ -329,8 +329,7 @@ class Variable extends \Google\Protobuf\Internal\Message
      */
     public function getVarTableIndexValue()
     {
-        $wrapper = $this->getVarTableIndex();
-        return is_null($wrapper) ? null : $wrapper->getValue();
+        return $this->readWrapperValue("var_table_index");
     }
 
     /**
@@ -363,9 +362,8 @@ class Variable extends \Google\Protobuf\Internal\Message
      */
     public function setVarTableIndexValue($var)
     {
-        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\Int32Value(['value' => $var]);
-        return $this->setVarTableIndex($wrappedVar);
-    }
+        $this->writeWrapperValue("var_table_index", $var);
+        return $this;}
 
     /**
      * Status associated with the variable. This field will usually stay

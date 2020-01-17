@@ -20,21 +20,21 @@ class ListDebuggeesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * When set to `true`, the result includes all debuggees. Otherwise, the
      * result includes only debuggees that are active.
      *
      * Generated from protobuf field <code>bool include_inactive = 3;</code>
      */
-    private $include_inactive = false;
+    protected $include_inactive = false;
     /**
      * Required. The client version making the call.
      * Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      *
      * Generated from protobuf field <code>string client_version = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $client_version = '';
+    protected $client_version = '';
 
     /**
      * Constructor.

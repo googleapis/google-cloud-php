@@ -24,7 +24,7 @@ class RegisterDebuggeeResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.devtools.clouddebugger.v2.Debuggee debuggee = 1;</code>
      */
-    private $debuggee = null;
+    protected $debuggee = null;
 
     /**
      * Constructor.

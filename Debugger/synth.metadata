@@ -1,19 +1,19 @@
 {
-  "updateTime": "2019-11-14T11:00:37.299840Z",
+  "updateTime": "2020-01-17T11:00:46.611167Z",
   "sources": [
     {
       "generator": {
         "name": "artman",
-        "version": "0.41.1",
-        "dockerImage": "googleapis/artman@sha256:545c758c76c3f779037aa259023ec3d1ef2d57d2c8cd00a222cb187d63ceac5e"
+        "version": "0.44.1",
+        "dockerImage": "googleapis/artman@sha256:5599b61e56a372d21b671969ee915fbca0f6c3a0daaeb898d01f8f685f1bbc8b"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "bc76ffd87360ce1cd34e3a6eac28afd5e1efda76",
-        "internalRef": "280356106"
+        "sha": "58e770d568a2b78168ddc19a874178fee8265a9d",
+        "internalRef": "290146169"
       }
     }
   ],
@@ -27,6 +27,479 @@
         "generator": "gapic",
         "config": "google/devtools/artman_clouddebugger.yaml"
       }
+    }
+  ],
+  "newFiles": [
+    {
+      "path": ".gitattributes"
+    },
+    {
+      "path": ".github/pull_request_template.md"
+    },
+    {
+      "path": "CONTRIBUTING.md"
+    },
+    {
+      "path": "LICENSE"
+    },
+    {
+      "path": "README.md"
+    },
+    {
+      "path": "VERSION"
+    },
+    {
+      "path": "bin/google-cloud-debugger"
+    },
+    {
+      "path": "composer.json"
+    },
+    {
+      "path": "metadata/V2/Controller.php"
+    },
+    {
+      "path": "metadata/V2/Data.php"
+    },
+    {
+      "path": "metadata/V2/Debugger.php"
+    },
+    {
+      "path": "phpunit-snippets.xml.dist"
+    },
+    {
+      "path": "phpunit-system.xml.dist"
+    },
+    {
+      "path": "phpunit.xml.dist"
+    },
+    {
+      "path": "src/Agent.php"
+    },
+    {
+      "path": "src/AliasContext.php"
+    },
+    {
+      "path": "src/Breakpoint.php"
+    },
+    {
+      "path": "src/BreakpointStorage/BreakpointStorageInterface.php"
+    },
+    {
+      "path": "src/BreakpointStorage/FileBreakpointStorage.php"
+    },
+    {
+      "path": "src/BreakpointStorage/SysvBreakpointStorage.php"
+    },
+    {
+      "path": "src/BufferFullException.php"
+    },
+    {
+      "path": "src/CliDaemon.php"
+    },
+    {
+      "path": "src/CloudRepoSourceContext.php"
+    },
+    {
+      "path": "src/CloudWorkspaceId.php"
+    },
+    {
+      "path": "src/CloudWorkspaceSourceContext.php"
+    },
+    {
+      "path": "src/Connection/ConnectionInterface.php"
+    },
+    {
+      "path": "src/Connection/Grpc.php"
+    },
+    {
+      "path": "src/Connection/Rest.php"
+    },
+    {
+      "path": "src/Connection/ServiceDefinition/debugger-v2.json"
+    },
+    {
+      "path": "src/Daemon.php"
+    },
+    {
+      "path": "src/Debuggee.php"
+    },
+    {
+      "path": "src/DebuggerClient.php"
+    },
+    {
+      "path": "src/ExtendedSourceContext.php"
+    },
+    {
+      "path": "src/FormatMessage.php"
+    },
+    {
+      "path": "src/GerritSourceContext.php"
+    },
+    {
+      "path": "src/GitSourceContext.php"
+    },
+    {
+      "path": "src/MatchingFileIterator.php"
+    },
+    {
+      "path": "src/ProjectRepoId.php"
+    },
+    {
+      "path": "src/RepoId.php"
+    },
+    {
+      "path": "src/SourceContext.php"
+    },
+    {
+      "path": "src/SourceLocation.php"
+    },
+    {
+      "path": "src/SourceLocationResolver.php"
+    },
+    {
+      "path": "src/StackFrame.php"
+    },
+    {
+      "path": "src/StatusMessage.php"
+    },
+    {
+      "path": "src/V2/Breakpoint.php"
+    },
+    {
+      "path": "src/V2/Breakpoint/Action.php"
+    },
+    {
+      "path": "src/V2/Breakpoint/LogLevel.php"
+    },
+    {
+      "path": "src/V2/Breakpoint_Action.php"
+    },
+    {
+      "path": "src/V2/Breakpoint_LogLevel.php"
+    },
+    {
+      "path": "src/V2/Controller2Client.php"
+    },
+    {
+      "path": "src/V2/Controller2GrpcClient.php"
+    },
+    {
+      "path": "src/V2/Debuggee.php"
+    },
+    {
+      "path": "src/V2/Debugger2Client.php"
+    },
+    {
+      "path": "src/V2/Debugger2GrpcClient.php"
+    },
+    {
+      "path": "src/V2/DeleteBreakpointRequest.php"
+    },
+    {
+      "path": "src/V2/FormatMessage.php"
+    },
+    {
+      "path": "src/V2/Gapic/Controller2GapicClient.php"
+    },
+    {
+      "path": "src/V2/Gapic/Debugger2GapicClient.php"
+    },
+    {
+      "path": "src/V2/GetBreakpointRequest.php"
+    },
+    {
+      "path": "src/V2/GetBreakpointResponse.php"
+    },
+    {
+      "path": "src/V2/ListActiveBreakpointsRequest.php"
+    },
+    {
+      "path": "src/V2/ListActiveBreakpointsResponse.php"
+    },
+    {
+      "path": "src/V2/ListBreakpointsRequest.php"
+    },
+    {
+      "path": "src/V2/ListBreakpointsRequest/BreakpointActionValue.php"
+    },
+    {
+      "path": "src/V2/ListBreakpointsRequest_BreakpointActionValue.php"
+    },
+    {
+      "path": "src/V2/ListBreakpointsResponse.php"
+    },
+    {
+      "path": "src/V2/ListDebuggeesRequest.php"
+    },
+    {
+      "path": "src/V2/ListDebuggeesResponse.php"
+    },
+    {
+      "path": "src/V2/README.md"
+    },
+    {
+      "path": "src/V2/RegisterDebuggeeRequest.php"
+    },
+    {
+      "path": "src/V2/RegisterDebuggeeResponse.php"
+    },
+    {
+      "path": "src/V2/SetBreakpointRequest.php"
+    },
+    {
+      "path": "src/V2/SetBreakpointResponse.php"
+    },
+    {
+      "path": "src/V2/SourceLocation.php"
+    },
+    {
+      "path": "src/V2/StackFrame.php"
+    },
+    {
+      "path": "src/V2/StatusMessage.php"
+    },
+    {
+      "path": "src/V2/StatusMessage/Reference.php"
+    },
+    {
+      "path": "src/V2/StatusMessage_Reference.php"
+    },
+    {
+      "path": "src/V2/UpdateActiveBreakpointRequest.php"
+    },
+    {
+      "path": "src/V2/UpdateActiveBreakpointResponse.php"
+    },
+    {
+      "path": "src/V2/Variable.php"
+    },
+    {
+      "path": "src/V2/resources/controller2_client_config.json"
+    },
+    {
+      "path": "src/V2/resources/controller2_descriptor_config.php"
+    },
+    {
+      "path": "src/V2/resources/controller2_rest_client_config.php"
+    },
+    {
+      "path": "src/V2/resources/debugger2_client_config.json"
+    },
+    {
+      "path": "src/V2/resources/debugger2_descriptor_config.php"
+    },
+    {
+      "path": "src/V2/resources/debugger2_rest_client_config.php"
+    },
+    {
+      "path": "src/Variable.php"
+    },
+    {
+      "path": "src/VariableTable.php"
+    },
+    {
+      "path": "synth.metadata"
+    },
+    {
+      "path": "synth.py"
+    },
+    {
+      "path": "tests/Snippet/AgentTest.php"
+    },
+    {
+      "path": "tests/Snippet/AliasContextTest.php"
+    },
+    {
+      "path": "tests/Snippet/BreakpointTest.php"
+    },
+    {
+      "path": "tests/Snippet/CloudRepoSourceContextTest.php"
+    },
+    {
+      "path": "tests/Snippet/CloudWorkspaceIdTest.php"
+    },
+    {
+      "path": "tests/Snippet/CloudWorkspaceSourceContextTest.php"
+    },
+    {
+      "path": "tests/Snippet/DaemonTest.php"
+    },
+    {
+      "path": "tests/Snippet/DebuggeeTest.php"
+    },
+    {
+      "path": "tests/Snippet/DebuggerClientTest.php"
+    },
+    {
+      "path": "tests/Snippet/ExtendedSourceContextTest.php"
+    },
+    {
+      "path": "tests/Snippet/FormatMessageTest.php"
+    },
+    {
+      "path": "tests/Snippet/GerritSourceContextTest.php"
+    },
+    {
+      "path": "tests/Snippet/GitSourceContextTest.php"
+    },
+    {
+      "path": "tests/Snippet/MatchingFileIteratorTest.php"
+    },
+    {
+      "path": "tests/Snippet/ProjectRepoIdTest.php"
+    },
+    {
+      "path": "tests/Snippet/RepoIdTest.php"
+    },
+    {
+      "path": "tests/Snippet/SourceLocationResolverTest.php"
+    },
+    {
+      "path": "tests/Snippet/SourceLocationTest.php"
+    },
+    {
+      "path": "tests/Snippet/StackFrameTest.php"
+    },
+    {
+      "path": "tests/Snippet/StatusMessageTest.php"
+    },
+    {
+      "path": "tests/Snippet/VariableTableTest.php"
+    },
+    {
+      "path": "tests/Snippet/VariableTest.php"
+    },
+    {
+      "path": "tests/System/BasicTest.php"
+    },
+    {
+      "path": "tests/System/E2ETest.php"
+    },
+    {
+      "path": "tests/System/app/.gitignore"
+    },
+    {
+      "path": "tests/System/app/additional-supervisord.conf"
+    },
+    {
+      "path": "tests/System/app/app.yaml"
+    },
+    {
+      "path": "tests/System/app/web/app.php"
+    },
+    {
+      "path": "tests/System/app/web/index.php"
+    },
+    {
+      "path": "tests/System/bootstrap.php"
+    },
+    {
+      "path": "tests/Unit/AgentTest.php"
+    },
+    {
+      "path": "tests/Unit/AliasContextTest.php"
+    },
+    {
+      "path": "tests/Unit/BreakpointStorage/FileBreakpointStorageTest.php"
+    },
+    {
+      "path": "tests/Unit/BreakpointStorage/SysvBreakpointStorageTest.php"
+    },
+    {
+      "path": "tests/Unit/BreakpointTest.php"
+    },
+    {
+      "path": "tests/Unit/BreakpointValidationTest.php"
+    },
+    {
+      "path": "tests/Unit/CliDaemonTest.php"
+    },
+    {
+      "path": "tests/Unit/CloudRepoSourceContextTest.php"
+    },
+    {
+      "path": "tests/Unit/CloudWorkspaceIdTest.php"
+    },
+    {
+      "path": "tests/Unit/CloudWorkspaceSourceContextTest.php"
+    },
+    {
+      "path": "tests/Unit/Connection/GrpcTest.php"
+    },
+    {
+      "path": "tests/Unit/Connection/RestTest.php"
+    },
+    {
+      "path": "tests/Unit/DaemonTest.php"
+    },
+    {
+      "path": "tests/Unit/DebuggeeTest.php"
+    },
+    {
+      "path": "tests/Unit/DebuggerClientTest.php"
+    },
+    {
+      "path": "tests/Unit/ExtendedSourceContextTest.php"
+    },
+    {
+      "path": "tests/Unit/FormatMessageTest.php"
+    },
+    {
+      "path": "tests/Unit/GerritSourceContextTest.php"
+    },
+    {
+      "path": "tests/Unit/GitSourceContextTest.php"
+    },
+    {
+      "path": "tests/Unit/JsonTestTrait.php"
+    },
+    {
+      "path": "tests/Unit/MatchingFileIteratorTest.php"
+    },
+    {
+      "path": "tests/Unit/ProjectRepoIdTest.php"
+    },
+    {
+      "path": "tests/Unit/RepoIdTest.php"
+    },
+    {
+      "path": "tests/Unit/SourceLocationResolverTest.php"
+    },
+    {
+      "path": "tests/Unit/SourceLocationTest.php"
+    },
+    {
+      "path": "tests/Unit/StackFrameTest.php"
+    },
+    {
+      "path": "tests/Unit/StatusMessageTest.php"
+    },
+    {
+      "path": "tests/Unit/V2/Controller2ClientTest.php"
+    },
+    {
+      "path": "tests/Unit/V2/Debugger2ClientTest.php"
+    },
+    {
+      "path": "tests/Unit/VariableTableTest.php"
+    },
+    {
+      "path": "tests/Unit/VariableTest.php"
+    },
+    {
+      "path": "tests/Unit/data/daemon_config.php"
+    },
+    {
+      "path": "tests/Unit/data/daemon_config_wrong_return.php"
+    },
+    {
+      "path": "tests/Unit/data/file.php"
+    },
+    {
+      "path": "tests/Unit/data/nested/folder/file2.php"
+    },
+    {
+      "path": "tests/Unit/data/source-context.json"
     }
   ]
 }

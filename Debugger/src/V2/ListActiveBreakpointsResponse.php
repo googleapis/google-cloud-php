@@ -28,7 +28,7 @@ class ListActiveBreakpointsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string next_wait_token = 2;</code>
      */
-    private $next_wait_token = '';
+    protected $next_wait_token = '';
     /**
      * If set to `true`, indicates that there is no change to the
      * list of active breakpoints and the server-selected timeout has expired.
@@ -36,7 +36,7 @@ class ListActiveBreakpointsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool wait_expired = 3;</code>
      */
-    private $wait_expired = false;
+    protected $wait_expired = false;
 
     /**
      * Constructor.

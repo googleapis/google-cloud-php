@@ -22,7 +22,7 @@ class RegisterDebuggeeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.devtools.clouddebugger.v2.Debuggee debuggee = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $debuggee = null;
+    protected $debuggee = null;
 
     /**
      * Constructor.

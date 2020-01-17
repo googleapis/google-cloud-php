@@ -20,7 +20,7 @@ class ListActiveBreakpointsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string debuggee_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $debuggee_id = '';
+    protected $debuggee_id = '';
     /**
      * A token that, if specified, blocks the method call until the list
      * of active breakpoints has changed, or a server-selected timeout has
@@ -29,7 +29,7 @@ class ListActiveBreakpointsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string wait_token = 2;</code>
      */
-    private $wait_token = '';
+    protected $wait_token = '';
     /**
      * If set to `true` (recommended), returns `google.rpc.Code.OK` status and
      * sets the `wait_expired` response field to `true` when the server-selected
@@ -39,7 +39,7 @@ class ListActiveBreakpointsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool success_on_timeout = 3;</code>
      */
-    private $success_on_timeout = false;
+    protected $success_on_timeout = false;
 
     /**
      * Constructor.

@@ -21,7 +21,7 @@ class SetBreakpointResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.devtools.clouddebugger.v2.Breakpoint breakpoint = 1;</code>
      */
-    private $breakpoint = null;
+    protected $breakpoint = null;
 
     /**
      * Constructor.

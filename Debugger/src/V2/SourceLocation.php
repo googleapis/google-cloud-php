@@ -20,13 +20,13 @@ class SourceLocation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string path = 1;</code>
      */
-    private $path = '';
+    protected $path = '';
     /**
      * Line inside the file. The first line in the file has the value `1`.
      *
      * Generated from protobuf field <code>int32 line = 2;</code>
      */
-    private $line = 0;
+    protected $line = 0;
     /**
      * Column within a line. The first column in a line as the value `1`.
      * Agents that do not support setting breakpoints on specific columns ignore
@@ -34,7 +34,7 @@ class SourceLocation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 column = 3;</code>
      */
-    private $column = 0;
+    protected $column = 0;
 
     /**
      * Constructor.

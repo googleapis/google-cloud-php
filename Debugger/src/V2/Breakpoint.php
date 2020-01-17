@@ -20,20 +20,20 @@ class Breakpoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1;</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * Action that the agent should perform when the code at the
      * breakpoint location is hit.
      *
      * Generated from protobuf field <code>.google.devtools.clouddebugger.v2.Breakpoint.Action action = 13;</code>
      */
-    private $action = 0;
+    protected $action = 0;
     /**
      * Breakpoint source location.
      *
      * Generated from protobuf field <code>.google.devtools.clouddebugger.v2.SourceLocation location = 2;</code>
      */
-    private $location = null;
+    protected $location = null;
     /**
      * Condition that triggers the breakpoint.
      * The condition is a compound boolean expression composed using expressions
@@ -41,7 +41,7 @@ class Breakpoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string condition = 3;</code>
      */
-    private $condition = '';
+    protected $condition = '';
     /**
      * List of read-only expressions to evaluate at the breakpoint location.
      * The expressions are composed using expressions in the programming language
@@ -62,39 +62,39 @@ class Breakpoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string log_message_format = 14;</code>
      */
-    private $log_message_format = '';
+    protected $log_message_format = '';
     /**
      * Indicates the severity of the log. Only relevant when action is `LOG`.
      *
      * Generated from protobuf field <code>.google.devtools.clouddebugger.v2.Breakpoint.LogLevel log_level = 15;</code>
      */
-    private $log_level = 0;
+    protected $log_level = 0;
     /**
      * When true, indicates that this is a final result and the
      * breakpoint state will not change from here on.
      *
      * Generated from protobuf field <code>bool is_final_state = 5;</code>
      */
-    private $is_final_state = false;
+    protected $is_final_state = false;
     /**
      * Time this breakpoint was created by the server in seconds resolution.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 11;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Time this breakpoint was finalized as seen by the server in seconds
      * resolution.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp final_time = 12;</code>
      */
-    private $final_time = null;
+    protected $final_time = null;
     /**
      * E-mail address of the user that created this breakpoint
      *
      * Generated from protobuf field <code>string user_email = 16;</code>
      */
-    private $user_email = '';
+    protected $user_email = '';
     /**
      * Breakpoint status.
      * The status includes an error flag and a human readable message.
@@ -109,7 +109,7 @@ class Breakpoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.devtools.clouddebugger.v2.StatusMessage status = 10;</code>
      */
-    private $status = null;
+    protected $status = null;
     /**
      * The stack at breakpoint time, where stack_frames[0] represents the most
      * recently entered function.

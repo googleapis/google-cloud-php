@@ -20,34 +20,34 @@ class ListBreakpointsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string debuggee_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $debuggee_id = '';
+    protected $debuggee_id = '';
     /**
      * When set to `true`, the response includes the list of breakpoints set by
      * any user. Otherwise, it includes only breakpoints set by the caller.
      *
      * Generated from protobuf field <code>bool include_all_users = 2;</code>
      */
-    private $include_all_users = false;
+    protected $include_all_users = false;
     /**
      * When set to `true`, the response includes active and inactive
      * breakpoints. Otherwise, it includes only active breakpoints.
      *
      * Generated from protobuf field <code>bool include_inactive = 3;</code>
      */
-    private $include_inactive = false;
+    protected $include_inactive = false;
     /**
      * When set, the response includes only breakpoints with the specified action.
      *
      * Generated from protobuf field <code>.google.devtools.clouddebugger.v2.ListBreakpointsRequest.BreakpointActionValue action = 4;</code>
      */
-    private $action = null;
+    protected $action = null;
     /**
      * This field is deprecated. The following fields are always stripped out of
      * the result: `stack_frames`, `evaluated_expressions` and `variable_table`.
      *
      * Generated from protobuf field <code>bool strip_results = 5 [deprecated = true];</code>
      */
-    private $strip_results = false;
+    protected $strip_results = false;
     /**
      * A wait token that, if specified, blocks the call until the breakpoints
      * list has changed, or a server selected timeout has expired.  The value
@@ -57,14 +57,14 @@ class ListBreakpointsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string wait_token = 6;</code>
      */
-    private $wait_token = '';
+    protected $wait_token = '';
     /**
      * Required. The client version making the call.
      * Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      *
      * Generated from protobuf field <code>string client_version = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $client_version = '';
+    protected $client_version = '';
 
     /**
      * Constructor.

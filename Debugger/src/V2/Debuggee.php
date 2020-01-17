@@ -24,14 +24,14 @@ class Debuggee extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1;</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * Project the debuggee is associated with.
      * Use project number or id when registering a Google Cloud Platform project.
      *
      * Generated from protobuf field <code>string project = 2;</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Uniquifier to further distinguish the application.
      * It is possible that different applications might have identical values in
@@ -42,7 +42,7 @@ class Debuggee extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uniquifier = 3;</code>
      */
-    private $uniquifier = '';
+    protected $uniquifier = '';
     /**
      * Human readable description of the debuggee.
      * Including a human-readable project name, environment name and version
@@ -50,14 +50,14 @@ class Debuggee extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 4;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * If set to `true`, indicates that Controller service does not detect any
      * activity from the debuggee agents and the application is possibly stopped.
      *
      * Generated from protobuf field <code>bool is_inactive = 5;</code>
      */
-    private $is_inactive = false;
+    protected $is_inactive = false;
     /**
      * Version ID of the agent.
      * Schema: `domain/language-platform/vmajor.minor` (for example
@@ -65,14 +65,14 @@ class Debuggee extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string agent_version = 6;</code>
      */
-    private $agent_version = '';
+    protected $agent_version = '';
     /**
      * If set to `true`, indicates that the agent should disable itself and
      * detach from the debuggee.
      *
      * Generated from protobuf field <code>bool is_disabled = 7;</code>
      */
-    private $is_disabled = false;
+    protected $is_disabled = false;
     /**
      * Human readable message to be displayed to the user about this debuggee.
      * Absence of this field indicates no status. The message can be either
@@ -80,7 +80,7 @@ class Debuggee extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.devtools.clouddebugger.v2.StatusMessage status = 8;</code>
      */
-    private $status = null;
+    protected $status = null;
     /**
      * References to the locations and revisions of the source code used in the
      * deployed application.

@@ -26,7 +26,7 @@ class FormatMessage extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string format = 1;</code>
      */
-    private $format = '';
+    protected $format = '';
     /**
      * Optional parameters to be embedded into the message.
      *

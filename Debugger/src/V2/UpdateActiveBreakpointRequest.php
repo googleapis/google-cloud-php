@@ -20,7 +20,7 @@ class UpdateActiveBreakpointRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string debuggee_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $debuggee_id = '';
+    protected $debuggee_id = '';
     /**
      * Required. Updated breakpoint information.
      * The field `id` must be set.
@@ -28,7 +28,7 @@ class UpdateActiveBreakpointRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.devtools.clouddebugger.v2.Breakpoint breakpoint = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $breakpoint = null;
+    protected $breakpoint = null;
 
     /**
      * Constructor.

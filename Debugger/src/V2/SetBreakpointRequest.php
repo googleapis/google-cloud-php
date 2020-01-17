@@ -20,21 +20,21 @@ class SetBreakpointRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string debuggee_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $debuggee_id = '';
+    protected $debuggee_id = '';
     /**
      * Required. Breakpoint specification to set.
      * The field `location` of the breakpoint must be set.
      *
      * Generated from protobuf field <code>.google.devtools.clouddebugger.v2.Breakpoint breakpoint = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $breakpoint = null;
+    protected $breakpoint = null;
     /**
      * Required. The client version making the call.
      * Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      *
      * Generated from protobuf field <code>string client_version = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $client_version = '';
+    protected $client_version = '';
 
     /**
      * Constructor.

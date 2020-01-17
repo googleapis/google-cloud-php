@@ -20,13 +20,13 @@ class StackFrame extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string function = 1;</code>
      */
-    private $function = '';
+    protected $function = '';
     /**
      * Source location of the call site.
      *
      * Generated from protobuf field <code>.google.devtools.clouddebugger.v2.SourceLocation location = 2;</code>
      */
-    private $location = null;
+    protected $location = null;
     /**
      * Set of arguments passed to this function.
      * Note that this might not be populated for all stack frames.
