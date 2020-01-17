@@ -23,7 +23,7 @@ class SaveFindings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.OutputStorageConfig output_config = 1;</code>
      */
-    private $output_config = null;
+    protected $output_config = null;
 
     /**
      * Constructor.

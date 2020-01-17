@@ -21,13 +21,13 @@ class DatastoreOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.PartitionId partition_id = 1;</code>
      */
-    private $partition_id = null;
+    protected $partition_id = null;
     /**
      * The kind to process.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.KindExpression kind = 2;</code>
      */
-    private $kind = null;
+    protected $kind = null;
 
     /**
      * Constructor.

@@ -20,25 +20,25 @@ class BoundingBox extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 top = 1;</code>
      */
-    private $top = 0;
+    protected $top = 0;
     /**
      * Left coordinate of the bounding box. (0,0) is upper left.
      *
      * Generated from protobuf field <code>int32 left = 2;</code>
      */
-    private $left = 0;
+    protected $left = 0;
     /**
      * Width of the bounding box in pixels.
      *
      * Generated from protobuf field <code>int32 width = 3;</code>
      */
-    private $width = 0;
+    protected $width = 0;
     /**
      * Height of the bounding box in pixels.
      *
      * Generated from protobuf field <code>int32 height = 4;</code>
      */
-    private $height = 0;
+    protected $height = 0;
 
     /**
      * Constructor.

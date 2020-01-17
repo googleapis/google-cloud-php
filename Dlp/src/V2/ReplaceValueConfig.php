@@ -20,7 +20,7 @@ class ReplaceValueConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Value new_value = 1;</code>
      */
-    private $new_value = null;
+    protected $new_value = null;
 
     /**
      * Constructor.

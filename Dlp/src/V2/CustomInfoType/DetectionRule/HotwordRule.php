@@ -21,7 +21,7 @@ class HotwordRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.Regex hotword_regex = 1;</code>
      */
-    private $hotword_regex = null;
+    protected $hotword_regex = null;
     /**
      * Proximity of the finding within which the entire hotword must reside.
      * The total length of the window cannot exceed 1000 characters. Note that
@@ -34,13 +34,13 @@ class HotwordRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.DetectionRule.Proximity proximity = 2;</code>
      */
-    private $proximity = null;
+    protected $proximity = null;
     /**
      * Likelihood adjustment to apply to all matching findings.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.DetectionRule.LikelihoodAdjustment likelihood_adjustment = 3;</code>
      */
-    private $likelihood_adjustment = null;
+    protected $likelihood_adjustment = null;
 
     /**
      * Constructor.

@@ -38,26 +38,26 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Likelihood min_likelihood = 2;</code>
      */
-    private $min_likelihood = 0;
+    protected $min_likelihood = 0;
     /**
      * Configuration to control the number of findings returned.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectConfig.FindingLimits limits = 3;</code>
      */
-    private $limits = null;
+    protected $limits = null;
     /**
      * When true, a contextual quote from the data that triggered a finding is
      * included in the response; see Finding.quote.
      *
      * Generated from protobuf field <code>bool include_quote = 4;</code>
      */
-    private $include_quote = false;
+    protected $include_quote = false;
     /**
      * When true, excludes type information of the findings.
      *
      * Generated from protobuf field <code>bool exclude_info_types = 5;</code>
      */
-    private $exclude_info_types = false;
+    protected $exclude_info_types = false;
     /**
      * CustomInfoTypes provided by the user. See
      * https://cloud.google.com/dlp/docs/creating-custom-infotypes to learn more.

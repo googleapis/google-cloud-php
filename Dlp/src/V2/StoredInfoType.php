@@ -21,13 +21,13 @@ class StoredInfoType extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Current version of the stored info type.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.StoredInfoTypeVersion current_version = 2;</code>
      */
-    private $current_version = null;
+    protected $current_version = null;
     /**
      * Pending versions of the stored info type. Empty if no versions are
      * pending.

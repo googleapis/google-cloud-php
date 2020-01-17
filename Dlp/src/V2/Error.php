@@ -21,7 +21,7 @@ class Error extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.rpc.Status details = 1;</code>
      */
-    private $details = null;
+    protected $details = null;
     /**
      * The times the error occurred.
      *

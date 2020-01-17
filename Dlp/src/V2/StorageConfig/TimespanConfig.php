@@ -21,14 +21,14 @@ class TimespanConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * Exclude files or rows newer than this value.
      * If set to zero, no upper time limit is applied.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2;</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * Specification of the field containing the timestamp of scanned items.
      * Used for data sources like Datastore and BigQuery.
@@ -45,7 +45,7 @@ class TimespanConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId timestamp_field = 3;</code>
      */
-    private $timestamp_field = null;
+    protected $timestamp_field = null;
     /**
      * When the job is started by a JobTrigger we will automatically figure out
      * a valid start_time to avoid scanning files that have not been modified
@@ -54,7 +54,7 @@ class TimespanConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_auto_population_of_timespan_config = 4;</code>
      */
-    private $enable_auto_population_of_timespan_config = false;
+    protected $enable_auto_population_of_timespan_config = false;
 
     /**
      * Constructor.

@@ -21,7 +21,7 @@ class TimePartConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.TimePartConfig.TimePart part_to_extract = 1;</code>
      */
-    private $part_to_extract = 0;
+    protected $part_to_extract = 0;
 
     /**
      * Constructor.

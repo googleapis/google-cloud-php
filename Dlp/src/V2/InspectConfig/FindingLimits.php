@@ -23,7 +23,7 @@ class FindingLimits extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_findings_per_item = 1;</code>
      */
-    private $max_findings_per_item = 0;
+    protected $max_findings_per_item = 0;
     /**
      * Max number of findings that will be returned per request/job.
      * When set within `InspectContentRequest`, the maximum returned is 2000
@@ -31,7 +31,7 @@ class FindingLimits extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_findings_per_request = 2;</code>
      */
-    private $max_findings_per_request = 0;
+    protected $max_findings_per_request = 0;
     /**
      * Configuration of findings limit given for specified infoTypes.
      *

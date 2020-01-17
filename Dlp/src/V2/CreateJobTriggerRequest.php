@@ -20,13 +20,13 @@ class CreateJobTriggerRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The JobTrigger to create.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.JobTrigger job_trigger = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $job_trigger = null;
+    protected $job_trigger = null;
     /**
      * The trigger id can contain uppercase and lowercase letters,
      * numbers, and hyphens; that is, it must match the regular
@@ -35,14 +35,14 @@ class CreateJobTriggerRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string trigger_id = 3;</code>
      */
-    private $trigger_id = '';
+    protected $trigger_id = '';
     /**
      * The geographic location to store the job trigger. Reserved for
      * future extensions.
      *
      * Generated from protobuf field <code>string location_id = 4;</code>
      */
-    private $location_id = '';
+    protected $location_id = '';
 
     /**
      * Constructor.

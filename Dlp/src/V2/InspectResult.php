@@ -31,7 +31,7 @@ class InspectResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool findings_truncated = 2;</code>
      */
-    private $findings_truncated = false;
+    protected $findings_truncated = false;
 
     /**
      * Constructor.

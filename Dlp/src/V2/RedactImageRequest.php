@@ -21,20 +21,20 @@ class RedactImageRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The geographic location to process the request. Reserved for future
      * extensions.
      *
      * Generated from protobuf field <code>string location_id = 8;</code>
      */
-    private $location_id = '';
+    protected $location_id = '';
     /**
      * Configuration for the inspector.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectConfig inspect_config = 2;</code>
      */
-    private $inspect_config = null;
+    protected $inspect_config = null;
     /**
      * The configuration for specifying what content to redact from images.
      *
@@ -47,13 +47,13 @@ class RedactImageRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool include_findings = 6;</code>
      */
-    private $include_findings = false;
+    protected $include_findings = false;
     /**
      * The content must be PNG, JPEG, SVG or BMP.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.ByteContentItem byte_item = 7;</code>
      */
-    private $byte_item = null;
+    protected $byte_item = null;
 
     /**
      * Constructor.

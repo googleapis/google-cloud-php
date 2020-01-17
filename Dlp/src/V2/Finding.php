@@ -24,32 +24,32 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string quote = 1;</code>
      */
-    private $quote = '';
+    protected $quote = '';
     /**
      * The type of content that might have been found.
      * Provided if `excluded_types` is false.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InfoType info_type = 2;</code>
      */
-    private $info_type = null;
+    protected $info_type = null;
     /**
      * Confidence of how likely it is that the `info_type` is correct.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Likelihood likelihood = 3;</code>
      */
-    private $likelihood = 0;
+    protected $likelihood = 0;
     /**
      * Where the content was found.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Location location = 4;</code>
      */
-    private $location = null;
+    protected $location = null;
     /**
      * Timestamp when finding was detected.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Contains data parsed from quotes. Only populated if include_quote was set
      * to true and a supported infoType was requested. Currently supported
@@ -57,7 +57,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.QuoteInfo quote_info = 7;</code>
      */
-    private $quote_info = null;
+    protected $quote_info = null;
 
     /**
      * Constructor.

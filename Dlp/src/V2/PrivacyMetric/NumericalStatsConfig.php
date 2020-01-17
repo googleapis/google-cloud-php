@@ -22,7 +22,7 @@ class NumericalStatsConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId field = 1;</code>
      */
-    private $field = null;
+    protected $field = null;
 
     /**
      * Constructor.

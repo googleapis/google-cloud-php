@@ -27,7 +27,7 @@ class ContentLocation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string container_name = 1;</code>
      */
-    private $container_name = '';
+    protected $container_name = '';
     /**
      * Findings container modification timestamp, if applicable.
      * For Google Cloud Storage contains last file modification timestamp.
@@ -36,14 +36,14 @@ class ContentLocation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp container_timestamp = 6;</code>
      */
-    private $container_timestamp = null;
+    protected $container_timestamp = null;
     /**
      * Findings container version, if available
      * ("generation" for Google Cloud Storage).
      *
      * Generated from protobuf field <code>string container_version = 7;</code>
      */
-    private $container_version = '';
+    protected $container_version = '';
     protected $location;
 
     /**

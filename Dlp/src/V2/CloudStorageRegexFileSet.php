@@ -45,7 +45,7 @@ class CloudStorageRegexFileSet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string bucket_name = 1;</code>
      */
-    private $bucket_name = '';
+    protected $bucket_name = '';
     /**
      * A list of regular expressions matching file paths to include. All files in
      * the bucket that match at least one of these regular expressions will be

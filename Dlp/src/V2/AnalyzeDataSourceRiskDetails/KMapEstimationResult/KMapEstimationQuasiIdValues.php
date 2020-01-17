@@ -26,7 +26,7 @@ class KMapEstimationQuasiIdValues extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 estimated_anonymity = 2;</code>
      */
-    private $estimated_anonymity = 0;
+    protected $estimated_anonymity = 0;
 
     /**
      * Constructor.

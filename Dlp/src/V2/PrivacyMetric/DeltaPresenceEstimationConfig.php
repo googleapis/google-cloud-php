@@ -32,7 +32,7 @@ class DeltaPresenceEstimationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string region_code = 2;</code>
      */
-    private $region_code = '';
+    protected $region_code = '';
     /**
      * Several auxiliary tables can be used in the analysis. Each custom_tag
      * used to tag a quasi-identifiers field must appear in exactly one

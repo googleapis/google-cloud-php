@@ -21,13 +21,13 @@ class RequestedOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectTemplate snapshot_inspect_template = 1;</code>
      */
-    private $snapshot_inspect_template = null;
+    protected $snapshot_inspect_template = null;
     /**
      * Inspect config.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectJobConfig job_config = 3;</code>
      */
-    private $job_config = null;
+    protected $job_config = null;
 
     /**
      * Constructor.

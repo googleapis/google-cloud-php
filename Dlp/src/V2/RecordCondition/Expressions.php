@@ -21,7 +21,7 @@ class Expressions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.RecordCondition.Expressions.LogicalOperator logical_operator = 1;</code>
      */
-    private $logical_operator = 0;
+    protected $logical_operator = 0;
     protected $type;
 
     /**

@@ -33,7 +33,7 @@ class DeltaPresenceEstimationQuasiIdValues extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>double estimated_probability = 2;</code>
      */
-    private $estimated_probability = 0.0;
+    protected $estimated_probability = 0.0;
 
     /**
      * Constructor.

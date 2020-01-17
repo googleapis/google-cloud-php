@@ -20,7 +20,7 @@ class LargeCustomDictionaryStats extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 approx_num_phrases = 1;</code>
      */
-    private $approx_num_phrases = 0;
+    protected $approx_num_phrases = 0;
 
     /**
      * Constructor.

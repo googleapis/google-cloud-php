@@ -1,19 +1,19 @@
 {
-  "updateTime": "2020-01-11T10:59:45.469177Z",
+  "updateTime": "2020-01-17T11:01:12.607890Z",
   "sources": [
     {
       "generator": {
         "name": "artman",
-        "version": "0.43.0",
-        "dockerImage": "googleapis/artman@sha256:264654a37596a44b0668b8ce6ac41082d713f6ee150b3fc6425fa78cc64e4f20"
+        "version": "0.44.1",
+        "dockerImage": "googleapis/artman@sha256:5599b61e56a372d21b671969ee915fbca0f6c3a0daaeb898d01f8f685f1bbc8b"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "b08714b378e8e5b0c4ecdde73f92c36d6303b4b6",
-        "internalRef": "289189004"
+        "sha": "58e770d568a2b78168ddc19a874178fee8265a9d",
+        "internalRef": "290146169"
       }
     }
   ],
@@ -27,6 +27,902 @@
         "generator": "gapic",
         "config": "google/privacy/dlp/artman_dlp_v2.yaml"
       }
+    }
+  ],
+  "newFiles": [
+    {
+      "path": ".github/pull_request_template.md"
+    },
+    {
+      "path": "CONTRIBUTING.md"
+    },
+    {
+      "path": "LICENSE"
+    },
+    {
+      "path": "README.md"
+    },
+    {
+      "path": "VERSION"
+    },
+    {
+      "path": "composer.json"
+    },
+    {
+      "path": "metadata/V2/Dlp.php"
+    },
+    {
+      "path": "metadata/V2/Storage.php"
+    },
+    {
+      "path": "phpunit-snippets.xml.dist"
+    },
+    {
+      "path": "phpunit-system.xml.dist"
+    },
+    {
+      "path": "phpunit.xml.dist"
+    },
+    {
+      "path": "src/V2/Action.php"
+    },
+    {
+      "path": "src/V2/Action/JobNotificationEmails.php"
+    },
+    {
+      "path": "src/V2/Action/PublishFindingsToCloudDataCatalog.php"
+    },
+    {
+      "path": "src/V2/Action/PublishSummaryToCscc.php"
+    },
+    {
+      "path": "src/V2/Action/PublishToPubSub.php"
+    },
+    {
+      "path": "src/V2/Action/PublishToStackdriver.php"
+    },
+    {
+      "path": "src/V2/Action/SaveFindings.php"
+    },
+    {
+      "path": "src/V2/Action_JobNotificationEmails.php"
+    },
+    {
+      "path": "src/V2/Action_PublishFindingsToCloudDataCatalog.php"
+    },
+    {
+      "path": "src/V2/Action_PublishSummaryToCscc.php"
+    },
+    {
+      "path": "src/V2/Action_PublishToPubSub.php"
+    },
+    {
+      "path": "src/V2/Action_PublishToStackdriver.php"
+    },
+    {
+      "path": "src/V2/Action_SaveFindings.php"
+    },
+    {
+      "path": "src/V2/ActivateJobTriggerRequest.php"
+    },
+    {
+      "path": "src/V2/AnalyzeDataSourceRiskDetails.php"
+    },
+    {
+      "path": "src/V2/AnalyzeDataSourceRiskDetails/CategoricalStatsResult.php"
+    },
+    {
+      "path": "src/V2/AnalyzeDataSourceRiskDetails/CategoricalStatsResult/CategoricalStatsHistogramBucket.php"
+    },
+    {
+      "path": "src/V2/AnalyzeDataSourceRiskDetails/DeltaPresenceEstimationResult.php"
+    },
+    {
+      "path": "src/V2/AnalyzeDataSourceRiskDetails/DeltaPresenceEstimationResult/DeltaPresenceEstimationHistogramBucket.php"
+    },
+    {
+      "path": "src/V2/AnalyzeDataSourceRiskDetails/DeltaPresenceEstimationResult/DeltaPresenceEstimationQuasiIdValues.php"
+    },
+    {
+      "path": "src/V2/AnalyzeDataSourceRiskDetails/KAnonymityResult.php"
+    },
+    {
+      "path": "src/V2/AnalyzeDataSourceRiskDetails/KAnonymityResult/KAnonymityEquivalenceClass.php"
+    },
+    {
+      "path": "src/V2/AnalyzeDataSourceRiskDetails/KAnonymityResult/KAnonymityHistogramBucket.php"
+    },
+    {
+      "path": "src/V2/AnalyzeDataSourceRiskDetails/KMapEstimationResult.php"
+    },
+    {
+      "path": "src/V2/AnalyzeDataSourceRiskDetails/KMapEstimationResult/KMapEstimationHistogramBucket.php"
+    },
+    {
+      "path": "src/V2/AnalyzeDataSourceRiskDetails/KMapEstimationResult/KMapEstimationQuasiIdValues.php"
+    },
+    {
+      "path": "src/V2/AnalyzeDataSourceRiskDetails/LDiversityResult.php"
+    },
+    {
+      "path": "src/V2/AnalyzeDataSourceRiskDetails/LDiversityResult/LDiversityEquivalenceClass.php"
+    },
+    {
+      "path": "src/V2/AnalyzeDataSourceRiskDetails/LDiversityResult/LDiversityHistogramBucket.php"
+    },
+    {
+      "path": "src/V2/AnalyzeDataSourceRiskDetails/NumericalStatsResult.php"
+    },
+    {
+      "path": "src/V2/AnalyzeDataSourceRiskDetails_CategoricalStatsResult.php"
+    },
+    {
+      "path": "src/V2/AnalyzeDataSourceRiskDetails_CategoricalStatsResult_CategoricalStatsHistogramBucket.php"
+    },
+    {
+      "path": "src/V2/AnalyzeDataSourceRiskDetails_DeltaPresenceEstimationResult.php"
+    },
+    {
+      "path": "src/V2/AnalyzeDataSourceRiskDetails_DeltaPresenceEstimationResult_DeltaPresenceEstimationHistogramBucket.php"
+    },
+    {
+      "path": "src/V2/AnalyzeDataSourceRiskDetails_DeltaPresenceEstimationResult_DeltaPresenceEstimationQuasiIdValues.php"
+    },
+    {
+      "path": "src/V2/AnalyzeDataSourceRiskDetails_KAnonymityResult.php"
+    },
+    {
+      "path": "src/V2/AnalyzeDataSourceRiskDetails_KAnonymityResult_KAnonymityEquivalenceClass.php"
+    },
+    {
+      "path": "src/V2/AnalyzeDataSourceRiskDetails_KAnonymityResult_KAnonymityHistogramBucket.php"
+    },
+    {
+      "path": "src/V2/AnalyzeDataSourceRiskDetails_KMapEstimationResult.php"
+    },
+    {
+      "path": "src/V2/AnalyzeDataSourceRiskDetails_KMapEstimationResult_KMapEstimationHistogramBucket.php"
+    },
+    {
+      "path": "src/V2/AnalyzeDataSourceRiskDetails_KMapEstimationResult_KMapEstimationQuasiIdValues.php"
+    },
+    {
+      "path": "src/V2/AnalyzeDataSourceRiskDetails_LDiversityResult.php"
+    },
+    {
+      "path": "src/V2/AnalyzeDataSourceRiskDetails_LDiversityResult_LDiversityEquivalenceClass.php"
+    },
+    {
+      "path": "src/V2/AnalyzeDataSourceRiskDetails_LDiversityResult_LDiversityHistogramBucket.php"
+    },
+    {
+      "path": "src/V2/AnalyzeDataSourceRiskDetails_NumericalStatsResult.php"
+    },
+    {
+      "path": "src/V2/BigQueryField.php"
+    },
+    {
+      "path": "src/V2/BigQueryKey.php"
+    },
+    {
+      "path": "src/V2/BigQueryOptions.php"
+    },
+    {
+      "path": "src/V2/BigQueryOptions/SampleMethod.php"
+    },
+    {
+      "path": "src/V2/BigQueryOptions_SampleMethod.php"
+    },
+    {
+      "path": "src/V2/BigQueryTable.php"
+    },
+    {
+      "path": "src/V2/BoundingBox.php"
+    },
+    {
+      "path": "src/V2/BucketingConfig.php"
+    },
+    {
+      "path": "src/V2/BucketingConfig/Bucket.php"
+    },
+    {
+      "path": "src/V2/BucketingConfig_Bucket.php"
+    },
+    {
+      "path": "src/V2/ByteContentItem.php"
+    },
+    {
+      "path": "src/V2/ByteContentItem/BytesType.php"
+    },
+    {
+      "path": "src/V2/ByteContentItem_BytesType.php"
+    },
+    {
+      "path": "src/V2/CancelDlpJobRequest.php"
+    },
+    {
+      "path": "src/V2/CharacterMaskConfig.php"
+    },
+    {
+      "path": "src/V2/CharsToIgnore.php"
+    },
+    {
+      "path": "src/V2/CharsToIgnore/CommonCharsToIgnore.php"
+    },
+    {
+      "path": "src/V2/CharsToIgnore_CommonCharsToIgnore.php"
+    },
+    {
+      "path": "src/V2/CloudStorageFileSet.php"
+    },
+    {
+      "path": "src/V2/CloudStorageOptions.php"
+    },
+    {
+      "path": "src/V2/CloudStorageOptions/FileSet.php"
+    },
+    {
+      "path": "src/V2/CloudStorageOptions/SampleMethod.php"
+    },
+    {
+      "path": "src/V2/CloudStorageOptions_FileSet.php"
+    },
+    {
+      "path": "src/V2/CloudStorageOptions_SampleMethod.php"
+    },
+    {
+      "path": "src/V2/CloudStoragePath.php"
+    },
+    {
+      "path": "src/V2/CloudStorageRegexFileSet.php"
+    },
+    {
+      "path": "src/V2/Color.php"
+    },
+    {
+      "path": "src/V2/ContentItem.php"
+    },
+    {
+      "path": "src/V2/ContentLocation.php"
+    },
+    {
+      "path": "src/V2/ContentOption.php"
+    },
+    {
+      "path": "src/V2/CreateDeidentifyTemplateRequest.php"
+    },
+    {
+      "path": "src/V2/CreateDlpJobRequest.php"
+    },
+    {
+      "path": "src/V2/CreateInspectTemplateRequest.php"
+    },
+    {
+      "path": "src/V2/CreateJobTriggerRequest.php"
+    },
+    {
+      "path": "src/V2/CreateStoredInfoTypeRequest.php"
+    },
+    {
+      "path": "src/V2/CryptoDeterministicConfig.php"
+    },
+    {
+      "path": "src/V2/CryptoHashConfig.php"
+    },
+    {
+      "path": "src/V2/CryptoKey.php"
+    },
+    {
+      "path": "src/V2/CryptoReplaceFfxFpeConfig.php"
+    },
+    {
+      "path": "src/V2/CryptoReplaceFfxFpeConfig/FfxCommonNativeAlphabet.php"
+    },
+    {
+      "path": "src/V2/CryptoReplaceFfxFpeConfig_FfxCommonNativeAlphabet.php"
+    },
+    {
+      "path": "src/V2/CustomInfoType.php"
+    },
+    {
+      "path": "src/V2/CustomInfoType/DetectionRule.php"
+    },
+    {
+      "path": "src/V2/CustomInfoType/DetectionRule/HotwordRule.php"
+    },
+    {
+      "path": "src/V2/CustomInfoType/DetectionRule/LikelihoodAdjustment.php"
+    },
+    {
+      "path": "src/V2/CustomInfoType/DetectionRule/Proximity.php"
+    },
+    {
+      "path": "src/V2/CustomInfoType/Dictionary.php"
+    },
+    {
+      "path": "src/V2/CustomInfoType/Dictionary/WordList.php"
+    },
+    {
+      "path": "src/V2/CustomInfoType/ExclusionType.php"
+    },
+    {
+      "path": "src/V2/CustomInfoType/Regex.php"
+    },
+    {
+      "path": "src/V2/CustomInfoType/SurrogateType.php"
+    },
+    {
+      "path": "src/V2/CustomInfoType_DetectionRule.php"
+    },
+    {
+      "path": "src/V2/CustomInfoType_DetectionRule_HotwordRule.php"
+    },
+    {
+      "path": "src/V2/CustomInfoType_DetectionRule_LikelihoodAdjustment.php"
+    },
+    {
+      "path": "src/V2/CustomInfoType_DetectionRule_Proximity.php"
+    },
+    {
+      "path": "src/V2/CustomInfoType_Dictionary.php"
+    },
+    {
+      "path": "src/V2/CustomInfoType_Dictionary_WordList.php"
+    },
+    {
+      "path": "src/V2/CustomInfoType_ExclusionType.php"
+    },
+    {
+      "path": "src/V2/CustomInfoType_Regex.php"
+    },
+    {
+      "path": "src/V2/CustomInfoType_SurrogateType.php"
+    },
+    {
+      "path": "src/V2/DatastoreKey.php"
+    },
+    {
+      "path": "src/V2/DatastoreOptions.php"
+    },
+    {
+      "path": "src/V2/DateShiftConfig.php"
+    },
+    {
+      "path": "src/V2/DateTime.php"
+    },
+    {
+      "path": "src/V2/DateTime/TimeZone.php"
+    },
+    {
+      "path": "src/V2/DateTime_TimeZone.php"
+    },
+    {
+      "path": "src/V2/DeidentifyConfig.php"
+    },
+    {
+      "path": "src/V2/DeidentifyContentRequest.php"
+    },
+    {
+      "path": "src/V2/DeidentifyContentResponse.php"
+    },
+    {
+      "path": "src/V2/DeidentifyTemplate.php"
+    },
+    {
+      "path": "src/V2/DeleteDeidentifyTemplateRequest.php"
+    },
+    {
+      "path": "src/V2/DeleteDlpJobRequest.php"
+    },
+    {
+      "path": "src/V2/DeleteInspectTemplateRequest.php"
+    },
+    {
+      "path": "src/V2/DeleteJobTriggerRequest.php"
+    },
+    {
+      "path": "src/V2/DeleteStoredInfoTypeRequest.php"
+    },
+    {
+      "path": "src/V2/DlpJob.php"
+    },
+    {
+      "path": "src/V2/DlpJob/JobState.php"
+    },
+    {
+      "path": "src/V2/DlpJobType.php"
+    },
+    {
+      "path": "src/V2/DlpJob_JobState.php"
+    },
+    {
+      "path": "src/V2/DlpServiceClient.php"
+    },
+    {
+      "path": "src/V2/DlpServiceGrpcClient.php"
+    },
+    {
+      "path": "src/V2/DocumentLocation.php"
+    },
+    {
+      "path": "src/V2/EntityId.php"
+    },
+    {
+      "path": "src/V2/Error.php"
+    },
+    {
+      "path": "src/V2/ExcludeInfoTypes.php"
+    },
+    {
+      "path": "src/V2/ExclusionRule.php"
+    },
+    {
+      "path": "src/V2/FieldId.php"
+    },
+    {
+      "path": "src/V2/FieldTransformation.php"
+    },
+    {
+      "path": "src/V2/FileType.php"
+    },
+    {
+      "path": "src/V2/Finding.php"
+    },
+    {
+      "path": "src/V2/FixedSizeBucketingConfig.php"
+    },
+    {
+      "path": "src/V2/Gapic/DlpServiceGapicClient.php"
+    },
+    {
+      "path": "src/V2/GetDeidentifyTemplateRequest.php"
+    },
+    {
+      "path": "src/V2/GetDlpJobRequest.php"
+    },
+    {
+      "path": "src/V2/GetInspectTemplateRequest.php"
+    },
+    {
+      "path": "src/V2/GetJobTriggerRequest.php"
+    },
+    {
+      "path": "src/V2/GetStoredInfoTypeRequest.php"
+    },
+    {
+      "path": "src/V2/ImageLocation.php"
+    },
+    {
+      "path": "src/V2/InfoType.php"
+    },
+    {
+      "path": "src/V2/InfoTypeDescription.php"
+    },
+    {
+      "path": "src/V2/InfoTypeStats.php"
+    },
+    {
+      "path": "src/V2/InfoTypeSupportedBy.php"
+    },
+    {
+      "path": "src/V2/InfoTypeTransformations.php"
+    },
+    {
+      "path": "src/V2/InfoTypeTransformations/InfoTypeTransformation.php"
+    },
+    {
+      "path": "src/V2/InfoTypeTransformations_InfoTypeTransformation.php"
+    },
+    {
+      "path": "src/V2/InspectConfig.php"
+    },
+    {
+      "path": "src/V2/InspectConfig/FindingLimits.php"
+    },
+    {
+      "path": "src/V2/InspectConfig/FindingLimits/InfoTypeLimit.php"
+    },
+    {
+      "path": "src/V2/InspectConfig_FindingLimits.php"
+    },
+    {
+      "path": "src/V2/InspectConfig_FindingLimits_InfoTypeLimit.php"
+    },
+    {
+      "path": "src/V2/InspectContentRequest.php"
+    },
+    {
+      "path": "src/V2/InspectContentResponse.php"
+    },
+    {
+      "path": "src/V2/InspectDataSourceDetails.php"
+    },
+    {
+      "path": "src/V2/InspectDataSourceDetails/RequestedOptions.php"
+    },
+    {
+      "path": "src/V2/InspectDataSourceDetails/Result.php"
+    },
+    {
+      "path": "src/V2/InspectDataSourceDetails_RequestedOptions.php"
+    },
+    {
+      "path": "src/V2/InspectDataSourceDetails_Result.php"
+    },
+    {
+      "path": "src/V2/InspectJobConfig.php"
+    },
+    {
+      "path": "src/V2/InspectResult.php"
+    },
+    {
+      "path": "src/V2/InspectTemplate.php"
+    },
+    {
+      "path": "src/V2/InspectionRule.php"
+    },
+    {
+      "path": "src/V2/InspectionRuleSet.php"
+    },
+    {
+      "path": "src/V2/JobTrigger.php"
+    },
+    {
+      "path": "src/V2/JobTrigger/Status.php"
+    },
+    {
+      "path": "src/V2/JobTrigger/Trigger.php"
+    },
+    {
+      "path": "src/V2/JobTrigger_Status.php"
+    },
+    {
+      "path": "src/V2/JobTrigger_Trigger.php"
+    },
+    {
+      "path": "src/V2/Key.php"
+    },
+    {
+      "path": "src/V2/Key/PathElement.php"
+    },
+    {
+      "path": "src/V2/Key_PathElement.php"
+    },
+    {
+      "path": "src/V2/KindExpression.php"
+    },
+    {
+      "path": "src/V2/KmsWrappedCryptoKey.php"
+    },
+    {
+      "path": "src/V2/LargeCustomDictionaryConfig.php"
+    },
+    {
+      "path": "src/V2/LargeCustomDictionaryStats.php"
+    },
+    {
+      "path": "src/V2/Likelihood.php"
+    },
+    {
+      "path": "src/V2/ListDeidentifyTemplatesRequest.php"
+    },
+    {
+      "path": "src/V2/ListDeidentifyTemplatesResponse.php"
+    },
+    {
+      "path": "src/V2/ListDlpJobsRequest.php"
+    },
+    {
+      "path": "src/V2/ListDlpJobsResponse.php"
+    },
+    {
+      "path": "src/V2/ListInfoTypesRequest.php"
+    },
+    {
+      "path": "src/V2/ListInfoTypesResponse.php"
+    },
+    {
+      "path": "src/V2/ListInspectTemplatesRequest.php"
+    },
+    {
+      "path": "src/V2/ListInspectTemplatesResponse.php"
+    },
+    {
+      "path": "src/V2/ListJobTriggersRequest.php"
+    },
+    {
+      "path": "src/V2/ListJobTriggersResponse.php"
+    },
+    {
+      "path": "src/V2/ListStoredInfoTypesRequest.php"
+    },
+    {
+      "path": "src/V2/ListStoredInfoTypesResponse.php"
+    },
+    {
+      "path": "src/V2/Location.php"
+    },
+    {
+      "path": "src/V2/MatchingType.php"
+    },
+    {
+      "path": "src/V2/OutputStorageConfig.php"
+    },
+    {
+      "path": "src/V2/OutputStorageConfig/OutputSchema.php"
+    },
+    {
+      "path": "src/V2/OutputStorageConfig_OutputSchema.php"
+    },
+    {
+      "path": "src/V2/PartitionId.php"
+    },
+    {
+      "path": "src/V2/PrimitiveTransformation.php"
+    },
+    {
+      "path": "src/V2/PrivacyMetric.php"
+    },
+    {
+      "path": "src/V2/PrivacyMetric/CategoricalStatsConfig.php"
+    },
+    {
+      "path": "src/V2/PrivacyMetric/DeltaPresenceEstimationConfig.php"
+    },
+    {
+      "path": "src/V2/PrivacyMetric/KAnonymityConfig.php"
+    },
+    {
+      "path": "src/V2/PrivacyMetric/KMapEstimationConfig.php"
+    },
+    {
+      "path": "src/V2/PrivacyMetric/KMapEstimationConfig/AuxiliaryTable.php"
+    },
+    {
+      "path": "src/V2/PrivacyMetric/KMapEstimationConfig/AuxiliaryTable/QuasiIdField.php"
+    },
+    {
+      "path": "src/V2/PrivacyMetric/KMapEstimationConfig/TaggedField.php"
+    },
+    {
+      "path": "src/V2/PrivacyMetric/LDiversityConfig.php"
+    },
+    {
+      "path": "src/V2/PrivacyMetric/NumericalStatsConfig.php"
+    },
+    {
+      "path": "src/V2/PrivacyMetric_CategoricalStatsConfig.php"
+    },
+    {
+      "path": "src/V2/PrivacyMetric_DeltaPresenceEstimationConfig.php"
+    },
+    {
+      "path": "src/V2/PrivacyMetric_KAnonymityConfig.php"
+    },
+    {
+      "path": "src/V2/PrivacyMetric_KMapEstimationConfig.php"
+    },
+    {
+      "path": "src/V2/PrivacyMetric_KMapEstimationConfig_AuxiliaryTable.php"
+    },
+    {
+      "path": "src/V2/PrivacyMetric_KMapEstimationConfig_AuxiliaryTable_QuasiIdField.php"
+    },
+    {
+      "path": "src/V2/PrivacyMetric_KMapEstimationConfig_TaggedField.php"
+    },
+    {
+      "path": "src/V2/PrivacyMetric_LDiversityConfig.php"
+    },
+    {
+      "path": "src/V2/PrivacyMetric_NumericalStatsConfig.php"
+    },
+    {
+      "path": "src/V2/QuasiId.php"
+    },
+    {
+      "path": "src/V2/QuoteInfo.php"
+    },
+    {
+      "path": "src/V2/README.md"
+    },
+    {
+      "path": "src/V2/Range.php"
+    },
+    {
+      "path": "src/V2/RecordCondition.php"
+    },
+    {
+      "path": "src/V2/RecordCondition/Condition.php"
+    },
+    {
+      "path": "src/V2/RecordCondition/Conditions.php"
+    },
+    {
+      "path": "src/V2/RecordCondition/Expressions.php"
+    },
+    {
+      "path": "src/V2/RecordCondition/Expressions/LogicalOperator.php"
+    },
+    {
+      "path": "src/V2/RecordCondition_Condition.php"
+    },
+    {
+      "path": "src/V2/RecordCondition_Conditions.php"
+    },
+    {
+      "path": "src/V2/RecordCondition_Expressions.php"
+    },
+    {
+      "path": "src/V2/RecordCondition_Expressions_LogicalOperator.php"
+    },
+    {
+      "path": "src/V2/RecordKey.php"
+    },
+    {
+      "path": "src/V2/RecordLocation.php"
+    },
+    {
+      "path": "src/V2/RecordSuppression.php"
+    },
+    {
+      "path": "src/V2/RecordTransformations.php"
+    },
+    {
+      "path": "src/V2/RedactConfig.php"
+    },
+    {
+      "path": "src/V2/RedactImageRequest.php"
+    },
+    {
+      "path": "src/V2/RedactImageRequest/ImageRedactionConfig.php"
+    },
+    {
+      "path": "src/V2/RedactImageRequest_ImageRedactionConfig.php"
+    },
+    {
+      "path": "src/V2/RedactImageResponse.php"
+    },
+    {
+      "path": "src/V2/ReidentifyContentRequest.php"
+    },
+    {
+      "path": "src/V2/ReidentifyContentResponse.php"
+    },
+    {
+      "path": "src/V2/RelationalOperator.php"
+    },
+    {
+      "path": "src/V2/ReplaceValueConfig.php"
+    },
+    {
+      "path": "src/V2/ReplaceWithInfoTypeConfig.php"
+    },
+    {
+      "path": "src/V2/RiskAnalysisJobConfig.php"
+    },
+    {
+      "path": "src/V2/Schedule.php"
+    },
+    {
+      "path": "src/V2/StatisticalTable.php"
+    },
+    {
+      "path": "src/V2/StatisticalTable/QuasiIdentifierField.php"
+    },
+    {
+      "path": "src/V2/StatisticalTable_QuasiIdentifierField.php"
+    },
+    {
+      "path": "src/V2/StorageConfig.php"
+    },
+    {
+      "path": "src/V2/StorageConfig/TimespanConfig.php"
+    },
+    {
+      "path": "src/V2/StorageConfig_TimespanConfig.php"
+    },
+    {
+      "path": "src/V2/StoredInfoType.php"
+    },
+    {
+      "path": "src/V2/StoredInfoTypeConfig.php"
+    },
+    {
+      "path": "src/V2/StoredInfoTypeState.php"
+    },
+    {
+      "path": "src/V2/StoredInfoTypeStats.php"
+    },
+    {
+      "path": "src/V2/StoredInfoTypeVersion.php"
+    },
+    {
+      "path": "src/V2/StoredType.php"
+    },
+    {
+      "path": "src/V2/Table.php"
+    },
+    {
+      "path": "src/V2/Table/Row.php"
+    },
+    {
+      "path": "src/V2/TableLocation.php"
+    },
+    {
+      "path": "src/V2/Table_Row.php"
+    },
+    {
+      "path": "src/V2/TimePartConfig.php"
+    },
+    {
+      "path": "src/V2/TimePartConfig/TimePart.php"
+    },
+    {
+      "path": "src/V2/TimePartConfig_TimePart.php"
+    },
+    {
+      "path": "src/V2/TransformationOverview.php"
+    },
+    {
+      "path": "src/V2/TransformationSummary.php"
+    },
+    {
+      "path": "src/V2/TransformationSummary/SummaryResult.php"
+    },
+    {
+      "path": "src/V2/TransformationSummary/TransformationResultCode.php"
+    },
+    {
+      "path": "src/V2/TransformationSummary_SummaryResult.php"
+    },
+    {
+      "path": "src/V2/TransformationSummary_TransformationResultCode.php"
+    },
+    {
+      "path": "src/V2/TransientCryptoKey.php"
+    },
+    {
+      "path": "src/V2/UnwrappedCryptoKey.php"
+    },
+    {
+      "path": "src/V2/UpdateDeidentifyTemplateRequest.php"
+    },
+    {
+      "path": "src/V2/UpdateInspectTemplateRequest.php"
+    },
+    {
+      "path": "src/V2/UpdateJobTriggerRequest.php"
+    },
+    {
+      "path": "src/V2/UpdateStoredInfoTypeRequest.php"
+    },
+    {
+      "path": "src/V2/Value.php"
+    },
+    {
+      "path": "src/V2/ValueFrequency.php"
+    },
+    {
+      "path": "src/V2/resources/dlp_service_client_config.json"
+    },
+    {
+      "path": "src/V2/resources/dlp_service_descriptor_config.php"
+    },
+    {
+      "path": "src/V2/resources/dlp_service_rest_client_config.php"
+    },
+    {
+      "path": "synth.metadata"
+    },
+    {
+      "path": "synth.py"
+    },
+    {
+      "path": "tests/System/bootstrap.php"
+    },
+    {
+      "path": "tests/Unit/V2/DlpServiceClientTest.php"
     }
   ]
 }

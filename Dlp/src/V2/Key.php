@@ -25,7 +25,7 @@ class Key extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.PartitionId partition_id = 1;</code>
      */
-    private $partition_id = null;
+    protected $partition_id = null;
     /**
      * The entity path.
      * An entity path consists of one or more elements composed of a kind and a

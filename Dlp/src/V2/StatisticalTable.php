@@ -26,7 +26,7 @@ class StatisticalTable extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.BigQueryTable table = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $table = null;
+    protected $table = null;
     /**
      * Required. Quasi-identifier columns.
      *
@@ -39,7 +39,7 @@ class StatisticalTable extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId relative_frequency = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $relative_frequency = null;
+    protected $relative_frequency = null;
 
     /**
      * Constructor.

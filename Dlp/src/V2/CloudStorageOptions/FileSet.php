@@ -27,14 +27,14 @@ class FileSet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string url = 1;</code>
      */
-    private $url = '';
+    protected $url = '';
     /**
      * The regex-filtered set of files to scan. Exactly one of `url` or
      * `regex_file_set` must be set.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CloudStorageRegexFileSet regex_file_set = 2;</code>
      */
-    private $regex_file_set = null;
+    protected $regex_file_set = null;
 
     /**
      * Constructor.

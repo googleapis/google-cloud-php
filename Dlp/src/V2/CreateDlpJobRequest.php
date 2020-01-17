@@ -22,7 +22,7 @@ class CreateDlpJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The job id can contain uppercase and lowercase letters,
      * numbers, and hyphens; that is, it must match the regular
@@ -31,14 +31,14 @@ class CreateDlpJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string job_id = 4;</code>
      */
-    private $job_id = '';
+    protected $job_id = '';
     /**
      * The geographic location to store and process the job. Reserved for
      * future extensions.
      *
      * Generated from protobuf field <code>string location_id = 5;</code>
      */
-    private $location_id = '';
+    protected $location_id = '';
     protected $job;
 
     /**

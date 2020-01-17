@@ -21,7 +21,7 @@ class TimeZone extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 offset_minutes = 1;</code>
      */
-    private $offset_minutes = 0;
+    protected $offset_minutes = 0;
 
     /**
      * Constructor.

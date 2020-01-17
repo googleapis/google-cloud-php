@@ -20,7 +20,7 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Allows filtering.
      * Supported syntax:
@@ -48,25 +48,25 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 1;</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * The standard list page size.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * The standard list page token.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * The type of job. Defaults to `DlpJobType.INSPECT`
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DlpJobType type = 5;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Comma separated list of fields to order by,
      * followed by `asc` or `desc` postfix. This list is case-insensitive,
@@ -81,14 +81,14 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string order_by = 6;</code>
      */
-    private $order_by = '';
+    protected $order_by = '';
     /**
      * The geographic location where jobs will be retrieved from.
      * Use `-` for all locations. Reserved for future extensions.
      *
      * Generated from protobuf field <code>string location_id = 7;</code>
      */
-    private $location_id = '';
+    protected $location_id = '';
 
     /**
      * Constructor.

@@ -20,7 +20,7 @@ class DatastoreKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Key entity_key = 1;</code>
      */
-    private $entity_key = null;
+    protected $entity_key = null;
 
     /**
      * Constructor.

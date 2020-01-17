@@ -22,7 +22,7 @@ class CryptoDeterministicConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CryptoKey crypto_key = 1;</code>
      */
-    private $crypto_key = null;
+    protected $crypto_key = null;
     /**
      * The custom info type to annotate the surrogate with.
      * This annotation will be applied to the surrogate by prefixing it with
@@ -53,7 +53,7 @@ class CryptoDeterministicConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InfoType surrogate_info_type = 2;</code>
      */
-    private $surrogate_info_type = null;
+    protected $surrogate_info_type = null;
     /**
      * A context may be used for higher security and maintaining
      * referential integrity such that the same identifier in two different
@@ -72,7 +72,7 @@ class CryptoDeterministicConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId context = 3;</code>
      */
-    private $context = null;
+    protected $context = null;
 
     /**
      * Constructor.

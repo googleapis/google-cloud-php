@@ -21,7 +21,7 @@ class DocumentLocation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 file_offset = 1;</code>
      */
-    private $file_offset = 0;
+    protected $file_offset = 0;
 
     /**
      * Constructor.

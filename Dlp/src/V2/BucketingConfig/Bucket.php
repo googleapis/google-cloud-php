@@ -21,20 +21,20 @@ class Bucket extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Value min = 1;</code>
      */
-    private $min = null;
+    protected $min = null;
     /**
      * Upper bound of the range, exclusive; type must match min.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Value max = 2;</code>
      */
-    private $max = null;
+    protected $max = null;
     /**
      * Replacement value for this bucket. If not provided
      * the default behavior will be to hyphenate the min-max range.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Value replacement_value = 3;</code>
      */
-    private $replacement_value = null;
+    protected $replacement_value = null;
 
     /**
      * Constructor.

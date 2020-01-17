@@ -29,7 +29,7 @@ class InfoTypeTransformation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.PrimitiveTransformation primitive_transformation = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $primitive_transformation = null;
+    protected $primitive_transformation = null;
 
     /**
      * Constructor.

@@ -25,19 +25,19 @@ class BigQueryTable extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 1;</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * Dataset ID of the table.
      *
      * Generated from protobuf field <code>string dataset_id = 2;</code>
      */
-    private $dataset_id = '';
+    protected $dataset_id = '';
     /**
      * Name of the table.
      *
      * Generated from protobuf field <code>string table_id = 3;</code>
      */
-    private $table_id = '';
+    protected $table_id = '';
 
     /**
      * Constructor.

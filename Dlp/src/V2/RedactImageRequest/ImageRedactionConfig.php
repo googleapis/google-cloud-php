@@ -21,7 +21,7 @@ class ImageRedactionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Color redaction_color = 3;</code>
      */
-    private $redaction_color = null;
+    protected $redaction_color = null;
     protected $target;
 
     /**

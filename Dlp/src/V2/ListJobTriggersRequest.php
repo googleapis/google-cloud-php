@@ -20,7 +20,7 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Page token to continue retrieval. Comes from previous call
      * to ListJobTriggers. `order_by` field must not
@@ -28,13 +28,13 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 2;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Size of the page, can be limited by a server.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Comma separated list of triggeredJob fields to order by,
      * followed by `asc` or `desc` postfix. This list is case-insensitive,
@@ -51,7 +51,7 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string order_by = 4;</code>
      */
-    private $order_by = '';
+    protected $order_by = '';
     /**
      * Allows filtering.
      * Supported syntax:
@@ -75,14 +75,14 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 5;</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * The geographic location where job triggers will be retrieved from.
      * Use `-` for all locations. Reserved for future extensions.
      *
      * Generated from protobuf field <code>string location_id = 7;</code>
      */
-    private $location_id = '';
+    protected $location_id = '';
 
     /**
      * Constructor.

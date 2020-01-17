@@ -21,13 +21,13 @@ class QuasiIdField extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId field = 1;</code>
      */
-    private $field = null;
+    protected $field = null;
     /**
      * A auxiliary field.
      *
      * Generated from protobuf field <code>string custom_tag = 2;</code>
      */
-    private $custom_tag = '';
+    protected $custom_tag = '';
 
     /**
      * Constructor.
