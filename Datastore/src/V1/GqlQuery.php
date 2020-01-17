@@ -22,7 +22,7 @@ class GqlQuery extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string query_string = 1;</code>
      */
-    private $query_string = '';
+    protected $query_string = '';
     /**
      * When false, the query string must not contain any literals and instead must
      * bind all values. For example,
@@ -31,7 +31,7 @@ class GqlQuery extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool allow_literals = 2;</code>
      */
-    private $allow_literals = false;
+    protected $allow_literals = false;
     /**
      * For each non-reserved named binding site in the query string, there must be
      * a named parameter with that name, but not necessarily the inverse.

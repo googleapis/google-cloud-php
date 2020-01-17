@@ -20,13 +20,13 @@ class LookupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * The options for this lookup request.
      *
      * Generated from protobuf field <code>.google.datastore.v1.ReadOptions read_options = 1;</code>
      */
-    private $read_options = null;
+    protected $read_options = null;
     /**
      * Required. Keys of entities to look up.
      *

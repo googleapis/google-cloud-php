@@ -20,7 +20,7 @@ class AllocateIdsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * Required. A list of keys with incomplete key paths for which to allocate IDs.
      * No key may be reserved/read-only.

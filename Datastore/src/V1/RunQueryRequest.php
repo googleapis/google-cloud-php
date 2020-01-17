@@ -20,7 +20,7 @@ class RunQueryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * Entities are partitioned into subsets, identified by a partition ID.
      * Queries are scoped to a single partition.
@@ -29,13 +29,13 @@ class RunQueryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.datastore.v1.PartitionId partition_id = 2;</code>
      */
-    private $partition_id = null;
+    protected $partition_id = null;
     /**
      * The options for this query.
      *
      * Generated from protobuf field <code>.google.datastore.v1.ReadOptions read_options = 1;</code>
      */
-    private $read_options = null;
+    protected $read_options = null;
     protected $query_type;
 
     /**

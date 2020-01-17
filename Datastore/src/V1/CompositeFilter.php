@@ -20,7 +20,7 @@ class CompositeFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.datastore.v1.CompositeFilter.Operator op = 1;</code>
      */
-    private $op = 0;
+    protected $op = 0;
     /**
      * The list of filters to combine.
      * Must contain at least one filter.

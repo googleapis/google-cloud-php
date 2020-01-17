@@ -21,7 +21,7 @@ class MutationResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.datastore.v1.Key key = 3;</code>
      */
-    private $key = null;
+    protected $key = null;
     /**
      * The version of the entity on the server after processing the mutation. If
      * the mutation doesn't change anything on the server, then the version will
@@ -31,14 +31,14 @@ class MutationResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 version = 4;</code>
      */
-    private $version = 0;
+    protected $version = 0;
     /**
      * Whether a conflict was detected for this mutation. Always false when a
      * conflict detection strategy field is not set in the mutation.
      *
      * Generated from protobuf field <code>bool conflict_detected = 5;</code>
      */
-    private $conflict_detected = false;
+    protected $conflict_detected = false;
 
     /**
      * Constructor.

@@ -28,7 +28,7 @@ class CommitResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 index_updates = 4;</code>
      */
-    private $index_updates = 0;
+    protected $index_updates = 0;
 
     /**
      * Constructor.

@@ -20,13 +20,13 @@ class ReserveIdsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * If not empty, the ID of the database against which to make the request.
      *
      * Generated from protobuf field <code>string database_id = 9;</code>
      */
-    private $database_id = '';
+    protected $database_id = '';
     /**
      * Required. A list of keys with complete key paths whose numeric IDs should not be
      * auto-allocated.

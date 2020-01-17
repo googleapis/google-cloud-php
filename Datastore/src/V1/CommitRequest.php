@@ -20,13 +20,13 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * The type of commit to perform. Defaults to `TRANSACTIONAL`.
      *
      * Generated from protobuf field <code>.google.datastore.v1.CommitRequest.Mode mode = 5;</code>
      */
-    private $mode = 0;
+    protected $mode = 0;
     /**
      * The mutations to perform.
      * When mode is `TRANSACTIONAL`, mutations affecting a single entity are

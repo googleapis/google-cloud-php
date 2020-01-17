@@ -20,13 +20,13 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.datastore.v1.QueryResultBatch batch = 1;</code>
      */
-    private $batch = null;
+    protected $batch = null;
     /**
      * The parsed form of the `GqlQuery` from the request, if it was set.
      *
      * Generated from protobuf field <code>.google.datastore.v1.Query query = 2;</code>
      */
-    private $query = null;
+    protected $query = null;
 
     /**
      * Constructor.

@@ -27,7 +27,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.datastore.v1.Key key = 1;</code>
      */
-    private $key = null;
+    protected $key = null;
     /**
      * The entity's properties.
      * The map's keys are property names.

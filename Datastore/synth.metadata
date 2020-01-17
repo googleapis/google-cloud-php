@@ -1,19 +1,19 @@
 {
-  "updateTime": "2019-12-10T02:49:52.120209Z",
+  "updateTime": "2020-01-17T11:00:29.705492Z",
   "sources": [
     {
       "generator": {
         "name": "artman",
-        "version": "0.42.1",
-        "dockerImage": "googleapis/artman@sha256:c773192618c608a7a0415dd95282f841f8e6bcdef7dd760a988c93b77a64bd57"
+        "version": "0.44.1",
+        "dockerImage": "googleapis/artman@sha256:5599b61e56a372d21b671969ee915fbca0f6c3a0daaeb898d01f8f685f1bbc8b"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "6cc9499e225a4f6a5e34fe07e390f67055d7991c",
-        "internalRef": "284643689"
+        "sha": "58e770d568a2b78168ddc19a874178fee8265a9d",
+        "internalRef": "290146169"
       }
     }
   ],
@@ -27,6 +27,458 @@
         "generator": "gapic",
         "config": "google/datastore/artman_datastore.legacy.yaml"
       }
+    }
+  ],
+  "newFiles": [
+    {
+      "path": ".gitattributes"
+    },
+    {
+      "path": ".github/pull_request_template.md"
+    },
+    {
+      "path": "CONTRIBUTING.md"
+    },
+    {
+      "path": "LICENSE"
+    },
+    {
+      "path": "README.md"
+    },
+    {
+      "path": "VERSION"
+    },
+    {
+      "path": "composer.json"
+    },
+    {
+      "path": "metadata/V1/Datastore.php"
+    },
+    {
+      "path": "metadata/V1/Entity.php"
+    },
+    {
+      "path": "metadata/V1/Query.php"
+    },
+    {
+      "path": "phpunit-snippets.xml.dist"
+    },
+    {
+      "path": "phpunit-system.xml.dist"
+    },
+    {
+      "path": "phpunit.xml.dist"
+    },
+    {
+      "path": "src/Blob.php"
+    },
+    {
+      "path": "src/Connection/ConnectionInterface.php"
+    },
+    {
+      "path": "src/Connection/Grpc.php"
+    },
+    {
+      "path": "src/Connection/Rest.php"
+    },
+    {
+      "path": "src/Connection/ServiceDefinition/datastore-v1.json"
+    },
+    {
+      "path": "src/Cursor.php"
+    },
+    {
+      "path": "src/DatastoreClient.php"
+    },
+    {
+      "path": "src/DatastoreSessionHandler.php"
+    },
+    {
+      "path": "src/DatastoreTrait.php"
+    },
+    {
+      "path": "src/Entity.php"
+    },
+    {
+      "path": "src/EntityInterface.php"
+    },
+    {
+      "path": "src/EntityIterator.php"
+    },
+    {
+      "path": "src/EntityMapper.php"
+    },
+    {
+      "path": "src/EntityOptionsTrait.php"
+    },
+    {
+      "path": "src/EntityPageIterator.php"
+    },
+    {
+      "path": "src/EntityTrait.php"
+    },
+    {
+      "path": "src/GeoPoint.php"
+    },
+    {
+      "path": "src/Key.php"
+    },
+    {
+      "path": "src/Operation.php"
+    },
+    {
+      "path": "src/Query/GqlQuery.php"
+    },
+    {
+      "path": "src/Query/Query.php"
+    },
+    {
+      "path": "src/Query/QueryInterface.php"
+    },
+    {
+      "path": "src/ReadOnlyTransaction.php"
+    },
+    {
+      "path": "src/Transaction.php"
+    },
+    {
+      "path": "src/TransactionTrait.php"
+    },
+    {
+      "path": "src/V1/AllocateIdsRequest.php"
+    },
+    {
+      "path": "src/V1/AllocateIdsResponse.php"
+    },
+    {
+      "path": "src/V1/ArrayValue.php"
+    },
+    {
+      "path": "src/V1/BeginTransactionRequest.php"
+    },
+    {
+      "path": "src/V1/BeginTransactionResponse.php"
+    },
+    {
+      "path": "src/V1/CommitRequest.php"
+    },
+    {
+      "path": "src/V1/CommitRequest/Mode.php"
+    },
+    {
+      "path": "src/V1/CommitRequest_Mode.php"
+    },
+    {
+      "path": "src/V1/CommitResponse.php"
+    },
+    {
+      "path": "src/V1/CompositeFilter.php"
+    },
+    {
+      "path": "src/V1/CompositeFilter/Operator.php"
+    },
+    {
+      "path": "src/V1/CompositeFilter_Operator.php"
+    },
+    {
+      "path": "src/V1/DatastoreClient.php"
+    },
+    {
+      "path": "src/V1/DatastoreGrpcClient.php"
+    },
+    {
+      "path": "src/V1/Entity.php"
+    },
+    {
+      "path": "src/V1/EntityResult.php"
+    },
+    {
+      "path": "src/V1/EntityResult/ResultType.php"
+    },
+    {
+      "path": "src/V1/EntityResult_ResultType.php"
+    },
+    {
+      "path": "src/V1/Filter.php"
+    },
+    {
+      "path": "src/V1/Gapic/DatastoreGapicClient.php"
+    },
+    {
+      "path": "src/V1/GqlQuery.php"
+    },
+    {
+      "path": "src/V1/GqlQueryParameter.php"
+    },
+    {
+      "path": "src/V1/Key.php"
+    },
+    {
+      "path": "src/V1/Key/PathElement.php"
+    },
+    {
+      "path": "src/V1/Key_PathElement.php"
+    },
+    {
+      "path": "src/V1/KindExpression.php"
+    },
+    {
+      "path": "src/V1/LookupRequest.php"
+    },
+    {
+      "path": "src/V1/LookupResponse.php"
+    },
+    {
+      "path": "src/V1/Mutation.php"
+    },
+    {
+      "path": "src/V1/MutationResult.php"
+    },
+    {
+      "path": "src/V1/PartitionId.php"
+    },
+    {
+      "path": "src/V1/Projection.php"
+    },
+    {
+      "path": "src/V1/PropertyFilter.php"
+    },
+    {
+      "path": "src/V1/PropertyFilter/Operator.php"
+    },
+    {
+      "path": "src/V1/PropertyFilter_Operator.php"
+    },
+    {
+      "path": "src/V1/PropertyOrder.php"
+    },
+    {
+      "path": "src/V1/PropertyOrder/Direction.php"
+    },
+    {
+      "path": "src/V1/PropertyOrder_Direction.php"
+    },
+    {
+      "path": "src/V1/PropertyReference.php"
+    },
+    {
+      "path": "src/V1/Query.php"
+    },
+    {
+      "path": "src/V1/QueryResultBatch.php"
+    },
+    {
+      "path": "src/V1/QueryResultBatch/MoreResultsType.php"
+    },
+    {
+      "path": "src/V1/QueryResultBatch_MoreResultsType.php"
+    },
+    {
+      "path": "src/V1/README.md"
+    },
+    {
+      "path": "src/V1/ReadOptions.php"
+    },
+    {
+      "path": "src/V1/ReadOptions/ReadConsistency.php"
+    },
+    {
+      "path": "src/V1/ReadOptions_ReadConsistency.php"
+    },
+    {
+      "path": "src/V1/ReserveIdsRequest.php"
+    },
+    {
+      "path": "src/V1/ReserveIdsResponse.php"
+    },
+    {
+      "path": "src/V1/RollbackRequest.php"
+    },
+    {
+      "path": "src/V1/RollbackResponse.php"
+    },
+    {
+      "path": "src/V1/RunQueryRequest.php"
+    },
+    {
+      "path": "src/V1/RunQueryResponse.php"
+    },
+    {
+      "path": "src/V1/TransactionOptions.php"
+    },
+    {
+      "path": "src/V1/TransactionOptions/ReadOnly.php"
+    },
+    {
+      "path": "src/V1/TransactionOptions/ReadWrite.php"
+    },
+    {
+      "path": "src/V1/TransactionOptions_ReadOnly.php"
+    },
+    {
+      "path": "src/V1/TransactionOptions_ReadWrite.php"
+    },
+    {
+      "path": "src/V1/Value.php"
+    },
+    {
+      "path": "src/V1/resources/datastore_client_config.json"
+    },
+    {
+      "path": "src/V1/resources/datastore_descriptor_config.php"
+    },
+    {
+      "path": "src/V1/resources/datastore_rest_client_config.php"
+    },
+    {
+      "path": "synth.metadata"
+    },
+    {
+      "path": "synth.py"
+    },
+    {
+      "path": "tests/Snippet/BlobTest.php"
+    },
+    {
+      "path": "tests/Snippet/CursorTest.php"
+    },
+    {
+      "path": "tests/Snippet/DatastoreClientTest.php"
+    },
+    {
+      "path": "tests/Snippet/DatastoreSessionHandlerTest.php"
+    },
+    {
+      "path": "tests/Snippet/EntityTest.php"
+    },
+    {
+      "path": "tests/Snippet/GeoPointTest.php"
+    },
+    {
+      "path": "tests/Snippet/KeyTest.php"
+    },
+    {
+      "path": "tests/Snippet/Query/GqlQueryTest.php"
+    },
+    {
+      "path": "tests/Snippet/Query/QueryTest.php"
+    },
+    {
+      "path": "tests/Snippet/ReadOnlyTransactionTest.php"
+    },
+    {
+      "path": "tests/Snippet/TransactionTest.php"
+    },
+    {
+      "path": "tests/System/AllocateKeyTest.php"
+    },
+    {
+      "path": "tests/System/CustomEntityTypeTest.php"
+    },
+    {
+      "path": "tests/System/DatastoreSessionHandlerTest.php"
+    },
+    {
+      "path": "tests/System/DatastoreTestCase.php"
+    },
+    {
+      "path": "tests/System/Entities/Kingdom.php"
+    },
+    {
+      "path": "tests/System/Entities/Person.php"
+    },
+    {
+      "path": "tests/System/Entities/Pet.php"
+    },
+    {
+      "path": "tests/System/Entities/Species.php"
+    },
+    {
+      "path": "tests/System/QueryResultPaginationTest.php"
+    },
+    {
+      "path": "tests/System/RunQueryTest.php"
+    },
+    {
+      "path": "tests/System/RunTransactionTest.php"
+    },
+    {
+      "path": "tests/System/SaveAndModifyTest.php"
+    },
+    {
+      "path": "tests/System/bootstrap.php"
+    },
+    {
+      "path": "tests/Unit/BlobTest.php"
+    },
+    {
+      "path": "tests/Unit/Connection/GrpcTest.php"
+    },
+    {
+      "path": "tests/Unit/Connection/RestTest.php"
+    },
+    {
+      "path": "tests/Unit/CursorTest.php"
+    },
+    {
+      "path": "tests/Unit/DatastoreClientTest.php"
+    },
+    {
+      "path": "tests/Unit/DatastoreSessionHandlerTest.php"
+    },
+    {
+      "path": "tests/Unit/DatastoreTraitTest.php"
+    },
+    {
+      "path": "tests/Unit/EntityIteratorTest.php"
+    },
+    {
+      "path": "tests/Unit/EntityMapperTest.php"
+    },
+    {
+      "path": "tests/Unit/EntityPageIteratorTest.php"
+    },
+    {
+      "path": "tests/Unit/EntityTest.php"
+    },
+    {
+      "path": "tests/Unit/Fixtures.php"
+    },
+    {
+      "path": "tests/Unit/KeyTest.php"
+    },
+    {
+      "path": "tests/Unit/OperationTest.php"
+    },
+    {
+      "path": "tests/Unit/Query/GqlQueryTest.php"
+    },
+    {
+      "path": "tests/Unit/Query/QueryTest.php"
+    },
+    {
+      "path": "tests/Unit/SampleEntity.php"
+    },
+    {
+      "path": "tests/Unit/TransactionTest.php"
+    },
+    {
+      "path": "tests/Unit/V1/DatastoreClientTest.php"
+    },
+    {
+      "path": "tests/Unit/fixtures/entity-batch-lookup.json"
+    },
+    {
+      "path": "tests/Unit/fixtures/entity-lookup-bigsort.json"
+    },
+    {
+      "path": "tests/Unit/fixtures/entity-result-no-properties.json"
+    },
+    {
+      "path": "tests/Unit/fixtures/entity-result.json"
+    },
+    {
+      "path": "tests/Unit/fixtures/query-results.json"
     }
   ]
 }

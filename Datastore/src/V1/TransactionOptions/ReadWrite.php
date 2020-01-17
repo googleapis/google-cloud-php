@@ -20,7 +20,7 @@ class ReadWrite extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes previous_transaction = 1;</code>
      */
-    private $previous_transaction = '';
+    protected $previous_transaction = '';
 
     /**
      * Constructor.

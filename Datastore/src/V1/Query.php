@@ -33,7 +33,7 @@ class Query extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.datastore.v1.Filter filter = 4;</code>
      */
-    private $filter = null;
+    protected $filter = null;
     /**
      * The order to apply to the query results (if empty, order is unspecified).
      *
@@ -56,7 +56,7 @@ class Query extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes start_cursor = 7;</code>
      */
-    private $start_cursor = '';
+    protected $start_cursor = '';
     /**
      * An ending point for the query results. Query cursors are
      * returned in query result batches and
@@ -65,14 +65,14 @@ class Query extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes end_cursor = 8;</code>
      */
-    private $end_cursor = '';
+    protected $end_cursor = '';
     /**
      * The number of results to skip. Applies before limit, but after all other
      * constraints. Optional. Must be >= 0 if specified.
      *
      * Generated from protobuf field <code>int32 offset = 10;</code>
      */
-    private $offset = 0;
+    protected $offset = 0;
     /**
      * The maximum number of results to return. Applies after all other
      * constraints. Optional.
@@ -81,7 +81,7 @@ class Query extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Int32Value limit = 12;</code>
      */
-    private $limit = null;
+    protected $limit = null;
 
     /**
      * Constructor.
@@ -382,8 +382,7 @@ class Query extends \Google\Protobuf\Internal\Message
      */
     public function getLimitValue()
     {
-        $wrapper = $this->getLimit();
-        return is_null($wrapper) ? null : $wrapper->getValue();
+        return $this->readWrapperValue("limit");
     }
 
     /**
@@ -418,9 +417,8 @@ class Query extends \Google\Protobuf\Internal\Message
      */
     public function setLimitValue($var)
     {
-        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\Int32Value(['value' => $var]);
-        return $this->setLimit($wrappedVar);
-    }
+        $this->writeWrapperValue("limit", $var);
+        return $this;}
 
 }
 

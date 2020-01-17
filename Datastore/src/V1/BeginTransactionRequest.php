@@ -20,13 +20,13 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * Options for a new transaction.
      *
      * Generated from protobuf field <code>.google.datastore.v1.TransactionOptions transaction_options = 10;</code>
      */
-    private $transaction_options = null;
+    protected $transaction_options = null;
 
     /**
      * Constructor.

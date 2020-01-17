@@ -25,7 +25,7 @@ class PathElement extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
-    private $kind = '';
+    protected $kind = '';
     protected $id_type;
 
     /**

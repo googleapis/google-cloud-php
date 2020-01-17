@@ -20,20 +20,20 @@ class QueryResultBatch extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 skipped_results = 6;</code>
      */
-    private $skipped_results = 0;
+    protected $skipped_results = 0;
     /**
      * A cursor that points to the position after the last skipped result.
      * Will be set when `skipped_results` != 0.
      *
      * Generated from protobuf field <code>bytes skipped_cursor = 3;</code>
      */
-    private $skipped_cursor = '';
+    protected $skipped_cursor = '';
     /**
      * The result type for every entity in `entity_results`.
      *
      * Generated from protobuf field <code>.google.datastore.v1.EntityResult.ResultType entity_result_type = 1;</code>
      */
-    private $entity_result_type = 0;
+    protected $entity_result_type = 0;
     /**
      * The results for this batch.
      *
@@ -45,13 +45,13 @@ class QueryResultBatch extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes end_cursor = 4;</code>
      */
-    private $end_cursor = '';
+    protected $end_cursor = '';
     /**
      * The state of the query after the current batch.
      *
      * Generated from protobuf field <code>.google.datastore.v1.QueryResultBatch.MoreResultsType more_results = 5;</code>
      */
-    private $more_results = 0;
+    protected $more_results = 0;
     /**
      * The version number of the snapshot this batch was returned from.
      * This applies to the range of results from the query's `start_cursor` (or
@@ -64,7 +64,7 @@ class QueryResultBatch extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 snapshot_version = 7;</code>
      */
-    private $snapshot_version = 0;
+    protected $snapshot_version = 0;
 
     /**
      * Constructor.
