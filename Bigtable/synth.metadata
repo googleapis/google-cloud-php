@@ -1,19 +1,19 @@
 {
-  "updateTime": "2020-01-11T10:59:04.670105Z",
+  "updateTime": "2020-01-17T10:59:48.033229Z",
   "sources": [
     {
       "generator": {
         "name": "artman",
-        "version": "0.43.0",
-        "dockerImage": "googleapis/artman@sha256:264654a37596a44b0668b8ce6ac41082d713f6ee150b3fc6425fa78cc64e4f20"
+        "version": "0.44.1",
+        "dockerImage": "googleapis/artman@sha256:5599b61e56a372d21b671969ee915fbca0f6c3a0daaeb898d01f8f685f1bbc8b"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "b08714b378e8e5b0c4ecdde73f92c36d6303b4b6",
-        "internalRef": "289189004"
+        "sha": "58e770d568a2b78168ddc19a874178fee8265a9d",
+        "internalRef": "290146169"
       }
     }
   ],
@@ -37,6 +37,737 @@
         "generator": "gapic",
         "config": "google/bigtable/admin/artman_bigtableadmin.yaml"
       }
+    }
+  ],
+  "newFiles": [
+    {
+      "path": ".gitattributes"
+    },
+    {
+      "path": ".github/pull_request_template.md"
+    },
+    {
+      "path": "CONTRIBUTING.md"
+    },
+    {
+      "path": "LICENSE"
+    },
+    {
+      "path": "README.md"
+    },
+    {
+      "path": "VERSION"
+    },
+    {
+      "path": "composer.json"
+    },
+    {
+      "path": "metadata/Admin/V2/BigtableInstanceAdmin.php"
+    },
+    {
+      "path": "metadata/Admin/V2/BigtableTableAdmin.php"
+    },
+    {
+      "path": "metadata/Admin/V2/Common.php"
+    },
+    {
+      "path": "metadata/Admin/V2/Instance.php"
+    },
+    {
+      "path": "metadata/Admin/V2/Table.php"
+    },
+    {
+      "path": "metadata/V2/Bigtable.php"
+    },
+    {
+      "path": "metadata/V2/Data.php"
+    },
+    {
+      "path": "phpunit-conformance.xml.dist"
+    },
+    {
+      "path": "phpunit-snippets.xml.dist"
+    },
+    {
+      "path": "phpunit-system.xml.dist"
+    },
+    {
+      "path": "phpunit.xml.dist"
+    },
+    {
+      "path": "src/Admin/V2/AppProfile.php"
+    },
+    {
+      "path": "src/Admin/V2/AppProfile/MultiClusterRoutingUseAny.php"
+    },
+    {
+      "path": "src/Admin/V2/AppProfile/SingleClusterRouting.php"
+    },
+    {
+      "path": "src/Admin/V2/AppProfile_MultiClusterRoutingUseAny.php"
+    },
+    {
+      "path": "src/Admin/V2/AppProfile_SingleClusterRouting.php"
+    },
+    {
+      "path": "src/Admin/V2/BigtableInstanceAdminClient.php"
+    },
+    {
+      "path": "src/Admin/V2/BigtableInstanceAdminGrpcClient.php"
+    },
+    {
+      "path": "src/Admin/V2/BigtableTableAdminClient.php"
+    },
+    {
+      "path": "src/Admin/V2/BigtableTableAdminGrpcClient.php"
+    },
+    {
+      "path": "src/Admin/V2/CheckConsistencyRequest.php"
+    },
+    {
+      "path": "src/Admin/V2/CheckConsistencyResponse.php"
+    },
+    {
+      "path": "src/Admin/V2/Cluster.php"
+    },
+    {
+      "path": "src/Admin/V2/Cluster/State.php"
+    },
+    {
+      "path": "src/Admin/V2/Cluster_State.php"
+    },
+    {
+      "path": "src/Admin/V2/ColumnFamily.php"
+    },
+    {
+      "path": "src/Admin/V2/CreateAppProfileRequest.php"
+    },
+    {
+      "path": "src/Admin/V2/CreateClusterMetadata.php"
+    },
+    {
+      "path": "src/Admin/V2/CreateClusterRequest.php"
+    },
+    {
+      "path": "src/Admin/V2/CreateInstanceMetadata.php"
+    },
+    {
+      "path": "src/Admin/V2/CreateInstanceRequest.php"
+    },
+    {
+      "path": "src/Admin/V2/CreateTableFromSnapshotMetadata.php"
+    },
+    {
+      "path": "src/Admin/V2/CreateTableFromSnapshotRequest.php"
+    },
+    {
+      "path": "src/Admin/V2/CreateTableRequest.php"
+    },
+    {
+      "path": "src/Admin/V2/CreateTableRequest/Split.php"
+    },
+    {
+      "path": "src/Admin/V2/CreateTableRequest_Split.php"
+    },
+    {
+      "path": "src/Admin/V2/DeleteAppProfileRequest.php"
+    },
+    {
+      "path": "src/Admin/V2/DeleteClusterRequest.php"
+    },
+    {
+      "path": "src/Admin/V2/DeleteInstanceRequest.php"
+    },
+    {
+      "path": "src/Admin/V2/DeleteSnapshotRequest.php"
+    },
+    {
+      "path": "src/Admin/V2/DeleteTableRequest.php"
+    },
+    {
+      "path": "src/Admin/V2/DropRowRangeRequest.php"
+    },
+    {
+      "path": "src/Admin/V2/Gapic/BigtableInstanceAdminGapicClient.php"
+    },
+    {
+      "path": "src/Admin/V2/Gapic/BigtableTableAdminGapicClient.php"
+    },
+    {
+      "path": "src/Admin/V2/GcRule.php"
+    },
+    {
+      "path": "src/Admin/V2/GcRule/Intersection.php"
+    },
+    {
+      "path": "src/Admin/V2/GcRule/Union.php"
+    },
+    {
+      "path": "src/Admin/V2/GcRule_Intersection.php"
+    },
+    {
+      "path": "src/Admin/V2/GcRule_Union.php"
+    },
+    {
+      "path": "src/Admin/V2/GenerateConsistencyTokenRequest.php"
+    },
+    {
+      "path": "src/Admin/V2/GenerateConsistencyTokenResponse.php"
+    },
+    {
+      "path": "src/Admin/V2/GetAppProfileRequest.php"
+    },
+    {
+      "path": "src/Admin/V2/GetClusterRequest.php"
+    },
+    {
+      "path": "src/Admin/V2/GetInstanceRequest.php"
+    },
+    {
+      "path": "src/Admin/V2/GetSnapshotRequest.php"
+    },
+    {
+      "path": "src/Admin/V2/GetTableRequest.php"
+    },
+    {
+      "path": "src/Admin/V2/Instance.php"
+    },
+    {
+      "path": "src/Admin/V2/Instance/State.php"
+    },
+    {
+      "path": "src/Admin/V2/Instance/Type.php"
+    },
+    {
+      "path": "src/Admin/V2/Instance_State.php"
+    },
+    {
+      "path": "src/Admin/V2/Instance_Type.php"
+    },
+    {
+      "path": "src/Admin/V2/ListAppProfilesRequest.php"
+    },
+    {
+      "path": "src/Admin/V2/ListAppProfilesResponse.php"
+    },
+    {
+      "path": "src/Admin/V2/ListClustersRequest.php"
+    },
+    {
+      "path": "src/Admin/V2/ListClustersResponse.php"
+    },
+    {
+      "path": "src/Admin/V2/ListInstancesRequest.php"
+    },
+    {
+      "path": "src/Admin/V2/ListInstancesResponse.php"
+    },
+    {
+      "path": "src/Admin/V2/ListSnapshotsRequest.php"
+    },
+    {
+      "path": "src/Admin/V2/ListSnapshotsResponse.php"
+    },
+    {
+      "path": "src/Admin/V2/ListTablesRequest.php"
+    },
+    {
+      "path": "src/Admin/V2/ListTablesResponse.php"
+    },
+    {
+      "path": "src/Admin/V2/ModifyColumnFamiliesRequest.php"
+    },
+    {
+      "path": "src/Admin/V2/ModifyColumnFamiliesRequest/Modification.php"
+    },
+    {
+      "path": "src/Admin/V2/ModifyColumnFamiliesRequest_Modification.php"
+    },
+    {
+      "path": "src/Admin/V2/PartialUpdateInstanceRequest.php"
+    },
+    {
+      "path": "src/Admin/V2/README.md"
+    },
+    {
+      "path": "src/Admin/V2/Snapshot.php"
+    },
+    {
+      "path": "src/Admin/V2/Snapshot/State.php"
+    },
+    {
+      "path": "src/Admin/V2/SnapshotTableMetadata.php"
+    },
+    {
+      "path": "src/Admin/V2/SnapshotTableRequest.php"
+    },
+    {
+      "path": "src/Admin/V2/Snapshot_State.php"
+    },
+    {
+      "path": "src/Admin/V2/StorageType.php"
+    },
+    {
+      "path": "src/Admin/V2/Table.php"
+    },
+    {
+      "path": "src/Admin/V2/Table/ClusterState.php"
+    },
+    {
+      "path": "src/Admin/V2/Table/ClusterState/ReplicationState.php"
+    },
+    {
+      "path": "src/Admin/V2/Table/TimestampGranularity.php"
+    },
+    {
+      "path": "src/Admin/V2/Table/View.php"
+    },
+    {
+      "path": "src/Admin/V2/Table_ClusterState.php"
+    },
+    {
+      "path": "src/Admin/V2/Table_ClusterState_ReplicationState.php"
+    },
+    {
+      "path": "src/Admin/V2/Table_TimestampGranularity.php"
+    },
+    {
+      "path": "src/Admin/V2/Table_View.php"
+    },
+    {
+      "path": "src/Admin/V2/UpdateAppProfileMetadata.php"
+    },
+    {
+      "path": "src/Admin/V2/UpdateAppProfileRequest.php"
+    },
+    {
+      "path": "src/Admin/V2/UpdateClusterMetadata.php"
+    },
+    {
+      "path": "src/Admin/V2/UpdateInstanceMetadata.php"
+    },
+    {
+      "path": "src/Admin/V2/resources/bigtable_instance_admin_client_config.json"
+    },
+    {
+      "path": "src/Admin/V2/resources/bigtable_instance_admin_descriptor_config.php"
+    },
+    {
+      "path": "src/Admin/V2/resources/bigtable_instance_admin_rest_client_config.php"
+    },
+    {
+      "path": "src/Admin/V2/resources/bigtable_table_admin_client_config.json"
+    },
+    {
+      "path": "src/Admin/V2/resources/bigtable_table_admin_descriptor_config.php"
+    },
+    {
+      "path": "src/Admin/V2/resources/bigtable_table_admin_rest_client_config.php"
+    },
+    {
+      "path": "src/BigtableClient.php"
+    },
+    {
+      "path": "src/ChunkFormatter.php"
+    },
+    {
+      "path": "src/DataUtil.php"
+    },
+    {
+      "path": "src/Exception/BigtableDataOperationException.php"
+    },
+    {
+      "path": "src/Filter.php"
+    },
+    {
+      "path": "src/Filter/Builder/FamilyFilter.php"
+    },
+    {
+      "path": "src/Filter/Builder/KeyFilter.php"
+    },
+    {
+      "path": "src/Filter/Builder/LimitFilter.php"
+    },
+    {
+      "path": "src/Filter/Builder/OffsetFilter.php"
+    },
+    {
+      "path": "src/Filter/Builder/QualifierFilter.php"
+    },
+    {
+      "path": "src/Filter/Builder/Range.php"
+    },
+    {
+      "path": "src/Filter/Builder/RegexTrait.php"
+    },
+    {
+      "path": "src/Filter/Builder/TimestampFilter.php"
+    },
+    {
+      "path": "src/Filter/Builder/ValueFilter.php"
+    },
+    {
+      "path": "src/Filter/ChainFilter.php"
+    },
+    {
+      "path": "src/Filter/ConditionFilter.php"
+    },
+    {
+      "path": "src/Filter/FilterInterface.php"
+    },
+    {
+      "path": "src/Filter/InterleaveFilter.php"
+    },
+    {
+      "path": "src/Filter/QualifierRangeFilter.php"
+    },
+    {
+      "path": "src/Filter/SimpleFilter.php"
+    },
+    {
+      "path": "src/Filter/TimestampRangeFilter.php"
+    },
+    {
+      "path": "src/Filter/ValueRangeFilter.php"
+    },
+    {
+      "path": "src/Mutations.php"
+    },
+    {
+      "path": "src/ReadModifyWriteRowRules.php"
+    },
+    {
+      "path": "src/ResumableStream.php"
+    },
+    {
+      "path": "src/Table.php"
+    },
+    {
+      "path": "src/V2/BigtableClient.php"
+    },
+    {
+      "path": "src/V2/BigtableGrpcClient.php"
+    },
+    {
+      "path": "src/V2/Cell.php"
+    },
+    {
+      "path": "src/V2/CheckAndMutateRowRequest.php"
+    },
+    {
+      "path": "src/V2/CheckAndMutateRowResponse.php"
+    },
+    {
+      "path": "src/V2/Column.php"
+    },
+    {
+      "path": "src/V2/ColumnRange.php"
+    },
+    {
+      "path": "src/V2/Family.php"
+    },
+    {
+      "path": "src/V2/Gapic/BigtableGapicClient.php"
+    },
+    {
+      "path": "src/V2/MutateRowRequest.php"
+    },
+    {
+      "path": "src/V2/MutateRowResponse.php"
+    },
+    {
+      "path": "src/V2/MutateRowsRequest.php"
+    },
+    {
+      "path": "src/V2/MutateRowsRequest/Entry.php"
+    },
+    {
+      "path": "src/V2/MutateRowsRequest_Entry.php"
+    },
+    {
+      "path": "src/V2/MutateRowsResponse.php"
+    },
+    {
+      "path": "src/V2/MutateRowsResponse/Entry.php"
+    },
+    {
+      "path": "src/V2/MutateRowsResponse_Entry.php"
+    },
+    {
+      "path": "src/V2/Mutation.php"
+    },
+    {
+      "path": "src/V2/Mutation/DeleteFromColumn.php"
+    },
+    {
+      "path": "src/V2/Mutation/DeleteFromFamily.php"
+    },
+    {
+      "path": "src/V2/Mutation/DeleteFromRow.php"
+    },
+    {
+      "path": "src/V2/Mutation/SetCell.php"
+    },
+    {
+      "path": "src/V2/Mutation_DeleteFromColumn.php"
+    },
+    {
+      "path": "src/V2/Mutation_DeleteFromFamily.php"
+    },
+    {
+      "path": "src/V2/Mutation_DeleteFromRow.php"
+    },
+    {
+      "path": "src/V2/Mutation_SetCell.php"
+    },
+    {
+      "path": "src/V2/README.md"
+    },
+    {
+      "path": "src/V2/ReadModifyWriteRowRequest.php"
+    },
+    {
+      "path": "src/V2/ReadModifyWriteRowResponse.php"
+    },
+    {
+      "path": "src/V2/ReadModifyWriteRule.php"
+    },
+    {
+      "path": "src/V2/ReadRowsRequest.php"
+    },
+    {
+      "path": "src/V2/ReadRowsResponse.php"
+    },
+    {
+      "path": "src/V2/ReadRowsResponse/CellChunk.php"
+    },
+    {
+      "path": "src/V2/ReadRowsResponse_CellChunk.php"
+    },
+    {
+      "path": "src/V2/Row.php"
+    },
+    {
+      "path": "src/V2/RowFilter.php"
+    },
+    {
+      "path": "src/V2/RowFilter/Chain.php"
+    },
+    {
+      "path": "src/V2/RowFilter/Condition.php"
+    },
+    {
+      "path": "src/V2/RowFilter/Interleave.php"
+    },
+    {
+      "path": "src/V2/RowFilter_Chain.php"
+    },
+    {
+      "path": "src/V2/RowFilter_Condition.php"
+    },
+    {
+      "path": "src/V2/RowFilter_Interleave.php"
+    },
+    {
+      "path": "src/V2/RowRange.php"
+    },
+    {
+      "path": "src/V2/RowSet.php"
+    },
+    {
+      "path": "src/V2/SampleRowKeysRequest.php"
+    },
+    {
+      "path": "src/V2/SampleRowKeysResponse.php"
+    },
+    {
+      "path": "src/V2/TimestampRange.php"
+    },
+    {
+      "path": "src/V2/ValueRange.php"
+    },
+    {
+      "path": "src/V2/resources/bigtable_client_config.json"
+    },
+    {
+      "path": "src/V2/resources/bigtable_descriptor_config.php"
+    },
+    {
+      "path": "src/V2/resources/bigtable_rest_client_config.php"
+    },
+    {
+      "path": "synth.metadata"
+    },
+    {
+      "path": "synth.py"
+    },
+    {
+      "path": "tests/Conformance/ReadRowsTest.php"
+    },
+    {
+      "path": "tests/Conformance/fixtures/read-rows-test.json"
+    },
+    {
+      "path": "tests/Snippet/BigtableClientTest.php"
+    },
+    {
+      "path": "tests/Snippet/ChunkFormatterTest.php"
+    },
+    {
+      "path": "tests/Snippet/Filter/Builder/FamilyFilterTest.php"
+    },
+    {
+      "path": "tests/Snippet/Filter/Builder/KeyFilterTest.php"
+    },
+    {
+      "path": "tests/Snippet/Filter/Builder/LimitFilterTest.php"
+    },
+    {
+      "path": "tests/Snippet/Filter/Builder/OffsetFilterTest.php"
+    },
+    {
+      "path": "tests/Snippet/Filter/Builder/QualifierFilterTest.php"
+    },
+    {
+      "path": "tests/Snippet/Filter/Builder/TimestampFilterTest.php"
+    },
+    {
+      "path": "tests/Snippet/Filter/Builder/ValueFilterTest.php"
+    },
+    {
+      "path": "tests/Snippet/Filter/ChainFilterTest.php"
+    },
+    {
+      "path": "tests/Snippet/Filter/ConditionFilterTest.php"
+    },
+    {
+      "path": "tests/Snippet/Filter/InterleaveFilterTest.php"
+    },
+    {
+      "path": "tests/Snippet/Filter/QualifierRangeFilterTest.php"
+    },
+    {
+      "path": "tests/Snippet/Filter/TimestampRangeFilterTest.php"
+    },
+    {
+      "path": "tests/Snippet/Filter/ValueRangeFilterTest.php"
+    },
+    {
+      "path": "tests/Snippet/FilterTest.php"
+    },
+    {
+      "path": "tests/Snippet/TableTest.php"
+    },
+    {
+      "path": "tests/System/BigtableInstanceAdminClientTest.php"
+    },
+    {
+      "path": "tests/System/BigtableTestCase.php"
+    },
+    {
+      "path": "tests/System/CheckAndMutateRowTest.php"
+    },
+    {
+      "path": "tests/System/FilterTest.php"
+    },
+    {
+      "path": "tests/System/MutateRowsTest.php"
+    },
+    {
+      "path": "tests/System/ReadModifyWriteRowTest.php"
+    },
+    {
+      "path": "tests/System/ReadRowsTest.php"
+    },
+    {
+      "path": "tests/System/SampleRowKeysTest.php"
+    },
+    {
+      "path": "tests/System/bootstrap.php"
+    },
+    {
+      "path": "tests/System/data/data.json"
+    },
+    {
+      "path": "tests/Unit/Admin/V2/BigtableInstanceAdminClientTest.php"
+    },
+    {
+      "path": "tests/Unit/Admin/V2/BigtableTableAdminClientTest.php"
+    },
+    {
+      "path": "tests/Unit/BigtableClientTest.php"
+    },
+    {
+      "path": "tests/Unit/ChunkFormatterTest.php"
+    },
+    {
+      "path": "tests/Unit/DataUtilTest.php"
+    },
+    {
+      "path": "tests/Unit/Filter/Builder/FamilyFilterTest.php"
+    },
+    {
+      "path": "tests/Unit/Filter/Builder/KeyFilterTest.php"
+    },
+    {
+      "path": "tests/Unit/Filter/Builder/LimitFilterTest.php"
+    },
+    {
+      "path": "tests/Unit/Filter/Builder/OffsetFilterTest.php"
+    },
+    {
+      "path": "tests/Unit/Filter/Builder/QualifierFilterTest.php"
+    },
+    {
+      "path": "tests/Unit/Filter/Builder/RangeTest.php"
+    },
+    {
+      "path": "tests/Unit/Filter/Builder/RegexTraitTest.php"
+    },
+    {
+      "path": "tests/Unit/Filter/Builder/TimestampFilterTest.php"
+    },
+    {
+      "path": "tests/Unit/Filter/Builder/ValueFilterTest.php"
+    },
+    {
+      "path": "tests/Unit/Filter/ChainFilterTest.php"
+    },
+    {
+      "path": "tests/Unit/Filter/ConditionFilterTest.php"
+    },
+    {
+      "path": "tests/Unit/Filter/InterleaveFilterTest.php"
+    },
+    {
+      "path": "tests/Unit/Filter/QualifierRangeFilterTest.php"
+    },
+    {
+      "path": "tests/Unit/Filter/SimpleFilterTest.php"
+    },
+    {
+      "path": "tests/Unit/Filter/TimestampRangeFilterTest.php"
+    },
+    {
+      "path": "tests/Unit/Filter/ValueRangeFilterTest.php"
+    },
+    {
+      "path": "tests/Unit/FilterTest.php"
+    },
+    {
+      "path": "tests/Unit/MutationsTest.php"
+    },
+    {
+      "path": "tests/Unit/ReadModifyWriteRowRulesTest.php"
+    },
+    {
+      "path": "tests/Unit/SmartRetriesTest.php"
+    },
+    {
+      "path": "tests/Unit/TableTest.php"
+    },
+    {
+      "path": "tests/Unit/V2/BigtableClientTest.php"
     }
   ]
 }

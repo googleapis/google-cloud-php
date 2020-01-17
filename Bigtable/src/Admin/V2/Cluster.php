@@ -24,7 +24,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * (`CreationOnly`)
      * The location where this cluster's nodes and storage reside. For best
@@ -34,21 +34,21 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string location = 2;</code>
      */
-    private $location = '';
+    protected $location = '';
     /**
      * (`OutputOnly`)
      * The current state of the cluster.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Cluster.State state = 3;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * The number of nodes allocated to this cluster. More nodes enable higher
      * throughput and more consistent performance.
      *
      * Generated from protobuf field <code>int32 serve_nodes = 4;</code>
      */
-    private $serve_nodes = 0;
+    protected $serve_nodes = 0;
     /**
      * (`CreationOnly`)
      * The type of storage used by this cluster to serve its
@@ -56,7 +56,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.StorageType default_storage_type = 5;</code>
      */
-    private $default_storage_type = 0;
+    protected $default_storage_type = 0;
 
     /**
      * Constructor.

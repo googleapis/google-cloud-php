@@ -22,7 +22,7 @@ class SingleClusterRouting extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cluster_id = 1;</code>
      */
-    private $cluster_id = '';
+    protected $cluster_id = '';
     /**
      * Whether or not `CheckAndMutateRow` and `ReadModifyWriteRow` requests are
      * allowed by this app profile. It is unsafe to send these requests to
@@ -30,7 +30,7 @@ class SingleClusterRouting extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool allow_transactional_writes = 2;</code>
      */
-    private $allow_transactional_writes = false;
+    protected $allow_transactional_writes = false;
 
     /**
      * Constructor.

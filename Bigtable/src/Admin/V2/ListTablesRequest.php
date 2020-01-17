@@ -22,27 +22,27 @@ class ListTablesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The view to be applied to the returned tables' fields.
      * Defaults to `NAME_ONLY` if unspecified; no others are currently supported.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.View view = 2;</code>
      */
-    private $view = 0;
+    protected $view = 0;
     /**
      * Maximum number of results per page.
      * CURRENTLY UNIMPLEMENTED AND IGNORED.
      *
      * Generated from protobuf field <code>int32 page_size = 4;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * The value of `next_page_token` returned by a previous call.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * Constructor.

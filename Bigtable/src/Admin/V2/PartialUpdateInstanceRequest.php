@@ -20,14 +20,14 @@ class PartialUpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Instance instance = 1;</code>
      */
-    private $instance = null;
+    protected $instance = null;
     /**
      * The subset of Instance fields which should be replaced.
      * Must be explicitly set.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * Constructor.

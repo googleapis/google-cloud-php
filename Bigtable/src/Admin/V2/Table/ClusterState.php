@@ -21,7 +21,7 @@ class ClusterState extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.ClusterState.ReplicationState replication_state = 1;</code>
      */
-    private $replication_state = 0;
+    protected $replication_state = 0;
 
     /**
      * Constructor.

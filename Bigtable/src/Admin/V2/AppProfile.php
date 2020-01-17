@@ -23,7 +23,7 @@ class AppProfile extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Strongly validated etag for optimistic concurrency control. Preserve the
      * value returned from `GetAppProfile` when calling `UpdateAppProfile` to
@@ -36,13 +36,13 @@ class AppProfile extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 2;</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * Optional long form description of the use case for this AppProfile.
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    private $description = '';
+    protected $description = '';
     protected $routing_policy;
 
     /**

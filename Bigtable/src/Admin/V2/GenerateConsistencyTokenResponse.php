@@ -21,7 +21,7 @@ class GenerateConsistencyTokenResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string consistency_token = 1;</code>
      */
-    private $consistency_token = '';
+    protected $consistency_token = '';
 
     /**
      * Constructor.

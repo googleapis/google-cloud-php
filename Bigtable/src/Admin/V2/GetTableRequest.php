@@ -23,14 +23,14 @@ class GetTableRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The view to be applied to the returned table's fields.
      * Defaults to `SCHEMA_VIEW` if unspecified.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.View view = 2;</code>
      */
-    private $view = 0;
+    protected $view = 0;
 
     /**
      * Constructor.

@@ -21,13 +21,13 @@ class DeleteAppProfileRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * If true, ignore safety checks when deleting the app profile.
      *
      * Generated from protobuf field <code>bool ignore_warnings = 2;</code>
      */
-    private $ignore_warnings = false;
+    protected $ignore_warnings = false;
 
     /**
      * Constructor.

@@ -22,7 +22,7 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The ID to be used when referring to the new cluster within its instance,
      * e.g., just `mycluster` rather than
@@ -30,14 +30,14 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cluster_id = 2;</code>
      */
-    private $cluster_id = '';
+    protected $cluster_id = '';
     /**
      * The cluster to be created.
      * Fields marked `OutputOnly` must be left blank.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Cluster cluster = 3;</code>
      */
-    private $cluster = null;
+    protected $cluster = null;
 
     /**
      * Constructor.

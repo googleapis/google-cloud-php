@@ -24,7 +24,7 @@ class ColumnFamily extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.GcRule gc_rule = 1;</code>
      */
-    private $gc_rule = null;
+    protected $gc_rule = null;
 
     /**
      * Constructor.

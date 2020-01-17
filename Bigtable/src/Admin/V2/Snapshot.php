@@ -28,14 +28,14 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * (`OutputOnly`)
      * The source table at the time the snapshot was taken.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Table source_table = 2;</code>
      */
-    private $source_table = null;
+    protected $source_table = null;
     /**
      * (`OutputOnly`)
      * The size of the data in the source table at the time the snapshot was
@@ -44,14 +44,14 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 data_size_bytes = 3;</code>
      */
-    private $data_size_bytes = 0;
+    protected $data_size_bytes = 0;
     /**
      * (`OutputOnly`)
      * The time when the snapshot is created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * (`OutputOnly`)
      * The time when the snapshot will be deleted. The maximum amount of time a
@@ -60,21 +60,21 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 5;</code>
      */
-    private $delete_time = null;
+    protected $delete_time = null;
     /**
      * (`OutputOnly`)
      * The current state of the snapshot.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Snapshot.State state = 6;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * (`OutputOnly`)
      * Description of the snapshot.
      *
      * Generated from protobuf field <code>string description = 7;</code>
      */
-    private $description = '';
+    protected $description = '';
 
     /**
      * Constructor.

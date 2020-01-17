@@ -20,19 +20,19 @@ class UpdateClusterMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Cluster original_request = 1;</code>
      */
-    private $original_request = null;
+    protected $original_request = null;
     /**
      * The time at which the original request was received.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp request_time = 2;</code>
      */
-    private $request_time = null;
+    protected $request_time = null;
     /**
      * The time at which the operation failed or was completed successfully.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp finish_time = 3;</code>
      */
-    private $finish_time = null;
+    protected $finish_time = null;
 
     /**
      * Constructor.

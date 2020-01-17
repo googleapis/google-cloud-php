@@ -22,20 +22,20 @@ class CreateTableRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The name by which the new table should be referred to within the parent
      * instance, e.g., `foobar` rather than `<parent>/tables/foobar`.
      *
      * Generated from protobuf field <code>string table_id = 2;</code>
      */
-    private $table_id = '';
+    protected $table_id = '';
     /**
      * The Table to create.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Table table = 3;</code>
      */
-    private $table = null;
+    protected $table = null;
     /**
      * The optional list of row keys that will be used to initially split the
      * table into several tablets (tablets are similar to HBase regions).

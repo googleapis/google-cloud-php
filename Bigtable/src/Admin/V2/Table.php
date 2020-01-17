@@ -24,7 +24,7 @@ class Table extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * (`OutputOnly`)
      * Map from cluster ID to per-cluster table state.
@@ -53,7 +53,7 @@ class Table extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.TimestampGranularity granularity = 4;</code>
      */
-    private $granularity = 0;
+    protected $granularity = 0;
 
     /**
      * Constructor.

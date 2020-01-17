@@ -25,7 +25,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The descriptive name for this instance as it appears in UIs.
      * Can be changed at any time, but should be kept globally unique
@@ -33,20 +33,20 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * (`OutputOnly`)
      * The current state of the instance.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Instance.State state = 3;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * The type of the instance. Defaults to `PRODUCTION`.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Instance.Type type = 4;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Labels are a flexible and lightweight mechanism for organizing cloud
      * resources into groups that reflect a customer's organizational needs and

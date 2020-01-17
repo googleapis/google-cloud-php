@@ -23,7 +23,7 @@ class ModifyColumnFamiliesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Modifications to be atomically applied to the specified table's families.
      * Entries are applied in order, meaning that earlier modifications can be
