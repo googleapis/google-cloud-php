@@ -21,40 +21,40 @@ class VideoAnnotationProgress extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string input_uri = 1;</code>
      */
-    private $input_uri = '';
+    protected $input_uri = '';
     /**
      * Approximate percentage processed thus far. Guaranteed to be
      * 100 when fully processed.
      *
      * Generated from protobuf field <code>int32 progress_percent = 2;</code>
      */
-    private $progress_percent = 0;
+    protected $progress_percent = 0;
     /**
      * Time when the request was received.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 3;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * Time of the most recent update.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4;</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Specifies which feature is being tracked if the request contains more than
      * one features.
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.Feature feature = 5;</code>
      */
-    private $feature = 0;
+    protected $feature = 0;
     /**
      * Specifies which segment is being tracked if the request contains more than
      * one segments.
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.VideoSegment segment = 6;</code>
      */
-    private $segment = null;
+    protected $segment = null;
 
     /**
      * Constructor.

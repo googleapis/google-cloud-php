@@ -28,43 +28,43 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.LabelDetectionConfig label_detection_config = 2;</code>
      */
-    private $label_detection_config = null;
+    protected $label_detection_config = null;
     /**
      * Config for SHOT_CHANGE_DETECTION.
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.ShotChangeDetectionConfig shot_change_detection_config = 3;</code>
      */
-    private $shot_change_detection_config = null;
+    protected $shot_change_detection_config = null;
     /**
      * Config for EXPLICIT_CONTENT_DETECTION.
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.ExplicitContentDetectionConfig explicit_content_detection_config = 4;</code>
      */
-    private $explicit_content_detection_config = null;
+    protected $explicit_content_detection_config = null;
     /**
      * Config for FACE_DETECTION.
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.FaceDetectionConfig face_detection_config = 5;</code>
      */
-    private $face_detection_config = null;
+    protected $face_detection_config = null;
     /**
      * Config for SPEECH_TRANSCRIPTION.
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.SpeechTranscriptionConfig speech_transcription_config = 6;</code>
      */
-    private $speech_transcription_config = null;
+    protected $speech_transcription_config = null;
     /**
      * Config for TEXT_DETECTION.
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.TextDetectionConfig text_detection_config = 8;</code>
      */
-    private $text_detection_config = null;
+    protected $text_detection_config = null;
     /**
      * Config for OBJECT_TRACKING.
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.ObjectTrackingConfig object_tracking_config = 13;</code>
      */
-    private $object_tracking_config = null;
+    protected $object_tracking_config = null;
 
     /**
      * Constructor.

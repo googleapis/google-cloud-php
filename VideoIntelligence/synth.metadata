@@ -1,19 +1,19 @@
 {
-  "updateTime": "2019-12-10T02:45:45.265159Z",
+  "updateTime": "2020-01-17T11:06:04.881295Z",
   "sources": [
     {
       "generator": {
         "name": "artman",
-        "version": "0.42.1",
-        "dockerImage": "googleapis/artman@sha256:c773192618c608a7a0415dd95282f841f8e6bcdef7dd760a988c93b77a64bd57"
+        "version": "0.44.1",
+        "dockerImage": "googleapis/artman@sha256:5599b61e56a372d21b671969ee915fbca0f6c3a0daaeb898d01f8f685f1bbc8b"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "6cc9499e225a4f6a5e34fe07e390f67055d7991c",
-        "internalRef": "284643689"
+        "sha": "58e770d568a2b78168ddc19a874178fee8265a9d",
+        "internalRef": "290146169"
       }
     }
   ],
@@ -37,6 +37,293 @@
         "generator": "gapic",
         "config": "google/cloud/videointelligence/artman_videointelligence_v1beta2.yaml"
       }
+    }
+  ],
+  "newFiles": [
+    {
+      "path": ".gitattributes"
+    },
+    {
+      "path": ".github/pull_request_template.md"
+    },
+    {
+      "path": "CONTRIBUTING.md"
+    },
+    {
+      "path": "LICENSE"
+    },
+    {
+      "path": "README.md"
+    },
+    {
+      "path": "VERSION"
+    },
+    {
+      "path": "composer.json"
+    },
+    {
+      "path": "metadata/V1/VideoIntelligence.php"
+    },
+    {
+      "path": "metadata/V1Beta2/VideoIntelligence.php"
+    },
+    {
+      "path": "phpunit-snippets.xml.dist"
+    },
+    {
+      "path": "phpunit-system.xml.dist"
+    },
+    {
+      "path": "phpunit.xml.dist"
+    },
+    {
+      "path": "src/V1/AnnotateVideoProgress.php"
+    },
+    {
+      "path": "src/V1/AnnotateVideoRequest.php"
+    },
+    {
+      "path": "src/V1/AnnotateVideoResponse.php"
+    },
+    {
+      "path": "src/V1/Entity.php"
+    },
+    {
+      "path": "src/V1/ExplicitContentAnnotation.php"
+    },
+    {
+      "path": "src/V1/ExplicitContentDetectionConfig.php"
+    },
+    {
+      "path": "src/V1/ExplicitContentFrame.php"
+    },
+    {
+      "path": "src/V1/FaceAnnotation.php"
+    },
+    {
+      "path": "src/V1/FaceDetectionConfig.php"
+    },
+    {
+      "path": "src/V1/FaceFrame.php"
+    },
+    {
+      "path": "src/V1/FaceSegment.php"
+    },
+    {
+      "path": "src/V1/Feature.php"
+    },
+    {
+      "path": "src/V1/Gapic/VideoIntelligenceServiceGapicClient.php"
+    },
+    {
+      "path": "src/V1/LabelAnnotation.php"
+    },
+    {
+      "path": "src/V1/LabelDetectionConfig.php"
+    },
+    {
+      "path": "src/V1/LabelDetectionMode.php"
+    },
+    {
+      "path": "src/V1/LabelFrame.php"
+    },
+    {
+      "path": "src/V1/LabelSegment.php"
+    },
+    {
+      "path": "src/V1/Likelihood.php"
+    },
+    {
+      "path": "src/V1/NormalizedBoundingBox.php"
+    },
+    {
+      "path": "src/V1/NormalizedBoundingPoly.php"
+    },
+    {
+      "path": "src/V1/NormalizedVertex.php"
+    },
+    {
+      "path": "src/V1/ObjectTrackingAnnotation.php"
+    },
+    {
+      "path": "src/V1/ObjectTrackingConfig.php"
+    },
+    {
+      "path": "src/V1/ObjectTrackingFrame.php"
+    },
+    {
+      "path": "src/V1/README.md"
+    },
+    {
+      "path": "src/V1/ShotChangeDetectionConfig.php"
+    },
+    {
+      "path": "src/V1/SpeechContext.php"
+    },
+    {
+      "path": "src/V1/SpeechRecognitionAlternative.php"
+    },
+    {
+      "path": "src/V1/SpeechTranscription.php"
+    },
+    {
+      "path": "src/V1/SpeechTranscriptionConfig.php"
+    },
+    {
+      "path": "src/V1/TextAnnotation.php"
+    },
+    {
+      "path": "src/V1/TextDetectionConfig.php"
+    },
+    {
+      "path": "src/V1/TextFrame.php"
+    },
+    {
+      "path": "src/V1/TextSegment.php"
+    },
+    {
+      "path": "src/V1/VideoAnnotationProgress.php"
+    },
+    {
+      "path": "src/V1/VideoAnnotationResults.php"
+    },
+    {
+      "path": "src/V1/VideoContext.php"
+    },
+    {
+      "path": "src/V1/VideoIntelligenceServiceClient.php"
+    },
+    {
+      "path": "src/V1/VideoIntelligenceServiceGrpcClient.php"
+    },
+    {
+      "path": "src/V1/VideoSegment.php"
+    },
+    {
+      "path": "src/V1/WordInfo.php"
+    },
+    {
+      "path": "src/V1/resources/video_intelligence_service_client_config.json"
+    },
+    {
+      "path": "src/V1/resources/video_intelligence_service_descriptor_config.php"
+    },
+    {
+      "path": "src/V1/resources/video_intelligence_service_rest_client_config.php"
+    },
+    {
+      "path": "src/V1beta2/AnnotateVideoProgress.php"
+    },
+    {
+      "path": "src/V1beta2/AnnotateVideoRequest.php"
+    },
+    {
+      "path": "src/V1beta2/AnnotateVideoResponse.php"
+    },
+    {
+      "path": "src/V1beta2/Entity.php"
+    },
+    {
+      "path": "src/V1beta2/ExplicitContentAnnotation.php"
+    },
+    {
+      "path": "src/V1beta2/ExplicitContentDetectionConfig.php"
+    },
+    {
+      "path": "src/V1beta2/ExplicitContentFrame.php"
+    },
+    {
+      "path": "src/V1beta2/FaceAnnotation.php"
+    },
+    {
+      "path": "src/V1beta2/FaceDetectionConfig.php"
+    },
+    {
+      "path": "src/V1beta2/FaceFrame.php"
+    },
+    {
+      "path": "src/V1beta2/FaceSegment.php"
+    },
+    {
+      "path": "src/V1beta2/Feature.php"
+    },
+    {
+      "path": "src/V1beta2/Gapic/VideoIntelligenceServiceGapicClient.php"
+    },
+    {
+      "path": "src/V1beta2/LabelAnnotation.php"
+    },
+    {
+      "path": "src/V1beta2/LabelDetectionConfig.php"
+    },
+    {
+      "path": "src/V1beta2/LabelDetectionMode.php"
+    },
+    {
+      "path": "src/V1beta2/LabelFrame.php"
+    },
+    {
+      "path": "src/V1beta2/LabelSegment.php"
+    },
+    {
+      "path": "src/V1beta2/Likelihood.php"
+    },
+    {
+      "path": "src/V1beta2/NormalizedBoundingBox.php"
+    },
+    {
+      "path": "src/V1beta2/README.md"
+    },
+    {
+      "path": "src/V1beta2/ShotChangeDetectionConfig.php"
+    },
+    {
+      "path": "src/V1beta2/VideoAnnotationProgress.php"
+    },
+    {
+      "path": "src/V1beta2/VideoAnnotationResults.php"
+    },
+    {
+      "path": "src/V1beta2/VideoContext.php"
+    },
+    {
+      "path": "src/V1beta2/VideoIntelligenceServiceClient.php"
+    },
+    {
+      "path": "src/V1beta2/VideoIntelligenceServiceGrpcClient.php"
+    },
+    {
+      "path": "src/V1beta2/VideoSegment.php"
+    },
+    {
+      "path": "src/V1beta2/resources/video_intelligence_service_client_config.json"
+    },
+    {
+      "path": "src/V1beta2/resources/video_intelligence_service_descriptor_config.php"
+    },
+    {
+      "path": "src/V1beta2/resources/video_intelligence_service_rest_client_config.php"
+    },
+    {
+      "path": "synth.metadata"
+    },
+    {
+      "path": "synth.py"
+    },
+    {
+      "path": "tests/System/V1/VideoIntelligenceServiceClientTest.php"
+    },
+    {
+      "path": "tests/System/V1/VideoIntelligenceServiceSmokeTest.php"
+    },
+    {
+      "path": "tests/System/bootstrap.php"
+    },
+    {
+      "path": "tests/Unit/V1/VideoIntelligenceServiceClientTest.php"
+    },
+    {
+      "path": "tests/Unit/V1beta2/VideoIntelligenceServiceClientTest.php"
     }
   ]
 }

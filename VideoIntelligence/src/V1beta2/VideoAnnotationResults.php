@@ -21,7 +21,7 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string input_uri = 1;</code>
      */
-    private $input_uri = '';
+    protected $input_uri = '';
     /**
      * Label annotations on video level or user specified segment level.
      * There is exactly one element for each unique label.
@@ -60,14 +60,14 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1beta2.ExplicitContentAnnotation explicit_annotation = 7;</code>
      */
-    private $explicit_annotation = null;
+    protected $explicit_annotation = null;
     /**
      * If set, indicates an error. Note that for a single `AnnotateVideoRequest`
      * some videos may succeed and some may fail.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 9;</code>
      */
-    private $error = null;
+    protected $error = null;
 
     /**
      * Constructor.

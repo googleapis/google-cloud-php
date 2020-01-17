@@ -24,7 +24,7 @@ class SpeechTranscriptionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language_code = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
     /**
      * Optional. Maximum number of recognition hypotheses to be returned.
      * Specifically, the maximum number of `SpeechRecognitionAlternative` messages
@@ -34,7 +34,7 @@ class SpeechTranscriptionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_alternatives = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $max_alternatives = 0;
+    protected $max_alternatives = 0;
     /**
      * Optional. If set to `true`, the server will attempt to filter out
      * profanities, replacing all but the initial character in each filtered word
@@ -43,7 +43,7 @@ class SpeechTranscriptionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool filter_profanity = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $filter_profanity = false;
+    protected $filter_profanity = false;
     /**
      * Optional. A means to provide context to assist the speech recognition.
      *
@@ -60,7 +60,7 @@ class SpeechTranscriptionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_automatic_punctuation = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $enable_automatic_punctuation = false;
+    protected $enable_automatic_punctuation = false;
     /**
      * Optional. For file formats, such as MXF or MKV, supporting multiple audio
      * tracks, specify up to two tracks. Default: track 0.
@@ -79,7 +79,7 @@ class SpeechTranscriptionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_speaker_diarization = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $enable_speaker_diarization = false;
+    protected $enable_speaker_diarization = false;
     /**
      * Optional. If set, specifies the estimated number of speakers in the conversation.
      * If not set, defaults to '2'.
@@ -87,7 +87,7 @@ class SpeechTranscriptionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 diarization_speaker_count = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $diarization_speaker_count = 0;
+    protected $diarization_speaker_count = 0;
     /**
      * Optional. If `true`, the top result includes a list of words and the
      * confidence for those words. If `false`, no word-level confidence
@@ -95,7 +95,7 @@ class SpeechTranscriptionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_word_confidence = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $enable_word_confidence = false;
+    protected $enable_word_confidence = false;
 
     /**
      * Constructor.

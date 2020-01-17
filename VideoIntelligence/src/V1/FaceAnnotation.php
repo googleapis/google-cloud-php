@@ -20,7 +20,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes thumbnail = 1;</code>
      */
-    private $thumbnail = '';
+    protected $thumbnail = '';
     /**
      * All video segments where a face was detected.
      *

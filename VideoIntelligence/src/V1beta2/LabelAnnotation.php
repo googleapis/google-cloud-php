@@ -20,7 +20,7 @@ class LabelAnnotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1beta2.Entity entity = 1;</code>
      */
-    private $entity = null;
+    protected $entity = null;
     /**
      * Common categories for the detected entity.
      * E.g. when the label is `Terrier` the category is likely `dog`. And in some

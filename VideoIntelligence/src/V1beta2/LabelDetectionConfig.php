@@ -22,7 +22,7 @@ class LabelDetectionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1beta2.LabelDetectionMode label_detection_mode = 1;</code>
      */
-    private $label_detection_mode = 0;
+    protected $label_detection_mode = 0;
     /**
      * Whether the video has been shot from a stationary (i.e. non-moving) camera.
      * When set to true, might improve detection accuracy for moving objects.
@@ -30,7 +30,7 @@ class LabelDetectionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool stationary_camera = 2;</code>
      */
-    private $stationary_camera = false;
+    protected $stationary_camera = false;
     /**
      * Model to use for label detection.
      * Supported values: "builtin/stable" (the default if unset) and
@@ -38,7 +38,7 @@ class LabelDetectionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string model = 3;</code>
      */
-    private $model = '';
+    protected $model = '';
 
     /**
      * Constructor.

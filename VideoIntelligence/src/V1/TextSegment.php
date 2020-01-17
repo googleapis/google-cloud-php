@@ -20,14 +20,14 @@ class TextSegment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.VideoSegment segment = 1;</code>
      */
-    private $segment = null;
+    protected $segment = null;
     /**
      * Confidence for the track of detected text. It is calculated as the highest
      * over all frames where OCR detected text appears.
      *
      * Generated from protobuf field <code>float confidence = 2;</code>
      */
-    private $confidence = 0.0;
+    protected $confidence = 0.0;
     /**
      * Information related to the frames where OCR detected text appears.
      *

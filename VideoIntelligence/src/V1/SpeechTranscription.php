@@ -31,7 +31,7 @@ class SpeechTranscription extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language_code = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
 
     /**
      * Constructor.

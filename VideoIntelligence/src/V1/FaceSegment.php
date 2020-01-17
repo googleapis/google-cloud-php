@@ -20,7 +20,7 @@ class FaceSegment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.VideoSegment segment = 1;</code>
      */
-    private $segment = null;
+    protected $segment = null;
 
     /**
      * Constructor.

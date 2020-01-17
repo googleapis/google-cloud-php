@@ -20,13 +20,13 @@ class ObjectTrackingAnnotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.Entity entity = 1;</code>
      */
-    private $entity = null;
+    protected $entity = null;
     /**
      * Object category's labeling confidence of this track.
      *
      * Generated from protobuf field <code>float confidence = 4;</code>
      */
-    private $confidence = 0.0;
+    protected $confidence = 0.0;
     /**
      * Information corresponding to all frames where this object track appears.
      * Non-streaming batch mode: it may be one or multiple ObjectTrackingFrame

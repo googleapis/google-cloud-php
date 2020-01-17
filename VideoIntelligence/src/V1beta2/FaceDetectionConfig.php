@@ -22,13 +22,13 @@ class FaceDetectionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string model = 1;</code>
      */
-    private $model = '';
+    protected $model = '';
     /**
      * Whether bounding boxes be included in the face annotation output.
      *
      * Generated from protobuf field <code>bool include_bounding_boxes = 2;</code>
      */
-    private $include_bounding_boxes = false;
+    protected $include_bounding_boxes = false;
 
     /**
      * Constructor.

@@ -29,7 +29,7 @@ class FaceFrame extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration time_offset = 2;</code>
      */
-    private $time_offset = null;
+    protected $time_offset = null;
 
     /**
      * Constructor.

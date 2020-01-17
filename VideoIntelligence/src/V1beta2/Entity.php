@@ -22,19 +22,19 @@ class Entity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string entity_id = 1;</code>
      */
-    private $entity_id = '';
+    protected $entity_id = '';
     /**
      * Textual description, e.g. `Fixed-gear bicycle`.
      *
      * Generated from protobuf field <code>string description = 2;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Language code for `description` in BCP-47 format.
      *
      * Generated from protobuf field <code>string language_code = 3;</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
 
     /**
      * Constructor.

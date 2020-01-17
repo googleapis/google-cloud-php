@@ -28,25 +28,25 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1beta2.LabelDetectionConfig label_detection_config = 2;</code>
      */
-    private $label_detection_config = null;
+    protected $label_detection_config = null;
     /**
      * Config for SHOT_CHANGE_DETECTION.
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1beta2.ShotChangeDetectionConfig shot_change_detection_config = 3;</code>
      */
-    private $shot_change_detection_config = null;
+    protected $shot_change_detection_config = null;
     /**
      * Config for EXPLICIT_CONTENT_DETECTION.
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1beta2.ExplicitContentDetectionConfig explicit_content_detection_config = 4;</code>
      */
-    private $explicit_content_detection_config = null;
+    protected $explicit_content_detection_config = null;
     /**
      * Config for FACE_DETECTION.
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1beta2.FaceDetectionConfig face_detection_config = 5;</code>
      */
-    private $face_detection_config = null;
+    protected $face_detection_config = null;
 
     /**
      * Constructor.
