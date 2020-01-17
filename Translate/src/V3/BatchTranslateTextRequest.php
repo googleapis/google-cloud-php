@@ -25,13 +25,13 @@ class BatchTranslateTextRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. Source language code.
      *
      * Generated from protobuf field <code>string source_language_code = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $source_language_code = '';
+    protected $source_language_code = '';
     /**
      * Required. Specify up to 10 language codes here.
      *
@@ -70,7 +70,7 @@ class BatchTranslateTextRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.translation.v3.OutputConfig output_config = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $output_config = null;
+    protected $output_config = null;
     /**
      * Optional. Glossaries to be applied for translation.
      * It's keyed by target language code.

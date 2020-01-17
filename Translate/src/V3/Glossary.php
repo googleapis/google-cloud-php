@@ -21,32 +21,32 @@ class Glossary extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Provides examples to build the glossary from.
      * Total glossary must not exceed 10M Unicode codepoints.
      *
      * Generated from protobuf field <code>.google.cloud.translation.v3.GlossaryInputConfig input_config = 5;</code>
      */
-    private $input_config = null;
+    protected $input_config = null;
     /**
      * Output only. The number of entries defined in the glossary.
      *
      * Generated from protobuf field <code>int32 entry_count = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $entry_count = 0;
+    protected $entry_count = 0;
     /**
      * Output only. When CreateGlossary was called.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp submit_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $submit_time = null;
+    protected $submit_time = null;
     /**
      * Output only. When the glossary creation was finished.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     protected $languages;
 
     /**

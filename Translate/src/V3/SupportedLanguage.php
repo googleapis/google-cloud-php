@@ -24,26 +24,26 @@ class SupportedLanguage extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language_code = 1;</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
     /**
      * Human readable name of the language localized in the display language
      * specified in the request.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Can be used as source language.
      *
      * Generated from protobuf field <code>bool support_source = 3;</code>
      */
-    private $support_source = false;
+    protected $support_source = false;
     /**
      * Can be used as target language.
      *
      * Generated from protobuf field <code>bool support_target = 4;</code>
      */
-    private $support_target = false;
+    protected $support_target = false;
 
     /**
      * Constructor.

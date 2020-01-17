@@ -21,14 +21,14 @@ class LanguageCodePair extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source_language_code = 1;</code>
      */
-    private $source_language_code = '';
+    protected $source_language_code = '';
     /**
      * Required. The BCP-47 language code for translation output, for example,
      * "zh-CN". Expected to be an exact match for GlossaryTerm.language_code.
      *
      * Generated from protobuf field <code>string target_language_code = 2;</code>
      */
-    private $target_language_code = '';
+    protected $target_language_code = '';
 
     /**
      * Constructor.

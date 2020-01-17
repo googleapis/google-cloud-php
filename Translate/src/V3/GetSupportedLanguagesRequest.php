@@ -28,7 +28,7 @@ class GetSupportedLanguagesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. The language to use to return localized, human readable names
      * of supported languages. If missing, then display names are not returned
@@ -36,7 +36,7 @@ class GetSupportedLanguagesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_language_code = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $display_language_code = '';
+    protected $display_language_code = '';
     /**
      * Optional. Get supported languages of this model.
      * The format depends on model type:
@@ -50,7 +50,7 @@ class GetSupportedLanguagesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string model = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $model = '';
+    protected $model = '';
 
     /**
      * Constructor.

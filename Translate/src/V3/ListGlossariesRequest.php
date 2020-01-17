@@ -20,14 +20,14 @@ class ListGlossariesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. Requested page size. The server may return fewer glossaries than
      * requested. If unspecified, the server picks an appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. A token identifying a page of results the server should return.
      * Typically, this is the value of [ListGlossariesResponse.next_page_token]
@@ -36,7 +36,7 @@ class ListGlossariesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Optional. Filter specifying constraints of a list operation.
      * Filtering is not supported yet, and the parameter currently has no effect.
@@ -44,7 +44,7 @@ class ListGlossariesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $filter = '';
+    protected $filter = '';
 
     /**
      * Constructor.

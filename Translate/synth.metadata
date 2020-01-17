@@ -1,19 +1,19 @@
 {
-  "updateTime": "2019-10-03T16:02:56.263550Z",
+  "updateTime": "2020-01-17T11:05:43.331112Z",
   "sources": [
     {
       "generator": {
         "name": "artman",
-        "version": "0.37.1",
-        "dockerImage": "googleapis/artman@sha256:6068f67900a3f0bdece596b97bda8fc70406ca0e137a941f4c81d3217c994a80"
+        "version": "0.44.1",
+        "dockerImage": "googleapis/artman@sha256:5599b61e56a372d21b671969ee915fbca0f6c3a0daaeb898d01f8f685f1bbc8b"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "c372c656aef153931708c80ac1a8186060841cdf",
-        "internalRef": "272521892"
+        "sha": "58e770d568a2b78168ddc19a874178fee8265a9d",
+        "internalRef": "290146169"
       }
     }
   ],
@@ -27,6 +27,224 @@
         "generator": "gapic",
         "config": "google/cloud/translate/artman_translate_v3.yaml"
       }
+    }
+  ],
+  "newFiles": [
+    {
+      "path": ".gitattributes"
+    },
+    {
+      "path": ".github/pull_request_template.md"
+    },
+    {
+      "path": "CONTRIBUTING.md"
+    },
+    {
+      "path": "LICENSE"
+    },
+    {
+      "path": "README.md"
+    },
+    {
+      "path": "VERSION"
+    },
+    {
+      "path": "composer.json"
+    },
+    {
+      "path": "metadata/V3/TranslationService.php"
+    },
+    {
+      "path": "phpunit-snippets.xml.dist"
+    },
+    {
+      "path": "phpunit-system.xml.dist"
+    },
+    {
+      "path": "phpunit.xml.dist"
+    },
+    {
+      "path": "src/Connection/ConnectionInterface.php"
+    },
+    {
+      "path": "src/Connection/Rest.php"
+    },
+    {
+      "path": "src/TranslateClient.php"
+    },
+    {
+      "path": "src/V2/Connection/ConnectionInterface.php"
+    },
+    {
+      "path": "src/V2/Connection/Rest.php"
+    },
+    {
+      "path": "src/V2/Connection/ServiceDefinition/translate-v2.json"
+    },
+    {
+      "path": "src/V2/TranslateClient.php"
+    },
+    {
+      "path": "src/V3/BatchTranslateMetadata.php"
+    },
+    {
+      "path": "src/V3/BatchTranslateMetadata/State.php"
+    },
+    {
+      "path": "src/V3/BatchTranslateMetadata_State.php"
+    },
+    {
+      "path": "src/V3/BatchTranslateResponse.php"
+    },
+    {
+      "path": "src/V3/BatchTranslateTextRequest.php"
+    },
+    {
+      "path": "src/V3/CreateGlossaryMetadata.php"
+    },
+    {
+      "path": "src/V3/CreateGlossaryMetadata/State.php"
+    },
+    {
+      "path": "src/V3/CreateGlossaryMetadata_State.php"
+    },
+    {
+      "path": "src/V3/CreateGlossaryRequest.php"
+    },
+    {
+      "path": "src/V3/DeleteGlossaryMetadata.php"
+    },
+    {
+      "path": "src/V3/DeleteGlossaryMetadata/State.php"
+    },
+    {
+      "path": "src/V3/DeleteGlossaryMetadata_State.php"
+    },
+    {
+      "path": "src/V3/DeleteGlossaryRequest.php"
+    },
+    {
+      "path": "src/V3/DeleteGlossaryResponse.php"
+    },
+    {
+      "path": "src/V3/DetectLanguageRequest.php"
+    },
+    {
+      "path": "src/V3/DetectLanguageResponse.php"
+    },
+    {
+      "path": "src/V3/DetectedLanguage.php"
+    },
+    {
+      "path": "src/V3/Gapic/TranslationServiceGapicClient.php"
+    },
+    {
+      "path": "src/V3/GcsDestination.php"
+    },
+    {
+      "path": "src/V3/GcsSource.php"
+    },
+    {
+      "path": "src/V3/GetGlossaryRequest.php"
+    },
+    {
+      "path": "src/V3/GetSupportedLanguagesRequest.php"
+    },
+    {
+      "path": "src/V3/Glossary.php"
+    },
+    {
+      "path": "src/V3/Glossary/LanguageCodePair.php"
+    },
+    {
+      "path": "src/V3/Glossary/LanguageCodesSet.php"
+    },
+    {
+      "path": "src/V3/GlossaryInputConfig.php"
+    },
+    {
+      "path": "src/V3/Glossary_LanguageCodePair.php"
+    },
+    {
+      "path": "src/V3/Glossary_LanguageCodesSet.php"
+    },
+    {
+      "path": "src/V3/InputConfig.php"
+    },
+    {
+      "path": "src/V3/ListGlossariesRequest.php"
+    },
+    {
+      "path": "src/V3/ListGlossariesResponse.php"
+    },
+    {
+      "path": "src/V3/OutputConfig.php"
+    },
+    {
+      "path": "src/V3/README.md"
+    },
+    {
+      "path": "src/V3/SupportedLanguage.php"
+    },
+    {
+      "path": "src/V3/SupportedLanguages.php"
+    },
+    {
+      "path": "src/V3/TranslateTextGlossaryConfig.php"
+    },
+    {
+      "path": "src/V3/TranslateTextRequest.php"
+    },
+    {
+      "path": "src/V3/TranslateTextResponse.php"
+    },
+    {
+      "path": "src/V3/Translation.php"
+    },
+    {
+      "path": "src/V3/TranslationServiceClient.php"
+    },
+    {
+      "path": "src/V3/TranslationServiceGrpcClient.php"
+    },
+    {
+      "path": "src/V3/resources/translation_service_client_config.json"
+    },
+    {
+      "path": "src/V3/resources/translation_service_descriptor_config.php"
+    },
+    {
+      "path": "src/V3/resources/translation_service_rest_client_config.php"
+    },
+    {
+      "path": "synth.metadata"
+    },
+    {
+      "path": "synth.py"
+    },
+    {
+      "path": "tests/Snippet/V2/TranslateClientTest.php"
+    },
+    {
+      "path": "tests/System/V2/TranslateTest.php"
+    },
+    {
+      "path": "tests/System/V2/TranslateTestCase.php"
+    },
+    {
+      "path": "tests/System/V3/TranslationServiceSmokeTest.php"
+    },
+    {
+      "path": "tests/System/bootstrap.php"
+    },
+    {
+      "path": "tests/Unit/V2/Connection/RestTest.php"
+    },
+    {
+      "path": "tests/Unit/V2/TranslateClientTest.php"
+    },
+    {
+      "path": "tests/Unit/V3/TranslationServiceClientTest.php"
     }
   ]
 }

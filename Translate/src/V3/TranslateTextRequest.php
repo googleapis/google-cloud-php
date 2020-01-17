@@ -29,7 +29,7 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string mime_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $mime_type = '';
+    protected $mime_type = '';
     /**
      * Optional. The BCP-47 language code of the input text if
      * known, for example, "en-US" or "sr-Latn". Supported language codes are
@@ -39,14 +39,14 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source_language_code = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $source_language_code = '';
+    protected $source_language_code = '';
     /**
      * Required. The BCP-47 language code to use for translation of the input
      * text, set to one of the language codes listed in Language Support.
      *
      * Generated from protobuf field <code>string target_language_code = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $target_language_code = '';
+    protected $target_language_code = '';
     /**
      * Required. Project or location to make a call. Must refer to a caller's
      * project.
@@ -61,7 +61,7 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 8 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. The `model` type requested for this translation.
      * The format depends on model type:
@@ -77,7 +77,7 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string model = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $model = '';
+    protected $model = '';
     /**
      * Optional. Glossary to be applied. The glossary must be
      * within the same region (have the same location-id) as the model, otherwise
@@ -85,7 +85,7 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.translation.v3.TranslateTextGlossaryConfig glossary_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $glossary_config = null;
+    protected $glossary_config = null;
     /**
      * Optional. The labels with user-defined metadata for the request.
      * Label keys and values can be no longer than 63 characters

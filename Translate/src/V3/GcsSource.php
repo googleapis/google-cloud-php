@@ -20,7 +20,7 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string input_uri = 1;</code>
      */
-    private $input_uri = '';
+    protected $input_uri = '';
 
     /**
      * Constructor.

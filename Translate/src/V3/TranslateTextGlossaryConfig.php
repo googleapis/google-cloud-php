@@ -22,14 +22,14 @@ class TranslateTextGlossaryConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string glossary = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $glossary = '';
+    protected $glossary = '';
     /**
      * Optional. Indicates match is case-insensitive.
      * Default value is false if missing.
      *
      * Generated from protobuf field <code>bool ignore_case = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $ignore_case = false;
+    protected $ignore_case = false;
 
     /**
      * Constructor.
