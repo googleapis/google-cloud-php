@@ -27,7 +27,7 @@ class ThreatUri extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 2;</code>
      */
-    private $expire_time = null;
+    protected $expire_time = null;
 
     /**
      * Constructor.

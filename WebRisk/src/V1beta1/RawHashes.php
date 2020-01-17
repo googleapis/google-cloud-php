@@ -27,7 +27,7 @@ class RawHashes extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 prefix_size = 1;</code>
      */
-    private $prefix_size = 0;
+    protected $prefix_size = 0;
     /**
      * The hashes, in binary format, concatenated into one long string. Hashes are
      * sorted in lexicographic order. For JSON API users, hashes are
@@ -35,7 +35,7 @@ class RawHashes extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes raw_hashes = 2;</code>
      */
-    private $raw_hashes = '';
+    protected $raw_hashes = '';
 
     /**
      * Constructor.

@@ -21,7 +21,7 @@ class Checksum extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes sha256 = 1;</code>
      */
-    private $sha256 = '';
+    protected $sha256 = '';
 
     /**
      * Constructor.

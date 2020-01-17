@@ -22,7 +22,7 @@ class Constraints extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_diff_entries = 1;</code>
      */
-    private $max_diff_entries = 0;
+    protected $max_diff_entries = 0;
     /**
      * Sets the maximum number of entries that the client is willing to have
      * in the local database. This should be a power of 2 between 2**10 and
@@ -30,7 +30,7 @@ class Constraints extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_database_entries = 2;</code>
      */
-    private $max_database_entries = 0;
+    protected $max_database_entries = 0;
     /**
      * The compression types supported by the client.
      *

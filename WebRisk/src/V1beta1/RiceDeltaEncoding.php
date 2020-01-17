@@ -23,14 +23,14 @@ class RiceDeltaEncoding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 first_value = 1;</code>
      */
-    private $first_value = 0;
+    protected $first_value = 0;
     /**
      * The Golomb-Rice parameter, which is a number between 2 and 28. This field
      * is missing (that is, zero) if `num_entries` is zero.
      *
      * Generated from protobuf field <code>int32 rice_parameter = 2;</code>
      */
-    private $rice_parameter = 0;
+    protected $rice_parameter = 0;
     /**
      * The number of entries that are delta encoded in the encoded data. If only a
      * single integer was encoded, this will be zero and the single value will be
@@ -38,13 +38,13 @@ class RiceDeltaEncoding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 entry_count = 3;</code>
      */
-    private $entry_count = 0;
+    protected $entry_count = 0;
     /**
      * The encoded deltas that are encoded using the Golomb-Rice coder.
      *
      * Generated from protobuf field <code>bytes encoded_data = 4;</code>
      */
-    private $encoded_data = '';
+    protected $encoded_data = '';
 
     /**
      * Constructor.

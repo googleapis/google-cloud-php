@@ -20,7 +20,7 @@ class ThreatEntryRemovals extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.webrisk.v1beta1.RawIndices raw_indices = 1;</code>
      */
-    private $raw_indices = null;
+    protected $raw_indices = null;
     /**
      * The encoded local, lexicographically-sorted list indices, using a
      * Golomb-Rice encoding. Used for sending compressed removal indices. The
@@ -29,7 +29,7 @@ class ThreatEntryRemovals extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.webrisk.v1beta1.RiceDeltaEncoding rice_indices = 2;</code>
      */
-    private $rice_indices = null;
+    protected $rice_indices = null;
 
     /**
      * Constructor.

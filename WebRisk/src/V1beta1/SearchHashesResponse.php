@@ -26,7 +26,7 @@ class SearchHashesResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp negative_expire_time = 2;</code>
      */
-    private $negative_expire_time = null;
+    protected $negative_expire_time = null;
 
     /**
      * Constructor.

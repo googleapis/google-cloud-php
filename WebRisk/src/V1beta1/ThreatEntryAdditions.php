@@ -30,7 +30,7 @@ class ThreatEntryAdditions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.webrisk.v1beta1.RiceDeltaEncoding rice_hashes = 2;</code>
      */
-    private $rice_hashes = null;
+    protected $rice_hashes = null;
 
     /**
      * Constructor.

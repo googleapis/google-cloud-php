@@ -1,19 +1,19 @@
 {
-  "updateTime": "2019-10-08T17:05:43.194844Z",
+  "updateTime": "2020-01-17T11:06:41.512237Z",
   "sources": [
     {
       "generator": {
         "name": "artman",
-        "version": "0.38.0",
-        "dockerImage": "googleapis/artman@sha256:0d2f8d429110aeb8d82df6550ef4ede59d40df9062d260a1580fce688b0512bf"
+        "version": "0.44.1",
+        "dockerImage": "googleapis/artman@sha256:5599b61e56a372d21b671969ee915fbca0f6c3a0daaeb898d01f8f685f1bbc8b"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "6c17e292b659466d344f08d783f2e89255e5eb7b",
-        "internalRef": "273543992"
+        "sha": "58e770d568a2b78168ddc19a874178fee8265a9d",
+        "internalRef": "290146169"
       }
     }
   ],
@@ -27,6 +27,134 @@
         "generator": "gapic",
         "config": "google/cloud/webrisk/artman_webrisk_v1beta1.yaml"
       }
+    }
+  ],
+  "newFiles": [
+    {
+      "path": ".gitattributes"
+    },
+    {
+      "path": ".github/pull_request_template.md"
+    },
+    {
+      "path": "CONTRIBUTING.md"
+    },
+    {
+      "path": "LICENSE"
+    },
+    {
+      "path": "README.md"
+    },
+    {
+      "path": "VERSION"
+    },
+    {
+      "path": "composer.json"
+    },
+    {
+      "path": "metadata/V1Beta1/Webrisk.php"
+    },
+    {
+      "path": "phpunit.xml.dist"
+    },
+    {
+      "path": "src/V1beta1/CompressionType.php"
+    },
+    {
+      "path": "src/V1beta1/ComputeThreatListDiffRequest.php"
+    },
+    {
+      "path": "src/V1beta1/ComputeThreatListDiffRequest/Constraints.php"
+    },
+    {
+      "path": "src/V1beta1/ComputeThreatListDiffRequest_Constraints.php"
+    },
+    {
+      "path": "src/V1beta1/ComputeThreatListDiffResponse.php"
+    },
+    {
+      "path": "src/V1beta1/ComputeThreatListDiffResponse/Checksum.php"
+    },
+    {
+      "path": "src/V1beta1/ComputeThreatListDiffResponse/ResponseType.php"
+    },
+    {
+      "path": "src/V1beta1/ComputeThreatListDiffResponse_Checksum.php"
+    },
+    {
+      "path": "src/V1beta1/ComputeThreatListDiffResponse_ResponseType.php"
+    },
+    {
+      "path": "src/V1beta1/Gapic/WebRiskServiceV1Beta1GapicClient.php"
+    },
+    {
+      "path": "src/V1beta1/README.md"
+    },
+    {
+      "path": "src/V1beta1/RawHashes.php"
+    },
+    {
+      "path": "src/V1beta1/RawIndices.php"
+    },
+    {
+      "path": "src/V1beta1/RiceDeltaEncoding.php"
+    },
+    {
+      "path": "src/V1beta1/SearchHashesRequest.php"
+    },
+    {
+      "path": "src/V1beta1/SearchHashesResponse.php"
+    },
+    {
+      "path": "src/V1beta1/SearchHashesResponse/ThreatHash.php"
+    },
+    {
+      "path": "src/V1beta1/SearchHashesResponse_ThreatHash.php"
+    },
+    {
+      "path": "src/V1beta1/SearchUrisRequest.php"
+    },
+    {
+      "path": "src/V1beta1/SearchUrisResponse.php"
+    },
+    {
+      "path": "src/V1beta1/SearchUrisResponse/ThreatUri.php"
+    },
+    {
+      "path": "src/V1beta1/SearchUrisResponse_ThreatUri.php"
+    },
+    {
+      "path": "src/V1beta1/ThreatEntryAdditions.php"
+    },
+    {
+      "path": "src/V1beta1/ThreatEntryRemovals.php"
+    },
+    {
+      "path": "src/V1beta1/ThreatType.php"
+    },
+    {
+      "path": "src/V1beta1/WebRiskServiceV1Beta1Client.php"
+    },
+    {
+      "path": "src/V1beta1/WebRiskServiceV1Beta1GrpcClient.php"
+    },
+    {
+      "path": "src/V1beta1/resources/web_risk_service_v1_beta1_client_config.json"
+    },
+    {
+      "path": "src/V1beta1/resources/web_risk_service_v1_beta1_descriptor_config.php"
+    },
+    {
+      "path": "src/V1beta1/resources/web_risk_service_v1_beta1_rest_client_config.php"
+    },
+    {
+      "path": "synth.metadata"
+    },
+    {
+      "path": "synth.py"
+    },
+    {
+      "path": "tests/Unit/V1beta1/WebRiskServiceV1Beta1ClientTest.php"
     }
   ]
 }

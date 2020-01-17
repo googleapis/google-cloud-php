@@ -21,7 +21,7 @@ class SearchHashesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes hash_prefix = 1;</code>
      */
-    private $hash_prefix = '';
+    protected $hash_prefix = '';
     /**
      * Required. The ThreatLists to search in.
      *

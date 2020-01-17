@@ -18,7 +18,7 @@ class SearchUrisResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.webrisk.v1beta1.SearchUrisResponse.ThreatUri threat = 1;</code>
      */
-    private $threat = null;
+    protected $threat = null;
 
     /**
      * Constructor.
