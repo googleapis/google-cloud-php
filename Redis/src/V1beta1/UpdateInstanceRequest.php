@@ -26,14 +26,14 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Required. Update description.
      * Only fields specified in update_mask are updated.
      *
      * Generated from protobuf field <code>.google.cloud.redis.v1beta1.Instance instance = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $instance = null;
+    protected $instance = null;
 
     /**
      * Constructor.

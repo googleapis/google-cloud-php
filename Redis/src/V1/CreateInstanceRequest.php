@@ -22,7 +22,7 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The logical name of the Redis instance in the customer project
      * with the following restrictions:
@@ -34,13 +34,13 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instance_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $instance_id = '';
+    protected $instance_id = '';
     /**
      * Required. A Redis [Instance] resource
      *
      * Generated from protobuf field <code>.google.cloud.redis.v1.Instance instance = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $instance = null;
+    protected $instance = null;
 
     /**
      * Constructor.

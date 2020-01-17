@@ -1,19 +1,19 @@
 {
-  "updateTime": "2019-10-08T10:02:11.949330Z",
+  "updateTime": "2020-01-17T11:03:22.826944Z",
   "sources": [
     {
       "generator": {
         "name": "artman",
-        "version": "0.38.0",
-        "dockerImage": "googleapis/artman@sha256:0d2f8d429110aeb8d82df6550ef4ede59d40df9062d260a1580fce688b0512bf"
+        "version": "0.44.1",
+        "dockerImage": "googleapis/artman@sha256:5599b61e56a372d21b671969ee915fbca0f6c3a0daaeb898d01f8f685f1bbc8b"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "122bdbf877ad87439f8dd9d1474a8e5dde188087",
-        "internalRef": "273381131"
+        "sha": "58e770d568a2b78168ddc19a874178fee8265a9d",
+        "internalRef": "290146169"
       }
     }
   ],
@@ -37,6 +37,248 @@
         "generator": "gapic",
         "config": "google/cloud/redis/artman_redis_v1.yaml"
       }
+    }
+  ],
+  "newFiles": [
+    {
+      "path": ".gitattributes"
+    },
+    {
+      "path": ".github/pull_request_template.md"
+    },
+    {
+      "path": "CONTRIBUTING.md"
+    },
+    {
+      "path": "LICENSE"
+    },
+    {
+      "path": "README.md"
+    },
+    {
+      "path": "VERSION"
+    },
+    {
+      "path": "composer.json"
+    },
+    {
+      "path": "metadata/V1/CloudRedis.php"
+    },
+    {
+      "path": "metadata/V1Beta1/CloudRedis.php"
+    },
+    {
+      "path": "phpunit-snippets.xml.dist"
+    },
+    {
+      "path": "phpunit-system.xml.dist"
+    },
+    {
+      "path": "phpunit.xml.dist"
+    },
+    {
+      "path": "src/V1/CloudRedisClient.php"
+    },
+    {
+      "path": "src/V1/CloudRedisGrpcClient.php"
+    },
+    {
+      "path": "src/V1/CreateInstanceRequest.php"
+    },
+    {
+      "path": "src/V1/DeleteInstanceRequest.php"
+    },
+    {
+      "path": "src/V1/ExportInstanceRequest.php"
+    },
+    {
+      "path": "src/V1/FailoverInstanceRequest.php"
+    },
+    {
+      "path": "src/V1/FailoverInstanceRequest/DataProtectionMode.php"
+    },
+    {
+      "path": "src/V1/FailoverInstanceRequest_DataProtectionMode.php"
+    },
+    {
+      "path": "src/V1/Gapic/CloudRedisGapicClient.php"
+    },
+    {
+      "path": "src/V1/GcsDestination.php"
+    },
+    {
+      "path": "src/V1/GcsSource.php"
+    },
+    {
+      "path": "src/V1/GetInstanceRequest.php"
+    },
+    {
+      "path": "src/V1/ImportInstanceRequest.php"
+    },
+    {
+      "path": "src/V1/InputConfig.php"
+    },
+    {
+      "path": "src/V1/Instance.php"
+    },
+    {
+      "path": "src/V1/Instance/State.php"
+    },
+    {
+      "path": "src/V1/Instance/Tier.php"
+    },
+    {
+      "path": "src/V1/Instance_State.php"
+    },
+    {
+      "path": "src/V1/Instance_Tier.php"
+    },
+    {
+      "path": "src/V1/ListInstancesRequest.php"
+    },
+    {
+      "path": "src/V1/ListInstancesResponse.php"
+    },
+    {
+      "path": "src/V1/LocationMetadata.php"
+    },
+    {
+      "path": "src/V1/OperationMetadata.php"
+    },
+    {
+      "path": "src/V1/OutputConfig.php"
+    },
+    {
+      "path": "src/V1/README.md"
+    },
+    {
+      "path": "src/V1/UpdateInstanceRequest.php"
+    },
+    {
+      "path": "src/V1/ZoneMetadata.php"
+    },
+    {
+      "path": "src/V1/resources/cloud_redis_client_config.json"
+    },
+    {
+      "path": "src/V1/resources/cloud_redis_descriptor_config.php"
+    },
+    {
+      "path": "src/V1/resources/cloud_redis_rest_client_config.php"
+    },
+    {
+      "path": "src/V1beta1/CloudRedisClient.php"
+    },
+    {
+      "path": "src/V1beta1/CloudRedisGrpcClient.php"
+    },
+    {
+      "path": "src/V1beta1/CreateInstanceRequest.php"
+    },
+    {
+      "path": "src/V1beta1/DeleteInstanceRequest.php"
+    },
+    {
+      "path": "src/V1beta1/ExportInstanceRequest.php"
+    },
+    {
+      "path": "src/V1beta1/FailoverInstanceRequest.php"
+    },
+    {
+      "path": "src/V1beta1/FailoverInstanceRequest/DataProtectionMode.php"
+    },
+    {
+      "path": "src/V1beta1/FailoverInstanceRequest_DataProtectionMode.php"
+    },
+    {
+      "path": "src/V1beta1/Gapic/CloudRedisGapicClient.php"
+    },
+    {
+      "path": "src/V1beta1/GcsDestination.php"
+    },
+    {
+      "path": "src/V1beta1/GcsSource.php"
+    },
+    {
+      "path": "src/V1beta1/GetInstanceRequest.php"
+    },
+    {
+      "path": "src/V1beta1/ImportInstanceRequest.php"
+    },
+    {
+      "path": "src/V1beta1/InputConfig.php"
+    },
+    {
+      "path": "src/V1beta1/Instance.php"
+    },
+    {
+      "path": "src/V1beta1/Instance/State.php"
+    },
+    {
+      "path": "src/V1beta1/Instance/Tier.php"
+    },
+    {
+      "path": "src/V1beta1/Instance_State.php"
+    },
+    {
+      "path": "src/V1beta1/Instance_Tier.php"
+    },
+    {
+      "path": "src/V1beta1/ListInstancesRequest.php"
+    },
+    {
+      "path": "src/V1beta1/ListInstancesResponse.php"
+    },
+    {
+      "path": "src/V1beta1/LocationMetadata.php"
+    },
+    {
+      "path": "src/V1beta1/OutputConfig.php"
+    },
+    {
+      "path": "src/V1beta1/README.md"
+    },
+    {
+      "path": "src/V1beta1/UpdateInstanceRequest.php"
+    },
+    {
+      "path": "src/V1beta1/ZoneMetadata.php"
+    },
+    {
+      "path": "src/V1beta1/resources/cloud_redis_client_config.json"
+    },
+    {
+      "path": "src/V1beta1/resources/cloud_redis_descriptor_config.php"
+    },
+    {
+      "path": "src/V1beta1/resources/cloud_redis_rest_client_config.php"
+    },
+    {
+      "path": "synth.metadata"
+    },
+    {
+      "path": "synth.py"
+    },
+    {
+      "path": "tests/System/V1/CloudRedisClientTest.php"
+    },
+    {
+      "path": "tests/System/V1beta1/CloudRedisClientTest.php"
+    },
+    {
+      "path": "tests/System/bootstrap.php"
+    },
+    {
+      "path": "tests/Unit/V1/CloudRedisClientPartialVeneerTest.php"
+    },
+    {
+      "path": "tests/Unit/V1/CloudRedisClientTest.php"
+    },
+    {
+      "path": "tests/Unit/V1beta1/CloudRedisClientPartialVeneerTest.php"
+    },
+    {
+      "path": "tests/Unit/V1beta1/CloudRedisClientTest.php"
     }
   ]
 }

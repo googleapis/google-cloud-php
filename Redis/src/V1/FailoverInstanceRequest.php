@@ -22,14 +22,14 @@ class FailoverInstanceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. Available data protection modes that the user can choose. If it's
      * unspecified, data protection mode will be LIMITED_DATA_LOSS by default.
      *
      * Generated from protobuf field <code>.google.cloud.redis.v1.FailoverInstanceRequest.DataProtectionMode data_protection_mode = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $data_protection_mode = 0;
+    protected $data_protection_mode = 0;
 
     /**
      * Constructor.
