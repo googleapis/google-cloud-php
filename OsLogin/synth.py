@@ -67,19 +67,6 @@ s.replace(
     r"\$transportConfig, and any \$serviceAddress",
     r"$transportConfig, and any `$apiEndpoint`")
 
-# prevent proto messages from being marked final
-s.replace(
-    "src/**/*.php",
-    r"final class",
-    r"class")
-
-# Replace "Unwrapped" with "Value" for method names.
-s.replace(
-    "src/**/*.php",
-    r"public function ([s|g]\w{3,})Unwrapped",
-    r"public function \1Value"
-)
-
 # fix copyright year
 s.replace(
     'src/V1beta/**/*.php',
@@ -97,3 +84,28 @@ s.replace(
     'tests/**/V1/*Test.php',
     r'Copyright \d{4}',
     r'Copyright 2018')
+
+### [START] protoc backwards compatibility fixes
+
+# roll back to private properties.
+s.replace(
+    "src/**/V*/**/*.php",
+    r"Generated from protobuf field ([^\n]{0,})\n\s{5}\*/\n\s{4}protected \$",
+    r"""Generated from protobuf field \1
+     */
+    private $""")
+
+# prevent proto messages from being marked final
+s.replace(
+    "src/**/V*/**/*.php",
+    r"final class",
+    r"class")
+
+# Replace "Unwrapped" with "Value" for method names.
+s.replace(
+    "src/**/V*/**/*.php",
+    r"public function ([s|g]\w{3,})Unwrapped",
+    r"public function \1Value"
+)
+
+### [END] protoc backwards compatibility fixes
