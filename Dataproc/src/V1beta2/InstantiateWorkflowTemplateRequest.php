@@ -27,7 +27,7 @@ class InstantiateWorkflowTemplateRequest extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. The version of workflow template to instantiate. If specified,
      * the workflow will be instantiated only if the current version of
@@ -37,13 +37,13 @@ class InstantiateWorkflowTemplateRequest extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>int32 version = 2;</code>
      */
-    private $version = 0;
+    protected $version = 0;
     /**
      * Deprecated. Please use `request_id` field instead.
      *
      * Generated from protobuf field <code>string instance_id = 3 [deprecated = true];</code>
      */
-    private $instance_id = '';
+    protected $instance_id = '';
     /**
      * Optional. A tag that prevents multiple concurrent workflow
      * instances with the same tag from running. This mitigates risk of
@@ -55,7 +55,7 @@ class InstantiateWorkflowTemplateRequest extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>string request_id = 5;</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
     /**
      * Optional. Map from parameter names to values that should be used for those
      * parameters. Values may not exceed 100 characters.

@@ -20,19 +20,19 @@ class ClusterOperationMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cluster_name = 7;</code>
      */
-    private $cluster_name = '';
+    protected $cluster_name = '';
     /**
      * Output only. Cluster UUID for the operation.
      *
      * Generated from protobuf field <code>string cluster_uuid = 8;</code>
      */
-    private $cluster_uuid = '';
+    protected $cluster_uuid = '';
     /**
      * Output only. Current operation status.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.ClusterOperationStatus status = 9;</code>
      */
-    private $status = null;
+    protected $status = null;
     /**
      * Output only. The previous operation status.
      *
@@ -44,13 +44,13 @@ class ClusterOperationMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string operation_type = 11;</code>
      */
-    private $operation_type = '';
+    protected $operation_type = '';
     /**
      * Output only. Short description of operation.
      *
      * Generated from protobuf field <code>string description = 12;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. Labels associated with the operation
      *

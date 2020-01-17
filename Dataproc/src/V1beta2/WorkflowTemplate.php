@@ -24,7 +24,7 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * Output only. The resource name of the workflow template, as described
      * in https://cloud.google.com/apis/design/resource_names.
@@ -37,7 +37,7 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. Used to perform a consistent read-modify-write.
      * This field should be left blank for a `CreateWorkflowTemplate` request. It
@@ -50,19 +50,19 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 version = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $version = 0;
+    protected $version = 0;
     /**
      * Output only. The time template was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time template was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Optional. The labels to associate with this template. These labels
      * will be propagated to all jobs and clusters created by the workflow
@@ -82,7 +82,7 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.WorkflowTemplatePlacement placement = 7;</code>
      */
-    private $placement = null;
+    protected $placement = null;
     /**
      * Required. The Directed Acyclic Graph of Jobs to submit.
      *

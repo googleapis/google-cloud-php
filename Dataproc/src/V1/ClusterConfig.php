@@ -28,41 +28,41 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string config_bucket = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $config_bucket = '';
+    protected $config_bucket = '';
     /**
      * Optional. The shared Compute Engine config settings for
      * all instances in a cluster.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.GceClusterConfig gce_cluster_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $gce_cluster_config = null;
+    protected $gce_cluster_config = null;
     /**
      * Optional. The Compute Engine config settings for
      * the master instance in a cluster.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig master_config = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $master_config = null;
+    protected $master_config = null;
     /**
      * Optional. The Compute Engine config settings for
      * worker instances in a cluster.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig worker_config = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $worker_config = null;
+    protected $worker_config = null;
     /**
      * Optional. The Compute Engine config settings for
      * additional worker instances in a cluster.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig secondary_worker_config = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $secondary_worker_config = null;
+    protected $secondary_worker_config = null;
     /**
      * Optional. The config settings for software inside the cluster.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.SoftwareConfig software_config = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $software_config = null;
+    protected $software_config = null;
     /**
      * Optional. Commands to execute on each node after config is
      * completed. By default, executables are run on master and all worker nodes.
@@ -85,20 +85,20 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.EncryptionConfig encryption_config = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $encryption_config = null;
+    protected $encryption_config = null;
     /**
      * Optional. Autoscaling config for the policy associated with the cluster.
      * Cluster does not autoscale if this field is unset.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.AutoscalingConfig autoscaling_config = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $autoscaling_config = null;
+    protected $autoscaling_config = null;
     /**
      * Optional. Security settings for the cluster.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.SecurityConfig security_config = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $security_config = null;
+    protected $security_config = null;
 
     /**
      * Constructor.

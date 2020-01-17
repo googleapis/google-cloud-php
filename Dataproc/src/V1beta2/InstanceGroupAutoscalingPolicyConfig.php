@@ -23,7 +23,7 @@ class InstanceGroupAutoscalingPolicyConfig extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>int32 min_instances = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $min_instances = 0;
+    protected $min_instances = 0;
     /**
      * Optional. Maximum number of instances for this group. Required for primary
      * workers. Note that by default, clusters will not use secondary workers.
@@ -33,7 +33,7 @@ class InstanceGroupAutoscalingPolicyConfig extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>int32 max_instances = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $max_instances = 0;
+    protected $max_instances = 0;
     /**
      * Optional. Weight for the instance group, which is used to determine the
      * fraction of total workers in the cluster from this instance group.
@@ -54,7 +54,7 @@ class InstanceGroupAutoscalingPolicyConfig extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>int32 weight = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $weight = 0;
+    protected $weight = 0;
 
     /**
      * Constructor.

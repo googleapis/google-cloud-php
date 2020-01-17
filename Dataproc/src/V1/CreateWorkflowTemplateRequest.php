@@ -27,13 +27,13 @@ class CreateWorkflowTemplateRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The Dataproc workflow template to create.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.WorkflowTemplate template = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $template = null;
+    protected $template = null;
 
     /**
      * Constructor.

@@ -33,13 +33,13 @@ class AcceleratorConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string accelerator_type_uri = 1;</code>
      */
-    private $accelerator_type_uri = '';
+    protected $accelerator_type_uri = '';
     /**
      * The number of the accelerator cards of this type exposed to this instance.
      *
      * Generated from protobuf field <code>int32 accelerator_count = 2;</code>
      */
-    private $accelerator_count = 0;
+    protected $accelerator_count = 0;
 
     /**
      * Constructor.

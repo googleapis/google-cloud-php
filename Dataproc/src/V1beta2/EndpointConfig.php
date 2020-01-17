@@ -28,7 +28,7 @@ class EndpointConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_http_port_access = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $enable_http_port_access = false;
+    protected $enable_http_port_access = false;
 
     /**
      * Constructor.

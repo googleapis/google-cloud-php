@@ -23,19 +23,19 @@ class YarnApplication extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The application state.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.YarnApplication.State state = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Required. The numerical progress of the application, from 1 to 100.
      *
      * Generated from protobuf field <code>float progress = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $progress = 0.0;
+    protected $progress = 0.0;
     /**
      * Optional. The HTTP URL of the ApplicationMaster, HistoryServer, or
      * TimelineServer that provides application-specific information. The URL uses
@@ -44,7 +44,7 @@ class YarnApplication extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string tracking_url = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $tracking_url = '';
+    protected $tracking_url = '';
 
     /**
      * Constructor.

@@ -29,7 +29,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string zone_uri = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $zone_uri = '';
+    protected $zone_uri = '';
     /**
      * Optional. The Compute Engine network to be used for machine
      * communications. Cannot be specified with subnetwork_uri. If neither
@@ -43,7 +43,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string network_uri = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $network_uri = '';
+    protected $network_uri = '';
     /**
      * Optional. The Compute Engine subnetwork to be used for machine
      * communications. Cannot be specified with network_uri.
@@ -54,7 +54,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string subnetwork_uri = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $subnetwork_uri = '';
+    protected $subnetwork_uri = '';
     /**
      * Optional. If true, all instances in the cluster will only have internal IP
      * addresses. By default, clusters are not restricted to internal IP
@@ -65,7 +65,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool internal_ip_only = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $internal_ip_only = false;
+    protected $internal_ip_only = false;
     /**
      * Optional. The [Dataproc service
      * account](/dataproc/docs/concepts/configuring-clusters/service-accounts#service_accounts_in_cloud_dataproc)
@@ -80,7 +80,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_account = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $service_account = '';
+    protected $service_account = '';
     /**
      * Optional. The URIs of service account scopes to be included in
      * Compute Engine instances. The following base set of scopes is always

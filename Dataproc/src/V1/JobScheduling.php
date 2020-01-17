@@ -25,7 +25,7 @@ class JobScheduling extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_failures_per_hour = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $max_failures_per_hour = 0;
+    protected $max_failures_per_hour = 0;
 
     /**
      * Constructor.

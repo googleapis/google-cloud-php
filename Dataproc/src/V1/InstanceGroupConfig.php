@@ -22,7 +22,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 num_instances = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $num_instances = 0;
+    protected $num_instances = 0;
     /**
      * Output only. The list of instance names. Dataproc derives the names
      * from `cluster_name`, `num_instances`, and the instance group.
@@ -37,7 +37,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string image_uri = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $image_uri = '';
+    protected $image_uri = '';
     /**
      * Optional. The Compute Engine machine type used for cluster instances.
      * A full URL, partial URI, or short name are valid. Examples:
@@ -52,20 +52,20 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string machine_type_uri = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $machine_type_uri = '';
+    protected $machine_type_uri = '';
     /**
      * Optional. Disk option config settings.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.DiskConfig disk_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $disk_config = null;
+    protected $disk_config = null;
     /**
      * Optional. Specifies that this instance group contains preemptible
      * instances.
      *
      * Generated from protobuf field <code>bool is_preemptible = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $is_preemptible = false;
+    protected $is_preemptible = false;
     /**
      * Output only. The config for Compute Engine Instance Group
      * Manager that manages this group.
@@ -73,7 +73,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.ManagedGroupConfig managed_group_config = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $managed_group_config = null;
+    protected $managed_group_config = null;
     /**
      * Optional. The Compute Engine accelerator configuration for these
      * instances.
@@ -88,7 +88,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string min_cpu_platform = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $min_cpu_platform = '';
+    protected $min_cpu_platform = '';
 
     /**
      * Constructor.

@@ -27,13 +27,13 @@ class CreateAutoscalingPolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The autoscaling policy to create.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.AutoscalingPolicy policy = 2;</code>
      */
-    private $policy = null;
+    protected $policy = null;
 
     /**
      * Constructor.

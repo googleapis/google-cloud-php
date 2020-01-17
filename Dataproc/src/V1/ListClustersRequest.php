@@ -21,13 +21,13 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * Required. The Dataproc region in which to handle the request.
      *
      * Generated from protobuf field <code>string region = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $region = '';
+    protected $region = '';
     /**
      * Optional. A filter constraining the clusters to list. Filters are
      * case-sensitive and have the following syntax:
@@ -47,19 +47,19 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * Optional. The standard List page size.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. The standard List page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * Constructor.

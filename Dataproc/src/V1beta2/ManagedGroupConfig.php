@@ -21,13 +21,13 @@ class ManagedGroupConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instance_template_name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $instance_template_name = '';
+    protected $instance_template_name = '';
     /**
      * Output only. The name of the Instance Group Manager for this group.
      *
      * Generated from protobuf field <code>string instance_group_manager_name = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $instance_group_manager_name = '';
+    protected $instance_group_manager_name = '';
 
     /**
      * Constructor.

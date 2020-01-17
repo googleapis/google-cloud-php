@@ -27,7 +27,7 @@ class GetWorkflowTemplateRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. The version of workflow template to retrieve. Only previously
      * instantiated versions can be retrieved.
@@ -35,7 +35,7 @@ class GetWorkflowTemplateRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 version = 2;</code>
      */
-    private $version = 0;
+    protected $version = 0;
 
     /**
      * Constructor.

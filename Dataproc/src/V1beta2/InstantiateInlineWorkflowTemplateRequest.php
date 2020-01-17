@@ -27,19 +27,19 @@ class InstantiateInlineWorkflowTemplateRequest extends \Google\Protobuf\Internal
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The workflow template to instantiate.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.WorkflowTemplate template = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $template = null;
+    protected $template = null;
     /**
      * Deprecated. Please use `request_id` field instead.
      *
      * Generated from protobuf field <code>string instance_id = 3;</code>
      */
-    private $instance_id = '';
+    protected $instance_id = '';
     /**
      * Optional. A tag that prevents multiple concurrent workflow
      * instances with the same tag from running. This mitigates risk of
@@ -51,7 +51,7 @@ class InstantiateInlineWorkflowTemplateRequest extends \Google\Protobuf\Internal
      *
      * Generated from protobuf field <code>string request_id = 4;</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * Constructor.

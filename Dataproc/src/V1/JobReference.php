@@ -21,7 +21,7 @@ class JobReference extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * Optional. The job ID, which must be unique within the project.
      * The ID must contain only letters (a-z, A-Z), numbers (0-9),
@@ -30,7 +30,7 @@ class JobReference extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string job_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $job_id = '';
+    protected $job_id = '';
 
     /**
      * Constructor.

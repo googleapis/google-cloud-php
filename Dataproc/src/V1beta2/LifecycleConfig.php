@@ -24,14 +24,14 @@ class LifecycleConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration idle_delete_ttl = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $idle_delete_ttl = null;
+    protected $idle_delete_ttl = null;
     /**
      * Output only. The time when cluster became idle (most recent job finished)
      * and became eligible for deletion due to idleness.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp idle_start_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $idle_start_time = null;
+    protected $idle_start_time = null;
     protected $ttl;
 
     /**

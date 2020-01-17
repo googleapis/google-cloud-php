@@ -21,7 +21,7 @@ class UpdateWorkflowTemplateRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.WorkflowTemplate template = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $template = null;
+    protected $template = null;
 
     /**
      * Constructor.

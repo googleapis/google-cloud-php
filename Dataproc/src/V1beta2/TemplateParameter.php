@@ -34,7 +34,7 @@ class TemplateParameter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Paths to all fields that the parameter replaces.
      * A field is allowed to appear in at most one parameter's list of field
@@ -82,13 +82,13 @@ class TemplateParameter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Optional. Validation rules to be applied to this parameter's value.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.ParameterValidation validation = 4;</code>
      */
-    private $validation = null;
+    protected $validation = null;
 
     /**
      * Constructor.

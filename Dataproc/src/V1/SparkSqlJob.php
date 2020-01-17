@@ -42,7 +42,7 @@ class SparkSqlJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.LoggingConfig logging_config = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $logging_config = null;
+    protected $logging_config = null;
     protected $queries;
 
     /**

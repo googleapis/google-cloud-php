@@ -21,19 +21,19 @@ class DeleteJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * Required. The Cloud Dataproc region in which to handle the request.
      *
      * Generated from protobuf field <code>string region = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $region = '';
+    protected $region = '';
     /**
      * Required. The job ID.
      *
      * Generated from protobuf field <code>string job_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $job_id = '';
+    protected $job_id = '';
 
     /**
      * Constructor.

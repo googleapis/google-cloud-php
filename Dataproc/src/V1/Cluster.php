@@ -21,21 +21,21 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * Required. The cluster name. Cluster names within a project must be
      * unique. Names of deleted clusters can be reused.
      *
      * Generated from protobuf field <code>string cluster_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $cluster_name = '';
+    protected $cluster_name = '';
     /**
      * Required. The cluster config. Note that Dataproc may set
      * default values, and values may change when clusters are updated.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterConfig config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $config = null;
+    protected $config = null;
     /**
      * Optional. The labels to associate with this cluster.
      * Label **keys** must contain 1 to 63 characters, and must conform to
@@ -53,7 +53,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterStatus status = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $status = null;
+    protected $status = null;
     /**
      * Output only. The previous cluster status.
      *
@@ -66,7 +66,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cluster_uuid = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $cluster_uuid = '';
+    protected $cluster_uuid = '';
     /**
      * Contains cluster daemon metrics such as HDFS and YARN stats.
      * **Beta Feature**: This report is available for testing purposes only. It
@@ -74,7 +74,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterMetrics metrics = 9;</code>
      */
-    private $metrics = null;
+    protected $metrics = null;
 
     /**
      * Constructor.

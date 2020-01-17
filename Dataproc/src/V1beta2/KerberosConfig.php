@@ -20,21 +20,21 @@ class KerberosConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_kerberos = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $enable_kerberos = false;
+    protected $enable_kerberos = false;
     /**
      * Required. The Cloud Storage URI of a KMS encrypted file containing the root
      * principal password.
      *
      * Generated from protobuf field <code>string root_principal_password_uri = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $root_principal_password_uri = '';
+    protected $root_principal_password_uri = '';
     /**
      * Required. The uri of the KMS key used to encrypt various sensitive
      * files.
      *
      * Generated from protobuf field <code>string kms_key_uri = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $kms_key_uri = '';
+    protected $kms_key_uri = '';
     /**
      * Optional. The Cloud Storage URI of the keystore file used for SSL
      * encryption. If not provided, Dataproc will provide a self-signed
@@ -42,7 +42,7 @@ class KerberosConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string keystore_uri = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $keystore_uri = '';
+    protected $keystore_uri = '';
     /**
      * Optional. The Cloud Storage URI of the truststore file used for SSL
      * encryption. If not provided, Dataproc will provide a self-signed
@@ -50,7 +50,7 @@ class KerberosConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string truststore_uri = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $truststore_uri = '';
+    protected $truststore_uri = '';
     /**
      * Optional. The Cloud Storage URI of a KMS encrypted file containing the
      * password to the user provided keystore. For the self-signed certificate,
@@ -58,7 +58,7 @@ class KerberosConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string keystore_password_uri = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $keystore_password_uri = '';
+    protected $keystore_password_uri = '';
     /**
      * Optional. The Cloud Storage URI of a KMS encrypted file containing the
      * password to the user provided key. For the self-signed certificate, this
@@ -66,7 +66,7 @@ class KerberosConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key_password_uri = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $key_password_uri = '';
+    protected $key_password_uri = '';
     /**
      * Optional. The Cloud Storage URI of a KMS encrypted file containing the
      * password to the user provided truststore. For the self-signed certificate,
@@ -74,28 +74,28 @@ class KerberosConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string truststore_password_uri = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $truststore_password_uri = '';
+    protected $truststore_password_uri = '';
     /**
      * Optional. The remote realm the Dataproc on-cluster KDC will trust, should
      * the user enable cross realm trust.
      *
      * Generated from protobuf field <code>string cross_realm_trust_realm = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $cross_realm_trust_realm = '';
+    protected $cross_realm_trust_realm = '';
     /**
      * Optional. The KDC (IP or hostname) for the remote trusted realm in a cross
      * realm trust relationship.
      *
      * Generated from protobuf field <code>string cross_realm_trust_kdc = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $cross_realm_trust_kdc = '';
+    protected $cross_realm_trust_kdc = '';
     /**
      * Optional. The admin server (IP or hostname) for the remote trusted realm in
      * a cross realm trust relationship.
      *
      * Generated from protobuf field <code>string cross_realm_trust_admin_server = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $cross_realm_trust_admin_server = '';
+    protected $cross_realm_trust_admin_server = '';
     /**
      * Optional. The Cloud Storage URI of a KMS encrypted file containing the
      * shared password between the on-cluster Kerberos realm and the remote
@@ -103,14 +103,14 @@ class KerberosConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cross_realm_trust_shared_password_uri = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $cross_realm_trust_shared_password_uri = '';
+    protected $cross_realm_trust_shared_password_uri = '';
     /**
      * Optional. The Cloud Storage URI of a KMS encrypted file containing the
      * master key of the KDC database.
      *
      * Generated from protobuf field <code>string kdc_db_key_uri = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $kdc_db_key_uri = '';
+    protected $kdc_db_key_uri = '';
     /**
      * Optional. The lifetime of the ticket granting ticket, in hours.
      * If not specified, or user specifies 0, then default value 10
@@ -118,14 +118,14 @@ class KerberosConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 tgt_lifetime_hours = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $tgt_lifetime_hours = 0;
+    protected $tgt_lifetime_hours = 0;
     /**
      * Optional. The name of the on-cluster Kerberos realm.
      * If not specified, the uppercased domain of hostnames will be the realm.
      *
      * Generated from protobuf field <code>string realm = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $realm = '';
+    protected $realm = '';
 
     /**
      * Constructor.

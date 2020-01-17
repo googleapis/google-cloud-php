@@ -28,7 +28,7 @@ class DeleteWorkflowTemplateRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. The version of workflow template to delete. If specified,
      * will only delete the template if the current server version matches
@@ -36,7 +36,7 @@ class DeleteWorkflowTemplateRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 version = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $version = 0;
+    protected $version = 0;
 
     /**
      * Constructor.

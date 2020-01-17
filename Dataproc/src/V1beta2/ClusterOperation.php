@@ -20,19 +20,19 @@ class ClusterOperation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string operation_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $operation_id = '';
+    protected $operation_id = '';
     /**
      * Output only. Error, if operation failed.
      *
      * Generated from protobuf field <code>string error = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $error = '';
+    protected $error = '';
     /**
      * Output only. Indicates the operation is done.
      *
      * Generated from protobuf field <code>bool done = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $done = false;
+    protected $done = false;
 
     /**
      * Constructor.

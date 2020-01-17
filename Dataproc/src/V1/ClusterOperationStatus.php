@@ -20,25 +20,25 @@ class ClusterOperationStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterOperationStatus.State state = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. A message containing the detailed operation state.
      *
      * Generated from protobuf field <code>string inner_state = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $inner_state = '';
+    protected $inner_state = '';
     /**
      * Output only. A message containing any operation metadata details.
      *
      * Generated from protobuf field <code>string details = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $details = '';
+    protected $details = '';
     /**
      * Output only. The time this state was entered.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp state_start_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state_start_time = null;
+    protected $state_start_time = null;
 
     /**
      * Constructor.

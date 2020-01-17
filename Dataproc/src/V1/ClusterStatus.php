@@ -20,26 +20,26 @@ class ClusterStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterStatus.State state = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Optional. Output only. Details of cluster's state.
      *
      * Generated from protobuf field <code>string detail = 2 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $detail = '';
+    protected $detail = '';
     /**
      * Output only. Time when this state was entered.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp state_start_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state_start_time = null;
+    protected $state_start_time = null;
     /**
      * Output only. Additional state information that includes
      * status reported by the agent.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterStatus.Substate substate = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $substate = 0;
+    protected $substate = 0;
 
     /**
      * Constructor.

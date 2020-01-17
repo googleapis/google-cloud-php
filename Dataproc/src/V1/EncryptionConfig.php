@@ -21,7 +21,7 @@ class EncryptionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string gce_pd_kms_key_name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $gce_pd_kms_key_name = '';
+    protected $gce_pd_kms_key_name = '';
 
     /**
      * Constructor.

@@ -65,7 +65,7 @@ class SparkJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.LoggingConfig logging_config = 8;</code>
      */
-    private $logging_config = null;
+    protected $logging_config = null;
     protected $driver;
 
     /**

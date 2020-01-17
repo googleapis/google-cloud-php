@@ -23,7 +23,7 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1;</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * Output only. The "resource name" of the autoscaling policy, as described
      * in https://cloud.google.com/apis/design/resource_names.
@@ -36,19 +36,19 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Describes how the autoscaler will operate for primary workers.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupAutoscalingPolicyConfig worker_config = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $worker_config = null;
+    protected $worker_config = null;
     /**
      * Optional. Describes how the autoscaler will operate for secondary workers.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupAutoscalingPolicyConfig secondary_worker_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $secondary_worker_config = null;
+    protected $secondary_worker_config = null;
     protected $algorithm;
 
     /**

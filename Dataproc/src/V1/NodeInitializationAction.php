@@ -21,7 +21,7 @@ class NodeInitializationAction extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string executable_file = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $executable_file = '';
+    protected $executable_file = '';
     /**
      * Optional. Amount of time executable has to complete. Default is
      * 10 minutes. Cluster creation fails with an explanatory error message (the
@@ -30,7 +30,7 @@ class NodeInitializationAction extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration execution_timeout = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $execution_timeout = null;
+    protected $execution_timeout = null;
 
     /**
      * Constructor.

@@ -20,7 +20,7 @@ class SecurityConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.KerberosConfig kerberos_config = 1;</code>
      */
-    private $kerberos_config = null;
+    protected $kerberos_config = null;
 
     /**
      * Constructor.

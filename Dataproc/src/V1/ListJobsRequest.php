@@ -21,33 +21,33 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * Required. The Dataproc region in which to handle the request.
      *
      * Generated from protobuf field <code>string region = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $region = '';
+    protected $region = '';
     /**
      * Optional. The number of results to return in each response.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. The page token, returned by a previous call, to request the
      * next page of results.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Optional. If set, the returned jobs list includes only jobs that were
      * submitted to the named cluster.
      *
      * Generated from protobuf field <code>string cluster_name = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $cluster_name = '';
+    protected $cluster_name = '';
     /**
      * Optional. Specifies enumerated categories of jobs to list.
      * (default = match ALL jobs).
@@ -55,7 +55,7 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.ListJobsRequest.JobStateMatcher job_state_matcher = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $job_state_matcher = 0;
+    protected $job_state_matcher = 0;
     /**
      * Optional. A filter constraining the jobs to list. Filters are
      * case-sensitive and have the following syntax:
@@ -70,7 +70,7 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $filter = '';
+    protected $filter = '';
 
     /**
      * Constructor.

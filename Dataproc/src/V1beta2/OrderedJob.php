@@ -28,7 +28,7 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string step_id = 1;</code>
      */
-    private $step_id = '';
+    protected $step_id = '';
     /**
      * Optional. The labels to associate with this job.
      * Label keys must be between 1 and 63 characters long, and must conform to
@@ -46,7 +46,7 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobScheduling scheduling = 9;</code>
      */
-    private $scheduling = null;
+    protected $scheduling = null;
     /**
      * Optional. The optional list of prerequisite job step_ids.
      * If not specified, the job will start at the beginning of workflow.

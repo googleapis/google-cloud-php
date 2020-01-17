@@ -65,7 +65,7 @@ class HadoopJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.LoggingConfig logging_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $logging_config = null;
+    protected $logging_config = null;
     protected $driver;
 
     /**

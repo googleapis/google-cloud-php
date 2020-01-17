@@ -20,27 +20,27 @@ class JobStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobStatus.State state = 1;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. Optional job state details, such as an error
      * description if the state is <code>ERROR</code>.
      *
      * Generated from protobuf field <code>string details = 2;</code>
      */
-    private $details = '';
+    protected $details = '';
     /**
      * Output only. The time when this state was entered.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp state_start_time = 6;</code>
      */
-    private $state_start_time = null;
+    protected $state_start_time = null;
     /**
      * Output only. Additional state information, which includes
      * status reported by the agent.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobStatus.Substate substate = 7;</code>
      */
-    private $substate = 0;
+    protected $substate = 0;
 
     /**
      * Constructor.

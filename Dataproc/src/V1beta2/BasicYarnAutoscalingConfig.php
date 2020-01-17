@@ -24,7 +24,7 @@ class BasicYarnAutoscalingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration graceful_decommission_timeout = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $graceful_decommission_timeout = null;
+    protected $graceful_decommission_timeout = null;
     /**
      * Required. Fraction of average pending memory in the last cooldown period
      * for which to add workers. A scale-up factor of 1.0 will result in scaling
@@ -35,7 +35,7 @@ class BasicYarnAutoscalingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double scale_up_factor = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $scale_up_factor = 0.0;
+    protected $scale_up_factor = 0.0;
     /**
      * Required. Fraction of average pending memory in the last cooldown period
      * for which to remove workers. A scale-down factor of 1 will result in
@@ -46,7 +46,7 @@ class BasicYarnAutoscalingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double scale_down_factor = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $scale_down_factor = 0.0;
+    protected $scale_down_factor = 0.0;
     /**
      * Optional. Minimum scale-up threshold as a fraction of total cluster size
      * before scaling occurs. For example, in a 20-worker cluster, a threshold of
@@ -57,7 +57,7 @@ class BasicYarnAutoscalingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double scale_up_min_worker_fraction = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $scale_up_min_worker_fraction = 0.0;
+    protected $scale_up_min_worker_fraction = 0.0;
     /**
      * Optional. Minimum scale-down threshold as a fraction of total cluster size
      * before scaling occurs. For example, in a 20-worker cluster, a threshold of
@@ -68,7 +68,7 @@ class BasicYarnAutoscalingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double scale_down_min_worker_fraction = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $scale_down_min_worker_fraction = 0.0;
+    protected $scale_down_min_worker_fraction = 0.0;
 
     /**
      * Constructor.

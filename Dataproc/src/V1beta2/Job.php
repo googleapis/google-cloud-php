@@ -23,14 +23,14 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobReference reference = 1;</code>
      */
-    private $reference = null;
+    protected $reference = null;
     /**
      * Required. Job information, including how, when, and where to
      * run the job.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobPlacement placement = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $placement = null;
+    protected $placement = null;
     /**
      * Output only. The job status. Additional application-specific
      * status information may be contained in the <code>type_job</code>
@@ -38,7 +38,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobStatus status = 8;</code>
      */
-    private $status = null;
+    protected $status = null;
     /**
      * Output only. The previous job status.
      *
@@ -59,14 +59,14 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string submitted_by = 10;</code>
      */
-    private $submitted_by = '';
+    protected $submitted_by = '';
     /**
      * Output only. A URI pointing to the location of the stdout of the job's
      * driver program.
      *
      * Generated from protobuf field <code>string driver_output_resource_uri = 17;</code>
      */
-    private $driver_output_resource_uri = '';
+    protected $driver_output_resource_uri = '';
     /**
      * Output only. If present, the location of miscellaneous control files
      * which may be used as part of job setup and handling. If not present,
@@ -74,7 +74,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string driver_control_files_uri = 15;</code>
      */
-    private $driver_control_files_uri = '';
+    protected $driver_control_files_uri = '';
     /**
      * Optional. The labels to associate with this job.
      * Label **keys** must contain 1 to 63 characters, and must conform to
@@ -92,7 +92,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobScheduling scheduling = 20;</code>
      */
-    private $scheduling = null;
+    protected $scheduling = null;
     /**
      * Output only. A UUID that uniquely identifies a job within the project
      * over time. This is in contrast to a user-settable reference.job_id that
@@ -100,7 +100,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string job_uuid = 22;</code>
      */
-    private $job_uuid = '';
+    protected $job_uuid = '';
     protected $type_job;
 
     /**

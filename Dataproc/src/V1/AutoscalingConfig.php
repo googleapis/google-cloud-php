@@ -25,7 +25,7 @@ class AutoscalingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string policy_uri = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $policy_uri = '';
+    protected $policy_uri = '';
 
     /**
      * Constructor.
