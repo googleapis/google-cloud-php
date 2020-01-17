@@ -21,32 +21,32 @@ class ImportDocumentsMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * The time this operation completed. Will be unset if operation still in
      * progress.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2;</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * The state of the import operation.
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.OperationState operation_state = 3;</code>
      */
-    private $operation_state = 0;
+    protected $operation_state = 0;
     /**
      * The progress, in documents, of this operation.
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.Progress progress_documents = 4;</code>
      */
-    private $progress_documents = null;
+    protected $progress_documents = null;
     /**
      * The progress, in bytes, of this operation.
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.Progress progress_bytes = 5;</code>
      */
-    private $progress_bytes = null;
+    protected $progress_bytes = null;
     /**
      * Which collection ids are being imported.
      *
@@ -58,7 +58,7 @@ class ImportDocumentsMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string input_uri_prefix = 7;</code>
      */
-    private $input_uri_prefix = '';
+    protected $input_uri_prefix = '';
 
     /**
      * Constructor.

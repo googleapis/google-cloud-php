@@ -25,7 +25,7 @@ class QueryTarget extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      */
-    private $parent = '';
+    protected $parent = '';
     protected $query_type;
 
     /**

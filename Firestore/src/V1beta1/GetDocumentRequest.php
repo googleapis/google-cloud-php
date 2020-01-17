@@ -21,7 +21,7 @@ class GetDocumentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The fields to return. If not set, returns all fields.
      * If the document has a field that is not present in this mask, that field
@@ -29,7 +29,7 @@ class GetDocumentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.firestore.v1beta1.DocumentMask mask = 2;</code>
      */
-    private $mask = null;
+    protected $mask = null;
     protected $consistency_selector;
 
     /**

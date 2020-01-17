@@ -25,32 +25,32 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The collection ID, relative to `parent`, to list. For example: `chatrooms`
      * or `messages`.
      *
      * Generated from protobuf field <code>string collection_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $collection_id = '';
+    protected $collection_id = '';
     /**
      * The maximum number of documents to return.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * The `next_page_token` value returned from a previous List request, if any.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * The order to sort results by. For example: `priority desc, name`.
      *
      * Generated from protobuf field <code>string order_by = 6;</code>
      */
-    private $order_by = '';
+    protected $order_by = '';
     /**
      * The fields to return. If not set, returns all fields.
      * If a document has a field that is not present in this mask, that field
@@ -58,7 +58,7 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.firestore.v1.DocumentMask mask = 7;</code>
      */
-    private $mask = null;
+    protected $mask = null;
     /**
      * If the list should show missing documents. A missing document is a
      * document that does not exist but has sub-documents. These documents will
@@ -69,7 +69,7 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool show_missing = 12;</code>
      */
-    private $show_missing = false;
+    protected $show_missing = false;
     protected $consistency_selector;
 
     /**

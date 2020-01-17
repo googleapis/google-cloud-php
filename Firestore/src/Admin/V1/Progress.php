@@ -22,13 +22,13 @@ class Progress extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 estimated_work = 1;</code>
      */
-    private $estimated_work = 0;
+    protected $estimated_work = 0;
     /**
      * The amount of work completed.
      *
      * Generated from protobuf field <code>int64 completed_work = 2;</code>
      */
-    private $completed_work = 0;
+    protected $completed_work = 0;
 
     /**
      * Constructor.

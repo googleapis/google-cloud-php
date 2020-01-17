@@ -24,7 +24,7 @@ class Index extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Indexes with a collection query scope specified allow queries
      * against a collection that is the child of a specific document, specified at
@@ -35,7 +35,7 @@ class Index extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.Index.QueryScope query_scope = 2;</code>
      */
-    private $query_scope = 0;
+    protected $query_scope = 0;
     /**
      * The fields supported by this index.
      * For composite indexes, this is always 2 or more fields.
@@ -55,7 +55,7 @@ class Index extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.Index.State state = 4;</code>
      */
-    private $state = 0;
+    protected $state = 0;
 
     /**
      * Constructor.

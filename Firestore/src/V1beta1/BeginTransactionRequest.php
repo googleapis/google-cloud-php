@@ -21,14 +21,14 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $database = '';
+    protected $database = '';
     /**
      * The options for the transaction.
      * Defaults to a read-write transaction.
      *
      * Generated from protobuf field <code>.google.firestore.v1beta1.TransactionOptions options = 2;</code>
      */
-    private $options = null;
+    protected $options = null;
 
     /**
      * Constructor.

@@ -28,7 +28,7 @@ class IndexConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool uses_ancestor_config = 2;</code>
      */
-    private $uses_ancestor_config = false;
+    protected $uses_ancestor_config = false;
     /**
      * Output only. Specifies the resource name of the `Field` from which this field's
      * index configuration is set (when `uses_ancestor_config` is true),
@@ -37,7 +37,7 @@ class IndexConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string ancestor_field = 3;</code>
      */
-    private $ancestor_field = '';
+    protected $ancestor_field = '';
     /**
      * Output only
      * When true, the `Field`'s index configuration is in the process of being
@@ -47,7 +47,7 @@ class IndexConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool reverting = 4;</code>
      */
-    private $reverting = false;
+    protected $reverting = false;
 
     /**
      * Constructor.

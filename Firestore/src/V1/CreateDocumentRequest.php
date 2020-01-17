@@ -22,26 +22,26 @@ class CreateDocumentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The collection ID, relative to `parent`, to list. For example: `chatrooms`.
      *
      * Generated from protobuf field <code>string collection_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $collection_id = '';
+    protected $collection_id = '';
     /**
      * The client-assigned document ID to use for this document.
      * Optional. If not specified, an ID will be assigned by the service.
      *
      * Generated from protobuf field <code>string document_id = 3;</code>
      */
-    private $document_id = '';
+    protected $document_id = '';
     /**
      * Required. The document to create. `name` must not be set.
      *
      * Generated from protobuf field <code>.google.firestore.v1.Document document = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $document = null;
+    protected $document = null;
     /**
      * The fields to return. If not set, returns all fields.
      * If the document has a field that is not present in this mask, that field
@@ -49,7 +49,7 @@ class CreateDocumentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.firestore.v1.DocumentMask mask = 5;</code>
      */
-    private $mask = null;
+    protected $mask = null;
 
     /**
      * Constructor.

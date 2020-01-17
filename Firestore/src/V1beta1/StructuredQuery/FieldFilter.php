@@ -20,19 +20,19 @@ class FieldFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.firestore.v1beta1.StructuredQuery.FieldReference field = 1;</code>
      */
-    private $field = null;
+    protected $field = null;
     /**
      * The operator to filter by.
      *
      * Generated from protobuf field <code>.google.firestore.v1beta1.StructuredQuery.FieldFilter.Operator op = 2;</code>
      */
-    private $op = 0;
+    protected $op = 0;
     /**
      * The value to compare to.
      *
      * Generated from protobuf field <code>.google.firestore.v1beta1.Value value = 3;</code>
      */
-    private $value = null;
+    protected $value = null;
 
     /**
      * Constructor.

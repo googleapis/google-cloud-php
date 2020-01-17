@@ -20,7 +20,7 @@ class BeginTransactionResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes transaction = 1;</code>
      */
-    private $transaction = '';
+    protected $transaction = '';
 
     /**
      * Constructor.

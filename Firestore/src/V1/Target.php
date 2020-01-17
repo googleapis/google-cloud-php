@@ -21,13 +21,13 @@ class Target extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 target_id = 5;</code>
      */
-    private $target_id = 0;
+    protected $target_id = 0;
     /**
      * If the target should be removed once it is current and consistent.
      *
      * Generated from protobuf field <code>bool once = 6;</code>
      */
-    private $once = false;
+    protected $once = false;
     protected $target_type;
     protected $resume_type;
 

@@ -28,14 +28,14 @@ class Write extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.firestore.v1.DocumentMask update_mask = 3;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * An optional precondition on the document.
      * The write will fail if this is set and not met by the target document.
      *
      * Generated from protobuf field <code>.google.firestore.v1.Precondition current_document = 4;</code>
      */
-    private $current_document = null;
+    protected $current_document = null;
     protected $operation;
 
     /**

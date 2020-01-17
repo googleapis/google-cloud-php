@@ -23,14 +23,14 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes transaction = 2;</code>
      */
-    private $transaction = '';
+    protected $transaction = '';
     /**
      * A query result.
      * Not set when reporting partial progress.
      *
      * Generated from protobuf field <code>.google.firestore.v1.Document document = 1;</code>
      */
-    private $document = null;
+    protected $document = null;
     /**
      * The time at which the document was read. This may be monotonically
      * increasing; in this case, the previous documents in the result stream are
@@ -41,14 +41,14 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 3;</code>
      */
-    private $read_time = null;
+    protected $read_time = null;
     /**
      * The number of results that have been skipped due to an offset between
      * the last response and the current response.
      *
      * Generated from protobuf field <code>int32 skipped_results = 4;</code>
      */
-    private $skipped_results = 0;
+    protected $skipped_results = 0;
 
     /**
      * Constructor.

@@ -21,7 +21,7 @@ class ListenRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $database = '';
+    protected $database = '';
     /**
      * Labels associated with this target change.
      *

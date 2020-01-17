@@ -20,13 +20,13 @@ class IndexConfigDelta extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.FieldOperationMetadata.IndexConfigDelta.ChangeType change_type = 1;</code>
      */
-    private $change_type = 0;
+    protected $change_type = 0;
     /**
      * The index being changed.
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.Index index = 2;</code>
      */
-    private $index = null;
+    protected $index = null;
 
     /**
      * Constructor.

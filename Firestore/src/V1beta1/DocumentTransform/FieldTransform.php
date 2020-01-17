@@ -21,7 +21,7 @@ class FieldTransform extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string field_path = 1;</code>
      */
-    private $field_path = '';
+    protected $field_path = '';
     protected $transform_type;
 
     /**

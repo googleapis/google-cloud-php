@@ -21,13 +21,13 @@ class RollbackRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $database = '';
+    protected $database = '';
     /**
      * Required. The transaction to roll back.
      *
      * Generated from protobuf field <code>bytes transaction = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $transaction = '';
+    protected $transaction = '';
 
     /**
      * Constructor.

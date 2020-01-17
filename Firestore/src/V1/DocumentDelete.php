@@ -24,7 +24,7 @@ class DocumentDelete extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string document = 1;</code>
      */
-    private $document = '';
+    protected $document = '';
     /**
      * A set of target IDs for targets that previously matched this entity.
      *
@@ -37,7 +37,7 @@ class DocumentDelete extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 4;</code>
      */
-    private $read_time = null;
+    protected $read_time = null;
 
     /**
      * Constructor.

@@ -21,21 +21,21 @@ class FieldOperationMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * The time this operation completed. Will be unset if operation still in
      * progress.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2;</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * The field resource that this operation is acting on. For example:
      * `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_path}`
      *
      * Generated from protobuf field <code>string field = 3;</code>
      */
-    private $field = '';
+    protected $field = '';
     /**
      * A list of [IndexConfigDelta][google.firestore.admin.v1.FieldOperationMetadata.IndexConfigDelta], which describe the intent of this
      * operation.
@@ -48,19 +48,19 @@ class FieldOperationMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.OperationState state = 5;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * The progress, in documents, of this operation.
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.Progress progress_documents = 6;</code>
      */
-    private $progress_documents = null;
+    protected $progress_documents = null;
     /**
      * The progress, in bytes, of this operation.
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.Progress progress_bytes = 7;</code>
      */
-    private $progress_bytes = null;
+    protected $progress_bytes = null;
 
     /**
      * Constructor.

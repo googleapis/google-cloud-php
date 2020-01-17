@@ -20,7 +20,7 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.firestore.v1.StructuredQuery.Projection select = 1;</code>
      */
-    private $select = null;
+    protected $select = null;
     /**
      * The collections to query.
      *
@@ -32,7 +32,7 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.firestore.v1.StructuredQuery.Filter where = 3;</code>
      */
-    private $where = null;
+    protected $where = null;
     /**
      * The order to apply to the query results.
      * Firestore guarantees a stable ordering through the following rules:
@@ -57,13 +57,13 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.firestore.v1.Cursor start_at = 7;</code>
      */
-    private $start_at = null;
+    protected $start_at = null;
     /**
      * A end point for the query results.
      *
      * Generated from protobuf field <code>.google.firestore.v1.Cursor end_at = 8;</code>
      */
-    private $end_at = null;
+    protected $end_at = null;
     /**
      * The number of results to skip.
      * Applies before limit, but after all other constraints. Must be >= 0 if
@@ -71,7 +71,7 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 offset = 6;</code>
      */
-    private $offset = 0;
+    protected $offset = 0;
     /**
      * The maximum number of results to return.
      * Applies after all other constraints.
@@ -79,7 +79,7 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Int32Value limit = 5;</code>
      */
-    private $limit = null;
+    protected $limit = null;
 
     /**
      * Constructor.
@@ -364,8 +364,7 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
      */
     public function getLimitValue()
     {
-        $wrapper = $this->getLimit();
-        return is_null($wrapper) ? null : $wrapper->getValue();
+        return $this->readWrapperValue("limit");
     }
 
     /**
@@ -398,9 +397,8 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
      */
     public function setLimitValue($var)
     {
-        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\Int32Value(['value' => $var]);
-        return $this->setLimit($wrappedVar);
-    }
+        $this->writeWrapperValue("limit", $var);
+        return $this;}
 
 }
 

@@ -20,7 +20,7 @@ class UnaryFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.firestore.v1beta1.StructuredQuery.UnaryFilter.Operator op = 1;</code>
      */
-    private $op = 0;
+    protected $op = 0;
     protected $operand_type;
 
     /**

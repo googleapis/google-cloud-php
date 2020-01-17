@@ -43,7 +43,7 @@ class Field extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The index configuration for this field. If unset, field indexing will
      * revert to the configuration defined by the `ancestor_field`. To
@@ -52,7 +52,7 @@ class Field extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.Field.IndexConfig index_config = 2;</code>
      */
-    private $index_config = null;
+    protected $index_config = null;
 
     /**
      * Constructor.

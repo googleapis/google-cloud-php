@@ -20,14 +20,14 @@ class UpdateFieldRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.Field field = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $field = null;
+    protected $field = null;
     /**
      * A mask, relative to the field. If specified, only configuration specified
      * by this field_mask will be updated in the field.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * Constructor.

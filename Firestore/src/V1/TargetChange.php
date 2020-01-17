@@ -20,7 +20,7 @@ class TargetChange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.firestore.v1.TargetChange.TargetChangeType target_change_type = 1;</code>
      */
-    private $target_change_type = 0;
+    protected $target_change_type = 0;
     /**
      * The target IDs of targets that have changed.
      * If empty, the change applies to all targets.
@@ -34,7 +34,7 @@ class TargetChange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.rpc.Status cause = 3;</code>
      */
-    private $cause = null;
+    protected $cause = null;
     /**
      * A token that can be used to resume the stream for the given `target_ids`,
      * or all targets if `target_ids` is empty.
@@ -42,7 +42,7 @@ class TargetChange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes resume_token = 4;</code>
      */
-    private $resume_token = '';
+    protected $resume_token = '';
     /**
      * The consistent `read_time` for the given `target_ids` (omitted when the
      * target_ids are not at a consistent snapshot).
@@ -55,7 +55,7 @@ class TargetChange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 6;</code>
      */
-    private $read_time = null;
+    protected $read_time = null;
 
     /**
      * Constructor.

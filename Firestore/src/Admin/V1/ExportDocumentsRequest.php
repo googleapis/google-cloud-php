@@ -21,7 +21,7 @@ class ExportDocumentsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Which collection ids to export. Unspecified means all collections.
      *
@@ -40,7 +40,7 @@ class ExportDocumentsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string output_uri_prefix = 3;</code>
      */
-    private $output_uri_prefix = '';
+    protected $output_uri_prefix = '';
 
     /**
      * Constructor.

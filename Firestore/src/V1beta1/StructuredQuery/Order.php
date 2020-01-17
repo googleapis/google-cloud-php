@@ -20,13 +20,13 @@ class Order extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.firestore.v1beta1.StructuredQuery.FieldReference field = 1;</code>
      */
-    private $field = null;
+    protected $field = null;
     /**
      * The direction to order by. Defaults to `ASCENDING`.
      *
      * Generated from protobuf field <code>.google.firestore.v1beta1.StructuredQuery.Direction direction = 2;</code>
      */
-    private $direction = 0;
+    protected $direction = 0;
 
     /**
      * Constructor.

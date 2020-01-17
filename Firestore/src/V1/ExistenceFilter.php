@@ -20,7 +20,7 @@ class ExistenceFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 target_id = 1;</code>
      */
-    private $target_id = 0;
+    protected $target_id = 0;
     /**
      * The total count of documents that match [target_id][google.firestore.v1.ExistenceFilter.target_id].
      * If different from the count of documents in the client that match, the
@@ -28,7 +28,7 @@ class ExistenceFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 count = 2;</code>
      */
-    private $count = 0;
+    protected $count = 0;
 
     /**
      * Constructor.

@@ -29,7 +29,7 @@ class Cursor extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool before = 2;</code>
      */
-    private $before = false;
+    protected $before = false;
 
     /**
      * Constructor.

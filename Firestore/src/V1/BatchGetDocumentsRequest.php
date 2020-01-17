@@ -21,7 +21,7 @@ class BatchGetDocumentsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $database = '';
+    protected $database = '';
     /**
      * The names of the documents to retrieve. In the format:
      * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
@@ -38,7 +38,7 @@ class BatchGetDocumentsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.firestore.v1.DocumentMask mask = 3;</code>
      */
-    private $mask = null;
+    protected $mask = null;
     protected $consistency_selector;
 
     /**

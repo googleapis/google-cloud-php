@@ -21,13 +21,13 @@ class CreateIndexRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The composite index to create.
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.Index index = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $index = null;
+    protected $index = null;
 
     /**
      * Constructor.

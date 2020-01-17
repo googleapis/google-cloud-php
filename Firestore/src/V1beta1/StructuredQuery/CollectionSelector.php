@@ -21,7 +21,7 @@ class CollectionSelector extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string collection_id = 2;</code>
      */
-    private $collection_id = '';
+    protected $collection_id = '';
     /**
      * When false, selects only collections that are immediate children of
      * the `parent` specified in the containing `RunQueryRequest`.
@@ -29,7 +29,7 @@ class CollectionSelector extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool all_descendants = 3;</code>
      */
-    private $all_descendants = false;
+    protected $all_descendants = false;
 
     /**
      * Constructor.

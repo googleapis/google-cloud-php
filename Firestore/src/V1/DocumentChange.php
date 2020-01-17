@@ -25,7 +25,7 @@ class DocumentChange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.firestore.v1.Document document = 1;</code>
      */
-    private $document = null;
+    protected $document = null;
     /**
      * A set of target IDs of targets that match this document.
      *

@@ -20,7 +20,7 @@ class DocumentTransform extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string document = 1;</code>
      */
-    private $document = '';
+    protected $document = '';
     /**
      * The list of transformations to apply to the fields of the document, in
      * order.

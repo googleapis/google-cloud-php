@@ -28,7 +28,7 @@ class WriteRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $database = '';
+    protected $database = '';
     /**
      * The ID of the write stream to resume.
      * This may only be set in the first message. When left empty, a new write
@@ -36,7 +36,7 @@ class WriteRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string stream_id = 2;</code>
      */
-    private $stream_id = '';
+    protected $stream_id = '';
     /**
      * The writes to apply.
      * Always executed atomically and in order.
@@ -61,7 +61,7 @@ class WriteRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes stream_token = 4;</code>
      */
-    private $stream_token = '';
+    protected $stream_token = '';
     /**
      * Labels associated with this write request.
      *

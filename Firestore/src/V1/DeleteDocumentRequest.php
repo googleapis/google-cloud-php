@@ -21,14 +21,14 @@ class DeleteDocumentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * An optional precondition on the document.
      * The request will fail if this is set and not met by the target document.
      *
      * Generated from protobuf field <code>.google.firestore.v1.Precondition current_document = 2;</code>
      */
-    private $current_document = null;
+    protected $current_document = null;
 
     /**
      * Constructor.

@@ -18,7 +18,7 @@ class FieldReference extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>string field_path = 2;</code>
      */
-    private $field_path = '';
+    protected $field_path = '';
 
     /**
      * Constructor.

@@ -22,7 +22,7 @@ class BatchGetDocumentsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes transaction = 3;</code>
      */
-    private $transaction = '';
+    protected $transaction = '';
     /**
      * The time at which the document was read.
      * This may be monotically increasing, in this case the previous documents in
@@ -31,7 +31,7 @@ class BatchGetDocumentsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 4;</code>
      */
-    private $read_time = null;
+    protected $read_time = null;
     protected $result;
 
     /**

@@ -21,7 +21,7 @@ class UpdateDocumentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.firestore.v1beta1.Document document = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $document = null;
+    protected $document = null;
     /**
      * The fields to update.
      * None of the field paths in the mask may contain a reserved name.
@@ -32,7 +32,7 @@ class UpdateDocumentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.firestore.v1beta1.DocumentMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * The fields to return. If not set, returns all fields.
      * If the document has a field that is not present in this mask, that field
@@ -40,14 +40,14 @@ class UpdateDocumentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.firestore.v1beta1.DocumentMask mask = 3;</code>
      */
-    private $mask = null;
+    protected $mask = null;
     /**
      * An optional precondition on the document.
      * The request will fail if this is set and not met by the target document.
      *
      * Generated from protobuf field <code>.google.firestore.v1beta1.Precondition current_document = 4;</code>
      */
-    private $current_document = null;
+    protected $current_document = null;
 
     /**
      * Constructor.

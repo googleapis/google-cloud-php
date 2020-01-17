@@ -21,7 +21,7 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $database = '';
+    protected $database = '';
     /**
      * The writes to apply.
      * Always executed atomically and in order.
@@ -34,7 +34,7 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes transaction = 3;</code>
      */
-    private $transaction = '';
+    protected $transaction = '';
 
     /**
      * Constructor.
