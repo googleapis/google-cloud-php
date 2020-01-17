@@ -1,19 +1,19 @@
 {
-  "updateTime": "2019-10-10T10:05:16.579973Z",
+  "updateTime": "2020-01-17T11:07:00.325028Z",
   "sources": [
     {
       "generator": {
         "name": "artman",
-        "version": "0.38.0",
-        "dockerImage": "googleapis/artman@sha256:0d2f8d429110aeb8d82df6550ef4ede59d40df9062d260a1580fce688b0512bf"
+        "version": "0.44.1",
+        "dockerImage": "googleapis/artman@sha256:5599b61e56a372d21b671969ee915fbca0f6c3a0daaeb898d01f8f685f1bbc8b"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "10f91fa12f70e8e0209a45fc10807ed1f77c7e4e",
-        "internalRef": "273826591"
+        "sha": "58e770d568a2b78168ddc19a874178fee8265a9d",
+        "internalRef": "290146169"
       }
     }
   ],
@@ -27,6 +27,272 @@
         "generator": "gapic",
         "config": "google/cloud/websecurityscanner/artman_websecurityscanner_v1beta.yaml"
       }
+    }
+  ],
+  "newFiles": [
+    {
+      "path": ".gitattributes"
+    },
+    {
+      "path": ".github/pull_request_template.md"
+    },
+    {
+      "path": "CONTRIBUTING.md"
+    },
+    {
+      "path": "LICENSE"
+    },
+    {
+      "path": "README.md"
+    },
+    {
+      "path": "VERSION"
+    },
+    {
+      "path": "composer.json"
+    },
+    {
+      "path": "metadata/V1Beta/CrawledUrl.php"
+    },
+    {
+      "path": "metadata/V1Beta/Finding.php"
+    },
+    {
+      "path": "metadata/V1Beta/FindingAddon.php"
+    },
+    {
+      "path": "metadata/V1Beta/FindingTypeStats.php"
+    },
+    {
+      "path": "metadata/V1Beta/ScanConfig.php"
+    },
+    {
+      "path": "metadata/V1Beta/ScanConfigError.php"
+    },
+    {
+      "path": "metadata/V1Beta/ScanRun.php"
+    },
+    {
+      "path": "metadata/V1Beta/ScanRunErrorTrace.php"
+    },
+    {
+      "path": "metadata/V1Beta/ScanRunWarningTrace.php"
+    },
+    {
+      "path": "metadata/V1Beta/WebSecurityScanner.php"
+    },
+    {
+      "path": "phpunit.xml.dist"
+    },
+    {
+      "path": "src/V1beta/CrawledUrl.php"
+    },
+    {
+      "path": "src/V1beta/CreateScanConfigRequest.php"
+    },
+    {
+      "path": "src/V1beta/DeleteScanConfigRequest.php"
+    },
+    {
+      "path": "src/V1beta/Finding.php"
+    },
+    {
+      "path": "src/V1beta/FindingTypeStats.php"
+    },
+    {
+      "path": "src/V1beta/Form.php"
+    },
+    {
+      "path": "src/V1beta/Gapic/WebSecurityScannerGapicClient.php"
+    },
+    {
+      "path": "src/V1beta/GetFindingRequest.php"
+    },
+    {
+      "path": "src/V1beta/GetScanConfigRequest.php"
+    },
+    {
+      "path": "src/V1beta/GetScanRunRequest.php"
+    },
+    {
+      "path": "src/V1beta/ListCrawledUrlsRequest.php"
+    },
+    {
+      "path": "src/V1beta/ListCrawledUrlsResponse.php"
+    },
+    {
+      "path": "src/V1beta/ListFindingTypeStatsRequest.php"
+    },
+    {
+      "path": "src/V1beta/ListFindingTypeStatsResponse.php"
+    },
+    {
+      "path": "src/V1beta/ListFindingsRequest.php"
+    },
+    {
+      "path": "src/V1beta/ListFindingsResponse.php"
+    },
+    {
+      "path": "src/V1beta/ListScanConfigsRequest.php"
+    },
+    {
+      "path": "src/V1beta/ListScanConfigsResponse.php"
+    },
+    {
+      "path": "src/V1beta/ListScanRunsRequest.php"
+    },
+    {
+      "path": "src/V1beta/ListScanRunsResponse.php"
+    },
+    {
+      "path": "src/V1beta/OutdatedLibrary.php"
+    },
+    {
+      "path": "src/V1beta/README.md"
+    },
+    {
+      "path": "src/V1beta/ScanConfig.php"
+    },
+    {
+      "path": "src/V1beta/ScanConfig/Authentication.php"
+    },
+    {
+      "path": "src/V1beta/ScanConfig/Authentication/CustomAccount.php"
+    },
+    {
+      "path": "src/V1beta/ScanConfig/Authentication/GoogleAccount.php"
+    },
+    {
+      "path": "src/V1beta/ScanConfig/ExportToSecurityCommandCenter.php"
+    },
+    {
+      "path": "src/V1beta/ScanConfig/RiskLevel.php"
+    },
+    {
+      "path": "src/V1beta/ScanConfig/Schedule.php"
+    },
+    {
+      "path": "src/V1beta/ScanConfig/TargetPlatform.php"
+    },
+    {
+      "path": "src/V1beta/ScanConfig/UserAgent.php"
+    },
+    {
+      "path": "src/V1beta/ScanConfigError.php"
+    },
+    {
+      "path": "src/V1beta/ScanConfigError/Code.php"
+    },
+    {
+      "path": "src/V1beta/ScanConfigError_Code.php"
+    },
+    {
+      "path": "src/V1beta/ScanConfig_Authentication.php"
+    },
+    {
+      "path": "src/V1beta/ScanConfig_Authentication_CustomAccount.php"
+    },
+    {
+      "path": "src/V1beta/ScanConfig_Authentication_GoogleAccount.php"
+    },
+    {
+      "path": "src/V1beta/ScanConfig_ExportToSecurityCommandCenter.php"
+    },
+    {
+      "path": "src/V1beta/ScanConfig_RiskLevel.php"
+    },
+    {
+      "path": "src/V1beta/ScanConfig_Schedule.php"
+    },
+    {
+      "path": "src/V1beta/ScanConfig_TargetPlatform.php"
+    },
+    {
+      "path": "src/V1beta/ScanConfig_UserAgent.php"
+    },
+    {
+      "path": "src/V1beta/ScanRun.php"
+    },
+    {
+      "path": "src/V1beta/ScanRun/ExecutionState.php"
+    },
+    {
+      "path": "src/V1beta/ScanRun/ResultState.php"
+    },
+    {
+      "path": "src/V1beta/ScanRunErrorTrace.php"
+    },
+    {
+      "path": "src/V1beta/ScanRunErrorTrace/Code.php"
+    },
+    {
+      "path": "src/V1beta/ScanRunErrorTrace_Code.php"
+    },
+    {
+      "path": "src/V1beta/ScanRunWarningTrace.php"
+    },
+    {
+      "path": "src/V1beta/ScanRunWarningTrace/Code.php"
+    },
+    {
+      "path": "src/V1beta/ScanRunWarningTrace_Code.php"
+    },
+    {
+      "path": "src/V1beta/ScanRun_ExecutionState.php"
+    },
+    {
+      "path": "src/V1beta/ScanRun_ResultState.php"
+    },
+    {
+      "path": "src/V1beta/StartScanRunRequest.php"
+    },
+    {
+      "path": "src/V1beta/StopScanRunRequest.php"
+    },
+    {
+      "path": "src/V1beta/UpdateScanConfigRequest.php"
+    },
+    {
+      "path": "src/V1beta/ViolatingResource.php"
+    },
+    {
+      "path": "src/V1beta/VulnerableHeaders.php"
+    },
+    {
+      "path": "src/V1beta/VulnerableHeaders/Header.php"
+    },
+    {
+      "path": "src/V1beta/VulnerableHeaders_Header.php"
+    },
+    {
+      "path": "src/V1beta/VulnerableParameters.php"
+    },
+    {
+      "path": "src/V1beta/WebSecurityScannerClient.php"
+    },
+    {
+      "path": "src/V1beta/WebSecurityScannerGrpcClient.php"
+    },
+    {
+      "path": "src/V1beta/Xss.php"
+    },
+    {
+      "path": "src/V1beta/resources/web_security_scanner_client_config.json"
+    },
+    {
+      "path": "src/V1beta/resources/web_security_scanner_descriptor_config.php"
+    },
+    {
+      "path": "src/V1beta/resources/web_security_scanner_rest_client_config.php"
+    },
+    {
+      "path": "synth.metadata"
+    },
+    {
+      "path": "synth.py"
+    },
+    {
+      "path": "tests/Unit/V1beta/WebSecurityScannerClientTest.php"
     }
   ]
 }
