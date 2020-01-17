@@ -22,25 +22,25 @@ class Features extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool extract_syntax = 1;</code>
      */
-    private $extract_syntax = false;
+    protected $extract_syntax = false;
     /**
      * Extract entities.
      *
      * Generated from protobuf field <code>bool extract_entities = 2;</code>
      */
-    private $extract_entities = false;
+    protected $extract_entities = false;
     /**
      * Extract document-level sentiment.
      *
      * Generated from protobuf field <code>bool extract_document_sentiment = 3;</code>
      */
-    private $extract_document_sentiment = false;
+    protected $extract_document_sentiment = false;
     /**
      * Extract entities and their associated sentiment.
      *
      * Generated from protobuf field <code>bool extract_entity_sentiment = 4;</code>
      */
-    private $extract_entity_sentiment = false;
+    protected $extract_entity_sentiment = false;
     /**
      * Classify the full document into categories. If this is true,
      * the API will use the default model which classifies into a
@@ -48,7 +48,7 @@ class Features extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool classify_text = 6;</code>
      */
-    private $classify_text = false;
+    protected $classify_text = false;
 
     /**
      * Constructor.

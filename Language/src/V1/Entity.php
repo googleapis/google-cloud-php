@@ -22,13 +22,13 @@ class Entity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The entity type.
      *
      * Generated from protobuf field <code>.google.cloud.language.v1.Entity.Type type = 2;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Metadata associated with the entity.
      * For most entity types, the metadata is a Wikipedia URL (`wikipedia_url`)
@@ -47,7 +47,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float salience = 4;</code>
      */
-    private $salience = 0.0;
+    protected $salience = 0.0;
     /**
      * The mentions of this entity in the input document. The API currently
      * supports proper noun mentions.
@@ -63,7 +63,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.language.v1.Sentiment sentiment = 6;</code>
      */
-    private $sentiment = null;
+    protected $sentiment = null;
 
     /**
      * Constructor.

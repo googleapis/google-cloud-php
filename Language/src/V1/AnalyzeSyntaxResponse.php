@@ -34,7 +34,7 @@ class AnalyzeSyntaxResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language = 3;</code>
      */
-    private $language = '';
+    protected $language = '';
 
     /**
      * Constructor.

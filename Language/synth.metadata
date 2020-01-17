@@ -1,19 +1,19 @@
 {
-  "updateTime": "2019-12-10T11:01:04.053364Z",
+  "updateTime": "2020-01-17T11:02:39.259770Z",
   "sources": [
     {
       "generator": {
         "name": "artman",
-        "version": "0.42.1",
-        "dockerImage": "googleapis/artman@sha256:c773192618c608a7a0415dd95282f841f8e6bcdef7dd760a988c93b77a64bd57"
+        "version": "0.44.1",
+        "dockerImage": "googleapis/artman@sha256:5599b61e56a372d21b671969ee915fbca0f6c3a0daaeb898d01f8f685f1bbc8b"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "6cc9499e225a4f6a5e34fe07e390f67055d7991c",
-        "internalRef": "284643689"
+        "sha": "58e770d568a2b78168ddc19a874178fee8265a9d",
+        "internalRef": "290146169"
       }
     }
   ],
@@ -37,6 +37,485 @@
         "generator": "gapic",
         "config": "google/cloud/language/artman_language_v1beta2.yaml"
       }
+    }
+  ],
+  "newFiles": [
+    {
+      "path": ".gitattributes"
+    },
+    {
+      "path": ".github/pull_request_template.md"
+    },
+    {
+      "path": "CONTRIBUTING.md"
+    },
+    {
+      "path": "LICENSE"
+    },
+    {
+      "path": "README.md"
+    },
+    {
+      "path": "VERSION"
+    },
+    {
+      "path": "composer.json"
+    },
+    {
+      "path": "metadata/V1/LanguageService.php"
+    },
+    {
+      "path": "metadata/V1Beta2/LanguageService.php"
+    },
+    {
+      "path": "phpunit-snippets.xml.dist"
+    },
+    {
+      "path": "phpunit-system.xml.dist"
+    },
+    {
+      "path": "phpunit.xml.dist"
+    },
+    {
+      "path": "src/Annotation.php"
+    },
+    {
+      "path": "src/Connection/ConnectionInterface.php"
+    },
+    {
+      "path": "src/Connection/Rest.php"
+    },
+    {
+      "path": "src/Connection/ServiceDefinition/language-v1.json"
+    },
+    {
+      "path": "src/LanguageClient.php"
+    },
+    {
+      "path": "src/V1/AnalyzeEntitiesRequest.php"
+    },
+    {
+      "path": "src/V1/AnalyzeEntitiesResponse.php"
+    },
+    {
+      "path": "src/V1/AnalyzeEntitySentimentRequest.php"
+    },
+    {
+      "path": "src/V1/AnalyzeEntitySentimentResponse.php"
+    },
+    {
+      "path": "src/V1/AnalyzeSentimentRequest.php"
+    },
+    {
+      "path": "src/V1/AnalyzeSentimentResponse.php"
+    },
+    {
+      "path": "src/V1/AnalyzeSyntaxRequest.php"
+    },
+    {
+      "path": "src/V1/AnalyzeSyntaxResponse.php"
+    },
+    {
+      "path": "src/V1/AnnotateTextRequest.php"
+    },
+    {
+      "path": "src/V1/AnnotateTextRequest/Features.php"
+    },
+    {
+      "path": "src/V1/AnnotateTextRequest_Features.php"
+    },
+    {
+      "path": "src/V1/AnnotateTextResponse.php"
+    },
+    {
+      "path": "src/V1/ClassificationCategory.php"
+    },
+    {
+      "path": "src/V1/ClassifyTextRequest.php"
+    },
+    {
+      "path": "src/V1/ClassifyTextResponse.php"
+    },
+    {
+      "path": "src/V1/DependencyEdge.php"
+    },
+    {
+      "path": "src/V1/DependencyEdge/Label.php"
+    },
+    {
+      "path": "src/V1/DependencyEdge_Label.php"
+    },
+    {
+      "path": "src/V1/Document.php"
+    },
+    {
+      "path": "src/V1/Document/Type.php"
+    },
+    {
+      "path": "src/V1/Document_Type.php"
+    },
+    {
+      "path": "src/V1/EncodingType.php"
+    },
+    {
+      "path": "src/V1/Entity.php"
+    },
+    {
+      "path": "src/V1/Entity/Type.php"
+    },
+    {
+      "path": "src/V1/EntityMention.php"
+    },
+    {
+      "path": "src/V1/EntityMention/Type.php"
+    },
+    {
+      "path": "src/V1/EntityMention_Type.php"
+    },
+    {
+      "path": "src/V1/Entity_Type.php"
+    },
+    {
+      "path": "src/V1/Gapic/LanguageServiceGapicClient.php"
+    },
+    {
+      "path": "src/V1/LanguageServiceClient.php"
+    },
+    {
+      "path": "src/V1/LanguageServiceGrpcClient.php"
+    },
+    {
+      "path": "src/V1/PartOfSpeech.php"
+    },
+    {
+      "path": "src/V1/PartOfSpeech/Aspect.php"
+    },
+    {
+      "path": "src/V1/PartOfSpeech/Form.php"
+    },
+    {
+      "path": "src/V1/PartOfSpeech/Gender.php"
+    },
+    {
+      "path": "src/V1/PartOfSpeech/Mood.php"
+    },
+    {
+      "path": "src/V1/PartOfSpeech/Number.php"
+    },
+    {
+      "path": "src/V1/PartOfSpeech/PBCase.php"
+    },
+    {
+      "path": "src/V1/PartOfSpeech/Person.php"
+    },
+    {
+      "path": "src/V1/PartOfSpeech/Proper.php"
+    },
+    {
+      "path": "src/V1/PartOfSpeech/Reciprocity.php"
+    },
+    {
+      "path": "src/V1/PartOfSpeech/Tag.php"
+    },
+    {
+      "path": "src/V1/PartOfSpeech/Tense.php"
+    },
+    {
+      "path": "src/V1/PartOfSpeech/Voice.php"
+    },
+    {
+      "path": "src/V1/PartOfSpeech_Aspect.php"
+    },
+    {
+      "path": "src/V1/PartOfSpeech_Case.php"
+    },
+    {
+      "path": "src/V1/PartOfSpeech_Form.php"
+    },
+    {
+      "path": "src/V1/PartOfSpeech_Gender.php"
+    },
+    {
+      "path": "src/V1/PartOfSpeech_Mood.php"
+    },
+    {
+      "path": "src/V1/PartOfSpeech_Number.php"
+    },
+    {
+      "path": "src/V1/PartOfSpeech_Person.php"
+    },
+    {
+      "path": "src/V1/PartOfSpeech_Proper.php"
+    },
+    {
+      "path": "src/V1/PartOfSpeech_Reciprocity.php"
+    },
+    {
+      "path": "src/V1/PartOfSpeech_Tag.php"
+    },
+    {
+      "path": "src/V1/PartOfSpeech_Tense.php"
+    },
+    {
+      "path": "src/V1/PartOfSpeech_Voice.php"
+    },
+    {
+      "path": "src/V1/README.md"
+    },
+    {
+      "path": "src/V1/Sentence.php"
+    },
+    {
+      "path": "src/V1/Sentiment.php"
+    },
+    {
+      "path": "src/V1/TextSpan.php"
+    },
+    {
+      "path": "src/V1/Token.php"
+    },
+    {
+      "path": "src/V1/resources/language_service_client_config.json"
+    },
+    {
+      "path": "src/V1/resources/language_service_descriptor_config.php"
+    },
+    {
+      "path": "src/V1/resources/language_service_rest_client_config.php"
+    },
+    {
+      "path": "src/V1beta2/AnalyzeEntitiesRequest.php"
+    },
+    {
+      "path": "src/V1beta2/AnalyzeEntitiesResponse.php"
+    },
+    {
+      "path": "src/V1beta2/AnalyzeEntitySentimentRequest.php"
+    },
+    {
+      "path": "src/V1beta2/AnalyzeEntitySentimentResponse.php"
+    },
+    {
+      "path": "src/V1beta2/AnalyzeSentimentRequest.php"
+    },
+    {
+      "path": "src/V1beta2/AnalyzeSentimentResponse.php"
+    },
+    {
+      "path": "src/V1beta2/AnalyzeSyntaxRequest.php"
+    },
+    {
+      "path": "src/V1beta2/AnalyzeSyntaxResponse.php"
+    },
+    {
+      "path": "src/V1beta2/AnnotateTextRequest.php"
+    },
+    {
+      "path": "src/V1beta2/AnnotateTextRequest/Features.php"
+    },
+    {
+      "path": "src/V1beta2/AnnotateTextRequest_Features.php"
+    },
+    {
+      "path": "src/V1beta2/AnnotateTextResponse.php"
+    },
+    {
+      "path": "src/V1beta2/ClassificationCategory.php"
+    },
+    {
+      "path": "src/V1beta2/ClassifyTextRequest.php"
+    },
+    {
+      "path": "src/V1beta2/ClassifyTextResponse.php"
+    },
+    {
+      "path": "src/V1beta2/DependencyEdge.php"
+    },
+    {
+      "path": "src/V1beta2/DependencyEdge/Label.php"
+    },
+    {
+      "path": "src/V1beta2/DependencyEdge_Label.php"
+    },
+    {
+      "path": "src/V1beta2/Document.php"
+    },
+    {
+      "path": "src/V1beta2/Document/Type.php"
+    },
+    {
+      "path": "src/V1beta2/Document_Type.php"
+    },
+    {
+      "path": "src/V1beta2/EncodingType.php"
+    },
+    {
+      "path": "src/V1beta2/Entity.php"
+    },
+    {
+      "path": "src/V1beta2/Entity/Type.php"
+    },
+    {
+      "path": "src/V1beta2/EntityMention.php"
+    },
+    {
+      "path": "src/V1beta2/EntityMention/Type.php"
+    },
+    {
+      "path": "src/V1beta2/EntityMention_Type.php"
+    },
+    {
+      "path": "src/V1beta2/Entity_Type.php"
+    },
+    {
+      "path": "src/V1beta2/Gapic/LanguageServiceGapicClient.php"
+    },
+    {
+      "path": "src/V1beta2/LanguageServiceClient.php"
+    },
+    {
+      "path": "src/V1beta2/LanguageServiceGrpcClient.php"
+    },
+    {
+      "path": "src/V1beta2/PartOfSpeech.php"
+    },
+    {
+      "path": "src/V1beta2/PartOfSpeech/Aspect.php"
+    },
+    {
+      "path": "src/V1beta2/PartOfSpeech/Form.php"
+    },
+    {
+      "path": "src/V1beta2/PartOfSpeech/Gender.php"
+    },
+    {
+      "path": "src/V1beta2/PartOfSpeech/Mood.php"
+    },
+    {
+      "path": "src/V1beta2/PartOfSpeech/Number.php"
+    },
+    {
+      "path": "src/V1beta2/PartOfSpeech/PBCase.php"
+    },
+    {
+      "path": "src/V1beta2/PartOfSpeech/Person.php"
+    },
+    {
+      "path": "src/V1beta2/PartOfSpeech/Proper.php"
+    },
+    {
+      "path": "src/V1beta2/PartOfSpeech/Reciprocity.php"
+    },
+    {
+      "path": "src/V1beta2/PartOfSpeech/Tag.php"
+    },
+    {
+      "path": "src/V1beta2/PartOfSpeech/Tense.php"
+    },
+    {
+      "path": "src/V1beta2/PartOfSpeech/Voice.php"
+    },
+    {
+      "path": "src/V1beta2/PartOfSpeech_Aspect.php"
+    },
+    {
+      "path": "src/V1beta2/PartOfSpeech_Case.php"
+    },
+    {
+      "path": "src/V1beta2/PartOfSpeech_Form.php"
+    },
+    {
+      "path": "src/V1beta2/PartOfSpeech_Gender.php"
+    },
+    {
+      "path": "src/V1beta2/PartOfSpeech_Mood.php"
+    },
+    {
+      "path": "src/V1beta2/PartOfSpeech_Number.php"
+    },
+    {
+      "path": "src/V1beta2/PartOfSpeech_Person.php"
+    },
+    {
+      "path": "src/V1beta2/PartOfSpeech_Proper.php"
+    },
+    {
+      "path": "src/V1beta2/PartOfSpeech_Reciprocity.php"
+    },
+    {
+      "path": "src/V1beta2/PartOfSpeech_Tag.php"
+    },
+    {
+      "path": "src/V1beta2/PartOfSpeech_Tense.php"
+    },
+    {
+      "path": "src/V1beta2/PartOfSpeech_Voice.php"
+    },
+    {
+      "path": "src/V1beta2/README.md"
+    },
+    {
+      "path": "src/V1beta2/Sentence.php"
+    },
+    {
+      "path": "src/V1beta2/Sentiment.php"
+    },
+    {
+      "path": "src/V1beta2/TextSpan.php"
+    },
+    {
+      "path": "src/V1beta2/Token.php"
+    },
+    {
+      "path": "src/V1beta2/resources/language_service_client_config.json"
+    },
+    {
+      "path": "src/V1beta2/resources/language_service_descriptor_config.php"
+    },
+    {
+      "path": "src/V1beta2/resources/language_service_rest_client_config.php"
+    },
+    {
+      "path": "synth.metadata"
+    },
+    {
+      "path": "synth.py"
+    },
+    {
+      "path": "tests/Snippet/AnnotationTest.php"
+    },
+    {
+      "path": "tests/Snippet/LanguageClientTest.php"
+    },
+    {
+      "path": "tests/System/AnalyzeTest.php"
+    },
+    {
+      "path": "tests/System/LanguageTestCase.php"
+    },
+    {
+      "path": "tests/System/V1/LanguageServiceSmokeTest.php"
+    },
+    {
+      "path": "tests/System/V1beta2/LanguageServiceSmokeTest.php"
+    },
+    {
+      "path": "tests/System/bootstrap.php"
+    },
+    {
+      "path": "tests/Unit/AnnotationTest.php"
+    },
+    {
+      "path": "tests/Unit/Connection/RestTest.php"
+    },
+    {
+      "path": "tests/Unit/LanguageClientTest.php"
+    },
+    {
+      "path": "tests/Unit/V1/LanguageServiceClientTest.php"
+    },
+    {
+      "path": "tests/Unit/V1beta2/LanguageServiceClientTest.php"
     }
   ]
 }

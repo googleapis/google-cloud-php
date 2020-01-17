@@ -20,14 +20,14 @@ class TextSpan extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string content = 1;</code>
      */
-    private $content = '';
+    protected $content = '';
     /**
      * The API calculates the beginning offset of the content in the original
      * document according to the [EncodingType][google.cloud.language.v1beta2.EncodingType] specified in the API request.
      *
      * Generated from protobuf field <code>int32 begin_offset = 2;</code>
      */
-    private $begin_offset = 0;
+    protected $begin_offset = 0;
 
     /**
      * Constructor.
