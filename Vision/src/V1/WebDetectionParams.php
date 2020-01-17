@@ -20,7 +20,7 @@ class WebDetectionParams extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool include_geo_results = 2;</code>
      */
-    private $include_geo_results = false;
+    protected $include_geo_results = false;
 
     /**
      * Constructor.

@@ -21,13 +21,13 @@ class CreateProductSetRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The ProductSet to create.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.ProductSet product_set = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $product_set = null;
+    protected $product_set = null;
     /**
      * A user-supplied resource id for this ProductSet. If set, the server will
      * attempt to use this value as the resource id. If it is already in use, an
@@ -36,7 +36,7 @@ class CreateProductSetRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string product_set_id = 3;</code>
      */
-    private $product_set_id = '';
+    protected $product_set_id = '';
 
     /**
      * Constructor.

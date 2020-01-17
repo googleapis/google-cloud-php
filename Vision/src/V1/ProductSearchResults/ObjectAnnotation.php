@@ -20,7 +20,7 @@ class ObjectAnnotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string mid = 1;</code>
      */
-    private $mid = '';
+    protected $mid = '';
     /**
      * The BCP-47 language code, such as "en-US" or "sr-Latn". For more
      * information, see
@@ -28,19 +28,19 @@ class ObjectAnnotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language_code = 2;</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
     /**
      * Object name, expressed in its `language_code` language.
      *
      * Generated from protobuf field <code>string name = 3;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Score of the result. Range [0, 1].
      *
      * Generated from protobuf field <code>float score = 4;</code>
      */
-    private $score = 0.0;
+    protected $score = 0.0;
 
     /**
      * Constructor.

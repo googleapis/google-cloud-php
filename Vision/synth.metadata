@@ -1,19 +1,19 @@
 {
-  "updateTime": "2019-11-05T11:02:34.498300Z",
+  "updateTime": "2020-01-17T11:06:23.080767Z",
   "sources": [
     {
       "generator": {
         "name": "artman",
-        "version": "0.41.0",
-        "dockerImage": "googleapis/artman@sha256:75b38a3b073a7b243545f2332463096624c802bb1e56b8cb6f22ba1ecd325fa9"
+        "version": "0.44.1",
+        "dockerImage": "googleapis/artman@sha256:5599b61e56a372d21b671969ee915fbca0f6c3a0daaeb898d01f8f685f1bbc8b"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "8c6569ced063c08a48272de2e887860d0c40d388",
-        "internalRef": "278552094"
+        "sha": "58e770d568a2b78168ddc19a874178fee8265a9d",
+        "internalRef": "290146169"
       }
     }
   ],
@@ -27,6 +27,659 @@
         "generator": "gapic",
         "config": "google/cloud/vision/artman_vision_v1.yaml"
       }
+    }
+  ],
+  "newFiles": [
+    {
+      "path": ".gitattributes"
+    },
+    {
+      "path": ".github/pull_request_template.md"
+    },
+    {
+      "path": "CONTRIBUTING.md"
+    },
+    {
+      "path": "LICENSE"
+    },
+    {
+      "path": "README.md"
+    },
+    {
+      "path": "VERSION"
+    },
+    {
+      "path": "composer.json"
+    },
+    {
+      "path": "metadata/V1/Geometry.php"
+    },
+    {
+      "path": "metadata/V1/ImageAnnotator.php"
+    },
+    {
+      "path": "metadata/V1/ProductSearch.php"
+    },
+    {
+      "path": "metadata/V1/ProductSearchService.php"
+    },
+    {
+      "path": "metadata/V1/TextAnnotation.php"
+    },
+    {
+      "path": "metadata/V1/WebDetection.php"
+    },
+    {
+      "path": "phpunit-snippets.xml.dist"
+    },
+    {
+      "path": "phpunit-system.xml.dist"
+    },
+    {
+      "path": "phpunit.xml.dist"
+    },
+    {
+      "path": "src/Annotation.php"
+    },
+    {
+      "path": "src/Annotation/AbstractFeature.php"
+    },
+    {
+      "path": "src/Annotation/CropHint.php"
+    },
+    {
+      "path": "src/Annotation/Document.php"
+    },
+    {
+      "path": "src/Annotation/Entity.php"
+    },
+    {
+      "path": "src/Annotation/Face.php"
+    },
+    {
+      "path": "src/Annotation/Face/Landmarks.php"
+    },
+    {
+      "path": "src/Annotation/FeatureInterface.php"
+    },
+    {
+      "path": "src/Annotation/ImageProperties.php"
+    },
+    {
+      "path": "src/Annotation/LikelihoodTrait.php"
+    },
+    {
+      "path": "src/Annotation/SafeSearch.php"
+    },
+    {
+      "path": "src/Annotation/Web.php"
+    },
+    {
+      "path": "src/Annotation/Web/WebEntity.php"
+    },
+    {
+      "path": "src/Annotation/Web/WebImage.php"
+    },
+    {
+      "path": "src/Annotation/Web/WebPage.php"
+    },
+    {
+      "path": "src/Connection/ConnectionInterface.php"
+    },
+    {
+      "path": "src/Connection/Rest.php"
+    },
+    {
+      "path": "src/Connection/ServiceDefinition/vision-v1.json"
+    },
+    {
+      "path": "src/Image.php"
+    },
+    {
+      "path": "src/V1/AddProductToProductSetRequest.php"
+    },
+    {
+      "path": "src/V1/AnnotateFileRequest.php"
+    },
+    {
+      "path": "src/V1/AnnotateFileResponse.php"
+    },
+    {
+      "path": "src/V1/AnnotateImageRequest.php"
+    },
+    {
+      "path": "src/V1/AnnotateImageResponse.php"
+    },
+    {
+      "path": "src/V1/AsyncAnnotateFileRequest.php"
+    },
+    {
+      "path": "src/V1/AsyncAnnotateFileResponse.php"
+    },
+    {
+      "path": "src/V1/AsyncBatchAnnotateFilesRequest.php"
+    },
+    {
+      "path": "src/V1/AsyncBatchAnnotateFilesResponse.php"
+    },
+    {
+      "path": "src/V1/AsyncBatchAnnotateImagesRequest.php"
+    },
+    {
+      "path": "src/V1/AsyncBatchAnnotateImagesResponse.php"
+    },
+    {
+      "path": "src/V1/BatchAnnotateFilesRequest.php"
+    },
+    {
+      "path": "src/V1/BatchAnnotateFilesResponse.php"
+    },
+    {
+      "path": "src/V1/BatchAnnotateImagesRequest.php"
+    },
+    {
+      "path": "src/V1/BatchAnnotateImagesResponse.php"
+    },
+    {
+      "path": "src/V1/BatchOperationMetadata.php"
+    },
+    {
+      "path": "src/V1/BatchOperationMetadata/State.php"
+    },
+    {
+      "path": "src/V1/BatchOperationMetadata_State.php"
+    },
+    {
+      "path": "src/V1/Block.php"
+    },
+    {
+      "path": "src/V1/Block/BlockType.php"
+    },
+    {
+      "path": "src/V1/Block_BlockType.php"
+    },
+    {
+      "path": "src/V1/BoundingPoly.php"
+    },
+    {
+      "path": "src/V1/ColorInfo.php"
+    },
+    {
+      "path": "src/V1/CreateProductRequest.php"
+    },
+    {
+      "path": "src/V1/CreateProductSetRequest.php"
+    },
+    {
+      "path": "src/V1/CreateReferenceImageRequest.php"
+    },
+    {
+      "path": "src/V1/CropHint.php"
+    },
+    {
+      "path": "src/V1/CropHintsAnnotation.php"
+    },
+    {
+      "path": "src/V1/CropHintsParams.php"
+    },
+    {
+      "path": "src/V1/DeleteProductRequest.php"
+    },
+    {
+      "path": "src/V1/DeleteProductSetRequest.php"
+    },
+    {
+      "path": "src/V1/DeleteReferenceImageRequest.php"
+    },
+    {
+      "path": "src/V1/DominantColorsAnnotation.php"
+    },
+    {
+      "path": "src/V1/EntityAnnotation.php"
+    },
+    {
+      "path": "src/V1/FaceAnnotation.php"
+    },
+    {
+      "path": "src/V1/FaceAnnotation/Landmark.php"
+    },
+    {
+      "path": "src/V1/FaceAnnotation/Landmark/Type.php"
+    },
+    {
+      "path": "src/V1/FaceAnnotation_Landmark.php"
+    },
+    {
+      "path": "src/V1/FaceAnnotation_Landmark_Type.php"
+    },
+    {
+      "path": "src/V1/Feature.php"
+    },
+    {
+      "path": "src/V1/Feature/Type.php"
+    },
+    {
+      "path": "src/V1/Feature_Type.php"
+    },
+    {
+      "path": "src/V1/Gapic/ImageAnnotatorGapicClient.php"
+    },
+    {
+      "path": "src/V1/Gapic/ProductSearchGapicClient.php"
+    },
+    {
+      "path": "src/V1/GcsDestination.php"
+    },
+    {
+      "path": "src/V1/GcsSource.php"
+    },
+    {
+      "path": "src/V1/GetProductRequest.php"
+    },
+    {
+      "path": "src/V1/GetProductSetRequest.php"
+    },
+    {
+      "path": "src/V1/GetReferenceImageRequest.php"
+    },
+    {
+      "path": "src/V1/Image.php"
+    },
+    {
+      "path": "src/V1/ImageAnnotationContext.php"
+    },
+    {
+      "path": "src/V1/ImageAnnotatorClient.php"
+    },
+    {
+      "path": "src/V1/ImageAnnotatorGrpcClient.php"
+    },
+    {
+      "path": "src/V1/ImageContext.php"
+    },
+    {
+      "path": "src/V1/ImageProperties.php"
+    },
+    {
+      "path": "src/V1/ImageSource.php"
+    },
+    {
+      "path": "src/V1/ImportProductSetsGcsSource.php"
+    },
+    {
+      "path": "src/V1/ImportProductSetsInputConfig.php"
+    },
+    {
+      "path": "src/V1/ImportProductSetsRequest.php"
+    },
+    {
+      "path": "src/V1/ImportProductSetsResponse.php"
+    },
+    {
+      "path": "src/V1/InputConfig.php"
+    },
+    {
+      "path": "src/V1/LatLongRect.php"
+    },
+    {
+      "path": "src/V1/Likelihood.php"
+    },
+    {
+      "path": "src/V1/ListProductSetsRequest.php"
+    },
+    {
+      "path": "src/V1/ListProductSetsResponse.php"
+    },
+    {
+      "path": "src/V1/ListProductsInProductSetRequest.php"
+    },
+    {
+      "path": "src/V1/ListProductsInProductSetResponse.php"
+    },
+    {
+      "path": "src/V1/ListProductsRequest.php"
+    },
+    {
+      "path": "src/V1/ListProductsResponse.php"
+    },
+    {
+      "path": "src/V1/ListReferenceImagesRequest.php"
+    },
+    {
+      "path": "src/V1/ListReferenceImagesResponse.php"
+    },
+    {
+      "path": "src/V1/LocalizedObjectAnnotation.php"
+    },
+    {
+      "path": "src/V1/LocationInfo.php"
+    },
+    {
+      "path": "src/V1/NormalizedVertex.php"
+    },
+    {
+      "path": "src/V1/OperationMetadata.php"
+    },
+    {
+      "path": "src/V1/OperationMetadata/State.php"
+    },
+    {
+      "path": "src/V1/OperationMetadata_State.php"
+    },
+    {
+      "path": "src/V1/OutputConfig.php"
+    },
+    {
+      "path": "src/V1/Page.php"
+    },
+    {
+      "path": "src/V1/Paragraph.php"
+    },
+    {
+      "path": "src/V1/Position.php"
+    },
+    {
+      "path": "src/V1/Product.php"
+    },
+    {
+      "path": "src/V1/Product/KeyValue.php"
+    },
+    {
+      "path": "src/V1/ProductSearchClient.php"
+    },
+    {
+      "path": "src/V1/ProductSearchGrpcClient.php"
+    },
+    {
+      "path": "src/V1/ProductSearchParams.php"
+    },
+    {
+      "path": "src/V1/ProductSearchResults.php"
+    },
+    {
+      "path": "src/V1/ProductSearchResults/GroupedResult.php"
+    },
+    {
+      "path": "src/V1/ProductSearchResults/ObjectAnnotation.php"
+    },
+    {
+      "path": "src/V1/ProductSearchResults/Result.php"
+    },
+    {
+      "path": "src/V1/ProductSearchResults_GroupedResult.php"
+    },
+    {
+      "path": "src/V1/ProductSearchResults_ObjectAnnotation.php"
+    },
+    {
+      "path": "src/V1/ProductSearchResults_Result.php"
+    },
+    {
+      "path": "src/V1/ProductSet.php"
+    },
+    {
+      "path": "src/V1/ProductSetPurgeConfig.php"
+    },
+    {
+      "path": "src/V1/Product_KeyValue.php"
+    },
+    {
+      "path": "src/V1/Property.php"
+    },
+    {
+      "path": "src/V1/PurgeProductsRequest.php"
+    },
+    {
+      "path": "src/V1/README.md"
+    },
+    {
+      "path": "src/V1/ReferenceImage.php"
+    },
+    {
+      "path": "src/V1/RemoveProductFromProductSetRequest.php"
+    },
+    {
+      "path": "src/V1/SafeSearchAnnotation.php"
+    },
+    {
+      "path": "src/V1/Symbol.php"
+    },
+    {
+      "path": "src/V1/TextAnnotation.php"
+    },
+    {
+      "path": "src/V1/TextAnnotation/DetectedBreak.php"
+    },
+    {
+      "path": "src/V1/TextAnnotation/DetectedBreak/BreakType.php"
+    },
+    {
+      "path": "src/V1/TextAnnotation/DetectedLanguage.php"
+    },
+    {
+      "path": "src/V1/TextAnnotation/TextProperty.php"
+    },
+    {
+      "path": "src/V1/TextAnnotation_DetectedBreak.php"
+    },
+    {
+      "path": "src/V1/TextAnnotation_DetectedBreak_BreakType.php"
+    },
+    {
+      "path": "src/V1/TextAnnotation_DetectedLanguage.php"
+    },
+    {
+      "path": "src/V1/TextAnnotation_TextProperty.php"
+    },
+    {
+      "path": "src/V1/UpdateProductRequest.php"
+    },
+    {
+      "path": "src/V1/UpdateProductSetRequest.php"
+    },
+    {
+      "path": "src/V1/Vertex.php"
+    },
+    {
+      "path": "src/V1/WebDetection.php"
+    },
+    {
+      "path": "src/V1/WebDetection/WebEntity.php"
+    },
+    {
+      "path": "src/V1/WebDetection/WebImage.php"
+    },
+    {
+      "path": "src/V1/WebDetection/WebLabel.php"
+    },
+    {
+      "path": "src/V1/WebDetection/WebPage.php"
+    },
+    {
+      "path": "src/V1/WebDetectionParams.php"
+    },
+    {
+      "path": "src/V1/WebDetection_WebEntity.php"
+    },
+    {
+      "path": "src/V1/WebDetection_WebImage.php"
+    },
+    {
+      "path": "src/V1/WebDetection_WebLabel.php"
+    },
+    {
+      "path": "src/V1/WebDetection_WebPage.php"
+    },
+    {
+      "path": "src/V1/Word.php"
+    },
+    {
+      "path": "src/V1/resources/image_annotator_client_config.json"
+    },
+    {
+      "path": "src/V1/resources/image_annotator_descriptor_config.php"
+    },
+    {
+      "path": "src/V1/resources/image_annotator_rest_client_config.php"
+    },
+    {
+      "path": "src/V1/resources/product_search_client_config.json"
+    },
+    {
+      "path": "src/V1/resources/product_search_descriptor_config.php"
+    },
+    {
+      "path": "src/V1/resources/product_search_rest_client_config.php"
+    },
+    {
+      "path": "src/VisionClient.php"
+    },
+    {
+      "path": "src/VisionHelpersTrait.php"
+    },
+    {
+      "path": "synth.metadata"
+    },
+    {
+      "path": "synth.py"
+    },
+    {
+      "path": "tests/Snippet/Annotation/AbstractFeatureTest.php"
+    },
+    {
+      "path": "tests/Snippet/Annotation/CropHintTest.php"
+    },
+    {
+      "path": "tests/Snippet/Annotation/DocumentTest.php"
+    },
+    {
+      "path": "tests/Snippet/Annotation/EntityTest.php"
+    },
+    {
+      "path": "tests/Snippet/Annotation/Face/LandmarksTest.php"
+    },
+    {
+      "path": "tests/Snippet/Annotation/FaceTest.php"
+    },
+    {
+      "path": "tests/Snippet/Annotation/ImagePropertiesTest.php"
+    },
+    {
+      "path": "tests/Snippet/Annotation/SafeSearchTest.php"
+    },
+    {
+      "path": "tests/Snippet/Annotation/Web/WebEntityTest.php"
+    },
+    {
+      "path": "tests/Snippet/Annotation/Web/WebImageTest.php"
+    },
+    {
+      "path": "tests/Snippet/Annotation/Web/WebPageTest.php"
+    },
+    {
+      "path": "tests/Snippet/Annotation/WebTest.php"
+    },
+    {
+      "path": "tests/Snippet/AnnotationTest.php"
+    },
+    {
+      "path": "tests/Snippet/ImageTest.php"
+    },
+    {
+      "path": "tests/Snippet/V1/ImageAnnotatorClientTest.php"
+    },
+    {
+      "path": "tests/Snippet/VisionClientTest.php"
+    },
+    {
+      "path": "tests/System/AnnotationsTest.php"
+    },
+    {
+      "path": "tests/System/V1/ImageAnnotatorSmokeTest.php"
+    },
+    {
+      "path": "tests/System/VisionTestCase.php"
+    },
+    {
+      "path": "tests/System/bootstrap.php"
+    },
+    {
+      "path": "tests/System/fixtures/google.jpg"
+    },
+    {
+      "path": "tests/System/fixtures/landmark.jpg"
+    },
+    {
+      "path": "tests/System/fixtures/obama.jpg"
+    },
+    {
+      "path": "tests/System/fixtures/text.jpg"
+    },
+    {
+      "path": "tests/Unit/Annotation/CropHintTest.php"
+    },
+    {
+      "path": "tests/Unit/Annotation/DocumentTest.php"
+    },
+    {
+      "path": "tests/Unit/Annotation/EntityTest.php"
+    },
+    {
+      "path": "tests/Unit/Annotation/Face/LandmarksTest.php"
+    },
+    {
+      "path": "tests/Unit/Annotation/FaceTest.php"
+    },
+    {
+      "path": "tests/Unit/Annotation/LikelihoodTraitTest.php"
+    },
+    {
+      "path": "tests/Unit/Annotation/SafeSearchTest.php"
+    },
+    {
+      "path": "tests/Unit/Annotation/Web/WebEntityTest.php"
+    },
+    {
+      "path": "tests/Unit/Annotation/Web/WebImageTest.php"
+    },
+    {
+      "path": "tests/Unit/Annotation/Web/WebPageTest.php"
+    },
+    {
+      "path": "tests/Unit/Annotation/WebTest.php"
+    },
+    {
+      "path": "tests/Unit/AnnotationTest.php"
+    },
+    {
+      "path": "tests/Unit/Connection/RestTest.php"
+    },
+    {
+      "path": "tests/Unit/Fixtures.php"
+    },
+    {
+      "path": "tests/Unit/ImageTest.php"
+    },
+    {
+      "path": "tests/Unit/V1/ImageAnnotatorClientExtensionTest.php"
+    },
+    {
+      "path": "tests/Unit/V1/ImageAnnotatorClientTest.php"
+    },
+    {
+      "path": "tests/Unit/V1/ProductSearchClientTest.php"
+    },
+    {
+      "path": "tests/Unit/VisionClientTest.php"
+    },
+    {
+      "path": "tests/Unit/VisionHelpersTraitTest.php"
+    },
+    {
+      "path": "tests/Unit/fixtures/eiffel-tower.jpg"
+    },
+    {
+      "path": "tests/Unit/fixtures/face-landmarks.json"
     }
   ]
 }

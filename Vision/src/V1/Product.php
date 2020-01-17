@@ -23,21 +23,21 @@ class Product extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The user-provided name for this Product. Must not be empty. Must be at most
      * 4096 characters long.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * User-provided metadata to be stored with this product. Must be at most 4096
      * characters long.
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Immutable. The category for the product identified by the reference image. This should
      * be either "homegoods-v2", "apparel-v2", or "toys-v2". The legacy categories
@@ -46,7 +46,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string product_category = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $product_category = '';
+    protected $product_category = '';
     /**
      * Key-value pairs that can be attached to a product. At query time,
      * constraints can be specified based on the product_labels.

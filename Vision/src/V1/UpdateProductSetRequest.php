@@ -20,7 +20,7 @@ class UpdateProductSetRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.ProductSet product_set = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $product_set = null;
+    protected $product_set = null;
     /**
      * The [FieldMask][google.protobuf.FieldMask] that specifies which fields to
      * update.
@@ -29,7 +29,7 @@ class UpdateProductSetRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * Constructor.

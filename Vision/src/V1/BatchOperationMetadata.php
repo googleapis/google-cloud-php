@@ -22,20 +22,20 @@ class BatchOperationMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.BatchOperationMetadata.State state = 1;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * The time when the batch request was submitted to the server.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp submit_time = 2;</code>
      */
-    private $submit_time = null;
+    protected $submit_time = null;
     /**
      * The time when the batch request is finished and
      * [google.longrunning.Operation.done][google.longrunning.Operation.done] is set to true.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 3;</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
 
     /**
      * Constructor.

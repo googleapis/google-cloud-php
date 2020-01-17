@@ -22,7 +22,7 @@ class AddProductToProductSetRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The resource name for the Product to be added to this ProductSet.
      * Format is:
@@ -30,7 +30,7 @@ class AddProductToProductSetRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string product = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $product = '';
+    protected $product = '';
 
     /**
      * Constructor.

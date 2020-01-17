@@ -24,7 +24,7 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood adult = 1;</code>
      */
-    private $adult = 0;
+    protected $adult = 0;
     /**
      * Spoof likelihood. The likelihood that an modification
      * was made to the image's canonical version to make it appear
@@ -32,19 +32,19 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood spoof = 2;</code>
      */
-    private $spoof = 0;
+    protected $spoof = 0;
     /**
      * Likelihood that this is a medical image.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood medical = 3;</code>
      */
-    private $medical = 0;
+    protected $medical = 0;
     /**
      * Likelihood that this image contains violent content.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood violence = 4;</code>
      */
-    private $violence = 0;
+    protected $violence = 0;
     /**
      * Likelihood that the request image contains racy content. Racy content may
      * include (but is not limited to) skimpy or sheer clothing, strategically
@@ -53,49 +53,49 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood racy = 9;</code>
      */
-    private $racy = 0;
+    protected $racy = 0;
     /**
      * Confidence of adult_score. Range [0, 1]. 0 means not confident, 1 means
      * very confident.
      *
      * Generated from protobuf field <code>float adult_confidence = 16;</code>
      */
-    private $adult_confidence = 0.0;
+    protected $adult_confidence = 0.0;
     /**
      * Confidence of spoof_score. Range [0, 1]. 0 means not confident, 1 means
      * very confident.
      *
      * Generated from protobuf field <code>float spoof_confidence = 18;</code>
      */
-    private $spoof_confidence = 0.0;
+    protected $spoof_confidence = 0.0;
     /**
      * Confidence of medical_score. Range [0, 1]. 0 means not confident, 1 means
      * very confident.
      *
      * Generated from protobuf field <code>float medical_confidence = 20;</code>
      */
-    private $medical_confidence = 0.0;
+    protected $medical_confidence = 0.0;
     /**
      * Confidence of violence_score. Range [0, 1]. 0 means not confident, 1 means
      * very confident.
      *
      * Generated from protobuf field <code>float violence_confidence = 22;</code>
      */
-    private $violence_confidence = 0.0;
+    protected $violence_confidence = 0.0;
     /**
      * Confidence of racy_score. Range [0, 1]. 0 means not confident, 1 means very
      * confident.
      *
      * Generated from protobuf field <code>float racy_confidence = 24;</code>
      */
-    private $racy_confidence = 0.0;
+    protected $racy_confidence = 0.0;
     /**
      * Confidence of nsfw_score. Range [0, 1]. 0 means not confident, 1 means very
      * confident.
      *
      * Generated from protobuf field <code>float nsfw_confidence = 26;</code>
      */
-    private $nsfw_confidence = 0.0;
+    protected $nsfw_confidence = 0.0;
 
     /**
      * Constructor.

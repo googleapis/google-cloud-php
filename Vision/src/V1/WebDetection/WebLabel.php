@@ -20,7 +20,7 @@ class WebLabel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string label = 1;</code>
      */
-    private $label = '';
+    protected $label = '';
     /**
      * The BCP-47 language code for `label`, such as "en-US" or "sr-Latn".
      * For more information, see
@@ -28,7 +28,7 @@ class WebLabel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language_code = 2;</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
 
     /**
      * Constructor.

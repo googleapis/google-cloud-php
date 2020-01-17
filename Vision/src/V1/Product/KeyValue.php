@@ -21,14 +21,14 @@ class KeyValue extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key = 1;</code>
      */
-    private $key = '';
+    protected $key = '';
     /**
      * The value of the label attached to the product. Cannot be empty and
      * cannot exceed 128 bytes.
      *
      * Generated from protobuf field <code>string value = 2;</code>
      */
-    private $value = '';
+    protected $value = '';
 
     /**
      * Constructor.

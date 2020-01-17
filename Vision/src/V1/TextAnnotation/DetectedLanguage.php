@@ -22,13 +22,13 @@ class DetectedLanguage extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language_code = 1;</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
     /**
      * Confidence of detected language. Range [0, 1].
      *
      * Generated from protobuf field <code>float confidence = 2;</code>
      */
-    private $confidence = 0.0;
+    protected $confidence = 0.0;
 
     /**
      * Constructor.

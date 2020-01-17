@@ -22,7 +22,7 @@ class Image extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes content = 1;</code>
      */
-    private $content = '';
+    protected $content = '';
     /**
      * Google Cloud Storage image location, or publicly-accessible image
      * URL. If both `content` and `source` are provided for an image, `content`
@@ -30,7 +30,7 @@ class Image extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.ImageSource source = 2;</code>
      */
-    private $source = null;
+    protected $source = null;
 
     /**
      * Constructor.

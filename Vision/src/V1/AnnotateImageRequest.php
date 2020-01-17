@@ -21,7 +21,7 @@ class AnnotateImageRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.Image image = 1;</code>
      */
-    private $image = null;
+    protected $image = null;
     /**
      * Requested features.
      *
@@ -33,7 +33,7 @@ class AnnotateImageRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.ImageContext image_context = 3;</code>
      */
-    private $image_context = null;
+    protected $image_context = null;
 
     /**
      * Constructor.

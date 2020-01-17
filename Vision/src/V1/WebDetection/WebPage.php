@@ -20,19 +20,19 @@ class WebPage extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string url = 1;</code>
      */
-    private $url = '';
+    protected $url = '';
     /**
      * (Deprecated) Overall relevancy score for the web page.
      *
      * Generated from protobuf field <code>float score = 2;</code>
      */
-    private $score = 0.0;
+    protected $score = 0.0;
     /**
      * Title for the web page, may contain HTML markups.
      *
      * Generated from protobuf field <code>string page_title = 3;</code>
      */
-    private $page_title = '';
+    protected $page_title = '';
     /**
      * Fully matching images on the page.
      * Can include resized copies of the query image.

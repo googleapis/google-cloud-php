@@ -22,7 +22,7 @@ class RemoveProductFromProductSetRequest extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The resource name for the Product to be removed from this ProductSet.
      * Format is:
@@ -30,7 +30,7 @@ class RemoveProductFromProductSetRequest extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>string product = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $product = '';
+    protected $product = '';
 
     /**
      * Constructor.

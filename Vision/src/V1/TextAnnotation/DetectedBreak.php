@@ -20,13 +20,13 @@ class DetectedBreak extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType type = 1;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * True if break prepends the element.
      *
      * Generated from protobuf field <code>bool is_prefix = 2;</code>
      */
-    private $is_prefix = false;
+    protected $is_prefix = false;
 
     /**
      * Constructor.

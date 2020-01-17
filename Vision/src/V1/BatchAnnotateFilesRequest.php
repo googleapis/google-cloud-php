@@ -34,7 +34,7 @@ class BatchAnnotateFilesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 3;</code>
      */
-    private $parent = '';
+    protected $parent = '';
 
     /**
      * Constructor.

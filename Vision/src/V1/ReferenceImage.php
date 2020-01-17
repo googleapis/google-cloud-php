@@ -24,14 +24,14 @@ class ReferenceImage extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The Google Cloud Storage URI of the reference image.
      * The URI must start with `gs://`.
      *
      * Generated from protobuf field <code>string uri = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * Optional. Bounding polygons around the areas of interest in the reference image.
      * If this field is empty, the system will try to detect regions of

@@ -20,13 +20,13 @@ class WebImage extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string url = 1;</code>
      */
-    private $url = '';
+    protected $url = '';
     /**
      * (Deprecated) Overall relevancy score for the image.
      *
      * Generated from protobuf field <code>float score = 2;</code>
      */
-    private $score = 0.0;
+    protected $score = 0.0;
 
     /**
      * Constructor.

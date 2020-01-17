@@ -20,21 +20,21 @@ class Result extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.Product product = 1;</code>
      */
-    private $product = null;
+    protected $product = null;
     /**
      * A confidence level on the match, ranging from 0 (no confidence) to
      * 1 (full confidence).
      *
      * Generated from protobuf field <code>float score = 2;</code>
      */
-    private $score = 0.0;
+    protected $score = 0.0;
     /**
      * The resource name of the image from the product that is the closest match
      * to the query.
      *
      * Generated from protobuf field <code>string image = 3;</code>
      */
-    private $image = '';
+    protected $image = '';
 
     /**
      * Constructor.

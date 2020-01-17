@@ -22,26 +22,26 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string mid = 1;</code>
      */
-    private $mid = '';
+    protected $mid = '';
     /**
      * The language code for the locale in which the entity textual
      * `description` is expressed.
      *
      * Generated from protobuf field <code>string locale = 2;</code>
      */
-    private $locale = '';
+    protected $locale = '';
     /**
      * Entity textual description, expressed in its `locale` language.
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Overall score of the result. Range [0, 1].
      *
      * Generated from protobuf field <code>float score = 4;</code>
      */
-    private $score = 0.0;
+    protected $score = 0.0;
     /**
      * **Deprecated. Use `score` instead.**
      * The accuracy of the entity detection in an image.
@@ -51,7 +51,7 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float confidence = 5 [deprecated = true];</code>
      */
-    private $confidence = 0.0;
+    protected $confidence = 0.0;
     /**
      * The relevancy of the ICA (Image Content Annotation) label to the
      * image. For example, the relevancy of "tower" is likely higher to an image
@@ -61,14 +61,14 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float topicality = 6;</code>
      */
-    private $topicality = 0.0;
+    protected $topicality = 0.0;
     /**
      * Image region to which this entity belongs. Not produced
      * for `LABEL_DETECTION` features.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
      */
-    private $bounding_poly = null;
+    protected $bounding_poly = null;
     /**
      * The location information for the detected entity. Multiple
      * `LocationInfo` elements can be present because one location may

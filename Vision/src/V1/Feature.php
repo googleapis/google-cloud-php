@@ -22,14 +22,14 @@ class Feature extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.Feature.Type type = 1;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Maximum number of results of this type. Does not apply to
      * `TEXT_DETECTION`, `DOCUMENT_TEXT_DETECTION`, or `CROP_HINTS`.
      *
      * Generated from protobuf field <code>int32 max_results = 2;</code>
      */
-    private $max_results = 0;
+    protected $max_results = 0;
     /**
      * Model to use for the feature.
      * Supported values: "builtin/stable" (the default if unset) and
@@ -37,7 +37,7 @@ class Feature extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string model = 3;</code>
      */
-    private $model = '';
+    protected $model = '';
 
     /**
      * Constructor.

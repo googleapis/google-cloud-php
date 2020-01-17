@@ -26,7 +26,7 @@ class TextProperty extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak detected_break = 2;</code>
      */
-    private $detected_break = null;
+    protected $detected_break = null;
 
     /**
      * Constructor.

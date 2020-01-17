@@ -20,13 +20,13 @@ class Landmark extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.FaceAnnotation.Landmark.Type type = 3;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Face landmark position.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.Position position = 4;</code>
      */
-    private $position = null;
+    protected $position = null;
 
     /**
      * Constructor.

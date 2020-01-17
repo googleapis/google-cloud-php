@@ -20,7 +20,7 @@ class AnnotateFileRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.InputConfig input_config = 1;</code>
      */
-    private $input_config = null;
+    protected $input_config = null;
     /**
      * Required. Requested features.
      *
@@ -32,7 +32,7 @@ class AnnotateFileRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.ImageContext image_context = 3;</code>
      */
-    private $image_context = null;
+    protected $image_context = null;
     /**
      * Pages of the file to perform image annotation.
      * Pages starts from 1, we assume the first page of the file is page 1.
