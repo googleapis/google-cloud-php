@@ -309,8 +309,8 @@ class EventServiceGapicClient
      * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
      * "projects/foo/tenant/bar". If tenant id is unspecified, a default tenant
      * is created, for example, "projects/foo".
-     * @param ClientEvent $clientEvent  Required. Events issued when end user interacts with customer's application
-     *                                  that uses Cloud Talent Solution.
+     * @param ClientEvent $clientEvent  Required. Events issued when end user interacts with customer's application that
+     *                                  uses Cloud Talent Solution.
      * @param array       $optionalArgs {
      *                                  Optional.
      *

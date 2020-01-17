@@ -17,41 +17,35 @@ class PersonStructuredName extends \Google\Protobuf\Internal\Message
 {
     /**
      * Given/first name.
-     * It's derived from
-     * [formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name]
-     * if not provided.
+     * It's derived from [formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name] if not provided.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string given_name = 1;</code>
      */
-    private $given_name = '';
+    protected $given_name = '';
     /**
      * Preferred given/first name or nickname.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string preferred_name = 6;</code>
      */
-    private $preferred_name = '';
+    protected $preferred_name = '';
     /**
      * Middle initial.
-     * It's derived from
-     * [formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name]
-     * if not provided.
+     * It's derived from [formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name] if not provided.
      * Number of characters allowed is 20.
      *
      * Generated from protobuf field <code>string middle_initial = 2;</code>
      */
-    private $middle_initial = '';
+    protected $middle_initial = '';
     /**
      * Family/last name.
-     * It's derived from
-     * [formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name]
-     * if not provided.
+     * It's derived from [formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name] if not provided.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string family_name = 3;</code>
      */
-    private $family_name = '';
+    protected $family_name = '';
     /**
      * Suffixes.
      * Number of characters allowed is 20.
@@ -75,24 +69,18 @@ class PersonStructuredName extends \Google\Protobuf\Internal\Message
      *
      *     @type string $given_name
      *           Given/first name.
-     *           It's derived from
-     *           [formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name]
-     *           if not provided.
+     *           It's derived from [formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name] if not provided.
      *           Number of characters allowed is 100.
      *     @type string $preferred_name
      *           Preferred given/first name or nickname.
      *           Number of characters allowed is 100.
      *     @type string $middle_initial
      *           Middle initial.
-     *           It's derived from
-     *           [formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name]
-     *           if not provided.
+     *           It's derived from [formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name] if not provided.
      *           Number of characters allowed is 20.
      *     @type string $family_name
      *           Family/last name.
-     *           It's derived from
-     *           [formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name]
-     *           if not provided.
+     *           It's derived from [formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name] if not provided.
      *           Number of characters allowed is 100.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $suffixes
      *           Suffixes.
@@ -109,9 +97,7 @@ class PersonStructuredName extends \Google\Protobuf\Internal\Message
 
     /**
      * Given/first name.
-     * It's derived from
-     * [formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name]
-     * if not provided.
+     * It's derived from [formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name] if not provided.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string given_name = 1;</code>
@@ -124,9 +110,7 @@ class PersonStructuredName extends \Google\Protobuf\Internal\Message
 
     /**
      * Given/first name.
-     * It's derived from
-     * [formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name]
-     * if not provided.
+     * It's derived from [formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name] if not provided.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string given_name = 1;</code>
@@ -171,9 +155,7 @@ class PersonStructuredName extends \Google\Protobuf\Internal\Message
 
     /**
      * Middle initial.
-     * It's derived from
-     * [formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name]
-     * if not provided.
+     * It's derived from [formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name] if not provided.
      * Number of characters allowed is 20.
      *
      * Generated from protobuf field <code>string middle_initial = 2;</code>
@@ -186,9 +168,7 @@ class PersonStructuredName extends \Google\Protobuf\Internal\Message
 
     /**
      * Middle initial.
-     * It's derived from
-     * [formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name]
-     * if not provided.
+     * It's derived from [formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name] if not provided.
      * Number of characters allowed is 20.
      *
      * Generated from protobuf field <code>string middle_initial = 2;</code>
@@ -205,9 +185,7 @@ class PersonStructuredName extends \Google\Protobuf\Internal\Message
 
     /**
      * Family/last name.
-     * It's derived from
-     * [formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name]
-     * if not provided.
+     * It's derived from [formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name] if not provided.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string family_name = 3;</code>
@@ -220,9 +198,7 @@ class PersonStructuredName extends \Google\Protobuf\Internal\Message
 
     /**
      * Family/last name.
-     * It's derived from
-     * [formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name]
-     * if not provided.
+     * It's derived from [formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name] if not provided.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string family_name = 3;</code>

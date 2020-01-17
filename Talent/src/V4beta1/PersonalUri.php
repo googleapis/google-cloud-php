@@ -21,7 +21,7 @@ class PersonalUri extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uri = 1;</code>
      */
-    private $uri = '';
+    protected $uri = '';
 
     /**
      * Constructor.

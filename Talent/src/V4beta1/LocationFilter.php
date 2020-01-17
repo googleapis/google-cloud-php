@@ -20,7 +20,7 @@ class LocationFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string address = 1;</code>
      */
-    private $address = '';
+    protected $address = '';
     /**
      * CLDR region code of the country/region of the address. This is used
      * to address ambiguity of the user-input location, for example, "Liverpool"
@@ -35,14 +35,14 @@ class LocationFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string region_code = 2;</code>
      */
-    private $region_code = '';
+    protected $region_code = '';
     /**
      * The latitude and longitude of the geographic center to search from. This
      * field is ignored if `address` is provided.
      *
      * Generated from protobuf field <code>.google.type.LatLng lat_lng = 3;</code>
      */
-    private $lat_lng = null;
+    protected $lat_lng = null;
     /**
      * The distance_in_miles is applied when the location being searched for is
      * identified as a city or smaller. This field is ignored if the location
@@ -50,20 +50,17 @@ class LocationFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double distance_in_miles = 4;</code>
      */
-    private $distance_in_miles = 0.0;
+    protected $distance_in_miles = 0.0;
     /**
      * Allows the client to return jobs without a
      * set location, specifically, telecommuting jobs (telecommuting is considered
      * by the service as a special location.
-     * [Job.posting_region][google.cloud.talent.v4beta1.Job.posting_region]
-     * indicates if a job permits telecommuting. If this field is set to
-     * [TelecommutePreference.TELECOMMUTE_ALLOWED][google.cloud.talent.v4beta1.LocationFilter.TelecommutePreference.TELECOMMUTE_ALLOWED],
-     * telecommuting jobs are searched, and
-     * [address][google.cloud.talent.v4beta1.LocationFilter.address] and
-     * [lat_lng][google.cloud.talent.v4beta1.LocationFilter.lat_lng] are ignored.
-     * If not set or set to
-     * [TelecommutePreference.TELECOMMUTE_EXCLUDED][google.cloud.talent.v4beta1.LocationFilter.TelecommutePreference.TELECOMMUTE_EXCLUDED],
-     * telecommute job are not searched.
+     * [Job.posting_region][google.cloud.talent.v4beta1.Job.posting_region] indicates if a job permits telecommuting.
+     * If this field is set to [TelecommutePreference.TELECOMMUTE_ALLOWED][google.cloud.talent.v4beta1.LocationFilter.TelecommutePreference.TELECOMMUTE_ALLOWED],
+     * telecommuting jobs are searched, and [address][google.cloud.talent.v4beta1.LocationFilter.address] and [lat_lng][google.cloud.talent.v4beta1.LocationFilter.lat_lng] are
+     * ignored. If not set or set to
+     * [TelecommutePreference.TELECOMMUTE_EXCLUDED][google.cloud.talent.v4beta1.LocationFilter.TelecommutePreference.TELECOMMUTE_EXCLUDED], telecommute job are not
+     * searched.
      * This filter can be used by itself to search exclusively for telecommuting
      * jobs, or it can be combined with another location
      * filter to search for a combination of job locations,
@@ -74,7 +71,7 @@ class LocationFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.LocationFilter.TelecommutePreference telecommute_preference = 5;</code>
      */
-    private $telecommute_preference = 0;
+    protected $telecommute_preference = 0;
     /**
      * Whether to apply negation to the filter so profiles matching the filter
      * are excluded.
@@ -82,7 +79,7 @@ class LocationFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool negated = 6;</code>
      */
-    private $negated = false;
+    protected $negated = false;
 
     /**
      * Constructor.
@@ -114,15 +111,12 @@ class LocationFilter extends \Google\Protobuf\Internal\Message
      *           Allows the client to return jobs without a
      *           set location, specifically, telecommuting jobs (telecommuting is considered
      *           by the service as a special location.
-     *           [Job.posting_region][google.cloud.talent.v4beta1.Job.posting_region]
-     *           indicates if a job permits telecommuting. If this field is set to
-     *           [TelecommutePreference.TELECOMMUTE_ALLOWED][google.cloud.talent.v4beta1.LocationFilter.TelecommutePreference.TELECOMMUTE_ALLOWED],
-     *           telecommuting jobs are searched, and
-     *           [address][google.cloud.talent.v4beta1.LocationFilter.address] and
-     *           [lat_lng][google.cloud.talent.v4beta1.LocationFilter.lat_lng] are ignored.
-     *           If not set or set to
-     *           [TelecommutePreference.TELECOMMUTE_EXCLUDED][google.cloud.talent.v4beta1.LocationFilter.TelecommutePreference.TELECOMMUTE_EXCLUDED],
-     *           telecommute job are not searched.
+     *           [Job.posting_region][google.cloud.talent.v4beta1.Job.posting_region] indicates if a job permits telecommuting.
+     *           If this field is set to [TelecommutePreference.TELECOMMUTE_ALLOWED][google.cloud.talent.v4beta1.LocationFilter.TelecommutePreference.TELECOMMUTE_ALLOWED],
+     *           telecommuting jobs are searched, and [address][google.cloud.talent.v4beta1.LocationFilter.address] and [lat_lng][google.cloud.talent.v4beta1.LocationFilter.lat_lng] are
+     *           ignored. If not set or set to
+     *           [TelecommutePreference.TELECOMMUTE_EXCLUDED][google.cloud.talent.v4beta1.LocationFilter.TelecommutePreference.TELECOMMUTE_EXCLUDED], telecommute job are not
+     *           searched.
      *           This filter can be used by itself to search exclusively for telecommuting
      *           jobs, or it can be combined with another location
      *           filter to search for a combination of job locations,
@@ -273,15 +267,12 @@ class LocationFilter extends \Google\Protobuf\Internal\Message
      * Allows the client to return jobs without a
      * set location, specifically, telecommuting jobs (telecommuting is considered
      * by the service as a special location.
-     * [Job.posting_region][google.cloud.talent.v4beta1.Job.posting_region]
-     * indicates if a job permits telecommuting. If this field is set to
-     * [TelecommutePreference.TELECOMMUTE_ALLOWED][google.cloud.talent.v4beta1.LocationFilter.TelecommutePreference.TELECOMMUTE_ALLOWED],
-     * telecommuting jobs are searched, and
-     * [address][google.cloud.talent.v4beta1.LocationFilter.address] and
-     * [lat_lng][google.cloud.talent.v4beta1.LocationFilter.lat_lng] are ignored.
-     * If not set or set to
-     * [TelecommutePreference.TELECOMMUTE_EXCLUDED][google.cloud.talent.v4beta1.LocationFilter.TelecommutePreference.TELECOMMUTE_EXCLUDED],
-     * telecommute job are not searched.
+     * [Job.posting_region][google.cloud.talent.v4beta1.Job.posting_region] indicates if a job permits telecommuting.
+     * If this field is set to [TelecommutePreference.TELECOMMUTE_ALLOWED][google.cloud.talent.v4beta1.LocationFilter.TelecommutePreference.TELECOMMUTE_ALLOWED],
+     * telecommuting jobs are searched, and [address][google.cloud.talent.v4beta1.LocationFilter.address] and [lat_lng][google.cloud.talent.v4beta1.LocationFilter.lat_lng] are
+     * ignored. If not set or set to
+     * [TelecommutePreference.TELECOMMUTE_EXCLUDED][google.cloud.talent.v4beta1.LocationFilter.TelecommutePreference.TELECOMMUTE_EXCLUDED], telecommute job are not
+     * searched.
      * This filter can be used by itself to search exclusively for telecommuting
      * jobs, or it can be combined with another location
      * filter to search for a combination of job locations,
@@ -302,15 +293,12 @@ class LocationFilter extends \Google\Protobuf\Internal\Message
      * Allows the client to return jobs without a
      * set location, specifically, telecommuting jobs (telecommuting is considered
      * by the service as a special location.
-     * [Job.posting_region][google.cloud.talent.v4beta1.Job.posting_region]
-     * indicates if a job permits telecommuting. If this field is set to
-     * [TelecommutePreference.TELECOMMUTE_ALLOWED][google.cloud.talent.v4beta1.LocationFilter.TelecommutePreference.TELECOMMUTE_ALLOWED],
-     * telecommuting jobs are searched, and
-     * [address][google.cloud.talent.v4beta1.LocationFilter.address] and
-     * [lat_lng][google.cloud.talent.v4beta1.LocationFilter.lat_lng] are ignored.
-     * If not set or set to
-     * [TelecommutePreference.TELECOMMUTE_EXCLUDED][google.cloud.talent.v4beta1.LocationFilter.TelecommutePreference.TELECOMMUTE_EXCLUDED],
-     * telecommute job are not searched.
+     * [Job.posting_region][google.cloud.talent.v4beta1.Job.posting_region] indicates if a job permits telecommuting.
+     * If this field is set to [TelecommutePreference.TELECOMMUTE_ALLOWED][google.cloud.talent.v4beta1.LocationFilter.TelecommutePreference.TELECOMMUTE_ALLOWED],
+     * telecommuting jobs are searched, and [address][google.cloud.talent.v4beta1.LocationFilter.address] and [lat_lng][google.cloud.talent.v4beta1.LocationFilter.lat_lng] are
+     * ignored. If not set or set to
+     * [TelecommutePreference.TELECOMMUTE_EXCLUDED][google.cloud.talent.v4beta1.LocationFilter.TelecommutePreference.TELECOMMUTE_EXCLUDED], telecommute job are not
+     * searched.
      * This filter can be used by itself to search exclusively for telecommuting
      * jobs, or it can be combined with another location
      * filter to search for a combination of job locations,

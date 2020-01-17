@@ -20,13 +20,13 @@ class Address extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.ContactInfoUsage usage = 1;</code>
      */
-    private $usage = 0;
+    protected $usage = 0;
     /**
      * Indicates if it's the person's current address.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue current = 4;</code>
      */
-    private $current = null;
+    protected $current = null;
     protected $address;
 
     /**
@@ -161,8 +161,7 @@ class Address extends \Google\Protobuf\Internal\Message
      */
     public function getCurrentValue()
     {
-        $wrapper = $this->getCurrent();
-        return is_null($wrapper) ? null : $wrapper->getValue();
+        return $this->readWrapperValue("current");
     }
 
     /**
@@ -191,9 +190,8 @@ class Address extends \Google\Protobuf\Internal\Message
      */
     public function setCurrentValue($var)
     {
-        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
-        return $this->setCurrent($wrappedVar);
-    }
+        $this->writeWrapperValue("current", $var);
+        return $this;}
 
     /**
      * @return string

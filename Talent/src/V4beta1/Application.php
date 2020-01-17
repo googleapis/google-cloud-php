@@ -24,7 +24,7 @@ class Application extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Client side application identifier, used to uniquely identify the
      * application.
@@ -32,7 +32,7 @@ class Application extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string external_id = 31 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $external_id = '';
+    protected $external_id = '';
     /**
      * Output only. Resource name of the candidate of this application.
      * The format is
@@ -41,7 +41,7 @@ class Application extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string profile = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $profile = '';
+    protected $profile = '';
     /**
      * One of either a job or a company is required.
      * Resource name of the job which the candidate applied for.
@@ -49,9 +49,9 @@ class Application extends \Google\Protobuf\Internal\Message
      * "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}". For example,
      * "projects/foo/tenants/bar/jobs/baz".
      *
-     * Generated from protobuf field <code>string job = 4;</code>
+     * Generated from protobuf field <code>string job = 4 [(.google.api.resource_reference) = {</code>
      */
-    private $job = '';
+    protected $job = '';
     /**
      * One of either a job or a company is required.
      * Resource name of the company which the candidate applied for.
@@ -59,30 +59,30 @@ class Application extends \Google\Protobuf\Internal\Message
      * "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}".
      * For example, "projects/foo/tenants/bar/companies/baz".
      *
-     * Generated from protobuf field <code>string company = 5;</code>
+     * Generated from protobuf field <code>string company = 5 [(.google.api.resource_reference) = {</code>
      */
-    private $company = '';
+    protected $company = '';
     /**
      * The application date.
      *
      * Generated from protobuf field <code>.google.type.Date application_date = 7;</code>
      */
-    private $application_date = null;
+    protected $application_date = null;
     /**
-     * Required. What is the most recent stage of the application (that is, new,
-     * screen, send cv, hired, finished work)?  This field is intentionally not
+     * Required. What is the most recent stage of the application (that is, new, screen,
+     * send cv, hired, finished work)?  This field is intentionally not
      * comprehensive of every possible status, but instead, represents statuses
      * that would be used to indicate to the ML models good / bad matches.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Application.ApplicationStage stage = 11 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $stage = 0;
+    protected $stage = 0;
     /**
      * The application state.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Application.ApplicationState state = 13;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * All interviews (screen, onsite, and so on) conducted as part of this
      * application (includes details such as user conducting the interview,
@@ -96,19 +96,19 @@ class Application extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue referral = 18;</code>
      */
-    private $referral = null;
+    protected $referral = null;
     /**
      * Required. Reflects the time that the application was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 19 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * The last update timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 20;</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Free text reason behind the recruitement outcome (for example, reason for
      * withdraw / reject, reason for an unsuccessful finish, and so on).
@@ -116,13 +116,13 @@ class Application extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string outcome_notes = 21;</code>
      */
-    private $outcome_notes = '';
+    protected $outcome_notes = '';
     /**
      * Outcome positiveness shows how positive the outcome is.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Outcome outcome = 22;</code>
      */
-    private $outcome = 0;
+    protected $outcome = 0;
     /**
      * Output only. Indicates whether this job application is a match to
      * application related filters. This value is only applicable in profile
@@ -130,7 +130,7 @@ class Application extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue is_match = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $is_match = null;
+    protected $is_match = null;
     /**
      * Output only. Job title snippet shows how the job title is related to a
      * search query. It's empty if the job title isn't related to the search
@@ -138,7 +138,7 @@ class Application extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string job_title_snippet = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $job_title_snippet = '';
+    protected $job_title_snippet = '';
 
     /**
      * Constructor.
@@ -176,8 +176,8 @@ class Application extends \Google\Protobuf\Internal\Message
      *     @type \Google\Type\Date $application_date
      *           The application date.
      *     @type int $stage
-     *           Required. What is the most recent stage of the application (that is, new,
-     *           screen, send cv, hired, finished work)?  This field is intentionally not
+     *           Required. What is the most recent stage of the application (that is, new, screen,
+     *           send cv, hired, finished work)?  This field is intentionally not
      *           comprehensive of every possible status, but instead, represents statuses
      *           that would be used to indicate to the ML models good / bad matches.
      *     @type int $state
@@ -316,7 +316,7 @@ class Application extends \Google\Protobuf\Internal\Message
      * "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}". For example,
      * "projects/foo/tenants/bar/jobs/baz".
      *
-     * Generated from protobuf field <code>string job = 4;</code>
+     * Generated from protobuf field <code>string job = 4 [(.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getJob()
@@ -331,7 +331,7 @@ class Application extends \Google\Protobuf\Internal\Message
      * "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}". For example,
      * "projects/foo/tenants/bar/jobs/baz".
      *
-     * Generated from protobuf field <code>string job = 4;</code>
+     * Generated from protobuf field <code>string job = 4 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -350,7 +350,7 @@ class Application extends \Google\Protobuf\Internal\Message
      * "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}".
      * For example, "projects/foo/tenants/bar/companies/baz".
      *
-     * Generated from protobuf field <code>string company = 5;</code>
+     * Generated from protobuf field <code>string company = 5 [(.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getCompany()
@@ -365,7 +365,7 @@ class Application extends \Google\Protobuf\Internal\Message
      * "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}".
      * For example, "projects/foo/tenants/bar/companies/baz".
      *
-     * Generated from protobuf field <code>string company = 5;</code>
+     * Generated from protobuf field <code>string company = 5 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -404,8 +404,8 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. What is the most recent stage of the application (that is, new,
-     * screen, send cv, hired, finished work)?  This field is intentionally not
+     * Required. What is the most recent stage of the application (that is, new, screen,
+     * send cv, hired, finished work)?  This field is intentionally not
      * comprehensive of every possible status, but instead, represents statuses
      * that would be used to indicate to the ML models good / bad matches.
      *
@@ -418,8 +418,8 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. What is the most recent stage of the application (that is, new,
-     * screen, send cv, hired, finished work)?  This field is intentionally not
+     * Required. What is the most recent stage of the application (that is, new, screen,
+     * send cv, hired, finished work)?  This field is intentionally not
      * comprehensive of every possible status, but instead, represents statuses
      * that would be used to indicate to the ML models good / bad matches.
      *
@@ -512,8 +512,7 @@ class Application extends \Google\Protobuf\Internal\Message
      */
     public function getReferralValue()
     {
-        $wrapper = $this->getReferral();
-        return is_null($wrapper) ? null : $wrapper->getValue();
+        return $this->readWrapperValue("referral");
     }
 
     /**
@@ -542,9 +541,8 @@ class Application extends \Google\Protobuf\Internal\Message
      */
     public function setReferralValue($var)
     {
-        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
-        return $this->setReferral($wrappedVar);
-    }
+        $this->writeWrapperValue("referral", $var);
+        return $this;}
 
     /**
      * Required. Reflects the time that the application was created.
@@ -679,8 +677,7 @@ class Application extends \Google\Protobuf\Internal\Message
      */
     public function getIsMatchValue()
     {
-        $wrapper = $this->getIsMatch();
-        return is_null($wrapper) ? null : $wrapper->getValue();
+        return $this->readWrapperValue("is_match");
     }
 
     /**
@@ -713,9 +710,8 @@ class Application extends \Google\Protobuf\Internal\Message
      */
     public function setIsMatchValue($var)
     {
-        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
-        return $this->setIsMatch($wrappedVar);
-    }
+        $this->writeWrapperValue("is_match", $var);
+        return $this;}
 
     /**
      * Output only. Job title snippet shows how the job title is related to a

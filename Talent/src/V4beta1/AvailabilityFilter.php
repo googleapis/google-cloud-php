@@ -20,25 +20,22 @@ class AvailabilityFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.AvailabilitySignalType signal_type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $signal_type = 0;
+    protected $signal_type = 0;
     /**
      * Required. Range of times to filter candidate signals by.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.TimestampRange range = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $range = null;
+    protected $range = null;
     /**
-     * If multiple
-     * [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter] are
-     * provided, the default behavior is to OR all filters, but if this field is
-     * set to true, this particular
-     * [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter] will
-     * be AND'ed against other
+     * If multiple [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter] are provided, the default
+     * behavior is to OR all filters, but if this field is set to true, this
+     * particular [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter] will be AND'ed against other
      * [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter].
      *
      * Generated from protobuf field <code>bool required = 3;</code>
      */
-    private $required = false;
+    protected $required = false;
 
     /**
      * Constructor.
@@ -51,12 +48,9 @@ class AvailabilityFilter extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Talent\V4beta1\TimestampRange $range
      *           Required. Range of times to filter candidate signals by.
      *     @type bool $required
-     *           If multiple
-     *           [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter] are
-     *           provided, the default behavior is to OR all filters, but if this field is
-     *           set to true, this particular
-     *           [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter] will
-     *           be AND'ed against other
+     *           If multiple [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter] are provided, the default
+     *           behavior is to OR all filters, but if this field is set to true, this
+     *           particular [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter] will be AND'ed against other
      *           [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter].
      * }
      */
@@ -118,12 +112,9 @@ class AvailabilityFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If multiple
-     * [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter] are
-     * provided, the default behavior is to OR all filters, but if this field is
-     * set to true, this particular
-     * [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter] will
-     * be AND'ed against other
+     * If multiple [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter] are provided, the default
+     * behavior is to OR all filters, but if this field is set to true, this
+     * particular [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter] will be AND'ed against other
      * [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter].
      *
      * Generated from protobuf field <code>bool required = 3;</code>
@@ -135,12 +126,9 @@ class AvailabilityFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If multiple
-     * [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter] are
-     * provided, the default behavior is to OR all filters, but if this field is
-     * set to true, this particular
-     * [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter] will
-     * be AND'ed against other
+     * If multiple [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter] are provided, the default
+     * behavior is to OR all filters, but if this field is set to true, this
+     * particular [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter] will be AND'ed against other
      * [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter].
      *
      * Generated from protobuf field <code>bool required = 3;</code>

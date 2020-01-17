@@ -16,26 +16,21 @@ use Google\Protobuf\Internal\GPBUtil;
 class JobResult extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Here [Job][google.cloud.talent.v4beta1.Job] only contains basic
-     * information including [name][google.cloud.talent.v4beta1.Job.name],
-     * [company][google.cloud.talent.v4beta1.Job.company],
-     * [language_code][google.cloud.talent.v4beta1.Job.language_code] and
-     * [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id], use
-     * getJob method to retrieve detailed information of the created/updated
-     * job.
+     * Here [Job][google.cloud.talent.v4beta1.Job] only contains basic information including [name][google.cloud.talent.v4beta1.Job.name],
+     * [company][google.cloud.talent.v4beta1.Job.company], [language_code][google.cloud.talent.v4beta1.Job.language_code]
+     * and [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id], use getJob method to retrieve
+     * detailed information of the created/updated job.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Job job = 1;</code>
      */
-    private $job = null;
+    protected $job = null;
     /**
      * The status of the job processed. This field is populated if the
-     * processing of the
-     * [job][google.cloud.talent.v4beta1.JobOperationResult.JobResult.job]
-     * fails.
+     * processing of the [job][google.cloud.talent.v4beta1.JobOperationResult.JobResult.job] fails.
      *
      * Generated from protobuf field <code>.google.rpc.Status status = 2;</code>
      */
-    private $status = null;
+    protected $status = null;
 
     /**
      * Constructor.
@@ -44,18 +39,13 @@ class JobResult extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Talent\V4beta1\Job $job
-     *           Here [Job][google.cloud.talent.v4beta1.Job] only contains basic
-     *           information including [name][google.cloud.talent.v4beta1.Job.name],
-     *           [company][google.cloud.talent.v4beta1.Job.company],
-     *           [language_code][google.cloud.talent.v4beta1.Job.language_code] and
-     *           [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id], use
-     *           getJob method to retrieve detailed information of the created/updated
-     *           job.
+     *           Here [Job][google.cloud.talent.v4beta1.Job] only contains basic information including [name][google.cloud.talent.v4beta1.Job.name],
+     *           [company][google.cloud.talent.v4beta1.Job.company], [language_code][google.cloud.talent.v4beta1.Job.language_code]
+     *           and [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id], use getJob method to retrieve
+     *           detailed information of the created/updated job.
      *     @type \Google\Rpc\Status $status
      *           The status of the job processed. This field is populated if the
-     *           processing of the
-     *           [job][google.cloud.talent.v4beta1.JobOperationResult.JobResult.job]
-     *           fails.
+     *           processing of the [job][google.cloud.talent.v4beta1.JobOperationResult.JobResult.job] fails.
      * }
      */
     public function __construct($data = NULL) {
@@ -64,13 +54,10 @@ class JobResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Here [Job][google.cloud.talent.v4beta1.Job] only contains basic
-     * information including [name][google.cloud.talent.v4beta1.Job.name],
-     * [company][google.cloud.talent.v4beta1.Job.company],
-     * [language_code][google.cloud.talent.v4beta1.Job.language_code] and
-     * [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id], use
-     * getJob method to retrieve detailed information of the created/updated
-     * job.
+     * Here [Job][google.cloud.talent.v4beta1.Job] only contains basic information including [name][google.cloud.talent.v4beta1.Job.name],
+     * [company][google.cloud.talent.v4beta1.Job.company], [language_code][google.cloud.talent.v4beta1.Job.language_code]
+     * and [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id], use getJob method to retrieve
+     * detailed information of the created/updated job.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Job job = 1;</code>
      * @return \Google\Cloud\Talent\V4beta1\Job
@@ -81,13 +68,10 @@ class JobResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Here [Job][google.cloud.talent.v4beta1.Job] only contains basic
-     * information including [name][google.cloud.talent.v4beta1.Job.name],
-     * [company][google.cloud.talent.v4beta1.Job.company],
-     * [language_code][google.cloud.talent.v4beta1.Job.language_code] and
-     * [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id], use
-     * getJob method to retrieve detailed information of the created/updated
-     * job.
+     * Here [Job][google.cloud.talent.v4beta1.Job] only contains basic information including [name][google.cloud.talent.v4beta1.Job.name],
+     * [company][google.cloud.talent.v4beta1.Job.company], [language_code][google.cloud.talent.v4beta1.Job.language_code]
+     * and [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id], use getJob method to retrieve
+     * detailed information of the created/updated job.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Job job = 1;</code>
      * @param \Google\Cloud\Talent\V4beta1\Job $var
@@ -103,9 +87,7 @@ class JobResult extends \Google\Protobuf\Internal\Message
 
     /**
      * The status of the job processed. This field is populated if the
-     * processing of the
-     * [job][google.cloud.talent.v4beta1.JobOperationResult.JobResult.job]
-     * fails.
+     * processing of the [job][google.cloud.talent.v4beta1.JobOperationResult.JobResult.job] fails.
      *
      * Generated from protobuf field <code>.google.rpc.Status status = 2;</code>
      * @return \Google\Rpc\Status
@@ -117,9 +99,7 @@ class JobResult extends \Google\Protobuf\Internal\Message
 
     /**
      * The status of the job processed. This field is populated if the
-     * processing of the
-     * [job][google.cloud.talent.v4beta1.JobOperationResult.JobResult.job]
-     * fails.
+     * processing of the [job][google.cloud.talent.v4beta1.JobOperationResult.JobResult.job] fails.
      *
      * Generated from protobuf field <code>.google.rpc.Status status = 2;</code>
      * @param \Google\Rpc\Status $var

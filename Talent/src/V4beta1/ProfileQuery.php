@@ -21,57 +21,38 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string query = 1;</code>
      */
-    private $query = '';
+    protected $query = '';
     /**
      * The location filter specifies geo-regions containing the profiles to
      * search against.
-     * One of
-     * [LocationFilter.address][google.cloud.talent.v4beta1.LocationFilter.address]
-     * or
-     * [LocationFilter.lat_lng][google.cloud.talent.v4beta1.LocationFilter.lat_lng]
-     * must be provided or an error is thrown. If both
-     * [LocationFilter.address][google.cloud.talent.v4beta1.LocationFilter.address]
-     * and
-     * [LocationFilter.lat_lng][google.cloud.talent.v4beta1.LocationFilter.lat_lng]
-     * are provided, an error is thrown.
+     * One of [LocationFilter.address][google.cloud.talent.v4beta1.LocationFilter.address] or [LocationFilter.lat_lng][google.cloud.talent.v4beta1.LocationFilter.lat_lng] must be
+     * provided or an error is thrown. If both [LocationFilter.address][google.cloud.talent.v4beta1.LocationFilter.address] and
+     * [LocationFilter.lat_lng][google.cloud.talent.v4beta1.LocationFilter.lat_lng] are provided, an error is thrown.
      * The following logic is used to determine which locations in
      * the profile to filter against:
-     * 1. All of the profile's geocoded
-     * [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses] where
-     * [Address.usage][google.cloud.talent.v4beta1.Address.usage] is PERSONAL and
-     * [Address.current][google.cloud.talent.v4beta1.Address.current] is true.
+     * 1. All of the profile's geocoded [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses] where
+     * [Address.usage][google.cloud.talent.v4beta1.Address.usage] is PERSONAL and [Address.current][google.cloud.talent.v4beta1.Address.current] is true.
      * 2. If the above set of locations is empty, all of the profile's geocoded
-     * [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses] where
-     * [Address.usage][google.cloud.talent.v4beta1.Address.usage] is
-     * CONTACT_INFO_USAGE_UNSPECIFIED and
-     * [Address.current][google.cloud.talent.v4beta1.Address.current] is true.
+     * [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses] where [Address.usage][google.cloud.talent.v4beta1.Address.usage] is
+     * CONTACT_INFO_USAGE_UNSPECIFIED and [Address.current][google.cloud.talent.v4beta1.Address.current] is true.
      * 3. If the above set of locations is empty, all of the profile's geocoded
-     * [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses] where
-     * [Address.usage][google.cloud.talent.v4beta1.Address.usage] is PERSONAL or
-     * CONTACT_INFO_USAGE_UNSPECIFIED and
-     * [Address.current][google.cloud.talent.v4beta1.Address.current] is not set.
-     * This means that any profiles without any
-     * [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses] that
-     * match any of the above criteria will not be included in a search with
-     * location filter. Furthermore, any
-     * [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses] where
-     * [Address.usage][google.cloud.talent.v4beta1.Address.usage] is WORK or
-     * SCHOOL or where
-     * [Address.current][google.cloud.talent.v4beta1.Address.current] is false are
-     * not considered for location filter.
+     * [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses] where [Address.usage][google.cloud.talent.v4beta1.Address.usage] is PERSONAL or
+     * CONTACT_INFO_USAGE_UNSPECIFIED and [Address.current][google.cloud.talent.v4beta1.Address.current] is not set.
+     * This means that any profiles without any [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses] that match
+     * any of the above criteria will not be included in a search with location
+     * filter. Furthermore, any [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses] where [Address.usage][google.cloud.talent.v4beta1.Address.usage] is
+     * WORK or SCHOOL or where [Address.current][google.cloud.talent.v4beta1.Address.current] is false are not considered for
+     * location filter.
      * If a location filter isn't specified, profiles fitting the other search
      * criteria are retrieved regardless of where they're located.
-     * If
-     * [LocationFilter.negated][google.cloud.talent.v4beta1.LocationFilter.negated]
-     * is specified, the result doesn't contain profiles from that location.
-     * If
-     * [LocationFilter.address][google.cloud.talent.v4beta1.LocationFilter.address]
-     * is provided, the
+     * If [LocationFilter.negated][google.cloud.talent.v4beta1.LocationFilter.negated] is specified, the result doesn't contain
+     * profiles from that location.
+     * If [LocationFilter.address][google.cloud.talent.v4beta1.LocationFilter.address] is provided, the
      * [LocationType][google.cloud.talent.v4beta1.Location.LocationType], center
      * point (latitude and longitude), and radius are automatically detected by
      * the Google Maps Geocoding API and included as well. If
-     * [LocationFilter.address][google.cloud.talent.v4beta1.LocationFilter.address]
-     * cannot be geocoded, the filter falls back to keyword search.
+     * [LocationFilter.address][google.cloud.talent.v4beta1.LocationFilter.address] cannot be geocoded, the filter
+     * falls back to keyword search.
      * If the detected
      * [LocationType][google.cloud.talent.v4beta1.Location.LocationType] is
      * [LocationType.SUB_ADMINISTRATIVE_AREA][google.cloud.talent.v4beta1.Location.LocationType.SUB_ADMINISTRATIVE_AREA],
@@ -82,36 +63,22 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      * text matching). Otherwise, the filter is performed against the detected
      * center point and a radius of detected location radius +
      * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles].
-     * If
-     * [LocationFilter.address][google.cloud.talent.v4beta1.LocationFilter.address]
-     * is provided,
-     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles]
-     * is the additional radius on top of the radius of the location geocoded from
-     * [LocationFilter.address][google.cloud.talent.v4beta1.LocationFilter.address].
-     * If
-     * [LocationFilter.lat_lng][google.cloud.talent.v4beta1.LocationFilter.lat_lng]
-     * is provided,
-     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles]
-     * is the only radius that is used.
-     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles]
-     * is 10 by default. Note that the value of
-     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles]
-     * is 0 if it is unset, so the server does not differentiate
-     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles]
-     * that is explicitly set to 0 and
-     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles]
-     * that is not set. Which means that if
-     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles]
-     * is explicitly set to 0, the server will use the default value of
-     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles]
-     * which is 10. To work around this and effectively set
-     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles]
-     * to 0, we recommend setting
-     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles]
-     * to a very small decimal number (such as 0.00001).
-     * If
-     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles]
-     * is negative, an error is thrown.
+     * If [LocationFilter.address][google.cloud.talent.v4beta1.LocationFilter.address] is provided,
+     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] is the additional radius on top of the
+     * radius of the location geocoded from [LocationFilter.address][google.cloud.talent.v4beta1.LocationFilter.address]. If
+     * [LocationFilter.lat_lng][google.cloud.talent.v4beta1.LocationFilter.lat_lng] is provided,
+     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] is the only radius that is used.
+     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] is 10 by default. Note that the value
+     * of [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] is 0 if it is unset, so the server
+     * does not differentiate [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] that is
+     * explicitly set to 0 and [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] that is not
+     * set. Which means that if [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] is explicitly
+     * set to 0, the server will use the default value of
+     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] which is 10. To work around this and
+     * effectively set [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] to 0, we recommend
+     * setting [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] to a very small decimal number
+     * (such as 0.00001).
+     * If [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] is negative, an error is thrown.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.LocationFilter location_filters = 2;</code>
      */
@@ -121,9 +88,8 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      * If a job title isn't specified, profiles with any titles are retrieved.
      * If multiple values are specified, profiles are retrieved with any of the
      * specified job titles.
-     * If
-     * [JobTitleFilter.negated][google.cloud.talent.v4beta1.JobTitleFilter.negated]
-     * is specified, the result won't contain profiles with the job titles.
+     * If [JobTitleFilter.negated][google.cloud.talent.v4beta1.JobTitleFilter.negated] is specified, the result won't contain
+     * profiles with the job titles.
      * For example, search for profiles with a job title "Product Manager".
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.JobTitleFilter job_title_filters = 3;</code>
@@ -135,9 +101,8 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      * retrieved.
      * If multiple employer filters are specified, profiles with any matching
      * employers are retrieved.
-     * If
-     * [EmployerFilter.negated][google.cloud.talent.v4beta1.EmployerFilter.negated]
-     * is specified, the result won't contain profiles that match the employers.
+     * If [EmployerFilter.negated][google.cloud.talent.v4beta1.EmployerFilter.negated] is specified, the result won't contain
+     * profiles that match the employers.
      * For example, search for profiles that have working experience at "Google
      * LLC".
      *
@@ -150,9 +115,8 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      * retrieved.
      * If multiple education filters are specified, profiles that match any
      * education filters are retrieved.
-     * If
-     * [EducationFilter.negated][google.cloud.talent.v4beta1.EducationFilter.negated]
-     * is specified, the result won't contain profiles that match the educations.
+     * If [EducationFilter.negated][google.cloud.talent.v4beta1.EducationFilter.negated] is specified, the result won't contain
+     * profiles that match the educations.
      * For example, search for profiles with a master degree.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.EducationFilter education_filters = 5;</code>
@@ -163,8 +127,8 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      * If a skill filter isn't specified, profiles with any skills are retrieved.
      * If multiple skill filters are specified, profiles that match any skill
      * filters are retrieved.
-     * If [SkillFilter.negated][google.cloud.talent.v4beta1.SkillFilter.negated]
-     * is specified, the result won't contain profiles that match the skills.
+     * If [SkillFilter.negated][google.cloud.talent.v4beta1.SkillFilter.negated] is specified, the result won't contain profiles
+     * that match the skills.
      * For example, search for profiles that have "Java" and "Python" in skill
      * list.
      *
@@ -196,7 +160,7 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue hirable_filter = 9;</code>
      */
-    private $hirable_filter = null;
+    protected $hirable_filter = null;
     /**
      * The application date filters specify application date ranges to match on.
      *
@@ -218,8 +182,7 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
     private $application_job_filters;
     /**
      * This filter specifies a structured syntax to match against the
-     * [Profile.custom_attributes][google.cloud.talent.v4beta1.Profile.custom_attributes]
-     * that are marked as `filterable`.
+     * [Profile.custom_attributes][google.cloud.talent.v4beta1.Profile.custom_attributes] that are marked as `filterable`.
      * The syntax for this expression is a subset of Google SQL syntax.
      * String custom attributes: supported operators are =, != where the left of
      * the operator is a custom field key and the right of the operator is a
@@ -239,14 +202,14 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string custom_attribute_filter = 15;</code>
      */
-    private $custom_attribute_filter = '';
+    protected $custom_attribute_filter = '';
     /**
      * Deprecated. Use availability_filters instead.
      * The candidate availability filter which filters based on availability
      * signals.
      * Signal 1: Number of days since most recent job application.  See
-     * [Availability.JobApplicationAvailabilitySignal][google.cloud.talent.v4beta1.Availability.JobApplicationAvailabilitySignal]
-     * for the details of this signal.
+     * [Availability.JobApplicationAvailabilitySignal][google.cloud.talent.v4beta1.Availability.JobApplicationAvailabilitySignal] for the details of this
+     * signal.
      * Signal 2: Number of days since last profile update. See
      * [Availability.ProfileUpdateAvailabilitySignal][google.cloud.talent.v4beta1.Availability.ProfileUpdateAvailabilitySignal]
      * for the details of this signal.
@@ -258,7 +221,7 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CandidateAvailabilityFilter candidate_availability_filter = 16 [deprecated = true];</code>
      */
-    private $candidate_availability_filter = null;
+    protected $candidate_availability_filter = null;
     /**
      * The availability filter which filters based on
      * [Profile.availability_signals][google.cloud.talent.v4beta1.Profile.availability_signals].
@@ -267,12 +230,9 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      * based on an aggregated set of signals.  Specifically, the intent is NOT to
      * indicate the candidate's potential qualification / interest / close ability
      * for a specific job.
-     * There can be at most one
-     * [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter] per
-     * [signal_type][google.cloud.talent.v4beta1.AvailabilityFilter.signal_type].
-     * If there are multiple
-     * [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter] for a
-     * [signal_type][google.cloud.talent.v4beta1.AvailabilityFilter.signal_type],
+     * There can be at most one [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter] per
+     * [signal_type][google.cloud.talent.v4beta1.AvailabilityFilter.signal_type]. If there are multiple
+     * [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter] for a [signal_type][google.cloud.talent.v4beta1.AvailabilityFilter.signal_type],
      * an error is thrown.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.AvailabilityFilter availability_filters = 18;</code>
@@ -300,53 +260,34 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Talent\V4beta1\LocationFilter[]|\Google\Protobuf\Internal\RepeatedField $location_filters
      *           The location filter specifies geo-regions containing the profiles to
      *           search against.
-     *           One of
-     *           [LocationFilter.address][google.cloud.talent.v4beta1.LocationFilter.address]
-     *           or
-     *           [LocationFilter.lat_lng][google.cloud.talent.v4beta1.LocationFilter.lat_lng]
-     *           must be provided or an error is thrown. If both
-     *           [LocationFilter.address][google.cloud.talent.v4beta1.LocationFilter.address]
-     *           and
-     *           [LocationFilter.lat_lng][google.cloud.talent.v4beta1.LocationFilter.lat_lng]
-     *           are provided, an error is thrown.
+     *           One of [LocationFilter.address][google.cloud.talent.v4beta1.LocationFilter.address] or [LocationFilter.lat_lng][google.cloud.talent.v4beta1.LocationFilter.lat_lng] must be
+     *           provided or an error is thrown. If both [LocationFilter.address][google.cloud.talent.v4beta1.LocationFilter.address] and
+     *           [LocationFilter.lat_lng][google.cloud.talent.v4beta1.LocationFilter.lat_lng] are provided, an error is thrown.
      *           The following logic is used to determine which locations in
      *           the profile to filter against:
-     *           1. All of the profile's geocoded
-     *           [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses] where
-     *           [Address.usage][google.cloud.talent.v4beta1.Address.usage] is PERSONAL and
-     *           [Address.current][google.cloud.talent.v4beta1.Address.current] is true.
+     *           1. All of the profile's geocoded [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses] where
+     *           [Address.usage][google.cloud.talent.v4beta1.Address.usage] is PERSONAL and [Address.current][google.cloud.talent.v4beta1.Address.current] is true.
      *           2. If the above set of locations is empty, all of the profile's geocoded
-     *           [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses] where
-     *           [Address.usage][google.cloud.talent.v4beta1.Address.usage] is
-     *           CONTACT_INFO_USAGE_UNSPECIFIED and
-     *           [Address.current][google.cloud.talent.v4beta1.Address.current] is true.
+     *           [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses] where [Address.usage][google.cloud.talent.v4beta1.Address.usage] is
+     *           CONTACT_INFO_USAGE_UNSPECIFIED and [Address.current][google.cloud.talent.v4beta1.Address.current] is true.
      *           3. If the above set of locations is empty, all of the profile's geocoded
-     *           [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses] where
-     *           [Address.usage][google.cloud.talent.v4beta1.Address.usage] is PERSONAL or
-     *           CONTACT_INFO_USAGE_UNSPECIFIED and
-     *           [Address.current][google.cloud.talent.v4beta1.Address.current] is not set.
-     *           This means that any profiles without any
-     *           [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses] that
-     *           match any of the above criteria will not be included in a search with
-     *           location filter. Furthermore, any
-     *           [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses] where
-     *           [Address.usage][google.cloud.talent.v4beta1.Address.usage] is WORK or
-     *           SCHOOL or where
-     *           [Address.current][google.cloud.talent.v4beta1.Address.current] is false are
-     *           not considered for location filter.
+     *           [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses] where [Address.usage][google.cloud.talent.v4beta1.Address.usage] is PERSONAL or
+     *           CONTACT_INFO_USAGE_UNSPECIFIED and [Address.current][google.cloud.talent.v4beta1.Address.current] is not set.
+     *           This means that any profiles without any [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses] that match
+     *           any of the above criteria will not be included in a search with location
+     *           filter. Furthermore, any [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses] where [Address.usage][google.cloud.talent.v4beta1.Address.usage] is
+     *           WORK or SCHOOL or where [Address.current][google.cloud.talent.v4beta1.Address.current] is false are not considered for
+     *           location filter.
      *           If a location filter isn't specified, profiles fitting the other search
      *           criteria are retrieved regardless of where they're located.
-     *           If
-     *           [LocationFilter.negated][google.cloud.talent.v4beta1.LocationFilter.negated]
-     *           is specified, the result doesn't contain profiles from that location.
-     *           If
-     *           [LocationFilter.address][google.cloud.talent.v4beta1.LocationFilter.address]
-     *           is provided, the
+     *           If [LocationFilter.negated][google.cloud.talent.v4beta1.LocationFilter.negated] is specified, the result doesn't contain
+     *           profiles from that location.
+     *           If [LocationFilter.address][google.cloud.talent.v4beta1.LocationFilter.address] is provided, the
      *           [LocationType][google.cloud.talent.v4beta1.Location.LocationType], center
      *           point (latitude and longitude), and radius are automatically detected by
      *           the Google Maps Geocoding API and included as well. If
-     *           [LocationFilter.address][google.cloud.talent.v4beta1.LocationFilter.address]
-     *           cannot be geocoded, the filter falls back to keyword search.
+     *           [LocationFilter.address][google.cloud.talent.v4beta1.LocationFilter.address] cannot be geocoded, the filter
+     *           falls back to keyword search.
      *           If the detected
      *           [LocationType][google.cloud.talent.v4beta1.Location.LocationType] is
      *           [LocationType.SUB_ADMINISTRATIVE_AREA][google.cloud.talent.v4beta1.Location.LocationType.SUB_ADMINISTRATIVE_AREA],
@@ -357,44 +298,29 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      *           text matching). Otherwise, the filter is performed against the detected
      *           center point and a radius of detected location radius +
      *           [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles].
-     *           If
-     *           [LocationFilter.address][google.cloud.talent.v4beta1.LocationFilter.address]
-     *           is provided,
-     *           [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles]
-     *           is the additional radius on top of the radius of the location geocoded from
-     *           [LocationFilter.address][google.cloud.talent.v4beta1.LocationFilter.address].
-     *           If
-     *           [LocationFilter.lat_lng][google.cloud.talent.v4beta1.LocationFilter.lat_lng]
-     *           is provided,
-     *           [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles]
-     *           is the only radius that is used.
-     *           [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles]
-     *           is 10 by default. Note that the value of
-     *           [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles]
-     *           is 0 if it is unset, so the server does not differentiate
-     *           [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles]
-     *           that is explicitly set to 0 and
-     *           [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles]
-     *           that is not set. Which means that if
-     *           [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles]
-     *           is explicitly set to 0, the server will use the default value of
-     *           [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles]
-     *           which is 10. To work around this and effectively set
-     *           [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles]
-     *           to 0, we recommend setting
-     *           [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles]
-     *           to a very small decimal number (such as 0.00001).
-     *           If
-     *           [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles]
-     *           is negative, an error is thrown.
+     *           If [LocationFilter.address][google.cloud.talent.v4beta1.LocationFilter.address] is provided,
+     *           [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] is the additional radius on top of the
+     *           radius of the location geocoded from [LocationFilter.address][google.cloud.talent.v4beta1.LocationFilter.address]. If
+     *           [LocationFilter.lat_lng][google.cloud.talent.v4beta1.LocationFilter.lat_lng] is provided,
+     *           [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] is the only radius that is used.
+     *           [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] is 10 by default. Note that the value
+     *           of [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] is 0 if it is unset, so the server
+     *           does not differentiate [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] that is
+     *           explicitly set to 0 and [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] that is not
+     *           set. Which means that if [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] is explicitly
+     *           set to 0, the server will use the default value of
+     *           [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] which is 10. To work around this and
+     *           effectively set [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] to 0, we recommend
+     *           setting [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] to a very small decimal number
+     *           (such as 0.00001).
+     *           If [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] is negative, an error is thrown.
      *     @type \Google\Cloud\Talent\V4beta1\JobTitleFilter[]|\Google\Protobuf\Internal\RepeatedField $job_title_filters
      *           Job title filter specifies job titles of profiles to match on.
      *           If a job title isn't specified, profiles with any titles are retrieved.
      *           If multiple values are specified, profiles are retrieved with any of the
      *           specified job titles.
-     *           If
-     *           [JobTitleFilter.negated][google.cloud.talent.v4beta1.JobTitleFilter.negated]
-     *           is specified, the result won't contain profiles with the job titles.
+     *           If [JobTitleFilter.negated][google.cloud.talent.v4beta1.JobTitleFilter.negated] is specified, the result won't contain
+     *           profiles with the job titles.
      *           For example, search for profiles with a job title "Product Manager".
      *     @type \Google\Cloud\Talent\V4beta1\EmployerFilter[]|\Google\Protobuf\Internal\RepeatedField $employer_filters
      *           Employer filter specifies employers of profiles to match on.
@@ -402,9 +328,8 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      *           retrieved.
      *           If multiple employer filters are specified, profiles with any matching
      *           employers are retrieved.
-     *           If
-     *           [EmployerFilter.negated][google.cloud.talent.v4beta1.EmployerFilter.negated]
-     *           is specified, the result won't contain profiles that match the employers.
+     *           If [EmployerFilter.negated][google.cloud.talent.v4beta1.EmployerFilter.negated] is specified, the result won't contain
+     *           profiles that match the employers.
      *           For example, search for profiles that have working experience at "Google
      *           LLC".
      *     @type \Google\Cloud\Talent\V4beta1\EducationFilter[]|\Google\Protobuf\Internal\RepeatedField $education_filters
@@ -413,17 +338,16 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      *           retrieved.
      *           If multiple education filters are specified, profiles that match any
      *           education filters are retrieved.
-     *           If
-     *           [EducationFilter.negated][google.cloud.talent.v4beta1.EducationFilter.negated]
-     *           is specified, the result won't contain profiles that match the educations.
+     *           If [EducationFilter.negated][google.cloud.talent.v4beta1.EducationFilter.negated] is specified, the result won't contain
+     *           profiles that match the educations.
      *           For example, search for profiles with a master degree.
      *     @type \Google\Cloud\Talent\V4beta1\SkillFilter[]|\Google\Protobuf\Internal\RepeatedField $skill_filters
      *           Skill filter specifies skill of profiles to match on.
      *           If a skill filter isn't specified, profiles with any skills are retrieved.
      *           If multiple skill filters are specified, profiles that match any skill
      *           filters are retrieved.
-     *           If [SkillFilter.negated][google.cloud.talent.v4beta1.SkillFilter.negated]
-     *           is specified, the result won't contain profiles that match the skills.
+     *           If [SkillFilter.negated][google.cloud.talent.v4beta1.SkillFilter.negated] is specified, the result won't contain profiles
+     *           that match the skills.
      *           For example, search for profiles that have "Java" and "Python" in skill
      *           list.
      *     @type \Google\Cloud\Talent\V4beta1\WorkExperienceFilter[]|\Google\Protobuf\Internal\RepeatedField $work_experience_filter
@@ -449,8 +373,7 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      *           The application job filters specify the job applied for in the application.
      *     @type string $custom_attribute_filter
      *           This filter specifies a structured syntax to match against the
-     *           [Profile.custom_attributes][google.cloud.talent.v4beta1.Profile.custom_attributes]
-     *           that are marked as `filterable`.
+     *           [Profile.custom_attributes][google.cloud.talent.v4beta1.Profile.custom_attributes] that are marked as `filterable`.
      *           The syntax for this expression is a subset of Google SQL syntax.
      *           String custom attributes: supported operators are =, != where the left of
      *           the operator is a custom field key and the right of the operator is a
@@ -472,8 +395,8 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      *           The candidate availability filter which filters based on availability
      *           signals.
      *           Signal 1: Number of days since most recent job application.  See
-     *           [Availability.JobApplicationAvailabilitySignal][google.cloud.talent.v4beta1.Availability.JobApplicationAvailabilitySignal]
-     *           for the details of this signal.
+     *           [Availability.JobApplicationAvailabilitySignal][google.cloud.talent.v4beta1.Availability.JobApplicationAvailabilitySignal] for the details of this
+     *           signal.
      *           Signal 2: Number of days since last profile update. See
      *           [Availability.ProfileUpdateAvailabilitySignal][google.cloud.talent.v4beta1.Availability.ProfileUpdateAvailabilitySignal]
      *           for the details of this signal.
@@ -490,12 +413,9 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      *           based on an aggregated set of signals.  Specifically, the intent is NOT to
      *           indicate the candidate's potential qualification / interest / close ability
      *           for a specific job.
-     *           There can be at most one
-     *           [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter] per
-     *           [signal_type][google.cloud.talent.v4beta1.AvailabilityFilter.signal_type].
-     *           If there are multiple
-     *           [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter] for a
-     *           [signal_type][google.cloud.talent.v4beta1.AvailabilityFilter.signal_type],
+     *           There can be at most one [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter] per
+     *           [signal_type][google.cloud.talent.v4beta1.AvailabilityFilter.signal_type]. If there are multiple
+     *           [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter] for a [signal_type][google.cloud.talent.v4beta1.AvailabilityFilter.signal_type],
      *           an error is thrown.
      *     @type \Google\Cloud\Talent\V4beta1\PersonNameFilter[]|\Google\Protobuf\Internal\RepeatedField $person_name_filters
      *           Person name filter specifies person name of profiles to match on.
@@ -540,53 +460,34 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
     /**
      * The location filter specifies geo-regions containing the profiles to
      * search against.
-     * One of
-     * [LocationFilter.address][google.cloud.talent.v4beta1.LocationFilter.address]
-     * or
-     * [LocationFilter.lat_lng][google.cloud.talent.v4beta1.LocationFilter.lat_lng]
-     * must be provided or an error is thrown. If both
-     * [LocationFilter.address][google.cloud.talent.v4beta1.LocationFilter.address]
-     * and
-     * [LocationFilter.lat_lng][google.cloud.talent.v4beta1.LocationFilter.lat_lng]
-     * are provided, an error is thrown.
+     * One of [LocationFilter.address][google.cloud.talent.v4beta1.LocationFilter.address] or [LocationFilter.lat_lng][google.cloud.talent.v4beta1.LocationFilter.lat_lng] must be
+     * provided or an error is thrown. If both [LocationFilter.address][google.cloud.talent.v4beta1.LocationFilter.address] and
+     * [LocationFilter.lat_lng][google.cloud.talent.v4beta1.LocationFilter.lat_lng] are provided, an error is thrown.
      * The following logic is used to determine which locations in
      * the profile to filter against:
-     * 1. All of the profile's geocoded
-     * [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses] where
-     * [Address.usage][google.cloud.talent.v4beta1.Address.usage] is PERSONAL and
-     * [Address.current][google.cloud.talent.v4beta1.Address.current] is true.
+     * 1. All of the profile's geocoded [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses] where
+     * [Address.usage][google.cloud.talent.v4beta1.Address.usage] is PERSONAL and [Address.current][google.cloud.talent.v4beta1.Address.current] is true.
      * 2. If the above set of locations is empty, all of the profile's geocoded
-     * [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses] where
-     * [Address.usage][google.cloud.talent.v4beta1.Address.usage] is
-     * CONTACT_INFO_USAGE_UNSPECIFIED and
-     * [Address.current][google.cloud.talent.v4beta1.Address.current] is true.
+     * [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses] where [Address.usage][google.cloud.talent.v4beta1.Address.usage] is
+     * CONTACT_INFO_USAGE_UNSPECIFIED and [Address.current][google.cloud.talent.v4beta1.Address.current] is true.
      * 3. If the above set of locations is empty, all of the profile's geocoded
-     * [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses] where
-     * [Address.usage][google.cloud.talent.v4beta1.Address.usage] is PERSONAL or
-     * CONTACT_INFO_USAGE_UNSPECIFIED and
-     * [Address.current][google.cloud.talent.v4beta1.Address.current] is not set.
-     * This means that any profiles without any
-     * [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses] that
-     * match any of the above criteria will not be included in a search with
-     * location filter. Furthermore, any
-     * [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses] where
-     * [Address.usage][google.cloud.talent.v4beta1.Address.usage] is WORK or
-     * SCHOOL or where
-     * [Address.current][google.cloud.talent.v4beta1.Address.current] is false are
-     * not considered for location filter.
+     * [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses] where [Address.usage][google.cloud.talent.v4beta1.Address.usage] is PERSONAL or
+     * CONTACT_INFO_USAGE_UNSPECIFIED and [Address.current][google.cloud.talent.v4beta1.Address.current] is not set.
+     * This means that any profiles without any [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses] that match
+     * any of the above criteria will not be included in a search with location
+     * filter. Furthermore, any [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses] where [Address.usage][google.cloud.talent.v4beta1.Address.usage] is
+     * WORK or SCHOOL or where [Address.current][google.cloud.talent.v4beta1.Address.current] is false are not considered for
+     * location filter.
      * If a location filter isn't specified, profiles fitting the other search
      * criteria are retrieved regardless of where they're located.
-     * If
-     * [LocationFilter.negated][google.cloud.talent.v4beta1.LocationFilter.negated]
-     * is specified, the result doesn't contain profiles from that location.
-     * If
-     * [LocationFilter.address][google.cloud.talent.v4beta1.LocationFilter.address]
-     * is provided, the
+     * If [LocationFilter.negated][google.cloud.talent.v4beta1.LocationFilter.negated] is specified, the result doesn't contain
+     * profiles from that location.
+     * If [LocationFilter.address][google.cloud.talent.v4beta1.LocationFilter.address] is provided, the
      * [LocationType][google.cloud.talent.v4beta1.Location.LocationType], center
      * point (latitude and longitude), and radius are automatically detected by
      * the Google Maps Geocoding API and included as well. If
-     * [LocationFilter.address][google.cloud.talent.v4beta1.LocationFilter.address]
-     * cannot be geocoded, the filter falls back to keyword search.
+     * [LocationFilter.address][google.cloud.talent.v4beta1.LocationFilter.address] cannot be geocoded, the filter
+     * falls back to keyword search.
      * If the detected
      * [LocationType][google.cloud.talent.v4beta1.Location.LocationType] is
      * [LocationType.SUB_ADMINISTRATIVE_AREA][google.cloud.talent.v4beta1.Location.LocationType.SUB_ADMINISTRATIVE_AREA],
@@ -597,36 +498,22 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      * text matching). Otherwise, the filter is performed against the detected
      * center point and a radius of detected location radius +
      * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles].
-     * If
-     * [LocationFilter.address][google.cloud.talent.v4beta1.LocationFilter.address]
-     * is provided,
-     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles]
-     * is the additional radius on top of the radius of the location geocoded from
-     * [LocationFilter.address][google.cloud.talent.v4beta1.LocationFilter.address].
-     * If
-     * [LocationFilter.lat_lng][google.cloud.talent.v4beta1.LocationFilter.lat_lng]
-     * is provided,
-     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles]
-     * is the only radius that is used.
-     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles]
-     * is 10 by default. Note that the value of
-     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles]
-     * is 0 if it is unset, so the server does not differentiate
-     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles]
-     * that is explicitly set to 0 and
-     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles]
-     * that is not set. Which means that if
-     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles]
-     * is explicitly set to 0, the server will use the default value of
-     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles]
-     * which is 10. To work around this and effectively set
-     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles]
-     * to 0, we recommend setting
-     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles]
-     * to a very small decimal number (such as 0.00001).
-     * If
-     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles]
-     * is negative, an error is thrown.
+     * If [LocationFilter.address][google.cloud.talent.v4beta1.LocationFilter.address] is provided,
+     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] is the additional radius on top of the
+     * radius of the location geocoded from [LocationFilter.address][google.cloud.talent.v4beta1.LocationFilter.address]. If
+     * [LocationFilter.lat_lng][google.cloud.talent.v4beta1.LocationFilter.lat_lng] is provided,
+     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] is the only radius that is used.
+     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] is 10 by default. Note that the value
+     * of [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] is 0 if it is unset, so the server
+     * does not differentiate [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] that is
+     * explicitly set to 0 and [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] that is not
+     * set. Which means that if [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] is explicitly
+     * set to 0, the server will use the default value of
+     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] which is 10. To work around this and
+     * effectively set [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] to 0, we recommend
+     * setting [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] to a very small decimal number
+     * (such as 0.00001).
+     * If [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] is negative, an error is thrown.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.LocationFilter location_filters = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -639,53 +526,34 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
     /**
      * The location filter specifies geo-regions containing the profiles to
      * search against.
-     * One of
-     * [LocationFilter.address][google.cloud.talent.v4beta1.LocationFilter.address]
-     * or
-     * [LocationFilter.lat_lng][google.cloud.talent.v4beta1.LocationFilter.lat_lng]
-     * must be provided or an error is thrown. If both
-     * [LocationFilter.address][google.cloud.talent.v4beta1.LocationFilter.address]
-     * and
-     * [LocationFilter.lat_lng][google.cloud.talent.v4beta1.LocationFilter.lat_lng]
-     * are provided, an error is thrown.
+     * One of [LocationFilter.address][google.cloud.talent.v4beta1.LocationFilter.address] or [LocationFilter.lat_lng][google.cloud.talent.v4beta1.LocationFilter.lat_lng] must be
+     * provided or an error is thrown. If both [LocationFilter.address][google.cloud.talent.v4beta1.LocationFilter.address] and
+     * [LocationFilter.lat_lng][google.cloud.talent.v4beta1.LocationFilter.lat_lng] are provided, an error is thrown.
      * The following logic is used to determine which locations in
      * the profile to filter against:
-     * 1. All of the profile's geocoded
-     * [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses] where
-     * [Address.usage][google.cloud.talent.v4beta1.Address.usage] is PERSONAL and
-     * [Address.current][google.cloud.talent.v4beta1.Address.current] is true.
+     * 1. All of the profile's geocoded [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses] where
+     * [Address.usage][google.cloud.talent.v4beta1.Address.usage] is PERSONAL and [Address.current][google.cloud.talent.v4beta1.Address.current] is true.
      * 2. If the above set of locations is empty, all of the profile's geocoded
-     * [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses] where
-     * [Address.usage][google.cloud.talent.v4beta1.Address.usage] is
-     * CONTACT_INFO_USAGE_UNSPECIFIED and
-     * [Address.current][google.cloud.talent.v4beta1.Address.current] is true.
+     * [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses] where [Address.usage][google.cloud.talent.v4beta1.Address.usage] is
+     * CONTACT_INFO_USAGE_UNSPECIFIED and [Address.current][google.cloud.talent.v4beta1.Address.current] is true.
      * 3. If the above set of locations is empty, all of the profile's geocoded
-     * [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses] where
-     * [Address.usage][google.cloud.talent.v4beta1.Address.usage] is PERSONAL or
-     * CONTACT_INFO_USAGE_UNSPECIFIED and
-     * [Address.current][google.cloud.talent.v4beta1.Address.current] is not set.
-     * This means that any profiles without any
-     * [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses] that
-     * match any of the above criteria will not be included in a search with
-     * location filter. Furthermore, any
-     * [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses] where
-     * [Address.usage][google.cloud.talent.v4beta1.Address.usage] is WORK or
-     * SCHOOL or where
-     * [Address.current][google.cloud.talent.v4beta1.Address.current] is false are
-     * not considered for location filter.
+     * [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses] where [Address.usage][google.cloud.talent.v4beta1.Address.usage] is PERSONAL or
+     * CONTACT_INFO_USAGE_UNSPECIFIED and [Address.current][google.cloud.talent.v4beta1.Address.current] is not set.
+     * This means that any profiles without any [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses] that match
+     * any of the above criteria will not be included in a search with location
+     * filter. Furthermore, any [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses] where [Address.usage][google.cloud.talent.v4beta1.Address.usage] is
+     * WORK or SCHOOL or where [Address.current][google.cloud.talent.v4beta1.Address.current] is false are not considered for
+     * location filter.
      * If a location filter isn't specified, profiles fitting the other search
      * criteria are retrieved regardless of where they're located.
-     * If
-     * [LocationFilter.negated][google.cloud.talent.v4beta1.LocationFilter.negated]
-     * is specified, the result doesn't contain profiles from that location.
-     * If
-     * [LocationFilter.address][google.cloud.talent.v4beta1.LocationFilter.address]
-     * is provided, the
+     * If [LocationFilter.negated][google.cloud.talent.v4beta1.LocationFilter.negated] is specified, the result doesn't contain
+     * profiles from that location.
+     * If [LocationFilter.address][google.cloud.talent.v4beta1.LocationFilter.address] is provided, the
      * [LocationType][google.cloud.talent.v4beta1.Location.LocationType], center
      * point (latitude and longitude), and radius are automatically detected by
      * the Google Maps Geocoding API and included as well. If
-     * [LocationFilter.address][google.cloud.talent.v4beta1.LocationFilter.address]
-     * cannot be geocoded, the filter falls back to keyword search.
+     * [LocationFilter.address][google.cloud.talent.v4beta1.LocationFilter.address] cannot be geocoded, the filter
+     * falls back to keyword search.
      * If the detected
      * [LocationType][google.cloud.talent.v4beta1.Location.LocationType] is
      * [LocationType.SUB_ADMINISTRATIVE_AREA][google.cloud.talent.v4beta1.Location.LocationType.SUB_ADMINISTRATIVE_AREA],
@@ -696,36 +564,22 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      * text matching). Otherwise, the filter is performed against the detected
      * center point and a radius of detected location radius +
      * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles].
-     * If
-     * [LocationFilter.address][google.cloud.talent.v4beta1.LocationFilter.address]
-     * is provided,
-     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles]
-     * is the additional radius on top of the radius of the location geocoded from
-     * [LocationFilter.address][google.cloud.talent.v4beta1.LocationFilter.address].
-     * If
-     * [LocationFilter.lat_lng][google.cloud.talent.v4beta1.LocationFilter.lat_lng]
-     * is provided,
-     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles]
-     * is the only radius that is used.
-     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles]
-     * is 10 by default. Note that the value of
-     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles]
-     * is 0 if it is unset, so the server does not differentiate
-     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles]
-     * that is explicitly set to 0 and
-     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles]
-     * that is not set. Which means that if
-     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles]
-     * is explicitly set to 0, the server will use the default value of
-     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles]
-     * which is 10. To work around this and effectively set
-     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles]
-     * to 0, we recommend setting
-     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles]
-     * to a very small decimal number (such as 0.00001).
-     * If
-     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles]
-     * is negative, an error is thrown.
+     * If [LocationFilter.address][google.cloud.talent.v4beta1.LocationFilter.address] is provided,
+     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] is the additional radius on top of the
+     * radius of the location geocoded from [LocationFilter.address][google.cloud.talent.v4beta1.LocationFilter.address]. If
+     * [LocationFilter.lat_lng][google.cloud.talent.v4beta1.LocationFilter.lat_lng] is provided,
+     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] is the only radius that is used.
+     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] is 10 by default. Note that the value
+     * of [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] is 0 if it is unset, so the server
+     * does not differentiate [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] that is
+     * explicitly set to 0 and [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] that is not
+     * set. Which means that if [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] is explicitly
+     * set to 0, the server will use the default value of
+     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] which is 10. To work around this and
+     * effectively set [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] to 0, we recommend
+     * setting [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] to a very small decimal number
+     * (such as 0.00001).
+     * If [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] is negative, an error is thrown.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.LocationFilter location_filters = 2;</code>
      * @param \Google\Cloud\Talent\V4beta1\LocationFilter[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -744,9 +598,8 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      * If a job title isn't specified, profiles with any titles are retrieved.
      * If multiple values are specified, profiles are retrieved with any of the
      * specified job titles.
-     * If
-     * [JobTitleFilter.negated][google.cloud.talent.v4beta1.JobTitleFilter.negated]
-     * is specified, the result won't contain profiles with the job titles.
+     * If [JobTitleFilter.negated][google.cloud.talent.v4beta1.JobTitleFilter.negated] is specified, the result won't contain
+     * profiles with the job titles.
      * For example, search for profiles with a job title "Product Manager".
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.JobTitleFilter job_title_filters = 3;</code>
@@ -762,9 +615,8 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      * If a job title isn't specified, profiles with any titles are retrieved.
      * If multiple values are specified, profiles are retrieved with any of the
      * specified job titles.
-     * If
-     * [JobTitleFilter.negated][google.cloud.talent.v4beta1.JobTitleFilter.negated]
-     * is specified, the result won't contain profiles with the job titles.
+     * If [JobTitleFilter.negated][google.cloud.talent.v4beta1.JobTitleFilter.negated] is specified, the result won't contain
+     * profiles with the job titles.
      * For example, search for profiles with a job title "Product Manager".
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.JobTitleFilter job_title_filters = 3;</code>
@@ -785,9 +637,8 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      * retrieved.
      * If multiple employer filters are specified, profiles with any matching
      * employers are retrieved.
-     * If
-     * [EmployerFilter.negated][google.cloud.talent.v4beta1.EmployerFilter.negated]
-     * is specified, the result won't contain profiles that match the employers.
+     * If [EmployerFilter.negated][google.cloud.talent.v4beta1.EmployerFilter.negated] is specified, the result won't contain
+     * profiles that match the employers.
      * For example, search for profiles that have working experience at "Google
      * LLC".
      *
@@ -805,9 +656,8 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      * retrieved.
      * If multiple employer filters are specified, profiles with any matching
      * employers are retrieved.
-     * If
-     * [EmployerFilter.negated][google.cloud.talent.v4beta1.EmployerFilter.negated]
-     * is specified, the result won't contain profiles that match the employers.
+     * If [EmployerFilter.negated][google.cloud.talent.v4beta1.EmployerFilter.negated] is specified, the result won't contain
+     * profiles that match the employers.
      * For example, search for profiles that have working experience at "Google
      * LLC".
      *
@@ -829,9 +679,8 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      * retrieved.
      * If multiple education filters are specified, profiles that match any
      * education filters are retrieved.
-     * If
-     * [EducationFilter.negated][google.cloud.talent.v4beta1.EducationFilter.negated]
-     * is specified, the result won't contain profiles that match the educations.
+     * If [EducationFilter.negated][google.cloud.talent.v4beta1.EducationFilter.negated] is specified, the result won't contain
+     * profiles that match the educations.
      * For example, search for profiles with a master degree.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.EducationFilter education_filters = 5;</code>
@@ -848,9 +697,8 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      * retrieved.
      * If multiple education filters are specified, profiles that match any
      * education filters are retrieved.
-     * If
-     * [EducationFilter.negated][google.cloud.talent.v4beta1.EducationFilter.negated]
-     * is specified, the result won't contain profiles that match the educations.
+     * If [EducationFilter.negated][google.cloud.talent.v4beta1.EducationFilter.negated] is specified, the result won't contain
+     * profiles that match the educations.
      * For example, search for profiles with a master degree.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.EducationFilter education_filters = 5;</code>
@@ -870,8 +718,8 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      * If a skill filter isn't specified, profiles with any skills are retrieved.
      * If multiple skill filters are specified, profiles that match any skill
      * filters are retrieved.
-     * If [SkillFilter.negated][google.cloud.talent.v4beta1.SkillFilter.negated]
-     * is specified, the result won't contain profiles that match the skills.
+     * If [SkillFilter.negated][google.cloud.talent.v4beta1.SkillFilter.negated] is specified, the result won't contain profiles
+     * that match the skills.
      * For example, search for profiles that have "Java" and "Python" in skill
      * list.
      *
@@ -888,8 +736,8 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      * If a skill filter isn't specified, profiles with any skills are retrieved.
      * If multiple skill filters are specified, profiles that match any skill
      * filters are retrieved.
-     * If [SkillFilter.negated][google.cloud.talent.v4beta1.SkillFilter.negated]
-     * is specified, the result won't contain profiles that match the skills.
+     * If [SkillFilter.negated][google.cloud.talent.v4beta1.SkillFilter.negated] is specified, the result won't contain profiles
+     * that match the skills.
      * For example, search for profiles that have "Java" and "Python" in skill
      * list.
      *
@@ -994,8 +842,7 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      */
     public function getHirableFilterValue()
     {
-        $wrapper = $this->getHirableFilter();
-        return is_null($wrapper) ? null : $wrapper->getValue();
+        return $this->readWrapperValue("hirable_filter");
     }
 
     /**
@@ -1024,9 +871,8 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      */
     public function setHirableFilterValue($var)
     {
-        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
-        return $this->setHirableFilter($wrappedVar);
-    }
+        $this->writeWrapperValue("hirable_filter", $var);
+        return $this;}
 
     /**
      * The application date filters specify application date ranges to match on.
@@ -1110,8 +956,7 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
 
     /**
      * This filter specifies a structured syntax to match against the
-     * [Profile.custom_attributes][google.cloud.talent.v4beta1.Profile.custom_attributes]
-     * that are marked as `filterable`.
+     * [Profile.custom_attributes][google.cloud.talent.v4beta1.Profile.custom_attributes] that are marked as `filterable`.
      * The syntax for this expression is a subset of Google SQL syntax.
      * String custom attributes: supported operators are =, != where the left of
      * the operator is a custom field key and the right of the operator is a
@@ -1139,8 +984,7 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
 
     /**
      * This filter specifies a structured syntax to match against the
-     * [Profile.custom_attributes][google.cloud.talent.v4beta1.Profile.custom_attributes]
-     * that are marked as `filterable`.
+     * [Profile.custom_attributes][google.cloud.talent.v4beta1.Profile.custom_attributes] that are marked as `filterable`.
      * The syntax for this expression is a subset of Google SQL syntax.
      * String custom attributes: supported operators are =, != where the left of
      * the operator is a custom field key and the right of the operator is a
@@ -1175,8 +1019,8 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      * The candidate availability filter which filters based on availability
      * signals.
      * Signal 1: Number of days since most recent job application.  See
-     * [Availability.JobApplicationAvailabilitySignal][google.cloud.talent.v4beta1.Availability.JobApplicationAvailabilitySignal]
-     * for the details of this signal.
+     * [Availability.JobApplicationAvailabilitySignal][google.cloud.talent.v4beta1.Availability.JobApplicationAvailabilitySignal] for the details of this
+     * signal.
      * Signal 2: Number of days since last profile update. See
      * [Availability.ProfileUpdateAvailabilitySignal][google.cloud.talent.v4beta1.Availability.ProfileUpdateAvailabilitySignal]
      * for the details of this signal.
@@ -1199,8 +1043,8 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      * The candidate availability filter which filters based on availability
      * signals.
      * Signal 1: Number of days since most recent job application.  See
-     * [Availability.JobApplicationAvailabilitySignal][google.cloud.talent.v4beta1.Availability.JobApplicationAvailabilitySignal]
-     * for the details of this signal.
+     * [Availability.JobApplicationAvailabilitySignal][google.cloud.talent.v4beta1.Availability.JobApplicationAvailabilitySignal] for the details of this
+     * signal.
      * Signal 2: Number of days since last profile update. See
      * [Availability.ProfileUpdateAvailabilitySignal][google.cloud.talent.v4beta1.Availability.ProfileUpdateAvailabilitySignal]
      * for the details of this signal.
@@ -1230,12 +1074,9 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      * based on an aggregated set of signals.  Specifically, the intent is NOT to
      * indicate the candidate's potential qualification / interest / close ability
      * for a specific job.
-     * There can be at most one
-     * [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter] per
-     * [signal_type][google.cloud.talent.v4beta1.AvailabilityFilter.signal_type].
-     * If there are multiple
-     * [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter] for a
-     * [signal_type][google.cloud.talent.v4beta1.AvailabilityFilter.signal_type],
+     * There can be at most one [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter] per
+     * [signal_type][google.cloud.talent.v4beta1.AvailabilityFilter.signal_type]. If there are multiple
+     * [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter] for a [signal_type][google.cloud.talent.v4beta1.AvailabilityFilter.signal_type],
      * an error is thrown.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.AvailabilityFilter availability_filters = 18;</code>
@@ -1254,12 +1095,9 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      * based on an aggregated set of signals.  Specifically, the intent is NOT to
      * indicate the candidate's potential qualification / interest / close ability
      * for a specific job.
-     * There can be at most one
-     * [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter] per
-     * [signal_type][google.cloud.talent.v4beta1.AvailabilityFilter.signal_type].
-     * If there are multiple
-     * [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter] for a
-     * [signal_type][google.cloud.talent.v4beta1.AvailabilityFilter.signal_type],
+     * There can be at most one [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter] per
+     * [signal_type][google.cloud.talent.v4beta1.AvailabilityFilter.signal_type]. If there are multiple
+     * [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter] for a [signal_type][google.cloud.talent.v4beta1.AvailabilityFilter.signal_type],
      * an error is thrown.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.AvailabilityFilter availability_filters = 18;</code>

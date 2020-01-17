@@ -12,17 +12,9 @@ use Google\Protobuf\Internal\GPBUtil;
  * A compensation entry that represents one component of compensation, such
  * as base pay, bonus, or other compensation type.
  * Annualization: One compensation entry can be annualized if
- * - it contains valid
- * [amount][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.amount]
- * or
- * [range][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.range].
- * - and its
- * [expected_units_per_year][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.expected_units_per_year]
- * is set or can be derived. Its annualized range is determined as
- * ([amount][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.amount]
- * or
- * [range][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.range])
- * times
+ * - it contains valid [amount][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.amount] or [range][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.range].
+ * - and its [expected_units_per_year][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.expected_units_per_year] is set or can be derived.
+ * Its annualized range is determined as ([amount][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.amount] or [range][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.range]) times
  * [expected_units_per_year][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.expected_units_per_year].
  *
  * Generated from protobuf message <code>google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry</code>
@@ -31,20 +23,18 @@ class CompensationEntry extends \Google\Protobuf\Internal\Message
 {
     /**
      * Compensation type.
-     * Default is
-     * [CompensationType.COMPENSATION_TYPE_UNSPECIFIED][google.cloud.talent.v4beta1.CompensationInfo.CompensationType.COMPENSATION_TYPE_UNSPECIFIED].
+     * Default is [CompensationType.COMPENSATION_TYPE_UNSPECIFIED][google.cloud.talent.v4beta1.CompensationInfo.CompensationType.COMPENSATION_TYPE_UNSPECIFIED].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompensationInfo.CompensationType type = 1;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Frequency of the specified amount.
-     * Default is
-     * [CompensationUnit.COMPENSATION_UNIT_UNSPECIFIED][google.cloud.talent.v4beta1.CompensationInfo.CompensationUnit.COMPENSATION_UNIT_UNSPECIFIED].
+     * Default is [CompensationUnit.COMPENSATION_UNIT_UNSPECIFIED][google.cloud.talent.v4beta1.CompensationInfo.CompensationUnit.COMPENSATION_UNIT_UNSPECIFIED].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompensationInfo.CompensationUnit unit = 2;</code>
      */
-    private $unit = 0;
+    protected $unit = 0;
     /**
      * Compensation description.  For example, could
      * indicate equity terms or provide additional context to an estimated
@@ -52,13 +42,11 @@ class CompensationEntry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 5;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Expected number of units paid each year. If not specified, when
-     * [Job.employment_types][google.cloud.talent.v4beta1.Job.employment_types]
-     * is FULLTIME, a default value is inferred based on
-     * [unit][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.unit].
-     * Default values:
+     * [Job.employment_types][google.cloud.talent.v4beta1.Job.employment_types] is FULLTIME, a default value is inferred
+     * based on [unit][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.unit]. Default values:
      * - HOURLY: 2080
      * - DAILY: 260
      * - WEEKLY: 52
@@ -67,7 +55,7 @@ class CompensationEntry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.DoubleValue expected_units_per_year = 6;</code>
      */
-    private $expected_units_per_year = null;
+    protected $expected_units_per_year = null;
     protected $compensation_amount;
 
     /**
@@ -78,12 +66,10 @@ class CompensationEntry extends \Google\Protobuf\Internal\Message
      *
      *     @type int $type
      *           Compensation type.
-     *           Default is
-     *           [CompensationType.COMPENSATION_TYPE_UNSPECIFIED][google.cloud.talent.v4beta1.CompensationInfo.CompensationType.COMPENSATION_TYPE_UNSPECIFIED].
+     *           Default is [CompensationType.COMPENSATION_TYPE_UNSPECIFIED][google.cloud.talent.v4beta1.CompensationInfo.CompensationType.COMPENSATION_TYPE_UNSPECIFIED].
      *     @type int $unit
      *           Frequency of the specified amount.
-     *           Default is
-     *           [CompensationUnit.COMPENSATION_UNIT_UNSPECIFIED][google.cloud.talent.v4beta1.CompensationInfo.CompensationUnit.COMPENSATION_UNIT_UNSPECIFIED].
+     *           Default is [CompensationUnit.COMPENSATION_UNIT_UNSPECIFIED][google.cloud.talent.v4beta1.CompensationInfo.CompensationUnit.COMPENSATION_UNIT_UNSPECIFIED].
      *     @type \Google\Type\Money $amount
      *           Compensation amount.
      *     @type \Google\Cloud\Talent\V4beta1\CompensationInfo\CompensationRange $range
@@ -94,10 +80,8 @@ class CompensationEntry extends \Google\Protobuf\Internal\Message
      *           bonus.
      *     @type \Google\Protobuf\DoubleValue $expected_units_per_year
      *           Expected number of units paid each year. If not specified, when
-     *           [Job.employment_types][google.cloud.talent.v4beta1.Job.employment_types]
-     *           is FULLTIME, a default value is inferred based on
-     *           [unit][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.unit].
-     *           Default values:
+     *           [Job.employment_types][google.cloud.talent.v4beta1.Job.employment_types] is FULLTIME, a default value is inferred
+     *           based on [unit][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.unit]. Default values:
      *           - HOURLY: 2080
      *           - DAILY: 260
      *           - WEEKLY: 52
@@ -112,8 +96,7 @@ class CompensationEntry extends \Google\Protobuf\Internal\Message
 
     /**
      * Compensation type.
-     * Default is
-     * [CompensationType.COMPENSATION_TYPE_UNSPECIFIED][google.cloud.talent.v4beta1.CompensationInfo.CompensationType.COMPENSATION_TYPE_UNSPECIFIED].
+     * Default is [CompensationType.COMPENSATION_TYPE_UNSPECIFIED][google.cloud.talent.v4beta1.CompensationInfo.CompensationType.COMPENSATION_TYPE_UNSPECIFIED].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompensationInfo.CompensationType type = 1;</code>
      * @return int
@@ -125,8 +108,7 @@ class CompensationEntry extends \Google\Protobuf\Internal\Message
 
     /**
      * Compensation type.
-     * Default is
-     * [CompensationType.COMPENSATION_TYPE_UNSPECIFIED][google.cloud.talent.v4beta1.CompensationInfo.CompensationType.COMPENSATION_TYPE_UNSPECIFIED].
+     * Default is [CompensationType.COMPENSATION_TYPE_UNSPECIFIED][google.cloud.talent.v4beta1.CompensationInfo.CompensationType.COMPENSATION_TYPE_UNSPECIFIED].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompensationInfo.CompensationType type = 1;</code>
      * @param int $var
@@ -142,8 +124,7 @@ class CompensationEntry extends \Google\Protobuf\Internal\Message
 
     /**
      * Frequency of the specified amount.
-     * Default is
-     * [CompensationUnit.COMPENSATION_UNIT_UNSPECIFIED][google.cloud.talent.v4beta1.CompensationInfo.CompensationUnit.COMPENSATION_UNIT_UNSPECIFIED].
+     * Default is [CompensationUnit.COMPENSATION_UNIT_UNSPECIFIED][google.cloud.talent.v4beta1.CompensationInfo.CompensationUnit.COMPENSATION_UNIT_UNSPECIFIED].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompensationInfo.CompensationUnit unit = 2;</code>
      * @return int
@@ -155,8 +136,7 @@ class CompensationEntry extends \Google\Protobuf\Internal\Message
 
     /**
      * Frequency of the specified amount.
-     * Default is
-     * [CompensationUnit.COMPENSATION_UNIT_UNSPECIFIED][google.cloud.talent.v4beta1.CompensationInfo.CompensationUnit.COMPENSATION_UNIT_UNSPECIFIED].
+     * Default is [CompensationUnit.COMPENSATION_UNIT_UNSPECIFIED][google.cloud.talent.v4beta1.CompensationInfo.CompensationUnit.COMPENSATION_UNIT_UNSPECIFIED].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompensationInfo.CompensationUnit unit = 2;</code>
      * @param int $var
@@ -254,10 +234,8 @@ class CompensationEntry extends \Google\Protobuf\Internal\Message
 
     /**
      * Expected number of units paid each year. If not specified, when
-     * [Job.employment_types][google.cloud.talent.v4beta1.Job.employment_types]
-     * is FULLTIME, a default value is inferred based on
-     * [unit][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.unit].
-     * Default values:
+     * [Job.employment_types][google.cloud.talent.v4beta1.Job.employment_types] is FULLTIME, a default value is inferred
+     * based on [unit][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.unit]. Default values:
      * - HOURLY: 2080
      * - DAILY: 260
      * - WEEKLY: 52
@@ -276,10 +254,8 @@ class CompensationEntry extends \Google\Protobuf\Internal\Message
      * Returns the unboxed value from <code>getExpectedUnitsPerYear()</code>
 
      * Expected number of units paid each year. If not specified, when
-     * [Job.employment_types][google.cloud.talent.v4beta1.Job.employment_types]
-     * is FULLTIME, a default value is inferred based on
-     * [unit][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.unit].
-     * Default values:
+     * [Job.employment_types][google.cloud.talent.v4beta1.Job.employment_types] is FULLTIME, a default value is inferred
+     * based on [unit][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.unit]. Default values:
      * - HOURLY: 2080
      * - DAILY: 260
      * - WEEKLY: 52
@@ -291,16 +267,13 @@ class CompensationEntry extends \Google\Protobuf\Internal\Message
      */
     public function getExpectedUnitsPerYearValue()
     {
-        $wrapper = $this->getExpectedUnitsPerYear();
-        return is_null($wrapper) ? null : $wrapper->getValue();
+        return $this->readWrapperValue("expected_units_per_year");
     }
 
     /**
      * Expected number of units paid each year. If not specified, when
-     * [Job.employment_types][google.cloud.talent.v4beta1.Job.employment_types]
-     * is FULLTIME, a default value is inferred based on
-     * [unit][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.unit].
-     * Default values:
+     * [Job.employment_types][google.cloud.talent.v4beta1.Job.employment_types] is FULLTIME, a default value is inferred
+     * based on [unit][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.unit]. Default values:
      * - HOURLY: 2080
      * - DAILY: 260
      * - WEEKLY: 52
@@ -323,10 +296,8 @@ class CompensationEntry extends \Google\Protobuf\Internal\Message
      * Sets the field by wrapping a primitive type in a Google\Protobuf\DoubleValue object.
 
      * Expected number of units paid each year. If not specified, when
-     * [Job.employment_types][google.cloud.talent.v4beta1.Job.employment_types]
-     * is FULLTIME, a default value is inferred based on
-     * [unit][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.unit].
-     * Default values:
+     * [Job.employment_types][google.cloud.talent.v4beta1.Job.employment_types] is FULLTIME, a default value is inferred
+     * based on [unit][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.unit]. Default values:
      * - HOURLY: 2080
      * - DAILY: 260
      * - WEEKLY: 52
@@ -339,9 +310,8 @@ class CompensationEntry extends \Google\Protobuf\Internal\Message
      */
     public function setExpectedUnitsPerYearValue($var)
     {
-        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\DoubleValue(['value' => $var]);
-        return $this->setExpectedUnitsPerYear($wrappedVar);
-    }
+        $this->writeWrapperValue("expected_units_per_year", $var);
+        return $this;}
 
     /**
      * @return string

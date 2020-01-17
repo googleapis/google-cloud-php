@@ -23,7 +23,7 @@ class CompensationRange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.Money max_compensation = 2;</code>
      */
-    private $max_compensation = null;
+    protected $max_compensation = null;
     /**
      * The minimum amount of compensation. If left empty, the value is set
      * to zero and the currency code is set to match the
@@ -31,7 +31,7 @@ class CompensationRange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.Money min_compensation = 1;</code>
      */
-    private $min_compensation = null;
+    protected $min_compensation = null;
 
     /**
      * Constructor.

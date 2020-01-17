@@ -26,14 +26,14 @@ class ListApplicationsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
-    private $next_page_token = '';
+    protected $next_page_token = '';
     /**
      * Additional information for the API invocation, such as the request
      * tracking id.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.ResponseMetadata metadata = 3;</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
 
     /**
      * Constructor.

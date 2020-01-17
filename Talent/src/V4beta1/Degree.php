@@ -20,7 +20,7 @@ class Degree extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.DegreeType degree_type = 1;</code>
      */
-    private $degree_type = 0;
+    protected $degree_type = 0;
     /**
      * Full Degree name.
      * For example, "B.S.", "Master of Arts", and so on.
@@ -28,7 +28,7 @@ class Degree extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string degree_name = 2;</code>
      */
-    private $degree_name = '';
+    protected $degree_name = '';
     /**
      * Fields of study for the degree.
      * For example, "Computer science", "engineering".

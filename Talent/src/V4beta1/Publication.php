@@ -28,55 +28,55 @@ class Publication extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string title = 2;</code>
      */
-    private $title = '';
+    protected $title = '';
     /**
      * The description of the publication.
      * Number of characters allowed is 100,000.
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * The journal name of the publication.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string journal = 4;</code>
      */
-    private $journal = '';
+    protected $journal = '';
     /**
      * Volume number.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string volume = 5;</code>
      */
-    private $volume = '';
+    protected $volume = '';
     /**
      * The publisher of the journal.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string publisher = 6;</code>
      */
-    private $publisher = '';
+    protected $publisher = '';
     /**
      * The publication date.
      *
      * Generated from protobuf field <code>.google.type.Date publication_date = 7;</code>
      */
-    private $publication_date = null;
+    protected $publication_date = null;
     /**
      * The publication type.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string publication_type = 8;</code>
      */
-    private $publication_type = '';
+    protected $publication_type = '';
     /**
      * ISBN number.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string isbn = 9;</code>
      */
-    private $isbn = '';
+    protected $isbn = '';
 
     /**
      * Constructor.

@@ -22,7 +22,7 @@ class CandidateAvailabilityFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool negated = 1;</code>
      */
-    private $negated = false;
+    protected $negated = false;
 
     /**
      * Constructor.

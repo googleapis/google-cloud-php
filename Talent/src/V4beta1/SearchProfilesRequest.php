@@ -20,24 +20,23 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      * The format is "projects/{project_id}/tenants/{tenant_id}". For example,
      * "projects/foo/tenants/bar".
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
-     * Required. The meta information collected about the profile search user.
-     * This is used to improve the search quality of the service. These values are
-     * provided by users, and must be precise and consistent.
+     * Required. The meta information collected about the profile search user. This is used
+     * to improve the search quality of the service. These values are provided by
+     * users, and must be precise and consistent.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.RequestMetadata request_metadata = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $request_metadata = null;
+    protected $request_metadata = null;
     /**
-     * Search query to execute. See
-     * [ProfileQuery][google.cloud.talent.v4beta1.ProfileQuery] for more details.
+     * Search query to execute. See [ProfileQuery][google.cloud.talent.v4beta1.ProfileQuery] for more details.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.ProfileQuery profile_query = 3;</code>
      */
-    private $profile_query = null;
+    protected $profile_query = null;
     /**
      * A limit on the number of profiles returned in the search results.
      * A value above the default value 10 can increase search response time.
@@ -45,24 +44,22 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 4;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * The pageToken, similar to offset enables users of the API to paginate
      * through the search results. To retrieve the first page of results, set the
      * pageToken to empty. The search response includes a
-     * [nextPageToken][google.cloud.talent.v4beta1.SearchProfilesResponse.next_page_token]
-     * field that can be used to populate the pageToken field for the next page of
-     * results. Using pageToken instead of offset increases the performance of the
-     * API, especially compared to larger offset values.
+     * [nextPageToken][google.cloud.talent.v4beta1.SearchProfilesResponse.next_page_token] field that can be
+     * used to populate the pageToken field for the next page of results. Using
+     * pageToken instead of offset increases the performance of the API,
+     * especially compared to larger offset values.
      *
      * Generated from protobuf field <code>string page_token = 5;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * An integer that specifies the current offset (that is, starting result) in
-     * search results. This field is only considered if
-     * [page_token][google.cloud.talent.v4beta1.SearchProfilesRequest.page_token]
-     * is unset.
+     * search results. This field is only considered if [page_token][google.cloud.talent.v4beta1.SearchProfilesRequest.page_token] is unset.
      * The maximum allowed value is 5000. Otherwise an error is thrown.
      * For example, 0 means to search from the first profile, and 10 means to
      * search from the 11th profile. This can be used for pagination, for example
@@ -70,7 +67,7 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 offset = 6;</code>
      */
-    private $offset = 0;
+    protected $offset = 0;
     /**
      * This flag controls the spell-check feature. If `false`, the
      * service attempts to correct a misspelled query.
@@ -78,39 +75,29 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool disable_spell_check = 7;</code>
      */
-    private $disable_spell_check = false;
+    protected $disable_spell_check = false;
     /**
      * The criteria that determines how search results are sorted.
      * Defaults is "relevance desc" if no value is specified.
      * Supported options are:
      * * "relevance desc": By descending relevance, as determined by the API
      *    algorithms.
-     * * "update_date desc": Sort by
-     * [Profile.update_time][google.cloud.talent.v4beta1.Profile.update_time] in
-     * descending order
+     * * "update_date desc": Sort by [Profile.update_time][google.cloud.talent.v4beta1.Profile.update_time] in descending order
      *   (recently updated profiles first).
-     * * "create_date desc": Sort by
-     * [Profile.create_time][google.cloud.talent.v4beta1.Profile.create_time] in
-     * descending order
+     * * "create_date desc": Sort by [Profile.create_time][google.cloud.talent.v4beta1.Profile.create_time] in descending order
      *   (recently created profiles first).
-     * * "first_name": Sort by
-     * [PersonName.PersonStructuredName.given_name][google.cloud.talent.v4beta1.PersonName.PersonStructuredName.given_name]
-     * in
+     * * "first_name": Sort by [PersonName.PersonStructuredName.given_name][google.cloud.talent.v4beta1.PersonName.PersonStructuredName.given_name] in
      *   ascending order.
-     * * "first_name desc": Sort by
-     * [PersonName.PersonStructuredName.given_name][google.cloud.talent.v4beta1.PersonName.PersonStructuredName.given_name]
+     * * "first_name desc": Sort by [PersonName.PersonStructuredName.given_name][google.cloud.talent.v4beta1.PersonName.PersonStructuredName.given_name]
      *   in descending order.
-     * * "last_name": Sort by
-     * [PersonName.PersonStructuredName.family_name][google.cloud.talent.v4beta1.PersonName.PersonStructuredName.family_name]
-     * in
+     * * "last_name": Sort by [PersonName.PersonStructuredName.family_name][google.cloud.talent.v4beta1.PersonName.PersonStructuredName.family_name] in
      *   ascending order.
-     * * "last_name desc": Sort by
-     * [PersonName.PersonStructuredName.family_name][google.cloud.talent.v4beta1.PersonName.PersonStructuredName.family_name]
+     * * "last_name desc": Sort by [PersonName.PersonStructuredName.family_name][google.cloud.talent.v4beta1.PersonName.PersonStructuredName.family_name]
      *   in ascending order.
      *
      * Generated from protobuf field <code>string order_by = 8;</code>
      */
-    private $order_by = '';
+    protected $order_by = '';
     /**
      * When sort by field is based on alphabetical order, sort values case
      * sensitively (based on ASCII) when the value is set to true. Default value
@@ -118,11 +105,10 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool case_sensitive_sort = 9;</code>
      */
-    private $case_sensitive_sort = false;
+    protected $case_sensitive_sort = false;
     /**
      * A list of expressions specifies histogram requests against matching
-     * profiles for
-     * [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest].
+     * profiles for [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest].
      * The expression syntax looks like a function definition with parameters.
      * Function syntax: function_name(histogram_facet[, list of buckets])
      * Data types:
@@ -164,19 +150,13 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      * * experience_in_months: experience in months. 0 means 0 month to 1 month
      * (exclusive).
      * * application_date: The application date specifies application start dates.
-     * See
-     * [ApplicationDateFilter][google.cloud.talent.v4beta1.ApplicationDateFilter]
-     * for more details.
+     * See [ApplicationDateFilter][google.cloud.talent.v4beta1.ApplicationDateFilter] for more details.
      * * application_outcome_notes: The application outcome reason specifies the
      * reasons behind the outcome of the job application.
-     * See
-     * [ApplicationOutcomeNotesFilter][google.cloud.talent.v4beta1.ApplicationOutcomeNotesFilter]
-     * for more details.
+     * See [ApplicationOutcomeNotesFilter][google.cloud.talent.v4beta1.ApplicationOutcomeNotesFilter] for more details.
      * * application_job_title: The application job title specifies the job
      * applied for in the application.
-     * See
-     * [ApplicationJobFilter][google.cloud.talent.v4beta1.ApplicationJobFilter]
-     * for more details.
+     * See [ApplicationJobFilter][google.cloud.talent.v4beta1.ApplicationJobFilter] for more details.
      * * hirable_status: Hirable status specifies the profile's hirable status.
      * * string_custom_attribute: String custom attributes. Values can be accessed
      * via square bracket notation like string_custom_attribute["key1"].
@@ -195,35 +175,25 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
     private $histogram_queries;
     /**
      * An id that uniquely identifies the result set of a
-     * [SearchProfiles][google.cloud.talent.v4beta1.ProfileService.SearchProfiles]
-     * call. The id should be retrieved from the
-     * [SearchProfilesResponse][google.cloud.talent.v4beta1.SearchProfilesResponse]
-     * message returned from a previous invocation of
-     * [SearchProfiles][google.cloud.talent.v4beta1.ProfileService.SearchProfiles].
+     * [SearchProfiles][google.cloud.talent.v4beta1.ProfileService.SearchProfiles] call. The id should be
+     * retrieved from the
+     * [SearchProfilesResponse][google.cloud.talent.v4beta1.SearchProfilesResponse] message returned from a previous
+     * invocation of [SearchProfiles][google.cloud.talent.v4beta1.ProfileService.SearchProfiles].
      * A result set is an ordered list of search results.
      * If this field is not set, a new result set is computed based on the
-     * [profile_query][google.cloud.talent.v4beta1.SearchProfilesRequest.profile_query].
-     * A new
-     * [result_set_id][google.cloud.talent.v4beta1.SearchProfilesRequest.result_set_id]
-     * is returned as a handle to access this result set.
+     * [profile_query][google.cloud.talent.v4beta1.SearchProfilesRequest.profile_query].  A new [result_set_id][google.cloud.talent.v4beta1.SearchProfilesRequest.result_set_id] is returned as a handle to
+     * access this result set.
      * If this field is set, the service will ignore the resource and
-     * [profile_query][google.cloud.talent.v4beta1.SearchProfilesRequest.profile_query]
-     * values, and simply retrieve a page of results from the corresponding result
-     * set.  In this case, one and only one of
-     * [page_token][google.cloud.talent.v4beta1.SearchProfilesRequest.page_token]
-     * or [offset][google.cloud.talent.v4beta1.SearchProfilesRequest.offset] must
-     * be set.
-     * A typical use case is to invoke
-     * [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest]
-     * without this field, then use the resulting
-     * [result_set_id][google.cloud.talent.v4beta1.SearchProfilesRequest.result_set_id]
-     * in
-     * [SearchProfilesResponse][google.cloud.talent.v4beta1.SearchProfilesResponse]
-     * to page through the results.
+     * [profile_query][google.cloud.talent.v4beta1.SearchProfilesRequest.profile_query] values, and simply retrieve a page of results from the
+     * corresponding result set.  In this case, one and only one of [page_token][google.cloud.talent.v4beta1.SearchProfilesRequest.page_token]
+     * or [offset][google.cloud.talent.v4beta1.SearchProfilesRequest.offset] must be set.
+     * A typical use case is to invoke [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest] without this
+     * field, then use the resulting [result_set_id][google.cloud.talent.v4beta1.SearchProfilesRequest.result_set_id] in
+     * [SearchProfilesResponse][google.cloud.talent.v4beta1.SearchProfilesResponse] to page through the results.
      *
      * Generated from protobuf field <code>string result_set_id = 12;</code>
      */
-    private $result_set_id = '';
+    protected $result_set_id = '';
     /**
      * This flag is used to indicate whether the service will attempt to
      * understand synonyms and terms related to the search query or treat the
@@ -240,7 +210,7 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool strict_keywords_search = 13;</code>
      */
-    private $strict_keywords_search = false;
+    protected $strict_keywords_search = false;
 
     /**
      * Constructor.
@@ -253,12 +223,11 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      *           The format is "projects/{project_id}/tenants/{tenant_id}". For example,
      *           "projects/foo/tenants/bar".
      *     @type \Google\Cloud\Talent\V4beta1\RequestMetadata $request_metadata
-     *           Required. The meta information collected about the profile search user.
-     *           This is used to improve the search quality of the service. These values are
-     *           provided by users, and must be precise and consistent.
+     *           Required. The meta information collected about the profile search user. This is used
+     *           to improve the search quality of the service. These values are provided by
+     *           users, and must be precise and consistent.
      *     @type \Google\Cloud\Talent\V4beta1\ProfileQuery $profile_query
-     *           Search query to execute. See
-     *           [ProfileQuery][google.cloud.talent.v4beta1.ProfileQuery] for more details.
+     *           Search query to execute. See [ProfileQuery][google.cloud.talent.v4beta1.ProfileQuery] for more details.
      *     @type int $page_size
      *           A limit on the number of profiles returned in the search results.
      *           A value above the default value 10 can increase search response time.
@@ -267,15 +236,13 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      *           The pageToken, similar to offset enables users of the API to paginate
      *           through the search results. To retrieve the first page of results, set the
      *           pageToken to empty. The search response includes a
-     *           [nextPageToken][google.cloud.talent.v4beta1.SearchProfilesResponse.next_page_token]
-     *           field that can be used to populate the pageToken field for the next page of
-     *           results. Using pageToken instead of offset increases the performance of the
-     *           API, especially compared to larger offset values.
+     *           [nextPageToken][google.cloud.talent.v4beta1.SearchProfilesResponse.next_page_token] field that can be
+     *           used to populate the pageToken field for the next page of results. Using
+     *           pageToken instead of offset increases the performance of the API,
+     *           especially compared to larger offset values.
      *     @type int $offset
      *           An integer that specifies the current offset (that is, starting result) in
-     *           search results. This field is only considered if
-     *           [page_token][google.cloud.talent.v4beta1.SearchProfilesRequest.page_token]
-     *           is unset.
+     *           search results. This field is only considered if [page_token][google.cloud.talent.v4beta1.SearchProfilesRequest.page_token] is unset.
      *           The maximum allowed value is 5000. Otherwise an error is thrown.
      *           For example, 0 means to search from the first profile, and 10 means to
      *           search from the 11th profile. This can be used for pagination, for example
@@ -290,27 +257,17 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      *           Supported options are:
      *           * "relevance desc": By descending relevance, as determined by the API
      *              algorithms.
-     *           * "update_date desc": Sort by
-     *           [Profile.update_time][google.cloud.talent.v4beta1.Profile.update_time] in
-     *           descending order
+     *           * "update_date desc": Sort by [Profile.update_time][google.cloud.talent.v4beta1.Profile.update_time] in descending order
      *             (recently updated profiles first).
-     *           * "create_date desc": Sort by
-     *           [Profile.create_time][google.cloud.talent.v4beta1.Profile.create_time] in
-     *           descending order
+     *           * "create_date desc": Sort by [Profile.create_time][google.cloud.talent.v4beta1.Profile.create_time] in descending order
      *             (recently created profiles first).
-     *           * "first_name": Sort by
-     *           [PersonName.PersonStructuredName.given_name][google.cloud.talent.v4beta1.PersonName.PersonStructuredName.given_name]
-     *           in
+     *           * "first_name": Sort by [PersonName.PersonStructuredName.given_name][google.cloud.talent.v4beta1.PersonName.PersonStructuredName.given_name] in
      *             ascending order.
-     *           * "first_name desc": Sort by
-     *           [PersonName.PersonStructuredName.given_name][google.cloud.talent.v4beta1.PersonName.PersonStructuredName.given_name]
+     *           * "first_name desc": Sort by [PersonName.PersonStructuredName.given_name][google.cloud.talent.v4beta1.PersonName.PersonStructuredName.given_name]
      *             in descending order.
-     *           * "last_name": Sort by
-     *           [PersonName.PersonStructuredName.family_name][google.cloud.talent.v4beta1.PersonName.PersonStructuredName.family_name]
-     *           in
+     *           * "last_name": Sort by [PersonName.PersonStructuredName.family_name][google.cloud.talent.v4beta1.PersonName.PersonStructuredName.family_name] in
      *             ascending order.
-     *           * "last_name desc": Sort by
-     *           [PersonName.PersonStructuredName.family_name][google.cloud.talent.v4beta1.PersonName.PersonStructuredName.family_name]
+     *           * "last_name desc": Sort by [PersonName.PersonStructuredName.family_name][google.cloud.talent.v4beta1.PersonName.PersonStructuredName.family_name]
      *             in ascending order.
      *     @type bool $case_sensitive_sort
      *           When sort by field is based on alphabetical order, sort values case
@@ -318,8 +275,7 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      *           is case in-sensitive sort (false).
      *     @type \Google\Cloud\Talent\V4beta1\HistogramQuery[]|\Google\Protobuf\Internal\RepeatedField $histogram_queries
      *           A list of expressions specifies histogram requests against matching
-     *           profiles for
-     *           [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest].
+     *           profiles for [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest].
      *           The expression syntax looks like a function definition with parameters.
      *           Function syntax: function_name(histogram_facet[, list of buckets])
      *           Data types:
@@ -361,19 +317,13 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      *           * experience_in_months: experience in months. 0 means 0 month to 1 month
      *           (exclusive).
      *           * application_date: The application date specifies application start dates.
-     *           See
-     *           [ApplicationDateFilter][google.cloud.talent.v4beta1.ApplicationDateFilter]
-     *           for more details.
+     *           See [ApplicationDateFilter][google.cloud.talent.v4beta1.ApplicationDateFilter] for more details.
      *           * application_outcome_notes: The application outcome reason specifies the
      *           reasons behind the outcome of the job application.
-     *           See
-     *           [ApplicationOutcomeNotesFilter][google.cloud.talent.v4beta1.ApplicationOutcomeNotesFilter]
-     *           for more details.
+     *           See [ApplicationOutcomeNotesFilter][google.cloud.talent.v4beta1.ApplicationOutcomeNotesFilter] for more details.
      *           * application_job_title: The application job title specifies the job
      *           applied for in the application.
-     *           See
-     *           [ApplicationJobFilter][google.cloud.talent.v4beta1.ApplicationJobFilter]
-     *           for more details.
+     *           See [ApplicationJobFilter][google.cloud.talent.v4beta1.ApplicationJobFilter] for more details.
      *           * hirable_status: Hirable status specifies the profile's hirable status.
      *           * string_custom_attribute: String custom attributes. Values can be accessed
      *           via square bracket notation like string_custom_attribute["key1"].
@@ -388,31 +338,21 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      *           [bucket(MIN, 0, "negative"), bucket(0, MAX, "non-negative")])
      *     @type string $result_set_id
      *           An id that uniquely identifies the result set of a
-     *           [SearchProfiles][google.cloud.talent.v4beta1.ProfileService.SearchProfiles]
-     *           call. The id should be retrieved from the
-     *           [SearchProfilesResponse][google.cloud.talent.v4beta1.SearchProfilesResponse]
-     *           message returned from a previous invocation of
-     *           [SearchProfiles][google.cloud.talent.v4beta1.ProfileService.SearchProfiles].
+     *           [SearchProfiles][google.cloud.talent.v4beta1.ProfileService.SearchProfiles] call. The id should be
+     *           retrieved from the
+     *           [SearchProfilesResponse][google.cloud.talent.v4beta1.SearchProfilesResponse] message returned from a previous
+     *           invocation of [SearchProfiles][google.cloud.talent.v4beta1.ProfileService.SearchProfiles].
      *           A result set is an ordered list of search results.
      *           If this field is not set, a new result set is computed based on the
-     *           [profile_query][google.cloud.talent.v4beta1.SearchProfilesRequest.profile_query].
-     *           A new
-     *           [result_set_id][google.cloud.talent.v4beta1.SearchProfilesRequest.result_set_id]
-     *           is returned as a handle to access this result set.
+     *           [profile_query][google.cloud.talent.v4beta1.SearchProfilesRequest.profile_query].  A new [result_set_id][google.cloud.talent.v4beta1.SearchProfilesRequest.result_set_id] is returned as a handle to
+     *           access this result set.
      *           If this field is set, the service will ignore the resource and
-     *           [profile_query][google.cloud.talent.v4beta1.SearchProfilesRequest.profile_query]
-     *           values, and simply retrieve a page of results from the corresponding result
-     *           set.  In this case, one and only one of
-     *           [page_token][google.cloud.talent.v4beta1.SearchProfilesRequest.page_token]
-     *           or [offset][google.cloud.talent.v4beta1.SearchProfilesRequest.offset] must
-     *           be set.
-     *           A typical use case is to invoke
-     *           [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest]
-     *           without this field, then use the resulting
-     *           [result_set_id][google.cloud.talent.v4beta1.SearchProfilesRequest.result_set_id]
-     *           in
-     *           [SearchProfilesResponse][google.cloud.talent.v4beta1.SearchProfilesResponse]
-     *           to page through the results.
+     *           [profile_query][google.cloud.talent.v4beta1.SearchProfilesRequest.profile_query] values, and simply retrieve a page of results from the
+     *           corresponding result set.  In this case, one and only one of [page_token][google.cloud.talent.v4beta1.SearchProfilesRequest.page_token]
+     *           or [offset][google.cloud.talent.v4beta1.SearchProfilesRequest.offset] must be set.
+     *           A typical use case is to invoke [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest] without this
+     *           field, then use the resulting [result_set_id][google.cloud.talent.v4beta1.SearchProfilesRequest.result_set_id] in
+     *           [SearchProfilesResponse][google.cloud.talent.v4beta1.SearchProfilesResponse] to page through the results.
      *     @type bool $strict_keywords_search
      *           This flag is used to indicate whether the service will attempt to
      *           understand synonyms and terms related to the search query or treat the
@@ -438,7 +378,7 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      * The format is "projects/{project_id}/tenants/{tenant_id}". For example,
      * "projects/foo/tenants/bar".
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -451,7 +391,7 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      * The format is "projects/{project_id}/tenants/{tenant_id}". For example,
      * "projects/foo/tenants/bar".
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -464,9 +404,9 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The meta information collected about the profile search user.
-     * This is used to improve the search quality of the service. These values are
-     * provided by users, and must be precise and consistent.
+     * Required. The meta information collected about the profile search user. This is used
+     * to improve the search quality of the service. These values are provided by
+     * users, and must be precise and consistent.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.RequestMetadata request_metadata = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Talent\V4beta1\RequestMetadata
@@ -477,9 +417,9 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The meta information collected about the profile search user.
-     * This is used to improve the search quality of the service. These values are
-     * provided by users, and must be precise and consistent.
+     * Required. The meta information collected about the profile search user. This is used
+     * to improve the search quality of the service. These values are provided by
+     * users, and must be precise and consistent.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.RequestMetadata request_metadata = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Talent\V4beta1\RequestMetadata $var
@@ -494,8 +434,7 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Search query to execute. See
-     * [ProfileQuery][google.cloud.talent.v4beta1.ProfileQuery] for more details.
+     * Search query to execute. See [ProfileQuery][google.cloud.talent.v4beta1.ProfileQuery] for more details.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.ProfileQuery profile_query = 3;</code>
      * @return \Google\Cloud\Talent\V4beta1\ProfileQuery
@@ -506,8 +445,7 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Search query to execute. See
-     * [ProfileQuery][google.cloud.talent.v4beta1.ProfileQuery] for more details.
+     * Search query to execute. See [ProfileQuery][google.cloud.talent.v4beta1.ProfileQuery] for more details.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.ProfileQuery profile_query = 3;</code>
      * @param \Google\Cloud\Talent\V4beta1\ProfileQuery $var
@@ -555,10 +493,10 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      * The pageToken, similar to offset enables users of the API to paginate
      * through the search results. To retrieve the first page of results, set the
      * pageToken to empty. The search response includes a
-     * [nextPageToken][google.cloud.talent.v4beta1.SearchProfilesResponse.next_page_token]
-     * field that can be used to populate the pageToken field for the next page of
-     * results. Using pageToken instead of offset increases the performance of the
-     * API, especially compared to larger offset values.
+     * [nextPageToken][google.cloud.talent.v4beta1.SearchProfilesResponse.next_page_token] field that can be
+     * used to populate the pageToken field for the next page of results. Using
+     * pageToken instead of offset increases the performance of the API,
+     * especially compared to larger offset values.
      *
      * Generated from protobuf field <code>string page_token = 5;</code>
      * @return string
@@ -572,10 +510,10 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      * The pageToken, similar to offset enables users of the API to paginate
      * through the search results. To retrieve the first page of results, set the
      * pageToken to empty. The search response includes a
-     * [nextPageToken][google.cloud.talent.v4beta1.SearchProfilesResponse.next_page_token]
-     * field that can be used to populate the pageToken field for the next page of
-     * results. Using pageToken instead of offset increases the performance of the
-     * API, especially compared to larger offset values.
+     * [nextPageToken][google.cloud.talent.v4beta1.SearchProfilesResponse.next_page_token] field that can be
+     * used to populate the pageToken field for the next page of results. Using
+     * pageToken instead of offset increases the performance of the API,
+     * especially compared to larger offset values.
      *
      * Generated from protobuf field <code>string page_token = 5;</code>
      * @param string $var
@@ -591,9 +529,7 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * An integer that specifies the current offset (that is, starting result) in
-     * search results. This field is only considered if
-     * [page_token][google.cloud.talent.v4beta1.SearchProfilesRequest.page_token]
-     * is unset.
+     * search results. This field is only considered if [page_token][google.cloud.talent.v4beta1.SearchProfilesRequest.page_token] is unset.
      * The maximum allowed value is 5000. Otherwise an error is thrown.
      * For example, 0 means to search from the first profile, and 10 means to
      * search from the 11th profile. This can be used for pagination, for example
@@ -609,9 +545,7 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * An integer that specifies the current offset (that is, starting result) in
-     * search results. This field is only considered if
-     * [page_token][google.cloud.talent.v4beta1.SearchProfilesRequest.page_token]
-     * is unset.
+     * search results. This field is only considered if [page_token][google.cloud.talent.v4beta1.SearchProfilesRequest.page_token] is unset.
      * The maximum allowed value is 5000. Otherwise an error is thrown.
      * For example, 0 means to search from the first profile, and 10 means to
      * search from the 11th profile. This can be used for pagination, for example
@@ -665,27 +599,17 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      * Supported options are:
      * * "relevance desc": By descending relevance, as determined by the API
      *    algorithms.
-     * * "update_date desc": Sort by
-     * [Profile.update_time][google.cloud.talent.v4beta1.Profile.update_time] in
-     * descending order
+     * * "update_date desc": Sort by [Profile.update_time][google.cloud.talent.v4beta1.Profile.update_time] in descending order
      *   (recently updated profiles first).
-     * * "create_date desc": Sort by
-     * [Profile.create_time][google.cloud.talent.v4beta1.Profile.create_time] in
-     * descending order
+     * * "create_date desc": Sort by [Profile.create_time][google.cloud.talent.v4beta1.Profile.create_time] in descending order
      *   (recently created profiles first).
-     * * "first_name": Sort by
-     * [PersonName.PersonStructuredName.given_name][google.cloud.talent.v4beta1.PersonName.PersonStructuredName.given_name]
-     * in
+     * * "first_name": Sort by [PersonName.PersonStructuredName.given_name][google.cloud.talent.v4beta1.PersonName.PersonStructuredName.given_name] in
      *   ascending order.
-     * * "first_name desc": Sort by
-     * [PersonName.PersonStructuredName.given_name][google.cloud.talent.v4beta1.PersonName.PersonStructuredName.given_name]
+     * * "first_name desc": Sort by [PersonName.PersonStructuredName.given_name][google.cloud.talent.v4beta1.PersonName.PersonStructuredName.given_name]
      *   in descending order.
-     * * "last_name": Sort by
-     * [PersonName.PersonStructuredName.family_name][google.cloud.talent.v4beta1.PersonName.PersonStructuredName.family_name]
-     * in
+     * * "last_name": Sort by [PersonName.PersonStructuredName.family_name][google.cloud.talent.v4beta1.PersonName.PersonStructuredName.family_name] in
      *   ascending order.
-     * * "last_name desc": Sort by
-     * [PersonName.PersonStructuredName.family_name][google.cloud.talent.v4beta1.PersonName.PersonStructuredName.family_name]
+     * * "last_name desc": Sort by [PersonName.PersonStructuredName.family_name][google.cloud.talent.v4beta1.PersonName.PersonStructuredName.family_name]
      *   in ascending order.
      *
      * Generated from protobuf field <code>string order_by = 8;</code>
@@ -702,27 +626,17 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      * Supported options are:
      * * "relevance desc": By descending relevance, as determined by the API
      *    algorithms.
-     * * "update_date desc": Sort by
-     * [Profile.update_time][google.cloud.talent.v4beta1.Profile.update_time] in
-     * descending order
+     * * "update_date desc": Sort by [Profile.update_time][google.cloud.talent.v4beta1.Profile.update_time] in descending order
      *   (recently updated profiles first).
-     * * "create_date desc": Sort by
-     * [Profile.create_time][google.cloud.talent.v4beta1.Profile.create_time] in
-     * descending order
+     * * "create_date desc": Sort by [Profile.create_time][google.cloud.talent.v4beta1.Profile.create_time] in descending order
      *   (recently created profiles first).
-     * * "first_name": Sort by
-     * [PersonName.PersonStructuredName.given_name][google.cloud.talent.v4beta1.PersonName.PersonStructuredName.given_name]
-     * in
+     * * "first_name": Sort by [PersonName.PersonStructuredName.given_name][google.cloud.talent.v4beta1.PersonName.PersonStructuredName.given_name] in
      *   ascending order.
-     * * "first_name desc": Sort by
-     * [PersonName.PersonStructuredName.given_name][google.cloud.talent.v4beta1.PersonName.PersonStructuredName.given_name]
+     * * "first_name desc": Sort by [PersonName.PersonStructuredName.given_name][google.cloud.talent.v4beta1.PersonName.PersonStructuredName.given_name]
      *   in descending order.
-     * * "last_name": Sort by
-     * [PersonName.PersonStructuredName.family_name][google.cloud.talent.v4beta1.PersonName.PersonStructuredName.family_name]
-     * in
+     * * "last_name": Sort by [PersonName.PersonStructuredName.family_name][google.cloud.talent.v4beta1.PersonName.PersonStructuredName.family_name] in
      *   ascending order.
-     * * "last_name desc": Sort by
-     * [PersonName.PersonStructuredName.family_name][google.cloud.talent.v4beta1.PersonName.PersonStructuredName.family_name]
+     * * "last_name desc": Sort by [PersonName.PersonStructuredName.family_name][google.cloud.talent.v4beta1.PersonName.PersonStructuredName.family_name]
      *   in ascending order.
      *
      * Generated from protobuf field <code>string order_by = 8;</code>
@@ -769,8 +683,7 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * A list of expressions specifies histogram requests against matching
-     * profiles for
-     * [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest].
+     * profiles for [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest].
      * The expression syntax looks like a function definition with parameters.
      * Function syntax: function_name(histogram_facet[, list of buckets])
      * Data types:
@@ -812,19 +725,13 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      * * experience_in_months: experience in months. 0 means 0 month to 1 month
      * (exclusive).
      * * application_date: The application date specifies application start dates.
-     * See
-     * [ApplicationDateFilter][google.cloud.talent.v4beta1.ApplicationDateFilter]
-     * for more details.
+     * See [ApplicationDateFilter][google.cloud.talent.v4beta1.ApplicationDateFilter] for more details.
      * * application_outcome_notes: The application outcome reason specifies the
      * reasons behind the outcome of the job application.
-     * See
-     * [ApplicationOutcomeNotesFilter][google.cloud.talent.v4beta1.ApplicationOutcomeNotesFilter]
-     * for more details.
+     * See [ApplicationOutcomeNotesFilter][google.cloud.talent.v4beta1.ApplicationOutcomeNotesFilter] for more details.
      * * application_job_title: The application job title specifies the job
      * applied for in the application.
-     * See
-     * [ApplicationJobFilter][google.cloud.talent.v4beta1.ApplicationJobFilter]
-     * for more details.
+     * See [ApplicationJobFilter][google.cloud.talent.v4beta1.ApplicationJobFilter] for more details.
      * * hirable_status: Hirable status specifies the profile's hirable status.
      * * string_custom_attribute: String custom attributes. Values can be accessed
      * via square bracket notation like string_custom_attribute["key1"].
@@ -848,8 +755,7 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * A list of expressions specifies histogram requests against matching
-     * profiles for
-     * [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest].
+     * profiles for [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest].
      * The expression syntax looks like a function definition with parameters.
      * Function syntax: function_name(histogram_facet[, list of buckets])
      * Data types:
@@ -891,19 +797,13 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      * * experience_in_months: experience in months. 0 means 0 month to 1 month
      * (exclusive).
      * * application_date: The application date specifies application start dates.
-     * See
-     * [ApplicationDateFilter][google.cloud.talent.v4beta1.ApplicationDateFilter]
-     * for more details.
+     * See [ApplicationDateFilter][google.cloud.talent.v4beta1.ApplicationDateFilter] for more details.
      * * application_outcome_notes: The application outcome reason specifies the
      * reasons behind the outcome of the job application.
-     * See
-     * [ApplicationOutcomeNotesFilter][google.cloud.talent.v4beta1.ApplicationOutcomeNotesFilter]
-     * for more details.
+     * See [ApplicationOutcomeNotesFilter][google.cloud.talent.v4beta1.ApplicationOutcomeNotesFilter] for more details.
      * * application_job_title: The application job title specifies the job
      * applied for in the application.
-     * See
-     * [ApplicationJobFilter][google.cloud.talent.v4beta1.ApplicationJobFilter]
-     * for more details.
+     * See [ApplicationJobFilter][google.cloud.talent.v4beta1.ApplicationJobFilter] for more details.
      * * hirable_status: Hirable status specifies the profile's hirable status.
      * * string_custom_attribute: String custom attributes. Values can be accessed
      * via square bracket notation like string_custom_attribute["key1"].
@@ -931,31 +831,21 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * An id that uniquely identifies the result set of a
-     * [SearchProfiles][google.cloud.talent.v4beta1.ProfileService.SearchProfiles]
-     * call. The id should be retrieved from the
-     * [SearchProfilesResponse][google.cloud.talent.v4beta1.SearchProfilesResponse]
-     * message returned from a previous invocation of
-     * [SearchProfiles][google.cloud.talent.v4beta1.ProfileService.SearchProfiles].
+     * [SearchProfiles][google.cloud.talent.v4beta1.ProfileService.SearchProfiles] call. The id should be
+     * retrieved from the
+     * [SearchProfilesResponse][google.cloud.talent.v4beta1.SearchProfilesResponse] message returned from a previous
+     * invocation of [SearchProfiles][google.cloud.talent.v4beta1.ProfileService.SearchProfiles].
      * A result set is an ordered list of search results.
      * If this field is not set, a new result set is computed based on the
-     * [profile_query][google.cloud.talent.v4beta1.SearchProfilesRequest.profile_query].
-     * A new
-     * [result_set_id][google.cloud.talent.v4beta1.SearchProfilesRequest.result_set_id]
-     * is returned as a handle to access this result set.
+     * [profile_query][google.cloud.talent.v4beta1.SearchProfilesRequest.profile_query].  A new [result_set_id][google.cloud.talent.v4beta1.SearchProfilesRequest.result_set_id] is returned as a handle to
+     * access this result set.
      * If this field is set, the service will ignore the resource and
-     * [profile_query][google.cloud.talent.v4beta1.SearchProfilesRequest.profile_query]
-     * values, and simply retrieve a page of results from the corresponding result
-     * set.  In this case, one and only one of
-     * [page_token][google.cloud.talent.v4beta1.SearchProfilesRequest.page_token]
-     * or [offset][google.cloud.talent.v4beta1.SearchProfilesRequest.offset] must
-     * be set.
-     * A typical use case is to invoke
-     * [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest]
-     * without this field, then use the resulting
-     * [result_set_id][google.cloud.talent.v4beta1.SearchProfilesRequest.result_set_id]
-     * in
-     * [SearchProfilesResponse][google.cloud.talent.v4beta1.SearchProfilesResponse]
-     * to page through the results.
+     * [profile_query][google.cloud.talent.v4beta1.SearchProfilesRequest.profile_query] values, and simply retrieve a page of results from the
+     * corresponding result set.  In this case, one and only one of [page_token][google.cloud.talent.v4beta1.SearchProfilesRequest.page_token]
+     * or [offset][google.cloud.talent.v4beta1.SearchProfilesRequest.offset] must be set.
+     * A typical use case is to invoke [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest] without this
+     * field, then use the resulting [result_set_id][google.cloud.talent.v4beta1.SearchProfilesRequest.result_set_id] in
+     * [SearchProfilesResponse][google.cloud.talent.v4beta1.SearchProfilesResponse] to page through the results.
      *
      * Generated from protobuf field <code>string result_set_id = 12;</code>
      * @return string
@@ -967,31 +857,21 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * An id that uniquely identifies the result set of a
-     * [SearchProfiles][google.cloud.talent.v4beta1.ProfileService.SearchProfiles]
-     * call. The id should be retrieved from the
-     * [SearchProfilesResponse][google.cloud.talent.v4beta1.SearchProfilesResponse]
-     * message returned from a previous invocation of
-     * [SearchProfiles][google.cloud.talent.v4beta1.ProfileService.SearchProfiles].
+     * [SearchProfiles][google.cloud.talent.v4beta1.ProfileService.SearchProfiles] call. The id should be
+     * retrieved from the
+     * [SearchProfilesResponse][google.cloud.talent.v4beta1.SearchProfilesResponse] message returned from a previous
+     * invocation of [SearchProfiles][google.cloud.talent.v4beta1.ProfileService.SearchProfiles].
      * A result set is an ordered list of search results.
      * If this field is not set, a new result set is computed based on the
-     * [profile_query][google.cloud.talent.v4beta1.SearchProfilesRequest.profile_query].
-     * A new
-     * [result_set_id][google.cloud.talent.v4beta1.SearchProfilesRequest.result_set_id]
-     * is returned as a handle to access this result set.
+     * [profile_query][google.cloud.talent.v4beta1.SearchProfilesRequest.profile_query].  A new [result_set_id][google.cloud.talent.v4beta1.SearchProfilesRequest.result_set_id] is returned as a handle to
+     * access this result set.
      * If this field is set, the service will ignore the resource and
-     * [profile_query][google.cloud.talent.v4beta1.SearchProfilesRequest.profile_query]
-     * values, and simply retrieve a page of results from the corresponding result
-     * set.  In this case, one and only one of
-     * [page_token][google.cloud.talent.v4beta1.SearchProfilesRequest.page_token]
-     * or [offset][google.cloud.talent.v4beta1.SearchProfilesRequest.offset] must
-     * be set.
-     * A typical use case is to invoke
-     * [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest]
-     * without this field, then use the resulting
-     * [result_set_id][google.cloud.talent.v4beta1.SearchProfilesRequest.result_set_id]
-     * in
-     * [SearchProfilesResponse][google.cloud.talent.v4beta1.SearchProfilesResponse]
-     * to page through the results.
+     * [profile_query][google.cloud.talent.v4beta1.SearchProfilesRequest.profile_query] values, and simply retrieve a page of results from the
+     * corresponding result set.  In this case, one and only one of [page_token][google.cloud.talent.v4beta1.SearchProfilesRequest.page_token]
+     * or [offset][google.cloud.talent.v4beta1.SearchProfilesRequest.offset] must be set.
+     * A typical use case is to invoke [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest] without this
+     * field, then use the resulting [result_set_id][google.cloud.talent.v4beta1.SearchProfilesRequest.result_set_id] in
+     * [SearchProfilesResponse][google.cloud.talent.v4beta1.SearchProfilesResponse] to page through the results.
      *
      * Generated from protobuf field <code>string result_set_id = 12;</code>
      * @param string $var

@@ -16,8 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class SearchJobsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The Job entities that match the specified
-     * [SearchJobsRequest][google.cloud.talent.v4beta1.SearchJobsRequest].
+     * The Job entities that match the specified [SearchJobsRequest][google.cloud.talent.v4beta1.SearchJobsRequest].
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.SearchJobsResponse.MatchingJob matching_jobs = 1;</code>
      */
@@ -35,12 +34,10 @@ class SearchJobsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string next_page_token = 3;</code>
      */
-    private $next_page_token = '';
+    protected $next_page_token = '';
     /**
      * The location filters that the service applied to the specified query. If
-     * any filters are lat-lng based, the
-     * [Location.location_type][google.cloud.talent.v4beta1.Location.location_type]
-     * is
+     * any filters are lat-lng based, the [Location.location_type][google.cloud.talent.v4beta1.Location.location_type] is
      * [Location.LocationType.LOCATION_TYPE_UNSPECIFIED][google.cloud.talent.v4beta1.Location.LocationType.LOCATION_TYPE_UNSPECIFIED].
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Location location_filters = 4;</code>
@@ -49,28 +46,26 @@ class SearchJobsResponse extends \Google\Protobuf\Internal\Message
     /**
      * An estimation of the number of jobs that match the specified query.
      * This number isn't guaranteed to be accurate. For accurate results,
-     * see
-     * [SearchJobsRequest.require_precise_result_size][google.cloud.talent.v4beta1.SearchJobsRequest.require_precise_result_size].
+     * see [SearchJobsRequest.require_precise_result_size][google.cloud.talent.v4beta1.SearchJobsRequest.require_precise_result_size].
      *
      * Generated from protobuf field <code>int32 estimated_total_size = 5;</code>
      */
-    private $estimated_total_size = 0;
+    protected $estimated_total_size = 0;
     /**
      * The precise result count, which is available only if the client set
-     * [SearchJobsRequest.require_precise_result_size][google.cloud.talent.v4beta1.SearchJobsRequest.require_precise_result_size]
-     * to `true`, or if the response is the last page of results. Otherwise, the
-     * value is `-1`.
+     * [SearchJobsRequest.require_precise_result_size][google.cloud.talent.v4beta1.SearchJobsRequest.require_precise_result_size] to `true`, or if the
+     * response is the last page of results. Otherwise, the value is `-1`.
      *
      * Generated from protobuf field <code>int32 total_size = 6;</code>
      */
-    private $total_size = 0;
+    protected $total_size = 0;
     /**
      * Additional information for the API invocation, such as the request
      * tracking id.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.ResponseMetadata metadata = 7;</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
     /**
      * If query broadening is enabled, we may append additional results from the
      * broadened query. This number indicates how many of the jobs returned in the
@@ -82,13 +77,13 @@ class SearchJobsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 broadened_query_jobs_count = 8;</code>
      */
-    private $broadened_query_jobs_count = 0;
+    protected $broadened_query_jobs_count = 0;
     /**
      * The spell checking result, and correction.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.SpellingCorrection spell_correction = 9;</code>
      */
-    private $spell_correction = null;
+    protected $spell_correction = null;
 
     /**
      * Constructor.
@@ -97,8 +92,7 @@ class SearchJobsResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Talent\V4beta1\SearchJobsResponse\MatchingJob[]|\Google\Protobuf\Internal\RepeatedField $matching_jobs
-     *           The Job entities that match the specified
-     *           [SearchJobsRequest][google.cloud.talent.v4beta1.SearchJobsRequest].
+     *           The Job entities that match the specified [SearchJobsRequest][google.cloud.talent.v4beta1.SearchJobsRequest].
      *     @type \Google\Cloud\Talent\V4beta1\HistogramQueryResult[]|\Google\Protobuf\Internal\RepeatedField $histogram_query_results
      *           The histogram results that match with specified
      *           [SearchJobsRequest.histogram_queries][google.cloud.talent.v4beta1.SearchJobsRequest.histogram_queries].
@@ -107,20 +101,16 @@ class SearchJobsResponse extends \Google\Protobuf\Internal\Message
      *           This field is empty if there are no more results.
      *     @type \Google\Cloud\Talent\V4beta1\Location[]|\Google\Protobuf\Internal\RepeatedField $location_filters
      *           The location filters that the service applied to the specified query. If
-     *           any filters are lat-lng based, the
-     *           [Location.location_type][google.cloud.talent.v4beta1.Location.location_type]
-     *           is
+     *           any filters are lat-lng based, the [Location.location_type][google.cloud.talent.v4beta1.Location.location_type] is
      *           [Location.LocationType.LOCATION_TYPE_UNSPECIFIED][google.cloud.talent.v4beta1.Location.LocationType.LOCATION_TYPE_UNSPECIFIED].
      *     @type int $estimated_total_size
      *           An estimation of the number of jobs that match the specified query.
      *           This number isn't guaranteed to be accurate. For accurate results,
-     *           see
-     *           [SearchJobsRequest.require_precise_result_size][google.cloud.talent.v4beta1.SearchJobsRequest.require_precise_result_size].
+     *           see [SearchJobsRequest.require_precise_result_size][google.cloud.talent.v4beta1.SearchJobsRequest.require_precise_result_size].
      *     @type int $total_size
      *           The precise result count, which is available only if the client set
-     *           [SearchJobsRequest.require_precise_result_size][google.cloud.talent.v4beta1.SearchJobsRequest.require_precise_result_size]
-     *           to `true`, or if the response is the last page of results. Otherwise, the
-     *           value is `-1`.
+     *           [SearchJobsRequest.require_precise_result_size][google.cloud.talent.v4beta1.SearchJobsRequest.require_precise_result_size] to `true`, or if the
+     *           response is the last page of results. Otherwise, the value is `-1`.
      *     @type \Google\Cloud\Talent\V4beta1\ResponseMetadata $metadata
      *           Additional information for the API invocation, such as the request
      *           tracking id.
@@ -142,8 +132,7 @@ class SearchJobsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Job entities that match the specified
-     * [SearchJobsRequest][google.cloud.talent.v4beta1.SearchJobsRequest].
+     * The Job entities that match the specified [SearchJobsRequest][google.cloud.talent.v4beta1.SearchJobsRequest].
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.SearchJobsResponse.MatchingJob matching_jobs = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -154,8 +143,7 @@ class SearchJobsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Job entities that match the specified
-     * [SearchJobsRequest][google.cloud.talent.v4beta1.SearchJobsRequest].
+     * The Job entities that match the specified [SearchJobsRequest][google.cloud.talent.v4beta1.SearchJobsRequest].
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.SearchJobsResponse.MatchingJob matching_jobs = 1;</code>
      * @param \Google\Cloud\Talent\V4beta1\SearchJobsResponse\MatchingJob[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -227,9 +215,7 @@ class SearchJobsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * The location filters that the service applied to the specified query. If
-     * any filters are lat-lng based, the
-     * [Location.location_type][google.cloud.talent.v4beta1.Location.location_type]
-     * is
+     * any filters are lat-lng based, the [Location.location_type][google.cloud.talent.v4beta1.Location.location_type] is
      * [Location.LocationType.LOCATION_TYPE_UNSPECIFIED][google.cloud.talent.v4beta1.Location.LocationType.LOCATION_TYPE_UNSPECIFIED].
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Location location_filters = 4;</code>
@@ -242,9 +228,7 @@ class SearchJobsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * The location filters that the service applied to the specified query. If
-     * any filters are lat-lng based, the
-     * [Location.location_type][google.cloud.talent.v4beta1.Location.location_type]
-     * is
+     * any filters are lat-lng based, the [Location.location_type][google.cloud.talent.v4beta1.Location.location_type] is
      * [Location.LocationType.LOCATION_TYPE_UNSPECIFIED][google.cloud.talent.v4beta1.Location.LocationType.LOCATION_TYPE_UNSPECIFIED].
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Location location_filters = 4;</code>
@@ -262,8 +246,7 @@ class SearchJobsResponse extends \Google\Protobuf\Internal\Message
     /**
      * An estimation of the number of jobs that match the specified query.
      * This number isn't guaranteed to be accurate. For accurate results,
-     * see
-     * [SearchJobsRequest.require_precise_result_size][google.cloud.talent.v4beta1.SearchJobsRequest.require_precise_result_size].
+     * see [SearchJobsRequest.require_precise_result_size][google.cloud.talent.v4beta1.SearchJobsRequest.require_precise_result_size].
      *
      * Generated from protobuf field <code>int32 estimated_total_size = 5;</code>
      * @return int
@@ -276,8 +259,7 @@ class SearchJobsResponse extends \Google\Protobuf\Internal\Message
     /**
      * An estimation of the number of jobs that match the specified query.
      * This number isn't guaranteed to be accurate. For accurate results,
-     * see
-     * [SearchJobsRequest.require_precise_result_size][google.cloud.talent.v4beta1.SearchJobsRequest.require_precise_result_size].
+     * see [SearchJobsRequest.require_precise_result_size][google.cloud.talent.v4beta1.SearchJobsRequest.require_precise_result_size].
      *
      * Generated from protobuf field <code>int32 estimated_total_size = 5;</code>
      * @param int $var
@@ -293,9 +275,8 @@ class SearchJobsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * The precise result count, which is available only if the client set
-     * [SearchJobsRequest.require_precise_result_size][google.cloud.talent.v4beta1.SearchJobsRequest.require_precise_result_size]
-     * to `true`, or if the response is the last page of results. Otherwise, the
-     * value is `-1`.
+     * [SearchJobsRequest.require_precise_result_size][google.cloud.talent.v4beta1.SearchJobsRequest.require_precise_result_size] to `true`, or if the
+     * response is the last page of results. Otherwise, the value is `-1`.
      *
      * Generated from protobuf field <code>int32 total_size = 6;</code>
      * @return int
@@ -307,9 +288,8 @@ class SearchJobsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * The precise result count, which is available only if the client set
-     * [SearchJobsRequest.require_precise_result_size][google.cloud.talent.v4beta1.SearchJobsRequest.require_precise_result_size]
-     * to `true`, or if the response is the last page of results. Otherwise, the
-     * value is `-1`.
+     * [SearchJobsRequest.require_precise_result_size][google.cloud.talent.v4beta1.SearchJobsRequest.require_precise_result_size] to `true`, or if the
+     * response is the last page of results. Otherwise, the value is `-1`.
      *
      * Generated from protobuf field <code>int32 total_size = 6;</code>
      * @param int $var

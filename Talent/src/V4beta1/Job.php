@@ -10,9 +10,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * A Job resource represents a job posting (also referred to as a "job listing"
- * or "job requisition"). A job belongs to a
- * [Company][google.cloud.talent.v4beta1.Company], which is the hiring entity
- * responsible for the job.
+ * or "job requisition"). A job belongs to a [Company][google.cloud.talent.v4beta1.Company], which is the hiring
+ * entity responsible for the job.
  *
  * Generated from protobuf message <code>google.cloud.talent.v4beta1.Job</code>
  */
@@ -28,12 +27,11 @@ class Job extends \Google\Protobuf\Internal\Message
      * If tenant id is unspecified, the default tenant is used. For
      * example, "projects/foo/jobs/bar".
      * Use of this field in job queries and API calls is preferred over the use of
-     * [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id] since this
-     * value is unique.
+     * [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id] since this value is unique.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The resource name of the company listing the job.
      * The format is
@@ -42,43 +40,40 @@ class Job extends \Google\Protobuf\Internal\Message
      * If tenant id is unspecified, the default tenant is used. For
      * example, "projects/foo/companies/bar".
      *
-     * Generated from protobuf field <code>string company = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string company = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $company = '';
+    protected $company = '';
     /**
-     * Required. The requisition ID, also referred to as the posting ID, is
-     * assigned by the client to identify a job. This field is intended to be used
-     * by clients for client identification and tracking of postings. A job isn't
-     * allowed to be created if there is another job with the same
-     * [company][google.cloud.talent.v4beta1.Job.name],
-     * [language_code][google.cloud.talent.v4beta1.Job.language_code] and
-     * [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id].
+     * Required. The requisition ID, also referred to as the posting ID, is assigned by the
+     * client to identify a job. This field is intended to be used by clients
+     * for client identification and tracking of postings. A job isn't allowed
+     * to be created if there is another job with the same [company][google.cloud.talent.v4beta1.Job.name],
+     * [language_code][google.cloud.talent.v4beta1.Job.language_code] and [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id].
      * The maximum number of allowed characters is 255.
      *
      * Generated from protobuf field <code>string requisition_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $requisition_id = '';
+    protected $requisition_id = '';
     /**
      * Required. The title of the job, such as "Software Engineer"
      * The maximum number of allowed characters is 500.
      *
      * Generated from protobuf field <code>string title = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $title = '';
+    protected $title = '';
     /**
-     * Required. The description of the job, which typically includes a
-     * multi-paragraph description of the company and related information.
-     * Separate fields are provided on the job object for
-     * [responsibilities][google.cloud.talent.v4beta1.Job.responsibilities],
-     * [qualifications][google.cloud.talent.v4beta1.Job.qualifications], and other
-     * job characteristics. Use of these separate job fields is recommended.
+     * Required. The description of the job, which typically includes a multi-paragraph
+     * description of the company and related information. Separate fields are
+     * provided on the job object for [responsibilities][google.cloud.talent.v4beta1.Job.responsibilities],
+     * [qualifications][google.cloud.talent.v4beta1.Job.qualifications], and other job characteristics. Use of
+     * these separate job fields is recommended.
      * This field accepts and sanitizes HTML input, and also accepts
      * bold, italic, ordered list, and unordered list markup tags.
      * The maximum number of allowed characters is 100,000.
      *
      * Generated from protobuf field <code>string description = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Strongly recommended for the best service experience.
      * Location(s) where the employer is looking to hire for this job posting.
@@ -86,16 +81,12 @@ class Job extends \Google\Protobuf\Internal\Message
      * better API results, especially job searches by commute time.
      * At most 50 locations are allowed for best search performance. If a job has
      * more locations, it is suggested to split it into multiple jobs with unique
-     * [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id]s (e.g.
-     * 'ReqA' becomes 'ReqA-1', 'ReqA-2', and so on.) as multiple jobs with the
-     * same [company][google.cloud.talent.v4beta1.Job.company],
-     * [language_code][google.cloud.talent.v4beta1.Job.language_code] and
-     * [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id] are not
-     * allowed. If the original
-     * [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id] must be
-     * preserved, a custom field should be used for storage. It is also suggested
-     * to group the locations that close to each other in the same job for better
-     * search experience.
+     * [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id]s (e.g. 'ReqA' becomes 'ReqA-1', 'ReqA-2', and so on.) as
+     * multiple jobs with the same [company][google.cloud.talent.v4beta1.Job.company], [language_code][google.cloud.talent.v4beta1.Job.language_code] and
+     * [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id] are not allowed. If the original [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id] must
+     * be preserved, a custom field should be used for storage. It is also
+     * suggested to group the locations that close to each other in the same job
+     * for better search experience.
      * The maximum number of allowed characters is 500.
      *
      * Generated from protobuf field <code>repeated string addresses = 6;</code>
@@ -106,7 +97,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Job.ApplicationInfo application_info = 7;</code>
      */
-    private $application_info = null;
+    protected $application_info = null;
     /**
      * The benefits included with the job.
      *
@@ -119,7 +110,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompensationInfo compensation_info = 9;</code>
      */
-    private $compensation_info = null;
+    protected $compensation_info = null;
     /**
      * A map of fields to hold both filterable and non-filterable custom job
      * attributes that are not covered by the provided structured fields.
@@ -148,7 +139,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string department = 12;</code>
      */
-    private $department = '';
+    protected $department = '';
     /**
      * The employment type(s) of a job, for example,
      * [full time][google.cloud.talent.v4beta1.EmploymentType.FULL_TIME] or
@@ -164,7 +155,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string incentives = 14;</code>
      */
-    private $incentives = '';
+    protected $incentives = '';
     /**
      * The language of the posting. This field is distinct from
      * any requirements for fluency that are associated with the job.
@@ -172,21 +163,19 @@ class Job extends \Google\Protobuf\Internal\Message
      * For more information, see
      * [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47){:
      * class="external" target="_blank" }.
-     * If this field is unspecified and
-     * [Job.description][google.cloud.talent.v4beta1.Job.description] is present,
-     * detected language code based on
-     * [Job.description][google.cloud.talent.v4beta1.Job.description] is assigned,
-     * otherwise defaults to 'en_US'.
+     * If this field is unspecified and [Job.description][google.cloud.talent.v4beta1.Job.description] is present, detected
+     * language code based on [Job.description][google.cloud.talent.v4beta1.Job.description] is assigned, otherwise
+     * defaults to 'en_US'.
      *
      * Generated from protobuf field <code>string language_code = 15;</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
     /**
      * The experience level associated with the job, such as "Entry Level".
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.JobLevel job_level = 16;</code>
      */
-    private $job_level = 0;
+    protected $job_level = 0;
     /**
      * A promotion value of the job, as determined by the client.
      * The value determines the sort order of the jobs returned when searching for
@@ -197,69 +186,63 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 promotion_value = 17;</code>
      */
-    private $promotion_value = 0;
+    protected $promotion_value = 0;
     /**
      * A description of the qualifications required to perform the
      * job. The use of this field is recommended
-     * as an alternative to using the more general
-     * [description][google.cloud.talent.v4beta1.Job.description] field.
+     * as an alternative to using the more general [description][google.cloud.talent.v4beta1.Job.description] field.
      * This field accepts and sanitizes HTML input, and also accepts
      * bold, italic, ordered list, and unordered list markup tags.
      * The maximum number of allowed characters is 10,000.
      *
      * Generated from protobuf field <code>string qualifications = 18;</code>
      */
-    private $qualifications = '';
+    protected $qualifications = '';
     /**
      * A description of job responsibilities. The use of this field is
-     * recommended as an alternative to using the more general
-     * [description][google.cloud.talent.v4beta1.Job.description] field.
+     * recommended as an alternative to using the more general [description][google.cloud.talent.v4beta1.Job.description]
+     * field.
      * This field accepts and sanitizes HTML input, and also accepts
      * bold, italic, ordered list, and unordered list markup tags.
      * The maximum number of allowed characters is 10,000.
      *
      * Generated from protobuf field <code>string responsibilities = 19;</code>
      */
-    private $responsibilities = '';
+    protected $responsibilities = '';
     /**
-     * The job [PostingRegion][google.cloud.talent.v4beta1.PostingRegion] (for
-     * example, state, country) throughout which the job is available. If this
-     * field is set, a
-     * [LocationFilter][google.cloud.talent.v4beta1.LocationFilter] in a search
-     * query within the job region finds this job posting if an exact location
-     * match isn't specified. If this field is set to
-     * [PostingRegion.NATION][google.cloud.talent.v4beta1.PostingRegion.NATION] or
-     * [PostingRegion.ADMINISTRATIVE_AREA][google.cloud.talent.v4beta1.PostingRegion.ADMINISTRATIVE_AREA],
-     * setting job [Job.addresses][google.cloud.talent.v4beta1.Job.addresses] to
-     * the same location level as this field is strongly recommended.
+     * The job [PostingRegion][google.cloud.talent.v4beta1.PostingRegion] (for example, state, country) throughout
+     * which the job is available. If this field is set, a [LocationFilter][google.cloud.talent.v4beta1.LocationFilter]
+     * in a search query within the job region finds this job posting if an
+     * exact location match isn't specified. If this field is set to
+     * [PostingRegion.NATION][google.cloud.talent.v4beta1.PostingRegion.NATION] or [PostingRegion.ADMINISTRATIVE_AREA][google.cloud.talent.v4beta1.PostingRegion.ADMINISTRATIVE_AREA],
+     * setting job [Job.addresses][google.cloud.talent.v4beta1.Job.addresses] to the same location level as this field
+     * is strongly recommended.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.PostingRegion posting_region = 20;</code>
      */
-    private $posting_region = 0;
+    protected $posting_region = 0;
     /**
      * Deprecated. The job is only visible to the owner.
      * The visibility of the job.
-     * Defaults to
-     * [Visibility.ACCOUNT_ONLY][google.cloud.talent.v4beta1.Visibility.ACCOUNT_ONLY]
-     * if not specified.
+     * Defaults to [Visibility.ACCOUNT_ONLY][google.cloud.talent.v4beta1.Visibility.ACCOUNT_ONLY] if not specified.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Visibility visibility = 21 [deprecated = true];</code>
      */
-    private $visibility = 0;
+    protected $visibility = 0;
     /**
      * The start timestamp of the job in UTC time zone. Typically this field
      * is used for contracting engagements. Invalid timestamps are ignored.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp job_start_time = 22;</code>
      */
-    private $job_start_time = null;
+    protected $job_start_time = null;
     /**
      * The end timestamp of the job. Typically this field is used for contracting
      * engagements. Invalid timestamps are ignored.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp job_end_time = 23;</code>
      */
-    private $job_end_time = null;
+    protected $job_end_time = null;
     /**
      * The timestamp this job posting was most recently published. The default
      * value is the time the request arrives at the server. Invalid timestamps are
@@ -267,23 +250,18 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp posting_publish_time = 24;</code>
      */
-    private $posting_publish_time = null;
+    protected $posting_publish_time = null;
     /**
      * Strongly recommended for the best service experience.
      * The expiration timestamp of the job. After this timestamp, the
      * job is marked as expired, and it no longer appears in search results. The
-     * expired job can't be listed by the
-     * [ListJobs][google.cloud.talent.v4beta1.JobService.ListJobs] API, but it can
-     * be retrieved with the
-     * [GetJob][google.cloud.talent.v4beta1.JobService.GetJob] API or updated with
-     * the [UpdateJob][google.cloud.talent.v4beta1.JobService.UpdateJob] API or
-     * deleted with the
-     * [DeleteJob][google.cloud.talent.v4beta1.JobService.DeleteJob] API. An
-     * expired job can be updated and opened again by using a future expiration
-     * timestamp. Updating an expired job fails if there is another existing open
-     * job with same [company][google.cloud.talent.v4beta1.Job.company],
-     * [language_code][google.cloud.talent.v4beta1.Job.language_code] and
-     * [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id].
+     * expired job can't be listed by the [ListJobs][google.cloud.talent.v4beta1.JobService.ListJobs] API,
+     * but it can be retrieved with the [GetJob][google.cloud.talent.v4beta1.JobService.GetJob] API or
+     * updated with the [UpdateJob][google.cloud.talent.v4beta1.JobService.UpdateJob] API or deleted with
+     * the [DeleteJob][google.cloud.talent.v4beta1.JobService.DeleteJob] API. An expired job can
+     * be updated and opened again by using a future expiration timestamp.
+     * Updating an expired job fails if there is another existing open job with
+     * same [company][google.cloud.talent.v4beta1.Job.company], [language_code][google.cloud.talent.v4beta1.Job.language_code] and [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id].
      * The expired jobs are retained in our system for 90 days. However, the
      * overall expired job count cannot exceed 3 times the maximum number of
      * open jobs over previous 7 days. If this threshold is exceeded,
@@ -294,59 +272,55 @@ class Job extends \Google\Protobuf\Internal\Message
      * If the timestamp is before the instant request is made, the job
      * is treated as expired immediately on creation. This kind of job can
      * not be updated. And when creating a job with past timestamp, the
-     * [posting_publish_time][google.cloud.talent.v4beta1.Job.posting_publish_time]
-     * must be set before
-     * [posting_expire_time][google.cloud.talent.v4beta1.Job.posting_expire_time].
-     * The purpose of this feature is to allow other objects, such as
-     * [Application][google.cloud.talent.v4beta1.Application], to refer a job that
-     * didn't exist in the system prior to becoming expired. If you want to modify
-     * a job that was expired on creation, delete it and create a new one.
+     * [posting_publish_time][google.cloud.talent.v4beta1.Job.posting_publish_time] must be set before
+     * [posting_expire_time][google.cloud.talent.v4beta1.Job.posting_expire_time]. The purpose of this feature is
+     * to allow other objects, such as [Application][google.cloud.talent.v4beta1.Application], to refer a job
+     * that didn't exist in the system prior to becoming expired. If you
+     * want to modify a job that was expired on creation,
+     * delete it and create a new one.
      * If this value isn't provided at the time of job creation or is invalid,
      * the job posting expires after 30 days from the job's creation time. For
      * example, if the job was created on 2017/01/01 13:00AM UTC with an
      * unspecified expiration date, the job expires after 2017/01/31 13:00AM UTC.
      * If this value isn't provided on job update, it depends on the field masks
-     * set by
-     * [UpdateJobRequest.update_mask][google.cloud.talent.v4beta1.UpdateJobRequest.update_mask].
-     * If the field masks include
-     * [job_end_time][google.cloud.talent.v4beta1.Job.job_end_time], or the masks
-     * are empty meaning that every field is updated, the job posting expires
-     * after 30 days from the job's last update time. Otherwise the expiration
-     * date isn't updated.
+     * set by [UpdateJobRequest.update_mask][google.cloud.talent.v4beta1.UpdateJobRequest.update_mask]. If the field masks include
+     * [job_end_time][google.cloud.talent.v4beta1.Job.job_end_time], or the masks are empty meaning that every field is
+     * updated, the job posting expires after 30 days from the job's last
+     * update time. Otherwise the expiration date isn't updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp posting_expire_time = 25;</code>
      */
-    private $posting_expire_time = null;
+    protected $posting_expire_time = null;
     /**
      * Output only. The timestamp when this job posting was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp posting_create_time = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $posting_create_time = null;
+    protected $posting_create_time = null;
     /**
      * Output only. The timestamp when this job posting was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp posting_update_time = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $posting_update_time = null;
+    protected $posting_update_time = null;
     /**
      * Output only. Display name of the company listing the job.
      *
      * Generated from protobuf field <code>string company_display_name = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $company_display_name = '';
+    protected $company_display_name = '';
     /**
      * Output only. Derived details about the job posting.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Job.DerivedInfo derived_info = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $derived_info = null;
+    protected $derived_info = null;
     /**
      * Options for job processing.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Job.ProcessingOptions processing_options = 30;</code>
      */
-    private $processing_options = null;
+    protected $processing_options = null;
 
     /**
      * Constructor.
@@ -364,8 +338,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *           If tenant id is unspecified, the default tenant is used. For
      *           example, "projects/foo/jobs/bar".
      *           Use of this field in job queries and API calls is preferred over the use of
-     *           [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id] since this
-     *           value is unique.
+     *           [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id] since this value is unique.
      *     @type string $company
      *           Required. The resource name of the company listing the job.
      *           The format is
@@ -374,24 +347,21 @@ class Job extends \Google\Protobuf\Internal\Message
      *           If tenant id is unspecified, the default tenant is used. For
      *           example, "projects/foo/companies/bar".
      *     @type string $requisition_id
-     *           Required. The requisition ID, also referred to as the posting ID, is
-     *           assigned by the client to identify a job. This field is intended to be used
-     *           by clients for client identification and tracking of postings. A job isn't
-     *           allowed to be created if there is another job with the same
-     *           [company][google.cloud.talent.v4beta1.Job.name],
-     *           [language_code][google.cloud.talent.v4beta1.Job.language_code] and
-     *           [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id].
+     *           Required. The requisition ID, also referred to as the posting ID, is assigned by the
+     *           client to identify a job. This field is intended to be used by clients
+     *           for client identification and tracking of postings. A job isn't allowed
+     *           to be created if there is another job with the same [company][google.cloud.talent.v4beta1.Job.name],
+     *           [language_code][google.cloud.talent.v4beta1.Job.language_code] and [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id].
      *           The maximum number of allowed characters is 255.
      *     @type string $title
      *           Required. The title of the job, such as "Software Engineer"
      *           The maximum number of allowed characters is 500.
      *     @type string $description
-     *           Required. The description of the job, which typically includes a
-     *           multi-paragraph description of the company and related information.
-     *           Separate fields are provided on the job object for
-     *           [responsibilities][google.cloud.talent.v4beta1.Job.responsibilities],
-     *           [qualifications][google.cloud.talent.v4beta1.Job.qualifications], and other
-     *           job characteristics. Use of these separate job fields is recommended.
+     *           Required. The description of the job, which typically includes a multi-paragraph
+     *           description of the company and related information. Separate fields are
+     *           provided on the job object for [responsibilities][google.cloud.talent.v4beta1.Job.responsibilities],
+     *           [qualifications][google.cloud.talent.v4beta1.Job.qualifications], and other job characteristics. Use of
+     *           these separate job fields is recommended.
      *           This field accepts and sanitizes HTML input, and also accepts
      *           bold, italic, ordered list, and unordered list markup tags.
      *           The maximum number of allowed characters is 100,000.
@@ -402,16 +372,12 @@ class Job extends \Google\Protobuf\Internal\Message
      *           better API results, especially job searches by commute time.
      *           At most 50 locations are allowed for best search performance. If a job has
      *           more locations, it is suggested to split it into multiple jobs with unique
-     *           [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id]s (e.g.
-     *           'ReqA' becomes 'ReqA-1', 'ReqA-2', and so on.) as multiple jobs with the
-     *           same [company][google.cloud.talent.v4beta1.Job.company],
-     *           [language_code][google.cloud.talent.v4beta1.Job.language_code] and
-     *           [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id] are not
-     *           allowed. If the original
-     *           [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id] must be
-     *           preserved, a custom field should be used for storage. It is also suggested
-     *           to group the locations that close to each other in the same job for better
-     *           search experience.
+     *           [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id]s (e.g. 'ReqA' becomes 'ReqA-1', 'ReqA-2', and so on.) as
+     *           multiple jobs with the same [company][google.cloud.talent.v4beta1.Job.company], [language_code][google.cloud.talent.v4beta1.Job.language_code] and
+     *           [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id] are not allowed. If the original [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id] must
+     *           be preserved, a custom field should be used for storage. It is also
+     *           suggested to group the locations that close to each other in the same job
+     *           for better search experience.
      *           The maximum number of allowed characters is 500.
      *     @type \Google\Cloud\Talent\V4beta1\Job\ApplicationInfo $application_info
      *           Job application information.
@@ -452,11 +418,9 @@ class Job extends \Google\Protobuf\Internal\Message
      *           For more information, see
      *           [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47){:
      *           class="external" target="_blank" }.
-     *           If this field is unspecified and
-     *           [Job.description][google.cloud.talent.v4beta1.Job.description] is present,
-     *           detected language code based on
-     *           [Job.description][google.cloud.talent.v4beta1.Job.description] is assigned,
-     *           otherwise defaults to 'en_US'.
+     *           If this field is unspecified and [Job.description][google.cloud.talent.v4beta1.Job.description] is present, detected
+     *           language code based on [Job.description][google.cloud.talent.v4beta1.Job.description] is assigned, otherwise
+     *           defaults to 'en_US'.
      *     @type int $job_level
      *           The experience level associated with the job, such as "Entry Level".
      *     @type int $promotion_value
@@ -469,35 +433,29 @@ class Job extends \Google\Protobuf\Internal\Message
      *     @type string $qualifications
      *           A description of the qualifications required to perform the
      *           job. The use of this field is recommended
-     *           as an alternative to using the more general
-     *           [description][google.cloud.talent.v4beta1.Job.description] field.
+     *           as an alternative to using the more general [description][google.cloud.talent.v4beta1.Job.description] field.
      *           This field accepts and sanitizes HTML input, and also accepts
      *           bold, italic, ordered list, and unordered list markup tags.
      *           The maximum number of allowed characters is 10,000.
      *     @type string $responsibilities
      *           A description of job responsibilities. The use of this field is
-     *           recommended as an alternative to using the more general
-     *           [description][google.cloud.talent.v4beta1.Job.description] field.
+     *           recommended as an alternative to using the more general [description][google.cloud.talent.v4beta1.Job.description]
+     *           field.
      *           This field accepts and sanitizes HTML input, and also accepts
      *           bold, italic, ordered list, and unordered list markup tags.
      *           The maximum number of allowed characters is 10,000.
      *     @type int $posting_region
-     *           The job [PostingRegion][google.cloud.talent.v4beta1.PostingRegion] (for
-     *           example, state, country) throughout which the job is available. If this
-     *           field is set, a
-     *           [LocationFilter][google.cloud.talent.v4beta1.LocationFilter] in a search
-     *           query within the job region finds this job posting if an exact location
-     *           match isn't specified. If this field is set to
-     *           [PostingRegion.NATION][google.cloud.talent.v4beta1.PostingRegion.NATION] or
-     *           [PostingRegion.ADMINISTRATIVE_AREA][google.cloud.talent.v4beta1.PostingRegion.ADMINISTRATIVE_AREA],
-     *           setting job [Job.addresses][google.cloud.talent.v4beta1.Job.addresses] to
-     *           the same location level as this field is strongly recommended.
+     *           The job [PostingRegion][google.cloud.talent.v4beta1.PostingRegion] (for example, state, country) throughout
+     *           which the job is available. If this field is set, a [LocationFilter][google.cloud.talent.v4beta1.LocationFilter]
+     *           in a search query within the job region finds this job posting if an
+     *           exact location match isn't specified. If this field is set to
+     *           [PostingRegion.NATION][google.cloud.talent.v4beta1.PostingRegion.NATION] or [PostingRegion.ADMINISTRATIVE_AREA][google.cloud.talent.v4beta1.PostingRegion.ADMINISTRATIVE_AREA],
+     *           setting job [Job.addresses][google.cloud.talent.v4beta1.Job.addresses] to the same location level as this field
+     *           is strongly recommended.
      *     @type int $visibility
      *           Deprecated. The job is only visible to the owner.
      *           The visibility of the job.
-     *           Defaults to
-     *           [Visibility.ACCOUNT_ONLY][google.cloud.talent.v4beta1.Visibility.ACCOUNT_ONLY]
-     *           if not specified.
+     *           Defaults to [Visibility.ACCOUNT_ONLY][google.cloud.talent.v4beta1.Visibility.ACCOUNT_ONLY] if not specified.
      *     @type \Google\Protobuf\Timestamp $job_start_time
      *           The start timestamp of the job in UTC time zone. Typically this field
      *           is used for contracting engagements. Invalid timestamps are ignored.
@@ -512,18 +470,13 @@ class Job extends \Google\Protobuf\Internal\Message
      *           Strongly recommended for the best service experience.
      *           The expiration timestamp of the job. After this timestamp, the
      *           job is marked as expired, and it no longer appears in search results. The
-     *           expired job can't be listed by the
-     *           [ListJobs][google.cloud.talent.v4beta1.JobService.ListJobs] API, but it can
-     *           be retrieved with the
-     *           [GetJob][google.cloud.talent.v4beta1.JobService.GetJob] API or updated with
-     *           the [UpdateJob][google.cloud.talent.v4beta1.JobService.UpdateJob] API or
-     *           deleted with the
-     *           [DeleteJob][google.cloud.talent.v4beta1.JobService.DeleteJob] API. An
-     *           expired job can be updated and opened again by using a future expiration
-     *           timestamp. Updating an expired job fails if there is another existing open
-     *           job with same [company][google.cloud.talent.v4beta1.Job.company],
-     *           [language_code][google.cloud.talent.v4beta1.Job.language_code] and
-     *           [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id].
+     *           expired job can't be listed by the [ListJobs][google.cloud.talent.v4beta1.JobService.ListJobs] API,
+     *           but it can be retrieved with the [GetJob][google.cloud.talent.v4beta1.JobService.GetJob] API or
+     *           updated with the [UpdateJob][google.cloud.talent.v4beta1.JobService.UpdateJob] API or deleted with
+     *           the [DeleteJob][google.cloud.talent.v4beta1.JobService.DeleteJob] API. An expired job can
+     *           be updated and opened again by using a future expiration timestamp.
+     *           Updating an expired job fails if there is another existing open job with
+     *           same [company][google.cloud.talent.v4beta1.Job.company], [language_code][google.cloud.talent.v4beta1.Job.language_code] and [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id].
      *           The expired jobs are retained in our system for 90 days. However, the
      *           overall expired job count cannot exceed 3 times the maximum number of
      *           open jobs over previous 7 days. If this threshold is exceeded,
@@ -534,25 +487,21 @@ class Job extends \Google\Protobuf\Internal\Message
      *           If the timestamp is before the instant request is made, the job
      *           is treated as expired immediately on creation. This kind of job can
      *           not be updated. And when creating a job with past timestamp, the
-     *           [posting_publish_time][google.cloud.talent.v4beta1.Job.posting_publish_time]
-     *           must be set before
-     *           [posting_expire_time][google.cloud.talent.v4beta1.Job.posting_expire_time].
-     *           The purpose of this feature is to allow other objects, such as
-     *           [Application][google.cloud.talent.v4beta1.Application], to refer a job that
-     *           didn't exist in the system prior to becoming expired. If you want to modify
-     *           a job that was expired on creation, delete it and create a new one.
+     *           [posting_publish_time][google.cloud.talent.v4beta1.Job.posting_publish_time] must be set before
+     *           [posting_expire_time][google.cloud.talent.v4beta1.Job.posting_expire_time]. The purpose of this feature is
+     *           to allow other objects, such as [Application][google.cloud.talent.v4beta1.Application], to refer a job
+     *           that didn't exist in the system prior to becoming expired. If you
+     *           want to modify a job that was expired on creation,
+     *           delete it and create a new one.
      *           If this value isn't provided at the time of job creation or is invalid,
      *           the job posting expires after 30 days from the job's creation time. For
      *           example, if the job was created on 2017/01/01 13:00AM UTC with an
      *           unspecified expiration date, the job expires after 2017/01/31 13:00AM UTC.
      *           If this value isn't provided on job update, it depends on the field masks
-     *           set by
-     *           [UpdateJobRequest.update_mask][google.cloud.talent.v4beta1.UpdateJobRequest.update_mask].
-     *           If the field masks include
-     *           [job_end_time][google.cloud.talent.v4beta1.Job.job_end_time], or the masks
-     *           are empty meaning that every field is updated, the job posting expires
-     *           after 30 days from the job's last update time. Otherwise the expiration
-     *           date isn't updated.
+     *           set by [UpdateJobRequest.update_mask][google.cloud.talent.v4beta1.UpdateJobRequest.update_mask]. If the field masks include
+     *           [job_end_time][google.cloud.talent.v4beta1.Job.job_end_time], or the masks are empty meaning that every field is
+     *           updated, the job posting expires after 30 days from the job's last
+     *           update time. Otherwise the expiration date isn't updated.
      *     @type \Google\Protobuf\Timestamp $posting_create_time
      *           Output only. The timestamp when this job posting was created.
      *     @type \Google\Protobuf\Timestamp $posting_update_time
@@ -580,8 +529,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * If tenant id is unspecified, the default tenant is used. For
      * example, "projects/foo/jobs/bar".
      * Use of this field in job queries and API calls is preferred over the use of
-     * [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id] since this
-     * value is unique.
+     * [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id] since this value is unique.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -601,8 +549,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * If tenant id is unspecified, the default tenant is used. For
      * example, "projects/foo/jobs/bar".
      * Use of this field in job queries and API calls is preferred over the use of
-     * [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id] since this
-     * value is unique.
+     * [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id] since this value is unique.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -624,7 +571,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * If tenant id is unspecified, the default tenant is used. For
      * example, "projects/foo/companies/bar".
      *
-     * Generated from protobuf field <code>string company = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string company = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getCompany()
@@ -640,7 +587,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * If tenant id is unspecified, the default tenant is used. For
      * example, "projects/foo/companies/bar".
      *
-     * Generated from protobuf field <code>string company = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string company = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -653,13 +600,11 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The requisition ID, also referred to as the posting ID, is
-     * assigned by the client to identify a job. This field is intended to be used
-     * by clients for client identification and tracking of postings. A job isn't
-     * allowed to be created if there is another job with the same
-     * [company][google.cloud.talent.v4beta1.Job.name],
-     * [language_code][google.cloud.talent.v4beta1.Job.language_code] and
-     * [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id].
+     * Required. The requisition ID, also referred to as the posting ID, is assigned by the
+     * client to identify a job. This field is intended to be used by clients
+     * for client identification and tracking of postings. A job isn't allowed
+     * to be created if there is another job with the same [company][google.cloud.talent.v4beta1.Job.name],
+     * [language_code][google.cloud.talent.v4beta1.Job.language_code] and [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id].
      * The maximum number of allowed characters is 255.
      *
      * Generated from protobuf field <code>string requisition_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -671,13 +616,11 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The requisition ID, also referred to as the posting ID, is
-     * assigned by the client to identify a job. This field is intended to be used
-     * by clients for client identification and tracking of postings. A job isn't
-     * allowed to be created if there is another job with the same
-     * [company][google.cloud.talent.v4beta1.Job.name],
-     * [language_code][google.cloud.talent.v4beta1.Job.language_code] and
-     * [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id].
+     * Required. The requisition ID, also referred to as the posting ID, is assigned by the
+     * client to identify a job. This field is intended to be used by clients
+     * for client identification and tracking of postings. A job isn't allowed
+     * to be created if there is another job with the same [company][google.cloud.talent.v4beta1.Job.name],
+     * [language_code][google.cloud.talent.v4beta1.Job.language_code] and [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id].
      * The maximum number of allowed characters is 255.
      *
      * Generated from protobuf field <code>string requisition_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -721,12 +664,11 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The description of the job, which typically includes a
-     * multi-paragraph description of the company and related information.
-     * Separate fields are provided on the job object for
-     * [responsibilities][google.cloud.talent.v4beta1.Job.responsibilities],
-     * [qualifications][google.cloud.talent.v4beta1.Job.qualifications], and other
-     * job characteristics. Use of these separate job fields is recommended.
+     * Required. The description of the job, which typically includes a multi-paragraph
+     * description of the company and related information. Separate fields are
+     * provided on the job object for [responsibilities][google.cloud.talent.v4beta1.Job.responsibilities],
+     * [qualifications][google.cloud.talent.v4beta1.Job.qualifications], and other job characteristics. Use of
+     * these separate job fields is recommended.
      * This field accepts and sanitizes HTML input, and also accepts
      * bold, italic, ordered list, and unordered list markup tags.
      * The maximum number of allowed characters is 100,000.
@@ -740,12 +682,11 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The description of the job, which typically includes a
-     * multi-paragraph description of the company and related information.
-     * Separate fields are provided on the job object for
-     * [responsibilities][google.cloud.talent.v4beta1.Job.responsibilities],
-     * [qualifications][google.cloud.talent.v4beta1.Job.qualifications], and other
-     * job characteristics. Use of these separate job fields is recommended.
+     * Required. The description of the job, which typically includes a multi-paragraph
+     * description of the company and related information. Separate fields are
+     * provided on the job object for [responsibilities][google.cloud.talent.v4beta1.Job.responsibilities],
+     * [qualifications][google.cloud.talent.v4beta1.Job.qualifications], and other job characteristics. Use of
+     * these separate job fields is recommended.
      * This field accepts and sanitizes HTML input, and also accepts
      * bold, italic, ordered list, and unordered list markup tags.
      * The maximum number of allowed characters is 100,000.
@@ -769,16 +710,12 @@ class Job extends \Google\Protobuf\Internal\Message
      * better API results, especially job searches by commute time.
      * At most 50 locations are allowed for best search performance. If a job has
      * more locations, it is suggested to split it into multiple jobs with unique
-     * [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id]s (e.g.
-     * 'ReqA' becomes 'ReqA-1', 'ReqA-2', and so on.) as multiple jobs with the
-     * same [company][google.cloud.talent.v4beta1.Job.company],
-     * [language_code][google.cloud.talent.v4beta1.Job.language_code] and
-     * [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id] are not
-     * allowed. If the original
-     * [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id] must be
-     * preserved, a custom field should be used for storage. It is also suggested
-     * to group the locations that close to each other in the same job for better
-     * search experience.
+     * [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id]s (e.g. 'ReqA' becomes 'ReqA-1', 'ReqA-2', and so on.) as
+     * multiple jobs with the same [company][google.cloud.talent.v4beta1.Job.company], [language_code][google.cloud.talent.v4beta1.Job.language_code] and
+     * [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id] are not allowed. If the original [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id] must
+     * be preserved, a custom field should be used for storage. It is also
+     * suggested to group the locations that close to each other in the same job
+     * for better search experience.
      * The maximum number of allowed characters is 500.
      *
      * Generated from protobuf field <code>repeated string addresses = 6;</code>
@@ -796,16 +733,12 @@ class Job extends \Google\Protobuf\Internal\Message
      * better API results, especially job searches by commute time.
      * At most 50 locations are allowed for best search performance. If a job has
      * more locations, it is suggested to split it into multiple jobs with unique
-     * [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id]s (e.g.
-     * 'ReqA' becomes 'ReqA-1', 'ReqA-2', and so on.) as multiple jobs with the
-     * same [company][google.cloud.talent.v4beta1.Job.company],
-     * [language_code][google.cloud.talent.v4beta1.Job.language_code] and
-     * [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id] are not
-     * allowed. If the original
-     * [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id] must be
-     * preserved, a custom field should be used for storage. It is also suggested
-     * to group the locations that close to each other in the same job for better
-     * search experience.
+     * [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id]s (e.g. 'ReqA' becomes 'ReqA-1', 'ReqA-2', and so on.) as
+     * multiple jobs with the same [company][google.cloud.talent.v4beta1.Job.company], [language_code][google.cloud.talent.v4beta1.Job.language_code] and
+     * [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id] are not allowed. If the original [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id] must
+     * be preserved, a custom field should be used for storage. It is also
+     * suggested to group the locations that close to each other in the same job
+     * for better search experience.
      * The maximum number of allowed characters is 500.
      *
      * Generated from protobuf field <code>repeated string addresses = 6;</code>
@@ -1067,11 +1000,9 @@ class Job extends \Google\Protobuf\Internal\Message
      * For more information, see
      * [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47){:
      * class="external" target="_blank" }.
-     * If this field is unspecified and
-     * [Job.description][google.cloud.talent.v4beta1.Job.description] is present,
-     * detected language code based on
-     * [Job.description][google.cloud.talent.v4beta1.Job.description] is assigned,
-     * otherwise defaults to 'en_US'.
+     * If this field is unspecified and [Job.description][google.cloud.talent.v4beta1.Job.description] is present, detected
+     * language code based on [Job.description][google.cloud.talent.v4beta1.Job.description] is assigned, otherwise
+     * defaults to 'en_US'.
      *
      * Generated from protobuf field <code>string language_code = 15;</code>
      * @return string
@@ -1088,11 +1019,9 @@ class Job extends \Google\Protobuf\Internal\Message
      * For more information, see
      * [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47){:
      * class="external" target="_blank" }.
-     * If this field is unspecified and
-     * [Job.description][google.cloud.talent.v4beta1.Job.description] is present,
-     * detected language code based on
-     * [Job.description][google.cloud.talent.v4beta1.Job.description] is assigned,
-     * otherwise defaults to 'en_US'.
+     * If this field is unspecified and [Job.description][google.cloud.talent.v4beta1.Job.description] is present, detected
+     * language code based on [Job.description][google.cloud.talent.v4beta1.Job.description] is assigned, otherwise
+     * defaults to 'en_US'.
      *
      * Generated from protobuf field <code>string language_code = 15;</code>
      * @param string $var
@@ -1171,8 +1100,7 @@ class Job extends \Google\Protobuf\Internal\Message
     /**
      * A description of the qualifications required to perform the
      * job. The use of this field is recommended
-     * as an alternative to using the more general
-     * [description][google.cloud.talent.v4beta1.Job.description] field.
+     * as an alternative to using the more general [description][google.cloud.talent.v4beta1.Job.description] field.
      * This field accepts and sanitizes HTML input, and also accepts
      * bold, italic, ordered list, and unordered list markup tags.
      * The maximum number of allowed characters is 10,000.
@@ -1188,8 +1116,7 @@ class Job extends \Google\Protobuf\Internal\Message
     /**
      * A description of the qualifications required to perform the
      * job. The use of this field is recommended
-     * as an alternative to using the more general
-     * [description][google.cloud.talent.v4beta1.Job.description] field.
+     * as an alternative to using the more general [description][google.cloud.talent.v4beta1.Job.description] field.
      * This field accepts and sanitizes HTML input, and also accepts
      * bold, italic, ordered list, and unordered list markup tags.
      * The maximum number of allowed characters is 10,000.
@@ -1208,8 +1135,8 @@ class Job extends \Google\Protobuf\Internal\Message
 
     /**
      * A description of job responsibilities. The use of this field is
-     * recommended as an alternative to using the more general
-     * [description][google.cloud.talent.v4beta1.Job.description] field.
+     * recommended as an alternative to using the more general [description][google.cloud.talent.v4beta1.Job.description]
+     * field.
      * This field accepts and sanitizes HTML input, and also accepts
      * bold, italic, ordered list, and unordered list markup tags.
      * The maximum number of allowed characters is 10,000.
@@ -1224,8 +1151,8 @@ class Job extends \Google\Protobuf\Internal\Message
 
     /**
      * A description of job responsibilities. The use of this field is
-     * recommended as an alternative to using the more general
-     * [description][google.cloud.talent.v4beta1.Job.description] field.
+     * recommended as an alternative to using the more general [description][google.cloud.talent.v4beta1.Job.description]
+     * field.
      * This field accepts and sanitizes HTML input, and also accepts
      * bold, italic, ordered list, and unordered list markup tags.
      * The maximum number of allowed characters is 10,000.
@@ -1243,16 +1170,13 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The job [PostingRegion][google.cloud.talent.v4beta1.PostingRegion] (for
-     * example, state, country) throughout which the job is available. If this
-     * field is set, a
-     * [LocationFilter][google.cloud.talent.v4beta1.LocationFilter] in a search
-     * query within the job region finds this job posting if an exact location
-     * match isn't specified. If this field is set to
-     * [PostingRegion.NATION][google.cloud.talent.v4beta1.PostingRegion.NATION] or
-     * [PostingRegion.ADMINISTRATIVE_AREA][google.cloud.talent.v4beta1.PostingRegion.ADMINISTRATIVE_AREA],
-     * setting job [Job.addresses][google.cloud.talent.v4beta1.Job.addresses] to
-     * the same location level as this field is strongly recommended.
+     * The job [PostingRegion][google.cloud.talent.v4beta1.PostingRegion] (for example, state, country) throughout
+     * which the job is available. If this field is set, a [LocationFilter][google.cloud.talent.v4beta1.LocationFilter]
+     * in a search query within the job region finds this job posting if an
+     * exact location match isn't specified. If this field is set to
+     * [PostingRegion.NATION][google.cloud.talent.v4beta1.PostingRegion.NATION] or [PostingRegion.ADMINISTRATIVE_AREA][google.cloud.talent.v4beta1.PostingRegion.ADMINISTRATIVE_AREA],
+     * setting job [Job.addresses][google.cloud.talent.v4beta1.Job.addresses] to the same location level as this field
+     * is strongly recommended.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.PostingRegion posting_region = 20;</code>
      * @return int
@@ -1263,16 +1187,13 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The job [PostingRegion][google.cloud.talent.v4beta1.PostingRegion] (for
-     * example, state, country) throughout which the job is available. If this
-     * field is set, a
-     * [LocationFilter][google.cloud.talent.v4beta1.LocationFilter] in a search
-     * query within the job region finds this job posting if an exact location
-     * match isn't specified. If this field is set to
-     * [PostingRegion.NATION][google.cloud.talent.v4beta1.PostingRegion.NATION] or
-     * [PostingRegion.ADMINISTRATIVE_AREA][google.cloud.talent.v4beta1.PostingRegion.ADMINISTRATIVE_AREA],
-     * setting job [Job.addresses][google.cloud.talent.v4beta1.Job.addresses] to
-     * the same location level as this field is strongly recommended.
+     * The job [PostingRegion][google.cloud.talent.v4beta1.PostingRegion] (for example, state, country) throughout
+     * which the job is available. If this field is set, a [LocationFilter][google.cloud.talent.v4beta1.LocationFilter]
+     * in a search query within the job region finds this job posting if an
+     * exact location match isn't specified. If this field is set to
+     * [PostingRegion.NATION][google.cloud.talent.v4beta1.PostingRegion.NATION] or [PostingRegion.ADMINISTRATIVE_AREA][google.cloud.talent.v4beta1.PostingRegion.ADMINISTRATIVE_AREA],
+     * setting job [Job.addresses][google.cloud.talent.v4beta1.Job.addresses] to the same location level as this field
+     * is strongly recommended.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.PostingRegion posting_region = 20;</code>
      * @param int $var
@@ -1289,9 +1210,7 @@ class Job extends \Google\Protobuf\Internal\Message
     /**
      * Deprecated. The job is only visible to the owner.
      * The visibility of the job.
-     * Defaults to
-     * [Visibility.ACCOUNT_ONLY][google.cloud.talent.v4beta1.Visibility.ACCOUNT_ONLY]
-     * if not specified.
+     * Defaults to [Visibility.ACCOUNT_ONLY][google.cloud.talent.v4beta1.Visibility.ACCOUNT_ONLY] if not specified.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Visibility visibility = 21 [deprecated = true];</code>
      * @return int
@@ -1304,9 +1223,7 @@ class Job extends \Google\Protobuf\Internal\Message
     /**
      * Deprecated. The job is only visible to the owner.
      * The visibility of the job.
-     * Defaults to
-     * [Visibility.ACCOUNT_ONLY][google.cloud.talent.v4beta1.Visibility.ACCOUNT_ONLY]
-     * if not specified.
+     * Defaults to [Visibility.ACCOUNT_ONLY][google.cloud.talent.v4beta1.Visibility.ACCOUNT_ONLY] if not specified.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Visibility visibility = 21 [deprecated = true];</code>
      * @param int $var
@@ -1410,18 +1327,13 @@ class Job extends \Google\Protobuf\Internal\Message
      * Strongly recommended for the best service experience.
      * The expiration timestamp of the job. After this timestamp, the
      * job is marked as expired, and it no longer appears in search results. The
-     * expired job can't be listed by the
-     * [ListJobs][google.cloud.talent.v4beta1.JobService.ListJobs] API, but it can
-     * be retrieved with the
-     * [GetJob][google.cloud.talent.v4beta1.JobService.GetJob] API or updated with
-     * the [UpdateJob][google.cloud.talent.v4beta1.JobService.UpdateJob] API or
-     * deleted with the
-     * [DeleteJob][google.cloud.talent.v4beta1.JobService.DeleteJob] API. An
-     * expired job can be updated and opened again by using a future expiration
-     * timestamp. Updating an expired job fails if there is another existing open
-     * job with same [company][google.cloud.talent.v4beta1.Job.company],
-     * [language_code][google.cloud.talent.v4beta1.Job.language_code] and
-     * [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id].
+     * expired job can't be listed by the [ListJobs][google.cloud.talent.v4beta1.JobService.ListJobs] API,
+     * but it can be retrieved with the [GetJob][google.cloud.talent.v4beta1.JobService.GetJob] API or
+     * updated with the [UpdateJob][google.cloud.talent.v4beta1.JobService.UpdateJob] API or deleted with
+     * the [DeleteJob][google.cloud.talent.v4beta1.JobService.DeleteJob] API. An expired job can
+     * be updated and opened again by using a future expiration timestamp.
+     * Updating an expired job fails if there is another existing open job with
+     * same [company][google.cloud.talent.v4beta1.Job.company], [language_code][google.cloud.talent.v4beta1.Job.language_code] and [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id].
      * The expired jobs are retained in our system for 90 days. However, the
      * overall expired job count cannot exceed 3 times the maximum number of
      * open jobs over previous 7 days. If this threshold is exceeded,
@@ -1432,25 +1344,21 @@ class Job extends \Google\Protobuf\Internal\Message
      * If the timestamp is before the instant request is made, the job
      * is treated as expired immediately on creation. This kind of job can
      * not be updated. And when creating a job with past timestamp, the
-     * [posting_publish_time][google.cloud.talent.v4beta1.Job.posting_publish_time]
-     * must be set before
-     * [posting_expire_time][google.cloud.talent.v4beta1.Job.posting_expire_time].
-     * The purpose of this feature is to allow other objects, such as
-     * [Application][google.cloud.talent.v4beta1.Application], to refer a job that
-     * didn't exist in the system prior to becoming expired. If you want to modify
-     * a job that was expired on creation, delete it and create a new one.
+     * [posting_publish_time][google.cloud.talent.v4beta1.Job.posting_publish_time] must be set before
+     * [posting_expire_time][google.cloud.talent.v4beta1.Job.posting_expire_time]. The purpose of this feature is
+     * to allow other objects, such as [Application][google.cloud.talent.v4beta1.Application], to refer a job
+     * that didn't exist in the system prior to becoming expired. If you
+     * want to modify a job that was expired on creation,
+     * delete it and create a new one.
      * If this value isn't provided at the time of job creation or is invalid,
      * the job posting expires after 30 days from the job's creation time. For
      * example, if the job was created on 2017/01/01 13:00AM UTC with an
      * unspecified expiration date, the job expires after 2017/01/31 13:00AM UTC.
      * If this value isn't provided on job update, it depends on the field masks
-     * set by
-     * [UpdateJobRequest.update_mask][google.cloud.talent.v4beta1.UpdateJobRequest.update_mask].
-     * If the field masks include
-     * [job_end_time][google.cloud.talent.v4beta1.Job.job_end_time], or the masks
-     * are empty meaning that every field is updated, the job posting expires
-     * after 30 days from the job's last update time. Otherwise the expiration
-     * date isn't updated.
+     * set by [UpdateJobRequest.update_mask][google.cloud.talent.v4beta1.UpdateJobRequest.update_mask]. If the field masks include
+     * [job_end_time][google.cloud.talent.v4beta1.Job.job_end_time], or the masks are empty meaning that every field is
+     * updated, the job posting expires after 30 days from the job's last
+     * update time. Otherwise the expiration date isn't updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp posting_expire_time = 25;</code>
      * @return \Google\Protobuf\Timestamp
@@ -1464,18 +1372,13 @@ class Job extends \Google\Protobuf\Internal\Message
      * Strongly recommended for the best service experience.
      * The expiration timestamp of the job. After this timestamp, the
      * job is marked as expired, and it no longer appears in search results. The
-     * expired job can't be listed by the
-     * [ListJobs][google.cloud.talent.v4beta1.JobService.ListJobs] API, but it can
-     * be retrieved with the
-     * [GetJob][google.cloud.talent.v4beta1.JobService.GetJob] API or updated with
-     * the [UpdateJob][google.cloud.talent.v4beta1.JobService.UpdateJob] API or
-     * deleted with the
-     * [DeleteJob][google.cloud.talent.v4beta1.JobService.DeleteJob] API. An
-     * expired job can be updated and opened again by using a future expiration
-     * timestamp. Updating an expired job fails if there is another existing open
-     * job with same [company][google.cloud.talent.v4beta1.Job.company],
-     * [language_code][google.cloud.talent.v4beta1.Job.language_code] and
-     * [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id].
+     * expired job can't be listed by the [ListJobs][google.cloud.talent.v4beta1.JobService.ListJobs] API,
+     * but it can be retrieved with the [GetJob][google.cloud.talent.v4beta1.JobService.GetJob] API or
+     * updated with the [UpdateJob][google.cloud.talent.v4beta1.JobService.UpdateJob] API or deleted with
+     * the [DeleteJob][google.cloud.talent.v4beta1.JobService.DeleteJob] API. An expired job can
+     * be updated and opened again by using a future expiration timestamp.
+     * Updating an expired job fails if there is another existing open job with
+     * same [company][google.cloud.talent.v4beta1.Job.company], [language_code][google.cloud.talent.v4beta1.Job.language_code] and [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id].
      * The expired jobs are retained in our system for 90 days. However, the
      * overall expired job count cannot exceed 3 times the maximum number of
      * open jobs over previous 7 days. If this threshold is exceeded,
@@ -1486,25 +1389,21 @@ class Job extends \Google\Protobuf\Internal\Message
      * If the timestamp is before the instant request is made, the job
      * is treated as expired immediately on creation. This kind of job can
      * not be updated. And when creating a job with past timestamp, the
-     * [posting_publish_time][google.cloud.talent.v4beta1.Job.posting_publish_time]
-     * must be set before
-     * [posting_expire_time][google.cloud.talent.v4beta1.Job.posting_expire_time].
-     * The purpose of this feature is to allow other objects, such as
-     * [Application][google.cloud.talent.v4beta1.Application], to refer a job that
-     * didn't exist in the system prior to becoming expired. If you want to modify
-     * a job that was expired on creation, delete it and create a new one.
+     * [posting_publish_time][google.cloud.talent.v4beta1.Job.posting_publish_time] must be set before
+     * [posting_expire_time][google.cloud.talent.v4beta1.Job.posting_expire_time]. The purpose of this feature is
+     * to allow other objects, such as [Application][google.cloud.talent.v4beta1.Application], to refer a job
+     * that didn't exist in the system prior to becoming expired. If you
+     * want to modify a job that was expired on creation,
+     * delete it and create a new one.
      * If this value isn't provided at the time of job creation or is invalid,
      * the job posting expires after 30 days from the job's creation time. For
      * example, if the job was created on 2017/01/01 13:00AM UTC with an
      * unspecified expiration date, the job expires after 2017/01/31 13:00AM UTC.
      * If this value isn't provided on job update, it depends on the field masks
-     * set by
-     * [UpdateJobRequest.update_mask][google.cloud.talent.v4beta1.UpdateJobRequest.update_mask].
-     * If the field masks include
-     * [job_end_time][google.cloud.talent.v4beta1.Job.job_end_time], or the masks
-     * are empty meaning that every field is updated, the job posting expires
-     * after 30 days from the job's last update time. Otherwise the expiration
-     * date isn't updated.
+     * set by [UpdateJobRequest.update_mask][google.cloud.talent.v4beta1.UpdateJobRequest.update_mask]. If the field masks include
+     * [job_end_time][google.cloud.talent.v4beta1.Job.job_end_time], or the masks are empty meaning that every field is
+     * updated, the job posting expires after 30 days from the job's last
+     * update time. Otherwise the expiration date isn't updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp posting_expire_time = 25;</code>
      * @param \Google\Protobuf\Timestamp $var

@@ -1,19 +1,19 @@
 {
-  "updateTime": "2019-12-11T11:02:32.021674Z",
+  "updateTime": "2020-01-17T11:05:07.056916Z",
   "sources": [
     {
       "generator": {
         "name": "artman",
-        "version": "0.42.1",
-        "dockerImage": "googleapis/artman@sha256:c773192618c608a7a0415dd95282f841f8e6bcdef7dd760a988c93b77a64bd57"
+        "version": "0.44.1",
+        "dockerImage": "googleapis/artman@sha256:5599b61e56a372d21b671969ee915fbca0f6c3a0daaeb898d01f8f685f1bbc8b"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "e47fdd266542386e5e7346697f90476e96dc7ee8",
-        "internalRef": "284822593"
+        "sha": "58e770d568a2b78168ddc19a874178fee8265a9d",
+        "internalRef": "290146169"
       }
     }
   ],
@@ -27,6 +27,845 @@
         "generator": "gapic",
         "config": "google/cloud/talent/artman_talent_v4beta1.yaml"
       }
+    }
+  ],
+  "newFiles": [
+    {
+      "path": ".gitattributes"
+    },
+    {
+      "path": ".github/pull_request_template.md"
+    },
+    {
+      "path": "CONTRIBUTING.md"
+    },
+    {
+      "path": "LICENSE"
+    },
+    {
+      "path": "README.md"
+    },
+    {
+      "path": "VERSION"
+    },
+    {
+      "path": "composer.json"
+    },
+    {
+      "path": "metadata/V4Beta1/Application.php"
+    },
+    {
+      "path": "metadata/V4Beta1/ApplicationService.php"
+    },
+    {
+      "path": "metadata/V4Beta1/Batch.php"
+    },
+    {
+      "path": "metadata/V4Beta1/Common.php"
+    },
+    {
+      "path": "metadata/V4Beta1/Company.php"
+    },
+    {
+      "path": "metadata/V4Beta1/CompanyService.php"
+    },
+    {
+      "path": "metadata/V4Beta1/CompletionService.php"
+    },
+    {
+      "path": "metadata/V4Beta1/Event.php"
+    },
+    {
+      "path": "metadata/V4Beta1/EventService.php"
+    },
+    {
+      "path": "metadata/V4Beta1/Filters.php"
+    },
+    {
+      "path": "metadata/V4Beta1/Histogram.php"
+    },
+    {
+      "path": "metadata/V4Beta1/Job.php"
+    },
+    {
+      "path": "metadata/V4Beta1/JobService.php"
+    },
+    {
+      "path": "metadata/V4Beta1/Profile.php"
+    },
+    {
+      "path": "metadata/V4Beta1/ProfileService.php"
+    },
+    {
+      "path": "metadata/V4Beta1/ResumeService.php"
+    },
+    {
+      "path": "metadata/V4Beta1/Tenant.php"
+    },
+    {
+      "path": "metadata/V4Beta1/TenantService.php"
+    },
+    {
+      "path": "phpunit.xml.dist"
+    },
+    {
+      "path": "src/V4beta1/Activity.php"
+    },
+    {
+      "path": "src/V4beta1/AdditionalContactInfo.php"
+    },
+    {
+      "path": "src/V4beta1/Address.php"
+    },
+    {
+      "path": "src/V4beta1/Application.php"
+    },
+    {
+      "path": "src/V4beta1/Application/ApplicationStage.php"
+    },
+    {
+      "path": "src/V4beta1/Application/ApplicationState.php"
+    },
+    {
+      "path": "src/V4beta1/ApplicationDateFilter.php"
+    },
+    {
+      "path": "src/V4beta1/ApplicationJobFilter.php"
+    },
+    {
+      "path": "src/V4beta1/ApplicationLastStageFilter.php"
+    },
+    {
+      "path": "src/V4beta1/ApplicationOutcomeNotesFilter.php"
+    },
+    {
+      "path": "src/V4beta1/ApplicationOutcomeReasonFilter.php"
+    },
+    {
+      "path": "src/V4beta1/ApplicationServiceClient.php"
+    },
+    {
+      "path": "src/V4beta1/ApplicationServiceGrpcClient.php"
+    },
+    {
+      "path": "src/V4beta1/ApplicationStatusFilter.php"
+    },
+    {
+      "path": "src/V4beta1/Application_ApplicationStage.php"
+    },
+    {
+      "path": "src/V4beta1/Application_ApplicationState.php"
+    },
+    {
+      "path": "src/V4beta1/AvailabilityFilter.php"
+    },
+    {
+      "path": "src/V4beta1/AvailabilitySignal.php"
+    },
+    {
+      "path": "src/V4beta1/AvailabilitySignalType.php"
+    },
+    {
+      "path": "src/V4beta1/BatchCreateJobsRequest.php"
+    },
+    {
+      "path": "src/V4beta1/BatchDeleteJobsRequest.php"
+    },
+    {
+      "path": "src/V4beta1/BatchOperationMetadata.php"
+    },
+    {
+      "path": "src/V4beta1/BatchOperationMetadata/State.php"
+    },
+    {
+      "path": "src/V4beta1/BatchOperationMetadata_State.php"
+    },
+    {
+      "path": "src/V4beta1/BatchUpdateJobsRequest.php"
+    },
+    {
+      "path": "src/V4beta1/CandidateAvailabilityFilter.php"
+    },
+    {
+      "path": "src/V4beta1/Certification.php"
+    },
+    {
+      "path": "src/V4beta1/ClientEvent.php"
+    },
+    {
+      "path": "src/V4beta1/CommuteFilter.php"
+    },
+    {
+      "path": "src/V4beta1/CommuteFilter/CommuteMethod.php"
+    },
+    {
+      "path": "src/V4beta1/CommuteFilter/RoadTraffic.php"
+    },
+    {
+      "path": "src/V4beta1/CommuteFilter_CommuteMethod.php"
+    },
+    {
+      "path": "src/V4beta1/CommuteFilter_RoadTraffic.php"
+    },
+    {
+      "path": "src/V4beta1/CommuteMethod.php"
+    },
+    {
+      "path": "src/V4beta1/Company.php"
+    },
+    {
+      "path": "src/V4beta1/Company/DataLearningType.php"
+    },
+    {
+      "path": "src/V4beta1/Company/DerivedInfo.php"
+    },
+    {
+      "path": "src/V4beta1/CompanyServiceClient.php"
+    },
+    {
+      "path": "src/V4beta1/CompanyServiceGrpcClient.php"
+    },
+    {
+      "path": "src/V4beta1/CompanySize.php"
+    },
+    {
+      "path": "src/V4beta1/Company_DataLearningType.php"
+    },
+    {
+      "path": "src/V4beta1/Company_DerivedInfo.php"
+    },
+    {
+      "path": "src/V4beta1/CompensationFilter.php"
+    },
+    {
+      "path": "src/V4beta1/CompensationFilter/FilterType.php"
+    },
+    {
+      "path": "src/V4beta1/CompensationFilter_FilterType.php"
+    },
+    {
+      "path": "src/V4beta1/CompensationInfo.php"
+    },
+    {
+      "path": "src/V4beta1/CompensationInfo/CompensationEntry.php"
+    },
+    {
+      "path": "src/V4beta1/CompensationInfo/CompensationRange.php"
+    },
+    {
+      "path": "src/V4beta1/CompensationInfo/CompensationType.php"
+    },
+    {
+      "path": "src/V4beta1/CompensationInfo/CompensationUnit.php"
+    },
+    {
+      "path": "src/V4beta1/CompensationInfo_CompensationEntry.php"
+    },
+    {
+      "path": "src/V4beta1/CompensationInfo_CompensationRange.php"
+    },
+    {
+      "path": "src/V4beta1/CompensationInfo_CompensationType.php"
+    },
+    {
+      "path": "src/V4beta1/CompensationInfo_CompensationUnit.php"
+    },
+    {
+      "path": "src/V4beta1/CompleteQueryRequest.php"
+    },
+    {
+      "path": "src/V4beta1/CompleteQueryRequest/CompletionScope.php"
+    },
+    {
+      "path": "src/V4beta1/CompleteQueryRequest/CompletionType.php"
+    },
+    {
+      "path": "src/V4beta1/CompleteQueryRequest_CompletionScope.php"
+    },
+    {
+      "path": "src/V4beta1/CompleteQueryRequest_CompletionType.php"
+    },
+    {
+      "path": "src/V4beta1/CompleteQueryResponse.php"
+    },
+    {
+      "path": "src/V4beta1/CompleteQueryResponse/CompletionResult.php"
+    },
+    {
+      "path": "src/V4beta1/CompleteQueryResponse_CompletionResult.php"
+    },
+    {
+      "path": "src/V4beta1/CompletionClient.php"
+    },
+    {
+      "path": "src/V4beta1/CompletionGrpcClient.php"
+    },
+    {
+      "path": "src/V4beta1/ContactInfoUsage.php"
+    },
+    {
+      "path": "src/V4beta1/CreateApplicationRequest.php"
+    },
+    {
+      "path": "src/V4beta1/CreateClientEventRequest.php"
+    },
+    {
+      "path": "src/V4beta1/CreateCompanyRequest.php"
+    },
+    {
+      "path": "src/V4beta1/CreateJobRequest.php"
+    },
+    {
+      "path": "src/V4beta1/CreateProfileRequest.php"
+    },
+    {
+      "path": "src/V4beta1/CreateTenantRequest.php"
+    },
+    {
+      "path": "src/V4beta1/CustomAttribute.php"
+    },
+    {
+      "path": "src/V4beta1/Degree.php"
+    },
+    {
+      "path": "src/V4beta1/DegreeType.php"
+    },
+    {
+      "path": "src/V4beta1/DeleteApplicationRequest.php"
+    },
+    {
+      "path": "src/V4beta1/DeleteCompanyRequest.php"
+    },
+    {
+      "path": "src/V4beta1/DeleteJobRequest.php"
+    },
+    {
+      "path": "src/V4beta1/DeleteProfileRequest.php"
+    },
+    {
+      "path": "src/V4beta1/DeleteTenantRequest.php"
+    },
+    {
+      "path": "src/V4beta1/DeviceInfo.php"
+    },
+    {
+      "path": "src/V4beta1/DeviceInfo/DeviceType.php"
+    },
+    {
+      "path": "src/V4beta1/DeviceInfo_DeviceType.php"
+    },
+    {
+      "path": "src/V4beta1/EducationFilter.php"
+    },
+    {
+      "path": "src/V4beta1/EducationRecord.php"
+    },
+    {
+      "path": "src/V4beta1/Email.php"
+    },
+    {
+      "path": "src/V4beta1/EmployerFilter.php"
+    },
+    {
+      "path": "src/V4beta1/EmployerFilter/EmployerFilterMode.php"
+    },
+    {
+      "path": "src/V4beta1/EmployerFilter_EmployerFilterMode.php"
+    },
+    {
+      "path": "src/V4beta1/EmploymentRecord.php"
+    },
+    {
+      "path": "src/V4beta1/EmploymentType.php"
+    },
+    {
+      "path": "src/V4beta1/EventServiceClient.php"
+    },
+    {
+      "path": "src/V4beta1/EventServiceGrpcClient.php"
+    },
+    {
+      "path": "src/V4beta1/Gapic/ApplicationServiceGapicClient.php"
+    },
+    {
+      "path": "src/V4beta1/Gapic/CompanyServiceGapicClient.php"
+    },
+    {
+      "path": "src/V4beta1/Gapic/CompletionGapicClient.php"
+    },
+    {
+      "path": "src/V4beta1/Gapic/EventServiceGapicClient.php"
+    },
+    {
+      "path": "src/V4beta1/Gapic/JobServiceGapicClient.php"
+    },
+    {
+      "path": "src/V4beta1/Gapic/ProfileServiceGapicClient.php"
+    },
+    {
+      "path": "src/V4beta1/Gapic/ResumeServiceGapicClient.php"
+    },
+    {
+      "path": "src/V4beta1/Gapic/TenantServiceGapicClient.php"
+    },
+    {
+      "path": "src/V4beta1/GetApplicationRequest.php"
+    },
+    {
+      "path": "src/V4beta1/GetCompanyRequest.php"
+    },
+    {
+      "path": "src/V4beta1/GetJobRequest.php"
+    },
+    {
+      "path": "src/V4beta1/GetProfileRequest.php"
+    },
+    {
+      "path": "src/V4beta1/GetTenantRequest.php"
+    },
+    {
+      "path": "src/V4beta1/HistogramQuery.php"
+    },
+    {
+      "path": "src/V4beta1/HistogramQueryResult.php"
+    },
+    {
+      "path": "src/V4beta1/HtmlSanitization.php"
+    },
+    {
+      "path": "src/V4beta1/Interview.php"
+    },
+    {
+      "path": "src/V4beta1/Job.php"
+    },
+    {
+      "path": "src/V4beta1/Job/ApplicationInfo.php"
+    },
+    {
+      "path": "src/V4beta1/Job/DerivedInfo.php"
+    },
+    {
+      "path": "src/V4beta1/Job/ProcessingOptions.php"
+    },
+    {
+      "path": "src/V4beta1/JobApplication.php"
+    },
+    {
+      "path": "src/V4beta1/JobApplication/ApplicationStatus.php"
+    },
+    {
+      "path": "src/V4beta1/JobApplication_ApplicationStatus.php"
+    },
+    {
+      "path": "src/V4beta1/JobBenefit.php"
+    },
+    {
+      "path": "src/V4beta1/JobCategory.php"
+    },
+    {
+      "path": "src/V4beta1/JobEvent.php"
+    },
+    {
+      "path": "src/V4beta1/JobEvent/JobEventType.php"
+    },
+    {
+      "path": "src/V4beta1/JobEvent_JobEventType.php"
+    },
+    {
+      "path": "src/V4beta1/JobLevel.php"
+    },
+    {
+      "path": "src/V4beta1/JobOperationResult.php"
+    },
+    {
+      "path": "src/V4beta1/JobOperationResult/JobResult.php"
+    },
+    {
+      "path": "src/V4beta1/JobOperationResult_JobResult.php"
+    },
+    {
+      "path": "src/V4beta1/JobQuery.php"
+    },
+    {
+      "path": "src/V4beta1/JobServiceClient.php"
+    },
+    {
+      "path": "src/V4beta1/JobServiceGrpcClient.php"
+    },
+    {
+      "path": "src/V4beta1/JobTitleFilter.php"
+    },
+    {
+      "path": "src/V4beta1/JobView.php"
+    },
+    {
+      "path": "src/V4beta1/Job_ApplicationInfo.php"
+    },
+    {
+      "path": "src/V4beta1/Job_DerivedInfo.php"
+    },
+    {
+      "path": "src/V4beta1/Job_ProcessingOptions.php"
+    },
+    {
+      "path": "src/V4beta1/ListApplicationsRequest.php"
+    },
+    {
+      "path": "src/V4beta1/ListApplicationsResponse.php"
+    },
+    {
+      "path": "src/V4beta1/ListCompaniesRequest.php"
+    },
+    {
+      "path": "src/V4beta1/ListCompaniesResponse.php"
+    },
+    {
+      "path": "src/V4beta1/ListJobsRequest.php"
+    },
+    {
+      "path": "src/V4beta1/ListJobsResponse.php"
+    },
+    {
+      "path": "src/V4beta1/ListProfilesRequest.php"
+    },
+    {
+      "path": "src/V4beta1/ListProfilesResponse.php"
+    },
+    {
+      "path": "src/V4beta1/ListTenantsRequest.php"
+    },
+    {
+      "path": "src/V4beta1/ListTenantsResponse.php"
+    },
+    {
+      "path": "src/V4beta1/Location.php"
+    },
+    {
+      "path": "src/V4beta1/Location/LocationType.php"
+    },
+    {
+      "path": "src/V4beta1/LocationFilter.php"
+    },
+    {
+      "path": "src/V4beta1/LocationFilter/TelecommutePreference.php"
+    },
+    {
+      "path": "src/V4beta1/LocationFilter_TelecommutePreference.php"
+    },
+    {
+      "path": "src/V4beta1/Location_LocationType.php"
+    },
+    {
+      "path": "src/V4beta1/Outcome.php"
+    },
+    {
+      "path": "src/V4beta1/ParseResumeRequest.php"
+    },
+    {
+      "path": "src/V4beta1/ParseResumeResponse.php"
+    },
+    {
+      "path": "src/V4beta1/Patent.php"
+    },
+    {
+      "path": "src/V4beta1/PersonName.php"
+    },
+    {
+      "path": "src/V4beta1/PersonName/PersonStructuredName.php"
+    },
+    {
+      "path": "src/V4beta1/PersonNameFilter.php"
+    },
+    {
+      "path": "src/V4beta1/PersonName_PersonStructuredName.php"
+    },
+    {
+      "path": "src/V4beta1/PersonalUri.php"
+    },
+    {
+      "path": "src/V4beta1/Phone.php"
+    },
+    {
+      "path": "src/V4beta1/Phone/PhoneType.php"
+    },
+    {
+      "path": "src/V4beta1/Phone_PhoneType.php"
+    },
+    {
+      "path": "src/V4beta1/PostingRegion.php"
+    },
+    {
+      "path": "src/V4beta1/Profile.php"
+    },
+    {
+      "path": "src/V4beta1/ProfileEvent.php"
+    },
+    {
+      "path": "src/V4beta1/ProfileEvent/ProfileEventType.php"
+    },
+    {
+      "path": "src/V4beta1/ProfileEvent_ProfileEventType.php"
+    },
+    {
+      "path": "src/V4beta1/ProfileQuery.php"
+    },
+    {
+      "path": "src/V4beta1/ProfileServiceClient.php"
+    },
+    {
+      "path": "src/V4beta1/ProfileServiceGrpcClient.php"
+    },
+    {
+      "path": "src/V4beta1/Publication.php"
+    },
+    {
+      "path": "src/V4beta1/README.md"
+    },
+    {
+      "path": "src/V4beta1/Rating.php"
+    },
+    {
+      "path": "src/V4beta1/RecruitingNote.php"
+    },
+    {
+      "path": "src/V4beta1/RequestMetadata.php"
+    },
+    {
+      "path": "src/V4beta1/ResponseMetadata.php"
+    },
+    {
+      "path": "src/V4beta1/Resume.php"
+    },
+    {
+      "path": "src/V4beta1/Resume/ResumeType.php"
+    },
+    {
+      "path": "src/V4beta1/ResumeServiceClient.php"
+    },
+    {
+      "path": "src/V4beta1/ResumeServiceGrpcClient.php"
+    },
+    {
+      "path": "src/V4beta1/Resume_ResumeType.php"
+    },
+    {
+      "path": "src/V4beta1/SearchJobsRequest.php"
+    },
+    {
+      "path": "src/V4beta1/SearchJobsRequest/CustomRankingInfo.php"
+    },
+    {
+      "path": "src/V4beta1/SearchJobsRequest/CustomRankingInfo/ImportanceLevel.php"
+    },
+    {
+      "path": "src/V4beta1/SearchJobsRequest/DiversificationLevel.php"
+    },
+    {
+      "path": "src/V4beta1/SearchJobsRequest/SearchMode.php"
+    },
+    {
+      "path": "src/V4beta1/SearchJobsRequest_CustomRankingInfo.php"
+    },
+    {
+      "path": "src/V4beta1/SearchJobsRequest_CustomRankingInfo_ImportanceLevel.php"
+    },
+    {
+      "path": "src/V4beta1/SearchJobsRequest_DiversificationLevel.php"
+    },
+    {
+      "path": "src/V4beta1/SearchJobsRequest_SearchMode.php"
+    },
+    {
+      "path": "src/V4beta1/SearchJobsResponse.php"
+    },
+    {
+      "path": "src/V4beta1/SearchJobsResponse/CommuteInfo.php"
+    },
+    {
+      "path": "src/V4beta1/SearchJobsResponse/MatchingJob.php"
+    },
+    {
+      "path": "src/V4beta1/SearchJobsResponse_CommuteInfo.php"
+    },
+    {
+      "path": "src/V4beta1/SearchJobsResponse_MatchingJob.php"
+    },
+    {
+      "path": "src/V4beta1/SearchProfilesRequest.php"
+    },
+    {
+      "path": "src/V4beta1/SearchProfilesResponse.php"
+    },
+    {
+      "path": "src/V4beta1/Skill.php"
+    },
+    {
+      "path": "src/V4beta1/Skill/SkillProficiencyLevel.php"
+    },
+    {
+      "path": "src/V4beta1/SkillFilter.php"
+    },
+    {
+      "path": "src/V4beta1/SkillProficiencyLevel.php"
+    },
+    {
+      "path": "src/V4beta1/Skill_SkillProficiencyLevel.php"
+    },
+    {
+      "path": "src/V4beta1/SpellingCorrection.php"
+    },
+    {
+      "path": "src/V4beta1/SummarizedProfile.php"
+    },
+    {
+      "path": "src/V4beta1/Tenant.php"
+    },
+    {
+      "path": "src/V4beta1/Tenant/DataUsageType.php"
+    },
+    {
+      "path": "src/V4beta1/TenantServiceClient.php"
+    },
+    {
+      "path": "src/V4beta1/TenantServiceGrpcClient.php"
+    },
+    {
+      "path": "src/V4beta1/Tenant_DataUsageType.php"
+    },
+    {
+      "path": "src/V4beta1/TimeFilter.php"
+    },
+    {
+      "path": "src/V4beta1/TimeFilter/TimeField.php"
+    },
+    {
+      "path": "src/V4beta1/TimeFilter_TimeField.php"
+    },
+    {
+      "path": "src/V4beta1/TimestampRange.php"
+    },
+    {
+      "path": "src/V4beta1/UpdateApplicationRequest.php"
+    },
+    {
+      "path": "src/V4beta1/UpdateCompanyRequest.php"
+    },
+    {
+      "path": "src/V4beta1/UpdateJobRequest.php"
+    },
+    {
+      "path": "src/V4beta1/UpdateProfileRequest.php"
+    },
+    {
+      "path": "src/V4beta1/UpdateTenantRequest.php"
+    },
+    {
+      "path": "src/V4beta1/Visibility.php"
+    },
+    {
+      "path": "src/V4beta1/WorkExperienceFilter.php"
+    },
+    {
+      "path": "src/V4beta1/resources/application_service_client_config.json"
+    },
+    {
+      "path": "src/V4beta1/resources/application_service_descriptor_config.php"
+    },
+    {
+      "path": "src/V4beta1/resources/application_service_rest_client_config.php"
+    },
+    {
+      "path": "src/V4beta1/resources/company_service_client_config.json"
+    },
+    {
+      "path": "src/V4beta1/resources/company_service_descriptor_config.php"
+    },
+    {
+      "path": "src/V4beta1/resources/company_service_rest_client_config.php"
+    },
+    {
+      "path": "src/V4beta1/resources/completion_client_config.json"
+    },
+    {
+      "path": "src/V4beta1/resources/completion_descriptor_config.php"
+    },
+    {
+      "path": "src/V4beta1/resources/completion_rest_client_config.php"
+    },
+    {
+      "path": "src/V4beta1/resources/event_service_client_config.json"
+    },
+    {
+      "path": "src/V4beta1/resources/event_service_descriptor_config.php"
+    },
+    {
+      "path": "src/V4beta1/resources/event_service_rest_client_config.php"
+    },
+    {
+      "path": "src/V4beta1/resources/job_service_client_config.json"
+    },
+    {
+      "path": "src/V4beta1/resources/job_service_descriptor_config.php"
+    },
+    {
+      "path": "src/V4beta1/resources/job_service_rest_client_config.php"
+    },
+    {
+      "path": "src/V4beta1/resources/profile_service_client_config.json"
+    },
+    {
+      "path": "src/V4beta1/resources/profile_service_descriptor_config.php"
+    },
+    {
+      "path": "src/V4beta1/resources/profile_service_rest_client_config.php"
+    },
+    {
+      "path": "src/V4beta1/resources/resume_service_client_config.json"
+    },
+    {
+      "path": "src/V4beta1/resources/resume_service_descriptor_config.php"
+    },
+    {
+      "path": "src/V4beta1/resources/resume_service_rest_client_config.php"
+    },
+    {
+      "path": "src/V4beta1/resources/tenant_service_client_config.json"
+    },
+    {
+      "path": "src/V4beta1/resources/tenant_service_descriptor_config.php"
+    },
+    {
+      "path": "src/V4beta1/resources/tenant_service_rest_client_config.php"
+    },
+    {
+      "path": "synth.metadata"
+    },
+    {
+      "path": "synth.py"
+    },
+    {
+      "path": "tests/Unit/V4beta1/ApplicationServiceClientTest.php"
+    },
+    {
+      "path": "tests/Unit/V4beta1/CompanyServiceClientTest.php"
+    },
+    {
+      "path": "tests/Unit/V4beta1/CompletionClientTest.php"
+    },
+    {
+      "path": "tests/Unit/V4beta1/EventServiceClientTest.php"
+    },
+    {
+      "path": "tests/Unit/V4beta1/JobServiceClientTest.php"
+    },
+    {
+      "path": "tests/Unit/V4beta1/ProfileServiceClientTest.php"
+    },
+    {
+      "path": "tests/Unit/V4beta1/ResumeServiceClientTest.php"
+    },
+    {
+      "path": "tests/Unit/V4beta1/TenantServiceClientTest.php"
     }
   ]
 }

@@ -20,20 +20,20 @@ class CompletionResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string suggestion = 1;</code>
      */
-    private $suggestion = '';
+    protected $suggestion = '';
     /**
      * The completion topic.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType type = 2;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * The URI of the company image for
      * [COMPANY_NAME][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMPANY_NAME].
      *
      * Generated from protobuf field <code>string image_uri = 3;</code>
      */
-    private $image_uri = '';
+    protected $image_uri = '';
 
     /**
      * Constructor.

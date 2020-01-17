@@ -20,22 +20,22 @@ class ListTenantsRequest extends \Google\Protobuf\Internal\Message
      * The format is "projects/{project_id}", for example,
      * "projects/foo".
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The starting indicator from which to return results.
      *
      * Generated from protobuf field <code>string page_token = 2;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * The maximum number of tenants to be returned, at most 100.
      * Default is 100 if a non-positive number is provided.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
 
     /**
      * Constructor.
@@ -64,7 +64,7 @@ class ListTenantsRequest extends \Google\Protobuf\Internal\Message
      * The format is "projects/{project_id}", for example,
      * "projects/foo".
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -77,7 +77,7 @@ class ListTenantsRequest extends \Google\Protobuf\Internal\Message
      * The format is "projects/{project_id}", for example,
      * "projects/foo".
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

@@ -16,22 +16,20 @@ use Google\Protobuf\Internal\GPBUtil;
 class ApplicationOutcomeNotesFilter extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. User entered or selected outcome reason. The API does an exact
-     * match on the
-     * [Application.outcome_notes][google.cloud.talent.v4beta1.Application.outcome_notes]
-     * in profiles.
+     * Required. User entered or selected outcome reason. The API does an exact match on the
+     * [Application.outcome_notes][google.cloud.talent.v4beta1.Application.outcome_notes] in profiles.
      *
      * Generated from protobuf field <code>string outcome_notes = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $outcome_notes = '';
+    protected $outcome_notes = '';
     /**
      * If true, The API excludes all candidates with any
-     * [Application.outcome_notes][google.cloud.talent.v4beta1.Application.outcome_notes]
-     * matching the outcome reason specified in the filter.
+     * [Application.outcome_notes][google.cloud.talent.v4beta1.Application.outcome_notes] matching the outcome reason specified in
+     * the filter.
      *
      * Generated from protobuf field <code>bool negated = 2;</code>
      */
-    private $negated = false;
+    protected $negated = false;
 
     /**
      * Constructor.
@@ -40,14 +38,12 @@ class ApplicationOutcomeNotesFilter extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $outcome_notes
-     *           Required. User entered or selected outcome reason. The API does an exact
-     *           match on the
-     *           [Application.outcome_notes][google.cloud.talent.v4beta1.Application.outcome_notes]
-     *           in profiles.
+     *           Required. User entered or selected outcome reason. The API does an exact match on the
+     *           [Application.outcome_notes][google.cloud.talent.v4beta1.Application.outcome_notes] in profiles.
      *     @type bool $negated
      *           If true, The API excludes all candidates with any
-     *           [Application.outcome_notes][google.cloud.talent.v4beta1.Application.outcome_notes]
-     *           matching the outcome reason specified in the filter.
+     *           [Application.outcome_notes][google.cloud.talent.v4beta1.Application.outcome_notes] matching the outcome reason specified in
+     *           the filter.
      * }
      */
     public function __construct($data = NULL) {
@@ -56,10 +52,8 @@ class ApplicationOutcomeNotesFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. User entered or selected outcome reason. The API does an exact
-     * match on the
-     * [Application.outcome_notes][google.cloud.talent.v4beta1.Application.outcome_notes]
-     * in profiles.
+     * Required. User entered or selected outcome reason. The API does an exact match on the
+     * [Application.outcome_notes][google.cloud.talent.v4beta1.Application.outcome_notes] in profiles.
      *
      * Generated from protobuf field <code>string outcome_notes = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -70,10 +64,8 @@ class ApplicationOutcomeNotesFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. User entered or selected outcome reason. The API does an exact
-     * match on the
-     * [Application.outcome_notes][google.cloud.talent.v4beta1.Application.outcome_notes]
-     * in profiles.
+     * Required. User entered or selected outcome reason. The API does an exact match on the
+     * [Application.outcome_notes][google.cloud.talent.v4beta1.Application.outcome_notes] in profiles.
      *
      * Generated from protobuf field <code>string outcome_notes = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -89,8 +81,8 @@ class ApplicationOutcomeNotesFilter extends \Google\Protobuf\Internal\Message
 
     /**
      * If true, The API excludes all candidates with any
-     * [Application.outcome_notes][google.cloud.talent.v4beta1.Application.outcome_notes]
-     * matching the outcome reason specified in the filter.
+     * [Application.outcome_notes][google.cloud.talent.v4beta1.Application.outcome_notes] matching the outcome reason specified in
+     * the filter.
      *
      * Generated from protobuf field <code>bool negated = 2;</code>
      * @return bool
@@ -102,8 +94,8 @@ class ApplicationOutcomeNotesFilter extends \Google\Protobuf\Internal\Message
 
     /**
      * If true, The API excludes all candidates with any
-     * [Application.outcome_notes][google.cloud.talent.v4beta1.Application.outcome_notes]
-     * matching the outcome reason specified in the filter.
+     * [Application.outcome_notes][google.cloud.talent.v4beta1.Application.outcome_notes] matching the outcome reason specified in
+     * the filter.
      *
      * Generated from protobuf field <code>bool negated = 2;</code>
      * @param bool $var

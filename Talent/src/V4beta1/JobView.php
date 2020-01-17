@@ -8,9 +8,8 @@ use UnexpectedValueException;
 
 /**
  * An enum that specifies the job attributes that are returned in the
- * [MatchingJob.job][google.cloud.talent.v4beta1.SearchJobsResponse.MatchingJob.job]
- * or [ListJobsResponse.jobs][google.cloud.talent.v4beta1.ListJobsResponse.jobs]
- * fields.
+ * [MatchingJob.job][google.cloud.talent.v4beta1.SearchJobsResponse.MatchingJob.job] or
+ * [ListJobsResponse.jobs][google.cloud.talent.v4beta1.ListJobsResponse.jobs] fields.
  *
  * Protobuf type <code>google.cloud.talent.v4beta1.JobView</code>
  */
@@ -24,35 +23,24 @@ class JobView
     const JOB_VIEW_UNSPECIFIED = 0;
     /**
      * A ID only view of job, with following attributes:
-     * [Job.name][google.cloud.talent.v4beta1.Job.name],
-     * [Job.requisition_id][google.cloud.talent.v4beta1.Job.requisition_id],
-     * [Job.language_code][google.cloud.talent.v4beta1.Job.language_code].
+     * [Job.name][google.cloud.talent.v4beta1.Job.name], [Job.requisition_id][google.cloud.talent.v4beta1.Job.requisition_id], [Job.language_code][google.cloud.talent.v4beta1.Job.language_code].
      *
      * Generated from protobuf enum <code>JOB_VIEW_ID_ONLY = 1;</code>
      */
     const JOB_VIEW_ID_ONLY = 1;
     /**
      * A minimal view of the job, with the following attributes:
-     * [Job.name][google.cloud.talent.v4beta1.Job.name],
-     * [Job.requisition_id][google.cloud.talent.v4beta1.Job.requisition_id],
-     * [Job.title][google.cloud.talent.v4beta1.Job.title],
-     * [Job.company][google.cloud.talent.v4beta1.Job.company],
-     * [Job.DerivedInfo.locations][google.cloud.talent.v4beta1.Job.DerivedInfo.locations],
-     * [Job.language_code][google.cloud.talent.v4beta1.Job.language_code].
+     * [Job.name][google.cloud.talent.v4beta1.Job.name], [Job.requisition_id][google.cloud.talent.v4beta1.Job.requisition_id], [Job.title][google.cloud.talent.v4beta1.Job.title],
+     * [Job.company][google.cloud.talent.v4beta1.Job.company], [Job.DerivedInfo.locations][google.cloud.talent.v4beta1.Job.DerivedInfo.locations], [Job.language_code][google.cloud.talent.v4beta1.Job.language_code].
      *
      * Generated from protobuf enum <code>JOB_VIEW_MINIMAL = 2;</code>
      */
     const JOB_VIEW_MINIMAL = 2;
     /**
      * A small view of the job, with the following attributes in the search
-     * results: [Job.name][google.cloud.talent.v4beta1.Job.name],
-     * [Job.requisition_id][google.cloud.talent.v4beta1.Job.requisition_id],
-     * [Job.title][google.cloud.talent.v4beta1.Job.title],
-     * [Job.company][google.cloud.talent.v4beta1.Job.company],
-     * [Job.DerivedInfo.locations][google.cloud.talent.v4beta1.Job.DerivedInfo.locations],
-     * [Job.visibility][google.cloud.talent.v4beta1.Job.visibility],
-     * [Job.language_code][google.cloud.talent.v4beta1.Job.language_code],
-     * [Job.description][google.cloud.talent.v4beta1.Job.description].
+     * results: [Job.name][google.cloud.talent.v4beta1.Job.name], [Job.requisition_id][google.cloud.talent.v4beta1.Job.requisition_id], [Job.title][google.cloud.talent.v4beta1.Job.title],
+     * [Job.company][google.cloud.talent.v4beta1.Job.company], [Job.DerivedInfo.locations][google.cloud.talent.v4beta1.Job.DerivedInfo.locations], [Job.visibility][google.cloud.talent.v4beta1.Job.visibility],
+     * [Job.language_code][google.cloud.talent.v4beta1.Job.language_code], [Job.description][google.cloud.talent.v4beta1.Job.description].
      *
      * Generated from protobuf enum <code>JOB_VIEW_SMALL = 3;</code>
      */

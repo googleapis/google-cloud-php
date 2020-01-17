@@ -20,13 +20,13 @@ class Phone extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.ContactInfoUsage usage = 1;</code>
      */
-    private $usage = 0;
+    protected $usage = 0;
     /**
      * The phone type. For example, LANDLINE, MOBILE, FAX.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Phone.PhoneType type = 2;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Phone number.
      * Any phone formats are supported and only exact matches are performed on
@@ -37,14 +37,14 @@ class Phone extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string number = 3;</code>
      */
-    private $number = '';
+    protected $number = '';
     /**
      * When this number is available. Any descriptive string is expected.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string when_available = 4;</code>
      */
-    private $when_available = '';
+    protected $when_available = '';
 
     /**
      * Constructor.

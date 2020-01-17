@@ -21,7 +21,7 @@ class AdditionalContactInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.ContactInfoUsage usage = 1;</code>
      */
-    private $usage = 0;
+    protected $usage = 0;
     /**
      * The name of the contact method.
      * For example, "hangout", "skype".
@@ -29,14 +29,14 @@ class AdditionalContactInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 2;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The contact id.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string contact_id = 3;</code>
      */
-    private $contact_id = '';
+    protected $contact_id = '';
 
     /**
      * Constructor.

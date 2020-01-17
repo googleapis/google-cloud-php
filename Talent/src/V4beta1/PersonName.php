@@ -16,14 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class PersonName extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Preferred name for the person. This field is ignored if
-     * [structured_name][google.cloud.talent.v4beta1.PersonName.structured_name]
+     * Preferred name for the person. This field is ignored if [structured_name][google.cloud.talent.v4beta1.PersonName.structured_name]
      * is provided.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string preferred_name = 3;</code>
      */
-    private $preferred_name = '';
+    protected $preferred_name = '';
     protected $person_name;
 
     /**
@@ -39,8 +38,7 @@ class PersonName extends \Google\Protobuf\Internal\Message
      *           A person's name in a structured way (last name, first name, suffix, and
      *           so on.)
      *     @type string $preferred_name
-     *           Preferred name for the person. This field is ignored if
-     *           [structured_name][google.cloud.talent.v4beta1.PersonName.structured_name]
+     *           Preferred name for the person. This field is ignored if [structured_name][google.cloud.talent.v4beta1.PersonName.structured_name]
      *           is provided.
      *           Number of characters allowed is 100.
      * }
@@ -107,8 +105,7 @@ class PersonName extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Preferred name for the person. This field is ignored if
-     * [structured_name][google.cloud.talent.v4beta1.PersonName.structured_name]
+     * Preferred name for the person. This field is ignored if [structured_name][google.cloud.talent.v4beta1.PersonName.structured_name]
      * is provided.
      * Number of characters allowed is 100.
      *
@@ -121,8 +118,7 @@ class PersonName extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Preferred name for the person. This field is ignored if
-     * [structured_name][google.cloud.talent.v4beta1.PersonName.structured_name]
+     * Preferred name for the person. This field is ignored if [structured_name][google.cloud.talent.v4beta1.PersonName.structured_name]
      * is provided.
      * Number of characters allowed is 100.
      *

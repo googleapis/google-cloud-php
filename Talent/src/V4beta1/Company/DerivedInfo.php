@@ -17,12 +17,11 @@ class DerivedInfo extends \Google\Protobuf\Internal\Message
 {
     /**
      * A structured headquarters location of the company, resolved from
-     * [Company.headquarters_address][google.cloud.talent.v4beta1.Company.headquarters_address]
-     * if provided.
+     * [Company.headquarters_address][google.cloud.talent.v4beta1.Company.headquarters_address] if provided.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Location headquarters_location = 1;</code>
      */
-    private $headquarters_location = null;
+    protected $headquarters_location = null;
 
     /**
      * Constructor.
@@ -32,8 +31,7 @@ class DerivedInfo extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Talent\V4beta1\Location $headquarters_location
      *           A structured headquarters location of the company, resolved from
-     *           [Company.headquarters_address][google.cloud.talent.v4beta1.Company.headquarters_address]
-     *           if provided.
+     *           [Company.headquarters_address][google.cloud.talent.v4beta1.Company.headquarters_address] if provided.
      * }
      */
     public function __construct($data = NULL) {
@@ -43,8 +41,7 @@ class DerivedInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * A structured headquarters location of the company, resolved from
-     * [Company.headquarters_address][google.cloud.talent.v4beta1.Company.headquarters_address]
-     * if provided.
+     * [Company.headquarters_address][google.cloud.talent.v4beta1.Company.headquarters_address] if provided.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Location headquarters_location = 1;</code>
      * @return \Google\Cloud\Talent\V4beta1\Location
@@ -56,8 +53,7 @@ class DerivedInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * A structured headquarters location of the company, resolved from
-     * [Company.headquarters_address][google.cloud.talent.v4beta1.Company.headquarters_address]
-     * if provided.
+     * [Company.headquarters_address][google.cloud.talent.v4beta1.Company.headquarters_address] if provided.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Location headquarters_location = 1;</code>
      * @param \Google\Cloud\Talent\V4beta1\Location $var

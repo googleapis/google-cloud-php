@@ -20,14 +20,14 @@ class SkillFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string skill = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $skill = '';
+    protected $skill = '';
     /**
      * Whether to apply negation to the filter so profiles matching the filter
      * are excluded.
      *
      * Generated from protobuf field <code>bool negated = 2;</code>
      */
-    private $negated = false;
+    protected $negated = false;
 
     /**
      * Constructor.

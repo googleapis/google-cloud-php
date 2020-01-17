@@ -21,27 +21,27 @@ class SearchProfilesResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 estimated_total_size = 1;</code>
      */
-    private $estimated_total_size = 0;
+    protected $estimated_total_size = 0;
     /**
      * The spell checking result, and correction.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.SpellingCorrection spell_correction = 2;</code>
      */
-    private $spell_correction = null;
+    protected $spell_correction = null;
     /**
      * Additional information for the API invocation, such as the request
      * tracking id.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.ResponseMetadata metadata = 3;</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
     /**
      * A token to retrieve the next page of results. This is empty if there are no
      * more results.
      *
      * Generated from protobuf field <code>string next_page_token = 4;</code>
      */
-    private $next_page_token = '';
+    protected $next_page_token = '';
     /**
      * The histogram results that match with specified
      * [SearchProfilesRequest.histogram_queries][google.cloud.talent.v4beta1.SearchProfilesRequest.histogram_queries].
@@ -50,20 +50,19 @@ class SearchProfilesResponse extends \Google\Protobuf\Internal\Message
      */
     private $histogram_query_results;
     /**
-     * The profile entities that match the specified
-     * [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest].
+     * The profile entities that match the specified [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest].
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.SummarizedProfile summarized_profiles = 6;</code>
      */
     private $summarized_profiles;
     /**
      * An id that uniquely identifies the result set of a
-     * [SearchProfiles][google.cloud.talent.v4beta1.ProfileService.SearchProfiles]
-     * call for consistent results.
+     * [SearchProfiles][google.cloud.talent.v4beta1.ProfileService.SearchProfiles] call for consistent
+     * results.
      *
      * Generated from protobuf field <code>string result_set_id = 7;</code>
      */
-    private $result_set_id = '';
+    protected $result_set_id = '';
 
     /**
      * Constructor.
@@ -86,12 +85,11 @@ class SearchProfilesResponse extends \Google\Protobuf\Internal\Message
      *           The histogram results that match with specified
      *           [SearchProfilesRequest.histogram_queries][google.cloud.talent.v4beta1.SearchProfilesRequest.histogram_queries].
      *     @type \Google\Cloud\Talent\V4beta1\SummarizedProfile[]|\Google\Protobuf\Internal\RepeatedField $summarized_profiles
-     *           The profile entities that match the specified
-     *           [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest].
+     *           The profile entities that match the specified [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest].
      *     @type string $result_set_id
      *           An id that uniquely identifies the result set of a
-     *           [SearchProfiles][google.cloud.talent.v4beta1.ProfileService.SearchProfiles]
-     *           call for consistent results.
+     *           [SearchProfiles][google.cloud.talent.v4beta1.ProfileService.SearchProfiles] call for consistent
+     *           results.
      * }
      */
     public function __construct($data = NULL) {
@@ -238,8 +236,7 @@ class SearchProfilesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The profile entities that match the specified
-     * [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest].
+     * The profile entities that match the specified [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest].
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.SummarizedProfile summarized_profiles = 6;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -250,8 +247,7 @@ class SearchProfilesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The profile entities that match the specified
-     * [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest].
+     * The profile entities that match the specified [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest].
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.SummarizedProfile summarized_profiles = 6;</code>
      * @param \Google\Cloud\Talent\V4beta1\SummarizedProfile[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -267,8 +263,8 @@ class SearchProfilesResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * An id that uniquely identifies the result set of a
-     * [SearchProfiles][google.cloud.talent.v4beta1.ProfileService.SearchProfiles]
-     * call for consistent results.
+     * [SearchProfiles][google.cloud.talent.v4beta1.ProfileService.SearchProfiles] call for consistent
+     * results.
      *
      * Generated from protobuf field <code>string result_set_id = 7;</code>
      * @return string
@@ -280,8 +276,8 @@ class SearchProfilesResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * An id that uniquely identifies the result set of a
-     * [SearchProfiles][google.cloud.talent.v4beta1.ProfileService.SearchProfiles]
-     * call for consistent results.
+     * [SearchProfiles][google.cloud.talent.v4beta1.ProfileService.SearchProfiles] call for consistent
+     * results.
      *
      * Generated from protobuf field <code>string result_set_id = 7;</code>
      * @param string $var

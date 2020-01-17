@@ -9,16 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Profile entry with metadata inside
- * [SearchProfilesResponse][google.cloud.talent.v4beta1.SearchProfilesResponse].
+ * Profile entry with metadata inside [SearchProfilesResponse][google.cloud.talent.v4beta1.SearchProfilesResponse].
  *
  * Generated from protobuf message <code>google.cloud.talent.v4beta1.SummarizedProfile</code>
  */
 class SummarizedProfile extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A list of profiles that are linked by
-     * [Profile.group_id][google.cloud.talent.v4beta1.Profile.group_id].
+     * A list of profiles that are linked by [Profile.group_id][google.cloud.talent.v4beta1.Profile.group_id].
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Profile profiles = 1;</code>
      */
@@ -26,10 +24,9 @@ class SummarizedProfile extends \Google\Protobuf\Internal\Message
     /**
      * A profile summary shows the profile summary and how the profile matches the
      * search query.
-     * In profile summary, the profiles with the same
-     * [Profile.group_id][google.cloud.talent.v4beta1.Profile.group_id] are merged
-     * together. Among profiles, same education/employment records may be slightly
-     * different but they are merged into one with best efforts.
+     * In profile summary, the profiles with the same [Profile.group_id][google.cloud.talent.v4beta1.Profile.group_id] are
+     * merged together. Among profiles, same education/employment records may be
+     * slightly different but they are merged into one with best efforts.
      * For example, in one profile the school name is "UC Berkeley" and the field
      * study is "Computer Science" and in another one the school name is
      * "University of California at Berkeley" and the field study is "CS". The API
@@ -39,7 +36,7 @@ class SummarizedProfile extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Profile summary = 2;</code>
      */
-    private $summary = null;
+    protected $summary = null;
 
     /**
      * Constructor.
@@ -48,15 +45,13 @@ class SummarizedProfile extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Talent\V4beta1\Profile[]|\Google\Protobuf\Internal\RepeatedField $profiles
-     *           A list of profiles that are linked by
-     *           [Profile.group_id][google.cloud.talent.v4beta1.Profile.group_id].
+     *           A list of profiles that are linked by [Profile.group_id][google.cloud.talent.v4beta1.Profile.group_id].
      *     @type \Google\Cloud\Talent\V4beta1\Profile $summary
      *           A profile summary shows the profile summary and how the profile matches the
      *           search query.
-     *           In profile summary, the profiles with the same
-     *           [Profile.group_id][google.cloud.talent.v4beta1.Profile.group_id] are merged
-     *           together. Among profiles, same education/employment records may be slightly
-     *           different but they are merged into one with best efforts.
+     *           In profile summary, the profiles with the same [Profile.group_id][google.cloud.talent.v4beta1.Profile.group_id] are
+     *           merged together. Among profiles, same education/employment records may be
+     *           slightly different but they are merged into one with best efforts.
      *           For example, in one profile the school name is "UC Berkeley" and the field
      *           study is "Computer Science" and in another one the school name is
      *           "University of California at Berkeley" and the field study is "CS". The API
@@ -71,8 +66,7 @@ class SummarizedProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of profiles that are linked by
-     * [Profile.group_id][google.cloud.talent.v4beta1.Profile.group_id].
+     * A list of profiles that are linked by [Profile.group_id][google.cloud.talent.v4beta1.Profile.group_id].
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Profile profiles = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -83,8 +77,7 @@ class SummarizedProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of profiles that are linked by
-     * [Profile.group_id][google.cloud.talent.v4beta1.Profile.group_id].
+     * A list of profiles that are linked by [Profile.group_id][google.cloud.talent.v4beta1.Profile.group_id].
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Profile profiles = 1;</code>
      * @param \Google\Cloud\Talent\V4beta1\Profile[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -101,10 +94,9 @@ class SummarizedProfile extends \Google\Protobuf\Internal\Message
     /**
      * A profile summary shows the profile summary and how the profile matches the
      * search query.
-     * In profile summary, the profiles with the same
-     * [Profile.group_id][google.cloud.talent.v4beta1.Profile.group_id] are merged
-     * together. Among profiles, same education/employment records may be slightly
-     * different but they are merged into one with best efforts.
+     * In profile summary, the profiles with the same [Profile.group_id][google.cloud.talent.v4beta1.Profile.group_id] are
+     * merged together. Among profiles, same education/employment records may be
+     * slightly different but they are merged into one with best efforts.
      * For example, in one profile the school name is "UC Berkeley" and the field
      * study is "Computer Science" and in another one the school name is
      * "University of California at Berkeley" and the field study is "CS". The API
@@ -123,10 +115,9 @@ class SummarizedProfile extends \Google\Protobuf\Internal\Message
     /**
      * A profile summary shows the profile summary and how the profile matches the
      * search query.
-     * In profile summary, the profiles with the same
-     * [Profile.group_id][google.cloud.talent.v4beta1.Profile.group_id] are merged
-     * together. Among profiles, same education/employment records may be slightly
-     * different but they are merged into one with best efforts.
+     * In profile summary, the profiles with the same [Profile.group_id][google.cloud.talent.v4beta1.Profile.group_id] are
+     * merged together. Among profiles, same education/employment records may be
+     * slightly different but they are merged into one with best efforts.
      * For example, in one profile the school name is "UC Berkeley" and the field
      * study is "Computer Science" and in another one the school name is
      * "University of California at Berkeley" and the field study is "CS". The API

@@ -21,7 +21,7 @@ class Patent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * A list of inventors' names.
      * Number of characters allowed for each is 100.
@@ -35,40 +35,40 @@ class Patent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string patent_status = 3;</code>
      */
-    private $patent_status = '';
+    protected $patent_status = '';
     /**
      * The date the last time the status of the patent was checked.
      *
      * Generated from protobuf field <code>.google.type.Date patent_status_date = 4;</code>
      */
-    private $patent_status_date = null;
+    protected $patent_status_date = null;
     /**
      * The date that the patent was filed.
      *
      * Generated from protobuf field <code>.google.type.Date patent_filing_date = 5;</code>
      */
-    private $patent_filing_date = null;
+    protected $patent_filing_date = null;
     /**
      * The name of the patent office.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string patent_office = 6;</code>
      */
-    private $patent_office = '';
+    protected $patent_office = '';
     /**
      * The number of the patent.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string patent_number = 7;</code>
      */
-    private $patent_number = '';
+    protected $patent_number = '';
     /**
      * The description of the patent.
      * Number of characters allowed is 100,000.
      *
      * Generated from protobuf field <code>string patent_description = 8;</code>
      */
-    private $patent_description = '';
+    protected $patent_description = '';
     /**
      * The skills used in this patent.
      *

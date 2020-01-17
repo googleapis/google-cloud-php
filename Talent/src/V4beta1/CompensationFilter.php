@@ -20,7 +20,7 @@ class CompensationFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompensationFilter.FilterType type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Required. Specify desired `base compensation entry's`
      * [CompensationInfo.CompensationUnit][google.cloud.talent.v4beta1.CompensationInfo.CompensationUnit].
@@ -33,14 +33,14 @@ class CompensationFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompensationInfo.CompensationRange range = 3;</code>
      */
-    private $range = null;
+    protected $range = null;
     /**
      * If set to true, jobs with unspecified compensation range fields are
      * included.
      *
      * Generated from protobuf field <code>bool include_jobs_with_unspecified_compensation_range = 4;</code>
      */
-    private $include_jobs_with_unspecified_compensation_range = false;
+    protected $include_jobs_with_unspecified_compensation_range = false;
 
     /**
      * Constructor.

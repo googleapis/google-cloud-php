@@ -314,8 +314,7 @@ class ApplicationServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent Required. Resource name of the profile under which the application is
-     *                       created.
+     * @param string $parent Required. Resource name of the profile under which the application is created.
      *
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}".
@@ -425,23 +424,18 @@ class ApplicationServiceGapicClient
      * }
      * ```
      *
-     * @param Application $application  Required. The application resource to replace the current resource in the
-     *                                  system.
+     * @param Application $application  Required. The application resource to replace the current resource in the system.
      * @param array       $optionalArgs {
      *                                  Optional.
      *
      *     @type FieldMask $updateMask
      *          Strongly recommended for the best service experience.
      *
-     *          If
-     *          [update_mask][google.cloud.talent.v4beta1.UpdateApplicationRequest.update_mask]
-     *          is provided, only the specified fields in
-     *          [application][google.cloud.talent.v4beta1.UpdateApplicationRequest.application]
-     *          are updated. Otherwise all the fields are updated.
+     *          If [update_mask][google.cloud.talent.v4beta1.UpdateApplicationRequest.update_mask] is provided, only the specified fields in
+     *          [application][google.cloud.talent.v4beta1.UpdateApplicationRequest.application] are updated. Otherwise all the fields are updated.
      *
      *          A field mask to specify the application fields to be updated. Only
-     *          top level fields of [Application][google.cloud.talent.v4beta1.Application]
-     *          are supported.
+     *          top level fields of [Application][google.cloud.talent.v4beta1.Application] are supported.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -558,8 +552,7 @@ class ApplicationServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent Required. Resource name of the profile under which the application is
-     *                       created.
+     * @param string $parent Required. Resource name of the profile under which the application is created.
      *
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}", for

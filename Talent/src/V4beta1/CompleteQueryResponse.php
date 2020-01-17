@@ -27,7 +27,7 @@ class CompleteQueryResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.ResponseMetadata metadata = 2;</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
 
     /**
      * Constructor.

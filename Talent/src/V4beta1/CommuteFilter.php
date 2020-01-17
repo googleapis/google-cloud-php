@@ -20,21 +20,21 @@ class CommuteFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CommuteMethod commute_method = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $commute_method = 0;
+    protected $commute_method = 0;
     /**
      * Required. The latitude and longitude of the location to calculate the
      * commute time from.
      *
      * Generated from protobuf field <code>.google.type.LatLng start_coordinates = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $start_coordinates = null;
+    protected $start_coordinates = null;
     /**
-     * Required. The maximum travel time in seconds. The maximum allowed value is
-     * `3600s` (one hour). Format is `123s`.
+     * Required. The maximum travel time in seconds. The maximum allowed value is `3600s`
+     * (one hour). Format is `123s`.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration travel_duration = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $travel_duration = null;
+    protected $travel_duration = null;
     /**
      * If `true`, jobs without street level addresses may also be returned.
      * For city level addresses, the city center is used. For state and coarser
@@ -44,7 +44,7 @@ class CommuteFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool allow_imprecise_addresses = 4;</code>
      */
-    private $allow_imprecise_addresses = false;
+    protected $allow_imprecise_addresses = false;
     protected $traffic_option;
 
     /**
@@ -59,8 +59,8 @@ class CommuteFilter extends \Google\Protobuf\Internal\Message
      *           Required. The latitude and longitude of the location to calculate the
      *           commute time from.
      *     @type \Google\Protobuf\Duration $travel_duration
-     *           Required. The maximum travel time in seconds. The maximum allowed value is
-     *           `3600s` (one hour). Format is `123s`.
+     *           Required. The maximum travel time in seconds. The maximum allowed value is `3600s`
+     *           (one hour). Format is `123s`.
      *     @type bool $allow_imprecise_addresses
      *           If `true`, jobs without street level addresses may also be returned.
      *           For city level addresses, the city center is used. For state and coarser
@@ -135,8 +135,8 @@ class CommuteFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The maximum travel time in seconds. The maximum allowed value is
-     * `3600s` (one hour). Format is `123s`.
+     * Required. The maximum travel time in seconds. The maximum allowed value is `3600s`
+     * (one hour). Format is `123s`.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration travel_duration = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Duration
@@ -147,8 +147,8 @@ class CommuteFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The maximum travel time in seconds. The maximum allowed value is
-     * `3600s` (one hour). Format is `123s`.
+     * Required. The maximum travel time in seconds. The maximum allowed value is `3600s`
+     * (one hour). Format is `123s`.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration travel_duration = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\Duration $var

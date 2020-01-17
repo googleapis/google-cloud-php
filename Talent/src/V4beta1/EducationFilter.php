@@ -20,7 +20,7 @@ class EducationFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string school = 1;</code>
      */
-    private $school = '';
+    protected $school = '';
     /**
      * The field of study. This is to search against value provided in
      * [Degree.fields_of_study][google.cloud.talent.v4beta1.Degree.fields_of_study].
@@ -28,7 +28,7 @@ class EducationFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string field_of_study = 2;</code>
      */
-    private $field_of_study = '';
+    protected $field_of_study = '';
     /**
      * Education degree in ISCED code. Each value in degree covers a specific
      * level of education, without any expansion to upper nor lower levels of
@@ -36,14 +36,14 @@ class EducationFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.DegreeType degree_type = 3;</code>
      */
-    private $degree_type = 0;
+    protected $degree_type = 0;
     /**
      * Whether to apply negation to the filter so profiles matching the filter
      * is excluded.
      *
      * Generated from protobuf field <code>bool negated = 6;</code>
      */
-    private $negated = false;
+    protected $negated = false;
 
     /**
      * Constructor.

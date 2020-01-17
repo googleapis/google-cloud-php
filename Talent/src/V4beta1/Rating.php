@@ -20,26 +20,26 @@ class Rating extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double overall = 1;</code>
      */
-    private $overall = 0.0;
+    protected $overall = 0.0;
     /**
      * The minimum value for the score.
      *
      * Generated from protobuf field <code>double min = 2;</code>
      */
-    private $min = 0.0;
+    protected $min = 0.0;
     /**
      * The maximum value for the score.
      *
      * Generated from protobuf field <code>double max = 3;</code>
      */
-    private $max = 0.0;
+    protected $max = 0.0;
     /**
      * The steps within the score (for example, interval = 1 max = 5
      * min = 1 indicates that the score can be 1, 2, 3, 4, or 5)
      *
      * Generated from protobuf field <code>double interval = 4;</code>
      */
-    private $interval = 0.0;
+    protected $interval = 0.0;
 
     /**
      * Constructor.

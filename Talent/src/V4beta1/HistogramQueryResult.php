@@ -9,9 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Histogram result that matches
- * [HistogramQuery][google.cloud.talent.v4beta1.HistogramQuery] specified in
- * searches.
+ * Histogram result that matches [HistogramQuery][google.cloud.talent.v4beta1.HistogramQuery] specified in searches.
  *
  * Generated from protobuf message <code>google.cloud.talent.v4beta1.HistogramQueryResult</code>
  */
@@ -22,7 +20,7 @@ class HistogramQueryResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string histogram_query = 1;</code>
      */
-    private $histogram_query = '';
+    protected $histogram_query = '';
     /**
      * A map from the values of the facet associated with distinct values to the
      * number of matching entries with corresponding value.
