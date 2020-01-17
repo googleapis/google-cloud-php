@@ -1,18 +1,19 @@
 {
-  "updateTime": "2019-09-10T10:04:05.654913Z",
+  "updateTime": "2020-01-17T11:05:23.935772Z",
   "sources": [
     {
       "generator": {
         "name": "artman",
-        "version": "0.36.2",
-        "dockerImage": "googleapis/artman@sha256:0e6f3a668cd68afc768ecbe08817cf6e56a0e64fcbdb1c58c3b97492d12418a1"
+        "version": "0.44.1",
+        "dockerImage": "googleapis/artman@sha256:5599b61e56a372d21b671969ee915fbca0f6c3a0daaeb898d01f8f685f1bbc8b"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "26e189ad03ba63591fb26eecb6aaade7ad39f57a"
+        "sha": "58e770d568a2b78168ddc19a874178fee8265a9d",
+        "internalRef": "290146169"
       }
     }
   ],
@@ -26,6 +27,107 @@
         "generator": "gapic",
         "config": "google/cloud/texttospeech/artman_texttospeech_v1.yaml"
       }
+    }
+  ],
+  "newFiles": [
+    {
+      "path": ".gitattributes"
+    },
+    {
+      "path": ".github/pull_request_template.md"
+    },
+    {
+      "path": "CONTRIBUTING.md"
+    },
+    {
+      "path": "LICENSE"
+    },
+    {
+      "path": "README.md"
+    },
+    {
+      "path": "VERSION"
+    },
+    {
+      "path": "composer.json"
+    },
+    {
+      "path": "metadata/V1/CloudTts.php"
+    },
+    {
+      "path": "phpunit-snippets.xml.dist"
+    },
+    {
+      "path": "phpunit-system.xml.dist"
+    },
+    {
+      "path": "phpunit.xml.dist"
+    },
+    {
+      "path": "src/V1/AudioConfig.php"
+    },
+    {
+      "path": "src/V1/AudioEncoding.php"
+    },
+    {
+      "path": "src/V1/Gapic/TextToSpeechGapicClient.php"
+    },
+    {
+      "path": "src/V1/ListVoicesRequest.php"
+    },
+    {
+      "path": "src/V1/ListVoicesResponse.php"
+    },
+    {
+      "path": "src/V1/README.md"
+    },
+    {
+      "path": "src/V1/SsmlVoiceGender.php"
+    },
+    {
+      "path": "src/V1/SynthesisInput.php"
+    },
+    {
+      "path": "src/V1/SynthesizeSpeechRequest.php"
+    },
+    {
+      "path": "src/V1/SynthesizeSpeechResponse.php"
+    },
+    {
+      "path": "src/V1/TextToSpeechClient.php"
+    },
+    {
+      "path": "src/V1/TextToSpeechGrpcClient.php"
+    },
+    {
+      "path": "src/V1/Voice.php"
+    },
+    {
+      "path": "src/V1/VoiceSelectionParams.php"
+    },
+    {
+      "path": "src/V1/resources/text_to_speech_client_config.json"
+    },
+    {
+      "path": "src/V1/resources/text_to_speech_descriptor_config.php"
+    },
+    {
+      "path": "src/V1/resources/text_to_speech_rest_client_config.php"
+    },
+    {
+      "path": "synth.metadata"
+    },
+    {
+      "path": "synth.py"
+    },
+    {
+      "path": "tests/System/V1/TextToSpeechSmokeTest.php"
+    },
+    {
+      "path": "tests/System/bootstrap.php"
+    },
+    {
+      "path": "tests/Unit/V1/TextToSpeechClientTest.php"
     }
   ]
 }
