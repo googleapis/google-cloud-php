@@ -23,70 +23,70 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Minimum time after which a transfer run can be started.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp schedule_time = 3;</code>
      */
-    private $schedule_time = null;
+    protected $schedule_time = null;
     /**
      * For batch transfer runs, specifies the date and time of the data should be
      * ingested.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp run_time = 10;</code>
      */
-    private $run_time = null;
+    protected $run_time = null;
     /**
      * Status of the transfer run.
      *
      * Generated from protobuf field <code>.google.rpc.Status error_status = 21;</code>
      */
-    private $error_status = null;
+    protected $error_status = null;
     /**
      * Output only. Time when transfer run was started.
      * Parameter ignored by server for input requests.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * Output only. Time when transfer run ended.
      * Parameter ignored by server for input requests.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * Output only. Last time the data transfer run state was updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. Data transfer specific parameters.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct params = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $params = null;
+    protected $params = null;
     /**
      * Output only. Data source id.
      *
      * Generated from protobuf field <code>string data_source_id = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $data_source_id = '';
+    protected $data_source_id = '';
     /**
      * Data transfer run state. Ignored for input requests.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.TransferState state = 8;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Deprecated. Unique ID of the user on whose behalf transfer is done.
      *
      * Generated from protobuf field <code>int64 user_id = 11;</code>
      */
-    private $user_id = 0;
+    protected $user_id = 0;
     /**
      * Output only. Describes the schedule of this transfer run if it was
      * created as part of a regular schedule. For batch transfer runs that are
@@ -96,14 +96,14 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string schedule = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $schedule = '';
+    protected $schedule = '';
     /**
      * Output only. Pub/Sub topic where a notification will be sent after this
      * transfer run finishes
      *
      * Generated from protobuf field <code>string notification_pubsub_topic = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $notification_pubsub_topic = '';
+    protected $notification_pubsub_topic = '';
     /**
      * Output only. Email notifications will be sent according to these
      * preferences to the email address of the user who owns the transfer config
@@ -111,7 +111,7 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.EmailPreferences email_preferences = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $email_preferences = null;
+    protected $email_preferences = null;
     protected $destination;
 
     /**

@@ -25,7 +25,7 @@ class ListTransferRunsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * When specified, only transfer runs with requested states are returned.
      *
@@ -41,19 +41,19 @@ class ListTransferRunsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Page size. The default page size is the maximum value of 1000 results.
      *
      * Generated from protobuf field <code>int32 page_size = 4;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Indicates how run attempts are to be pulled.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.ListTransferRunsRequest.RunAttempt run_attempt = 5;</code>
      */
-    private $run_attempt = 0;
+    protected $run_attempt = 0;
 
     /**
      * Constructor.

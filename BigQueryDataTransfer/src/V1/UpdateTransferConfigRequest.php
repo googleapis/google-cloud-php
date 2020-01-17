@@ -21,7 +21,7 @@ class UpdateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.TransferConfig transfer_config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $transfer_config = null;
+    protected $transfer_config = null;
     /**
      * Optional OAuth2 authorization code to use with this transfer configuration.
      * If it is provided, the transfer configuration will be associated with the
@@ -41,13 +41,13 @@ class UpdateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string authorization_code = 3;</code>
      */
-    private $authorization_code = '';
+    protected $authorization_code = '';
     /**
      * Required. Required list of fields to be updated in this request.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Optional version info. If users want to find a very recent access token,
      * that is, immediately after approving access, users have to set the
@@ -58,7 +58,7 @@ class UpdateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string version_info = 5;</code>
      */
-    private $version_info = '';
+    protected $version_info = '';
     /**
      * Optional service account name. If this field is set and
      * "service_account_name" is set in update_mask, transfer config will be
@@ -68,7 +68,7 @@ class UpdateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_account_name = 6;</code>
      */
-    private $service_account_name = '';
+    protected $service_account_name = '';
 
     /**
      * Constructor.

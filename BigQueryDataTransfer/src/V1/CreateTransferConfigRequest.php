@@ -28,13 +28,13 @@ class CreateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. Data transfer configuration to create.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.TransferConfig transfer_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $transfer_config = null;
+    protected $transfer_config = null;
     /**
      * Optional OAuth2 authorization code to use with this transfer configuration.
      * This is required if new credentials are needed, as indicated by
@@ -54,7 +54,7 @@ class CreateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string authorization_code = 3;</code>
      */
-    private $authorization_code = '';
+    protected $authorization_code = '';
     /**
      * Optional version info. If users want to find a very recent access token,
      * that is, immediately after approving access, users have to set the
@@ -65,7 +65,7 @@ class CreateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string version_info = 5;</code>
      */
-    private $version_info = '';
+    protected $version_info = '';
     /**
      * Optional service account name. If this field is set, transfer config will
      * be created with this service account credentials. It requires that
@@ -74,7 +74,7 @@ class CreateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_account_name = 6;</code>
      */
-    private $service_account_name = '';
+    protected $service_account_name = '';
 
     /**
      * Constructor.

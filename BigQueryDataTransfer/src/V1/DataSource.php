@@ -21,31 +21,31 @@ class DataSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Data source id.
      *
      * Generated from protobuf field <code>string data_source_id = 2;</code>
      */
-    private $data_source_id = '';
+    protected $data_source_id = '';
     /**
      * User friendly data source name.
      *
      * Generated from protobuf field <code>string display_name = 3;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * User friendly data source description string.
      *
      * Generated from protobuf field <code>string description = 4;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Data source client id which should be used to receive refresh token.
      *
      * Generated from protobuf field <code>string client_id = 5;</code>
      */
-    private $client_id = '';
+    protected $client_id = '';
     /**
      * Api auth scopes for which refresh token needs to be obtained. These are
      * scopes needed by a data source to prepare data and ingest them into
@@ -59,20 +59,20 @@ class DataSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.TransferType transfer_type = 7 [deprecated = true];</code>
      */
-    private $transfer_type = 0;
+    protected $transfer_type = 0;
     /**
      * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>bool supports_multiple_transfers = 8 [deprecated = true];</code>
      */
-    private $supports_multiple_transfers = false;
+    protected $supports_multiple_transfers = false;
     /**
      * The number of seconds to wait for an update from the data source
      * before the Data Transfer Service marks the transfer as FAILED.
      *
      * Generated from protobuf field <code>int32 update_deadline_seconds = 9;</code>
      */
-    private $update_deadline_seconds = 0;
+    protected $update_deadline_seconds = 0;
     /**
      * Default data transfer schedule.
      * Examples of valid schedules include:
@@ -82,7 +82,7 @@ class DataSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string default_schedule = 10;</code>
      */
-    private $default_schedule = '';
+    protected $default_schedule = '';
     /**
      * Specifies whether the data source supports a user defined schedule, or
      * operates on the default schedule.
@@ -90,7 +90,7 @@ class DataSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool supports_custom_schedule = 11;</code>
      */
-    private $supports_custom_schedule = false;
+    protected $supports_custom_schedule = false;
     /**
      * Data source parameters.
      *
@@ -102,13 +102,13 @@ class DataSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string help_url = 13;</code>
      */
-    private $help_url = '';
+    protected $help_url = '';
     /**
      * Indicates the type of authorization.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.DataSource.AuthorizationType authorization_type = 14;</code>
      */
-    private $authorization_type = 0;
+    protected $authorization_type = 0;
     /**
      * Specifies whether the data source supports automatic data refresh for the
      * past few days, and how it's supported.
@@ -117,27 +117,27 @@ class DataSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.DataSource.DataRefreshType data_refresh_type = 15;</code>
      */
-    private $data_refresh_type = 0;
+    protected $data_refresh_type = 0;
     /**
      * Default data refresh window on days.
      * Only meaningful when `data_refresh_type` = `SLIDING_WINDOW`.
      *
      * Generated from protobuf field <code>int32 default_data_refresh_window_days = 16;</code>
      */
-    private $default_data_refresh_window_days = 0;
+    protected $default_data_refresh_window_days = 0;
     /**
      * Disables backfilling and manual run scheduling
      * for the data source.
      *
      * Generated from protobuf field <code>bool manual_runs_disabled = 17;</code>
      */
-    private $manual_runs_disabled = false;
+    protected $manual_runs_disabled = false;
     /**
      * The minimum interval for scheduler to schedule runs.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration minimum_schedule_interval = 18;</code>
      */
-    private $minimum_schedule_interval = null;
+    protected $minimum_schedule_interval = null;
 
     /**
      * Constructor.
