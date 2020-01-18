@@ -1,19 +1,19 @@
 {
-  "updateTime": "2020-01-09T10:59:12.802290Z",
+  "updateTime": "2020-01-18T10:58:59.284090Z",
   "sources": [
     {
       "generator": {
         "name": "artman",
-        "version": "0.43.0",
-        "dockerImage": "googleapis/artman@sha256:264654a37596a44b0668b8ce6ac41082d713f6ee150b3fc6425fa78cc64e4f20"
+        "version": "0.44.1",
+        "dockerImage": "googleapis/artman@sha256:5599b61e56a372d21b671969ee915fbca0f6c3a0daaeb898d01f8f685f1bbc8b"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "6ace586805c08896fef43e28a261337fcf3f022b",
-        "internalRef": "288783603"
+        "sha": "7f0dab8177cf371ae019a082e2512de7ac102888",
+        "internalRef": "290326986"
       }
     }
   ],
@@ -27,6 +27,305 @@
         "generator": "gapic",
         "config": "google/cloud/bigquery/datatransfer/artman_bigquerydatatransfer.yaml"
       }
+    }
+  ],
+  "newFiles": [
+    {
+      "path": ".gitattributes"
+    },
+    {
+      "path": ".github/pull_request_template.md"
+    },
+    {
+      "path": "CONTRIBUTING.md"
+    },
+    {
+      "path": "LICENSE"
+    },
+    {
+      "path": "README.md"
+    },
+    {
+      "path": "VERSION"
+    },
+    {
+      "path": "composer.json"
+    },
+    {
+      "path": "metadata/V1/Datasource.php"
+    },
+    {
+      "path": "metadata/V1/Datatransfer.php"
+    },
+    {
+      "path": "metadata/V1/Resourcestate.php"
+    },
+    {
+      "path": "metadata/V1/Transfer.php"
+    },
+    {
+      "path": "phpunit-snippets.xml.dist"
+    },
+    {
+      "path": "phpunit-system.xml.dist"
+    },
+    {
+      "path": "phpunit.xml.dist"
+    },
+    {
+      "path": "src/V1/CheckValidCredsRequest.php"
+    },
+    {
+      "path": "src/V1/CheckValidCredsResponse.php"
+    },
+    {
+      "path": "src/V1/CreateDataSourceDefinitionRequest.php"
+    },
+    {
+      "path": "src/V1/CreateTransferConfigRequest.php"
+    },
+    {
+      "path": "src/V1/DataSource.php"
+    },
+    {
+      "path": "src/V1/DataSource/AuthorizationType.php"
+    },
+    {
+      "path": "src/V1/DataSource/DataRefreshType.php"
+    },
+    {
+      "path": "src/V1/DataSourceDefinition.php"
+    },
+    {
+      "path": "src/V1/DataSourceParameter.php"
+    },
+    {
+      "path": "src/V1/DataSourceParameter/Type.php"
+    },
+    {
+      "path": "src/V1/DataSourceParameter_Type.php"
+    },
+    {
+      "path": "src/V1/DataSourceServiceGrpcClient.php"
+    },
+    {
+      "path": "src/V1/DataSource_AuthorizationType.php"
+    },
+    {
+      "path": "src/V1/DataSource_DataRefreshType.php"
+    },
+    {
+      "path": "src/V1/DataTransferServiceClient.php"
+    },
+    {
+      "path": "src/V1/DataTransferServiceGrpcClient.php"
+    },
+    {
+      "path": "src/V1/DeleteDataSourceDefinitionRequest.php"
+    },
+    {
+      "path": "src/V1/DeleteTransferConfigRequest.php"
+    },
+    {
+      "path": "src/V1/DeleteTransferRunRequest.php"
+    },
+    {
+      "path": "src/V1/EmailPreferences.php"
+    },
+    {
+      "path": "src/V1/EnableDataTransferServiceRequest.php"
+    },
+    {
+      "path": "src/V1/FinishRunRequest.php"
+    },
+    {
+      "path": "src/V1/Gapic/DataTransferServiceGapicClient.php"
+    },
+    {
+      "path": "src/V1/GetDataSourceDefinitionRequest.php"
+    },
+    {
+      "path": "src/V1/GetDataSourceRequest.php"
+    },
+    {
+      "path": "src/V1/GetTransferConfigRequest.php"
+    },
+    {
+      "path": "src/V1/GetTransferRunRequest.php"
+    },
+    {
+      "path": "src/V1/ImportedDataInfo.php"
+    },
+    {
+      "path": "src/V1/ImportedDataInfo/Encoding.php"
+    },
+    {
+      "path": "src/V1/ImportedDataInfo/FieldSchema.php"
+    },
+    {
+      "path": "src/V1/ImportedDataInfo/FieldSchema/Type.php"
+    },
+    {
+      "path": "src/V1/ImportedDataInfo/Format.php"
+    },
+    {
+      "path": "src/V1/ImportedDataInfo/RecordSchema.php"
+    },
+    {
+      "path": "src/V1/ImportedDataInfo/TableDefinition.php"
+    },
+    {
+      "path": "src/V1/ImportedDataInfo/TableDefinition/CsvOptions.php"
+    },
+    {
+      "path": "src/V1/ImportedDataInfo_Encoding.php"
+    },
+    {
+      "path": "src/V1/ImportedDataInfo_FieldSchema.php"
+    },
+    {
+      "path": "src/V1/ImportedDataInfo_FieldSchema_Type.php"
+    },
+    {
+      "path": "src/V1/ImportedDataInfo_Format.php"
+    },
+    {
+      "path": "src/V1/ImportedDataInfo_RecordSchema.php"
+    },
+    {
+      "path": "src/V1/ImportedDataInfo_TableDefinition.php"
+    },
+    {
+      "path": "src/V1/ImportedDataInfo_TableDefinition_CsvOptions.php"
+    },
+    {
+      "path": "src/V1/IsDataTransferServiceEnabledRequest.php"
+    },
+    {
+      "path": "src/V1/IsDataTransferServiceEnabledResponse.php"
+    },
+    {
+      "path": "src/V1/ListDataSourceDefinitionsRequest.php"
+    },
+    {
+      "path": "src/V1/ListDataSourceDefinitionsResponse.php"
+    },
+    {
+      "path": "src/V1/ListDataSourcesRequest.php"
+    },
+    {
+      "path": "src/V1/ListDataSourcesResponse.php"
+    },
+    {
+      "path": "src/V1/ListTransferConfigsRequest.php"
+    },
+    {
+      "path": "src/V1/ListTransferConfigsResponse.php"
+    },
+    {
+      "path": "src/V1/ListTransferLogsRequest.php"
+    },
+    {
+      "path": "src/V1/ListTransferLogsResponse.php"
+    },
+    {
+      "path": "src/V1/ListTransferRunsRequest.php"
+    },
+    {
+      "path": "src/V1/ListTransferRunsRequest/RunAttempt.php"
+    },
+    {
+      "path": "src/V1/ListTransferRunsRequest_RunAttempt.php"
+    },
+    {
+      "path": "src/V1/ListTransferRunsResponse.php"
+    },
+    {
+      "path": "src/V1/LogTransferRunMessagesRequest.php"
+    },
+    {
+      "path": "src/V1/README.md"
+    },
+    {
+      "path": "src/V1/ScheduleOptions.php"
+    },
+    {
+      "path": "src/V1/ScheduleTransferRunsRequest.php"
+    },
+    {
+      "path": "src/V1/ScheduleTransferRunsResponse.php"
+    },
+    {
+      "path": "src/V1/StartBigQueryJobsRequest.php"
+    },
+    {
+      "path": "src/V1/StartManualTransferRunsRequest.php"
+    },
+    {
+      "path": "src/V1/StartManualTransferRunsRequest/TimeRange.php"
+    },
+    {
+      "path": "src/V1/StartManualTransferRunsRequest_TimeRange.php"
+    },
+    {
+      "path": "src/V1/StartManualTransferRunsResponse.php"
+    },
+    {
+      "path": "src/V1/TransferConfig.php"
+    },
+    {
+      "path": "src/V1/TransferMessage.php"
+    },
+    {
+      "path": "src/V1/TransferMessage/MessageSeverity.php"
+    },
+    {
+      "path": "src/V1/TransferMessage_MessageSeverity.php"
+    },
+    {
+      "path": "src/V1/TransferRun.php"
+    },
+    {
+      "path": "src/V1/TransferState.php"
+    },
+    {
+      "path": "src/V1/TransferType.php"
+    },
+    {
+      "path": "src/V1/UpdateDataSourceDefinitionRequest.php"
+    },
+    {
+      "path": "src/V1/UpdateTransferConfigRequest.php"
+    },
+    {
+      "path": "src/V1/UpdateTransferRunRequest.php"
+    },
+    {
+      "path": "src/V1/WriteDisposition.php"
+    },
+    {
+      "path": "src/V1/resources/data_transfer_service_client_config.json"
+    },
+    {
+      "path": "src/V1/resources/data_transfer_service_descriptor_config.php"
+    },
+    {
+      "path": "src/V1/resources/data_transfer_service_rest_client_config.php"
+    },
+    {
+      "path": "synth.metadata"
+    },
+    {
+      "path": "synth.py"
+    },
+    {
+      "path": "tests/System/V1/DataTransferServiceSmokeTest.php"
+    },
+    {
+      "path": "tests/System/bootstrap.php"
+    },
+    {
+      "path": "tests/Unit/V1/DataTransferServiceClientTest.php"
     }
   ]
 }

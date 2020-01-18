@@ -395,8 +395,7 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
      */
     public function getMinValueValue()
     {
-        $wrapper = $this->getMinValue();
-        return is_null($wrapper) ? null : $wrapper->getValue();
+        return $this->readWrapperValue("min_value");
     }
 
     /**
@@ -425,9 +424,8 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
      */
     public function setMinValueValue($var)
     {
-        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\DoubleValue(['value' => $var]);
-        return $this->setMinValue($wrappedVar);
-    }
+        $this->writeWrapperValue("min_value", $var);
+        return $this;}
 
     /**
      * For integer and double values specifies maxminum allowed value.
@@ -450,8 +448,7 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
      */
     public function getMaxValueValue()
     {
-        $wrapper = $this->getMaxValue();
-        return is_null($wrapper) ? null : $wrapper->getValue();
+        return $this->readWrapperValue("max_value");
     }
 
     /**
@@ -480,9 +477,8 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
      */
     public function setMaxValueValue($var)
     {
-        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\DoubleValue(['value' => $var]);
-        return $this->setMaxValue($wrappedVar);
-    }
+        $this->writeWrapperValue("max_value", $var);
+        return $this;}
 
     /**
      * Deprecated. This field has no effect.
