@@ -1,19 +1,19 @@
 {
-  "updateTime": "2019-12-17T20:09:48.724906Z",
+  "updateTime": "2020-01-18T10:58:40.836357Z",
   "sources": [
     {
       "generator": {
         "name": "artman",
-        "version": "0.42.3",
-        "dockerImage": "googleapis/artman@sha256:feed210b5723c6f524b52ef6d7740a030f2d1a8f7c29a71c5e5b4481ceaad7f5"
+        "version": "0.44.1",
+        "dockerImage": "googleapis/artman@sha256:5599b61e56a372d21b671969ee915fbca0f6c3a0daaeb898d01f8f685f1bbc8b"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "6ad2bb13bc4b0f3f785517f0563118f6ca52ddfd",
-        "internalRef": "286008145"
+        "sha": "7f0dab8177cf371ae019a082e2512de7ac102888",
+        "internalRef": "290326986"
       }
     }
   ],
@@ -37,6 +37,209 @@
         "generator": "gapic",
         "config": "google/cloud/asset/artman_cloudasset_v1beta1.yaml"
       }
+    }
+  ],
+  "newFiles": [
+    {
+      "path": ".gitattributes"
+    },
+    {
+      "path": ".github/pull_request_template.md"
+    },
+    {
+      "path": "CONTRIBUTING.md"
+    },
+    {
+      "path": "LICENSE"
+    },
+    {
+      "path": "README.md"
+    },
+    {
+      "path": "VERSION"
+    },
+    {
+      "path": "composer.json"
+    },
+    {
+      "path": "metadata/V1/AssetService.php"
+    },
+    {
+      "path": "metadata/V1/Assets.php"
+    },
+    {
+      "path": "metadata/V1Beta1/AssetService.php"
+    },
+    {
+      "path": "metadata/V1Beta1/Assets.php"
+    },
+    {
+      "path": "phpunit-snippets.xml.dist"
+    },
+    {
+      "path": "phpunit-system.xml.dist"
+    },
+    {
+      "path": "phpunit.xml.dist"
+    },
+    {
+      "path": "src/V1/Asset.php"
+    },
+    {
+      "path": "src/V1/AssetServiceClient.php"
+    },
+    {
+      "path": "src/V1/AssetServiceGrpcClient.php"
+    },
+    {
+      "path": "src/V1/BatchGetAssetsHistoryRequest.php"
+    },
+    {
+      "path": "src/V1/BatchGetAssetsHistoryResponse.php"
+    },
+    {
+      "path": "src/V1/BigQueryDestination.php"
+    },
+    {
+      "path": "src/V1/ContentType.php"
+    },
+    {
+      "path": "src/V1/CreateFeedRequest.php"
+    },
+    {
+      "path": "src/V1/DeleteFeedRequest.php"
+    },
+    {
+      "path": "src/V1/ExportAssetsRequest.php"
+    },
+    {
+      "path": "src/V1/ExportAssetsResponse.php"
+    },
+    {
+      "path": "src/V1/Feed.php"
+    },
+    {
+      "path": "src/V1/FeedOutputConfig.php"
+    },
+    {
+      "path": "src/V1/Gapic/AssetServiceGapicClient.php"
+    },
+    {
+      "path": "src/V1/GcsDestination.php"
+    },
+    {
+      "path": "src/V1/GetFeedRequest.php"
+    },
+    {
+      "path": "src/V1/ListFeedsRequest.php"
+    },
+    {
+      "path": "src/V1/ListFeedsResponse.php"
+    },
+    {
+      "path": "src/V1/OutputConfig.php"
+    },
+    {
+      "path": "src/V1/PubsubDestination.php"
+    },
+    {
+      "path": "src/V1/README.md"
+    },
+    {
+      "path": "src/V1/Resource.php"
+    },
+    {
+      "path": "src/V1/TemporalAsset.php"
+    },
+    {
+      "path": "src/V1/TimeWindow.php"
+    },
+    {
+      "path": "src/V1/UpdateFeedRequest.php"
+    },
+    {
+      "path": "src/V1/resources/asset_service_client_config.json"
+    },
+    {
+      "path": "src/V1/resources/asset_service_descriptor_config.php"
+    },
+    {
+      "path": "src/V1/resources/asset_service_rest_client_config.php"
+    },
+    {
+      "path": "src/V1beta1/Asset.php"
+    },
+    {
+      "path": "src/V1beta1/AssetServiceClient.php"
+    },
+    {
+      "path": "src/V1beta1/AssetServiceGrpcClient.php"
+    },
+    {
+      "path": "src/V1beta1/BatchGetAssetsHistoryRequest.php"
+    },
+    {
+      "path": "src/V1beta1/BatchGetAssetsHistoryResponse.php"
+    },
+    {
+      "path": "src/V1beta1/ContentType.php"
+    },
+    {
+      "path": "src/V1beta1/ExportAssetsRequest.php"
+    },
+    {
+      "path": "src/V1beta1/ExportAssetsResponse.php"
+    },
+    {
+      "path": "src/V1beta1/Gapic/AssetServiceGapicClient.php"
+    },
+    {
+      "path": "src/V1beta1/GcsDestination.php"
+    },
+    {
+      "path": "src/V1beta1/OutputConfig.php"
+    },
+    {
+      "path": "src/V1beta1/README.md"
+    },
+    {
+      "path": "src/V1beta1/Resource.php"
+    },
+    {
+      "path": "src/V1beta1/TemporalAsset.php"
+    },
+    {
+      "path": "src/V1beta1/TimeWindow.php"
+    },
+    {
+      "path": "src/V1beta1/resources/asset_service_client_config.json"
+    },
+    {
+      "path": "src/V1beta1/resources/asset_service_descriptor_config.php"
+    },
+    {
+      "path": "src/V1beta1/resources/asset_service_rest_client_config.php"
+    },
+    {
+      "path": "synth.metadata"
+    },
+    {
+      "path": "synth.py"
+    },
+    {
+      "path": "tests/System/V1/AssetServiceSmokeTest.php"
+    },
+    {
+      "path": "tests/System/V1beta1/AssetServiceSmokeTest.php"
+    },
+    {
+      "path": "tests/System/bootstrap.php"
+    },
+    {
+      "path": "tests/Unit/V1/AssetServiceClientTest.php"
+    },
+    {
+      "path": "tests/Unit/V1beta1/AssetServiceClientTest.php"
     }
   ]
 }
