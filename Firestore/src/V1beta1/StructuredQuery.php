@@ -364,8 +364,7 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
      */
     public function getLimitValue()
     {
-        $wrapper = $this->getLimit();
-        return is_null($wrapper) ? null : $wrapper->getValue();
+        return $this->readWrapperValue("limit");
     }
 
     /**
@@ -398,9 +397,8 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
      */
     public function setLimitValue($var)
     {
-        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\Int32Value(['value' => $var]);
-        return $this->setLimit($wrappedVar);
-    }
+        $this->writeWrapperValue("limit", $var);
+        return $this;}
 
 }
 

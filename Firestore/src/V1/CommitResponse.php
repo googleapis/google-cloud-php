@@ -24,7 +24,8 @@ class CommitResponse extends \Google\Protobuf\Internal\Message
      */
     private $write_results;
     /**
-     * The time at which the commit occurred.
+     * The time at which the commit occurred. Any read with an equal or greater
+     * `read_time` is guaranteed to see the effects of the commit.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp commit_time = 2;</code>
      */
@@ -41,7 +42,8 @@ class CommitResponse extends \Google\Protobuf\Internal\Message
      *           This i-th write result corresponds to the i-th write in the
      *           request.
      *     @type \Google\Protobuf\Timestamp $commit_time
-     *           The time at which the commit occurred.
+     *           The time at which the commit occurred. Any read with an equal or greater
+     *           `read_time` is guaranteed to see the effects of the commit.
      * }
      */
     public function __construct($data = NULL) {
@@ -80,7 +82,8 @@ class CommitResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time at which the commit occurred.
+     * The time at which the commit occurred. Any read with an equal or greater
+     * `read_time` is guaranteed to see the effects of the commit.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp commit_time = 2;</code>
      * @return \Google\Protobuf\Timestamp
@@ -91,7 +94,8 @@ class CommitResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time at which the commit occurred.
+     * The time at which the commit occurred. Any read with an equal or greater
+     * `read_time` is guaranteed to see the effects of the commit.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp commit_time = 2;</code>
      * @param \Google\Protobuf\Timestamp $var
