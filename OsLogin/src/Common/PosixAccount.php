@@ -20,56 +20,68 @@ class PosixAccount extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool primary = 1;</code>
      */
-    private $primary = false;
+    protected $primary = false;
     /**
      * The username of the POSIX account.
      *
      * Generated from protobuf field <code>string username = 2;</code>
      */
-    private $username = '';
+    protected $username = '';
     /**
      * The user ID.
      *
      * Generated from protobuf field <code>int64 uid = 3;</code>
      */
-    private $uid = 0;
+    protected $uid = 0;
     /**
      * The default group ID.
      *
      * Generated from protobuf field <code>int64 gid = 4;</code>
      */
-    private $gid = 0;
+    protected $gid = 0;
     /**
      * The path to the home directory for this account.
      *
      * Generated from protobuf field <code>string home_directory = 5;</code>
      */
-    private $home_directory = '';
+    protected $home_directory = '';
     /**
      * The path to the logic shell for this account.
      *
      * Generated from protobuf field <code>string shell = 6;</code>
      */
-    private $shell = '';
+    protected $shell = '';
     /**
      * The GECOS (user information) entry for this account.
      *
      * Generated from protobuf field <code>string gecos = 7;</code>
      */
-    private $gecos = '';
+    protected $gecos = '';
     /**
      * System identifier for which account the username or uid applies to.
      * By default, the empty value is used.
      *
      * Generated from protobuf field <code>string system_id = 8;</code>
      */
-    private $system_id = '';
+    protected $system_id = '';
     /**
      * Output only. A POSIX account identifier.
      *
-     * Generated from protobuf field <code>string account_id = 9;</code>
+     * Generated from protobuf field <code>string account_id = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $account_id = '';
+    protected $account_id = '';
+    /**
+     * The operating system type where this account applies.
+     *
+     * Generated from protobuf field <code>.google.cloud.oslogin.common.OperatingSystemType operating_system_type = 10;</code>
+     */
+    protected $operating_system_type = 0;
+    /**
+     * Output only. The canonical resource name.
+     *
+     * Generated from protobuf field <code>string name = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $name = '';
 
     /**
      * Constructor.
@@ -96,6 +108,10 @@ class PosixAccount extends \Google\Protobuf\Internal\Message
      *           By default, the empty value is used.
      *     @type string $account_id
      *           Output only. A POSIX account identifier.
+     *     @type int $operating_system_type
+     *           The operating system type where this account applies.
+     *     @type string $name
+     *           Output only. The canonical resource name.
      * }
      */
     public function __construct($data = NULL) {
@@ -316,7 +332,7 @@ class PosixAccount extends \Google\Protobuf\Internal\Message
     /**
      * Output only. A POSIX account identifier.
      *
-     * Generated from protobuf field <code>string account_id = 9;</code>
+     * Generated from protobuf field <code>string account_id = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getAccountId()
@@ -327,7 +343,7 @@ class PosixAccount extends \Google\Protobuf\Internal\Message
     /**
      * Output only. A POSIX account identifier.
      *
-     * Generated from protobuf field <code>string account_id = 9;</code>
+     * Generated from protobuf field <code>string account_id = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -335,6 +351,58 @@ class PosixAccount extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->account_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * The operating system type where this account applies.
+     *
+     * Generated from protobuf field <code>.google.cloud.oslogin.common.OperatingSystemType operating_system_type = 10;</code>
+     * @return int
+     */
+    public function getOperatingSystemType()
+    {
+        return $this->operating_system_type;
+    }
+
+    /**
+     * The operating system type where this account applies.
+     *
+     * Generated from protobuf field <code>.google.cloud.oslogin.common.OperatingSystemType operating_system_type = 10;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setOperatingSystemType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\OsLogin\Common\OperatingSystemType::class);
+        $this->operating_system_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The canonical resource name.
+     *
+     * Generated from protobuf field <code>string name = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Output only. The canonical resource name.
+     *
+     * Generated from protobuf field <code>string name = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->name = $var;
 
         return $this;
     }

@@ -16,11 +16,23 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetLoginProfileRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The unique ID for the user in format `users/{user}`.
+     * Required. The unique ID for the user in format `users/{user}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+    /**
+     * The project ID of the Google Cloud Platform project.
+     *
+     * Generated from protobuf field <code>string project_id = 2;</code>
+     */
+    private $project_id = '';
+    /**
+     * A system ID for filtering the results of the request.
+     *
+     * Generated from protobuf field <code>string system_id = 3;</code>
+     */
+    private $system_id = '';
 
     /**
      * Constructor.
@@ -29,7 +41,11 @@ class GetLoginProfileRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The unique ID for the user in format `users/{user}`.
+     *           Required. The unique ID for the user in format `users/{user}`.
+     *     @type string $project_id
+     *           The project ID of the Google Cloud Platform project.
+     *     @type string $system_id
+     *           A system ID for filtering the results of the request.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,9 +54,9 @@ class GetLoginProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unique ID for the user in format `users/{user}`.
+     * Required. The unique ID for the user in format `users/{user}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -49,9 +65,9 @@ class GetLoginProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unique ID for the user in format `users/{user}`.
+     * Required. The unique ID for the user in format `users/{user}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -59,6 +75,58 @@ class GetLoginProfileRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * The project ID of the Google Cloud Platform project.
+     *
+     * Generated from protobuf field <code>string project_id = 2;</code>
+     * @return string
+     */
+    public function getProjectId()
+    {
+        return $this->project_id;
+    }
+
+    /**
+     * The project ID of the Google Cloud Platform project.
+     *
+     * Generated from protobuf field <code>string project_id = 2;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setProjectId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->project_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * A system ID for filtering the results of the request.
+     *
+     * Generated from protobuf field <code>string system_id = 3;</code>
+     * @return string
+     */
+    public function getSystemId()
+    {
+        return $this->system_id;
+    }
+
+    /**
+     * A system ID for filtering the results of the request.
+     *
+     * Generated from protobuf field <code>string system_id = 3;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSystemId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->system_id = $var;
 
         return $this;
     }

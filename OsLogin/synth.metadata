@@ -1,19 +1,19 @@
 {
-  "updateTime": "2019-08-07T18:02:55.966103Z",
+  "updateTime": "2020-01-18T11:02:11.348228Z",
   "sources": [
     {
       "generator": {
         "name": "artman",
-        "version": "0.29.1",
-        "dockerImage": "googleapis/artman@sha256:b2a73f4dda03ef8fcaa973e3ba26d0cf34091f6c22c70add663af325931aef4d"
+        "version": "0.44.1",
+        "dockerImage": "googleapis/artman@sha256:5599b61e56a372d21b671969ee915fbca0f6c3a0daaeb898d01f8f685f1bbc8b"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "3a1b46a6668194a527e532a2c355b404c79b0e6a",
-        "internalRef": "262167956"
+        "sha": "7f0dab8177cf371ae019a082e2512de7ac102888",
+        "internalRef": "290326986"
       }
     }
   ],
@@ -37,6 +37,170 @@
         "generator": "gapic",
         "config": "google/cloud/oslogin/artman_oslogin_v1.yaml"
       }
+    }
+  ],
+  "newFiles": [
+    {
+      "path": ".gitattributes"
+    },
+    {
+      "path": ".github/pull_request_template.md"
+    },
+    {
+      "path": "CONTRIBUTING.md"
+    },
+    {
+      "path": "LICENSE"
+    },
+    {
+      "path": "README.md"
+    },
+    {
+      "path": "VERSION"
+    },
+    {
+      "path": "composer.json"
+    },
+    {
+      "path": "metadata/Common.php"
+    },
+    {
+      "path": "metadata/Common/Common.php"
+    },
+    {
+      "path": "metadata/V1/Oslogin.php"
+    },
+    {
+      "path": "metadata/V1Beta/Oslogin.php"
+    },
+    {
+      "path": "phpunit-snippets.xml.dist"
+    },
+    {
+      "path": "phpunit-system.xml.dist"
+    },
+    {
+      "path": "phpunit.xml.dist"
+    },
+    {
+      "path": "src/Common/OperatingSystemType.php"
+    },
+    {
+      "path": "src/Common/PosixAccount.php"
+    },
+    {
+      "path": "src/Common/SshPublicKey.php"
+    },
+    {
+      "path": "src/V1/DeletePosixAccountRequest.php"
+    },
+    {
+      "path": "src/V1/DeleteSshPublicKeyRequest.php"
+    },
+    {
+      "path": "src/V1/Gapic/OsLoginServiceGapicClient.php"
+    },
+    {
+      "path": "src/V1/GetLoginProfileRequest.php"
+    },
+    {
+      "path": "src/V1/GetSshPublicKeyRequest.php"
+    },
+    {
+      "path": "src/V1/ImportSshPublicKeyRequest.php"
+    },
+    {
+      "path": "src/V1/ImportSshPublicKeyResponse.php"
+    },
+    {
+      "path": "src/V1/LoginProfile.php"
+    },
+    {
+      "path": "src/V1/OsLoginServiceClient.php"
+    },
+    {
+      "path": "src/V1/OsLoginServiceGrpcClient.php"
+    },
+    {
+      "path": "src/V1/README.md"
+    },
+    {
+      "path": "src/V1/UpdateSshPublicKeyRequest.php"
+    },
+    {
+      "path": "src/V1/resources/os_login_service_client_config.json"
+    },
+    {
+      "path": "src/V1/resources/os_login_service_descriptor_config.php"
+    },
+    {
+      "path": "src/V1/resources/os_login_service_rest_client_config.php"
+    },
+    {
+      "path": "src/V1beta/DeletePosixAccountRequest.php"
+    },
+    {
+      "path": "src/V1beta/DeleteSshPublicKeyRequest.php"
+    },
+    {
+      "path": "src/V1beta/Gapic/OsLoginServiceGapicClient.php"
+    },
+    {
+      "path": "src/V1beta/GetLoginProfileRequest.php"
+    },
+    {
+      "path": "src/V1beta/GetSshPublicKeyRequest.php"
+    },
+    {
+      "path": "src/V1beta/ImportSshPublicKeyRequest.php"
+    },
+    {
+      "path": "src/V1beta/ImportSshPublicKeyResponse.php"
+    },
+    {
+      "path": "src/V1beta/LoginProfile.php"
+    },
+    {
+      "path": "src/V1beta/OsLoginServiceClient.php"
+    },
+    {
+      "path": "src/V1beta/OsLoginServiceGrpcClient.php"
+    },
+    {
+      "path": "src/V1beta/README.md"
+    },
+    {
+      "path": "src/V1beta/UpdateSshPublicKeyRequest.php"
+    },
+    {
+      "path": "src/V1beta/resources/os_login_service_client_config.json"
+    },
+    {
+      "path": "src/V1beta/resources/os_login_service_descriptor_config.php"
+    },
+    {
+      "path": "src/V1beta/resources/os_login_service_rest_client_config.php"
+    },
+    {
+      "path": "synth.metadata"
+    },
+    {
+      "path": "synth.py"
+    },
+    {
+      "path": "tests/System/V1/OsLoginServiceClientTest.php"
+    },
+    {
+      "path": "tests/System/V1beta/OsLoginServiceClientTest.php"
+    },
+    {
+      "path": "tests/System/bootstrap.php"
+    },
+    {
+      "path": "tests/Unit/V1/OsLoginServiceClientTest.php"
+    },
+    {
+      "path": "tests/Unit/V1beta/OsLoginServiceClientTest.php"
     }
   ]
 }
