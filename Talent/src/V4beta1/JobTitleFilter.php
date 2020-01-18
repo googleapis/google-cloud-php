@@ -16,8 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class JobTitleFilter extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The job title. For example, "Software engineer", or "Product
-     * manager".
+     * Required. The job title. For example, "Software engineer", or "Product manager".
      *
      * Generated from protobuf field <code>string job_title = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -37,8 +36,7 @@ class JobTitleFilter extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $job_title
-     *           Required. The job title. For example, "Software engineer", or "Product
-     *           manager".
+     *           Required. The job title. For example, "Software engineer", or "Product manager".
      *     @type bool $negated
      *           Whether to apply negation to the filter so profiles matching the filter
      *           are excluded.
@@ -50,8 +48,7 @@ class JobTitleFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The job title. For example, "Software engineer", or "Product
-     * manager".
+     * Required. The job title. For example, "Software engineer", or "Product manager".
      *
      * Generated from protobuf field <code>string job_title = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -62,8 +59,7 @@ class JobTitleFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The job title. For example, "Software engineer", or "Product
-     * manager".
+     * Required. The job title. For example, "Software engineer", or "Product manager".
      *
      * Generated from protobuf field <code>string job_title = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

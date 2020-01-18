@@ -29,8 +29,8 @@ class CommuteFilter extends \Google\Protobuf\Internal\Message
      */
     private $start_coordinates = null;
     /**
-     * Required. The maximum travel time in seconds. The maximum allowed value is
-     * `3600s` (one hour). Format is `123s`.
+     * Required. The maximum travel time in seconds. The maximum allowed value is `3600s`
+     * (one hour). Format is `123s`.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration travel_duration = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -59,8 +59,8 @@ class CommuteFilter extends \Google\Protobuf\Internal\Message
      *           Required. The latitude and longitude of the location to calculate the
      *           commute time from.
      *     @type \Google\Protobuf\Duration $travel_duration
-     *           Required. The maximum travel time in seconds. The maximum allowed value is
-     *           `3600s` (one hour). Format is `123s`.
+     *           Required. The maximum travel time in seconds. The maximum allowed value is `3600s`
+     *           (one hour). Format is `123s`.
      *     @type bool $allow_imprecise_addresses
      *           If `true`, jobs without street level addresses may also be returned.
      *           For city level addresses, the city center is used. For state and coarser
@@ -135,8 +135,8 @@ class CommuteFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The maximum travel time in seconds. The maximum allowed value is
-     * `3600s` (one hour). Format is `123s`.
+     * Required. The maximum travel time in seconds. The maximum allowed value is `3600s`
+     * (one hour). Format is `123s`.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration travel_duration = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Duration
@@ -147,8 +147,8 @@ class CommuteFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The maximum travel time in seconds. The maximum allowed value is
-     * `3600s` (one hour). Format is `123s`.
+     * Required. The maximum travel time in seconds. The maximum allowed value is `3600s`
+     * (one hour). Format is `123s`.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration travel_duration = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\Duration $var

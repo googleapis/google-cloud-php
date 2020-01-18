@@ -28,16 +28,11 @@ class AvailabilitySignal extends \Google\Protobuf\Internal\Message
      */
     private $last_update_time = null;
     /**
-     * Indicates if the
-     * [last_update_time][google.cloud.talent.v4beta1.AvailabilitySignal.last_update_time]
-     * is within
+     * Indicates if the [last_update_time][google.cloud.talent.v4beta1.AvailabilitySignal.last_update_time] is within
      * [AvailabilityFilter.range][google.cloud.talent.v4beta1.AvailabilityFilter.range].
-     * Returned only in a search response when there is an
-     * [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter] in
-     * [ProfileQuery.availability_filters][google.cloud.talent.v4beta1.ProfileQuery.availability_filters]
-     * where
-     * [signal_type][google.cloud.talent.v4beta1.AvailabilityFilter.signal_type]
-     * matches [type][google.cloud.talent.v4beta1.AvailabilitySignal.type].
+     * Returned only in a search response when there is an [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter]
+     * in [ProfileQuery.availability_filters][google.cloud.talent.v4beta1.ProfileQuery.availability_filters] where
+     * [signal_type][google.cloud.talent.v4beta1.AvailabilityFilter.signal_type] matches [type][google.cloud.talent.v4beta1.AvailabilitySignal.type].
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue filter_satisfied = 3;</code>
      */
@@ -54,16 +49,11 @@ class AvailabilitySignal extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $last_update_time
      *           Timestamp of when the given availability activity last happened.
      *     @type \Google\Protobuf\BoolValue $filter_satisfied
-     *           Indicates if the
-     *           [last_update_time][google.cloud.talent.v4beta1.AvailabilitySignal.last_update_time]
-     *           is within
+     *           Indicates if the [last_update_time][google.cloud.talent.v4beta1.AvailabilitySignal.last_update_time] is within
      *           [AvailabilityFilter.range][google.cloud.talent.v4beta1.AvailabilityFilter.range].
-     *           Returned only in a search response when there is an
-     *           [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter] in
-     *           [ProfileQuery.availability_filters][google.cloud.talent.v4beta1.ProfileQuery.availability_filters]
-     *           where
-     *           [signal_type][google.cloud.talent.v4beta1.AvailabilityFilter.signal_type]
-     *           matches [type][google.cloud.talent.v4beta1.AvailabilitySignal.type].
+     *           Returned only in a search response when there is an [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter]
+     *           in [ProfileQuery.availability_filters][google.cloud.talent.v4beta1.ProfileQuery.availability_filters] where
+     *           [signal_type][google.cloud.talent.v4beta1.AvailabilityFilter.signal_type] matches [type][google.cloud.talent.v4beta1.AvailabilitySignal.type].
      * }
      */
     public function __construct($data = NULL) {
@@ -124,16 +114,11 @@ class AvailabilitySignal extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates if the
-     * [last_update_time][google.cloud.talent.v4beta1.AvailabilitySignal.last_update_time]
-     * is within
+     * Indicates if the [last_update_time][google.cloud.talent.v4beta1.AvailabilitySignal.last_update_time] is within
      * [AvailabilityFilter.range][google.cloud.talent.v4beta1.AvailabilityFilter.range].
-     * Returned only in a search response when there is an
-     * [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter] in
-     * [ProfileQuery.availability_filters][google.cloud.talent.v4beta1.ProfileQuery.availability_filters]
-     * where
-     * [signal_type][google.cloud.talent.v4beta1.AvailabilityFilter.signal_type]
-     * matches [type][google.cloud.talent.v4beta1.AvailabilitySignal.type].
+     * Returned only in a search response when there is an [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter]
+     * in [ProfileQuery.availability_filters][google.cloud.talent.v4beta1.ProfileQuery.availability_filters] where
+     * [signal_type][google.cloud.talent.v4beta1.AvailabilityFilter.signal_type] matches [type][google.cloud.talent.v4beta1.AvailabilitySignal.type].
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue filter_satisfied = 3;</code>
      * @return \Google\Protobuf\BoolValue
@@ -146,37 +131,26 @@ class AvailabilitySignal extends \Google\Protobuf\Internal\Message
     /**
      * Returns the unboxed value from <code>getFilterSatisfied()</code>
 
-     * Indicates if the
-     * [last_update_time][google.cloud.talent.v4beta1.AvailabilitySignal.last_update_time]
-     * is within
+     * Indicates if the [last_update_time][google.cloud.talent.v4beta1.AvailabilitySignal.last_update_time] is within
      * [AvailabilityFilter.range][google.cloud.talent.v4beta1.AvailabilityFilter.range].
-     * Returned only in a search response when there is an
-     * [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter] in
-     * [ProfileQuery.availability_filters][google.cloud.talent.v4beta1.ProfileQuery.availability_filters]
-     * where
-     * [signal_type][google.cloud.talent.v4beta1.AvailabilityFilter.signal_type]
-     * matches [type][google.cloud.talent.v4beta1.AvailabilitySignal.type].
+     * Returned only in a search response when there is an [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter]
+     * in [ProfileQuery.availability_filters][google.cloud.talent.v4beta1.ProfileQuery.availability_filters] where
+     * [signal_type][google.cloud.talent.v4beta1.AvailabilityFilter.signal_type] matches [type][google.cloud.talent.v4beta1.AvailabilitySignal.type].
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue filter_satisfied = 3;</code>
      * @return bool|null
      */
     public function getFilterSatisfiedValue()
     {
-        $wrapper = $this->getFilterSatisfied();
-        return is_null($wrapper) ? null : $wrapper->getValue();
+        return $this->readWrapperValue("filter_satisfied");
     }
 
     /**
-     * Indicates if the
-     * [last_update_time][google.cloud.talent.v4beta1.AvailabilitySignal.last_update_time]
-     * is within
+     * Indicates if the [last_update_time][google.cloud.talent.v4beta1.AvailabilitySignal.last_update_time] is within
      * [AvailabilityFilter.range][google.cloud.talent.v4beta1.AvailabilityFilter.range].
-     * Returned only in a search response when there is an
-     * [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter] in
-     * [ProfileQuery.availability_filters][google.cloud.talent.v4beta1.ProfileQuery.availability_filters]
-     * where
-     * [signal_type][google.cloud.talent.v4beta1.AvailabilityFilter.signal_type]
-     * matches [type][google.cloud.talent.v4beta1.AvailabilitySignal.type].
+     * Returned only in a search response when there is an [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter]
+     * in [ProfileQuery.availability_filters][google.cloud.talent.v4beta1.ProfileQuery.availability_filters] where
+     * [signal_type][google.cloud.talent.v4beta1.AvailabilityFilter.signal_type] matches [type][google.cloud.talent.v4beta1.AvailabilitySignal.type].
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue filter_satisfied = 3;</code>
      * @param \Google\Protobuf\BoolValue $var
@@ -193,16 +167,11 @@ class AvailabilitySignal extends \Google\Protobuf\Internal\Message
     /**
      * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
 
-     * Indicates if the
-     * [last_update_time][google.cloud.talent.v4beta1.AvailabilitySignal.last_update_time]
-     * is within
+     * Indicates if the [last_update_time][google.cloud.talent.v4beta1.AvailabilitySignal.last_update_time] is within
      * [AvailabilityFilter.range][google.cloud.talent.v4beta1.AvailabilityFilter.range].
-     * Returned only in a search response when there is an
-     * [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter] in
-     * [ProfileQuery.availability_filters][google.cloud.talent.v4beta1.ProfileQuery.availability_filters]
-     * where
-     * [signal_type][google.cloud.talent.v4beta1.AvailabilityFilter.signal_type]
-     * matches [type][google.cloud.talent.v4beta1.AvailabilitySignal.type].
+     * Returned only in a search response when there is an [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter]
+     * in [ProfileQuery.availability_filters][google.cloud.talent.v4beta1.ProfileQuery.availability_filters] where
+     * [signal_type][google.cloud.talent.v4beta1.AvailabilityFilter.signal_type] matches [type][google.cloud.talent.v4beta1.AvailabilitySignal.type].
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue filter_satisfied = 3;</code>
      * @param bool|null $var
@@ -210,9 +179,8 @@ class AvailabilitySignal extends \Google\Protobuf\Internal\Message
      */
     public function setFilterSatisfiedValue($var)
     {
-        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
-        return $this->setFilterSatisfied($wrappedVar);
-    }
+        $this->writeWrapperValue("filter_satisfied", $var);
+        return $this;}
 
 }
 

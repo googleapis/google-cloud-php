@@ -20,19 +20,36 @@ class CompletionType
      */
     const COMPLETION_TYPE_UNSPECIFIED = 0;
     /**
-     * Only suggest job titles.
+     * Suggest job titles for jobs autocomplete.
+     * For
+     * [CompletionType.JOB_TITLE][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.JOB_TITLE]
+     * type, only open jobs with the same
+     * [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes]
+     * are returned.
      *
      * Generated from protobuf enum <code>JOB_TITLE = 1;</code>
      */
     const JOB_TITLE = 1;
     /**
-     * Only suggest company names.
+     * Suggest company names for jobs autocomplete.
+     * For
+     * [CompletionType.COMPANY_NAME][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMPANY_NAME]
+     * type, only companies having open jobs with the same
+     * [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes]
+     * are returned.
      *
      * Generated from protobuf enum <code>COMPANY_NAME = 2;</code>
      */
     const COMPANY_NAME = 2;
     /**
-     * Suggest both job titles and company names.
+     * Suggest both job titles and company names for jobs autocomplete.
+     * For
+     * [CompletionType.COMBINED][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMBINED]
+     * type, only open jobs with the same
+     * [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes]
+     * or companies having open jobs with the same
+     * [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes]
+     * are returned.
      *
      * Generated from protobuf enum <code>COMBINED = 3;</code>
      */

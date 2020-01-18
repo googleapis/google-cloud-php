@@ -161,8 +161,7 @@ class Address extends \Google\Protobuf\Internal\Message
      */
     public function getCurrentValue()
     {
-        $wrapper = $this->getCurrent();
-        return is_null($wrapper) ? null : $wrapper->getValue();
+        return $this->readWrapperValue("current");
     }
 
     /**
@@ -191,9 +190,8 @@ class Address extends \Google\Protobuf\Internal\Message
      */
     public function setCurrentValue($var)
     {
-        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
-        return $this->setCurrent($wrappedVar);
-    }
+        $this->writeWrapperValue("current", $var);
+        return $this;}
 
     /**
      * @return string

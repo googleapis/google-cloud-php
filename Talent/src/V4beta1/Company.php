@@ -54,8 +54,7 @@ class Company extends \Google\Protobuf\Internal\Message
      * The street address of the company's main headquarters, which may be
      * different from the job location. The service attempts
      * to geolocate the provided address, and populates a more specific
-     * location wherever possible in
-     * [DerivedInfo.headquarters_location][google.cloud.talent.v4beta1.Company.DerivedInfo.headquarters_location].
+     * location wherever possible in [DerivedInfo.headquarters_location][google.cloud.talent.v4beta1.Company.DerivedInfo.headquarters_location].
      *
      * Generated from protobuf field <code>string headquarters_address = 5;</code>
      */
@@ -99,9 +98,8 @@ class Company extends \Google\Protobuf\Internal\Message
      */
     private $image_uri = '';
     /**
-     * A list of keys of filterable
-     * [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes],
-     * whose corresponding `string_values` are used in keyword searches. Jobs with
+     * A list of keys of filterable [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes], whose
+     * corresponding `string_values` are used in keyword searches. Jobs with
      * `string_values` under these specified field keys are returned if any
      * of the values match the search keyword. Custom field values with
      * parenthesis, brackets and special symbols are not searchable as-is,
@@ -152,8 +150,7 @@ class Company extends \Google\Protobuf\Internal\Message
      *           The street address of the company's main headquarters, which may be
      *           different from the job location. The service attempts
      *           to geolocate the provided address, and populates a more specific
-     *           location wherever possible in
-     *           [DerivedInfo.headquarters_location][google.cloud.talent.v4beta1.Company.DerivedInfo.headquarters_location].
+     *           location wherever possible in [DerivedInfo.headquarters_location][google.cloud.talent.v4beta1.Company.DerivedInfo.headquarters_location].
      *     @type bool $hiring_agency
      *           Set to true if it is the hiring agency that post jobs for other
      *           employers.
@@ -173,9 +170,8 @@ class Company extends \Google\Protobuf\Internal\Message
      *     @type string $image_uri
      *           A URI that hosts the employer's company logo.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $keyword_searchable_job_custom_attributes
-     *           A list of keys of filterable
-     *           [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes],
-     *           whose corresponding `string_values` are used in keyword searches. Jobs with
+     *           A list of keys of filterable [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes], whose
+     *           corresponding `string_values` are used in keyword searches. Jobs with
      *           `string_values` under these specified field keys are returned if any
      *           of the values match the search keyword. Custom field values with
      *           parenthesis, brackets and special symbols are not searchable as-is,
@@ -319,8 +315,7 @@ class Company extends \Google\Protobuf\Internal\Message
      * The street address of the company's main headquarters, which may be
      * different from the job location. The service attempts
      * to geolocate the provided address, and populates a more specific
-     * location wherever possible in
-     * [DerivedInfo.headquarters_location][google.cloud.talent.v4beta1.Company.DerivedInfo.headquarters_location].
+     * location wherever possible in [DerivedInfo.headquarters_location][google.cloud.talent.v4beta1.Company.DerivedInfo.headquarters_location].
      *
      * Generated from protobuf field <code>string headquarters_address = 5;</code>
      * @return string
@@ -334,8 +329,7 @@ class Company extends \Google\Protobuf\Internal\Message
      * The street address of the company's main headquarters, which may be
      * different from the job location. The service attempts
      * to geolocate the provided address, and populates a more specific
-     * location wherever possible in
-     * [DerivedInfo.headquarters_location][google.cloud.talent.v4beta1.Company.DerivedInfo.headquarters_location].
+     * location wherever possible in [DerivedInfo.headquarters_location][google.cloud.talent.v4beta1.Company.DerivedInfo.headquarters_location].
      *
      * Generated from protobuf field <code>string headquarters_address = 5;</code>
      * @param string $var
@@ -496,9 +490,8 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of keys of filterable
-     * [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes],
-     * whose corresponding `string_values` are used in keyword searches. Jobs with
+     * A list of keys of filterable [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes], whose
+     * corresponding `string_values` are used in keyword searches. Jobs with
      * `string_values` under these specified field keys are returned if any
      * of the values match the search keyword. Custom field values with
      * parenthesis, brackets and special symbols are not searchable as-is,
@@ -513,9 +506,8 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of keys of filterable
-     * [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes],
-     * whose corresponding `string_values` are used in keyword searches. Jobs with
+     * A list of keys of filterable [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes], whose
+     * corresponding `string_values` are used in keyword searches. Jobs with
      * `string_values` under these specified field keys are returned if any
      * of the values match the search keyword. Custom field values with
      * parenthesis, brackets and special symbols are not searchable as-is,

@@ -60,9 +60,8 @@ class Profile extends \Google\Protobuf\Internal\Message
      * a client has a candidate with two profiles, where one was created recently
      * and the other one was created 5 years ago. These two profiles may be very
      * different. The clients can create the first profile and get a generated
-     * [group_id][google.cloud.talent.v4beta1.Profile.group_id], and assign it
-     * when the second profile is created, indicating these two profiles are
-     * referring to the same candidate.
+     * [group_id][google.cloud.talent.v4beta1.Profile.group_id], and assign it when the second profile is created,
+     * indicating these two profiles are referring to the same candidate.
      *
      * Generated from protobuf field <code>string group_id = 5;</code>
      */
@@ -97,14 +96,10 @@ class Profile extends \Google\Protobuf\Internal\Message
      * a recruiter who then uploads it into the ATS, and so on.
      * * Updates made to the candidate's profile by the recruiter as a result of
      * interacting with the candidate (for example adding a skill or work
-     * preference, and so on). Changes to
-     * [recruiting_notes][google.cloud.talent.v4beta1.Profile.recruiting_notes]
-     * are specifically excluded from this action type.
-     * Note:
-     * [candidate_update_time][google.cloud.talent.v4beta1.Profile.candidate_update_time]
-     * must be greater than or equal to
-     * [resume_update_time][google.cloud.talent.v4beta1.Profile.resume_update_time]
-     * or an error is thrown.
+     * preference, and so on). Changes to [recruiting_notes][google.cloud.talent.v4beta1.Profile.recruiting_notes] are specifically
+     * excluded from this action type.
+     * Note: [candidate_update_time][google.cloud.talent.v4beta1.Profile.candidate_update_time] must be greater than or equal to
+     * [resume_update_time][google.cloud.talent.v4beta1.Profile.resume_update_time] or an error is thrown.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp candidate_update_time = 67;</code>
      */
@@ -114,9 +109,8 @@ class Profile extends \Google\Protobuf\Internal\Message
      * candidate's profile. Whether that resume was directly uploaded by a
      * candidate, pulled from a 3rd party job board feed, added by a recruiter,
      * and so on.
-     * If this field is updated, it's expected that
-     * [resume][google.cloud.talent.v4beta1.Profile.resume] is provided in the
-     * create or update calls.
+     * If this field is updated, it's expected that [resume][google.cloud.talent.v4beta1.Profile.resume] is provided in
+     * the create or update calls.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp resume_update_time = 68;</code>
      */
@@ -138,29 +132,23 @@ class Profile extends \Google\Protobuf\Internal\Message
      * The candidate's postal addresses. It's highly recommended to
      * input this information as accurately as possible to help improve search
      * quality. Here are some recommendations:
-     * * Provide [Address.usage][google.cloud.talent.v4beta1.Address.usage] if
-     * possible, especially if the address is PERSONAL. During a search only
-     * personal addresses are considered. If there is no such address, all
-     * addresses with unspecified usage are assumed to be personal.
-     * * Provide [Address.current][google.cloud.talent.v4beta1.Address.current]
-     * for the current address if possible. During a search, only current
-     * addresses are considered. If there is no such address, all addresses are
-     * assumed to be current.
+     * * Provide [Address.usage][google.cloud.talent.v4beta1.Address.usage] if possible, especially if the address is
+     * PERSONAL. During a search only personal addresses are considered. If there
+     * is no such address, all addresses with unspecified usage are assumed to be
+     * personal.
+     * * Provide [Address.current][google.cloud.talent.v4beta1.Address.current] for the current address if possible. During
+     * a search, only current addresses are considered. If there is no such
+     * address, all addresses are assumed to be current.
      * When displaying a candidate's addresses, it is sometimes desirable to limit
      * the number of addresses shown. In these cases we recommend that you display
      * the addresses in the following order of priority:
-     * 1. [Address.usage][google.cloud.talent.v4beta1.Address.usage] is PERSONAL
-     * and [Address.current][google.cloud.talent.v4beta1.Address.current] is true.
-     * 2. [Address.usage][google.cloud.talent.v4beta1.Address.usage] is PERSONAL
-     * and [Address.current][google.cloud.talent.v4beta1.Address.current] is false
-     * or not set.
-     * 3. [Address.usage][google.cloud.talent.v4beta1.Address.usage] is
-     * CONTACT_INFO_USAGE_UNSPECIFIED and
+     * 1. [Address.usage][google.cloud.talent.v4beta1.Address.usage] is PERSONAL and [Address.current][google.cloud.talent.v4beta1.Address.current] is true.
+     * 2. [Address.usage][google.cloud.talent.v4beta1.Address.usage] is PERSONAL and [Address.current][google.cloud.talent.v4beta1.Address.current] is false or not
+     * set.
+     * 3. [Address.usage][google.cloud.talent.v4beta1.Address.usage] is CONTACT_INFO_USAGE_UNSPECIFIED and
      * [Address.current][google.cloud.talent.v4beta1.Address.current] is true.
-     * 4. [Address.usage][google.cloud.talent.v4beta1.Address.usage] is
-     * CONTACT_INFO_USAGE_UNSPECIFIED and
-     * [Address.current][google.cloud.talent.v4beta1.Address.current] is false or
-     * not set.
+     * 4. [Address.usage][google.cloud.talent.v4beta1.Address.usage] is CONTACT_INFO_USAGE_UNSPECIFIED and
+     * [Address.current][google.cloud.talent.v4beta1.Address.current] is false or not set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Address addresses = 12;</code>
      */
@@ -184,12 +172,8 @@ class Profile extends \Google\Protobuf\Internal\Message
      */
     private $personal_uris;
     /**
-     * Available contact information besides
-     * [addresses][google.cloud.talent.v4beta1.Profile.addresses],
-     * [email_addresses][google.cloud.talent.v4beta1.Profile.email_addresses],
-     * [phone_numbers][google.cloud.talent.v4beta1.Profile.phone_numbers] and
-     * [personal_uris][google.cloud.talent.v4beta1.Profile.personal_uris]. For
-     * example, Hang-out, Skype.
+     * Available contact information besides [addresses][google.cloud.talent.v4beta1.Profile.addresses], [email_addresses][google.cloud.talent.v4beta1.Profile.email_addresses],
+     * [phone_numbers][google.cloud.talent.v4beta1.Profile.phone_numbers] and [personal_uris][google.cloud.talent.v4beta1.Profile.personal_uris]. For example, Hang-out, Skype.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.AdditionalContactInfo additional_contact_info = 16;</code>
      */
@@ -203,10 +187,8 @@ class Profile extends \Google\Protobuf\Internal\Message
      * change is.
      * For example, only job title is changed from "software engineer" to "senior
      * software engineer".
-     * * Provide
-     * [EmploymentRecord.is_current][google.cloud.talent.v4beta1.EmploymentRecord.is_current]
-     * for the current employment if possible. If not, it's inferred from user
-     * inputs.
+     * * Provide [EmploymentRecord.is_current][google.cloud.talent.v4beta1.EmploymentRecord.is_current] for the current employment if
+     * possible. If not, it's inferred from user inputs.
      * The limitation for max number of employment records is 100.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.EmploymentRecord employment_records = 17;</code>
@@ -220,10 +202,8 @@ class Profile extends \Google\Protobuf\Internal\Message
      * * List each education type separately, no matter how minor the change is.
      * For example, the profile contains the education experience from the same
      * school but different degrees.
-     * * Provide
-     * [EducationRecord.is_current][google.cloud.talent.v4beta1.EducationRecord.is_current]
-     * for the current education if possible. If not, it's inferred from user
-     * inputs.
+     * * Provide [EducationRecord.is_current][google.cloud.talent.v4beta1.EducationRecord.is_current] for the current education if
+     * possible. If not, it's inferred from user inputs.
      * The limitation for max number of education records is 100.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.EducationRecord education_records = 18;</code>
@@ -240,8 +220,7 @@ class Profile extends \Google\Protobuf\Internal\Message
     /**
      * The individual or collaborative activities which the candidate has
      * participated in, for example, open-source projects, class assignments that
-     * aren't listed in
-     * [employment_records][google.cloud.talent.v4beta1.Profile.employment_records].
+     * aren't listed in [employment_records][google.cloud.talent.v4beta1.Profile.employment_records].
      * The limitation for max number of activities is 50.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Activity activities = 20;</code>
@@ -281,8 +260,7 @@ class Profile extends \Google\Protobuf\Internal\Message
     /**
      * A map of fields to hold both filterable and non-filterable custom profile
      * attributes that aren't covered by the provided structured fields. See
-     * [CustomAttribute][google.cloud.talent.v4beta1.CustomAttribute] for more
-     * details.
+     * [CustomAttribute][google.cloud.talent.v4beta1.CustomAttribute] for more details.
      * At most 100 filterable and at most 100 unfilterable keys are supported. If
      * limit is exceeded, an error is thrown. Custom attributes are `unfilterable`
      * by default. These are filterable when the `filterable` flag is set to
@@ -309,8 +287,7 @@ class Profile extends \Google\Protobuf\Internal\Message
     private $processed = false;
     /**
      * Output only. Keyword snippet shows how the search result is related to a
-     * search query.  This is only returned in
-     * [SearchProfilesResponse][google.cloud.talent.v4beta1.SearchProfilesResponse].
+     * search query.  This is only returned in [SearchProfilesResponse][google.cloud.talent.v4beta1.SearchProfilesResponse].
      *
      * Generated from protobuf field <code>string keyword_snippet = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -322,11 +299,8 @@ class Profile extends \Google\Protobuf\Internal\Message
      */
     private $availability_signals;
     /**
-     * Output only. Derived locations of the profile, resolved from
-     * [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses].
-     * [derived_addresses][google.cloud.talent.v4beta1.Profile.derived_addresses]
-     * are exactly matched to
-     * [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses] in the
+     * Output only. Derived locations of the profile, resolved from [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses].
+     * [derived_addresses][google.cloud.talent.v4beta1.Profile.derived_addresses] are exactly matched to [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses] in the
      * same order.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Location derived_addresses = 64 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -367,9 +341,8 @@ class Profile extends \Google\Protobuf\Internal\Message
      *           a client has a candidate with two profiles, where one was created recently
      *           and the other one was created 5 years ago. These two profiles may be very
      *           different. The clients can create the first profile and get a generated
-     *           [group_id][google.cloud.talent.v4beta1.Profile.group_id], and assign it
-     *           when the second profile is created, indicating these two profiles are
-     *           referring to the same candidate.
+     *           [group_id][google.cloud.talent.v4beta1.Profile.group_id], and assign it when the second profile is created,
+     *           indicating these two profiles are referring to the same candidate.
      *     @type \Google\Protobuf\BoolValue $is_hirable
      *           Indicates the hirable status of the candidate.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -388,22 +361,17 @@ class Profile extends \Google\Protobuf\Internal\Message
      *           a recruiter who then uploads it into the ATS, and so on.
      *           * Updates made to the candidate's profile by the recruiter as a result of
      *           interacting with the candidate (for example adding a skill or work
-     *           preference, and so on). Changes to
-     *           [recruiting_notes][google.cloud.talent.v4beta1.Profile.recruiting_notes]
-     *           are specifically excluded from this action type.
-     *           Note:
-     *           [candidate_update_time][google.cloud.talent.v4beta1.Profile.candidate_update_time]
-     *           must be greater than or equal to
-     *           [resume_update_time][google.cloud.talent.v4beta1.Profile.resume_update_time]
-     *           or an error is thrown.
+     *           preference, and so on). Changes to [recruiting_notes][google.cloud.talent.v4beta1.Profile.recruiting_notes] are specifically
+     *           excluded from this action type.
+     *           Note: [candidate_update_time][google.cloud.talent.v4beta1.Profile.candidate_update_time] must be greater than or equal to
+     *           [resume_update_time][google.cloud.talent.v4beta1.Profile.resume_update_time] or an error is thrown.
      *     @type \Google\Protobuf\Timestamp $resume_update_time
      *           The timestamp when the candidate's resume was added or updated on the
      *           candidate's profile. Whether that resume was directly uploaded by a
      *           candidate, pulled from a 3rd party job board feed, added by a recruiter,
      *           and so on.
-     *           If this field is updated, it's expected that
-     *           [resume][google.cloud.talent.v4beta1.Profile.resume] is provided in the
-     *           create or update calls.
+     *           If this field is updated, it's expected that [resume][google.cloud.talent.v4beta1.Profile.resume] is provided in
+     *           the create or update calls.
      *     @type \Google\Cloud\Talent\V4beta1\Resume $resume
      *           The resume representing this profile.
      *     @type \Google\Cloud\Talent\V4beta1\PersonName[]|\Google\Protobuf\Internal\RepeatedField $person_names
@@ -413,29 +381,23 @@ class Profile extends \Google\Protobuf\Internal\Message
      *           The candidate's postal addresses. It's highly recommended to
      *           input this information as accurately as possible to help improve search
      *           quality. Here are some recommendations:
-     *           * Provide [Address.usage][google.cloud.talent.v4beta1.Address.usage] if
-     *           possible, especially if the address is PERSONAL. During a search only
-     *           personal addresses are considered. If there is no such address, all
-     *           addresses with unspecified usage are assumed to be personal.
-     *           * Provide [Address.current][google.cloud.talent.v4beta1.Address.current]
-     *           for the current address if possible. During a search, only current
-     *           addresses are considered. If there is no such address, all addresses are
-     *           assumed to be current.
+     *           * Provide [Address.usage][google.cloud.talent.v4beta1.Address.usage] if possible, especially if the address is
+     *           PERSONAL. During a search only personal addresses are considered. If there
+     *           is no such address, all addresses with unspecified usage are assumed to be
+     *           personal.
+     *           * Provide [Address.current][google.cloud.talent.v4beta1.Address.current] for the current address if possible. During
+     *           a search, only current addresses are considered. If there is no such
+     *           address, all addresses are assumed to be current.
      *           When displaying a candidate's addresses, it is sometimes desirable to limit
      *           the number of addresses shown. In these cases we recommend that you display
      *           the addresses in the following order of priority:
-     *           1. [Address.usage][google.cloud.talent.v4beta1.Address.usage] is PERSONAL
-     *           and [Address.current][google.cloud.talent.v4beta1.Address.current] is true.
-     *           2. [Address.usage][google.cloud.talent.v4beta1.Address.usage] is PERSONAL
-     *           and [Address.current][google.cloud.talent.v4beta1.Address.current] is false
-     *           or not set.
-     *           3. [Address.usage][google.cloud.talent.v4beta1.Address.usage] is
-     *           CONTACT_INFO_USAGE_UNSPECIFIED and
+     *           1. [Address.usage][google.cloud.talent.v4beta1.Address.usage] is PERSONAL and [Address.current][google.cloud.talent.v4beta1.Address.current] is true.
+     *           2. [Address.usage][google.cloud.talent.v4beta1.Address.usage] is PERSONAL and [Address.current][google.cloud.talent.v4beta1.Address.current] is false or not
+     *           set.
+     *           3. [Address.usage][google.cloud.talent.v4beta1.Address.usage] is CONTACT_INFO_USAGE_UNSPECIFIED and
      *           [Address.current][google.cloud.talent.v4beta1.Address.current] is true.
-     *           4. [Address.usage][google.cloud.talent.v4beta1.Address.usage] is
-     *           CONTACT_INFO_USAGE_UNSPECIFIED and
-     *           [Address.current][google.cloud.talent.v4beta1.Address.current] is false or
-     *           not set.
+     *           4. [Address.usage][google.cloud.talent.v4beta1.Address.usage] is CONTACT_INFO_USAGE_UNSPECIFIED and
+     *           [Address.current][google.cloud.talent.v4beta1.Address.current] is false or not set.
      *     @type \Google\Cloud\Talent\V4beta1\Email[]|\Google\Protobuf\Internal\RepeatedField $email_addresses
      *           The candidate's email addresses.
      *     @type \Google\Cloud\Talent\V4beta1\Phone[]|\Google\Protobuf\Internal\RepeatedField $phone_numbers
@@ -443,12 +405,8 @@ class Profile extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Talent\V4beta1\PersonalUri[]|\Google\Protobuf\Internal\RepeatedField $personal_uris
      *           The candidate's personal URIs.
      *     @type \Google\Cloud\Talent\V4beta1\AdditionalContactInfo[]|\Google\Protobuf\Internal\RepeatedField $additional_contact_info
-     *           Available contact information besides
-     *           [addresses][google.cloud.talent.v4beta1.Profile.addresses],
-     *           [email_addresses][google.cloud.talent.v4beta1.Profile.email_addresses],
-     *           [phone_numbers][google.cloud.talent.v4beta1.Profile.phone_numbers] and
-     *           [personal_uris][google.cloud.talent.v4beta1.Profile.personal_uris]. For
-     *           example, Hang-out, Skype.
+     *           Available contact information besides [addresses][google.cloud.talent.v4beta1.Profile.addresses], [email_addresses][google.cloud.talent.v4beta1.Profile.email_addresses],
+     *           [phone_numbers][google.cloud.talent.v4beta1.Profile.phone_numbers] and [personal_uris][google.cloud.talent.v4beta1.Profile.personal_uris]. For example, Hang-out, Skype.
      *     @type \Google\Cloud\Talent\V4beta1\EmploymentRecord[]|\Google\Protobuf\Internal\RepeatedField $employment_records
      *           The employment history records of the candidate. It's highly recommended
      *           to input this information as accurately as possible to help improve search
@@ -458,10 +416,8 @@ class Profile extends \Google\Protobuf\Internal\Message
      *           change is.
      *           For example, only job title is changed from "software engineer" to "senior
      *           software engineer".
-     *           * Provide
-     *           [EmploymentRecord.is_current][google.cloud.talent.v4beta1.EmploymentRecord.is_current]
-     *           for the current employment if possible. If not, it's inferred from user
-     *           inputs.
+     *           * Provide [EmploymentRecord.is_current][google.cloud.talent.v4beta1.EmploymentRecord.is_current] for the current employment if
+     *           possible. If not, it's inferred from user inputs.
      *           The limitation for max number of employment records is 100.
      *     @type \Google\Cloud\Talent\V4beta1\EducationRecord[]|\Google\Protobuf\Internal\RepeatedField $education_records
      *           The education history record of the candidate. It's highly recommended to
@@ -471,10 +427,8 @@ class Profile extends \Google\Protobuf\Internal\Message
      *           * List each education type separately, no matter how minor the change is.
      *           For example, the profile contains the education experience from the same
      *           school but different degrees.
-     *           * Provide
-     *           [EducationRecord.is_current][google.cloud.talent.v4beta1.EducationRecord.is_current]
-     *           for the current education if possible. If not, it's inferred from user
-     *           inputs.
+     *           * Provide [EducationRecord.is_current][google.cloud.talent.v4beta1.EducationRecord.is_current] for the current education if
+     *           possible. If not, it's inferred from user inputs.
      *           The limitation for max number of education records is 100.
      *     @type \Google\Cloud\Talent\V4beta1\Skill[]|\Google\Protobuf\Internal\RepeatedField $skills
      *           The skill set of the candidate. It's highly recommended to provide as
@@ -483,8 +437,7 @@ class Profile extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Talent\V4beta1\Activity[]|\Google\Protobuf\Internal\RepeatedField $activities
      *           The individual or collaborative activities which the candidate has
      *           participated in, for example, open-source projects, class assignments that
-     *           aren't listed in
-     *           [employment_records][google.cloud.talent.v4beta1.Profile.employment_records].
+     *           aren't listed in [employment_records][google.cloud.talent.v4beta1.Profile.employment_records].
      *           The limitation for max number of activities is 50.
      *     @type \Google\Cloud\Talent\V4beta1\Publication[]|\Google\Protobuf\Internal\RepeatedField $publications
      *           The publications published by the candidate.
@@ -500,8 +453,7 @@ class Profile extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $custom_attributes
      *           A map of fields to hold both filterable and non-filterable custom profile
      *           attributes that aren't covered by the provided structured fields. See
-     *           [CustomAttribute][google.cloud.talent.v4beta1.CustomAttribute] for more
-     *           details.
+     *           [CustomAttribute][google.cloud.talent.v4beta1.CustomAttribute] for more details.
      *           At most 100 filterable and at most 100 unfilterable keys are supported. If
      *           limit is exceeded, an error is thrown. Custom attributes are `unfilterable`
      *           by default. These are filterable when the `filterable` flag is set to
@@ -520,16 +472,12 @@ class Profile extends \Google\Protobuf\Internal\Message
      *           searchable or not.
      *     @type string $keyword_snippet
      *           Output only. Keyword snippet shows how the search result is related to a
-     *           search query.  This is only returned in
-     *           [SearchProfilesResponse][google.cloud.talent.v4beta1.SearchProfilesResponse].
+     *           search query.  This is only returned in [SearchProfilesResponse][google.cloud.talent.v4beta1.SearchProfilesResponse].
      *     @type \Google\Cloud\Talent\V4beta1\AvailabilitySignal[]|\Google\Protobuf\Internal\RepeatedField $availability_signals
      *           Output only. Candidate's availability signals.
      *     @type \Google\Cloud\Talent\V4beta1\Location[]|\Google\Protobuf\Internal\RepeatedField $derived_addresses
-     *           Output only. Derived locations of the profile, resolved from
-     *           [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses].
-     *           [derived_addresses][google.cloud.talent.v4beta1.Profile.derived_addresses]
-     *           are exactly matched to
-     *           [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses] in the
+     *           Output only. Derived locations of the profile, resolved from [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses].
+     *           [derived_addresses][google.cloud.talent.v4beta1.Profile.derived_addresses] are exactly matched to [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses] in the
      *           same order.
      * }
      */
@@ -673,9 +621,8 @@ class Profile extends \Google\Protobuf\Internal\Message
      * a client has a candidate with two profiles, where one was created recently
      * and the other one was created 5 years ago. These two profiles may be very
      * different. The clients can create the first profile and get a generated
-     * [group_id][google.cloud.talent.v4beta1.Profile.group_id], and assign it
-     * when the second profile is created, indicating these two profiles are
-     * referring to the same candidate.
+     * [group_id][google.cloud.talent.v4beta1.Profile.group_id], and assign it when the second profile is created,
+     * indicating these two profiles are referring to the same candidate.
      *
      * Generated from protobuf field <code>string group_id = 5;</code>
      * @return string
@@ -694,9 +641,8 @@ class Profile extends \Google\Protobuf\Internal\Message
      * a client has a candidate with two profiles, where one was created recently
      * and the other one was created 5 years ago. These two profiles may be very
      * different. The clients can create the first profile and get a generated
-     * [group_id][google.cloud.talent.v4beta1.Profile.group_id], and assign it
-     * when the second profile is created, indicating these two profiles are
-     * referring to the same candidate.
+     * [group_id][google.cloud.talent.v4beta1.Profile.group_id], and assign it when the second profile is created,
+     * indicating these two profiles are referring to the same candidate.
      *
      * Generated from protobuf field <code>string group_id = 5;</code>
      * @param string $var
@@ -731,8 +677,7 @@ class Profile extends \Google\Protobuf\Internal\Message
      */
     public function getIsHirableValue()
     {
-        $wrapper = $this->getIsHirable();
-        return is_null($wrapper) ? null : $wrapper->getValue();
+        return $this->readWrapperValue("is_hirable");
     }
 
     /**
@@ -761,9 +706,8 @@ class Profile extends \Google\Protobuf\Internal\Message
      */
     public function setIsHirableValue($var)
     {
-        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
-        return $this->setIsHirable($wrappedVar);
-    }
+        $this->writeWrapperValue("is_hirable", $var);
+        return $this;}
 
     /**
      * The timestamp when the profile was first created at this source.
@@ -829,14 +773,10 @@ class Profile extends \Google\Protobuf\Internal\Message
      * a recruiter who then uploads it into the ATS, and so on.
      * * Updates made to the candidate's profile by the recruiter as a result of
      * interacting with the candidate (for example adding a skill or work
-     * preference, and so on). Changes to
-     * [recruiting_notes][google.cloud.talent.v4beta1.Profile.recruiting_notes]
-     * are specifically excluded from this action type.
-     * Note:
-     * [candidate_update_time][google.cloud.talent.v4beta1.Profile.candidate_update_time]
-     * must be greater than or equal to
-     * [resume_update_time][google.cloud.talent.v4beta1.Profile.resume_update_time]
-     * or an error is thrown.
+     * preference, and so on). Changes to [recruiting_notes][google.cloud.talent.v4beta1.Profile.recruiting_notes] are specifically
+     * excluded from this action type.
+     * Note: [candidate_update_time][google.cloud.talent.v4beta1.Profile.candidate_update_time] must be greater than or equal to
+     * [resume_update_time][google.cloud.talent.v4beta1.Profile.resume_update_time] or an error is thrown.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp candidate_update_time = 67;</code>
      * @return \Google\Protobuf\Timestamp
@@ -858,14 +798,10 @@ class Profile extends \Google\Protobuf\Internal\Message
      * a recruiter who then uploads it into the ATS, and so on.
      * * Updates made to the candidate's profile by the recruiter as a result of
      * interacting with the candidate (for example adding a skill or work
-     * preference, and so on). Changes to
-     * [recruiting_notes][google.cloud.talent.v4beta1.Profile.recruiting_notes]
-     * are specifically excluded from this action type.
-     * Note:
-     * [candidate_update_time][google.cloud.talent.v4beta1.Profile.candidate_update_time]
-     * must be greater than or equal to
-     * [resume_update_time][google.cloud.talent.v4beta1.Profile.resume_update_time]
-     * or an error is thrown.
+     * preference, and so on). Changes to [recruiting_notes][google.cloud.talent.v4beta1.Profile.recruiting_notes] are specifically
+     * excluded from this action type.
+     * Note: [candidate_update_time][google.cloud.talent.v4beta1.Profile.candidate_update_time] must be greater than or equal to
+     * [resume_update_time][google.cloud.talent.v4beta1.Profile.resume_update_time] or an error is thrown.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp candidate_update_time = 67;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -884,9 +820,8 @@ class Profile extends \Google\Protobuf\Internal\Message
      * candidate's profile. Whether that resume was directly uploaded by a
      * candidate, pulled from a 3rd party job board feed, added by a recruiter,
      * and so on.
-     * If this field is updated, it's expected that
-     * [resume][google.cloud.talent.v4beta1.Profile.resume] is provided in the
-     * create or update calls.
+     * If this field is updated, it's expected that [resume][google.cloud.talent.v4beta1.Profile.resume] is provided in
+     * the create or update calls.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp resume_update_time = 68;</code>
      * @return \Google\Protobuf\Timestamp
@@ -901,9 +836,8 @@ class Profile extends \Google\Protobuf\Internal\Message
      * candidate's profile. Whether that resume was directly uploaded by a
      * candidate, pulled from a 3rd party job board feed, added by a recruiter,
      * and so on.
-     * If this field is updated, it's expected that
-     * [resume][google.cloud.talent.v4beta1.Profile.resume] is provided in the
-     * create or update calls.
+     * If this field is updated, it's expected that [resume][google.cloud.talent.v4beta1.Profile.resume] is provided in
+     * the create or update calls.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp resume_update_time = 68;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -975,29 +909,23 @@ class Profile extends \Google\Protobuf\Internal\Message
      * The candidate's postal addresses. It's highly recommended to
      * input this information as accurately as possible to help improve search
      * quality. Here are some recommendations:
-     * * Provide [Address.usage][google.cloud.talent.v4beta1.Address.usage] if
-     * possible, especially if the address is PERSONAL. During a search only
-     * personal addresses are considered. If there is no such address, all
-     * addresses with unspecified usage are assumed to be personal.
-     * * Provide [Address.current][google.cloud.talent.v4beta1.Address.current]
-     * for the current address if possible. During a search, only current
-     * addresses are considered. If there is no such address, all addresses are
-     * assumed to be current.
+     * * Provide [Address.usage][google.cloud.talent.v4beta1.Address.usage] if possible, especially if the address is
+     * PERSONAL. During a search only personal addresses are considered. If there
+     * is no such address, all addresses with unspecified usage are assumed to be
+     * personal.
+     * * Provide [Address.current][google.cloud.talent.v4beta1.Address.current] for the current address if possible. During
+     * a search, only current addresses are considered. If there is no such
+     * address, all addresses are assumed to be current.
      * When displaying a candidate's addresses, it is sometimes desirable to limit
      * the number of addresses shown. In these cases we recommend that you display
      * the addresses in the following order of priority:
-     * 1. [Address.usage][google.cloud.talent.v4beta1.Address.usage] is PERSONAL
-     * and [Address.current][google.cloud.talent.v4beta1.Address.current] is true.
-     * 2. [Address.usage][google.cloud.talent.v4beta1.Address.usage] is PERSONAL
-     * and [Address.current][google.cloud.talent.v4beta1.Address.current] is false
-     * or not set.
-     * 3. [Address.usage][google.cloud.talent.v4beta1.Address.usage] is
-     * CONTACT_INFO_USAGE_UNSPECIFIED and
+     * 1. [Address.usage][google.cloud.talent.v4beta1.Address.usage] is PERSONAL and [Address.current][google.cloud.talent.v4beta1.Address.current] is true.
+     * 2. [Address.usage][google.cloud.talent.v4beta1.Address.usage] is PERSONAL and [Address.current][google.cloud.talent.v4beta1.Address.current] is false or not
+     * set.
+     * 3. [Address.usage][google.cloud.talent.v4beta1.Address.usage] is CONTACT_INFO_USAGE_UNSPECIFIED and
      * [Address.current][google.cloud.talent.v4beta1.Address.current] is true.
-     * 4. [Address.usage][google.cloud.talent.v4beta1.Address.usage] is
-     * CONTACT_INFO_USAGE_UNSPECIFIED and
-     * [Address.current][google.cloud.talent.v4beta1.Address.current] is false or
-     * not set.
+     * 4. [Address.usage][google.cloud.talent.v4beta1.Address.usage] is CONTACT_INFO_USAGE_UNSPECIFIED and
+     * [Address.current][google.cloud.talent.v4beta1.Address.current] is false or not set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Address addresses = 12;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -1011,29 +939,23 @@ class Profile extends \Google\Protobuf\Internal\Message
      * The candidate's postal addresses. It's highly recommended to
      * input this information as accurately as possible to help improve search
      * quality. Here are some recommendations:
-     * * Provide [Address.usage][google.cloud.talent.v4beta1.Address.usage] if
-     * possible, especially if the address is PERSONAL. During a search only
-     * personal addresses are considered. If there is no such address, all
-     * addresses with unspecified usage are assumed to be personal.
-     * * Provide [Address.current][google.cloud.talent.v4beta1.Address.current]
-     * for the current address if possible. During a search, only current
-     * addresses are considered. If there is no such address, all addresses are
-     * assumed to be current.
+     * * Provide [Address.usage][google.cloud.talent.v4beta1.Address.usage] if possible, especially if the address is
+     * PERSONAL. During a search only personal addresses are considered. If there
+     * is no such address, all addresses with unspecified usage are assumed to be
+     * personal.
+     * * Provide [Address.current][google.cloud.talent.v4beta1.Address.current] for the current address if possible. During
+     * a search, only current addresses are considered. If there is no such
+     * address, all addresses are assumed to be current.
      * When displaying a candidate's addresses, it is sometimes desirable to limit
      * the number of addresses shown. In these cases we recommend that you display
      * the addresses in the following order of priority:
-     * 1. [Address.usage][google.cloud.talent.v4beta1.Address.usage] is PERSONAL
-     * and [Address.current][google.cloud.talent.v4beta1.Address.current] is true.
-     * 2. [Address.usage][google.cloud.talent.v4beta1.Address.usage] is PERSONAL
-     * and [Address.current][google.cloud.talent.v4beta1.Address.current] is false
-     * or not set.
-     * 3. [Address.usage][google.cloud.talent.v4beta1.Address.usage] is
-     * CONTACT_INFO_USAGE_UNSPECIFIED and
+     * 1. [Address.usage][google.cloud.talent.v4beta1.Address.usage] is PERSONAL and [Address.current][google.cloud.talent.v4beta1.Address.current] is true.
+     * 2. [Address.usage][google.cloud.talent.v4beta1.Address.usage] is PERSONAL and [Address.current][google.cloud.talent.v4beta1.Address.current] is false or not
+     * set.
+     * 3. [Address.usage][google.cloud.talent.v4beta1.Address.usage] is CONTACT_INFO_USAGE_UNSPECIFIED and
      * [Address.current][google.cloud.talent.v4beta1.Address.current] is true.
-     * 4. [Address.usage][google.cloud.talent.v4beta1.Address.usage] is
-     * CONTACT_INFO_USAGE_UNSPECIFIED and
-     * [Address.current][google.cloud.talent.v4beta1.Address.current] is false or
-     * not set.
+     * 4. [Address.usage][google.cloud.talent.v4beta1.Address.usage] is CONTACT_INFO_USAGE_UNSPECIFIED and
+     * [Address.current][google.cloud.talent.v4beta1.Address.current] is false or not set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Address addresses = 12;</code>
      * @param \Google\Cloud\Talent\V4beta1\Address[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -1126,12 +1048,8 @@ class Profile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Available contact information besides
-     * [addresses][google.cloud.talent.v4beta1.Profile.addresses],
-     * [email_addresses][google.cloud.talent.v4beta1.Profile.email_addresses],
-     * [phone_numbers][google.cloud.talent.v4beta1.Profile.phone_numbers] and
-     * [personal_uris][google.cloud.talent.v4beta1.Profile.personal_uris]. For
-     * example, Hang-out, Skype.
+     * Available contact information besides [addresses][google.cloud.talent.v4beta1.Profile.addresses], [email_addresses][google.cloud.talent.v4beta1.Profile.email_addresses],
+     * [phone_numbers][google.cloud.talent.v4beta1.Profile.phone_numbers] and [personal_uris][google.cloud.talent.v4beta1.Profile.personal_uris]. For example, Hang-out, Skype.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.AdditionalContactInfo additional_contact_info = 16;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -1142,12 +1060,8 @@ class Profile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Available contact information besides
-     * [addresses][google.cloud.talent.v4beta1.Profile.addresses],
-     * [email_addresses][google.cloud.talent.v4beta1.Profile.email_addresses],
-     * [phone_numbers][google.cloud.talent.v4beta1.Profile.phone_numbers] and
-     * [personal_uris][google.cloud.talent.v4beta1.Profile.personal_uris]. For
-     * example, Hang-out, Skype.
+     * Available contact information besides [addresses][google.cloud.talent.v4beta1.Profile.addresses], [email_addresses][google.cloud.talent.v4beta1.Profile.email_addresses],
+     * [phone_numbers][google.cloud.talent.v4beta1.Profile.phone_numbers] and [personal_uris][google.cloud.talent.v4beta1.Profile.personal_uris]. For example, Hang-out, Skype.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.AdditionalContactInfo additional_contact_info = 16;</code>
      * @param \Google\Cloud\Talent\V4beta1\AdditionalContactInfo[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -1170,10 +1084,8 @@ class Profile extends \Google\Protobuf\Internal\Message
      * change is.
      * For example, only job title is changed from "software engineer" to "senior
      * software engineer".
-     * * Provide
-     * [EmploymentRecord.is_current][google.cloud.talent.v4beta1.EmploymentRecord.is_current]
-     * for the current employment if possible. If not, it's inferred from user
-     * inputs.
+     * * Provide [EmploymentRecord.is_current][google.cloud.talent.v4beta1.EmploymentRecord.is_current] for the current employment if
+     * possible. If not, it's inferred from user inputs.
      * The limitation for max number of employment records is 100.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.EmploymentRecord employment_records = 17;</code>
@@ -1193,10 +1105,8 @@ class Profile extends \Google\Protobuf\Internal\Message
      * change is.
      * For example, only job title is changed from "software engineer" to "senior
      * software engineer".
-     * * Provide
-     * [EmploymentRecord.is_current][google.cloud.talent.v4beta1.EmploymentRecord.is_current]
-     * for the current employment if possible. If not, it's inferred from user
-     * inputs.
+     * * Provide [EmploymentRecord.is_current][google.cloud.talent.v4beta1.EmploymentRecord.is_current] for the current employment if
+     * possible. If not, it's inferred from user inputs.
      * The limitation for max number of employment records is 100.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.EmploymentRecord employment_records = 17;</code>
@@ -1219,10 +1129,8 @@ class Profile extends \Google\Protobuf\Internal\Message
      * * List each education type separately, no matter how minor the change is.
      * For example, the profile contains the education experience from the same
      * school but different degrees.
-     * * Provide
-     * [EducationRecord.is_current][google.cloud.talent.v4beta1.EducationRecord.is_current]
-     * for the current education if possible. If not, it's inferred from user
-     * inputs.
+     * * Provide [EducationRecord.is_current][google.cloud.talent.v4beta1.EducationRecord.is_current] for the current education if
+     * possible. If not, it's inferred from user inputs.
      * The limitation for max number of education records is 100.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.EducationRecord education_records = 18;</code>
@@ -1241,10 +1149,8 @@ class Profile extends \Google\Protobuf\Internal\Message
      * * List each education type separately, no matter how minor the change is.
      * For example, the profile contains the education experience from the same
      * school but different degrees.
-     * * Provide
-     * [EducationRecord.is_current][google.cloud.talent.v4beta1.EducationRecord.is_current]
-     * for the current education if possible. If not, it's inferred from user
-     * inputs.
+     * * Provide [EducationRecord.is_current][google.cloud.talent.v4beta1.EducationRecord.is_current] for the current education if
+     * possible. If not, it's inferred from user inputs.
      * The limitation for max number of education records is 100.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.EducationRecord education_records = 18;</code>
@@ -1292,8 +1198,7 @@ class Profile extends \Google\Protobuf\Internal\Message
     /**
      * The individual or collaborative activities which the candidate has
      * participated in, for example, open-source projects, class assignments that
-     * aren't listed in
-     * [employment_records][google.cloud.talent.v4beta1.Profile.employment_records].
+     * aren't listed in [employment_records][google.cloud.talent.v4beta1.Profile.employment_records].
      * The limitation for max number of activities is 50.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Activity activities = 20;</code>
@@ -1307,8 +1212,7 @@ class Profile extends \Google\Protobuf\Internal\Message
     /**
      * The individual or collaborative activities which the candidate has
      * participated in, for example, open-source projects, class assignments that
-     * aren't listed in
-     * [employment_records][google.cloud.talent.v4beta1.Profile.employment_records].
+     * aren't listed in [employment_records][google.cloud.talent.v4beta1.Profile.employment_records].
      * The limitation for max number of activities is 50.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Activity activities = 20;</code>
@@ -1458,8 +1362,7 @@ class Profile extends \Google\Protobuf\Internal\Message
     /**
      * A map of fields to hold both filterable and non-filterable custom profile
      * attributes that aren't covered by the provided structured fields. See
-     * [CustomAttribute][google.cloud.talent.v4beta1.CustomAttribute] for more
-     * details.
+     * [CustomAttribute][google.cloud.talent.v4beta1.CustomAttribute] for more details.
      * At most 100 filterable and at most 100 unfilterable keys are supported. If
      * limit is exceeded, an error is thrown. Custom attributes are `unfilterable`
      * by default. These are filterable when the `filterable` flag is set to
@@ -1484,8 +1387,7 @@ class Profile extends \Google\Protobuf\Internal\Message
     /**
      * A map of fields to hold both filterable and non-filterable custom profile
      * attributes that aren't covered by the provided structured fields. See
-     * [CustomAttribute][google.cloud.talent.v4beta1.CustomAttribute] for more
-     * details.
+     * [CustomAttribute][google.cloud.talent.v4beta1.CustomAttribute] for more details.
      * At most 100 filterable and at most 100 unfilterable keys are supported. If
      * limit is exceeded, an error is thrown. Custom attributes are `unfilterable`
      * by default. These are filterable when the `filterable` flag is set to
@@ -1543,8 +1445,7 @@ class Profile extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Keyword snippet shows how the search result is related to a
-     * search query.  This is only returned in
-     * [SearchProfilesResponse][google.cloud.talent.v4beta1.SearchProfilesResponse].
+     * search query.  This is only returned in [SearchProfilesResponse][google.cloud.talent.v4beta1.SearchProfilesResponse].
      *
      * Generated from protobuf field <code>string keyword_snippet = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -1556,8 +1457,7 @@ class Profile extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Keyword snippet shows how the search result is related to a
-     * search query.  This is only returned in
-     * [SearchProfilesResponse][google.cloud.talent.v4beta1.SearchProfilesResponse].
+     * search query.  This is only returned in [SearchProfilesResponse][google.cloud.talent.v4beta1.SearchProfilesResponse].
      *
      * Generated from protobuf field <code>string keyword_snippet = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -1598,11 +1498,8 @@ class Profile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Derived locations of the profile, resolved from
-     * [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses].
-     * [derived_addresses][google.cloud.talent.v4beta1.Profile.derived_addresses]
-     * are exactly matched to
-     * [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses] in the
+     * Output only. Derived locations of the profile, resolved from [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses].
+     * [derived_addresses][google.cloud.talent.v4beta1.Profile.derived_addresses] are exactly matched to [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses] in the
      * same order.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Location derived_addresses = 64 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -1614,11 +1511,8 @@ class Profile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Derived locations of the profile, resolved from
-     * [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses].
-     * [derived_addresses][google.cloud.talent.v4beta1.Profile.derived_addresses]
-     * are exactly matched to
-     * [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses] in the
+     * Output only. Derived locations of the profile, resolved from [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses].
+     * [derived_addresses][google.cloud.talent.v4beta1.Profile.derived_addresses] are exactly matched to [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses] in the
      * same order.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Location derived_addresses = 64 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
