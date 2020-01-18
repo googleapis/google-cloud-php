@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2018 Google LLC.
+// Copyright 2019 Google LLC.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,8 +20,7 @@
 namespace Google\Cloud\Logging\V2;
 
 /**
- * Service for configuring sinks used to export log entries out of
- * Logging.
+ * Service for configuring sinks used to route log entries.
  */
 class ConfigServiceV2GrpcClient extends \Grpc\BaseStub {
 
@@ -63,9 +62,9 @@ class ConfigServiceV2GrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Creates a sink that exports specified log entries to a destination.  The
+     * Creates a sink that exports specified log entries to a destination. The
      * export of newly-ingested log entries begins immediately, unless the sink's
-     * `writer_identity` is not permitted to write to the destination.  A sink can
+     * `writer_identity` is not permitted to write to the destination. A sink can
      * export log entries only from the resource owning the sink.
      * @param \Google\Cloud\Logging\V2\CreateSinkRequest $argument input argument
      * @param array $metadata metadata
@@ -80,8 +79,9 @@ class ConfigServiceV2GrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Updates a sink.  This method replaces the following fields in the existing
+     * Updates a sink. This method replaces the following fields in the existing
      * sink with values from the new sink: `destination`, and `filter`.
+     *
      * The updated sink might also have a new `writer_identity`; see the
      * `unique_writer_identity` field.
      * @param \Google\Cloud\Logging\V2\UpdateSinkRequest $argument input argument

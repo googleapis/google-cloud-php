@@ -1,19 +1,19 @@
 {
-  "updateTime": "2019-08-29T18:36:30.085485Z",
+  "updateTime": "2020-01-18T11:01:46.404663Z",
   "sources": [
     {
       "generator": {
         "name": "artman",
-        "version": "0.35.1",
-        "dockerImage": "googleapis/artman@sha256:b11c7ea0d0831c54016fb50f4b796d24d1971439b30fbc32a369ba1ac887c384"
+        "version": "0.44.1",
+        "dockerImage": "googleapis/artman@sha256:5599b61e56a372d21b671969ee915fbca0f6c3a0daaeb898d01f8f685f1bbc8b"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "e121a35579e73377f998c11bcc09ba0486736404",
-        "internalRef": "265953539"
+        "sha": "7f0dab8177cf371ae019a082e2512de7ac102888",
+        "internalRef": "290326986"
       }
     }
   ],
@@ -27,6 +27,350 @@
         "generator": "gapic",
         "config": "google/logging/artman_logging.yaml"
       }
+    }
+  ],
+  "newFiles": [
+    {
+      "path": ".gitattributes"
+    },
+    {
+      "path": ".github/pull_request_template.md"
+    },
+    {
+      "path": "CONTRIBUTING.md"
+    },
+    {
+      "path": "LICENSE"
+    },
+    {
+      "path": "README.md"
+    },
+    {
+      "path": "VERSION"
+    },
+    {
+      "path": "composer.json"
+    },
+    {
+      "path": "metadata/Type/HttpRequest.php"
+    },
+    {
+      "path": "metadata/Type/LogSeverity.php"
+    },
+    {
+      "path": "metadata/V2/LogEntry.php"
+    },
+    {
+      "path": "metadata/V2/Logging.php"
+    },
+    {
+      "path": "metadata/V2/LoggingConfig.php"
+    },
+    {
+      "path": "metadata/V2/LoggingMetrics.php"
+    },
+    {
+      "path": "phpunit-snippets.xml.dist"
+    },
+    {
+      "path": "phpunit-system.xml.dist"
+    },
+    {
+      "path": "phpunit.xml.dist"
+    },
+    {
+      "path": "src/Connection/ConnectionInterface.php"
+    },
+    {
+      "path": "src/Connection/Grpc.php"
+    },
+    {
+      "path": "src/Connection/Rest.php"
+    },
+    {
+      "path": "src/Connection/ServiceDefinition/logging-v2.json"
+    },
+    {
+      "path": "src/Entry.php"
+    },
+    {
+      "path": "src/Logger.php"
+    },
+    {
+      "path": "src/LoggingClient.php"
+    },
+    {
+      "path": "src/Metric.php"
+    },
+    {
+      "path": "src/PsrLogger.php"
+    },
+    {
+      "path": "src/Sink.php"
+    },
+    {
+      "path": "src/Type/HttpRequest.php"
+    },
+    {
+      "path": "src/Type/LogSeverity.php"
+    },
+    {
+      "path": "src/V2/BigQueryOptions.php"
+    },
+    {
+      "path": "src/V2/ConfigServiceV2Client.php"
+    },
+    {
+      "path": "src/V2/ConfigServiceV2GrpcClient.php"
+    },
+    {
+      "path": "src/V2/CreateExclusionRequest.php"
+    },
+    {
+      "path": "src/V2/CreateLogMetricRequest.php"
+    },
+    {
+      "path": "src/V2/CreateSinkRequest.php"
+    },
+    {
+      "path": "src/V2/DeleteExclusionRequest.php"
+    },
+    {
+      "path": "src/V2/DeleteLogMetricRequest.php"
+    },
+    {
+      "path": "src/V2/DeleteLogRequest.php"
+    },
+    {
+      "path": "src/V2/DeleteSinkRequest.php"
+    },
+    {
+      "path": "src/V2/Gapic/ConfigServiceV2GapicClient.php"
+    },
+    {
+      "path": "src/V2/Gapic/LoggingServiceV2GapicClient.php"
+    },
+    {
+      "path": "src/V2/Gapic/MetricsServiceV2GapicClient.php"
+    },
+    {
+      "path": "src/V2/GetExclusionRequest.php"
+    },
+    {
+      "path": "src/V2/GetLogMetricRequest.php"
+    },
+    {
+      "path": "src/V2/GetSinkRequest.php"
+    },
+    {
+      "path": "src/V2/ListExclusionsRequest.php"
+    },
+    {
+      "path": "src/V2/ListExclusionsResponse.php"
+    },
+    {
+      "path": "src/V2/ListLogEntriesRequest.php"
+    },
+    {
+      "path": "src/V2/ListLogEntriesResponse.php"
+    },
+    {
+      "path": "src/V2/ListLogMetricsRequest.php"
+    },
+    {
+      "path": "src/V2/ListLogMetricsResponse.php"
+    },
+    {
+      "path": "src/V2/ListLogsRequest.php"
+    },
+    {
+      "path": "src/V2/ListLogsResponse.php"
+    },
+    {
+      "path": "src/V2/ListMonitoredResourceDescriptorsRequest.php"
+    },
+    {
+      "path": "src/V2/ListMonitoredResourceDescriptorsResponse.php"
+    },
+    {
+      "path": "src/V2/ListSinksRequest.php"
+    },
+    {
+      "path": "src/V2/ListSinksResponse.php"
+    },
+    {
+      "path": "src/V2/LogEntry.php"
+    },
+    {
+      "path": "src/V2/LogEntryOperation.php"
+    },
+    {
+      "path": "src/V2/LogEntrySourceLocation.php"
+    },
+    {
+      "path": "src/V2/LogExclusion.php"
+    },
+    {
+      "path": "src/V2/LogMetric.php"
+    },
+    {
+      "path": "src/V2/LogMetric/ApiVersion.php"
+    },
+    {
+      "path": "src/V2/LogMetric_ApiVersion.php"
+    },
+    {
+      "path": "src/V2/LogSink.php"
+    },
+    {
+      "path": "src/V2/LogSink/VersionFormat.php"
+    },
+    {
+      "path": "src/V2/LogSink_VersionFormat.php"
+    },
+    {
+      "path": "src/V2/LoggingServiceV2Client.php"
+    },
+    {
+      "path": "src/V2/LoggingServiceV2GrpcClient.php"
+    },
+    {
+      "path": "src/V2/MetricsServiceV2Client.php"
+    },
+    {
+      "path": "src/V2/MetricsServiceV2GrpcClient.php"
+    },
+    {
+      "path": "src/V2/README.md"
+    },
+    {
+      "path": "src/V2/UpdateExclusionRequest.php"
+    },
+    {
+      "path": "src/V2/UpdateLogMetricRequest.php"
+    },
+    {
+      "path": "src/V2/UpdateSinkRequest.php"
+    },
+    {
+      "path": "src/V2/WriteLogEntriesPartialErrors.php"
+    },
+    {
+      "path": "src/V2/WriteLogEntriesRequest.php"
+    },
+    {
+      "path": "src/V2/WriteLogEntriesResponse.php"
+    },
+    {
+      "path": "src/V2/resources/config_service_v2_client_config.json"
+    },
+    {
+      "path": "src/V2/resources/config_service_v2_descriptor_config.php"
+    },
+    {
+      "path": "src/V2/resources/config_service_v2_rest_client_config.php"
+    },
+    {
+      "path": "src/V2/resources/logging_service_v2_client_config.json"
+    },
+    {
+      "path": "src/V2/resources/logging_service_v2_descriptor_config.php"
+    },
+    {
+      "path": "src/V2/resources/logging_service_v2_rest_client_config.php"
+    },
+    {
+      "path": "src/V2/resources/metrics_service_v2_client_config.json"
+    },
+    {
+      "path": "src/V2/resources/metrics_service_v2_descriptor_config.php"
+    },
+    {
+      "path": "src/V2/resources/metrics_service_v2_rest_client_config.php"
+    },
+    {
+      "path": "synth.metadata"
+    },
+    {
+      "path": "synth.py"
+    },
+    {
+      "path": "tests/Perf/LoggingPerfTest.php"
+    },
+    {
+      "path": "tests/Perf/bootstrap.php"
+    },
+    {
+      "path": "tests/Snippet/EntryTest.php"
+    },
+    {
+      "path": "tests/Snippet/LoggerTest.php"
+    },
+    {
+      "path": "tests/Snippet/LoggingClientTest.php"
+    },
+    {
+      "path": "tests/Snippet/MetricTest.php"
+    },
+    {
+      "path": "tests/Snippet/PsrLoggerTest.php"
+    },
+    {
+      "path": "tests/Snippet/SinkTest.php"
+    },
+    {
+      "path": "tests/System/LoggingTestCase.php"
+    },
+    {
+      "path": "tests/System/ManageMetricsTest.php"
+    },
+    {
+      "path": "tests/System/ManageSinksTest.php"
+    },
+    {
+      "path": "tests/System/V2/LoggingServiceV2SmokeTest.php"
+    },
+    {
+      "path": "tests/System/WriteAndListEntryTest.php"
+    },
+    {
+      "path": "tests/System/bootstrap.php"
+    },
+    {
+      "path": "tests/Unit/Connection/GrpcTest.php"
+    },
+    {
+      "path": "tests/Unit/Connection/RestTest.php"
+    },
+    {
+      "path": "tests/Unit/LoggerTest.php"
+    },
+    {
+      "path": "tests/Unit/LoggingClientTest.php"
+    },
+    {
+      "path": "tests/Unit/MetricTest.php"
+    },
+    {
+      "path": "tests/Unit/PsrLoggerBatchTest.php"
+    },
+    {
+      "path": "tests/Unit/PsrLoggerCompatibilityTest.php"
+    },
+    {
+      "path": "tests/Unit/PsrLoggerTest.php"
+    },
+    {
+      "path": "tests/Unit/SinkTest.php"
+    },
+    {
+      "path": "tests/Unit/V2/ConfigServiceV2ClientTest.php"
+    },
+    {
+      "path": "tests/Unit/V2/LoggingServiceV2ClientTest.php"
+    },
+    {
+      "path": "tests/Unit/V2/MetricsServiceV2ClientTest.php"
     }
   ]
 }

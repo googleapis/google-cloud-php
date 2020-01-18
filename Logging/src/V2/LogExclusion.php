@@ -10,11 +10,11 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Specifies a set of log entries that are not to be stored in
- * Logging. If your project receives a large volume of logs, you might be able
- * to use exclusions to reduce your chargeable logs. Exclusions are processed
- * after log sinks, so you can export log entries before they are excluded.
- * Audit log entries and log entries from Amazon Web Services are never
- * excluded.
+ * Logging. If your GCP resource receives a large volume of logs, you can
+ * use exclusions to reduce your chargeable logs. Exclusions are
+ * processed after log sinks, so you can export log entries before they are
+ * excluded. Note that organization-level and folder-level exclusions don't
+ * apply to child resources, and that you can't exclude audit log entries.
  *
  * Generated from protobuf message <code>google.logging.v2.LogExclusion</code>
  */
@@ -35,27 +35,40 @@ class LogExclusion extends \Google\Protobuf\Internal\Message
      */
     private $description = '';
     /**
-     * Required.
-     * An [advanced logs filter](/logging/docs/view/advanced_filters)
+     * Required. An [advanced logs filter](/logging/docs/view/advanced-queries)
      * that matches the log entries to be excluded. By using the
-     * [sample function](/logging/docs/view/advanced_filters#sample),
+     * [sample function](/logging/docs/view/advanced-queries#sample),
      * you can exclude less than 100% of the matching log entries.
-     * For example, the following filter matches 99% of low-severity log
-     * entries from load balancers:
-     * `"resource.type=http_load_balancer severity<ERROR sample(insertId, 0.99)"`
+     * For example, the following query matches 99% of low-severity log
+     * entries from Google Cloud Storage buckets:
+     * `"resource.type=gcs_bucket severity<ERROR sample(insertId, 0.99)"`
      *
      * Generated from protobuf field <code>string filter = 3;</code>
      */
     private $filter = '';
     /**
      * Optional. If set to True, then this exclusion is disabled and it does not
-     * exclude any log entries. You can use
-     * [exclusions.patch](/logging/docs/reference/v2/rest/v2/projects.exclusions/patch)
-     * to change the value of this field.
+     * exclude any log entries. You can [update an
+     * exclusion][google.logging.v2.ConfigServiceV2.UpdateExclusion] to change the
+     * value of this field.
      *
      * Generated from protobuf field <code>bool disabled = 4;</code>
      */
     private $disabled = false;
+    /**
+     * Output only. The creation timestamp of the exclusion.
+     * This field may not be present for older exclusions.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5;</code>
+     */
+    private $create_time = null;
+    /**
+     * Output only. The last update timestamp of the exclusion.
+     * This field may not be present for older exclusions.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6;</code>
+     */
+    private $update_time = null;
 
     /**
      * Constructor.
@@ -70,19 +83,24 @@ class LogExclusion extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           Optional. A description of this exclusion.
      *     @type string $filter
-     *           Required.
-     *           An [advanced logs filter](/logging/docs/view/advanced_filters)
+     *           Required. An [advanced logs filter](/logging/docs/view/advanced-queries)
      *           that matches the log entries to be excluded. By using the
-     *           [sample function](/logging/docs/view/advanced_filters#sample),
+     *           [sample function](/logging/docs/view/advanced-queries#sample),
      *           you can exclude less than 100% of the matching log entries.
-     *           For example, the following filter matches 99% of low-severity log
-     *           entries from load balancers:
-     *           `"resource.type=http_load_balancer severity<ERROR sample(insertId, 0.99)"`
+     *           For example, the following query matches 99% of low-severity log
+     *           entries from Google Cloud Storage buckets:
+     *           `"resource.type=gcs_bucket severity<ERROR sample(insertId, 0.99)"`
      *     @type bool $disabled
      *           Optional. If set to True, then this exclusion is disabled and it does not
-     *           exclude any log entries. You can use
-     *           [exclusions.patch](/logging/docs/reference/v2/rest/v2/projects.exclusions/patch)
-     *           to change the value of this field.
+     *           exclude any log entries. You can [update an
+     *           exclusion][google.logging.v2.ConfigServiceV2.UpdateExclusion] to change the
+     *           value of this field.
+     *     @type \Google\Protobuf\Timestamp $create_time
+     *           Output only. The creation timestamp of the exclusion.
+     *           This field may not be present for older exclusions.
+     *     @type \Google\Protobuf\Timestamp $update_time
+     *           Output only. The last update timestamp of the exclusion.
+     *           This field may not be present for older exclusions.
      * }
      */
     public function __construct($data = NULL) {
@@ -147,14 +165,13 @@ class LogExclusion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * An [advanced logs filter](/logging/docs/view/advanced_filters)
+     * Required. An [advanced logs filter](/logging/docs/view/advanced-queries)
      * that matches the log entries to be excluded. By using the
-     * [sample function](/logging/docs/view/advanced_filters#sample),
+     * [sample function](/logging/docs/view/advanced-queries#sample),
      * you can exclude less than 100% of the matching log entries.
-     * For example, the following filter matches 99% of low-severity log
-     * entries from load balancers:
-     * `"resource.type=http_load_balancer severity<ERROR sample(insertId, 0.99)"`
+     * For example, the following query matches 99% of low-severity log
+     * entries from Google Cloud Storage buckets:
+     * `"resource.type=gcs_bucket severity<ERROR sample(insertId, 0.99)"`
      *
      * Generated from protobuf field <code>string filter = 3;</code>
      * @return string
@@ -165,14 +182,13 @@ class LogExclusion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * An [advanced logs filter](/logging/docs/view/advanced_filters)
+     * Required. An [advanced logs filter](/logging/docs/view/advanced-queries)
      * that matches the log entries to be excluded. By using the
-     * [sample function](/logging/docs/view/advanced_filters#sample),
+     * [sample function](/logging/docs/view/advanced-queries#sample),
      * you can exclude less than 100% of the matching log entries.
-     * For example, the following filter matches 99% of low-severity log
-     * entries from load balancers:
-     * `"resource.type=http_load_balancer severity<ERROR sample(insertId, 0.99)"`
+     * For example, the following query matches 99% of low-severity log
+     * entries from Google Cloud Storage buckets:
+     * `"resource.type=gcs_bucket severity<ERROR sample(insertId, 0.99)"`
      *
      * Generated from protobuf field <code>string filter = 3;</code>
      * @param string $var
@@ -188,9 +204,9 @@ class LogExclusion extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. If set to True, then this exclusion is disabled and it does not
-     * exclude any log entries. You can use
-     * [exclusions.patch](/logging/docs/reference/v2/rest/v2/projects.exclusions/patch)
-     * to change the value of this field.
+     * exclude any log entries. You can [update an
+     * exclusion][google.logging.v2.ConfigServiceV2.UpdateExclusion] to change the
+     * value of this field.
      *
      * Generated from protobuf field <code>bool disabled = 4;</code>
      * @return bool
@@ -202,9 +218,9 @@ class LogExclusion extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. If set to True, then this exclusion is disabled and it does not
-     * exclude any log entries. You can use
-     * [exclusions.patch](/logging/docs/reference/v2/rest/v2/projects.exclusions/patch)
-     * to change the value of this field.
+     * exclude any log entries. You can [update an
+     * exclusion][google.logging.v2.ConfigServiceV2.UpdateExclusion] to change the
+     * value of this field.
      *
      * Generated from protobuf field <code>bool disabled = 4;</code>
      * @param bool $var
@@ -214,6 +230,62 @@ class LogExclusion extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->disabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The creation timestamp of the exclusion.
+     * This field may not be present for older exclusions.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5;</code>
+     * @return \Google\Protobuf\Timestamp
+     */
+    public function getCreateTime()
+    {
+        return $this->create_time;
+    }
+
+    /**
+     * Output only. The creation timestamp of the exclusion.
+     * This field may not be present for older exclusions.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setCreateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->create_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The last update timestamp of the exclusion.
+     * This field may not be present for older exclusions.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6;</code>
+     * @return \Google\Protobuf\Timestamp
+     */
+    public function getUpdateTime()
+    {
+        return $this->update_time;
+    }
+
+    /**
+     * Output only. The last update timestamp of the exclusion.
+     * This field may not be present for older exclusions.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setUpdateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->update_time = $var;
 
         return $this;
     }

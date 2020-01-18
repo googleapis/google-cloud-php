@@ -23,7 +23,7 @@ class ListLogMetricsResponse extends \Google\Protobuf\Internal\Message
     private $metrics;
     /**
      * If there might be more results than appear in this response, then
-     * `nextPageToken` is included.  To get the next set of results, call this
+     * `nextPageToken` is included. To get the next set of results, call this
      * method again using the value of `nextPageToken` as `pageToken`.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
@@ -40,7 +40,7 @@ class ListLogMetricsResponse extends \Google\Protobuf\Internal\Message
      *           A list of logs-based metrics.
      *     @type string $next_page_token
      *           If there might be more results than appear in this response, then
-     *           `nextPageToken` is included.  To get the next set of results, call this
+     *           `nextPageToken` is included. To get the next set of results, call this
      *           method again using the value of `nextPageToken` as `pageToken`.
      * }
      */
@@ -77,7 +77,7 @@ class ListLogMetricsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * If there might be more results than appear in this response, then
-     * `nextPageToken` is included.  To get the next set of results, call this
+     * `nextPageToken` is included. To get the next set of results, call this
      * method again using the value of `nextPageToken` as `pageToken`.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
@@ -90,7 +90,7 @@ class ListLogMetricsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * If there might be more results than appear in this response, then
-     * `nextPageToken` is included.  To get the next set of results, call this
+     * `nextPageToken` is included. To get the next set of results, call this
      * method again using the value of `nextPageToken` as `pageToken`.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
