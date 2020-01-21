@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2019 Google LLC
+ * Copyright 2020 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,10 @@ use Google\Cloud\Core\ArrayTrait;
  *
  * This class is immutable and each build method returns a new instance with
  * your changes applied.
+ *
+ * Note that messages are invalid unless they include a data field or at least
+ * one attribute. Both may be provided, but omission of both will result in an
+ * error.
  *
  * Example:
  * ```
@@ -71,8 +75,7 @@ class MessageBuilder
      * $builder = $builder->setData('Hello friend!');
      * ```
      *
-     * @param string $data The message data field. If this field is empty, the
-     *        message must contain at least one attribute.
+     * @param string $data The message data field.
      * @return MessageBuilder
      */
     public function setData($data)
