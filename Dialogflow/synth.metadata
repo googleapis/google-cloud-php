@@ -1,19 +1,19 @@
 {
-  "updateTime": "2019-08-07T18:00:00.736131Z",
+  "updateTime": "2020-01-21T16:52:30.593761Z",
   "sources": [
     {
       "generator": {
         "name": "artman",
-        "version": "0.29.1",
-        "dockerImage": "googleapis/artman@sha256:b2a73f4dda03ef8fcaa973e3ba26d0cf34091f6c22c70add663af325931aef4d"
+        "version": "0.44.1",
+        "dockerImage": "googleapis/artman@sha256:5599b61e56a372d21b671969ee915fbca0f6c3a0daaeb898d01f8f685f1bbc8b"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "3a1b46a6668194a527e532a2c355b404c79b0e6a",
-        "internalRef": "262167956"
+        "sha": "7f0dab8177cf371ae019a082e2512de7ac102888",
+        "internalRef": "290326986"
       }
     }
   ],
@@ -25,7 +25,7 @@
         "apiVersion": "v2",
         "language": "php",
         "generator": "gapic",
-        "config": "google/cloud/dialogflow/artman_dialogflow_v2.yaml"
+        "config": "google/cloud/dialogflow/v2/artman_dialogflow_v2.yaml"
       }
     }
   ]

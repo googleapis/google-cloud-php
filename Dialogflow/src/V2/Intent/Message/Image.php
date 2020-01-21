@@ -18,14 +18,14 @@ class Image extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The public URI to an image file.
      *
-     * Generated from protobuf field <code>string image_uri = 1;</code>
+     * Generated from protobuf field <code>string image_uri = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $image_uri = '';
     /**
      * Optional. A text description of the image to be used for accessibility,
      * e.g., screen readers.
      *
-     * Generated from protobuf field <code>string accessibility_text = 2;</code>
+     * Generated from protobuf field <code>string accessibility_text = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $accessibility_text = '';
 
@@ -50,7 +50,7 @@ class Image extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The public URI to an image file.
      *
-     * Generated from protobuf field <code>string image_uri = 1;</code>
+     * Generated from protobuf field <code>string image_uri = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getImageUri()
@@ -61,7 +61,7 @@ class Image extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The public URI to an image file.
      *
-     * Generated from protobuf field <code>string image_uri = 1;</code>
+     * Generated from protobuf field <code>string image_uri = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -77,7 +77,7 @@ class Image extends \Google\Protobuf\Internal\Message
      * Optional. A text description of the image to be used for accessibility,
      * e.g., screen readers.
      *
-     * Generated from protobuf field <code>string accessibility_text = 2;</code>
+     * Generated from protobuf field <code>string accessibility_text = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getAccessibilityText()
@@ -89,7 +89,7 @@ class Image extends \Google\Protobuf\Internal\Message
      * Optional. A text description of the image to be used for accessibility,
      * e.g., screen readers.
      *
-     * Generated from protobuf field <code>string accessibility_text = 2;</code>
+     * Generated from protobuf field <code>string accessibility_text = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

@@ -20,7 +20,7 @@ class DeleteIntentRequest extends \Google\Protobuf\Internal\Message
      * indirect followup intents, we also delete them.
      * Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
 
@@ -46,7 +46,7 @@ class DeleteIntentRequest extends \Google\Protobuf\Internal\Message
      * indirect followup intents, we also delete them.
      * Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -59,7 +59,7 @@ class DeleteIntentRequest extends \Google\Protobuf\Internal\Message
      * indirect followup intents, we also delete them.
      * Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

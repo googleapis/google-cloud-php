@@ -42,15 +42,52 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      */
     private $language_code = '';
     /**
+     * Optional. If `true`, Dialogflow returns [SpeechWordInfo][google.cloud.dialogflow.v2.SpeechWordInfo] in
+     * [StreamingRecognitionResult][google.cloud.dialogflow.v2.StreamingRecognitionResult] with information about the recognized speech
+     * words, e.g. start and end time offsets. If false or unspecified, Speech
+     * doesn't return any word-level information.
+     *
+     * Generated from protobuf field <code>bool enable_word_info = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $enable_word_info = false;
+    /**
      * Optional. A list of strings containing words and phrases that the speech
      * recognizer should recognize with higher likelihood.
      * See [the Cloud Speech
      * documentation](https://cloud.google.com/speech-to-text/docs/basics#phrase-hints)
      * for more details.
+     * This field is deprecated. Please use [speech_contexts]() instead. If you
+     * specify both [phrase_hints]() and [speech_contexts](), Dialogflow will
+     * treat the [phrase_hints]() as a single additional [SpeechContext]().
      *
-     * Generated from protobuf field <code>repeated string phrase_hints = 4;</code>
+     * Generated from protobuf field <code>repeated string phrase_hints = 4 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $phrase_hints;
+    /**
+     * Optional. Context information to assist speech recognition.
+     * See [the Cloud Speech
+     * documentation](https://cloud.google.com/speech-to-text/docs/basics#phrase-hints)
+     * for more details.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SpeechContext speech_contexts = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $speech_contexts;
+    /**
+     * Optional. Which Speech model to select for the given request. Select the
+     * model best suited to your domain to get best results. If a model is not
+     * explicitly specified, then we auto-select a model based on the parameters
+     * in the InputAudioConfig.
+     * If enhanced speech model is enabled for the agent and an enhanced
+     * version of the specified model for the language does not exist, then the
+     * speech is recognized using the standard version of the specified model.
+     * Refer to
+     * [Cloud Speech API
+     * documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model)
+     * for more details.
+     *
+     * Generated from protobuf field <code>string model = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $model = '';
     /**
      * Optional. Which variant of the [Speech model][google.cloud.dialogflow.v2.InputAudioConfig.model] to use.
      *
@@ -93,11 +130,36 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      *           Support](https://cloud.google.com/dialogflow/docs/reference/language)
      *           for a list of the currently supported language codes. Note that queries in
      *           the same session do not necessarily need to specify the same language.
+     *     @type bool $enable_word_info
+     *           Optional. If `true`, Dialogflow returns [SpeechWordInfo][google.cloud.dialogflow.v2.SpeechWordInfo] in
+     *           [StreamingRecognitionResult][google.cloud.dialogflow.v2.StreamingRecognitionResult] with information about the recognized speech
+     *           words, e.g. start and end time offsets. If false or unspecified, Speech
+     *           doesn't return any word-level information.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $phrase_hints
      *           Optional. A list of strings containing words and phrases that the speech
      *           recognizer should recognize with higher likelihood.
      *           See [the Cloud Speech
      *           documentation](https://cloud.google.com/speech-to-text/docs/basics#phrase-hints)
+     *           for more details.
+     *           This field is deprecated. Please use [speech_contexts]() instead. If you
+     *           specify both [phrase_hints]() and [speech_contexts](), Dialogflow will
+     *           treat the [phrase_hints]() as a single additional [SpeechContext]().
+     *     @type \Google\Cloud\Dialogflow\V2\SpeechContext[]|\Google\Protobuf\Internal\RepeatedField $speech_contexts
+     *           Optional. Context information to assist speech recognition.
+     *           See [the Cloud Speech
+     *           documentation](https://cloud.google.com/speech-to-text/docs/basics#phrase-hints)
+     *           for more details.
+     *     @type string $model
+     *           Optional. Which Speech model to select for the given request. Select the
+     *           model best suited to your domain to get best results. If a model is not
+     *           explicitly specified, then we auto-select a model based on the parameters
+     *           in the InputAudioConfig.
+     *           If enhanced speech model is enabled for the agent and an enhanced
+     *           version of the specified model for the language does not exist, then the
+     *           speech is recognized using the standard version of the specified model.
+     *           Refer to
+     *           [Cloud Speech API
+     *           documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model)
      *           for more details.
      *     @type int $model_variant
      *           Optional. Which variant of the [Speech model][google.cloud.dialogflow.v2.InputAudioConfig.model] to use.
@@ -214,13 +276,48 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. If `true`, Dialogflow returns [SpeechWordInfo][google.cloud.dialogflow.v2.SpeechWordInfo] in
+     * [StreamingRecognitionResult][google.cloud.dialogflow.v2.StreamingRecognitionResult] with information about the recognized speech
+     * words, e.g. start and end time offsets. If false or unspecified, Speech
+     * doesn't return any word-level information.
+     *
+     * Generated from protobuf field <code>bool enable_word_info = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getEnableWordInfo()
+    {
+        return $this->enable_word_info;
+    }
+
+    /**
+     * Optional. If `true`, Dialogflow returns [SpeechWordInfo][google.cloud.dialogflow.v2.SpeechWordInfo] in
+     * [StreamingRecognitionResult][google.cloud.dialogflow.v2.StreamingRecognitionResult] with information about the recognized speech
+     * words, e.g. start and end time offsets. If false or unspecified, Speech
+     * doesn't return any word-level information.
+     *
+     * Generated from protobuf field <code>bool enable_word_info = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableWordInfo($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_word_info = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. A list of strings containing words and phrases that the speech
      * recognizer should recognize with higher likelihood.
      * See [the Cloud Speech
      * documentation](https://cloud.google.com/speech-to-text/docs/basics#phrase-hints)
      * for more details.
+     * This field is deprecated. Please use [speech_contexts]() instead. If you
+     * specify both [phrase_hints]() and [speech_contexts](), Dialogflow will
+     * treat the [phrase_hints]() as a single additional [SpeechContext]().
      *
-     * Generated from protobuf field <code>repeated string phrase_hints = 4;</code>
+     * Generated from protobuf field <code>repeated string phrase_hints = 4 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getPhraseHints()
@@ -234,8 +331,11 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      * See [the Cloud Speech
      * documentation](https://cloud.google.com/speech-to-text/docs/basics#phrase-hints)
      * for more details.
+     * This field is deprecated. Please use [speech_contexts]() instead. If you
+     * specify both [phrase_hints]() and [speech_contexts](), Dialogflow will
+     * treat the [phrase_hints]() as a single additional [SpeechContext]().
      *
-     * Generated from protobuf field <code>repeated string phrase_hints = 4;</code>
+     * Generated from protobuf field <code>repeated string phrase_hints = 4 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -243,6 +343,84 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->phrase_hints = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Context information to assist speech recognition.
+     * See [the Cloud Speech
+     * documentation](https://cloud.google.com/speech-to-text/docs/basics#phrase-hints)
+     * for more details.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SpeechContext speech_contexts = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSpeechContexts()
+    {
+        return $this->speech_contexts;
+    }
+
+    /**
+     * Optional. Context information to assist speech recognition.
+     * See [the Cloud Speech
+     * documentation](https://cloud.google.com/speech-to-text/docs/basics#phrase-hints)
+     * for more details.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SpeechContext speech_contexts = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dialogflow\V2\SpeechContext[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSpeechContexts($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\V2\SpeechContext::class);
+        $this->speech_contexts = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Which Speech model to select for the given request. Select the
+     * model best suited to your domain to get best results. If a model is not
+     * explicitly specified, then we auto-select a model based on the parameters
+     * in the InputAudioConfig.
+     * If enhanced speech model is enabled for the agent and an enhanced
+     * version of the specified model for the language does not exist, then the
+     * speech is recognized using the standard version of the specified model.
+     * Refer to
+     * [Cloud Speech API
+     * documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model)
+     * for more details.
+     *
+     * Generated from protobuf field <code>string model = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getModel()
+    {
+        return $this->model;
+    }
+
+    /**
+     * Optional. Which Speech model to select for the given request. Select the
+     * model best suited to your domain to get best results. If a model is not
+     * explicitly specified, then we auto-select a model based on the parameters
+     * in the InputAudioConfig.
+     * If enhanced speech model is enabled for the agent and an enhanced
+     * version of the specified model for the language does not exist, then the
+     * speech is recognized using the standard version of the specified model.
+     * Refer to
+     * [Cloud Speech API
+     * documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model)
+     * for more details.
+     *
+     * Generated from protobuf field <code>string model = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setModel($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->model = $var;
 
         return $this;
     }

@@ -19,13 +19,13 @@ class CreateEntityTypeRequest extends \Google\Protobuf\Internal\Message
      * Required. The agent to create a entity type for.
      * Format: `projects/<Project ID>/agent`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
      * Required. The entity type to create.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.EntityType entity_type = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.EntityType entity_type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $entity_type = null;
     /**
@@ -36,7 +36,7 @@ class CreateEntityTypeRequest extends \Google\Protobuf\Internal\Message
      * are supported. Note: languages must be enabled in the agent before they can
      * be used.
      *
-     * Generated from protobuf field <code>string language_code = 3;</code>
+     * Generated from protobuf field <code>string language_code = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $language_code = '';
 
@@ -69,7 +69,7 @@ class CreateEntityTypeRequest extends \Google\Protobuf\Internal\Message
      * Required. The agent to create a entity type for.
      * Format: `projects/<Project ID>/agent`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -81,7 +81,7 @@ class CreateEntityTypeRequest extends \Google\Protobuf\Internal\Message
      * Required. The agent to create a entity type for.
      * Format: `projects/<Project ID>/agent`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -96,7 +96,7 @@ class CreateEntityTypeRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The entity type to create.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.EntityType entity_type = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.EntityType entity_type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Dialogflow\V2\EntityType
      */
     public function getEntityType()
@@ -107,7 +107,7 @@ class CreateEntityTypeRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The entity type to create.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.EntityType entity_type = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.EntityType entity_type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dialogflow\V2\EntityType $var
      * @return $this
      */
@@ -127,7 +127,7 @@ class CreateEntityTypeRequest extends \Google\Protobuf\Internal\Message
      * are supported. Note: languages must be enabled in the agent before they can
      * be used.
      *
-     * Generated from protobuf field <code>string language_code = 3;</code>
+     * Generated from protobuf field <code>string language_code = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getLanguageCode()
@@ -143,7 +143,7 @@ class CreateEntityTypeRequest extends \Google\Protobuf\Internal\Message
      * are supported. Note: languages must be enabled in the agent before they can
      * be used.
      *
-     * Generated from protobuf field <code>string language_code = 3;</code>
+     * Generated from protobuf field <code>string language_code = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

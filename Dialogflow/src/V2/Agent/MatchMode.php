@@ -28,7 +28,7 @@ class MatchMode
     const MATCH_MODE_HYBRID = 1;
     /**
      * Can be used for agents with a large number of examples in intents,
-     * especially the ones using &#64;sys.any or very large developer entities.
+     * especially the ones using &#64;sys.any or very large custom entities.
      *
      * Generated from protobuf enum <code>MATCH_MODE_ML_ONLY = 2;</code>
      */

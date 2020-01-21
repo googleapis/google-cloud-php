@@ -24,7 +24,7 @@ class TrainingPhrase extends \Google\Protobuf\Internal\Message
     /**
      * Required. The type of the training phrase.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.TrainingPhrase.Type type = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.TrainingPhrase.Type type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $type = 0;
     /**
@@ -43,7 +43,7 @@ class TrainingPhrase extends \Google\Protobuf\Internal\Message
      *     and the `entity_type`, `alias`, and `user_defined` fields are all
      *     set.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.TrainingPhrase.Part parts = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.TrainingPhrase.Part parts = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $parts;
     /**
@@ -51,7 +51,7 @@ class TrainingPhrase extends \Google\Protobuf\Internal\Message
      * the intent. Each time a developer adds an existing sample by editing an
      * intent or training, this counter is increased.
      *
-     * Generated from protobuf field <code>int32 times_added_count = 4;</code>
+     * Generated from protobuf field <code>int32 times_added_count = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $times_added_count = 0;
 
@@ -120,7 +120,7 @@ class TrainingPhrase extends \Google\Protobuf\Internal\Message
     /**
      * Required. The type of the training phrase.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.TrainingPhrase.Type type = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.TrainingPhrase.Type type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getType()
@@ -131,7 +131,7 @@ class TrainingPhrase extends \Google\Protobuf\Internal\Message
     /**
      * Required. The type of the training phrase.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.TrainingPhrase.Type type = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.TrainingPhrase.Type type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */
@@ -159,7 +159,7 @@ class TrainingPhrase extends \Google\Protobuf\Internal\Message
      *     and the `entity_type`, `alias`, and `user_defined` fields are all
      *     set.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.TrainingPhrase.Part parts = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.TrainingPhrase.Part parts = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getParts()
@@ -183,7 +183,7 @@ class TrainingPhrase extends \Google\Protobuf\Internal\Message
      *     and the `entity_type`, `alias`, and `user_defined` fields are all
      *     set.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.TrainingPhrase.Part parts = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.TrainingPhrase.Part parts = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dialogflow\V2\Intent\TrainingPhrase\Part[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -200,7 +200,7 @@ class TrainingPhrase extends \Google\Protobuf\Internal\Message
      * the intent. Each time a developer adds an existing sample by editing an
      * intent or training, this counter is increased.
      *
-     * Generated from protobuf field <code>int32 times_added_count = 4;</code>
+     * Generated from protobuf field <code>int32 times_added_count = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getTimesAddedCount()
@@ -213,7 +213,7 @@ class TrainingPhrase extends \Google\Protobuf\Internal\Message
      * the intent. Each time a developer adds an existing sample by editing an
      * intent or training, this counter is increased.
      *
-     * Generated from protobuf field <code>int32 times_added_count = 4;</code>
+     * Generated from protobuf field <code>int32 times_added_count = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */

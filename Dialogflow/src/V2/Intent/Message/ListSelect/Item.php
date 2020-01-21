@@ -18,25 +18,25 @@ class Item extends \Google\Protobuf\Internal\Message
     /**
      * Required. Additional information about this option.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.SelectItemInfo info = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.SelectItemInfo info = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $info = null;
     /**
      * Required. The title of the list item.
      *
-     * Generated from protobuf field <code>string title = 2;</code>
+     * Generated from protobuf field <code>string title = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $title = '';
     /**
      * Optional. The main text describing the item.
      *
-     * Generated from protobuf field <code>string description = 3;</code>
+     * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $description = '';
     /**
      * Optional. The image to display.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.Image image = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.Image image = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $image = null;
 
@@ -64,7 +64,7 @@ class Item extends \Google\Protobuf\Internal\Message
     /**
      * Required. Additional information about this option.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.SelectItemInfo info = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.SelectItemInfo info = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Dialogflow\V2\Intent\Message\SelectItemInfo
      */
     public function getInfo()
@@ -75,7 +75,7 @@ class Item extends \Google\Protobuf\Internal\Message
     /**
      * Required. Additional information about this option.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.SelectItemInfo info = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.SelectItemInfo info = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dialogflow\V2\Intent\Message\SelectItemInfo $var
      * @return $this
      */
@@ -90,7 +90,7 @@ class Item extends \Google\Protobuf\Internal\Message
     /**
      * Required. The title of the list item.
      *
-     * Generated from protobuf field <code>string title = 2;</code>
+     * Generated from protobuf field <code>string title = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getTitle()
@@ -101,7 +101,7 @@ class Item extends \Google\Protobuf\Internal\Message
     /**
      * Required. The title of the list item.
      *
-     * Generated from protobuf field <code>string title = 2;</code>
+     * Generated from protobuf field <code>string title = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -116,7 +116,7 @@ class Item extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The main text describing the item.
      *
-     * Generated from protobuf field <code>string description = 3;</code>
+     * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getDescription()
@@ -127,7 +127,7 @@ class Item extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The main text describing the item.
      *
-     * Generated from protobuf field <code>string description = 3;</code>
+     * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -142,7 +142,7 @@ class Item extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The image to display.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.Image image = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.Image image = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dialogflow\V2\Intent\Message\Image
      */
     public function getImage()
@@ -153,7 +153,7 @@ class Item extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The image to display.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.Image image = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.Image image = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dialogflow\V2\Intent\Message\Image $var
      * @return $this
      */

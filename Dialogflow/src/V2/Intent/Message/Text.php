@@ -18,7 +18,7 @@ class Text extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The collection of the agent's responses.
      *
-     * Generated from protobuf field <code>repeated string text = 1;</code>
+     * Generated from protobuf field <code>repeated string text = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $text;
 
@@ -40,7 +40,7 @@ class Text extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The collection of the agent's responses.
      *
-     * Generated from protobuf field <code>repeated string text = 1;</code>
+     * Generated from protobuf field <code>repeated string text = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getText()
@@ -51,7 +51,7 @@ class Text extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The collection of the agent's responses.
      *
-     * Generated from protobuf field <code>repeated string text = 1;</code>
+     * Generated from protobuf field <code>repeated string text = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

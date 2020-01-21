@@ -18,15 +18,21 @@ class ListSelect extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The overall title of the list.
      *
-     * Generated from protobuf field <code>string title = 1;</code>
+     * Generated from protobuf field <code>string title = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $title = '';
     /**
      * Required. List items.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.ListSelect.Item items = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.ListSelect.Item items = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $items;
+    /**
+     * Optional. Subtitle of the list.
+     *
+     * Generated from protobuf field <code>string subtitle = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $subtitle = '';
 
     /**
      * Constructor.
@@ -38,6 +44,8 @@ class ListSelect extends \Google\Protobuf\Internal\Message
      *           Optional. The overall title of the list.
      *     @type \Google\Cloud\Dialogflow\V2\Intent\Message\ListSelect\Item[]|\Google\Protobuf\Internal\RepeatedField $items
      *           Required. List items.
+     *     @type string $subtitle
+     *           Optional. Subtitle of the list.
      * }
      */
     public function __construct($data = NULL) {
@@ -48,7 +56,7 @@ class ListSelect extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The overall title of the list.
      *
-     * Generated from protobuf field <code>string title = 1;</code>
+     * Generated from protobuf field <code>string title = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getTitle()
@@ -59,7 +67,7 @@ class ListSelect extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The overall title of the list.
      *
-     * Generated from protobuf field <code>string title = 1;</code>
+     * Generated from protobuf field <code>string title = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -74,7 +82,7 @@ class ListSelect extends \Google\Protobuf\Internal\Message
     /**
      * Required. List items.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.ListSelect.Item items = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.ListSelect.Item items = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getItems()
@@ -85,7 +93,7 @@ class ListSelect extends \Google\Protobuf\Internal\Message
     /**
      * Required. List items.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.ListSelect.Item items = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.ListSelect.Item items = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dialogflow\V2\Intent\Message\ListSelect\Item[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -93,6 +101,32 @@ class ListSelect extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\V2\Intent\Message\ListSelect\Item::class);
         $this->items = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Subtitle of the list.
+     *
+     * Generated from protobuf field <code>string subtitle = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getSubtitle()
+    {
+        return $this->subtitle;
+    }
+
+    /**
+     * Optional. Subtitle of the list.
+     *
+     * Generated from protobuf field <code>string subtitle = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSubtitle($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->subtitle = $var;
 
         return $this;
     }

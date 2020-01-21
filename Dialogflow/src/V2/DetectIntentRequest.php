@@ -22,13 +22,13 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      * some type of user identifier (preferably hashed). The length of the session
      * ID must not exceed 36 bytes.
      *
-     * Generated from protobuf field <code>string session = 1;</code>
+     * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $session = '';
     /**
      * Optional. The parameters of this query.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.QueryParameters query_params = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.QueryParameters query_params = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $query_params = null;
     /**
@@ -38,7 +38,7 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      * 2.  a conversational query in the form of text, or
      * 3.  an event that specifies which intent to trigger.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.QueryInput query_input = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.QueryInput query_input = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $query_input = null;
     /**
@@ -46,7 +46,7 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      * audio. If this field is not set and agent-level speech synthesizer is not
      * configured, no output audio is generated.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.OutputAudioConfig output_audio_config = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.OutputAudioConfig output_audio_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $output_audio_config = null;
     /**
@@ -54,7 +54,7 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      * should be populated iff `query_input` is set to an input audio config.
      * A single request can contain up to 1 minute of speech audio data.
      *
-     * Generated from protobuf field <code>bytes input_audio = 5;</code>
+     * Generated from protobuf field <code>bytes input_audio = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $input_audio = '';
 
@@ -100,7 +100,7 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      * some type of user identifier (preferably hashed). The length of the session
      * ID must not exceed 36 bytes.
      *
-     * Generated from protobuf field <code>string session = 1;</code>
+     * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getSession()
@@ -115,7 +115,7 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      * some type of user identifier (preferably hashed). The length of the session
      * ID must not exceed 36 bytes.
      *
-     * Generated from protobuf field <code>string session = 1;</code>
+     * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -130,7 +130,7 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The parameters of this query.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.QueryParameters query_params = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.QueryParameters query_params = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dialogflow\V2\QueryParameters
      */
     public function getQueryParams()
@@ -141,7 +141,7 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The parameters of this query.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.QueryParameters query_params = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.QueryParameters query_params = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dialogflow\V2\QueryParameters $var
      * @return $this
      */
@@ -160,7 +160,7 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      * 2.  a conversational query in the form of text, or
      * 3.  an event that specifies which intent to trigger.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.QueryInput query_input = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.QueryInput query_input = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Dialogflow\V2\QueryInput
      */
     public function getQueryInput()
@@ -175,7 +175,7 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      * 2.  a conversational query in the form of text, or
      * 3.  an event that specifies which intent to trigger.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.QueryInput query_input = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.QueryInput query_input = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dialogflow\V2\QueryInput $var
      * @return $this
      */
@@ -192,7 +192,7 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      * audio. If this field is not set and agent-level speech synthesizer is not
      * configured, no output audio is generated.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.OutputAudioConfig output_audio_config = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.OutputAudioConfig output_audio_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dialogflow\V2\OutputAudioConfig
      */
     public function getOutputAudioConfig()
@@ -205,7 +205,7 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      * audio. If this field is not set and agent-level speech synthesizer is not
      * configured, no output audio is generated.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.OutputAudioConfig output_audio_config = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.OutputAudioConfig output_audio_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dialogflow\V2\OutputAudioConfig $var
      * @return $this
      */
@@ -222,7 +222,7 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      * should be populated iff `query_input` is set to an input audio config.
      * A single request can contain up to 1 minute of speech audio data.
      *
-     * Generated from protobuf field <code>bytes input_audio = 5;</code>
+     * Generated from protobuf field <code>bytes input_audio = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getInputAudio()
@@ -235,7 +235,7 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      * should be populated iff `query_input` is set to an input audio config.
      * A single request can contain up to 1 minute of speech audio data.
      *
-     * Generated from protobuf field <code>bytes input_audio = 5;</code>
+     * Generated from protobuf field <code>bytes input_audio = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

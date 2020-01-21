@@ -18,7 +18,7 @@ class Message extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The platform that this message is intended for.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.Platform platform = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.Platform platform = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $platform = 0;
     protected $message;
@@ -53,6 +53,12 @@ class Message extends \Google\Protobuf\Internal\Message
      *           The list card response for Actions on Google.
      *     @type \Google\Cloud\Dialogflow\V2\Intent\Message\CarouselSelect $carousel_select
      *           The carousel card response for Actions on Google.
+     *     @type \Google\Cloud\Dialogflow\V2\Intent\Message\BrowseCarouselCard $browse_carousel_card
+     *           Browse carousel card for Actions on Google.
+     *     @type \Google\Cloud\Dialogflow\V2\Intent\Message\TableCard $table_card
+     *           Table card for Actions on Google.
+     *     @type \Google\Cloud\Dialogflow\V2\Intent\Message\MediaContent $media_content
+     *           The media content card for Actions on Google.
      *     @type int $platform
      *           Optional. The platform that this message is intended for.
      * }
@@ -353,9 +359,87 @@ class Message extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Browse carousel card for Actions on Google.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.BrowseCarouselCard browse_carousel_card = 22;</code>
+     * @return \Google\Cloud\Dialogflow\V2\Intent\Message\BrowseCarouselCard
+     */
+    public function getBrowseCarouselCard()
+    {
+        return $this->readOneof(22);
+    }
+
+    /**
+     * Browse carousel card for Actions on Google.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.BrowseCarouselCard browse_carousel_card = 22;</code>
+     * @param \Google\Cloud\Dialogflow\V2\Intent\Message\BrowseCarouselCard $var
+     * @return $this
+     */
+    public function setBrowseCarouselCard($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Intent_Message_BrowseCarouselCard::class);
+        $this->writeOneof(22, $var);
+
+        return $this;
+    }
+
+    /**
+     * Table card for Actions on Google.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.TableCard table_card = 23;</code>
+     * @return \Google\Cloud\Dialogflow\V2\Intent\Message\TableCard
+     */
+    public function getTableCard()
+    {
+        return $this->readOneof(23);
+    }
+
+    /**
+     * Table card for Actions on Google.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.TableCard table_card = 23;</code>
+     * @param \Google\Cloud\Dialogflow\V2\Intent\Message\TableCard $var
+     * @return $this
+     */
+    public function setTableCard($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Intent_Message_TableCard::class);
+        $this->writeOneof(23, $var);
+
+        return $this;
+    }
+
+    /**
+     * The media content card for Actions on Google.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.MediaContent media_content = 24;</code>
+     * @return \Google\Cloud\Dialogflow\V2\Intent\Message\MediaContent
+     */
+    public function getMediaContent()
+    {
+        return $this->readOneof(24);
+    }
+
+    /**
+     * The media content card for Actions on Google.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.MediaContent media_content = 24;</code>
+     * @param \Google\Cloud\Dialogflow\V2\Intent\Message\MediaContent $var
+     * @return $this
+     */
+    public function setMediaContent($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Intent_Message_MediaContent::class);
+        $this->writeOneof(24, $var);
+
+        return $this;
+    }
+
+    /**
      * Optional. The platform that this message is intended for.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.Platform platform = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.Platform platform = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getPlatform()
@@ -366,7 +450,7 @@ class Message extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The platform that this message is intended for.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.Platform platform = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.Platform platform = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */

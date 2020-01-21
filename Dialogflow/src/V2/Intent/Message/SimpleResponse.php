@@ -33,7 +33,7 @@ class SimpleResponse extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The text to display.
      *
-     * Generated from protobuf field <code>string display_text = 3;</code>
+     * Generated from protobuf field <code>string display_text = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $display_text = '';
 
@@ -120,7 +120,7 @@ class SimpleResponse extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The text to display.
      *
-     * Generated from protobuf field <code>string display_text = 3;</code>
+     * Generated from protobuf field <code>string display_text = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getDisplayText()
@@ -131,7 +131,7 @@ class SimpleResponse extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The text to display.
      *
-     * Generated from protobuf field <code>string display_text = 3;</code>
+     * Generated from protobuf field <code>string display_text = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

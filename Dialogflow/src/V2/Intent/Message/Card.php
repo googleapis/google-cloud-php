@@ -18,25 +18,25 @@ class Card extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The title of the card.
      *
-     * Generated from protobuf field <code>string title = 1;</code>
+     * Generated from protobuf field <code>string title = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $title = '';
     /**
      * Optional. The subtitle of the card.
      *
-     * Generated from protobuf field <code>string subtitle = 2;</code>
+     * Generated from protobuf field <code>string subtitle = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $subtitle = '';
     /**
      * Optional. The public URI to an image file for the card.
      *
-     * Generated from protobuf field <code>string image_uri = 3;</code>
+     * Generated from protobuf field <code>string image_uri = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $image_uri = '';
     /**
      * Optional. The collection of card buttons.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.Card.Button buttons = 4;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.Card.Button buttons = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $buttons;
 
@@ -64,7 +64,7 @@ class Card extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The title of the card.
      *
-     * Generated from protobuf field <code>string title = 1;</code>
+     * Generated from protobuf field <code>string title = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getTitle()
@@ -75,7 +75,7 @@ class Card extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The title of the card.
      *
-     * Generated from protobuf field <code>string title = 1;</code>
+     * Generated from protobuf field <code>string title = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -90,7 +90,7 @@ class Card extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The subtitle of the card.
      *
-     * Generated from protobuf field <code>string subtitle = 2;</code>
+     * Generated from protobuf field <code>string subtitle = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getSubtitle()
@@ -101,7 +101,7 @@ class Card extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The subtitle of the card.
      *
-     * Generated from protobuf field <code>string subtitle = 2;</code>
+     * Generated from protobuf field <code>string subtitle = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -116,7 +116,7 @@ class Card extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The public URI to an image file for the card.
      *
-     * Generated from protobuf field <code>string image_uri = 3;</code>
+     * Generated from protobuf field <code>string image_uri = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getImageUri()
@@ -127,7 +127,7 @@ class Card extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The public URI to an image file for the card.
      *
-     * Generated from protobuf field <code>string image_uri = 3;</code>
+     * Generated from protobuf field <code>string image_uri = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -142,7 +142,7 @@ class Card extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The collection of card buttons.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.Card.Button buttons = 4;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.Card.Button buttons = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getButtons()
@@ -153,7 +153,7 @@ class Card extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The collection of card buttons.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.Card.Button buttons = 4;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.Card.Button buttons = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dialogflow\V2\Intent\Message\Card\Button[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

@@ -702,8 +702,7 @@ class AgentsGapicClient
      *                             Optional.
      *
      *     @type string $agentUri
-     *          Optional. The
-     *          [Google Cloud Storage](https://cloud.google.com/storage/docs/)
+     *          Required. The [Google Cloud Storage](https://cloud.google.com/storage/docs/)
      *          URI to export the agent to.
      *          The format of this URI must be `gs://<bucket-name>/<object-name>`.
      *          If left unspecified, the serialized agent is returned inline.
@@ -797,20 +796,7 @@ class AgentsGapicClient
      *          The URI to a Google Cloud Storage file containing the agent to import.
      *          Note: The URI must start with "gs://".
      *     @type string $agentContent
-     *          The agent to import.
-     *
-     *          Example for how to import an agent via the command line:
-     *          <pre>curl \
-     *            'https://dialogflow.googleapis.com/v2/projects/&lt;project_name&gt;/agent:import\
-     *             -X POST \
-     *             -H 'Authorization: Bearer '$(gcloud auth application-default
-     *             print-access-token) \
-     *             -H 'Accept: application/json' \
-     *             -H 'Content-Type: application/json' \
-     *             --compressed \
-     *             --data-binary "{
-     *                'agentContent': '$(cat &lt;agent zip file&gt; | base64 -w 0)'
-     *             }"</pre>
+     *          Zip compressed raw byte content for agent.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -903,20 +889,7 @@ class AgentsGapicClient
      *          The URI to a Google Cloud Storage file containing the agent to restore.
      *          Note: The URI must start with "gs://".
      *     @type string $agentContent
-     *          The agent to restore.
-     *
-     *          Example for how to restore an agent via the command line:
-     *          <pre>curl \
-     *            'https://dialogflow.googleapis.com/v2/projects/&lt;project_name&gt;/agent:restore\
-     *             -X POST \
-     *             -H 'Authorization: Bearer '$(gcloud auth application-default
-     *             print-access-token) \
-     *             -H 'Accept: application/json' \
-     *             -H 'Content-Type: application/json' \
-     *             --compressed \
-     *             --data-binary "{
-     *                 'agentContent': '$(cat &lt;agent zip file&gt; | base64 -w 0)'
-     *             }"</pre>
+     *          Zip compressed raw byte content for agent.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array

@@ -19,20 +19,20 @@ class ListContextsRequest extends \Google\Protobuf\Internal\Message
      * Required. The session to list all contexts from.
      * Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $parent = '';
     /**
      * Optional. The maximum number of items to return in a single page. By
      * default 100 and at most 1000.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
     /**
      * Optional. The next_page_token value returned from a previous list request.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_token = '';
 
@@ -61,7 +61,7 @@ class ListContextsRequest extends \Google\Protobuf\Internal\Message
      * Required. The session to list all contexts from.
      * Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getParent()
@@ -73,7 +73,7 @@ class ListContextsRequest extends \Google\Protobuf\Internal\Message
      * Required. The session to list all contexts from.
      * Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -89,7 +89,7 @@ class ListContextsRequest extends \Google\Protobuf\Internal\Message
      * Optional. The maximum number of items to return in a single page. By
      * default 100 and at most 1000.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getPageSize()
@@ -101,7 +101,7 @@ class ListContextsRequest extends \Google\Protobuf\Internal\Message
      * Optional. The maximum number of items to return in a single page. By
      * default 100 and at most 1000.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -116,7 +116,7 @@ class ListContextsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The next_page_token value returned from a previous list request.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPageToken()
@@ -127,7 +127,7 @@ class ListContextsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The next_page_token value returned from a previous list request.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

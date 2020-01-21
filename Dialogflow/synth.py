@@ -31,7 +31,7 @@ library = gapic.php_library(
     artman_output_name='google-cloud-dialogflow-v2')
 
 # copy all src including partial veneer classes
-s.move(library / 'src')
+s.move(library / 'src', excludes=[library / 'src/V2/resources'])
 
 # copy proto files to src also
 s.move(library / 'proto/src/Google/Cloud/Dialogflow', 'src/')
