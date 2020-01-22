@@ -71,10 +71,10 @@ class PolicyBuilder
      *                 'user2:admin@domain.com'
      *             ],
      *             'condition' => [
-     *                 'title' => 'Expires_July_1_2020',
-     *                 'description' => 'Expires on July 1, 2020',
+     *                 'title' => 'match-prefix',
+     *                 'description' => 'Applies to objects matching a prefix',
      *                 'expression' =>
-     *                     'request.time < timestamp("2020-07-01T00:00:00.000Z")'
+     *                     'resource.name.startsWith("projects/_/buckets/bucket-name/objects/prefix-a-")'
      *             ]
      *         ]
      *     ],
