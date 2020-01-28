@@ -39,9 +39,9 @@ class AnnotateVideoRequest extends \Google\Protobuf\Internal\Message
      */
     private $input_content = '';
     /**
-     * Requested video annotation features.
+     * Required. Requested video annotation features.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1beta2.Feature features = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1beta2.Feature features = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $features;
     /**
@@ -51,22 +51,22 @@ class AnnotateVideoRequest extends \Google\Protobuf\Internal\Message
      */
     private $video_context = null;
     /**
-     * Optional location where the output (in JSON format) should be stored.
+     * Optional. Location where the output (in JSON format) should be stored.
      * Currently, only [Google Cloud Storage](https://cloud.google.com/storage/)
      * URIs are supported, which must be specified in the following format:
      * `gs://bucket-id/object-id` (other URI formats return
      * [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]). For
      * more information, see [Request URIs](/storage/docs/reference-uris).
      *
-     * Generated from protobuf field <code>string output_uri = 4;</code>
+     * Generated from protobuf field <code>string output_uri = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $output_uri = '';
     /**
-     * Optional cloud region where annotation should take place. Supported cloud
+     * Optional. Cloud region where annotation should take place. Supported cloud
      * regions: `us-east1`, `us-west1`, `europe-west1`, `asia-east1`. If no region
      * is specified, a region will be determined based on video file location.
      *
-     * Generated from protobuf field <code>string location_id = 5;</code>
+     * Generated from protobuf field <code>string location_id = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $location_id = '';
 
@@ -92,18 +92,18 @@ class AnnotateVideoRequest extends \Google\Protobuf\Internal\Message
      *           If unset, the input video(s) should be specified via `input_uri`.
      *           If set, `input_uri` should be unset.
      *     @type int[]|\Google\Protobuf\Internal\RepeatedField $features
-     *           Requested video annotation features.
+     *           Required. Requested video annotation features.
      *     @type \Google\Cloud\VideoIntelligence\V1beta2\VideoContext $video_context
      *           Additional video context and/or feature-specific parameters.
      *     @type string $output_uri
-     *           Optional location where the output (in JSON format) should be stored.
+     *           Optional. Location where the output (in JSON format) should be stored.
      *           Currently, only [Google Cloud Storage](https://cloud.google.com/storage/)
      *           URIs are supported, which must be specified in the following format:
      *           `gs://bucket-id/object-id` (other URI formats return
      *           [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]). For
      *           more information, see [Request URIs](/storage/docs/reference-uris).
      *     @type string $location_id
-     *           Optional cloud region where annotation should take place. Supported cloud
+     *           Optional. Cloud region where annotation should take place. Supported cloud
      *           regions: `us-east1`, `us-west1`, `europe-west1`, `asia-east1`. If no region
      *           is specified, a region will be determined based on video file location.
      * }
@@ -188,9 +188,9 @@ class AnnotateVideoRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Requested video annotation features.
+     * Required. Requested video annotation features.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1beta2.Feature features = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1beta2.Feature features = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getFeatures()
@@ -199,9 +199,9 @@ class AnnotateVideoRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Requested video annotation features.
+     * Required. Requested video annotation features.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1beta2.Feature features = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1beta2.Feature features = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -240,14 +240,14 @@ class AnnotateVideoRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional location where the output (in JSON format) should be stored.
+     * Optional. Location where the output (in JSON format) should be stored.
      * Currently, only [Google Cloud Storage](https://cloud.google.com/storage/)
      * URIs are supported, which must be specified in the following format:
      * `gs://bucket-id/object-id` (other URI formats return
      * [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]). For
      * more information, see [Request URIs](/storage/docs/reference-uris).
      *
-     * Generated from protobuf field <code>string output_uri = 4;</code>
+     * Generated from protobuf field <code>string output_uri = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getOutputUri()
@@ -256,14 +256,14 @@ class AnnotateVideoRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional location where the output (in JSON format) should be stored.
+     * Optional. Location where the output (in JSON format) should be stored.
      * Currently, only [Google Cloud Storage](https://cloud.google.com/storage/)
      * URIs are supported, which must be specified in the following format:
      * `gs://bucket-id/object-id` (other URI formats return
      * [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]). For
      * more information, see [Request URIs](/storage/docs/reference-uris).
      *
-     * Generated from protobuf field <code>string output_uri = 4;</code>
+     * Generated from protobuf field <code>string output_uri = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -276,11 +276,11 @@ class AnnotateVideoRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional cloud region where annotation should take place. Supported cloud
+     * Optional. Cloud region where annotation should take place. Supported cloud
      * regions: `us-east1`, `us-west1`, `europe-west1`, `asia-east1`. If no region
      * is specified, a region will be determined based on video file location.
      *
-     * Generated from protobuf field <code>string location_id = 5;</code>
+     * Generated from protobuf field <code>string location_id = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getLocationId()
@@ -289,11 +289,11 @@ class AnnotateVideoRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional cloud region where annotation should take place. Supported cloud
+     * Optional. Cloud region where annotation should take place. Supported cloud
      * regions: `us-east1`, `us-west1`, `europe-west1`, `asia-east1`. If no region
      * is specified, a region will be determined based on video file location.
      *
-     * Generated from protobuf field <code>string location_id = 5;</code>
+     * Generated from protobuf field <code>string location_id = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

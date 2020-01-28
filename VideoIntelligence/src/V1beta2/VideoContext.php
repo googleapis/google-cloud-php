@@ -17,8 +17,8 @@ class VideoContext extends \Google\Protobuf\Internal\Message
 {
     /**
      * Video segments to annotate. The segments may overlap and are not required
-     * to be contiguous or span the whole video. If unspecified, each video
-     * is treated as a single segment.
+     * to be contiguous or span the whole video. If unspecified, each video is
+     * treated as a single segment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1beta2.VideoSegment segments = 1;</code>
      */
@@ -56,8 +56,8 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\VideoIntelligence\V1beta2\VideoSegment[]|\Google\Protobuf\Internal\RepeatedField $segments
      *           Video segments to annotate. The segments may overlap and are not required
-     *           to be contiguous or span the whole video. If unspecified, each video
-     *           is treated as a single segment.
+     *           to be contiguous or span the whole video. If unspecified, each video is
+     *           treated as a single segment.
      *     @type \Google\Cloud\VideoIntelligence\V1beta2\LabelDetectionConfig $label_detection_config
      *           Config for LABEL_DETECTION.
      *     @type \Google\Cloud\VideoIntelligence\V1beta2\ShotChangeDetectionConfig $shot_change_detection_config
@@ -75,8 +75,8 @@ class VideoContext extends \Google\Protobuf\Internal\Message
 
     /**
      * Video segments to annotate. The segments may overlap and are not required
-     * to be contiguous or span the whole video. If unspecified, each video
-     * is treated as a single segment.
+     * to be contiguous or span the whole video. If unspecified, each video is
+     * treated as a single segment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1beta2.VideoSegment segments = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -88,8 +88,8 @@ class VideoContext extends \Google\Protobuf\Internal\Message
 
     /**
      * Video segments to annotate. The segments may overlap and are not required
-     * to be contiguous or span the whole video. If unspecified, each video
-     * is treated as a single segment.
+     * to be contiguous or span the whole video. If unspecified, each video is
+     * treated as a single segment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1beta2.VideoSegment segments = 1;</code>
      * @param \Google\Cloud\VideoIntelligence\V1beta2\VideoSegment[]|\Google\Protobuf\Internal\RepeatedField $var
