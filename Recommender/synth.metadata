@@ -1,0 +1,32 @@
+{
+  "updateTime": "2020-01-29T23:18:04.174825Z",
+  "sources": [
+    {
+      "generator": {
+        "name": "artman",
+        "version": "0.44.4",
+        "dockerImage": "googleapis/artman@sha256:19e945954fc960a4bdfee6cb34695898ab21a8cf0bac063ee39b91f00a1faec8"
+      }
+    },
+    {
+      "git": {
+        "name": "googleapis",
+        "remote": "https://github.com/googleapis/googleapis.git",
+        "sha": "341fd5690fae36f36cf626ef048fbcf4bbe7cee6",
+        "internalRef": "292221998"
+      }
+    }
+  ],
+  "destinations": [
+    {
+      "client": {
+        "source": "googleapis",
+        "apiName": "recommender",
+        "apiVersion": "v1",
+        "language": "php",
+        "generator": "gapic",
+        "config": "google/cloud/recommender/v1/artman_recommender_v1.yaml"
+      }
+    }
+  ]
+}
