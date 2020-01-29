@@ -30,6 +30,10 @@ namespace Google\Cloud\Dialogflow\V2;
  * favorites, preferences, playlists, and so on. You can redefine a session
  * entity type at the session level.
  *
+ * Session entity methods do not work with Google Assistant integration.
+ * Contact Dialogflow support if you need to use session entities
+ * with Google Assistant integration.
+ *
  * For more information about entity types, see the
  * [Dialogflow
  * documentation](https://cloud.google.com/dialogflow/docs/entities-overview).
@@ -47,6 +51,10 @@ class SessionEntityTypesGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Returns the list of all session entity types in the specified session.
+     *
+     * This method doesn't work with Google Assistant integration.
+     * Contact Dialogflow support if you need to use session entities
+     * with Google Assistant integration.
      * @param \Google\Cloud\Dialogflow\V2\ListSessionEntityTypesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -61,6 +69,10 @@ class SessionEntityTypesGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Retrieves the specified session entity type.
+     *
+     * This method doesn't work with Google Assistant integration.
+     * Contact Dialogflow support if you need to use session entities
+     * with Google Assistant integration.
      * @param \Google\Cloud\Dialogflow\V2\GetSessionEntityTypeRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -78,6 +90,10 @@ class SessionEntityTypesGrpcClient extends \Grpc\BaseStub {
      *
      * If the specified session entity type already exists, overrides the session
      * entity type.
+     *
+     * This method doesn't work with Google Assistant integration.
+     * Contact Dialogflow support if you need to use session entities
+     * with Google Assistant integration.
      * @param \Google\Cloud\Dialogflow\V2\CreateSessionEntityTypeRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -92,6 +108,10 @@ class SessionEntityTypesGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Updates the specified session entity type.
+     *
+     * This method doesn't work with Google Assistant integration.
+     * Contact Dialogflow support if you need to use session entities
+     * with Google Assistant integration.
      * @param \Google\Cloud\Dialogflow\V2\UpdateSessionEntityTypeRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -106,6 +126,10 @@ class SessionEntityTypesGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Deletes the specified session entity type.
+     *
+     * This method doesn't work with Google Assistant integration.
+     * Contact Dialogflow support if you need to use session entities
+     * with Google Assistant integration.
      * @param \Google\Cloud\Dialogflow\V2\DeleteSessionEntityTypeRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

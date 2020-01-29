@@ -18,13 +18,13 @@ class BasicCard extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The title of the card.
      *
-     * Generated from protobuf field <code>string title = 1;</code>
+     * Generated from protobuf field <code>string title = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $title = '';
     /**
      * Optional. The subtitle of the card.
      *
-     * Generated from protobuf field <code>string subtitle = 2;</code>
+     * Generated from protobuf field <code>string subtitle = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $subtitle = '';
     /**
@@ -36,13 +36,13 @@ class BasicCard extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The image for the card.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.Image image = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.Image image = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $image = null;
     /**
      * Optional. The collection of card buttons.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.BasicCard.Button buttons = 5;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.BasicCard.Button buttons = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $buttons;
 
@@ -72,7 +72,7 @@ class BasicCard extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The title of the card.
      *
-     * Generated from protobuf field <code>string title = 1;</code>
+     * Generated from protobuf field <code>string title = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getTitle()
@@ -83,7 +83,7 @@ class BasicCard extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The title of the card.
      *
-     * Generated from protobuf field <code>string title = 1;</code>
+     * Generated from protobuf field <code>string title = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -98,7 +98,7 @@ class BasicCard extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The subtitle of the card.
      *
-     * Generated from protobuf field <code>string subtitle = 2;</code>
+     * Generated from protobuf field <code>string subtitle = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getSubtitle()
@@ -109,7 +109,7 @@ class BasicCard extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The subtitle of the card.
      *
-     * Generated from protobuf field <code>string subtitle = 2;</code>
+     * Generated from protobuf field <code>string subtitle = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -150,7 +150,7 @@ class BasicCard extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The image for the card.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.Image image = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.Image image = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dialogflow\V2\Intent\Message\Image
      */
     public function getImage()
@@ -161,7 +161,7 @@ class BasicCard extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The image for the card.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.Image image = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.Image image = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dialogflow\V2\Intent\Message\Image $var
      * @return $this
      */
@@ -176,7 +176,7 @@ class BasicCard extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The collection of card buttons.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.BasicCard.Button buttons = 5;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.BasicCard.Button buttons = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getButtons()
@@ -187,7 +187,7 @@ class BasicCard extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The collection of card buttons.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.BasicCard.Button buttons = 5;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.BasicCard.Button buttons = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dialogflow\V2\Intent\Message\BasicCard\Button[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

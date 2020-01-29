@@ -67,6 +67,21 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>float confidence = 4;</code>
      */
     private $confidence = 0.0;
+    /**
+     * Word-specific information for the words recognized by Speech in
+     * [transcript][google.cloud.dialogflow.v2.StreamingRecognitionResult.transcript]. Populated if and only if `message_type` = `TRANSCRIPT` and
+     * [InputAudioConfig.enable_word_info] is set.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SpeechWordInfo speech_word_info = 7;</code>
+     */
+    private $speech_word_info;
+    /**
+     * Time offset of the end of this Speech recognition result relative to the
+     * beginning of the audio. Only populated for `message_type` = `TRANSCRIPT`.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration speech_end_offset = 8;</code>
+     */
+    private $speech_end_offset = null;
 
     /**
      * Constructor.
@@ -91,6 +106,13 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      *           indicating that confidence was not set.
      *           This field is typically only provided if `is_final` is true and you should
      *           not rely on it being accurate or even set.
+     *     @type \Google\Cloud\Dialogflow\V2\SpeechWordInfo[]|\Google\Protobuf\Internal\RepeatedField $speech_word_info
+     *           Word-specific information for the words recognized by Speech in
+     *           [transcript][google.cloud.dialogflow.v2.StreamingRecognitionResult.transcript]. Populated if and only if `message_type` = `TRANSCRIPT` and
+     *           [InputAudioConfig.enable_word_info] is set.
+     *     @type \Google\Protobuf\Duration $speech_end_offset
+     *           Time offset of the end of this Speech recognition result relative to the
+     *           beginning of the audio. Only populated for `message_type` = `TRANSCRIPT`.
      * }
      */
     public function __construct($data = NULL) {
@@ -216,6 +238,64 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkFloat($var);
         $this->confidence = $var;
+
+        return $this;
+    }
+
+    /**
+     * Word-specific information for the words recognized by Speech in
+     * [transcript][google.cloud.dialogflow.v2.StreamingRecognitionResult.transcript]. Populated if and only if `message_type` = `TRANSCRIPT` and
+     * [InputAudioConfig.enable_word_info] is set.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SpeechWordInfo speech_word_info = 7;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSpeechWordInfo()
+    {
+        return $this->speech_word_info;
+    }
+
+    /**
+     * Word-specific information for the words recognized by Speech in
+     * [transcript][google.cloud.dialogflow.v2.StreamingRecognitionResult.transcript]. Populated if and only if `message_type` = `TRANSCRIPT` and
+     * [InputAudioConfig.enable_word_info] is set.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SpeechWordInfo speech_word_info = 7;</code>
+     * @param \Google\Cloud\Dialogflow\V2\SpeechWordInfo[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSpeechWordInfo($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\V2\SpeechWordInfo::class);
+        $this->speech_word_info = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Time offset of the end of this Speech recognition result relative to the
+     * beginning of the audio. Only populated for `message_type` = `TRANSCRIPT`.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration speech_end_offset = 8;</code>
+     * @return \Google\Protobuf\Duration
+     */
+    public function getSpeechEndOffset()
+    {
+        return $this->speech_end_offset;
+    }
+
+    /**
+     * Time offset of the end of this Speech recognition result relative to the
+     * beginning of the audio. Only populated for `message_type` = `TRANSCRIPT`.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration speech_end_offset = 8;</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setSpeechEndOffset($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->speech_end_offset = $var;
 
         return $this;
     }

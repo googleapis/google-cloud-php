@@ -19,15 +19,15 @@ class BatchDeleteEntitiesRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the entity type to delete entries for. Format:
      * `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * Required. The canonical `values` of the entities to delete. Note that
+     * Required. The reference `values` of the entities to delete. Note that
      * these are not fully-qualified names, i.e. they don't start with
      * `projects/<Project ID>`.
      *
-     * Generated from protobuf field <code>repeated string entity_values = 2;</code>
+     * Generated from protobuf field <code>repeated string entity_values = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $entity_values;
     /**
@@ -38,7 +38,7 @@ class BatchDeleteEntitiesRequest extends \Google\Protobuf\Internal\Message
      * are supported. Note: languages must be enabled in the agent before they can
      * be used.
      *
-     * Generated from protobuf field <code>string language_code = 3;</code>
+     * Generated from protobuf field <code>string language_code = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $language_code = '';
 
@@ -52,7 +52,7 @@ class BatchDeleteEntitiesRequest extends \Google\Protobuf\Internal\Message
      *           Required. The name of the entity type to delete entries for. Format:
      *           `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $entity_values
-     *           Required. The canonical `values` of the entities to delete. Note that
+     *           Required. The reference `values` of the entities to delete. Note that
      *           these are not fully-qualified names, i.e. they don't start with
      *           `projects/<Project ID>`.
      *     @type string $language_code
@@ -73,7 +73,7 @@ class BatchDeleteEntitiesRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the entity type to delete entries for. Format:
      * `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -85,7 +85,7 @@ class BatchDeleteEntitiesRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the entity type to delete entries for. Format:
      * `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -98,11 +98,11 @@ class BatchDeleteEntitiesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The canonical `values` of the entities to delete. Note that
+     * Required. The reference `values` of the entities to delete. Note that
      * these are not fully-qualified names, i.e. they don't start with
      * `projects/<Project ID>`.
      *
-     * Generated from protobuf field <code>repeated string entity_values = 2;</code>
+     * Generated from protobuf field <code>repeated string entity_values = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getEntityValues()
@@ -111,11 +111,11 @@ class BatchDeleteEntitiesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The canonical `values` of the entities to delete. Note that
+     * Required. The reference `values` of the entities to delete. Note that
      * these are not fully-qualified names, i.e. they don't start with
      * `projects/<Project ID>`.
      *
-     * Generated from protobuf field <code>repeated string entity_values = 2;</code>
+     * Generated from protobuf field <code>repeated string entity_values = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -135,7 +135,7 @@ class BatchDeleteEntitiesRequest extends \Google\Protobuf\Internal\Message
      * are supported. Note: languages must be enabled in the agent before they can
      * be used.
      *
-     * Generated from protobuf field <code>string language_code = 3;</code>
+     * Generated from protobuf field <code>string language_code = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getLanguageCode()
@@ -151,7 +151,7 @@ class BatchDeleteEntitiesRequest extends \Google\Protobuf\Internal\Message
      * are supported. Note: languages must be enabled in the agent before they can
      * be used.
      *
-     * Generated from protobuf field <code>string language_code = 3;</code>
+     * Generated from protobuf field <code>string language_code = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

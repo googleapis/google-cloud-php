@@ -71,11 +71,11 @@ use Google\Protobuf\GPBEmpty;
  *     data types such as date, time, currency, and so on. A system entity is
  *     represented by the `EntityType` type.
  *
- * *   **Developer** - entities that are defined by you that represent
+ * *   **Custom** - entities that are defined by you that represent
  *     actionable data that is meaningful to your application. For example,
  *     you could define a `pizza.sauce` entity for red or white pizza sauce,
  *     a `pizza.cheese` entity for the different types of cheese on a pizza,
- *     a `pizza.topping` entity for different toppings, and so on. A developer
+ *     a `pizza.topping` entity for different toppings, and so on. A custom
  *     entity is represented by the `EntityType` type.
  *
  * *   **User** - entities that are built for an individual user such as
@@ -999,6 +999,7 @@ class EntityTypesGapicClient
      * method does not affect entities in the entity type that aren't explicitly
      * specified in the request.
      *
+     *
      * Operation <response: [google.protobuf.Empty][google.protobuf.Empty]>
      *
      * Sample code:
@@ -1096,6 +1097,7 @@ class EntityTypesGapicClient
     /**
      * Deletes entities in the specified entity type.
      *
+     *
      * Operation <response: [google.protobuf.Empty][google.protobuf.Empty]>
      *
      * Sample code:
@@ -1138,7 +1140,7 @@ class EntityTypesGapicClient
      *
      * @param string   $parent       Required. The name of the entity type to delete entries for. Format:
      *                               `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
-     * @param string[] $entityValues Required. The canonical `values` of the entities to delete. Note that
+     * @param string[] $entityValues Required. The reference `values` of the entities to delete. Note that
      *                               these are not fully-qualified names, i.e. they don't start with
      *                               `projects/<Project ID>`.
      * @param array    $optionalArgs {

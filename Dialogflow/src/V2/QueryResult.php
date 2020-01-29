@@ -130,9 +130,12 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      */
     private $intent_detection_confidence = 0.0;
     /**
-     * The free-form diagnostic info. For example, this field could contain
-     * webhook call latency. The string keys of the Struct's fields map can change
-     * without notice.
+     * Free-form diagnostic information for the associated detect intent request.
+     * The fields of this data can change without notice, so you should not write
+     * code that depends on its structure.
+     * The data may contain:
+     * - webhook call latency
+     * - webhook errors
      *
      * Generated from protobuf field <code>.google.protobuf.Struct diagnostic_info = 14;</code>
      */
@@ -214,9 +217,12 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      *           If there are `multiple knowledge_answers` messages, this value is set to
      *           the greatest `knowledgeAnswers.match_confidence` value in the list.
      *     @type \Google\Protobuf\Struct $diagnostic_info
-     *           The free-form diagnostic info. For example, this field could contain
-     *           webhook call latency. The string keys of the Struct's fields map can change
-     *           without notice.
+     *           Free-form diagnostic information for the associated detect intent request.
+     *           The fields of this data can change without notice, so you should not write
+     *           code that depends on its structure.
+     *           The data may contain:
+     *           - webhook call latency
+     *           - webhook errors
      *     @type \Google\Cloud\Dialogflow\V2\SentimentAnalysisResult $sentiment_analysis_result
      *           The sentiment analysis result, which depends on the
      *           `sentiment_analysis_request_config` specified in the request.
@@ -638,9 +644,12 @@ class QueryResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The free-form diagnostic info. For example, this field could contain
-     * webhook call latency. The string keys of the Struct's fields map can change
-     * without notice.
+     * Free-form diagnostic information for the associated detect intent request.
+     * The fields of this data can change without notice, so you should not write
+     * code that depends on its structure.
+     * The data may contain:
+     * - webhook call latency
+     * - webhook errors
      *
      * Generated from protobuf field <code>.google.protobuf.Struct diagnostic_info = 14;</code>
      * @return \Google\Protobuf\Struct
@@ -651,9 +660,12 @@ class QueryResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The free-form diagnostic info. For example, this field could contain
-     * webhook call latency. The string keys of the Struct's fields map can change
-     * without notice.
+     * Free-form diagnostic information for the associated detect intent request.
+     * The fields of this data can change without notice, so you should not write
+     * code that depends on its structure.
+     * The data may contain:
+     * - webhook call latency
+     * - webhook errors
      *
      * Generated from protobuf field <code>.google.protobuf.Struct diagnostic_info = 14;</code>
      * @param \Google\Protobuf\Struct $var

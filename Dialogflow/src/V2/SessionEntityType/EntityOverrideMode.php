@@ -21,19 +21,19 @@ class EntityOverrideMode
     const ENTITY_OVERRIDE_MODE_UNSPECIFIED = 0;
     /**
      * The collection of session entities overrides the collection of entities
-     * in the corresponding developer entity type.
+     * in the corresponding custom entity type.
      *
      * Generated from protobuf enum <code>ENTITY_OVERRIDE_MODE_OVERRIDE = 1;</code>
      */
     const ENTITY_OVERRIDE_MODE_OVERRIDE = 1;
     /**
      * The collection of session entities extends the collection of entities in
-     * the corresponding developer entity type.
+     * the corresponding custom entity type.
      * Note: Even in this override mode calls to `ListSessionEntityTypes`,
      * `GetSessionEntityType`, `CreateSessionEntityType` and
      * `UpdateSessionEntityType` only return the additional entities added in
      * this session entity type. If you want to get the supplemented list,
-     * please call [EntityTypes.GetEntityType][google.cloud.dialogflow.v2.EntityTypes.GetEntityType] on the developer entity type
+     * please call [EntityTypes.GetEntityType][google.cloud.dialogflow.v2.EntityTypes.GetEntityType] on the custom entity type
      * and merge.
      *
      * Generated from protobuf enum <code>ENTITY_OVERRIDE_MODE_SUPPLEMENT = 2;</code>

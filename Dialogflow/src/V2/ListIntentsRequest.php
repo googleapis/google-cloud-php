@@ -19,7 +19,7 @@ class ListIntentsRequest extends \Google\Protobuf\Internal\Message
      * Required. The agent to list all intents from.
      * Format: `projects/<Project ID>/agent`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -30,26 +30,26 @@ class ListIntentsRequest extends \Google\Protobuf\Internal\Message
      * are supported. Note: languages must be enabled in the agent before they can
      * be used.
      *
-     * Generated from protobuf field <code>string language_code = 2;</code>
+     * Generated from protobuf field <code>string language_code = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $language_code = '';
     /**
      * Optional. The resource view to apply to the returned intent.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.IntentView intent_view = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.IntentView intent_view = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $intent_view = 0;
     /**
      * Optional. The maximum number of items to return in a single page. By
      * default 100 and at most 1000.
      *
-     * Generated from protobuf field <code>int32 page_size = 4;</code>
+     * Generated from protobuf field <code>int32 page_size = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
     /**
      * Optional. The next_page_token value returned from a previous list request.
      *
-     * Generated from protobuf field <code>string page_token = 5;</code>
+     * Generated from protobuf field <code>string page_token = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_token = '';
 
@@ -87,7 +87,7 @@ class ListIntentsRequest extends \Google\Protobuf\Internal\Message
      * Required. The agent to list all intents from.
      * Format: `projects/<Project ID>/agent`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -99,7 +99,7 @@ class ListIntentsRequest extends \Google\Protobuf\Internal\Message
      * Required. The agent to list all intents from.
      * Format: `projects/<Project ID>/agent`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -119,7 +119,7 @@ class ListIntentsRequest extends \Google\Protobuf\Internal\Message
      * are supported. Note: languages must be enabled in the agent before they can
      * be used.
      *
-     * Generated from protobuf field <code>string language_code = 2;</code>
+     * Generated from protobuf field <code>string language_code = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getLanguageCode()
@@ -135,7 +135,7 @@ class ListIntentsRequest extends \Google\Protobuf\Internal\Message
      * are supported. Note: languages must be enabled in the agent before they can
      * be used.
      *
-     * Generated from protobuf field <code>string language_code = 2;</code>
+     * Generated from protobuf field <code>string language_code = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -150,7 +150,7 @@ class ListIntentsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The resource view to apply to the returned intent.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.IntentView intent_view = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.IntentView intent_view = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getIntentView()
@@ -161,7 +161,7 @@ class ListIntentsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The resource view to apply to the returned intent.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.IntentView intent_view = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.IntentView intent_view = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -177,7 +177,7 @@ class ListIntentsRequest extends \Google\Protobuf\Internal\Message
      * Optional. The maximum number of items to return in a single page. By
      * default 100 and at most 1000.
      *
-     * Generated from protobuf field <code>int32 page_size = 4;</code>
+     * Generated from protobuf field <code>int32 page_size = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getPageSize()
@@ -189,7 +189,7 @@ class ListIntentsRequest extends \Google\Protobuf\Internal\Message
      * Optional. The maximum number of items to return in a single page. By
      * default 100 and at most 1000.
      *
-     * Generated from protobuf field <code>int32 page_size = 4;</code>
+     * Generated from protobuf field <code>int32 page_size = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -204,7 +204,7 @@ class ListIntentsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The next_page_token value returned from a previous list request.
      *
-     * Generated from protobuf field <code>string page_token = 5;</code>
+     * Generated from protobuf field <code>string page_token = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPageToken()
@@ -215,7 +215,7 @@ class ListIntentsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The next_page_token value returned from a previous list request.
      *
-     * Generated from protobuf field <code>string page_token = 5;</code>
+     * Generated from protobuf field <code>string page_token = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

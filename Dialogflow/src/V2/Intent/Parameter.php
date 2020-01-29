@@ -35,7 +35,7 @@ class Parameter extends \Google\Protobuf\Internal\Message
      * - a parameter value from some context defined as
      *   `#context_name.parameter_name`.
      *
-     * Generated from protobuf field <code>string value = 3;</code>
+     * Generated from protobuf field <code>string value = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $value = '';
     /**
@@ -44,7 +44,7 @@ class Parameter extends \Google\Protobuf\Internal\Message
      * Default values can be extracted from contexts by using the following
      * syntax: `#context_name.parameter_name`.
      *
-     * Generated from protobuf field <code>string default_value = 4;</code>
+     * Generated from protobuf field <code>string default_value = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $default_value = '';
     /**
@@ -52,7 +52,7 @@ class Parameter extends \Google\Protobuf\Internal\Message
      * describes values of the parameter. If the parameter is
      * required, this must be provided.
      *
-     * Generated from protobuf field <code>string entity_type_display_name = 5;</code>
+     * Generated from protobuf field <code>string entity_type_display_name = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $entity_type_display_name = '';
     /**
@@ -60,20 +60,20 @@ class Parameter extends \Google\Protobuf\Internal\Message
      * whether the intent cannot be completed without collecting the parameter
      * value.
      *
-     * Generated from protobuf field <code>bool mandatory = 6;</code>
+     * Generated from protobuf field <code>bool mandatory = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $mandatory = false;
     /**
      * Optional. The collection of prompts that the agent can present to the
      * user in order to collect a value for the parameter.
      *
-     * Generated from protobuf field <code>repeated string prompts = 7;</code>
+     * Generated from protobuf field <code>repeated string prompts = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $prompts;
     /**
      * Optional. Indicates whether the parameter represents a list of values.
      *
-     * Generated from protobuf field <code>bool is_list = 8;</code>
+     * Generated from protobuf field <code>bool is_list = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $is_list = false;
 
@@ -179,7 +179,7 @@ class Parameter extends \Google\Protobuf\Internal\Message
      * - a parameter value from some context defined as
      *   `#context_name.parameter_name`.
      *
-     * Generated from protobuf field <code>string value = 3;</code>
+     * Generated from protobuf field <code>string value = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getValue()
@@ -195,7 +195,7 @@ class Parameter extends \Google\Protobuf\Internal\Message
      * - a parameter value from some context defined as
      *   `#context_name.parameter_name`.
      *
-     * Generated from protobuf field <code>string value = 3;</code>
+     * Generated from protobuf field <code>string value = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -213,7 +213,7 @@ class Parameter extends \Google\Protobuf\Internal\Message
      * Default values can be extracted from contexts by using the following
      * syntax: `#context_name.parameter_name`.
      *
-     * Generated from protobuf field <code>string default_value = 4;</code>
+     * Generated from protobuf field <code>string default_value = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getDefaultValue()
@@ -227,7 +227,7 @@ class Parameter extends \Google\Protobuf\Internal\Message
      * Default values can be extracted from contexts by using the following
      * syntax: `#context_name.parameter_name`.
      *
-     * Generated from protobuf field <code>string default_value = 4;</code>
+     * Generated from protobuf field <code>string default_value = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -244,7 +244,7 @@ class Parameter extends \Google\Protobuf\Internal\Message
      * describes values of the parameter. If the parameter is
      * required, this must be provided.
      *
-     * Generated from protobuf field <code>string entity_type_display_name = 5;</code>
+     * Generated from protobuf field <code>string entity_type_display_name = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getEntityTypeDisplayName()
@@ -257,7 +257,7 @@ class Parameter extends \Google\Protobuf\Internal\Message
      * describes values of the parameter. If the parameter is
      * required, this must be provided.
      *
-     * Generated from protobuf field <code>string entity_type_display_name = 5;</code>
+     * Generated from protobuf field <code>string entity_type_display_name = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -274,7 +274,7 @@ class Parameter extends \Google\Protobuf\Internal\Message
      * whether the intent cannot be completed without collecting the parameter
      * value.
      *
-     * Generated from protobuf field <code>bool mandatory = 6;</code>
+     * Generated from protobuf field <code>bool mandatory = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getMandatory()
@@ -287,7 +287,7 @@ class Parameter extends \Google\Protobuf\Internal\Message
      * whether the intent cannot be completed without collecting the parameter
      * value.
      *
-     * Generated from protobuf field <code>bool mandatory = 6;</code>
+     * Generated from protobuf field <code>bool mandatory = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -303,7 +303,7 @@ class Parameter extends \Google\Protobuf\Internal\Message
      * Optional. The collection of prompts that the agent can present to the
      * user in order to collect a value for the parameter.
      *
-     * Generated from protobuf field <code>repeated string prompts = 7;</code>
+     * Generated from protobuf field <code>repeated string prompts = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getPrompts()
@@ -315,7 +315,7 @@ class Parameter extends \Google\Protobuf\Internal\Message
      * Optional. The collection of prompts that the agent can present to the
      * user in order to collect a value for the parameter.
      *
-     * Generated from protobuf field <code>repeated string prompts = 7;</code>
+     * Generated from protobuf field <code>repeated string prompts = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -330,7 +330,7 @@ class Parameter extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Indicates whether the parameter represents a list of values.
      *
-     * Generated from protobuf field <code>bool is_list = 8;</code>
+     * Generated from protobuf field <code>bool is_list = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getIsList()
@@ -341,7 +341,7 @@ class Parameter extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Indicates whether the parameter represents a list of values.
      *
-     * Generated from protobuf field <code>bool is_list = 8;</code>
+     * Generated from protobuf field <code>bool is_list = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */

@@ -19,7 +19,7 @@ class DeleteAllContextsRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the session to delete all contexts from. Format:
      * `projects/<Project ID>/agent/sessions/<Session ID>`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $parent = '';
 
@@ -43,7 +43,7 @@ class DeleteAllContextsRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the session to delete all contexts from. Format:
      * `projects/<Project ID>/agent/sessions/<Session ID>`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getParent()
@@ -55,7 +55,7 @@ class DeleteAllContextsRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the session to delete all contexts from. Format:
      * `projects/<Project ID>/agent/sessions/<Session ID>`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
