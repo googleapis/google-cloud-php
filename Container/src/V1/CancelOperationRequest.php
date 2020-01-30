@@ -16,26 +16,26 @@ use Google\Protobuf\Internal\GPBUtil;
 class CancelOperationRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Deprecated. The Google Developers Console [project ID or project
+     * Required. Deprecated. The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      */
     private $project_id = '';
     /**
-     * Deprecated. The name of the Google Compute Engine
-     * [zone](/compute/docs/zones#available) in which the operation resides.
+     * Required. Deprecated. The name of the Google Compute Engine
+     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the operation resides.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      */
     private $zone = '';
     /**
-     * Deprecated. The server-assigned `name` of the operation.
+     * Required. Deprecated. The server-assigned `name` of the operation.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string operation_id = 3 [deprecated = true];</code>
+     * Generated from protobuf field <code>string operation_id = 3 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      */
     private $operation_id = '';
     /**
@@ -53,15 +53,15 @@ class CancelOperationRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $project_id
-     *           Deprecated. The Google Developers Console [project ID or project
+     *           Required. Deprecated. The Google Developers Console [project ID or project
      *           number](https://support.google.com/cloud/answer/6158840).
      *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
-     *           Deprecated. The name of the Google Compute Engine
-     *           [zone](/compute/docs/zones#available) in which the operation resides.
+     *           Required. Deprecated. The name of the Google Compute Engine
+     *           [zone](https://cloud.google.com/compute/docs/zones#available) in which the operation resides.
      *           This field has been deprecated and replaced by the name field.
      *     @type string $operation_id
-     *           Deprecated. The server-assigned `name` of the operation.
+     *           Required. Deprecated. The server-assigned `name` of the operation.
      *           This field has been deprecated and replaced by the name field.
      *     @type string $name
      *           The name (project, location, operation id) of the operation to cancel.
@@ -74,11 +74,11 @@ class CancelOperationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The Google Developers Console [project ID or project
+     * Required. Deprecated. The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getProjectId()
@@ -87,11 +87,11 @@ class CancelOperationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The Google Developers Console [project ID or project
+     * Required. Deprecated. The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -104,11 +104,11 @@ class CancelOperationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the Google Compute Engine
-     * [zone](/compute/docs/zones#available) in which the operation resides.
+     * Required. Deprecated. The name of the Google Compute Engine
+     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the operation resides.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getZone()
@@ -117,11 +117,11 @@ class CancelOperationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the Google Compute Engine
-     * [zone](/compute/docs/zones#available) in which the operation resides.
+     * Required. Deprecated. The name of the Google Compute Engine
+     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the operation resides.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -134,10 +134,10 @@ class CancelOperationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The server-assigned `name` of the operation.
+     * Required. Deprecated. The server-assigned `name` of the operation.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string operation_id = 3 [deprecated = true];</code>
+     * Generated from protobuf field <code>string operation_id = 3 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getOperationId()
@@ -146,10 +146,10 @@ class CancelOperationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The server-assigned `name` of the operation.
+     * Required. Deprecated. The server-assigned `name` of the operation.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string operation_id = 3 [deprecated = true];</code>
+     * Generated from protobuf field <code>string operation_id = 3 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

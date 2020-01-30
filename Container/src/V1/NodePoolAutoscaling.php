@@ -36,6 +36,12 @@ class NodePoolAutoscaling extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 max_node_count = 3;</code>
      */
     private $max_node_count = 0;
+    /**
+     * Can this node pool be deleted automatically.
+     *
+     * Generated from protobuf field <code>bool autoprovisioned = 4;</code>
+     */
+    private $autoprovisioned = false;
 
     /**
      * Constructor.
@@ -51,6 +57,8 @@ class NodePoolAutoscaling extends \Google\Protobuf\Internal\Message
      *     @type int $max_node_count
      *           Maximum number of nodes in the NodePool. Must be >= min_node_count. There
      *           has to enough quota to scale up the cluster.
+     *     @type bool $autoprovisioned
+     *           Can this node pool be deleted automatically.
      * }
      */
     public function __construct($data = NULL) {
@@ -136,6 +144,32 @@ class NodePoolAutoscaling extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->max_node_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Can this node pool be deleted automatically.
+     *
+     * Generated from protobuf field <code>bool autoprovisioned = 4;</code>
+     * @return bool
+     */
+    public function getAutoprovisioned()
+    {
+        return $this->autoprovisioned;
+    }
+
+    /**
+     * Can this node pool be deleted automatically.
+     *
+     * Generated from protobuf field <code>bool autoprovisioned = 4;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAutoprovisioned($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->autoprovisioned = $var;
 
         return $this;
     }

@@ -1020,6 +1020,17 @@ return [
                     ],
                 ],
             ],
+            'ListUsableSubnetworks' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*}/aggregated/usableSubnetworks',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
         ],
     ],
 ];

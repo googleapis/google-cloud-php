@@ -24,7 +24,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     private $name = '';
     /**
      * The name of the Google Compute Engine
-     * [zone](/compute/docs/zones#available) in which the operation
+     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the operation
      * is taking place.
      * This field is deprecated, use location instead.
      *
@@ -69,8 +69,8 @@ class Operation extends \Google\Protobuf\Internal\Message
     private $target_link = '';
     /**
      * [Output only] The name of the Google Compute Engine
-     * [zone](/compute/docs/regions-zones/regions-zones#available) or
-     * [region](/compute/docs/regions-zones/regions-zones#available) in which
+     * [zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available) or
+     * [region](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available) in which
      * the cluster resides.
      *
      * Generated from protobuf field <code>string location = 9;</code>
@@ -90,6 +90,18 @@ class Operation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string end_time = 11;</code>
      */
     private $end_time = '';
+    /**
+     * Which conditions caused the current cluster state.
+     *
+     * Generated from protobuf field <code>repeated .google.container.v1.StatusCondition cluster_conditions = 13;</code>
+     */
+    private $cluster_conditions;
+    /**
+     * Which conditions caused the current node pool state.
+     *
+     * Generated from protobuf field <code>repeated .google.container.v1.StatusCondition nodepool_conditions = 14;</code>
+     */
+    private $nodepool_conditions;
 
     /**
      * Constructor.
@@ -101,7 +113,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      *           The server-assigned ID for the operation.
      *     @type string $zone
      *           The name of the Google Compute Engine
-     *           [zone](/compute/docs/zones#available) in which the operation
+     *           [zone](https://cloud.google.com/compute/docs/zones#available) in which the operation
      *           is taking place.
      *           This field is deprecated, use location instead.
      *     @type int $operation_type
@@ -118,8 +130,8 @@ class Operation extends \Google\Protobuf\Internal\Message
      *           Server-defined URL for the target of the operation.
      *     @type string $location
      *           [Output only] The name of the Google Compute Engine
-     *           [zone](/compute/docs/regions-zones/regions-zones#available) or
-     *           [region](/compute/docs/regions-zones/regions-zones#available) in which
+     *           [zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available) or
+     *           [region](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available) in which
      *           the cluster resides.
      *     @type string $start_time
      *           [Output only] The time the operation started, in
@@ -127,6 +139,10 @@ class Operation extends \Google\Protobuf\Internal\Message
      *     @type string $end_time
      *           [Output only] The time the operation completed, in
      *           [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
+     *     @type \Google\Cloud\Container\V1\StatusCondition[]|\Google\Protobuf\Internal\RepeatedField $cluster_conditions
+     *           Which conditions caused the current cluster state.
+     *     @type \Google\Cloud\Container\V1\StatusCondition[]|\Google\Protobuf\Internal\RepeatedField $nodepool_conditions
+     *           Which conditions caused the current node pool state.
      * }
      */
     public function __construct($data = NULL) {
@@ -162,7 +178,7 @@ class Operation extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the Google Compute Engine
-     * [zone](/compute/docs/zones#available) in which the operation
+     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the operation
      * is taking place.
      * This field is deprecated, use location instead.
      *
@@ -176,7 +192,7 @@ class Operation extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the Google Compute Engine
-     * [zone](/compute/docs/zones#available) in which the operation
+     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the operation
      * is taking place.
      * This field is deprecated, use location instead.
      *
@@ -350,8 +366,8 @@ class Operation extends \Google\Protobuf\Internal\Message
 
     /**
      * [Output only] The name of the Google Compute Engine
-     * [zone](/compute/docs/regions-zones/regions-zones#available) or
-     * [region](/compute/docs/regions-zones/regions-zones#available) in which
+     * [zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available) or
+     * [region](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available) in which
      * the cluster resides.
      *
      * Generated from protobuf field <code>string location = 9;</code>
@@ -364,8 +380,8 @@ class Operation extends \Google\Protobuf\Internal\Message
 
     /**
      * [Output only] The name of the Google Compute Engine
-     * [zone](/compute/docs/regions-zones/regions-zones#available) or
-     * [region](/compute/docs/regions-zones/regions-zones#available) in which
+     * [zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available) or
+     * [region](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available) in which
      * the cluster resides.
      *
      * Generated from protobuf field <code>string location = 9;</code>
@@ -432,6 +448,58 @@ class Operation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->end_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Which conditions caused the current cluster state.
+     *
+     * Generated from protobuf field <code>repeated .google.container.v1.StatusCondition cluster_conditions = 13;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getClusterConditions()
+    {
+        return $this->cluster_conditions;
+    }
+
+    /**
+     * Which conditions caused the current cluster state.
+     *
+     * Generated from protobuf field <code>repeated .google.container.v1.StatusCondition cluster_conditions = 13;</code>
+     * @param \Google\Cloud\Container\V1\StatusCondition[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setClusterConditions($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Container\V1\StatusCondition::class);
+        $this->cluster_conditions = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Which conditions caused the current node pool state.
+     *
+     * Generated from protobuf field <code>repeated .google.container.v1.StatusCondition nodepool_conditions = 14;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getNodepoolConditions()
+    {
+        return $this->nodepool_conditions;
+    }
+
+    /**
+     * Which conditions caused the current node pool state.
+     *
+     * Generated from protobuf field <code>repeated .google.container.v1.StatusCondition nodepool_conditions = 14;</code>
+     * @param \Google\Cloud\Container\V1\StatusCondition[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setNodepoolConditions($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Container\V1\StatusCondition::class);
+        $this->nodepool_conditions = $arr;
 
         return $this;
     }

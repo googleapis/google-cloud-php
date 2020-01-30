@@ -16,36 +16,36 @@ use Google\Protobuf\Internal\GPBUtil;
 class SetLoggingServiceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Deprecated. The Google Developers Console [project ID or project
+     * Required. Deprecated. The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      */
     private $project_id = '';
     /**
-     * Deprecated. The name of the Google Compute Engine
-     * [zone](/compute/docs/zones#available) in which the cluster
+     * Required. Deprecated. The name of the Google Compute Engine
+     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      * resides.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2;</code>
+     * Generated from protobuf field <code>string zone = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $zone = '';
     /**
-     * Deprecated. The name of the cluster to upgrade.
+     * Required. Deprecated. The name of the cluster to upgrade.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
+     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      */
     private $cluster_id = '';
     /**
-     * The logging service the cluster should use to write metrics.
+     * Required. The logging service the cluster should use to write metrics.
      * Currently available options:
      * * "logging.googleapis.com" - the Google Cloud Logging service
      * * "none" - no metrics will be exported from the cluster
      *
-     * Generated from protobuf field <code>string logging_service = 4;</code>
+     * Generated from protobuf field <code>string logging_service = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $logging_service = '';
     /**
@@ -63,19 +63,19 @@ class SetLoggingServiceRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $project_id
-     *           Deprecated. The Google Developers Console [project ID or project
+     *           Required. Deprecated. The Google Developers Console [project ID or project
      *           number](https://support.google.com/cloud/answer/6158840).
      *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
-     *           Deprecated. The name of the Google Compute Engine
-     *           [zone](/compute/docs/zones#available) in which the cluster
+     *           Required. Deprecated. The name of the Google Compute Engine
+     *           [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      *           resides.
      *           This field has been deprecated and replaced by the name field.
      *     @type string $cluster_id
-     *           Deprecated. The name of the cluster to upgrade.
+     *           Required. Deprecated. The name of the cluster to upgrade.
      *           This field has been deprecated and replaced by the name field.
      *     @type string $logging_service
-     *           The logging service the cluster should use to write metrics.
+     *           Required. The logging service the cluster should use to write metrics.
      *           Currently available options:
      *           * "logging.googleapis.com" - the Google Cloud Logging service
      *           * "none" - no metrics will be exported from the cluster
@@ -90,11 +90,11 @@ class SetLoggingServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The Google Developers Console [project ID or project
+     * Required. Deprecated. The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getProjectId()
@@ -103,11 +103,11 @@ class SetLoggingServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The Google Developers Console [project ID or project
+     * Required. Deprecated. The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -120,12 +120,12 @@ class SetLoggingServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the Google Compute Engine
-     * [zone](/compute/docs/zones#available) in which the cluster
+     * Required. Deprecated. The name of the Google Compute Engine
+     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      * resides.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2;</code>
+     * Generated from protobuf field <code>string zone = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getZone()
@@ -134,12 +134,12 @@ class SetLoggingServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the Google Compute Engine
-     * [zone](/compute/docs/zones#available) in which the cluster
+     * Required. Deprecated. The name of the Google Compute Engine
+     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      * resides.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2;</code>
+     * Generated from protobuf field <code>string zone = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -152,10 +152,10 @@ class SetLoggingServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the cluster to upgrade.
+     * Required. Deprecated. The name of the cluster to upgrade.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
+     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getClusterId()
@@ -164,10 +164,10 @@ class SetLoggingServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the cluster to upgrade.
+     * Required. Deprecated. The name of the cluster to upgrade.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
+     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -180,12 +180,12 @@ class SetLoggingServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The logging service the cluster should use to write metrics.
+     * Required. The logging service the cluster should use to write metrics.
      * Currently available options:
      * * "logging.googleapis.com" - the Google Cloud Logging service
      * * "none" - no metrics will be exported from the cluster
      *
-     * Generated from protobuf field <code>string logging_service = 4;</code>
+     * Generated from protobuf field <code>string logging_service = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getLoggingService()
@@ -194,12 +194,12 @@ class SetLoggingServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The logging service the cluster should use to write metrics.
+     * Required. The logging service the cluster should use to write metrics.
      * Currently available options:
      * * "logging.googleapis.com" - the Google Cloud Logging service
      * * "none" - no metrics will be exported from the cluster
      *
-     * Generated from protobuf field <code>string logging_service = 4;</code>
+     * Generated from protobuf field <code>string logging_service = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
