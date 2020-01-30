@@ -16,22 +16,20 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateJobRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required.
-     * The location name. For example:
+     * Required. The location name. For example:
      * `projects/PROJECT_ID/locations/LOCATION_ID`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * Required.
-     * The job to add. The user can optionally specify a name for the
+     * Required. The job to add. The user can optionally specify a name for the
      * job in [name][google.cloud.scheduler.v1beta1.Job.name]. [name][google.cloud.scheduler.v1beta1.Job.name] cannot be the same as an
      * existing job. If a name is not specified then the system will
      * generate a random unique name that will be returned
      * ([name][google.cloud.scheduler.v1beta1.Job.name]) in the response.
      *
-     * Generated from protobuf field <code>.google.cloud.scheduler.v1beta1.Job job = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.scheduler.v1beta1.Job job = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $job = null;
 
@@ -42,12 +40,10 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required.
-     *           The location name. For example:
+     *           Required. The location name. For example:
      *           `projects/PROJECT_ID/locations/LOCATION_ID`.
      *     @type \Google\Cloud\Scheduler\V1beta1\Job $job
-     *           Required.
-     *           The job to add. The user can optionally specify a name for the
+     *           Required. The job to add. The user can optionally specify a name for the
      *           job in [name][google.cloud.scheduler.v1beta1.Job.name]. [name][google.cloud.scheduler.v1beta1.Job.name] cannot be the same as an
      *           existing job. If a name is not specified then the system will
      *           generate a random unique name that will be returned
@@ -60,11 +56,10 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The location name. For example:
+     * Required. The location name. For example:
      * `projects/PROJECT_ID/locations/LOCATION_ID`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -73,11 +68,10 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The location name. For example:
+     * Required. The location name. For example:
      * `projects/PROJECT_ID/locations/LOCATION_ID`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -90,14 +84,13 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The job to add. The user can optionally specify a name for the
+     * Required. The job to add. The user can optionally specify a name for the
      * job in [name][google.cloud.scheduler.v1beta1.Job.name]. [name][google.cloud.scheduler.v1beta1.Job.name] cannot be the same as an
      * existing job. If a name is not specified then the system will
      * generate a random unique name that will be returned
      * ([name][google.cloud.scheduler.v1beta1.Job.name]) in the response.
      *
-     * Generated from protobuf field <code>.google.cloud.scheduler.v1beta1.Job job = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.scheduler.v1beta1.Job job = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Scheduler\V1beta1\Job
      */
     public function getJob()
@@ -106,14 +99,13 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The job to add. The user can optionally specify a name for the
+     * Required. The job to add. The user can optionally specify a name for the
      * job in [name][google.cloud.scheduler.v1beta1.Job.name]. [name][google.cloud.scheduler.v1beta1.Job.name] cannot be the same as an
      * existing job. If a name is not specified then the system will
      * generate a random unique name that will be returned
      * ([name][google.cloud.scheduler.v1beta1.Job.name]) in the response.
      *
-     * Generated from protobuf field <code>.google.cloud.scheduler.v1beta1.Job job = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.scheduler.v1beta1.Job job = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Scheduler\V1beta1\Job $var
      * @return $this
      */
