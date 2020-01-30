@@ -57,6 +57,8 @@ class AssetServiceGrpcClient extends \Grpc\BaseStub {
      * non-delete or deleted status.
      * For IAM_POLICY content, this API outputs history when the asset and its
      * attached IAM POLICY both exist. This can create gaps in the output history.
+     * If a specified asset does not exist, this API returns an INVALID_ARGUMENT
+     * error.
      * @param \Google\Cloud\Asset\V1beta1\BatchGetAssetsHistoryRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

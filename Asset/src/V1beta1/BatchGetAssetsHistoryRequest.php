@@ -20,7 +20,7 @@ class BatchGetAssetsHistoryRequest extends \Google\Protobuf\Internal\Message
      * organization number (such as "organizations/123"), a project ID (such as
      * "projects/my-project-id")", or a project number (such as "projects/12345").
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -36,9 +36,9 @@ class BatchGetAssetsHistoryRequest extends \Google\Protobuf\Internal\Message
      */
     private $asset_names;
     /**
-     * Required. The content type.
+     * Optional. The content type.
      *
-     * Generated from protobuf field <code>.google.cloud.asset.v1beta1.ContentType content_type = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.asset.v1beta1.ContentType content_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $content_type = 0;
     /**
@@ -49,7 +49,7 @@ class BatchGetAssetsHistoryRequest extends \Google\Protobuf\Internal\Message
      * returned results contain all temporal assets whose time window overlap with
      * read_time_window.
      *
-     * Generated from protobuf field <code>.google.cloud.asset.v1beta1.TimeWindow read_time_window = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.asset.v1beta1.TimeWindow read_time_window = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $read_time_window = null;
 
@@ -72,7 +72,7 @@ class BatchGetAssetsHistoryRequest extends \Google\Protobuf\Internal\Message
      *           The request becomes a no-op if the asset name list is empty, and the max
      *           size of the asset name list is 100 in one request.
      *     @type int $content_type
-     *           Required. The content type.
+     *           Optional. The content type.
      *     @type \Google\Cloud\Asset\V1beta1\TimeWindow $read_time_window
      *           Optional. The time window for the asset history. Both start_time and
      *           end_time are optional and if set, it must be after 2018-10-02 UTC. If
@@ -92,7 +92,7 @@ class BatchGetAssetsHistoryRequest extends \Google\Protobuf\Internal\Message
      * organization number (such as "organizations/123"), a project ID (such as
      * "projects/my-project-id")", or a project number (such as "projects/12345").
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -105,7 +105,7 @@ class BatchGetAssetsHistoryRequest extends \Google\Protobuf\Internal\Message
      * organization number (such as "organizations/123"), a project ID (such as
      * "projects/my-project-id")", or a project number (such as "projects/12345").
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -156,9 +156,9 @@ class BatchGetAssetsHistoryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The content type.
+     * Optional. The content type.
      *
-     * Generated from protobuf field <code>.google.cloud.asset.v1beta1.ContentType content_type = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.asset.v1beta1.ContentType content_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getContentType()
@@ -167,9 +167,9 @@ class BatchGetAssetsHistoryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The content type.
+     * Optional. The content type.
      *
-     * Generated from protobuf field <code>.google.cloud.asset.v1beta1.ContentType content_type = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.asset.v1beta1.ContentType content_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -189,7 +189,7 @@ class BatchGetAssetsHistoryRequest extends \Google\Protobuf\Internal\Message
      * returned results contain all temporal assets whose time window overlap with
      * read_time_window.
      *
-     * Generated from protobuf field <code>.google.cloud.asset.v1beta1.TimeWindow read_time_window = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.asset.v1beta1.TimeWindow read_time_window = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Asset\V1beta1\TimeWindow
      */
     public function getReadTimeWindow()
@@ -205,7 +205,7 @@ class BatchGetAssetsHistoryRequest extends \Google\Protobuf\Internal\Message
      * returned results contain all temporal assets whose time window overlap with
      * read_time_window.
      *
-     * Generated from protobuf field <code>.google.cloud.asset.v1beta1.TimeWindow read_time_window = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.asset.v1beta1.TimeWindow read_time_window = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Asset\V1beta1\TimeWindow $var
      * @return $this
      */
