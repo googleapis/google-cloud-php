@@ -57,6 +57,7 @@ trait IncomingMessageTrait
 
         return new Message($message['message'], [
             'ackId' => (isset($message['ackId'])) ? $message['ackId'] : null,
+            'deliveryAttempt' => (isset($message['deliveryAttempt'])) ? $message['deliveryAttempt'] : null,
             'subscription' => $subscription
         ]);
     }

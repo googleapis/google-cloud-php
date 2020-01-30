@@ -226,6 +226,49 @@ class ManageSubscriptionsTest extends PubSubTestCase
         $this->assertTrue($sub->info()['enableMessageOrdering']);
     }
 
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testDeadLetterPolicy($client)
+    {
+        if ($client instanceof PubSubClientRest) {
+            $this->markTestSkipped(
+                'deadLetterPolicy not available in REST transport during experimental period.'
+            );
+        }
+
+        $dlqTopic1 = $client->createTopic(uniqid(self::TESTING_PREFIX));
+        $dlqTopic2 = $client->createTopic(uniqid(self::TESTING_PREFIX));
+
+        $resourceId = uniqid(self::TESTING_PREFIX);
+        $topic = $client->createTopic($resourceId);
+        $sub = $topic->subscribe($resourceId, [
+            'deadLetterPolicy' => [
+                'deadLetterTopic' => $dlqTopic1
+            ],
+        ]);
+
+        self::$deletionQueue->add($dlqTopic1);
+        self::$deletionQueue->add($dlqTopic2);
+        self::$deletionQueue->add($topic);
+        self::$deletionQueue->add($sub);
+
+        $this->assertEquals($dlqTopic1->name(), $sub->reload()['deadLetterPolicy']['deadLetterTopic']);
+
+        $sub->update([
+            'deadLetterPolicy' => [
+                'deadLetterTopic' => $dlqTopic2->name()
+            ]
+        ]);
+
+        $this->assertEquals($dlqTopic2->name(), $sub->reload()['deadLetterPolicy']['deadLetterTopic']);
+
+        $topic->publish(['data' => 'foo']);
+        sleep(2);
+        $msg = $sub->pull();
+        $this->assertEquals(1, $msg[0]->deliveryAttempt());
+    }
+
     private function assertSubsFound($class, $expectedSubs)
     {
         $backoff = new ExponentialBackoff(8);

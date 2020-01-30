@@ -42,6 +42,7 @@ class MessageTest extends TestCase
             'orderingKey' => 'foo'
         ], [
             'ackId' => 1234,
+            'deliveryAttempt' => 4,
             'subscription' => $this->prophesize(Subscription::class)->reveal()
         ]);
     }
@@ -85,6 +86,11 @@ class MessageTest extends TestCase
     public function testAckId()
     {
         $this->assertEquals(1234, $this->message->ackId());
+    }
+
+    public function testDeliveryAttempt()
+    {
+        $this->assertEquals(4, $this->message->deliveryAttempt());
     }
 
     public function testSubscription()
