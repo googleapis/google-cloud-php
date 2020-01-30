@@ -53,8 +53,7 @@ use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 
 /**
- * Service Description: Service for configuring sinks used to export log entries out of
- * Logging.
+ * Service Description: Service for configuring sinks used to route log entries.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -752,9 +751,9 @@ class ConfigServiceV2GapicClient
     }
 
     /**
-     * Creates a sink that exports specified log entries to a destination.  The
+     * Creates a sink that exports specified log entries to a destination. The
      * export of newly-ingested log entries begins immediately, unless the sink's
-     * `writer_identity` is not permitted to write to the destination.  A sink can
+     * `writer_identity` is not permitted to write to the destination. A sink can
      * export log entries only from the resource owning the sink.
      *
      * Sample code:
@@ -784,17 +783,16 @@ class ConfigServiceV2GapicClient
      *
      *     @type bool $uniqueWriterIdentity
      *          Optional. Determines the kind of IAM identity returned as `writer_identity`
-     *          in the new sink.  If this value is omitted or set to false, and if the
+     *          in the new sink. If this value is omitted or set to false, and if the
      *          sink's parent is a project, then the value returned as `writer_identity` is
-     *          the same group or service account used by Logging before the
-     *          addition of writer identities to this API. The sink's destination must be
-     *          in the same project as the sink itself.
+     *          the same group or service account used by Logging before the addition of
+     *          writer identities to this API. The sink's destination must be in the same
+     *          project as the sink itself.
      *
      *          If this field is set to true, or if the sink is owned by a non-project
      *          resource such as an organization, then the value of `writer_identity` will
-     *          be a unique service account used only for exports from the new sink.  For
-     *          more information, see `writer_identity` in
-     *          [LogSink][google.logging.v2.LogSink].
+     *          be a unique service account used only for exports from the new sink. For
+     *          more information, see `writer_identity` in [LogSink][google.logging.v2.LogSink].
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -832,8 +830,9 @@ class ConfigServiceV2GapicClient
     }
 
     /**
-     * Updates a sink.  This method replaces the following fields in the existing
+     * Updates a sink. This method replaces the following fields in the existing
      * sink with values from the new sink: `destination`, and `filter`.
+     *
      * The updated sink might also have a new `writer_identity`; see the
      * `unique_writer_identity` field.
      *
@@ -864,9 +863,8 @@ class ConfigServiceV2GapicClient
      *                              Optional.
      *
      *     @type bool $uniqueWriterIdentity
-     *          Optional. See
-     *          [sinks.create](https://cloud.google.com/logging/docs/api/reference/rest/v2/projects.sinks/create)
-     *          for a description of this field.  When updating a sink, the effect of this
+     *          Optional. See [sinks.create][google.logging.v2.ConfigServiceV2.CreateSink]
+     *          for a description of this field. When updating a sink, the effect of this
      *          field on the value of `writer_identity` in the updated sink depends on both
      *          the old and new values of this field:
      *
@@ -879,7 +877,7 @@ class ConfigServiceV2GapicClient
      *     @type FieldMask $updateMask
      *          Optional. Field mask that specifies the fields in `sink` that need
      *          an update. A sink field will be overwritten if, and only if, it is
-     *          in the update mask.  `name` and output only fields cannot be updated.
+     *          in the update mask. `name` and output only fields cannot be updated.
      *
      *          An empty updateMask is temporarily treated as using the following mask
      *          for backwards compatibility purposes:
@@ -1218,11 +1216,10 @@ class ConfigServiceV2GapicClient
      * Example: `"projects/my-project-id/exclusions/my-exclusion-id"`.
      * @param LogExclusion $exclusion  Required. New values for the existing exclusion. Only the fields specified
      *                                 in `update_mask` are relevant.
-     * @param FieldMask    $updateMask Required. A nonempty list of fields to change in the existing exclusion.
+     * @param FieldMask    $updateMask Required. A non-empty list of fields to change in the existing exclusion.
      *                                 New values for the fields are taken from the corresponding fields in the
-     *                                 [LogExclusion][google.logging.v2.LogExclusion] included in this request.
-     *                                 Fields not mentioned in `update_mask` are not changed and are ignored in
-     *                                 the request.
+     *                                 [LogExclusion][google.logging.v2.LogExclusion] included in this request. Fields not mentioned in
+     *                                 `update_mask` are not changed and are ignored in the request.
      *
      * For example, to change the filter and description of an exclusion,
      * specify an `update_mask` of `"filter,description"`.
