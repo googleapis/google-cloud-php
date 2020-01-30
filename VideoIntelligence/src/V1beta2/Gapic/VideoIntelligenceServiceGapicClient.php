@@ -305,19 +305,19 @@ class VideoIntelligenceServiceGapicClient
      *          If unset, the input video(s) should be specified via `input_uri`.
      *          If set, `input_uri` should be unset.
      *     @type int[] $features
-     *          Requested video annotation features.
+     *          Required. Requested video annotation features.
      *          For allowed values, use constants defined on {@see \Google\Cloud\VideoIntelligence\V1beta2\Feature}
      *     @type VideoContext $videoContext
      *          Additional video context and/or feature-specific parameters.
      *     @type string $outputUri
-     *          Optional location where the output (in JSON format) should be stored.
+     *          Optional. Location where the output (in JSON format) should be stored.
      *          Currently, only [Google Cloud Storage](https://cloud.google.com/storage/)
      *          URIs are supported, which must be specified in the following format:
      *          `gs://bucket-id/object-id` (other URI formats return
      *          [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]). For
      *          more information, see [Request URIs](https://cloud.google.com/storage/docs/reference-uris).
      *     @type string $locationId
-     *          Optional cloud region where annotation should take place. Supported cloud
+     *          Optional. Cloud region where annotation should take place. Supported cloud
      *          regions: `us-east1`, `us-west1`, `europe-west1`, `asia-east1`. If no region
      *          is specified, a region will be determined based on video file location.
      *     @type RetrySettings|array $retrySettings
