@@ -442,7 +442,8 @@ class Instance
             $this->projectId,
             $name,
             isset($options['sessionPool']) ? $options['sessionPool'] : null,
-            $this->returnInt64AsObject
+            $this->returnInt64AsObject,
+            isset($options['database']) ? $options['database'] : null
         );
     }
 
@@ -476,7 +477,7 @@ class Instance
         return new ItemIterator(
             new PageIterator(
                 function (array $database) {
-                    return $this->database($database['name']);
+                    return $this->database($database['name'], ['database' => $database]);
                 },
                 [$this->connection, 'listDatabases'],
                 $options + ['instance' => $this->name],

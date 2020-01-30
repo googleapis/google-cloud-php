@@ -183,7 +183,8 @@ class Database
         $projectId,
         $name,
         SessionPoolInterface $sessionPool = null,
-        $returnInt64AsObject = false
+        $returnInt64AsObject = false,
+        array $info = null
     ) {
         $this->connection = $connection;
         $this->instance = $instance;
@@ -191,6 +192,7 @@ class Database
         $this->name = $this->fullyQualifiedDatabaseName($name);
         $this->sessionPool = $sessionPool;
         $this->operation = new Operation($connection, $returnInt64AsObject);
+        $this->info = $info ?: [];
 
         if ($this->sessionPool) {
             $this->sessionPool->setDatabase($this);
