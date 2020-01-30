@@ -88,9 +88,21 @@ class MessageTest extends TestCase
         $this->assertEquals(1234, $this->message->ackId());
     }
 
-    public function testDeliveryAttempt()
+    /**
+     * @dataProvider deliveryAttempts
+     */
+    public function testDeliveryAttempt($metadata, $expected)
     {
-        $this->assertEquals(4, $this->message->deliveryAttempt());
+        $message = new Message([], $metadata);
+        $this->assertEquals($expected, $message->deliveryAttempt());
+    }
+
+    public function deliveryAttempts()
+    {
+        return [
+            [[], null],
+            [['deliveryAttempt' => 2], 2]
+        ];
     }
 
     public function testSubscription()
