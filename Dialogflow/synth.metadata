@@ -1,19 +1,20 @@
 {
-  "updateTime": "2020-01-21T16:52:30.593761Z",
+  "updateTime": "2020-01-30T11:02:25.832675Z",
   "sources": [
     {
       "generator": {
         "name": "artman",
-        "version": "0.44.1",
-        "dockerImage": "googleapis/artman@sha256:5599b61e56a372d21b671969ee915fbca0f6c3a0daaeb898d01f8f685f1bbc8b"
+        "version": "0.44.4",
+        "dockerImage": "googleapis/artman@sha256:19e945954fc960a4bdfee6cb34695898ab21a8cf0bac063ee39b91f00a1faec8"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "7f0dab8177cf371ae019a082e2512de7ac102888",
-        "internalRef": "290326986"
+        "sha": "c1246a29e22b0f98e800a536b5b0da2d933a55f2",
+        "internalRef": "292310790",
+        "log": "c1246a29e22b0f98e800a536b5b0da2d933a55f2\nUpdating v1 protos with the latest inline documentation (in comments) and config options. Also adding a per-service .yaml file.\n\nPiperOrigin-RevId: 292310790\n\nb491d07cadaae7cde5608321f913e5ca1459b32d\nRevert accidental local_repository change\n\nPiperOrigin-RevId: 292245373\n\naf3400a8cb6110025198b59a0f7d018ae3cda700\nUpdate gapic-generator dependency (prebuilt PHP binary support).\n\nPiperOrigin-RevId: 292243997\n\n341fd5690fae36f36cf626ef048fbcf4bbe7cee6\ngrafeas: v1 add resource_definition for the grafeas.io/Project and change references for Project.\n\nPiperOrigin-RevId: 292221998\n\n42e915ec2ece1cd37a590fbcd10aa2c0fb0e5b06\nUpdate the gapic-generator, protoc-java-resource-name-plugin and protoc-docs-plugin to the latest commit.\n\nPiperOrigin-RevId: 292182368\n\nf035f47250675d31492a09f4a7586cfa395520a7\nFix grafeas build and update build.sh script to include gerafeas.\n\nPiperOrigin-RevId: 292168753\n\n26ccb214b7bc4a716032a6266bcb0a9ca55d6dbb\nasset: v1p1beta1 add client config annotations and retry config\n\nPiperOrigin-RevId: 292154210\n\n974ee5c0b5d03e81a50dafcedf41e0efebb5b749\nasset: v1beta1 add client config annotations\n\nPiperOrigin-RevId: 292152573\n\ncf3b61102ed5f36b827bc82ec39be09525f018c8\n  Fix to protos for v1p1beta1 release of Cloud Security Command Center\n\nPiperOrigin-RevId: 292034635\n\n4e1cfaa7c0fede9e65d64213ca3da1b1255816c0\nUpdate the public proto to support UTF-8 encoded id for CatalogService API, increase the ListCatalogItems deadline to 300s and some minor documentation change\n\nPiperOrigin-RevId: 292030970\n\n9c483584f8fd5a1b862ae07973f4cc7bb3e46648\nasset: add annotations to v1p1beta1\n\nPiperOrigin-RevId: 292009868\n\ne19209fac29731d0baf6d9ac23da1164f7bdca24\nAdd the google.rpc.context.AttributeContext message to the open source\ndirectories.\n\nPiperOrigin-RevId: 291999930\n\nae5662960573f279502bf98a108a35ba1175e782\noslogin API: move file level option on top of the file to avoid protobuf.js bug.\n\nPiperOrigin-RevId: 291990506\n\neba3897fff7c49ed85d3c47fc96fe96e47f6f684\nAdd cc_proto_library and cc_grpc_library targets for Spanner and IAM protos.\n\nPiperOrigin-RevId: 291988651\n\n8e981acfd9b97ea2f312f11bbaa7b6c16e412dea\nBeta launch for PersonDetection and FaceDetection features.\n\nPiperOrigin-RevId: 291821782\n\n994e067fae3b21e195f7da932b08fff806d70b5d\nasset: add annotations to v1p2beta1\n\nPiperOrigin-RevId: 291815259\n\n244e1d2c89346ca2e0701b39e65552330d68545a\nAdd Playable Locations service\n\nPiperOrigin-RevId: 291806349\n\n909f8f67963daf45dd88d020877fb9029b76788d\nasset: add annotations to v1beta2\n\nPiperOrigin-RevId: 291805301\n\n3c39a1d6e23c1ef63c7fba4019c25e76c40dfe19\nKMS: add file-level message for CryptoKeyPath, it is defined in gapic yaml but not\nin proto files.\n\nPiperOrigin-RevId: 291420695\n\nc6f3f350b8387f8d1b85ed4506f30187ebaaddc3\ncontaineranalysis: update v1beta1 and bazel build with annotations\n\nPiperOrigin-RevId: 291401900\n\n92887d74b44e4e636252b7b8477d0d2570cd82db\nfix: fix the location of grpc config file.\n\nPiperOrigin-RevId: 291396015\n\ne26cab8afd19d396b929039dac5d874cf0b5336c\nexpr: add default_host and method_signature annotations to CelService\n\nPiperOrigin-RevId: 291240093\n\n06093ae3952441c34ec176d1f7431b8765cec0be\nirm: fix v1alpha2 bazel build by adding missing proto imports\n\nPiperOrigin-RevId: 291227940\n\na8a2514af326e4673063f9a3c9d0ef1091c87e6c\nAdd proto annotation for cloud/irm API\n\nPiperOrigin-RevId: 291217859\n\n8d16f76de065f530d395a4c7eabbf766d6a120fd\nGenerate Memcache v1beta2 API protos and gRPC ServiceConfig files\n\nPiperOrigin-RevId: 291008516\n\n3af1dabd93df9a9f17bf3624d3b875c11235360b\ngrafeas: Add containeranalysis default_host to Grafeas service\n\nPiperOrigin-RevId: 290965849\n\nbe2663fa95e31cba67d0cd62611a6674db9f74b7\nfix(google/maps/roads): add missing opening bracket\n\nPiperOrigin-RevId: 290964086\n\nfacc26550a0af0696e0534bc9cae9df14275aa7c\nUpdating v2 protos with the latest inline documentation (in comments) and adding a per-service .yaml file.\n\nPiperOrigin-RevId: 290952261\n\ncda99c1f7dc5e4ca9b1caeae1dc330838cbc1461\nChange api_name to 'asset' for v1p1beta1\n\nPiperOrigin-RevId: 290800639\n\n94e9e90c303a820ce40643d9129e7f0d2054e8a1\nAdds Google Maps Road service\n\nPiperOrigin-RevId: 290795667\n\na3b23dcb2eaecce98c600c7d009451bdec52dbda\nrpc: new message ErrorInfo, other comment updates\n\nPiperOrigin-RevId: 290781668\n\n26420ef4e46c37f193c0fbe53d6ebac481de460e\nAdd proto definition for Org Policy v1.\n\nPiperOrigin-RevId: 290771923\n\n"
       }
     }
   ],
@@ -27,6 +28,716 @@
         "generator": "gapic",
         "config": "google/cloud/dialogflow/v2/artman_dialogflow_v2.yaml"
       }
+    }
+  ],
+  "newFiles": [
+    {
+      "path": ".gitattributes"
+    },
+    {
+      "path": ".github/pull_request_template.md"
+    },
+    {
+      "path": "CONTRIBUTING.md"
+    },
+    {
+      "path": "LICENSE"
+    },
+    {
+      "path": "README.md"
+    },
+    {
+      "path": "VERSION"
+    },
+    {
+      "path": "composer.json"
+    },
+    {
+      "path": "metadata/V2/Agent.php"
+    },
+    {
+      "path": "metadata/V2/AudioConfig.php"
+    },
+    {
+      "path": "metadata/V2/Context.php"
+    },
+    {
+      "path": "metadata/V2/EntityType.php"
+    },
+    {
+      "path": "metadata/V2/Intent.php"
+    },
+    {
+      "path": "metadata/V2/Session.php"
+    },
+    {
+      "path": "metadata/V2/SessionEntityType.php"
+    },
+    {
+      "path": "metadata/V2/Webhook.php"
+    },
+    {
+      "path": "phpunit-snippets.xml.dist"
+    },
+    {
+      "path": "phpunit-system.xml.dist"
+    },
+    {
+      "path": "phpunit.xml.dist"
+    },
+    {
+      "path": "src/V2/Agent.php"
+    },
+    {
+      "path": "src/V2/Agent/ApiVersion.php"
+    },
+    {
+      "path": "src/V2/Agent/MatchMode.php"
+    },
+    {
+      "path": "src/V2/Agent/Tier.php"
+    },
+    {
+      "path": "src/V2/Agent_ApiVersion.php"
+    },
+    {
+      "path": "src/V2/Agent_MatchMode.php"
+    },
+    {
+      "path": "src/V2/Agent_Tier.php"
+    },
+    {
+      "path": "src/V2/AgentsClient.php"
+    },
+    {
+      "path": "src/V2/AgentsGrpcClient.php"
+    },
+    {
+      "path": "src/V2/AudioEncoding.php"
+    },
+    {
+      "path": "src/V2/BatchCreateEntitiesRequest.php"
+    },
+    {
+      "path": "src/V2/BatchDeleteEntitiesRequest.php"
+    },
+    {
+      "path": "src/V2/BatchDeleteEntityTypesRequest.php"
+    },
+    {
+      "path": "src/V2/BatchDeleteIntentsRequest.php"
+    },
+    {
+      "path": "src/V2/BatchUpdateEntitiesRequest.php"
+    },
+    {
+      "path": "src/V2/BatchUpdateEntityTypesRequest.php"
+    },
+    {
+      "path": "src/V2/BatchUpdateEntityTypesResponse.php"
+    },
+    {
+      "path": "src/V2/BatchUpdateIntentsRequest.php"
+    },
+    {
+      "path": "src/V2/BatchUpdateIntentsResponse.php"
+    },
+    {
+      "path": "src/V2/Context.php"
+    },
+    {
+      "path": "src/V2/ContextsClient.php"
+    },
+    {
+      "path": "src/V2/ContextsGrpcClient.php"
+    },
+    {
+      "path": "src/V2/CreateContextRequest.php"
+    },
+    {
+      "path": "src/V2/CreateEntityTypeRequest.php"
+    },
+    {
+      "path": "src/V2/CreateIntentRequest.php"
+    },
+    {
+      "path": "src/V2/CreateSessionEntityTypeRequest.php"
+    },
+    {
+      "path": "src/V2/DeleteAgentRequest.php"
+    },
+    {
+      "path": "src/V2/DeleteAllContextsRequest.php"
+    },
+    {
+      "path": "src/V2/DeleteContextRequest.php"
+    },
+    {
+      "path": "src/V2/DeleteEntityTypeRequest.php"
+    },
+    {
+      "path": "src/V2/DeleteIntentRequest.php"
+    },
+    {
+      "path": "src/V2/DeleteSessionEntityTypeRequest.php"
+    },
+    {
+      "path": "src/V2/DetectIntentRequest.php"
+    },
+    {
+      "path": "src/V2/DetectIntentResponse.php"
+    },
+    {
+      "path": "src/V2/EntityType.php"
+    },
+    {
+      "path": "src/V2/EntityType/AutoExpansionMode.php"
+    },
+    {
+      "path": "src/V2/EntityType/Entity.php"
+    },
+    {
+      "path": "src/V2/EntityType/Kind.php"
+    },
+    {
+      "path": "src/V2/EntityTypeBatch.php"
+    },
+    {
+      "path": "src/V2/EntityType_AutoExpansionMode.php"
+    },
+    {
+      "path": "src/V2/EntityType_Entity.php"
+    },
+    {
+      "path": "src/V2/EntityType_Kind.php"
+    },
+    {
+      "path": "src/V2/EntityTypesClient.php"
+    },
+    {
+      "path": "src/V2/EntityTypesGrpcClient.php"
+    },
+    {
+      "path": "src/V2/EventInput.php"
+    },
+    {
+      "path": "src/V2/ExportAgentRequest.php"
+    },
+    {
+      "path": "src/V2/ExportAgentResponse.php"
+    },
+    {
+      "path": "src/V2/Gapic/AgentsGapicClient.php"
+    },
+    {
+      "path": "src/V2/Gapic/ContextsGapicClient.php"
+    },
+    {
+      "path": "src/V2/Gapic/EntityTypesGapicClient.php"
+    },
+    {
+      "path": "src/V2/Gapic/IntentsGapicClient.php"
+    },
+    {
+      "path": "src/V2/Gapic/SessionEntityTypesGapicClient.php"
+    },
+    {
+      "path": "src/V2/Gapic/SessionsGapicClient.php"
+    },
+    {
+      "path": "src/V2/GetAgentRequest.php"
+    },
+    {
+      "path": "src/V2/GetContextRequest.php"
+    },
+    {
+      "path": "src/V2/GetEntityTypeRequest.php"
+    },
+    {
+      "path": "src/V2/GetIntentRequest.php"
+    },
+    {
+      "path": "src/V2/GetSessionEntityTypeRequest.php"
+    },
+    {
+      "path": "src/V2/ImportAgentRequest.php"
+    },
+    {
+      "path": "src/V2/InputAudioConfig.php"
+    },
+    {
+      "path": "src/V2/Intent.php"
+    },
+    {
+      "path": "src/V2/Intent/FollowupIntentInfo.php"
+    },
+    {
+      "path": "src/V2/Intent/Message.php"
+    },
+    {
+      "path": "src/V2/Intent/Message/BasicCard.php"
+    },
+    {
+      "path": "src/V2/Intent/Message/BasicCard/Button.php"
+    },
+    {
+      "path": "src/V2/Intent/Message/BasicCard/Button/OpenUriAction.php"
+    },
+    {
+      "path": "src/V2/Intent/Message/BrowseCarouselCard.php"
+    },
+    {
+      "path": "src/V2/Intent/Message/BrowseCarouselCard/BrowseCarouselCardItem.php"
+    },
+    {
+      "path": "src/V2/Intent/Message/BrowseCarouselCard/BrowseCarouselCardItem/OpenUrlAction.php"
+    },
+    {
+      "path": "src/V2/Intent/Message/BrowseCarouselCard/BrowseCarouselCardItem/OpenUrlAction/UrlTypeHint.php"
+    },
+    {
+      "path": "src/V2/Intent/Message/BrowseCarouselCard/ImageDisplayOptions.php"
+    },
+    {
+      "path": "src/V2/Intent/Message/Card.php"
+    },
+    {
+      "path": "src/V2/Intent/Message/Card/Button.php"
+    },
+    {
+      "path": "src/V2/Intent/Message/CarouselSelect.php"
+    },
+    {
+      "path": "src/V2/Intent/Message/CarouselSelect/Item.php"
+    },
+    {
+      "path": "src/V2/Intent/Message/ColumnProperties.php"
+    },
+    {
+      "path": "src/V2/Intent/Message/ColumnProperties/HorizontalAlignment.php"
+    },
+    {
+      "path": "src/V2/Intent/Message/Image.php"
+    },
+    {
+      "path": "src/V2/Intent/Message/LinkOutSuggestion.php"
+    },
+    {
+      "path": "src/V2/Intent/Message/ListSelect.php"
+    },
+    {
+      "path": "src/V2/Intent/Message/ListSelect/Item.php"
+    },
+    {
+      "path": "src/V2/Intent/Message/MediaContent.php"
+    },
+    {
+      "path": "src/V2/Intent/Message/MediaContent/ResponseMediaObject.php"
+    },
+    {
+      "path": "src/V2/Intent/Message/MediaContent/ResponseMediaType.php"
+    },
+    {
+      "path": "src/V2/Intent/Message/Platform.php"
+    },
+    {
+      "path": "src/V2/Intent/Message/QuickReplies.php"
+    },
+    {
+      "path": "src/V2/Intent/Message/SelectItemInfo.php"
+    },
+    {
+      "path": "src/V2/Intent/Message/SimpleResponse.php"
+    },
+    {
+      "path": "src/V2/Intent/Message/SimpleResponses.php"
+    },
+    {
+      "path": "src/V2/Intent/Message/Suggestion.php"
+    },
+    {
+      "path": "src/V2/Intent/Message/Suggestions.php"
+    },
+    {
+      "path": "src/V2/Intent/Message/TableCard.php"
+    },
+    {
+      "path": "src/V2/Intent/Message/TableCardCell.php"
+    },
+    {
+      "path": "src/V2/Intent/Message/TableCardRow.php"
+    },
+    {
+      "path": "src/V2/Intent/Message/Text.php"
+    },
+    {
+      "path": "src/V2/Intent/Parameter.php"
+    },
+    {
+      "path": "src/V2/Intent/TrainingPhrase.php"
+    },
+    {
+      "path": "src/V2/Intent/TrainingPhrase/Part.php"
+    },
+    {
+      "path": "src/V2/Intent/TrainingPhrase/Type.php"
+    },
+    {
+      "path": "src/V2/Intent/WebhookState.php"
+    },
+    {
+      "path": "src/V2/IntentBatch.php"
+    },
+    {
+      "path": "src/V2/IntentView.php"
+    },
+    {
+      "path": "src/V2/Intent_FollowupIntentInfo.php"
+    },
+    {
+      "path": "src/V2/Intent_Message.php"
+    },
+    {
+      "path": "src/V2/Intent_Message_BasicCard.php"
+    },
+    {
+      "path": "src/V2/Intent_Message_BasicCard_Button.php"
+    },
+    {
+      "path": "src/V2/Intent_Message_BasicCard_Button_OpenUriAction.php"
+    },
+    {
+      "path": "src/V2/Intent_Message_BrowseCarouselCard.php"
+    },
+    {
+      "path": "src/V2/Intent_Message_BrowseCarouselCard_BrowseCarouselCardItem.php"
+    },
+    {
+      "path": "src/V2/Intent_Message_BrowseCarouselCard_BrowseCarouselCardItem_OpenUrlAction.php"
+    },
+    {
+      "path": "src/V2/Intent_Message_BrowseCarouselCard_BrowseCarouselCardItem_OpenUrlAction_UrlTypeHint.php"
+    },
+    {
+      "path": "src/V2/Intent_Message_BrowseCarouselCard_ImageDisplayOptions.php"
+    },
+    {
+      "path": "src/V2/Intent_Message_Card.php"
+    },
+    {
+      "path": "src/V2/Intent_Message_Card_Button.php"
+    },
+    {
+      "path": "src/V2/Intent_Message_CarouselSelect.php"
+    },
+    {
+      "path": "src/V2/Intent_Message_CarouselSelect_Item.php"
+    },
+    {
+      "path": "src/V2/Intent_Message_ColumnProperties.php"
+    },
+    {
+      "path": "src/V2/Intent_Message_ColumnProperties_HorizontalAlignment.php"
+    },
+    {
+      "path": "src/V2/Intent_Message_Image.php"
+    },
+    {
+      "path": "src/V2/Intent_Message_LinkOutSuggestion.php"
+    },
+    {
+      "path": "src/V2/Intent_Message_ListSelect.php"
+    },
+    {
+      "path": "src/V2/Intent_Message_ListSelect_Item.php"
+    },
+    {
+      "path": "src/V2/Intent_Message_MediaContent.php"
+    },
+    {
+      "path": "src/V2/Intent_Message_MediaContent_ResponseMediaObject.php"
+    },
+    {
+      "path": "src/V2/Intent_Message_MediaContent_ResponseMediaType.php"
+    },
+    {
+      "path": "src/V2/Intent_Message_Platform.php"
+    },
+    {
+      "path": "src/V2/Intent_Message_QuickReplies.php"
+    },
+    {
+      "path": "src/V2/Intent_Message_SelectItemInfo.php"
+    },
+    {
+      "path": "src/V2/Intent_Message_SimpleResponse.php"
+    },
+    {
+      "path": "src/V2/Intent_Message_SimpleResponses.php"
+    },
+    {
+      "path": "src/V2/Intent_Message_Suggestion.php"
+    },
+    {
+      "path": "src/V2/Intent_Message_Suggestions.php"
+    },
+    {
+      "path": "src/V2/Intent_Message_TableCard.php"
+    },
+    {
+      "path": "src/V2/Intent_Message_TableCardCell.php"
+    },
+    {
+      "path": "src/V2/Intent_Message_TableCardRow.php"
+    },
+    {
+      "path": "src/V2/Intent_Message_Text.php"
+    },
+    {
+      "path": "src/V2/Intent_Parameter.php"
+    },
+    {
+      "path": "src/V2/Intent_TrainingPhrase.php"
+    },
+    {
+      "path": "src/V2/Intent_TrainingPhrase_Part.php"
+    },
+    {
+      "path": "src/V2/Intent_TrainingPhrase_Type.php"
+    },
+    {
+      "path": "src/V2/Intent_WebhookState.php"
+    },
+    {
+      "path": "src/V2/IntentsClient.php"
+    },
+    {
+      "path": "src/V2/IntentsGrpcClient.php"
+    },
+    {
+      "path": "src/V2/ListContextsRequest.php"
+    },
+    {
+      "path": "src/V2/ListContextsResponse.php"
+    },
+    {
+      "path": "src/V2/ListEntityTypesRequest.php"
+    },
+    {
+      "path": "src/V2/ListEntityTypesResponse.php"
+    },
+    {
+      "path": "src/V2/ListIntentsRequest.php"
+    },
+    {
+      "path": "src/V2/ListIntentsResponse.php"
+    },
+    {
+      "path": "src/V2/ListSessionEntityTypesRequest.php"
+    },
+    {
+      "path": "src/V2/ListSessionEntityTypesResponse.php"
+    },
+    {
+      "path": "src/V2/OriginalDetectIntentRequest.php"
+    },
+    {
+      "path": "src/V2/OutputAudioConfig.php"
+    },
+    {
+      "path": "src/V2/OutputAudioEncoding.php"
+    },
+    {
+      "path": "src/V2/QueryInput.php"
+    },
+    {
+      "path": "src/V2/QueryParameters.php"
+    },
+    {
+      "path": "src/V2/QueryResult.php"
+    },
+    {
+      "path": "src/V2/README.md"
+    },
+    {
+      "path": "src/V2/RestoreAgentRequest.php"
+    },
+    {
+      "path": "src/V2/SearchAgentsRequest.php"
+    },
+    {
+      "path": "src/V2/SearchAgentsResponse.php"
+    },
+    {
+      "path": "src/V2/Sentiment.php"
+    },
+    {
+      "path": "src/V2/SentimentAnalysisRequestConfig.php"
+    },
+    {
+      "path": "src/V2/SentimentAnalysisResult.php"
+    },
+    {
+      "path": "src/V2/SessionEntityType.php"
+    },
+    {
+      "path": "src/V2/SessionEntityType/EntityOverrideMode.php"
+    },
+    {
+      "path": "src/V2/SessionEntityType_EntityOverrideMode.php"
+    },
+    {
+      "path": "src/V2/SessionEntityTypesClient.php"
+    },
+    {
+      "path": "src/V2/SessionEntityTypesGrpcClient.php"
+    },
+    {
+      "path": "src/V2/SessionsClient.php"
+    },
+    {
+      "path": "src/V2/SessionsGrpcClient.php"
+    },
+    {
+      "path": "src/V2/SetAgentRequest.php"
+    },
+    {
+      "path": "src/V2/SpeechContext.php"
+    },
+    {
+      "path": "src/V2/SpeechModelVariant.php"
+    },
+    {
+      "path": "src/V2/SpeechWordInfo.php"
+    },
+    {
+      "path": "src/V2/SsmlVoiceGender.php"
+    },
+    {
+      "path": "src/V2/StreamingDetectIntentRequest.php"
+    },
+    {
+      "path": "src/V2/StreamingDetectIntentResponse.php"
+    },
+    {
+      "path": "src/V2/StreamingRecognitionResult.php"
+    },
+    {
+      "path": "src/V2/StreamingRecognitionResult/MessageType.php"
+    },
+    {
+      "path": "src/V2/StreamingRecognitionResult_MessageType.php"
+    },
+    {
+      "path": "src/V2/SynthesizeSpeechConfig.php"
+    },
+    {
+      "path": "src/V2/TextInput.php"
+    },
+    {
+      "path": "src/V2/TrainAgentRequest.php"
+    },
+    {
+      "path": "src/V2/UpdateContextRequest.php"
+    },
+    {
+      "path": "src/V2/UpdateEntityTypeRequest.php"
+    },
+    {
+      "path": "src/V2/UpdateIntentRequest.php"
+    },
+    {
+      "path": "src/V2/UpdateSessionEntityTypeRequest.php"
+    },
+    {
+      "path": "src/V2/VoiceSelectionParams.php"
+    },
+    {
+      "path": "src/V2/WebhookRequest.php"
+    },
+    {
+      "path": "src/V2/WebhookResponse.php"
+    },
+    {
+      "path": "src/V2/resources/agents_client_config.json"
+    },
+    {
+      "path": "src/V2/resources/agents_descriptor_config.php"
+    },
+    {
+      "path": "src/V2/resources/agents_rest_client_config.php"
+    },
+    {
+      "path": "src/V2/resources/contexts_client_config.json"
+    },
+    {
+      "path": "src/V2/resources/contexts_descriptor_config.php"
+    },
+    {
+      "path": "src/V2/resources/contexts_rest_client_config.php"
+    },
+    {
+      "path": "src/V2/resources/entity_types_client_config.json"
+    },
+    {
+      "path": "src/V2/resources/entity_types_descriptor_config.php"
+    },
+    {
+      "path": "src/V2/resources/entity_types_rest_client_config.php"
+    },
+    {
+      "path": "src/V2/resources/intents_client_config.json"
+    },
+    {
+      "path": "src/V2/resources/intents_descriptor_config.php"
+    },
+    {
+      "path": "src/V2/resources/intents_rest_client_config.php"
+    },
+    {
+      "path": "src/V2/resources/session_entity_types_client_config.json"
+    },
+    {
+      "path": "src/V2/resources/session_entity_types_descriptor_config.php"
+    },
+    {
+      "path": "src/V2/resources/session_entity_types_rest_client_config.php"
+    },
+    {
+      "path": "src/V2/resources/sessions_client_config.json"
+    },
+    {
+      "path": "src/V2/resources/sessions_descriptor_config.php"
+    },
+    {
+      "path": "src/V2/resources/sessions_rest_client_config.php"
+    },
+    {
+      "path": "synth.metadata"
+    },
+    {
+      "path": "synth.py"
+    },
+    {
+      "path": "tests/System/bootstrap.php"
+    },
+    {
+      "path": "tests/Unit/V2/AgentsClientTest.php"
+    },
+    {
+      "path": "tests/Unit/V2/ContextsClientTest.php"
+    },
+    {
+      "path": "tests/Unit/V2/EntityTypesClientTest.php"
+    },
+    {
+      "path": "tests/Unit/V2/IntentsClientTest.php"
+    },
+    {
+      "path": "tests/Unit/V2/SessionEntityTypesClientTest.php"
+    },
+    {
+      "path": "tests/Unit/V2/SessionsClientTest.php"
     }
   ]
 }
