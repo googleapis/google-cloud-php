@@ -16,82 +16,83 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Required] The resource name of the Google Cloud Platform project. Written
+     * Required. The resource name of the Google Cloud Platform project. Written
      * as <code>projects/</code> plus the
      * <a href="https://support.google.com/cloud/answer/6158840">Google Cloud
      * Platform project ID</a>.
      * Example: <code>projects/my-project-123</code>.
      *
-     * Generated from protobuf field <code>string project_name = 1;</code>
+     * Generated from protobuf field <code>string project_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $project_name = '';
     /**
-     * [Optional] List all <code>ErrorGroupStats</code> with these IDs.
+     * Optional. List all <code>ErrorGroupStats</code> with these IDs.
      *
-     * Generated from protobuf field <code>repeated string group_id = 2;</code>
+     * Generated from protobuf field <code>repeated string group_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $group_id;
     /**
-     * [Optional] List only <code>ErrorGroupStats</code> which belong to a service
+     * Optional. List only <code>ErrorGroupStats</code> which belong to a service
      * context that matches the filter.
      * Data for all service contexts is returned if this field is not specified.
      *
-     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $service_filter = null;
     /**
-     * [Optional] List data for the given time range.
-     * If not set a default time range is used. The field time_range_begin
-     * in the response will specify the beginning of this time range.
+     * Optional. List data for the given time range.
+     * If not set, a default time range is used. The field
+     * <code>time_range_begin</code> in the response will specify the beginning
+     * of this time range.
      * Only <code>ErrorGroupStats</code> with a non-zero count in the given time
-     * range are returned, unless the request contains an explicit group_id list.
-     * If a group_id list is given, also <code>ErrorGroupStats</code> with zero
-     * occurrences are returned.
+     * range are returned, unless the request contains an explicit
+     * <code>group_id</code> list. If a <code>group_id</code> list is given, also
+     * <code>ErrorGroupStats</code> with zero occurrences are returned.
      *
-     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 5;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $time_range = null;
     /**
-     * [Optional] The preferred duration for a single returned `TimedCount`.
+     * Optional. The preferred duration for a single returned `TimedCount`.
      * If not set, no timed counts are returned.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration timed_count_duration = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration timed_count_duration = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $timed_count_duration = null;
     /**
-     * [Optional] The alignment of the timed counts to be returned.
+     * Optional. The alignment of the timed counts to be returned.
      * Default is `ALIGNMENT_EQUAL_AT_END`.
      *
-     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.TimedCountAlignment alignment = 7;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.TimedCountAlignment alignment = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $alignment = 0;
     /**
-     * [Optional] Time where the timed counts shall be aligned if rounded
+     * Optional. Time where the timed counts shall be aligned if rounded
      * alignment is chosen. Default is 00:00 UTC.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp alignment_time = 8;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp alignment_time = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $alignment_time = null;
     /**
-     * [Optional] The sort order in which the results are returned.
+     * Optional. The sort order in which the results are returned.
      * Default is `COUNT_DESC`.
      *
-     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroupOrder order = 9;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroupOrder order = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $order = 0;
     /**
-     * [Optional] The maximum number of results to return per response.
+     * Optional. The maximum number of results to return per response.
      * Default is 20.
      *
-     * Generated from protobuf field <code>int32 page_size = 11;</code>
+     * Generated from protobuf field <code>int32 page_size = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
     /**
-     * [Optional] A `next_page_token` provided by a previous response. To view
+     * Optional. A `next_page_token` provided by a previous response. To view
      * additional results, pass this token along with the identical query
      * parameters as the first request.
      *
-     * Generated from protobuf field <code>string page_token = 12;</code>
+     * Generated from protobuf field <code>string page_token = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_token = '';
 
@@ -102,42 +103,43 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $project_name
-     *           [Required] The resource name of the Google Cloud Platform project. Written
+     *           Required. The resource name of the Google Cloud Platform project. Written
      *           as <code>projects/</code> plus the
      *           <a href="https://support.google.com/cloud/answer/6158840">Google Cloud
      *           Platform project ID</a>.
      *           Example: <code>projects/my-project-123</code>.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $group_id
-     *           [Optional] List all <code>ErrorGroupStats</code> with these IDs.
+     *           Optional. List all <code>ErrorGroupStats</code> with these IDs.
      *     @type \Google\Cloud\ErrorReporting\V1beta1\ServiceContextFilter $service_filter
-     *           [Optional] List only <code>ErrorGroupStats</code> which belong to a service
+     *           Optional. List only <code>ErrorGroupStats</code> which belong to a service
      *           context that matches the filter.
      *           Data for all service contexts is returned if this field is not specified.
      *     @type \Google\Cloud\ErrorReporting\V1beta1\QueryTimeRange $time_range
-     *           [Optional] List data for the given time range.
-     *           If not set a default time range is used. The field time_range_begin
-     *           in the response will specify the beginning of this time range.
+     *           Optional. List data for the given time range.
+     *           If not set, a default time range is used. The field
+     *           <code>time_range_begin</code> in the response will specify the beginning
+     *           of this time range.
      *           Only <code>ErrorGroupStats</code> with a non-zero count in the given time
-     *           range are returned, unless the request contains an explicit group_id list.
-     *           If a group_id list is given, also <code>ErrorGroupStats</code> with zero
-     *           occurrences are returned.
+     *           range are returned, unless the request contains an explicit
+     *           <code>group_id</code> list. If a <code>group_id</code> list is given, also
+     *           <code>ErrorGroupStats</code> with zero occurrences are returned.
      *     @type \Google\Protobuf\Duration $timed_count_duration
-     *           [Optional] The preferred duration for a single returned `TimedCount`.
+     *           Optional. The preferred duration for a single returned `TimedCount`.
      *           If not set, no timed counts are returned.
      *     @type int $alignment
-     *           [Optional] The alignment of the timed counts to be returned.
+     *           Optional. The alignment of the timed counts to be returned.
      *           Default is `ALIGNMENT_EQUAL_AT_END`.
      *     @type \Google\Protobuf\Timestamp $alignment_time
-     *           [Optional] Time where the timed counts shall be aligned if rounded
+     *           Optional. Time where the timed counts shall be aligned if rounded
      *           alignment is chosen. Default is 00:00 UTC.
      *     @type int $order
-     *           [Optional] The sort order in which the results are returned.
+     *           Optional. The sort order in which the results are returned.
      *           Default is `COUNT_DESC`.
      *     @type int $page_size
-     *           [Optional] The maximum number of results to return per response.
+     *           Optional. The maximum number of results to return per response.
      *           Default is 20.
      *     @type string $page_token
-     *           [Optional] A `next_page_token` provided by a previous response. To view
+     *           Optional. A `next_page_token` provided by a previous response. To view
      *           additional results, pass this token along with the identical query
      *           parameters as the first request.
      * }
@@ -148,13 +150,13 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Required] The resource name of the Google Cloud Platform project. Written
+     * Required. The resource name of the Google Cloud Platform project. Written
      * as <code>projects/</code> plus the
      * <a href="https://support.google.com/cloud/answer/6158840">Google Cloud
      * Platform project ID</a>.
      * Example: <code>projects/my-project-123</code>.
      *
-     * Generated from protobuf field <code>string project_name = 1;</code>
+     * Generated from protobuf field <code>string project_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getProjectName()
@@ -163,13 +165,13 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Required] The resource name of the Google Cloud Platform project. Written
+     * Required. The resource name of the Google Cloud Platform project. Written
      * as <code>projects/</code> plus the
      * <a href="https://support.google.com/cloud/answer/6158840">Google Cloud
      * Platform project ID</a>.
      * Example: <code>projects/my-project-123</code>.
      *
-     * Generated from protobuf field <code>string project_name = 1;</code>
+     * Generated from protobuf field <code>string project_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -182,9 +184,9 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Optional] List all <code>ErrorGroupStats</code> with these IDs.
+     * Optional. List all <code>ErrorGroupStats</code> with these IDs.
      *
-     * Generated from protobuf field <code>repeated string group_id = 2;</code>
+     * Generated from protobuf field <code>repeated string group_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getGroupId()
@@ -193,9 +195,9 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Optional] List all <code>ErrorGroupStats</code> with these IDs.
+     * Optional. List all <code>ErrorGroupStats</code> with these IDs.
      *
-     * Generated from protobuf field <code>repeated string group_id = 2;</code>
+     * Generated from protobuf field <code>repeated string group_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -208,11 +210,11 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Optional] List only <code>ErrorGroupStats</code> which belong to a service
+     * Optional. List only <code>ErrorGroupStats</code> which belong to a service
      * context that matches the filter.
      * Data for all service contexts is returned if this field is not specified.
      *
-     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\ErrorReporting\V1beta1\ServiceContextFilter
      */
     public function getServiceFilter()
@@ -221,11 +223,11 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Optional] List only <code>ErrorGroupStats</code> which belong to a service
+     * Optional. List only <code>ErrorGroupStats</code> which belong to a service
      * context that matches the filter.
      * Data for all service contexts is returned if this field is not specified.
      *
-     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\ErrorReporting\V1beta1\ServiceContextFilter $var
      * @return $this
      */
@@ -238,15 +240,16 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Optional] List data for the given time range.
-     * If not set a default time range is used. The field time_range_begin
-     * in the response will specify the beginning of this time range.
+     * Optional. List data for the given time range.
+     * If not set, a default time range is used. The field
+     * <code>time_range_begin</code> in the response will specify the beginning
+     * of this time range.
      * Only <code>ErrorGroupStats</code> with a non-zero count in the given time
-     * range are returned, unless the request contains an explicit group_id list.
-     * If a group_id list is given, also <code>ErrorGroupStats</code> with zero
-     * occurrences are returned.
+     * range are returned, unless the request contains an explicit
+     * <code>group_id</code> list. If a <code>group_id</code> list is given, also
+     * <code>ErrorGroupStats</code> with zero occurrences are returned.
      *
-     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 5;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\ErrorReporting\V1beta1\QueryTimeRange
      */
     public function getTimeRange()
@@ -255,15 +258,16 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Optional] List data for the given time range.
-     * If not set a default time range is used. The field time_range_begin
-     * in the response will specify the beginning of this time range.
+     * Optional. List data for the given time range.
+     * If not set, a default time range is used. The field
+     * <code>time_range_begin</code> in the response will specify the beginning
+     * of this time range.
      * Only <code>ErrorGroupStats</code> with a non-zero count in the given time
-     * range are returned, unless the request contains an explicit group_id list.
-     * If a group_id list is given, also <code>ErrorGroupStats</code> with zero
-     * occurrences are returned.
+     * range are returned, unless the request contains an explicit
+     * <code>group_id</code> list. If a <code>group_id</code> list is given, also
+     * <code>ErrorGroupStats</code> with zero occurrences are returned.
      *
-     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 5;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\ErrorReporting\V1beta1\QueryTimeRange $var
      * @return $this
      */
@@ -276,10 +280,10 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Optional] The preferred duration for a single returned `TimedCount`.
+     * Optional. The preferred duration for a single returned `TimedCount`.
      * If not set, no timed counts are returned.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration timed_count_duration = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration timed_count_duration = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Duration
      */
     public function getTimedCountDuration()
@@ -288,10 +292,10 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Optional] The preferred duration for a single returned `TimedCount`.
+     * Optional. The preferred duration for a single returned `TimedCount`.
      * If not set, no timed counts are returned.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration timed_count_duration = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration timed_count_duration = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Duration $var
      * @return $this
      */
@@ -304,10 +308,10 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Optional] The alignment of the timed counts to be returned.
+     * Optional. The alignment of the timed counts to be returned.
      * Default is `ALIGNMENT_EQUAL_AT_END`.
      *
-     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.TimedCountAlignment alignment = 7;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.TimedCountAlignment alignment = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getAlignment()
@@ -316,10 +320,10 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Optional] The alignment of the timed counts to be returned.
+     * Optional. The alignment of the timed counts to be returned.
      * Default is `ALIGNMENT_EQUAL_AT_END`.
      *
-     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.TimedCountAlignment alignment = 7;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.TimedCountAlignment alignment = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -332,10 +336,10 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Optional] Time where the timed counts shall be aligned if rounded
+     * Optional. Time where the timed counts shall be aligned if rounded
      * alignment is chosen. Default is 00:00 UTC.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp alignment_time = 8;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp alignment_time = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getAlignmentTime()
@@ -344,10 +348,10 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Optional] Time where the timed counts shall be aligned if rounded
+     * Optional. Time where the timed counts shall be aligned if rounded
      * alignment is chosen. Default is 00:00 UTC.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp alignment_time = 8;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp alignment_time = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -360,10 +364,10 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Optional] The sort order in which the results are returned.
+     * Optional. The sort order in which the results are returned.
      * Default is `COUNT_DESC`.
      *
-     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroupOrder order = 9;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroupOrder order = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getOrder()
@@ -372,10 +376,10 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Optional] The sort order in which the results are returned.
+     * Optional. The sort order in which the results are returned.
      * Default is `COUNT_DESC`.
      *
-     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroupOrder order = 9;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroupOrder order = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -388,10 +392,10 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Optional] The maximum number of results to return per response.
+     * Optional. The maximum number of results to return per response.
      * Default is 20.
      *
-     * Generated from protobuf field <code>int32 page_size = 11;</code>
+     * Generated from protobuf field <code>int32 page_size = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getPageSize()
@@ -400,10 +404,10 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Optional] The maximum number of results to return per response.
+     * Optional. The maximum number of results to return per response.
      * Default is 20.
      *
-     * Generated from protobuf field <code>int32 page_size = 11;</code>
+     * Generated from protobuf field <code>int32 page_size = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -416,11 +420,11 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Optional] A `next_page_token` provided by a previous response. To view
+     * Optional. A `next_page_token` provided by a previous response. To view
      * additional results, pass this token along with the identical query
      * parameters as the first request.
      *
-     * Generated from protobuf field <code>string page_token = 12;</code>
+     * Generated from protobuf field <code>string page_token = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPageToken()
@@ -429,11 +433,11 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Optional] A `next_page_token` provided by a previous response. To view
+     * Optional. A `next_page_token` provided by a previous response. To view
      * additional results, pass this token along with the identical query
      * parameters as the first request.
      *
-     * Generated from protobuf field <code>string page_token = 12;</code>
+     * Generated from protobuf field <code>string page_token = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

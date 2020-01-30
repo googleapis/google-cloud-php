@@ -30,6 +30,8 @@ class ServiceContext extends \Google\Protobuf\Internal\Message
     /**
      * Represents the source code version that the developer provided,
      * which could represent a version label or a Git SHA-1 hash, for example.
+     * For App Engine standard environment, the version is set to the version of
+     * the app.
      *
      * Generated from protobuf field <code>string version = 3;</code>
      */
@@ -60,6 +62,8 @@ class ServiceContext extends \Google\Protobuf\Internal\Message
      *     @type string $version
      *           Represents the source code version that the developer provided,
      *           which could represent a version label or a Git SHA-1 hash, for example.
+     *           For App Engine standard environment, the version is set to the version of
+     *           the app.
      *     @type string $resource_type
      *           Type of the MonitoredResource. List of possible values:
      *           https://cloud.google.com/monitoring/api/resources
@@ -111,6 +115,8 @@ class ServiceContext extends \Google\Protobuf\Internal\Message
     /**
      * Represents the source code version that the developer provided,
      * which could represent a version label or a Git SHA-1 hash, for example.
+     * For App Engine standard environment, the version is set to the version of
+     * the app.
      *
      * Generated from protobuf field <code>string version = 3;</code>
      * @return string
@@ -123,6 +129,8 @@ class ServiceContext extends \Google\Protobuf\Internal\Message
     /**
      * Represents the source code version that the developer provided,
      * which could represent a version label or a Git SHA-1 hash, for example.
+     * For App Engine standard environment, the version is set to the version of
+     * the app.
      *
      * Generated from protobuf field <code>string version = 3;</code>
      * @param string $var

@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateGroupRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Required] The group which replaces the resource on the server.
+     * Required. The group which replaces the resource on the server.
      *
-     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $group = null;
 
@@ -29,7 +29,7 @@ class UpdateGroupRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\ErrorReporting\V1beta1\ErrorGroup $group
-     *           [Required] The group which replaces the resource on the server.
+     *           Required. The group which replaces the resource on the server.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,9 +38,9 @@ class UpdateGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Required] The group which replaces the resource on the server.
+     * Required. The group which replaces the resource on the server.
      *
-     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\ErrorReporting\V1beta1\ErrorGroup
      */
     public function getGroup()
@@ -49,9 +49,9 @@ class UpdateGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Required] The group which replaces the resource on the server.
+     * Required. The group which replaces the resource on the server.
      *
-     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\ErrorReporting\V1beta1\ErrorGroup $var
      * @return $this
      */
