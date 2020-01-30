@@ -20,7 +20,7 @@ class CreateProfileRequest extends \Google\Protobuf\Internal\Message
      * The format is "projects/{project_id}/tenants/{tenant_id}". For example,
      * "projects/foo/tenants/bar".
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -54,7 +54,7 @@ class CreateProfileRequest extends \Google\Protobuf\Internal\Message
      * The format is "projects/{project_id}/tenants/{tenant_id}". For example,
      * "projects/foo/tenants/bar".
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -67,7 +67,7 @@ class CreateProfileRequest extends \Google\Protobuf\Internal\Message
      * The format is "projects/{project_id}/tenants/{tenant_id}". For example,
      * "projects/foo/tenants/bar".
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

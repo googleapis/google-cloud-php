@@ -23,7 +23,7 @@ class GetJobRequest extends \Google\Protobuf\Internal\Message
      * If tenant id is unspecified, the default tenant is used. For
      * example, "projects/foo/jobs/bar".
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
 
@@ -55,7 +55,7 @@ class GetJobRequest extends \Google\Protobuf\Internal\Message
      * If tenant id is unspecified, the default tenant is used. For
      * example, "projects/foo/jobs/bar".
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -71,7 +71,7 @@ class GetJobRequest extends \Google\Protobuf\Internal\Message
      * If tenant id is unspecified, the default tenant is used. For
      * example, "projects/foo/jobs/bar".
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

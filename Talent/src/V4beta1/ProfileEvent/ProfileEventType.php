@@ -20,11 +20,9 @@ class ProfileEventType
      */
     const PROFILE_EVENT_TYPE_UNSPECIFIED = 0;
     /**
-     * Send this event when a
-     * [ProfileEvent.profiles][google.cloud.talent.v4beta1.ProfileEvent.profiles]
-     * was sent as a part of a result set for a CTS API call and was rendered in
-     * the end user's UI (that is, the
-     * [ProfileEvent.recruiter][google.cloud.talent.v4beta1.ProfileEvent.recruiter]).
+     * Send this event when a [ProfileEvent.profiles][google.cloud.talent.v4beta1.ProfileEvent.profiles] was sent as a part of
+     * a result set for a CTS API call and was rendered in the end user's UI
+     * (that is, the [ProfileEvent.recruiter][google.cloud.talent.v4beta1.ProfileEvent.recruiter]).
      *
      * Generated from protobuf enum <code>IMPRESSION = 1;</code>
      */
@@ -38,9 +36,8 @@ class ProfileEventType
      * or not (a recruiter using the system to view profile details without
      * making a request).
      * For a VIEW events associated with API calls, the
-     * [ClientEvent.request_id][google.cloud.talent.v4beta1.ClientEvent.request_id]
-     * should be populated.  If the VIEW is not associated with an API call,
-     * [request_id][google.cloud.talent.v4beta1.ClientEvent.request_id] should
+     * [ClientEvent.request_id][google.cloud.talent.v4beta1.ClientEvent.request_id] should be populated.  If the VIEW is not
+     * associated with an API call, [request_id][google.cloud.talent.v4beta1.ClientEvent.request_id] should
      * not be populated.
      * This event requires a valid recruiter and one valid ID in profiles.
      *

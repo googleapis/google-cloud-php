@@ -7,9 +7,8 @@ namespace Google\Cloud\Talent\V4beta1\EmployerFilter;
 use UnexpectedValueException;
 
 /**
- * Enum indicating which set of
- * [Profile.employment_records][google.cloud.talent.v4beta1.Profile.employment_records]
- * to search against.
+ * Enum indicating which set of [Profile.employment_records][google.cloud.talent.v4beta1.Profile.employment_records] to search
+ * against.
  *
  * Protobuf type <code>google.cloud.talent.v4beta1.EmployerFilter.EmployerFilterMode</code>
  */
@@ -22,15 +21,13 @@ class EmployerFilterMode
      */
     const EMPLOYER_FILTER_MODE_UNSPECIFIED = 0;
     /**
-     * Apply to all employers in
-     * [Profile.employment_records][google.cloud.talent.v4beta1.Profile.employment_records].
+     * Apply to all employers in [Profile.employment_records][google.cloud.talent.v4beta1.Profile.employment_records].
      *
      * Generated from protobuf enum <code>ALL_EMPLOYMENT_RECORDS = 1;</code>
      */
     const ALL_EMPLOYMENT_RECORDS = 1;
     /**
-     * Apply only to current employer in
-     * [Profile.employment_records][google.cloud.talent.v4beta1.Profile.employment_records].
+     * Apply only to current employer in [Profile.employment_records][google.cloud.talent.v4beta1.Profile.employment_records].
      *
      * Generated from protobuf enum <code>CURRENT_EMPLOYMENT_RECORDS_ONLY = 2;</code>
      */
