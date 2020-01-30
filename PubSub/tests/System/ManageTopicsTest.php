@@ -30,31 +30,25 @@ class ManageTopicsTest extends PubSubTestCase
      */
     public function testCreateAndListTopics($client)
     {
-        $topicsToCreate = [
-            uniqid(self::TESTING_PREFIX),
-            uniqid(self::TESTING_PREFIX)
-        ];
-
-        foreach ($topicsToCreate as $topicToCreate) {
-            self::$deletionQueue->add($client->createTopic($topicToCreate));
+        $createdTopics = [];
+        for ($i = 0; $i++; $i < 2) {
+            $createdTopics[] = self::topic($client)->name();
         }
 
         $backoff = new ExponentialBackoff(8);
-        $hasFoundTopics = $backoff->execute(function () use ($client, $topicsToCreate) {
+        $hasFoundTopics = $backoff->execute(function () use ($client, $createdTopics) {
             $foundTopics = [];
             $topics = $client->topics();
 
             foreach ($topics as $topic) {
-                $nameParts = explode('/', $topic->name());
-                $sName = end($nameParts);
-                foreach ($topicsToCreate as $key => $topicToCreate) {
-                    if ($sName === $topicToCreate) {
+                foreach ($createdTopics as $key => $createdTopic) {
+                    if ($topic->name() === $createdTopic) {
                         $foundTopics[$key] = $sName;
                     }
                 }
             }
 
-            if (sort($foundTopics) === sort($topicsToCreate)) {
+            if (sort($foundTopics) === sort($createdTopics)) {
                 return true;
             }
 
@@ -69,12 +63,9 @@ class ManageTopicsTest extends PubSubTestCase
      */
     public function testReloadTopic($client)
     {
-        $shortName = uniqid(self::TESTING_PREFIX);
-        $this->assertFalse($client->topic($shortName)->exists());
-        $topic = $client->createTopic($shortName);
-        self::$deletionQueue->add($topic);
+        $topic = self::topic($client);
 
-        $this->assertTrue($client->topic($shortName)->exists());
+        $this->assertTrue($topic->exists());
         $this->assertEquals($topic->name(), $topic->reload()['name']);
     }
 
@@ -83,10 +74,7 @@ class ManageTopicsTest extends PubSubTestCase
      */
     public function testUpdateTopic($client)
     {
-        $shortName = uniqid(self::TESTING_PREFIX);
-        $this->assertFalse($client->topic($shortName)->exists());
-        $topic = $client->createTopic($shortName);
-        self::$deletionQueue->add($topic);
+        $topic = self::topic($client);
 
         $policy = [
             'allowedPersistenceRegions' => ['us-central1', 'us-east1']
@@ -104,10 +92,7 @@ class ManageTopicsTest extends PubSubTestCase
      */
     public function testUpdateTopicWithUpdateMask($client)
     {
-        $shortName = uniqid(self::TESTING_PREFIX);
-        $this->assertFalse($client->topic($shortName)->exists());
-        $topic = $client->createTopic($shortName);
-        self::$deletionQueue->add($topic);
+        $topic = self::topic($client);
 
         $labels = [
             'foo' => 'bar'
@@ -128,15 +113,13 @@ class ManageTopicsTest extends PubSubTestCase
     public function testMessageStoragePolicyAllowedPersistenceRegions($client)
     {
         $region = 'us-central1';
-        $shortName = uniqid(self::TESTING_PREFIX);
-        $topic = $client->createTopic($shortName, [
+        $topic = self::topic($client, [
             'messageStoragePolicy' => [
                 'allowedPersistenceRegions' => [
                     $region
                 ]
             ]
         ]);
-        self::$deletionQueue->add($topic);
 
         $info = $topic->reload();
         $this->assertEquals($region, $info['messageStoragePolicy']['allowedPersistenceRegions'][0]);

@@ -276,14 +276,14 @@ class PubSubClient
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/create Create Subscription
      *
      * @param string $name A subscription name
-     * @param string $topicName The topic to which the new subscription will be subscribed.
+     * @param Topic|string $topic The topic to which the new subscription will be subscribed.
      * @param array  $options [optional] Please see {@see Google\Cloud\PubSub\Subscription::create()}
      *        for configuration details.
      * @return Subscription
      */
-    public function subscribe($name, $topicName, array $options = [])
+    public function subscribe($name, $topic, array $options = [])
     {
-        $subscription = $this->subscriptionFactory($name, $topicName);
+        $subscription = $this->subscriptionFactory($name, $topic);
         $subscription->create($options);
 
         return $subscription;
@@ -542,20 +542,24 @@ class PubSubClient
      *
      * @codingStandardsIgnoreStart
      * @param string $name The subscription name
-     * @param string $topicName [optional] The topic name
-     * @param array  $info [optional] Information about the subscription. Used
+     * @param Topic|string $topic [optional] The topic name
+     * @param array $info [optional] Information about the subscription. Used
      *        to populate subscriptons with an API result. Should be a
      *        representation of a [Subscription](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions#Subscription).
      * @return Subscription
      * @codingStandardsIgnoreEnd
      */
-    private function subscriptionFactory($name, $topicName = null, array $info = [])
+    private function subscriptionFactory($name, $topic = null, array $info = [])
     {
+        $topic = $topic instanceof Topic
+            ? $topic->name()
+            : $topic;
+
         return new Subscription(
             $this->connection,
             $this->projectId,
             $name,
-            $topicName,
+            $topic,
             $this->encode,
             $info
         );

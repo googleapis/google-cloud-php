@@ -32,9 +32,7 @@ class ManageSubscriptionsTest extends PubSubTestCase
      */
     public function testCreateAndListSubscriptions($client)
     {
-        $topicId = uniqid(self::TESTING_PREFIX);
-        $topic = $client->createTopic($topicId);
-        self::$deletionQueue->add($topic);
+        $topic = self::topic($client);
 
         $subsToCreate = [
             uniqid(self::TESTING_PREFIX),
@@ -42,7 +40,7 @@ class ManageSubscriptionsTest extends PubSubTestCase
         ];
 
         foreach ($subsToCreate as $subToCreate) {
-            self::$deletionQueue->add($client->subscribe($subToCreate, $topicId));
+            self::$deletionQueue->add($client->subscribe($subToCreate, $topic));
         }
 
         $this->assertSubsFound($client, $subsToCreate);
@@ -54,8 +52,7 @@ class ManageSubscriptionsTest extends PubSubTestCase
      */
     public function testSubscribeAndReload($client)
     {
-        $topicId = uniqid(self::TESTING_PREFIX);
-        $topic = $client->createTopic($topicId);
+        $topic = self::topic($client);
 
         $subscriptionId = uniqid(self::TESTING_PREFIX);
         $this->assertFalse($topic->subscription($subscriptionId)->exists());
@@ -68,10 +65,9 @@ class ManageSubscriptionsTest extends PubSubTestCase
         $this->assertFalse($topic->subscription($subscriptionId2)->exists());
 
         // Subscribe via pubsubclient
-        $subscription2 = $client->subscribe($subscriptionId2, $topicId);
+        $subscription2 = $client->subscribe($subscriptionId2, $topic);
         $this->assertTrue($subscription2->exists());
 
-        self::$deletionQueue->add($topic);
         self::$deletionQueue->add($subscription);
         self::$deletionQueue->add($subscription2);
     }
@@ -136,8 +132,7 @@ class ManageSubscriptionsTest extends PubSubTestCase
      */
     public function testUpdateSubscriptionWithUpdateMask($client)
     {
-        $subs = $client->subscriptions();
-        $sub = $subs->current();
+        list ($topic, $sub) = self::topicAndSubscription($client);
 
         $labels = [
             'foo' => 'bar',
@@ -170,17 +165,12 @@ class ManageSubscriptionsTest extends PubSubTestCase
         $durationSeconds = 129600;
         $durationNanos = 1001;
 
-        $resourceId = uniqid(self::TESTING_PREFIX);
-        $topic = $client->createTopic($resourceId);
-        $sub = $topic->subscribe($resourceId, [
+        list ($topic, $sub) = self::topicAndSubscription($client, [], [
             'expirationPolicy' => [
                 'ttl' => new Duration($durationSeconds, $durationNanos)
             ],
             'messageRetentionDuration' => new Duration($durationSeconds, $durationNanos)
         ]);
-
-        self::$deletionQueue->add($topic);
-        self::$deletionQueue->add($sub);
 
         $info = $sub->info();
         if (!isset($info['messageRetentionDuration']) || !isset($info['expirationPolicy']['ttl'])) {
@@ -216,6 +206,24 @@ class ManageSubscriptionsTest extends PubSubTestCase
 
         $this->assertEquals($durationSeconds, $info['expirationPolicy']['ttl']['seconds']);
         $this->assertEquals($durationNanos, $info['expirationPolicy']['ttl']['nanos']);
+    }
+
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testEnableMessageOrdering($client)
+    {
+        if ($client instanceof PubSubClientRest) {
+            $this->markTestSkipped(
+                'enableMessageOrdering not available in REST transport during experimental period.'
+            );
+        }
+
+        list ($topic, $sub) = self::topicAndSubscription($client, [], [
+            'enableMessageOrdering' => true
+        ]);
+
+        $this->assertTrue($sub->info()['enableMessageOrdering']);
     }
 
     private function assertSubsFound($class, $expectedSubs)
