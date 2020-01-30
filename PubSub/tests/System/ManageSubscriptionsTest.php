@@ -254,14 +254,17 @@ class ManageSubscriptionsTest extends PubSubTestCase
         self::$deletionQueue->add($sub);
 
         $this->assertEquals($dlqTopic1->name(), $sub->reload()['deadLetterPolicy']['deadLetterTopic']);
+        $this->assertEquals(5, $sub->reload()['deadLetterPolicy']['maxDeliveryAttempts']);
 
         $sub->update([
             'deadLetterPolicy' => [
-                'deadLetterTopic' => $dlqTopic2->name()
+                'deadLetterTopic' => $dlqTopic2->name(),
+                'maxDeliveryAttempts' => 10
             ]
         ]);
 
         $this->assertEquals($dlqTopic2->name(), $sub->reload()['deadLetterPolicy']['deadLetterTopic']);
+        $this->assertEquals(10, $sub->reload()['deadLetterPolicy']['maxDeliveryAttempts']);
 
         $topic->publish(['data' => 'foo']);
         sleep(2);

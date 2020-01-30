@@ -80,10 +80,10 @@ class Message
      *
      *     @type string $ackId The message ackId. This is only set when messages
      *           are pulled from the PubSub service.
-     *     @type string $deliveryAttempt Delivery attempt counter is 1 + (the
+     *     @type int $deliveryAttempt Delivery attempt counter is 1 + (the
      *           sum of number of NACKs and number of ack_deadline exceeds) for
      *           this message. If a DeadLetterPolicy is not set on the
-     *           subscription, this will be 0.
+     *           subscription, this will be `null`.
      *     @type Subscription $subscription The subscription the message was
      *           obtained from. This is only set when messages are delivered by
      *           pushDelivery.
@@ -100,7 +100,7 @@ class Message
 
         $metadata += [
             'ackId' => null,
-            'deliveryAttempt' => 0,
+            'deliveryAttempt' => null,
             'subscription' => null,
         ];
 
@@ -228,14 +228,14 @@ class Message
     /**
      * Get the delivery attempt count.
      *
-     * If a DeadLetterPolicy is not set on the subscription, this will be 0.
+     * If a DeadLetterPolicy is not set on the subscription, this will be `null`.
      *
      * Example:
      * ```
      * echo $message->deliveryAttempt();
      * ```
      *
-     * @return int
+     * @return int|null
      */
     public function deliveryAttempt()
     {
