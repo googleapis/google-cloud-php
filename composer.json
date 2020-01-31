@@ -96,7 +96,7 @@
         "google/cloud-scheduler": "1.1.0",
         "google/cloud-secret-manager": "0.1.0",
         "google/cloud-security-center": "0.3.0",
-        "google/cloud-spanner": "1.23.1",
+        "google/cloud-spanner": "1.23.0",
         "google/cloud-speech": "0.30.0",
         "google/cloud-storage": "1.17.0",
         "google/cloud-talent": "0.8.2",
