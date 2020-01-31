@@ -78,7 +78,7 @@ class PolicyBuilder
      *             ]
      *         ]
      *     ],
-     * ]
+     * ];
      *
      * $builder = new PolicyBuilder($policy);
      * ```
