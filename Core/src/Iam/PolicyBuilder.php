@@ -152,6 +152,7 @@ class PolicyBuilder
      * @return PolicyBuilder
      * @throws InvalidArgumentException
      * @throws InvalidOperationException if the policy's version is greater than 1.
+     * @deprecated
      */
     public function addBinding($role, array $members)
     {
@@ -193,6 +194,7 @@ class PolicyBuilder
      * @return PolicyBuilder
      * @throws InvalidArgumentException
      * @throws InvalidOperationException if the policy's version is greater than 1.
+     * @deprecated
      */
     public function removeBinding($role, array $members)
     {
