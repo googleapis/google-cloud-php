@@ -107,7 +107,9 @@ class Iam
      *
      * @param  array $options Configuration Options
      * @param  int   $options['requestedPolicyVersion'] Specify the policy version to
-     *     request from the server. Please see [policy versioning](https://cloud.google.com/iam/docs/policies#versions) for more information.
+     *     request from the server. Please see
+     *     [policy versioning](https://cloud.google.com/iam/docs/policies#versions)
+     *     for more information.
      * @return array An array of policy data
      */
     public function policy(array $options = [])
