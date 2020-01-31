@@ -214,7 +214,8 @@ class Subscription
      *           subscriptions's parent project (i.e.,
      *           service-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com)
      *           must have permission to acknowledge messages on this
-     *           subscription.
+     *           subscription. **Please note** that this feature may not be
+     *           available using the REST transport.
      *     @type string|Topic $deadLetterPolicy.deadLetterTopic The topic, or
      *           name of the topic to which dead letter messages should be
      *           published. Strings must be of format
@@ -344,7 +345,8 @@ class Subscription
      *           subscriptions's parent project (i.e.,
      *           service-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com)
      *           must have permission to acknowledge messages on this
-     *           subscription.
+     *           subscription. **Please note** that this feature may not be
+     *           available using the REST transport.
      *     @type string|Topic $deadLetterPolicy.deadLetterTopic The topic, or
      *           name of the topic to which dead letter messages should be
      *           published. Strings must be of format
