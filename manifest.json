@@ -1177,6 +1177,14 @@
             ]
         },
         {
+            "id": "cloud-recommender",
+            "name": "google/cloud-recommender",
+            "defaultService": "recommender/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-redis",
             "name": "google/cloud-redis",
             "defaultService": "redis/readme",
