@@ -71,6 +71,17 @@ class StreamingPullRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 stream_ack_deadline_seconds = 5;</code>
      */
     private $stream_ack_deadline_seconds = 0;
+    /**
+     * A unique identifier that is used to distinguish client instances from each
+     * other. Only needs to be provided on the initial request. When a stream
+     * disconnects and reconnects for the same stream, the client_id should be set
+     * to the same value so that state associated with the old stream can be
+     * transferred to the new stream. The same client_id should not be used for
+     * different client instances.
+     *
+     * Generated from protobuf field <code>string client_id = 6;</code>
+     */
+    private $client_id = '';
 
     /**
      * Constructor.
@@ -112,6 +123,13 @@ class StreamingPullRequest extends \Google\Protobuf\Internal\Message
      *           first request on the stream, but it can also be updated on subsequent
      *           requests from client to server. The minimum deadline you can specify is 10
      *           seconds. The maximum deadline you can specify is 600 seconds (10 minutes).
+     *     @type string $client_id
+     *           A unique identifier that is used to distinguish client instances from each
+     *           other. Only needs to be provided on the initial request. When a stream
+     *           disconnects and reconnects for the same stream, the client_id should be set
+     *           to the same value so that state associated with the old stream can be
+     *           transferred to the new stream. The same client_id should not be used for
+     *           different client instances.
      * }
      */
     public function __construct($data = NULL) {
@@ -293,6 +311,42 @@ class StreamingPullRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->stream_ack_deadline_seconds = $var;
+
+        return $this;
+    }
+
+    /**
+     * A unique identifier that is used to distinguish client instances from each
+     * other. Only needs to be provided on the initial request. When a stream
+     * disconnects and reconnects for the same stream, the client_id should be set
+     * to the same value so that state associated with the old stream can be
+     * transferred to the new stream. The same client_id should not be used for
+     * different client instances.
+     *
+     * Generated from protobuf field <code>string client_id = 6;</code>
+     * @return string
+     */
+    public function getClientId()
+    {
+        return $this->client_id;
+    }
+
+    /**
+     * A unique identifier that is used to distinguish client instances from each
+     * other. Only needs to be provided on the initial request. When a stream
+     * disconnects and reconnects for the same stream, the client_id should be set
+     * to the same value so that state associated with the old stream can be
+     * transferred to the new stream. The same client_id should not be used for
+     * different client instances.
+     *
+     * Generated from protobuf field <code>string client_id = 6;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setClientId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->client_id = $var;
 
         return $this;
     }
