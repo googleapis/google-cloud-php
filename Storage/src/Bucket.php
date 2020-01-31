@@ -1180,6 +1180,8 @@ class Bucket
      *
      * Example:
      * ```
+     * $iam = $bucket->iam();
+     *
      * // Returns the stored policy, or fetches the policy if none exists.
      * $policy = $iam->policy(['requestedPolicyVersion' => 3]);
      *
