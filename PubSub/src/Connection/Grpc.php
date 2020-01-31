@@ -24,6 +24,7 @@ use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\PubSub\PubSubClient;
+use Google\Cloud\PubSub\V1\DeadLetterPolicy;
 use Google\Cloud\PubSub\V1\ExpirationPolicy;
 use Google\Cloud\PubSub\V1\MessageStoragePolicy;
 use Google\Cloud\PubSub\V1\PublisherClient;
@@ -232,6 +233,13 @@ class Grpc implements ConnectionInterface
         if (isset($args['messageRetentionDuration'])) {
             $args['messageRetentionDuration'] = new Duration(
                 $this->transformDuration($args['messageRetentionDuration'])
+            );
+        }
+
+        if (isset($args['deadLetterPolicy'])) {
+            $args['deadLetterPolicy'] = $this->serializer->decodeMessage(
+                new DeadLetterPolicy,
+                $args['deadLetterPolicy']
             );
         }
 
@@ -506,12 +514,13 @@ class Grpc implements ConnectionInterface
     {
         if (is_string($v)) {
             $d = explode('.', trim($v, 's'));
-            if (count($d) !== 2) {
-                return null;
+            if (count($d) < 2) {
+                $seconds = $d[0];
+                $nanos = 0;
+            } else {
+                $seconds = (int) $d[0];
+                $nanos = $this->convertFractionToNanoSeconds($d[1]);
             }
-
-            $seconds = (int) $d[0];
-            $nanos = $this->convertFractionToNanoSeconds($d[1]);
         } elseif ($v instanceof CoreDuration) {
             $d = $v->get();
             $seconds = $d['seconds'];

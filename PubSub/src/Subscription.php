@@ -207,6 +207,28 @@ class Subscription
      *     @type int $ackDeadlineSeconds The maximum time after a subscriber
      *           receives a message before the subscriber should acknowledge the
      *           message.
+     *     @type array $deadLetterPolicy A policy that specifies the conditions
+     *           for dead lettering messages in this subscription. If
+     *           deadLetterPolicy is not set, dead lettering is disabled. The
+     *           Cloud Pub/Sub service account associated with this
+     *           subscriptions's parent project (i.e.,
+     *           service-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com)
+     *           must have permission to acknowledge messages on this
+     *           subscription. **Please note** that this feature may not be
+     *           available using the REST transport.
+     *     @type string|Topic $deadLetterPolicy.deadLetterTopic The topic, or
+     *           name of the topic to which dead letter messages should be
+     *           published. Strings must be of format
+     *           `projects/{project}/topics/{topic}`. The Cloud Pub/Sub service
+     *           account associated with the enclosing subscription's parent
+     *           project (i.e., service-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com)
+     *           must have permission to publish to this topic. The operation
+     *           will fail if the topic does not exist. Users should ensure that
+     *           there is a subscription attached to this topic since messages
+     *           published to a topic with no subscriptions are lost.
+     *     @type int $deadLetterPolicy.maxDeliveryAttempts The maximum number of
+     *           delivery attempts for any message. The value must be between 5
+     *           and 100.
      *     @type bool $enableMessageOrdering If true, messages published with
      *           the same `orderingKey` in {@see Google\Cloud\PubSub\Message}
      *           will be delivered to the subscribers in the order in which they
@@ -223,25 +245,17 @@ class Subscription
      *           `ttl` is not set, the associated resource never expires. If a
      *           string is provided, it should be as a duration in seconds with
      *           up to nine fractional digits, terminated by 's', e.g "3.5s".
-     *     @type Duration $messageRetentionDuration How long to retain
+     *     @type Duration|string $messageRetentionDuration How long to retain
      *           unacknowledged messages in the subscription's backlog, from the
      *           moment a message is published. If `$retainAckedMessages` is
      *           true, then this also configures the retention of acknowledged
      *           messages, and thus configures how far back in time a `Seek`
      *           can be done. Cannot be more than 7 days or less than 10 minutes.
      *           **Defaults to** 7 days.
-     *     @type string $pushConfig.pushEndpoint A URL locating the endpoint to which
-     *           messages should be pushed. For example, a Webhook endpoint
-     *           might use "https://example.com/push".
      *     @type array $pushConfig.attributes Endpoint configuration attributes.
      *     @type array $pushConfig.oidcToken If specified, Pub/Sub will generate
      *           and attach an OIDC JWT token as an `Authorization` header in
      *           the HTTP request for every pushed message.
-     *     @type string $pushConfig.oidcToken.serviceAccountEmail Service
-     *           account email to be used for generating the OIDC token. The
-     *           caller (for `subscriptions.create`, `UpdateSubscription`, and
-     *           `subscriptions.modifyPushConfig` RPCs) must have the
-     *           `iam.serviceAccounts.actAs` permission for the service account.
      *     @type string $pushConfig.oidcToken.audience Audience to be used when
      *           generating OIDC token. The audience claim identifies the
      *           recipients that the JWT is intended for. The audience value is
@@ -249,6 +263,14 @@ class Subscription
      *           for the audience field is not supported. More info about the
      *           OIDC JWT token audience here: https://tools.ietf.org/html/rfc7519#section-4.1.3
      *           Note: if not specified, the Push endpoint URL will be used.
+     *     @type string $pushConfig.oidcToken.serviceAccountEmail Service
+     *           account email to be used for generating the OIDC token. The
+     *           caller (for `subscriptions.create`, `UpdateSubscription`, and
+     *           `subscriptions.modifyPushConfig` RPCs) must have the
+     *           `iam.serviceAccounts.actAs` permission for the service account.
+     *     @type string $pushConfig.pushEndpoint A URL locating the endpoint to which
+     *           messages should be pushed. For example, a Webhook endpoint
+     *           might use "https://example.com/push".
      *     @type bool $retainAckedMessages Indicates whether to retain
      *           acknowledged messages.
      * }
@@ -268,10 +290,10 @@ class Subscription
 
         $options = $this->formatSubscriptionDurations($options);
 
-        $this->info = $this->connection->createSubscription($options + [
+        $this->info = $this->connection->createSubscription([
             'name' => $this->name,
             'topic' => $this->topicName
-        ]);
+        ] + $this->formatDeadLetterPolicyForApi($options));
 
         return $this->info;
     }
@@ -316,6 +338,28 @@ class Subscription
      *     @type int $ackDeadlineSeconds The maximum time after a subscriber
      *           receives a message before the subscriber should acknowledge the
      *           message.
+     *     @type array $deadLetterPolicy A policy that specifies the conditions
+     *           for dead lettering messages in this subscription. If
+     *           deadLetterPolicy is not set, dead lettering is disabled. The
+     *           Cloud Pub/Sub service account associated with this
+     *           subscriptions's parent project (i.e.,
+     *           service-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com)
+     *           must have permission to acknowledge messages on this
+     *           subscription. **Please note** that this feature may not be
+     *           available using the REST transport.
+     *     @type string|Topic $deadLetterPolicy.deadLetterTopic The topic, or
+     *           name of the topic to which dead letter messages should be
+     *           published. Strings must be of format
+     *           `projects/{project}/topics/{topic}`. The Cloud Pub/Sub service
+     *           account associated with the enclosing subscription's parent
+     *           project (i.e., service-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com)
+     *           must have permission to publish to this topic. The operation
+     *           will fail if the topic does not exist. Users should ensure that
+     *           there is a subscription attached to this topic since messages
+     *           published to a topic with no subscriptions are lost.
+     *     @type int $deadLetterPolicy.maxDeliveryAttempts The maximum number of
+     *           delivery attempts for any message. The value must be between 5
+     *           and 100.
      *     @type bool $enableMessageOrdering If true, messages published with
      *           the same `orderingKey` in {@see Google\Cloud\PubSub\Message}
      *           will be delivered to the subscribers in the order in which they
@@ -332,25 +376,17 @@ class Subscription
      *           `ttl` is not set, the associated resource never expires. If a
      *           string is provided, it should be as a duration in seconds with
      *           up to nine fractional digits, terminated by 's', e.g "3.5s".
-     *     @type Duration $messageRetentionDuration How long to retain
+     *     @type Duration|string $messageRetentionDuration How long to retain
      *           unacknowledged messages in the subscription's backlog, from the
      *           moment a message is published. If `$retainAckedMessages` is
      *           true, then this also configures the retention of acknowledged
      *           messages, and thus configures how far back in time a `Seek`
      *           can be done. Cannot be more than 7 days or less than 10 minutes.
      *           **Defaults to** 7 days.
-     *     @type string $pushConfig.pushEndpoint A URL locating the endpoint to which
-     *           messages should be pushed. For example, a Webhook endpoint
-     *           might use "https://example.com/push".
      *     @type array $pushConfig.attributes Endpoint configuration attributes.
      *     @type array $pushConfig.oidcToken If specified, Pub/Sub will generate
      *           and attach an OIDC JWT token as an `Authorization` header in
      *           the HTTP request for every pushed message.
-     *     @type string $pushConfig.oidcToken.serviceAccountEmail Service
-     *           account email to be used for generating the OIDC token. The
-     *           caller (for `subscriptions.create`, `UpdateSubscription`, and
-     *           `subscriptions.modifyPushConfig` RPCs) must have the
-     *           `iam.serviceAccounts.actAs` permission for the service account.
      *     @type string $pushConfig.oidcToken.audience Audience to be used when
      *           generating OIDC token. The audience claim identifies the
      *           recipients that the JWT is intended for. The audience value is
@@ -358,6 +394,14 @@ class Subscription
      *           for the audience field is not supported. More info about the
      *           OIDC JWT token audience here: https://tools.ietf.org/html/rfc7519#section-4.1.3
      *           Note: if not specified, the Push endpoint URL will be used.
+     *     @type string $pushConfig.oidcToken.serviceAccountEmail Service
+     *           account email to be used for generating the OIDC token. The
+     *           caller (for `subscriptions.create`, `UpdateSubscription`, and
+     *           `subscriptions.modifyPushConfig` RPCs) must have the
+     *           `iam.serviceAccounts.actAs` permission for the service account.
+     *     @type string $pushConfig.pushEndpoint A URL locating the endpoint to which
+     *           messages should be pushed. For example, a Webhook endpoint
+     *           might use "https://example.com/push".
      *     @type bool $retainAckedMessages Indicates whether to retain
      *           acknowledged messages.
      * }
@@ -394,11 +438,13 @@ class Subscription
 
         $subscription = $this->formatSubscriptionDurations($subscription);
 
+        $subscription = [
+            'name' => $this->name
+        ] + $this->formatDeadLetterPolicyForApi($subscription);
+
         return $this->info = $this->connection->updateSubscription([
             'name' => $this->name,
-            'subscription' => [
-                'name' => $this->name
-            ] + $subscription,
+            'subscription' => $subscription,
             'updateMask' => implode(',', $updateMaskPaths)
         ] + $options);
     }
@@ -853,6 +899,24 @@ class Subscription
         }
 
         return $options;
+    }
+
+    /**
+     * Format dead letter topic subscription data for API.
+     *
+     * @param array $subscription
+     * @return array
+     */
+    private function formatDeadLetterPolicyForApi(array $subscription)
+    {
+        if (isset($subscription['deadLetterPolicy'])) {
+            if ($subscription['deadLetterPolicy']['deadLetterTopic'] instanceof Topic) {
+                $topic = $subscription['deadLetterPolicy']['deadLetterTopic'];
+                $subscription['deadLetterPolicy']['deadLetterTopic'] = $topic->name();
+            }
+        }
+
+        return $subscription;
     }
 
     /**

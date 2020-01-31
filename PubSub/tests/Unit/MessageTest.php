@@ -42,6 +42,7 @@ class MessageTest extends TestCase
             'orderingKey' => 'foo'
         ], [
             'ackId' => 1234,
+            'deliveryAttempt' => 4,
             'subscription' => $this->prophesize(Subscription::class)->reveal()
         ]);
     }
@@ -85,6 +86,23 @@ class MessageTest extends TestCase
     public function testAckId()
     {
         $this->assertEquals(1234, $this->message->ackId());
+    }
+
+    /**
+     * @dataProvider deliveryAttempts
+     */
+    public function testDeliveryAttempt($metadata, $expected)
+    {
+        $message = new Message([], $metadata);
+        $this->assertEquals($expected, $message->deliveryAttempt());
+    }
+
+    public function deliveryAttempts()
+    {
+        return [
+            [[], null],
+            [['deliveryAttempt' => 2], 2]
+        ];
     }
 
     public function testSubscription()

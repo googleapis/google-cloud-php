@@ -26,11 +26,13 @@ use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\Snapshot;
 use Google\Cloud\PubSub\Subscription;
+use Google\Cloud\PubSub\Topic;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 
 /**
  * @group pubsub
+ * @group pubsub-subscription
  */
 class SubscriptionTest extends TestCase
 {
@@ -70,7 +72,7 @@ class SubscriptionTest extends TestCase
 
         $this->subscription->___setProperty('connection', $this->connection->reveal());
 
-        $sub = $this->subscription->create([ 'foo' => 'bar' ]);
+        $sub = $this->subscription->create(['foo' => 'bar']);
 
         $this->assertEquals($sub['name'], self::SUBSCRIPTION);
         $this->assertEquals($sub['topic'], self::TOPIC);
@@ -146,6 +148,53 @@ class SubscriptionTest extends TestCase
 
         $this->subscription->update($args);
         $this->subscription->create($args);
+    }
+
+    public function testDeadLetterPolicyTopicNames()
+    {
+        $mock = $this->prophesize(Topic::class);
+        $mock->name()->willReturn(self::TOPIC);
+        $topic = $mock->reveal();
+
+        $this->connection->updateSubscription(
+            Argument::withEntry('subscription', Argument::withEntry('deadLetterPolicy', [
+                'deadLetterTopic' => $topic->name()
+            ]))
+        )->shouldBeCalledTimes(2)->willReturn([
+            'foo' => 'bar'
+        ]);
+
+        $this->connection->createSubscription(Argument::withEntry('deadLetterPolicy', [
+            'deadLetterTopic' => $topic->name()
+        ]))->shouldBeCalledTimes(2)->willReturn([
+            'foo' => 'bar'
+        ]);
+
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
+
+        $this->subscription->create([
+            'deadLetterPolicy' => [
+                'deadLetterTopic' => $topic
+            ]
+        ]);
+
+        $this->subscription->create([
+            'deadLetterPolicy' => [
+                'deadLetterTopic' => $topic->name()
+            ]
+        ]);
+
+        $this->subscription->update([
+            'deadLetterPolicy' => [
+                'deadLetterTopic' => $topic
+            ]
+        ]);
+
+        $this->subscription->update([
+            'deadLetterPolicy' => [
+                'deadLetterTopic' => $topic->name()
+            ]
+        ]);
     }
 
     public function testDelete()
@@ -240,7 +289,9 @@ class SubscriptionTest extends TestCase
         $messages = [
             'receivedMessages' => [
                 [
-                    'message' => []
+                    'message' => [],
+                    'ackId' => 'foo',
+                    'deliveryAttempt' => 4
                 ], [
                     'message' => []
                 ]
@@ -260,6 +311,40 @@ class SubscriptionTest extends TestCase
         $this->assertContainsOnlyInstancesOf(Message::class, $result);
         $this->assertInstanceOf(Message::class, $result[0]);
         $this->assertInstanceOf(Message::class, $result[1]);
+
+        $this->assertEquals('foo', $result[0]->ackId());
+        $this->assertEquals(4, $result[0]->deliveryAttempt());
+    }
+
+    public function testPullNoDeliveryAttempt()
+    {
+        $messages = [
+            'receivedMessages' => [
+                [
+                    'message' => [],
+                    'ackId' => 'foo',
+                ], [
+                    'message' => []
+                ]
+            ]
+        ];
+
+        $this->connection->pull(Argument::withEntry('foo', 'bar'))
+            ->willReturn($messages)
+            ->shouldBeCalledTimes(1);
+
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
+
+        $result = $this->subscription->pull([
+            'foo' => 'bar'
+        ]);
+
+        $this->assertContainsOnlyInstancesOf(Message::class, $result);
+        $this->assertInstanceOf(Message::class, $result[0]);
+        $this->assertInstanceOf(Message::class, $result[1]);
+
+        $this->assertEquals('foo', $result[0]->ackId());
+        $this->assertEquals(0, $result[0]->deliveryAttempt());
     }
 
     public function testPullWithCustomArgs()

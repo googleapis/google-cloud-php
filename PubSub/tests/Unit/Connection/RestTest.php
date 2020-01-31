@@ -30,6 +30,8 @@ use Psr\Http\Message\RequestInterface;
 
 /**
  * @group pubsub
+ * @group pubsub-connection
+ * @group pubsub-connection-rest
  */
 class RestTest extends TestCase
 {

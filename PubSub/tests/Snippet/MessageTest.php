@@ -53,7 +53,8 @@ class MessageTest extends SnippetTestCase
 
         $this->metadata = [
             'ackId' => '4321',
-            'subscription' => $subscription->reveal()
+            'subscription' => $subscription->reveal(),
+            'deliveryAttempt' => 4
         ];
 
         $this->message = new Message($this->msg, $this->metadata);
@@ -150,6 +151,15 @@ class MessageTest extends SnippetTestCase
 
         $res = $snippet->invoke();
         $this->assertEquals($this->metadata['ackId'], $res->output());
+    }
+
+    public function testDeliveryAttempt()
+    {
+        $snippet = $this->snippetFromMethod(Message::class, 'deliveryAttempt');
+        $snippet->addLocal('message', $this->message);
+
+        $res = $snippet->invoke();
+        $this->assertEquals($this->metadata['deliveryAttempt'], $res->output());
     }
 
     public function testSubscription()
