@@ -33,16 +33,6 @@
 
 </details>
 
-<details><summary>google/cloud-spanner 1.23.1</summary>
-
-
-
-### Reverts
-
-* revert "refactor: update spanner lroResponseMappers to map types for `metadata` and `response` separately" ([#2585](https://www.github.com/googleapis/google-cloud-php/issues/2585)) ([f60e159](https://www.github.com/googleapis/google-cloud-php/commit/f60e15917c5c5ef5dba6476d43ead80263bb3be4))
-
-</details>
-
 <details><summary>google/cloud-videointelligence 1.7.2</summary>
 
 
