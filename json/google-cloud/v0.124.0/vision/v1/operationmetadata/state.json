@@ -1,0 +1,1 @@
+{"id":"vision\/v1\/operationmetadata\/state","type":"","title":"Google\\Cloud\\Vision\\V1\\OperationMetadata\\State","name":"State","description":"<p>Batch operation states.<\/p>\n<p>Protobuf type <code>google.cloud.vision.v1.OperationMetadata.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

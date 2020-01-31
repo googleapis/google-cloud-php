@@ -1,0 +1,1 @@
+{"id":"kms\/v1\/cryptokey_cryptokeypurpose","type":"","title":"Google\\Cloud\\Kms\\V1\\CryptoKey_CryptoKeyPurpose","name":"CryptoKey_CryptoKeyPurpose","description":"<p>This class is deprecated. Use Google\\Cloud\\Kms\\V1\\CryptoKey\\CryptoKeyPurpose instead.<\/p>","examples":[],"resources":[],"methods":[]}
