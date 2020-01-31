@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Storage\Tests\System;
 
-
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Core\Testing\System\SystemTestCase;
 
@@ -66,7 +65,8 @@ class IamTest extends SystemTestCase
                 ]
 
             ],
-            $policy['bindings']);
+            $policy['bindings']
+        );
     }
 
     public function testSetPolicy()
