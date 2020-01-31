@@ -94,6 +94,34 @@ class IamTest extends SystemTestCase
         );
     }
 
+    public function testGetModifySetConditionalPolicy()
+    {
+        $keyfile = json_decode(file_get_contents(getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH')), true);
+        $email = $keyfile['client_email'];
+
+        $iam = $this->$bucket->iam();
+        $policy = $iam->policy();
+        $policy['version'] = 3;
+
+        $conditionalBinding = [
+            'role' => 'roles/storage.objectViewer',
+            'members' => ['serviceAccount:' . $email],
+            'condition' => [
+                'title' => 'always-true',
+                'description' => 'this condition is always effective',
+                'expression' => 'true',
+            ]
+        ];
+
+        $policy['bindings'][] = $conditionalBinding;
+        $iam->setPolicy($policy);
+        $policy = $iam->reload(['requestedPolicyVersion' => 3]);
+        $this->assertContains(
+            $conditionalBinding,
+            $policy['bindings']
+        );
+    }
+
     private function bucketConfig($enabled = true)
     {
         return [
