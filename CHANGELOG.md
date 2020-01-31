@@ -1,5 +1,48 @@
 # Changelog
 
+## 0.124.0
+
+<details><summary>google/cloud-dialogflow 0.11.0</summary>
+
+
+
+### Features
+
+* update dialogflow clients ([#2623](https://www.github.com/googleapis/google-cloud-php/issues/2623)) ([1bb6167](https://www.github.com/googleapis/google-cloud-php/commit/1bb6167fc8f7ca7ad532627001090f537dbac0cf))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.20.0</summary>
+
+
+
+### Features
+
+* add support for dead letter policies ([#2504](https://www.github.com/googleapis/google-cloud-php/issues/2504)) ([0f8bd09](https://www.github.com/googleapis/google-cloud-php/commit/0f8bd0976d7955c2d63e88c5c4dc12b9174d8df8))
+* add support for ordering keys ([#2624](https://www.github.com/googleapis/google-cloud-php/issues/2624)) ([5790d1a](https://www.github.com/googleapis/google-cloud-php/commit/5790d1a1c0bdfe8b5225ce0803eb9c76745d066f))
+
+</details>
+
+<details><summary>google/cloud-recommender 0.1.0</summary>
+
+
+
+### Features
+
+* introduce recommender v1 client ([#2636](https://www.github.com/googleapis/google-cloud-php/issues/2636)) ([65c24d7](https://www.github.com/googleapis/google-cloud-php/commit/65c24d71d3c3013b176ba95415ab4f54b60aa1b9))
+
+</details>
+
+<details><summary>google/cloud-videointelligence 1.7.2</summary>
+
+
+
+### Bug Fixes
+
+* update documentation ([#2653](https://www.github.com/googleapis/google-cloud-php/issues/2653)) ([97a3904](https://www.github.com/googleapis/google-cloud-php/commit/97a3904900ae4d0668903ac807c0c957838ffe40))
+
+</details>
+
 ## 0.123.0
 
 <details><summary>google/cloud-bigquery 1.12.2</summary>
