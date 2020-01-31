@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.124.0",
                 "v0.123.0",
                 "v0.122.0",
                 "v0.121.0",
@@ -615,6 +616,7 @@
             "name": "google/cloud-dialogflow",
             "defaultService": "dialogflow/readme",
             "versions": [
+                "v0.11.0",
                 "v0.10.0",
                 "v0.9.0",
                 "v0.8.4",
@@ -1111,6 +1113,7 @@
             "name": "google/cloud-pubsub",
             "defaultService": "pubsub/pubsubclient",
             "versions": [
+                "v1.20.0",
                 "v1.19.0",
                 "v1.18.0",
                 "v1.17.0",
@@ -1181,6 +1184,7 @@
             "name": "google/cloud-recommender",
             "defaultService": "recommender/readme",
             "versions": [
+                "v0.1.0",
                 "master"
             ]
         },
@@ -1264,6 +1268,7 @@
             "name": "google/cloud-spanner",
             "defaultService": "spanner/spannerclient",
             "versions": [
+                "v1.23.1",
                 "v1.23.0",
                 "v1.22.0",
                 "v1.21.0",
@@ -1616,6 +1621,7 @@
             "name": "google/cloud-videointelligence",
             "defaultService": "videointelligence/readme",
             "versions": [
+                "v1.7.2",
                 "v1.7.1",
                 "v1.7.0",
                 "v1.6.1",
