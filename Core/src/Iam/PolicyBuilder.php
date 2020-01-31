@@ -18,7 +18,7 @@
 namespace Google\Cloud\Core\Iam;
 
 use InvalidArgumentException;
-use Google\Cloud\Core\Exception\InvalidOperationException;
+use BadMethodCallException;
 
 /**
  * Helper class for creating valid IAM policies
@@ -151,7 +151,7 @@ class PolicyBuilder
      * @param  array  $members An array of members to assign to the binding
      * @return PolicyBuilder
      * @throws InvalidArgumentException
-     * @throws InvalidOperationException if the policy's version is greater than 1.
+     * @throws BadMethodCallException if the policy's version is greater than 1.
      * @deprecated
      */
     public function addBinding($role, array $members)
@@ -193,7 +193,7 @@ class PolicyBuilder
      * @param  array  $members An array of members to remove from the role
      * @return PolicyBuilder
      * @throws InvalidArgumentException
-     * @throws InvalidOperationException if the policy's version is greater than 1.
+     * @throws BadMethodCallException if the policy's version is greater than 1.
      * @deprecated
      */
     public function removeBinding($role, array $members)
@@ -283,7 +283,7 @@ class PolicyBuilder
     private function validatePolicyVersion()
     {
         if (isset($this->version) && $this->version > 1) {
-            throw new InvalidOperationException("Helper methods cannot be " .
+            throw new BadMethodCallException("Helper methods cannot be " .
                 "invoked on policies with version {$this->version}.");
         }
 
@@ -298,7 +298,7 @@ class PolicyBuilder
 
         foreach ($this->bindings as $binding) {
             if (isset($binding['condition'])) {
-                throw new InvalidOperationException("Helper methods cannot " .
+                throw new BadMethodCallException("Helper methods cannot " .
                     "be invoked on policies containing conditions.");
             }
         }

@@ -140,7 +140,7 @@ class PolicyBuilderTest extends TestCase
     }
 
     /**
-     * @expectedException Google\Cloud\Core\Exception\InvalidOperationException
+     * @expectedException BadMethodCallException
      * @expectedExceptionMessage Helper methods cannot be invoked on policies with version 3.
      */
     public function testAddBindingVersionThrowsException()
@@ -152,7 +152,7 @@ class PolicyBuilderTest extends TestCase
     }
 
     /**
-     * @expectedException Google\Cloud\Core\Exception\InvalidOperationException
+     * @expectedException BadMethodCallException
      * @expectedExceptionMessage Helper methods cannot be invoked on policies containing conditions.
      */
     public function testAddBindingWithConditionsThrowsException()
@@ -264,7 +264,7 @@ class PolicyBuilderTest extends TestCase
     }
 
     /**
-     * @expectedException Google\Cloud\Core\Exception\InvalidOperationException
+     * @expectedException BadMethodCallException
      * @expectedExceptionMessage Helper methods cannot be invoked on policies with version 3.
      */
     public function testRemoveBindingVersionThrowsException()
@@ -286,7 +286,7 @@ class PolicyBuilderTest extends TestCase
     }
 
     /**
-     * @expectedException Google\Cloud\Core\Exception\InvalidOperationException
+     * @expectedException BadMethodCallException
      * @expectedExceptionMessage Helper methods cannot be invoked on policies containing conditions.
      */
     public function testRemoveBindingWithConditionsThrowsException()
