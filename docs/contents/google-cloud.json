@@ -28,6 +28,7 @@
         "cloud-monitoring",
         "cloud-oslogin",
         "cloud-pubsub",
+        "cloud-recommender",
         "cloud-redis",
         "cloud-scheduler",
         "cloud-secret-manager",
