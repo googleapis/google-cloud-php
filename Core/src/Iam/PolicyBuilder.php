@@ -55,8 +55,8 @@ class PolicyBuilder
      * To use conditions in the bindings, the version of the policy must be set
      * to 3.
      *
-     * @see [Policy versioning](https://cloud.google.com/iam/docs/policies#versions)
-     * @see [Using Cloud IAM Conditions on buckets](https://cloud-dot-devsite.googleplex.com/storage/docs/access-control/using-iam-permissions#conditions-iam)
+     * @see https://cloud.google.com/iam/docs/policies#versions Policy versioning
+     * @see https://cloud-dot-devsite.googleplex.com/storage/docs/access-control/using-iam-permissions#conditions-iam Using Cloud IAM Conditions on buckets
      *
      * Example:
      * ```
