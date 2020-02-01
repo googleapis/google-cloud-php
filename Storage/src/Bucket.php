@@ -1167,16 +1167,11 @@ class Bucket
      *
      * Please note that this method may not yet be available in your project.
      *
-     * Example:
-     * ```
-     * $iam = $bucket->iam();
-     * ```
-     *
      * To request a policy with conditions, pass an array with
-     * `requestedPolicyVersion => 3` as argument to the policy() and
+     * '[requestedPolicyVersion => 3]' as argument to the policy() and
      * reload() methods.
      *
-     * @see [Policy versioning](https://cloud.google.com/iam/docs/policies#versions)
+     * @see https://cloud.google.com/iam/docs/policies#versions policy versioning.
      *
      * Example:
      * ```

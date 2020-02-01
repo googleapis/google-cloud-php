@@ -592,21 +592,12 @@ class BucketTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromMethod(Bucket::class, 'iam');
         $snippet->addLocal('bucket', $this->bucket);
-
-        $res = $snippet->invoke('iam');
-        $this->assertInstanceOf(Iam::class, $res->returnVal());
-    }
-
-    public function testIamRequestedPolicyVersion()
-    {
-        $snippet = $this->snippetFromMethod(Bucket::class, 'iam', 1);
-        $snippet->addLocal('bucket', $this->bucket);
-        $this->connection->getBucketIamPolicy(['optionsRequestedPolicyVersion' => 3])
-            ->shouldBecalled()
-            ->willReturn();
+        $this->connection->getBucketIamPolicy(Argument::withEntry('optionsRequestedPolicyVersion', 3))
+            ->shouldBeCalled();
 
         $this->bucket->___setProperty('connection', $this->connection->reveal());
-        $snippet->invoke('policy');
+        $res = $snippet->invoke('iam');
+        $this->assertInstanceOf(Iam::class, $res->returnVal());
     }
 
     public function testLockRetentionPolicy()
