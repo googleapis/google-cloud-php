@@ -329,8 +329,7 @@ class Variable extends \Google\Protobuf\Internal\Message
      */
     public function getVarTableIndexValue()
     {
-        $wrapper = $this->getVarTableIndex();
-        return is_null($wrapper) ? null : $wrapper->getValue();
+        return $this->readWrapperValue("var_table_index");
     }
 
     /**
@@ -363,9 +362,8 @@ class Variable extends \Google\Protobuf\Internal\Message
      */
     public function setVarTableIndexValue($var)
     {
-        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\Int32Value(['value' => $var]);
-        return $this->setVarTableIndex($wrappedVar);
-    }
+        $this->writeWrapperValue("var_table_index", $var);
+        return $this;}
 
     /**
      * Status associated with the variable. This field will usually stay
