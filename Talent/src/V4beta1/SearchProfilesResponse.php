@@ -50,16 +50,15 @@ class SearchProfilesResponse extends \Google\Protobuf\Internal\Message
      */
     private $histogram_query_results;
     /**
-     * The profile entities that match the specified
-     * [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest].
+     * The profile entities that match the specified [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest].
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.SummarizedProfile summarized_profiles = 6;</code>
      */
     private $summarized_profiles;
     /**
      * An id that uniquely identifies the result set of a
-     * [SearchProfiles][google.cloud.talent.v4beta1.ProfileService.SearchProfiles]
-     * call for consistent results.
+     * [SearchProfiles][google.cloud.talent.v4beta1.ProfileService.SearchProfiles] call for consistent
+     * results.
      *
      * Generated from protobuf field <code>string result_set_id = 7;</code>
      */
@@ -86,12 +85,11 @@ class SearchProfilesResponse extends \Google\Protobuf\Internal\Message
      *           The histogram results that match with specified
      *           [SearchProfilesRequest.histogram_queries][google.cloud.talent.v4beta1.SearchProfilesRequest.histogram_queries].
      *     @type \Google\Cloud\Talent\V4beta1\SummarizedProfile[]|\Google\Protobuf\Internal\RepeatedField $summarized_profiles
-     *           The profile entities that match the specified
-     *           [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest].
+     *           The profile entities that match the specified [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest].
      *     @type string $result_set_id
      *           An id that uniquely identifies the result set of a
-     *           [SearchProfiles][google.cloud.talent.v4beta1.ProfileService.SearchProfiles]
-     *           call for consistent results.
+     *           [SearchProfiles][google.cloud.talent.v4beta1.ProfileService.SearchProfiles] call for consistent
+     *           results.
      * }
      */
     public function __construct($data = NULL) {
@@ -238,8 +236,7 @@ class SearchProfilesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The profile entities that match the specified
-     * [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest].
+     * The profile entities that match the specified [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest].
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.SummarizedProfile summarized_profiles = 6;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -250,8 +247,7 @@ class SearchProfilesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The profile entities that match the specified
-     * [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest].
+     * The profile entities that match the specified [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest].
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.SummarizedProfile summarized_profiles = 6;</code>
      * @param \Google\Cloud\Talent\V4beta1\SummarizedProfile[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -267,8 +263,8 @@ class SearchProfilesResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * An id that uniquely identifies the result set of a
-     * [SearchProfiles][google.cloud.talent.v4beta1.ProfileService.SearchProfiles]
-     * call for consistent results.
+     * [SearchProfiles][google.cloud.talent.v4beta1.ProfileService.SearchProfiles] call for consistent
+     * results.
      *
      * Generated from protobuf field <code>string result_set_id = 7;</code>
      * @return string
@@ -280,8 +276,8 @@ class SearchProfilesResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * An id that uniquely identifies the result set of a
-     * [SearchProfiles][google.cloud.talent.v4beta1.ProfileService.SearchProfiles]
-     * call for consistent results.
+     * [SearchProfiles][google.cloud.talent.v4beta1.ProfileService.SearchProfiles] call for consistent
+     * results.
      *
      * Generated from protobuf field <code>string result_set_id = 7;</code>
      * @param string $var

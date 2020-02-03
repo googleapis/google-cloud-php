@@ -22,13 +22,10 @@ class FilterType
     /**
      * Filter by `base compensation entry's` unit. A job is a match if and
      * only if the job contains a base CompensationEntry and the base
-     * CompensationEntry's unit matches provided
-     * [units][google.cloud.talent.v4beta1.CompensationFilter.units]. Populate
-     * one or more
-     * [units][google.cloud.talent.v4beta1.CompensationFilter.units].
-     * See
-     * [CompensationInfo.CompensationEntry][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry]
-     * for definition of base compensation entry.
+     * CompensationEntry's unit matches provided [units][google.cloud.talent.v4beta1.CompensationFilter.units].
+     * Populate one or more [units][google.cloud.talent.v4beta1.CompensationFilter.units].
+     * See [CompensationInfo.CompensationEntry][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry] for definition of
+     * base compensation entry.
      *
      * Generated from protobuf enum <code>UNIT_ONLY = 1;</code>
      */
@@ -37,33 +34,26 @@ class FilterType
      * Filter by `base compensation entry's` unit and amount / range. A job
      * is a match if and only if the job contains a base CompensationEntry, and
      * the base entry's unit matches provided
-     * [CompensationUnit][google.cloud.talent.v4beta1.CompensationInfo.CompensationUnit]
-     * and amount or range overlaps with provided
+     * [CompensationUnit][google.cloud.talent.v4beta1.CompensationInfo.CompensationUnit] and
+     * amount or range overlaps with provided
      * [CompensationRange][google.cloud.talent.v4beta1.CompensationInfo.CompensationRange].
-     * See
-     * [CompensationInfo.CompensationEntry][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry]
-     * for definition of base compensation entry.
-     * Set exactly one
-     * [units][google.cloud.talent.v4beta1.CompensationFilter.units] and
-     * populate [range][google.cloud.talent.v4beta1.CompensationFilter.range].
+     * See [CompensationInfo.CompensationEntry][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry] for definition of
+     * base compensation entry.
+     * Set exactly one [units][google.cloud.talent.v4beta1.CompensationFilter.units] and populate [range][google.cloud.talent.v4beta1.CompensationFilter.range].
      *
      * Generated from protobuf enum <code>UNIT_AND_AMOUNT = 2;</code>
      */
     const UNIT_AND_AMOUNT = 2;
     /**
      * Filter by annualized base compensation amount and `base compensation
-     * entry's` unit. Populate
-     * [range][google.cloud.talent.v4beta1.CompensationFilter.range] and zero or
-     * more [units][google.cloud.talent.v4beta1.CompensationFilter.units].
+     * entry's` unit. Populate [range][google.cloud.talent.v4beta1.CompensationFilter.range] and zero or more [units][google.cloud.talent.v4beta1.CompensationFilter.units].
      *
      * Generated from protobuf enum <code>ANNUALIZED_BASE_AMOUNT = 3;</code>
      */
     const ANNUALIZED_BASE_AMOUNT = 3;
     /**
      * Filter by annualized total compensation amount and `base compensation
-     * entry's` unit . Populate
-     * [range][google.cloud.talent.v4beta1.CompensationFilter.range] and zero or
-     * more [units][google.cloud.talent.v4beta1.CompensationFilter.units].
+     * entry's` unit . Populate [range][google.cloud.talent.v4beta1.CompensationFilter.range] and zero or more [units][google.cloud.talent.v4beta1.CompensationFilter.units].
      *
      * Generated from protobuf enum <code>ANNUALIZED_TOTAL_AMOUNT = 4;</code>
      */

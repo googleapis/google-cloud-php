@@ -16,13 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListApplicationsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Resource name of the profile under which the application is
-     * created.
+     * Required. Resource name of the profile under which the application is created.
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}", for
      * example, "projects/foo/tenants/bar/profiles/baz".
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -46,8 +45,7 @@ class ListApplicationsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. Resource name of the profile under which the application is
-     *           created.
+     *           Required. Resource name of the profile under which the application is created.
      *           The format is
      *           "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}", for
      *           example, "projects/foo/tenants/bar/profiles/baz".
@@ -64,13 +62,12 @@ class ListApplicationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name of the profile under which the application is
-     * created.
+     * Required. Resource name of the profile under which the application is created.
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}", for
      * example, "projects/foo/tenants/bar/profiles/baz".
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -79,13 +76,12 @@ class ListApplicationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name of the profile under which the application is
-     * created.
+     * Required. Resource name of the profile under which the application is created.
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}", for
      * example, "projects/foo/tenants/bar/profiles/baz".
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

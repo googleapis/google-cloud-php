@@ -61,21 +61,17 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
      */
     private $is_current = null;
     /**
-     * Output only. The school name snippet shows how the
-     * [school_name][google.cloud.talent.v4beta1.EducationRecord.school_name] is
-     * related to a search query in search result. It's empty if the
-     * [school_name][google.cloud.talent.v4beta1.EducationRecord.school_name]
-     * isn't related to the search query.
+     * Output only. The school name snippet shows how the [school_name][google.cloud.talent.v4beta1.EducationRecord.school_name] is related to a
+     * search query in search result. It's empty if the [school_name][google.cloud.talent.v4beta1.EducationRecord.school_name] isn't
+     * related to the search query.
      *
      * Generated from protobuf field <code>string school_name_snippet = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $school_name_snippet = '';
     /**
-     * Output only. The job description snippet shows how the
-     * [Degree][google.cloud.talent.v4beta1.Degree] is related to a search query
-     * in search result. It's empty if the
-     * [Degree][google.cloud.talent.v4beta1.Degree] isn't related to the search
-     * query.
+     * Output only. The job description snippet shows how the [Degree][google.cloud.talent.v4beta1.Degree] is related to a search
+     * query in search result. It's empty if the [Degree][google.cloud.talent.v4beta1.Degree] isn't related to the
+     * search query.
      *
      * Generated from protobuf field <code>string degree_snippet = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -112,17 +108,13 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\BoolValue $is_current
      *           If this education is current.
      *     @type string $school_name_snippet
-     *           Output only. The school name snippet shows how the
-     *           [school_name][google.cloud.talent.v4beta1.EducationRecord.school_name] is
-     *           related to a search query in search result. It's empty if the
-     *           [school_name][google.cloud.talent.v4beta1.EducationRecord.school_name]
-     *           isn't related to the search query.
+     *           Output only. The school name snippet shows how the [school_name][google.cloud.talent.v4beta1.EducationRecord.school_name] is related to a
+     *           search query in search result. It's empty if the [school_name][google.cloud.talent.v4beta1.EducationRecord.school_name] isn't
+     *           related to the search query.
      *     @type string $degree_snippet
-     *           Output only. The job description snippet shows how the
-     *           [Degree][google.cloud.talent.v4beta1.Degree] is related to a search query
-     *           in search result. It's empty if the
-     *           [Degree][google.cloud.talent.v4beta1.Degree] isn't related to the search
-     *           query.
+     *           Output only. The job description snippet shows how the [Degree][google.cloud.talent.v4beta1.Degree] is related to a search
+     *           query in search result. It's empty if the [Degree][google.cloud.talent.v4beta1.Degree] isn't related to the
+     *           search query.
      * }
      */
     public function __construct($data = NULL) {
@@ -369,8 +361,7 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
      */
     public function getIsCurrentValue()
     {
-        $wrapper = $this->getIsCurrent();
-        return is_null($wrapper) ? null : $wrapper->getValue();
+        return $this->readWrapperValue("is_current");
     }
 
     /**
@@ -399,16 +390,13 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
      */
     public function setIsCurrentValue($var)
     {
-        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
-        return $this->setIsCurrent($wrappedVar);
-    }
+        $this->writeWrapperValue("is_current", $var);
+        return $this;}
 
     /**
-     * Output only. The school name snippet shows how the
-     * [school_name][google.cloud.talent.v4beta1.EducationRecord.school_name] is
-     * related to a search query in search result. It's empty if the
-     * [school_name][google.cloud.talent.v4beta1.EducationRecord.school_name]
-     * isn't related to the search query.
+     * Output only. The school name snippet shows how the [school_name][google.cloud.talent.v4beta1.EducationRecord.school_name] is related to a
+     * search query in search result. It's empty if the [school_name][google.cloud.talent.v4beta1.EducationRecord.school_name] isn't
+     * related to the search query.
      *
      * Generated from protobuf field <code>string school_name_snippet = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -419,11 +407,9 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The school name snippet shows how the
-     * [school_name][google.cloud.talent.v4beta1.EducationRecord.school_name] is
-     * related to a search query in search result. It's empty if the
-     * [school_name][google.cloud.talent.v4beta1.EducationRecord.school_name]
-     * isn't related to the search query.
+     * Output only. The school name snippet shows how the [school_name][google.cloud.talent.v4beta1.EducationRecord.school_name] is related to a
+     * search query in search result. It's empty if the [school_name][google.cloud.talent.v4beta1.EducationRecord.school_name] isn't
+     * related to the search query.
      *
      * Generated from protobuf field <code>string school_name_snippet = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -438,11 +424,9 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The job description snippet shows how the
-     * [Degree][google.cloud.talent.v4beta1.Degree] is related to a search query
-     * in search result. It's empty if the
-     * [Degree][google.cloud.talent.v4beta1.Degree] isn't related to the search
-     * query.
+     * Output only. The job description snippet shows how the [Degree][google.cloud.talent.v4beta1.Degree] is related to a search
+     * query in search result. It's empty if the [Degree][google.cloud.talent.v4beta1.Degree] isn't related to the
+     * search query.
      *
      * Generated from protobuf field <code>string degree_snippet = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -453,11 +437,9 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The job description snippet shows how the
-     * [Degree][google.cloud.talent.v4beta1.Degree] is related to a search query
-     * in search result. It's empty if the
-     * [Degree][google.cloud.talent.v4beta1.Degree] isn't related to the search
-     * query.
+     * Output only. The job description snippet shows how the [Degree][google.cloud.talent.v4beta1.Degree] is related to a search
+     * query in search result. It's empty if the [Degree][google.cloud.talent.v4beta1.Degree] isn't related to the
+     * search query.
      *
      * Generated from protobuf field <code>string degree_snippet = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

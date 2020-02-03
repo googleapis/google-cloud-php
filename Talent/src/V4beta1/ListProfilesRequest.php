@@ -16,8 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListProfilesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the tenant under which the profile is
-     * created.
+     * Required. The resource name of the tenant under which the profile is created.
      * The format is "projects/{project_id}/tenants/{tenant_id}". For example,
      * "projects/foo/tenants/bar".
      *
@@ -42,9 +41,8 @@ class ListProfilesRequest extends \Google\Protobuf\Internal\Message
     private $filter = '';
     /**
      * The token that specifies the current offset (that is, starting result).
-     * Please set the value to
-     * [ListProfilesResponse.next_page_token][google.cloud.talent.v4beta1.ListProfilesResponse.next_page_token]
-     * to continue the list.
+     * Please set the value to [ListProfilesResponse.next_page_token][google.cloud.talent.v4beta1.ListProfilesResponse.next_page_token] to
+     * continue the list.
      *
      * Generated from protobuf field <code>string page_token = 2;</code>
      */
@@ -73,8 +71,7 @@ class ListProfilesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The resource name of the tenant under which the profile is
-     *           created.
+     *           Required. The resource name of the tenant under which the profile is created.
      *           The format is "projects/{project_id}/tenants/{tenant_id}". For example,
      *           "projects/foo/tenants/bar".
      *     @type string $filter
@@ -91,9 +88,8 @@ class ListProfilesRequest extends \Google\Protobuf\Internal\Message
      *           * groupId = "groupId-1"
      *     @type string $page_token
      *           The token that specifies the current offset (that is, starting result).
-     *           Please set the value to
-     *           [ListProfilesResponse.next_page_token][google.cloud.talent.v4beta1.ListProfilesResponse.next_page_token]
-     *           to continue the list.
+     *           Please set the value to [ListProfilesResponse.next_page_token][google.cloud.talent.v4beta1.ListProfilesResponse.next_page_token] to
+     *           continue the list.
      *     @type int $page_size
      *           The maximum number of profiles to be returned, at most 100.
      *           Default is 100 unless a positive number smaller than 100 is specified.
@@ -110,8 +106,7 @@ class ListProfilesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the tenant under which the profile is
-     * created.
+     * Required. The resource name of the tenant under which the profile is created.
      * The format is "projects/{project_id}/tenants/{tenant_id}". For example,
      * "projects/foo/tenants/bar".
      *
@@ -124,8 +119,7 @@ class ListProfilesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the tenant under which the profile is
-     * created.
+     * Required. The resource name of the tenant under which the profile is created.
      * The format is "projects/{project_id}/tenants/{tenant_id}". For example,
      * "projects/foo/tenants/bar".
      *
@@ -189,9 +183,8 @@ class ListProfilesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The token that specifies the current offset (that is, starting result).
-     * Please set the value to
-     * [ListProfilesResponse.next_page_token][google.cloud.talent.v4beta1.ListProfilesResponse.next_page_token]
-     * to continue the list.
+     * Please set the value to [ListProfilesResponse.next_page_token][google.cloud.talent.v4beta1.ListProfilesResponse.next_page_token] to
+     * continue the list.
      *
      * Generated from protobuf field <code>string page_token = 2;</code>
      * @return string
@@ -203,9 +196,8 @@ class ListProfilesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The token that specifies the current offset (that is, starting result).
-     * Please set the value to
-     * [ListProfilesResponse.next_page_token][google.cloud.talent.v4beta1.ListProfilesResponse.next_page_token]
-     * to continue the list.
+     * Please set the value to [ListProfilesResponse.next_page_token][google.cloud.talent.v4beta1.ListProfilesResponse.next_page_token] to
+     * continue the list.
      *
      * Generated from protobuf field <code>string page_token = 2;</code>
      * @param string $var

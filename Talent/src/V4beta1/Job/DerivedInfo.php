@@ -16,20 +16,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class DerivedInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Structured locations of the job, resolved from
-     * [Job.addresses][google.cloud.talent.v4beta1.Job.addresses].
-     * [locations][google.cloud.talent.v4beta1.Job.DerivedInfo.locations] are
-     * exactly matched to
-     * [Job.addresses][google.cloud.talent.v4beta1.Job.addresses] in the same
+     * Structured locations of the job, resolved from [Job.addresses][google.cloud.talent.v4beta1.Job.addresses].
+     * [locations][google.cloud.talent.v4beta1.Job.DerivedInfo.locations] are exactly matched to [Job.addresses][google.cloud.talent.v4beta1.Job.addresses] in the same
      * order.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Location locations = 1;</code>
      */
     private $locations;
     /**
-     * Job categories derived from
-     * [Job.title][google.cloud.talent.v4beta1.Job.title] and
-     * [Job.description][google.cloud.talent.v4beta1.Job.description].
+     * Job categories derived from [Job.title][google.cloud.talent.v4beta1.Job.title] and [Job.description][google.cloud.talent.v4beta1.Job.description].
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.JobCategory job_categories = 3;</code>
      */
@@ -42,16 +37,11 @@ class DerivedInfo extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Talent\V4beta1\Location[]|\Google\Protobuf\Internal\RepeatedField $locations
-     *           Structured locations of the job, resolved from
-     *           [Job.addresses][google.cloud.talent.v4beta1.Job.addresses].
-     *           [locations][google.cloud.talent.v4beta1.Job.DerivedInfo.locations] are
-     *           exactly matched to
-     *           [Job.addresses][google.cloud.talent.v4beta1.Job.addresses] in the same
+     *           Structured locations of the job, resolved from [Job.addresses][google.cloud.talent.v4beta1.Job.addresses].
+     *           [locations][google.cloud.talent.v4beta1.Job.DerivedInfo.locations] are exactly matched to [Job.addresses][google.cloud.talent.v4beta1.Job.addresses] in the same
      *           order.
      *     @type int[]|\Google\Protobuf\Internal\RepeatedField $job_categories
-     *           Job categories derived from
-     *           [Job.title][google.cloud.talent.v4beta1.Job.title] and
-     *           [Job.description][google.cloud.talent.v4beta1.Job.description].
+     *           Job categories derived from [Job.title][google.cloud.talent.v4beta1.Job.title] and [Job.description][google.cloud.talent.v4beta1.Job.description].
      * }
      */
     public function __construct($data = NULL) {
@@ -60,11 +50,8 @@ class DerivedInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Structured locations of the job, resolved from
-     * [Job.addresses][google.cloud.talent.v4beta1.Job.addresses].
-     * [locations][google.cloud.talent.v4beta1.Job.DerivedInfo.locations] are
-     * exactly matched to
-     * [Job.addresses][google.cloud.talent.v4beta1.Job.addresses] in the same
+     * Structured locations of the job, resolved from [Job.addresses][google.cloud.talent.v4beta1.Job.addresses].
+     * [locations][google.cloud.talent.v4beta1.Job.DerivedInfo.locations] are exactly matched to [Job.addresses][google.cloud.talent.v4beta1.Job.addresses] in the same
      * order.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Location locations = 1;</code>
@@ -76,11 +63,8 @@ class DerivedInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Structured locations of the job, resolved from
-     * [Job.addresses][google.cloud.talent.v4beta1.Job.addresses].
-     * [locations][google.cloud.talent.v4beta1.Job.DerivedInfo.locations] are
-     * exactly matched to
-     * [Job.addresses][google.cloud.talent.v4beta1.Job.addresses] in the same
+     * Structured locations of the job, resolved from [Job.addresses][google.cloud.talent.v4beta1.Job.addresses].
+     * [locations][google.cloud.talent.v4beta1.Job.DerivedInfo.locations] are exactly matched to [Job.addresses][google.cloud.talent.v4beta1.Job.addresses] in the same
      * order.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Location locations = 1;</code>
@@ -96,9 +80,7 @@ class DerivedInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Job categories derived from
-     * [Job.title][google.cloud.talent.v4beta1.Job.title] and
-     * [Job.description][google.cloud.talent.v4beta1.Job.description].
+     * Job categories derived from [Job.title][google.cloud.talent.v4beta1.Job.title] and [Job.description][google.cloud.talent.v4beta1.Job.description].
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.JobCategory job_categories = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -109,9 +91,7 @@ class DerivedInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Job categories derived from
-     * [Job.title][google.cloud.talent.v4beta1.Job.title] and
-     * [Job.description][google.cloud.talent.v4beta1.Job.description].
+     * Job categories derived from [Job.title][google.cloud.talent.v4beta1.Job.title] and [Job.description][google.cloud.talent.v4beta1.Job.description].
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.JobCategory job_categories = 3;</code>
      * @param int[]|\Google\Protobuf\Internal\RepeatedField $var

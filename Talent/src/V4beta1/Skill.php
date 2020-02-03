@@ -44,11 +44,9 @@ class Skill extends \Google\Protobuf\Internal\Message
      */
     private $context = '';
     /**
-     * Output only. Skill name snippet shows how the
-     * [display_name][google.cloud.talent.v4beta1.Skill.display_name] is related
-     * to a search query. It's empty if the
-     * [display_name][google.cloud.talent.v4beta1.Skill.display_name] isn't
-     * related to the search query.
+     * Output only. Skill name snippet shows how the [display_name][google.cloud.talent.v4beta1.Skill.display_name] is related to a search
+     * query. It's empty if the [display_name][google.cloud.talent.v4beta1.Skill.display_name] isn't related to the search
+     * query.
      *
      * Generated from protobuf field <code>string skill_name_snippet = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -73,11 +71,9 @@ class Skill extends \Google\Protobuf\Internal\Message
      *           A paragraph describes context of this skill.
      *           Number of characters allowed is 100,000.
      *     @type string $skill_name_snippet
-     *           Output only. Skill name snippet shows how the
-     *           [display_name][google.cloud.talent.v4beta1.Skill.display_name] is related
-     *           to a search query. It's empty if the
-     *           [display_name][google.cloud.talent.v4beta1.Skill.display_name] isn't
-     *           related to the search query.
+     *           Output only. Skill name snippet shows how the [display_name][google.cloud.talent.v4beta1.Skill.display_name] is related to a search
+     *           query. It's empty if the [display_name][google.cloud.talent.v4beta1.Skill.display_name] isn't related to the search
+     *           query.
      * }
      */
     public function __construct($data = NULL) {
@@ -198,11 +194,9 @@ class Skill extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Skill name snippet shows how the
-     * [display_name][google.cloud.talent.v4beta1.Skill.display_name] is related
-     * to a search query. It's empty if the
-     * [display_name][google.cloud.talent.v4beta1.Skill.display_name] isn't
-     * related to the search query.
+     * Output only. Skill name snippet shows how the [display_name][google.cloud.talent.v4beta1.Skill.display_name] is related to a search
+     * query. It's empty if the [display_name][google.cloud.talent.v4beta1.Skill.display_name] isn't related to the search
+     * query.
      *
      * Generated from protobuf field <code>string skill_name_snippet = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -213,11 +207,9 @@ class Skill extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Skill name snippet shows how the
-     * [display_name][google.cloud.talent.v4beta1.Skill.display_name] is related
-     * to a search query. It's empty if the
-     * [display_name][google.cloud.talent.v4beta1.Skill.display_name] isn't
-     * related to the search query.
+     * Output only. Skill name snippet shows how the [display_name][google.cloud.talent.v4beta1.Skill.display_name] is related to a search
+     * query. It's empty if the [display_name][google.cloud.talent.v4beta1.Skill.display_name] isn't related to the search
+     * query.
      *
      * Generated from protobuf field <code>string skill_name_snippet = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
