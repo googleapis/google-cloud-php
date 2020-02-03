@@ -89,7 +89,7 @@ s.replace(
 
 # roll back to private properties.
 s.replace(
-    "src/**/V*/**/*.php",
+    ["src/**/V*/**/*.php", "src/Common/**/*.php"],
     r"Generated from protobuf field ([^\n]{0,})\n\s{5}\*/\n\s{4}protected \$",
     r"""Generated from protobuf field \1
      */
@@ -97,13 +97,13 @@ s.replace(
 
 # prevent proto messages from being marked final
 s.replace(
-    "src/**/V*/**/*.php",
+    ["src/**/V*/**/*.php", "src/Common/**/*.php"],
     r"final class",
     r"class")
 
 # Replace "Unwrapped" with "Value" for method names.
 s.replace(
-    "src/**/V*/**/*.php",
+    ["src/**/V*/**/*.php", "src/Common/**/*.php"],
     r"public function ([s|g]\w{3,})Unwrapped",
     r"public function \1Value"
 )
