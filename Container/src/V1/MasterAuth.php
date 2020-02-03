@@ -19,8 +19,8 @@ class MasterAuth extends \Google\Protobuf\Internal\Message
 {
     /**
      * The username to use for HTTP basic authentication to the master endpoint.
-     * For clusters v1.6.0 and later, you can disable basic authentication by
-     * providing an empty username.
+     * For clusters v1.6.0 and later, basic authentication can be disabled by
+     * leaving username unspecified (or setting it to the empty string).
      *
      * Generated from protobuf field <code>string username = 1;</code>
      */
@@ -72,8 +72,8 @@ class MasterAuth extends \Google\Protobuf\Internal\Message
      *
      *     @type string $username
      *           The username to use for HTTP basic authentication to the master endpoint.
-     *           For clusters v1.6.0 and later, you can disable basic authentication by
-     *           providing an empty username.
+     *           For clusters v1.6.0 and later, basic authentication can be disabled by
+     *           leaving username unspecified (or setting it to the empty string).
      *     @type string $password
      *           The password to use for HTTP basic authentication to the master endpoint.
      *           Because the master endpoint is open to the Internet, you should create a
@@ -101,8 +101,8 @@ class MasterAuth extends \Google\Protobuf\Internal\Message
 
     /**
      * The username to use for HTTP basic authentication to the master endpoint.
-     * For clusters v1.6.0 and later, you can disable basic authentication by
-     * providing an empty username.
+     * For clusters v1.6.0 and later, basic authentication can be disabled by
+     * leaving username unspecified (or setting it to the empty string).
      *
      * Generated from protobuf field <code>string username = 1;</code>
      * @return string
@@ -114,8 +114,8 @@ class MasterAuth extends \Google\Protobuf\Internal\Message
 
     /**
      * The username to use for HTTP basic authentication to the master endpoint.
-     * For clusters v1.6.0 and later, you can disable basic authentication by
-     * providing an empty username.
+     * For clusters v1.6.0 and later, basic authentication can be disabled by
+     * leaving username unspecified (or setting it to the empty string).
      *
      * Generated from protobuf field <code>string username = 1;</code>
      * @param string $var

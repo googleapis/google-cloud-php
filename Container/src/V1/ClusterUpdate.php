@@ -34,6 +34,8 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     /**
      * The monitoring service the cluster should use to write metrics.
      * Currently available options:
+     * * "monitoring.googleapis.com/kubernetes" - the Google Cloud Monitoring
+     * service with Kubernetes-native resource model
      * * "monitoring.googleapis.com" - the Google Cloud Monitoring service
      * * "none" - no metrics will be exported from the cluster
      *
@@ -63,6 +65,12 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     private $desired_image_type = '';
     /**
+     * Configuration of etcd encryption.
+     *
+     * Generated from protobuf field <code>.google.container.v1.DatabaseEncryption desired_database_encryption = 46;</code>
+     */
+    private $desired_database_encryption = null;
+    /**
      * Autoscaler configuration for the node pool specified in
      * desired_node_pool_id. If there is only one pool in the
      * cluster and desired_node_pool_id is not provided then
@@ -73,7 +81,7 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     private $desired_node_pool_autoscaling = null;
     /**
      * The desired list of Google Compute Engine
-     * [locations](/compute/docs/zones#available) in which the cluster's nodes
+     * [zones](https://cloud.google.com/compute/docs/zones#available) in which the cluster's nodes
      * should be located. Changing the locations a cluster is in will result
      * in nodes being either created or removed from the cluster, depending on
      * whether locations are being added or removed.
@@ -88,6 +96,47 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.MasterAuthorizedNetworksConfig desired_master_authorized_networks_config = 12;</code>
      */
     private $desired_master_authorized_networks_config = null;
+    /**
+     * Cluster-level autoscaling configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ClusterAutoscaling desired_cluster_autoscaling = 15;</code>
+     */
+    private $desired_cluster_autoscaling = null;
+    /**
+     * The desired configuration options for the Binary Authorization feature.
+     *
+     * Generated from protobuf field <code>.google.container.v1.BinaryAuthorization desired_binary_authorization = 16;</code>
+     */
+    private $desired_binary_authorization = null;
+    /**
+     * The logging service the cluster should use to write logs.
+     * Currently available options:
+     * * "logging.googleapis.com/kubernetes" - the Google Cloud Logging
+     * service with Kubernetes-native resource model
+     * * "logging.googleapis.com" - the Google Cloud Logging service
+     * * "none" - no logs will be exported from the cluster
+     *
+     * Generated from protobuf field <code>string desired_logging_service = 19;</code>
+     */
+    private $desired_logging_service = '';
+    /**
+     * The desired configuration for exporting resource usage.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ResourceUsageExportConfig desired_resource_usage_export_config = 21;</code>
+     */
+    private $desired_resource_usage_export_config = null;
+    /**
+     * Cluster-level Vertical Pod Autoscaling configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.VerticalPodAutoscaling desired_vertical_pod_autoscaling = 22;</code>
+     */
+    private $desired_vertical_pod_autoscaling = null;
+    /**
+     * The desired config of Intra-node visibility.
+     *
+     * Generated from protobuf field <code>.google.container.v1.IntraNodeVisibilityConfig desired_intra_node_visibility_config = 26;</code>
+     */
+    private $desired_intra_node_visibility_config = null;
     /**
      * The Kubernetes version to change the master to.
      * Users may specify either explicit versions offered by
@@ -121,6 +170,8 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *     @type string $desired_monitoring_service
      *           The monitoring service the cluster should use to write metrics.
      *           Currently available options:
+     *           * "monitoring.googleapis.com/kubernetes" - the Google Cloud Monitoring
+     *           service with Kubernetes-native resource model
      *           * "monitoring.googleapis.com" - the Google Cloud Monitoring service
      *           * "none" - no metrics will be exported from the cluster
      *     @type \Google\Cloud\Container\V1\AddonsConfig $desired_addons_config
@@ -133,6 +184,8 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *     @type string $desired_image_type
      *           The desired image type for the node pool.
      *           NOTE: Set the "desired_node_pool" field as well.
+     *     @type \Google\Cloud\Container\V1\DatabaseEncryption $desired_database_encryption
+     *           Configuration of etcd encryption.
      *     @type \Google\Cloud\Container\V1\NodePoolAutoscaling $desired_node_pool_autoscaling
      *           Autoscaler configuration for the node pool specified in
      *           desired_node_pool_id. If there is only one pool in the
@@ -140,13 +193,30 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *           the change applies to that single node pool.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $desired_locations
      *           The desired list of Google Compute Engine
-     *           [locations](/compute/docs/zones#available) in which the cluster's nodes
+     *           [zones](https://cloud.google.com/compute/docs/zones#available) in which the cluster's nodes
      *           should be located. Changing the locations a cluster is in will result
      *           in nodes being either created or removed from the cluster, depending on
      *           whether locations are being added or removed.
      *           This list must always include the cluster's primary zone.
      *     @type \Google\Cloud\Container\V1\MasterAuthorizedNetworksConfig $desired_master_authorized_networks_config
      *           The desired configuration options for master authorized networks feature.
+     *     @type \Google\Cloud\Container\V1\ClusterAutoscaling $desired_cluster_autoscaling
+     *           Cluster-level autoscaling configuration.
+     *     @type \Google\Cloud\Container\V1\BinaryAuthorization $desired_binary_authorization
+     *           The desired configuration options for the Binary Authorization feature.
+     *     @type string $desired_logging_service
+     *           The logging service the cluster should use to write logs.
+     *           Currently available options:
+     *           * "logging.googleapis.com/kubernetes" - the Google Cloud Logging
+     *           service with Kubernetes-native resource model
+     *           * "logging.googleapis.com" - the Google Cloud Logging service
+     *           * "none" - no logs will be exported from the cluster
+     *     @type \Google\Cloud\Container\V1\ResourceUsageExportConfig $desired_resource_usage_export_config
+     *           The desired configuration for exporting resource usage.
+     *     @type \Google\Cloud\Container\V1\VerticalPodAutoscaling $desired_vertical_pod_autoscaling
+     *           Cluster-level Vertical Pod Autoscaling configuration.
+     *     @type \Google\Cloud\Container\V1\IntraNodeVisibilityConfig $desired_intra_node_visibility_config
+     *           The desired config of Intra-node visibility.
      *     @type string $desired_master_version
      *           The Kubernetes version to change the master to.
      *           Users may specify either explicit versions offered by
@@ -208,6 +278,8 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     /**
      * The monitoring service the cluster should use to write metrics.
      * Currently available options:
+     * * "monitoring.googleapis.com/kubernetes" - the Google Cloud Monitoring
+     * service with Kubernetes-native resource model
      * * "monitoring.googleapis.com" - the Google Cloud Monitoring service
      * * "none" - no metrics will be exported from the cluster
      *
@@ -222,6 +294,8 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     /**
      * The monitoring service the cluster should use to write metrics.
      * Currently available options:
+     * * "monitoring.googleapis.com/kubernetes" - the Google Cloud Monitoring
+     * service with Kubernetes-native resource model
      * * "monitoring.googleapis.com" - the Google Cloud Monitoring service
      * * "none" - no metrics will be exported from the cluster
      *
@@ -324,6 +398,32 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Configuration of etcd encryption.
+     *
+     * Generated from protobuf field <code>.google.container.v1.DatabaseEncryption desired_database_encryption = 46;</code>
+     * @return \Google\Cloud\Container\V1\DatabaseEncryption
+     */
+    public function getDesiredDatabaseEncryption()
+    {
+        return $this->desired_database_encryption;
+    }
+
+    /**
+     * Configuration of etcd encryption.
+     *
+     * Generated from protobuf field <code>.google.container.v1.DatabaseEncryption desired_database_encryption = 46;</code>
+     * @param \Google\Cloud\Container\V1\DatabaseEncryption $var
+     * @return $this
+     */
+    public function setDesiredDatabaseEncryption($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\DatabaseEncryption::class);
+        $this->desired_database_encryption = $var;
+
+        return $this;
+    }
+
+    /**
      * Autoscaler configuration for the node pool specified in
      * desired_node_pool_id. If there is only one pool in the
      * cluster and desired_node_pool_id is not provided then
@@ -357,7 +457,7 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
 
     /**
      * The desired list of Google Compute Engine
-     * [locations](/compute/docs/zones#available) in which the cluster's nodes
+     * [zones](https://cloud.google.com/compute/docs/zones#available) in which the cluster's nodes
      * should be located. Changing the locations a cluster is in will result
      * in nodes being either created or removed from the cluster, depending on
      * whether locations are being added or removed.
@@ -373,7 +473,7 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
 
     /**
      * The desired list of Google Compute Engine
-     * [locations](/compute/docs/zones#available) in which the cluster's nodes
+     * [zones](https://cloud.google.com/compute/docs/zones#available) in which the cluster's nodes
      * should be located. Changing the locations a cluster is in will result
      * in nodes being either created or removed from the cluster, depending on
      * whether locations are being added or removed.
@@ -413,6 +513,172 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\MasterAuthorizedNetworksConfig::class);
         $this->desired_master_authorized_networks_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Cluster-level autoscaling configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ClusterAutoscaling desired_cluster_autoscaling = 15;</code>
+     * @return \Google\Cloud\Container\V1\ClusterAutoscaling
+     */
+    public function getDesiredClusterAutoscaling()
+    {
+        return $this->desired_cluster_autoscaling;
+    }
+
+    /**
+     * Cluster-level autoscaling configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ClusterAutoscaling desired_cluster_autoscaling = 15;</code>
+     * @param \Google\Cloud\Container\V1\ClusterAutoscaling $var
+     * @return $this
+     */
+    public function setDesiredClusterAutoscaling($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ClusterAutoscaling::class);
+        $this->desired_cluster_autoscaling = $var;
+
+        return $this;
+    }
+
+    /**
+     * The desired configuration options for the Binary Authorization feature.
+     *
+     * Generated from protobuf field <code>.google.container.v1.BinaryAuthorization desired_binary_authorization = 16;</code>
+     * @return \Google\Cloud\Container\V1\BinaryAuthorization
+     */
+    public function getDesiredBinaryAuthorization()
+    {
+        return $this->desired_binary_authorization;
+    }
+
+    /**
+     * The desired configuration options for the Binary Authorization feature.
+     *
+     * Generated from protobuf field <code>.google.container.v1.BinaryAuthorization desired_binary_authorization = 16;</code>
+     * @param \Google\Cloud\Container\V1\BinaryAuthorization $var
+     * @return $this
+     */
+    public function setDesiredBinaryAuthorization($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\BinaryAuthorization::class);
+        $this->desired_binary_authorization = $var;
+
+        return $this;
+    }
+
+    /**
+     * The logging service the cluster should use to write logs.
+     * Currently available options:
+     * * "logging.googleapis.com/kubernetes" - the Google Cloud Logging
+     * service with Kubernetes-native resource model
+     * * "logging.googleapis.com" - the Google Cloud Logging service
+     * * "none" - no logs will be exported from the cluster
+     *
+     * Generated from protobuf field <code>string desired_logging_service = 19;</code>
+     * @return string
+     */
+    public function getDesiredLoggingService()
+    {
+        return $this->desired_logging_service;
+    }
+
+    /**
+     * The logging service the cluster should use to write logs.
+     * Currently available options:
+     * * "logging.googleapis.com/kubernetes" - the Google Cloud Logging
+     * service with Kubernetes-native resource model
+     * * "logging.googleapis.com" - the Google Cloud Logging service
+     * * "none" - no logs will be exported from the cluster
+     *
+     * Generated from protobuf field <code>string desired_logging_service = 19;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDesiredLoggingService($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->desired_logging_service = $var;
+
+        return $this;
+    }
+
+    /**
+     * The desired configuration for exporting resource usage.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ResourceUsageExportConfig desired_resource_usage_export_config = 21;</code>
+     * @return \Google\Cloud\Container\V1\ResourceUsageExportConfig
+     */
+    public function getDesiredResourceUsageExportConfig()
+    {
+        return $this->desired_resource_usage_export_config;
+    }
+
+    /**
+     * The desired configuration for exporting resource usage.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ResourceUsageExportConfig desired_resource_usage_export_config = 21;</code>
+     * @param \Google\Cloud\Container\V1\ResourceUsageExportConfig $var
+     * @return $this
+     */
+    public function setDesiredResourceUsageExportConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ResourceUsageExportConfig::class);
+        $this->desired_resource_usage_export_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Cluster-level Vertical Pod Autoscaling configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.VerticalPodAutoscaling desired_vertical_pod_autoscaling = 22;</code>
+     * @return \Google\Cloud\Container\V1\VerticalPodAutoscaling
+     */
+    public function getDesiredVerticalPodAutoscaling()
+    {
+        return $this->desired_vertical_pod_autoscaling;
+    }
+
+    /**
+     * Cluster-level Vertical Pod Autoscaling configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.VerticalPodAutoscaling desired_vertical_pod_autoscaling = 22;</code>
+     * @param \Google\Cloud\Container\V1\VerticalPodAutoscaling $var
+     * @return $this
+     */
+    public function setDesiredVerticalPodAutoscaling($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\VerticalPodAutoscaling::class);
+        $this->desired_vertical_pod_autoscaling = $var;
+
+        return $this;
+    }
+
+    /**
+     * The desired config of Intra-node visibility.
+     *
+     * Generated from protobuf field <code>.google.container.v1.IntraNodeVisibilityConfig desired_intra_node_visibility_config = 26;</code>
+     * @return \Google\Cloud\Container\V1\IntraNodeVisibilityConfig
+     */
+    public function getDesiredIntraNodeVisibilityConfig()
+    {
+        return $this->desired_intra_node_visibility_config;
+    }
+
+    /**
+     * The desired config of Intra-node visibility.
+     *
+     * Generated from protobuf field <code>.google.container.v1.IntraNodeVisibilityConfig desired_intra_node_visibility_config = 26;</code>
+     * @param \Google\Cloud\Container\V1\IntraNodeVisibilityConfig $var
+     * @return $this
+     */
+    public function setDesiredIntraNodeVisibilityConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\IntraNodeVisibilityConfig::class);
+        $this->desired_intra_node_visibility_config = $var;
 
         return $this;
     }

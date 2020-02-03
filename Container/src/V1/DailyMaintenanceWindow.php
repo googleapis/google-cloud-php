@@ -18,7 +18,7 @@ class DailyMaintenanceWindow extends \Google\Protobuf\Internal\Message
     /**
      * Time within the maintenance window to start the maintenance operations.
      * Time format should be in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt)
-     * format "HH:MM”, where HH : [00-23] and MM : [00-59] GMT.
+     * format "HH:MM", where HH : [00-23] and MM : [00-59] GMT.
      *
      * Generated from protobuf field <code>string start_time = 2;</code>
      */
@@ -42,7 +42,7 @@ class DailyMaintenanceWindow extends \Google\Protobuf\Internal\Message
      *     @type string $start_time
      *           Time within the maintenance window to start the maintenance operations.
      *           Time format should be in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt)
-     *           format "HH:MM”, where HH : [00-23] and MM : [00-59] GMT.
+     *           format "HH:MM", where HH : [00-23] and MM : [00-59] GMT.
      *     @type string $duration
      *           [Output only] Duration of the time window, automatically chosen to be
      *           smallest possible in the given scenario.
@@ -58,7 +58,7 @@ class DailyMaintenanceWindow extends \Google\Protobuf\Internal\Message
     /**
      * Time within the maintenance window to start the maintenance operations.
      * Time format should be in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt)
-     * format "HH:MM”, where HH : [00-23] and MM : [00-59] GMT.
+     * format "HH:MM", where HH : [00-23] and MM : [00-59] GMT.
      *
      * Generated from protobuf field <code>string start_time = 2;</code>
      * @return string
@@ -71,7 +71,7 @@ class DailyMaintenanceWindow extends \Google\Protobuf\Internal\Message
     /**
      * Time within the maintenance window to start the maintenance operations.
      * Time format should be in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt)
-     * format "HH:MM”, where HH : [00-23] and MM : [00-59] GMT.
+     * format "HH:MM", where HH : [00-23] and MM : [00-59] GMT.
      *
      * Generated from protobuf field <code>string start_time = 2;</code>
      * @param string $var

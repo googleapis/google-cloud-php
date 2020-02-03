@@ -16,27 +16,27 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateClusterRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Deprecated. The Google Developers Console [project ID or project
+     * Required. Deprecated. The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
      * This field has been deprecated and replaced by the parent field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      */
     private $project_id = '';
     /**
-     * Deprecated. The name of the Google Compute Engine
-     * [zone](/compute/docs/zones#available) in which the cluster
+     * Required. Deprecated. The name of the Google Compute Engine
+     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      * resides.
      * This field has been deprecated and replaced by the parent field.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      */
     private $zone = '';
     /**
-     * A [cluster
+     * Required. A [cluster
      * resource](/container-engine/reference/rest/v1/projects.zones.clusters)
      *
-     * Generated from protobuf field <code>.google.container.v1.Cluster cluster = 3;</code>
+     * Generated from protobuf field <code>.google.container.v1.Cluster cluster = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $cluster = null;
     /**
@@ -54,16 +54,16 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $project_id
-     *           Deprecated. The Google Developers Console [project ID or project
+     *           Required. Deprecated. The Google Developers Console [project ID or project
      *           number](https://support.google.com/cloud/answer/6158840).
      *           This field has been deprecated and replaced by the parent field.
      *     @type string $zone
-     *           Deprecated. The name of the Google Compute Engine
-     *           [zone](/compute/docs/zones#available) in which the cluster
+     *           Required. Deprecated. The name of the Google Compute Engine
+     *           [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      *           resides.
      *           This field has been deprecated and replaced by the parent field.
      *     @type \Google\Cloud\Container\V1\Cluster $cluster
-     *           A [cluster
+     *           Required. A [cluster
      *           resource](/container-engine/reference/rest/v1/projects.zones.clusters)
      *     @type string $parent
      *           The parent (project and location) where the cluster will be created.
@@ -76,11 +76,11 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The Google Developers Console [project ID or project
+     * Required. Deprecated. The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
      * This field has been deprecated and replaced by the parent field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getProjectId()
@@ -89,11 +89,11 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The Google Developers Console [project ID or project
+     * Required. Deprecated. The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
      * This field has been deprecated and replaced by the parent field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -106,12 +106,12 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the Google Compute Engine
-     * [zone](/compute/docs/zones#available) in which the cluster
+     * Required. Deprecated. The name of the Google Compute Engine
+     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      * resides.
      * This field has been deprecated and replaced by the parent field.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getZone()
@@ -120,12 +120,12 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the Google Compute Engine
-     * [zone](/compute/docs/zones#available) in which the cluster
+     * Required. Deprecated. The name of the Google Compute Engine
+     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      * resides.
      * This field has been deprecated and replaced by the parent field.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -138,10 +138,10 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A [cluster
+     * Required. A [cluster
      * resource](/container-engine/reference/rest/v1/projects.zones.clusters)
      *
-     * Generated from protobuf field <code>.google.container.v1.Cluster cluster = 3;</code>
+     * Generated from protobuf field <code>.google.container.v1.Cluster cluster = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Container\V1\Cluster
      */
     public function getCluster()
@@ -150,10 +150,10 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A [cluster
+     * Required. A [cluster
      * resource](/container-engine/reference/rest/v1/projects.zones.clusters)
      *
-     * Generated from protobuf field <code>.google.container.v1.Cluster cluster = 3;</code>
+     * Generated from protobuf field <code>.google.container.v1.Cluster cluster = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Container\V1\Cluster $var
      * @return $this
      */

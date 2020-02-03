@@ -16,33 +16,33 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateNodePoolRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Deprecated. The Google Developers Console [project ID or project
+     * Required. Deprecated. The Google Developers Console [project ID or project
      * number](https://developers.google.com/console/help/new/#projectnumber).
      * This field has been deprecated and replaced by the parent field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      */
     private $project_id = '';
     /**
-     * Deprecated. The name of the Google Compute Engine
-     * [zone](/compute/docs/zones#available) in which the cluster
+     * Required. Deprecated. The name of the Google Compute Engine
+     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      * resides.
      * This field has been deprecated and replaced by the parent field.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      */
     private $zone = '';
     /**
-     * Deprecated. The name of the cluster.
+     * Required. Deprecated. The name of the cluster.
      * This field has been deprecated and replaced by the parent field.
      *
-     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
+     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      */
     private $cluster_id = '';
     /**
-     * The node pool to create.
+     * Required. The node pool to create.
      *
-     * Generated from protobuf field <code>.google.container.v1.NodePool node_pool = 4;</code>
+     * Generated from protobuf field <code>.google.container.v1.NodePool node_pool = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $node_pool = null;
     /**
@@ -61,19 +61,19 @@ class CreateNodePoolRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $project_id
-     *           Deprecated. The Google Developers Console [project ID or project
+     *           Required. Deprecated. The Google Developers Console [project ID or project
      *           number](https://developers.google.com/console/help/new/#projectnumber).
      *           This field has been deprecated and replaced by the parent field.
      *     @type string $zone
-     *           Deprecated. The name of the Google Compute Engine
-     *           [zone](/compute/docs/zones#available) in which the cluster
+     *           Required. Deprecated. The name of the Google Compute Engine
+     *           [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      *           resides.
      *           This field has been deprecated and replaced by the parent field.
      *     @type string $cluster_id
-     *           Deprecated. The name of the cluster.
+     *           Required. Deprecated. The name of the cluster.
      *           This field has been deprecated and replaced by the parent field.
      *     @type \Google\Cloud\Container\V1\NodePool $node_pool
-     *           The node pool to create.
+     *           Required. The node pool to create.
      *     @type string $parent
      *           The parent (project, location, cluster id) where the node pool will be
      *           created. Specified in the format
@@ -86,11 +86,11 @@ class CreateNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The Google Developers Console [project ID or project
+     * Required. Deprecated. The Google Developers Console [project ID or project
      * number](https://developers.google.com/console/help/new/#projectnumber).
      * This field has been deprecated and replaced by the parent field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getProjectId()
@@ -99,11 +99,11 @@ class CreateNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The Google Developers Console [project ID or project
+     * Required. Deprecated. The Google Developers Console [project ID or project
      * number](https://developers.google.com/console/help/new/#projectnumber).
      * This field has been deprecated and replaced by the parent field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -116,12 +116,12 @@ class CreateNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the Google Compute Engine
-     * [zone](/compute/docs/zones#available) in which the cluster
+     * Required. Deprecated. The name of the Google Compute Engine
+     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      * resides.
      * This field has been deprecated and replaced by the parent field.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getZone()
@@ -130,12 +130,12 @@ class CreateNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the Google Compute Engine
-     * [zone](/compute/docs/zones#available) in which the cluster
+     * Required. Deprecated. The name of the Google Compute Engine
+     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      * resides.
      * This field has been deprecated and replaced by the parent field.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -148,10 +148,10 @@ class CreateNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the cluster.
+     * Required. Deprecated. The name of the cluster.
      * This field has been deprecated and replaced by the parent field.
      *
-     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
+     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getClusterId()
@@ -160,10 +160,10 @@ class CreateNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the cluster.
+     * Required. Deprecated. The name of the cluster.
      * This field has been deprecated and replaced by the parent field.
      *
-     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
+     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -176,9 +176,9 @@ class CreateNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The node pool to create.
+     * Required. The node pool to create.
      *
-     * Generated from protobuf field <code>.google.container.v1.NodePool node_pool = 4;</code>
+     * Generated from protobuf field <code>.google.container.v1.NodePool node_pool = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Container\V1\NodePool
      */
     public function getNodePool()
@@ -187,9 +187,9 @@ class CreateNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The node pool to create.
+     * Required. The node pool to create.
      *
-     * Generated from protobuf field <code>.google.container.v1.NodePool node_pool = 4;</code>
+     * Generated from protobuf field <code>.google.container.v1.NodePool node_pool = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Container\V1\NodePool $var
      * @return $this
      */

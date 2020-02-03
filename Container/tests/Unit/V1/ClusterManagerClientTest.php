@@ -33,6 +33,7 @@ use Google\Cloud\Container\V1\ClusterUpdate;
 use Google\Cloud\Container\V1\ListClustersResponse;
 use Google\Cloud\Container\V1\ListNodePoolsResponse;
 use Google\Cloud\Container\V1\ListOperationsResponse;
+use Google\Cloud\Container\V1\ListUsableSubnetworksResponse;
 use Google\Cloud\Container\V1\MaintenancePolicy;
 use Google\Cloud\Container\V1\MasterAuth;
 use Google\Cloud\Container\V1\NetworkPolicy;
@@ -42,6 +43,7 @@ use Google\Cloud\Container\V1\NodePoolAutoscaling;
 use Google\Cloud\Container\V1\Operation;
 use Google\Cloud\Container\V1\ServerConfig;
 use Google\Cloud\Container\V1\SetMasterAuthRequest\Action;
+use Google\Cloud\Container\V1\UsableSubnetwork;
 use Google\Protobuf\Any;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
@@ -193,6 +195,8 @@ class ClusterManagerClientTest extends GeneratedTest
         $currentNodeCount = 178977560;
         $expireTime = 'expireTime-96179731';
         $location = 'location1901043637';
+        $enableTpu = false;
+        $tpuIpv4CidrBlock = 'tpuIpv4CidrBlock1137906646';
         $expectedResponse = new Cluster();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
@@ -217,6 +221,8 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setCurrentNodeCount($currentNodeCount);
         $expectedResponse->setExpireTime($expireTime);
         $expectedResponse->setLocation($location);
+        $expectedResponse->setEnableTpu($enableTpu);
+        $expectedResponse->setTpuIpv4CidrBlock($tpuIpv4CidrBlock);
         $transport->addResponse($expectedResponse);
 
         // Mock request
@@ -1872,12 +1878,14 @@ class ClusterManagerClientTest extends GeneratedTest
         $selfLink = 'selfLink-1691268851';
         $version = 'version351608024';
         $statusMessage = 'statusMessage-239442758';
+        $podIpv4CidrSize = 1098768716;
         $expectedResponse = new NodePool();
         $expectedResponse->setName($name);
         $expectedResponse->setInitialNodeCount($initialNodeCount);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setVersion($version);
         $expectedResponse->setStatusMessage($statusMessage);
+        $expectedResponse->setPodIpv4CidrSize($podIpv4CidrSize);
         $transport->addResponse($expectedResponse);
 
         // Mock request
@@ -3089,6 +3097,76 @@ class ClusterManagerClientTest extends GeneratedTest
 
         try {
             $client->setMaintenancePolicy($projectId, $zone, $clusterId, $maintenancePolicy);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function listUsableSubnetworksTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $nextPageToken = '';
+        $subnetworksElement = new UsableSubnetwork();
+        $subnetworks = [$subnetworksElement];
+        $expectedResponse = new ListUsableSubnetworksResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setSubnetworks($subnetworks);
+        $transport->addResponse($expectedResponse);
+
+        $response = $client->listUsableSubnetworks();
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getSubnetworks()[0], $resources[0]);
+
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.container.v1.ClusterManager/ListUsableSubnetworks', $actualFuncCall);
+
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function listUsableSubnetworksExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        try {
+            $client->listUsableSubnetworks();
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

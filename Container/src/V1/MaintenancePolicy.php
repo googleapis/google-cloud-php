@@ -21,6 +21,16 @@ class MaintenancePolicy extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.MaintenanceWindow window = 1;</code>
      */
     private $window = null;
+    /**
+     * A hash identifying the version of this policy, so that updates to fields of
+     * the policy won't accidentally undo intermediate changes (and so that users
+     * of the API unaware of some fields won't accidentally remove other fields).
+     * Make a <code>get()</code> request to the cluster to get the current
+     * resource version and include it with requests to set the policy.
+     *
+     * Generated from protobuf field <code>string resource_version = 3;</code>
+     */
+    private $resource_version = '';
 
     /**
      * Constructor.
@@ -30,6 +40,12 @@ class MaintenancePolicy extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Container\V1\MaintenanceWindow $window
      *           Specifies the maintenance window in which maintenance may be performed.
+     *     @type string $resource_version
+     *           A hash identifying the version of this policy, so that updates to fields of
+     *           the policy won't accidentally undo intermediate changes (and so that users
+     *           of the API unaware of some fields won't accidentally remove other fields).
+     *           Make a <code>get()</code> request to the cluster to get the current
+     *           resource version and include it with requests to set the policy.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +75,40 @@ class MaintenancePolicy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\MaintenanceWindow::class);
         $this->window = $var;
+
+        return $this;
+    }
+
+    /**
+     * A hash identifying the version of this policy, so that updates to fields of
+     * the policy won't accidentally undo intermediate changes (and so that users
+     * of the API unaware of some fields won't accidentally remove other fields).
+     * Make a <code>get()</code> request to the cluster to get the current
+     * resource version and include it with requests to set the policy.
+     *
+     * Generated from protobuf field <code>string resource_version = 3;</code>
+     * @return string
+     */
+    public function getResourceVersion()
+    {
+        return $this->resource_version;
+    }
+
+    /**
+     * A hash identifying the version of this policy, so that updates to fields of
+     * the policy won't accidentally undo intermediate changes (and so that users
+     * of the API unaware of some fields won't accidentally remove other fields).
+     * Make a <code>get()</code> request to the cluster to get the current
+     * resource version and include it with requests to set the policy.
+     *
+     * Generated from protobuf field <code>string resource_version = 3;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setResourceVersion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->resource_version = $var;
 
         return $this;
     }

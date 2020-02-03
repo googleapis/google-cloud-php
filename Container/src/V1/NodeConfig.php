@@ -17,7 +17,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * The name of a Google Compute Engine [machine
-     * type](/compute/docs/machine-types) (e.g.
+     * type](https://cloud.google.com/compute/docs/machine-types) (e.g.
      * `n1-standard-1`).
      * If unspecified, the default machine type is
      * `n1-standard-1`.
@@ -66,6 +66,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *  "cluster-name"
      *  "cluster-uid"
      *  "configure-sh"
+     *  "containerd-configure-sh"
      *  "enable-os-login"
      *  "gci-update-strategy"
      *  "gci-ensure-gke-docker"
@@ -73,6 +74,13 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *  "kube-env"
      *  "startup-script"
      *  "user-data"
+     *  "disable-address-manager"
+     *  "windows-startup-script-ps1"
+     *  "common-psm1"
+     *  "k8s-node-setup-psm1"
+     *  "install-ssh-psm1"
+     *  "user-profile-psm1"
+     *  "serial-port-logging-enable"
      * Values are free-form strings, and only have meaning as interpreted by
      * the image running in the instance. The only restriction placed on them is
      * that each value's size must be less than or equal to 32 KB.
@@ -103,9 +111,9 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     private $labels;
     /**
      * The number of local SSD disks to be attached to the node.
-     * The limit for this value is dependant upon the maximum number of
+     * The limit for this value is dependent upon the maximum number of
      * disks available on a machine per zone. See:
-     * https://cloud.google.com/compute/docs/disks/local-ssd#local_ssd_limits
+     * https://cloud.google.com/compute/docs/disks/local-ssd
      * for more information.
      *
      * Generated from protobuf field <code>int32 local_ssd_count = 7;</code>
@@ -155,6 +163,20 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string min_cpu_platform = 13;</code>
      */
     private $min_cpu_platform = '';
+    /**
+     * List of kubernetes taints to be applied to each node.
+     * For more information, including usage and the valid values, see:
+     * https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
+     *
+     * Generated from protobuf field <code>repeated .google.container.v1.NodeTaint taints = 15;</code>
+     */
+    private $taints;
+    /**
+     * Shielded Instance options.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ShieldedInstanceConfig shielded_instance_config = 20;</code>
+     */
+    private $shielded_instance_config = null;
 
     /**
      * Constructor.
@@ -164,7 +186,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type string $machine_type
      *           The name of a Google Compute Engine [machine
-     *           type](/compute/docs/machine-types) (e.g.
+     *           type](https://cloud.google.com/compute/docs/machine-types) (e.g.
      *           `n1-standard-1`).
      *           If unspecified, the default machine type is
      *           `n1-standard-1`.
@@ -197,6 +219,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *            "cluster-name"
      *            "cluster-uid"
      *            "configure-sh"
+     *            "containerd-configure-sh"
      *            "enable-os-login"
      *            "gci-update-strategy"
      *            "gci-ensure-gke-docker"
@@ -204,6 +227,13 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *            "kube-env"
      *            "startup-script"
      *            "user-data"
+     *            "disable-address-manager"
+     *            "windows-startup-script-ps1"
+     *            "common-psm1"
+     *            "k8s-node-setup-psm1"
+     *            "install-ssh-psm1"
+     *            "user-profile-psm1"
+     *            "serial-port-logging-enable"
      *           Values are free-form strings, and only have meaning as interpreted by
      *           the image running in the instance. The only restriction placed on them is
      *           that each value's size must be less than or equal to 32 KB.
@@ -222,9 +252,9 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
      *     @type int $local_ssd_count
      *           The number of local SSD disks to be attached to the node.
-     *           The limit for this value is dependant upon the maximum number of
+     *           The limit for this value is dependent upon the maximum number of
      *           disks available on a machine per zone. See:
-     *           https://cloud.google.com/compute/docs/disks/local-ssd#local_ssd_limits
+     *           https://cloud.google.com/compute/docs/disks/local-ssd
      *           for more information.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $tags
      *           The list of instance tags applied to all nodes. Tags are used to identify
@@ -250,6 +280,12 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           <code>minCpuPlatform: &quot;Intel Sandy Bridge&quot;</code>. For more
      *           information, read [how to specify min CPU
      *           platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
+     *     @type \Google\Cloud\Container\V1\NodeTaint[]|\Google\Protobuf\Internal\RepeatedField $taints
+     *           List of kubernetes taints to be applied to each node.
+     *           For more information, including usage and the valid values, see:
+     *           https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
+     *     @type \Google\Cloud\Container\V1\ShieldedInstanceConfig $shielded_instance_config
+     *           Shielded Instance options.
      * }
      */
     public function __construct($data = NULL) {
@@ -259,7 +295,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of a Google Compute Engine [machine
-     * type](/compute/docs/machine-types) (e.g.
+     * type](https://cloud.google.com/compute/docs/machine-types) (e.g.
      * `n1-standard-1`).
      * If unspecified, the default machine type is
      * `n1-standard-1`.
@@ -274,7 +310,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of a Google Compute Engine [machine
-     * type](/compute/docs/machine-types) (e.g.
+     * type](https://cloud.google.com/compute/docs/machine-types) (e.g.
      * `n1-standard-1`).
      * If unspecified, the default machine type is
      * `n1-standard-1`.
@@ -405,6 +441,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *  "cluster-name"
      *  "cluster-uid"
      *  "configure-sh"
+     *  "containerd-configure-sh"
      *  "enable-os-login"
      *  "gci-update-strategy"
      *  "gci-ensure-gke-docker"
@@ -412,6 +449,13 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *  "kube-env"
      *  "startup-script"
      *  "user-data"
+     *  "disable-address-manager"
+     *  "windows-startup-script-ps1"
+     *  "common-psm1"
+     *  "k8s-node-setup-psm1"
+     *  "install-ssh-psm1"
+     *  "user-profile-psm1"
+     *  "serial-port-logging-enable"
      * Values are free-form strings, and only have meaning as interpreted by
      * the image running in the instance. The only restriction placed on them is
      * that each value's size must be less than or equal to 32 KB.
@@ -435,6 +479,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *  "cluster-name"
      *  "cluster-uid"
      *  "configure-sh"
+     *  "containerd-configure-sh"
      *  "enable-os-login"
      *  "gci-update-strategy"
      *  "gci-ensure-gke-docker"
@@ -442,6 +487,13 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *  "kube-env"
      *  "startup-script"
      *  "user-data"
+     *  "disable-address-manager"
+     *  "windows-startup-script-ps1"
+     *  "common-psm1"
+     *  "k8s-node-setup-psm1"
+     *  "install-ssh-psm1"
+     *  "user-profile-psm1"
+     *  "serial-port-logging-enable"
      * Values are free-form strings, and only have meaning as interpreted by
      * the image running in the instance. The only restriction placed on them is
      * that each value's size must be less than or equal to 32 KB.
@@ -529,9 +581,9 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * The number of local SSD disks to be attached to the node.
-     * The limit for this value is dependant upon the maximum number of
+     * The limit for this value is dependent upon the maximum number of
      * disks available on a machine per zone. See:
-     * https://cloud.google.com/compute/docs/disks/local-ssd#local_ssd_limits
+     * https://cloud.google.com/compute/docs/disks/local-ssd
      * for more information.
      *
      * Generated from protobuf field <code>int32 local_ssd_count = 7;</code>
@@ -544,9 +596,9 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * The number of local SSD disks to be attached to the node.
-     * The limit for this value is dependant upon the maximum number of
+     * The limit for this value is dependent upon the maximum number of
      * disks available on a machine per zone. See:
-     * https://cloud.google.com/compute/docs/disks/local-ssd#local_ssd_limits
+     * https://cloud.google.com/compute/docs/disks/local-ssd
      * for more information.
      *
      * Generated from protobuf field <code>int32 local_ssd_count = 7;</code>
@@ -715,6 +767,62 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->min_cpu_platform = $var;
+
+        return $this;
+    }
+
+    /**
+     * List of kubernetes taints to be applied to each node.
+     * For more information, including usage and the valid values, see:
+     * https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
+     *
+     * Generated from protobuf field <code>repeated .google.container.v1.NodeTaint taints = 15;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getTaints()
+    {
+        return $this->taints;
+    }
+
+    /**
+     * List of kubernetes taints to be applied to each node.
+     * For more information, including usage and the valid values, see:
+     * https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
+     *
+     * Generated from protobuf field <code>repeated .google.container.v1.NodeTaint taints = 15;</code>
+     * @param \Google\Cloud\Container\V1\NodeTaint[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setTaints($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Container\V1\NodeTaint::class);
+        $this->taints = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Shielded Instance options.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ShieldedInstanceConfig shielded_instance_config = 20;</code>
+     * @return \Google\Cloud\Container\V1\ShieldedInstanceConfig
+     */
+    public function getShieldedInstanceConfig()
+    {
+        return $this->shielded_instance_config;
+    }
+
+    /**
+     * Shielded Instance options.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ShieldedInstanceConfig shielded_instance_config = 20;</code>
+     * @param \Google\Cloud\Container\V1\ShieldedInstanceConfig $var
+     * @return $this
+     */
+    public function setShieldedInstanceConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ShieldedInstanceConfig::class);
+        $this->shielded_instance_config = $var;
 
         return $this;
     }
