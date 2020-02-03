@@ -73,6 +73,28 @@ s.replace(
     r'Copyright \d{4}',
     'Copyright 2018')
 
+# fix renamed gapic formatting method.
+s.replace(
+    'src/V1beta1/Gapic/ErrorGroupServiceGapicClient.php',
+    r'\/\*\*\n\s{5}\* Formats a string containing the fully-qualified path to represent\n\s{5}\* a error_group resource.',
+    """/**
+     * Formats a string containing the fully-qualified path to represent
+     * an error_group resource.
+     *
+     * @deprecated use {@see Google\\\\Cloud\\\\ErrorReporting\\\\V1beta1\\\\Gapic\\\\ErrorGroupServiceGapicClient::errorGroupName()}.
+     * @param string $project
+     * @param string $group
+     * @return string the formatted error_group resource.
+     */
+    public static function groupName($project, $group) {
+        return self::errorGroupName($project, $group);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a error_group resource."""
+)
+
 ### [START] protoc backwards compatibility fixes
 
 # roll back to private properties.
