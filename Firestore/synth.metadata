@@ -1,19 +1,20 @@
 {
-  "updateTime": "2019-12-05T11:00:05.539228Z",
+  "updateTime": "2020-01-30T11:03:27.624991Z",
   "sources": [
     {
       "generator": {
         "name": "artman",
-        "version": "0.42.1",
-        "dockerImage": "googleapis/artman@sha256:c773192618c608a7a0415dd95282f841f8e6bcdef7dd760a988c93b77a64bd57"
+        "version": "0.44.4",
+        "dockerImage": "googleapis/artman@sha256:19e945954fc960a4bdfee6cb34695898ab21a8cf0bac063ee39b91f00a1faec8"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "c0ac9b55f2e2efd0ee525b3a6591a1b09330e55a",
-        "internalRef": "283845474"
+        "sha": "c1246a29e22b0f98e800a536b5b0da2d933a55f2",
+        "internalRef": "292310790",
+        "log": "c1246a29e22b0f98e800a536b5b0da2d933a55f2\nUpdating v1 protos with the latest inline documentation (in comments) and config options. Also adding a per-service .yaml file.\n\nPiperOrigin-RevId: 292310790\n\nb491d07cadaae7cde5608321f913e5ca1459b32d\nRevert accidental local_repository change\n\nPiperOrigin-RevId: 292245373\n\naf3400a8cb6110025198b59a0f7d018ae3cda700\nUpdate gapic-generator dependency (prebuilt PHP binary support).\n\nPiperOrigin-RevId: 292243997\n\n341fd5690fae36f36cf626ef048fbcf4bbe7cee6\ngrafeas: v1 add resource_definition for the grafeas.io/Project and change references for Project.\n\nPiperOrigin-RevId: 292221998\n\n42e915ec2ece1cd37a590fbcd10aa2c0fb0e5b06\nUpdate the gapic-generator, protoc-java-resource-name-plugin and protoc-docs-plugin to the latest commit.\n\nPiperOrigin-RevId: 292182368\n\nf035f47250675d31492a09f4a7586cfa395520a7\nFix grafeas build and update build.sh script to include gerafeas.\n\nPiperOrigin-RevId: 292168753\n\n26ccb214b7bc4a716032a6266bcb0a9ca55d6dbb\nasset: v1p1beta1 add client config annotations and retry config\n\nPiperOrigin-RevId: 292154210\n\n974ee5c0b5d03e81a50dafcedf41e0efebb5b749\nasset: v1beta1 add client config annotations\n\nPiperOrigin-RevId: 292152573\n\ncf3b61102ed5f36b827bc82ec39be09525f018c8\n  Fix to protos for v1p1beta1 release of Cloud Security Command Center\n\nPiperOrigin-RevId: 292034635\n\n4e1cfaa7c0fede9e65d64213ca3da1b1255816c0\nUpdate the public proto to support UTF-8 encoded id for CatalogService API, increase the ListCatalogItems deadline to 300s and some minor documentation change\n\nPiperOrigin-RevId: 292030970\n\n9c483584f8fd5a1b862ae07973f4cc7bb3e46648\nasset: add annotations to v1p1beta1\n\nPiperOrigin-RevId: 292009868\n\ne19209fac29731d0baf6d9ac23da1164f7bdca24\nAdd the google.rpc.context.AttributeContext message to the open source\ndirectories.\n\nPiperOrigin-RevId: 291999930\n\nae5662960573f279502bf98a108a35ba1175e782\noslogin API: move file level option on top of the file to avoid protobuf.js bug.\n\nPiperOrigin-RevId: 291990506\n\neba3897fff7c49ed85d3c47fc96fe96e47f6f684\nAdd cc_proto_library and cc_grpc_library targets for Spanner and IAM protos.\n\nPiperOrigin-RevId: 291988651\n\n8e981acfd9b97ea2f312f11bbaa7b6c16e412dea\nBeta launch for PersonDetection and FaceDetection features.\n\nPiperOrigin-RevId: 291821782\n\n994e067fae3b21e195f7da932b08fff806d70b5d\nasset: add annotations to v1p2beta1\n\nPiperOrigin-RevId: 291815259\n\n244e1d2c89346ca2e0701b39e65552330d68545a\nAdd Playable Locations service\n\nPiperOrigin-RevId: 291806349\n\n909f8f67963daf45dd88d020877fb9029b76788d\nasset: add annotations to v1beta2\n\nPiperOrigin-RevId: 291805301\n\n3c39a1d6e23c1ef63c7fba4019c25e76c40dfe19\nKMS: add file-level message for CryptoKeyPath, it is defined in gapic yaml but not\nin proto files.\n\nPiperOrigin-RevId: 291420695\n\nc6f3f350b8387f8d1b85ed4506f30187ebaaddc3\ncontaineranalysis: update v1beta1 and bazel build with annotations\n\nPiperOrigin-RevId: 291401900\n\n92887d74b44e4e636252b7b8477d0d2570cd82db\nfix: fix the location of grpc config file.\n\nPiperOrigin-RevId: 291396015\n\ne26cab8afd19d396b929039dac5d874cf0b5336c\nexpr: add default_host and method_signature annotations to CelService\n\nPiperOrigin-RevId: 291240093\n\n06093ae3952441c34ec176d1f7431b8765cec0be\nirm: fix v1alpha2 bazel build by adding missing proto imports\n\nPiperOrigin-RevId: 291227940\n\na8a2514af326e4673063f9a3c9d0ef1091c87e6c\nAdd proto annotation for cloud/irm API\n\nPiperOrigin-RevId: 291217859\n\n8d16f76de065f530d395a4c7eabbf766d6a120fd\nGenerate Memcache v1beta2 API protos and gRPC ServiceConfig files\n\nPiperOrigin-RevId: 291008516\n\n3af1dabd93df9a9f17bf3624d3b875c11235360b\ngrafeas: Add containeranalysis default_host to Grafeas service\n\nPiperOrigin-RevId: 290965849\n\nbe2663fa95e31cba67d0cd62611a6674db9f74b7\nfix(google/maps/roads): add missing opening bracket\n\nPiperOrigin-RevId: 290964086\n\nfacc26550a0af0696e0534bc9cae9df14275aa7c\nUpdating v2 protos with the latest inline documentation (in comments) and adding a per-service .yaml file.\n\nPiperOrigin-RevId: 290952261\n\ncda99c1f7dc5e4ca9b1caeae1dc330838cbc1461\nChange api_name to 'asset' for v1p1beta1\n\nPiperOrigin-RevId: 290800639\n\n94e9e90c303a820ce40643d9129e7f0d2054e8a1\nAdds Google Maps Road service\n\nPiperOrigin-RevId: 290795667\n\na3b23dcb2eaecce98c600c7d009451bdec52dbda\nrpc: new message ErrorInfo, other comment updates\n\nPiperOrigin-RevId: 290781668\n\n26420ef4e46c37f193c0fbe53d6ebac481de460e\nAdd proto definition for Org Policy v1.\n\nPiperOrigin-RevId: 290771923\n\n7f0dab8177cf371ae019a082e2512de7ac102888\nPublish Routes Preferred API v1 service definitions.\n\nPiperOrigin-RevId: 290326986\n\nad6e508d0728e1d1bca6e3f328cd562718cb772d\nFix: Qualify resource type references with \"jobs.googleapis.com/\"\n\nPiperOrigin-RevId: 290285762\n\n58e770d568a2b78168ddc19a874178fee8265a9d\ncts client library\n\nPiperOrigin-RevId: 290146169\n\naf9daa4c3b4c4a8b7133b81588dd9ffd37270af2\nAdd more programming language options to public proto\n\nPiperOrigin-RevId: 290144091\n\nd9f2bbf2df301ef84641d4cec7c828736a0bd907\ntalent: add missing resource.proto dep to Bazel build target\n\nPiperOrigin-RevId: 290143164\n\n3b3968237451d027b42471cd28884a5a1faed6c7\nAnnotate Talent API.\nAdd gRPC service config for retry.\nUpdate bazel file with google.api.resource dependency.\n\nPiperOrigin-RevId: 290125172\n\n0735b4b096872960568d1f366bfa75b7b0e1f1a3\nWeekly library update.\n\nPiperOrigin-RevId: 289939042\n\n8760d3d9a4543d7f9c0d1c7870aca08b116e4095\nWeekly library update.\n\nPiperOrigin-RevId: 289939020\n\n8607df842f782a901805187e02fff598145b0b0e\nChange Talent API timeout to 30s.\n\nPiperOrigin-RevId: 289912621\n\n908155991fe32570653bcb72ecfdcfc896642f41\nAdd Recommendations AI V1Beta1\n\nPiperOrigin-RevId: 289901914\n\n5c9a8c2bebd8b71aa66d1cc473edfaac837a2c78\nAdding no-arg method signatures for ListBillingAccounts and ListServices\n\nPiperOrigin-RevId: 289891136\n\n50b0e8286ac988b0593bd890eb31fef6ea2f5767\nlongrunning: add grpc service config and default_host annotation to operations.proto\n\nPiperOrigin-RevId: 289876944\n\n6cac27dabe51c54807b0401698c32d34998948a9\n  Updating default deadline for Cloud Security Command Center's v1 APIs.\n\nPiperOrigin-RevId: 289875412\n\nd99df0d67057a233c711187e0689baa4f8e6333d\nFix: Correct spelling in C# namespace option\n\nPiperOrigin-RevId: 289709813\n\n2fa8d48165cc48e35b0c62e6f7bdade12229326c\nfeat: Publish Recommender v1 to GitHub.\n\nCommitter: @lukesneeringer\nPiperOrigin-RevId: 289619243\n\n9118db63d1ab493a2e44a3b4973fde810a835c49\nfirestore: don't retry reads that fail with Aborted\n\nFor transaction reads that fail with ABORTED, we need to rollback and start a new transaction. Our current configuration makes it so that GAPIC retries ABORTED reads multiple times without making any progress. Instead, we should retry at the transaction level.\n\nPiperOrigin-RevId: 289532382\n\n1dbfd3fe4330790b1e99c0bb20beb692f1e20b8a\nFix bazel build\nAdd other langauges (Java was already there) for bigquery/storage/v1alpha2 api.\n\nPiperOrigin-RevId: 289519766\n\nc06599cdd7d11f8d3fd25f8d3249e5bb1a3d5d73\nInitial commit of google.cloud.policytroubleshooter API, The API helps in troubleshooting GCP policies. Refer https://cloud.google.com/iam/docs/troubleshooting-access for more information\n\nPiperOrigin-RevId: 289491444\n\nfce7d80fa16ea241e87f7bc33d68595422e94ecd\nDo not pass samples option for Artman config of recommender v1 API.\n\nPiperOrigin-RevId: 289477403\n\nef179e8c61436297e6bb124352e47e45c8c80cb1\nfix: Address missing Bazel dependency.\n\nBazel builds stopped working in 06ec6d5 because\nthe google/longrunning/operations.proto file took\nan import from google/api/client.proto, but that\nimport was not added to BUILD.bazel.\n\nCommitter: @lukesneeringer\nPiperOrigin-RevId: 289446074\n\n8841655b242c84fd691d77d7bcf21b61044f01ff\nMigrate Data Labeling v1beta1 to GAPIC v2.\n\nCommitter: @lukesneeringer\nPiperOrigin-RevId: 289446026\n\n06ec6d5d053fff299eaa6eaa38afdd36c5e2fc68\nAdd annotations to google.longrunning.v1\n\nCommitter: @lukesneeringer\nPiperOrigin-RevId: 289413169\n\n0480cf40be1d3cc231f4268a2fdb36a8dd60e641\nMigrate IAM Admin v1 to GAPIC v2.\n\nCommitter: @lukesneeringer\nPiperOrigin-RevId: 289411084\n\n1017173e9adeb858587639af61889ad970c728b1\nSpecify a C# namespace for BigQuery Connection v1beta1\n\nPiperOrigin-RevId: 289396763\n\nb08714b378e8e5b0c4ecdde73f92c36d6303b4b6\nfix: Integrate latest proto-docs-plugin fix.\nFixes dialogflow v2\n\nPiperOrigin-RevId: 289189004\n\n51217a67e79255ee1f2e70a6a3919df082513327\nCreate BUILD file for recommender v1\n\nPiperOrigin-RevId: 289183234\n\nacacd87263c0a60e458561b8b8ce9f67c760552a\nGenerate recommender v1 API protos and gRPC ServiceConfig files\n\nPiperOrigin-RevId: 289177510\n\n9d2f7133b97720b1fa3601f6dcd30760ba6d8a1e\nFix kokoro build script\n\nPiperOrigin-RevId: 289166315\n\nc43a67530d2a47a0220cad20ca8de39b3fbaf2c5\ncloudtasks: replace missing RPC timeout config for v2beta2 and v2beta3\n\nPiperOrigin-RevId: 289162391\n\n4cefc229a9197236fc0adf02d69b71c0c5cf59de\nSynchronize new proto/yaml changes.\n\nPiperOrigin-RevId: 289158456\n\n56f263fe959c50786dab42e3c61402d32d1417bd\nCatalog API: Adding config necessary to build client libraries\n\nPiperOrigin-RevId: 289149879\n\n4543762b23a57fc3c53d409efc3a9affd47b6ab3\nFix Bazel build\nbilling/v1 and dialogflow/v2 remain broken (not bazel-related issues).\nBilling has wrong configuration, dialogflow failure is caused by a bug in documentation plugin.\n\nPiperOrigin-RevId: 289140194\n\nc9dce519127b97e866ca133a01157f4ce27dcceb\nUpdate Bigtable docs\n\nPiperOrigin-RevId: 289114419\n\n802c5c5f2bf94c3facb011267d04e71942e0d09f\nMigrate DLP to proto annotations (but not GAPIC v2).\n\nCommitter: @lukesneeringer\nPiperOrigin-RevId: 289102579\n\n6357f30f2ec3cff1d8239d18b707ff9d438ea5da\nRemove gRPC configuration file that was in the wrong place.\n\nPiperOrigin-RevId: 289096111\n\n360a8792ed62f944109d7e22d613a04a010665b4\n  Protos for v1p1beta1 release of Cloud Security Command Center\n\nPiperOrigin-RevId: 289011995\n\na79211c20c4f2807eec524d00123bf7c06ad3d6e\nRoll back containeranalysis v1 to GAPIC v1.\n\nCommitter: @lukesneeringer\nPiperOrigin-RevId: 288999068\n\n9e60345ba603e03484a8aaa33ce5ffa19c1c652b\nPublish Routes Preferred API v1 proto definitions.\n\nPiperOrigin-RevId: 288941399\n\nd52885b642ad2aa1f42b132ee62dbf49a73e1e24\nMigrate the service management API to GAPIC v2.\n\nCommitter: @lukesneeringer\nPiperOrigin-RevId: 288909426\n\n6ace586805c08896fef43e28a261337fcf3f022b\ncloudtasks: replace missing RPC timeout config\n\nPiperOrigin-RevId: 288783603\n\n51d906cabee4876b12497054b15b05d4a50ad027\nImport of Grafeas from Github.\n\nUpdate BUILD.bazel accordingly.\n\nPiperOrigin-RevId: 288783426\n\n5ef42bcd363ba0440f0ee65b3c80b499e9067ede\nMigrate Recommender v1beta1 to GAPIC v2.\n\nCommitter: @lukesneeringer\nPiperOrigin-RevId: 288713066\n\n94f986afd365b7d7e132315ddcd43d7af0e652fb\nMigrate Container Analysis v1 to GAPIC v2.\n\nCommitter: @lukesneeringer\nPiperOrigin-RevId: 288708382\n\n7a751a279184970d3b6ba90e4dd4d22a382a0747\nRemove Container Analysis v1alpha1 (nobody publishes it).\n\nCommitter: @lukesneeringer\nPiperOrigin-RevId: 288707473\n\n3c0d9c71242e70474b2b640e15bb0a435fd06ff0\nRemove specious annotation from BigQuery Data Transfer before\nanyone accidentally does anything that uses it.\n\nCommitter: @lukesneeringer\nPiperOrigin-RevId: 288701604\n\n1af307a4764bd415ef942ac5187fa1def043006f\nMigrate BigQuery Connection to GAPIC v2.\n\nCommitter: @lukesneeringer\nPiperOrigin-RevId: 288698681\n\n08b488e0660c59842a7dee0e3e2b65d9e3a514a9\nExposing cloud_catalog.proto (This API is already available through REST)\n\nPiperOrigin-RevId: 288625007\n\na613482977e11ac09fa47687a5d1b5a01efcf794\nUpdate the OS Login v1beta API description to render better in the UI.\n\nPiperOrigin-RevId: 288547940\n\n5e182b8d9943f1b17008d69d4c7e865dc83641a7\nUpdate the OS Login API description to render better in the UI.\n\nPiperOrigin-RevId: 288546443\n\ncb79155f596e0396dd900da93872be7066f6340d\nFix: Add a resource annotation for Agent\nFix: Correct the service name in annotations for Intent and SessionEntityType\n\nPiperOrigin-RevId: 288441307\n\nf7f6e9daec3315fd47cb638789bd8415bf4a27cc\nAdded cloud asset api v1p1beta1\n\nPiperOrigin-RevId: 288427239\n\nf2880f5b342c6345f3dcaad24fcb3c6ca9483654\nBilling account API: Adding config necessary to build client libraries\n\nPiperOrigin-RevId: 288351810\n\ndc250ffe071729f8f8bef9d6fd0fbbeb0254c666\nFix: Remove incorrect resource annotations in requests\n\nPiperOrigin-RevId: 288321208\n\n91ef2d9dd69807b0b79555f22566fb2d81e49ff9\nAdd GAPIC annotations to Cloud KMS (but do not migrate the GAPIC config yet).\n\nCommitter: @lukesneeringer\nPiperOrigin-RevId: 287999179\n\n4d45a6399e9444fbddaeb1c86aabfde210723714\nRefreshing Cloud Billing API protos.\n\nThis exposes the following API methods:\n- UpdateBillingAccount\n- CreateBillingAccount\n- GetIamPolicy\n- SetIamPolicy\n- TestIamPermissions\n\nThere are also some new fields to support the management of sub-accounts.\n\nPiperOrigin-RevId: 287908369\n\nec285d3d230810147ebbf8d5b691ee90320c6d2d\nHide not yet implemented update_transforms message\n\nPiperOrigin-RevId: 287608953\n\na202fb3b91cd0e4231be878b0348afd17067cbe2\nBigQuery Storage Write API v1alpha2 clients. The service is enabled by whitelist only.\n\nPiperOrigin-RevId: 287379998\n\n650d7f1f8adb0cfaf37b3ce2241c3168f24efd4d\nUpdate Readme.md to match latest Bazel updates\n090d98aea20270e3be4b64240775588f7ce50ff8\ndocs(bigtable): Fix library release level listed in generated documentation\n\nPiperOrigin-RevId: 287308849\n\n2c28f646ca77b1d57550368be22aa388adde2e66\nfirestore: retry reads that fail with contention\n\nPiperOrigin-RevId: 287250665\n\nfd3091fbe9b2083cabc53dc50c78035658bfc4eb\nSync timeout in grpc config back to 10s for tasks API with github googelapis gapic config.\n\nPiperOrigin-RevId: 287207067\n\n49dd7d856a6f77c0cf7e5cb3334423e5089a9e8a\nbazel: Integrate bazel-2.0.0 compatibility fixes\n\nPiperOrigin-RevId: 287205644\n\n46e52fd64973e815cae61e78b14608fe7aa7b1df\nbazel: Integrate bazel build file generator\n\nTo generate/update BUILD.bazel files for any particular client or a batch of clients:\n```\nbazel run //:build_gen -- --src=google/example/library\n```\n\nPiperOrigin-RevId: 286958627\n\n1a380ea21dea9b6ac6ad28c60ad96d9d73574e19\nBigQuery Storage Read API v1beta2 clients.\n\nPiperOrigin-RevId: 286616241\n\n5f3f1d0f1c06b6475a17d995e4f7a436ca67ec9e\nAdd Artman config for secretmanager.\n\nPiperOrigin-RevId: 286598440\n\n50af0530730348f1e3697bf3c70261f7daaf2981\nSynchronize new proto/yaml changes.\n\nPiperOrigin-RevId: 286491002\n\n91818800384f4ed26961aea268910b1a2ec58cc8\nFor Data Catalog API,\n1. Add support for marking a tag template field as required when creating a new tag template.\n2. Add support for updating a tag template field from required to optional.\n\nPiperOrigin-RevId: 286490262\n\nff4a2047b3d66f38c9b22197c370ed0d02fc0238\nWeekly library update.\n\nPiperOrigin-RevId: 286484215\n\n192c14029861752a911ed434fd6ee5b850517cd9\nWeekly library update.\n\nPiperOrigin-RevId: 286484165\n\nd9e328eaf790d4e4346fbbf32858160f497a03e0\nFix bazel build (versions 1.x)\n\nBump gapic-generator and resource names plugins to the latest version.\n\nPiperOrigin-RevId: 286469287\n\n0ca305403dcc50e31ad9477c9b6241ddfd2056af\nsecretmanager client package name option updates for java and go\n\nPiperOrigin-RevId: 286439553\n\nade4803e8a1a9e3efd249c8c86895d2f12eb2aaa\niam credentials: publish v1 protos containing annotations\n\nPiperOrigin-RevId: 286418383\n\n03e5708e5f8d1909dcb74b25520309e59ebf24be\nsecuritycenter: add missing proto deps for Bazel build\n\nPiperOrigin-RevId: 286417075\n\n8b991eb3eb82483b0ca1f1361a9c8e5b375c4747\nAdd secretmanager client package name options.\n\nPiperOrigin-RevId: 286415883\n\nd400cb8d45df5b2ae796b909f098a215b2275c1d\ndialogflow: add operation_info annotations to BatchUpdateEntities and BatchDeleteEntities.\n\nPiperOrigin-RevId: 286312673\n\nf2b25232db397ebd4f67eb901a2a4bc99f7cc4c6\nIncreased the default timeout time for all the Cloud Security Command Center client libraries.\n\nPiperOrigin-RevId: 286263771\n\ncb2f1eefd684c7efd56fd375cde8d4084a20439e\nExposing new Resource fields in the SecurityCenterProperties proto, added more comments to the filter logic for these Resource fields, and updated the response proto for the ListFindings API with the new Resource fields.\n\nPiperOrigin-RevId: 286263092\n\n73cebb20432b387c3d8879bb161b517d60cf2552\nUpdate v1beta2 clusters and jobs to include resource ids in GRPC header.\n\nPiperOrigin-RevId: 286261392\n\n1b4e453d51c0bd77e7b73896cdd8357d62768d83\nsecuritycenter: publish v1beta1 protos with annotations\n\nPiperOrigin-RevId: 286228860\n\na985eeda90ae98e8519d2320bee4dec148eb8ccb\nAdd default retry configurations for speech_v1p1beta1.\n\nSettings are copied from speech_gapic.legacy.yaml. The Python client library is being generated with timeouts that are too low. See https://github.com/GoogleCloudPlatform/python-docs-samples/issues/2578\n\nPiperOrigin-RevId: 286191318\n\n3352100a15ede383f5ab3c34599f7a10a3d066fe\nMake importing rule with the same name (but different aliases) from different repositories possible.\n\nThis is needed to allow monolitic gapic-generator and microgenerators coexist during transition period.\n\nTo plug a microgenerator:\n\n1) Add corresponding rules bidnings under `switched_rules_by_language` in repository_rules.bzl:\n    rules[\"go_gapic_library2\"] = _switch(\n        go and grpc and gapic,\n        \"@gapic_generator_go//rules_go_gapic/go_gapic.bzl\",\n        \"go_gapic_library\",\n    )\n\n2) Import microgenerator in WORKSPACE (the above example assumes that the generator was imported under name \"gapic_generator_go\").\n\n3) To migrate an API from monolith to micro generator (this is done per API and per language) modify the corresponding load statement in the API's BUILD.bazel file. For example, for the example above, to migrate to go microgenerator modify the go-specific load statement in BUILD.bazel file of a specific API (which you want to migrate) to the following:\n\nload(\n    \"@com_google_googleapis_imports//:imports.bzl\",\n    \"go_gapic_assembly_pkg\",\n    go_gapic_library = \"go_gapic_library2\",\n    \"go_proto_library\",\n    \"go_test\",\n)\n\nPiperOrigin-RevId: 286065440\n\n6ad2bb13bc4b0f3f785517f0563118f6ca52ddfd\nUpdated v1beta1 protos for the client:\n- added support for GenericSignedAttestation which has a generic Signature\n- added support for CVSSv3 and WindowsDetail in Vulnerability\n- documentation updates\n\nPiperOrigin-RevId: 286008145\n\nfe1962e49999a832eed8162c45f23096336a9ced\nAdMob API v1 20191210\n\nBasic account info, mediation and network report available. See https://developers.google.com/admob/api/release-notes for more details.\n\nPiperOrigin-RevId: 285894502\n\n41fc1403738b61427f3a798ca9750ef47eb9c0f2\nAnnotate the required fields for the Monitoring Dashboards API\n\nPiperOrigin-RevId: 285824386\n\n27d0e0f202cbe91bf155fcf36824a87a5764ef1e\nRemove inappropriate resource_reference annotations for UpdateWorkflowTemplateRequest.template.\n\nPiperOrigin-RevId: 285802643\n\ne5c4d3a2b5b5bef0a30df39ebb27711dc98dee64\nAdd Artman BUILD.bazel file for the Monitoring Dashboards API\n\nPiperOrigin-RevId: 285445602\n\n2085a0d3c76180ee843cf2ecef2b94ca5266be31\nFix path in the artman config for Monitoring Dashboard API.\n\nPiperOrigin-RevId: 285233245\n\n2da72dfe71e4cca80902f9e3e125c40f02c2925b\nAdd Artman and GAPIC configs for the Monitoring Dashboards API.\n\nPiperOrigin-RevId: 285211544\n\n9f6eeebf1f30f51ffa02acea5a71680fe592348e\nAdd annotations to Dataproc v1. (Also forwarding comment changes from internal source control.)\n\nCommitter: @lukesneeringer\nPiperOrigin-RevId: 285197557\n\n19c4589a3cb44b3679f7b3fba88365b3d055d5f8\noslogin: fix v1beta retry configuration\n\nPiperOrigin-RevId: 285013366\n\nee3f02926d0f8a0bc13f8d716581aad20f575751\nAdd Monitoring Dashboards API protocol buffers to Google Cloud Monitoring API.\n\nPiperOrigin-RevId: 284982647\n\ne47fdd266542386e5e7346697f90476e96dc7ee8\nbigquery datatransfer: Remove non-publicly available DataSourceService.\n\nPiperOrigin-RevId: 284822593\n\n6156f433fd1d9d5e4a448d6c6da7f637921d92ea\nAdds OSConfig v1beta protos and initial client library config\n\nPiperOrigin-RevId: 284799663\n\n6cc9499e225a4f6a5e34fe07e390f67055d7991c\nAdd datetime.proto to google/type/BUILD.bazel\n\nPiperOrigin-RevId: 284643689\n\nfe7dd5277e39ffe0075729c61e8d118d7527946d\nCosmetic changes to proto comment as part of testing internal release instructions.\n\nPiperOrigin-RevId: 284608712\n\n68d109adad726b89f74276d2f4b2ba6aac6ec04a\nAdd annotations to securitycenter v1, but leave GAPIC v1 in place.\n\nCommitter: @lukesneeringer\nPiperOrigin-RevId: 284580511\n\ndf8a1707a910fc17c71407a75547992fd1864c51\nSynchronize new proto/yaml changes.\n\nPiperOrigin-RevId: 284568564\n\na69a974976221ce3bb944901b739418b85d6408c\nclient library update\n\nPiperOrigin-RevId: 284463979\n\na4adac3a12aca6e3a792c9c35ee850435fe7cf7e\nAdded DateTime, TimeZone, and Month proto files to google/type\n\nPiperOrigin-RevId: 284277770\n\ned5dec392906078db4f7745fe4f11d34dd401ae9\nchange common resources from message-level annotations to file-level annotations.\n\nPiperOrigin-RevId: 284236794\n\na00e2c575ef1b637667b4ebe96b8c228b2ddb273\nbigquerydatatransfer: change resource type TransferRun to Run to be consistent with gapic configs\nbigquerydatatransfer: add missing patterns for DataSource, TransferConfig and Run (to allow the location segment)\nbigquerydatatransfer: add file-level Parent resource type (to allow the location segement)\nbigquerydatatransfer: update grpc service config with correct retry delays\n\nPiperOrigin-RevId: 284234378\n\nb10e4547017ca529ac8d183e839f3c272e1c13de\ncloud asset: replace required fields for batchgetassethistory. Correct the time out duration.\n\nPiperOrigin-RevId: 284059574\n\n6690161e3dcc3367639a2ec10db67bf1cf392550\nAdd default retry configurations for speech_v1.\n\nSettings are copied from speech_gapic.legacy.yaml. The Python client library is being generated with timeouts that are too low. See https://github.com/GoogleCloudPlatform/python-docs-samples/issues/2578\n\nPiperOrigin-RevId: 284035915\n\n9b2635ef91e114f0357bdb87652c26a8f59316d5\ncloudtasks: fix gapic v2 config\n\nPiperOrigin-RevId: 284020555\n\ne5676ba8b863951a8ed0bfd6046e1db38062743c\nReinstate resource name handling in GAPIC config for Asset v1.\n\nPiperOrigin-RevId: 283993903\n\nf337f7fb702c85833b7b6ca56afaf9a1bf32c096\nOSConfig AgentEndpoint: add LookupEffectiveGuestPolicy rpc\n\nPiperOrigin-RevId: 283989762\n\n"
       }
     }
   ],
@@ -47,6 +48,1598 @@
         "generator": "gapic",
         "config": "google/firestore/admin/artman_firestore_v1.yaml"
       }
+    }
+  ],
+  "newFiles": [
+    {
+      "path": ".gitattributes"
+    },
+    {
+      "path": ".github/pull_request_template.md"
+    },
+    {
+      "path": "CONTRIBUTING.md"
+    },
+    {
+      "path": "README.md"
+    },
+    {
+      "path": "VERSION"
+    },
+    {
+      "path": "composer.json"
+    },
+    {
+      "path": "metadata/Admin/V1/Field.php"
+    },
+    {
+      "path": "metadata/Admin/V1/FirestoreAdmin.php"
+    },
+    {
+      "path": "metadata/Admin/V1/Index.php"
+    },
+    {
+      "path": "metadata/Admin/V1/Location.php"
+    },
+    {
+      "path": "metadata/Admin/V1/Operation.php"
+    },
+    {
+      "path": "metadata/V1/Common.php"
+    },
+    {
+      "path": "metadata/V1/Document.php"
+    },
+    {
+      "path": "metadata/V1/Firestore.php"
+    },
+    {
+      "path": "metadata/V1/Query.php"
+    },
+    {
+      "path": "metadata/V1/Write.php"
+    },
+    {
+      "path": "metadata/V1Beta1/Common.php"
+    },
+    {
+      "path": "metadata/V1Beta1/Document.php"
+    },
+    {
+      "path": "metadata/V1Beta1/Firestore.php"
+    },
+    {
+      "path": "metadata/V1Beta1/Query.php"
+    },
+    {
+      "path": "metadata/V1Beta1/Write.php"
+    },
+    {
+      "path": "phpunit-snippets.xml.dist"
+    },
+    {
+      "path": "phpunit-system.xml.dist"
+    },
+    {
+      "path": "phpunit.xml.dist"
+    },
+    {
+      "path": "src/Admin/V1/CreateIndexRequest.php"
+    },
+    {
+      "path": "src/Admin/V1/DeleteIndexRequest.php"
+    },
+    {
+      "path": "src/Admin/V1/ExportDocumentsMetadata.php"
+    },
+    {
+      "path": "src/Admin/V1/ExportDocumentsRequest.php"
+    },
+    {
+      "path": "src/Admin/V1/ExportDocumentsResponse.php"
+    },
+    {
+      "path": "src/Admin/V1/Field.php"
+    },
+    {
+      "path": "src/Admin/V1/Field/IndexConfig.php"
+    },
+    {
+      "path": "src/Admin/V1/FieldOperationMetadata.php"
+    },
+    {
+      "path": "src/Admin/V1/FieldOperationMetadata/IndexConfigDelta.php"
+    },
+    {
+      "path": "src/Admin/V1/FieldOperationMetadata/IndexConfigDelta/ChangeType.php"
+    },
+    {
+      "path": "src/Admin/V1/FieldOperationMetadata_IndexConfigDelta.php"
+    },
+    {
+      "path": "src/Admin/V1/FieldOperationMetadata_IndexConfigDelta_ChangeType.php"
+    },
+    {
+      "path": "src/Admin/V1/Field_IndexConfig.php"
+    },
+    {
+      "path": "src/Admin/V1/FirestoreAdminClient.php"
+    },
+    {
+      "path": "src/Admin/V1/FirestoreAdminGrpcClient.php"
+    },
+    {
+      "path": "src/Admin/V1/Gapic/FirestoreAdminGapicClient.php"
+    },
+    {
+      "path": "src/Admin/V1/GetFieldRequest.php"
+    },
+    {
+      "path": "src/Admin/V1/GetIndexRequest.php"
+    },
+    {
+      "path": "src/Admin/V1/ImportDocumentsMetadata.php"
+    },
+    {
+      "path": "src/Admin/V1/ImportDocumentsRequest.php"
+    },
+    {
+      "path": "src/Admin/V1/Index.php"
+    },
+    {
+      "path": "src/Admin/V1/Index/IndexField.php"
+    },
+    {
+      "path": "src/Admin/V1/Index/IndexField/ArrayConfig.php"
+    },
+    {
+      "path": "src/Admin/V1/Index/IndexField/Order.php"
+    },
+    {
+      "path": "src/Admin/V1/Index/QueryScope.php"
+    },
+    {
+      "path": "src/Admin/V1/Index/State.php"
+    },
+    {
+      "path": "src/Admin/V1/IndexOperationMetadata.php"
+    },
+    {
+      "path": "src/Admin/V1/Index_IndexField.php"
+    },
+    {
+      "path": "src/Admin/V1/Index_IndexField_ArrayConfig.php"
+    },
+    {
+      "path": "src/Admin/V1/Index_IndexField_Order.php"
+    },
+    {
+      "path": "src/Admin/V1/Index_QueryScope.php"
+    },
+    {
+      "path": "src/Admin/V1/Index_State.php"
+    },
+    {
+      "path": "src/Admin/V1/ListFieldsRequest.php"
+    },
+    {
+      "path": "src/Admin/V1/ListFieldsResponse.php"
+    },
+    {
+      "path": "src/Admin/V1/ListIndexesRequest.php"
+    },
+    {
+      "path": "src/Admin/V1/ListIndexesResponse.php"
+    },
+    {
+      "path": "src/Admin/V1/LocationMetadata.php"
+    },
+    {
+      "path": "src/Admin/V1/OperationState.php"
+    },
+    {
+      "path": "src/Admin/V1/Progress.php"
+    },
+    {
+      "path": "src/Admin/V1/UpdateFieldRequest.php"
+    },
+    {
+      "path": "src/Admin/V1/resources/firestore_admin_client_config.json"
+    },
+    {
+      "path": "src/Admin/V1/resources/firestore_admin_descriptor_config.php"
+    },
+    {
+      "path": "src/Admin/V1/resources/firestore_admin_rest_client_config.php"
+    },
+    {
+      "path": "src/CollectionReference.php"
+    },
+    {
+      "path": "src/Connection/ConnectionInterface.php"
+    },
+    {
+      "path": "src/Connection/Grpc.php"
+    },
+    {
+      "path": "src/DocumentReference.php"
+    },
+    {
+      "path": "src/DocumentSnapshot.php"
+    },
+    {
+      "path": "src/FieldPath.php"
+    },
+    {
+      "path": "src/FieldValue.php"
+    },
+    {
+      "path": "src/FieldValue/ArrayRemoveValue.php"
+    },
+    {
+      "path": "src/FieldValue/ArrayUnionValue.php"
+    },
+    {
+      "path": "src/FieldValue/DeleteFieldValue.php"
+    },
+    {
+      "path": "src/FieldValue/DocumentTransformInterface.php"
+    },
+    {
+      "path": "src/FieldValue/DocumentTransformTrait.php"
+    },
+    {
+      "path": "src/FieldValue/FieldValueInterface.php"
+    },
+    {
+      "path": "src/FieldValue/FieldValueTrait.php"
+    },
+    {
+      "path": "src/FieldValue/IncrementValue.php"
+    },
+    {
+      "path": "src/FieldValue/ServerTimestampValue.php"
+    },
+    {
+      "path": "src/FirestoreClient.php"
+    },
+    {
+      "path": "src/FirestoreSessionHandler.php"
+    },
+    {
+      "path": "src/PathTrait.php"
+    },
+    {
+      "path": "src/Query.php"
+    },
+    {
+      "path": "src/QuerySnapshot.php"
+    },
+    {
+      "path": "src/SnapshotTrait.php"
+    },
+    {
+      "path": "src/Transaction.php"
+    },
+    {
+      "path": "src/V1/ArrayValue.php"
+    },
+    {
+      "path": "src/V1/BatchGetDocumentsRequest.php"
+    },
+    {
+      "path": "src/V1/BatchGetDocumentsResponse.php"
+    },
+    {
+      "path": "src/V1/BeginTransactionRequest.php"
+    },
+    {
+      "path": "src/V1/BeginTransactionResponse.php"
+    },
+    {
+      "path": "src/V1/CommitRequest.php"
+    },
+    {
+      "path": "src/V1/CommitResponse.php"
+    },
+    {
+      "path": "src/V1/CreateDocumentRequest.php"
+    },
+    {
+      "path": "src/V1/Cursor.php"
+    },
+    {
+      "path": "src/V1/DeleteDocumentRequest.php"
+    },
+    {
+      "path": "src/V1/Document.php"
+    },
+    {
+      "path": "src/V1/DocumentChange.php"
+    },
+    {
+      "path": "src/V1/DocumentDelete.php"
+    },
+    {
+      "path": "src/V1/DocumentMask.php"
+    },
+    {
+      "path": "src/V1/DocumentRemove.php"
+    },
+    {
+      "path": "src/V1/DocumentTransform.php"
+    },
+    {
+      "path": "src/V1/DocumentTransform/FieldTransform.php"
+    },
+    {
+      "path": "src/V1/DocumentTransform/FieldTransform/ServerValue.php"
+    },
+    {
+      "path": "src/V1/DocumentTransform_FieldTransform.php"
+    },
+    {
+      "path": "src/V1/DocumentTransform_FieldTransform_ServerValue.php"
+    },
+    {
+      "path": "src/V1/ExistenceFilter.php"
+    },
+    {
+      "path": "src/V1/FirestoreClient.php"
+    },
+    {
+      "path": "src/V1/FirestoreGrpcClient.php"
+    },
+    {
+      "path": "src/V1/Gapic/FirestoreGapicClient.php"
+    },
+    {
+      "path": "src/V1/GetDocumentRequest.php"
+    },
+    {
+      "path": "src/V1/ListCollectionIdsRequest.php"
+    },
+    {
+      "path": "src/V1/ListCollectionIdsResponse.php"
+    },
+    {
+      "path": "src/V1/ListDocumentsRequest.php"
+    },
+    {
+      "path": "src/V1/ListDocumentsResponse.php"
+    },
+    {
+      "path": "src/V1/ListenRequest.php"
+    },
+    {
+      "path": "src/V1/ListenResponse.php"
+    },
+    {
+      "path": "src/V1/MapValue.php"
+    },
+    {
+      "path": "src/V1/Precondition.php"
+    },
+    {
+      "path": "src/V1/README.md"
+    },
+    {
+      "path": "src/V1/RollbackRequest.php"
+    },
+    {
+      "path": "src/V1/RunQueryRequest.php"
+    },
+    {
+      "path": "src/V1/RunQueryResponse.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery/CollectionSelector.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery/CompositeFilter.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery/CompositeFilter/Operator.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery/Direction.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery/FieldFilter.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery/FieldFilter/Operator.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery/FieldReference.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery/Filter.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery/Order.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery/Projection.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery/UnaryFilter.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery/UnaryFilter/Operator.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery_CollectionSelector.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery_CompositeFilter.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery_CompositeFilter_Operator.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery_Direction.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery_FieldFilter.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery_FieldFilter_Operator.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery_FieldReference.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery_Filter.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery_Order.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery_Projection.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery_UnaryFilter.php"
+    },
+    {
+      "path": "src/V1/StructuredQuery_UnaryFilter_Operator.php"
+    },
+    {
+      "path": "src/V1/Target.php"
+    },
+    {
+      "path": "src/V1/Target/DocumentsTarget.php"
+    },
+    {
+      "path": "src/V1/Target/QueryTarget.php"
+    },
+    {
+      "path": "src/V1/TargetChange.php"
+    },
+    {
+      "path": "src/V1/TargetChange/TargetChangeType.php"
+    },
+    {
+      "path": "src/V1/TargetChange_TargetChangeType.php"
+    },
+    {
+      "path": "src/V1/Target_DocumentsTarget.php"
+    },
+    {
+      "path": "src/V1/Target_QueryTarget.php"
+    },
+    {
+      "path": "src/V1/TransactionOptions.php"
+    },
+    {
+      "path": "src/V1/TransactionOptions/ReadOnly.php"
+    },
+    {
+      "path": "src/V1/TransactionOptions/ReadWrite.php"
+    },
+    {
+      "path": "src/V1/TransactionOptions_ReadOnly.php"
+    },
+    {
+      "path": "src/V1/TransactionOptions_ReadWrite.php"
+    },
+    {
+      "path": "src/V1/UpdateDocumentRequest.php"
+    },
+    {
+      "path": "src/V1/Value.php"
+    },
+    {
+      "path": "src/V1/Write.php"
+    },
+    {
+      "path": "src/V1/WriteRequest.php"
+    },
+    {
+      "path": "src/V1/WriteResponse.php"
+    },
+    {
+      "path": "src/V1/WriteResult.php"
+    },
+    {
+      "path": "src/V1/resources/firestore_client_config.json"
+    },
+    {
+      "path": "src/V1/resources/firestore_descriptor_config.php"
+    },
+    {
+      "path": "src/V1/resources/firestore_rest_client_config.php"
+    },
+    {
+      "path": "src/V1beta1/ArrayValue.php"
+    },
+    {
+      "path": "src/V1beta1/BatchGetDocumentsRequest.php"
+    },
+    {
+      "path": "src/V1beta1/BatchGetDocumentsResponse.php"
+    },
+    {
+      "path": "src/V1beta1/BeginTransactionRequest.php"
+    },
+    {
+      "path": "src/V1beta1/BeginTransactionResponse.php"
+    },
+    {
+      "path": "src/V1beta1/CommitRequest.php"
+    },
+    {
+      "path": "src/V1beta1/CommitResponse.php"
+    },
+    {
+      "path": "src/V1beta1/CreateDocumentRequest.php"
+    },
+    {
+      "path": "src/V1beta1/Cursor.php"
+    },
+    {
+      "path": "src/V1beta1/DeleteDocumentRequest.php"
+    },
+    {
+      "path": "src/V1beta1/Document.php"
+    },
+    {
+      "path": "src/V1beta1/DocumentChange.php"
+    },
+    {
+      "path": "src/V1beta1/DocumentDelete.php"
+    },
+    {
+      "path": "src/V1beta1/DocumentMask.php"
+    },
+    {
+      "path": "src/V1beta1/DocumentRemove.php"
+    },
+    {
+      "path": "src/V1beta1/DocumentTransform.php"
+    },
+    {
+      "path": "src/V1beta1/DocumentTransform/FieldTransform.php"
+    },
+    {
+      "path": "src/V1beta1/DocumentTransform/FieldTransform/ServerValue.php"
+    },
+    {
+      "path": "src/V1beta1/DocumentTransform_FieldTransform.php"
+    },
+    {
+      "path": "src/V1beta1/DocumentTransform_FieldTransform_ServerValue.php"
+    },
+    {
+      "path": "src/V1beta1/ExistenceFilter.php"
+    },
+    {
+      "path": "src/V1beta1/FirestoreClient.php"
+    },
+    {
+      "path": "src/V1beta1/FirestoreGrpcClient.php"
+    },
+    {
+      "path": "src/V1beta1/Gapic/FirestoreGapicClient.php"
+    },
+    {
+      "path": "src/V1beta1/GetDocumentRequest.php"
+    },
+    {
+      "path": "src/V1beta1/ListCollectionIdsRequest.php"
+    },
+    {
+      "path": "src/V1beta1/ListCollectionIdsResponse.php"
+    },
+    {
+      "path": "src/V1beta1/ListDocumentsRequest.php"
+    },
+    {
+      "path": "src/V1beta1/ListDocumentsResponse.php"
+    },
+    {
+      "path": "src/V1beta1/ListenRequest.php"
+    },
+    {
+      "path": "src/V1beta1/ListenResponse.php"
+    },
+    {
+      "path": "src/V1beta1/MapValue.php"
+    },
+    {
+      "path": "src/V1beta1/Precondition.php"
+    },
+    {
+      "path": "src/V1beta1/README.md"
+    },
+    {
+      "path": "src/V1beta1/RollbackRequest.php"
+    },
+    {
+      "path": "src/V1beta1/RunQueryRequest.php"
+    },
+    {
+      "path": "src/V1beta1/RunQueryResponse.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery/CollectionSelector.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery/CompositeFilter.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery/CompositeFilter/Operator.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery/Direction.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery/FieldFilter.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery/FieldFilter/Operator.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery/FieldReference.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery/Filter.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery/Order.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery/Projection.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery/UnaryFilter.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery/UnaryFilter/Operator.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery_CollectionSelector.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery_CompositeFilter.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery_CompositeFilter_Operator.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery_Direction.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery_FieldFilter.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery_FieldFilter_Operator.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery_FieldReference.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery_Filter.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery_Order.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery_Projection.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery_UnaryFilter.php"
+    },
+    {
+      "path": "src/V1beta1/StructuredQuery_UnaryFilter_Operator.php"
+    },
+    {
+      "path": "src/V1beta1/Target.php"
+    },
+    {
+      "path": "src/V1beta1/Target/DocumentsTarget.php"
+    },
+    {
+      "path": "src/V1beta1/Target/QueryTarget.php"
+    },
+    {
+      "path": "src/V1beta1/TargetChange.php"
+    },
+    {
+      "path": "src/V1beta1/TargetChange/TargetChangeType.php"
+    },
+    {
+      "path": "src/V1beta1/TargetChange_TargetChangeType.php"
+    },
+    {
+      "path": "src/V1beta1/Target_DocumentsTarget.php"
+    },
+    {
+      "path": "src/V1beta1/Target_QueryTarget.php"
+    },
+    {
+      "path": "src/V1beta1/TransactionOptions.php"
+    },
+    {
+      "path": "src/V1beta1/TransactionOptions/ReadOnly.php"
+    },
+    {
+      "path": "src/V1beta1/TransactionOptions/ReadWrite.php"
+    },
+    {
+      "path": "src/V1beta1/TransactionOptions_ReadOnly.php"
+    },
+    {
+      "path": "src/V1beta1/TransactionOptions_ReadWrite.php"
+    },
+    {
+      "path": "src/V1beta1/UpdateDocumentRequest.php"
+    },
+    {
+      "path": "src/V1beta1/Value.php"
+    },
+    {
+      "path": "src/V1beta1/Write.php"
+    },
+    {
+      "path": "src/V1beta1/WriteRequest.php"
+    },
+    {
+      "path": "src/V1beta1/WriteResponse.php"
+    },
+    {
+      "path": "src/V1beta1/WriteResult.php"
+    },
+    {
+      "path": "src/V1beta1/resources/firestore_client_config.json"
+    },
+    {
+      "path": "src/V1beta1/resources/firestore_descriptor_config.php"
+    },
+    {
+      "path": "src/V1beta1/resources/firestore_rest_client_config.php"
+    },
+    {
+      "path": "src/ValueMapper.php"
+    },
+    {
+      "path": "src/WriteBatch.php"
+    },
+    {
+      "path": "synth.metadata"
+    },
+    {
+      "path": "synth.py"
+    },
+    {
+      "path": "tests/Snippet/CollectionReferenceTest.php"
+    },
+    {
+      "path": "tests/Snippet/DocumentReferenceStub.php"
+    },
+    {
+      "path": "tests/Snippet/DocumentReferenceTest.php"
+    },
+    {
+      "path": "tests/Snippet/DocumentSnapshotTest.php"
+    },
+    {
+      "path": "tests/Snippet/FieldPathTest.php"
+    },
+    {
+      "path": "tests/Snippet/FieldValueTest.php"
+    },
+    {
+      "path": "tests/Snippet/FirestoreClientTest.php"
+    },
+    {
+      "path": "tests/Snippet/FirestoreSessionHandlerTest.php"
+    },
+    {
+      "path": "tests/Snippet/QuerySnapshotTest.php"
+    },
+    {
+      "path": "tests/Snippet/QueryTest.php"
+    },
+    {
+      "path": "tests/Snippet/TransactionTest.php"
+    },
+    {
+      "path": "tests/Snippet/WriteBatchTest.php"
+    },
+    {
+      "path": "tests/System/Admin/V1/FirestoreAdminClientSmokeTest.php"
+    },
+    {
+      "path": "tests/System/CollectionGroupTest.php"
+    },
+    {
+      "path": "tests/System/DocumentAndCollectionTest.php"
+    },
+    {
+      "path": "tests/System/FieldValueTest.php"
+    },
+    {
+      "path": "tests/System/FirestoreSessionHandlerTest.php"
+    },
+    {
+      "path": "tests/System/FirestoreTestCase.php"
+    },
+    {
+      "path": "tests/System/GetAllDocumentsTest.php"
+    },
+    {
+      "path": "tests/System/QueryTest.php"
+    },
+    {
+      "path": "tests/System/README.md"
+    },
+    {
+      "path": "tests/System/TransactionTest.php"
+    },
+    {
+      "path": "tests/System/ValueMapperTest.php"
+    },
+    {
+      "path": "tests/System/WriteTest.php"
+    },
+    {
+      "path": "tests/System/bootstrap.php"
+    },
+    {
+      "path": "tests/Unit/Admin/V1/FirestoreAdminClientTest.php"
+    },
+    {
+      "path": "tests/Unit/CollectionReferenceTest.php"
+    },
+    {
+      "path": "tests/Unit/ConformanceTest.php"
+    },
+    {
+      "path": "tests/Unit/Connection/GrpcTest.php"
+    },
+    {
+      "path": "tests/Unit/DocumentReferenceTest.php"
+    },
+    {
+      "path": "tests/Unit/DocumentSnapshotTest.php"
+    },
+    {
+      "path": "tests/Unit/FieldPathTest.php"
+    },
+    {
+      "path": "tests/Unit/FieldValueTest.php"
+    },
+    {
+      "path": "tests/Unit/FirestoreClientTest.php"
+    },
+    {
+      "path": "tests/Unit/FirestoreSessionHandlerTest.php"
+    },
+    {
+      "path": "tests/Unit/PathTraitTest.php"
+    },
+    {
+      "path": "tests/Unit/QuerySnapshotTest.php"
+    },
+    {
+      "path": "tests/Unit/QueryTest.php"
+    },
+    {
+      "path": "tests/Unit/SnapshotTraitTest.php"
+    },
+    {
+      "path": "tests/Unit/TransactionTest.php"
+    },
+    {
+      "path": "tests/Unit/V1/FirestoreClientTest.php"
+    },
+    {
+      "path": "tests/Unit/V1beta1/FirestoreClientTest.php"
+    },
+    {
+      "path": "tests/Unit/ValueMapperTest.php"
+    },
+    {
+      "path": "tests/Unit/WriteBatchTest.php"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-all-transforms.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-arrayremove-multi.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-arrayremove-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-arrayremove-noarray-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-arrayremove-noarray.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-arrayremove-with-st.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-arrayremove.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-arrayunion-multi.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-arrayunion-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-arrayunion-noarray-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-arrayunion-noarray.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-arrayunion-with-st.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-arrayunion.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-basic.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-complex.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-del-noarray-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-del-noarray.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-empty.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-nodel.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-nosplit.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-special-chars.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-st-alone.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-st-multi.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-st-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-st-noarray-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-st-noarray.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-st-with-empty-map.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/create-st.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/delete-exists-precond.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/delete-no-precond.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/delete-time-precond.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/get-basic.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/listen-add-mod-del-add.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/listen-add-one.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/listen-add-three.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/listen-doc-remove.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/listen-empty.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/listen-filter-nop.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/listen-multi-docs.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/listen-nocurrent.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/listen-nomod.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/listen-removed-target-ids.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/listen-reset.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/listen-target-add-nop.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/listen-target-add-wrong-id.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/listen-target-remove.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-arrayremove-cursor.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-arrayremove-where.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-arrayunion-cursor.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-arrayunion-where.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-bad-NaN.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-bad-null.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-cursor-docsnap-order.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-cursor-docsnap-orderby-name.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-cursor-docsnap-where-eq.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-cursor-docsnap-where-neq-orderby.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-cursor-docsnap-where-neq.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-cursor-docsnap.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-cursor-endbefore-empty-map.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-cursor-endbefore-empty.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-cursor-no-order.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-cursor-startat-empty-map.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-cursor-startat-empty.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-cursor-vals-1a.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-cursor-vals-1b.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-cursor-vals-2.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-cursor-vals-docid.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-cursor-vals-last-wins.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-del-cursor.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-del-where.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-invalid-operator.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-invalid-path-order.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-invalid-path-select.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-invalid-path-where.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-offset-limit-last-wins.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-offset-limit.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-order.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-select-empty.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-select-last-wins.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-select.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-st-cursor.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-st-where.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-where-2.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-where-NaN.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-where-null.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-where.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/query-wrong-collection.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-all-transforms.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-arrayremove-multi.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-arrayremove-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-arrayremove-noarray-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-arrayremove-noarray.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-arrayremove-with-st.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-arrayremove.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-arrayunion-multi.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-arrayunion-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-arrayunion-noarray-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-arrayunion-noarray.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-arrayunion-with-st.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-arrayunion.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-basic.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-complex.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-del-merge-alone.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-del-merge.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-del-mergeall.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-del-noarray-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-del-noarray.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-del-nomerge.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-del-nonleaf.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-del-wo-merge.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-empty.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-merge-fp.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-merge-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-merge-nonleaf.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-merge-prefix.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-merge-present.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-merge.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-mergeall-empty.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-mergeall-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-mergeall.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-nodel.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-nosplit.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-special-chars.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-st-alone-mergeall.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-st-alone.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-st-merge-both.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-st-merge-nonleaf-alone.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-st-merge-nonleaf.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-st-merge-nowrite.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-st-mergeall.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-st-multi.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-st-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-st-noarray-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-st-noarray.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-st-nomerge.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-st-with-empty-map.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/set-st.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-all-transforms.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-arrayremove-alone.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-arrayremove-multi.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-arrayremove-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-arrayremove-noarray-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-arrayremove-noarray.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-arrayremove-with-st.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-arrayremove.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-arrayunion-alone.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-arrayunion-multi.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-arrayunion-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-arrayunion-noarray-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-arrayunion-noarray.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-arrayunion-with-st.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-arrayunion.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-badchar.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-basic.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-complex.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-del-alone.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-del-dot.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-del-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-del-noarray-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-del-noarray.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-del.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-exists-precond.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-fp-empty-component.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-nested-transform-and-nested-value.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-no-paths.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-all-transforms.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-arrayremove-alone.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-arrayremove-multi.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-arrayremove-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-arrayremove-noarray-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-arrayremove-noarray.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-arrayremove-with-st.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-arrayremove.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-arrayunion-alone.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-arrayunion-multi.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-arrayunion-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-arrayunion-noarray-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-arrayunion-noarray.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-arrayunion-with-st.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-arrayunion.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-basic.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-complex.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-del-alone.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-del-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-del-noarray-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-del-noarray.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-del.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-exists-precond.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-fp-del.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-fp-dup-transforms.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-fp-dup.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-fp-empty-component.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-fp-empty.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-fp-multi.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-fp-nosplit.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-nested-transform-and-nested-value.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-no-paths.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-prefix-1.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-prefix-2.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-prefix-3.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-special-chars.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-st-alone.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-st-multi.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-st-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-st-noarray-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-st-noarray.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-st-with-empty-map.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-st.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-paths-uptime.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-prefix-1.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-prefix-2.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-prefix-3.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-quoting.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-split-top-level.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-split.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-st-alone.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-st-dot.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-st-multi.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-st-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-st-noarray-nested.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-st-noarray.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-st-with-empty-map.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-st.json"
+    },
+    {
+      "path": "tests/Unit/conformance/v1/update-uptime.json"
     }
   ]
 }
