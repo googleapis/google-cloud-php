@@ -446,6 +446,8 @@ class AssetServiceGapicClient
      * non-delete or deleted status.
      * For IAM_POLICY content, this API outputs history when the asset and its
      * attached IAM POLICY both exist. This can create gaps in the output history.
+     * If a specified asset does not exist, this API returns an INVALID_ARGUMENT
+     * error.
      *
      * Sample code:
      * ```
@@ -463,7 +465,7 @@ class AssetServiceGapicClient
      * @param string     $parent         Required. The relative name of the root asset. It can only be an
      *                                   organization number (such as "organizations/123"), a project ID (such as
      *                                   "projects/my-project-id")", or a project number (such as "projects/12345").
-     * @param int        $contentType    Required. The content type.
+     * @param int        $contentType    Optional. The content type.
      *                                   For allowed values, use constants defined on {@see \Google\Cloud\Asset\V1beta1\ContentType}
      * @param TimeWindow $readTimeWindow Optional. The time window for the asset history. Both start_time and
      *                                   end_time are optional and if set, it must be after 2018-10-02 UTC. If
