@@ -233,8 +233,7 @@ class CloudSchedulerGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - job: projects/{project}/locations/{location}/jobs/{job}
-     * - location: projects/{project}/locations/{location}
-     * - project: projects/{project}.
+     * - location: projects/{project}/locations/{location}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
