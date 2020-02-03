@@ -96,6 +96,62 @@ s.replace(
     r'^(\s+\*\n)?\s+\*\s@experimental\n',
     '')
 
+# Fix missing formatting method
+tasksBrokenGapics = [
+    'src/V2beta3/Gapic/CloudTasksGapicClient.php',
+    'src/V2beta2/Gapic/CloudTasksGapicClient.php',
+    'src/V2/Gapic/CloudTasksGapicClient.php',
+]
+s.replace(
+    tasksBrokenGapics,
+    r"private static \$locationNameTemplate;\n\s{4}private static \$queueNameTemplate;",
+    """private static $locationNameTemplate;
+    private static $projectNameTemplate;
+    private static $queueNameTemplate;"""
+)
+s.replace(
+    tasksBrokenGapics,
+    "private static function getQueueNameTemplate",
+    """private static function getProjectNameTemplate()
+    {
+        if (null == self::$projectNameTemplate) {
+            self::$projectNameTemplate = new PathTemplate('projects/{project}');
+        }
+
+        return self::$projectNameTemplate;
+    }
+
+    private static function getQueueNameTemplate"""
+)
+s.replace(
+    tasksBrokenGapics,
+    r"'location' => self::getLocationNameTemplate\(\),\n\s{0,}'queue' => self::getQueueNameTemplate\(\),",
+    """'location' => self::getLocationNameTemplate(),
+                'project' => self::getProjectNameTemplate(),
+                'queue' => self::getQueueNameTemplate(),"""
+)
+s.replace(
+    tasksBrokenGapics,
+    r"\/\*\*\n\s{5}\* Parses a formatted name string and returns an",
+    """/**
+     * Formats a string containing the fully-qualified path to represent
+     * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     */
+    public static function projectName($project)
+    {
+        return self::getProjectNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
+     * Parses a formatted name string and returns an"""
+)
+
 ### [START] protoc backwards compatibility fixes
 
 # roll back to private properties.
