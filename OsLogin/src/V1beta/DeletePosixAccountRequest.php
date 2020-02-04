@@ -16,11 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeletePosixAccountRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A reference to the POSIX account to update. POSIX accounts are identified
+     * Required. A reference to the POSIX account to update. POSIX accounts are identified
      * by the project ID they are associated with. A reference to the POSIX
      * account is in format `users/{user}/projects/{project}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
 
@@ -31,7 +31,7 @@ class DeletePosixAccountRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           A reference to the POSIX account to update. POSIX accounts are identified
+     *           Required. A reference to the POSIX account to update. POSIX accounts are identified
      *           by the project ID they are associated with. A reference to the POSIX
      *           account is in format `users/{user}/projects/{project}`.
      * }
@@ -42,11 +42,11 @@ class DeletePosixAccountRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A reference to the POSIX account to update. POSIX accounts are identified
+     * Required. A reference to the POSIX account to update. POSIX accounts are identified
      * by the project ID they are associated with. A reference to the POSIX
      * account is in format `users/{user}/projects/{project}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -55,11 +55,11 @@ class DeletePosixAccountRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A reference to the POSIX account to update. POSIX accounts are identified
+     * Required. A reference to the POSIX account to update. POSIX accounts are identified
      * by the project ID they are associated with. A reference to the POSIX
      * account is in format `users/{user}/projects/{project}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
