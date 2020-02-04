@@ -34,11 +34,18 @@ library = gapic.php_library(
 s.move(library / 'src')
 
 # copy proto files to src also
-s.move(library / 'proto/src/Google/Cloud/Logging', 'src/')
+s.move(
+    library / 'proto/src/Google/Cloud/Logging',
+    'src/',
+    [library / 'proto/src/Google/Cloud/Logging/Type'])
+
 s.move(library / 'tests/')
 
 # copy GPBMetadata file to metadata
-s.move(library / 'proto/src/GPBMetadata/Google/Logging', 'metadata/')
+s.move(
+    library / 'proto/src/GPBMetadata/Google/Logging',
+    'metadata/',
+    [library / 'proto/src/GPBMetadata/Google/Logging/Type'])
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
