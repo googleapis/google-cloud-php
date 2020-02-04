@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The project on which to execute the request. The format is
+     * Required. The project on which to execute the request. The format is
      * `"projects/{project_id_or_number}"`.
      *
-     * Generated from protobuf field <code>string name = 5;</code>
+     * Generated from protobuf field <code>string name = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
@@ -55,7 +55,7 @@ class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The project on which to execute the request. The format is
+     *           Required. The project on which to execute the request. The format is
      *           `"projects/{project_id_or_number}"`.
      *     @type string $filter
      *           An optional [filter](/monitoring/api/v3/filters) describing
@@ -78,10 +78,10 @@ class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\
     }
 
     /**
-     * The project on which to execute the request. The format is
+     * Required. The project on which to execute the request. The format is
      * `"projects/{project_id_or_number}"`.
      *
-     * Generated from protobuf field <code>string name = 5;</code>
+     * Generated from protobuf field <code>string name = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -90,10 +90,10 @@ class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\
     }
 
     /**
-     * The project on which to execute the request. The format is
+     * Required. The project on which to execute the request. The format is
      * `"projects/{project_id_or_number}"`.
      *
-     * Generated from protobuf field <code>string name = 5;</code>
+     * Generated from protobuf field <code>string name = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

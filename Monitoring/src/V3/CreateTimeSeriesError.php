@@ -9,25 +9,22 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Describes the result of a failed request to write data to a time series.
+ * DEPRECATED. Used to hold per-time-series error status.
  *
  * Generated from protobuf message <code>google.monitoring.v3.CreateTimeSeriesError</code>
  */
 class CreateTimeSeriesError extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The time series, including the `Metric`, `MonitoredResource`,
-     * and `Point`s (including timestamp and value) that resulted
-     * in the error. This field provides all of the context that
-     * would be needed to retry the operation.
+     * DEPRECATED. Time series ID that resulted in the `status` error.
      *
-     * Generated from protobuf field <code>.google.monitoring.v3.TimeSeries time_series = 1;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.TimeSeries time_series = 1 [deprecated = true];</code>
      */
     private $time_series = null;
     /**
-     * The status of the requested write operation.
+     * DEPRECATED. The status of the requested write operation for `time_series`.
      *
-     * Generated from protobuf field <code>.google.rpc.Status status = 2;</code>
+     * Generated from protobuf field <code>.google.rpc.Status status = 2 [deprecated = true];</code>
      */
     private $status = null;
 
@@ -38,12 +35,9 @@ class CreateTimeSeriesError extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Monitoring\V3\TimeSeries $time_series
-     *           The time series, including the `Metric`, `MonitoredResource`,
-     *           and `Point`s (including timestamp and value) that resulted
-     *           in the error. This field provides all of the context that
-     *           would be needed to retry the operation.
+     *           DEPRECATED. Time series ID that resulted in the `status` error.
      *     @type \Google\Rpc\Status $status
-     *           The status of the requested write operation.
+     *           DEPRECATED. The status of the requested write operation for `time_series`.
      * }
      */
     public function __construct($data = NULL) {
@@ -52,12 +46,9 @@ class CreateTimeSeriesError extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time series, including the `Metric`, `MonitoredResource`,
-     * and `Point`s (including timestamp and value) that resulted
-     * in the error. This field provides all of the context that
-     * would be needed to retry the operation.
+     * DEPRECATED. Time series ID that resulted in the `status` error.
      *
-     * Generated from protobuf field <code>.google.monitoring.v3.TimeSeries time_series = 1;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.TimeSeries time_series = 1 [deprecated = true];</code>
      * @return \Google\Cloud\Monitoring\V3\TimeSeries
      */
     public function getTimeSeries()
@@ -66,12 +57,9 @@ class CreateTimeSeriesError extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time series, including the `Metric`, `MonitoredResource`,
-     * and `Point`s (including timestamp and value) that resulted
-     * in the error. This field provides all of the context that
-     * would be needed to retry the operation.
+     * DEPRECATED. Time series ID that resulted in the `status` error.
      *
-     * Generated from protobuf field <code>.google.monitoring.v3.TimeSeries time_series = 1;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.TimeSeries time_series = 1 [deprecated = true];</code>
      * @param \Google\Cloud\Monitoring\V3\TimeSeries $var
      * @return $this
      */
@@ -84,9 +72,9 @@ class CreateTimeSeriesError extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The status of the requested write operation.
+     * DEPRECATED. The status of the requested write operation for `time_series`.
      *
-     * Generated from protobuf field <code>.google.rpc.Status status = 2;</code>
+     * Generated from protobuf field <code>.google.rpc.Status status = 2 [deprecated = true];</code>
      * @return \Google\Rpc\Status
      */
     public function getStatus()
@@ -95,9 +83,9 @@ class CreateTimeSeriesError extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The status of the requested write operation.
+     * DEPRECATED. The status of the requested write operation for `time_series`.
      *
-     * Generated from protobuf field <code>.google.rpc.Status status = 2;</code>
+     * Generated from protobuf field <code>.google.rpc.Status status = 2 [deprecated = true];</code>
      * @param \Google\Rpc\Status $var
      * @return $this
      */

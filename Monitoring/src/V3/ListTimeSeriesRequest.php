@@ -16,50 +16,51 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The project on which to execute the request. The format is
+     * Required. The project on which to execute the request. The format is
      * "projects/{project_id_or_number}".
      *
-     * Generated from protobuf field <code>string name = 10;</code>
+     * Generated from protobuf field <code>string name = 10 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
-     * A [monitoring filter](/monitoring/api/v3/filters) that specifies which time
+     * Required. A [monitoring filter](/monitoring/api/v3/filters) that specifies which time
      * series should be returned.  The filter must specify a single metric type,
      * and can additionally specify metric labels and other information. For
      * example:
      *     metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND
      *         metric.labels.instance_name = "my-instance-name"
      *
-     * Generated from protobuf field <code>string filter = 2;</code>
+     * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $filter = '';
     /**
-     * The time interval for which results should be returned. Only time series
+     * Required. The time interval for which results should be returned. Only time series
      * that contain data points in the specified interval are included
      * in the response.
      *
-     * Generated from protobuf field <code>.google.monitoring.v3.TimeInterval interval = 4;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.TimeInterval interval = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $interval = null;
     /**
-     * By default, the raw time series data is returned.
-     * Use this field to combine multiple time series for different
-     * views of the data.
+     * Specifies the alignment of data points in individual time series as
+     * well as how to combine the retrieved time series across specified labels.
+     * By default (if no `aggregation` is explicitly specified), the raw time
+     * series data is returned.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.Aggregation aggregation = 5;</code>
      */
     private $aggregation = null;
     /**
      * Unsupported: must be left blank. The points in each time series are
-     * returned in reverse time order.
+     * currently returned in reverse time order (most recent to oldest).
      *
      * Generated from protobuf field <code>string order_by = 6;</code>
      */
     private $order_by = '';
     /**
-     * Specifies which information is returned about the time series.
+     * Required. Specifies which information is returned about the time series.
      *
-     * Generated from protobuf field <code>.google.monitoring.v3.ListTimeSeriesRequest.TimeSeriesView view = 7;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.ListTimeSeriesRequest.TimeSeriesView view = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $view = 0;
     /**
@@ -88,28 +89,29 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The project on which to execute the request. The format is
+     *           Required. The project on which to execute the request. The format is
      *           "projects/{project_id_or_number}".
      *     @type string $filter
-     *           A [monitoring filter](/monitoring/api/v3/filters) that specifies which time
+     *           Required. A [monitoring filter](/monitoring/api/v3/filters) that specifies which time
      *           series should be returned.  The filter must specify a single metric type,
      *           and can additionally specify metric labels and other information. For
      *           example:
      *               metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND
      *                   metric.labels.instance_name = "my-instance-name"
      *     @type \Google\Cloud\Monitoring\V3\TimeInterval $interval
-     *           The time interval for which results should be returned. Only time series
+     *           Required. The time interval for which results should be returned. Only time series
      *           that contain data points in the specified interval are included
      *           in the response.
      *     @type \Google\Cloud\Monitoring\V3\Aggregation $aggregation
-     *           By default, the raw time series data is returned.
-     *           Use this field to combine multiple time series for different
-     *           views of the data.
+     *           Specifies the alignment of data points in individual time series as
+     *           well as how to combine the retrieved time series across specified labels.
+     *           By default (if no `aggregation` is explicitly specified), the raw time
+     *           series data is returned.
      *     @type string $order_by
      *           Unsupported: must be left blank. The points in each time series are
-     *           returned in reverse time order.
+     *           currently returned in reverse time order (most recent to oldest).
      *     @type int $view
-     *           Specifies which information is returned about the time series.
+     *           Required. Specifies which information is returned about the time series.
      *     @type int $page_size
      *           A positive number that is the maximum number of results to return. If
      *           `page_size` is empty or more than 100,000 results, the effective
@@ -128,10 +130,10 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project on which to execute the request. The format is
+     * Required. The project on which to execute the request. The format is
      * "projects/{project_id_or_number}".
      *
-     * Generated from protobuf field <code>string name = 10;</code>
+     * Generated from protobuf field <code>string name = 10 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -140,10 +142,10 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project on which to execute the request. The format is
+     * Required. The project on which to execute the request. The format is
      * "projects/{project_id_or_number}".
      *
-     * Generated from protobuf field <code>string name = 10;</code>
+     * Generated from protobuf field <code>string name = 10 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -156,14 +158,14 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A [monitoring filter](/monitoring/api/v3/filters) that specifies which time
+     * Required. A [monitoring filter](/monitoring/api/v3/filters) that specifies which time
      * series should be returned.  The filter must specify a single metric type,
      * and can additionally specify metric labels and other information. For
      * example:
      *     metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND
      *         metric.labels.instance_name = "my-instance-name"
      *
-     * Generated from protobuf field <code>string filter = 2;</code>
+     * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getFilter()
@@ -172,14 +174,14 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A [monitoring filter](/monitoring/api/v3/filters) that specifies which time
+     * Required. A [monitoring filter](/monitoring/api/v3/filters) that specifies which time
      * series should be returned.  The filter must specify a single metric type,
      * and can additionally specify metric labels and other information. For
      * example:
      *     metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND
      *         metric.labels.instance_name = "my-instance-name"
      *
-     * Generated from protobuf field <code>string filter = 2;</code>
+     * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -192,11 +194,11 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time interval for which results should be returned. Only time series
+     * Required. The time interval for which results should be returned. Only time series
      * that contain data points in the specified interval are included
      * in the response.
      *
-     * Generated from protobuf field <code>.google.monitoring.v3.TimeInterval interval = 4;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.TimeInterval interval = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Monitoring\V3\TimeInterval
      */
     public function getInterval()
@@ -205,11 +207,11 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time interval for which results should be returned. Only time series
+     * Required. The time interval for which results should be returned. Only time series
      * that contain data points in the specified interval are included
      * in the response.
      *
-     * Generated from protobuf field <code>.google.monitoring.v3.TimeInterval interval = 4;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.TimeInterval interval = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Monitoring\V3\TimeInterval $var
      * @return $this
      */
@@ -222,9 +224,10 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * By default, the raw time series data is returned.
-     * Use this field to combine multiple time series for different
-     * views of the data.
+     * Specifies the alignment of data points in individual time series as
+     * well as how to combine the retrieved time series across specified labels.
+     * By default (if no `aggregation` is explicitly specified), the raw time
+     * series data is returned.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.Aggregation aggregation = 5;</code>
      * @return \Google\Cloud\Monitoring\V3\Aggregation
@@ -235,9 +238,10 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * By default, the raw time series data is returned.
-     * Use this field to combine multiple time series for different
-     * views of the data.
+     * Specifies the alignment of data points in individual time series as
+     * well as how to combine the retrieved time series across specified labels.
+     * By default (if no `aggregation` is explicitly specified), the raw time
+     * series data is returned.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.Aggregation aggregation = 5;</code>
      * @param \Google\Cloud\Monitoring\V3\Aggregation $var
@@ -253,7 +257,7 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Unsupported: must be left blank. The points in each time series are
-     * returned in reverse time order.
+     * currently returned in reverse time order (most recent to oldest).
      *
      * Generated from protobuf field <code>string order_by = 6;</code>
      * @return string
@@ -265,7 +269,7 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Unsupported: must be left blank. The points in each time series are
-     * returned in reverse time order.
+     * currently returned in reverse time order (most recent to oldest).
      *
      * Generated from protobuf field <code>string order_by = 6;</code>
      * @param string $var
@@ -280,9 +284,9 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies which information is returned about the time series.
+     * Required. Specifies which information is returned about the time series.
      *
-     * Generated from protobuf field <code>.google.monitoring.v3.ListTimeSeriesRequest.TimeSeriesView view = 7;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.ListTimeSeriesRequest.TimeSeriesView view = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getView()
@@ -291,9 +295,9 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies which information is returned about the time series.
+     * Required. Specifies which information is returned about the time series.
      *
-     * Generated from protobuf field <code>.google.monitoring.v3.ListTimeSeriesRequest.TimeSeriesView view = 7;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.ListTimeSeriesRequest.TimeSeriesView view = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */

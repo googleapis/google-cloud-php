@@ -16,12 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The metric descriptor on which to execute the request. The format is
+     * Required. The metric descriptor on which to execute the request. The format is
      * `"projects/{project_id_or_number}/metricDescriptors/{metric_id}"`.
      * An example value of `{metric_id}` is
      * `"compute.googleapis.com/instance/disk/read_bytes_count"`.
      *
-     * Generated from protobuf field <code>string name = 3;</code>
+     * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
 
@@ -32,7 +32,7 @@ class GetMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The metric descriptor on which to execute the request. The format is
+     *           Required. The metric descriptor on which to execute the request. The format is
      *           `"projects/{project_id_or_number}/metricDescriptors/{metric_id}"`.
      *           An example value of `{metric_id}` is
      *           `"compute.googleapis.com/instance/disk/read_bytes_count"`.
@@ -44,12 +44,12 @@ class GetMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The metric descriptor on which to execute the request. The format is
+     * Required. The metric descriptor on which to execute the request. The format is
      * `"projects/{project_id_or_number}/metricDescriptors/{metric_id}"`.
      * An example value of `{metric_id}` is
      * `"compute.googleapis.com/instance/disk/read_bytes_count"`.
      *
-     * Generated from protobuf field <code>string name = 3;</code>
+     * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -58,12 +58,12 @@ class GetMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The metric descriptor on which to execute the request. The format is
+     * Required. The metric descriptor on which to execute the request. The format is
      * `"projects/{project_id_or_number}/metricDescriptors/{metric_id}"`.
      * An example value of `{metric_id}` is
      * `"compute.googleapis.com/instance/disk/read_bytes_count"`.
      *
-     * Generated from protobuf field <code>string name = 3;</code>
+     * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

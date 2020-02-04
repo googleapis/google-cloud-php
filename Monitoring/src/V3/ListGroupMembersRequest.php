@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListGroupMembersRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The group whose members are listed. The format is
+     * Required. The group whose members are listed. The format is
      * `"projects/{project_id_or_number}/groups/{group_id}"`.
      *
-     * Generated from protobuf field <code>string name = 7;</code>
+     * Generated from protobuf field <code>string name = 7 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
@@ -64,7 +64,7 @@ class ListGroupMembersRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The group whose members are listed. The format is
+     *           Required. The group whose members are listed. The format is
      *           `"projects/{project_id_or_number}/groups/{group_id}"`.
      *     @type int $page_size
      *           A positive number that is the maximum number of results to return.
@@ -92,10 +92,10 @@ class ListGroupMembersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The group whose members are listed. The format is
+     * Required. The group whose members are listed. The format is
      * `"projects/{project_id_or_number}/groups/{group_id}"`.
      *
-     * Generated from protobuf field <code>string name = 7;</code>
+     * Generated from protobuf field <code>string name = 7 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -104,10 +104,10 @@ class ListGroupMembersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The group whose members are listed. The format is
+     * Required. The group whose members are listed. The format is
      * `"projects/{project_id_or_number}/groups/{group_id}"`.
      *
-     * Generated from protobuf field <code>string name = 7;</code>
+     * Generated from protobuf field <code>string name = 7 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

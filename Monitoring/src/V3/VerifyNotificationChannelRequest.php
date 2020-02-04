@@ -16,13 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class VerifyNotificationChannelRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The notification channel to verify.
+     * Required. The notification channel to verify.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
-     * The verification code that was delivered to the channel as
+     * Required. The verification code that was delivered to the channel as
      * a result of invoking the `SendNotificationChannelVerificationCode` API
      * method or that was retrieved from a verified channel via
      * `GetNotificationChannelVerificationCode`. For example, one might have
@@ -30,7 +30,7 @@ class VerifyNotificationChannelRequest extends \Google\Protobuf\Internal\Message
      * guaranteed that the code is valid UTF-8; one should not
      * make any assumptions regarding the structure or format of the code).
      *
-     * Generated from protobuf field <code>string code = 2;</code>
+     * Generated from protobuf field <code>string code = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $code = '';
 
@@ -41,9 +41,9 @@ class VerifyNotificationChannelRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The notification channel to verify.
+     *           Required. The notification channel to verify.
      *     @type string $code
-     *           The verification code that was delivered to the channel as
+     *           Required. The verification code that was delivered to the channel as
      *           a result of invoking the `SendNotificationChannelVerificationCode` API
      *           method or that was retrieved from a verified channel via
      *           `GetNotificationChannelVerificationCode`. For example, one might have
@@ -58,9 +58,9 @@ class VerifyNotificationChannelRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The notification channel to verify.
+     * Required. The notification channel to verify.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -69,9 +69,9 @@ class VerifyNotificationChannelRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The notification channel to verify.
+     * Required. The notification channel to verify.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -84,7 +84,7 @@ class VerifyNotificationChannelRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The verification code that was delivered to the channel as
+     * Required. The verification code that was delivered to the channel as
      * a result of invoking the `SendNotificationChannelVerificationCode` API
      * method or that was retrieved from a verified channel via
      * `GetNotificationChannelVerificationCode`. For example, one might have
@@ -92,7 +92,7 @@ class VerifyNotificationChannelRequest extends \Google\Protobuf\Internal\Message
      * guaranteed that the code is valid UTF-8; one should not
      * make any assumptions regarding the structure or format of the code).
      *
-     * Generated from protobuf field <code>string code = 2;</code>
+     * Generated from protobuf field <code>string code = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getCode()
@@ -101,7 +101,7 @@ class VerifyNotificationChannelRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The verification code that was delivered to the channel as
+     * Required. The verification code that was delivered to the channel as
      * a result of invoking the `SendNotificationChannelVerificationCode` API
      * method or that was retrieved from a verified channel via
      * `GetNotificationChannelVerificationCode`. For example, one might have
@@ -109,7 +109,7 @@ class VerifyNotificationChannelRequest extends \Google\Protobuf\Internal\Message
      * guaranteed that the code is valid UTF-8; one should not
      * make any assumptions regarding the structure or format of the code).
      *
-     * Generated from protobuf field <code>string code = 2;</code>
+     * Generated from protobuf field <code>string code = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

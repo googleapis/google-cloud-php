@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListNotificationChannelDescriptorsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The REST resource name of the parent from which to retrieve
+     * Required. The REST resource name of the parent from which to retrieve
      * the notification channel descriptors. The expected syntax is:
      *     projects/[PROJECT_ID]
      * Note that this names the parent container in which to look for the
@@ -24,7 +24,7 @@ class ListNotificationChannelDescriptorsRequest extends \Google\Protobuf\Interna
      * [GetNotificationChannelDescriptor][google.monitoring.v3.NotificationChannelService.GetNotificationChannelDescriptor]
      * operation, instead.
      *
-     * Generated from protobuf field <code>string name = 4;</code>
+     * Generated from protobuf field <code>string name = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
@@ -51,7 +51,7 @@ class ListNotificationChannelDescriptorsRequest extends \Google\Protobuf\Interna
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The REST resource name of the parent from which to retrieve
+     *           Required. The REST resource name of the parent from which to retrieve
      *           the notification channel descriptors. The expected syntax is:
      *               projects/[PROJECT_ID]
      *           Note that this names the parent container in which to look for the
@@ -74,7 +74,7 @@ class ListNotificationChannelDescriptorsRequest extends \Google\Protobuf\Interna
     }
 
     /**
-     * The REST resource name of the parent from which to retrieve
+     * Required. The REST resource name of the parent from which to retrieve
      * the notification channel descriptors. The expected syntax is:
      *     projects/[PROJECT_ID]
      * Note that this names the parent container in which to look for the
@@ -82,7 +82,7 @@ class ListNotificationChannelDescriptorsRequest extends \Google\Protobuf\Interna
      * [GetNotificationChannelDescriptor][google.monitoring.v3.NotificationChannelService.GetNotificationChannelDescriptor]
      * operation, instead.
      *
-     * Generated from protobuf field <code>string name = 4;</code>
+     * Generated from protobuf field <code>string name = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -91,7 +91,7 @@ class ListNotificationChannelDescriptorsRequest extends \Google\Protobuf\Interna
     }
 
     /**
-     * The REST resource name of the parent from which to retrieve
+     * Required. The REST resource name of the parent from which to retrieve
      * the notification channel descriptors. The expected syntax is:
      *     projects/[PROJECT_ID]
      * Note that this names the parent container in which to look for the
@@ -99,7 +99,7 @@ class ListNotificationChannelDescriptorsRequest extends \Google\Protobuf\Interna
      * [GetNotificationChannelDescriptor][google.monitoring.v3.NotificationChannelService.GetNotificationChannelDescriptor]
      * operation, instead.
      *
-     * Generated from protobuf field <code>string name = 4;</code>
+     * Generated from protobuf field <code>string name = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

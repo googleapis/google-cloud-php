@@ -16,12 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetMonitoredResourceDescriptorRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The monitored resource descriptor to get.  The format is
+     * Required. The monitored resource descriptor to get.  The format is
      * `"projects/{project_id_or_number}/monitoredResourceDescriptors/{resource_type}"`.
      * The `{resource_type}` is a predefined type, such as
      * `cloudsql_database`.
      *
-     * Generated from protobuf field <code>string name = 3;</code>
+     * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
 
@@ -32,7 +32,7 @@ class GetMonitoredResourceDescriptorRequest extends \Google\Protobuf\Internal\Me
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The monitored resource descriptor to get.  The format is
+     *           Required. The monitored resource descriptor to get.  The format is
      *           `"projects/{project_id_or_number}/monitoredResourceDescriptors/{resource_type}"`.
      *           The `{resource_type}` is a predefined type, such as
      *           `cloudsql_database`.
@@ -44,12 +44,12 @@ class GetMonitoredResourceDescriptorRequest extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * The monitored resource descriptor to get.  The format is
+     * Required. The monitored resource descriptor to get.  The format is
      * `"projects/{project_id_or_number}/monitoredResourceDescriptors/{resource_type}"`.
      * The `{resource_type}` is a predefined type, such as
      * `cloudsql_database`.
      *
-     * Generated from protobuf field <code>string name = 3;</code>
+     * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -58,12 +58,12 @@ class GetMonitoredResourceDescriptorRequest extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * The monitored resource descriptor to get.  The format is
+     * Required. The monitored resource descriptor to get.  The format is
      * `"projects/{project_id_or_number}/monitoredResourceDescriptors/{resource_type}"`.
      * The `{resource_type}` is a predefined type, such as
      * `cloudsql_database`.
      *
-     * Generated from protobuf field <code>string name = 3;</code>
+     * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

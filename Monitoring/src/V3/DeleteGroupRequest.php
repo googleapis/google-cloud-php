@@ -17,10 +17,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeleteGroupRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The group to delete. The format is
+     * Required. The group to delete. The format is
      * `"projects/{project_id_or_number}/groups/{group_id}"`.
      *
-     * Generated from protobuf field <code>string name = 3;</code>
+     * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
@@ -39,7 +39,7 @@ class DeleteGroupRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The group to delete. The format is
+     *           Required. The group to delete. The format is
      *           `"projects/{project_id_or_number}/groups/{group_id}"`.
      *     @type bool $recursive
      *           If this field is true, then the request means to delete a group with all
@@ -53,10 +53,10 @@ class DeleteGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The group to delete. The format is
+     * Required. The group to delete. The format is
      * `"projects/{project_id_or_number}/groups/{group_id}"`.
      *
-     * Generated from protobuf field <code>string name = 3;</code>
+     * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -65,10 +65,10 @@ class DeleteGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The group to delete. The format is
+     * Required. The group to delete. The format is
      * `"projects/{project_id_or_number}/groups/{group_id}"`.
      *
-     * Generated from protobuf field <code>string name = 3;</code>
+     * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

@@ -16,16 +16,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateUptimeCheckConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The project in which to create the Uptime check. The format
+     * Required. The project in which to create the Uptime check. The format
      *   is `projects/[PROJECT_ID]`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * The new Uptime check configuration.
+     * Required. The new Uptime check configuration.
      *
-     * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig uptime_check_config = 2;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig uptime_check_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $uptime_check_config = null;
 
@@ -36,10 +36,10 @@ class CreateUptimeCheckConfigRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The project in which to create the Uptime check. The format
+     *           Required. The project in which to create the Uptime check. The format
      *             is `projects/[PROJECT_ID]`.
      *     @type \Google\Cloud\Monitoring\V3\UptimeCheckConfig $uptime_check_config
-     *           The new Uptime check configuration.
+     *           Required. The new Uptime check configuration.
      * }
      */
     public function __construct($data = NULL) {
@@ -48,10 +48,10 @@ class CreateUptimeCheckConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project in which to create the Uptime check. The format
+     * Required. The project in which to create the Uptime check. The format
      *   is `projects/[PROJECT_ID]`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -60,10 +60,10 @@ class CreateUptimeCheckConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project in which to create the Uptime check. The format
+     * Required. The project in which to create the Uptime check. The format
      *   is `projects/[PROJECT_ID]`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -76,9 +76,9 @@ class CreateUptimeCheckConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The new Uptime check configuration.
+     * Required. The new Uptime check configuration.
      *
-     * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig uptime_check_config = 2;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig uptime_check_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Monitoring\V3\UptimeCheckConfig
      */
     public function getUptimeCheckConfig()
@@ -87,9 +87,9 @@ class CreateUptimeCheckConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The new Uptime check configuration.
+     * Required. The new Uptime check configuration.
      *
-     * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig uptime_check_config = 2;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig uptime_check_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Monitoring\V3\UptimeCheckConfig $var
      * @return $this
      */

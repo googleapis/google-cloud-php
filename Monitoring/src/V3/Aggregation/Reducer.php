@@ -7,135 +7,142 @@ namespace Google\Cloud\Monitoring\V3\Aggregation;
 use UnexpectedValueException;
 
 /**
- * A Reducer describes how to aggregate data points from multiple
- * time series into a single time series.
+ * A Reducer operation describes how to aggregate data points from multiple
+ * time series into a single time series, where the value of each data point
+ * in the resulting series is a function of all the already aligned values in
+ * the input time series.
  *
  * Protobuf type <code>google.monitoring.v3.Aggregation.Reducer</code>
  */
 class Reducer
 {
     /**
-     * No cross-time series reduction. The output of the aligner is
+     * No cross-time series reduction. The output of the `Aligner` is
      * returned.
      *
      * Generated from protobuf enum <code>REDUCE_NONE = 0;</code>
      */
     const REDUCE_NONE = 0;
     /**
-     * Reduce by computing the mean across time series for each
-     * alignment period. This reducer is valid for delta and
-     * gauge metrics with numeric or distribution values. The value type of the
-     * output is [DOUBLE][google.api.MetricDescriptor.ValueType.DOUBLE].
+     * Reduce by computing the mean value across time series for each
+     * alignment period. This reducer is valid for
+     * [DELTA][google.api.MetricDescriptor.MetricKind.DELTA] and
+     * [GAUGE][google.api.MetricDescriptor.MetricKind.GAUGE] metrics with
+     * numeric or distribution values. The `value_type` of the output is
+     * [DOUBLE][google.api.MetricDescriptor.ValueType.DOUBLE].
      *
      * Generated from protobuf enum <code>REDUCE_MEAN = 1;</code>
      */
     const REDUCE_MEAN = 1;
     /**
-     * Reduce by computing the minimum across time series for each
-     * alignment period. This reducer is valid for delta and
-     * gauge metrics with numeric values. The value type of the output
-     * is the same as the value type of the input.
+     * Reduce by computing the minimum value across time series for each
+     * alignment period. This reducer is valid for `DELTA` and `GAUGE` metrics
+     * with numeric values. The `value_type` of the output is the same as the
+     * `value_type` of the input.
      *
      * Generated from protobuf enum <code>REDUCE_MIN = 2;</code>
      */
     const REDUCE_MIN = 2;
     /**
-     * Reduce by computing the maximum across time series for each
-     * alignment period. This reducer is valid for delta and
-     * gauge metrics with numeric values. The value type of the output
-     * is the same as the value type of the input.
+     * Reduce by computing the maximum value across time series for each
+     * alignment period. This reducer is valid for `DELTA` and `GAUGE` metrics
+     * with numeric values. The `value_type` of the output is the same as the
+     * `value_type` of the input.
      *
      * Generated from protobuf enum <code>REDUCE_MAX = 3;</code>
      */
     const REDUCE_MAX = 3;
     /**
      * Reduce by computing the sum across time series for each
-     * alignment period. This reducer is valid for delta and
-     * gauge metrics with numeric and distribution values. The value type of
-     * the output is the same as the value type of the input.
+     * alignment period. This reducer is valid for `DELTA` and `GAUGE` metrics
+     * with numeric and distribution values. The `value_type` of the output is
+     * the same as the `value_type` of the input.
      *
      * Generated from protobuf enum <code>REDUCE_SUM = 4;</code>
      */
     const REDUCE_SUM = 4;
     /**
      * Reduce by computing the standard deviation across time series
-     * for each alignment period. This reducer is valid for delta
-     * and gauge metrics with numeric or distribution values. The value type of
-     * the output is [DOUBLE][google.api.MetricDescriptor.ValueType.DOUBLE].
+     * for each alignment period. This reducer is valid for `DELTA` and
+     * `GAUGE` metrics with numeric or distribution values. The `value_type`
+     * of the output is `DOUBLE`.
      *
      * Generated from protobuf enum <code>REDUCE_STDDEV = 5;</code>
      */
     const REDUCE_STDDEV = 5;
     /**
-     * Reduce by computing the count of data points across time series
-     * for each alignment period. This reducer is valid for delta
-     * and gauge metrics of numeric, Boolean, distribution, and string value
-     * type. The value type of the output is
-     * [INT64][google.api.MetricDescriptor.ValueType.INT64].
+     * Reduce by computing the number of data points across time series
+     * for each alignment period. This reducer is valid for `DELTA` and
+     * `GAUGE` metrics of numeric, Boolean, distribution, and string
+     * `value_type`. The `value_type` of the output is `INT64`.
      *
      * Generated from protobuf enum <code>REDUCE_COUNT = 6;</code>
      */
     const REDUCE_COUNT = 6;
     /**
-     * Reduce by computing the count of True-valued data points across time
-     * series for each alignment period. This reducer is valid for delta
-     * and gauge metrics of Boolean value type. The value type of
-     * the output is [INT64][google.api.MetricDescriptor.ValueType.INT64].
+     * Reduce by computing the number of `True`-valued data points across time
+     * series for each alignment period. This reducer is valid for `DELTA` and
+     * `GAUGE` metrics of Boolean `value_type`. The `value_type` of the output
+     * is `INT64`.
      *
      * Generated from protobuf enum <code>REDUCE_COUNT_TRUE = 7;</code>
      */
     const REDUCE_COUNT_TRUE = 7;
     /**
-     * Reduce by computing the count of False-valued data points across time
-     * series for each alignment period. This reducer is valid for delta
-     * and gauge metrics of Boolean value type. The value type of
-     * the output is [INT64][google.api.MetricDescriptor.ValueType.INT64].
+     * Reduce by computing the number of `False`-valued data points across time
+     * series for each alignment period. This reducer is valid for `DELTA` and
+     * `GAUGE` metrics of Boolean `value_type`. The `value_type` of the output
+     * is `INT64`.
      *
      * Generated from protobuf enum <code>REDUCE_COUNT_FALSE = 15;</code>
      */
     const REDUCE_COUNT_FALSE = 15;
     /**
-     * Reduce by computing the fraction of True-valued data points across time
-     * series for each alignment period. This reducer is valid for delta
-     * and gauge metrics of Boolean value type. The output value is in the
-     * range [0, 1] and has value type
-     * [DOUBLE][google.api.MetricDescriptor.ValueType.DOUBLE].
+     * Reduce by computing the ratio of the number of `True`-valued data points
+     * to the total number of data points for each alignment period. This
+     * reducer is valid for `DELTA` and `GAUGE` metrics of Boolean `value_type`.
+     * The output value is in the range [0.0, 1.0] and has `value_type`
+     * `DOUBLE`.
      *
      * Generated from protobuf enum <code>REDUCE_FRACTION_TRUE = 8;</code>
      */
     const REDUCE_FRACTION_TRUE = 8;
     /**
-     * Reduce by computing 99th percentile of data points across time series
-     * for each alignment period. This reducer is valid for gauge and delta
-     * metrics of numeric and distribution type. The value of the output is
-     * [DOUBLE][google.api.MetricDescriptor.ValueType.DOUBLE]
+     * Reduce by computing the [99th
+     * percentile](https://en.wikipedia.org/wiki/Percentile) of data points
+     * across time series for each alignment period. This reducer is valid for
+     * `GAUGE` and `DELTA` metrics of numeric and distribution type. The value
+     * of the output is `DOUBLE`.
      *
      * Generated from protobuf enum <code>REDUCE_PERCENTILE_99 = 9;</code>
      */
     const REDUCE_PERCENTILE_99 = 9;
     /**
-     * Reduce by computing 95th percentile of data points across time series
-     * for each alignment period. This reducer is valid for gauge and delta
-     * metrics of numeric and distribution type. The value of the output is
-     * [DOUBLE][google.api.MetricDescriptor.ValueType.DOUBLE]
+     * Reduce by computing the [95th
+     * percentile](https://en.wikipedia.org/wiki/Percentile) of data points
+     * across time series for each alignment period. This reducer is valid for
+     * `GAUGE` and `DELTA` metrics of numeric and distribution type. The value
+     * of the output is `DOUBLE`.
      *
      * Generated from protobuf enum <code>REDUCE_PERCENTILE_95 = 10;</code>
      */
     const REDUCE_PERCENTILE_95 = 10;
     /**
-     * Reduce by computing 50th percentile of data points across time series
-     * for each alignment period. This reducer is valid for gauge and delta
-     * metrics of numeric and distribution type. The value of the output is
-     * [DOUBLE][google.api.MetricDescriptor.ValueType.DOUBLE]
+     * Reduce by computing the [50th
+     * percentile](https://en.wikipedia.org/wiki/Percentile) of data points
+     * across time series for each alignment period. This reducer is valid for
+     * `GAUGE` and `DELTA` metrics of numeric and distribution type. The value
+     * of the output is `DOUBLE`.
      *
      * Generated from protobuf enum <code>REDUCE_PERCENTILE_50 = 11;</code>
      */
     const REDUCE_PERCENTILE_50 = 11;
     /**
-     * Reduce by computing 5th percentile of data points across time series
-     * for each alignment period. This reducer is valid for gauge and delta
-     * metrics of numeric and distribution type. The value of the output is
-     * [DOUBLE][google.api.MetricDescriptor.ValueType.DOUBLE]
+     * Reduce by computing the [5th
+     * percentile](https://en.wikipedia.org/wiki/Percentile) of data points
+     * across time series for each alignment period. This reducer is valid for
+     * `GAUGE` and `DELTA` metrics of numeric and distribution type. The value
+     * of the output is `DOUBLE`.
      *
      * Generated from protobuf enum <code>REDUCE_PERCENTILE_05 = 12;</code>
      */

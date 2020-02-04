@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListUptimeCheckConfigsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The project whose Uptime check configurations are listed. The format
+     * Required. The project whose Uptime check configurations are listed. The format
      *   is `projects/[PROJECT_ID]`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -47,7 +47,7 @@ class ListUptimeCheckConfigsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The project whose Uptime check configurations are listed. The format
+     *           Required. The project whose Uptime check configurations are listed. The format
      *             is `projects/[PROJECT_ID]`.
      *     @type int $page_size
      *           The maximum number of results to return in a single response. The server
@@ -66,10 +66,10 @@ class ListUptimeCheckConfigsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project whose Uptime check configurations are listed. The format
+     * Required. The project whose Uptime check configurations are listed. The format
      *   is `projects/[PROJECT_ID]`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -78,10 +78,10 @@ class ListUptimeCheckConfigsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project whose Uptime check configurations are listed. The format
+     * Required. The project whose Uptime check configurations are listed. The format
      *   is `projects/[PROJECT_ID]`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

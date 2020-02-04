@@ -16,11 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetNotificationChannelVerificationCodeRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The notification channel for which a verification code is to be generated
+     * Required. The notification channel for which a verification code is to be generated
      * and retrieved. This must name a channel that is already verified; if
      * the specified channel is not verified, the request will fail.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
@@ -45,7 +45,7 @@ class GetNotificationChannelVerificationCodeRequest extends \Google\Protobuf\Int
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The notification channel for which a verification code is to be generated
+     *           Required. The notification channel for which a verification code is to be generated
      *           and retrieved. This must name a channel that is already verified; if
      *           the specified channel is not verified, the request will fail.
      *     @type \Google\Protobuf\Timestamp $expire_time
@@ -66,11 +66,11 @@ class GetNotificationChannelVerificationCodeRequest extends \Google\Protobuf\Int
     }
 
     /**
-     * The notification channel for which a verification code is to be generated
+     * Required. The notification channel for which a verification code is to be generated
      * and retrieved. This must name a channel that is already verified; if
      * the specified channel is not verified, the request will fail.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -79,11 +79,11 @@ class GetNotificationChannelVerificationCodeRequest extends \Google\Protobuf\Int
     }
 
     /**
-     * The notification channel for which a verification code is to be generated
+     * Required. The notification channel for which a verification code is to be generated
      * and retrieved. This must name a channel that is already verified; if
      * the specified channel is not verified, the request will fail.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

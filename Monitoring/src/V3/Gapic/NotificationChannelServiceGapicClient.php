@@ -376,7 +376,7 @@ class NotificationChannelServiceGapicClient
      * }
      * ```
      *
-     * @param string $name The REST resource name of the parent from which to retrieve
+     * @param string $name Required. The REST resource name of the parent from which to retrieve
      *                     the notification channel descriptors. The expected syntax is:
      *
      *     projects/[PROJECT_ID]
@@ -450,7 +450,7 @@ class NotificationChannelServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The channel type for which to execute the request. The format is
+     * @param string $name         Required. The channel type for which to execute the request. The format is
      *                             `projects/[PROJECT_ID]/notificationChannelDescriptors/{channel_type}`.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -516,7 +516,7 @@ class NotificationChannelServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The project on which to execute the request. The format is
+     * @param string $name         Required. The project on which to execute the request. The format is
      *                             `projects/[PROJECT_ID]`. That is, this names the container
      *                             in which to look for the notification channels; it does not name a
      *                             specific channel. To query a specific channel by REST resource name, use
@@ -610,7 +610,7 @@ class NotificationChannelServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The channel for which to execute the request. The format is
+     * @param string $name         Required. The channel for which to execute the request. The format is
      *                             `projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID]`.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -663,7 +663,7 @@ class NotificationChannelServiceGapicClient
      * }
      * ```
      *
-     * @param string $name The project on which to execute the request. The format is:
+     * @param string $name Required. The project on which to execute the request. The format is:
      *
      *     projects/[PROJECT_ID]
      *
@@ -671,7 +671,7 @@ class NotificationChannelServiceGapicClient
      * written. This does not name the newly created channel. The resulting
      * channel's name will have a normalized version of this field as a prefix,
      * but will add `/notificationChannels/[CHANNEL_ID]` to identify the channel.
-     * @param NotificationChannel $notificationChannel The definition of the `NotificationChannel` to create.
+     * @param NotificationChannel $notificationChannel Required. The definition of the `NotificationChannel` to create.
      * @param array               $optionalArgs        {
      *                                                 Optional.
      *
@@ -723,7 +723,7 @@ class NotificationChannelServiceGapicClient
      * }
      * ```
      *
-     * @param NotificationChannel $notificationChannel A description of the changes to be applied to the specified
+     * @param NotificationChannel $notificationChannel Required. A description of the changes to be applied to the specified
      *                                                 notification channel. The description must provide a definition for
      *                                                 fields to be updated; the names of these fields should also be
      *                                                 included in the `update_mask`.
@@ -781,7 +781,7 @@ class NotificationChannelServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The channel for which to execute the request. The format is
+     * @param string $name         Required. The channel for which to execute the request. The format is
      *                             `projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID]`.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -839,7 +839,7 @@ class NotificationChannelServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The notification channel to which to send a verification code.
+     * @param string $name         Required. The notification channel to which to send a verification code.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -907,7 +907,7 @@ class NotificationChannelServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The notification channel for which a verification code is to be generated
+     * @param string $name         Required. The notification channel for which a verification code is to be generated
      *                             and retrieved. This must name a channel that is already verified; if
      *                             the specified channel is not verified, the request will fail.
      * @param array  $optionalArgs {
@@ -975,8 +975,8 @@ class NotificationChannelServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The notification channel to verify.
-     * @param string $code         The verification code that was delivered to the channel as
+     * @param string $name         Required. The notification channel to verify.
+     * @param string $code         Required. The verification code that was delivered to the channel as
      *                             a result of invoking the `SendNotificationChannelVerificationCode` API
      *                             method or that was retrieved from a verified channel via
      *                             `GetNotificationChannelVerificationCode`. For example, one might have

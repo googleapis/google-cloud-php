@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListNotificationChannelsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The project on which to execute the request. The format is
+     * Required. The project on which to execute the request. The format is
      * `projects/[PROJECT_ID]`. That is, this names the container
      * in which to look for the notification channels; it does not name a
      * specific channel. To query a specific channel by REST resource name, use
@@ -24,7 +24,7 @@ class ListNotificationChannelsRequest extends \Google\Protobuf\Internal\Message
      * [`GetNotificationChannel`][google.monitoring.v3.NotificationChannelService.GetNotificationChannel]
      * operation.
      *
-     * Generated from protobuf field <code>string name = 5;</code>
+     * Generated from protobuf field <code>string name = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
@@ -70,7 +70,7 @@ class ListNotificationChannelsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The project on which to execute the request. The format is
+     *           Required. The project on which to execute the request. The format is
      *           `projects/[PROJECT_ID]`. That is, this names the container
      *           in which to look for the notification channels; it does not name a
      *           specific channel. To query a specific channel by REST resource name, use
@@ -104,7 +104,7 @@ class ListNotificationChannelsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project on which to execute the request. The format is
+     * Required. The project on which to execute the request. The format is
      * `projects/[PROJECT_ID]`. That is, this names the container
      * in which to look for the notification channels; it does not name a
      * specific channel. To query a specific channel by REST resource name, use
@@ -112,7 +112,7 @@ class ListNotificationChannelsRequest extends \Google\Protobuf\Internal\Message
      * [`GetNotificationChannel`][google.monitoring.v3.NotificationChannelService.GetNotificationChannel]
      * operation.
      *
-     * Generated from protobuf field <code>string name = 5;</code>
+     * Generated from protobuf field <code>string name = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -121,7 +121,7 @@ class ListNotificationChannelsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project on which to execute the request. The format is
+     * Required. The project on which to execute the request. The format is
      * `projects/[PROJECT_ID]`. That is, this names the container
      * in which to look for the notification channels; it does not name a
      * specific channel. To query a specific channel by REST resource name, use
@@ -129,7 +129,7 @@ class ListNotificationChannelsRequest extends \Google\Protobuf\Internal\Message
      * [`GetNotificationChannel`][google.monitoring.v3.NotificationChannelService.GetNotificationChannel]
      * operation.
      *
-     * Generated from protobuf field <code>string name = 5;</code>
+     * Generated from protobuf field <code>string name = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

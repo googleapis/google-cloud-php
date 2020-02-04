@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListAlertPoliciesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The project whose alert policies are to be listed. The format is
+     * Required. The project whose alert policies are to be listed. The format is
      *     projects/[PROJECT_ID]
      * Note that this field names the parent container in which the alerting
      * policies to be listed are stored. To retrieve a single alerting policy
@@ -24,7 +24,7 @@ class ListAlertPoliciesRequest extends \Google\Protobuf\Internal\Message
      * [GetAlertPolicy][google.monitoring.v3.AlertPolicyService.GetAlertPolicy]
      * operation, instead.
      *
-     * Generated from protobuf field <code>string name = 4;</code>
+     * Generated from protobuf field <code>string name = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
@@ -68,7 +68,7 @@ class ListAlertPoliciesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The project whose alert policies are to be listed. The format is
+     *           Required. The project whose alert policies are to be listed. The format is
      *               projects/[PROJECT_ID]
      *           Note that this field names the parent container in which the alerting
      *           policies to be listed are stored. To retrieve a single alerting policy
@@ -100,7 +100,7 @@ class ListAlertPoliciesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project whose alert policies are to be listed. The format is
+     * Required. The project whose alert policies are to be listed. The format is
      *     projects/[PROJECT_ID]
      * Note that this field names the parent container in which the alerting
      * policies to be listed are stored. To retrieve a single alerting policy
@@ -108,7 +108,7 @@ class ListAlertPoliciesRequest extends \Google\Protobuf\Internal\Message
      * [GetAlertPolicy][google.monitoring.v3.AlertPolicyService.GetAlertPolicy]
      * operation, instead.
      *
-     * Generated from protobuf field <code>string name = 4;</code>
+     * Generated from protobuf field <code>string name = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -117,7 +117,7 @@ class ListAlertPoliciesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project whose alert policies are to be listed. The format is
+     * Required. The project whose alert policies are to be listed. The format is
      *     projects/[PROJECT_ID]
      * Note that this field names the parent container in which the alerting
      * policies to be listed are stored. To retrieve a single alerting policy
@@ -125,7 +125,7 @@ class ListAlertPoliciesRequest extends \Google\Protobuf\Internal\Message
      * [GetAlertPolicy][google.monitoring.v3.AlertPolicyService.GetAlertPolicy]
      * operation, instead.
      *
-     * Generated from protobuf field <code>string name = 4;</code>
+     * Generated from protobuf field <code>string name = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

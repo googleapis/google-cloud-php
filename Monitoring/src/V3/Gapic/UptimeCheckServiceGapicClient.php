@@ -345,7 +345,7 @@ class UptimeCheckServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       The project whose Uptime check configurations are listed. The format
+     * @param string $parent       Required. The project whose Uptime check configurations are listed. The format
      *                             is `projects/[PROJECT_ID]`.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -411,7 +411,7 @@ class UptimeCheckServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The Uptime check configuration to retrieve. The format
+     * @param string $name         Required. The Uptime check configuration to retrieve. The format
      *                             is `projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID]`.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -463,9 +463,9 @@ class UptimeCheckServiceGapicClient
      * }
      * ```
      *
-     * @param string            $parent            The project in which to create the Uptime check. The format
+     * @param string            $parent            Required. The project in which to create the Uptime check. The format
      *                                             is `projects/[PROJECT_ID]`.
-     * @param UptimeCheckConfig $uptimeCheckConfig The new Uptime check configuration.
+     * @param UptimeCheckConfig $uptimeCheckConfig Required. The new Uptime check configuration.
      * @param array             $optionalArgs      {
      *                                             Optional.
      *
@@ -589,7 +589,7 @@ class UptimeCheckServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The Uptime check configuration to delete. The format
+     * @param string $name         Required. The Uptime check configuration to delete. The format
      *                             is `projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID]`.
      * @param array  $optionalArgs {
      *                             Optional.
