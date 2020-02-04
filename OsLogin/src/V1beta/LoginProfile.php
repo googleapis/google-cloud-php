@@ -17,9 +17,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class LoginProfile extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The primary email address that uniquely identifies the user.
+     * Required. A unique user ID.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $name = '';
     /**
@@ -34,13 +34,6 @@ class LoginProfile extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, .google.cloud.oslogin.common.SshPublicKey> ssh_public_keys = 3;</code>
      */
     private $ssh_public_keys;
-    /**
-     * Indicates if the user is suspended. A suspended user cannot log in but
-     * their profile information is retained.
-     *
-     * Generated from protobuf field <code>bool suspended = 4;</code>
-     */
-    private $suspended = false;
 
     /**
      * Constructor.
@@ -49,14 +42,11 @@ class LoginProfile extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The primary email address that uniquely identifies the user.
+     *           Required. A unique user ID.
      *     @type \Google\Cloud\OsLogin\Common\PosixAccount[]|\Google\Protobuf\Internal\RepeatedField $posix_accounts
      *           The list of POSIX accounts associated with the user.
      *     @type array|\Google\Protobuf\Internal\MapField $ssh_public_keys
      *           A map from SSH public key fingerprint to the associated key object.
-     *     @type bool $suspended
-     *           Indicates if the user is suspended. A suspended user cannot log in but
-     *           their profile information is retained.
      * }
      */
     public function __construct($data = NULL) {
@@ -65,9 +55,9 @@ class LoginProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The primary email address that uniquely identifies the user.
+     * Required. A unique user ID.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getName()
@@ -76,9 +66,9 @@ class LoginProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The primary email address that uniquely identifies the user.
+     * Required. A unique user ID.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -138,34 +128,6 @@ class LoginProfile extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\OsLogin\Common\SshPublicKey::class);
         $this->ssh_public_keys = $arr;
-
-        return $this;
-    }
-
-    /**
-     * Indicates if the user is suspended. A suspended user cannot log in but
-     * their profile information is retained.
-     *
-     * Generated from protobuf field <code>bool suspended = 4;</code>
-     * @return bool
-     */
-    public function getSuspended()
-    {
-        return $this->suspended;
-    }
-
-    /**
-     * Indicates if the user is suspended. A suspended user cannot log in but
-     * their profile information is retained.
-     *
-     * Generated from protobuf field <code>bool suspended = 4;</code>
-     * @param bool $var
-     * @return $this
-     */
-    public function setSuspended($var)
-    {
-        GPBUtil::checkBool($var);
-        $this->suspended = $var;
 
         return $this;
     }

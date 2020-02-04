@@ -59,7 +59,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $osLoginServiceClient = new OsLoginServiceClient();
  * try {
- *     $formattedName = $osLoginServiceClient->projectName('[USER]', '[PROJECT]');
+ *     $formattedName = $osLoginServiceClient->posixAccountName('[USER]', '[PROJECT]');
  *     $osLoginServiceClient->deletePosixAccount($formattedName);
  * } finally {
  *     $osLoginServiceClient->close();
@@ -102,12 +102,10 @@ class OsLoginServiceGapicClient
      */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
-        'https://www.googleapis.com/auth/cloud-platform.read-only',
         'https://www.googleapis.com/auth/compute',
-        'https://www.googleapis.com/auth/compute.readonly',
     ];
-    private static $fingerprintNameTemplate;
-    private static $projectNameTemplate;
+    private static $posixAccountNameTemplate;
+    private static $sshPublicKeyNameTemplate;
     private static $userNameTemplate;
     private static $pathTemplateMap;
 
@@ -130,22 +128,22 @@ class OsLoginServiceGapicClient
         ];
     }
 
-    private static function getFingerprintNameTemplate()
+    private static function getPosixAccountNameTemplate()
     {
-        if (null == self::$fingerprintNameTemplate) {
-            self::$fingerprintNameTemplate = new PathTemplate('users/{user}/sshPublicKeys/{fingerprint}');
+        if (null == self::$posixAccountNameTemplate) {
+            self::$posixAccountNameTemplate = new PathTemplate('users/{user}/projects/{project}');
         }
 
-        return self::$fingerprintNameTemplate;
+        return self::$posixAccountNameTemplate;
     }
 
-    private static function getProjectNameTemplate()
+    private static function getSshPublicKeyNameTemplate()
     {
-        if (null == self::$projectNameTemplate) {
-            self::$projectNameTemplate = new PathTemplate('users/{user}/projects/{project}');
+        if (null == self::$sshPublicKeyNameTemplate) {
+            self::$sshPublicKeyNameTemplate = new PathTemplate('users/{user}/sshPublicKeys/{fingerprint}');
         }
 
-        return self::$projectNameTemplate;
+        return self::$sshPublicKeyNameTemplate;
     }
 
     private static function getUserNameTemplate()
@@ -161,8 +159,8 @@ class OsLoginServiceGapicClient
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
-                'fingerprint' => self::getFingerprintNameTemplate(),
-                'project' => self::getProjectNameTemplate(),
+                'posixAccount' => self::getPosixAccountNameTemplate(),
+                'sshPublicKey' => self::getSshPublicKeyNameTemplate(),
                 'user' => self::getUserNameTemplate(),
             ];
         }
@@ -172,37 +170,37 @@ class OsLoginServiceGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a fingerprint resource.
+     * a posix_account resource.
      *
      * @param string $user
-     * @param string $fingerprint
+     * @param string $project
      *
-     * @return string The formatted fingerprint resource.
+     * @return string The formatted posix_account resource.
      * @experimental
      */
-    public static function fingerprintName($user, $fingerprint)
+    public static function posixAccountName($user, $project)
     {
-        return self::getFingerprintNameTemplate()->render([
+        return self::getPosixAccountNameTemplate()->render([
             'user' => $user,
-            'fingerprint' => $fingerprint,
+            'project' => $project,
         ]);
     }
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a project resource.
+     * a ssh_public_key resource.
      *
      * @param string $user
-     * @param string $project
+     * @param string $fingerprint
      *
-     * @return string The formatted project resource.
+     * @return string The formatted ssh_public_key resource.
      * @experimental
      */
-    public static function projectName($user, $project)
+    public static function sshPublicKeyName($user, $fingerprint)
     {
-        return self::getProjectNameTemplate()->render([
+        return self::getSshPublicKeyNameTemplate()->render([
             'user' => $user,
-            'project' => $project,
+            'fingerprint' => $fingerprint,
         ]);
     }
 
@@ -226,8 +224,8 @@ class OsLoginServiceGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - fingerprint: users/{user}/sshPublicKeys/{fingerprint}
-     * - project: users/{user}/projects/{project}
+     * - posixAccount: users/{user}/projects/{project}
+     * - sshPublicKey: users/{user}/sshPublicKeys/{fingerprint}
      * - user: users/{user}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
@@ -333,14 +331,14 @@ class OsLoginServiceGapicClient
      * ```
      * $osLoginServiceClient = new OsLoginServiceClient();
      * try {
-     *     $formattedName = $osLoginServiceClient->projectName('[USER]', '[PROJECT]');
+     *     $formattedName = $osLoginServiceClient->posixAccountName('[USER]', '[PROJECT]');
      *     $osLoginServiceClient->deletePosixAccount($formattedName);
      * } finally {
      *     $osLoginServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         A reference to the POSIX account to update. POSIX accounts are identified
+     * @param string $name         Required. A reference to the POSIX account to update. POSIX accounts are identified
      *                             by the project ID they are associated with. A reference to the POSIX
      *                             account is in format `users/{user}/projects/{project}`.
      * @param array  $optionalArgs {
@@ -383,14 +381,14 @@ class OsLoginServiceGapicClient
      * ```
      * $osLoginServiceClient = new OsLoginServiceClient();
      * try {
-     *     $formattedName = $osLoginServiceClient->fingerprintName('[USER]', '[FINGERPRINT]');
+     *     $formattedName = $osLoginServiceClient->sshPublicKeyName('[USER]', '[FINGERPRINT]');
      *     $osLoginServiceClient->deleteSshPublicKey($formattedName);
      * } finally {
      *     $osLoginServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         The fingerprint of the public key to update. Public keys are identified by
+     * @param string $name         Required. The fingerprint of the public key to update. Public keys are identified by
      *                             their SHA-256 fingerprint. The fingerprint of the public key is in format
      *                             `users/{user}/sshPublicKeys/{fingerprint}`.
      * @param array  $optionalArgs {
@@ -441,10 +439,14 @@ class OsLoginServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The unique ID for the user in format `users/{user}`.
+     * @param string $name         Required. The unique ID for the user in format `users/{user}`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
+     *     @type string $projectId
+     *          The project ID of the Google Cloud Platform project.
+     *     @type string $systemId
+     *          A system ID for filtering the results of the request.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -461,6 +463,12 @@ class OsLoginServiceGapicClient
     {
         $request = new GetLoginProfileRequest();
         $request->setName($name);
+        if (isset($optionalArgs['projectId'])) {
+            $request->setProjectId($optionalArgs['projectId']);
+        }
+        if (isset($optionalArgs['systemId'])) {
+            $request->setSystemId($optionalArgs['systemId']);
+        }
 
         $requestParams = new RequestParamsHeaderDescriptor([
           'name' => $request->getName(),
@@ -484,14 +492,14 @@ class OsLoginServiceGapicClient
      * ```
      * $osLoginServiceClient = new OsLoginServiceClient();
      * try {
-     *     $formattedName = $osLoginServiceClient->fingerprintName('[USER]', '[FINGERPRINT]');
+     *     $formattedName = $osLoginServiceClient->sshPublicKeyName('[USER]', '[FINGERPRINT]');
      *     $response = $osLoginServiceClient->getSshPublicKey($formattedName);
      * } finally {
      *     $osLoginServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         The fingerprint of the public key to retrieve. Public keys are identified
+     * @param string $name         Required. The fingerprint of the public key to retrieve. Public keys are identified
      *                             by their SHA-256 fingerprint. The fingerprint of the public key is in
      *                             format `users/{user}/sshPublicKeys/{fingerprint}`.
      * @param array  $optionalArgs {
@@ -539,18 +547,18 @@ class OsLoginServiceGapicClient
      * $osLoginServiceClient = new OsLoginServiceClient();
      * try {
      *     $formattedParent = $osLoginServiceClient->userName('[USER]');
-     *     $sshPublicKey = new SshPublicKey();
-     *     $response = $osLoginServiceClient->importSshPublicKey($formattedParent, $sshPublicKey);
+     *     $response = $osLoginServiceClient->importSshPublicKey($formattedParent);
      * } finally {
      *     $osLoginServiceClient->close();
      * }
      * ```
      *
-     * @param string       $parent       The unique ID for the user in format `users/{user}`.
-     * @param SshPublicKey $sshPublicKey The SSH public key and expiration time.
-     * @param array        $optionalArgs {
-     *                                   Optional.
+     * @param string $parent       Required. The unique ID for the user in format `users/{user}`.
+     * @param array  $optionalArgs {
+     *                             Optional.
      *
+     *     @type SshPublicKey $sshPublicKey
+     *          Optional. The SSH public key and expiration time.
      *     @type string $projectId
      *          The project ID of the Google Cloud Platform project.
      *     @type RetrySettings|array $retrySettings
@@ -565,11 +573,13 @@ class OsLoginServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function importSshPublicKey($parent, $sshPublicKey, array $optionalArgs = [])
+    public function importSshPublicKey($parent, array $optionalArgs = [])
     {
         $request = new ImportSshPublicKeyRequest();
         $request->setParent($parent);
-        $request->setSshPublicKey($sshPublicKey);
+        if (isset($optionalArgs['sshPublicKey'])) {
+            $request->setSshPublicKey($optionalArgs['sshPublicKey']);
+        }
         if (isset($optionalArgs['projectId'])) {
             $request->setProjectId($optionalArgs['projectId']);
         }
@@ -597,7 +607,7 @@ class OsLoginServiceGapicClient
      * ```
      * $osLoginServiceClient = new OsLoginServiceClient();
      * try {
-     *     $formattedName = $osLoginServiceClient->fingerprintName('[USER]', '[FINGERPRINT]');
+     *     $formattedName = $osLoginServiceClient->sshPublicKeyName('[USER]', '[FINGERPRINT]');
      *     $sshPublicKey = new SshPublicKey();
      *     $response = $osLoginServiceClient->updateSshPublicKey($formattedName, $sshPublicKey);
      * } finally {
@@ -605,10 +615,10 @@ class OsLoginServiceGapicClient
      * }
      * ```
      *
-     * @param string       $name         The fingerprint of the public key to update. Public keys are identified by
+     * @param string       $name         Required. The fingerprint of the public key to update. Public keys are identified by
      *                                   their SHA-256 fingerprint. The fingerprint of the public key is in format
      *                                   `users/{user}/sshPublicKeys/{fingerprint}`.
-     * @param SshPublicKey $sshPublicKey The SSH public key and expiration time.
+     * @param SshPublicKey $sshPublicKey Required. The SSH public key and expiration time.
      * @param array        $optionalArgs {
      *                                   Optional.
      *

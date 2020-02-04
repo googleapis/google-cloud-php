@@ -16,15 +16,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class ImportSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The unique ID for the user in format `users/{user}`.
+     * Required. The unique ID for the user in format `users/{user}`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * The SSH public key and expiration time.
+     * Optional. The SSH public key and expiration time.
      *
-     * Generated from protobuf field <code>.google.cloud.oslogin.common.SshPublicKey ssh_public_key = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.oslogin.common.SshPublicKey ssh_public_key = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $ssh_public_key = null;
     /**
@@ -41,9 +41,9 @@ class ImportSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The unique ID for the user in format `users/{user}`.
+     *           Required. The unique ID for the user in format `users/{user}`.
      *     @type \Google\Cloud\OsLogin\Common\SshPublicKey $ssh_public_key
-     *           The SSH public key and expiration time.
+     *           Optional. The SSH public key and expiration time.
      *     @type string $project_id
      *           The project ID of the Google Cloud Platform project.
      * }
@@ -54,9 +54,9 @@ class ImportSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unique ID for the user in format `users/{user}`.
+     * Required. The unique ID for the user in format `users/{user}`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -65,9 +65,9 @@ class ImportSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unique ID for the user in format `users/{user}`.
+     * Required. The unique ID for the user in format `users/{user}`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -80,9 +80,9 @@ class ImportSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The SSH public key and expiration time.
+     * Optional. The SSH public key and expiration time.
      *
-     * Generated from protobuf field <code>.google.cloud.oslogin.common.SshPublicKey ssh_public_key = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.oslogin.common.SshPublicKey ssh_public_key = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\OsLogin\Common\SshPublicKey
      */
     public function getSshPublicKey()
@@ -91,9 +91,9 @@ class ImportSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The SSH public key and expiration time.
+     * Optional. The SSH public key and expiration time.
      *
-     * Generated from protobuf field <code>.google.cloud.oslogin.common.SshPublicKey ssh_public_key = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.oslogin.common.SshPublicKey ssh_public_key = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\OsLogin\Common\SshPublicKey $var
      * @return $this
      */
