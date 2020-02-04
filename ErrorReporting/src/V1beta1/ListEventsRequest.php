@@ -16,47 +16,47 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListEventsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Required] The resource name of the Google Cloud Platform project. Written
+     * Required. The resource name of the Google Cloud Platform project. Written
      * as `projects/` plus the
      * [Google Cloud Platform project
      * ID](https://support.google.com/cloud/answer/6158840).
      * Example: `projects/my-project-123`.
      *
-     * Generated from protobuf field <code>string project_name = 1;</code>
+     * Generated from protobuf field <code>string project_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $project_name = '';
     /**
-     * [Required] The group for which events shall be returned.
+     * Required. The group for which events shall be returned.
      *
-     * Generated from protobuf field <code>string group_id = 2;</code>
+     * Generated from protobuf field <code>string group_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $group_id = '';
     /**
-     * [Optional] List only ErrorGroups which belong to a service context that
+     * Optional. List only ErrorGroups which belong to a service context that
      * matches the filter.
      * Data for all service contexts is returned if this field is not specified.
      *
-     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $service_filter = null;
     /**
-     * [Optional] List only data for the given time range.
+     * Optional. List only data for the given time range.
      * If not set a default time range is used. The field time_range_begin
      * in the response will specify the beginning of this time range.
      *
-     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 4;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $time_range = null;
     /**
-     * [Optional] The maximum number of results to return per response.
+     * Optional. The maximum number of results to return per response.
      *
-     * Generated from protobuf field <code>int32 page_size = 6;</code>
+     * Generated from protobuf field <code>int32 page_size = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
     /**
-     * [Optional] A `next_page_token` provided by a previous response.
+     * Optional. A `next_page_token` provided by a previous response.
      *
-     * Generated from protobuf field <code>string page_token = 7;</code>
+     * Generated from protobuf field <code>string page_token = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_token = '';
 
@@ -67,25 +67,25 @@ class ListEventsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $project_name
-     *           [Required] The resource name of the Google Cloud Platform project. Written
+     *           Required. The resource name of the Google Cloud Platform project. Written
      *           as `projects/` plus the
      *           [Google Cloud Platform project
      *           ID](https://support.google.com/cloud/answer/6158840).
      *           Example: `projects/my-project-123`.
      *     @type string $group_id
-     *           [Required] The group for which events shall be returned.
+     *           Required. The group for which events shall be returned.
      *     @type \Google\Cloud\ErrorReporting\V1beta1\ServiceContextFilter $service_filter
-     *           [Optional] List only ErrorGroups which belong to a service context that
+     *           Optional. List only ErrorGroups which belong to a service context that
      *           matches the filter.
      *           Data for all service contexts is returned if this field is not specified.
      *     @type \Google\Cloud\ErrorReporting\V1beta1\QueryTimeRange $time_range
-     *           [Optional] List only data for the given time range.
+     *           Optional. List only data for the given time range.
      *           If not set a default time range is used. The field time_range_begin
      *           in the response will specify the beginning of this time range.
      *     @type int $page_size
-     *           [Optional] The maximum number of results to return per response.
+     *           Optional. The maximum number of results to return per response.
      *     @type string $page_token
-     *           [Optional] A `next_page_token` provided by a previous response.
+     *           Optional. A `next_page_token` provided by a previous response.
      * }
      */
     public function __construct($data = NULL) {
@@ -94,13 +94,13 @@ class ListEventsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Required] The resource name of the Google Cloud Platform project. Written
+     * Required. The resource name of the Google Cloud Platform project. Written
      * as `projects/` plus the
      * [Google Cloud Platform project
      * ID](https://support.google.com/cloud/answer/6158840).
      * Example: `projects/my-project-123`.
      *
-     * Generated from protobuf field <code>string project_name = 1;</code>
+     * Generated from protobuf field <code>string project_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getProjectName()
@@ -109,13 +109,13 @@ class ListEventsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Required] The resource name of the Google Cloud Platform project. Written
+     * Required. The resource name of the Google Cloud Platform project. Written
      * as `projects/` plus the
      * [Google Cloud Platform project
      * ID](https://support.google.com/cloud/answer/6158840).
      * Example: `projects/my-project-123`.
      *
-     * Generated from protobuf field <code>string project_name = 1;</code>
+     * Generated from protobuf field <code>string project_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -128,9 +128,9 @@ class ListEventsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Required] The group for which events shall be returned.
+     * Required. The group for which events shall be returned.
      *
-     * Generated from protobuf field <code>string group_id = 2;</code>
+     * Generated from protobuf field <code>string group_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getGroupId()
@@ -139,9 +139,9 @@ class ListEventsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Required] The group for which events shall be returned.
+     * Required. The group for which events shall be returned.
      *
-     * Generated from protobuf field <code>string group_id = 2;</code>
+     * Generated from protobuf field <code>string group_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -154,11 +154,11 @@ class ListEventsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Optional] List only ErrorGroups which belong to a service context that
+     * Optional. List only ErrorGroups which belong to a service context that
      * matches the filter.
      * Data for all service contexts is returned if this field is not specified.
      *
-     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\ErrorReporting\V1beta1\ServiceContextFilter
      */
     public function getServiceFilter()
@@ -167,11 +167,11 @@ class ListEventsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Optional] List only ErrorGroups which belong to a service context that
+     * Optional. List only ErrorGroups which belong to a service context that
      * matches the filter.
      * Data for all service contexts is returned if this field is not specified.
      *
-     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\ErrorReporting\V1beta1\ServiceContextFilter $var
      * @return $this
      */
@@ -184,11 +184,11 @@ class ListEventsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Optional] List only data for the given time range.
+     * Optional. List only data for the given time range.
      * If not set a default time range is used. The field time_range_begin
      * in the response will specify the beginning of this time range.
      *
-     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 4;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\ErrorReporting\V1beta1\QueryTimeRange
      */
     public function getTimeRange()
@@ -197,11 +197,11 @@ class ListEventsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Optional] List only data for the given time range.
+     * Optional. List only data for the given time range.
      * If not set a default time range is used. The field time_range_begin
      * in the response will specify the beginning of this time range.
      *
-     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 4;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\ErrorReporting\V1beta1\QueryTimeRange $var
      * @return $this
      */
@@ -214,9 +214,9 @@ class ListEventsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Optional] The maximum number of results to return per response.
+     * Optional. The maximum number of results to return per response.
      *
-     * Generated from protobuf field <code>int32 page_size = 6;</code>
+     * Generated from protobuf field <code>int32 page_size = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getPageSize()
@@ -225,9 +225,9 @@ class ListEventsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Optional] The maximum number of results to return per response.
+     * Optional. The maximum number of results to return per response.
      *
-     * Generated from protobuf field <code>int32 page_size = 6;</code>
+     * Generated from protobuf field <code>int32 page_size = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -240,9 +240,9 @@ class ListEventsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Optional] A `next_page_token` provided by a previous response.
+     * Optional. A `next_page_token` provided by a previous response.
      *
-     * Generated from protobuf field <code>string page_token = 7;</code>
+     * Generated from protobuf field <code>string page_token = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPageToken()
@@ -251,9 +251,9 @@ class ListEventsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Optional] A `next_page_token` provided by a previous response.
+     * Optional. A `next_page_token` provided by a previous response.
      *
-     * Generated from protobuf field <code>string page_token = 7;</code>
+     * Generated from protobuf field <code>string page_token = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
