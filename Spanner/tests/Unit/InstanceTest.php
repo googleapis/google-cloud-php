@@ -308,6 +308,7 @@ class InstanceTest extends TestCase
         $this->connection->listDatabases(Argument::any())
             ->shouldBeCalled()
             ->willReturn(['databases' => $databases]);
+        $this->connection->getDatabase()->shouldNotBeCalled();
 
         $this->instance->___setProperty('connection', $this->connection->reveal());
 
@@ -320,6 +321,10 @@ class InstanceTest extends TestCase
         $this->assertCount(2, $dbs);
         $this->assertEquals('database1', DatabaseAdminClient::parseName($dbs[0]->name())['database']);
         $this->assertEquals('database2', DatabaseAdminClient::parseName($dbs[1]->name())['database']);
+
+        // Make sure the database->info is prefilled.
+        $this->assertEquals($databases[0], $dbs[0]->info());
+        $this->assertEquals($databases[1], $dbs[1]->info());
     }
 
     public function testDatabasesPaged()
