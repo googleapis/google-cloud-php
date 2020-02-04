@@ -28,13 +28,13 @@ class Span extends \Google\Protobuf\Internal\Message
      * [SPAN_ID] is a unique identifier for a span within a trace; it
      * is a 16-character hexadecimal encoding of an 8-byte array.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $name = '';
     /**
      * The [SPAN_ID] portion of the span's resource name.
      *
-     * Generated from protobuf field <code>string span_id = 2;</code>
+     * Generated from protobuf field <code>string span_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $span_id = '';
     /**
@@ -53,7 +53,7 @@ class Span extends \Google\Protobuf\Internal\Message
      * the same display name within an application and at the same call point.
      * This makes it easier to correlate spans in different traces.
      *
-     * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.TruncatableString display_name = 4;</code>
+     * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.TruncatableString display_name = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $display_name = null;
     /**
@@ -61,7 +61,7 @@ class Span extends \Google\Protobuf\Internal\Message
      * the local machine where the span execution starts. On the server side, this
      * is the time when the server's application handler starts running.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $start_time = null;
     /**
@@ -69,7 +69,7 @@ class Span extends \Google\Protobuf\Internal\Message
      * the local machine where the span execution ends. On the server side, this
      * is the time when the server application handler stops running.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $end_time = null;
     /**
@@ -190,7 +190,7 @@ class Span extends \Google\Protobuf\Internal\Message
      * [SPAN_ID] is a unique identifier for a span within a trace; it
      * is a 16-character hexadecimal encoding of an 8-byte array.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getName()
@@ -206,7 +206,7 @@ class Span extends \Google\Protobuf\Internal\Message
      * [SPAN_ID] is a unique identifier for a span within a trace; it
      * is a 16-character hexadecimal encoding of an 8-byte array.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -221,7 +221,7 @@ class Span extends \Google\Protobuf\Internal\Message
     /**
      * The [SPAN_ID] portion of the span's resource name.
      *
-     * Generated from protobuf field <code>string span_id = 2;</code>
+     * Generated from protobuf field <code>string span_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getSpanId()
@@ -232,7 +232,7 @@ class Span extends \Google\Protobuf\Internal\Message
     /**
      * The [SPAN_ID] portion of the span's resource name.
      *
-     * Generated from protobuf field <code>string span_id = 2;</code>
+     * Generated from protobuf field <code>string span_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -281,7 +281,7 @@ class Span extends \Google\Protobuf\Internal\Message
      * the same display name within an application and at the same call point.
      * This makes it easier to correlate spans in different traces.
      *
-     * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.TruncatableString display_name = 4;</code>
+     * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.TruncatableString display_name = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Trace\V2\TruncatableString
      */
     public function getDisplayName()
@@ -298,7 +298,7 @@ class Span extends \Google\Protobuf\Internal\Message
      * the same display name within an application and at the same call point.
      * This makes it easier to correlate spans in different traces.
      *
-     * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.TruncatableString display_name = 4;</code>
+     * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.TruncatableString display_name = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Trace\V2\TruncatableString $var
      * @return $this
      */
@@ -315,7 +315,7 @@ class Span extends \Google\Protobuf\Internal\Message
      * the local machine where the span execution starts. On the server side, this
      * is the time when the server's application handler starts running.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getStartTime()
@@ -328,7 +328,7 @@ class Span extends \Google\Protobuf\Internal\Message
      * the local machine where the span execution starts. On the server side, this
      * is the time when the server's application handler starts running.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -345,7 +345,7 @@ class Span extends \Google\Protobuf\Internal\Message
      * the local machine where the span execution ends. On the server side, this
      * is the time when the server application handler stops running.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getEndTime()
@@ -358,7 +358,7 @@ class Span extends \Google\Protobuf\Internal\Message
      * the local machine where the span execution ends. On the server side, this
      * is the time when the server application handler stops running.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -531,8 +531,7 @@ class Span extends \Google\Protobuf\Internal\Message
      */
     public function getSameProcessAsParentSpanValue()
     {
-        $wrapper = $this->getSameProcessAsParentSpan();
-        return is_null($wrapper) ? null : $wrapper->getValue();
+        return $this->readWrapperValue("same_process_as_parent_span");
     }
 
     /**
@@ -567,9 +566,8 @@ class Span extends \Google\Protobuf\Internal\Message
      */
     public function setSameProcessAsParentSpanValue($var)
     {
-        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
-        return $this->setSameProcessAsParentSpan($wrappedVar);
-    }
+        $this->writeWrapperValue("same_process_as_parent_span", $var);
+        return $this;}
 
     /**
      * Optional. The number of child spans that were generated while this span
@@ -594,8 +592,7 @@ class Span extends \Google\Protobuf\Internal\Message
      */
     public function getChildSpanCountValue()
     {
-        $wrapper = $this->getChildSpanCount();
-        return is_null($wrapper) ? null : $wrapper->getValue();
+        return $this->readWrapperValue("child_span_count");
     }
 
     /**
@@ -626,9 +623,8 @@ class Span extends \Google\Protobuf\Internal\Message
      */
     public function setChildSpanCountValue($var)
     {
-        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\Int32Value(['value' => $var]);
-        return $this->setChildSpanCount($wrappedVar);
-    }
+        $this->writeWrapperValue("child_span_count", $var);
+        return $this;}
 
 }
 
