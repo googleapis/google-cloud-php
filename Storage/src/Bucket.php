@@ -1165,13 +1165,9 @@ class Bucket
     /**
      * Manage the IAM policy for the current Bucket.
      *
-     * Please note that this method may not yet be available in your project.
-     *
      * To request a policy with conditions, pass an array with
      * '[requestedPolicyVersion => 3]' as argument to the policy() and
      * reload() methods.
-     *
-     * @see https://cloud.google.com/iam/docs/policies#versions policy versioning.
      *
      * Example:
      * ```
@@ -1189,6 +1185,7 @@ class Bucket
      * @see https://cloud.google.com/storage/docs/json_api/v1/buckets/getIamPolicy Get Bucket IAM Policy
      * @see https://cloud.google.com/storage/docs/json_api/v1/buckets/setIamPolicy Set Bucket IAM Policy
      * @see https://cloud.google.com/storage/docs/json_api/v1/buckets/testIamPermissions Test Bucket Permissions
+     * @see https://cloud.google.com/iam/docs/policies#versions policy versioning.
      * @codingStandardsIgnoreEnd
      *
      * @return Iam
