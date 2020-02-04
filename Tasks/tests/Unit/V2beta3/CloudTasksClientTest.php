@@ -685,9 +685,9 @@ class CloudTasksClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedResource = $client->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
+        $resource = 'resource-341064690';
 
-        $response = $client->getIamPolicy($formattedResource);
+        $response = $client->getIamPolicy($resource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -697,7 +697,7 @@ class CloudTasksClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getResource();
 
-        $this->assertProtobufEquals($formattedResource, $actualValue);
+        $this->assertProtobufEquals($resource, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -725,10 +725,10 @@ class CloudTasksClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedResource = $client->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
+        $resource = 'resource-341064690';
 
         try {
-            $client->getIamPolicy($formattedResource);
+            $client->getIamPolicy($resource);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -760,10 +760,10 @@ class CloudTasksClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedResource = $client->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
+        $resource = 'resource-341064690';
         $policy = new Policy();
 
-        $response = $client->setIamPolicy($formattedResource, $policy);
+        $response = $client->setIamPolicy($resource, $policy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -773,7 +773,7 @@ class CloudTasksClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getResource();
 
-        $this->assertProtobufEquals($formattedResource, $actualValue);
+        $this->assertProtobufEquals($resource, $actualValue);
         $actualValue = $actualRequestObject->getPolicy();
 
         $this->assertProtobufEquals($policy, $actualValue);
@@ -804,11 +804,11 @@ class CloudTasksClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedResource = $client->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
+        $resource = 'resource-341064690';
         $policy = new Policy();
 
         try {
-            $client->setIamPolicy($formattedResource, $policy);
+            $client->setIamPolicy($resource, $policy);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -836,10 +836,10 @@ class CloudTasksClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedResource = $client->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
+        $resource = 'resource-341064690';
         $permissions = [];
 
-        $response = $client->testIamPermissions($formattedResource, $permissions);
+        $response = $client->testIamPermissions($resource, $permissions);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -849,7 +849,7 @@ class CloudTasksClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getResource();
 
-        $this->assertProtobufEquals($formattedResource, $actualValue);
+        $this->assertProtobufEquals($resource, $actualValue);
         $actualValue = $actualRequestObject->getPermissions();
 
         $this->assertProtobufEquals($permissions, $actualValue);
@@ -880,11 +880,11 @@ class CloudTasksClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedResource = $client->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
+        $resource = 'resource-341064690';
         $permissions = [];
 
         try {
-            $client->testIamPermissions($formattedResource, $permissions);
+            $client->testIamPermissions($resource, $permissions);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
