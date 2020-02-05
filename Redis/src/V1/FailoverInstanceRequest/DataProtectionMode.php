@@ -7,6 +7,8 @@ namespace Google\Cloud\Redis\V1\FailoverInstanceRequest;
 use UnexpectedValueException;
 
 /**
+ * Specifies different modes of operation in relation to the data retention.
+ *
  * Protobuf type <code>google.cloud.redis.v1.FailoverInstanceRequest.DataProtectionMode</code>
  */
 class DataProtectionMode

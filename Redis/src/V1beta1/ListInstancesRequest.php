@@ -28,15 +28,15 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
      * If not specified, a default value of 1000 will be used by the service.
      * Regardless of the page_size value, the response may include a partial list
      * and a caller should only rely on response's
-     * [next_page_token][CloudRedis.ListInstancesResponse.next_page_token]
+     * [`next_page_token`][google.cloud.redis.v1beta1.ListInstancesResponse.next_page_token]
      * to determine if there are more instances left to be queried.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
     private $page_size = 0;
     /**
-     * The next_page_token value returned from a previous List request,
-     * if any.
+     * The `next_page_token` value returned from a previous
+     * [ListInstances][google.cloud.redis.v1beta1.CloudRedis.ListInstances] request, if any.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
@@ -57,11 +57,11 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
      *           If not specified, a default value of 1000 will be used by the service.
      *           Regardless of the page_size value, the response may include a partial list
      *           and a caller should only rely on response's
-     *           [next_page_token][CloudRedis.ListInstancesResponse.next_page_token]
+     *           [`next_page_token`][google.cloud.redis.v1beta1.ListInstancesResponse.next_page_token]
      *           to determine if there are more instances left to be queried.
      *     @type string $page_token
-     *           The next_page_token value returned from a previous List request,
-     *           if any.
+     *           The `next_page_token` value returned from a previous
+     *           [ListInstances][google.cloud.redis.v1beta1.CloudRedis.ListInstances] request, if any.
      * }
      */
     public function __construct($data = NULL) {
@@ -104,7 +104,7 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
      * If not specified, a default value of 1000 will be used by the service.
      * Regardless of the page_size value, the response may include a partial list
      * and a caller should only rely on response's
-     * [next_page_token][CloudRedis.ListInstancesResponse.next_page_token]
+     * [`next_page_token`][google.cloud.redis.v1beta1.ListInstancesResponse.next_page_token]
      * to determine if there are more instances left to be queried.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
@@ -120,7 +120,7 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
      * If not specified, a default value of 1000 will be used by the service.
      * Regardless of the page_size value, the response may include a partial list
      * and a caller should only rely on response's
-     * [next_page_token][CloudRedis.ListInstancesResponse.next_page_token]
+     * [`next_page_token`][google.cloud.redis.v1beta1.ListInstancesResponse.next_page_token]
      * to determine if there are more instances left to be queried.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
@@ -136,8 +136,8 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The next_page_token value returned from a previous List request,
-     * if any.
+     * The `next_page_token` value returned from a previous
+     * [ListInstances][google.cloud.redis.v1beta1.CloudRedis.ListInstances] request, if any.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      * @return string
@@ -148,8 +148,8 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The next_page_token value returned from a previous List request,
-     * if any.
+     * The `next_page_token` value returned from a previous
+     * [ListInstances][google.cloud.redis.v1beta1.CloudRedis.ListInstances] request, if any.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      * @param string $var
