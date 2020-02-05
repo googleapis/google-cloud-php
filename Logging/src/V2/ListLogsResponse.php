@@ -17,8 +17,8 @@ class ListLogsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * A list of log names. For example,
-     * `"projects/my-project/syslog"` or
-     * `"organizations/123/cloudresourcemanager.googleapis.com%2Factivity"`.
+     * `"projects/my-project/logs/syslog"` or
+     * `"organizations/123/logs/cloudresourcemanager.googleapis.com%2Factivity"`.
      *
      * Generated from protobuf field <code>repeated string log_names = 3;</code>
      */
@@ -40,8 +40,8 @@ class ListLogsResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $log_names
      *           A list of log names. For example,
-     *           `"projects/my-project/syslog"` or
-     *           `"organizations/123/cloudresourcemanager.googleapis.com%2Factivity"`.
+     *           `"projects/my-project/logs/syslog"` or
+     *           `"organizations/123/logs/cloudresourcemanager.googleapis.com%2Factivity"`.
      *     @type string $next_page_token
      *           If there might be more results than those appearing in this response, then
      *           `nextPageToken` is included.  To get the next set of results, call this
@@ -55,8 +55,8 @@ class ListLogsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A list of log names. For example,
-     * `"projects/my-project/syslog"` or
-     * `"organizations/123/cloudresourcemanager.googleapis.com%2Factivity"`.
+     * `"projects/my-project/logs/syslog"` or
+     * `"organizations/123/logs/cloudresourcemanager.googleapis.com%2Factivity"`.
      *
      * Generated from protobuf field <code>repeated string log_names = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -68,8 +68,8 @@ class ListLogsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A list of log names. For example,
-     * `"projects/my-project/syslog"` or
-     * `"organizations/123/cloudresourcemanager.googleapis.com%2Factivity"`.
+     * `"projects/my-project/logs/syslog"` or
+     * `"organizations/123/logs/cloudresourcemanager.googleapis.com%2Factivity"`.
      *
      * Generated from protobuf field <code>repeated string log_names = 3;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var

@@ -18,9 +18,7 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Deprecated. Use `resource_names` instead.  One or more project identifiers
      * or project numbers from which to retrieve log entries.  Example:
-     * `"my-project-1A"`. If present, these project identifiers are converted to
-     * resource name format and added to the list of resources in
-     * `resource_names`.
+     * `"my-project-1A"`.
      *
      * Generated from protobuf field <code>repeated string project_ids = 1 [deprecated = true];</code>
      */
@@ -87,9 +85,7 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $project_ids
      *           Deprecated. Use `resource_names` instead.  One or more project identifiers
      *           or project numbers from which to retrieve log entries.  Example:
-     *           `"my-project-1A"`. If present, these project identifiers are converted to
-     *           resource name format and added to the list of resources in
-     *           `resource_names`.
+     *           `"my-project-1A"`.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $resource_names
      *           Required. Names of one or more parent resources from which to
      *           retrieve log entries:
@@ -132,9 +128,7 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Deprecated. Use `resource_names` instead.  One or more project identifiers
      * or project numbers from which to retrieve log entries.  Example:
-     * `"my-project-1A"`. If present, these project identifiers are converted to
-     * resource name format and added to the list of resources in
-     * `resource_names`.
+     * `"my-project-1A"`.
      *
      * Generated from protobuf field <code>repeated string project_ids = 1 [deprecated = true];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -147,9 +141,7 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Deprecated. Use `resource_names` instead.  One or more project identifiers
      * or project numbers from which to retrieve log entries.  Example:
-     * `"my-project-1A"`. If present, these project identifiers are converted to
-     * resource name format and added to the list of resources in
-     * `resource_names`.
+     * `"my-project-1A"`.
      *
      * Generated from protobuf field <code>repeated string project_ids = 1 [deprecated = true];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var

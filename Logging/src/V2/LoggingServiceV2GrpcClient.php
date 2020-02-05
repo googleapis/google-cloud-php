@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2018 Google LLC.
+// Copyright 2019 Google LLC.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -71,9 +71,9 @@ class LoggingServiceV2GrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Lists log entries.  Use this method to retrieve log entries from
-     * Logging.  For ways to export log entries, see
-     * [Exporting Logs](/logging/docs/export).
+     * Lists log entries.  Use this method to retrieve log entries that originated
+     * from a project/folder/organization/billing account.  For ways to export log
+     * entries, see [Exporting Logs](/logging/docs/export).
      * @param \Google\Cloud\Logging\V2\ListLogEntriesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
