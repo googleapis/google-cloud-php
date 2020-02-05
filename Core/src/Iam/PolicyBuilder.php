@@ -170,7 +170,7 @@ class PolicyBuilder
     /**
      * Remove a binding from the policy.
      *
-     * This method will fail with an InvalidOpereationException if it is
+     * This method will fail with a BadMethodCallException if it is
      * called on a Policy with a version greater than 1 as that indicates
      * a more complicated policy than this method is prepared to handle.
      * Changes to such policies must be made manually by the setBindings()
