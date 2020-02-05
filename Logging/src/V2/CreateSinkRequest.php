@@ -35,16 +35,15 @@ class CreateSinkRequest extends \Google\Protobuf\Internal\Message
     private $sink = null;
     /**
      * Optional. Determines the kind of IAM identity returned as `writer_identity`
-     * in the new sink.  If this value is omitted or set to false, and if the
+     * in the new sink. If this value is omitted or set to false, and if the
      * sink's parent is a project, then the value returned as `writer_identity` is
-     * the same group or service account used by Logging before the
-     * addition of writer identities to this API. The sink's destination must be
-     * in the same project as the sink itself.
+     * the same group or service account used by Logging before the addition of
+     * writer identities to this API. The sink's destination must be in the same
+     * project as the sink itself.
      * If this field is set to true, or if the sink is owned by a non-project
      * resource such as an organization, then the value of `writer_identity` will
-     * be a unique service account used only for exports from the new sink.  For
-     * more information, see `writer_identity` in
-     * [LogSink][google.logging.v2.LogSink].
+     * be a unique service account used only for exports from the new sink. For
+     * more information, see `writer_identity` in [LogSink][google.logging.v2.LogSink].
      *
      * Generated from protobuf field <code>bool unique_writer_identity = 3;</code>
      */
@@ -68,16 +67,15 @@ class CreateSinkRequest extends \Google\Protobuf\Internal\Message
      *           is not already in use.
      *     @type bool $unique_writer_identity
      *           Optional. Determines the kind of IAM identity returned as `writer_identity`
-     *           in the new sink.  If this value is omitted or set to false, and if the
+     *           in the new sink. If this value is omitted or set to false, and if the
      *           sink's parent is a project, then the value returned as `writer_identity` is
-     *           the same group or service account used by Logging before the
-     *           addition of writer identities to this API. The sink's destination must be
-     *           in the same project as the sink itself.
+     *           the same group or service account used by Logging before the addition of
+     *           writer identities to this API. The sink's destination must be in the same
+     *           project as the sink itself.
      *           If this field is set to true, or if the sink is owned by a non-project
      *           resource such as an organization, then the value of `writer_identity` will
-     *           be a unique service account used only for exports from the new sink.  For
-     *           more information, see `writer_identity` in
-     *           [LogSink][google.logging.v2.LogSink].
+     *           be a unique service account used only for exports from the new sink. For
+     *           more information, see `writer_identity` in [LogSink][google.logging.v2.LogSink].
      * }
      */
     public function __construct($data = NULL) {
@@ -151,16 +149,15 @@ class CreateSinkRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Determines the kind of IAM identity returned as `writer_identity`
-     * in the new sink.  If this value is omitted or set to false, and if the
+     * in the new sink. If this value is omitted or set to false, and if the
      * sink's parent is a project, then the value returned as `writer_identity` is
-     * the same group or service account used by Logging before the
-     * addition of writer identities to this API. The sink's destination must be
-     * in the same project as the sink itself.
+     * the same group or service account used by Logging before the addition of
+     * writer identities to this API. The sink's destination must be in the same
+     * project as the sink itself.
      * If this field is set to true, or if the sink is owned by a non-project
      * resource such as an organization, then the value of `writer_identity` will
-     * be a unique service account used only for exports from the new sink.  For
-     * more information, see `writer_identity` in
-     * [LogSink][google.logging.v2.LogSink].
+     * be a unique service account used only for exports from the new sink. For
+     * more information, see `writer_identity` in [LogSink][google.logging.v2.LogSink].
      *
      * Generated from protobuf field <code>bool unique_writer_identity = 3;</code>
      * @return bool
@@ -172,16 +169,15 @@ class CreateSinkRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Determines the kind of IAM identity returned as `writer_identity`
-     * in the new sink.  If this value is omitted or set to false, and if the
+     * in the new sink. If this value is omitted or set to false, and if the
      * sink's parent is a project, then the value returned as `writer_identity` is
-     * the same group or service account used by Logging before the
-     * addition of writer identities to this API. The sink's destination must be
-     * in the same project as the sink itself.
+     * the same group or service account used by Logging before the addition of
+     * writer identities to this API. The sink's destination must be in the same
+     * project as the sink itself.
      * If this field is set to true, or if the sink is owned by a non-project
      * resource such as an organization, then the value of `writer_identity` will
-     * be a unique service account used only for exports from the new sink.  For
-     * more information, see `writer_identity` in
-     * [LogSink][google.logging.v2.LogSink].
+     * be a unique service account used only for exports from the new sink. For
+     * more information, see `writer_identity` in [LogSink][google.logging.v2.LogSink].
      *
      * Generated from protobuf field <code>bool unique_writer_identity = 3;</code>
      * @param bool $var

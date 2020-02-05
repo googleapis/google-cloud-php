@@ -9,6 +9,10 @@ return [
                 'additionalBindings' => [
                     [
                         'method' => 'delete',
+                        'uriTemplate' => '/v2/{log_name=*/*/logs/*}',
+                    ],
+                    [
+                        'method' => 'delete',
                         'uriTemplate' => '/v2/{log_name=organizations/*/logs/*}',
                     ],
                     [

@@ -17,15 +17,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class LogEntryOperation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. An arbitrary operation identifier. Log entries with the
-     * same identifier are assumed to be part of the same operation.
+     * Optional. An arbitrary operation identifier. Log entries with the same
+     * identifier are assumed to be part of the same operation.
      *
      * Generated from protobuf field <code>string id = 1;</code>
      */
     private $id = '';
     /**
-     * Optional. An arbitrary producer identifier. The combination of
-     * `id` and `producer` must be globally unique.  Examples for `producer`:
+     * Optional. An arbitrary producer identifier. The combination of `id` and
+     * `producer` must be globally unique. Examples for `producer`:
      * `"MyDivision.MyBigCompany.com"`, `"github.com/MyProject/MyApplication"`.
      *
      * Generated from protobuf field <code>string producer = 2;</code>
@@ -51,11 +51,11 @@ class LogEntryOperation extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $id
-     *           Optional. An arbitrary operation identifier. Log entries with the
-     *           same identifier are assumed to be part of the same operation.
+     *           Optional. An arbitrary operation identifier. Log entries with the same
+     *           identifier are assumed to be part of the same operation.
      *     @type string $producer
-     *           Optional. An arbitrary producer identifier. The combination of
-     *           `id` and `producer` must be globally unique.  Examples for `producer`:
+     *           Optional. An arbitrary producer identifier. The combination of `id` and
+     *           `producer` must be globally unique. Examples for `producer`:
      *           `"MyDivision.MyBigCompany.com"`, `"github.com/MyProject/MyApplication"`.
      *     @type bool $first
      *           Optional. Set this to True if this is the first log entry in the operation.
@@ -69,8 +69,8 @@ class LogEntryOperation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. An arbitrary operation identifier. Log entries with the
-     * same identifier are assumed to be part of the same operation.
+     * Optional. An arbitrary operation identifier. Log entries with the same
+     * identifier are assumed to be part of the same operation.
      *
      * Generated from protobuf field <code>string id = 1;</code>
      * @return string
@@ -81,8 +81,8 @@ class LogEntryOperation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. An arbitrary operation identifier. Log entries with the
-     * same identifier are assumed to be part of the same operation.
+     * Optional. An arbitrary operation identifier. Log entries with the same
+     * identifier are assumed to be part of the same operation.
      *
      * Generated from protobuf field <code>string id = 1;</code>
      * @param string $var
@@ -97,8 +97,8 @@ class LogEntryOperation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. An arbitrary producer identifier. The combination of
-     * `id` and `producer` must be globally unique.  Examples for `producer`:
+     * Optional. An arbitrary producer identifier. The combination of `id` and
+     * `producer` must be globally unique. Examples for `producer`:
      * `"MyDivision.MyBigCompany.com"`, `"github.com/MyProject/MyApplication"`.
      *
      * Generated from protobuf field <code>string producer = 2;</code>
@@ -110,8 +110,8 @@ class LogEntryOperation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. An arbitrary producer identifier. The combination of
-     * `id` and `producer` must be globally unique.  Examples for `producer`:
+     * Optional. An arbitrary producer identifier. The combination of `id` and
+     * `producer` must be globally unique. Examples for `producer`:
      * `"MyDivision.MyBigCompany.com"`, `"github.com/MyProject/MyApplication"`.
      *
      * Generated from protobuf field <code>string producer = 2;</code>
