@@ -131,6 +131,8 @@ class SpannerClient
      */
     public function __construct(array $config = [])
     {
+        $emulatorHost = getenv('SPANNER_EMULATOR_HOST');
+
         $this->requireGrpc();
         $config += [
             'scopes' => [
@@ -138,7 +140,9 @@ class SpannerClient
                 self::ADMIN_SCOPE
             ],
             'returnInt64AsObject' => false,
-            'projectIdRequired' => true
+            'projectIdRequired' => true,
+            'hasEmulator' => (bool) $emulatorHost,
+            'emulatorHost' => $emulatorHost
         ];
 
         $this->connection = new Grpc($this->configureAuthentication($config));

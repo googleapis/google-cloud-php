@@ -20,6 +20,7 @@ namespace Google\Cloud\Spanner\Connection;
 use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Serializer;
+use Google\Cloud\Core\EmulatorTrait;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Core\LongRunning\OperationResponseTrait;
@@ -58,6 +59,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  */
 class Grpc implements ConnectionInterface
 {
+    use EmulatorTrait;
     use GrpcTrait;
     use OperationResponseTrait;
 
@@ -160,12 +162,15 @@ class Grpc implements ConnectionInterface
                 : null
         );
 
-        $this->credentialsWrapper = $grpcConfig['credentials'];
-
-        if (isset($config['apiEndpoint'])) {
-            $grpcConfig['apiEndpoint'] = $config['apiEndpoint'];
+        $config += ['emulatorHost' => null];
+        if ((bool) $config['emulatorHost']) {
+            $grpcConfig += $this->emulatorGapicConfig($config['emulatorHost']);
+        } else {
+            $this->credentialsWrapper = $grpcConfig['credentials'];
+            if (isset($config['apiEndpoint'])) {
+                $grpcConfig['apiEndpoint'] = $config['apiEndpoint'];
+            }
         }
-
         $this->spannerClient = isset($config['gapicSpannerClient'])
             ? $config['gapicSpannerClient']
             : $this->constructGapic(SpannerClient::class, $grpcConfig);
