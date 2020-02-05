@@ -52,6 +52,7 @@ class CloudRedisGrpcClient extends \Grpc\BaseStub {
      * location (region) or all locations.
      *
      * The location should have the following format:
+     *
      * * `projects/{project_id}/locations/{location_id}`
      *
      * If `location_id` is specified as `-` (wildcard), then all regions
@@ -120,6 +121,21 @@ class CloudRedisGrpcClient extends \Grpc\BaseStub {
     public function UpdateInstance(\Google\Cloud\Redis\V1beta1\UpdateInstanceRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.redis.v1beta1.CloudRedis/UpdateInstance',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Upgrades Redis instance to the newer Redis version specified in the
+     * request.
+     * @param \Google\Cloud\Redis\V1beta1\UpgradeInstanceRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function UpgradeInstance(\Google\Cloud\Redis\V1beta1\UpgradeInstanceRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.redis.v1beta1.CloudRedis/UpgradeInstance',
         $argument,
         ['\Google\LongRunning\Operation', 'decode'],
         $metadata, $options);
