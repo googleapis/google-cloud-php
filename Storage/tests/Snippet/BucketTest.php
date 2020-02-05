@@ -592,7 +592,10 @@ class BucketTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromMethod(Bucket::class, 'iam');
         $snippet->addLocal('bucket', $this->bucket);
+        $this->connection->getBucketIamPolicy(Argument::withEntry('optionsRequestedPolicyVersion', 3))
+            ->shouldBeCalled();
 
+        $this->bucket->___setProperty('connection', $this->connection->reveal());
         $res = $snippet->invoke('iam');
         $this->assertInstanceOf(Iam::class, $res->returnVal());
     }

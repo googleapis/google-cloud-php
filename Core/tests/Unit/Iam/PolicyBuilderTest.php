@@ -42,7 +42,7 @@ class PolicyBuilderTest extends TestCase
 
         $builder = new PolicyBuilder;
         $builder->setEtag($etag);
-        $builder->setVersion(2);
+        $builder->setVersion(1);
         $builder->addBinding($role, $members);
 
         $result = $builder->result();
@@ -55,7 +55,7 @@ class PolicyBuilderTest extends TestCase
                 ]
             ],
             'etag' => $etag,
-            'version' => 2
+            'version' => 1
         ];
 
         $this->assertEquals($policy, $result);
@@ -137,6 +137,43 @@ class PolicyBuilderTest extends TestCase
         $result = $builder->result();
 
         $this->assertEquals($policy, $result);
+    }
+
+    /**
+     * @expectedException BadMethodCallException
+     * @expectedExceptionMessage Helper methods cannot be invoked on policies with version 3.
+     */
+    public function testAddBindingVersionThrowsException()
+    {
+        $builder = new PolicyBuilder();
+        $builder->setVersion(3);
+
+        $builder->addBinding('test', ['user:test@test.com']);
+    }
+
+    /**
+     * @expectedException BadMethodCallException
+     * @expectedExceptionMessage Helper methods cannot be invoked on policies containing conditions.
+     */
+    public function testAddBindingWithConditionsThrowsException()
+    {
+        $policy = [
+            'bindings' => [
+                [
+                    'role' => 'test',
+                    'members' => [
+                        'user:test@test.com',
+                    ],
+                    'condition' => [
+                        'expression' => 'true',
+                    ]
+                ],
+            ],
+        ];
+        $builder = new PolicyBuilder($policy);
+        $builder->setVersion(1);
+
+        $builder->addBinding('test2', ['user:test@test.com']);
     }
 
     public function testRemoveBinding()
@@ -224,5 +261,52 @@ class PolicyBuilderTest extends TestCase
 
         $builder = new PolicyBuilder($policy);
         $builder->removeBinding('test2', ['user:test@test.com']);
+    }
+
+    /**
+     * @expectedException BadMethodCallException
+     * @expectedExceptionMessage Helper methods cannot be invoked on policies with version 3.
+     */
+    public function testRemoveBindingVersionThrowsException()
+    {
+        $policy = [
+            'version' => 3,
+            'bindings' => [
+                [
+                    'role' => 'test',
+                    'members' => [
+                        'user:test@test.com',
+                    ]
+                ],
+            ]
+        ];
+
+        $builder = new PolicyBuilder($policy);
+        $builder->removeBinding('test', ['user:test@test.com']);
+    }
+
+    /**
+     * @expectedException BadMethodCallException
+     * @expectedExceptionMessage Helper methods cannot be invoked on policies containing conditions.
+     */
+    public function testRemoveBindingWithConditionsThrowsException()
+    {
+        $policy = [
+            'bindings' => [
+                [
+                    'role' => 'test',
+                    'members' => [
+                        'user:test@test.com',
+                    ],
+                    'condition' => [
+                        'expression' => 'true',
+                    ]
+                ],
+            ],
+        ];
+
+        $builder = new PolicyBuilder($policy);
+        $builder->setVersion(1);
+        $builder->removeBinding('test', ['user:test@test.com']);
     }
 }
