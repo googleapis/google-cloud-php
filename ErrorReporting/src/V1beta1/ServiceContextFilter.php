@@ -19,24 +19,24 @@ use Google\Protobuf\Internal\GPBUtil;
 class ServiceContextFilter extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Optional] The exact value to match against
+     * Optional. The exact value to match against
      * [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
      *
-     * Generated from protobuf field <code>string service = 2;</code>
+     * Generated from protobuf field <code>string service = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $service = '';
     /**
-     * [Optional] The exact value to match against
+     * Optional. The exact value to match against
      * [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
      *
-     * Generated from protobuf field <code>string version = 3;</code>
+     * Generated from protobuf field <code>string version = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $version = '';
     /**
-     * [Optional] The exact value to match against
+     * Optional. The exact value to match against
      * [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
      *
-     * Generated from protobuf field <code>string resource_type = 4;</code>
+     * Generated from protobuf field <code>string resource_type = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $resource_type = '';
 
@@ -47,13 +47,13 @@ class ServiceContextFilter extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $service
-     *           [Optional] The exact value to match against
+     *           Optional. The exact value to match against
      *           [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
      *     @type string $version
-     *           [Optional] The exact value to match against
+     *           Optional. The exact value to match against
      *           [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
      *     @type string $resource_type
-     *           [Optional] The exact value to match against
+     *           Optional. The exact value to match against
      *           [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
      * }
      */
@@ -63,10 +63,10 @@ class ServiceContextFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Optional] The exact value to match against
+     * Optional. The exact value to match against
      * [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
      *
-     * Generated from protobuf field <code>string service = 2;</code>
+     * Generated from protobuf field <code>string service = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getService()
@@ -75,10 +75,10 @@ class ServiceContextFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Optional] The exact value to match against
+     * Optional. The exact value to match against
      * [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
      *
-     * Generated from protobuf field <code>string service = 2;</code>
+     * Generated from protobuf field <code>string service = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -91,10 +91,10 @@ class ServiceContextFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Optional] The exact value to match against
+     * Optional. The exact value to match against
      * [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
      *
-     * Generated from protobuf field <code>string version = 3;</code>
+     * Generated from protobuf field <code>string version = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getVersion()
@@ -103,10 +103,10 @@ class ServiceContextFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Optional] The exact value to match against
+     * Optional. The exact value to match against
      * [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
      *
-     * Generated from protobuf field <code>string version = 3;</code>
+     * Generated from protobuf field <code>string version = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -119,10 +119,10 @@ class ServiceContextFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Optional] The exact value to match against
+     * Optional. The exact value to match against
      * [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
      *
-     * Generated from protobuf field <code>string resource_type = 4;</code>
+     * Generated from protobuf field <code>string resource_type = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getResourceType()
@@ -131,10 +131,10 @@ class ServiceContextFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Optional] The exact value to match against
+     * Optional. The exact value to match against
      * [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
      *
-     * Generated from protobuf field <code>string resource_type = 4;</code>
+     * Generated from protobuf field <code>string resource_type = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

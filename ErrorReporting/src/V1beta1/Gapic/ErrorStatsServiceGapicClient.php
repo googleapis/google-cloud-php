@@ -57,9 +57,8 @@ use Google\Protobuf\Timestamp;
  * $errorStatsServiceClient = new ErrorStatsServiceClient();
  * try {
  *     $formattedProjectName = $errorStatsServiceClient->projectName('[PROJECT]');
- *     $timeRange = new QueryTimeRange();
  *     // Iterate over pages of elements
- *     $pagedResponse = $errorStatsServiceClient->listGroupStats($formattedProjectName, $timeRange);
+ *     $pagedResponse = $errorStatsServiceClient->listGroupStats($formattedProjectName);
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
  *             // doSomethingWith($element);
@@ -70,7 +69,7 @@ use Google\Protobuf\Timestamp;
  *     // Alternatively:
  *
  *     // Iterate through all elements
- *     $pagedResponse = $errorStatsServiceClient->listGroupStats($formattedProjectName, $timeRange);
+ *     $pagedResponse = $errorStatsServiceClient->listGroupStats($formattedProjectName);
  *     foreach ($pagedResponse->iterateAllElements() as $element) {
  *         // doSomethingWith($element);
  *     }
@@ -284,9 +283,8 @@ class ErrorStatsServiceGapicClient
      * $errorStatsServiceClient = new ErrorStatsServiceClient();
      * try {
      *     $formattedProjectName = $errorStatsServiceClient->projectName('[PROJECT]');
-     *     $timeRange = new QueryTimeRange();
      *     // Iterate over pages of elements
-     *     $pagedResponse = $errorStatsServiceClient->listGroupStats($formattedProjectName, $timeRange);
+     *     $pagedResponse = $errorStatsServiceClient->listGroupStats($formattedProjectName);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -297,7 +295,7 @@ class ErrorStatsServiceGapicClient
      *     // Alternatively:
      *
      *     // Iterate through all elements
-     *     $pagedResponse = $errorStatsServiceClient->listGroupStats($formattedProjectName, $timeRange);
+     *     $pagedResponse = $errorStatsServiceClient->listGroupStats($formattedProjectName);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -306,40 +304,42 @@ class ErrorStatsServiceGapicClient
      * }
      * ```
      *
-     * @param string $projectName [Required] The resource name of the Google Cloud Platform project. Written
+     * @param string $projectName Required. The resource name of the Google Cloud Platform project. Written
      *                            as <code>projects/</code> plus the
      *                            <a href="https://support.google.com/cloud/answer/6158840">Google Cloud
      *                            Platform project ID</a>.
      *
      * Example: <code>projects/my-project-123</code>.
-     * @param QueryTimeRange $timeRange    [Optional] List data for the given time range.
-     *                                     If not set a default time range is used. The field time_range_begin
-     *                                     in the response will specify the beginning of this time range.
-     *                                     Only <code>ErrorGroupStats</code> with a non-zero count in the given time
-     *                                     range are returned, unless the request contains an explicit group_id list.
-     *                                     If a group_id list is given, also <code>ErrorGroupStats</code> with zero
-     *                                     occurrences are returned.
-     * @param array          $optionalArgs {
-     *                                     Optional.
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type string[] $groupId
-     *          [Optional] List all <code>ErrorGroupStats</code> with these IDs.
+     *          Optional. List all <code>ErrorGroupStats</code> with these IDs.
      *     @type ServiceContextFilter $serviceFilter
-     *          [Optional] List only <code>ErrorGroupStats</code> which belong to a service
+     *          Optional. List only <code>ErrorGroupStats</code> which belong to a service
      *          context that matches the filter.
      *          Data for all service contexts is returned if this field is not specified.
+     *     @type QueryTimeRange $timeRange
+     *          Optional. List data for the given time range.
+     *          If not set, a default time range is used. The field
+     *          <code>time_range_begin</code> in the response will specify the beginning
+     *          of this time range.
+     *          Only <code>ErrorGroupStats</code> with a non-zero count in the given time
+     *          range are returned, unless the request contains an explicit
+     *          <code>group_id</code> list. If a <code>group_id</code> list is given, also
+     *          <code>ErrorGroupStats</code> with zero occurrences are returned.
      *     @type Duration $timedCountDuration
-     *          [Optional] The preferred duration for a single returned `TimedCount`.
+     *          Optional. The preferred duration for a single returned `TimedCount`.
      *          If not set, no timed counts are returned.
      *     @type int $alignment
-     *          [Optional] The alignment of the timed counts to be returned.
+     *          Optional. The alignment of the timed counts to be returned.
      *          Default is `ALIGNMENT_EQUAL_AT_END`.
      *          For allowed values, use constants defined on {@see \Google\Cloud\ErrorReporting\V1beta1\TimedCountAlignment}
      *     @type Timestamp $alignmentTime
-     *          [Optional] Time where the timed counts shall be aligned if rounded
+     *          Optional. Time where the timed counts shall be aligned if rounded
      *          alignment is chosen. Default is 00:00 UTC.
      *     @type int $order
-     *          [Optional] The sort order in which the results are returned.
+     *          Optional. The sort order in which the results are returned.
      *          Default is `COUNT_DESC`.
      *          For allowed values, use constants defined on {@see \Google\Cloud\ErrorReporting\V1beta1\ErrorGroupOrder}
      *     @type int $pageSize
@@ -363,16 +363,18 @@ class ErrorStatsServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listGroupStats($projectName, $timeRange, array $optionalArgs = [])
+    public function listGroupStats($projectName, array $optionalArgs = [])
     {
         $request = new ListGroupStatsRequest();
         $request->setProjectName($projectName);
-        $request->setTimeRange($timeRange);
         if (isset($optionalArgs['groupId'])) {
             $request->setGroupId($optionalArgs['groupId']);
         }
         if (isset($optionalArgs['serviceFilter'])) {
             $request->setServiceFilter($optionalArgs['serviceFilter']);
+        }
+        if (isset($optionalArgs['timeRange'])) {
+            $request->setTimeRange($optionalArgs['timeRange']);
         }
         if (isset($optionalArgs['timedCountDuration'])) {
             $request->setTimedCountDuration($optionalArgs['timedCountDuration']);
@@ -438,21 +440,21 @@ class ErrorStatsServiceGapicClient
      * }
      * ```
      *
-     * @param string $projectName  [Required] The resource name of the Google Cloud Platform project. Written
+     * @param string $projectName  Required. The resource name of the Google Cloud Platform project. Written
      *                             as `projects/` plus the
      *                             [Google Cloud Platform project
      *                             ID](https://support.google.com/cloud/answer/6158840).
      *                             Example: `projects/my-project-123`.
-     * @param string $groupId      [Required] The group for which events shall be returned.
+     * @param string $groupId      Required. The group for which events shall be returned.
      * @param array  $optionalArgs {
      *                             Optional.
      *
      *     @type ServiceContextFilter $serviceFilter
-     *          [Optional] List only ErrorGroups which belong to a service context that
+     *          Optional. List only ErrorGroups which belong to a service context that
      *          matches the filter.
      *          Data for all service contexts is returned if this field is not specified.
      *     @type QueryTimeRange $timeRange
-     *          [Optional] List only data for the given time range.
+     *          Optional. List only data for the given time range.
      *          If not set a default time range is used. The field time_range_begin
      *          in the response will specify the beginning of this time range.
      *     @type int $pageSize
@@ -523,7 +525,7 @@ class ErrorStatsServiceGapicClient
      * }
      * ```
      *
-     * @param string $projectName  [Required] The resource name of the Google Cloud Platform project. Written
+     * @param string $projectName  Required. The resource name of the Google Cloud Platform project. Written
      *                             as `projects/` plus the
      *                             [Google Cloud Platform project
      *                             ID](https://support.google.com/cloud/answer/6158840).

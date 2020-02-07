@@ -16,32 +16,51 @@ use Google\Protobuf\Internal\GPBUtil;
 class ReportedErrorEvent extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Optional] Time when the event occurred.
+     * Optional. Time when the event occurred.
      * If not provided, the time when the event was received by the
      * Error Reporting system will be used.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp event_time = 1;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp event_time = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $event_time = null;
     /**
-     * [Required] The service context in which this error has occurred.
+     * Required. The service context in which this error has occurred.
      *
-     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContext service_context = 2;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContext service_context = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $service_context = null;
     /**
-     * [Required] A message describing the error. The message can contain an
-     * exception stack in one of the supported programming languages and formats.
-     * In that case, the message is parsed and detailed exception information
-     * is returned when retrieving the error event again.
+     * Required. The error message.
+     * If no `context.reportLocation` is provided, the message must contain a
+     * header (typically consisting of the exception type name and an error
+     * message) and an exception stack trace in one of the supported programming
+     * languages and formats.
+     * Supported languages are Java, Python, JavaScript, Ruby, C#, PHP, and Go.
+     * Supported stack trace formats are:
+     * * **Java**: Must be the return value of
+     * [`Throwable.printStackTrace()`](https://docs.oracle.com/javase/7/docs/api/java/lang/Throwable.html#printStackTrace%28%29).
+     * * **Python**: Must be the return value of
+     * [`traceback.format_exc()`](https://docs.python.org/2/library/traceback.html#traceback.format_exc).
+     * * **JavaScript**: Must be the value of
+     * [`error.stack`](https://github.com/v8/v8/wiki/Stack-Trace-API) as returned
+     * by V8.
+     * * **Ruby**: Must contain frames returned by
+     * [`Exception.backtrace`](https://ruby-doc.org/core-2.2.0/Exception.html#method-i-backtrace).
+     * * **C#**: Must be the return value of
+     * [`Exception.ToString()`](https://msdn.microsoft.com/en-us/library/system.exception.tostring.aspx).
+     * * **PHP**: Must start with `PHP (Notice|Parse error|Fatal error|Warning)`
+     * and contain the result of
+     * [`(string)$exception`](http://php.net/manual/en/exception.tostring.php).
+     * * **Go**: Must be the return value of
+     * [`runtime.Stack()`](https://golang.org/pkg/runtime/debug/#Stack).
      *
-     * Generated from protobuf field <code>string message = 3;</code>
+     * Generated from protobuf field <code>string message = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $message = '';
     /**
-     * [Optional] A description of the context in which the error occurred.
+     * Optional. A description of the context in which the error occurred.
      *
-     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ErrorContext context = 4;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ErrorContext context = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $context = null;
 
@@ -52,18 +71,37 @@ class ReportedErrorEvent extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Protobuf\Timestamp $event_time
-     *           [Optional] Time when the event occurred.
+     *           Optional. Time when the event occurred.
      *           If not provided, the time when the event was received by the
      *           Error Reporting system will be used.
      *     @type \Google\Cloud\ErrorReporting\V1beta1\ServiceContext $service_context
-     *           [Required] The service context in which this error has occurred.
+     *           Required. The service context in which this error has occurred.
      *     @type string $message
-     *           [Required] A message describing the error. The message can contain an
-     *           exception stack in one of the supported programming languages and formats.
-     *           In that case, the message is parsed and detailed exception information
-     *           is returned when retrieving the error event again.
+     *           Required. The error message.
+     *           If no `context.reportLocation` is provided, the message must contain a
+     *           header (typically consisting of the exception type name and an error
+     *           message) and an exception stack trace in one of the supported programming
+     *           languages and formats.
+     *           Supported languages are Java, Python, JavaScript, Ruby, C#, PHP, and Go.
+     *           Supported stack trace formats are:
+     *           * **Java**: Must be the return value of
+     *           [`Throwable.printStackTrace()`](https://docs.oracle.com/javase/7/docs/api/java/lang/Throwable.html#printStackTrace%28%29).
+     *           * **Python**: Must be the return value of
+     *           [`traceback.format_exc()`](https://docs.python.org/2/library/traceback.html#traceback.format_exc).
+     *           * **JavaScript**: Must be the value of
+     *           [`error.stack`](https://github.com/v8/v8/wiki/Stack-Trace-API) as returned
+     *           by V8.
+     *           * **Ruby**: Must contain frames returned by
+     *           [`Exception.backtrace`](https://ruby-doc.org/core-2.2.0/Exception.html#method-i-backtrace).
+     *           * **C#**: Must be the return value of
+     *           [`Exception.ToString()`](https://msdn.microsoft.com/en-us/library/system.exception.tostring.aspx).
+     *           * **PHP**: Must start with `PHP (Notice|Parse error|Fatal error|Warning)`
+     *           and contain the result of
+     *           [`(string)$exception`](http://php.net/manual/en/exception.tostring.php).
+     *           * **Go**: Must be the return value of
+     *           [`runtime.Stack()`](https://golang.org/pkg/runtime/debug/#Stack).
      *     @type \Google\Cloud\ErrorReporting\V1beta1\ErrorContext $context
-     *           [Optional] A description of the context in which the error occurred.
+     *           Optional. A description of the context in which the error occurred.
      * }
      */
     public function __construct($data = NULL) {
@@ -72,11 +110,11 @@ class ReportedErrorEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Optional] Time when the event occurred.
+     * Optional. Time when the event occurred.
      * If not provided, the time when the event was received by the
      * Error Reporting system will be used.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp event_time = 1;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp event_time = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getEventTime()
@@ -85,11 +123,11 @@ class ReportedErrorEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Optional] Time when the event occurred.
+     * Optional. Time when the event occurred.
      * If not provided, the time when the event was received by the
      * Error Reporting system will be used.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp event_time = 1;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp event_time = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -102,9 +140,9 @@ class ReportedErrorEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Required] The service context in which this error has occurred.
+     * Required. The service context in which this error has occurred.
      *
-     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContext service_context = 2;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContext service_context = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\ErrorReporting\V1beta1\ServiceContext
      */
     public function getServiceContext()
@@ -113,9 +151,9 @@ class ReportedErrorEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Required] The service context in which this error has occurred.
+     * Required. The service context in which this error has occurred.
      *
-     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContext service_context = 2;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContext service_context = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\ErrorReporting\V1beta1\ServiceContext $var
      * @return $this
      */
@@ -128,12 +166,31 @@ class ReportedErrorEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Required] A message describing the error. The message can contain an
-     * exception stack in one of the supported programming languages and formats.
-     * In that case, the message is parsed and detailed exception information
-     * is returned when retrieving the error event again.
+     * Required. The error message.
+     * If no `context.reportLocation` is provided, the message must contain a
+     * header (typically consisting of the exception type name and an error
+     * message) and an exception stack trace in one of the supported programming
+     * languages and formats.
+     * Supported languages are Java, Python, JavaScript, Ruby, C#, PHP, and Go.
+     * Supported stack trace formats are:
+     * * **Java**: Must be the return value of
+     * [`Throwable.printStackTrace()`](https://docs.oracle.com/javase/7/docs/api/java/lang/Throwable.html#printStackTrace%28%29).
+     * * **Python**: Must be the return value of
+     * [`traceback.format_exc()`](https://docs.python.org/2/library/traceback.html#traceback.format_exc).
+     * * **JavaScript**: Must be the value of
+     * [`error.stack`](https://github.com/v8/v8/wiki/Stack-Trace-API) as returned
+     * by V8.
+     * * **Ruby**: Must contain frames returned by
+     * [`Exception.backtrace`](https://ruby-doc.org/core-2.2.0/Exception.html#method-i-backtrace).
+     * * **C#**: Must be the return value of
+     * [`Exception.ToString()`](https://msdn.microsoft.com/en-us/library/system.exception.tostring.aspx).
+     * * **PHP**: Must start with `PHP (Notice|Parse error|Fatal error|Warning)`
+     * and contain the result of
+     * [`(string)$exception`](http://php.net/manual/en/exception.tostring.php).
+     * * **Go**: Must be the return value of
+     * [`runtime.Stack()`](https://golang.org/pkg/runtime/debug/#Stack).
      *
-     * Generated from protobuf field <code>string message = 3;</code>
+     * Generated from protobuf field <code>string message = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getMessage()
@@ -142,12 +199,31 @@ class ReportedErrorEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Required] A message describing the error. The message can contain an
-     * exception stack in one of the supported programming languages and formats.
-     * In that case, the message is parsed and detailed exception information
-     * is returned when retrieving the error event again.
+     * Required. The error message.
+     * If no `context.reportLocation` is provided, the message must contain a
+     * header (typically consisting of the exception type name and an error
+     * message) and an exception stack trace in one of the supported programming
+     * languages and formats.
+     * Supported languages are Java, Python, JavaScript, Ruby, C#, PHP, and Go.
+     * Supported stack trace formats are:
+     * * **Java**: Must be the return value of
+     * [`Throwable.printStackTrace()`](https://docs.oracle.com/javase/7/docs/api/java/lang/Throwable.html#printStackTrace%28%29).
+     * * **Python**: Must be the return value of
+     * [`traceback.format_exc()`](https://docs.python.org/2/library/traceback.html#traceback.format_exc).
+     * * **JavaScript**: Must be the value of
+     * [`error.stack`](https://github.com/v8/v8/wiki/Stack-Trace-API) as returned
+     * by V8.
+     * * **Ruby**: Must contain frames returned by
+     * [`Exception.backtrace`](https://ruby-doc.org/core-2.2.0/Exception.html#method-i-backtrace).
+     * * **C#**: Must be the return value of
+     * [`Exception.ToString()`](https://msdn.microsoft.com/en-us/library/system.exception.tostring.aspx).
+     * * **PHP**: Must start with `PHP (Notice|Parse error|Fatal error|Warning)`
+     * and contain the result of
+     * [`(string)$exception`](http://php.net/manual/en/exception.tostring.php).
+     * * **Go**: Must be the return value of
+     * [`runtime.Stack()`](https://golang.org/pkg/runtime/debug/#Stack).
      *
-     * Generated from protobuf field <code>string message = 3;</code>
+     * Generated from protobuf field <code>string message = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -160,9 +236,9 @@ class ReportedErrorEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Optional] A description of the context in which the error occurred.
+     * Optional. A description of the context in which the error occurred.
      *
-     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ErrorContext context = 4;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ErrorContext context = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\ErrorReporting\V1beta1\ErrorContext
      */
     public function getContext()
@@ -171,9 +247,9 @@ class ReportedErrorEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Optional] A description of the context in which the error occurred.
+     * Optional. A description of the context in which the error occurred.
      *
-     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ErrorContext context = 4;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ErrorContext context = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\ErrorReporting\V1beta1\ErrorContext $var
      * @return $this
      */

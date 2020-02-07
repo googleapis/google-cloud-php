@@ -9,11 +9,10 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Indicates a location in the source code of the service for which
- * errors are reported.
- * This data should be provided by the application when reporting an error,
- * unless the error report has been generated automatically from Google App
- * Engine logs. All fields are optional.
+ * Indicates a location in the source code of the service for which errors are
+ * reported. `functionName` must be provided by the application when reporting
+ * an error, unless the error report contains a `message` with a supported
+ * exception stack trace. All fields are optional for the later case.
  *
  * Generated from protobuf message <code>google.devtools.clouderrorreporting.v1beta1.SourceLocation</code>
  */
