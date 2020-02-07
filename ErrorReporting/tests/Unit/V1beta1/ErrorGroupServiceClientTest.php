@@ -87,7 +87,7 @@ class ErrorGroupServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedGroupName = $client->groupName('[PROJECT]', '[GROUP]');
+        $formattedGroupName = $client->errorGroupName('[PROJECT]', '[GROUP]');
 
         $response = $client->getGroup($formattedGroupName);
         $this->assertEquals($expectedResponse, $response);
@@ -127,7 +127,7 @@ class ErrorGroupServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedGroupName = $client->groupName('[PROJECT]', '[GROUP]');
+        $formattedGroupName = $client->errorGroupName('[PROJECT]', '[GROUP]');
 
         try {
             $client->getGroup($formattedGroupName);

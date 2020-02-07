@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetGroupRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Required] The group resource name. Written as
+     * Required. The group resource name. Written as
      * <code>projects/<var>projectID</var>/groups/<var>group_name</var></code>.
      * Call
      * <a href="/error-reporting/reference/rest/v1beta1/projects.groupStats/list">
@@ -24,7 +24,7 @@ class GetGroupRequest extends \Google\Protobuf\Internal\Message
      * this project.
      * Example: <code>projects/my-project-123/groups/my-group</code>
      *
-     * Generated from protobuf field <code>string group_name = 1;</code>
+     * Generated from protobuf field <code>string group_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $group_name = '';
 
@@ -35,7 +35,7 @@ class GetGroupRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $group_name
-     *           [Required] The group resource name. Written as
+     *           Required. The group resource name. Written as
      *           <code>projects/<var>projectID</var>/groups/<var>group_name</var></code>.
      *           Call
      *           <a href="/error-reporting/reference/rest/v1beta1/projects.groupStats/list">
@@ -50,7 +50,7 @@ class GetGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Required] The group resource name. Written as
+     * Required. The group resource name. Written as
      * <code>projects/<var>projectID</var>/groups/<var>group_name</var></code>.
      * Call
      * <a href="/error-reporting/reference/rest/v1beta1/projects.groupStats/list">
@@ -58,7 +58,7 @@ class GetGroupRequest extends \Google\Protobuf\Internal\Message
      * this project.
      * Example: <code>projects/my-project-123/groups/my-group</code>
      *
-     * Generated from protobuf field <code>string group_name = 1;</code>
+     * Generated from protobuf field <code>string group_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getGroupName()
@@ -67,7 +67,7 @@ class GetGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Required] The group resource name. Written as
+     * Required. The group resource name. Written as
      * <code>projects/<var>projectID</var>/groups/<var>group_name</var></code>.
      * Call
      * <a href="/error-reporting/reference/rest/v1beta1/projects.groupStats/list">
@@ -75,7 +75,7 @@ class GetGroupRequest extends \Google\Protobuf\Internal\Message
      * this project.
      * Example: <code>projects/my-project-123/groups/my-group</code>
      *
-     * Generated from protobuf field <code>string group_name = 1;</code>
+     * Generated from protobuf field <code>string group_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

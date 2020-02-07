@@ -48,7 +48,7 @@ use Google\Cloud\ErrorReporting\V1beta1\UpdateGroupRequest;
  * ```
  * $errorGroupServiceClient = new ErrorGroupServiceClient();
  * try {
- *     $formattedGroupName = $errorGroupServiceClient->groupName('[PROJECT]', '[GROUP]');
+ *     $formattedGroupName = $errorGroupServiceClient->errorGroupName('[PROJECT]', '[GROUP]');
  *     $response = $errorGroupServiceClient->getGroup($formattedGroupName);
  * } finally {
  *     $errorGroupServiceClient->close();
@@ -92,7 +92,7 @@ class ErrorGroupServiceGapicClient
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
-    private static $groupNameTemplate;
+    private static $errorGroupNameTemplate;
     private static $pathTemplateMap;
 
     private static function getClientDefaults()
@@ -114,20 +114,20 @@ class ErrorGroupServiceGapicClient
         ];
     }
 
-    private static function getGroupNameTemplate()
+    private static function getErrorGroupNameTemplate()
     {
-        if (null == self::$groupNameTemplate) {
-            self::$groupNameTemplate = new PathTemplate('projects/{project}/groups/{group}');
+        if (null == self::$errorGroupNameTemplate) {
+            self::$errorGroupNameTemplate = new PathTemplate('projects/{project}/groups/{group}');
         }
 
-        return self::$groupNameTemplate;
+        return self::$errorGroupNameTemplate;
     }
 
     private static function getPathTemplateMap()
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
-                'group' => self::getGroupNameTemplate(),
+                'errorGroup' => self::getErrorGroupNameTemplate(),
             ];
         }
 
@@ -136,17 +136,17 @@ class ErrorGroupServiceGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a group resource.
+     * a error_group resource.
      *
      * @param string $project
      * @param string $group
      *
-     * @return string The formatted group resource.
+     * @return string The formatted error_group resource.
      * @experimental
      */
-    public static function groupName($project, $group)
+    public static function errorGroupName($project, $group)
     {
-        return self::getGroupNameTemplate()->render([
+        return self::getErrorGroupNameTemplate()->render([
             'project' => $project,
             'group' => $group,
         ]);
@@ -156,7 +156,7 @@ class ErrorGroupServiceGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - group: projects/{project}/groups/{group}.
+     * - errorGroup: projects/{project}/groups/{group}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
@@ -261,14 +261,14 @@ class ErrorGroupServiceGapicClient
      * ```
      * $errorGroupServiceClient = new ErrorGroupServiceClient();
      * try {
-     *     $formattedGroupName = $errorGroupServiceClient->groupName('[PROJECT]', '[GROUP]');
+     *     $formattedGroupName = $errorGroupServiceClient->errorGroupName('[PROJECT]', '[GROUP]');
      *     $response = $errorGroupServiceClient->getGroup($formattedGroupName);
      * } finally {
      *     $errorGroupServiceClient->close();
      * }
      * ```
      *
-     * @param string $groupName [Required] The group resource name. Written as
+     * @param string $groupName Required. The group resource name. Written as
      *                          <code>projects/<var>projectID</var>/groups/<var>group_name</var></code>.
      *                          Call
      *                          <a href="/error-reporting/reference/rest/v1beta1/projects.groupStats/list">
@@ -326,7 +326,7 @@ class ErrorGroupServiceGapicClient
      * }
      * ```
      *
-     * @param ErrorGroup $group        [Required] The group which replaces the resource on the server.
+     * @param ErrorGroup $group        Required. The group which replaces the resource on the server.
      * @param array      $optionalArgs {
      *                                 Optional.
      *
