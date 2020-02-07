@@ -28,11 +28,12 @@ use Google\Cloud\BigQuery\Table;
 use Google\Cloud\BigQuery\ValueMapper;
 use Google\Cloud\Core\Exception\ConflictException;
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Upload\AbstractUploader;
 use Google\Cloud\Storage\Connection\ConnectionInterface as StorageConnectionInterface;
 use Google\Cloud\Storage\StorageObject;
-use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group bigquery
@@ -89,7 +90,7 @@ class TableTest extends TestCase
         );
     }
 
-    public function getTable($connection, array $data = [], $tableId = null)
+    public function getTable($connection, array $data = [], $tableId = null, $location = null)
     {
         return new TableStub(
             $connection->reveal(),
@@ -97,7 +98,8 @@ class TableTest extends TestCase
             self::DATASET_ID,
             self::PROJECT_ID,
             $this->mapper,
-            $data
+            $data,
+            $location
         );
     }
 
@@ -675,6 +677,47 @@ class TableTest extends TestCase
 
         $this->assertEquals(self::TABLE_ID, $table->identity()['tableId']);
         $this->assertEquals(self::PROJECT_ID, $table->identity()['projectId']);
+    }
+
+    /**
+     * @dataProvider locations
+     */
+    public function testCopyLocations($expected, $info, $location)
+    {
+        $table = $this->getTable($this->connection, $info, null, $location);
+        $res = $table->copy($table);
+
+        $this->assertEquals($expected, $res->toArray()['jobReference']['location']);
+    }
+
+    /**
+     * @dataProvider locations
+     */
+    public function testExtractLocations($expected, $info, $location)
+    {
+        $table = $this->getTable($this->connection, $info, null, $location);
+        $res = $table->extract('foo');
+
+        $this->assertEquals($expected, $res->toArray()['jobReference']['location']);
+    }
+
+    /**
+     * @dataProvider locations
+     */
+    public function testLoadLocations($expected, $info, $location)
+    {
+        $table = $this->getTable($this->connection, $info, null, $location);
+        $res = $table->load('foo');
+
+        $this->assertEquals($expected, $res->toArray()['jobReference']['location']);
+    }
+
+    public function locations()
+    {
+        return [
+            ['foo', ['location' => 'foo'], 'bar'],
+            ['bar', [], 'bar']
+        ];
     }
 }
 

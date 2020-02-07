@@ -168,4 +168,34 @@ interface ConnectionInterface
      * @return array
      */
     public function listModels(array $args = []);
+
+    /**
+     * @param array $args
+     * @return array
+     */
+    public function insertRoutine(array $args = []);
+
+    /**
+     * @param array $args
+     * @return array
+     */
+    public function updateRoutine(array $args = []);
+
+    /**
+     * @param array $args
+     * @return array
+     */
+    public function getRoutine(array $args = []);
+
+    /**
+     * @param array $args
+     * @return array
+     */
+    public function deleteRoutine(array $args = []);
+
+    /**
+     * @param array $args
+     * @return array
+     */
+    public function listRoutines(array $args = []);
 }

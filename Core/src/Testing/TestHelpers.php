@@ -241,6 +241,23 @@ class TestHelpers
     }
 
     /**
+     * Get the value of a private property.
+     *
+     * @param mixed The class
+     * @param string The property name.
+     * @return mixed
+     */
+    public static function getPrivateProperty($class, $property)
+    {
+        $className = get_class($class);
+        $c = \Closure::bind(function ($class) use ($property) {
+            return $class->$property;
+        }, null, $className);
+
+        return $c($class);
+    }
+
+    /**
      * Determine the path of the project root based on where the composer
      * autoloader is located.
      *

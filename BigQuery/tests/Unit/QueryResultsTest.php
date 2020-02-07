@@ -22,8 +22,9 @@ use Google\Cloud\BigQuery\Job;
 use Google\Cloud\BigQuery\Numeric;
 use Google\Cloud\BigQuery\QueryResults;
 use Google\Cloud\BigQuery\ValueMapper;
-use Prophecy\Argument;
+use Google\Cloud\Core\Testing\TestHelpers;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group bigquery
@@ -194,5 +195,48 @@ class QueryResultsTest extends TestCase
 
         $this->assertEquals($this->jobId, $queryResults->identity()['jobId']);
         $this->assertEquals($this->projectId, $queryResults->identity()['projectId']);
+    }
+
+    /**
+     * @dataProvider locations
+     */
+    public function testLocation($expected, $info, $jobIdentity)
+    {
+        $job = $this->prophesize(Job::class);
+        $job->identity()->willReturn($jobIdentity);
+        $queryResults = TestHelpers::stub(QueryResults::class, [
+            $this->connection->reveal(),
+            $this->jobId,
+            $this->projectId,
+            $info,
+            new ValueMapper(false),
+            $job->reveal()
+        ]);
+
+        $this->assertEquals($expected, $queryResults->identity()['location']);
+    }
+
+    public function locations()
+    {
+        return [
+            [
+                'foo',
+                [
+                    'jobReference' => [
+                        'location' => 'foo'
+                    ]
+                ],
+                [
+                    'location' => 'bar'
+                ]
+            ],
+            [
+                'bar',
+                [],
+                [
+                    'location' => 'bar'
+                ]
+            ]
+        ];
     }
 }

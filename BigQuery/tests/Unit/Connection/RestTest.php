@@ -114,6 +114,11 @@ class RestTest extends TestCase
             ['listModels'],
             ['patchModel'],
             ['deleteModel'],
+            ['insertRoutine'],
+            ['updateRoutine'],
+            ['getRoutine'],
+            ['deleteRoutine'],
+            ['listRoutines']
         ];
     }
 
