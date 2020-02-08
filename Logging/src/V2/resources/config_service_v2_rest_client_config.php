@@ -333,6 +333,42 @@ return [
                     ],
                 ],
             ],
+            'GetCmekSettings' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=*/*}/cmekSettings',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=organizations/*}/cmekSettings',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateCmekSettings' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v2/{name=*/*}/cmekSettings',
+                'body' => 'cmek_settings',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v2/{name=organizations/*}/cmekSettings',
+                        'body' => 'cmek_settings',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
         ],
     ],
 ];

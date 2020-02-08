@@ -27,6 +27,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\Logging\V2\CmekSettings;
 use Google\Cloud\Logging\V2\ListExclusionsResponse;
 use Google\Cloud\Logging\V2\ListSinksResponse;
 use Google\Cloud\Logging\V2\LogExclusion;
@@ -166,12 +167,16 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $name = 'name3373707';
         $destination = 'destination-1429847026';
         $filter = 'filter-1274492040';
+        $description = 'description-1724546052';
+        $disabled = true;
         $writerIdentity = 'writerIdentity775638794';
         $includeChildren = true;
         $expectedResponse = new LogSink();
         $expectedResponse->setName($name);
         $expectedResponse->setDestination($destination);
         $expectedResponse->setFilter($filter);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setDisabled($disabled);
         $expectedResponse->setWriterIdentity($writerIdentity);
         $expectedResponse->setIncludeChildren($includeChildren);
         $transport->addResponse($expectedResponse);
@@ -247,12 +252,16 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $name = 'name3373707';
         $destination = 'destination-1429847026';
         $filter = 'filter-1274492040';
+        $description = 'description-1724546052';
+        $disabled = true;
         $writerIdentity = 'writerIdentity775638794';
         $includeChildren = true;
         $expectedResponse = new LogSink();
         $expectedResponse->setName($name);
         $expectedResponse->setDestination($destination);
         $expectedResponse->setFilter($filter);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setDisabled($disabled);
         $expectedResponse->setWriterIdentity($writerIdentity);
         $expectedResponse->setIncludeChildren($includeChildren);
         $transport->addResponse($expectedResponse);
@@ -333,12 +342,16 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $name = 'name3373707';
         $destination = 'destination-1429847026';
         $filter = 'filter-1274492040';
+        $description = 'description-1724546052';
+        $disabled = true;
         $writerIdentity = 'writerIdentity775638794';
         $includeChildren = true;
         $expectedResponse = new LogSink();
         $expectedResponse->setName($name);
         $expectedResponse->setDestination($destination);
         $expectedResponse->setFilter($filter);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setDisabled($disabled);
         $expectedResponse->setWriterIdentity($writerIdentity);
         $expectedResponse->setIncludeChildren($includeChildren);
         $transport->addResponse($expectedResponse);
@@ -864,6 +877,140 @@ class ConfigServiceV2ClientTest extends GeneratedTest
 
         try {
             $client->deleteExclusion($formattedName);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function getCmekSettingsTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $name = 'name3373707';
+        $kmsKeyName = 'kmsKeyName2094986649';
+        $serviceAccountId = 'serviceAccountId-111486921';
+        $expectedResponse = new CmekSettings();
+        $expectedResponse->setName($name);
+        $expectedResponse->setKmsKeyName($kmsKeyName);
+        $expectedResponse->setServiceAccountId($serviceAccountId);
+        $transport->addResponse($expectedResponse);
+
+        $response = $client->getCmekSettings();
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.logging.v2.ConfigServiceV2/GetCmekSettings', $actualFuncCall);
+
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function getCmekSettingsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        try {
+            $client->getCmekSettings();
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function updateCmekSettingsTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $name = 'name3373707';
+        $kmsKeyName = 'kmsKeyName2094986649';
+        $serviceAccountId = 'serviceAccountId-111486921';
+        $expectedResponse = new CmekSettings();
+        $expectedResponse->setName($name);
+        $expectedResponse->setKmsKeyName($kmsKeyName);
+        $expectedResponse->setServiceAccountId($serviceAccountId);
+        $transport->addResponse($expectedResponse);
+
+        $response = $client->updateCmekSettings();
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.logging.v2.ConfigServiceV2/UpdateCmekSettings', $actualFuncCall);
+
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function updateCmekSettingsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        try {
+            $client->updateCmekSettings();
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

@@ -23,7 +23,7 @@ class CreateExclusionRequest extends \Google\Protobuf\Internal\Message
      *     "folders/[FOLDER_ID]"
      * Examples: `"projects/my-logging-project"`, `"organizations/123456789"`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -65,7 +65,7 @@ class CreateExclusionRequest extends \Google\Protobuf\Internal\Message
      *     "folders/[FOLDER_ID]"
      * Examples: `"projects/my-logging-project"`, `"organizations/123456789"`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -81,7 +81,7 @@ class CreateExclusionRequest extends \Google\Protobuf\Internal\Message
      *     "folders/[FOLDER_ID]"
      * Examples: `"projects/my-logging-project"`, `"organizations/123456789"`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

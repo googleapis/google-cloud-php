@@ -24,6 +24,7 @@ class LogExclusion extends \Google\Protobuf\Internal\Message
      * Required. A client-assigned identifier, such as
      * `"load-balancer-exclusion"`. Identifiers are limited to 100 characters and
      * can include only letters, digits, underscores, hyphens, and periods.
+     * First character has to be alphanumeric.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -80,6 +81,7 @@ class LogExclusion extends \Google\Protobuf\Internal\Message
      *           Required. A client-assigned identifier, such as
      *           `"load-balancer-exclusion"`. Identifiers are limited to 100 characters and
      *           can include only letters, digits, underscores, hyphens, and periods.
+     *           First character has to be alphanumeric.
      *     @type string $description
      *           Optional. A description of this exclusion.
      *     @type string $filter
@@ -112,6 +114,7 @@ class LogExclusion extends \Google\Protobuf\Internal\Message
      * Required. A client-assigned identifier, such as
      * `"load-balancer-exclusion"`. Identifiers are limited to 100 characters and
      * can include only letters, digits, underscores, hyphens, and periods.
+     * First character has to be alphanumeric.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -125,6 +128,7 @@ class LogExclusion extends \Google\Protobuf\Internal\Message
      * Required. A client-assigned identifier, such as
      * `"load-balancer-exclusion"`. Identifiers are limited to 100 characters and
      * can include only letters, digits, underscores, hyphens, and periods.
+     * First character has to be alphanumeric.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

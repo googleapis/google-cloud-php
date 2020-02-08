@@ -24,7 +24,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
      * project. Example: `"my-syslog-errors-to-pubsub"`. Sink identifiers are
      * limited to 100 characters and can include only the following characters:
      * upper and lower-case alphanumeric characters, underscores, hyphens, and
-     * periods.
+     * periods. First character has to be alphanumeric.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -39,7 +39,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
      * entries are not exported. For more information, see
      * [Exporting Logs with Sinks](/logging/docs/api/tasks/exporting-logs).
      *
-     * Generated from protobuf field <code>string destination = 3;</code>
+     * Generated from protobuf field <code>string destination = 3 [(.google.api.resource_reference) = {</code>
      */
     private $destination = '';
     /**
@@ -51,6 +51,20 @@ class LogSink extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string filter = 5;</code>
      */
     private $filter = '';
+    /**
+     * Optional. A description of this sink.
+     * The maximum length of the description is 8000 characters.
+     *
+     * Generated from protobuf field <code>string description = 18;</code>
+     */
+    private $description = '';
+    /**
+     * Optional. If set to True, then this sink is disabled and it does not
+     * export any log entries.
+     *
+     * Generated from protobuf field <code>bool disabled = 19;</code>
+     */
+    private $disabled = false;
     /**
      * Deprecated. The log entry format to use for this sink's exported log
      * entries. The v2 format is used by default and cannot be changed.
@@ -73,7 +87,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
      * Consult the destination service's documentation to determine the
      * appropriate IAM roles to assign to the identity.
      *
-     * Generated from protobuf field <code>string writer_identity = 8;</code>
+     * Generated from protobuf field <code>string writer_identity = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $writer_identity = '';
     /**
@@ -97,14 +111,14 @@ class LogSink extends \Google\Protobuf\Internal\Message
      * Output only. The creation timestamp of the sink.
      * This field may not be present for older sinks.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 13;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $create_time = null;
     /**
      * Output only. The last update timestamp of the sink.
      * This field may not be present for older sinks.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 14;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $update_time = null;
     /**
@@ -132,7 +146,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
      *           project. Example: `"my-syslog-errors-to-pubsub"`. Sink identifiers are
      *           limited to 100 characters and can include only the following characters:
      *           upper and lower-case alphanumeric characters, underscores, hyphens, and
-     *           periods.
+     *           periods. First character has to be alphanumeric.
      *     @type string $destination
      *           Required. The export destination:
      *               "storage.googleapis.com/[GCS_BUCKET]"
@@ -147,6 +161,12 @@ class LogSink extends \Google\Protobuf\Internal\Message
      *           exported log entries are those that are in the resource owning the sink and
      *           that match the filter. For example:
      *               logName="projects/[PROJECT_ID]/logs/[LOG_ID]" AND severity>=ERROR
+     *     @type string $description
+     *           Optional. A description of this sink.
+     *           The maximum length of the description is 8000 characters.
+     *     @type bool $disabled
+     *           Optional. If set to True, then this sink is disabled and it does not
+     *           export any log entries.
      *     @type int $output_version_format
      *           Deprecated. The log entry format to use for this sink's exported log
      *           entries. The v2 format is used by default and cannot be changed.
@@ -201,7 +221,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
      * project. Example: `"my-syslog-errors-to-pubsub"`. Sink identifiers are
      * limited to 100 characters and can include only the following characters:
      * upper and lower-case alphanumeric characters, underscores, hyphens, and
-     * periods.
+     * periods. First character has to be alphanumeric.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -216,7 +236,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
      * project. Example: `"my-syslog-errors-to-pubsub"`. Sink identifiers are
      * limited to 100 characters and can include only the following characters:
      * upper and lower-case alphanumeric characters, underscores, hyphens, and
-     * periods.
+     * periods. First character has to be alphanumeric.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -240,7 +260,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
      * entries are not exported. For more information, see
      * [Exporting Logs with Sinks](/logging/docs/api/tasks/exporting-logs).
      *
-     * Generated from protobuf field <code>string destination = 3;</code>
+     * Generated from protobuf field <code>string destination = 3 [(.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getDestination()
@@ -258,7 +278,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
      * entries are not exported. For more information, see
      * [Exporting Logs with Sinks](/logging/docs/api/tasks/exporting-logs).
      *
-     * Generated from protobuf field <code>string destination = 3;</code>
+     * Generated from protobuf field <code>string destination = 3 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -298,6 +318,62 @@ class LogSink extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->filter = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A description of this sink.
+     * The maximum length of the description is 8000 characters.
+     *
+     * Generated from protobuf field <code>string description = 18;</code>
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Optional. A description of this sink.
+     * The maximum length of the description is 8000 characters.
+     *
+     * Generated from protobuf field <code>string description = 18;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDescription($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->description = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If set to True, then this sink is disabled and it does not
+     * export any log entries.
+     *
+     * Generated from protobuf field <code>bool disabled = 19;</code>
+     * @return bool
+     */
+    public function getDisabled()
+    {
+        return $this->disabled;
+    }
+
+    /**
+     * Optional. If set to True, then this sink is disabled and it does not
+     * export any log entries.
+     *
+     * Generated from protobuf field <code>bool disabled = 19;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDisabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->disabled = $var;
 
         return $this;
     }
@@ -345,7 +421,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
      * Consult the destination service's documentation to determine the
      * appropriate IAM roles to assign to the identity.
      *
-     * Generated from protobuf field <code>string writer_identity = 8;</code>
+     * Generated from protobuf field <code>string writer_identity = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getWriterIdentity()
@@ -368,7 +444,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
      * Consult the destination service's documentation to determine the
      * appropriate IAM roles to assign to the identity.
      *
-     * Generated from protobuf field <code>string writer_identity = 8;</code>
+     * Generated from protobuf field <code>string writer_identity = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -458,7 +534,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
      * Output only. The creation timestamp of the sink.
      * This field may not be present for older sinks.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 13;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getCreateTime()
@@ -470,7 +546,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
      * Output only. The creation timestamp of the sink.
      * This field may not be present for older sinks.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 13;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -486,7 +562,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
      * Output only. The last update timestamp of the sink.
      * This field may not be present for older sinks.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 14;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getUpdateTime()
@@ -498,7 +574,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
      * Output only. The last update timestamp of the sink.
      * This field may not be present for older sinks.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 14;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */

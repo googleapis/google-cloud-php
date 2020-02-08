@@ -23,14 +23,14 @@ class CreateSinkRequest extends \Google\Protobuf\Internal\Message
      *     "folders/[FOLDER_ID]"
      * Examples: `"projects/my-logging-project"`, `"organizations/123456789"`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
      * Required. The new sink, whose `name` parameter is a sink identifier that
      * is not already in use.
      *
-     * Generated from protobuf field <code>.google.logging.v2.LogSink sink = 2;</code>
+     * Generated from protobuf field <code>.google.logging.v2.LogSink sink = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $sink = null;
     /**
@@ -91,7 +91,7 @@ class CreateSinkRequest extends \Google\Protobuf\Internal\Message
      *     "folders/[FOLDER_ID]"
      * Examples: `"projects/my-logging-project"`, `"organizations/123456789"`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -107,7 +107,7 @@ class CreateSinkRequest extends \Google\Protobuf\Internal\Message
      *     "folders/[FOLDER_ID]"
      * Examples: `"projects/my-logging-project"`, `"organizations/123456789"`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -123,7 +123,7 @@ class CreateSinkRequest extends \Google\Protobuf\Internal\Message
      * Required. The new sink, whose `name` parameter is a sink identifier that
      * is not already in use.
      *
-     * Generated from protobuf field <code>.google.logging.v2.LogSink sink = 2;</code>
+     * Generated from protobuf field <code>.google.logging.v2.LogSink sink = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Logging\V2\LogSink
      */
     public function getSink()
@@ -135,7 +135,7 @@ class CreateSinkRequest extends \Google\Protobuf\Internal\Message
      * Required. The new sink, whose `name` parameter is a sink identifier that
      * is not already in use.
      *
-     * Generated from protobuf field <code>.google.logging.v2.LogSink sink = 2;</code>
+     * Generated from protobuf field <code>.google.logging.v2.LogSink sink = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Logging\V2\LogSink $var
      * @return $this
      */

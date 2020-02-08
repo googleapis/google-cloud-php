@@ -19,7 +19,7 @@ class ListLogMetricsRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the project containing the metrics:
      *     "projects/[PROJECT_ID]"
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -69,7 +69,7 @@ class ListLogMetricsRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the project containing the metrics:
      *     "projects/[PROJECT_ID]"
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -81,7 +81,7 @@ class ListLogMetricsRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the project containing the metrics:
      *     "projects/[PROJECT_ID]"
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
