@@ -24,21 +24,22 @@ logging.basicConfig(level=logging.DEBUG)
 gapic = gcp.GAPICGenerator()
 common = gcp.CommonTemplates()
 
-library = gapic.php_library(
-    service='securitycenter',
-    version='v1',
-    config_path=f'/google/cloud/securitycenter/artman_securitycenter_v1.yaml',
-    artman_output_name=f'google-cloud-securitycenter-v1')
+for version in ['V1', 'V1p1beta1']:
+    lower_version = version.lower()
+    library = gapic.php_library(
+        service='securitycenter',
+        version=lower_version,
+        artman_output_name=f'google-cloud-securitycenter-{lower_version}')
 
-# copy all src
-s.move(library / f'src/V1')
+    # copy all src
+    s.move(library / f'src/{version}')
 
-# copy proto files to src also
-s.move(library / f'proto/src/Google/Cloud/SecurityCenter', f'src/')
-s.move(library / f'tests/')
+    # copy proto files to src also
+    s.move(library / f'proto/src/Google/Cloud/SecurityCenter', f'src/')
+    s.move(library / f'tests/')
 
-# copy GPBMetadata file to metadata
-s.move(library / f'proto/src/GPBMetadata/Google/Cloud/SecurityCenter', f'metadata/')
+    # copy GPBMetadata file to metadata
+    s.move(library / f'proto/src/GPBMetadata/Google/Cloud/SecurityCenter', f'metadata/')
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
@@ -60,13 +61,21 @@ s.replace(
 
 # fix year
 s.replace(
-    'src/**/**/*.php',
+    'src/V1/**/*.php',
     r'Copyright \d{4}',
     r'Copyright 2019')
 s.replace(
-    'tests/**/**/*Test.php',
+    'tests/*/V1/**/*Test.php',
     r'Copyright \d{4}',
     r'Copyright 2019')
+s.replace(
+    'src/V1p1beta1/**/*.php',
+    r'Copyright \d{4}',
+    r'Copyright 2020')
+s.replace(
+    'tests/*/V1p1beta1/**/*Test.php',
+    r'Copyright \d{4}',
+    r'Copyright 2020')
 
 # Use new namespace in the doc sample. See
 # https://github.com/googleapis/gapic-generator/issues/2141
