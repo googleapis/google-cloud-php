@@ -24,7 +24,7 @@
  * @experimental
  */
 
-namespace Google\Cloud\SecurityCenter\V1P1Beta1\Gapic;
+namespace Google\Cloud\SecurityCenter\V1p1beta1\Gapic;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;

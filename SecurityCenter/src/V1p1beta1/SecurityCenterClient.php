@@ -24,9 +24,9 @@
  * @experimental
  */
 
-namespace Google\Cloud\SecurityCenter\V1P1Beta1;
+namespace Google\Cloud\SecurityCenter\V1p1beta1;
 
-use Google\Cloud\SecurityCenter\V1P1Beta1\Gapic\SecurityCenterGapicClient;
+use Google\Cloud\SecurityCenter\V1p1beta1\Gapic\SecurityCenterGapicClient;
 
 /**
  * {@inheritdoc}

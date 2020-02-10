@@ -20,9 +20,9 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\SecurityCenter\Tests\Unit\V1P1Beta1;
+namespace Google\Cloud\SecurityCenter\Tests\Unit\V1p1beta1;
 
-use Google\Cloud\SecurityCenter\V1P1Beta1\SecurityCenterClient;
+use Google\Cloud\SecurityCenter\V1p1beta1\SecurityCenterClient;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
