@@ -35,10 +35,12 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Logging\V2\CmekSettings;
 use Google\Cloud\Logging\V2\CreateExclusionRequest;
 use Google\Cloud\Logging\V2\CreateSinkRequest;
 use Google\Cloud\Logging\V2\DeleteExclusionRequest;
 use Google\Cloud\Logging\V2\DeleteSinkRequest;
+use Google\Cloud\Logging\V2\GetCmekSettingsRequest;
 use Google\Cloud\Logging\V2\GetExclusionRequest;
 use Google\Cloud\Logging\V2\GetSinkRequest;
 use Google\Cloud\Logging\V2\ListExclusionsRequest;
@@ -47,6 +49,7 @@ use Google\Cloud\Logging\V2\ListSinksRequest;
 use Google\Cloud\Logging\V2\ListSinksResponse;
 use Google\Cloud\Logging\V2\LogExclusion;
 use Google\Cloud\Logging\V2\LogSink;
+use Google\Cloud\Logging\V2\UpdateCmekSettingsRequest;
 use Google\Cloud\Logging\V2\UpdateExclusionRequest;
 use Google\Cloud\Logging\V2\UpdateSinkRequest;
 use Google\Protobuf\FieldMask;
@@ -1310,6 +1313,171 @@ class ConfigServiceV2GapicClient
         return $this->startCall(
             'DeleteExclusion',
             GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Gets the Logs Router CMEK settings for the given resource.
+     *
+     * Note: CMEK for the Logs Router can currently only be configured for GCP
+     * organizations. Once configured, it applies to all projects and folders in
+     * the GCP organization.
+     *
+     * See [Enabling CMEK for Logs
+     * Router](https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.
+     *
+     * Sample code:
+     * ```
+     * $configServiceV2Client = new ConfigServiceV2Client();
+     * try {
+     *     $response = $configServiceV2Client->getCmekSettings();
+     * } finally {
+     *     $configServiceV2Client->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type string $name
+     *          Required. The resource for which to retrieve CMEK settings.
+     *
+     *              "projects/[PROJECT_ID]/cmekSettings"
+     *              "organizations/[ORGANIZATION_ID]/cmekSettings"
+     *              "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings"
+     *              "folders/[FOLDER_ID]/cmekSettings"
+     *
+     *          Example: `"organizations/12345/cmekSettings"`.
+     *
+     *          Note: CMEK for the Logs Router can currently only be configured for GCP
+     *          organizations. Once configured, it applies to all projects and folders in
+     *          the GCP organization.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Logging\V2\CmekSettings
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function getCmekSettings(array $optionalArgs = [])
+    {
+        $request = new GetCmekSettingsRequest();
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'GetCmekSettings',
+            CmekSettings::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Updates the Logs Router CMEK settings for the given resource.
+     *
+     * Note: CMEK for the Logs Router can currently only be configured for GCP
+     * organizations. Once configured, it applies to all projects and folders in
+     * the GCP organization.
+     *
+     * [UpdateCmekSettings][google.logging.v2.ConfigServiceV2.UpdateCmekSettings]
+     * will fail if 1) `kms_key_name` is invalid, or 2) the associated service
+     * account does not have the required
+     * `roles/cloudkms.cryptoKeyEncrypterDecrypter` role assigned for the key, or
+     * 3) access to the key is disabled.
+     *
+     * See [Enabling CMEK for Logs
+     * Router](https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.
+     *
+     * Sample code:
+     * ```
+     * $configServiceV2Client = new ConfigServiceV2Client();
+     * try {
+     *     $response = $configServiceV2Client->updateCmekSettings();
+     * } finally {
+     *     $configServiceV2Client->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type string $name
+     *          Required. The resource name for the CMEK settings to update.
+     *
+     *              "projects/[PROJECT_ID]/cmekSettings"
+     *              "organizations/[ORGANIZATION_ID]/cmekSettings"
+     *              "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings"
+     *              "folders/[FOLDER_ID]/cmekSettings"
+     *
+     *          Example: `"organizations/12345/cmekSettings"`.
+     *
+     *          Note: CMEK for the Logs Router can currently only be configured for GCP
+     *          organizations. Once configured, it applies to all projects and folders in
+     *          the GCP organization.
+     *     @type CmekSettings $cmekSettings
+     *          Required. The CMEK settings to update.
+     *
+     *          See [Enabling CMEK for Logs
+     *          Router](https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.
+     *     @type FieldMask $updateMask
+     *          Optional. Field mask identifying which fields from `cmek_settings` should
+     *          be updated. A field will be overwritten if and only if it is in the update
+     *          mask. Output only fields cannot be updated.
+     *
+     *          See [FieldMask][google.protobuf.FieldMask] for more information.
+     *
+     *          Example: `"updateMask=kmsKeyName"`
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Logging\V2\CmekSettings
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function updateCmekSettings(array $optionalArgs = [])
+    {
+        $request = new UpdateCmekSettingsRequest();
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+        }
+        if (isset($optionalArgs['cmekSettings'])) {
+            $request->setCmekSettings($optionalArgs['cmekSettings']);
+        }
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'UpdateCmekSettings',
+            CmekSettings::class,
             $optionalArgs,
             $request
         )->wait();

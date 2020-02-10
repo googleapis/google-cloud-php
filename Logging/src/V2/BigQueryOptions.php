@@ -27,6 +27,17 @@ class BigQueryOptions extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool use_partitioned_tables = 1;</code>
      */
     private $use_partitioned_tables = false;
+    /**
+     * Output only. True if new timestamp column based partitioning is in use,
+     * false if legacy ingestion-time partitioning is in use.
+     * All new sinks will have this field set true and will use timestamp column
+     * based partitioning. If use_partitioned_tables is false, this value has no
+     * meaning and will be false. Legacy sinks using partitioned tables will have
+     * this field set to false.
+     *
+     * Generated from protobuf field <code>bool uses_timestamp_column_partitioning = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $uses_timestamp_column_partitioning = false;
 
     /**
      * Constructor.
@@ -42,6 +53,13 @@ class BigQueryOptions extends \Google\Protobuf\Internal\Message
      *           present and [special query
      *           syntax](/bigquery/docs/querying-partitioned-tables) has to be used instead.
      *           In both cases, tables are sharded based on UTC timezone.
+     *     @type bool $uses_timestamp_column_partitioning
+     *           Output only. True if new timestamp column based partitioning is in use,
+     *           false if legacy ingestion-time partitioning is in use.
+     *           All new sinks will have this field set true and will use timestamp column
+     *           based partitioning. If use_partitioned_tables is false, this value has no
+     *           meaning and will be false. Legacy sinks using partitioned tables will have
+     *           this field set to false.
      * }
      */
     public function __construct($data = NULL) {
@@ -83,6 +101,42 @@ class BigQueryOptions extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->use_partitioned_tables = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. True if new timestamp column based partitioning is in use,
+     * false if legacy ingestion-time partitioning is in use.
+     * All new sinks will have this field set true and will use timestamp column
+     * based partitioning. If use_partitioned_tables is false, this value has no
+     * meaning and will be false. Legacy sinks using partitioned tables will have
+     * this field set to false.
+     *
+     * Generated from protobuf field <code>bool uses_timestamp_column_partitioning = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getUsesTimestampColumnPartitioning()
+    {
+        return $this->uses_timestamp_column_partitioning;
+    }
+
+    /**
+     * Output only. True if new timestamp column based partitioning is in use,
+     * false if legacy ingestion-time partitioning is in use.
+     * All new sinks will have this field set true and will use timestamp column
+     * based partitioning. If use_partitioned_tables is false, this value has no
+     * meaning and will be false. Legacy sinks using partitioned tables will have
+     * this field set to false.
+     *
+     * Generated from protobuf field <code>bool uses_timestamp_column_partitioning = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setUsesTimestampColumnPartitioning($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->uses_timestamp_column_partitioning = $var;
 
         return $this;
     }

@@ -470,10 +470,10 @@ class LoggingServiceV2GapicClient
     }
 
     /**
-     * Deletes all the log entries in a log.
-     * The log reappears if it receives new entries.
-     * Log entries written shortly before the delete operation might not be
-     * deleted.
+     * Deletes all the log entries in a log. The log reappears if it receives new
+     * entries. Log entries written shortly before the delete operation might not
+     * be deleted. Entries received after the delete operation with a timestamp
+     * before the operation will be deleted.
      *
      * Sample code:
      * ```
@@ -706,7 +706,7 @@ class LoggingServiceV2GapicClient
      *          `"my-project-1A"`.
      *     @type string $filter
      *          Optional. A filter that chooses which log entries to return.  See [Advanced
-     *          Logs Filters](https://cloud.google.com/logging/docs/view/advanced_filters).  Only log entries that
+     *          Logs Queries](https://cloud.google.com/logging/docs/view/advanced-queries).  Only log entries that
      *          match the filter are returned.  An empty filter matches all log entries in
      *          the resources listed in `resource_names`. Referencing a parent resource
      *          that is not listed in `resource_names` will cause the filter to return no

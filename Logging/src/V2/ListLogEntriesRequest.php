@@ -32,12 +32,12 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
      *     "folders/[FOLDER_ID]"
      * Projects listed in the `project_ids` field are added to this list.
      *
-     * Generated from protobuf field <code>repeated string resource_names = 8;</code>
+     * Generated from protobuf field <code>repeated string resource_names = 8 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $resource_names;
     /**
      * Optional. A filter that chooses which log entries to return.  See [Advanced
-     * Logs Filters](/logging/docs/view/advanced_filters).  Only log entries that
+     * Logs Queries](/logging/docs/view/advanced-queries).  Only log entries that
      * match the filter are returned.  An empty filter matches all log entries in
      * the resources listed in `resource_names`. Referencing a parent resource
      * that is not listed in `resource_names` will cause the filter to return no
@@ -96,7 +96,7 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
      *           Projects listed in the `project_ids` field are added to this list.
      *     @type string $filter
      *           Optional. A filter that chooses which log entries to return.  See [Advanced
-     *           Logs Filters](/logging/docs/view/advanced_filters).  Only log entries that
+     *           Logs Queries](/logging/docs/view/advanced-queries).  Only log entries that
      *           match the filter are returned.  An empty filter matches all log entries in
      *           the resources listed in `resource_names`. Referencing a parent resource
      *           that is not listed in `resource_names` will cause the filter to return no
@@ -164,7 +164,7 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
      *     "folders/[FOLDER_ID]"
      * Projects listed in the `project_ids` field are added to this list.
      *
-     * Generated from protobuf field <code>repeated string resource_names = 8;</code>
+     * Generated from protobuf field <code>repeated string resource_names = 8 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getResourceNames()
@@ -181,7 +181,7 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
      *     "folders/[FOLDER_ID]"
      * Projects listed in the `project_ids` field are added to this list.
      *
-     * Generated from protobuf field <code>repeated string resource_names = 8;</code>
+     * Generated from protobuf field <code>repeated string resource_names = 8 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -195,7 +195,7 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A filter that chooses which log entries to return.  See [Advanced
-     * Logs Filters](/logging/docs/view/advanced_filters).  Only log entries that
+     * Logs Queries](/logging/docs/view/advanced-queries).  Only log entries that
      * match the filter are returned.  An empty filter matches all log entries in
      * the resources listed in `resource_names`. Referencing a parent resource
      * that is not listed in `resource_names` will cause the filter to return no
@@ -212,7 +212,7 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A filter that chooses which log entries to return.  See [Advanced
-     * Logs Filters](/logging/docs/view/advanced_filters).  Only log entries that
+     * Logs Queries](/logging/docs/view/advanced-queries).  Only log entries that
      * match the filter are returned.  An empty filter matches all log entries in
      * the resources listed in `resource_names`. Referencing a parent resource
      * that is not listed in `resource_names` will cause the filter to return no

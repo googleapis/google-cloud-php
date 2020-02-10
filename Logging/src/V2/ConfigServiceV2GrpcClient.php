@@ -183,4 +183,52 @@ class ConfigServiceV2GrpcClient extends \Grpc\BaseStub {
         $metadata, $options);
     }
 
+    /**
+     * Gets the Logs Router CMEK settings for the given resource.
+     *
+     * Note: CMEK for the Logs Router can currently only be configured for GCP
+     * organizations. Once configured, it applies to all projects and folders in
+     * the GCP organization.
+     *
+     * See [Enabling CMEK for Logs
+     * Router](/logging/docs/routing/managed-encryption) for more information.
+     * @param \Google\Cloud\Logging\V2\GetCmekSettingsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function GetCmekSettings(\Google\Cloud\Logging\V2\GetCmekSettingsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.logging.v2.ConfigServiceV2/GetCmekSettings',
+        $argument,
+        ['\Google\Cloud\Logging\V2\CmekSettings', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Updates the Logs Router CMEK settings for the given resource.
+     *
+     * Note: CMEK for the Logs Router can currently only be configured for GCP
+     * organizations. Once configured, it applies to all projects and folders in
+     * the GCP organization.
+     *
+     * [UpdateCmekSettings][google.logging.v2.ConfigServiceV2.UpdateCmekSettings]
+     * will fail if 1) `kms_key_name` is invalid, or 2) the associated service
+     * account does not have the required
+     * `roles/cloudkms.cryptoKeyEncrypterDecrypter` role assigned for the key, or
+     * 3) access to the key is disabled.
+     *
+     * See [Enabling CMEK for Logs
+     * Router](/logging/docs/routing/managed-encryption) for more information.
+     * @param \Google\Cloud\Logging\V2\UpdateCmekSettingsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function UpdateCmekSettings(\Google\Cloud\Logging\V2\UpdateCmekSettingsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.logging.v2.ConfigServiceV2/UpdateCmekSettings',
+        $argument,
+        ['\Google\Cloud\Logging\V2\CmekSettings', 'decode'],
+        $metadata, $options);
+    }
+
 }

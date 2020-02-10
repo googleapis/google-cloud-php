@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeleteLogMetricRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The resource name of the metric to delete:
+     * Required. The resource name of the metric to delete:
      *     "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
      *
-     * Generated from protobuf field <code>string metric_name = 1;</code>
+     * Generated from protobuf field <code>string metric_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $metric_name = '';
 
@@ -30,7 +30,7 @@ class DeleteLogMetricRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $metric_name
-     *           The resource name of the metric to delete:
+     *           Required. The resource name of the metric to delete:
      *               "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
      * }
      */
@@ -40,10 +40,10 @@ class DeleteLogMetricRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the metric to delete:
+     * Required. The resource name of the metric to delete:
      *     "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
      *
-     * Generated from protobuf field <code>string metric_name = 1;</code>
+     * Generated from protobuf field <code>string metric_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getMetricName()
@@ -52,10 +52,10 @@ class DeleteLogMetricRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the metric to delete:
+     * Required. The resource name of the metric to delete:
      *     "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
      *
-     * Generated from protobuf field <code>string metric_name = 1;</code>
+     * Generated from protobuf field <code>string metric_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
