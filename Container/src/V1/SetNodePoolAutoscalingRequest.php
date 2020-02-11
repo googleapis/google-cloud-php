@@ -16,34 +16,34 @@ use Google\Protobuf\Internal\GPBUtil;
 class SetNodePoolAutoscalingRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project
+     * Deprecated. The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
      */
     private $project_id = '';
     /**
-     * Required. Deprecated. The name of the Google Compute Engine
+     * Deprecated. The name of the Google Compute Engine
      * [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      * resides.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      */
     private $zone = '';
     /**
-     * Required. Deprecated. The name of the cluster to upgrade.
+     * Deprecated. The name of the cluster to upgrade.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
      */
     private $cluster_id = '';
     /**
-     * Required. Deprecated. The name of the node pool to upgrade.
+     * Deprecated. The name of the node pool to upgrade.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string node_pool_id = 4 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string node_pool_id = 4 [deprecated = true];</code>
      */
     private $node_pool_id = '';
     /**
@@ -68,19 +68,19 @@ class SetNodePoolAutoscalingRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $project_id
-     *           Required. Deprecated. The Google Developers Console [project ID or project
+     *           Deprecated. The Google Developers Console [project ID or project
      *           number](https://support.google.com/cloud/answer/6158840).
      *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
-     *           Required. Deprecated. The name of the Google Compute Engine
+     *           Deprecated. The name of the Google Compute Engine
      *           [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      *           resides.
      *           This field has been deprecated and replaced by the name field.
      *     @type string $cluster_id
-     *           Required. Deprecated. The name of the cluster to upgrade.
+     *           Deprecated. The name of the cluster to upgrade.
      *           This field has been deprecated and replaced by the name field.
      *     @type string $node_pool_id
-     *           Required. Deprecated. The name of the node pool to upgrade.
+     *           Deprecated. The name of the node pool to upgrade.
      *           This field has been deprecated and replaced by the name field.
      *     @type \Google\Cloud\Container\V1\NodePoolAutoscaling $autoscaling
      *           Required. Autoscaling configuration for the node pool.
@@ -96,11 +96,11 @@ class SetNodePoolAutoscalingRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project
+     * Deprecated. The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
      * @return string
      */
     public function getProjectId()
@@ -109,11 +109,11 @@ class SetNodePoolAutoscalingRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project
+     * Deprecated. The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
      * @param string $var
      * @return $this
      */
@@ -126,12 +126,12 @@ class SetNodePoolAutoscalingRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Deprecated. The name of the Google Compute Engine
+     * Deprecated. The name of the Google Compute Engine
      * [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      * resides.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @return string
      */
     public function getZone()
@@ -140,12 +140,12 @@ class SetNodePoolAutoscalingRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Deprecated. The name of the Google Compute Engine
+     * Deprecated. The name of the Google Compute Engine
      * [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      * resides.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @param string $var
      * @return $this
      */
@@ -158,10 +158,10 @@ class SetNodePoolAutoscalingRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Deprecated. The name of the cluster to upgrade.
+     * Deprecated. The name of the cluster to upgrade.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
      * @return string
      */
     public function getClusterId()
@@ -170,10 +170,10 @@ class SetNodePoolAutoscalingRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Deprecated. The name of the cluster to upgrade.
+     * Deprecated. The name of the cluster to upgrade.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
      * @param string $var
      * @return $this
      */
@@ -186,10 +186,10 @@ class SetNodePoolAutoscalingRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Deprecated. The name of the node pool to upgrade.
+     * Deprecated. The name of the node pool to upgrade.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string node_pool_id = 4 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string node_pool_id = 4 [deprecated = true];</code>
      * @return string
      */
     public function getNodePoolId()
@@ -198,10 +198,10 @@ class SetNodePoolAutoscalingRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Deprecated. The name of the node pool to upgrade.
+     * Deprecated. The name of the node pool to upgrade.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string node_pool_id = 4 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string node_pool_id = 4 [deprecated = true];</code>
      * @param string $var
      * @return $this
      */

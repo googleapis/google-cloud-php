@@ -16,27 +16,27 @@ use Google\Protobuf\Internal\GPBUtil;
 class SetMonitoringServiceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project
+     * Deprecated. The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
      */
     private $project_id = '';
     /**
-     * Required. Deprecated. The name of the Google Compute Engine
+     * Deprecated. The name of the Google Compute Engine
      * [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      * resides.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      */
     private $zone = '';
     /**
-     * Required. Deprecated. The name of the cluster to upgrade.
+     * Deprecated. The name of the cluster to upgrade.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
      */
     private $cluster_id = '';
     /**
@@ -65,16 +65,16 @@ class SetMonitoringServiceRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $project_id
-     *           Required. Deprecated. The Google Developers Console [project ID or project
+     *           Deprecated. The Google Developers Console [project ID or project
      *           number](https://support.google.com/cloud/answer/6158840).
      *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
-     *           Required. Deprecated. The name of the Google Compute Engine
+     *           Deprecated. The name of the Google Compute Engine
      *           [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      *           resides.
      *           This field has been deprecated and replaced by the name field.
      *     @type string $cluster_id
-     *           Required. Deprecated. The name of the cluster to upgrade.
+     *           Deprecated. The name of the cluster to upgrade.
      *           This field has been deprecated and replaced by the name field.
      *     @type string $monitoring_service
      *           Required. The monitoring service the cluster should use to write metrics.
@@ -94,11 +94,11 @@ class SetMonitoringServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project
+     * Deprecated. The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
      * @return string
      */
     public function getProjectId()
@@ -107,11 +107,11 @@ class SetMonitoringServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project
+     * Deprecated. The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
      * @param string $var
      * @return $this
      */
@@ -124,12 +124,12 @@ class SetMonitoringServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Deprecated. The name of the Google Compute Engine
+     * Deprecated. The name of the Google Compute Engine
      * [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      * resides.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @return string
      */
     public function getZone()
@@ -138,12 +138,12 @@ class SetMonitoringServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Deprecated. The name of the Google Compute Engine
+     * Deprecated. The name of the Google Compute Engine
      * [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      * resides.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @param string $var
      * @return $this
      */
@@ -156,10 +156,10 @@ class SetMonitoringServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Deprecated. The name of the cluster to upgrade.
+     * Deprecated. The name of the cluster to upgrade.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
      * @return string
      */
     public function getClusterId()
@@ -168,10 +168,10 @@ class SetMonitoringServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Deprecated. The name of the cluster to upgrade.
+     * Deprecated. The name of the cluster to upgrade.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
      * @param string $var
      * @return $this
      */
