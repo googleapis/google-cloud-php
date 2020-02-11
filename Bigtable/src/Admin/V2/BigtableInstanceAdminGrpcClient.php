@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2018 Google LLC.
+// Copyright 2019 Google LLC.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -78,7 +78,9 @@ class BigtableInstanceAdminGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Updates an instance within a project.
+     * Updates an instance within a project. This method updates only the display
+     * name and type for an Instance. To update other Instance properties, such as
+     * labels, use PartialUpdateInstance.
      * @param \Google\Cloud\Bigtable\Admin\V2\Instance $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -92,7 +94,8 @@ class BigtableInstanceAdminGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Partially updates an instance within a project.
+     * Partially updates an instance within a project. This method can modify all
+     * fields of an Instance and is the preferred way to update an Instance.
      * @param \Google\Cloud\Bigtable\Admin\V2\PartialUpdateInstanceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

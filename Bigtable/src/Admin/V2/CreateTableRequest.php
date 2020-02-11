@@ -17,23 +17,24 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateTableRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The unique name of the instance in which to create the table.
-     * Values are of the form `projects/<project>/instances/<instance>`.
+     * Required. The unique name of the instance in which to create the table.
+     * Values are of the form `projects/{project}/instances/{instance}`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * The name by which the new table should be referred to within the parent
-     * instance, e.g., `foobar` rather than `<parent>/tables/foobar`.
+     * Required. The name by which the new table should be referred to within the parent
+     * instance, e.g., `foobar` rather than `{parent}/tables/foobar`.
+     * Maximum 50 characters.
      *
-     * Generated from protobuf field <code>string table_id = 2;</code>
+     * Generated from protobuf field <code>string table_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $table_id = '';
     /**
-     * The Table to create.
+     * Required. The Table to create.
      *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.Table table = 3;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Table table = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $table = null;
     /**
@@ -63,13 +64,14 @@ class CreateTableRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The unique name of the instance in which to create the table.
-     *           Values are of the form `projects/<project>/instances/<instance>`.
+     *           Required. The unique name of the instance in which to create the table.
+     *           Values are of the form `projects/{project}/instances/{instance}`.
      *     @type string $table_id
-     *           The name by which the new table should be referred to within the parent
-     *           instance, e.g., `foobar` rather than `<parent>/tables/foobar`.
+     *           Required. The name by which the new table should be referred to within the parent
+     *           instance, e.g., `foobar` rather than `{parent}/tables/foobar`.
+     *           Maximum 50 characters.
      *     @type \Google\Cloud\Bigtable\Admin\V2\Table $table
-     *           The Table to create.
+     *           Required. The Table to create.
      *     @type \Google\Cloud\Bigtable\Admin\V2\CreateTableRequest\Split[]|\Google\Protobuf\Internal\RepeatedField $initial_splits
      *           The optional list of row keys that will be used to initially split the
      *           table into several tablets (tablets are similar to HBase regions).
@@ -93,10 +95,10 @@ class CreateTableRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unique name of the instance in which to create the table.
-     * Values are of the form `projects/<project>/instances/<instance>`.
+     * Required. The unique name of the instance in which to create the table.
+     * Values are of the form `projects/{project}/instances/{instance}`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -105,10 +107,10 @@ class CreateTableRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unique name of the instance in which to create the table.
-     * Values are of the form `projects/<project>/instances/<instance>`.
+     * Required. The unique name of the instance in which to create the table.
+     * Values are of the form `projects/{project}/instances/{instance}`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -121,10 +123,11 @@ class CreateTableRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name by which the new table should be referred to within the parent
-     * instance, e.g., `foobar` rather than `<parent>/tables/foobar`.
+     * Required. The name by which the new table should be referred to within the parent
+     * instance, e.g., `foobar` rather than `{parent}/tables/foobar`.
+     * Maximum 50 characters.
      *
-     * Generated from protobuf field <code>string table_id = 2;</code>
+     * Generated from protobuf field <code>string table_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getTableId()
@@ -133,10 +136,11 @@ class CreateTableRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name by which the new table should be referred to within the parent
-     * instance, e.g., `foobar` rather than `<parent>/tables/foobar`.
+     * Required. The name by which the new table should be referred to within the parent
+     * instance, e.g., `foobar` rather than `{parent}/tables/foobar`.
+     * Maximum 50 characters.
      *
-     * Generated from protobuf field <code>string table_id = 2;</code>
+     * Generated from protobuf field <code>string table_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -149,9 +153,9 @@ class CreateTableRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Table to create.
+     * Required. The Table to create.
      *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.Table table = 3;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Table table = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Bigtable\Admin\V2\Table
      */
     public function getTable()
@@ -160,9 +164,9 @@ class CreateTableRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Table to create.
+     * Required. The Table to create.
      *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.Table table = 3;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Table table = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Bigtable\Admin\V2\Table $var
      * @return $this
      */

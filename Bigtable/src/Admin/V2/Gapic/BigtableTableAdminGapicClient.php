@@ -452,11 +452,12 @@ class BigtableTableAdminGapicClient
      * }
      * ```
      *
-     * @param string $parent       The unique name of the instance in which to create the table.
-     *                             Values are of the form `projects/<project>/instances/<instance>`.
-     * @param string $tableId      The name by which the new table should be referred to within the parent
-     *                             instance, e.g., `foobar` rather than `<parent>/tables/foobar`.
-     * @param Table  $table        The Table to create.
+     * @param string $parent       Required. The unique name of the instance in which to create the table.
+     *                             Values are of the form `projects/{project}/instances/{instance}`.
+     * @param string $tableId      Required. The name by which the new table should be referred to within the parent
+     *                             instance, e.g., `foobar` rather than `{parent}/tables/foobar`.
+     *                             Maximum 50 characters.
+     * @param Table  $table        Required. The Table to create.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -565,14 +566,14 @@ class BigtableTableAdminGapicClient
      * }
      * ```
      *
-     * @param string $parent         The unique name of the instance in which to create the table.
-     *                               Values are of the form `projects/<project>/instances/<instance>`.
-     * @param string $tableId        The name by which the new table should be referred to within the parent
-     *                               instance, e.g., `foobar` rather than `<parent>/tables/foobar`.
-     * @param string $sourceSnapshot The unique name of the snapshot from which to restore the table. The
+     * @param string $parent         Required. The unique name of the instance in which to create the table.
+     *                               Values are of the form `projects/{project}/instances/{instance}`.
+     * @param string $tableId        Required. The name by which the new table should be referred to within the parent
+     *                               instance, e.g., `foobar` rather than `{parent}/tables/foobar`.
+     * @param string $sourceSnapshot Required. The unique name of the snapshot from which to restore the table. The
      *                               snapshot and the table must be in the same instance.
      *                               Values are of the form
-     *                               `projects/<project>/instances/<instance>/clusters/<cluster>/snapshots/<snapshot>`.
+     *                               `projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/{snapshot}`.
      * @param array  $optionalArgs   {
      *                               Optional.
      *
@@ -639,18 +640,25 @@ class BigtableTableAdminGapicClient
      * }
      * ```
      *
-     * @param string $parent       The unique name of the instance for which tables should be listed.
-     *                             Values are of the form `projects/<project>/instances/<instance>`.
+     * @param string $parent       Required. The unique name of the instance for which tables should be listed.
+     *                             Values are of the form `projects/{project}/instances/{instance}`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
      *     @type int $view
      *          The view to be applied to the returned tables' fields.
-     *          Defaults to `NAME_ONLY` if unspecified; no others are currently supported.
+     *          Only NAME_ONLY view (default) and REPLICATION_VIEW are supported.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\Table\View}
      *     @type int $pageSize
      *          Maximum number of results per page.
-     *          CURRENTLY UNIMPLEMENTED AND IGNORED.
+     *
+     *          A page_size of zero lets the server choose the number of items to return.
+     *          A page_size which is strictly positive will return at most that many items.
+     *          A negative page_size will cause an error.
+     *
+     *          Following the first request, subsequent paginated calls are not required
+     *          to pass a page_size. If a page_size is set in subsequent calls, it must
+     *          match the page_size given in the first request.
      *     @type string $pageToken
      *          A page token is used to specify a page of values to be returned.
      *          If no page token is specified (the default), the first page
@@ -711,9 +719,9 @@ class BigtableTableAdminGapicClient
      * }
      * ```
      *
-     * @param string $name         The unique name of the requested table.
+     * @param string $name         Required. The unique name of the requested table.
      *                             Values are of the form
-     *                             `projects/<project>/instances/<instance>/tables/<table>`.
+     *                             `projects/{project}/instances/{instance}/tables/{table}`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -770,9 +778,9 @@ class BigtableTableAdminGapicClient
      * }
      * ```
      *
-     * @param string $name         The unique name of the table to be deleted.
+     * @param string $name         Required. The unique name of the table to be deleted.
      *                             Values are of the form
-     *                             `projects/<project>/instances/<instance>/tables/<table>`.
+     *                             `projects/{project}/instances/{instance}/tables/{table}`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -824,10 +832,10 @@ class BigtableTableAdminGapicClient
      * }
      * ```
      *
-     * @param string         $name          The unique name of the table whose families should be modified.
+     * @param string         $name          Required. The unique name of the table whose families should be modified.
      *                                      Values are of the form
-     *                                      `projects/<project>/instances/<instance>/tables/<table>`.
-     * @param Modification[] $modifications Modifications to be atomically applied to the specified table's families.
+     *                                      `projects/{project}/instances/{instance}/tables/{table}`.
+     * @param Modification[] $modifications Required. Modifications to be atomically applied to the specified table's families.
      *                                      Entries are applied in order, meaning that earlier modifications can be
      *                                      masked by later ones (in the case of repeated updates to the same family,
      *                                      for example).
@@ -883,9 +891,9 @@ class BigtableTableAdminGapicClient
      * }
      * ```
      *
-     * @param string $name         The unique name of the table on which to drop a range of rows.
+     * @param string $name         Required. The unique name of the table on which to drop a range of rows.
      *                             Values are of the form
-     *                             `projects/<project>/instances/<instance>/tables/<table>`.
+     *                             `projects/{project}/instances/{instance}/tables/{table}`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -947,9 +955,9 @@ class BigtableTableAdminGapicClient
      * }
      * ```
      *
-     * @param string $name         The unique name of the Table for which to create a consistency token.
+     * @param string $name         Required. The unique name of the Table for which to create a consistency token.
      *                             Values are of the form
-     *                             `projects/<project>/instances/<instance>/tables/<table>`.
+     *                             `projects/{project}/instances/{instance}/tables/{table}`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1002,10 +1010,10 @@ class BigtableTableAdminGapicClient
      * }
      * ```
      *
-     * @param string $name             The unique name of the Table for which to check replication consistency.
+     * @param string $name             Required. The unique name of the Table for which to check replication consistency.
      *                                 Values are of the form
-     *                                 `projects/<project>/instances/<instance>/tables/<table>`.
-     * @param string $consistencyToken The token created using GenerateConsistencyToken for the Table.
+     *                                 `projects/{project}/instances/{instance}/tables/{table}`.
+     * @param string $consistencyToken Required. The token created using GenerateConsistencyToken for the Table.
      * @param array  $optionalArgs     {
      *                                 Optional.
      *
@@ -1043,8 +1051,9 @@ class BigtableTableAdminGapicClient
     }
 
     /**
-     * Gets the access control policy for a table resource. Returns an empty
-     * policy if an table exists but does not have a policy set.
+     * Gets the access control policy for a resource.
+     * Returns an empty policy if the resource exists but does not have a policy
+     * set.
      *
      * Sample code:
      * ```
@@ -1101,8 +1110,8 @@ class BigtableTableAdminGapicClient
     }
 
     /**
-     * Sets the access control policy on a table resource. Replaces any existing
-     * policy.
+     * Sets the access control policy on a Table or Backup resource.
+     * Replaces any existing policy.
      *
      * Sample code:
      * ```
@@ -1269,14 +1278,14 @@ class BigtableTableAdminGapicClient
      *
      * @param string $name         The unique name of the table to have the snapshot taken.
      *                             Values are of the form
-     *                             `projects/<project>/instances/<instance>/tables/<table>`.
+     *                             `projects/{project}/instances/{instance}/tables/{table}`.
      * @param string $cluster      The name of the cluster where the snapshot will be created in.
      *                             Values are of the form
-     *                             `projects/<project>/instances/<instance>/clusters/<cluster>`.
+     *                             `projects/{project}/instances/{instance}/clusters/{cluster}`.
      * @param string $snapshotId   The ID by which the new snapshot should be referred to within the parent
      *                             cluster, e.g., `mysnapshot` of the form: `[_a-zA-Z0-9][-_.a-zA-Z0-9]*`
      *                             rather than
-     *                             `projects/<project>/instances/<instance>/clusters/<cluster>/snapshots/mysnapshot`.
+     *                             `projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/mysnapshot`.
      * @param string $description  Description of the snapshot.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -1344,9 +1353,9 @@ class BigtableTableAdminGapicClient
      * }
      * ```
      *
-     * @param string $name         The unique name of the requested snapshot.
+     * @param string $name         Required. The unique name of the requested snapshot.
      *                             Values are of the form
-     *                             `projects/<project>/instances/<instance>/clusters/<cluster>/snapshots/<snapshot>`.
+     *                             `projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/{snapshot}`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1417,11 +1426,11 @@ class BigtableTableAdminGapicClient
      * }
      * ```
      *
-     * @param string $parent       The unique name of the cluster for which snapshots should be listed.
+     * @param string $parent       Required. The unique name of the cluster for which snapshots should be listed.
      *                             Values are of the form
-     *                             `projects/<project>/instances/<instance>/clusters/<cluster>`.
-     *                             Use `<cluster> = '-'` to list snapshots for all clusters in an instance,
-     *                             e.g., `projects/<project>/instances/<instance>/clusters/-`.
+     *                             `projects/{project}/instances/{instance}/clusters/{cluster}`.
+     *                             Use `{cluster} = '-'` to list snapshots for all clusters in an instance,
+     *                             e.g., `projects/{project}/instances/{instance}/clusters/-`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1492,9 +1501,9 @@ class BigtableTableAdminGapicClient
      * }
      * ```
      *
-     * @param string $name         The unique name of the snapshot to be deleted.
+     * @param string $name         Required. The unique name of the snapshot to be deleted.
      *                             Values are of the form
-     *                             `projects/<project>/instances/<instance>/clusters/<cluster>/snapshots/<snapshot>`.
+     *                             `projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/{snapshot}`.
      * @param array  $optionalArgs {
      *                             Optional.
      *

@@ -32,8 +32,8 @@ class View
      */
     const SCHEMA_VIEW = 2;
     /**
-     * Only populates `name` and fields related to the table's
-     * replication state.
+     * Only populates `name` and fields related to the table's replication
+     * state.
      *
      * Generated from protobuf enum <code>REPLICATION_VIEW = 3;</code>
      */

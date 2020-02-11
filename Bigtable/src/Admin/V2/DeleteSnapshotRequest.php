@@ -21,11 +21,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeleteSnapshotRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The unique name of the snapshot to be deleted.
+     * Required. The unique name of the snapshot to be deleted.
      * Values are of the form
-     * `projects/<project>/instances/<instance>/clusters/<cluster>/snapshots/<snapshot>`.
+     * `projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/{snapshot}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
 
@@ -36,9 +36,9 @@ class DeleteSnapshotRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The unique name of the snapshot to be deleted.
+     *           Required. The unique name of the snapshot to be deleted.
      *           Values are of the form
-     *           `projects/<project>/instances/<instance>/clusters/<cluster>/snapshots/<snapshot>`.
+     *           `projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/{snapshot}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -47,11 +47,11 @@ class DeleteSnapshotRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unique name of the snapshot to be deleted.
+     * Required. The unique name of the snapshot to be deleted.
      * Values are of the form
-     * `projects/<project>/instances/<instance>/clusters/<cluster>/snapshots/<snapshot>`.
+     * `projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/{snapshot}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -60,11 +60,11 @@ class DeleteSnapshotRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unique name of the snapshot to be deleted.
+     * Required. The unique name of the snapshot to be deleted.
      * Values are of the form
-     * `projects/<project>/instances/<instance>/clusters/<cluster>/snapshots/<snapshot>`.
+     * `projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/{snapshot}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

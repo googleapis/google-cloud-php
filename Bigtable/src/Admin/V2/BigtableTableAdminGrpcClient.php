@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2018 Google LLC.
+// Copyright 2019 Google LLC.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -264,8 +264,9 @@ class BigtableTableAdminGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Gets the access control policy for a table resource. Returns an empty
-     * policy if an table exists but does not have a policy set.
+     * Gets the access control policy for a resource.
+     * Returns an empty policy if the resource exists but does not have a policy
+     * set.
      * @param \Google\Cloud\Iam\V1\GetIamPolicyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -279,8 +280,8 @@ class BigtableTableAdminGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Sets the access control policy on a table resource. Replaces any existing
-     * policy.
+     * Sets the access control policy on a Table or Backup resource.
+     * Replaces any existing policy.
      * @param \Google\Cloud\Iam\V1\SetIamPolicyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

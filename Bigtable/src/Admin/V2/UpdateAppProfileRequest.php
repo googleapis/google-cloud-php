@@ -16,16 +16,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateAppProfileRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The app profile which will (partially) replace the current value.
+     * Required. The app profile which will (partially) replace the current value.
      *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.AppProfile app_profile = 1;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.AppProfile app_profile = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $app_profile = null;
     /**
-     * The subset of app profile fields which should be replaced.
+     * Required. The subset of app profile fields which should be replaced.
      * If unset, all fields will be replaced.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $update_mask = null;
     /**
@@ -42,9 +42,9 @@ class UpdateAppProfileRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Bigtable\Admin\V2\AppProfile $app_profile
-     *           The app profile which will (partially) replace the current value.
+     *           Required. The app profile which will (partially) replace the current value.
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           The subset of app profile fields which should be replaced.
+     *           Required. The subset of app profile fields which should be replaced.
      *           If unset, all fields will be replaced.
      *     @type bool $ignore_warnings
      *           If true, ignore safety checks when updating the app profile.
@@ -56,9 +56,9 @@ class UpdateAppProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The app profile which will (partially) replace the current value.
+     * Required. The app profile which will (partially) replace the current value.
      *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.AppProfile app_profile = 1;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.AppProfile app_profile = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Bigtable\Admin\V2\AppProfile
      */
     public function getAppProfile()
@@ -67,9 +67,9 @@ class UpdateAppProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The app profile which will (partially) replace the current value.
+     * Required. The app profile which will (partially) replace the current value.
      *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.AppProfile app_profile = 1;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.AppProfile app_profile = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Bigtable\Admin\V2\AppProfile $var
      * @return $this
      */
@@ -82,10 +82,10 @@ class UpdateAppProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The subset of app profile fields which should be replaced.
+     * Required. The subset of app profile fields which should be replaced.
      * If unset, all fields will be replaced.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask
      */
     public function getUpdateMask()
@@ -94,10 +94,10 @@ class UpdateAppProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The subset of app profile fields which should be replaced.
+     * Required. The subset of app profile fields which should be replaced.
      * If unset, all fields will be replaced.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var
      * @return $this
      */

@@ -21,13 +21,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListSnapshotsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The unique name of the cluster for which snapshots should be listed.
+     * Required. The unique name of the cluster for which snapshots should be listed.
      * Values are of the form
-     * `projects/<project>/instances/<instance>/clusters/<cluster>`.
-     * Use `<cluster> = '-'` to list snapshots for all clusters in an instance,
-     * e.g., `projects/<project>/instances/<instance>/clusters/-`.
+     * `projects/{project}/instances/{instance}/clusters/{cluster}`.
+     * Use `{cluster} = '-'` to list snapshots for all clusters in an instance,
+     * e.g., `projects/{project}/instances/{instance}/clusters/-`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -51,11 +51,11 @@ class ListSnapshotsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The unique name of the cluster for which snapshots should be listed.
+     *           Required. The unique name of the cluster for which snapshots should be listed.
      *           Values are of the form
-     *           `projects/<project>/instances/<instance>/clusters/<cluster>`.
-     *           Use `<cluster> = '-'` to list snapshots for all clusters in an instance,
-     *           e.g., `projects/<project>/instances/<instance>/clusters/-`.
+     *           `projects/{project}/instances/{instance}/clusters/{cluster}`.
+     *           Use `{cluster} = '-'` to list snapshots for all clusters in an instance,
+     *           e.g., `projects/{project}/instances/{instance}/clusters/-`.
      *     @type int $page_size
      *           The maximum number of snapshots to return per page.
      *           CURRENTLY UNIMPLEMENTED AND IGNORED.
@@ -69,13 +69,13 @@ class ListSnapshotsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unique name of the cluster for which snapshots should be listed.
+     * Required. The unique name of the cluster for which snapshots should be listed.
      * Values are of the form
-     * `projects/<project>/instances/<instance>/clusters/<cluster>`.
-     * Use `<cluster> = '-'` to list snapshots for all clusters in an instance,
-     * e.g., `projects/<project>/instances/<instance>/clusters/-`.
+     * `projects/{project}/instances/{instance}/clusters/{cluster}`.
+     * Use `{cluster} = '-'` to list snapshots for all clusters in an instance,
+     * e.g., `projects/{project}/instances/{instance}/clusters/-`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -84,13 +84,13 @@ class ListSnapshotsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unique name of the cluster for which snapshots should be listed.
+     * Required. The unique name of the cluster for which snapshots should be listed.
      * Values are of the form
-     * `projects/<project>/instances/<instance>/clusters/<cluster>`.
-     * Use `<cluster> = '-'` to list snapshots for all clusters in an instance,
-     * e.g., `projects/<project>/instances/<instance>/clusters/-`.
+     * `projects/{project}/instances/{instance}/clusters/{cluster}`.
+     * Use `{cluster} = '-'` to list snapshots for all clusters in an instance,
+     * e.g., `projects/{project}/instances/{instance}/clusters/-`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

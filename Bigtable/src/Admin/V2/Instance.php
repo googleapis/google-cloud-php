@@ -11,27 +11,26 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * A collection of Bigtable [Tables][google.bigtable.admin.v2.Table] and
  * the resources that serve them.
- * All tables in an instance are served from a single
- * [Cluster][google.bigtable.admin.v2.Cluster].
+ * All tables in an instance are served from all
+ * [Clusters][google.bigtable.admin.v2.Cluster] in the instance.
  *
  * Generated from protobuf message <code>google.bigtable.admin.v2.Instance</code>
  */
 class Instance extends \Google\Protobuf\Internal\Message
 {
     /**
-     * (`OutputOnly`)
      * The unique name of the instance. Values are of the form
-     * `projects/<project>/instances/[a-z][a-z0-9\\-]+[a-z0-9]`.
+     * `projects/{project}/instances/[a-z][a-z0-9\\-]+[a-z0-9]`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $name = '';
     /**
-     * The descriptive name for this instance as it appears in UIs.
+     * Required. The descriptive name for this instance as it appears in UIs.
      * Can be changed at any time, but should be kept globally unique
      * to avoid confusion.
      *
-     * Generated from protobuf field <code>string display_name = 2;</code>
+     * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $display_name = '';
     /**
@@ -70,11 +69,10 @@ class Instance extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           (`OutputOnly`)
      *           The unique name of the instance. Values are of the form
-     *           `projects/<project>/instances/[a-z][a-z0-9\\-]+[a-z0-9]`.
+     *           `projects/{project}/instances/[a-z][a-z0-9\\-]+[a-z0-9]`.
      *     @type string $display_name
-     *           The descriptive name for this instance as it appears in UIs.
+     *           Required. The descriptive name for this instance as it appears in UIs.
      *           Can be changed at any time, but should be kept globally unique
      *           to avoid confusion.
      *     @type int $state
@@ -101,11 +99,10 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (`OutputOnly`)
      * The unique name of the instance. Values are of the form
-     * `projects/<project>/instances/[a-z][a-z0-9\\-]+[a-z0-9]`.
+     * `projects/{project}/instances/[a-z][a-z0-9\\-]+[a-z0-9]`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getName()
@@ -114,11 +111,10 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (`OutputOnly`)
      * The unique name of the instance. Values are of the form
-     * `projects/<project>/instances/[a-z][a-z0-9\\-]+[a-z0-9]`.
+     * `projects/{project}/instances/[a-z][a-z0-9\\-]+[a-z0-9]`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -131,11 +127,11 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The descriptive name for this instance as it appears in UIs.
+     * Required. The descriptive name for this instance as it appears in UIs.
      * Can be changed at any time, but should be kept globally unique
      * to avoid confusion.
      *
-     * Generated from protobuf field <code>string display_name = 2;</code>
+     * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getDisplayName()
@@ -144,11 +140,11 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The descriptive name for this instance as it appears in UIs.
+     * Required. The descriptive name for this instance as it appears in UIs.
      * Can be changed at any time, but should be kept globally unique
      * to avoid confusion.
      *
-     * Generated from protobuf field <code>string display_name = 2;</code>
+     * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

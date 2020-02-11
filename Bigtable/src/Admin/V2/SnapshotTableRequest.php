@@ -23,7 +23,7 @@ class SnapshotTableRequest extends \Google\Protobuf\Internal\Message
     /**
      * The unique name of the table to have the snapshot taken.
      * Values are of the form
-     * `projects/<project>/instances/<instance>/tables/<table>`.
+     * `projects/{project}/instances/{instance}/tables/{table}`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -31,7 +31,7 @@ class SnapshotTableRequest extends \Google\Protobuf\Internal\Message
     /**
      * The name of the cluster where the snapshot will be created in.
      * Values are of the form
-     * `projects/<project>/instances/<instance>/clusters/<cluster>`.
+     * `projects/{project}/instances/{instance}/clusters/{cluster}`.
      *
      * Generated from protobuf field <code>string cluster = 2;</code>
      */
@@ -40,7 +40,7 @@ class SnapshotTableRequest extends \Google\Protobuf\Internal\Message
      * The ID by which the new snapshot should be referred to within the parent
      * cluster, e.g., `mysnapshot` of the form: `[_a-zA-Z0-9][-_.a-zA-Z0-9]*`
      * rather than
-     * `projects/<project>/instances/<instance>/clusters/<cluster>/snapshots/mysnapshot`.
+     * `projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/mysnapshot`.
      *
      * Generated from protobuf field <code>string snapshot_id = 3;</code>
      */
@@ -70,16 +70,16 @@ class SnapshotTableRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The unique name of the table to have the snapshot taken.
      *           Values are of the form
-     *           `projects/<project>/instances/<instance>/tables/<table>`.
+     *           `projects/{project}/instances/{instance}/tables/{table}`.
      *     @type string $cluster
      *           The name of the cluster where the snapshot will be created in.
      *           Values are of the form
-     *           `projects/<project>/instances/<instance>/clusters/<cluster>`.
+     *           `projects/{project}/instances/{instance}/clusters/{cluster}`.
      *     @type string $snapshot_id
      *           The ID by which the new snapshot should be referred to within the parent
      *           cluster, e.g., `mysnapshot` of the form: `[_a-zA-Z0-9][-_.a-zA-Z0-9]*`
      *           rather than
-     *           `projects/<project>/instances/<instance>/clusters/<cluster>/snapshots/mysnapshot`.
+     *           `projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/mysnapshot`.
      *     @type \Google\Protobuf\Duration $ttl
      *           The amount of time that the new snapshot can stay active after it is
      *           created. Once 'ttl' expires, the snapshot will get deleted. The maximum
@@ -97,7 +97,7 @@ class SnapshotTableRequest extends \Google\Protobuf\Internal\Message
     /**
      * The unique name of the table to have the snapshot taken.
      * Values are of the form
-     * `projects/<project>/instances/<instance>/tables/<table>`.
+     * `projects/{project}/instances/{instance}/tables/{table}`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -110,7 +110,7 @@ class SnapshotTableRequest extends \Google\Protobuf\Internal\Message
     /**
      * The unique name of the table to have the snapshot taken.
      * Values are of the form
-     * `projects/<project>/instances/<instance>/tables/<table>`.
+     * `projects/{project}/instances/{instance}/tables/{table}`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -127,7 +127,7 @@ class SnapshotTableRequest extends \Google\Protobuf\Internal\Message
     /**
      * The name of the cluster where the snapshot will be created in.
      * Values are of the form
-     * `projects/<project>/instances/<instance>/clusters/<cluster>`.
+     * `projects/{project}/instances/{instance}/clusters/{cluster}`.
      *
      * Generated from protobuf field <code>string cluster = 2;</code>
      * @return string
@@ -140,7 +140,7 @@ class SnapshotTableRequest extends \Google\Protobuf\Internal\Message
     /**
      * The name of the cluster where the snapshot will be created in.
      * Values are of the form
-     * `projects/<project>/instances/<instance>/clusters/<cluster>`.
+     * `projects/{project}/instances/{instance}/clusters/{cluster}`.
      *
      * Generated from protobuf field <code>string cluster = 2;</code>
      * @param string $var
@@ -158,7 +158,7 @@ class SnapshotTableRequest extends \Google\Protobuf\Internal\Message
      * The ID by which the new snapshot should be referred to within the parent
      * cluster, e.g., `mysnapshot` of the form: `[_a-zA-Z0-9][-_.a-zA-Z0-9]*`
      * rather than
-     * `projects/<project>/instances/<instance>/clusters/<cluster>/snapshots/mysnapshot`.
+     * `projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/mysnapshot`.
      *
      * Generated from protobuf field <code>string snapshot_id = 3;</code>
      * @return string
@@ -172,7 +172,7 @@ class SnapshotTableRequest extends \Google\Protobuf\Internal\Message
      * The ID by which the new snapshot should be referred to within the parent
      * cluster, e.g., `mysnapshot` of the form: `[_a-zA-Z0-9][-_.a-zA-Z0-9]*`
      * rather than
-     * `projects/<project>/instances/<instance>/clusters/<cluster>/snapshots/mysnapshot`.
+     * `projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/mysnapshot`.
      *
      * Generated from protobuf field <code>string snapshot_id = 3;</code>
      * @param string $var

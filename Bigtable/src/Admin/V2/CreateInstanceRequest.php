@@ -16,35 +16,35 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The unique name of the project in which to create the new instance.
-     * Values are of the form `projects/<project>`.
+     * Required. The unique name of the project in which to create the new instance.
+     * Values are of the form `projects/{project}`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * The ID to be used when referring to the new instance within its project,
+     * Required. The ID to be used when referring to the new instance within its project,
      * e.g., just `myinstance` rather than
      * `projects/myproject/instances/myinstance`.
      *
-     * Generated from protobuf field <code>string instance_id = 2;</code>
+     * Generated from protobuf field <code>string instance_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $instance_id = '';
     /**
-     * The instance to create.
+     * Required. The instance to create.
      * Fields marked `OutputOnly` must be left blank.
      *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.Instance instance = 3;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Instance instance = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $instance = null;
     /**
-     * The clusters to be created within the instance, mapped by desired
+     * Required. The clusters to be created within the instance, mapped by desired
      * cluster ID, e.g., just `mycluster` rather than
      * `projects/myproject/instances/myinstance/clusters/mycluster`.
      * Fields marked `OutputOnly` must be left blank.
-     * Currently, at most two clusters can be specified.
+     * Currently, at most four clusters can be specified.
      *
-     * Generated from protobuf field <code>map<string, .google.bigtable.admin.v2.Cluster> clusters = 4;</code>
+     * Generated from protobuf field <code>map<string, .google.bigtable.admin.v2.Cluster> clusters = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $clusters;
 
@@ -55,21 +55,21 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The unique name of the project in which to create the new instance.
-     *           Values are of the form `projects/<project>`.
+     *           Required. The unique name of the project in which to create the new instance.
+     *           Values are of the form `projects/{project}`.
      *     @type string $instance_id
-     *           The ID to be used when referring to the new instance within its project,
+     *           Required. The ID to be used when referring to the new instance within its project,
      *           e.g., just `myinstance` rather than
      *           `projects/myproject/instances/myinstance`.
      *     @type \Google\Cloud\Bigtable\Admin\V2\Instance $instance
-     *           The instance to create.
+     *           Required. The instance to create.
      *           Fields marked `OutputOnly` must be left blank.
      *     @type array|\Google\Protobuf\Internal\MapField $clusters
-     *           The clusters to be created within the instance, mapped by desired
+     *           Required. The clusters to be created within the instance, mapped by desired
      *           cluster ID, e.g., just `mycluster` rather than
      *           `projects/myproject/instances/myinstance/clusters/mycluster`.
      *           Fields marked `OutputOnly` must be left blank.
-     *           Currently, at most two clusters can be specified.
+     *           Currently, at most four clusters can be specified.
      * }
      */
     public function __construct($data = NULL) {
@@ -78,10 +78,10 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unique name of the project in which to create the new instance.
-     * Values are of the form `projects/<project>`.
+     * Required. The unique name of the project in which to create the new instance.
+     * Values are of the form `projects/{project}`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -90,10 +90,10 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unique name of the project in which to create the new instance.
-     * Values are of the form `projects/<project>`.
+     * Required. The unique name of the project in which to create the new instance.
+     * Values are of the form `projects/{project}`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -106,11 +106,11 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ID to be used when referring to the new instance within its project,
+     * Required. The ID to be used when referring to the new instance within its project,
      * e.g., just `myinstance` rather than
      * `projects/myproject/instances/myinstance`.
      *
-     * Generated from protobuf field <code>string instance_id = 2;</code>
+     * Generated from protobuf field <code>string instance_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getInstanceId()
@@ -119,11 +119,11 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ID to be used when referring to the new instance within its project,
+     * Required. The ID to be used when referring to the new instance within its project,
      * e.g., just `myinstance` rather than
      * `projects/myproject/instances/myinstance`.
      *
-     * Generated from protobuf field <code>string instance_id = 2;</code>
+     * Generated from protobuf field <code>string instance_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -136,10 +136,10 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The instance to create.
+     * Required. The instance to create.
      * Fields marked `OutputOnly` must be left blank.
      *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.Instance instance = 3;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Instance instance = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Bigtable\Admin\V2\Instance
      */
     public function getInstance()
@@ -148,10 +148,10 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The instance to create.
+     * Required. The instance to create.
      * Fields marked `OutputOnly` must be left blank.
      *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.Instance instance = 3;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Instance instance = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Bigtable\Admin\V2\Instance $var
      * @return $this
      */
@@ -164,13 +164,13 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The clusters to be created within the instance, mapped by desired
+     * Required. The clusters to be created within the instance, mapped by desired
      * cluster ID, e.g., just `mycluster` rather than
      * `projects/myproject/instances/myinstance/clusters/mycluster`.
      * Fields marked `OutputOnly` must be left blank.
-     * Currently, at most two clusters can be specified.
+     * Currently, at most four clusters can be specified.
      *
-     * Generated from protobuf field <code>map<string, .google.bigtable.admin.v2.Cluster> clusters = 4;</code>
+     * Generated from protobuf field <code>map<string, .google.bigtable.admin.v2.Cluster> clusters = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getClusters()
@@ -179,13 +179,13 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The clusters to be created within the instance, mapped by desired
+     * Required. The clusters to be created within the instance, mapped by desired
      * cluster ID, e.g., just `mycluster` rather than
      * `projects/myproject/instances/myinstance/clusters/mycluster`.
      * Fields marked `OutputOnly` must be left blank.
-     * Currently, at most two clusters can be specified.
+     * Currently, at most four clusters can be specified.
      *
-     * Generated from protobuf field <code>map<string, .google.bigtable.admin.v2.Cluster> clusters = 4;</code>
+     * Generated from protobuf field <code>map<string, .google.bigtable.admin.v2.Cluster> clusters = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */

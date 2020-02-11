@@ -17,8 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class Table extends \Google\Protobuf\Internal\Message
 {
     /**
-     * (`OutputOnly`)
-     * The unique name of the table. Values are of the form
+     * Output only. The unique name of the table. Values are of the form
      * `projects/<project>/instances/<instance>/tables/[_a-zA-Z0-9][-_.a-zA-Z0-9]*`.
      * Views: `NAME_ONLY`, `SCHEMA_VIEW`, `REPLICATION_VIEW`, `FULL`
      *
@@ -26,8 +25,7 @@ class Table extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * (`OutputOnly`)
-     * Map from cluster ID to per-cluster table state.
+     * Output only. Map from cluster ID to per-cluster table state.
      * If it could not be determined whether or not the table has data in a
      * particular cluster (for example, if its zone is unavailable), then
      * there will be an entry for the cluster with UNKNOWN `replication_status`.
@@ -49,7 +47,7 @@ class Table extends \Google\Protobuf\Internal\Message
      * The granularity (i.e. `MILLIS`) at which timestamps are stored in
      * this table. Timestamps not matching the granularity will be rejected.
      * If unspecified at creation time, the value will be set to `MILLIS`.
-     * Views: `SCHEMA_VIEW`, `FULL`
+     * Views: `SCHEMA_VIEW`, `FULL`.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.TimestampGranularity granularity = 4;</code>
      */
@@ -62,13 +60,11 @@ class Table extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           (`OutputOnly`)
-     *           The unique name of the table. Values are of the form
+     *           Output only. The unique name of the table. Values are of the form
      *           `projects/<project>/instances/<instance>/tables/[_a-zA-Z0-9][-_.a-zA-Z0-9]*`.
      *           Views: `NAME_ONLY`, `SCHEMA_VIEW`, `REPLICATION_VIEW`, `FULL`
      *     @type array|\Google\Protobuf\Internal\MapField $cluster_states
-     *           (`OutputOnly`)
-     *           Map from cluster ID to per-cluster table state.
+     *           Output only. Map from cluster ID to per-cluster table state.
      *           If it could not be determined whether or not the table has data in a
      *           particular cluster (for example, if its zone is unavailable), then
      *           there will be an entry for the cluster with UNKNOWN `replication_status`.
@@ -82,7 +78,7 @@ class Table extends \Google\Protobuf\Internal\Message
      *           The granularity (i.e. `MILLIS`) at which timestamps are stored in
      *           this table. Timestamps not matching the granularity will be rejected.
      *           If unspecified at creation time, the value will be set to `MILLIS`.
-     *           Views: `SCHEMA_VIEW`, `FULL`
+     *           Views: `SCHEMA_VIEW`, `FULL`.
      * }
      */
     public function __construct($data = NULL) {
@@ -91,8 +87,7 @@ class Table extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (`OutputOnly`)
-     * The unique name of the table. Values are of the form
+     * Output only. The unique name of the table. Values are of the form
      * `projects/<project>/instances/<instance>/tables/[_a-zA-Z0-9][-_.a-zA-Z0-9]*`.
      * Views: `NAME_ONLY`, `SCHEMA_VIEW`, `REPLICATION_VIEW`, `FULL`
      *
@@ -105,8 +100,7 @@ class Table extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (`OutputOnly`)
-     * The unique name of the table. Values are of the form
+     * Output only. The unique name of the table. Values are of the form
      * `projects/<project>/instances/<instance>/tables/[_a-zA-Z0-9][-_.a-zA-Z0-9]*`.
      * Views: `NAME_ONLY`, `SCHEMA_VIEW`, `REPLICATION_VIEW`, `FULL`
      *
@@ -123,8 +117,7 @@ class Table extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (`OutputOnly`)
-     * Map from cluster ID to per-cluster table state.
+     * Output only. Map from cluster ID to per-cluster table state.
      * If it could not be determined whether or not the table has data in a
      * particular cluster (for example, if its zone is unavailable), then
      * there will be an entry for the cluster with UNKNOWN `replication_status`.
@@ -139,8 +132,7 @@ class Table extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (`OutputOnly`)
-     * Map from cluster ID to per-cluster table state.
+     * Output only. Map from cluster ID to per-cluster table state.
      * If it could not be determined whether or not the table has data in a
      * particular cluster (for example, if its zone is unavailable), then
      * there will be an entry for the cluster with UNKNOWN `replication_status`.
@@ -193,7 +185,7 @@ class Table extends \Google\Protobuf\Internal\Message
      * The granularity (i.e. `MILLIS`) at which timestamps are stored in
      * this table. Timestamps not matching the granularity will be rejected.
      * If unspecified at creation time, the value will be set to `MILLIS`.
-     * Views: `SCHEMA_VIEW`, `FULL`
+     * Views: `SCHEMA_VIEW`, `FULL`.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.TimestampGranularity granularity = 4;</code>
      * @return int
@@ -208,7 +200,7 @@ class Table extends \Google\Protobuf\Internal\Message
      * The granularity (i.e. `MILLIS`) at which timestamps are stored in
      * this table. Timestamps not matching the granularity will be rejected.
      * If unspecified at creation time, the value will be set to `MILLIS`.
-     * Views: `SCHEMA_VIEW`, `FULL`
+     * Views: `SCHEMA_VIEW`, `FULL`.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.TimestampGranularity granularity = 4;</code>
      * @param int $var

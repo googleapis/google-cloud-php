@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListInstancesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The unique name of the project for which a list of instances is requested.
-     * Values are of the form `projects/<project>`.
+     * Required. The unique name of the project for which a list of instances is requested.
+     * Values are of the form `projects/{project}`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -36,8 +36,8 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The unique name of the project for which a list of instances is requested.
-     *           Values are of the form `projects/<project>`.
+     *           Required. The unique name of the project for which a list of instances is requested.
+     *           Values are of the form `projects/{project}`.
      *     @type string $page_token
      *           DEPRECATED: This field is unused and ignored.
      * }
@@ -48,10 +48,10 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unique name of the project for which a list of instances is requested.
-     * Values are of the form `projects/<project>`.
+     * Required. The unique name of the project for which a list of instances is requested.
+     * Values are of the form `projects/{project}`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -60,10 +60,10 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unique name of the project for which a list of instances is requested.
-     * Values are of the form `projects/<project>`.
+     * Required. The unique name of the project for which a list of instances is requested.
+     * Values are of the form `projects/{project}`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
