@@ -348,7 +348,7 @@ class GroupServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The project whose groups are to be listed. The format is
+     * @param string $name         Required. The project whose groups are to be listed. The format is
      *                             `"projects/{project_id_or_number}"`.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -438,7 +438,7 @@ class GroupServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The group to retrieve. The format is
+     * @param string $name         Required. The group to retrieve. The format is
      *                             `"projects/{project_id_or_number}/groups/{group_id}"`.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -490,9 +490,9 @@ class GroupServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The project in which to create the group. The format is
+     * @param string $name         Required. The project in which to create the group. The format is
      *                             `"projects/{project_id_or_number}"`.
-     * @param Group  $group        A group definition. It is an error to define the `name` field because
+     * @param Group  $group        Required. A group definition. It is an error to define the `name` field because
      *                             the system assigns the name.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -550,7 +550,7 @@ class GroupServiceGapicClient
      * }
      * ```
      *
-     * @param Group $group        The new definition of the group.  All fields of the existing group,
+     * @param Group $group        Required. The new definition of the group.  All fields of the existing group,
      *                            excepting `name`, are replaced with the corresponding fields of this group.
      * @param array $optionalArgs {
      *                            Optional.
@@ -606,7 +606,7 @@ class GroupServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The group to delete. The format is
+     * @param string $name         Required. The group to delete. The format is
      *                             `"projects/{project_id_or_number}/groups/{group_id}"`.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -677,7 +677,7 @@ class GroupServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The group whose members are listed. The format is
+     * @param string $name         Required. The group whose members are listed. The format is
      *                             `"projects/{project_id_or_number}/groups/{group_id}"`.
      * @param array  $optionalArgs {
      *                             Optional.

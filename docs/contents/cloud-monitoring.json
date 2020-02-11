@@ -11,5 +11,8 @@
     }, {
         "title": "MetricServiceClient",
         "type": "monitoring/v3/metricserviceclient"
+    }, {
+        "title": "ServiceMonitoringServiceClient",
+        "type": "monitoring/v3/servicemonitoringserviceclient"
     }]
 }

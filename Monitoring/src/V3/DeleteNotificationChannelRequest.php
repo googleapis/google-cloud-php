@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeleteNotificationChannelRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The channel for which to execute the request. The format is
+     * Required. The channel for which to execute the request. The format is
      * `projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID]`.
      *
-     * Generated from protobuf field <code>string name = 3;</code>
+     * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
@@ -39,7 +39,7 @@ class DeleteNotificationChannelRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The channel for which to execute the request. The format is
+     *           Required. The channel for which to execute the request. The format is
      *           `projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID]`.
      *     @type bool $force
      *           If true, the notification channel will be deleted regardless of its
@@ -54,10 +54,10 @@ class DeleteNotificationChannelRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The channel for which to execute the request. The format is
+     * Required. The channel for which to execute the request. The format is
      * `projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID]`.
      *
-     * Generated from protobuf field <code>string name = 3;</code>
+     * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -66,10 +66,10 @@ class DeleteNotificationChannelRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The channel for which to execute the request. The format is
+     * Required. The channel for which to execute the request. The format is
      * `projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID]`.
      *
-     * Generated from protobuf field <code>string name = 3;</code>
+     * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

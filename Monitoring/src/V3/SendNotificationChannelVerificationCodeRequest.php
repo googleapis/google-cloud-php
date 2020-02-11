@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class SendNotificationChannelVerificationCodeRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The notification channel to which to send a verification code.
+     * Required. The notification channel to which to send a verification code.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
 
@@ -29,7 +29,7 @@ class SendNotificationChannelVerificationCodeRequest extends \Google\Protobuf\In
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The notification channel to which to send a verification code.
+     *           Required. The notification channel to which to send a verification code.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,9 +38,9 @@ class SendNotificationChannelVerificationCodeRequest extends \Google\Protobuf\In
     }
 
     /**
-     * The notification channel to which to send a verification code.
+     * Required. The notification channel to which to send a verification code.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -49,9 +49,9 @@ class SendNotificationChannelVerificationCodeRequest extends \Google\Protobuf\In
     }
 
     /**
-     * The notification channel to which to send a verification code.
+     * Required. The notification channel to which to send a verification code.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

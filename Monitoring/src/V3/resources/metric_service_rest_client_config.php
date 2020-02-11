@@ -16,7 +16,7 @@ return [
             ],
             'GetMonitoredResourceDescriptor' => [
                 'method' => 'get',
-                'uriTemplate' => '/v3/{name=projects/*/monitoredResourceDescriptors/*}',
+                'uriTemplate' => '/v3/{name=projects/*/monitoredResourceDescriptors/**}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [

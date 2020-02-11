@@ -22,12 +22,12 @@ class UpdateNotificationChannelRequest extends \Google\Protobuf\Internal\Message
      */
     private $update_mask = null;
     /**
-     * A description of the changes to be applied to the specified
+     * Required. A description of the changes to be applied to the specified
      * notification channel. The description must provide a definition for
      * fields to be updated; the names of these fields should also be
      * included in the `update_mask`.
      *
-     * Generated from protobuf field <code>.google.monitoring.v3.NotificationChannel notification_channel = 3;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.NotificationChannel notification_channel = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $notification_channel = null;
 
@@ -40,7 +40,7 @@ class UpdateNotificationChannelRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           The fields to update.
      *     @type \Google\Cloud\Monitoring\V3\NotificationChannel $notification_channel
-     *           A description of the changes to be applied to the specified
+     *           Required. A description of the changes to be applied to the specified
      *           notification channel. The description must provide a definition for
      *           fields to be updated; the names of these fields should also be
      *           included in the `update_mask`.
@@ -78,12 +78,12 @@ class UpdateNotificationChannelRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A description of the changes to be applied to the specified
+     * Required. A description of the changes to be applied to the specified
      * notification channel. The description must provide a definition for
      * fields to be updated; the names of these fields should also be
      * included in the `update_mask`.
      *
-     * Generated from protobuf field <code>.google.monitoring.v3.NotificationChannel notification_channel = 3;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.NotificationChannel notification_channel = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Monitoring\V3\NotificationChannel
      */
     public function getNotificationChannel()
@@ -92,12 +92,12 @@ class UpdateNotificationChannelRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A description of the changes to be applied to the specified
+     * Required. A description of the changes to be applied to the specified
      * notification channel. The description must provide a definition for
      * fields to be updated; the names of these fields should also be
      * included in the `update_mask`.
      *
-     * Generated from protobuf field <code>.google.monitoring.v3.NotificationChannel notification_channel = 3;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.NotificationChannel notification_channel = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Monitoring\V3\NotificationChannel $var
      * @return $this
      */

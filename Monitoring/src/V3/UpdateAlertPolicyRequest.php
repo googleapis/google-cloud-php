@@ -44,7 +44,7 @@ class UpdateAlertPolicyRequest extends \Google\Protobuf\Internal\Message
      * If `update_mask` is not empty, any fields in this policy that are
      * not in `update_mask` are ignored.
      *
-     * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy alert_policy = 3;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy alert_policy = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $alert_policy = null;
 
@@ -151,7 +151,7 @@ class UpdateAlertPolicyRequest extends \Google\Protobuf\Internal\Message
      * If `update_mask` is not empty, any fields in this policy that are
      * not in `update_mask` are ignored.
      *
-     * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy alert_policy = 3;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy alert_policy = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Monitoring\V3\AlertPolicy
      */
     public function getAlertPolicy()
@@ -165,7 +165,7 @@ class UpdateAlertPolicyRequest extends \Google\Protobuf\Internal\Message
      * If `update_mask` is not empty, any fields in this policy that are
      * not in `update_mask` are ignored.
      *
-     * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy alert_policy = 3;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy alert_policy = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Monitoring\V3\AlertPolicy $var
      * @return $this
      */

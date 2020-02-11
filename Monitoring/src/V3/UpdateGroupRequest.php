@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateGroupRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The new definition of the group.  All fields of the existing group,
+     * Required. The new definition of the group.  All fields of the existing group,
      * excepting `name`, are replaced with the corresponding fields of this group.
      *
-     * Generated from protobuf field <code>.google.monitoring.v3.Group group = 2;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.Group group = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $group = null;
     /**
@@ -36,7 +36,7 @@ class UpdateGroupRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Monitoring\V3\Group $group
-     *           The new definition of the group.  All fields of the existing group,
+     *           Required. The new definition of the group.  All fields of the existing group,
      *           excepting `name`, are replaced with the corresponding fields of this group.
      *     @type bool $validate_only
      *           If true, validate this request but do not update the existing group.
@@ -48,10 +48,10 @@ class UpdateGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The new definition of the group.  All fields of the existing group,
+     * Required. The new definition of the group.  All fields of the existing group,
      * excepting `name`, are replaced with the corresponding fields of this group.
      *
-     * Generated from protobuf field <code>.google.monitoring.v3.Group group = 2;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.Group group = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Monitoring\V3\Group
      */
     public function getGroup()
@@ -60,10 +60,10 @@ class UpdateGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The new definition of the group.  All fields of the existing group,
+     * Required. The new definition of the group.  All fields of the existing group,
      * excepting `name`, are replaced with the corresponding fields of this group.
      *
-     * Generated from protobuf field <code>.google.monitoring.v3.Group group = 2;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.Group group = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Monitoring\V3\Group $var
      * @return $this
      */

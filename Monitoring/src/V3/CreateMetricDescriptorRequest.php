@@ -16,17 +16,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The project on which to execute the request. The format is
+     * Required. The project on which to execute the request. The format is
      * `"projects/{project_id_or_number}"`.
      *
-     * Generated from protobuf field <code>string name = 3;</code>
+     * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
-     * The new [custom metric](/monitoring/custom-metrics)
+     * Required. The new [custom metric](/monitoring/custom-metrics)
      * descriptor.
      *
-     * Generated from protobuf field <code>.google.api.MetricDescriptor metric_descriptor = 2;</code>
+     * Generated from protobuf field <code>.google.api.MetricDescriptor metric_descriptor = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $metric_descriptor = null;
 
@@ -37,10 +37,10 @@ class CreateMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The project on which to execute the request. The format is
+     *           Required. The project on which to execute the request. The format is
      *           `"projects/{project_id_or_number}"`.
      *     @type \Google\Api\MetricDescriptor $metric_descriptor
-     *           The new [custom metric](/monitoring/custom-metrics)
+     *           Required. The new [custom metric](/monitoring/custom-metrics)
      *           descriptor.
      * }
      */
@@ -50,10 +50,10 @@ class CreateMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project on which to execute the request. The format is
+     * Required. The project on which to execute the request. The format is
      * `"projects/{project_id_or_number}"`.
      *
-     * Generated from protobuf field <code>string name = 3;</code>
+     * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -62,10 +62,10 @@ class CreateMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project on which to execute the request. The format is
+     * Required. The project on which to execute the request. The format is
      * `"projects/{project_id_or_number}"`.
      *
-     * Generated from protobuf field <code>string name = 3;</code>
+     * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -78,10 +78,10 @@ class CreateMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The new [custom metric](/monitoring/custom-metrics)
+     * Required. The new [custom metric](/monitoring/custom-metrics)
      * descriptor.
      *
-     * Generated from protobuf field <code>.google.api.MetricDescriptor metric_descriptor = 2;</code>
+     * Generated from protobuf field <code>.google.api.MetricDescriptor metric_descriptor = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Api\MetricDescriptor
      */
     public function getMetricDescriptor()
@@ -90,10 +90,10 @@ class CreateMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The new [custom metric](/monitoring/custom-metrics)
+     * Required. The new [custom metric](/monitoring/custom-metrics)
      * descriptor.
      *
-     * Generated from protobuf field <code>.google.api.MetricDescriptor metric_descriptor = 2;</code>
+     * Generated from protobuf field <code>.google.api.MetricDescriptor metric_descriptor = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Api\MetricDescriptor $var
      * @return $this
      */

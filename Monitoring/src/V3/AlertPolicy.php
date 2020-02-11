@@ -66,13 +66,17 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      * OR according to the `combiner` field. If the combined conditions evaluate
      * to true, then an incident is created. A policy can have from one to six
      * conditions.
+     * If |condition_time_series_uery_language| is present, it must be the only
+     * |condition|.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.AlertPolicy.Condition conditions = 12;</code>
      */
     private $conditions;
     /**
-     * How to combine the results of multiple conditions
-     * to determine if an incident should be opened.
+     * How to combine the results of multiple conditions to determine if an
+     * incident should be opened.
+     * If condition_time_series_query_language is present, this must be
+     * COMBINE_UNSPECIFIED.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.ConditionCombinerType combiner = 6;</code>
      */
@@ -161,9 +165,13 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      *           OR according to the `combiner` field. If the combined conditions evaluate
      *           to true, then an incident is created. A policy can have from one to six
      *           conditions.
+     *           If |condition_time_series_uery_language| is present, it must be the only
+     *           |condition|.
      *     @type int $combiner
-     *           How to combine the results of multiple conditions
-     *           to determine if an incident should be opened.
+     *           How to combine the results of multiple conditions to determine if an
+     *           incident should be opened.
+     *           If condition_time_series_query_language is present, this must be
+     *           COMBINE_UNSPECIFIED.
      *     @type \Google\Protobuf\BoolValue $enabled
      *           Whether or not the policy is enabled. On write, the default interpretation
      *           if unset is that the policy is enabled. On read, clients should not make
@@ -343,6 +351,8 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      * OR according to the `combiner` field. If the combined conditions evaluate
      * to true, then an incident is created. A policy can have from one to six
      * conditions.
+     * If |condition_time_series_uery_language| is present, it must be the only
+     * |condition|.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.AlertPolicy.Condition conditions = 12;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -357,6 +367,8 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      * OR according to the `combiner` field. If the combined conditions evaluate
      * to true, then an incident is created. A policy can have from one to six
      * conditions.
+     * If |condition_time_series_uery_language| is present, it must be the only
+     * |condition|.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.AlertPolicy.Condition conditions = 12;</code>
      * @param \Google\Cloud\Monitoring\V3\AlertPolicy\Condition[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -371,8 +383,10 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * How to combine the results of multiple conditions
-     * to determine if an incident should be opened.
+     * How to combine the results of multiple conditions to determine if an
+     * incident should be opened.
+     * If condition_time_series_query_language is present, this must be
+     * COMBINE_UNSPECIFIED.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.ConditionCombinerType combiner = 6;</code>
      * @return int
@@ -383,8 +397,10 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * How to combine the results of multiple conditions
-     * to determine if an incident should be opened.
+     * How to combine the results of multiple conditions to determine if an
+     * incident should be opened.
+     * If condition_time_series_query_language is present, this must be
+     * COMBINE_UNSPECIFIED.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.ConditionCombinerType combiner = 6;</code>
      * @param int $var
@@ -427,8 +443,7 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      */
     public function getEnabledValue()
     {
-        $wrapper = $this->getEnabled();
-        return is_null($wrapper) ? null : $wrapper->getValue();
+        return $this->readWrapperValue("enabled");
     }
 
     /**
@@ -465,9 +480,8 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      */
     public function setEnabledValue($var)
     {
-        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
-        return $this->setEnabled($wrappedVar);
-    }
+        $this->writeWrapperValue("enabled", $var);
+        return $this;}
 
     /**
      * Read-only description of how the alert policy is invalid. OK if the alert

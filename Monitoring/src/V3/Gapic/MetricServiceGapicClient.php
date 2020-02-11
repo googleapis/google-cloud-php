@@ -375,7 +375,7 @@ class MetricServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The project on which to execute the request. The format is
+     * @param string $name         Required. The project on which to execute the request. The format is
      *                             `"projects/{project_id_or_number}"`.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -452,7 +452,7 @@ class MetricServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The monitored resource descriptor to get.  The format is
+     * @param string $name         Required. The monitored resource descriptor to get.  The format is
      *                             `"projects/{project_id_or_number}/monitoredResourceDescriptors/{resource_type}"`.
      *                             The `{resource_type}` is a predefined type, such as
      *                             `cloudsql_database`.
@@ -520,7 +520,7 @@ class MetricServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The project on which to execute the request. The format is
+     * @param string $name         Required. The project on which to execute the request. The format is
      *                             `"projects/{project_id_or_number}"`.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -598,7 +598,7 @@ class MetricServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The metric descriptor on which to execute the request. The format is
+     * @param string $name         Required. The metric descriptor on which to execute the request. The format is
      *                             `"projects/{project_id_or_number}/metricDescriptors/{metric_id}"`.
      *                             An example value of `{metric_id}` is
      *                             `"compute.googleapis.com/instance/disk/read_bytes_count"`.
@@ -654,9 +654,9 @@ class MetricServiceGapicClient
      * }
      * ```
      *
-     * @param string           $name             The project on which to execute the request. The format is
+     * @param string           $name             Required. The project on which to execute the request. The format is
      *                                           `"projects/{project_id_or_number}"`.
-     * @param MetricDescriptor $metricDescriptor The new [custom metric](https://cloud.google.com/monitoring/custom-metrics)
+     * @param MetricDescriptor $metricDescriptor Required. The new [custom metric](https://cloud.google.com/monitoring/custom-metrics)
      *                                           descriptor.
      * @param array            $optionalArgs     {
      *                                           Optional.
@@ -709,7 +709,7 @@ class MetricServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The metric descriptor on which to execute the request. The format is
+     * @param string $name         Required. The metric descriptor on which to execute the request. The format is
      *                             `"projects/{project_id_or_number}/metricDescriptors/{metric_id}"`.
      *                             An example of `{metric_id}` is:
      *                             `"custom.googleapis.com/my_test_metric"`.
@@ -778,30 +778,32 @@ class MetricServiceGapicClient
      * }
      * ```
      *
-     * @param string $name   The project on which to execute the request. The format is
+     * @param string $name   Required. The project on which to execute the request. The format is
      *                       "projects/{project_id_or_number}".
-     * @param string $filter A [monitoring filter](https://cloud.google.com/monitoring/api/v3/filters) that specifies which time
+     * @param string $filter Required. A [monitoring filter](https://cloud.google.com/monitoring/api/v3/filters) that specifies which time
      *                       series should be returned.  The filter must specify a single metric type,
      *                       and can additionally specify metric labels and other information. For
      *                       example:
      *
      *     metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND
      *         metric.labels.instance_name = "my-instance-name"
-     * @param TimeInterval $interval     The time interval for which results should be returned. Only time series
+     * @param TimeInterval $interval     Required. The time interval for which results should be returned. Only time series
      *                                   that contain data points in the specified interval are included
      *                                   in the response.
-     * @param int          $view         Specifies which information is returned about the time series.
+     * @param int          $view         Required. Specifies which information is returned about the time series.
      *                                   For allowed values, use constants defined on {@see \Google\Cloud\Monitoring\V3\ListTimeSeriesRequest\TimeSeriesView}
      * @param array        $optionalArgs {
      *                                   Optional.
      *
      *     @type Aggregation $aggregation
-     *          By default, the raw time series data is returned.
-     *          Use this field to combine multiple time series for different
-     *          views of the data.
+     *          Specifies the alignment of data points in individual time series as
+     *          well as how to combine the retrieved time series across specified labels.
+     *
+     *          By default (if no `aggregation` is explicitly specified), the raw time
+     *          series data is returned.
      *     @type string $orderBy
      *          Unsupported: must be left blank. The points in each time series are
-     *          returned in reverse time order.
+     *          currently returned in reverse time order (most recent to oldest).
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
      *          response. The API may return fewer values in a page, even if
@@ -876,9 +878,9 @@ class MetricServiceGapicClient
      * }
      * ```
      *
-     * @param string       $name       The project on which to execute the request. The format is
+     * @param string       $name       Required. The project on which to execute the request. The format is
      *                                 `"projects/{project_id_or_number}"`.
-     * @param TimeSeries[] $timeSeries The new data to be added to a list of time series.
+     * @param TimeSeries[] $timeSeries Required. The new data to be added to a list of time series.
      *                                 Adds at most one data point to each of several time series.  The new data
      *                                 point must be more recent than any other point in its time series.  Each
      *                                 `TimeSeries` value must fully specify a unique time series by supplying

@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetAlertPolicyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The alerting policy to retrieve. The format is
+     * Required. The alerting policy to retrieve. The format is
      *     projects/[PROJECT_ID]/alertPolicies/[ALERT_POLICY_ID]
      *
-     * Generated from protobuf field <code>string name = 3;</code>
+     * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
 
@@ -30,7 +30,7 @@ class GetAlertPolicyRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The alerting policy to retrieve. The format is
+     *           Required. The alerting policy to retrieve. The format is
      *               projects/[PROJECT_ID]/alertPolicies/[ALERT_POLICY_ID]
      * }
      */
@@ -40,10 +40,10 @@ class GetAlertPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The alerting policy to retrieve. The format is
+     * Required. The alerting policy to retrieve. The format is
      *     projects/[PROJECT_ID]/alertPolicies/[ALERT_POLICY_ID]
      *
-     * Generated from protobuf field <code>string name = 3;</code>
+     * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -52,10 +52,10 @@ class GetAlertPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The alerting policy to retrieve. The format is
+     * Required. The alerting policy to retrieve. The format is
      *     projects/[PROJECT_ID]/alertPolicies/[ALERT_POLICY_ID]
      *
-     * Generated from protobuf field <code>string name = 3;</code>
+     * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

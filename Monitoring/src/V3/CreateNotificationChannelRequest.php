@@ -16,20 +16,20 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateNotificationChannelRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The project on which to execute the request. The format is:
+     * Required. The project on which to execute the request. The format is:
      *     projects/[PROJECT_ID]
      * Note that this names the container into which the channel will be
      * written. This does not name the newly created channel. The resulting
      * channel's name will have a normalized version of this field as a prefix,
      * but will add `/notificationChannels/[CHANNEL_ID]` to identify the channel.
      *
-     * Generated from protobuf field <code>string name = 3;</code>
+     * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
-     * The definition of the `NotificationChannel` to create.
+     * Required. The definition of the `NotificationChannel` to create.
      *
-     * Generated from protobuf field <code>.google.monitoring.v3.NotificationChannel notification_channel = 2;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.NotificationChannel notification_channel = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $notification_channel = null;
 
@@ -40,14 +40,14 @@ class CreateNotificationChannelRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The project on which to execute the request. The format is:
+     *           Required. The project on which to execute the request. The format is:
      *               projects/[PROJECT_ID]
      *           Note that this names the container into which the channel will be
      *           written. This does not name the newly created channel. The resulting
      *           channel's name will have a normalized version of this field as a prefix,
      *           but will add `/notificationChannels/[CHANNEL_ID]` to identify the channel.
      *     @type \Google\Cloud\Monitoring\V3\NotificationChannel $notification_channel
-     *           The definition of the `NotificationChannel` to create.
+     *           Required. The definition of the `NotificationChannel` to create.
      * }
      */
     public function __construct($data = NULL) {
@@ -56,14 +56,14 @@ class CreateNotificationChannelRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project on which to execute the request. The format is:
+     * Required. The project on which to execute the request. The format is:
      *     projects/[PROJECT_ID]
      * Note that this names the container into which the channel will be
      * written. This does not name the newly created channel. The resulting
      * channel's name will have a normalized version of this field as a prefix,
      * but will add `/notificationChannels/[CHANNEL_ID]` to identify the channel.
      *
-     * Generated from protobuf field <code>string name = 3;</code>
+     * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -72,14 +72,14 @@ class CreateNotificationChannelRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project on which to execute the request. The format is:
+     * Required. The project on which to execute the request. The format is:
      *     projects/[PROJECT_ID]
      * Note that this names the container into which the channel will be
      * written. This does not name the newly created channel. The resulting
      * channel's name will have a normalized version of this field as a prefix,
      * but will add `/notificationChannels/[CHANNEL_ID]` to identify the channel.
      *
-     * Generated from protobuf field <code>string name = 3;</code>
+     * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -92,9 +92,9 @@ class CreateNotificationChannelRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The definition of the `NotificationChannel` to create.
+     * Required. The definition of the `NotificationChannel` to create.
      *
-     * Generated from protobuf field <code>.google.monitoring.v3.NotificationChannel notification_channel = 2;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.NotificationChannel notification_channel = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Monitoring\V3\NotificationChannel
      */
     public function getNotificationChannel()
@@ -103,9 +103,9 @@ class CreateNotificationChannelRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The definition of the `NotificationChannel` to create.
+     * Required. The definition of the `NotificationChannel` to create.
      *
-     * Generated from protobuf field <code>.google.monitoring.v3.NotificationChannel notification_channel = 2;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.NotificationChannel notification_channel = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Monitoring\V3\NotificationChannel $var
      * @return $this
      */

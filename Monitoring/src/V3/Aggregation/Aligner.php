@@ -7,212 +7,215 @@ namespace Google\Cloud\Monitoring\V3\Aggregation;
 use UnexpectedValueException;
 
 /**
- * The Aligner describes how to bring the data points in a single
- * time series into temporal alignment.
+ * The `Aligner` specifies the operation that will be applied to the data
+ * points in each alignment period in a time series. Except for
+ * `ALIGN_NONE`, which specifies that no operation be applied, each alignment
+ * operation replaces the set of data values in each alignment period with
+ * a single value: the result of applying the operation to the data values.
+ * An aligned time series has a single data value at the end of each
+ * `alignment_period`.
+ * An alignment operation can change the data type of the values, too. For
+ * example, if you apply a counting operation to boolean values, the data
+ * `value_type` in the original time series is `BOOLEAN`, but the `value_type`
+ * in the aligned result is `INT64`.
  *
  * Protobuf type <code>google.monitoring.v3.Aggregation.Aligner</code>
  */
 class Aligner
 {
     /**
-     * No alignment. Raw data is returned. Not valid if cross-time
-     * series reduction is requested. The value type of the result is
-     * the same as the value type of the input.
+     * No alignment. Raw data is returned. Not valid if cross-series reduction
+     * is requested. The `value_type` of the result is the same as the
+     * `value_type` of the input.
      *
      * Generated from protobuf enum <code>ALIGN_NONE = 0;</code>
      */
     const ALIGN_NONE = 0;
     /**
-     * Align and convert to delta metric type. This alignment is valid
-     * for cumulative metrics and delta metrics. Aligning an existing
-     * delta metric to a delta metric requires that the alignment
-     * period be increased. The value type of the result is the same
-     * as the value type of the input.
-     * One can think of this aligner as a rate but without time units; that
-     * is, the output is conceptually (second_point - first_point).
+     * Align and convert to
+     * [DELTA][google.api.MetricDescriptor.MetricKind.DELTA].
+     * The output is `delta = y1 - y0`.
+     * This alignment is valid for
+     * [CUMULATIVE][google.api.MetricDescriptor.MetricKind.CUMULATIVE] and
+     * `DELTA` metrics. If the selected alignment period results in periods
+     * with no data, then the aligned value for such a period is created by
+     * interpolation. The `value_type`  of the aligned result is the same as
+     * the `value_type` of the input.
      *
      * Generated from protobuf enum <code>ALIGN_DELTA = 1;</code>
      */
     const ALIGN_DELTA = 1;
     /**
-     * Align and convert to a rate. This alignment is valid for
-     * cumulative metrics and delta metrics with numeric values. The output is a
-     * gauge metric with value type
-     * [DOUBLE][google.api.MetricDescriptor.ValueType.DOUBLE].
-     * One can think of this aligner as conceptually providing the slope of
-     * the line that passes through the value at the start and end of the
-     * window. In other words, this is conceptually ((y1 - y0)/(t1 - t0)),
-     * and the output unit is one that has a "/time" dimension.
-     * If, by rate, you are looking for percentage change, see the
-     * `ALIGN_PERCENT_CHANGE` aligner option.
+     * Align and convert to a rate. The result is computed as
+     * `rate = (y1 - y0)/(t1 - t0)`, or "delta over time".
+     * Think of this aligner as providing the slope of the line that passes
+     * through the value at the start and at the end of the `alignment_period`.
+     * This aligner is valid for `CUMULATIVE`
+     * and `DELTA` metrics with numeric values. If the selected alignment
+     * period results in periods with no data, then the aligned value for
+     * such a period is created by interpolation. The output is a `GAUGE`
+     * metric with `value_type` `DOUBLE`.
+     * If, by "rate", you mean "percentage change", see the
+     * `ALIGN_PERCENT_CHANGE` aligner instead.
      *
      * Generated from protobuf enum <code>ALIGN_RATE = 2;</code>
      */
     const ALIGN_RATE = 2;
     /**
-     * Align by interpolating between adjacent points around the
-     * period boundary. This alignment is valid for gauge
-     * metrics with numeric values. The value type of the result is the same
-     * as the value type of the input.
+     * Align by interpolating between adjacent points around the alignment
+     * period boundary. This aligner is valid for `GAUGE` metrics with
+     * numeric values. The `value_type` of the aligned result is the same as the
+     * `value_type` of the input.
      *
      * Generated from protobuf enum <code>ALIGN_INTERPOLATE = 3;</code>
      */
     const ALIGN_INTERPOLATE = 3;
     /**
-     * Align by shifting the oldest data point before the period
-     * boundary to the boundary. This alignment is valid for gauge
-     * metrics. The value type of the result is the same as the
-     * value type of the input.
+     * Align by moving the most recent data point before the end of the
+     * alignment period to the boundary at the end of the alignment
+     * period. This aligner is valid for `GAUGE` metrics. The `value_type` of
+     * the aligned result is the same as the `value_type` of the input.
      *
      * Generated from protobuf enum <code>ALIGN_NEXT_OLDER = 4;</code>
      */
     const ALIGN_NEXT_OLDER = 4;
     /**
-     * Align time series via aggregation. The resulting data point in
-     * the alignment period is the minimum of all data points in the
-     * period. This alignment is valid for gauge and delta metrics with numeric
-     * values. The value type of the result is the same as the value
-     * type of the input.
+     * Align the time series by returning the minimum value in each alignment
+     * period. This aligner is valid for `GAUGE` and `DELTA` metrics with
+     * numeric values. The `value_type` of the aligned result is the same as
+     * the `value_type` of the input.
      *
      * Generated from protobuf enum <code>ALIGN_MIN = 10;</code>
      */
     const ALIGN_MIN = 10;
     /**
-     * Align time series via aggregation. The resulting data point in
-     * the alignment period is the maximum of all data points in the
-     * period. This alignment is valid for gauge and delta metrics with numeric
-     * values. The value type of the result is the same as the value
-     * type of the input.
+     * Align the time series by returning the maximum value in each alignment
+     * period. This aligner is valid for `GAUGE` and `DELTA` metrics with
+     * numeric values. The `value_type` of the aligned result is the same as
+     * the `value_type` of the input.
      *
      * Generated from protobuf enum <code>ALIGN_MAX = 11;</code>
      */
     const ALIGN_MAX = 11;
     /**
-     * Align time series via aggregation. The resulting data point in
-     * the alignment period is the average or arithmetic mean of all
-     * data points in the period. This alignment is valid for gauge and delta
-     * metrics with numeric values. The value type of the output is
-     * [DOUBLE][google.api.MetricDescriptor.ValueType.DOUBLE].
+     * Align the time series by returning the mean value in each alignment
+     * period. This aligner is valid for `GAUGE` and `DELTA` metrics with
+     * numeric values. The `value_type` of the aligned result is `DOUBLE`.
      *
      * Generated from protobuf enum <code>ALIGN_MEAN = 12;</code>
      */
     const ALIGN_MEAN = 12;
     /**
-     * Align time series via aggregation. The resulting data point in
-     * the alignment period is the count of all data points in the
-     * period. This alignment is valid for gauge and delta metrics with numeric
-     * or Boolean values. The value type of the output is
-     * [INT64][google.api.MetricDescriptor.ValueType.INT64].
+     * Align the time series by returning the number of values in each alignment
+     * period. This aligner is valid for `GAUGE` and `DELTA` metrics with
+     * numeric or Boolean values. The `value_type` of the aligned result is
+     * `INT64`.
      *
      * Generated from protobuf enum <code>ALIGN_COUNT = 13;</code>
      */
     const ALIGN_COUNT = 13;
     /**
-     * Align time series via aggregation. The resulting data point in
-     * the alignment period is the sum of all data points in the
-     * period. This alignment is valid for gauge and delta metrics with numeric
-     * and distribution values. The value type of the output is the
-     * same as the value type of the input.
+     * Align the time series by returning the sum of the values in each
+     * alignment period. This aligner is valid for `GAUGE` and `DELTA`
+     * metrics with numeric and distribution values. The `value_type` of the
+     * aligned result is the same as the `value_type` of the input.
      *
      * Generated from protobuf enum <code>ALIGN_SUM = 14;</code>
      */
     const ALIGN_SUM = 14;
     /**
-     * Align time series via aggregation. The resulting data point in
-     * the alignment period is the standard deviation of all data
-     * points in the period. This alignment is valid for gauge and delta metrics
-     * with numeric values. The value type of the output is
-     * [DOUBLE][google.api.MetricDescriptor.ValueType.DOUBLE].
+     * Align the time series by returning the standard deviation of the values
+     * in each alignment period. This aligner is valid for `GAUGE` and
+     * `DELTA` metrics with numeric values. The `value_type` of the output is
+     * `DOUBLE`.
      *
      * Generated from protobuf enum <code>ALIGN_STDDEV = 15;</code>
      */
     const ALIGN_STDDEV = 15;
     /**
-     * Align time series via aggregation. The resulting data point in
-     * the alignment period is the count of True-valued data points in the
-     * period. This alignment is valid for gauge metrics with
-     * Boolean values. The value type of the output is
-     * [INT64][google.api.MetricDescriptor.ValueType.INT64].
+     * Align the time series by returning the number of `True` values in
+     * each alignment period. This aligner is valid for `GAUGE` metrics with
+     * Boolean values. The `value_type` of the output is `INT64`.
      *
      * Generated from protobuf enum <code>ALIGN_COUNT_TRUE = 16;</code>
      */
     const ALIGN_COUNT_TRUE = 16;
     /**
-     * Align time series via aggregation. The resulting data point in
-     * the alignment period is the count of False-valued data points in the
-     * period. This alignment is valid for gauge metrics with
-     * Boolean values. The value type of the output is
-     * [INT64][google.api.MetricDescriptor.ValueType.INT64].
+     * Align the time series by returning the number of `False` values in
+     * each alignment period. This aligner is valid for `GAUGE` metrics with
+     * Boolean values. The `value_type` of the output is `INT64`.
      *
      * Generated from protobuf enum <code>ALIGN_COUNT_FALSE = 24;</code>
      */
     const ALIGN_COUNT_FALSE = 24;
     /**
-     * Align time series via aggregation. The resulting data point in
-     * the alignment period is the fraction of True-valued data points in the
-     * period. This alignment is valid for gauge metrics with Boolean values.
-     * The output value is in the range [0, 1] and has value type
-     * [DOUBLE][google.api.MetricDescriptor.ValueType.DOUBLE].
+     * Align the time series by returning the ratio of the number of `True`
+     * values to the total number of values in each alignment period. This
+     * aligner is valid for `GAUGE` metrics with Boolean values. The output
+     * value is in the range [0.0, 1.0] and has `value_type` `DOUBLE`.
      *
      * Generated from protobuf enum <code>ALIGN_FRACTION_TRUE = 17;</code>
      */
     const ALIGN_FRACTION_TRUE = 17;
     /**
-     * Align time series via aggregation. The resulting data point in
-     * the alignment period is the 99th percentile of all data
-     * points in the period. This alignment is valid for gauge and delta metrics
-     * with distribution values. The output is a gauge metric with value type
-     * [DOUBLE][google.api.MetricDescriptor.ValueType.DOUBLE].
+     * Align the time series by using [percentile
+     * aggregation](https://en.wikipedia.org/wiki/Percentile). The resulting
+     * data point in each alignment period is the 99th percentile of all data
+     * points in the period. This aligner is valid for `GAUGE` and `DELTA`
+     * metrics with distribution values. The output is a `GAUGE` metric with
+     * `value_type` `DOUBLE`.
      *
      * Generated from protobuf enum <code>ALIGN_PERCENTILE_99 = 18;</code>
      */
     const ALIGN_PERCENTILE_99 = 18;
     /**
-     * Align time series via aggregation. The resulting data point in
-     * the alignment period is the 95th percentile of all data
-     * points in the period. This alignment is valid for gauge and delta metrics
-     * with distribution values. The output is a gauge metric with value type
-     * [DOUBLE][google.api.MetricDescriptor.ValueType.DOUBLE].
+     * Align the time series by using [percentile
+     * aggregation](https://en.wikipedia.org/wiki/Percentile). The resulting
+     * data point in each alignment period is the 95th percentile of all data
+     * points in the period. This aligner is valid for `GAUGE` and `DELTA`
+     * metrics with distribution values. The output is a `GAUGE` metric with
+     * `value_type` `DOUBLE`.
      *
      * Generated from protobuf enum <code>ALIGN_PERCENTILE_95 = 19;</code>
      */
     const ALIGN_PERCENTILE_95 = 19;
     /**
-     * Align time series via aggregation. The resulting data point in
-     * the alignment period is the 50th percentile of all data
-     * points in the period. This alignment is valid for gauge and delta metrics
-     * with distribution values. The output is a gauge metric with value type
-     * [DOUBLE][google.api.MetricDescriptor.ValueType.DOUBLE].
+     * Align the time series by using [percentile
+     * aggregation](https://en.wikipedia.org/wiki/Percentile). The resulting
+     * data point in each alignment period is the 50th percentile of all data
+     * points in the period. This aligner is valid for `GAUGE` and `DELTA`
+     * metrics with distribution values. The output is a `GAUGE` metric with
+     * `value_type` `DOUBLE`.
      *
      * Generated from protobuf enum <code>ALIGN_PERCENTILE_50 = 20;</code>
      */
     const ALIGN_PERCENTILE_50 = 20;
     /**
-     * Align time series via aggregation. The resulting data point in
-     * the alignment period is the 5th percentile of all data
-     * points in the period. This alignment is valid for gauge and delta metrics
-     * with distribution values. The output is a gauge metric with value type
-     * [DOUBLE][google.api.MetricDescriptor.ValueType.DOUBLE].
+     * Align the time series by using [percentile
+     * aggregation](https://en.wikipedia.org/wiki/Percentile). The resulting
+     * data point in each alignment period is the 5th percentile of all data
+     * points in the period. This aligner is valid for `GAUGE` and `DELTA`
+     * metrics with distribution values. The output is a `GAUGE` metric with
+     * `value_type` `DOUBLE`.
      *
      * Generated from protobuf enum <code>ALIGN_PERCENTILE_05 = 21;</code>
      */
     const ALIGN_PERCENTILE_05 = 21;
     /**
-     * Align and convert to a percentage change. This alignment is valid for
-     * gauge and delta metrics with numeric values. This alignment conceptually
-     * computes the equivalent of "((current - previous)/previous)*100"
-     * where previous value is determined based on the alignmentPeriod.
-     * In the event that previous is 0 the calculated value is infinity with the
-     * exception that if both (current - previous) and previous are 0 the
-     * calculated value is 0.
-     * A 10 minute moving mean is computed at each point of the time window
+     * Align and convert to a percentage change. This aligner is valid for
+     * `GAUGE` and `DELTA` metrics with numeric values. This alignment returns
+     * `((current - previous)/previous) * 100`, where the value of `previous` is
+     * determined based on the `alignment_period`.
+     * If the values of `current` and `previous` are both 0, then the returned
+     * value is 0. If only `previous` is 0, the returned value is infinity.
+     * A 10-minute moving mean is computed at each point of the alignment period
      * prior to the above calculation to smooth the metric and prevent false
-     * positives from very short lived spikes.
-     * Only applicable for data that is >= 0. Any values < 0 are treated as
-     * no data. While delta metrics are accepted by this alignment special care
-     * should be taken that the values for the metric will always be positive.
-     * The output is a gauge metric with value type
-     * [DOUBLE][google.api.MetricDescriptor.ValueType.DOUBLE].
+     * positives from very short-lived spikes. The moving mean is only
+     * applicable for data whose values are `>= 0`. Any values `< 0` are
+     * treated as a missing datapoint, and are ignored. While `DELTA`
+     * metrics are accepted by this alignment, special care should be taken that
+     * the values for the metric will always be positive. The output is a
+     * `GAUGE` metric with `value_type` `DOUBLE`.
      *
      * Generated from protobuf enum <code>ALIGN_PERCENT_CHANGE = 23;</code>
      */

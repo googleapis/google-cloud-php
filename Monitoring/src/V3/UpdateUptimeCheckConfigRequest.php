@@ -36,7 +36,7 @@ class UpdateUptimeCheckConfigRequest extends \Google\Protobuf\Internal\Message
      * `http_check`, `tcp_check`, `timeout`, `content_matchers`, and
      * `selected_regions`.
      *
-     * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig uptime_check_config = 3;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig uptime_check_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $uptime_check_config = null;
 
@@ -113,7 +113,7 @@ class UpdateUptimeCheckConfigRequest extends \Google\Protobuf\Internal\Message
      * `http_check`, `tcp_check`, `timeout`, `content_matchers`, and
      * `selected_regions`.
      *
-     * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig uptime_check_config = 3;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig uptime_check_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Monitoring\V3\UptimeCheckConfig
      */
     public function getUptimeCheckConfig()
@@ -133,7 +133,7 @@ class UpdateUptimeCheckConfigRequest extends \Google\Protobuf\Internal\Message
      * `http_check`, `tcp_check`, `timeout`, `content_matchers`, and
      * `selected_regions`.
      *
-     * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig uptime_check_config = 3;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig uptime_check_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Monitoring\V3\UptimeCheckConfig $var
      * @return $this
      */

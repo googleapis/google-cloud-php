@@ -22,8 +22,8 @@ class ContentMatcherOption
      */
     const CONTENT_MATCHER_OPTION_UNSPECIFIED = 0;
     /**
-     * Selects substring matching (there is a match if the output contains
-     * the `content` string).  This is the default value for checks without
+     * Selects substring matching. The match succeeds if the output contains
+     * the `content` string.  This is the default value for checks without
      * a `matcher` option, or where the value of `matcher` is
      * `CONTENT_MATCHER_OPTION_UNSPECIFIED`.
      *
@@ -31,23 +31,23 @@ class ContentMatcherOption
      */
     const CONTAINS_STRING = 1;
     /**
-     * Selects negation of substring matching (there is a match if the output
-     * does NOT contain the `content` string).
+     * Selects negation of substring matching. The match succeeds if the
+     * output does _NOT_ contain the `content` string.
      *
      * Generated from protobuf enum <code>NOT_CONTAINS_STRING = 2;</code>
      */
     const NOT_CONTAINS_STRING = 2;
     /**
-     * Selects regular expression matching (there is a match of the output
-     * matches the regular expression specified in the `content` string).
+     * Selects regular-expression matching. The match succeeds of the output
+     * matches the regular expression specified in the `content` string.
      *
      * Generated from protobuf enum <code>MATCHES_REGEX = 3;</code>
      */
     const MATCHES_REGEX = 3;
     /**
-     * Selects negation of regular expression matching (there is a match if
-     * the output does NOT match the regular expression specified in the
-     * `content` string).
+     * Selects negation of regular-expression matching. The match succeeds if
+     * the output does _NOT_ match the regular expression specified in the
+     * `content` string.
      *
      * Generated from protobuf enum <code>NOT_MATCHES_REGEX = 4;</code>
      */

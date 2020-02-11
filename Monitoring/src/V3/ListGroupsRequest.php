@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListGroupsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The project whose groups are to be listed. The format is
+     * Required. The project whose groups are to be listed. The format is
      * `"projects/{project_id_or_number}"`.
      *
-     * Generated from protobuf field <code>string name = 7;</code>
+     * Generated from protobuf field <code>string name = 7 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
@@ -45,7 +45,7 @@ class ListGroupsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The project whose groups are to be listed. The format is
+     *           Required. The project whose groups are to be listed. The format is
      *           `"projects/{project_id_or_number}"`.
      *     @type string $children_of_group
      *           A group name: `"projects/{project_id_or_number}/groups/{group_id}"`.
@@ -76,10 +76,10 @@ class ListGroupsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project whose groups are to be listed. The format is
+     * Required. The project whose groups are to be listed. The format is
      * `"projects/{project_id_or_number}"`.
      *
-     * Generated from protobuf field <code>string name = 7;</code>
+     * Generated from protobuf field <code>string name = 7 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -88,10 +88,10 @@ class ListGroupsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project whose groups are to be listed. The format is
+     * Required. The project whose groups are to be listed. The format is
      * `"projects/{project_id_or_number}"`.
      *
-     * Generated from protobuf field <code>string name = 7;</code>
+     * Generated from protobuf field <code>string name = 7 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -108,7 +108,7 @@ class ListGroupsRequest extends \Google\Protobuf\Internal\Message
      * Returns groups whose `parentName` field contains the group
      * name.  If no groups have this parent, the results are empty.
      *
-     * Generated from protobuf field <code>string children_of_group = 2;</code>
+     * Generated from protobuf field <code>string children_of_group = 2 [(.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getChildrenOfGroup()
@@ -121,7 +121,7 @@ class ListGroupsRequest extends \Google\Protobuf\Internal\Message
      * Returns groups whose `parentName` field contains the group
      * name.  If no groups have this parent, the results are empty.
      *
-     * Generated from protobuf field <code>string children_of_group = 2;</code>
+     * Generated from protobuf field <code>string children_of_group = 2 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -140,7 +140,7 @@ class ListGroupsRequest extends \Google\Protobuf\Internal\Message
      * ending with the most distant ancestor.  If the specified group has no
      * immediate parent, the results are empty.
      *
-     * Generated from protobuf field <code>string ancestors_of_group = 3;</code>
+     * Generated from protobuf field <code>string ancestors_of_group = 3 [(.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getAncestorsOfGroup()
@@ -155,7 +155,7 @@ class ListGroupsRequest extends \Google\Protobuf\Internal\Message
      * ending with the most distant ancestor.  If the specified group has no
      * immediate parent, the results are empty.
      *
-     * Generated from protobuf field <code>string ancestors_of_group = 3;</code>
+     * Generated from protobuf field <code>string ancestors_of_group = 3 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -173,7 +173,7 @@ class ListGroupsRequest extends \Google\Protobuf\Internal\Message
      * the results returned by the `childrenOfGroup` filter, and includes
      * children-of-children, and so forth.
      *
-     * Generated from protobuf field <code>string descendants_of_group = 4;</code>
+     * Generated from protobuf field <code>string descendants_of_group = 4 [(.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getDescendantsOfGroup()
@@ -187,7 +187,7 @@ class ListGroupsRequest extends \Google\Protobuf\Internal\Message
      * the results returned by the `childrenOfGroup` filter, and includes
      * children-of-children, and so forth.
      *
-     * Generated from protobuf field <code>string descendants_of_group = 4;</code>
+     * Generated from protobuf field <code>string descendants_of_group = 4 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

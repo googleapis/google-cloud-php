@@ -62,6 +62,12 @@ class NotificationChannelDescriptor extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.monitoring.v3.ServiceTier supported_tiers = 5 [deprecated = true];</code>
      */
     private $supported_tiers;
+    /**
+     * The product launch stage for channels of this type.
+     *
+     * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 7;</code>
+     */
+    private $launch_stage = 0;
 
     /**
      * Constructor.
@@ -90,6 +96,8 @@ class NotificationChannelDescriptor extends \Google\Protobuf\Internal\Message
      *     @type int[]|\Google\Protobuf\Internal\RepeatedField $supported_tiers
      *           The tiers that support this notification channel; the project service tier
      *           must be one of the supported_tiers.
+     *     @type int $launch_stage
+     *           The product launch stage for channels of this type.
      * }
      */
     public function __construct($data = NULL) {
@@ -267,6 +275,32 @@ class NotificationChannelDescriptor extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Cloud\Monitoring\V3\ServiceTier::class);
         $this->supported_tiers = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The product launch stage for channels of this type.
+     *
+     * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 7;</code>
+     * @return int
+     */
+    public function getLaunchStage()
+    {
+        return $this->launch_stage;
+    }
+
+    /**
+     * The product launch stage for channels of this type.
+     *
+     * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 7;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setLaunchStage($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Api\LaunchStage::class);
+        $this->launch_stage = $var;
 
         return $this;
     }
