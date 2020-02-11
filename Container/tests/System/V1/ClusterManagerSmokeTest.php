@@ -44,6 +44,6 @@ class ClusterManagerSmokeTest extends GeneratedTest
         $clusterManagerClient = new ClusterManagerClient();
         $projectId2 = $projectId;
         $zone = 'us-central1-a';
-        $clusterManagerClient->listClusters($projectId2, $zone);
+        $clusterManagerClient->listClusters(['projectId' => $projectId2, 'zone' => $zone]);
     }
 }

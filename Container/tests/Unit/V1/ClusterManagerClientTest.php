@@ -99,24 +99,13 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse = new ListClustersResponse();
         $transport->addResponse($expectedResponse);
 
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-
-        $response = $client->listClusters($projectId, $zone);
+        $response = $client->listClusters();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/ListClusters', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getProjectId();
-
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-
-        $this->assertProtobufEquals($zone, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -143,12 +132,8 @@ class ClusterManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
 
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-
         try {
-            $client->listClusters($projectId, $zone);
+            $client->listClusters();
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -183,7 +168,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $enableKubernetesAlpha = false;
         $labelFingerprint = 'labelFingerprint714995737';
         $selfLink = 'selfLink-1691268851';
-        $zone2 = 'zone2-696322977';
+        $zone = 'zone3744684';
         $endpoint = 'endpoint1741102485';
         $initialClusterVersion = 'initialClusterVersion-276373352';
         $currentMasterVersion = 'currentMasterVersion-920953983';
@@ -209,7 +194,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setEnableKubernetesAlpha($enableKubernetesAlpha);
         $expectedResponse->setLabelFingerprint($labelFingerprint);
         $expectedResponse->setSelfLink($selfLink);
-        $expectedResponse->setZone($zone2);
+        $expectedResponse->setZone($zone);
         $expectedResponse->setEndpoint($endpoint);
         $expectedResponse->setInitialClusterVersion($initialClusterVersion);
         $expectedResponse->setCurrentMasterVersion($currentMasterVersion);
@@ -225,28 +210,13 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setTpuIpv4CidrBlock($tpuIpv4CidrBlock);
         $transport->addResponse($expectedResponse);
 
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $clusterId = 'clusterId240280960';
-
-        $response = $client->getCluster($projectId, $zone, $clusterId);
+        $response = $client->getCluster();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/GetCluster', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getProjectId();
-
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-
-        $this->assertProtobufEquals($zone, $actualValue);
-        $actualValue = $actualRequestObject->getClusterId();
-
-        $this->assertProtobufEquals($clusterId, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -273,13 +243,8 @@ class ClusterManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
 
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $clusterId = 'clusterId240280960';
-
         try {
-            $client->getCluster($projectId, $zone, $clusterId);
+            $client->getCluster();
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -304,7 +269,7 @@ class ClusterManagerClientTest extends GeneratedTest
 
         // Mock response
         $name = 'name3373707';
-        $zone2 = 'zone2-696322977';
+        $zone = 'zone3744684';
         $detail = 'detail-1335224239';
         $statusMessage = 'statusMessage-239442758';
         $selfLink = 'selfLink-1691268851';
@@ -314,7 +279,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $expectedResponse = new Operation();
         $expectedResponse->setName($name);
-        $expectedResponse->setZone($zone2);
+        $expectedResponse->setZone($zone);
         $expectedResponse->setDetail($detail);
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setSelfLink($selfLink);
@@ -325,11 +290,9 @@ class ClusterManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
         $cluster = new Cluster();
 
-        $response = $client->createCluster($projectId, $zone, $cluster);
+        $response = $client->createCluster($cluster);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -337,12 +300,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/CreateCluster', $actualFuncCall);
 
-        $actualValue = $actualRequestObject->getProjectId();
-
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-
-        $this->assertProtobufEquals($zone, $actualValue);
         $actualValue = $actualRequestObject->getCluster();
 
         $this->assertProtobufEquals($cluster, $actualValue);
@@ -373,12 +330,10 @@ class ClusterManagerClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
         $cluster = new Cluster();
 
         try {
-            $client->createCluster($projectId, $zone, $cluster);
+            $client->createCluster($cluster);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -403,7 +358,7 @@ class ClusterManagerClientTest extends GeneratedTest
 
         // Mock response
         $name = 'name3373707';
-        $zone2 = 'zone2-696322977';
+        $zone = 'zone3744684';
         $detail = 'detail-1335224239';
         $statusMessage = 'statusMessage-239442758';
         $selfLink = 'selfLink-1691268851';
@@ -413,7 +368,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $expectedResponse = new Operation();
         $expectedResponse->setName($name);
-        $expectedResponse->setZone($zone2);
+        $expectedResponse->setZone($zone);
         $expectedResponse->setDetail($detail);
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setSelfLink($selfLink);
@@ -424,12 +379,9 @@ class ClusterManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $clusterId = 'clusterId240280960';
         $update = new ClusterUpdate();
 
-        $response = $client->updateCluster($projectId, $zone, $clusterId, $update);
+        $response = $client->updateCluster($update);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -437,15 +389,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/UpdateCluster', $actualFuncCall);
 
-        $actualValue = $actualRequestObject->getProjectId();
-
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-
-        $this->assertProtobufEquals($zone, $actualValue);
-        $actualValue = $actualRequestObject->getClusterId();
-
-        $this->assertProtobufEquals($clusterId, $actualValue);
         $actualValue = $actualRequestObject->getUpdate();
 
         $this->assertProtobufEquals($update, $actualValue);
@@ -476,13 +419,10 @@ class ClusterManagerClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $clusterId = 'clusterId240280960';
         $update = new ClusterUpdate();
 
         try {
-            $client->updateCluster($projectId, $zone, $clusterId, $update);
+            $client->updateCluster($update);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -507,7 +447,7 @@ class ClusterManagerClientTest extends GeneratedTest
 
         // Mock response
         $name = 'name3373707';
-        $zone2 = 'zone2-696322977';
+        $zone = 'zone3744684';
         $detail = 'detail-1335224239';
         $statusMessage = 'statusMessage-239442758';
         $selfLink = 'selfLink-1691268851';
@@ -517,7 +457,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $expectedResponse = new Operation();
         $expectedResponse->setName($name);
-        $expectedResponse->setZone($zone2);
+        $expectedResponse->setZone($zone);
         $expectedResponse->setDetail($detail);
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setSelfLink($selfLink);
@@ -528,14 +468,10 @@ class ClusterManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $clusterId = 'clusterId240280960';
-        $nodePoolId = 'nodePoolId1043384033';
         $nodeVersion = 'nodeVersion1790136219';
         $imageType = 'imageType-1442758754';
 
-        $response = $client->updateNodePool($projectId, $zone, $clusterId, $nodePoolId, $nodeVersion, $imageType);
+        $response = $client->updateNodePool($nodeVersion, $imageType);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -543,18 +479,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/UpdateNodePool', $actualFuncCall);
 
-        $actualValue = $actualRequestObject->getProjectId();
-
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-
-        $this->assertProtobufEquals($zone, $actualValue);
-        $actualValue = $actualRequestObject->getClusterId();
-
-        $this->assertProtobufEquals($clusterId, $actualValue);
-        $actualValue = $actualRequestObject->getNodePoolId();
-
-        $this->assertProtobufEquals($nodePoolId, $actualValue);
         $actualValue = $actualRequestObject->getNodeVersion();
 
         $this->assertProtobufEquals($nodeVersion, $actualValue);
@@ -588,15 +512,11 @@ class ClusterManagerClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $clusterId = 'clusterId240280960';
-        $nodePoolId = 'nodePoolId1043384033';
         $nodeVersion = 'nodeVersion1790136219';
         $imageType = 'imageType-1442758754';
 
         try {
-            $client->updateNodePool($projectId, $zone, $clusterId, $nodePoolId, $nodeVersion, $imageType);
+            $client->updateNodePool($nodeVersion, $imageType);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -621,7 +541,7 @@ class ClusterManagerClientTest extends GeneratedTest
 
         // Mock response
         $name = 'name3373707';
-        $zone2 = 'zone2-696322977';
+        $zone = 'zone3744684';
         $detail = 'detail-1335224239';
         $statusMessage = 'statusMessage-239442758';
         $selfLink = 'selfLink-1691268851';
@@ -631,7 +551,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $expectedResponse = new Operation();
         $expectedResponse->setName($name);
-        $expectedResponse->setZone($zone2);
+        $expectedResponse->setZone($zone);
         $expectedResponse->setDetail($detail);
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setSelfLink($selfLink);
@@ -642,13 +562,9 @@ class ClusterManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $clusterId = 'clusterId240280960';
-        $nodePoolId = 'nodePoolId1043384033';
         $autoscaling = new NodePoolAutoscaling();
 
-        $response = $client->setNodePoolAutoscaling($projectId, $zone, $clusterId, $nodePoolId, $autoscaling);
+        $response = $client->setNodePoolAutoscaling($autoscaling);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -656,18 +572,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/SetNodePoolAutoscaling', $actualFuncCall);
 
-        $actualValue = $actualRequestObject->getProjectId();
-
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-
-        $this->assertProtobufEquals($zone, $actualValue);
-        $actualValue = $actualRequestObject->getClusterId();
-
-        $this->assertProtobufEquals($clusterId, $actualValue);
-        $actualValue = $actualRequestObject->getNodePoolId();
-
-        $this->assertProtobufEquals($nodePoolId, $actualValue);
         $actualValue = $actualRequestObject->getAutoscaling();
 
         $this->assertProtobufEquals($autoscaling, $actualValue);
@@ -698,14 +602,10 @@ class ClusterManagerClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $clusterId = 'clusterId240280960';
-        $nodePoolId = 'nodePoolId1043384033';
         $autoscaling = new NodePoolAutoscaling();
 
         try {
-            $client->setNodePoolAutoscaling($projectId, $zone, $clusterId, $nodePoolId, $autoscaling);
+            $client->setNodePoolAutoscaling($autoscaling);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -730,7 +630,7 @@ class ClusterManagerClientTest extends GeneratedTest
 
         // Mock response
         $name = 'name3373707';
-        $zone2 = 'zone2-696322977';
+        $zone = 'zone3744684';
         $detail = 'detail-1335224239';
         $statusMessage = 'statusMessage-239442758';
         $selfLink = 'selfLink-1691268851';
@@ -740,7 +640,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $expectedResponse = new Operation();
         $expectedResponse->setName($name);
-        $expectedResponse->setZone($zone2);
+        $expectedResponse->setZone($zone);
         $expectedResponse->setDetail($detail);
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setSelfLink($selfLink);
@@ -751,12 +651,9 @@ class ClusterManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $clusterId = 'clusterId240280960';
         $loggingService = 'loggingService-1700501035';
 
-        $response = $client->setLoggingService($projectId, $zone, $clusterId, $loggingService);
+        $response = $client->setLoggingService($loggingService);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -764,15 +661,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/SetLoggingService', $actualFuncCall);
 
-        $actualValue = $actualRequestObject->getProjectId();
-
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-
-        $this->assertProtobufEquals($zone, $actualValue);
-        $actualValue = $actualRequestObject->getClusterId();
-
-        $this->assertProtobufEquals($clusterId, $actualValue);
         $actualValue = $actualRequestObject->getLoggingService();
 
         $this->assertProtobufEquals($loggingService, $actualValue);
@@ -803,13 +691,10 @@ class ClusterManagerClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $clusterId = 'clusterId240280960';
         $loggingService = 'loggingService-1700501035';
 
         try {
-            $client->setLoggingService($projectId, $zone, $clusterId, $loggingService);
+            $client->setLoggingService($loggingService);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -834,7 +719,7 @@ class ClusterManagerClientTest extends GeneratedTest
 
         // Mock response
         $name = 'name3373707';
-        $zone2 = 'zone2-696322977';
+        $zone = 'zone3744684';
         $detail = 'detail-1335224239';
         $statusMessage = 'statusMessage-239442758';
         $selfLink = 'selfLink-1691268851';
@@ -844,7 +729,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $expectedResponse = new Operation();
         $expectedResponse->setName($name);
-        $expectedResponse->setZone($zone2);
+        $expectedResponse->setZone($zone);
         $expectedResponse->setDetail($detail);
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setSelfLink($selfLink);
@@ -855,12 +740,9 @@ class ClusterManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $clusterId = 'clusterId240280960';
         $monitoringService = 'monitoringService1469270462';
 
-        $response = $client->setMonitoringService($projectId, $zone, $clusterId, $monitoringService);
+        $response = $client->setMonitoringService($monitoringService);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -868,15 +750,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/SetMonitoringService', $actualFuncCall);
 
-        $actualValue = $actualRequestObject->getProjectId();
-
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-
-        $this->assertProtobufEquals($zone, $actualValue);
-        $actualValue = $actualRequestObject->getClusterId();
-
-        $this->assertProtobufEquals($clusterId, $actualValue);
         $actualValue = $actualRequestObject->getMonitoringService();
 
         $this->assertProtobufEquals($monitoringService, $actualValue);
@@ -907,13 +780,10 @@ class ClusterManagerClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $clusterId = 'clusterId240280960';
         $monitoringService = 'monitoringService1469270462';
 
         try {
-            $client->setMonitoringService($projectId, $zone, $clusterId, $monitoringService);
+            $client->setMonitoringService($monitoringService);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -938,7 +808,7 @@ class ClusterManagerClientTest extends GeneratedTest
 
         // Mock response
         $name = 'name3373707';
-        $zone2 = 'zone2-696322977';
+        $zone = 'zone3744684';
         $detail = 'detail-1335224239';
         $statusMessage = 'statusMessage-239442758';
         $selfLink = 'selfLink-1691268851';
@@ -948,7 +818,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $expectedResponse = new Operation();
         $expectedResponse->setName($name);
-        $expectedResponse->setZone($zone2);
+        $expectedResponse->setZone($zone);
         $expectedResponse->setDetail($detail);
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setSelfLink($selfLink);
@@ -959,12 +829,9 @@ class ClusterManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $clusterId = 'clusterId240280960';
         $addonsConfig = new AddonsConfig();
 
-        $response = $client->setAddonsConfig($projectId, $zone, $clusterId, $addonsConfig);
+        $response = $client->setAddonsConfig($addonsConfig);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -972,15 +839,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/SetAddonsConfig', $actualFuncCall);
 
-        $actualValue = $actualRequestObject->getProjectId();
-
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-
-        $this->assertProtobufEquals($zone, $actualValue);
-        $actualValue = $actualRequestObject->getClusterId();
-
-        $this->assertProtobufEquals($clusterId, $actualValue);
         $actualValue = $actualRequestObject->getAddonsConfig();
 
         $this->assertProtobufEquals($addonsConfig, $actualValue);
@@ -1011,13 +869,10 @@ class ClusterManagerClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $clusterId = 'clusterId240280960';
         $addonsConfig = new AddonsConfig();
 
         try {
-            $client->setAddonsConfig($projectId, $zone, $clusterId, $addonsConfig);
+            $client->setAddonsConfig($addonsConfig);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1042,7 +897,7 @@ class ClusterManagerClientTest extends GeneratedTest
 
         // Mock response
         $name = 'name3373707';
-        $zone2 = 'zone2-696322977';
+        $zone = 'zone3744684';
         $detail = 'detail-1335224239';
         $statusMessage = 'statusMessage-239442758';
         $selfLink = 'selfLink-1691268851';
@@ -1052,7 +907,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $expectedResponse = new Operation();
         $expectedResponse->setName($name);
-        $expectedResponse->setZone($zone2);
+        $expectedResponse->setZone($zone);
         $expectedResponse->setDetail($detail);
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setSelfLink($selfLink);
@@ -1063,12 +918,9 @@ class ClusterManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $clusterId = 'clusterId240280960';
         $locations = [];
 
-        $response = $client->setLocations($projectId, $zone, $clusterId, $locations);
+        $response = $client->setLocations($locations);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1076,15 +928,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/SetLocations', $actualFuncCall);
 
-        $actualValue = $actualRequestObject->getProjectId();
-
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-
-        $this->assertProtobufEquals($zone, $actualValue);
-        $actualValue = $actualRequestObject->getClusterId();
-
-        $this->assertProtobufEquals($clusterId, $actualValue);
         $actualValue = $actualRequestObject->getLocations();
 
         $this->assertProtobufEquals($locations, $actualValue);
@@ -1115,13 +958,10 @@ class ClusterManagerClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $clusterId = 'clusterId240280960';
         $locations = [];
 
         try {
-            $client->setLocations($projectId, $zone, $clusterId, $locations);
+            $client->setLocations($locations);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1146,7 +986,7 @@ class ClusterManagerClientTest extends GeneratedTest
 
         // Mock response
         $name = 'name3373707';
-        $zone2 = 'zone2-696322977';
+        $zone = 'zone3744684';
         $detail = 'detail-1335224239';
         $statusMessage = 'statusMessage-239442758';
         $selfLink = 'selfLink-1691268851';
@@ -1156,7 +996,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $expectedResponse = new Operation();
         $expectedResponse->setName($name);
-        $expectedResponse->setZone($zone2);
+        $expectedResponse->setZone($zone);
         $expectedResponse->setDetail($detail);
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setSelfLink($selfLink);
@@ -1167,12 +1007,9 @@ class ClusterManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $clusterId = 'clusterId240280960';
         $masterVersion = 'masterVersion-2139460613';
 
-        $response = $client->updateMaster($projectId, $zone, $clusterId, $masterVersion);
+        $response = $client->updateMaster($masterVersion);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1180,15 +1017,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/UpdateMaster', $actualFuncCall);
 
-        $actualValue = $actualRequestObject->getProjectId();
-
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-
-        $this->assertProtobufEquals($zone, $actualValue);
-        $actualValue = $actualRequestObject->getClusterId();
-
-        $this->assertProtobufEquals($clusterId, $actualValue);
         $actualValue = $actualRequestObject->getMasterVersion();
 
         $this->assertProtobufEquals($masterVersion, $actualValue);
@@ -1219,13 +1047,10 @@ class ClusterManagerClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $clusterId = 'clusterId240280960';
         $masterVersion = 'masterVersion-2139460613';
 
         try {
-            $client->updateMaster($projectId, $zone, $clusterId, $masterVersion);
+            $client->updateMaster($masterVersion);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1250,7 +1075,7 @@ class ClusterManagerClientTest extends GeneratedTest
 
         // Mock response
         $name = 'name3373707';
-        $zone2 = 'zone2-696322977';
+        $zone = 'zone3744684';
         $detail = 'detail-1335224239';
         $statusMessage = 'statusMessage-239442758';
         $selfLink = 'selfLink-1691268851';
@@ -1260,7 +1085,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $expectedResponse = new Operation();
         $expectedResponse->setName($name);
-        $expectedResponse->setZone($zone2);
+        $expectedResponse->setZone($zone);
         $expectedResponse->setDetail($detail);
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setSelfLink($selfLink);
@@ -1271,13 +1096,10 @@ class ClusterManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $clusterId = 'clusterId240280960';
         $action = Action::UNKNOWN;
         $update = new MasterAuth();
 
-        $response = $client->setMasterAuth($projectId, $zone, $clusterId, $action, $update);
+        $response = $client->setMasterAuth($action, $update);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1285,15 +1107,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/SetMasterAuth', $actualFuncCall);
 
-        $actualValue = $actualRequestObject->getProjectId();
-
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-
-        $this->assertProtobufEquals($zone, $actualValue);
-        $actualValue = $actualRequestObject->getClusterId();
-
-        $this->assertProtobufEquals($clusterId, $actualValue);
         $actualValue = $actualRequestObject->getAction();
 
         $this->assertProtobufEquals($action, $actualValue);
@@ -1327,14 +1140,11 @@ class ClusterManagerClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $clusterId = 'clusterId240280960';
         $action = Action::UNKNOWN;
         $update = new MasterAuth();
 
         try {
-            $client->setMasterAuth($projectId, $zone, $clusterId, $action, $update);
+            $client->setMasterAuth($action, $update);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1359,7 +1169,7 @@ class ClusterManagerClientTest extends GeneratedTest
 
         // Mock response
         $name = 'name3373707';
-        $zone2 = 'zone2-696322977';
+        $zone = 'zone3744684';
         $detail = 'detail-1335224239';
         $statusMessage = 'statusMessage-239442758';
         $selfLink = 'selfLink-1691268851';
@@ -1369,7 +1179,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $expectedResponse = new Operation();
         $expectedResponse->setName($name);
-        $expectedResponse->setZone($zone2);
+        $expectedResponse->setZone($zone);
         $expectedResponse->setDetail($detail);
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setSelfLink($selfLink);
@@ -1379,28 +1189,13 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
 
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $clusterId = 'clusterId240280960';
-
-        $response = $client->deleteCluster($projectId, $zone, $clusterId);
+        $response = $client->deleteCluster();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/DeleteCluster', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getProjectId();
-
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-
-        $this->assertProtobufEquals($zone, $actualValue);
-        $actualValue = $actualRequestObject->getClusterId();
-
-        $this->assertProtobufEquals($clusterId, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -1427,13 +1222,8 @@ class ClusterManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
 
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $clusterId = 'clusterId240280960';
-
         try {
-            $client->deleteCluster($projectId, $zone, $clusterId);
+            $client->deleteCluster();
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1460,24 +1250,13 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse = new ListOperationsResponse();
         $transport->addResponse($expectedResponse);
 
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-
-        $response = $client->listOperations($projectId, $zone);
+        $response = $client->listOperations();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/ListOperations', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getProjectId();
-
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-
-        $this->assertProtobufEquals($zone, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -1504,12 +1283,8 @@ class ClusterManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
 
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-
         try {
-            $client->listOperations($projectId, $zone);
+            $client->listOperations();
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1534,7 +1309,7 @@ class ClusterManagerClientTest extends GeneratedTest
 
         // Mock response
         $name = 'name3373707';
-        $zone2 = 'zone2-696322977';
+        $zone = 'zone3744684';
         $detail = 'detail-1335224239';
         $statusMessage = 'statusMessage-239442758';
         $selfLink = 'selfLink-1691268851';
@@ -1544,7 +1319,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $expectedResponse = new Operation();
         $expectedResponse->setName($name);
-        $expectedResponse->setZone($zone2);
+        $expectedResponse->setZone($zone);
         $expectedResponse->setDetail($detail);
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setSelfLink($selfLink);
@@ -1554,28 +1329,13 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
 
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $operationId = 'operationId-274116877';
-
-        $response = $client->getOperation($projectId, $zone, $operationId);
+        $response = $client->getOperation();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/GetOperation', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getProjectId();
-
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-
-        $this->assertProtobufEquals($zone, $actualValue);
-        $actualValue = $actualRequestObject->getOperationId();
-
-        $this->assertProtobufEquals($operationId, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -1602,13 +1362,8 @@ class ClusterManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
 
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $operationId = 'operationId-274116877';
-
         try {
-            $client->getOperation($projectId, $zone, $operationId);
+            $client->getOperation();
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1635,27 +1390,12 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
 
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $operationId = 'operationId-274116877';
-
-        $client->cancelOperation($projectId, $zone, $operationId);
+        $client->cancelOperation();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/CancelOperation', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getProjectId();
-
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-
-        $this->assertProtobufEquals($zone, $actualValue);
-        $actualValue = $actualRequestObject->getOperationId();
-
-        $this->assertProtobufEquals($operationId, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -1682,13 +1422,8 @@ class ClusterManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
 
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $operationId = 'operationId-274116877';
-
         try {
-            $client->cancelOperation($projectId, $zone, $operationId);
+            $client->cancelOperation();
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1719,24 +1454,13 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setDefaultImageType($defaultImageType);
         $transport->addResponse($expectedResponse);
 
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-
-        $response = $client->getServerConfig($projectId, $zone);
+        $response = $client->getServerConfig();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/GetServerConfig', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getProjectId();
-
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-
-        $this->assertProtobufEquals($zone, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -1763,12 +1487,8 @@ class ClusterManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
 
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-
         try {
-            $client->getServerConfig($projectId, $zone);
+            $client->getServerConfig();
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1795,28 +1515,13 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse = new ListNodePoolsResponse();
         $transport->addResponse($expectedResponse);
 
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $clusterId = 'clusterId240280960';
-
-        $response = $client->listNodePools($projectId, $zone, $clusterId);
+        $response = $client->listNodePools();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/ListNodePools', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getProjectId();
-
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-
-        $this->assertProtobufEquals($zone, $actualValue);
-        $actualValue = $actualRequestObject->getClusterId();
-
-        $this->assertProtobufEquals($clusterId, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -1843,13 +1548,8 @@ class ClusterManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
 
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $clusterId = 'clusterId240280960';
-
         try {
-            $client->listNodePools($projectId, $zone, $clusterId);
+            $client->listNodePools();
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1888,32 +1588,13 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setPodIpv4CidrSize($podIpv4CidrSize);
         $transport->addResponse($expectedResponse);
 
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $clusterId = 'clusterId240280960';
-        $nodePoolId = 'nodePoolId1043384033';
-
-        $response = $client->getNodePool($projectId, $zone, $clusterId, $nodePoolId);
+        $response = $client->getNodePool();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/GetNodePool', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getProjectId();
-
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-
-        $this->assertProtobufEquals($zone, $actualValue);
-        $actualValue = $actualRequestObject->getClusterId();
-
-        $this->assertProtobufEquals($clusterId, $actualValue);
-        $actualValue = $actualRequestObject->getNodePoolId();
-
-        $this->assertProtobufEquals($nodePoolId, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -1940,14 +1621,8 @@ class ClusterManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
 
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $clusterId = 'clusterId240280960';
-        $nodePoolId = 'nodePoolId1043384033';
-
         try {
-            $client->getNodePool($projectId, $zone, $clusterId, $nodePoolId);
+            $client->getNodePool();
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1972,7 +1647,7 @@ class ClusterManagerClientTest extends GeneratedTest
 
         // Mock response
         $name = 'name3373707';
-        $zone2 = 'zone2-696322977';
+        $zone = 'zone3744684';
         $detail = 'detail-1335224239';
         $statusMessage = 'statusMessage-239442758';
         $selfLink = 'selfLink-1691268851';
@@ -1982,7 +1657,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $expectedResponse = new Operation();
         $expectedResponse->setName($name);
-        $expectedResponse->setZone($zone2);
+        $expectedResponse->setZone($zone);
         $expectedResponse->setDetail($detail);
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setSelfLink($selfLink);
@@ -1993,12 +1668,9 @@ class ClusterManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $clusterId = 'clusterId240280960';
         $nodePool = new NodePool();
 
-        $response = $client->createNodePool($projectId, $zone, $clusterId, $nodePool);
+        $response = $client->createNodePool($nodePool);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2006,15 +1678,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/CreateNodePool', $actualFuncCall);
 
-        $actualValue = $actualRequestObject->getProjectId();
-
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-
-        $this->assertProtobufEquals($zone, $actualValue);
-        $actualValue = $actualRequestObject->getClusterId();
-
-        $this->assertProtobufEquals($clusterId, $actualValue);
         $actualValue = $actualRequestObject->getNodePool();
 
         $this->assertProtobufEquals($nodePool, $actualValue);
@@ -2045,13 +1708,10 @@ class ClusterManagerClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $clusterId = 'clusterId240280960';
         $nodePool = new NodePool();
 
         try {
-            $client->createNodePool($projectId, $zone, $clusterId, $nodePool);
+            $client->createNodePool($nodePool);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2076,7 +1736,7 @@ class ClusterManagerClientTest extends GeneratedTest
 
         // Mock response
         $name = 'name3373707';
-        $zone2 = 'zone2-696322977';
+        $zone = 'zone3744684';
         $detail = 'detail-1335224239';
         $statusMessage = 'statusMessage-239442758';
         $selfLink = 'selfLink-1691268851';
@@ -2086,7 +1746,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $expectedResponse = new Operation();
         $expectedResponse->setName($name);
-        $expectedResponse->setZone($zone2);
+        $expectedResponse->setZone($zone);
         $expectedResponse->setDetail($detail);
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setSelfLink($selfLink);
@@ -2096,32 +1756,13 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
 
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $clusterId = 'clusterId240280960';
-        $nodePoolId = 'nodePoolId1043384033';
-
-        $response = $client->deleteNodePool($projectId, $zone, $clusterId, $nodePoolId);
+        $response = $client->deleteNodePool();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/DeleteNodePool', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getProjectId();
-
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-
-        $this->assertProtobufEquals($zone, $actualValue);
-        $actualValue = $actualRequestObject->getClusterId();
-
-        $this->assertProtobufEquals($clusterId, $actualValue);
-        $actualValue = $actualRequestObject->getNodePoolId();
-
-        $this->assertProtobufEquals($nodePoolId, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -2148,14 +1789,8 @@ class ClusterManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
 
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $clusterId = 'clusterId240280960';
-        $nodePoolId = 'nodePoolId1043384033';
-
         try {
-            $client->deleteNodePool($projectId, $zone, $clusterId, $nodePoolId);
+            $client->deleteNodePool();
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2180,7 +1815,7 @@ class ClusterManagerClientTest extends GeneratedTest
 
         // Mock response
         $name = 'name3373707';
-        $zone2 = 'zone2-696322977';
+        $zone = 'zone3744684';
         $detail = 'detail-1335224239';
         $statusMessage = 'statusMessage-239442758';
         $selfLink = 'selfLink-1691268851';
@@ -2190,7 +1825,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $expectedResponse = new Operation();
         $expectedResponse->setName($name);
-        $expectedResponse->setZone($zone2);
+        $expectedResponse->setZone($zone);
         $expectedResponse->setDetail($detail);
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setSelfLink($selfLink);
@@ -2200,32 +1835,13 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
 
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $clusterId = 'clusterId240280960';
-        $nodePoolId = 'nodePoolId1043384033';
-
-        $response = $client->rollbackNodePoolUpgrade($projectId, $zone, $clusterId, $nodePoolId);
+        $response = $client->rollbackNodePoolUpgrade();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/RollbackNodePoolUpgrade', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getProjectId();
-
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-
-        $this->assertProtobufEquals($zone, $actualValue);
-        $actualValue = $actualRequestObject->getClusterId();
-
-        $this->assertProtobufEquals($clusterId, $actualValue);
-        $actualValue = $actualRequestObject->getNodePoolId();
-
-        $this->assertProtobufEquals($nodePoolId, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -2252,14 +1868,8 @@ class ClusterManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
 
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $clusterId = 'clusterId240280960';
-        $nodePoolId = 'nodePoolId1043384033';
-
         try {
-            $client->rollbackNodePoolUpgrade($projectId, $zone, $clusterId, $nodePoolId);
+            $client->rollbackNodePoolUpgrade();
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2284,7 +1894,7 @@ class ClusterManagerClientTest extends GeneratedTest
 
         // Mock response
         $name = 'name3373707';
-        $zone2 = 'zone2-696322977';
+        $zone = 'zone3744684';
         $detail = 'detail-1335224239';
         $statusMessage = 'statusMessage-239442758';
         $selfLink = 'selfLink-1691268851';
@@ -2294,7 +1904,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $expectedResponse = new Operation();
         $expectedResponse->setName($name);
-        $expectedResponse->setZone($zone2);
+        $expectedResponse->setZone($zone);
         $expectedResponse->setDetail($detail);
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setSelfLink($selfLink);
@@ -2305,13 +1915,9 @@ class ClusterManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $clusterId = 'clusterId240280960';
-        $nodePoolId = 'nodePoolId1043384033';
         $management = new NodeManagement();
 
-        $response = $client->setNodePoolManagement($projectId, $zone, $clusterId, $nodePoolId, $management);
+        $response = $client->setNodePoolManagement($management);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2319,18 +1925,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/SetNodePoolManagement', $actualFuncCall);
 
-        $actualValue = $actualRequestObject->getProjectId();
-
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-
-        $this->assertProtobufEquals($zone, $actualValue);
-        $actualValue = $actualRequestObject->getClusterId();
-
-        $this->assertProtobufEquals($clusterId, $actualValue);
-        $actualValue = $actualRequestObject->getNodePoolId();
-
-        $this->assertProtobufEquals($nodePoolId, $actualValue);
         $actualValue = $actualRequestObject->getManagement();
 
         $this->assertProtobufEquals($management, $actualValue);
@@ -2361,14 +1955,10 @@ class ClusterManagerClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $clusterId = 'clusterId240280960';
-        $nodePoolId = 'nodePoolId1043384033';
         $management = new NodeManagement();
 
         try {
-            $client->setNodePoolManagement($projectId, $zone, $clusterId, $nodePoolId, $management);
+            $client->setNodePoolManagement($management);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2393,7 +1983,7 @@ class ClusterManagerClientTest extends GeneratedTest
 
         // Mock response
         $name = 'name3373707';
-        $zone2 = 'zone2-696322977';
+        $zone = 'zone3744684';
         $detail = 'detail-1335224239';
         $statusMessage = 'statusMessage-239442758';
         $selfLink = 'selfLink-1691268851';
@@ -2403,7 +1993,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $expectedResponse = new Operation();
         $expectedResponse->setName($name);
-        $expectedResponse->setZone($zone2);
+        $expectedResponse->setZone($zone);
         $expectedResponse->setDetail($detail);
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setSelfLink($selfLink);
@@ -2414,13 +2004,10 @@ class ClusterManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $clusterId = 'clusterId240280960';
         $resourceLabels = [];
         $labelFingerprint = 'labelFingerprint714995737';
 
-        $response = $client->setLabels($projectId, $zone, $clusterId, $resourceLabels, $labelFingerprint);
+        $response = $client->setLabels($resourceLabels, $labelFingerprint);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2428,15 +2015,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/SetLabels', $actualFuncCall);
 
-        $actualValue = $actualRequestObject->getProjectId();
-
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-
-        $this->assertProtobufEquals($zone, $actualValue);
-        $actualValue = $actualRequestObject->getClusterId();
-
-        $this->assertProtobufEquals($clusterId, $actualValue);
         $actualValue = $actualRequestObject->getResourceLabels();
 
         $this->assertProtobufEquals($resourceLabels, $actualValue);
@@ -2470,14 +2048,11 @@ class ClusterManagerClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $clusterId = 'clusterId240280960';
         $resourceLabels = [];
         $labelFingerprint = 'labelFingerprint714995737';
 
         try {
-            $client->setLabels($projectId, $zone, $clusterId, $resourceLabels, $labelFingerprint);
+            $client->setLabels($resourceLabels, $labelFingerprint);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2502,7 +2077,7 @@ class ClusterManagerClientTest extends GeneratedTest
 
         // Mock response
         $name = 'name3373707';
-        $zone2 = 'zone2-696322977';
+        $zone = 'zone3744684';
         $detail = 'detail-1335224239';
         $statusMessage = 'statusMessage-239442758';
         $selfLink = 'selfLink-1691268851';
@@ -2512,7 +2087,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $expectedResponse = new Operation();
         $expectedResponse->setName($name);
-        $expectedResponse->setZone($zone2);
+        $expectedResponse->setZone($zone);
         $expectedResponse->setDetail($detail);
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setSelfLink($selfLink);
@@ -2523,12 +2098,9 @@ class ClusterManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $clusterId = 'clusterId240280960';
         $enabled = false;
 
-        $response = $client->setLegacyAbac($projectId, $zone, $clusterId, $enabled);
+        $response = $client->setLegacyAbac($enabled);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2536,15 +2108,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/SetLegacyAbac', $actualFuncCall);
 
-        $actualValue = $actualRequestObject->getProjectId();
-
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-
-        $this->assertProtobufEquals($zone, $actualValue);
-        $actualValue = $actualRequestObject->getClusterId();
-
-        $this->assertProtobufEquals($clusterId, $actualValue);
         $actualValue = $actualRequestObject->getEnabled();
 
         $this->assertProtobufEquals($enabled, $actualValue);
@@ -2575,13 +2138,10 @@ class ClusterManagerClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $clusterId = 'clusterId240280960';
         $enabled = false;
 
         try {
-            $client->setLegacyAbac($projectId, $zone, $clusterId, $enabled);
+            $client->setLegacyAbac($enabled);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2606,7 +2166,7 @@ class ClusterManagerClientTest extends GeneratedTest
 
         // Mock response
         $name = 'name3373707';
-        $zone2 = 'zone2-696322977';
+        $zone = 'zone3744684';
         $detail = 'detail-1335224239';
         $statusMessage = 'statusMessage-239442758';
         $selfLink = 'selfLink-1691268851';
@@ -2616,7 +2176,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $expectedResponse = new Operation();
         $expectedResponse->setName($name);
-        $expectedResponse->setZone($zone2);
+        $expectedResponse->setZone($zone);
         $expectedResponse->setDetail($detail);
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setSelfLink($selfLink);
@@ -2626,28 +2186,13 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
 
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $clusterId = 'clusterId240280960';
-
-        $response = $client->startIPRotation($projectId, $zone, $clusterId);
+        $response = $client->startIPRotation();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/StartIPRotation', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getProjectId();
-
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-
-        $this->assertProtobufEquals($zone, $actualValue);
-        $actualValue = $actualRequestObject->getClusterId();
-
-        $this->assertProtobufEquals($clusterId, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -2674,13 +2219,8 @@ class ClusterManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
 
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $clusterId = 'clusterId240280960';
-
         try {
-            $client->startIPRotation($projectId, $zone, $clusterId);
+            $client->startIPRotation();
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2705,7 +2245,7 @@ class ClusterManagerClientTest extends GeneratedTest
 
         // Mock response
         $name = 'name3373707';
-        $zone2 = 'zone2-696322977';
+        $zone = 'zone3744684';
         $detail = 'detail-1335224239';
         $statusMessage = 'statusMessage-239442758';
         $selfLink = 'selfLink-1691268851';
@@ -2715,7 +2255,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $expectedResponse = new Operation();
         $expectedResponse->setName($name);
-        $expectedResponse->setZone($zone2);
+        $expectedResponse->setZone($zone);
         $expectedResponse->setDetail($detail);
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setSelfLink($selfLink);
@@ -2725,28 +2265,13 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
 
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $clusterId = 'clusterId240280960';
-
-        $response = $client->completeIPRotation($projectId, $zone, $clusterId);
+        $response = $client->completeIPRotation();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/CompleteIPRotation', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getProjectId();
-
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-
-        $this->assertProtobufEquals($zone, $actualValue);
-        $actualValue = $actualRequestObject->getClusterId();
-
-        $this->assertProtobufEquals($clusterId, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -2773,13 +2298,8 @@ class ClusterManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
 
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $clusterId = 'clusterId240280960';
-
         try {
-            $client->completeIPRotation($projectId, $zone, $clusterId);
+            $client->completeIPRotation();
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2804,7 +2324,7 @@ class ClusterManagerClientTest extends GeneratedTest
 
         // Mock response
         $name = 'name3373707';
-        $zone2 = 'zone2-696322977';
+        $zone = 'zone3744684';
         $detail = 'detail-1335224239';
         $statusMessage = 'statusMessage-239442758';
         $selfLink = 'selfLink-1691268851';
@@ -2814,7 +2334,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $expectedResponse = new Operation();
         $expectedResponse->setName($name);
-        $expectedResponse->setZone($zone2);
+        $expectedResponse->setZone($zone);
         $expectedResponse->setDetail($detail);
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setSelfLink($selfLink);
@@ -2825,13 +2345,9 @@ class ClusterManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $clusterId = 'clusterId240280960';
-        $nodePoolId = 'nodePoolId1043384033';
         $nodeCount = 1539922066;
 
-        $response = $client->setNodePoolSize($projectId, $zone, $clusterId, $nodePoolId, $nodeCount);
+        $response = $client->setNodePoolSize($nodeCount);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2839,18 +2355,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/SetNodePoolSize', $actualFuncCall);
 
-        $actualValue = $actualRequestObject->getProjectId();
-
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-
-        $this->assertProtobufEquals($zone, $actualValue);
-        $actualValue = $actualRequestObject->getClusterId();
-
-        $this->assertProtobufEquals($clusterId, $actualValue);
-        $actualValue = $actualRequestObject->getNodePoolId();
-
-        $this->assertProtobufEquals($nodePoolId, $actualValue);
         $actualValue = $actualRequestObject->getNodeCount();
 
         $this->assertProtobufEquals($nodeCount, $actualValue);
@@ -2881,14 +2385,10 @@ class ClusterManagerClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $clusterId = 'clusterId240280960';
-        $nodePoolId = 'nodePoolId1043384033';
         $nodeCount = 1539922066;
 
         try {
-            $client->setNodePoolSize($projectId, $zone, $clusterId, $nodePoolId, $nodeCount);
+            $client->setNodePoolSize($nodeCount);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2913,7 +2413,7 @@ class ClusterManagerClientTest extends GeneratedTest
 
         // Mock response
         $name = 'name3373707';
-        $zone2 = 'zone2-696322977';
+        $zone = 'zone3744684';
         $detail = 'detail-1335224239';
         $statusMessage = 'statusMessage-239442758';
         $selfLink = 'selfLink-1691268851';
@@ -2923,7 +2423,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $expectedResponse = new Operation();
         $expectedResponse->setName($name);
-        $expectedResponse->setZone($zone2);
+        $expectedResponse->setZone($zone);
         $expectedResponse->setDetail($detail);
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setSelfLink($selfLink);
@@ -2934,12 +2434,9 @@ class ClusterManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $clusterId = 'clusterId240280960';
         $networkPolicy = new NetworkPolicy();
 
-        $response = $client->setNetworkPolicy($projectId, $zone, $clusterId, $networkPolicy);
+        $response = $client->setNetworkPolicy($networkPolicy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2947,15 +2444,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/SetNetworkPolicy', $actualFuncCall);
 
-        $actualValue = $actualRequestObject->getProjectId();
-
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-
-        $this->assertProtobufEquals($zone, $actualValue);
-        $actualValue = $actualRequestObject->getClusterId();
-
-        $this->assertProtobufEquals($clusterId, $actualValue);
         $actualValue = $actualRequestObject->getNetworkPolicy();
 
         $this->assertProtobufEquals($networkPolicy, $actualValue);
@@ -2986,13 +2474,10 @@ class ClusterManagerClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $clusterId = 'clusterId240280960';
         $networkPolicy = new NetworkPolicy();
 
         try {
-            $client->setNetworkPolicy($projectId, $zone, $clusterId, $networkPolicy);
+            $client->setNetworkPolicy($networkPolicy);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
