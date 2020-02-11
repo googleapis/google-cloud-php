@@ -17,28 +17,18 @@
 
 namespace Google\Cloud\Storage\Tests\System;
 
-use Google\Cloud\Storage\StorageClient;
-use Google\Cloud\Core\Testing\System\SystemTestCase;
-
 /**
  * @group storage
  * @group storage-iam
  */
-class IamTest extends SystemTestCase
+class IamTest extends StorageTestCase
 {
-    private $bucket;
-    const TESTING_PREFIX = 'gcloud_testing_';
+    private $b;
 
     public function setUp()
     {
-        $config = [
-            'keyFilePath' => getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH'),
-            'transport' => 'rest'
-        ];
-
-        $client = new StorageClient($config);
-        $this->$bucket = self::createBucket($client, uniqid(self::TESTING_PREFIX));
-        $this->$bucket->update($this->bucketConfig());
+        $this->b = self::createBucket(self::$client, uniqid(self::TESTING_PREFIX));
+        $this->b->update($this->bucketConfig());
     }
 
     public function testGetPolicy()
@@ -46,7 +36,7 @@ class IamTest extends SystemTestCase
         $keyfile = json_decode(file_get_contents(getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH')), true);
         $projectId = $keyfile['project_id'];
 
-        $iam = $this->$bucket->iam();
+        $iam = $this->b->iam();
         $policy = $iam->policy();
 
         $this->assertTrue(isset($policy['etag']));
@@ -74,7 +64,7 @@ class IamTest extends SystemTestCase
         $keyfile = json_decode(file_get_contents(getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH')), true);
         $projectId = $keyfile['project_id'];
 
-        $iam = $this->$bucket->iam();
+        $iam = $this->b->iam();
         $policy = $iam->policy();
         $newBinding = [
             'role' => 'roles/storage.legacyBucketReader',
@@ -99,7 +89,7 @@ class IamTest extends SystemTestCase
         $keyfile = json_decode(file_get_contents(getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH')), true);
         $email = $keyfile['client_email'];
 
-        $iam = $this->$bucket->iam();
+        $iam = $this->b->iam();
         $policy = $iam->policy();
         $policy['version'] = 3;
 
