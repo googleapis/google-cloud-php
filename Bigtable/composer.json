@@ -5,7 +5,7 @@
     "minimum-stability": "stable",
     "require": {
         "google/gax": "^1.1",
-        "google/cloud-core": "^1.31"
+        "google/cloud-core": "^1.35"
     },
     "require-dev": {
         "erusev/parsedown": "^1.6",
