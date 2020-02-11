@@ -494,11 +494,7 @@ class Dataset
      *        [Routine Resource API docs](https://cloud.google.com/bigquery/docs/reference/v2/routines#resource).
      *        Omit `routineReference` as it is computed and appended by the
      *        client.
-     * @param array $options [optional] {
-     *     Configuration options.
-     *
-     *     @type
-     * }
+     * @param array $options [optional] Configuration options.
      * @return Routine
      */
     public function createRoutine($id, array $metadata, array $options = [])
