@@ -16,8 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ClusterState extends \Google\Protobuf\Internal\Message
 {
     /**
-     * (`OutputOnly`)
-     * The state of replication for the table in this cluster.
+     * Output only. The state of replication for the table in this cluster.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.ClusterState.ReplicationState replication_state = 1;</code>
      */
@@ -30,8 +29,7 @@ class ClusterState extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $replication_state
-     *           (`OutputOnly`)
-     *           The state of replication for the table in this cluster.
+     *           Output only. The state of replication for the table in this cluster.
      * }
      */
     public function __construct($data = NULL) {
@@ -40,8 +38,7 @@ class ClusterState extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (`OutputOnly`)
-     * The state of replication for the table in this cluster.
+     * Output only. The state of replication for the table in this cluster.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.ClusterState.ReplicationState replication_state = 1;</code>
      * @return int
@@ -52,8 +49,7 @@ class ClusterState extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (`OutputOnly`)
-     * The state of replication for the table in this cluster.
+     * Output only. The state of replication for the table in this cluster.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.ClusterState.ReplicationState replication_state = 1;</code>
      * @param int $var

@@ -21,8 +21,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class Snapshot extends \Google\Protobuf\Internal\Message
 {
     /**
-     * (`OutputOnly`)
-     * The unique name of the snapshot.
+     * Output only. The unique name of the snapshot.
      * Values are of the form
      * `projects/<project>/instances/<instance>/clusters/<cluster>/snapshots/<snapshot>`.
      *
@@ -30,15 +29,13 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * (`OutputOnly`)
-     * The source table at the time the snapshot was taken.
+     * Output only. The source table at the time the snapshot was taken.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Table source_table = 2;</code>
      */
     private $source_table = null;
     /**
-     * (`OutputOnly`)
-     * The size of the data in the source table at the time the snapshot was
+     * Output only. The size of the data in the source table at the time the snapshot was
      * taken. In some cases, this value may be computed asynchronously via a
      * background process and a placeholder of 0 will be used in the meantime.
      *
@@ -46,15 +43,13 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      */
     private $data_size_bytes = 0;
     /**
-     * (`OutputOnly`)
-     * The time when the snapshot is created.
+     * Output only. The time when the snapshot is created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4;</code>
      */
     private $create_time = null;
     /**
-     * (`OutputOnly`)
-     * The time when the snapshot will be deleted. The maximum amount of time a
+     * Output only. The time when the snapshot will be deleted. The maximum amount of time a
      * snapshot can stay active is 365 days. If 'ttl' is not specified,
      * the default maximum of 365 days will be used.
      *
@@ -62,15 +57,13 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      */
     private $delete_time = null;
     /**
-     * (`OutputOnly`)
-     * The current state of the snapshot.
+     * Output only. The current state of the snapshot.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Snapshot.State state = 6;</code>
      */
     private $state = 0;
     /**
-     * (`OutputOnly`)
-     * Description of the snapshot.
+     * Output only. Description of the snapshot.
      *
      * Generated from protobuf field <code>string description = 7;</code>
      */
@@ -83,32 +76,25 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           (`OutputOnly`)
-     *           The unique name of the snapshot.
+     *           Output only. The unique name of the snapshot.
      *           Values are of the form
      *           `projects/<project>/instances/<instance>/clusters/<cluster>/snapshots/<snapshot>`.
      *     @type \Google\Cloud\Bigtable\Admin\V2\Table $source_table
-     *           (`OutputOnly`)
-     *           The source table at the time the snapshot was taken.
+     *           Output only. The source table at the time the snapshot was taken.
      *     @type int|string $data_size_bytes
-     *           (`OutputOnly`)
-     *           The size of the data in the source table at the time the snapshot was
+     *           Output only. The size of the data in the source table at the time the snapshot was
      *           taken. In some cases, this value may be computed asynchronously via a
      *           background process and a placeholder of 0 will be used in the meantime.
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           (`OutputOnly`)
-     *           The time when the snapshot is created.
+     *           Output only. The time when the snapshot is created.
      *     @type \Google\Protobuf\Timestamp $delete_time
-     *           (`OutputOnly`)
-     *           The time when the snapshot will be deleted. The maximum amount of time a
+     *           Output only. The time when the snapshot will be deleted. The maximum amount of time a
      *           snapshot can stay active is 365 days. If 'ttl' is not specified,
      *           the default maximum of 365 days will be used.
      *     @type int $state
-     *           (`OutputOnly`)
-     *           The current state of the snapshot.
+     *           Output only. The current state of the snapshot.
      *     @type string $description
-     *           (`OutputOnly`)
-     *           Description of the snapshot.
+     *           Output only. Description of the snapshot.
      * }
      */
     public function __construct($data = NULL) {
@@ -117,8 +103,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (`OutputOnly`)
-     * The unique name of the snapshot.
+     * Output only. The unique name of the snapshot.
      * Values are of the form
      * `projects/<project>/instances/<instance>/clusters/<cluster>/snapshots/<snapshot>`.
      *
@@ -131,8 +116,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (`OutputOnly`)
-     * The unique name of the snapshot.
+     * Output only. The unique name of the snapshot.
      * Values are of the form
      * `projects/<project>/instances/<instance>/clusters/<cluster>/snapshots/<snapshot>`.
      *
@@ -149,8 +133,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (`OutputOnly`)
-     * The source table at the time the snapshot was taken.
+     * Output only. The source table at the time the snapshot was taken.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Table source_table = 2;</code>
      * @return \Google\Cloud\Bigtable\Admin\V2\Table
@@ -161,8 +144,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (`OutputOnly`)
-     * The source table at the time the snapshot was taken.
+     * Output only. The source table at the time the snapshot was taken.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Table source_table = 2;</code>
      * @param \Google\Cloud\Bigtable\Admin\V2\Table $var
@@ -177,8 +159,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (`OutputOnly`)
-     * The size of the data in the source table at the time the snapshot was
+     * Output only. The size of the data in the source table at the time the snapshot was
      * taken. In some cases, this value may be computed asynchronously via a
      * background process and a placeholder of 0 will be used in the meantime.
      *
@@ -191,8 +172,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (`OutputOnly`)
-     * The size of the data in the source table at the time the snapshot was
+     * Output only. The size of the data in the source table at the time the snapshot was
      * taken. In some cases, this value may be computed asynchronously via a
      * background process and a placeholder of 0 will be used in the meantime.
      *
@@ -209,8 +189,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (`OutputOnly`)
-     * The time when the snapshot is created.
+     * Output only. The time when the snapshot is created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4;</code>
      * @return \Google\Protobuf\Timestamp
@@ -221,8 +200,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (`OutputOnly`)
-     * The time when the snapshot is created.
+     * Output only. The time when the snapshot is created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -237,8 +215,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (`OutputOnly`)
-     * The time when the snapshot will be deleted. The maximum amount of time a
+     * Output only. The time when the snapshot will be deleted. The maximum amount of time a
      * snapshot can stay active is 365 days. If 'ttl' is not specified,
      * the default maximum of 365 days will be used.
      *
@@ -251,8 +228,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (`OutputOnly`)
-     * The time when the snapshot will be deleted. The maximum amount of time a
+     * Output only. The time when the snapshot will be deleted. The maximum amount of time a
      * snapshot can stay active is 365 days. If 'ttl' is not specified,
      * the default maximum of 365 days will be used.
      *
@@ -269,8 +245,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (`OutputOnly`)
-     * The current state of the snapshot.
+     * Output only. The current state of the snapshot.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Snapshot.State state = 6;</code>
      * @return int
@@ -281,8 +256,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (`OutputOnly`)
-     * The current state of the snapshot.
+     * Output only. The current state of the snapshot.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Snapshot.State state = 6;</code>
      * @param int $var
@@ -297,8 +271,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (`OutputOnly`)
-     * Description of the snapshot.
+     * Output only. Description of the snapshot.
      *
      * Generated from protobuf field <code>string description = 7;</code>
      * @return string
@@ -309,8 +282,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (`OutputOnly`)
-     * Description of the snapshot.
+     * Output only. Description of the snapshot.
      *
      * Generated from protobuf field <code>string description = 7;</code>
      * @param string $var

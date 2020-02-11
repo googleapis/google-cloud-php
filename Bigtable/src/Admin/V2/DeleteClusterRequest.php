@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeleteClusterRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The unique name of the cluster to be deleted. Values are of the form
-     * `projects/<project>/instances/<instance>/clusters/<cluster>`.
+     * Required. The unique name of the cluster to be deleted. Values are of the form
+     * `projects/{project}/instances/{instance}/clusters/{cluster}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
 
@@ -30,8 +30,8 @@ class DeleteClusterRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The unique name of the cluster to be deleted. Values are of the form
-     *           `projects/<project>/instances/<instance>/clusters/<cluster>`.
+     *           Required. The unique name of the cluster to be deleted. Values are of the form
+     *           `projects/{project}/instances/{instance}/clusters/{cluster}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -40,10 +40,10 @@ class DeleteClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unique name of the cluster to be deleted. Values are of the form
-     * `projects/<project>/instances/<instance>/clusters/<cluster>`.
+     * Required. The unique name of the cluster to be deleted. Values are of the form
+     * `projects/{project}/instances/{instance}/clusters/{cluster}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -52,10 +52,10 @@ class DeleteClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unique name of the cluster to be deleted. Values are of the form
-     * `projects/<project>/instances/<instance>/clusters/<cluster>`.
+     * Required. The unique name of the cluster to be deleted. Values are of the form
+     * `projects/{project}/instances/{instance}/clusters/{cluster}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

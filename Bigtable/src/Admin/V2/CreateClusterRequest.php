@@ -16,26 +16,26 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateClusterRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The unique name of the instance in which to create the new cluster.
+     * Required. The unique name of the instance in which to create the new cluster.
      * Values are of the form
-     * `projects/<project>/instances/<instance>`.
+     * `projects/{project}/instances/{instance}`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * The ID to be used when referring to the new cluster within its instance,
+     * Required. The ID to be used when referring to the new cluster within its instance,
      * e.g., just `mycluster` rather than
      * `projects/myproject/instances/myinstance/clusters/mycluster`.
      *
-     * Generated from protobuf field <code>string cluster_id = 2;</code>
+     * Generated from protobuf field <code>string cluster_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $cluster_id = '';
     /**
-     * The cluster to be created.
+     * Required. The cluster to be created.
      * Fields marked `OutputOnly` must be left blank.
      *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.Cluster cluster = 3;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Cluster cluster = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $cluster = null;
 
@@ -46,15 +46,15 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The unique name of the instance in which to create the new cluster.
+     *           Required. The unique name of the instance in which to create the new cluster.
      *           Values are of the form
-     *           `projects/<project>/instances/<instance>`.
+     *           `projects/{project}/instances/{instance}`.
      *     @type string $cluster_id
-     *           The ID to be used when referring to the new cluster within its instance,
+     *           Required. The ID to be used when referring to the new cluster within its instance,
      *           e.g., just `mycluster` rather than
      *           `projects/myproject/instances/myinstance/clusters/mycluster`.
      *     @type \Google\Cloud\Bigtable\Admin\V2\Cluster $cluster
-     *           The cluster to be created.
+     *           Required. The cluster to be created.
      *           Fields marked `OutputOnly` must be left blank.
      * }
      */
@@ -64,11 +64,11 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unique name of the instance in which to create the new cluster.
+     * Required. The unique name of the instance in which to create the new cluster.
      * Values are of the form
-     * `projects/<project>/instances/<instance>`.
+     * `projects/{project}/instances/{instance}`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -77,11 +77,11 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unique name of the instance in which to create the new cluster.
+     * Required. The unique name of the instance in which to create the new cluster.
      * Values are of the form
-     * `projects/<project>/instances/<instance>`.
+     * `projects/{project}/instances/{instance}`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -94,11 +94,11 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ID to be used when referring to the new cluster within its instance,
+     * Required. The ID to be used when referring to the new cluster within its instance,
      * e.g., just `mycluster` rather than
      * `projects/myproject/instances/myinstance/clusters/mycluster`.
      *
-     * Generated from protobuf field <code>string cluster_id = 2;</code>
+     * Generated from protobuf field <code>string cluster_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getClusterId()
@@ -107,11 +107,11 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ID to be used when referring to the new cluster within its instance,
+     * Required. The ID to be used when referring to the new cluster within its instance,
      * e.g., just `mycluster` rather than
      * `projects/myproject/instances/myinstance/clusters/mycluster`.
      *
-     * Generated from protobuf field <code>string cluster_id = 2;</code>
+     * Generated from protobuf field <code>string cluster_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -124,10 +124,10 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The cluster to be created.
+     * Required. The cluster to be created.
      * Fields marked `OutputOnly` must be left blank.
      *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.Cluster cluster = 3;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Cluster cluster = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Bigtable\Admin\V2\Cluster
      */
     public function getCluster()
@@ -136,10 +136,10 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The cluster to be created.
+     * Required. The cluster to be created.
      * Fields marked `OutputOnly` must be left blank.
      *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.Cluster cluster = 3;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Cluster cluster = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Bigtable\Admin\V2\Cluster $var
      * @return $this
      */

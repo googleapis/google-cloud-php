@@ -16,18 +16,23 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListAppProfilesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The unique name of the instance for which a list of app profiles is
+     * Required. The unique name of the instance for which a list of app profiles is
      * requested. Values are of the form
-     * `projects/<project>/instances/<instance>`.
-     * Use `<instance> = '-'` to list AppProfiles for all Instances in a project,
+     * `projects/{project}/instances/{instance}`.
+     * Use `{instance} = '-'` to list AppProfiles for all Instances in a project,
      * e.g., `projects/myproject/instances/-`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
      * Maximum number of results per page.
-     * CURRENTLY UNIMPLEMENTED AND IGNORED.
+     * A page_size of zero lets the server choose the number of items to return.
+     * A page_size which is strictly positive will return at most that many items.
+     * A negative page_size will cause an error.
+     * Following the first request, subsequent paginated calls are not required
+     * to pass a page_size. If a page_size is set in subsequent calls, it must
+     * match the page_size given in the first request.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      */
@@ -46,14 +51,19 @@ class ListAppProfilesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The unique name of the instance for which a list of app profiles is
+     *           Required. The unique name of the instance for which a list of app profiles is
      *           requested. Values are of the form
-     *           `projects/<project>/instances/<instance>`.
-     *           Use `<instance> = '-'` to list AppProfiles for all Instances in a project,
+     *           `projects/{project}/instances/{instance}`.
+     *           Use `{instance} = '-'` to list AppProfiles for all Instances in a project,
      *           e.g., `projects/myproject/instances/-`.
      *     @type int $page_size
      *           Maximum number of results per page.
-     *           CURRENTLY UNIMPLEMENTED AND IGNORED.
+     *           A page_size of zero lets the server choose the number of items to return.
+     *           A page_size which is strictly positive will return at most that many items.
+     *           A negative page_size will cause an error.
+     *           Following the first request, subsequent paginated calls are not required
+     *           to pass a page_size. If a page_size is set in subsequent calls, it must
+     *           match the page_size given in the first request.
      *     @type string $page_token
      *           The value of `next_page_token` returned by a previous call.
      * }
@@ -64,13 +74,13 @@ class ListAppProfilesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unique name of the instance for which a list of app profiles is
+     * Required. The unique name of the instance for which a list of app profiles is
      * requested. Values are of the form
-     * `projects/<project>/instances/<instance>`.
-     * Use `<instance> = '-'` to list AppProfiles for all Instances in a project,
+     * `projects/{project}/instances/{instance}`.
+     * Use `{instance} = '-'` to list AppProfiles for all Instances in a project,
      * e.g., `projects/myproject/instances/-`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -79,13 +89,13 @@ class ListAppProfilesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unique name of the instance for which a list of app profiles is
+     * Required. The unique name of the instance for which a list of app profiles is
      * requested. Values are of the form
-     * `projects/<project>/instances/<instance>`.
-     * Use `<instance> = '-'` to list AppProfiles for all Instances in a project,
+     * `projects/{project}/instances/{instance}`.
+     * Use `{instance} = '-'` to list AppProfiles for all Instances in a project,
      * e.g., `projects/myproject/instances/-`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -99,7 +109,12 @@ class ListAppProfilesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Maximum number of results per page.
-     * CURRENTLY UNIMPLEMENTED AND IGNORED.
+     * A page_size of zero lets the server choose the number of items to return.
+     * A page_size which is strictly positive will return at most that many items.
+     * A negative page_size will cause an error.
+     * Following the first request, subsequent paginated calls are not required
+     * to pass a page_size. If a page_size is set in subsequent calls, it must
+     * match the page_size given in the first request.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      * @return int
@@ -111,7 +126,12 @@ class ListAppProfilesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Maximum number of results per page.
-     * CURRENTLY UNIMPLEMENTED AND IGNORED.
+     * A page_size of zero lets the server choose the number of items to return.
+     * A page_size which is strictly positive will return at most that many items.
+     * A negative page_size will cause an error.
+     * Following the first request, subsequent paginated calls are not required
+     * to pass a page_size. If a page_size is set in subsequent calls, it must
+     * match the page_size given in the first request.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      * @param int $var

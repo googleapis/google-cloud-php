@@ -16,16 +16,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class PartialUpdateInstanceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The Instance which will (partially) replace the current value.
+     * Required. The Instance which will (partially) replace the current value.
      *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.Instance instance = 1;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Instance instance = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $instance = null;
     /**
-     * The subset of Instance fields which should be replaced.
+     * Required. The subset of Instance fields which should be replaced.
      * Must be explicitly set.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $update_mask = null;
 
@@ -36,9 +36,9 @@ class PartialUpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Bigtable\Admin\V2\Instance $instance
-     *           The Instance which will (partially) replace the current value.
+     *           Required. The Instance which will (partially) replace the current value.
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           The subset of Instance fields which should be replaced.
+     *           Required. The subset of Instance fields which should be replaced.
      *           Must be explicitly set.
      * }
      */
@@ -48,9 +48,9 @@ class PartialUpdateInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Instance which will (partially) replace the current value.
+     * Required. The Instance which will (partially) replace the current value.
      *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.Instance instance = 1;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Instance instance = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Bigtable\Admin\V2\Instance
      */
     public function getInstance()
@@ -59,9 +59,9 @@ class PartialUpdateInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Instance which will (partially) replace the current value.
+     * Required. The Instance which will (partially) replace the current value.
      *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.Instance instance = 1;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Instance instance = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Bigtable\Admin\V2\Instance $var
      * @return $this
      */
@@ -74,10 +74,10 @@ class PartialUpdateInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The subset of Instance fields which should be replaced.
+     * Required. The subset of Instance fields which should be replaced.
      * Must be explicitly set.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask
      */
     public function getUpdateMask()
@@ -86,10 +86,10 @@ class PartialUpdateInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The subset of Instance fields which should be replaced.
+     * Required. The subset of Instance fields which should be replaced.
      * Must be explicitly set.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var
      * @return $this
      */

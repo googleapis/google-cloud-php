@@ -67,7 +67,7 @@ class AppProfile extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           Optional long form description of the use case for this AppProfile.
      *     @type \Google\Cloud\Bigtable\Admin\V2\AppProfile\MultiClusterRoutingUseAny $multi_cluster_routing_use_any
-     *           Use a multi-cluster routing policy that may pick any cluster.
+     *           Use a multi-cluster routing policy.
      *     @type \Google\Cloud\Bigtable\Admin\V2\AppProfile\SingleClusterRouting $single_cluster_routing
      *           Use a single-cluster routing policy.
      * }
@@ -174,7 +174,7 @@ class AppProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Use a multi-cluster routing policy that may pick any cluster.
+     * Use a multi-cluster routing policy.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.AppProfile.MultiClusterRoutingUseAny multi_cluster_routing_use_any = 5;</code>
      * @return \Google\Cloud\Bigtable\Admin\V2\AppProfile\MultiClusterRoutingUseAny
@@ -185,7 +185,7 @@ class AppProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Use a multi-cluster routing policy that may pick any cluster.
+     * Use a multi-cluster routing policy.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.AppProfile.MultiClusterRoutingUseAny multi_cluster_routing_use_any = 5;</code>
      * @param \Google\Cloud\Bigtable\Admin\V2\AppProfile\MultiClusterRoutingUseAny $var

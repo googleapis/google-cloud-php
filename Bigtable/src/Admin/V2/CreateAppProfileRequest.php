@@ -16,26 +16,26 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateAppProfileRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The unique name of the instance in which to create the new app profile.
+     * Required. The unique name of the instance in which to create the new app profile.
      * Values are of the form
-     * `projects/<project>/instances/<instance>`.
+     * `projects/{project}/instances/{instance}`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * The ID to be used when referring to the new app profile within its
+     * Required. The ID to be used when referring to the new app profile within its
      * instance, e.g., just `myprofile` rather than
      * `projects/myproject/instances/myinstance/appProfiles/myprofile`.
      *
-     * Generated from protobuf field <code>string app_profile_id = 2;</code>
+     * Generated from protobuf field <code>string app_profile_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $app_profile_id = '';
     /**
-     * The app profile to be created.
+     * Required. The app profile to be created.
      * Fields marked `OutputOnly` will be ignored.
      *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.AppProfile app_profile = 3;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.AppProfile app_profile = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $app_profile = null;
     /**
@@ -52,15 +52,15 @@ class CreateAppProfileRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The unique name of the instance in which to create the new app profile.
+     *           Required. The unique name of the instance in which to create the new app profile.
      *           Values are of the form
-     *           `projects/<project>/instances/<instance>`.
+     *           `projects/{project}/instances/{instance}`.
      *     @type string $app_profile_id
-     *           The ID to be used when referring to the new app profile within its
+     *           Required. The ID to be used when referring to the new app profile within its
      *           instance, e.g., just `myprofile` rather than
      *           `projects/myproject/instances/myinstance/appProfiles/myprofile`.
      *     @type \Google\Cloud\Bigtable\Admin\V2\AppProfile $app_profile
-     *           The app profile to be created.
+     *           Required. The app profile to be created.
      *           Fields marked `OutputOnly` will be ignored.
      *     @type bool $ignore_warnings
      *           If true, ignore safety checks when creating the app profile.
@@ -72,11 +72,11 @@ class CreateAppProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unique name of the instance in which to create the new app profile.
+     * Required. The unique name of the instance in which to create the new app profile.
      * Values are of the form
-     * `projects/<project>/instances/<instance>`.
+     * `projects/{project}/instances/{instance}`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -85,11 +85,11 @@ class CreateAppProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unique name of the instance in which to create the new app profile.
+     * Required. The unique name of the instance in which to create the new app profile.
      * Values are of the form
-     * `projects/<project>/instances/<instance>`.
+     * `projects/{project}/instances/{instance}`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -102,11 +102,11 @@ class CreateAppProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ID to be used when referring to the new app profile within its
+     * Required. The ID to be used when referring to the new app profile within its
      * instance, e.g., just `myprofile` rather than
      * `projects/myproject/instances/myinstance/appProfiles/myprofile`.
      *
-     * Generated from protobuf field <code>string app_profile_id = 2;</code>
+     * Generated from protobuf field <code>string app_profile_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getAppProfileId()
@@ -115,11 +115,11 @@ class CreateAppProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ID to be used when referring to the new app profile within its
+     * Required. The ID to be used when referring to the new app profile within its
      * instance, e.g., just `myprofile` rather than
      * `projects/myproject/instances/myinstance/appProfiles/myprofile`.
      *
-     * Generated from protobuf field <code>string app_profile_id = 2;</code>
+     * Generated from protobuf field <code>string app_profile_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -132,10 +132,10 @@ class CreateAppProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The app profile to be created.
+     * Required. The app profile to be created.
      * Fields marked `OutputOnly` will be ignored.
      *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.AppProfile app_profile = 3;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.AppProfile app_profile = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Bigtable\Admin\V2\AppProfile
      */
     public function getAppProfile()
@@ -144,10 +144,10 @@ class CreateAppProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The app profile to be created.
+     * Required. The app profile to be created.
      * Fields marked `OutputOnly` will be ignored.
      *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.AppProfile app_profile = 3;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.AppProfile app_profile = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Bigtable\Admin\V2\AppProfile $var
      * @return $this
      */

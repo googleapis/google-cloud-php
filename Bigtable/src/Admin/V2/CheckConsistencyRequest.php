@@ -17,17 +17,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class CheckConsistencyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The unique name of the Table for which to check replication consistency.
+     * Required. The unique name of the Table for which to check replication consistency.
      * Values are of the form
-     * `projects/<project>/instances/<instance>/tables/<table>`.
+     * `projects/{project}/instances/{instance}/tables/{table}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
-     * The token created using GenerateConsistencyToken for the Table.
+     * Required. The token created using GenerateConsistencyToken for the Table.
      *
-     * Generated from protobuf field <code>string consistency_token = 2;</code>
+     * Generated from protobuf field <code>string consistency_token = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $consistency_token = '';
 
@@ -38,11 +38,11 @@ class CheckConsistencyRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The unique name of the Table for which to check replication consistency.
+     *           Required. The unique name of the Table for which to check replication consistency.
      *           Values are of the form
-     *           `projects/<project>/instances/<instance>/tables/<table>`.
+     *           `projects/{project}/instances/{instance}/tables/{table}`.
      *     @type string $consistency_token
-     *           The token created using GenerateConsistencyToken for the Table.
+     *           Required. The token created using GenerateConsistencyToken for the Table.
      * }
      */
     public function __construct($data = NULL) {
@@ -51,11 +51,11 @@ class CheckConsistencyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unique name of the Table for which to check replication consistency.
+     * Required. The unique name of the Table for which to check replication consistency.
      * Values are of the form
-     * `projects/<project>/instances/<instance>/tables/<table>`.
+     * `projects/{project}/instances/{instance}/tables/{table}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -64,11 +64,11 @@ class CheckConsistencyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unique name of the Table for which to check replication consistency.
+     * Required. The unique name of the Table for which to check replication consistency.
      * Values are of the form
-     * `projects/<project>/instances/<instance>/tables/<table>`.
+     * `projects/{project}/instances/{instance}/tables/{table}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -81,9 +81,9 @@ class CheckConsistencyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The token created using GenerateConsistencyToken for the Table.
+     * Required. The token created using GenerateConsistencyToken for the Table.
      *
-     * Generated from protobuf field <code>string consistency_token = 2;</code>
+     * Generated from protobuf field <code>string consistency_token = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getConsistencyToken()
@@ -92,9 +92,9 @@ class CheckConsistencyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The token created using GenerateConsistencyToken for the Table.
+     * Required. The token created using GenerateConsistencyToken for the Table.
      *
-     * Generated from protobuf field <code>string consistency_token = 2;</code>
+     * Generated from protobuf field <code>string consistency_token = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

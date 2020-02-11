@@ -124,6 +124,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{resource=projects/*/instances/*/tables/*}:setIamPolicy',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{resource=projects/*/instances/*/clusters/*/backups/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'resource' => [
                         'getters' => [
@@ -136,6 +143,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{resource=projects/*/instances/*/tables/*}:testIamPermissions',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{resource=projects/*/instances/*/clusters/*/backups/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'resource' => [
                         'getters' => [
@@ -191,20 +205,9 @@ return [
             ],
         ],
         'google.longrunning.Operations' => [
-            'ListOperations' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/{name=operations/projects/**}/operations',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'GetOperation' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/{name=operations/**}',
+            'CancelOperation' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{name=operations/**}:cancel',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -224,9 +227,20 @@ return [
                     ],
                 ],
             ],
-            'CancelOperation' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2/{name=operations/**}:cancel',
+            'GetOperation' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=operations/**}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListOperations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=operations/projects/**}/operations',
                 'placeholders' => [
                     'name' => [
                         'getters' => [

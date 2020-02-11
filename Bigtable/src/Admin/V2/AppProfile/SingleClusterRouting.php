@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Unconditionally routes all read/write requests to a specific cluster.
- * This option preserves read-your-writes consistency, but does not improve
+ * This option preserves read-your-writes consistency but does not improve
  * availability.
  *
  * Generated from protobuf message <code>google.bigtable.admin.v2.AppProfile.SingleClusterRouting</code>

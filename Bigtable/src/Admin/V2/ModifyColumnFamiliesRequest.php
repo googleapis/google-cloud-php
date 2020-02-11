@@ -17,20 +17,20 @@ use Google\Protobuf\Internal\GPBUtil;
 class ModifyColumnFamiliesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The unique name of the table whose families should be modified.
+     * Required. The unique name of the table whose families should be modified.
      * Values are of the form
-     * `projects/<project>/instances/<instance>/tables/<table>`.
+     * `projects/{project}/instances/{instance}/tables/{table}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
-     * Modifications to be atomically applied to the specified table's families.
+     * Required. Modifications to be atomically applied to the specified table's families.
      * Entries are applied in order, meaning that earlier modifications can be
      * masked by later ones (in the case of repeated updates to the same family,
      * for example).
      *
-     * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.ModifyColumnFamiliesRequest.Modification modifications = 2;</code>
+     * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.ModifyColumnFamiliesRequest.Modification modifications = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $modifications;
 
@@ -41,11 +41,11 @@ class ModifyColumnFamiliesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The unique name of the table whose families should be modified.
+     *           Required. The unique name of the table whose families should be modified.
      *           Values are of the form
-     *           `projects/<project>/instances/<instance>/tables/<table>`.
+     *           `projects/{project}/instances/{instance}/tables/{table}`.
      *     @type \Google\Cloud\Bigtable\Admin\V2\ModifyColumnFamiliesRequest\Modification[]|\Google\Protobuf\Internal\RepeatedField $modifications
-     *           Modifications to be atomically applied to the specified table's families.
+     *           Required. Modifications to be atomically applied to the specified table's families.
      *           Entries are applied in order, meaning that earlier modifications can be
      *           masked by later ones (in the case of repeated updates to the same family,
      *           for example).
@@ -57,11 +57,11 @@ class ModifyColumnFamiliesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unique name of the table whose families should be modified.
+     * Required. The unique name of the table whose families should be modified.
      * Values are of the form
-     * `projects/<project>/instances/<instance>/tables/<table>`.
+     * `projects/{project}/instances/{instance}/tables/{table}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -70,11 +70,11 @@ class ModifyColumnFamiliesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unique name of the table whose families should be modified.
+     * Required. The unique name of the table whose families should be modified.
      * Values are of the form
-     * `projects/<project>/instances/<instance>/tables/<table>`.
+     * `projects/{project}/instances/{instance}/tables/{table}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -87,12 +87,12 @@ class ModifyColumnFamiliesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Modifications to be atomically applied to the specified table's families.
+     * Required. Modifications to be atomically applied to the specified table's families.
      * Entries are applied in order, meaning that earlier modifications can be
      * masked by later ones (in the case of repeated updates to the same family,
      * for example).
      *
-     * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.ModifyColumnFamiliesRequest.Modification modifications = 2;</code>
+     * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.ModifyColumnFamiliesRequest.Modification modifications = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getModifications()
@@ -101,12 +101,12 @@ class ModifyColumnFamiliesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Modifications to be atomically applied to the specified table's families.
+     * Required. Modifications to be atomically applied to the specified table's families.
      * Entries are applied in order, meaning that earlier modifications can be
      * masked by later ones (in the case of repeated updates to the same family,
      * for example).
      *
-     * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.ModifyColumnFamiliesRequest.Modification modifications = 2;</code>
+     * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.ModifyColumnFamiliesRequest.Modification modifications = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Bigtable\Admin\V2\ModifyColumnFamiliesRequest\Modification[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

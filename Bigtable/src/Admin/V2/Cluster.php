@@ -18,11 +18,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class Cluster extends \Google\Protobuf\Internal\Message
 {
     /**
-     * (`OutputOnly`)
      * The unique name of the cluster. Values are of the form
-     * `projects/<project>/instances/<instance>/clusters/[a-z][-a-z0-9]*`.
+     * `projects/{project}/instances/{instance}/clusters/[a-z][-a-z0-9]*`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $name = '';
     /**
@@ -30,23 +29,22 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * The location where this cluster's nodes and storage reside. For best
      * performance, clients should be located as close as possible to this
      * cluster. Currently only zones are supported, so values should be of the
-     * form `projects/<project>/locations/<zone>`.
+     * form `projects/{project}/locations/{zone}`.
      *
-     * Generated from protobuf field <code>string location = 2;</code>
+     * Generated from protobuf field <code>string location = 2 [(.google.api.resource_reference) = {</code>
      */
     private $location = '';
     /**
-     * (`OutputOnly`)
      * The current state of the cluster.
      *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.Cluster.State state = 3;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Cluster.State state = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $state = 0;
     /**
-     * The number of nodes allocated to this cluster. More nodes enable higher
+     * Required. The number of nodes allocated to this cluster. More nodes enable higher
      * throughput and more consistent performance.
      *
-     * Generated from protobuf field <code>int32 serve_nodes = 4;</code>
+     * Generated from protobuf field <code>int32 serve_nodes = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $serve_nodes = 0;
     /**
@@ -65,20 +63,18 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           (`OutputOnly`)
      *           The unique name of the cluster. Values are of the form
-     *           `projects/<project>/instances/<instance>/clusters/[a-z][-a-z0-9]*`.
+     *           `projects/{project}/instances/{instance}/clusters/[a-z][-a-z0-9]*`.
      *     @type string $location
      *           (`CreationOnly`)
      *           The location where this cluster's nodes and storage reside. For best
      *           performance, clients should be located as close as possible to this
      *           cluster. Currently only zones are supported, so values should be of the
-     *           form `projects/<project>/locations/<zone>`.
+     *           form `projects/{project}/locations/{zone}`.
      *     @type int $state
-     *           (`OutputOnly`)
      *           The current state of the cluster.
      *     @type int $serve_nodes
-     *           The number of nodes allocated to this cluster. More nodes enable higher
+     *           Required. The number of nodes allocated to this cluster. More nodes enable higher
      *           throughput and more consistent performance.
      *     @type int $default_storage_type
      *           (`CreationOnly`)
@@ -92,11 +88,10 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (`OutputOnly`)
      * The unique name of the cluster. Values are of the form
-     * `projects/<project>/instances/<instance>/clusters/[a-z][-a-z0-9]*`.
+     * `projects/{project}/instances/{instance}/clusters/[a-z][-a-z0-9]*`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getName()
@@ -105,11 +100,10 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (`OutputOnly`)
      * The unique name of the cluster. Values are of the form
-     * `projects/<project>/instances/<instance>/clusters/[a-z][-a-z0-9]*`.
+     * `projects/{project}/instances/{instance}/clusters/[a-z][-a-z0-9]*`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -126,9 +120,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * The location where this cluster's nodes and storage reside. For best
      * performance, clients should be located as close as possible to this
      * cluster. Currently only zones are supported, so values should be of the
-     * form `projects/<project>/locations/<zone>`.
+     * form `projects/{project}/locations/{zone}`.
      *
-     * Generated from protobuf field <code>string location = 2;</code>
+     * Generated from protobuf field <code>string location = 2 [(.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getLocation()
@@ -141,9 +135,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * The location where this cluster's nodes and storage reside. For best
      * performance, clients should be located as close as possible to this
      * cluster. Currently only zones are supported, so values should be of the
-     * form `projects/<project>/locations/<zone>`.
+     * form `projects/{project}/locations/{zone}`.
      *
-     * Generated from protobuf field <code>string location = 2;</code>
+     * Generated from protobuf field <code>string location = 2 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -156,10 +150,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (`OutputOnly`)
      * The current state of the cluster.
      *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.Cluster.State state = 3;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Cluster.State state = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getState()
@@ -168,10 +161,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (`OutputOnly`)
      * The current state of the cluster.
      *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.Cluster.State state = 3;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Cluster.State state = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */
@@ -184,10 +176,10 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of nodes allocated to this cluster. More nodes enable higher
+     * Required. The number of nodes allocated to this cluster. More nodes enable higher
      * throughput and more consistent performance.
      *
-     * Generated from protobuf field <code>int32 serve_nodes = 4;</code>
+     * Generated from protobuf field <code>int32 serve_nodes = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getServeNodes()
@@ -196,10 +188,10 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of nodes allocated to this cluster. More nodes enable higher
+     * Required. The number of nodes allocated to this cluster. More nodes enable higher
      * throughput and more consistent performance.
      *
-     * Generated from protobuf field <code>int32 serve_nodes = 4;</code>
+     * Generated from protobuf field <code>int32 serve_nodes = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */

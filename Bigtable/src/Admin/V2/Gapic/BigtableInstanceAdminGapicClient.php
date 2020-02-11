@@ -530,18 +530,18 @@ class BigtableInstanceAdminGapicClient
      * }
      * ```
      *
-     * @param string   $parent       The unique name of the project in which to create the new instance.
-     *                               Values are of the form `projects/<project>`.
-     * @param string   $instanceId   The ID to be used when referring to the new instance within its project,
+     * @param string   $parent       Required. The unique name of the project in which to create the new instance.
+     *                               Values are of the form `projects/{project}`.
+     * @param string   $instanceId   Required. The ID to be used when referring to the new instance within its project,
      *                               e.g., just `myinstance` rather than
      *                               `projects/myproject/instances/myinstance`.
-     * @param Instance $instance     The instance to create.
+     * @param Instance $instance     Required. The instance to create.
      *                               Fields marked `OutputOnly` must be left blank.
-     * @param array    $clusters     The clusters to be created within the instance, mapped by desired
+     * @param array    $clusters     Required. The clusters to be created within the instance, mapped by desired
      *                               cluster ID, e.g., just `mycluster` rather than
      *                               `projects/myproject/instances/myinstance/clusters/mycluster`.
      *                               Fields marked `OutputOnly` must be left blank.
-     *                               Currently, at most two clusters can be specified.
+     *                               Currently, at most four clusters can be specified.
      * @param array    $optionalArgs {
      *                               Optional.
      *
@@ -594,8 +594,8 @@ class BigtableInstanceAdminGapicClient
      * }
      * ```
      *
-     * @param string $name         The unique name of the requested instance. Values are of the form
-     *                             `projects/<project>/instances/<instance>`.
+     * @param string $name         Required. The unique name of the requested instance. Values are of the form
+     *                             `projects/{project}/instances/{instance}`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -645,8 +645,8 @@ class BigtableInstanceAdminGapicClient
      * }
      * ```
      *
-     * @param string $parent       The unique name of the project for which a list of instances is requested.
-     *                             Values are of the form `projects/<project>`.
+     * @param string $parent       Required. The unique name of the project for which a list of instances is requested.
+     *                             Values are of the form `projects/{project}`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -688,7 +688,9 @@ class BigtableInstanceAdminGapicClient
     }
 
     /**
-     * Updates an instance within a project.
+     * Updates an instance within a project. This method updates only the display
+     * name and type for an Instance. To update other Instance properties, such as
+     * labels, use PartialUpdateInstance.
      *
      * Sample code:
      * ```
@@ -704,10 +706,9 @@ class BigtableInstanceAdminGapicClient
      * }
      * ```
      *
-     * @param string $name        (`OutputOnly`)
-     *                            The unique name of the instance. Values are of the form
-     *                            `projects/<project>/instances/[a-z][a-z0-9\\-]+[a-z0-9]`.
-     * @param string $displayName The descriptive name for this instance as it appears in UIs.
+     * @param string $name        The unique name of the instance. Values are of the form
+     *                            `projects/{project}/instances/[a-z][a-z0-9\\-]+[a-z0-9]`.
+     * @param string $displayName Required. The descriptive name for this instance as it appears in UIs.
      *                            Can be changed at any time, but should be kept globally unique
      *                            to avoid confusion.
      * @param int    $type        The type of the instance. Defaults to `PRODUCTION`.
@@ -769,7 +770,8 @@ class BigtableInstanceAdminGapicClient
     }
 
     /**
-     * Partially updates an instance within a project.
+     * Partially updates an instance within a project. This method can modify all
+     * fields of an Instance and is the preferred way to update an Instance.
      *
      * Sample code:
      * ```
@@ -811,8 +813,8 @@ class BigtableInstanceAdminGapicClient
      * }
      * ```
      *
-     * @param Instance  $instance     The Instance which will (partially) replace the current value.
-     * @param FieldMask $updateMask   The subset of Instance fields which should be replaced.
+     * @param Instance  $instance     Required. The Instance which will (partially) replace the current value.
+     * @param FieldMask $updateMask   Required. The subset of Instance fields which should be replaced.
      *                                Must be explicitly set.
      * @param array     $optionalArgs {
      *                                Optional.
@@ -864,8 +866,8 @@ class BigtableInstanceAdminGapicClient
      * }
      * ```
      *
-     * @param string $name         The unique name of the instance to be deleted.
-     *                             Values are of the form `projects/<project>/instances/<instance>`.
+     * @param string $name         Required. The unique name of the instance to be deleted.
+     *                             Values are of the form `projects/{project}/instances/{instance}`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -943,13 +945,13 @@ class BigtableInstanceAdminGapicClient
      * }
      * ```
      *
-     * @param string  $parent       The unique name of the instance in which to create the new cluster.
+     * @param string  $parent       Required. The unique name of the instance in which to create the new cluster.
      *                              Values are of the form
-     *                              `projects/<project>/instances/<instance>`.
-     * @param string  $clusterId    The ID to be used when referring to the new cluster within its instance,
+     *                              `projects/{project}/instances/{instance}`.
+     * @param string  $clusterId    Required. The ID to be used when referring to the new cluster within its instance,
      *                              e.g., just `mycluster` rather than
      *                              `projects/myproject/instances/myinstance/clusters/mycluster`.
-     * @param Cluster $cluster      The cluster to be created.
+     * @param Cluster $cluster      Required. The cluster to be created.
      *                              Fields marked `OutputOnly` must be left blank.
      * @param array   $optionalArgs {
      *                              Optional.
@@ -1002,8 +1004,8 @@ class BigtableInstanceAdminGapicClient
      * }
      * ```
      *
-     * @param string $name         The unique name of the requested cluster. Values are of the form
-     *                             `projects/<project>/instances/<instance>/clusters/<cluster>`.
+     * @param string $name         Required. The unique name of the requested cluster. Values are of the form
+     *                             `projects/{project}/instances/{instance}/clusters/{cluster}`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1053,9 +1055,9 @@ class BigtableInstanceAdminGapicClient
      * }
      * ```
      *
-     * @param string $parent       The unique name of the instance for which a list of clusters is requested.
-     *                             Values are of the form `projects/<project>/instances/<instance>`.
-     *                             Use `<instance> = '-'` to list Clusters for all Instances in a project,
+     * @param string $parent       Required. The unique name of the instance for which a list of clusters is requested.
+     *                             Values are of the form `projects/{project}/instances/{instance}`.
+     *                             Use `{instance} = '-'` to list Clusters for all Instances in a project,
      *                             e.g., `projects/myproject/instances/-`.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -1140,10 +1142,9 @@ class BigtableInstanceAdminGapicClient
      * }
      * ```
      *
-     * @param string $name         (`OutputOnly`)
-     *                             The unique name of the cluster. Values are of the form
-     *                             `projects/<project>/instances/<instance>/clusters/[a-z][-a-z0-9]*`.
-     * @param int    $serveNodes   The number of nodes allocated to this cluster. More nodes enable higher
+     * @param string $name         The unique name of the cluster. Values are of the form
+     *                             `projects/{project}/instances/{instance}/clusters/[a-z][-a-z0-9]*`.
+     * @param int    $serveNodes   Required. The number of nodes allocated to this cluster. More nodes enable higher
      *                             throughput and more consistent performance.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -1153,9 +1154,8 @@ class BigtableInstanceAdminGapicClient
      *          The location where this cluster's nodes and storage reside. For best
      *          performance, clients should be located as close as possible to this
      *          cluster. Currently only zones are supported, so values should be of the
-     *          form `projects/<project>/locations/<zone>`.
+     *          form `projects/{project}/locations/{zone}`.
      *     @type int $state
-     *          (`OutputOnly`)
      *          The current state of the cluster.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\Cluster\State}
      *     @type int $defaultStorageType
@@ -1219,8 +1219,8 @@ class BigtableInstanceAdminGapicClient
      * }
      * ```
      *
-     * @param string $name         The unique name of the cluster to be deleted. Values are of the form
-     *                             `projects/<project>/instances/<instance>/clusters/<cluster>`.
+     * @param string $name         Required. The unique name of the cluster to be deleted. Values are of the form
+     *                             `projects/{project}/instances/{instance}/clusters/{cluster}`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1270,13 +1270,13 @@ class BigtableInstanceAdminGapicClient
      * }
      * ```
      *
-     * @param string     $parent       The unique name of the instance in which to create the new app profile.
+     * @param string     $parent       Required. The unique name of the instance in which to create the new app profile.
      *                                 Values are of the form
-     *                                 `projects/<project>/instances/<instance>`.
-     * @param string     $appProfileId The ID to be used when referring to the new app profile within its
+     *                                 `projects/{project}/instances/{instance}`.
+     * @param string     $appProfileId Required. The ID to be used when referring to the new app profile within its
      *                                 instance, e.g., just `myprofile` rather than
      *                                 `projects/myproject/instances/myinstance/appProfiles/myprofile`.
-     * @param AppProfile $appProfile   The app profile to be created.
+     * @param AppProfile $appProfile   Required. The app profile to be created.
      *                                 Fields marked `OutputOnly` will be ignored.
      * @param array      $optionalArgs {
      *                                 Optional.
@@ -1334,8 +1334,8 @@ class BigtableInstanceAdminGapicClient
      * }
      * ```
      *
-     * @param string $name         The unique name of the requested app profile. Values are of the form
-     *                             `projects/<project>/instances/<instance>/appProfiles/<app_profile>`.
+     * @param string $name         Required. The unique name of the requested app profile. Values are of the form
+     *                             `projects/{project}/instances/{instance}/appProfiles/{app_profile}`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1400,17 +1400,24 @@ class BigtableInstanceAdminGapicClient
      * }
      * ```
      *
-     * @param string $parent       The unique name of the instance for which a list of app profiles is
+     * @param string $parent       Required. The unique name of the instance for which a list of app profiles is
      *                             requested. Values are of the form
-     *                             `projects/<project>/instances/<instance>`.
-     *                             Use `<instance> = '-'` to list AppProfiles for all Instances in a project,
+     *                             `projects/{project}/instances/{instance}`.
+     *                             Use `{instance} = '-'` to list AppProfiles for all Instances in a project,
      *                             e.g., `projects/myproject/instances/-`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
      *     @type int $pageSize
      *          Maximum number of results per page.
-     *          CURRENTLY UNIMPLEMENTED AND IGNORED.
+     *
+     *          A page_size of zero lets the server choose the number of items to return.
+     *          A page_size which is strictly positive will return at most that many items.
+     *          A negative page_size will cause an error.
+     *
+     *          Following the first request, subsequent paginated calls are not required
+     *          to pass a page_size. If a page_size is set in subsequent calls, it must
+     *          match the page_size given in the first request.
      *     @type string $pageToken
      *          A page token is used to specify a page of values to be returned.
      *          If no page token is specified (the default), the first page
@@ -1497,8 +1504,8 @@ class BigtableInstanceAdminGapicClient
      * }
      * ```
      *
-     * @param AppProfile $appProfile   The app profile which will (partially) replace the current value.
-     * @param FieldMask  $updateMask   The subset of app profile fields which should be replaced.
+     * @param AppProfile $appProfile   Required. The app profile which will (partially) replace the current value.
+     * @param FieldMask  $updateMask   Required. The subset of app profile fields which should be replaced.
      *                                 If unset, all fields will be replaced.
      * @param array      $optionalArgs {
      *                                 Optional.
@@ -1556,8 +1563,8 @@ class BigtableInstanceAdminGapicClient
      * }
      * ```
      *
-     * @param string $name           The unique name of the app profile to be deleted. Values are of the form
-     *                               `projects/<project>/instances/<instance>/appProfiles/<app_profile>`.
+     * @param string $name           Required. The unique name of the app profile to be deleted. Values are of the form
+     *                               `projects/{project}/instances/{instance}/appProfiles/{app_profile}`.
      * @param bool   $ignoreWarnings If true, ignore safety checks when deleting the app profile.
      * @param array  $optionalArgs   {
      *                               Optional.
