@@ -18,6 +18,19 @@
             "patterns": [
                 "securitycenter\/v1\/\\w{1,}"
             ]
+        },
+        {
+            "title": "v1p1beta1",
+            "type": "securitycenter\/v1p1beta1\/readme",
+            "nav": [
+                {
+                    "title": "SecurityCenterClient",
+                    "type": "securitycenter\/v1p1beta1\/securitycenterclient"
+                }
+            ],
+            "patterns": [
+                "securitycenter\/v1p1beta1\/\\w{1,}"
+            ]
         }
     ],
     "pattern": "securitycenter\/\\w{1,}"
