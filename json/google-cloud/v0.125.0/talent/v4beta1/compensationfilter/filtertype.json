@@ -1,0 +1,1 @@
+{"id":"talent\/v4beta1\/compensationfilter\/filtertype","type":"","title":"Google\\Cloud\\Talent\\V4beta1\\CompensationFilter\\FilterType","name":"FilterType","description":"<p>Specify the type of filtering.<\/p>\n<p>Protobuf type <code>google.cloud.talent.v4beta1.CompensationFilter.FilterType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

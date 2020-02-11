@@ -1,0 +1,1 @@
+{"id":"datastore\/v1\/compositefilter_operator","type":"","title":"Google\\Cloud\\Datastore\\V1\\CompositeFilter_Operator","name":"CompositeFilter_Operator","description":"<p>This class is deprecated. Use Google\\Cloud\\Datastore\\V1\\CompositeFilter\\Operator instead.<\/p>","examples":[],"resources":[],"methods":[]}

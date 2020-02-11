@@ -1,0 +1,1 @@
+{"id":"dlp\/v2\/timepartconfig\/timepart","type":"","title":"Google\\Cloud\\Dlp\\V2\\TimePartConfig\\TimePart","name":"TimePart","description":"<p>Components that make up time.<\/p>\n<p>Protobuf type <code>google.privacy.dlp.v2.TimePartConfig.TimePart<\/code><\/p>","examples":[],"resources":[],"methods":[]}
