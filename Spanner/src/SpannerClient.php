@@ -126,6 +126,8 @@ class SpannerClient
      *     @type bool $returnInt64AsObject If true, 64 bit integers will be
      *           returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
      *           platform compatibility. **Defaults to** false.
+     *     @type bool $useGapicBackoffs If true, GAPIC backoff strategy
+     *           will be used.
      * }
      * @throws GoogleException If the gRPC extension is not enabled.
      */
@@ -140,6 +142,14 @@ class SpannerClient
             'returnInt64AsObject' => false,
             'projectIdRequired' => true
         ];
+
+        if (!empty($config['useGapicBackoffs'])) {
+            $config = array_merge_recursive($config, [
+                'grpcOptions' => [
+                    'retrySettings' => [],
+                ],
+            ]);
+        }
 
         $this->connection = new Grpc($this->configureAuthentication($config));
         $this->returnInt64AsObject = $config['returnInt64AsObject'];
