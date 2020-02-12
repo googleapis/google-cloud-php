@@ -1,6 +1,20 @@
 {
-  "updateTime": "2020-02-10T22:29:42.162769Z",
+  "updateTime": "2020-02-12T11:04:37.569347Z",
   "sources": [
+    {
+      "git": {
+        "name": ".",
+        "remote": "https://github.com/googleapis/google-cloud-php.git",
+        "sha": "3adb76e84fabff79f6fd66b353ea45871194bd46"
+      }
+    },
+    {
+      "git": {
+        "name": "synthtool",
+        "remote": "rpc://devrel/cloud/libraries/tools/autosynth",
+        "sha": "dd7cd93888cbeb1d4c56a1ca814491c7813160e8"
+      }
+    },
     {
       "generator": {
         "name": "artman",
@@ -12,8 +26,9 @@
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "fcc86bee0e84dc11e9abbff8d7c3529c0626f390",
-        "internalRef": "294264582"
+        "sha": "8a36b928873ff9c05b43859b9d4ea14cd205df57",
+        "internalRef": "294459768",
+        "log": "8a36b928873ff9c05b43859b9d4ea14cd205df57\nFix: Define the \"bigquery.googleapis.com/Table\" resource in the BigQuery Storage API (v1beta2).\n\nPiperOrigin-RevId: 294459768\n\nc7a3caa2c40c49f034a3c11079dd90eb24987047\nFix: Define the \"bigquery.googleapis.com/Table\" resource in the BigQuery Storage API (v1).\n\nPiperOrigin-RevId: 294456889\n\n5006247aa157e59118833658084345ee59af7c09\nFix: Make deprecated fields optional\nFix: Deprecate SetLoggingServiceRequest.zone in line with the comments\nFeature: Add resource name method signatures where appropriate\n\nPiperOrigin-RevId: 294383128\n\neabba40dac05c5cbe0fca3a35761b17e372036c4\nFix: C# and PHP package/namespace capitalization for BigQuery Storage v1.\n\nPiperOrigin-RevId: 294382444\n\nf8d9a858a7a55eba8009a23aa3f5cc5fe5e88dde\nfix: artman configuration file for bigtable-admin\n\nPiperOrigin-RevId: 294322616\n\n0f29555d1cfcf96add5c0b16b089235afbe9b1a9\nAPI definition for (not-yet-launched) GCS gRPC.\n\nPiperOrigin-RevId: 294321472\n\n"
       }
     }
   ],
