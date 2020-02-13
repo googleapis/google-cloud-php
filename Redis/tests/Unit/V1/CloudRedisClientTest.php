@@ -462,7 +462,7 @@ class CloudRedisClientTest extends GeneratedTest
         $incompleteOperation->setName('operations/updateInstanceTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
-        $name = 'name3373707';
+        $name2 = 'name2-1052831874';
         $displayName2 = 'displayName21615000987';
         $locationId = 'locationId552319461';
         $alternativeLocationId = 'alternativeLocationId-718920621';
@@ -472,11 +472,11 @@ class CloudRedisClientTest extends GeneratedTest
         $port = 3446913;
         $currentLocationId = 'currentLocationId1312712735';
         $statusMessage = 'statusMessage-239442758';
-        $memorySizeGb = 34199707;
+        $memorySizeGb2 = 1493816946;
         $authorizedNetwork = 'authorizedNetwork-1733809270';
         $persistenceIamIdentity = 'persistenceIamIdentity1061944584';
         $expectedResponse = new Instance();
-        $expectedResponse->setName($name);
+        $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName2);
         $expectedResponse->setLocationId($locationId);
         $expectedResponse->setAlternativeLocationId($alternativeLocationId);
@@ -486,7 +486,7 @@ class CloudRedisClientTest extends GeneratedTest
         $expectedResponse->setPort($port);
         $expectedResponse->setCurrentLocationId($currentLocationId);
         $expectedResponse->setStatusMessage($statusMessage);
-        $expectedResponse->setMemorySizeGb($memorySizeGb);
+        $expectedResponse->setMemorySizeGb($memorySizeGb2);
         $expectedResponse->setAuthorizedNetwork($authorizedNetwork);
         $expectedResponse->setPersistenceIamIdentity($persistenceIamIdentity);
         $anyResponse = new Any();
@@ -503,9 +503,13 @@ class CloudRedisClientTest extends GeneratedTest
         $paths = [$pathsElement, $pathsElement2];
         $updateMask = new FieldMask();
         $updateMask->setPaths($paths);
-        $displayName = '￼ instance.memory_size_gb=4';
+        $displayName = 'UpdatedDisplayName';
+        $name = 'projects/<project-name>/locations/<location>/instances/<instance>';
+        $memorySizeGb = 4;
         $instance = new Instance();
         $instance->setDisplayName($displayName);
+        $instance->setName($name);
+        $instance->setMemorySizeGb($memorySizeGb);
 
         $response = $client->updateInstance($updateMask, $instance);
         $this->assertFalse($response->isDone());
@@ -591,9 +595,13 @@ class CloudRedisClientTest extends GeneratedTest
         $paths = [$pathsElement, $pathsElement2];
         $updateMask = new FieldMask();
         $updateMask->setPaths($paths);
-        $displayName = '￼ instance.memory_size_gb=4';
+        $displayName = 'UpdatedDisplayName';
+        $name = 'projects/<project-name>/locations/<location>/instances/<instance>';
+        $memorySizeGb = 4;
         $instance = new Instance();
         $instance->setDisplayName($displayName);
+        $instance->setName($name);
+        $instance->setMemorySizeGb($memorySizeGb);
 
         $response = $client->updateInstance($updateMask, $instance);
         $this->assertFalse($response->isDone());
