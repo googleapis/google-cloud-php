@@ -146,6 +146,25 @@ return [
                     ],
                 ],
             ],
+            'StartManualTransferRuns' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/transferConfigs/*}:startManualRuns',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*/transferConfigs/*}:startManualRuns',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'GetTransferRun' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/transferConfigs/*/runs/*}',
@@ -229,25 +248,6 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'StartManualTransferRuns' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*/transferConfigs/*}:startManualRuns',
-                'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/{parent=projects/*/transferConfigs/*}:startManualRuns',
-                        'body' => '*',
-                    ],
-                ],
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
                         ],
                     ],
                 ],

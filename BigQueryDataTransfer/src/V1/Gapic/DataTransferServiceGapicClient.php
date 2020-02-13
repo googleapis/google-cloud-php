@@ -267,7 +267,9 @@ class DataTransferServiceGapicClient
      * @param string $dataSource
      *
      * @return string The formatted location_data_source resource.
-     * @experimental
+     *
+     * @deprecated Multi-pattern resource names will have unified formatting functions.
+     *             This helper function will be deleted in the next major version.
      */
     public static function locationDataSourceName($project, $location, $dataSource)
     {
@@ -288,7 +290,9 @@ class DataTransferServiceGapicClient
      * @param string $run
      *
      * @return string The formatted location_run resource.
-     * @experimental
+     *
+     * @deprecated Multi-pattern resource names will have unified formatting functions.
+     *             This helper function will be deleted in the next major version.
      */
     public static function locationRunName($project, $location, $transferConfig, $run)
     {
@@ -309,7 +313,9 @@ class DataTransferServiceGapicClient
      * @param string $transferConfig
      *
      * @return string The formatted location_transfer_config resource.
-     * @experimental
+     *
+     * @deprecated Multi-pattern resource names will have unified formatting functions.
+     *             This helper function will be deleted in the next major version.
      */
     public static function locationTransferConfigName($project, $location, $transferConfig)
     {
@@ -344,7 +350,9 @@ class DataTransferServiceGapicClient
      * @param string $dataSource
      *
      * @return string The formatted project_data_source resource.
-     * @experimental
+     *
+     * @deprecated Multi-pattern resource names will have unified formatting functions.
+     *             This helper function will be deleted in the next major version.
      */
     public static function projectDataSourceName($project, $dataSource)
     {
@@ -363,7 +371,9 @@ class DataTransferServiceGapicClient
      * @param string $run
      *
      * @return string The formatted project_run resource.
-     * @experimental
+     *
+     * @deprecated Multi-pattern resource names will have unified formatting functions.
+     *             This helper function will be deleted in the next major version.
      */
     public static function projectRunName($project, $transferConfig, $run)
     {
@@ -382,7 +392,9 @@ class DataTransferServiceGapicClient
      * @param string $transferConfig
      *
      * @return string The formatted project_transfer_config resource.
-     * @experimental
+     *
+     * @deprecated Multi-pattern resource names will have unified formatting functions.
+     *             This helper function will be deleted in the next major version.
      */
     public static function projectTransferConfigName($project, $transferConfig)
     {
@@ -1079,6 +1091,74 @@ class DataTransferServiceGapicClient
     }
 
     /**
+     * Start manual transfer runs to be executed now with schedule_time equal to
+     * current time. The transfer runs can be created for a time range where the
+     * run_time is between start_time (inclusive) and end_time (exclusive), or for
+     * a specific run_time.
+     *
+     * Sample code:
+     * ```
+     * $dataTransferServiceClient = new DataTransferServiceClient();
+     * try {
+     *     $response = $dataTransferServiceClient->startManualTransferRuns();
+     * } finally {
+     *     $dataTransferServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type string $parent
+     *          Transfer configuration name in the form:
+     *          `projects/{project_id}/transferConfigs/{config_id}` or
+     *          `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
+     *     @type TimeRange $requestedTimeRange
+     *          Time range for the transfer runs that should be started.
+     *     @type Timestamp $requestedRunTime
+     *          Specific run_time for a transfer run to be started. The
+     *          requested_run_time must not be in the future.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\BigQuery\DataTransfer\V1\StartManualTransferRunsResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function startManualTransferRuns(array $optionalArgs = [])
+    {
+        $request = new StartManualTransferRunsRequest();
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+        }
+        if (isset($optionalArgs['requestedTimeRange'])) {
+            $request->setRequestedTimeRange($optionalArgs['requestedTimeRange']);
+        }
+        if (isset($optionalArgs['requestedRunTime'])) {
+            $request->setRequestedRunTime($optionalArgs['requestedRunTime']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'StartManualTransferRuns',
+            StartManualTransferRunsResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Returns information about the particular transfer run.
      *
      * Sample code:
@@ -1416,74 +1496,6 @@ class DataTransferServiceGapicClient
         return $this->startCall(
             'CheckValidCreds',
             CheckValidCredsResponse::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Start manual transfer runs to be executed now with schedule_time equal to
-     * current time. The transfer runs can be created for a time range where the
-     * run_time is between start_time (inclusive) and end_time (exclusive), or for
-     * a specific run_time.
-     *
-     * Sample code:
-     * ```
-     * $dataTransferServiceClient = new DataTransferServiceClient();
-     * try {
-     *     $response = $dataTransferServiceClient->startManualTransferRuns();
-     * } finally {
-     *     $dataTransferServiceClient->close();
-     * }
-     * ```
-     *
-     * @param array $optionalArgs {
-     *                            Optional.
-     *
-     *     @type string $parent
-     *          Transfer configuration name in the form:
-     *          `projects/{project_id}/transferConfigs/{config_id}` or
-     *          `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
-     *     @type TimeRange $requestedTimeRange
-     *          Time range for the transfer runs that should be started.
-     *     @type Timestamp $requestedRunTime
-     *          Specific run_time for a transfer run to be started. The
-     *          requested_run_time must not be in the future.
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\BigQuery\DataTransfer\V1\StartManualTransferRunsResponse
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function startManualTransferRuns(array $optionalArgs = [])
-    {
-        $request = new StartManualTransferRunsRequest();
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-        }
-        if (isset($optionalArgs['requestedTimeRange'])) {
-            $request->setRequestedTimeRange($optionalArgs['requestedTimeRange']);
-        }
-        if (isset($optionalArgs['requestedRunTime'])) {
-            $request->setRequestedRunTime($optionalArgs['requestedRunTime']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'parent' => $request->getParent(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'StartManualTransferRuns',
-            StartManualTransferRunsResponse::class,
             $optionalArgs,
             $request
         )->wait();
