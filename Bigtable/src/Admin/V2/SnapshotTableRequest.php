@@ -25,7 +25,7 @@ class SnapshotTableRequest extends \Google\Protobuf\Internal\Message
      * Values are of the form
      * `projects/{project}/instances/{instance}/tables/{table}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
@@ -33,7 +33,7 @@ class SnapshotTableRequest extends \Google\Protobuf\Internal\Message
      * Values are of the form
      * `projects/{project}/instances/{instance}/clusters/{cluster}`.
      *
-     * Generated from protobuf field <code>string cluster = 2;</code>
+     * Generated from protobuf field <code>string cluster = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $cluster = '';
     /**
@@ -42,7 +42,7 @@ class SnapshotTableRequest extends \Google\Protobuf\Internal\Message
      * rather than
      * `projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/mysnapshot`.
      *
-     * Generated from protobuf field <code>string snapshot_id = 3;</code>
+     * Generated from protobuf field <code>string snapshot_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $snapshot_id = '';
     /**
@@ -99,7 +99,7 @@ class SnapshotTableRequest extends \Google\Protobuf\Internal\Message
      * Values are of the form
      * `projects/{project}/instances/{instance}/tables/{table}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -112,7 +112,7 @@ class SnapshotTableRequest extends \Google\Protobuf\Internal\Message
      * Values are of the form
      * `projects/{project}/instances/{instance}/tables/{table}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -129,7 +129,7 @@ class SnapshotTableRequest extends \Google\Protobuf\Internal\Message
      * Values are of the form
      * `projects/{project}/instances/{instance}/clusters/{cluster}`.
      *
-     * Generated from protobuf field <code>string cluster = 2;</code>
+     * Generated from protobuf field <code>string cluster = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getCluster()
@@ -142,7 +142,7 @@ class SnapshotTableRequest extends \Google\Protobuf\Internal\Message
      * Values are of the form
      * `projects/{project}/instances/{instance}/clusters/{cluster}`.
      *
-     * Generated from protobuf field <code>string cluster = 2;</code>
+     * Generated from protobuf field <code>string cluster = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -160,7 +160,7 @@ class SnapshotTableRequest extends \Google\Protobuf\Internal\Message
      * rather than
      * `projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/mysnapshot`.
      *
-     * Generated from protobuf field <code>string snapshot_id = 3;</code>
+     * Generated from protobuf field <code>string snapshot_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getSnapshotId()
@@ -174,7 +174,7 @@ class SnapshotTableRequest extends \Google\Protobuf\Internal\Message
      * rather than
      * `projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/mysnapshot`.
      *
-     * Generated from protobuf field <code>string snapshot_id = 3;</code>
+     * Generated from protobuf field <code>string snapshot_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
