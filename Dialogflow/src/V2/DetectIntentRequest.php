@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * ============================================================================
+ * Requests and responses for custom methods.
  * The request to detect user's intent.
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.DetectIntentRequest</code>
@@ -22,7 +24,7 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      * some type of user identifier (preferably hashed). The length of the session
      * ID must not exceed 36 bytes.
      *
-     * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $session = '';
     /**
@@ -100,7 +102,7 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      * some type of user identifier (preferably hashed). The length of the session
      * ID must not exceed 36 bytes.
      *
-     * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getSession()
@@ -115,7 +117,7 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      * some type of user identifier (preferably hashed). The length of the session
      * ID must not exceed 36 bytes.
      *
-     * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

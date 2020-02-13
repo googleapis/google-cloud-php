@@ -370,9 +370,8 @@ class IntentsClientTest extends GeneratedTest
 
         // Mock request
         $intent = new Intent();
-        $languageCode = 'languageCode-412800396';
 
-        $response = $client->updateIntent($intent, $languageCode);
+        $response = $client->updateIntent($intent);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -383,9 +382,6 @@ class IntentsClientTest extends GeneratedTest
         $actualValue = $actualRequestObject->getIntent();
 
         $this->assertProtobufEquals($intent, $actualValue);
-        $actualValue = $actualRequestObject->getLanguageCode();
-
-        $this->assertProtobufEquals($languageCode, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -414,10 +410,9 @@ class IntentsClientTest extends GeneratedTest
 
         // Mock request
         $intent = new Intent();
-        $languageCode = 'languageCode-412800396';
 
         try {
-            $client->updateIntent($intent, $languageCode);
+            $client->updateIntent($intent);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -536,9 +531,8 @@ class IntentsClientTest extends GeneratedTest
 
         // Mock request
         $formattedParent = $client->projectAgentName('[PROJECT]');
-        $languageCode = 'languageCode-412800396';
 
-        $response = $client->batchUpdateIntents($formattedParent, $languageCode);
+        $response = $client->batchUpdateIntents($formattedParent);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -552,9 +546,6 @@ class IntentsClientTest extends GeneratedTest
         $actualValue = $actualApiRequestObject->getParent();
 
         $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getLanguageCode();
-
-        $this->assertProtobufEquals($languageCode, $actualValue);
 
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/batchUpdateIntentsTest');
@@ -618,9 +609,8 @@ class IntentsClientTest extends GeneratedTest
 
         // Mock request
         $formattedParent = $client->projectAgentName('[PROJECT]');
-        $languageCode = 'languageCode-412800396';
 
-        $response = $client->batchUpdateIntents($formattedParent, $languageCode);
+        $response = $client->batchUpdateIntents($formattedParent);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
 
