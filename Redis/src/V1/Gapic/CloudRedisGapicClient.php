@@ -633,9 +633,13 @@ class CloudRedisGapicClient
      *     $paths = [$pathsElement, $pathsElement2];
      *     $updateMask = new Google\Protobuf\FieldMask();
      *     $updateMask->setPaths($paths);
-     *     $displayName = '￼ instance.memory_size_gb=4';
+     *     $displayName = 'UpdatedDisplayName';
+     *     $name = 'projects/<project-name>/locations/<location>/instances/<instance>';
+     *     $memorySizeGb = 4;
      *     $instance = new Google\Cloud\Redis\V1\Instance();
      *     $instance->setDisplayName($displayName);
+     *     $instance->setName($name);
+     *     $instance->setMemorySizeGb($memorySizeGb);
      *     $operationResponse = $cloudRedisClient->updateInstance($updateMask, $instance);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {

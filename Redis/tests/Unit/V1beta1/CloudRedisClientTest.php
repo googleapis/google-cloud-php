@@ -462,7 +462,7 @@ class CloudRedisClientTest extends GeneratedTest
         $incompleteOperation->setName('operations/updateInstanceTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
-        $name = 'name3373707';
+        $name2 = 'name2-1052831874';
         $displayName2 = 'displayName21615000987';
         $locationId = 'locationId552319461';
         $alternativeLocationId = 'alternativeLocationId-718920621';
@@ -476,7 +476,7 @@ class CloudRedisClientTest extends GeneratedTest
         $authorizedNetwork = 'authorizedNetwork-1733809270';
         $persistenceIamIdentity = 'persistenceIamIdentity1061944584';
         $expectedResponse = new Instance();
-        $expectedResponse->setName($name);
+        $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName2);
         $expectedResponse->setLocationId($locationId);
         $expectedResponse->setAlternativeLocationId($alternativeLocationId);
@@ -504,9 +504,11 @@ class CloudRedisClientTest extends GeneratedTest
         $updateMask = new FieldMask();
         $updateMask->setPaths($paths);
         $displayName = 'UpdatedDisplayName';
+        $name = 'projects/<project-name>/locations/<location>/instances/<instance>';
         $memorySizeGb = 4;
         $instance = new Instance();
         $instance->setDisplayName($displayName);
+        $instance->setName($name);
         $instance->setMemorySizeGb($memorySizeGb);
 
         $response = $client->updateInstance($updateMask, $instance);
@@ -594,9 +596,11 @@ class CloudRedisClientTest extends GeneratedTest
         $updateMask = new FieldMask();
         $updateMask->setPaths($paths);
         $displayName = 'UpdatedDisplayName';
+        $name = 'projects/<project-name>/locations/<location>/instances/<instance>';
         $memorySizeGb = 4;
         $instance = new Instance();
         $instance->setDisplayName($displayName);
+        $instance->setName($name);
         $instance->setMemorySizeGb($memorySizeGb);
 
         $response = $client->updateInstance($updateMask, $instance);
