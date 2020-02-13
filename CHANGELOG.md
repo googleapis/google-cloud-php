@@ -1,5 +1,7 @@
 # Changelog
 
+## 0.125.1
+
 ## 0.125.0
 
 <details><summary>google/cloud-asset 0.6.0</summary>
