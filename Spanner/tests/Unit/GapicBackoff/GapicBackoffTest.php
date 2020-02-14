@@ -9,7 +9,8 @@ use Google\Cloud\Spanner\SpannerClient;
  * @group spanner
  * @group spanner-gapic-backoff
  */
-class GapicBackoffTest extends TestCase {
+class GapicBackoffTest extends TestCase
+{
 
     /**
      * @param array $config

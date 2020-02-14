@@ -8,7 +8,8 @@ class MockOperationResponse extends OperationResponse
 {
     public $options;
 
-    public function __construct ($operationName, $operationsClient, $options = []) {
+    public function __construct($operationName, $operationsClient, $options = [])
+    {
         $this->options = $options;
         parent::__construct($operationName, $operationsClient, $options);
     }
