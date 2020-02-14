@@ -4,6 +4,7 @@ namespace Google\Cloud\Spanner\Tests\Unit\GapicBackoff;
 
 use PHPUnit\Framework\TestCase;
 use Google\Cloud\Spanner\SpannerClient;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 
 /**
  * @group spanner
@@ -11,6 +12,12 @@ use Google\Cloud\Spanner\SpannerClient;
  */
 class GapicBackoffTest extends TestCase
 {
+    use GrpcTestTrait;
+
+    public function setUp()
+    {
+        $this->checkAndSkipGrpcTests();
+    }
 
     /**
      * @param array $config
