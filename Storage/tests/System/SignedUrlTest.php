@@ -73,8 +73,9 @@ class SignedUrlTest extends StorageTestCase
 
     /**
      * @dataProvider signedUrls
+     * @group storage-signed-url-v2
      */
-    public function testSignedUrl($objectName, array $urlOpts = [])
+    public function testSignedUrlV2($objectName, array $urlOpts = [])
     {
         $urlOpts += [
             'version' => 'v2'
@@ -83,12 +84,13 @@ class SignedUrlTest extends StorageTestCase
         $obj = $this->createFile($objectName);
         $ts = new Timestamp(new \DateTime('tomorrow'));
         $url = $obj->signedUrl($ts, $urlOpts);
+        // echo $url;exit;
 
         $this->assertEquals(self::CONTENT, $this->getFile($url, $urlOpts));
     }
 
     /**
-     * @group v4
+     * @group storage-signed-url-v4
      * @dataProvider signedUrls
      */
     public function testSignedUrlV4($objectName, array $urlOpts = [])

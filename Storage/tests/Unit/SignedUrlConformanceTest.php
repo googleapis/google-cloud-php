@@ -37,15 +37,34 @@ class SignedUrlConformanceTest extends TestCase
         ]);
 
         $signingObject = $client->bucket($testdata['bucket']);
-        if ($testdata['object']) {
+        if (isset($testdata['object']) && $testdata['object']) {
             $signingObject = $signingObject->object($testdata['object']);
+        }
+
+        if (isset($testdata['queryParameters'])) {
+            $testdata['queryParams'] = $testdata['queryParameters'];
+        }
+
+        if (isset($testdata['urlStyle'])) {
+            switch ($testdata['urlStyle']) {
+                case 'VIRTUAL_HOSTED_STYLE':
+                    $testdata['virtualHostStyle'] = true;
+                    break;
+
+                case 'BUCKET_BOUND_DOMAIN':
+                    $testdata['bucketBoundHostname'] = $testdata['bucketBoundDomain'];
+                    break;
+
+                default:
+                    throw new \Exception('url style ' . $testdata['urlStyle'] . ' not implemented.');
+            }
         }
 
         $instanceMethodName = $testdata['method'] === 'POST'
             ? 'signedUploadUrl'
             : 'signedUrl';
 
-        $generationTimestamp = \DateTimeImmutable::createFromFormat('Ymd\THis\Z', $testdata['timestamp']);
+        $generationTimestamp = \DateTimeImmutable::createFromFormat(\DateTime::RFC3339, $testdata['timestamp']);
         $expiration = $generationTimestamp->format('U') + $testdata['expiration'];
 
         $expectedUrl = $testdata['expectedUrl'];
@@ -53,7 +72,10 @@ class SignedUrlConformanceTest extends TestCase
             $testdata['expectedUrl'],
             $testdata['bucket'],
             $testdata['object'],
-            $testdata['expiration']
+            $testdata['expiration'],
+            $testdata['queryParameters'],
+            $testdata['urlStyle'],
+            $testdata['bucketBoundDomain']
         );
 
         $signedUrl = $signingObject->$instanceMethodName($expiration, $testdata + [
@@ -69,7 +91,17 @@ class SignedUrlConformanceTest extends TestCase
 
         // rekey with description for more useful error reporting.
         $out = [];
-        foreach ($cases as $key => $case) {
+        foreach ($cases['signingV4Tests'] as $case) {
+            // if ($case['description'] !== "Query Parameter Ordering") continue;
+
+            // test signed payload with header and method option
+            if (isset($case['headers']['X-Goog-Content-SHA256'])) {
+                $case2 = $case;
+                unset($case2['headers']['X-Goog-Content-SHA256']);
+                $case2['contentSha256'] = $case['headers']['X-Goog-Content-SHA256'];
+                $out[$case['description'] . ' via $options'] = [$case2];
+            }
+
             $out[$case['description']] = [$case];
             unset($case['description']);
         }
