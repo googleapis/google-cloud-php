@@ -93,7 +93,7 @@ class MetricServiceGrpcClient extends \Grpc\BaseStub {
     /**
      * Creates a new metric descriptor.
      * User-created metric descriptors define
-     * [custom metrics](/monitoring/custom-metrics).
+     * [custom metrics](https://cloud.google.com/monitoring/custom-metrics).
      * @param \Google\Cloud\Monitoring\V3\CreateMetricDescriptorRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -108,7 +108,8 @@ class MetricServiceGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Deletes a metric descriptor. Only user-created
-     * [custom metrics](/monitoring/custom-metrics) can be deleted.
+     * [custom metrics](https://cloud.google.com/monitoring/custom-metrics) can be
+     * deleted.
      * @param \Google\Cloud\Monitoring\V3\DeleteMetricDescriptorRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetGroupRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The group to retrieve. The format is
-     * `"projects/{project_id_or_number}/groups/{group_id}"`.
+     * Required. The group to retrieve. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]
      *
      * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -30,8 +30,8 @@ class GetGroupRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The group to retrieve. The format is
-     *           `"projects/{project_id_or_number}/groups/{group_id}"`.
+     *           Required. The group to retrieve. The format is:
+     *               projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]
      * }
      */
     public function __construct($data = NULL) {
@@ -40,8 +40,8 @@ class GetGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The group to retrieve. The format is
-     * `"projects/{project_id_or_number}/groups/{group_id}"`.
+     * Required. The group to retrieve. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]
      *
      * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -52,8 +52,8 @@ class GetGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The group to retrieve. The format is
-     * `"projects/{project_id_or_number}/groups/{group_id}"`.
+     * Required. The group to retrieve. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]
      *
      * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

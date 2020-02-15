@@ -20,7 +20,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class MetricAbsence extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A [filter](/monitoring/api/v3/filters) that
+     * A [filter](https://cloud.google.com/monitoring/api/v3/filters) that
      * identifies which time series should be compared with the threshold.
      * The filter is similar to the one that is specified in the
      * [`ListTimeSeries`
@@ -76,7 +76,7 @@ class MetricAbsence extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $filter
-     *           A [filter](/monitoring/api/v3/filters) that
+     *           A [filter](https://cloud.google.com/monitoring/api/v3/filters) that
      *           identifies which time series should be compared with the threshold.
      *           The filter is similar to the one that is specified in the
      *           [`ListTimeSeries`
@@ -116,7 +116,7 @@ class MetricAbsence extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A [filter](/monitoring/api/v3/filters) that
+     * A [filter](https://cloud.google.com/monitoring/api/v3/filters) that
      * identifies which time series should be compared with the threshold.
      * The filter is similar to the one that is specified in the
      * [`ListTimeSeries`
@@ -135,7 +135,7 @@ class MetricAbsence extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A [filter](/monitoring/api/v3/filters) that
+     * A [filter](https://cloud.google.com/monitoring/api/v3/filters) that
      * identifies which time series should be compared with the threshold.
      * The filter is similar to the one that is specified in the
      * [`ListTimeSeries`

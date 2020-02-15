@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateGroupRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The project in which to create the group. The format is
-     * `"projects/{project_id_or_number}"`.
+     * Required. The project in which to create the group. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]
      *
      * Generated from protobuf field <code>string name = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -43,8 +43,8 @@ class CreateGroupRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The project in which to create the group. The format is
-     *           `"projects/{project_id_or_number}"`.
+     *           Required. The project in which to create the group. The format is:
+     *               projects/[PROJECT_ID_OR_NUMBER]
      *     @type \Google\Cloud\Monitoring\V3\Group $group
      *           Required. A group definition. It is an error to define the `name` field because
      *           the system assigns the name.
@@ -58,8 +58,8 @@ class CreateGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project in which to create the group. The format is
-     * `"projects/{project_id_or_number}"`.
+     * Required. The project in which to create the group. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]
      *
      * Generated from protobuf field <code>string name = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -70,8 +70,8 @@ class CreateGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project in which to create the group. The format is
-     * `"projects/{project_id_or_number}"`.
+     * Required. The project in which to create the group. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]
      *
      * Generated from protobuf field <code>string name = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

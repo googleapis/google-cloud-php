@@ -348,25 +348,35 @@ class GroupServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The project whose groups are to be listed. The format is
-     *                             `"projects/{project_id_or_number}"`.
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $name Required. The project whose groups are to be listed. The format is:
+     *
+     *     projects/[PROJECT_ID_OR_NUMBER]
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type string $childrenOfGroup
-     *          A group name: `"projects/{project_id_or_number}/groups/{group_id}"`.
-     *          Returns groups whose `parentName` field contains the group
+     *          A group name. The format is:
+     *
+     *              projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]
+     *
+     *          Returns groups whose `parent_name` field contains the group
      *          name.  If no groups have this parent, the results are empty.
      *     @type string $ancestorsOfGroup
-     *          A group name: `"projects/{project_id_or_number}/groups/{group_id}"`.
+     *          A group name. The format is:
+     *
+     *              projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]
+     *
      *          Returns groups that are ancestors of the specified group.
      *          The groups are returned in order, starting with the immediate parent and
      *          ending with the most distant ancestor.  If the specified group has no
      *          immediate parent, the results are empty.
      *     @type string $descendantsOfGroup
-     *          A group name: `"projects/{project_id_or_number}/groups/{group_id}"`.
+     *          A group name. The format is:
+     *
+     *              projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]
+     *
      *          Returns the descendants of the specified group.  This is a superset of
-     *          the results returned by the `childrenOfGroup` filter, and includes
+     *          the results returned by the `children_of_group` filter, and includes
      *          children-of-children, and so forth.
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
@@ -438,10 +448,11 @@ class GroupServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The group to retrieve. The format is
-     *                             `"projects/{project_id_or_number}/groups/{group_id}"`.
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $name Required. The group to retrieve. The format is:
+     *
+     *     projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -490,12 +501,13 @@ class GroupServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The project in which to create the group. The format is
-     *                             `"projects/{project_id_or_number}"`.
-     * @param Group  $group        Required. A group definition. It is an error to define the `name` field because
-     *                             the system assigns the name.
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $name Required. The project in which to create the group. The format is:
+     *
+     *     projects/[PROJECT_ID_OR_NUMBER]
+     * @param Group $group        Required. A group definition. It is an error to define the `name` field because
+     *                            the system assigns the name.
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type bool $validateOnly
      *          If true, validate this request but do not create the group.
@@ -606,10 +618,11 @@ class GroupServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The group to delete. The format is
-     *                             `"projects/{project_id_or_number}/groups/{group_id}"`.
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $name Required. The group to delete. The format is:
+     *
+     *     projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type bool $recursive
      *          If this field is true, then the request means to delete a group with all
@@ -677,10 +690,11 @@ class GroupServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The group whose members are listed. The format is
-     *                             `"projects/{project_id_or_number}/groups/{group_id}"`.
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $name Required. The group whose members are listed. The format is:
+     *
+     *     projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
@@ -692,13 +706,14 @@ class GroupServiceGapicClient
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
      *     @type string $filter
-     *          An optional [list filter](https://cloud.google.com/monitoring/api/learn_more#filtering) describing
-     *          the members to be returned.  The filter may reference the type, labels, and
-     *          metadata of monitored resources that comprise the group.
-     *          For example, to return only resources representing Compute Engine VM
-     *          instances, use this filter:
+     *          An optional [list
+     *          filter](https://cloud.google.com/monitoring/api/learn_more#filtering)
+     *          describing the members to be returned.  The filter may reference the type,
+     *          labels, and metadata of monitored resources that comprise the group. For
+     *          example, to return only resources representing Compute Engine VM instances,
+     *          use this filter:
      *
-     *              resource.type = "gce_instance"
+     *              `resource.type = "gce_instance"`
      *     @type TimeInterval $interval
      *          An optional time interval for which results should be returned. Only
      *          members that were part of the group during the specified interval are

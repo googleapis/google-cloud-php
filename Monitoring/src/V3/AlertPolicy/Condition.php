@@ -19,8 +19,8 @@ class Condition extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required if the condition exists. The unique resource name for this
-     * condition. Its syntax is:
-     *     projects/[PROJECT_ID]/alertPolicies/[POLICY_ID]/conditions/[CONDITION_ID]
+     * condition. Its format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[POLICY_ID]/conditions/[CONDITION_ID]
      * `[CONDITION_ID]` is assigned by Stackdriver Monitoring when the
      * condition is created as part of a new or updated alerting policy.
      * When calling the
@@ -60,8 +60,8 @@ class Condition extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required if the condition exists. The unique resource name for this
-     *           condition. Its syntax is:
-     *               projects/[PROJECT_ID]/alertPolicies/[POLICY_ID]/conditions/[CONDITION_ID]
+     *           condition. Its format is:
+     *               projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[POLICY_ID]/conditions/[CONDITION_ID]
      *           `[CONDITION_ID]` is assigned by Stackdriver Monitoring when the
      *           condition is created as part of a new or updated alerting policy.
      *           When calling the
@@ -97,8 +97,8 @@ class Condition extends \Google\Protobuf\Internal\Message
 
     /**
      * Required if the condition exists. The unique resource name for this
-     * condition. Its syntax is:
-     *     projects/[PROJECT_ID]/alertPolicies/[POLICY_ID]/conditions/[CONDITION_ID]
+     * condition. Its format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[POLICY_ID]/conditions/[CONDITION_ID]
      * `[CONDITION_ID]` is assigned by Stackdriver Monitoring when the
      * condition is created as part of a new or updated alerting policy.
      * When calling the
@@ -127,8 +127,8 @@ class Condition extends \Google\Protobuf\Internal\Message
 
     /**
      * Required if the condition exists. The unique resource name for this
-     * condition. Its syntax is:
-     *     projects/[PROJECT_ID]/alertPolicies/[POLICY_ID]/conditions/[CONDITION_ID]
+     * condition. Its format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[POLICY_ID]/conditions/[CONDITION_ID]
      * `[CONDITION_ID]` is assigned by Stackdriver Monitoring when the
      * condition is created as part of a new or updated alerting policy.
      * When calling the

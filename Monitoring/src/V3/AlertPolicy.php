@@ -20,8 +20,8 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required if the policy exists. The resource name for this policy. The
-     * syntax is:
-     *     projects/[PROJECT_ID]/alertPolicies/[ALERT_POLICY_ID]
+     * format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID]
      * `[ALERT_POLICY_ID]` is assigned by Stackdriver Monitoring when the policy
      * is created.  When calling the
      * [alertPolicies.create][google.monitoring.v3.AlertPolicyService.CreateAlertPolicy]
@@ -66,8 +66,8 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      * OR according to the `combiner` field. If the combined conditions evaluate
      * to true, then an incident is created. A policy can have from one to six
      * conditions.
-     * If |condition_time_series_uery_language| is present, it must be the only
-     * |condition|.
+     * If `condition_time_series_query_language` is present, it must be the only
+     * `condition`.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.AlertPolicy.Condition conditions = 12;</code>
      */
@@ -75,8 +75,8 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
     /**
      * How to combine the results of multiple conditions to determine if an
      * incident should be opened.
-     * If condition_time_series_query_language is present, this must be
-     * COMBINE_UNSPECIFIED.
+     * If `condition_time_series_query_language` is present, this must be
+     * `COMBINE_UNSPECIFIED`.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.ConditionCombinerType combiner = 6;</code>
      */
@@ -106,8 +106,8 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      * [`NotificationChannel`][google.monitoring.v3.NotificationChannel]
      * objects that are returned from the [`ListNotificationChannels`]
      * [google.monitoring.v3.NotificationChannelService.ListNotificationChannels]
-     * method. The syntax of the entries in this field is:
-     *     projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID]
+     * method. The format of the entries in this field is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID]
      *
      * Generated from protobuf field <code>repeated string notification_channels = 14;</code>
      */
@@ -135,8 +135,8 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required if the policy exists. The resource name for this policy. The
-     *           syntax is:
-     *               projects/[PROJECT_ID]/alertPolicies/[ALERT_POLICY_ID]
+     *           format is:
+     *               projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID]
      *           `[ALERT_POLICY_ID]` is assigned by Stackdriver Monitoring when the policy
      *           is created.  When calling the
      *           [alertPolicies.create][google.monitoring.v3.AlertPolicyService.CreateAlertPolicy]
@@ -165,13 +165,13 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      *           OR according to the `combiner` field. If the combined conditions evaluate
      *           to true, then an incident is created. A policy can have from one to six
      *           conditions.
-     *           If |condition_time_series_uery_language| is present, it must be the only
-     *           |condition|.
+     *           If `condition_time_series_query_language` is present, it must be the only
+     *           `condition`.
      *     @type int $combiner
      *           How to combine the results of multiple conditions to determine if an
      *           incident should be opened.
-     *           If condition_time_series_query_language is present, this must be
-     *           COMBINE_UNSPECIFIED.
+     *           If `condition_time_series_query_language` is present, this must be
+     *           `COMBINE_UNSPECIFIED`.
      *     @type \Google\Protobuf\BoolValue $enabled
      *           Whether or not the policy is enabled. On write, the default interpretation
      *           if unset is that the policy is enabled. On read, clients should not make
@@ -189,8 +189,8 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      *           [`NotificationChannel`][google.monitoring.v3.NotificationChannel]
      *           objects that are returned from the [`ListNotificationChannels`]
      *           [google.monitoring.v3.NotificationChannelService.ListNotificationChannels]
-     *           method. The syntax of the entries in this field is:
-     *               projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID]
+     *           method. The format of the entries in this field is:
+     *               projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID]
      *     @type \Google\Cloud\Monitoring\V3\MutationRecord $creation_record
      *           A read-only record of the creation of the alerting policy. If provided
      *           in a call to create or update, this field will be ignored.
@@ -206,8 +206,8 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * Required if the policy exists. The resource name for this policy. The
-     * syntax is:
-     *     projects/[PROJECT_ID]/alertPolicies/[ALERT_POLICY_ID]
+     * format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID]
      * `[ALERT_POLICY_ID]` is assigned by Stackdriver Monitoring when the policy
      * is created.  When calling the
      * [alertPolicies.create][google.monitoring.v3.AlertPolicyService.CreateAlertPolicy]
@@ -224,8 +224,8 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * Required if the policy exists. The resource name for this policy. The
-     * syntax is:
-     *     projects/[PROJECT_ID]/alertPolicies/[ALERT_POLICY_ID]
+     * format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID]
      * `[ALERT_POLICY_ID]` is assigned by Stackdriver Monitoring when the policy
      * is created.  When calling the
      * [alertPolicies.create][google.monitoring.v3.AlertPolicyService.CreateAlertPolicy]
@@ -351,8 +351,8 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      * OR according to the `combiner` field. If the combined conditions evaluate
      * to true, then an incident is created. A policy can have from one to six
      * conditions.
-     * If |condition_time_series_uery_language| is present, it must be the only
-     * |condition|.
+     * If `condition_time_series_query_language` is present, it must be the only
+     * `condition`.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.AlertPolicy.Condition conditions = 12;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -367,8 +367,8 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      * OR according to the `combiner` field. If the combined conditions evaluate
      * to true, then an incident is created. A policy can have from one to six
      * conditions.
-     * If |condition_time_series_uery_language| is present, it must be the only
-     * |condition|.
+     * If `condition_time_series_query_language` is present, it must be the only
+     * `condition`.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.AlertPolicy.Condition conditions = 12;</code>
      * @param \Google\Cloud\Monitoring\V3\AlertPolicy\Condition[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -385,8 +385,8 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
     /**
      * How to combine the results of multiple conditions to determine if an
      * incident should be opened.
-     * If condition_time_series_query_language is present, this must be
-     * COMBINE_UNSPECIFIED.
+     * If `condition_time_series_query_language` is present, this must be
+     * `COMBINE_UNSPECIFIED`.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.ConditionCombinerType combiner = 6;</code>
      * @return int
@@ -399,8 +399,8 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
     /**
      * How to combine the results of multiple conditions to determine if an
      * incident should be opened.
-     * If condition_time_series_query_language is present, this must be
-     * COMBINE_UNSPECIFIED.
+     * If `condition_time_series_query_language` is present, this must be
+     * `COMBINE_UNSPECIFIED`.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.ConditionCombinerType combiner = 6;</code>
      * @param int $var
@@ -519,8 +519,8 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      * [`NotificationChannel`][google.monitoring.v3.NotificationChannel]
      * objects that are returned from the [`ListNotificationChannels`]
      * [google.monitoring.v3.NotificationChannelService.ListNotificationChannels]
-     * method. The syntax of the entries in this field is:
-     *     projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID]
+     * method. The format of the entries in this field is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID]
      *
      * Generated from protobuf field <code>repeated string notification_channels = 14;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -538,8 +538,8 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      * [`NotificationChannel`][google.monitoring.v3.NotificationChannel]
      * objects that are returned from the [`ListNotificationChannels`]
      * [google.monitoring.v3.NotificationChannelService.ListNotificationChannels]
-     * method. The syntax of the entries in this field is:
-     *     projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID]
+     * method. The format of the entries in this field is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID]
      *
      * Generated from protobuf field <code>repeated string notification_channels = 14;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
