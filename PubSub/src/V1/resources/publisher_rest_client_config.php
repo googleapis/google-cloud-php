@@ -5,9 +5,19 @@ return [
         'google.iam.v1.IAMPolicy' => [
             'SetIamPolicy' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{resource=projects/*/topics/*}:setIamPolicy',
+                'uriTemplate' => '/v1beta2/{resource=projects/*/topics/*}:setIamPolicy',
                 'body' => '*',
                 'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta2/{resource=projects/*/subscriptions/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/topics/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{resource=projects/*/subscriptions/*}:setIamPolicy',
@@ -29,8 +39,16 @@ return [
             ],
             'GetIamPolicy' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1/{resource=projects/*/topics/*}:getIamPolicy',
+                'uriTemplate' => '/v1beta2/{resource=projects/*/topics/*}:getIamPolicy',
                 'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1beta2/{resource=projects/*/subscriptions/*}:getIamPolicy',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{resource=projects/*/topics/*}:getIamPolicy',
+                    ],
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{resource=projects/*/subscriptions/*}:getIamPolicy',
@@ -50,9 +68,19 @@ return [
             ],
             'TestIamPermissions' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{resource=projects/*/subscriptions/*}:testIamPermissions',
+                'uriTemplate' => '/v1beta2/{resource=projects/*/subscriptions/*}:testIamPermissions',
                 'body' => '*',
                 'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta2/{resource=projects/*/topics/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/subscriptions/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{resource=projects/*/topics/*}:testIamPermissions',

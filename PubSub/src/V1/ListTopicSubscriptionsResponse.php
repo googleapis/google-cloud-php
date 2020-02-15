@@ -18,7 +18,7 @@ class ListTopicSubscriptionsResponse extends \Google\Protobuf\Internal\Message
     /**
      * The names of the subscriptions that match the request.
      *
-     * Generated from protobuf field <code>repeated string subscriptions = 1;</code>
+     * Generated from protobuf field <code>repeated string subscriptions = 1 [(.google.api.resource_reference) = {</code>
      */
     private $subscriptions;
     /**
@@ -52,7 +52,7 @@ class ListTopicSubscriptionsResponse extends \Google\Protobuf\Internal\Message
     /**
      * The names of the subscriptions that match the request.
      *
-     * Generated from protobuf field <code>repeated string subscriptions = 1;</code>
+     * Generated from protobuf field <code>repeated string subscriptions = 1 [(.google.api.resource_reference) = {</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSubscriptions()
@@ -63,7 +63,7 @@ class ListTopicSubscriptionsResponse extends \Google\Protobuf\Internal\Message
     /**
      * The names of the subscriptions that match the request.
      *
-     * Generated from protobuf field <code>repeated string subscriptions = 1;</code>
+     * Generated from protobuf field <code>repeated string subscriptions = 1 [(.google.api.resource_reference) = {</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

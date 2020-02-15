@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeleteSnapshotRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The name of the snapshot to delete.
+     * Required. The name of the snapshot to delete.
      * Format is `projects/{project}/snapshots/{snap}`.
      *
-     * Generated from protobuf field <code>string snapshot = 1;</code>
+     * Generated from protobuf field <code>string snapshot = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $snapshot = '';
 
@@ -30,7 +30,7 @@ class DeleteSnapshotRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $snapshot
-     *           The name of the snapshot to delete.
+     *           Required. The name of the snapshot to delete.
      *           Format is `projects/{project}/snapshots/{snap}`.
      * }
      */
@@ -40,10 +40,10 @@ class DeleteSnapshotRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the snapshot to delete.
+     * Required. The name of the snapshot to delete.
      * Format is `projects/{project}/snapshots/{snap}`.
      *
-     * Generated from protobuf field <code>string snapshot = 1;</code>
+     * Generated from protobuf field <code>string snapshot = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getSnapshot()
@@ -52,10 +52,10 @@ class DeleteSnapshotRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the snapshot to delete.
+     * Required. The name of the snapshot to delete.
      * Format is `projects/{project}/snapshots/{snap}`.
      *
-     * Generated from protobuf field <code>string snapshot = 1;</code>
+     * Generated from protobuf field <code>string snapshot = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
