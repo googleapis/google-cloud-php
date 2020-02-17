@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListGroupMembersRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The group whose members are listed. The format is
-     * `"projects/{project_id_or_number}/groups/{group_id}"`.
+     * Required. The group whose members are listed. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]
      *
      * Generated from protobuf field <code>string name = 7 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -29,7 +29,7 @@ class ListGroupMembersRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_size = 0;
     /**
-     * If this field is not empty then it must contain the `nextPageToken` value
+     * If this field is not empty then it must contain the `next_page_token` value
      * returned by a previous call to this method.  Using this field causes the
      * method to return additional results from the previous method call.
      *
@@ -37,12 +37,13 @@ class ListGroupMembersRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_token = '';
     /**
-     * An optional [list filter](/monitoring/api/learn_more#filtering) describing
-     * the members to be returned.  The filter may reference the type, labels, and
-     * metadata of monitored resources that comprise the group.
-     * For example, to return only resources representing Compute Engine VM
-     * instances, use this filter:
-     *     resource.type = "gce_instance"
+     * An optional [list
+     * filter](https://cloud.google.com/monitoring/api/learn_more#filtering)
+     * describing the members to be returned.  The filter may reference the type,
+     * labels, and metadata of monitored resources that comprise the group. For
+     * example, to return only resources representing Compute Engine VM instances,
+     * use this filter:
+     *     `resource.type = "gce_instance"`
      *
      * Generated from protobuf field <code>string filter = 5;</code>
      */
@@ -64,21 +65,22 @@ class ListGroupMembersRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The group whose members are listed. The format is
-     *           `"projects/{project_id_or_number}/groups/{group_id}"`.
+     *           Required. The group whose members are listed. The format is:
+     *               projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]
      *     @type int $page_size
      *           A positive number that is the maximum number of results to return.
      *     @type string $page_token
-     *           If this field is not empty then it must contain the `nextPageToken` value
+     *           If this field is not empty then it must contain the `next_page_token` value
      *           returned by a previous call to this method.  Using this field causes the
      *           method to return additional results from the previous method call.
      *     @type string $filter
-     *           An optional [list filter](/monitoring/api/learn_more#filtering) describing
-     *           the members to be returned.  The filter may reference the type, labels, and
-     *           metadata of monitored resources that comprise the group.
-     *           For example, to return only resources representing Compute Engine VM
-     *           instances, use this filter:
-     *               resource.type = "gce_instance"
+     *           An optional [list
+     *           filter](https://cloud.google.com/monitoring/api/learn_more#filtering)
+     *           describing the members to be returned.  The filter may reference the type,
+     *           labels, and metadata of monitored resources that comprise the group. For
+     *           example, to return only resources representing Compute Engine VM instances,
+     *           use this filter:
+     *               `resource.type = "gce_instance"`
      *     @type \Google\Cloud\Monitoring\V3\TimeInterval $interval
      *           An optional time interval for which results should be returned. Only
      *           members that were part of the group during the specified interval are
@@ -92,8 +94,8 @@ class ListGroupMembersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The group whose members are listed. The format is
-     * `"projects/{project_id_or_number}/groups/{group_id}"`.
+     * Required. The group whose members are listed. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]
      *
      * Generated from protobuf field <code>string name = 7 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -104,8 +106,8 @@ class ListGroupMembersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The group whose members are listed. The format is
-     * `"projects/{project_id_or_number}/groups/{group_id}"`.
+     * Required. The group whose members are listed. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]
      *
      * Generated from protobuf field <code>string name = 7 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -146,7 +148,7 @@ class ListGroupMembersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If this field is not empty then it must contain the `nextPageToken` value
+     * If this field is not empty then it must contain the `next_page_token` value
      * returned by a previous call to this method.  Using this field causes the
      * method to return additional results from the previous method call.
      *
@@ -159,7 +161,7 @@ class ListGroupMembersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If this field is not empty then it must contain the `nextPageToken` value
+     * If this field is not empty then it must contain the `next_page_token` value
      * returned by a previous call to this method.  Using this field causes the
      * method to return additional results from the previous method call.
      *
@@ -176,12 +178,13 @@ class ListGroupMembersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional [list filter](/monitoring/api/learn_more#filtering) describing
-     * the members to be returned.  The filter may reference the type, labels, and
-     * metadata of monitored resources that comprise the group.
-     * For example, to return only resources representing Compute Engine VM
-     * instances, use this filter:
-     *     resource.type = "gce_instance"
+     * An optional [list
+     * filter](https://cloud.google.com/monitoring/api/learn_more#filtering)
+     * describing the members to be returned.  The filter may reference the type,
+     * labels, and metadata of monitored resources that comprise the group. For
+     * example, to return only resources representing Compute Engine VM instances,
+     * use this filter:
+     *     `resource.type = "gce_instance"`
      *
      * Generated from protobuf field <code>string filter = 5;</code>
      * @return string
@@ -192,12 +195,13 @@ class ListGroupMembersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional [list filter](/monitoring/api/learn_more#filtering) describing
-     * the members to be returned.  The filter may reference the type, labels, and
-     * metadata of monitored resources that comprise the group.
-     * For example, to return only resources representing Compute Engine VM
-     * instances, use this filter:
-     *     resource.type = "gce_instance"
+     * An optional [list
+     * filter](https://cloud.google.com/monitoring/api/learn_more#filtering)
+     * describing the members to be returned.  The filter may reference the type,
+     * labels, and metadata of monitored resources that comprise the group. For
+     * example, to return only resources representing Compute Engine VM instances,
+     * use this filter:
+     *     `resource.type = "gce_instance"`
      *
      * Generated from protobuf field <code>string filter = 5;</code>
      * @param string $var

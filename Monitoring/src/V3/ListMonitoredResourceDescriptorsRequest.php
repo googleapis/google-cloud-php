@@ -16,18 +16,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The project on which to execute the request. The format is
-     * `"projects/{project_id_or_number}"`.
+     * Required. The project on which to execute the request. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]
      *
      * Generated from protobuf field <code>string name = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
-     * An optional [filter](/monitoring/api/v3/filters) describing
-     * the descriptors to be returned.  The filter can reference
-     * the descriptor's type and labels. For example, the
-     * following filter returns only Google Compute Engine descriptors
-     * that have an `id` label:
+     * An optional [filter](https://cloud.google.com/monitoring/api/v3/filters)
+     * describing the descriptors to be returned.  The filter can reference the
+     * descriptor's type and labels. For example, the following filter returns
+     * only Google Compute Engine descriptors that have an `id` label:
      *     resource.type = starts_with("gce_") AND resource.label:id
      *
      * Generated from protobuf field <code>string filter = 2;</code>
@@ -55,14 +54,13 @@ class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The project on which to execute the request. The format is
-     *           `"projects/{project_id_or_number}"`.
+     *           Required. The project on which to execute the request. The format is:
+     *               projects/[PROJECT_ID_OR_NUMBER]
      *     @type string $filter
-     *           An optional [filter](/monitoring/api/v3/filters) describing
-     *           the descriptors to be returned.  The filter can reference
-     *           the descriptor's type and labels. For example, the
-     *           following filter returns only Google Compute Engine descriptors
-     *           that have an `id` label:
+     *           An optional [filter](https://cloud.google.com/monitoring/api/v3/filters)
+     *           describing the descriptors to be returned.  The filter can reference the
+     *           descriptor's type and labels. For example, the following filter returns
+     *           only Google Compute Engine descriptors that have an `id` label:
      *               resource.type = starts_with("gce_") AND resource.label:id
      *     @type int $page_size
      *           A positive number that is the maximum number of results to return.
@@ -78,8 +76,8 @@ class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\
     }
 
     /**
-     * Required. The project on which to execute the request. The format is
-     * `"projects/{project_id_or_number}"`.
+     * Required. The project on which to execute the request. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]
      *
      * Generated from protobuf field <code>string name = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -90,8 +88,8 @@ class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\
     }
 
     /**
-     * Required. The project on which to execute the request. The format is
-     * `"projects/{project_id_or_number}"`.
+     * Required. The project on which to execute the request. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]
      *
      * Generated from protobuf field <code>string name = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -106,11 +104,10 @@ class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\
     }
 
     /**
-     * An optional [filter](/monitoring/api/v3/filters) describing
-     * the descriptors to be returned.  The filter can reference
-     * the descriptor's type and labels. For example, the
-     * following filter returns only Google Compute Engine descriptors
-     * that have an `id` label:
+     * An optional [filter](https://cloud.google.com/monitoring/api/v3/filters)
+     * describing the descriptors to be returned.  The filter can reference the
+     * descriptor's type and labels. For example, the following filter returns
+     * only Google Compute Engine descriptors that have an `id` label:
      *     resource.type = starts_with("gce_") AND resource.label:id
      *
      * Generated from protobuf field <code>string filter = 2;</code>
@@ -122,11 +119,10 @@ class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\
     }
 
     /**
-     * An optional [filter](/monitoring/api/v3/filters) describing
-     * the descriptors to be returned.  The filter can reference
-     * the descriptor's type and labels. For example, the
-     * following filter returns only Google Compute Engine descriptors
-     * that have an `id` label:
+     * An optional [filter](https://cloud.google.com/monitoring/api/v3/filters)
+     * describing the descriptors to be returned.  The filter can reference the
+     * descriptor's type and labels. For example, the following filter returns
+     * only Google Compute Engine descriptors that have an `id` label:
      *     resource.type = starts_with("gce_") AND resource.label:id
      *
      * Generated from protobuf field <code>string filter = 2;</code>

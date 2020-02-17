@@ -16,17 +16,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The project on which to execute the request. The format is
-     * "projects/{project_id_or_number}".
+     * Required. The project on which to execute the request. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]
      *
      * Generated from protobuf field <code>string name = 10 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
-     * Required. A [monitoring filter](/monitoring/api/v3/filters) that specifies which time
-     * series should be returned.  The filter must specify a single metric type,
-     * and can additionally specify metric labels and other information. For
-     * example:
+     * Required. A [monitoring filter](https://cloud.google.com/monitoring/api/v3/filters)
+     * that specifies which time series should be returned.  The filter must
+     * specify a single metric type, and can additionally specify metric labels
+     * and other information. For example:
      *     metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND
      *         metric.labels.instance_name = "my-instance-name"
      *
@@ -89,13 +89,13 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The project on which to execute the request. The format is
-     *           "projects/{project_id_or_number}".
+     *           Required. The project on which to execute the request. The format is:
+     *               projects/[PROJECT_ID_OR_NUMBER]
      *     @type string $filter
-     *           Required. A [monitoring filter](/monitoring/api/v3/filters) that specifies which time
-     *           series should be returned.  The filter must specify a single metric type,
-     *           and can additionally specify metric labels and other information. For
-     *           example:
+     *           Required. A [monitoring filter](https://cloud.google.com/monitoring/api/v3/filters)
+     *           that specifies which time series should be returned.  The filter must
+     *           specify a single metric type, and can additionally specify metric labels
+     *           and other information. For example:
      *               metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND
      *                   metric.labels.instance_name = "my-instance-name"
      *     @type \Google\Cloud\Monitoring\V3\TimeInterval $interval
@@ -130,8 +130,8 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project on which to execute the request. The format is
-     * "projects/{project_id_or_number}".
+     * Required. The project on which to execute the request. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]
      *
      * Generated from protobuf field <code>string name = 10 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -142,8 +142,8 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project on which to execute the request. The format is
-     * "projects/{project_id_or_number}".
+     * Required. The project on which to execute the request. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]
      *
      * Generated from protobuf field <code>string name = 10 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -158,10 +158,10 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A [monitoring filter](/monitoring/api/v3/filters) that specifies which time
-     * series should be returned.  The filter must specify a single metric type,
-     * and can additionally specify metric labels and other information. For
-     * example:
+     * Required. A [monitoring filter](https://cloud.google.com/monitoring/api/v3/filters)
+     * that specifies which time series should be returned.  The filter must
+     * specify a single metric type, and can additionally specify metric labels
+     * and other information. For example:
      *     metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND
      *         metric.labels.instance_name = "my-instance-name"
      *
@@ -174,10 +174,10 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A [monitoring filter](/monitoring/api/v3/filters) that specifies which time
-     * series should be returned.  The filter must specify a single metric type,
-     * and can additionally specify metric labels and other information. For
-     * example:
+     * Required. A [monitoring filter](https://cloud.google.com/monitoring/api/v3/filters)
+     * that specifies which time series should be returned.  The filter must
+     * specify a single metric type, and can additionally specify metric labels
+     * and other information. For example:
      *     metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND
      *         metric.labels.instance_name = "my-instance-name"
      *

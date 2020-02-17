@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class MetricThreshold extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A [filter](/monitoring/api/v3/filters) that
+     * A [filter](https://cloud.google.com/monitoring/api/v3/filters) that
      * identifies which time series should be compared with the threshold.
      * The filter is similar to the one that is specified in the
      * [`ListTimeSeries`
@@ -46,11 +46,11 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
      */
     private $aggregations;
     /**
-     * A [filter](/monitoring/api/v3/filters) that identifies a time
-     * series that should be used as the denominator of a ratio that will be
-     * compared with the threshold. If a `denominator_filter` is specified,
-     * the time series specified by the `filter` field will be used as the
-     * numerator.
+     * A [filter](https://cloud.google.com/monitoring/api/v3/filters) that
+     * identifies a time series that should be used as the denominator of a
+     * ratio that will be compared with the threshold. If a
+     * `denominator_filter` is specified, the time series specified by the
+     * `filter` field will be used as the numerator.
      * The filter must specify the metric type and optionally may contain
      * restrictions on resource type, resource labels, and metric labels.
      * This field may not exceed 2048 Unicode characters in length.
@@ -122,7 +122,7 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $filter
-     *           A [filter](/monitoring/api/v3/filters) that
+     *           A [filter](https://cloud.google.com/monitoring/api/v3/filters) that
      *           identifies which time series should be compared with the threshold.
      *           The filter is similar to the one that is specified in the
      *           [`ListTimeSeries`
@@ -143,11 +143,11 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
      *           is advisable to use the `ListTimeSeries` method when debugging this
      *           field.
      *     @type string $denominator_filter
-     *           A [filter](/monitoring/api/v3/filters) that identifies a time
-     *           series that should be used as the denominator of a ratio that will be
-     *           compared with the threshold. If a `denominator_filter` is specified,
-     *           the time series specified by the `filter` field will be used as the
-     *           numerator.
+     *           A [filter](https://cloud.google.com/monitoring/api/v3/filters) that
+     *           identifies a time series that should be used as the denominator of a
+     *           ratio that will be compared with the threshold. If a
+     *           `denominator_filter` is specified, the time series specified by the
+     *           `filter` field will be used as the numerator.
      *           The filter must specify the metric type and optionally may contain
      *           restrictions on resource type, resource labels, and metric labels.
      *           This field may not exceed 2048 Unicode characters in length.
@@ -195,7 +195,7 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A [filter](/monitoring/api/v3/filters) that
+     * A [filter](https://cloud.google.com/monitoring/api/v3/filters) that
      * identifies which time series should be compared with the threshold.
      * The filter is similar to the one that is specified in the
      * [`ListTimeSeries`
@@ -214,7 +214,7 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A [filter](/monitoring/api/v3/filters) that
+     * A [filter](https://cloud.google.com/monitoring/api/v3/filters) that
      * identifies which time series should be compared with the threshold.
      * The filter is similar to the one that is specified in the
      * [`ListTimeSeries`
@@ -281,11 +281,11 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A [filter](/monitoring/api/v3/filters) that identifies a time
-     * series that should be used as the denominator of a ratio that will be
-     * compared with the threshold. If a `denominator_filter` is specified,
-     * the time series specified by the `filter` field will be used as the
-     * numerator.
+     * A [filter](https://cloud.google.com/monitoring/api/v3/filters) that
+     * identifies a time series that should be used as the denominator of a
+     * ratio that will be compared with the threshold. If a
+     * `denominator_filter` is specified, the time series specified by the
+     * `filter` field will be used as the numerator.
      * The filter must specify the metric type and optionally may contain
      * restrictions on resource type, resource labels, and metric labels.
      * This field may not exceed 2048 Unicode characters in length.
@@ -299,11 +299,11 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A [filter](/monitoring/api/v3/filters) that identifies a time
-     * series that should be used as the denominator of a ratio that will be
-     * compared with the threshold. If a `denominator_filter` is specified,
-     * the time series specified by the `filter` field will be used as the
-     * numerator.
+     * A [filter](https://cloud.google.com/monitoring/api/v3/filters) that
+     * identifies a time series that should be used as the denominator of a
+     * ratio that will be compared with the threshold. If a
+     * `denominator_filter` is specified, the time series specified by the
+     * `filter` field will be used as the numerator.
      * The filter must specify the metric type and optionally may contain
      * restrictions on resource type, resource labels, and metric labels.
      * This field may not exceed 2048 Unicode characters in length.

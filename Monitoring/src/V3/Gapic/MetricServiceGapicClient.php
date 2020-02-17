@@ -375,17 +375,17 @@ class MetricServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The project on which to execute the request. The format is
-     *                             `"projects/{project_id_or_number}"`.
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $name Required. The project on which to execute the request. The format is:
+     *
+     *     projects/[PROJECT_ID_OR_NUMBER]
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type string $filter
-     *          An optional [filter](https://cloud.google.com/monitoring/api/v3/filters) describing
-     *          the descriptors to be returned.  The filter can reference
-     *          the descriptor's type and labels. For example, the
-     *          following filter returns only Google Compute Engine descriptors
-     *          that have an `id` label:
+     *          An optional [filter](https://cloud.google.com/monitoring/api/v3/filters)
+     *          describing the descriptors to be returned.  The filter can reference the
+     *          descriptor's type and labels. For example, the following filter returns
+     *          only Google Compute Engine descriptors that have an `id` label:
      *
      *              resource.type = starts_with("gce_") AND resource.label:id
      *     @type int $pageSize
@@ -452,12 +452,14 @@ class MetricServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The monitored resource descriptor to get.  The format is
-     *                             `"projects/{project_id_or_number}/monitoredResourceDescriptors/{resource_type}"`.
-     *                             The `{resource_type}` is a predefined type, such as
-     *                             `cloudsql_database`.
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $name Required. The monitored resource descriptor to get.  The format is:
+     *
+     *     projects/[PROJECT_ID_OR_NUMBER]/monitoredResourceDescriptors/[RESOURCE_TYPE]
+     *
+     * The `[RESOURCE_TYPE]` is a predefined type, such as
+     * `cloudsql_database`.
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -520,10 +522,11 @@ class MetricServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The project on which to execute the request. The format is
-     *                             `"projects/{project_id_or_number}"`.
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $name Required. The project on which to execute the request. The format is:
+     *
+     *     projects/[PROJECT_ID_OR_NUMBER]
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type string $filter
      *          If this field is empty, all custom and
@@ -598,12 +601,14 @@ class MetricServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The metric descriptor on which to execute the request. The format is
-     *                             `"projects/{project_id_or_number}/metricDescriptors/{metric_id}"`.
-     *                             An example value of `{metric_id}` is
-     *                             `"compute.googleapis.com/instance/disk/read_bytes_count"`.
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $name Required. The metric descriptor on which to execute the request. The format is:
+     *
+     *     projects/[PROJECT_ID_OR_NUMBER]/metricDescriptors/[METRIC_ID]
+     *
+     * An example value of `[METRIC_ID]` is
+     * `"compute.googleapis.com/instance/disk/read_bytes_count"`.
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -654,8 +659,9 @@ class MetricServiceGapicClient
      * }
      * ```
      *
-     * @param string           $name             Required. The project on which to execute the request. The format is
-     *                                           `"projects/{project_id_or_number}"`.
+     * @param string $name Required. The project on which to execute the request. The format is:
+     *
+     *     projects/[PROJECT_ID_OR_NUMBER]
      * @param MetricDescriptor $metricDescriptor Required. The new [custom metric](https://cloud.google.com/monitoring/custom-metrics)
      *                                           descriptor.
      * @param array            $optionalArgs     {
@@ -696,7 +702,8 @@ class MetricServiceGapicClient
 
     /**
      * Deletes a metric descriptor. Only user-created
-     * [custom metrics](https://cloud.google.com/monitoring/custom-metrics) can be deleted.
+     * [custom metrics](https://cloud.google.com/monitoring/custom-metrics) can be
+     * deleted.
      *
      * Sample code:
      * ```
@@ -709,12 +716,14 @@ class MetricServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The metric descriptor on which to execute the request. The format is
-     *                             `"projects/{project_id_or_number}/metricDescriptors/{metric_id}"`.
-     *                             An example of `{metric_id}` is:
-     *                             `"custom.googleapis.com/my_test_metric"`.
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $name Required. The metric descriptor on which to execute the request. The format is:
+     *
+     *     projects/[PROJECT_ID_OR_NUMBER]/metricDescriptors/[METRIC_ID]
+     *
+     * An example of `[METRIC_ID]` is:
+     * `"custom.googleapis.com/my_test_metric"`.
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -778,12 +787,13 @@ class MetricServiceGapicClient
      * }
      * ```
      *
-     * @param string $name   Required. The project on which to execute the request. The format is
-     *                       "projects/{project_id_or_number}".
-     * @param string $filter Required. A [monitoring filter](https://cloud.google.com/monitoring/api/v3/filters) that specifies which time
-     *                       series should be returned.  The filter must specify a single metric type,
-     *                       and can additionally specify metric labels and other information. For
-     *                       example:
+     * @param string $name Required. The project on which to execute the request. The format is:
+     *
+     *     projects/[PROJECT_ID_OR_NUMBER]
+     * @param string $filter Required. A [monitoring filter](https://cloud.google.com/monitoring/api/v3/filters)
+     *                       that specifies which time series should be returned.  The filter must
+     *                       specify a single metric type, and can additionally specify metric labels
+     *                       and other information. For example:
      *
      *     metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND
      *         metric.labels.instance_name = "my-instance-name"
@@ -878,8 +888,9 @@ class MetricServiceGapicClient
      * }
      * ```
      *
-     * @param string       $name       Required. The project on which to execute the request. The format is
-     *                                 `"projects/{project_id_or_number}"`.
+     * @param string $name Required. The project on which to execute the request. The format is:
+     *
+     *     projects/[PROJECT_ID_OR_NUMBER]
      * @param TimeSeries[] $timeSeries Required. The new data to be added to a list of time series.
      *                                 Adds at most one data point to each of several time series.  The new data
      *                                 point must be more recent than any other point in its time series.  Each

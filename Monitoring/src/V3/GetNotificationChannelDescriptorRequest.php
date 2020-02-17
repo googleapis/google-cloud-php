@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetNotificationChannelDescriptorRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The channel type for which to execute the request. The format is
-     * `projects/[PROJECT_ID]/notificationChannelDescriptors/{channel_type}`.
+     * Required. The channel type for which to execute the request. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/notificationChannelDescriptors/[CHANNEL_TYPE]
      *
      * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -30,8 +30,8 @@ class GetNotificationChannelDescriptorRequest extends \Google\Protobuf\Internal\
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The channel type for which to execute the request. The format is
-     *           `projects/[PROJECT_ID]/notificationChannelDescriptors/{channel_type}`.
+     *           Required. The channel type for which to execute the request. The format is:
+     *               projects/[PROJECT_ID_OR_NUMBER]/notificationChannelDescriptors/[CHANNEL_TYPE]
      * }
      */
     public function __construct($data = NULL) {
@@ -40,8 +40,8 @@ class GetNotificationChannelDescriptorRequest extends \Google\Protobuf\Internal\
     }
 
     /**
-     * Required. The channel type for which to execute the request. The format is
-     * `projects/[PROJECT_ID]/notificationChannelDescriptors/{channel_type}`.
+     * Required. The channel type for which to execute the request. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/notificationChannelDescriptors/[CHANNEL_TYPE]
      *
      * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -52,8 +52,8 @@ class GetNotificationChannelDescriptorRequest extends \Google\Protobuf\Internal\
     }
 
     /**
-     * Required. The channel type for which to execute the request. The format is
-     * `projects/[PROJECT_ID]/notificationChannelDescriptors/{channel_type}`.
+     * Required. The channel type for which to execute the request. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/notificationChannelDescriptors/[CHANNEL_TYPE]
      *
      * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

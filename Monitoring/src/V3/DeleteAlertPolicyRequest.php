@@ -17,7 +17,7 @@ class DeleteAlertPolicyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The alerting policy to delete. The format is:
-     *     projects/[PROJECT_ID]/alertPolicies/[ALERT_POLICY_ID]
+     *     projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID]
      * For more information, see [AlertPolicy][google.monitoring.v3.AlertPolicy].
      *
      * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -32,7 +32,7 @@ class DeleteAlertPolicyRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The alerting policy to delete. The format is:
-     *               projects/[PROJECT_ID]/alertPolicies/[ALERT_POLICY_ID]
+     *               projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID]
      *           For more information, see [AlertPolicy][google.monitoring.v3.AlertPolicy].
      * }
      */
@@ -43,7 +43,7 @@ class DeleteAlertPolicyRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The alerting policy to delete. The format is:
-     *     projects/[PROJECT_ID]/alertPolicies/[ALERT_POLICY_ID]
+     *     projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID]
      * For more information, see [AlertPolicy][google.monitoring.v3.AlertPolicy].
      *
      * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -56,7 +56,7 @@ class DeleteAlertPolicyRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The alerting policy to delete. The format is:
-     *     projects/[PROJECT_ID]/alertPolicies/[ALERT_POLICY_ID]
+     *     projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID]
      * For more information, see [AlertPolicy][google.monitoring.v3.AlertPolicy].
      *
      * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

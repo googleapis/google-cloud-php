@@ -25,7 +25,7 @@ class ListMonitoredResourceDescriptorsResponse extends \Google\Protobuf\Internal
     /**
      * If there are more results than have been returned, then this field is set
      * to a non-empty value.  To see the additional results,
-     * use that value as `pageToken` in the next call to this method.
+     * use that value as `page_token` in the next call to this method.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -43,7 +43,7 @@ class ListMonitoredResourceDescriptorsResponse extends \Google\Protobuf\Internal
      *     @type string $next_page_token
      *           If there are more results than have been returned, then this field is set
      *           to a non-empty value.  To see the additional results,
-     *           use that value as `pageToken` in the next call to this method.
+     *           use that value as `page_token` in the next call to this method.
      * }
      */
     public function __construct($data = NULL) {
@@ -82,7 +82,7 @@ class ListMonitoredResourceDescriptorsResponse extends \Google\Protobuf\Internal
     /**
      * If there are more results than have been returned, then this field is set
      * to a non-empty value.  To see the additional results,
-     * use that value as `pageToken` in the next call to this method.
+     * use that value as `page_token` in the next call to this method.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -95,7 +95,7 @@ class ListMonitoredResourceDescriptorsResponse extends \Google\Protobuf\Internal
     /**
      * If there are more results than have been returned, then this field is set
      * to a non-empty value.  To see the additional results,
-     * use that value as `pageToken` in the next call to this method.
+     * use that value as `page_token` in the next call to this method.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var
