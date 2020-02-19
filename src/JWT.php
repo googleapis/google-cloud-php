@@ -366,7 +366,7 @@ class JWT
     /**
      * Get the number of bytes in cryptographic strings.
      *
-     * @param string
+     * @param string $str
      *
      * @return int
      */
