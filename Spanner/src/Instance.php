@@ -216,7 +216,10 @@ class Instance
     public function exists(array $options = [])
     {
         try {
-            $this->reload($options = []);
+            $options += [
+                'fieldMask' => ['name'],
+            ];
+            $this->reload($options);
         } catch (NotFoundException $e) {
             return false;
         }

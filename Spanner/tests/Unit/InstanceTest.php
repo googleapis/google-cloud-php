@@ -111,13 +111,18 @@ class InstanceTest extends TestCase
         $this->instance->___setProperty('connection', $this->connection->reveal());
 
         $info = $this->instance->info(['fieldMask' => $requestedFieldNames]);
-        
+
         $this->assertEquals($info, $this->instance->info());
     }
 
     public function testExists()
     {
-        $this->connection->getInstance(Argument::any())->shouldBeCalled()->willReturn([]);
+        $this->connection->getInstance(Argument::allOf(
+            Argument::withEntry('name', $this->instance->name()),
+            Argument::withEntry('fieldMask', ['name'])
+        ))
+            ->shouldBeCalledTimes(1)
+            ->willReturn([]);
 
         $this->instance->___setProperty('connection', $this->connection->reveal());
 
