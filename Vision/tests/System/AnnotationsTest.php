@@ -88,7 +88,7 @@ class AnnotationsTest extends VisionTestCase
 
         $desc = array_filter($res->web()->entities(), function ($e) {
             return isset($e->info()['description'])
-                    && $e->description() === 'Mount Rushmore National Memorial';
+                    && strpos($e->description(), 'Rushmore') !== false;
         });
         $this->assertGreaterThan(0, count($desc));
 
