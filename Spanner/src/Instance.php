@@ -219,7 +219,15 @@ class Instance
             $options += [
                 'fieldMask' => ['name'],
             ];
-            $this->reload($options);
+
+            if ($this->info) {
+                $this->connection->getInstance($options + [
+                    'name' => $this->name,
+                    'projectId' => $this->projectId,
+                ]);
+            } else {
+                $this->reload($options);
+            }
         } catch (NotFoundException $e) {
             return false;
         }
