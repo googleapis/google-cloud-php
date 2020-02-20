@@ -57,6 +57,17 @@ use Psr\Http\StreamInterface;
  * $spanner = new SpannerClient();
  * ```
  *
+ * ```
+ * // Using a Spanner Emulator
+ * use Google\Cloud\Spanner\SpannerClient;
+ *
+ * // Be sure to use the port specified when starting the emulator.
+ * // `9010` is used as an example only.
+ * putenv('SPANNER_EMULATOR_HOST=localhost:9010');
+ *
+ * $spanner = new SpannerClient();
+ * ```
+ *
  * @method resumeOperation() {
  *     Resume a Long Running Operation
  *
