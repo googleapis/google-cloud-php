@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2019 Google LLC.
+// Copyright 2020 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-//
 //
 namespace Google\Cloud\Dataproc\V1;
 
@@ -37,7 +36,7 @@ class ClusterControllerGrpcClient extends \Grpc\BaseStub {
     /**
      * Creates a cluster in a project. The returned
      * [Operation.metadata][google.longrunning.Operation.metadata] will be
-     * [ClusterOperationMetadata](/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).
+     * [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).
      * @param \Google\Cloud\Dataproc\V1\CreateClusterRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -53,7 +52,7 @@ class ClusterControllerGrpcClient extends \Grpc\BaseStub {
     /**
      * Updates a cluster in a project. The returned
      * [Operation.metadata][google.longrunning.Operation.metadata] will be
-     * [ClusterOperationMetadata](/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).
+     * [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).
      * @param \Google\Cloud\Dataproc\V1\UpdateClusterRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -69,7 +68,7 @@ class ClusterControllerGrpcClient extends \Grpc\BaseStub {
     /**
      * Deletes a cluster in a project. The returned
      * [Operation.metadata][google.longrunning.Operation.metadata] will be
-     * [ClusterOperationMetadata](/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).
+     * [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).
      * @param \Google\Cloud\Dataproc\V1\DeleteClusterRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -113,11 +112,11 @@ class ClusterControllerGrpcClient extends \Grpc\BaseStub {
     /**
      * Gets cluster diagnostic information. The returned
      * [Operation.metadata][google.longrunning.Operation.metadata] will be
-     * [ClusterOperationMetadata](/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).
+     * [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).
      * After the operation completes,
      * [Operation.response][google.longrunning.Operation.response]
      * contains
-     * [DiagnoseClusterResults](/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#diagnoseclusterresults).
+     * [DiagnoseClusterResults](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#diagnoseclusterresults).
      * @param \Google\Cloud\Dataproc\V1\DiagnoseClusterRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

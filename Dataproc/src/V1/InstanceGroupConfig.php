@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Optional. The config settings for Compute Engine resources in
+ * The config settings for Compute Engine resources in
  * an instance group, such as a master or worker group.
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1.InstanceGroupConfig</code>

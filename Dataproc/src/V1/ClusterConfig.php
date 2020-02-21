@@ -99,6 +99,12 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.SecurityConfig security_config = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $security_config = null;
+    /**
+     * Optional. Lifecycle setting for the cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.LifecycleConfig lifecycle_config = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $lifecycle_config = null;
 
     /**
      * Constructor.
@@ -150,6 +156,8 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      *           Cluster does not autoscale if this field is unset.
      *     @type \Google\Cloud\Dataproc\V1\SecurityConfig $security_config
      *           Optional. Security settings for the cluster.
+     *     @type \Google\Cloud\Dataproc\V1\LifecycleConfig $lifecycle_config
+     *           Optional. Lifecycle setting for the cluster.
      * }
      */
     public function __construct($data = NULL) {
@@ -461,6 +469,32 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\SecurityConfig::class);
         $this->security_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Lifecycle setting for the cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.LifecycleConfig lifecycle_config = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataproc\V1\LifecycleConfig
+     */
+    public function getLifecycleConfig()
+    {
+        return $this->lifecycle_config;
+    }
+
+    /**
+     * Optional. Lifecycle setting for the cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.LifecycleConfig lifecycle_config = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataproc\V1\LifecycleConfig $var
+     * @return $this
+     */
+    public function setLifecycleConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\LifecycleConfig::class);
+        $this->lifecycle_config = $var;
 
         return $this;
     }

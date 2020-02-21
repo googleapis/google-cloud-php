@@ -111,17 +111,21 @@ class Job extends \Google\Protobuf\Internal\Message
      *           Required. Job information, including how, when, and where to
      *           run the job.
      *     @type \Google\Cloud\Dataproc\V1\HadoopJob $hadoop_job
-     *           Job is a Hadoop job.
+     *           Optional. Job is a Hadoop job.
      *     @type \Google\Cloud\Dataproc\V1\SparkJob $spark_job
-     *           Job is a Spark job.
+     *           Optional. Job is a Spark job.
      *     @type \Google\Cloud\Dataproc\V1\PySparkJob $pyspark_job
-     *           Job is a Pyspark job.
+     *           Optional. Job is a PySpark job.
      *     @type \Google\Cloud\Dataproc\V1\HiveJob $hive_job
-     *           Job is a Hive job.
+     *           Optional. Job is a Hive job.
      *     @type \Google\Cloud\Dataproc\V1\PigJob $pig_job
-     *           Job is a Pig job.
+     *           Optional. Job is a Pig job.
+     *     @type \Google\Cloud\Dataproc\V1\SparkRJob $spark_r_job
+     *           Optional. Job is a SparkR job.
      *     @type \Google\Cloud\Dataproc\V1\SparkSqlJob $spark_sql_job
-     *           Job is a SparkSql job.
+     *           Optional. Job is a SparkSql job.
+     *     @type \Google\Cloud\Dataproc\V1\PrestoJob $presto_job
+     *           Optional. Job is a Presto job.
      *     @type \Google\Cloud\Dataproc\V1\JobStatus $status
      *           Output only. The job status. Additional application-specific
      *           status information may be contained in the <code>type_job</code>
@@ -221,9 +225,9 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Job is a Hadoop job.
+     * Optional. Job is a Hadoop job.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.HadoopJob hadoop_job = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.HadoopJob hadoop_job = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataproc\V1\HadoopJob
      */
     public function getHadoopJob()
@@ -232,9 +236,9 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Job is a Hadoop job.
+     * Optional. Job is a Hadoop job.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.HadoopJob hadoop_job = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.HadoopJob hadoop_job = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataproc\V1\HadoopJob $var
      * @return $this
      */
@@ -247,9 +251,9 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Job is a Spark job.
+     * Optional. Job is a Spark job.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.SparkJob spark_job = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.SparkJob spark_job = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataproc\V1\SparkJob
      */
     public function getSparkJob()
@@ -258,9 +262,9 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Job is a Spark job.
+     * Optional. Job is a Spark job.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.SparkJob spark_job = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.SparkJob spark_job = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataproc\V1\SparkJob $var
      * @return $this
      */
@@ -273,9 +277,9 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Job is a Pyspark job.
+     * Optional. Job is a PySpark job.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.PySparkJob pyspark_job = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.PySparkJob pyspark_job = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataproc\V1\PySparkJob
      */
     public function getPysparkJob()
@@ -284,9 +288,9 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Job is a Pyspark job.
+     * Optional. Job is a PySpark job.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.PySparkJob pyspark_job = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.PySparkJob pyspark_job = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataproc\V1\PySparkJob $var
      * @return $this
      */
@@ -299,9 +303,9 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Job is a Hive job.
+     * Optional. Job is a Hive job.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.HiveJob hive_job = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.HiveJob hive_job = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataproc\V1\HiveJob
      */
     public function getHiveJob()
@@ -310,9 +314,9 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Job is a Hive job.
+     * Optional. Job is a Hive job.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.HiveJob hive_job = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.HiveJob hive_job = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataproc\V1\HiveJob $var
      * @return $this
      */
@@ -325,9 +329,9 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Job is a Pig job.
+     * Optional. Job is a Pig job.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.PigJob pig_job = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.PigJob pig_job = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataproc\V1\PigJob
      */
     public function getPigJob()
@@ -336,9 +340,9 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Job is a Pig job.
+     * Optional. Job is a Pig job.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.PigJob pig_job = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.PigJob pig_job = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataproc\V1\PigJob $var
      * @return $this
      */
@@ -351,9 +355,35 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Job is a SparkSql job.
+     * Optional. Job is a SparkR job.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.SparkSqlJob spark_sql_job = 12;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.SparkRJob spark_r_job = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataproc\V1\SparkRJob
+     */
+    public function getSparkRJob()
+    {
+        return $this->readOneof(21);
+    }
+
+    /**
+     * Optional. Job is a SparkR job.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.SparkRJob spark_r_job = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataproc\V1\SparkRJob $var
+     * @return $this
+     */
+    public function setSparkRJob($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\SparkRJob::class);
+        $this->writeOneof(21, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Job is a SparkSql job.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.SparkSqlJob spark_sql_job = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataproc\V1\SparkSqlJob
      */
     public function getSparkSqlJob()
@@ -362,9 +392,9 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Job is a SparkSql job.
+     * Optional. Job is a SparkSql job.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.SparkSqlJob spark_sql_job = 12;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.SparkSqlJob spark_sql_job = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataproc\V1\SparkSqlJob $var
      * @return $this
      */
@@ -372,6 +402,32 @@ class Job extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\SparkSqlJob::class);
         $this->writeOneof(12, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Job is a Presto job.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.PrestoJob presto_job = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataproc\V1\PrestoJob
+     */
+    public function getPrestoJob()
+    {
+        return $this->readOneof(23);
+    }
+
+    /**
+     * Optional. Job is a Presto job.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.PrestoJob presto_job = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataproc\V1\PrestoJob $var
+     * @return $this
+     */
+    public function setPrestoJob($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\PrestoJob::class);
+        $this->writeOneof(23, $var);
 
         return $this;
     }
