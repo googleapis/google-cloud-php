@@ -112,6 +112,12 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> metadata = 5;</code>
      */
     private $metadata;
+    /**
+     * Optional. Reservation Affinity for consuming Zonal reservation.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ReservationAffinity reservation_affinity = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $reservation_affinity = null;
 
     /**
      * Constructor.
@@ -183,6 +189,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      *           The Compute Engine metadata entries to add to all instances (see
      *           [Project and instance
      *           metadata](https://cloud.google.com/compute/docs/storing-retrieving-metadata#project_and_instance_metadata)).
+     *     @type \Google\Cloud\Dataproc\V1\ReservationAffinity $reservation_affinity
+     *           Optional. Reservation Affinity for consuming Zonal reservation.
      * }
      */
     public function __construct($data = NULL) {
@@ -490,6 +498,32 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->metadata = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Reservation Affinity for consuming Zonal reservation.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ReservationAffinity reservation_affinity = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataproc\V1\ReservationAffinity
+     */
+    public function getReservationAffinity()
+    {
+        return $this->reservation_affinity;
+    }
+
+    /**
+     * Optional. Reservation Affinity for consuming Zonal reservation.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ReservationAffinity reservation_affinity = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataproc\V1\ReservationAffinity $var
+     * @return $this
+     */
+    public function setReservationAffinity($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\ReservationAffinity::class);
+        $this->reservation_affinity = $var;
 
         return $this;
     }
