@@ -25,7 +25,7 @@ class AcceleratorConfig extends \Google\Protobuf\Internal\Message
      * * `https://www.googleapis.com/compute/beta/projects/[project_id]/zones/us-east1-a/acceleratorTypes/nvidia-tesla-k80`
      * * `projects/[project_id]/zones/us-east1-a/acceleratorTypes/nvidia-tesla-k80`
      * * `nvidia-tesla-k80`
-     * **Auto Zone Exception**: If you are using the Cloud Dataproc
+     * **Auto Zone Exception**: If you are using the Dataproc
      * [Auto Zone
      * Placement](/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement)
      * feature, you must use the short name of the accelerator type
@@ -56,7 +56,7 @@ class AcceleratorConfig extends \Google\Protobuf\Internal\Message
      *           * `https://www.googleapis.com/compute/beta/projects/[project_id]/zones/us-east1-a/acceleratorTypes/nvidia-tesla-k80`
      *           * `projects/[project_id]/zones/us-east1-a/acceleratorTypes/nvidia-tesla-k80`
      *           * `nvidia-tesla-k80`
-     *           **Auto Zone Exception**: If you are using the Cloud Dataproc
+     *           **Auto Zone Exception**: If you are using the Dataproc
      *           [Auto Zone
      *           Placement](/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement)
      *           feature, you must use the short name of the accelerator type
@@ -79,7 +79,7 @@ class AcceleratorConfig extends \Google\Protobuf\Internal\Message
      * * `https://www.googleapis.com/compute/beta/projects/[project_id]/zones/us-east1-a/acceleratorTypes/nvidia-tesla-k80`
      * * `projects/[project_id]/zones/us-east1-a/acceleratorTypes/nvidia-tesla-k80`
      * * `nvidia-tesla-k80`
-     * **Auto Zone Exception**: If you are using the Cloud Dataproc
+     * **Auto Zone Exception**: If you are using the Dataproc
      * [Auto Zone
      * Placement](/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement)
      * feature, you must use the short name of the accelerator type
@@ -102,7 +102,7 @@ class AcceleratorConfig extends \Google\Protobuf\Internal\Message
      * * `https://www.googleapis.com/compute/beta/projects/[project_id]/zones/us-east1-a/acceleratorTypes/nvidia-tesla-k80`
      * * `projects/[project_id]/zones/us-east1-a/acceleratorTypes/nvidia-tesla-k80`
      * * `nvidia-tesla-k80`
-     * **Auto Zone Exception**: If you are using the Cloud Dataproc
+     * **Auto Zone Exception**: If you are using the Dataproc
      * [Auto Zone
      * Placement](/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement)
      * feature, you must use the short name of the accelerator type

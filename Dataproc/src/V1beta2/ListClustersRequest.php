@@ -23,7 +23,7 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
      */
     private $project_id = '';
     /**
-     * Required. The Cloud Dataproc region in which to handle the request.
+     * Required. The Dataproc region in which to handle the request.
      *
      * Generated from protobuf field <code>string region = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -71,7 +71,7 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
      *           Required. The ID of the Google Cloud Platform project that the cluster
      *           belongs to.
      *     @type string $region
-     *           Required. The Cloud Dataproc region in which to handle the request.
+     *           Required. The Dataproc region in which to handle the request.
      *     @type string $filter
      *           Optional.  A filter constraining the clusters to list. Filters are
      *           case-sensitive and have the following syntax:
@@ -128,7 +128,7 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Cloud Dataproc region in which to handle the request.
+     * Required. The Dataproc region in which to handle the request.
      *
      * Generated from protobuf field <code>string region = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -139,7 +139,7 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Cloud Dataproc region in which to handle the request.
+     * Required. The Dataproc region in which to handle the request.
      *
      * Generated from protobuf field <code>string region = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

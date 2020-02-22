@@ -28,7 +28,8 @@ class ClusterStatus extends \Google\Protobuf\Internal\Message
      */
     private $detail = '';
     /**
-     * Output only. Time when this state was entered.
+     * Output only. Time when this state was entered (see JSON representation of
+     * [Timestamp](https://developers.google.com/protocol-buffers/docs/proto3#json)).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp state_start_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -52,7 +53,8 @@ class ClusterStatus extends \Google\Protobuf\Internal\Message
      *     @type string $detail
      *           Output only. Optional details of cluster's state.
      *     @type \Google\Protobuf\Timestamp $state_start_time
-     *           Output only. Time when this state was entered.
+     *           Output only. Time when this state was entered (see JSON representation of
+     *           [Timestamp](https://developers.google.com/protocol-buffers/docs/proto3#json)).
      *     @type int $substate
      *           Output only. Additional state information that includes
      *           status reported by the agent.
@@ -116,7 +118,8 @@ class ClusterStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Time when this state was entered.
+     * Output only. Time when this state was entered (see JSON representation of
+     * [Timestamp](https://developers.google.com/protocol-buffers/docs/proto3#json)).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp state_start_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp
@@ -127,7 +130,8 @@ class ClusterStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Time when this state was entered.
+     * Output only. Time when this state was entered (see JSON representation of
+     * [Timestamp](https://developers.google.com/protocol-buffers/docs/proto3#json)).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp state_start_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var

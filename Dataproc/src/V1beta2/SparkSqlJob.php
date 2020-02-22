@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A Cloud Dataproc job for running [Apache Spark
+ * A Dataproc job for running [Apache Spark
  * SQL](http://spark.apache.org/sql/) queries.
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1beta2.SparkSqlJob</code>
@@ -20,27 +20,27 @@ class SparkSqlJob extends \Google\Protobuf\Internal\Message
      * Optional. Mapping of query variable names to values (equivalent to the
      * Spark SQL command: SET `name="value";`).
      *
-     * Generated from protobuf field <code>map<string, string> script_variables = 3;</code>
+     * Generated from protobuf field <code>map<string, string> script_variables = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $script_variables;
     /**
      * Optional. A mapping of property names to values, used to configure
      * Spark SQL's SparkConf. Properties that conflict with values set by the
-     * Cloud Dataproc API may be overwritten.
+     * Dataproc API may be overwritten.
      *
-     * Generated from protobuf field <code>map<string, string> properties = 4;</code>
+     * Generated from protobuf field <code>map<string, string> properties = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $properties;
     /**
      * Optional. HCFS URIs of jar files to be added to the Spark CLASSPATH.
      *
-     * Generated from protobuf field <code>repeated string jar_file_uris = 56;</code>
+     * Generated from protobuf field <code>repeated string jar_file_uris = 56 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $jar_file_uris;
     /**
      * Optional. The runtime log config for job execution.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.LoggingConfig logging_config = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.LoggingConfig logging_config = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $logging_config = null;
     protected $queries;
@@ -61,7 +61,7 @@ class SparkSqlJob extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $properties
      *           Optional. A mapping of property names to values, used to configure
      *           Spark SQL's SparkConf. Properties that conflict with values set by the
-     *           Cloud Dataproc API may be overwritten.
+     *           Dataproc API may be overwritten.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $jar_file_uris
      *           Optional. HCFS URIs of jar files to be added to the Spark CLASSPATH.
      *     @type \Google\Cloud\Dataproc\V1beta2\LoggingConfig $logging_config
@@ -129,7 +129,7 @@ class SparkSqlJob extends \Google\Protobuf\Internal\Message
      * Optional. Mapping of query variable names to values (equivalent to the
      * Spark SQL command: SET `name="value";`).
      *
-     * Generated from protobuf field <code>map<string, string> script_variables = 3;</code>
+     * Generated from protobuf field <code>map<string, string> script_variables = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getScriptVariables()
@@ -141,7 +141,7 @@ class SparkSqlJob extends \Google\Protobuf\Internal\Message
      * Optional. Mapping of query variable names to values (equivalent to the
      * Spark SQL command: SET `name="value";`).
      *
-     * Generated from protobuf field <code>map<string, string> script_variables = 3;</code>
+     * Generated from protobuf field <code>map<string, string> script_variables = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -156,9 +156,9 @@ class SparkSqlJob extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A mapping of property names to values, used to configure
      * Spark SQL's SparkConf. Properties that conflict with values set by the
-     * Cloud Dataproc API may be overwritten.
+     * Dataproc API may be overwritten.
      *
-     * Generated from protobuf field <code>map<string, string> properties = 4;</code>
+     * Generated from protobuf field <code>map<string, string> properties = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getProperties()
@@ -169,9 +169,9 @@ class SparkSqlJob extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A mapping of property names to values, used to configure
      * Spark SQL's SparkConf. Properties that conflict with values set by the
-     * Cloud Dataproc API may be overwritten.
+     * Dataproc API may be overwritten.
      *
-     * Generated from protobuf field <code>map<string, string> properties = 4;</code>
+     * Generated from protobuf field <code>map<string, string> properties = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -186,7 +186,7 @@ class SparkSqlJob extends \Google\Protobuf\Internal\Message
     /**
      * Optional. HCFS URIs of jar files to be added to the Spark CLASSPATH.
      *
-     * Generated from protobuf field <code>repeated string jar_file_uris = 56;</code>
+     * Generated from protobuf field <code>repeated string jar_file_uris = 56 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getJarFileUris()
@@ -197,7 +197,7 @@ class SparkSqlJob extends \Google\Protobuf\Internal\Message
     /**
      * Optional. HCFS URIs of jar files to be added to the Spark CLASSPATH.
      *
-     * Generated from protobuf field <code>repeated string jar_file_uris = 56;</code>
+     * Generated from protobuf field <code>repeated string jar_file_uris = 56 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -212,7 +212,7 @@ class SparkSqlJob extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The runtime log config for job execution.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.LoggingConfig logging_config = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.LoggingConfig logging_config = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataproc\V1beta2\LoggingConfig
      */
     public function getLoggingConfig()
@@ -223,7 +223,7 @@ class SparkSqlJob extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The runtime log config for job execution.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.LoggingConfig logging_config = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.LoggingConfig logging_config = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataproc\V1beta2\LoggingConfig $var
      * @return $this
      */

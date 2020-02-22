@@ -24,7 +24,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      */
     private $num_instances = 0;
     /**
-     * Output only. The list of instance names. Cloud Dataproc derives the names
+     * Output only. The list of instance names. Dataproc derives the names
      * from `cluster_name`, `num_instances`, and the instance group.
      *
      * Generated from protobuf field <code>repeated string instance_names = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -44,7 +44,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      * * `https://www.googleapis.com/compute/v1/projects/[project_id]/zones/us-east1-a/machineTypes/n1-standard-2`
      * * `projects/[project_id]/zones/us-east1-a/machineTypes/n1-standard-2`
      * * `n1-standard-2`
-     * **Auto Zone Exception**: If you are using the Cloud Dataproc
+     * **Auto Zone Exception**: If you are using the Dataproc
      * [Auto Zone
      * Placement](/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement)
      * feature, you must use the short name of the machine type
@@ -83,7 +83,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
     private $accelerators;
     /**
      * Specifies the minimum cpu platform for the Instance Group.
-     * See [Cloud Dataproc&rarr;Minimum CPU Platform]
+     * See [Dataproc&rarr;Minimum CPU Platform]
      * (/dataproc/docs/concepts/compute/dataproc-min-cpu).
      *
      * Generated from protobuf field <code>string min_cpu_platform = 9;</code>
@@ -100,7 +100,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      *           Optional. The number of VM instances in the instance group.
      *           For master instance groups, must be set to 1.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $instance_names
-     *           Output only. The list of instance names. Cloud Dataproc derives the names
+     *           Output only. The list of instance names. Dataproc derives the names
      *           from `cluster_name`, `num_instances`, and the instance group.
      *     @type string $image_uri
      *           Optional. The Compute Engine image resource used for cluster
@@ -112,7 +112,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      *           * `https://www.googleapis.com/compute/v1/projects/[project_id]/zones/us-east1-a/machineTypes/n1-standard-2`
      *           * `projects/[project_id]/zones/us-east1-a/machineTypes/n1-standard-2`
      *           * `n1-standard-2`
-     *           **Auto Zone Exception**: If you are using the Cloud Dataproc
+     *           **Auto Zone Exception**: If you are using the Dataproc
      *           [Auto Zone
      *           Placement](/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement)
      *           feature, you must use the short name of the machine type
@@ -131,7 +131,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      *           instances.
      *     @type string $min_cpu_platform
      *           Specifies the minimum cpu platform for the Instance Group.
-     *           See [Cloud Dataproc&rarr;Minimum CPU Platform]
+     *           See [Dataproc&rarr;Minimum CPU Platform]
      *           (/dataproc/docs/concepts/compute/dataproc-min-cpu).
      * }
      */
@@ -169,7 +169,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The list of instance names. Cloud Dataproc derives the names
+     * Output only. The list of instance names. Dataproc derives the names
      * from `cluster_name`, `num_instances`, and the instance group.
      *
      * Generated from protobuf field <code>repeated string instance_names = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -181,7 +181,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The list of instance names. Cloud Dataproc derives the names
+     * Output only. The list of instance names. Dataproc derives the names
      * from `cluster_name`, `num_instances`, and the instance group.
      *
      * Generated from protobuf field <code>repeated string instance_names = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -232,7 +232,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      * * `https://www.googleapis.com/compute/v1/projects/[project_id]/zones/us-east1-a/machineTypes/n1-standard-2`
      * * `projects/[project_id]/zones/us-east1-a/machineTypes/n1-standard-2`
      * * `n1-standard-2`
-     * **Auto Zone Exception**: If you are using the Cloud Dataproc
+     * **Auto Zone Exception**: If you are using the Dataproc
      * [Auto Zone
      * Placement](/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement)
      * feature, you must use the short name of the machine type
@@ -252,7 +252,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      * * `https://www.googleapis.com/compute/v1/projects/[project_id]/zones/us-east1-a/machineTypes/n1-standard-2`
      * * `projects/[project_id]/zones/us-east1-a/machineTypes/n1-standard-2`
      * * `n1-standard-2`
-     * **Auto Zone Exception**: If you are using the Cloud Dataproc
+     * **Auto Zone Exception**: If you are using the Dataproc
      * [Auto Zone
      * Placement](/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement)
      * feature, you must use the short name of the machine type
@@ -384,7 +384,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Specifies the minimum cpu platform for the Instance Group.
-     * See [Cloud Dataproc&rarr;Minimum CPU Platform]
+     * See [Dataproc&rarr;Minimum CPU Platform]
      * (/dataproc/docs/concepts/compute/dataproc-min-cpu).
      *
      * Generated from protobuf field <code>string min_cpu_platform = 9;</code>
@@ -397,7 +397,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Specifies the minimum cpu platform for the Instance Group.
-     * See [Cloud Dataproc&rarr;Minimum CPU Platform]
+     * See [Dataproc&rarr;Minimum CPU Platform]
      * (/dataproc/docs/concepts/compute/dataproc-min-cpu).
      *
      * Generated from protobuf field <code>string min_cpu_platform = 9;</code>

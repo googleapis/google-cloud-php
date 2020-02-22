@@ -28,7 +28,7 @@ class JobReference extends \Google\Protobuf\Internal\Message
      * underscores (_), or hyphens (-). The maximum length is 100 characters.
      * If not specified by the caller, the job ID will be provided by the server.
      *
-     * Generated from protobuf field <code>string job_id = 2;</code>
+     * Generated from protobuf field <code>string job_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $job_id = '';
 
@@ -87,7 +87,7 @@ class JobReference extends \Google\Protobuf\Internal\Message
      * underscores (_), or hyphens (-). The maximum length is 100 characters.
      * If not specified by the caller, the job ID will be provided by the server.
      *
-     * Generated from protobuf field <code>string job_id = 2;</code>
+     * Generated from protobuf field <code>string job_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getJobId()
@@ -101,7 +101,7 @@ class JobReference extends \Google\Protobuf\Internal\Message
      * underscores (_), or hyphens (-). The maximum length is 100 characters.
      * If not specified by the caller, the job ID will be provided by the server.
      *
-     * Generated from protobuf field <code>string job_id = 2;</code>
+     * Generated from protobuf field <code>string job_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

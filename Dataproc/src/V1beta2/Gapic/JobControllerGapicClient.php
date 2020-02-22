@@ -194,7 +194,7 @@ class JobControllerGapicClient
      *
      * @param string $projectId    Required. The ID of the Google Cloud Platform project that the job
      *                             belongs to.
-     * @param string $region       Required. The Cloud Dataproc region in which to handle the request.
+     * @param string $region       Required. The Dataproc region in which to handle the request.
      * @param Job    $job          Required. The job resource.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -259,7 +259,7 @@ class JobControllerGapicClient
      *
      * @param string $projectId    Required. The ID of the Google Cloud Platform project that the job
      *                             belongs to.
-     * @param string $region       Required. The Cloud Dataproc region in which to handle the request.
+     * @param string $region       Required. The Dataproc region in which to handle the request.
      * @param string $jobId        Required. The job ID.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -323,7 +323,7 @@ class JobControllerGapicClient
      *
      * @param string $projectId    Required. The ID of the Google Cloud Platform project that the job
      *                             belongs to.
-     * @param string $region       Required. The Cloud Dataproc region in which to handle the request.
+     * @param string $region       Required. The Dataproc region in which to handle the request.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -421,7 +421,7 @@ class JobControllerGapicClient
      *
      * @param string    $projectId    Required. The ID of the Google Cloud Platform project that the job
      *                                belongs to.
-     * @param string    $region       Required. The Cloud Dataproc region in which to handle the request.
+     * @param string    $region       Required. The Dataproc region in which to handle the request.
      * @param string    $jobId        Required. The job ID.
      * @param Job       $job          Required. The changes to the job.
      * @param FieldMask $updateMask   Required. Specifies the path, relative to <code>Job</code>, of
@@ -484,7 +484,7 @@ class JobControllerGapicClient
      *
      * @param string $projectId    Required. The ID of the Google Cloud Platform project that the job
      *                             belongs to.
-     * @param string $region       Required. The Cloud Dataproc region in which to handle the request.
+     * @param string $region       Required. The Dataproc region in which to handle the request.
      * @param string $jobId        Required. The job ID.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -535,7 +535,7 @@ class JobControllerGapicClient
      *
      * @param string $projectId    Required. The ID of the Google Cloud Platform project that the job
      *                             belongs to.
-     * @param string $region       Required. The Cloud Dataproc region in which to handle the request.
+     * @param string $region       Required. The Dataproc region in which to handle the request.
      * @param string $jobId        Required. The job ID.
      * @param array  $optionalArgs {
      *                             Optional.

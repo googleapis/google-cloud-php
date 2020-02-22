@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A Cloud Dataproc job for running [Apache Hive](https://hive.apache.org/)
+ * A Dataproc job for running [Apache Hive](https://hive.apache.org/)
  * queries on YARN.
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1beta2.HiveJob</code>
@@ -21,23 +21,23 @@ class HiveJob extends \Google\Protobuf\Internal\Message
      * The default value is `false`. Setting to `true` can be useful when
      * executing independent parallel queries.
      *
-     * Generated from protobuf field <code>bool continue_on_failure = 3;</code>
+     * Generated from protobuf field <code>bool continue_on_failure = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $continue_on_failure = false;
     /**
      * Optional. Mapping of query variable names to values (equivalent to the
      * Hive command: `SET name="value";`).
      *
-     * Generated from protobuf field <code>map<string, string> script_variables = 4;</code>
+     * Generated from protobuf field <code>map<string, string> script_variables = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $script_variables;
     /**
      * Optional. A mapping of property names and values, used to configure Hive.
-     * Properties that conflict with values set by the Cloud Dataproc API may be
+     * Properties that conflict with values set by the Dataproc API may be
      * overwritten. Can include properties set in /etc/hadoop/conf/&#42;-site.xml,
      * /etc/hive/conf/hive-site.xml, and classes in user code.
      *
-     * Generated from protobuf field <code>map<string, string> properties = 5;</code>
+     * Generated from protobuf field <code>map<string, string> properties = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $properties;
     /**
@@ -45,7 +45,7 @@ class HiveJob extends \Google\Protobuf\Internal\Message
      * Hive server and Hadoop MapReduce (MR) tasks. Can contain Hive SerDes
      * and UDFs.
      *
-     * Generated from protobuf field <code>repeated string jar_file_uris = 6;</code>
+     * Generated from protobuf field <code>repeated string jar_file_uris = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $jar_file_uris;
     protected $queries;
@@ -69,7 +69,7 @@ class HiveJob extends \Google\Protobuf\Internal\Message
      *           Hive command: `SET name="value";`).
      *     @type array|\Google\Protobuf\Internal\MapField $properties
      *           Optional. A mapping of property names and values, used to configure Hive.
-     *           Properties that conflict with values set by the Cloud Dataproc API may be
+     *           Properties that conflict with values set by the Dataproc API may be
      *           overwritten. Can include properties set in /etc/hadoop/conf/&#42;-site.xml,
      *           /etc/hive/conf/hive-site.xml, and classes in user code.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $jar_file_uris
@@ -140,7 +140,7 @@ class HiveJob extends \Google\Protobuf\Internal\Message
      * The default value is `false`. Setting to `true` can be useful when
      * executing independent parallel queries.
      *
-     * Generated from protobuf field <code>bool continue_on_failure = 3;</code>
+     * Generated from protobuf field <code>bool continue_on_failure = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getContinueOnFailure()
@@ -153,7 +153,7 @@ class HiveJob extends \Google\Protobuf\Internal\Message
      * The default value is `false`. Setting to `true` can be useful when
      * executing independent parallel queries.
      *
-     * Generated from protobuf field <code>bool continue_on_failure = 3;</code>
+     * Generated from protobuf field <code>bool continue_on_failure = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -169,7 +169,7 @@ class HiveJob extends \Google\Protobuf\Internal\Message
      * Optional. Mapping of query variable names to values (equivalent to the
      * Hive command: `SET name="value";`).
      *
-     * Generated from protobuf field <code>map<string, string> script_variables = 4;</code>
+     * Generated from protobuf field <code>map<string, string> script_variables = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getScriptVariables()
@@ -181,7 +181,7 @@ class HiveJob extends \Google\Protobuf\Internal\Message
      * Optional. Mapping of query variable names to values (equivalent to the
      * Hive command: `SET name="value";`).
      *
-     * Generated from protobuf field <code>map<string, string> script_variables = 4;</code>
+     * Generated from protobuf field <code>map<string, string> script_variables = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -195,11 +195,11 @@ class HiveJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A mapping of property names and values, used to configure Hive.
-     * Properties that conflict with values set by the Cloud Dataproc API may be
+     * Properties that conflict with values set by the Dataproc API may be
      * overwritten. Can include properties set in /etc/hadoop/conf/&#42;-site.xml,
      * /etc/hive/conf/hive-site.xml, and classes in user code.
      *
-     * Generated from protobuf field <code>map<string, string> properties = 5;</code>
+     * Generated from protobuf field <code>map<string, string> properties = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getProperties()
@@ -209,11 +209,11 @@ class HiveJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A mapping of property names and values, used to configure Hive.
-     * Properties that conflict with values set by the Cloud Dataproc API may be
+     * Properties that conflict with values set by the Dataproc API may be
      * overwritten. Can include properties set in /etc/hadoop/conf/&#42;-site.xml,
      * /etc/hive/conf/hive-site.xml, and classes in user code.
      *
-     * Generated from protobuf field <code>map<string, string> properties = 5;</code>
+     * Generated from protobuf field <code>map<string, string> properties = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -230,7 +230,7 @@ class HiveJob extends \Google\Protobuf\Internal\Message
      * Hive server and Hadoop MapReduce (MR) tasks. Can contain Hive SerDes
      * and UDFs.
      *
-     * Generated from protobuf field <code>repeated string jar_file_uris = 6;</code>
+     * Generated from protobuf field <code>repeated string jar_file_uris = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getJarFileUris()
@@ -243,7 +243,7 @@ class HiveJob extends \Google\Protobuf\Internal\Message
      * Hive server and Hadoop MapReduce (MR) tasks. Can contain Hive SerDes
      * and UDFs.
      *
-     * Generated from protobuf field <code>repeated string jar_file_uris = 6;</code>
+     * Generated from protobuf field <code>repeated string jar_file_uris = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
