@@ -1,5 +1,5 @@
 {
-  "updateTime": "2020-02-22T11:01:37.475937Z",
+  "updateTime": "2020-02-22T18:42:44.508593Z",
   "sources": [
     {
       "generator": {
@@ -10,25 +10,10 @@
     },
     {
       "git": {
-        "name": ".",
-        "remote": "https://github.com/googleapis/google-cloud-php.git",
-        "sha": "4861920a6130be28b1058cd0b952211aacba8fbe"
-      }
-    },
-    {
-      "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
         "sha": "7f910bcc4fc4704947ccfd3ceed015d16b9e00c2",
-        "internalRef": "296451205",
-        "log": "7f910bcc4fc4704947ccfd3ceed015d16b9e00c2\nUpdate Dataproc v1beta2 client.\n\nPiperOrigin-RevId: 296451205\n\nde287524405a3dce124d301634731584fc0432d7\nFix: Reinstate method signatures that had been missed off some RPCs\nFix: Correct resource types for two fields\n\nPiperOrigin-RevId: 296435091\n\n"
-      }
-    },
-    {
-      "git": {
-        "name": "synthtool",
-        "remote": "rpc://devrel/cloud/libraries/tools/autosynth",
-        "sha": "706a38c26db42299845396cdae55db635c38794a"
+        "internalRef": "296451205"
       }
     }
   ],

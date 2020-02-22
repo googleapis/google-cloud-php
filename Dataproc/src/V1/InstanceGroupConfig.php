@@ -46,7 +46,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      * * `n1-standard-2`
      * **Auto Zone Exception**: If you are using the Dataproc
      * [Auto Zone
-     * Placement](/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement)
+     * Placement](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement)
      * feature, you must use the short name of the machine type
      * resource, for example, `n1-standard-2`.
      *
@@ -84,7 +84,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Specifies the minimum cpu platform for the Instance Group.
      * See [Dataproc&rarr;Minimum CPU Platform]
-     * (/dataproc/docs/concepts/compute/dataproc-min-cpu).
+     * (https://cloud.google.com/dataproc/docs/concepts/compute/dataproc-min-cpu).
      *
      * Generated from protobuf field <code>string min_cpu_platform = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -114,7 +114,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      *           * `n1-standard-2`
      *           **Auto Zone Exception**: If you are using the Dataproc
      *           [Auto Zone
-     *           Placement](/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement)
+     *           Placement](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement)
      *           feature, you must use the short name of the machine type
      *           resource, for example, `n1-standard-2`.
      *     @type \Google\Cloud\Dataproc\V1\DiskConfig $disk_config
@@ -132,7 +132,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      *     @type string $min_cpu_platform
      *           Optional. Specifies the minimum cpu platform for the Instance Group.
      *           See [Dataproc&rarr;Minimum CPU Platform]
-     *           (/dataproc/docs/concepts/compute/dataproc-min-cpu).
+     *           (https://cloud.google.com/dataproc/docs/concepts/compute/dataproc-min-cpu).
      * }
      */
     public function __construct($data = NULL) {
@@ -234,7 +234,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      * * `n1-standard-2`
      * **Auto Zone Exception**: If you are using the Dataproc
      * [Auto Zone
-     * Placement](/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement)
+     * Placement](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement)
      * feature, you must use the short name of the machine type
      * resource, for example, `n1-standard-2`.
      *
@@ -254,7 +254,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      * * `n1-standard-2`
      * **Auto Zone Exception**: If you are using the Dataproc
      * [Auto Zone
-     * Placement](/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement)
+     * Placement](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement)
      * feature, you must use the short name of the machine type
      * resource, for example, `n1-standard-2`.
      *
@@ -385,7 +385,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Specifies the minimum cpu platform for the Instance Group.
      * See [Dataproc&rarr;Minimum CPU Platform]
-     * (/dataproc/docs/concepts/compute/dataproc-min-cpu).
+     * (https://cloud.google.com/dataproc/docs/concepts/compute/dataproc-min-cpu).
      *
      * Generated from protobuf field <code>string min_cpu_platform = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -398,7 +398,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Specifies the minimum cpu platform for the Instance Group.
      * See [Dataproc&rarr;Minimum CPU Platform]
-     * (/dataproc/docs/concepts/compute/dataproc-min-cpu).
+     * (https://cloud.google.com/dataproc/docs/concepts/compute/dataproc-min-cpu).
      *
      * Generated from protobuf field <code>string min_cpu_platform = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
