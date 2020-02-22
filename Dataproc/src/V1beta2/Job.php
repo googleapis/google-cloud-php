@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A Cloud Dataproc job resource.
+ * A Dataproc job resource.
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1beta2.Job</code>
  */
@@ -21,7 +21,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * is not specified when a job is created, the server generates a
      * <code>job_id</code>.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobReference reference = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobReference reference = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $reference = null;
     /**
@@ -36,13 +36,13 @@ class Job extends \Google\Protobuf\Internal\Message
      * status information may be contained in the <code>type_job</code>
      * and <code>yarn_applications</code> fields.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobStatus status = 8;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobStatus status = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $status = null;
     /**
      * Output only. The previous job status.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1beta2.JobStatus status_history = 13;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1beta2.JobStatus status_history = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $status_history;
     /**
@@ -50,21 +50,21 @@ class Job extends \Google\Protobuf\Internal\Message
      * **Beta** Feature: This report is available for testing purposes only. It
      * may be changed before final release.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1beta2.YarnApplication yarn_applications = 9;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1beta2.YarnApplication yarn_applications = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $yarn_applications;
     /**
      * Output only. The email address of the user submitting the job. For jobs
      * submitted on the cluster, the address is <code>username&#64;hostname</code>.
      *
-     * Generated from protobuf field <code>string submitted_by = 10;</code>
+     * Generated from protobuf field <code>string submitted_by = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $submitted_by = '';
     /**
      * Output only. A URI pointing to the location of the stdout of the job's
      * driver program.
      *
-     * Generated from protobuf field <code>string driver_output_resource_uri = 17;</code>
+     * Generated from protobuf field <code>string driver_output_resource_uri = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $driver_output_resource_uri = '';
     /**
@@ -72,7 +72,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * which may be used as part of job setup and handling. If not present,
      * control files may be placed in the same location as `driver_output_uri`.
      *
-     * Generated from protobuf field <code>string driver_control_files_uri = 15;</code>
+     * Generated from protobuf field <code>string driver_control_files_uri = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $driver_control_files_uri = '';
     /**
@@ -84,13 +84,13 @@ class Job extends \Google\Protobuf\Internal\Message
      * 1035](https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be
      * associated with a job.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 18;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $labels;
     /**
      * Optional. Job scheduling configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobScheduling scheduling = 20;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobScheduling scheduling = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $scheduling = null;
     /**
@@ -98,7 +98,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * over time. This is in contrast to a user-settable reference.job_id that
      * may be reused over time.
      *
-     * Generated from protobuf field <code>string job_uuid = 22;</code>
+     * Generated from protobuf field <code>string job_uuid = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $job_uuid = '';
     protected $type_job;
@@ -118,19 +118,12 @@ class Job extends \Google\Protobuf\Internal\Message
      *           Required. Job information, including how, when, and where to
      *           run the job.
      *     @type \Google\Cloud\Dataproc\V1beta2\HadoopJob $hadoop_job
-     *           Job is a Hadoop job.
      *     @type \Google\Cloud\Dataproc\V1beta2\SparkJob $spark_job
-     *           Job is a Spark job.
      *     @type \Google\Cloud\Dataproc\V1beta2\PySparkJob $pyspark_job
-     *           Job is a Pyspark job.
      *     @type \Google\Cloud\Dataproc\V1beta2\HiveJob $hive_job
-     *           Job is a Hive job.
      *     @type \Google\Cloud\Dataproc\V1beta2\PigJob $pig_job
-     *           Job is a Pig job.
      *     @type \Google\Cloud\Dataproc\V1beta2\SparkRJob $spark_r_job
-     *           Job is a SparkR job.
      *     @type \Google\Cloud\Dataproc\V1beta2\SparkSqlJob $spark_sql_job
-     *           Job is a SparkSql job.
      *     @type \Google\Cloud\Dataproc\V1beta2\JobStatus $status
      *           Output only. The job status. Additional application-specific
      *           status information may be contained in the <code>type_job</code>
@@ -178,7 +171,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * is not specified when a job is created, the server generates a
      * <code>job_id</code>.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobReference reference = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobReference reference = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataproc\V1beta2\JobReference
      */
     public function getReference()
@@ -192,7 +185,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * is not specified when a job is created, the server generates a
      * <code>job_id</code>.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobReference reference = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobReference reference = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataproc\V1beta2\JobReference $var
      * @return $this
      */
@@ -233,8 +226,6 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Job is a Hadoop job.
-     *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.HadoopJob hadoop_job = 3;</code>
      * @return \Google\Cloud\Dataproc\V1beta2\HadoopJob
      */
@@ -244,8 +235,6 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Job is a Hadoop job.
-     *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.HadoopJob hadoop_job = 3;</code>
      * @param \Google\Cloud\Dataproc\V1beta2\HadoopJob $var
      * @return $this
@@ -259,8 +248,6 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Job is a Spark job.
-     *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.SparkJob spark_job = 4;</code>
      * @return \Google\Cloud\Dataproc\V1beta2\SparkJob
      */
@@ -270,8 +257,6 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Job is a Spark job.
-     *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.SparkJob spark_job = 4;</code>
      * @param \Google\Cloud\Dataproc\V1beta2\SparkJob $var
      * @return $this
@@ -285,8 +270,6 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Job is a Pyspark job.
-     *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.PySparkJob pyspark_job = 5;</code>
      * @return \Google\Cloud\Dataproc\V1beta2\PySparkJob
      */
@@ -296,8 +279,6 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Job is a Pyspark job.
-     *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.PySparkJob pyspark_job = 5;</code>
      * @param \Google\Cloud\Dataproc\V1beta2\PySparkJob $var
      * @return $this
@@ -311,8 +292,6 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Job is a Hive job.
-     *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.HiveJob hive_job = 6;</code>
      * @return \Google\Cloud\Dataproc\V1beta2\HiveJob
      */
@@ -322,8 +301,6 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Job is a Hive job.
-     *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.HiveJob hive_job = 6;</code>
      * @param \Google\Cloud\Dataproc\V1beta2\HiveJob $var
      * @return $this
@@ -337,8 +314,6 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Job is a Pig job.
-     *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.PigJob pig_job = 7;</code>
      * @return \Google\Cloud\Dataproc\V1beta2\PigJob
      */
@@ -348,8 +323,6 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Job is a Pig job.
-     *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.PigJob pig_job = 7;</code>
      * @param \Google\Cloud\Dataproc\V1beta2\PigJob $var
      * @return $this
@@ -363,8 +336,6 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Job is a SparkR job.
-     *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.SparkRJob spark_r_job = 21;</code>
      * @return \Google\Cloud\Dataproc\V1beta2\SparkRJob
      */
@@ -374,8 +345,6 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Job is a SparkR job.
-     *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.SparkRJob spark_r_job = 21;</code>
      * @param \Google\Cloud\Dataproc\V1beta2\SparkRJob $var
      * @return $this
@@ -389,8 +358,6 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Job is a SparkSql job.
-     *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.SparkSqlJob spark_sql_job = 12;</code>
      * @return \Google\Cloud\Dataproc\V1beta2\SparkSqlJob
      */
@@ -400,8 +367,6 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Job is a SparkSql job.
-     *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.SparkSqlJob spark_sql_job = 12;</code>
      * @param \Google\Cloud\Dataproc\V1beta2\SparkSqlJob $var
      * @return $this
@@ -419,7 +384,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * status information may be contained in the <code>type_job</code>
      * and <code>yarn_applications</code> fields.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobStatus status = 8;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobStatus status = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Dataproc\V1beta2\JobStatus
      */
     public function getStatus()
@@ -432,7 +397,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * status information may be contained in the <code>type_job</code>
      * and <code>yarn_applications</code> fields.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobStatus status = 8;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobStatus status = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Dataproc\V1beta2\JobStatus $var
      * @return $this
      */
@@ -447,7 +412,7 @@ class Job extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The previous job status.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1beta2.JobStatus status_history = 13;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1beta2.JobStatus status_history = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getStatusHistory()
@@ -458,7 +423,7 @@ class Job extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The previous job status.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1beta2.JobStatus status_history = 13;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1beta2.JobStatus status_history = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Dataproc\V1beta2\JobStatus[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -475,7 +440,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * **Beta** Feature: This report is available for testing purposes only. It
      * may be changed before final release.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1beta2.YarnApplication yarn_applications = 9;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1beta2.YarnApplication yarn_applications = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getYarnApplications()
@@ -488,7 +453,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * **Beta** Feature: This report is available for testing purposes only. It
      * may be changed before final release.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1beta2.YarnApplication yarn_applications = 9;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1beta2.YarnApplication yarn_applications = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Dataproc\V1beta2\YarnApplication[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -504,7 +469,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * Output only. The email address of the user submitting the job. For jobs
      * submitted on the cluster, the address is <code>username&#64;hostname</code>.
      *
-     * Generated from protobuf field <code>string submitted_by = 10;</code>
+     * Generated from protobuf field <code>string submitted_by = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getSubmittedBy()
@@ -516,7 +481,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * Output only. The email address of the user submitting the job. For jobs
      * submitted on the cluster, the address is <code>username&#64;hostname</code>.
      *
-     * Generated from protobuf field <code>string submitted_by = 10;</code>
+     * Generated from protobuf field <code>string submitted_by = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -532,7 +497,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * Output only. A URI pointing to the location of the stdout of the job's
      * driver program.
      *
-     * Generated from protobuf field <code>string driver_output_resource_uri = 17;</code>
+     * Generated from protobuf field <code>string driver_output_resource_uri = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getDriverOutputResourceUri()
@@ -544,7 +509,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * Output only. A URI pointing to the location of the stdout of the job's
      * driver program.
      *
-     * Generated from protobuf field <code>string driver_output_resource_uri = 17;</code>
+     * Generated from protobuf field <code>string driver_output_resource_uri = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -561,7 +526,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * which may be used as part of job setup and handling. If not present,
      * control files may be placed in the same location as `driver_output_uri`.
      *
-     * Generated from protobuf field <code>string driver_control_files_uri = 15;</code>
+     * Generated from protobuf field <code>string driver_control_files_uri = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getDriverControlFilesUri()
@@ -574,7 +539,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * which may be used as part of job setup and handling. If not present,
      * control files may be placed in the same location as `driver_output_uri`.
      *
-     * Generated from protobuf field <code>string driver_control_files_uri = 15;</code>
+     * Generated from protobuf field <code>string driver_control_files_uri = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -595,7 +560,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * 1035](https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be
      * associated with a job.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 18;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getLabels()
@@ -612,7 +577,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * 1035](https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be
      * associated with a job.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 18;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -627,7 +592,7 @@ class Job extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Job scheduling configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobScheduling scheduling = 20;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobScheduling scheduling = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataproc\V1beta2\JobScheduling
      */
     public function getScheduling()
@@ -638,7 +603,7 @@ class Job extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Job scheduling configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobScheduling scheduling = 20;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobScheduling scheduling = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataproc\V1beta2\JobScheduling $var
      * @return $this
      */
@@ -655,7 +620,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * over time. This is in contrast to a user-settable reference.job_id that
      * may be reused over time.
      *
-     * Generated from protobuf field <code>string job_uuid = 22;</code>
+     * Generated from protobuf field <code>string job_uuid = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getJobUuid()
@@ -668,7 +633,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * over time. This is in contrast to a user-settable reference.job_id that
      * may be reused over time.
      *
-     * Generated from protobuf field <code>string job_uuid = 22;</code>
+     * Generated from protobuf field <code>string job_uuid = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */

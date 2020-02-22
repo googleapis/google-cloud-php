@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A Cloud Dataproc job for running
+ * A Dataproc job for running
  * [Apache SparkR](https://spark.apache.org/docs/latest/sparkr.html)
  * applications on YARN.
  *
@@ -29,14 +29,14 @@ class SparkRJob extends \Google\Protobuf\Internal\Message
      * such as `--conf`, that can be set as job properties, since a collision may
      * occur that causes an incorrect job submission.
      *
-     * Generated from protobuf field <code>repeated string args = 2;</code>
+     * Generated from protobuf field <code>repeated string args = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $args;
     /**
      * Optional. HCFS URIs of files to be copied to the working directory of
      * R drivers and distributed tasks. Useful for naively parallel tasks.
      *
-     * Generated from protobuf field <code>repeated string file_uris = 3;</code>
+     * Generated from protobuf field <code>repeated string file_uris = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $file_uris;
     /**
@@ -44,22 +44,22 @@ class SparkRJob extends \Google\Protobuf\Internal\Message
      * Spark drivers and tasks. Supported file types:
      * .jar, .tar, .tar.gz, .tgz, and .zip.
      *
-     * Generated from protobuf field <code>repeated string archive_uris = 4;</code>
+     * Generated from protobuf field <code>repeated string archive_uris = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $archive_uris;
     /**
      * Optional. A mapping of property names to values, used to configure SparkR.
-     * Properties that conflict with values set by the Cloud Dataproc API may be
+     * Properties that conflict with values set by the Dataproc API may be
      * overwritten. Can include properties set in
      * /etc/spark/conf/spark-defaults.conf and classes in user code.
      *
-     * Generated from protobuf field <code>map<string, string> properties = 5;</code>
+     * Generated from protobuf field <code>map<string, string> properties = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $properties;
     /**
      * Optional. The runtime log config for job execution.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.LoggingConfig logging_config = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.LoggingConfig logging_config = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $logging_config = null;
 
@@ -85,7 +85,7 @@ class SparkRJob extends \Google\Protobuf\Internal\Message
      *           .jar, .tar, .tar.gz, .tgz, and .zip.
      *     @type array|\Google\Protobuf\Internal\MapField $properties
      *           Optional. A mapping of property names to values, used to configure SparkR.
-     *           Properties that conflict with values set by the Cloud Dataproc API may be
+     *           Properties that conflict with values set by the Dataproc API may be
      *           overwritten. Can include properties set in
      *           /etc/spark/conf/spark-defaults.conf and classes in user code.
      *     @type \Google\Cloud\Dataproc\V1beta2\LoggingConfig $logging_config
@@ -130,7 +130,7 @@ class SparkRJob extends \Google\Protobuf\Internal\Message
      * such as `--conf`, that can be set as job properties, since a collision may
      * occur that causes an incorrect job submission.
      *
-     * Generated from protobuf field <code>repeated string args = 2;</code>
+     * Generated from protobuf field <code>repeated string args = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getArgs()
@@ -143,7 +143,7 @@ class SparkRJob extends \Google\Protobuf\Internal\Message
      * such as `--conf`, that can be set as job properties, since a collision may
      * occur that causes an incorrect job submission.
      *
-     * Generated from protobuf field <code>repeated string args = 2;</code>
+     * Generated from protobuf field <code>repeated string args = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -159,7 +159,7 @@ class SparkRJob extends \Google\Protobuf\Internal\Message
      * Optional. HCFS URIs of files to be copied to the working directory of
      * R drivers and distributed tasks. Useful for naively parallel tasks.
      *
-     * Generated from protobuf field <code>repeated string file_uris = 3;</code>
+     * Generated from protobuf field <code>repeated string file_uris = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getFileUris()
@@ -171,7 +171,7 @@ class SparkRJob extends \Google\Protobuf\Internal\Message
      * Optional. HCFS URIs of files to be copied to the working directory of
      * R drivers and distributed tasks. Useful for naively parallel tasks.
      *
-     * Generated from protobuf field <code>repeated string file_uris = 3;</code>
+     * Generated from protobuf field <code>repeated string file_uris = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -188,7 +188,7 @@ class SparkRJob extends \Google\Protobuf\Internal\Message
      * Spark drivers and tasks. Supported file types:
      * .jar, .tar, .tar.gz, .tgz, and .zip.
      *
-     * Generated from protobuf field <code>repeated string archive_uris = 4;</code>
+     * Generated from protobuf field <code>repeated string archive_uris = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getArchiveUris()
@@ -201,7 +201,7 @@ class SparkRJob extends \Google\Protobuf\Internal\Message
      * Spark drivers and tasks. Supported file types:
      * .jar, .tar, .tar.gz, .tgz, and .zip.
      *
-     * Generated from protobuf field <code>repeated string archive_uris = 4;</code>
+     * Generated from protobuf field <code>repeated string archive_uris = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -215,11 +215,11 @@ class SparkRJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A mapping of property names to values, used to configure SparkR.
-     * Properties that conflict with values set by the Cloud Dataproc API may be
+     * Properties that conflict with values set by the Dataproc API may be
      * overwritten. Can include properties set in
      * /etc/spark/conf/spark-defaults.conf and classes in user code.
      *
-     * Generated from protobuf field <code>map<string, string> properties = 5;</code>
+     * Generated from protobuf field <code>map<string, string> properties = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getProperties()
@@ -229,11 +229,11 @@ class SparkRJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A mapping of property names to values, used to configure SparkR.
-     * Properties that conflict with values set by the Cloud Dataproc API may be
+     * Properties that conflict with values set by the Dataproc API may be
      * overwritten. Can include properties set in
      * /etc/spark/conf/spark-defaults.conf and classes in user code.
      *
-     * Generated from protobuf field <code>map<string, string> properties = 5;</code>
+     * Generated from protobuf field <code>map<string, string> properties = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -248,7 +248,7 @@ class SparkRJob extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The runtime log config for job execution.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.LoggingConfig logging_config = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.LoggingConfig logging_config = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataproc\V1beta2\LoggingConfig
      */
     public function getLoggingConfig()
@@ -259,7 +259,7 @@ class SparkRJob extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The runtime log config for job execution.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.LoggingConfig logging_config = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.LoggingConfig logging_config = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataproc\V1beta2\LoggingConfig $var
      * @return $this
      */

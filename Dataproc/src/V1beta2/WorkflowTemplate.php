@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A Cloud Dataproc workflow template resource.
+ * A Dataproc workflow template resource.
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1beta2.WorkflowTemplate</code>
  */

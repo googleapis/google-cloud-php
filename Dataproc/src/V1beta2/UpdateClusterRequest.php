@@ -23,7 +23,7 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      */
     private $project_id = '';
     /**
-     * Required. The Cloud Dataproc region in which to handle the request.
+     * Required. The Dataproc region in which to handle the request.
      *
      * Generated from protobuf field <code>string region = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -46,7 +46,8 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      * interrupting jobs in progress. Timeout specifies how long to wait for jobs
      * in progress to finish before forcefully removing nodes (and potentially
      * interrupting jobs). Default timeout is 0 (for forceful decommission), and
-     * the maximum allowed timeout is 1 day.
+     * the maximum allowed timeout is 1 day (see JSON representation of
+     * [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json)).
      * Only supported on Dataproc image versions 1.2 and higher.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration graceful_decommission_timeout = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -138,7 +139,7 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      *           Required. The ID of the Google Cloud Platform project the
      *           cluster belongs to.
      *     @type string $region
-     *           Required. The Cloud Dataproc region in which to handle the request.
+     *           Required. The Dataproc region in which to handle the request.
      *     @type string $cluster_name
      *           Required. The cluster name.
      *     @type \Google\Cloud\Dataproc\V1beta2\Cluster $cluster
@@ -149,7 +150,8 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      *           interrupting jobs in progress. Timeout specifies how long to wait for jobs
      *           in progress to finish before forcefully removing nodes (and potentially
      *           interrupting jobs). Default timeout is 0 (for forceful decommission), and
-     *           the maximum allowed timeout is 1 day.
+     *           the maximum allowed timeout is 1 day (see JSON representation of
+     *           [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json)).
      *           Only supported on Dataproc image versions 1.2 and higher.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Required. Specifies the path, relative to `Cluster`, of
@@ -254,7 +256,7 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Cloud Dataproc region in which to handle the request.
+     * Required. The Dataproc region in which to handle the request.
      *
      * Generated from protobuf field <code>string region = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -265,7 +267,7 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Cloud Dataproc region in which to handle the request.
+     * Required. The Dataproc region in which to handle the request.
      *
      * Generated from protobuf field <code>string region = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -337,7 +339,8 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      * interrupting jobs in progress. Timeout specifies how long to wait for jobs
      * in progress to finish before forcefully removing nodes (and potentially
      * interrupting jobs). Default timeout is 0 (for forceful decommission), and
-     * the maximum allowed timeout is 1 day.
+     * the maximum allowed timeout is 1 day (see JSON representation of
+     * [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json)).
      * Only supported on Dataproc image versions 1.2 and higher.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration graceful_decommission_timeout = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -354,7 +357,8 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      * interrupting jobs in progress. Timeout specifies how long to wait for jobs
      * in progress to finish before forcefully removing nodes (and potentially
      * interrupting jobs). Default timeout is 0 (for forceful decommission), and
-     * the maximum allowed timeout is 1 day.
+     * the maximum allowed timeout is 1 day (see JSON representation of
+     * [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json)).
      * Only supported on Dataproc image versions 1.2 and higher.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration graceful_decommission_timeout = 6 [(.google.api.field_behavior) = OPTIONAL];</code>

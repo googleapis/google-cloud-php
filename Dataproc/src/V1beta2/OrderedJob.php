@@ -73,17 +73,11 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
      *           underscores (_), and hyphens (-). Cannot begin or end with underscore
      *           or hyphen. Must consist of between 3 and 50 characters.
      *     @type \Google\Cloud\Dataproc\V1beta2\HadoopJob $hadoop_job
-     *           Job is a Hadoop job.
      *     @type \Google\Cloud\Dataproc\V1beta2\SparkJob $spark_job
-     *           Job is a Spark job.
      *     @type \Google\Cloud\Dataproc\V1beta2\PySparkJob $pyspark_job
-     *           Job is a Pyspark job.
      *     @type \Google\Cloud\Dataproc\V1beta2\HiveJob $hive_job
-     *           Job is a Hive job.
      *     @type \Google\Cloud\Dataproc\V1beta2\PigJob $pig_job
-     *           Job is a Pig job.
      *     @type \Google\Cloud\Dataproc\V1beta2\SparkSqlJob $spark_sql_job
-     *           Job is a SparkSql job.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. The labels to associate with this job.
      *           Label keys must be between 1 and 63 characters long, and must conform to
@@ -147,8 +141,6 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Job is a Hadoop job.
-     *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.HadoopJob hadoop_job = 2;</code>
      * @return \Google\Cloud\Dataproc\V1beta2\HadoopJob
      */
@@ -158,8 +150,6 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Job is a Hadoop job.
-     *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.HadoopJob hadoop_job = 2;</code>
      * @param \Google\Cloud\Dataproc\V1beta2\HadoopJob $var
      * @return $this
@@ -173,8 +163,6 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Job is a Spark job.
-     *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.SparkJob spark_job = 3;</code>
      * @return \Google\Cloud\Dataproc\V1beta2\SparkJob
      */
@@ -184,8 +172,6 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Job is a Spark job.
-     *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.SparkJob spark_job = 3;</code>
      * @param \Google\Cloud\Dataproc\V1beta2\SparkJob $var
      * @return $this
@@ -199,8 +185,6 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Job is a Pyspark job.
-     *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.PySparkJob pyspark_job = 4;</code>
      * @return \Google\Cloud\Dataproc\V1beta2\PySparkJob
      */
@@ -210,8 +194,6 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Job is a Pyspark job.
-     *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.PySparkJob pyspark_job = 4;</code>
      * @param \Google\Cloud\Dataproc\V1beta2\PySparkJob $var
      * @return $this
@@ -225,8 +207,6 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Job is a Hive job.
-     *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.HiveJob hive_job = 5;</code>
      * @return \Google\Cloud\Dataproc\V1beta2\HiveJob
      */
@@ -236,8 +216,6 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Job is a Hive job.
-     *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.HiveJob hive_job = 5;</code>
      * @param \Google\Cloud\Dataproc\V1beta2\HiveJob $var
      * @return $this
@@ -251,8 +229,6 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Job is a Pig job.
-     *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.PigJob pig_job = 6;</code>
      * @return \Google\Cloud\Dataproc\V1beta2\PigJob
      */
@@ -262,8 +238,6 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Job is a Pig job.
-     *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.PigJob pig_job = 6;</code>
      * @param \Google\Cloud\Dataproc\V1beta2\PigJob $var
      * @return $this
@@ -277,8 +251,6 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Job is a SparkSql job.
-     *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.SparkSqlJob spark_sql_job = 7;</code>
      * @return \Google\Cloud\Dataproc\V1beta2\SparkSqlJob
      */
@@ -288,8 +260,6 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Job is a SparkSql job.
-     *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.SparkSqlJob spark_sql_job = 7;</code>
      * @param \Google\Cloud\Dataproc\V1beta2\SparkSqlJob $var
      * @return $this

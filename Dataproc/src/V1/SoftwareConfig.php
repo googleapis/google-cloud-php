@@ -18,10 +18,10 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The version of software inside the cluster. It must be one of the
      * supported [Dataproc
-     * Versions](/dataproc/docs/concepts/versioning/dataproc-versions#supported_cloud_dataproc_versions),
+     * Versions](https://cloud.google.com/dataproc/docs/concepts/versioning/dataproc-versions#supported_cloud_dataproc_versions),
      * such as "1.2" (including a subminor version, such as "1.2.29"), or the
      * ["preview"
-     * version](/dataproc/docs/concepts/versioning/dataproc-versions#other_versions).
+     * version](https://cloud.google.com/dataproc/docs/concepts/versioning/dataproc-versions#other_versions).
      * If unspecified, it defaults to the latest Debian version.
      *
      * Generated from protobuf field <code>string image_version = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -42,7 +42,7 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      * * spark:  `spark-defaults.conf`
      * * yarn:   `yarn-site.xml`
      * For more information, see
-     * [Cluster properties](/dataproc/docs/concepts/cluster-properties).
+     * [Cluster properties](https://cloud.google.com/dataproc/docs/concepts/cluster-properties).
      *
      * Generated from protobuf field <code>map<string, string> properties = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -63,10 +63,10 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      *     @type string $image_version
      *           Optional. The version of software inside the cluster. It must be one of the
      *           supported [Dataproc
-     *           Versions](/dataproc/docs/concepts/versioning/dataproc-versions#supported_cloud_dataproc_versions),
+     *           Versions](https://cloud.google.com/dataproc/docs/concepts/versioning/dataproc-versions#supported_cloud_dataproc_versions),
      *           such as "1.2" (including a subminor version, such as "1.2.29"), or the
      *           ["preview"
-     *           version](/dataproc/docs/concepts/versioning/dataproc-versions#other_versions).
+     *           version](https://cloud.google.com/dataproc/docs/concepts/versioning/dataproc-versions#other_versions).
      *           If unspecified, it defaults to the latest Debian version.
      *     @type array|\Google\Protobuf\Internal\MapField $properties
      *           Optional. The properties to set on daemon config files.
@@ -83,7 +83,7 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      *           * spark:  `spark-defaults.conf`
      *           * yarn:   `yarn-site.xml`
      *           For more information, see
-     *           [Cluster properties](/dataproc/docs/concepts/cluster-properties).
+     *           [Cluster properties](https://cloud.google.com/dataproc/docs/concepts/cluster-properties).
      *     @type int[]|\Google\Protobuf\Internal\RepeatedField $optional_components
      *           Optional. The set of components to activate on the cluster.
      * }
@@ -96,10 +96,10 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The version of software inside the cluster. It must be one of the
      * supported [Dataproc
-     * Versions](/dataproc/docs/concepts/versioning/dataproc-versions#supported_cloud_dataproc_versions),
+     * Versions](https://cloud.google.com/dataproc/docs/concepts/versioning/dataproc-versions#supported_cloud_dataproc_versions),
      * such as "1.2" (including a subminor version, such as "1.2.29"), or the
      * ["preview"
-     * version](/dataproc/docs/concepts/versioning/dataproc-versions#other_versions).
+     * version](https://cloud.google.com/dataproc/docs/concepts/versioning/dataproc-versions#other_versions).
      * If unspecified, it defaults to the latest Debian version.
      *
      * Generated from protobuf field <code>string image_version = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -113,10 +113,10 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The version of software inside the cluster. It must be one of the
      * supported [Dataproc
-     * Versions](/dataproc/docs/concepts/versioning/dataproc-versions#supported_cloud_dataproc_versions),
+     * Versions](https://cloud.google.com/dataproc/docs/concepts/versioning/dataproc-versions#supported_cloud_dataproc_versions),
      * such as "1.2" (including a subminor version, such as "1.2.29"), or the
      * ["preview"
-     * version](/dataproc/docs/concepts/versioning/dataproc-versions#other_versions).
+     * version](https://cloud.google.com/dataproc/docs/concepts/versioning/dataproc-versions#other_versions).
      * If unspecified, it defaults to the latest Debian version.
      *
      * Generated from protobuf field <code>string image_version = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -146,7 +146,7 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      * * spark:  `spark-defaults.conf`
      * * yarn:   `yarn-site.xml`
      * For more information, see
-     * [Cluster properties](/dataproc/docs/concepts/cluster-properties).
+     * [Cluster properties](https://cloud.google.com/dataproc/docs/concepts/cluster-properties).
      *
      * Generated from protobuf field <code>map<string, string> properties = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -171,7 +171,7 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      * * spark:  `spark-defaults.conf`
      * * yarn:   `yarn-site.xml`
      * For more information, see
-     * [Cluster properties](/dataproc/docs/concepts/cluster-properties).
+     * [Cluster properties](https://cloud.google.com/dataproc/docs/concepts/cluster-properties).
      *
      * Generated from protobuf field <code>map<string, string> properties = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

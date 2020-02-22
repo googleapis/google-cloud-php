@@ -42,12 +42,6 @@ for version in ['V1', 'V1beta2']:
     # copy GPBMetadata file to metadata
     s.move(library / 'proto/src/GPBMetadata/Google/Cloud/Dataproc', 'metadata/')
 
-    # Use new namespaces
-    s.replace(
-        f'src/{version}/Gapic/JobControllerGapicClient.php',
-        r'ListJobsRequest_JobStateMatcher',
-        r'ListJobsRequest\\JobStateMatcher')
-
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
     "**/Gapic/*GapicClient.php",
@@ -126,3 +120,17 @@ s.replace(
 )
 
 ### [END] protoc backwards compatibility fixes
+
+# fix documentation links
+s.replace(
+    '**/*.php',
+    r"\(\/compute\/docs",
+    '(https://cloud.google.com/compute/docs'
+)
+
+# fix documentation links
+s.replace(
+    '**/*.php',
+    r"\(\/dataproc\/docs",
+    '(https://cloud.google.com/dataproc/docs'
+)

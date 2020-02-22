@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Cloud Dataproc job status.
+ * Dataproc job status.
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1beta2.JobStatus</code>
  */
@@ -18,27 +18,27 @@ class JobStatus extends \Google\Protobuf\Internal\Message
     /**
      * Output only. A state message specifying the overall job state.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobStatus.State state = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobStatus.State state = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $state = 0;
     /**
-     * Output only. Optional job state details, such as an error
+     * Output only. Optional Job state details, such as an error
      * description if the state is <code>ERROR</code>.
      *
-     * Generated from protobuf field <code>string details = 2;</code>
+     * Generated from protobuf field <code>string details = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $details = '';
     /**
      * Output only. The time when this state was entered.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp state_start_time = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp state_start_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $state_start_time = null;
     /**
      * Output only. Additional state information, which includes
      * status reported by the agent.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobStatus.Substate substate = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobStatus.Substate substate = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $substate = 0;
 
@@ -51,7 +51,7 @@ class JobStatus extends \Google\Protobuf\Internal\Message
      *     @type int $state
      *           Output only. A state message specifying the overall job state.
      *     @type string $details
-     *           Output only. Optional job state details, such as an error
+     *           Output only. Optional Job state details, such as an error
      *           description if the state is <code>ERROR</code>.
      *     @type \Google\Protobuf\Timestamp $state_start_time
      *           Output only. The time when this state was entered.
@@ -68,7 +68,7 @@ class JobStatus extends \Google\Protobuf\Internal\Message
     /**
      * Output only. A state message specifying the overall job state.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobStatus.State state = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobStatus.State state = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getState()
@@ -79,7 +79,7 @@ class JobStatus extends \Google\Protobuf\Internal\Message
     /**
      * Output only. A state message specifying the overall job state.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobStatus.State state = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobStatus.State state = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */
@@ -92,10 +92,10 @@ class JobStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Optional job state details, such as an error
+     * Output only. Optional Job state details, such as an error
      * description if the state is <code>ERROR</code>.
      *
-     * Generated from protobuf field <code>string details = 2;</code>
+     * Generated from protobuf field <code>string details = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getDetails()
@@ -104,10 +104,10 @@ class JobStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Optional job state details, such as an error
+     * Output only. Optional Job state details, such as an error
      * description if the state is <code>ERROR</code>.
      *
-     * Generated from protobuf field <code>string details = 2;</code>
+     * Generated from protobuf field <code>string details = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -122,7 +122,7 @@ class JobStatus extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The time when this state was entered.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp state_start_time = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp state_start_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getStateStartTime()
@@ -133,7 +133,7 @@ class JobStatus extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The time when this state was entered.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp state_start_time = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp state_start_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -149,7 +149,7 @@ class JobStatus extends \Google\Protobuf\Internal\Message
      * Output only. Additional state information, which includes
      * status reported by the agent.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobStatus.Substate substate = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobStatus.Substate substate = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getSubstate()
@@ -161,7 +161,7 @@ class JobStatus extends \Google\Protobuf\Internal\Message
      * Output only. Additional state information, which includes
      * status reported by the agent.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobStatus.Substate substate = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobStatus.Substate substate = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */
