@@ -87,8 +87,8 @@ $spanner = new SpannerClient([
 $sessionPool = new CacheSessionPool(
     $sessionCache,
     [
-        'minSession' => 10,
-        'maxSession' => 10  // Here it will create 10 sessions under the cover.
+        'minSessions' => 10,
+        'maxSessions' => 10  // Here it will create 10 sessions under the cover.
     ]
 );
 
