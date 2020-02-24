@@ -12,6 +12,7 @@
         "cloud-bigquery",
         "cloud-bigquerydatatransfer",
         "cloud-bigtable",
+        "cloud-billing",
         "cloud-container",
         "cloud-core",
         "cloud-dataproc",

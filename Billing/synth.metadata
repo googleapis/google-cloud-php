@@ -1,0 +1,24 @@
+{
+  "updateTime": "2020-02-24T18:52:59.993287Z",
+  "sources": [
+    {
+      "git": {
+        "name": "googleapis",
+        "remote": "https://github.com/googleapis/googleapis.git",
+        "sha": "1e47e676cddbbd8d93f19ba0665af15b5532417e",
+        "internalRef": "296901854"
+      }
+    }
+  ],
+  "destinations": [
+    {
+      "client": {
+        "source": "googleapis",
+        "apiName": "billing",
+        "apiVersion": "v1",
+        "language": "php",
+        "generator": "bazel"
+      }
+    }
+  ]
+}
