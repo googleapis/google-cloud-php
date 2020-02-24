@@ -45,6 +45,7 @@ This client supports the following Google Cloud Platform services at a [Beta](#v
 This client supports the following Google Cloud Platform services at an [Alpha](#versioning) quality level:
 * [Dialogflow API](#dialogflow-api-alpha) (Alpha)
 * [Google Cloud BigQuery Data Transfer](#google-cloud-bigquery-data-transfer-alpha) (Alpha)
+* [Google Cloud Billing](#google-cloud-billing-alpha) (Alpha)
 * [Google Cloud IoT](#google-cloud-iot-alpha) (Alpha)
 * [Google Cloud Redis](#google-cloud-redis-alpha) (Alpha)
 * [Google Cloud Security Command Center](#google-cloud-security-command-center-alpha) (Alpha)
@@ -1311,6 +1312,34 @@ $dataSources = $dataTransferServiceClient->listDataSources($formattedLocation);
 
 ```
 $ composer require google/cloud-bigquerydatatransfer
+```
+
+## Google Cloud Billing (Alpha)
+
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/billing/readme)
+- [Official Documentation](https://cloud.google.com/billing/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Billing\V1\CloudBillingClient;
+
+$client = new CloudBillingClient();
+$accounts = $client->listBillingAccounts();
+
+foreach ($accounts as $account) {
+    print('Billing account: ' . $account->getName() . PHP_EOL);
+}
+```
+
+#### google/cloud-billing
+
+[Google Cloud Billing](https://github.com/googleapis/google-cloud-php-billing) can be installed separately by requiring the [`google/cloud-billing`](https://packagist.org/packages/google/cloud-billing) composer package:
+
+```
+$ composer require google/cloud-billing
 ```
 
 ## Google Cloud IoT (Alpha)
