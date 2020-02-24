@@ -351,6 +351,14 @@
             ]
         },
         {
+            "id": "cloud-billing",
+            "name": "google/cloud-billing",
+            "defaultService": "billing/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-common-protos",
             "name": "google/cloud-common-protos",
             "defaultService": "commonprotos/readme",
