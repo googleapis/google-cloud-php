@@ -1,5 +1,117 @@
 # Changelog
 
+## 0.126.0
+
+<details><summary>google/cloud-bigquerydatatransfer 0.17.0</summary>
+
+
+
+### Features
+
+* update timeout and retry configuration ([#2693](https://www.github.com/googleapis/google-cloud-php/issues/2693)) ([7ec7e88](https://www.github.com/googleapis/google-cloud-php/commit/7ec7e888c219ec84f8b0f02e93a71ac9a1e3a08f))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.2.1</summary>
+
+
+
+### Documentation
+
+* update documentation ([#2694](https://www.github.com/googleapis/google-cloud-php/issues/2694)) ([7062ba9](https://www.github.com/googleapis/google-cloud-php/commit/7062ba96fcdb224740fd9defc2f64cc94a1e1e7a))
+
+</details>
+
+<details><summary>google/cloud-billing 0.1.0</summary>
+
+
+
+### Features
+
+* introduce billing client ([#2717](https://www.github.com/googleapis/google-cloud-php/issues/2717)) ([d916fc5](https://www.github.com/googleapis/google-cloud-php/commit/d916fc5ed56b2c5a5dc0c252b31f66e064eb3751))
+
+</details>
+
+<details><summary>google/cloud-dataproc 0.18.0</summary>
+
+
+
+### Features
+
+* add autoscaling policy client for v1 API ([#2662](https://www.github.com/googleapis/google-cloud-php/issues/2662)) ([b0411aa](https://www.github.com/googleapis/google-cloud-php/commit/b0411aaa5d434267fe2e86baf055ba8a38b4d363))
+* add lifecycle config, presto jobs and reservation affinity ([#2712](https://www.github.com/googleapis/google-cloud-php/issues/2712)) ([4861920](https://www.github.com/googleapis/google-cloud-php/commit/4861920a6130be28b1058cd0b952211aacba8fbe))
+
+
+### Documentation
+
+* update documentation ([#2714](https://www.github.com/googleapis/google-cloud-php/issues/2714)) ([e3d0ee1](https://www.github.com/googleapis/google-cloud-php/commit/e3d0ee13a84b2513684fa9bc2a8ca27b429b2f4f))
+
+
+### Miscellaneous Chores
+
+* update metadata ([#2707](https://www.github.com/googleapis/google-cloud-php/issues/2707)) ([80e785c](https://www.github.com/googleapis/google-cloud-php/commit/80e785c1955c9e26265d16621c822b1009fb1328))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 0.13.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* move $languageCode to optional args (#2691)
+
+### Features
+
+* move $languageCode to optional args ([#2691](https://www.github.com/googleapis/google-cloud-php/issues/2691)) ([13983d5](https://www.github.com/googleapis/google-cloud-php/commit/13983d570bb22ab677357539c0beadf17d160bcf))
+
+</details>
+
+<details><summary>google/cloud-kms 1.9.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update metadata ([#2715](https://www.github.com/googleapis/google-cloud-php/issues/2715)) ([08f995c](https://www.github.com/googleapis/google-cloud-php/commit/08f995ce76196e552de79cb81757fdd253535cdf))
+
+</details>
+
+<details><summary>google/cloud-monitoring 0.20.1</summary>
+
+
+
+### Documentation
+
+* update documentation ([#2702](https://www.github.com/googleapis/google-cloud-php/issues/2702)) ([b367012](https://www.github.com/googleapis/google-cloud-php/commit/b367012b9af21c3d71e47f1428824b6ae0716773))
+
+
+### Miscellaneous Chores
+
+* update metadata ([#2700](https://www.github.com/googleapis/google-cloud-php/issues/2700)) ([6a5c496](https://www.github.com/googleapis/google-cloud-php/commit/6a5c496124ff5f2bac2f806dd5303065dde14592))
+
+</details>
+
+<details><summary>google/cloud-redis 0.12.1</summary>
+
+
+
+### Documentation
+
+* update documentation ([#2695](https://www.github.com/googleapis/google-cloud-php/issues/2695)) ([675ec72](https://www.github.com/googleapis/google-cloud-php/commit/675ec72c89f53fd3cffaff0ffb909f8719e0e0d7))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.24.1</summary>
+
+
+
+### Documentation
+
+* fix typo for CacheSessionPool config ([#2716](https://www.github.com/googleapis/google-cloud-php/issues/2716)) ([b21de1e](https://www.github.com/googleapis/google-cloud-php/commit/b21de1e54d162a19c4f93c88752ca45edde478e1))
+
+</details>
+
 ## 0.125.0
 
 <details><summary>google/cloud-asset 0.6.0</summary>
