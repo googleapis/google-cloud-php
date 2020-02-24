@@ -1,0 +1,1 @@
+{"id":"dataproc\/v1beta2\/reservationaffinity_type","type":"","title":"Google\\Cloud\\Dataproc\\V1beta2\\ReservationAffinity_Type","name":"ReservationAffinity_Type","description":"<p>This class is deprecated. Use Google\\Cloud\\Dataproc\\V1beta2\\ReservationAffinity\\Type instead.<\/p>","examples":[],"resources":[],"methods":[]}

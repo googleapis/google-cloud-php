@@ -1,0 +1,1 @@
+{"id":"dlp\/v2\/action_publishtostackdriver","type":"","title":"Google\\Cloud\\Dlp\\V2\\Action_PublishToStackdriver","name":"Action_PublishToStackdriver","description":"<p>This class is deprecated. Use Google\\Cloud\\Dlp\\V2\\Action\\PublishToStackdriver instead.<\/p>","examples":[],"resources":[],"methods":[]}

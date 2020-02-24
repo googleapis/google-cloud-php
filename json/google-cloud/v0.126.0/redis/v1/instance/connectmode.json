@@ -1,0 +1,1 @@
+{"id":"redis\/v1\/instance\/connectmode","type":"","title":"Google\\Cloud\\Redis\\V1\\Instance\\ConnectMode","name":"ConnectMode","description":"<p>Available connection modes.<\/p>\n<p>Protobuf type <code>google.cloud.redis.v1.Instance.ConnectMode<\/code><\/p>","examples":[],"resources":[],"methods":[]}
