@@ -282,6 +282,22 @@ class JWTTest extends TestCase
         self::$opensslVerifyReturnValue = -1;
         JWT::decode($msg, $pkey, array('RS256'));
     }
+
+    /**
+     * @runInSeparateProcess
+     */
+    public function testEncodeAndDecodeEcdsaToken()
+    {
+        $privateKey = file_get_contents(__DIR__ . '/ecdsa-private.pem');
+        $payload = array('foo' => 'bar');
+        $encoded = JWT::encode($payload, $privateKey, 'ES256');
+
+        // Verify decoding succeeds
+        $publicKey = file_get_contents(__DIR__ . '/ecdsa-public.pem');
+        $decoded = JWT::decode($encoded, $publicKey, array('ES256'));
+
+        $this->assertEquals('bar', $decoded->foo);
+    }
 }
 
 /*
