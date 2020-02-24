@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.126.0",
                 "v0.125.0",
                 "v0.124.0",
                 "v0.123.0",
@@ -265,6 +266,7 @@
             "name": "google/cloud-bigquerydatatransfer",
             "defaultService": "bigquerydatatransfer/readme",
             "versions": [
+                "v0.17.0",
                 "v0.16.0",
                 "v0.15.1",
                 "v0.15.0",
@@ -306,6 +308,7 @@
             "name": "google/cloud-bigtable",
             "defaultService": "bigtable/readme",
             "versions": [
+                "v1.2.1",
                 "v1.2.0",
                 "v1.1.1",
                 "v1.1.0",
@@ -355,6 +358,7 @@
             "name": "google/cloud-billing",
             "defaultService": "billing/readme",
             "versions": [
+                "v0.1.0",
                 "master"
             ]
         },
@@ -495,6 +499,7 @@
             "name": "google/cloud-dataproc",
             "defaultService": "dataproc/readme",
             "versions": [
+                "v0.18.0",
                 "v0.17.0",
                 "v0.16.1",
                 "v0.16.0",
@@ -635,6 +640,7 @@
             "name": "google/cloud-dialogflow",
             "defaultService": "dialogflow/readme",
             "versions": [
+                "v0.13.0",
                 "v0.12.0",
                 "v0.11.0",
                 "v0.10.0",
@@ -888,6 +894,7 @@
             "name": "google/cloud-kms",
             "defaultService": "kms/readme",
             "versions": [
+                "v1.9.1",
                 "v1.9.0",
                 "v1.8.0",
                 "v1.7.0",
@@ -1045,6 +1052,7 @@
             "name": "google/cloud-monitoring",
             "defaultService": "monitoring/readme",
             "versions": [
+                "v0.20.1",
                 "v0.20.0",
                 "v0.19.0",
                 "v0.18.0",
@@ -1224,6 +1232,7 @@
             "name": "google/cloud-redis",
             "defaultService": "redis/readme",
             "versions": [
+                "v0.12.1",
                 "v0.12.0",
                 "v0.11.0",
                 "v0.10.0",
@@ -1303,6 +1312,7 @@
             "name": "google/cloud-spanner",
             "defaultService": "spanner/spannerclient",
             "versions": [
+                "v1.24.1",
                 "v1.24.0",
                 "v1.23.0",
                 "v1.22.0",
