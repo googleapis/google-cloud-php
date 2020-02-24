@@ -11,6 +11,6 @@ $client = new CloudBillingClient();
 $accounts = $client->listBillingAccounts();
 
 foreach ($accounts as $account) {
-	print('Billing account: ' . $account->getName() . PHP_EOL);
+    print('Billing account: ' . $account->getName() . PHP_EOL);
 }
 ```
