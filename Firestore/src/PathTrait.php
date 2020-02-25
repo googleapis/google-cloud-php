@@ -162,7 +162,9 @@ trait PathTrait
     private function isRelative($name)
     {
         $parts = $this->splitName($name);
-        return count($parts) > 0 && $parts[0] !== 'projects';
+        $len = count($parts);
+        return ($len > 0 && $parts[0] !== 'projects') ||
+            ($len === 1 && $parts[0] === 'projects'); // allow root-level collection called `projects`.
     }
 
     /**
