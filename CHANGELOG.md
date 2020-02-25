@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.126.1
+
+<details><summary>google/cloud-dataproc 0.18.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update metadata ([#2718](https://www.github.com/googleapis/google-cloud-php/issues/2718)) ([b5dd56a](https://www.github.com/googleapis/google-cloud-php/commit/b5dd56a62cb725a9e2ef33e98fcd4fd34cb2f810))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.11.1</summary>
+
+
+
+### Bug Fixes
+
+* allow root-level collection named projects ([#2705](https://www.github.com/googleapis/google-cloud-php/issues/2705)) ([606a9ba](https://www.github.com/googleapis/google-cloud-php/commit/606a9ba3b3b20091c31b37d6757eed32fb41f584))
+
+</details>
+
 ## 0.126.0
 
 <details><summary>google/cloud-bigquerydatatransfer 0.17.0</summary>
