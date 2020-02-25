@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.126.1",
                 "v0.126.0",
                 "v0.125.0",
                 "v0.124.0",
@@ -499,6 +500,7 @@
             "name": "google/cloud-dataproc",
             "defaultService": "dataproc/readme",
             "versions": [
+                "v0.18.1",
                 "v0.18.0",
                 "v0.17.0",
                 "v0.16.1",
@@ -791,6 +793,7 @@
             "name": "google/cloud-firestore",
             "defaultService": "firestore/firestoreclient",
             "versions": [
+                "v1.11.1",
                 "v1.11.0",
                 "v1.10.1",
                 "v1.10.0",
