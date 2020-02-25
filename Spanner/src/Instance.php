@@ -216,14 +216,11 @@ class Instance
     public function exists(array $options = [])
     {
         try {
-            $options += [
-                'fieldMask' => ['name'],
-            ];
-
             if ($this->info) {
                 $this->connection->getInstance($options + [
                     'name' => $this->name,
                     'projectId' => $this->projectId,
+                    'fieldMask' => ['name'],
                 ]);
             } else {
                 $this->reload($options);

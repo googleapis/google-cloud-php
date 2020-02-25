@@ -122,7 +122,7 @@ class InstanceTest extends TestCase
             Argument::withEntry('projectId', self::PROJECT_ID),
             Argument::withEntry('fieldMask', ['name'])
         ))
-            ->shouldBeCalledTimes(2)
+            ->shouldBeCalledTimes(1)
             ->willReturn([]);
 
         $this->connection->getInstance(Argument::allOf(
@@ -130,7 +130,7 @@ class InstanceTest extends TestCase
             Argument::withEntry('projectId', self::PROJECT_ID),
             Argument::not(Argument::withKey('fieldMask'))
         ))
-            ->shouldBeCalledTimes(1)
+            ->shouldBeCalledTimes(2)
             ->willReturn([
                 'name' => $this->instance->name(),
                 'nodeCount' => 1,
