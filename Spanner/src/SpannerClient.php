@@ -57,6 +57,17 @@ use Psr\Http\StreamInterface;
  * $spanner = new SpannerClient();
  * ```
  *
+ * ```
+ * // Using a Spanner Emulator
+ * use Google\Cloud\Spanner\SpannerClient;
+ *
+ * // Be sure to use the port specified when starting the emulator.
+ * // `9010` is used as an example only.
+ * putenv('SPANNER_EMULATOR_HOST=localhost:9010');
+ *
+ * $spanner = new SpannerClient();
+ * ```
+ *
  * @method resumeOperation() {
  *     Resume a Long Running Operation
  *
@@ -131,6 +142,8 @@ class SpannerClient
      */
     public function __construct(array $config = [])
     {
+        $emulatorHost = getenv('SPANNER_EMULATOR_HOST');
+
         $this->requireGrpc();
         $config += [
             'scopes' => [
@@ -138,7 +151,9 @@ class SpannerClient
                 self::ADMIN_SCOPE
             ],
             'returnInt64AsObject' => false,
-            'projectIdRequired' => true
+            'projectIdRequired' => true,
+            'hasEmulator' => (bool) $emulatorHost,
+            'emulatorHost' => $emulatorHost
         ];
 
         $this->connection = new Grpc($this->configureAuthentication($config));
