@@ -536,7 +536,7 @@ class SigningHelper
                 }
 
                 $options['timestamp'] = \DateTimeImmutable::createFromFormat(
-                    \DateTimeImmutable::RFC3339,
+                    \DateTime::RFC3339,
                     $options['timestamp'],
                     new \DateTimeZone('UTC')
                 );
@@ -544,7 +544,7 @@ class SigningHelper
                 if (!$options['timestamp']) {
                     throw new \InvalidArgumentException(
                         'Given timestamp string is in an invalid format. Provide timestamp formatted as follows: `' .
-                        \DateTimeImmutable::RFC3339 .
+                        \DateTime::RFC3339 .
                         '`. Note that timestamps MUST be in UTC.'
                     );
                 }

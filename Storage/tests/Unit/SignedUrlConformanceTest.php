@@ -23,10 +23,23 @@ use PHPUnit\Framework\TestCase;
 /**
  * @group storage
  * @group storage-signed-url
- * @group storage-signed-url-conformance
+ * @group storage-conformance
  */
 class SignedUrlConformanceTest extends TestCase
 {
+    private static $cases;
+
+    public static function setUpBeforeClass()
+    {
+        static $setup = false;
+        if ($setup) {
+            return;
+        }
+
+        $setup = true;
+        self::$cases = json_decode(file_get_contents(__DIR__ . '/data/signed-url-v4-testdata.json'), true);
+    }
+
     /**
      * @dataProvider signedUrlConformanceCases
      */
@@ -87,13 +100,25 @@ class SignedUrlConformanceTest extends TestCase
 
     public function signedUrlConformanceCases()
     {
-        $cases = json_decode(file_get_contents(__DIR__ . '/data/signed-url-v4-testdata.json'), true);
+        self::setUpBeforeClass();
 
         // rekey with description for more useful error reporting.
         $out = [];
-        foreach ($cases['signingV4Tests'] as $case) {
-            // if ($case['description'] !== "Query Parameter Ordering") continue;
+        foreach (self::$cases['signingV4Tests'] as $case) {
+            $out[$case['description']] = [$case];
+            unset($case['description']);
+        }
 
+        return $out;
+    }
+
+    public function postPolicyConformanceCases()
+    {
+        self::setUpBeforeClass();
+
+        // rekey with description for more useful error reporting.
+        $out = [];
+        foreach (self::$cases['postPolicyV4Tests'] as $case) {
             $out[$case['description']] = [$case];
             unset($case['description']);
         }
