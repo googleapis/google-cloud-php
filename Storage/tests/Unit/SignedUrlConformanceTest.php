@@ -48,7 +48,7 @@ class SignedUrlConformanceTest extends TestCase
         if (isset($testdata['urlStyle'])) {
             switch ($testdata['urlStyle']) {
                 case 'VIRTUAL_HOSTED_STYLE':
-                    $testdata['virtualHostStyle'] = true;
+                    $testdata['virtualHostedStyle'] = true;
                     break;
 
                 case 'BUCKET_BOUND_DOMAIN':
@@ -93,14 +93,6 @@ class SignedUrlConformanceTest extends TestCase
         $out = [];
         foreach ($cases['signingV4Tests'] as $case) {
             // if ($case['description'] !== "Query Parameter Ordering") continue;
-
-            // test signed payload with header and method option
-            if (isset($case['headers']['X-Goog-Content-SHA256'])) {
-                $case2 = $case;
-                unset($case2['headers']['X-Goog-Content-SHA256']);
-                $case2['contentSha256'] = $case['headers']['X-Goog-Content-SHA256'];
-                $out[$case['description'] . ' via $options'] = [$case2];
-            }
 
             $out[$case['description']] = [$case];
             unset($case['description']);

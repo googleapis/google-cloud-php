@@ -239,7 +239,7 @@ class SigningHelper
         $credentialScope = sprintf('%s/auto/storage/goog4_request', $requestDatestamp);
         $credential = sprintf('%s/%s', $clientEmail, $credentialScope);
 
-        if ($options['virtualHostStyle']) {
+        if ($options['virtualHostedStyle']) {
             $options['bucketBoundHostname'] = sprintf(
                 '%s.storage.googleapis.com',
                 $bucket
@@ -258,10 +258,6 @@ class SigningHelper
 
         if ($options['contentMd5']) {
             $headers['content-md5'] = $options['contentMd5'];
-        }
-
-        if ($options['contentSha256']) {
-            $headers['X-Goog-Content-SHA256'] = $options['contentSha256'];
         }
 
         $params = $this->addCommonParams($generation, $params, $options);
@@ -309,7 +305,7 @@ class SigningHelper
         $canonicalResource = $this->normalizeCanonicalRequestResource(
             $resource,
             $options['bucketBoundHostname'],
-            $options['virtualHostStyle']
+            $options['virtualHostedStyle']
         );
 
         $canonicalRequest = [
@@ -342,7 +338,7 @@ class SigningHelper
         $scheme = $this->chooseScheme(
             $options['scheme'],
             $options['bucketBoundHostname'],
-            $options['virtualHostStyle']
+            $options['virtualHostedStyle']
         );
 
         return sprintf(
@@ -389,17 +385,26 @@ class SigningHelper
     /**
      * Choose the correct URL scheme.
      *
+     * In
+     *
      * @param string $scheme The scheme provided by the user or defaults.
      * @param string $bucketBoundHostname The bucketBoundHostname provided by the user or defaults.
-     * @param boolean $virtualHostStyle Whether virtual host style is enabled.
+     * @param boolean $virtualHostedStyle Whether virtual host style is enabled.
      * @return string
      */
-    private function chooseScheme($scheme, $bucketBoundHostname, $virtualHostStyle = false)
+    private function chooseScheme($scheme, $bucketBoundHostname, $virtualHostedStyle = false)
     {
-        if ($bucketBoundHostname === self::DEFAULT_DOWNLOAD_HOST || $virtualHostStyle) {
+        // bucketBoundHostname not used -- always https.
+        if ($bucketBoundHostname === self::DEFAULT_DOWNLOAD_HOST) {
             return 'https';
         }
 
+        // virtualHostedStyle enabled -- always https.
+        if ($virtualHostedStyle) {
+            return 'https';
+        }
+
+        // not virtual hosted style, and custom hostname -- use default (http) or user choice.
         return $scheme;
     }
 
@@ -478,7 +483,6 @@ class SigningHelper
             'cname' => null, //@deprecated
             'bucketBoundHostname' => self::DEFAULT_DOWNLOAD_HOST,
             'contentMd5' => null,
-            'contentSha256' => null,
             'contentType' => null,
             'forceOpenssl' => false,
             'headers' => [],
@@ -489,9 +493,11 @@ class SigningHelper
             'responseDisposition' => null,
             'responseType' => null,
             'saveAsName' => null,
+
+            // note that in almost every case this default will be overridden.
             'scheme' => 'http',
             'timestamp' => null,
-            'virtualHostStyle' => false,
+            'virtualHostedStyle' => false,
         ];
 
         $allowedMethods = ['GET', 'PUT', 'POST', 'DELETE'];
@@ -509,8 +515,8 @@ class SigningHelper
         // Rewrite deprecated `cname` to new `bucketBoundHostname`.
         if ($options['cname'] && $options['bucketBoundHostname'] === self::DEFAULT_DOWNLOAD_HOST) {
             $options['bucketBoundHostname'] = $options['cname'];
-
         }
+
         // strip protocol from hostname.
         $hostnameParts = explode('//', $options['bucketBoundHostname']);
         if (count($hostnameParts) > 1) {
@@ -627,12 +633,12 @@ class SigningHelper
      *
      * @param string $resource
      * @param string $bucketBoundHostname
-     * @param boolean $virtualHostStyle
+     * @param boolean $virtualHostedStyle
      * @return string
      */
-    private function normalizeCanonicalRequestResource($resource, $bucketBoundHostname, $virtualHostStyle = false)
+    private function normalizeCanonicalRequestResource($resource, $bucketBoundHostname, $virtualHostedStyle = false)
     {
-        if ($bucketBoundHostname === self::DEFAULT_DOWNLOAD_HOST && !$virtualHostStyle) {
+        if ($bucketBoundHostname === self::DEFAULT_DOWNLOAD_HOST && !$virtualHostedStyle) {
             return $resource;
         }
 

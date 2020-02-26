@@ -839,9 +839,9 @@ class StorageObject
      *           file as when the signed url is accessed. This is ignored if
      *           `$options.responseDisposition` is set.
      *     @type string $scheme Either `http` or `https`. Only used if a custom
-     *           hostname is provided via `$options.cname`. In all other cases,
-     *           `https` is used. When a custom cname is provided, **defaults
-     *           to** `http`.
+     *           hostname is provided via `$options.bucketBoundHostname`. If a
+     *           custom bucketBoundHostname is provided, **defaults to** `http`.
+     *           In all other cases, **defaults to** `https`.
      *     @type string|array $scopes One or more authentication scopes to be
      *           used with a key file. This option is ignored unless
      *           `$options.keyFile` or `$options.keyFilePath` is set.
@@ -849,7 +849,7 @@ class StorageObject
      *           as part of the signed URL query string. For allowed values,
      *           see [Reference Headers](https://cloud.google.com/storage/docs/xml-api/reference-headers#query).
      *     @type string $version One of "v2" or "v4". **Defaults to** `"v2"`.
-     *     @type bool $virtualHostStyle If `true`, URL will be of form
+     *     @type bool $virtualHostedStyle If `true`, URL will be of form
      *           `mybucket.storage.googleapis.com`. If `false`,
      *           `storage.googleapis.com/mybucket`. Only applies when using v4
      *           signing. **Defaults to** `false`.
@@ -960,9 +960,9 @@ class StorageObject
      *           file as when the signed url is accessed. This is ignored if
      *           `$options.responseDisposition` is set.
      *     @type string $scheme Either `http` or `https`. Only used if a custom
-     *           hostname is provided via `$options.cname`. In all other cases,
-     *           `https` is used. When a custom cname is provided, **defaults
-     *           to** `http`.
+     *           hostname is provided via `$options.bucketBoundHostname`. In all
+     *           other cases, `https` is used. When a custom bucketBoundHostname
+     *           is provided, **defaults to** `http`.
      *     @type string|array $scopes One or more authentication scopes to be
      *           used with a key file. This option is ignored unless
      *           `$options.keyFile` or `$options.keyFilePath` is set.
@@ -970,7 +970,7 @@ class StorageObject
      *           as part of the signed URL query string. For allowed values,
      *           see [Reference Headers](https://cloud.google.com/storage/docs/xml-api/reference-headers#query).
      *     @type string $version One of "v2" or "v4". **Defaults to** `"v2"`.
-     *     @type bool $virtualHostStyle If `true`, URL will be of form
+     *     @type bool $virtualHostedStyle If `true`, URL will be of form
      *           `mybucket.storage.googleapis.com`. If `false`,
      *           `storage.googleapis.com/mybucket`. Only applies when using v4
      *           signing. **Defaults to** `false`.
@@ -986,7 +986,7 @@ class StorageObject
         $options['headers']['x-goog-resumable'] = 'start';
 
         unset(
-            $options['cname'],
+            $options['bucketBoundHostname'],
             $options['saveAsName'],
             $options['responseDisposition'],
             $options['responseType']
@@ -1030,7 +1030,6 @@ class StorageObject
      *           provide this, the client must provide this HTTP header with
      *           this same value in its request. If provided, take care to
      *           always provide this value as a base64 encoded string.
-     *     @type string $contentSha256 The sha265 hash of the expected payload.
      *     @type string $contentType If you provide this value, the client must
      *           provide this HTTP header set to the same value.
      *     @type bool $forceOpenssl If true, OpenSSL will be used regardless of
@@ -1061,7 +1060,7 @@ class StorageObject
      *           as part of the signed URL query string. For allowed values,
      *           see [Reference Headers](https://cloud.google.com/storage/docs/xml-api/reference-headers#query).
      *     @type string $version One of "v2" or "v4". **Defaults to** `"v2"`.
-     *     @type bool $virtualHostStyle If `true`, URL will be of form
+     *     @type bool $virtualHostedStyle If `true`, URL will be of form
      *           `mybucket.storage.googleapis.com`. If `false`,
      *           `storage.googleapis.com/mybucket`. Only applies when using v4
      *           signing. **Defaults to** `false`.
