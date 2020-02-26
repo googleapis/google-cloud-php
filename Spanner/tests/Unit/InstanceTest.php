@@ -111,17 +111,38 @@ class InstanceTest extends TestCase
         $this->instance->___setProperty('connection', $this->connection->reveal());
 
         $info = $this->instance->info(['fieldMask' => $requestedFieldNames]);
-        
+
         $this->assertEquals($info, $this->instance->info());
     }
 
     public function testExists()
     {
-        $this->connection->getInstance(Argument::any())->shouldBeCalled()->willReturn([]);
+        $this->connection->getInstance(Argument::allOf(
+            Argument::withEntry('name', $this->instance->name()),
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('fieldMask', ['name'])
+        ))
+            ->shouldBeCalledTimes(1)
+            ->willReturn([]);
+
+        $this->connection->getInstance(Argument::allOf(
+            Argument::withEntry('name', $this->instance->name()),
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::not(Argument::withKey('fieldMask'))
+        ))
+            ->shouldBeCalledTimes(2)
+            ->willReturn([
+                'name' => $this->instance->name(),
+                'nodeCount' => 1,
+            ]);
 
         $this->instance->___setProperty('connection', $this->connection->reveal());
 
         $this->assertTrue($this->instance->exists());
+
+        $info = $this->instance->reload();
+        $this->assertTrue($this->instance->exists());
+        $this->assertEquals($info, $this->instance->info());
     }
 
     public function testExistsNotFound()

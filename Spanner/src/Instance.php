@@ -216,7 +216,15 @@ class Instance
     public function exists(array $options = [])
     {
         try {
-            $this->reload($options = []);
+            if ($this->info) {
+                $this->connection->getInstance([
+                    'name' => $this->name,
+                    'projectId' => $this->projectId,
+                    'fieldMask' => ['name'],
+                ] + $options);
+            } else {
+                $this->reload($options);
+            }
         } catch (NotFoundException $e) {
             return false;
         }
