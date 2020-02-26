@@ -217,11 +217,11 @@ class Instance
     {
         try {
             if ($this->info) {
-                $this->connection->getInstance($options + [
+                $this->connection->getInstance([
                     'name' => $this->name,
                     'projectId' => $this->projectId,
                     'fieldMask' => ['name'],
-                ]);
+                ] + $options);
             } else {
                 $this->reload($options);
             }
