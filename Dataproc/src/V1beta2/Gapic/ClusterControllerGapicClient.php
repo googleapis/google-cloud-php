@@ -770,7 +770,7 @@ class ClusterControllerGapicClient
      * After the operation completes,
      * [Operation.response][google.longrunning.Operation.response]
      * contains
-     * [Empty](https://cloud.google.comgoogle.protobuf.Empty).
+     * [Empty][google.protobuf.Empty].
      *
      * Sample code:
      * ```
