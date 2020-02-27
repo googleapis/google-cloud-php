@@ -35,6 +35,9 @@ class Mutation extends \Google\Protobuf\Internal\Message
      *           Like [insert][google.spanner.v1.Mutation.insert], except that if the row already exists, then
      *           its column values are overwritten with the ones provided. Any
      *           column values not explicitly written are preserved.
+     *           When using [insert_or_update][google.spanner.v1.Mutation.insert_or_update], just as when using [insert][google.spanner.v1.Mutation.insert], all `NOT
+     *           NULL` columns in the table must be given a value. This holds true
+     *           even when the row already exists and will therefore actually be updated.
      *     @type \Google\Cloud\Spanner\V1\Mutation\Write $replace
      *           Like [insert][google.spanner.v1.Mutation.insert], except that if the row already exists, it is
      *           deleted, and the column values provided are inserted
@@ -114,6 +117,9 @@ class Mutation extends \Google\Protobuf\Internal\Message
      * Like [insert][google.spanner.v1.Mutation.insert], except that if the row already exists, then
      * its column values are overwritten with the ones provided. Any
      * column values not explicitly written are preserved.
+     * When using [insert_or_update][google.spanner.v1.Mutation.insert_or_update], just as when using [insert][google.spanner.v1.Mutation.insert], all `NOT
+     * NULL` columns in the table must be given a value. This holds true
+     * even when the row already exists and will therefore actually be updated.
      *
      * Generated from protobuf field <code>.google.spanner.v1.Mutation.Write insert_or_update = 3;</code>
      * @return \Google\Cloud\Spanner\V1\Mutation\Write
@@ -127,6 +133,9 @@ class Mutation extends \Google\Protobuf\Internal\Message
      * Like [insert][google.spanner.v1.Mutation.insert], except that if the row already exists, then
      * its column values are overwritten with the ones provided. Any
      * column values not explicitly written are preserved.
+     * When using [insert_or_update][google.spanner.v1.Mutation.insert_or_update], just as when using [insert][google.spanner.v1.Mutation.insert], all `NOT
+     * NULL` columns in the table must be given a value. This holds true
+     * even when the row already exists and will therefore actually be updated.
      *
      * Generated from protobuf field <code>.google.spanner.v1.Mutation.Write insert_or_update = 3;</code>
      * @param \Google\Cloud\Spanner\V1\Mutation\Write $var
