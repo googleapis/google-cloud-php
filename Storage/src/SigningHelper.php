@@ -135,6 +135,13 @@ class SigningHelper
         $options = $this->normalizeOptions($options);
         $headers = $this->normalizeHeaders($options['headers']);
 
+        if ($options['virtualHostedStyle']) {
+            $options['bucketBoundHostname'] = sprintf(
+                '%s.storage.googleapis.com',
+                $bucket
+            );
+        }
+
         // Make sure disallowed headers are not included.
         $illegalHeaders = [
             'x-goog-encryption-key',
@@ -385,8 +392,6 @@ class SigningHelper
     /**
      * Choose the correct URL scheme.
      *
-     * In
-     *
      * @param string $scheme The scheme provided by the user or defaults.
      * @param string $bucketBoundHostname The bucketBoundHostname provided by the user or defaults.
      * @param boolean $virtualHostedStyle Whether virtual host style is enabled.
@@ -569,7 +574,6 @@ class SigningHelper
      * multiple whitespace chars are replaced by a single space.
      *
      * @param array $headers Input headers
-     * @param string $contentSha256 The payload hash.
      * @return array
      */
     private function normalizeHeaders(array $headers)

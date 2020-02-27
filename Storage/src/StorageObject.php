@@ -851,8 +851,7 @@ class StorageObject
      *     @type string $version One of "v2" or "v4". **Defaults to** `"v2"`.
      *     @type bool $virtualHostedStyle If `true`, URL will be of form
      *           `mybucket.storage.googleapis.com`. If `false`,
-     *           `storage.googleapis.com/mybucket`. Only applies when using v4
-     *           signing. **Defaults to** `false`.
+     *           `storage.googleapis.com/mybucket`. **Defaults to** `false`.
      * }
      * @return string
      * @throws \InvalidArgumentException If the given expiration is invalid or in the past.
@@ -972,8 +971,7 @@ class StorageObject
      *     @type string $version One of "v2" or "v4". **Defaults to** `"v2"`.
      *     @type bool $virtualHostedStyle If `true`, URL will be of form
      *           `mybucket.storage.googleapis.com`. If `false`,
-     *           `storage.googleapis.com/mybucket`. Only applies when using v4
-     *           signing. **Defaults to** `false`.
+     *           `storage.googleapis.com/mybucket`. **Defaults to** `false`.
      * }
      * @return string
      */
@@ -1062,8 +1060,7 @@ class StorageObject
      *     @type string $version One of "v2" or "v4". **Defaults to** `"v2"`.
      *     @type bool $virtualHostedStyle If `true`, URL will be of form
      *           `mybucket.storage.googleapis.com`. If `false`,
-     *           `storage.googleapis.com/mybucket`. Only applies when using v4
-     *           signing. **Defaults to** `false`.
+     *           `storage.googleapis.com/mybucket`. **Defaults to** `false`.
      * }
      * @return string
      */
