@@ -9,7 +9,7 @@
     },
     "require-dev": {
         "erusev/parsedown": "^1.6",
-        "phpdocumentor/reflection": "^3.0",
+        "phpdocumentor/reflection": "^4.0.0",
         "phpunit/phpunit": "^4.8|^5.0"
     },
     "suggest": {
