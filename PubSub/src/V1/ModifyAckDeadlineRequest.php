@@ -16,20 +16,20 @@ use Google\Protobuf\Internal\GPBUtil;
 class ModifyAckDeadlineRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The name of the subscription.
+     * Required. The name of the subscription.
      * Format is `projects/{project}/subscriptions/{sub}`.
      *
-     * Generated from protobuf field <code>string subscription = 1;</code>
+     * Generated from protobuf field <code>string subscription = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $subscription = '';
     /**
-     * List of acknowledgment IDs.
+     * Required. List of acknowledgment IDs.
      *
-     * Generated from protobuf field <code>repeated string ack_ids = 4;</code>
+     * Generated from protobuf field <code>repeated string ack_ids = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $ack_ids;
     /**
-     * The new ack deadline with respect to the time this request was sent to
+     * Required. The new ack deadline with respect to the time this request was sent to
      * the Pub/Sub system. For example, if the value is 10, the new
      * ack deadline will expire 10 seconds after the `ModifyAckDeadline` call
      * was made. Specifying zero might immediately make the message available for
@@ -38,7 +38,7 @@ class ModifyAckDeadlineRequest extends \Google\Protobuf\Internal\Message
      * The minimum deadline you can specify is 0 seconds.
      * The maximum deadline you can specify is 600 seconds (10 minutes).
      *
-     * Generated from protobuf field <code>int32 ack_deadline_seconds = 3;</code>
+     * Generated from protobuf field <code>int32 ack_deadline_seconds = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $ack_deadline_seconds = 0;
 
@@ -49,12 +49,12 @@ class ModifyAckDeadlineRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $subscription
-     *           The name of the subscription.
+     *           Required. The name of the subscription.
      *           Format is `projects/{project}/subscriptions/{sub}`.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $ack_ids
-     *           List of acknowledgment IDs.
+     *           Required. List of acknowledgment IDs.
      *     @type int $ack_deadline_seconds
-     *           The new ack deadline with respect to the time this request was sent to
+     *           Required. The new ack deadline with respect to the time this request was sent to
      *           the Pub/Sub system. For example, if the value is 10, the new
      *           ack deadline will expire 10 seconds after the `ModifyAckDeadline` call
      *           was made. Specifying zero might immediately make the message available for
@@ -70,10 +70,10 @@ class ModifyAckDeadlineRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the subscription.
+     * Required. The name of the subscription.
      * Format is `projects/{project}/subscriptions/{sub}`.
      *
-     * Generated from protobuf field <code>string subscription = 1;</code>
+     * Generated from protobuf field <code>string subscription = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getSubscription()
@@ -82,10 +82,10 @@ class ModifyAckDeadlineRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the subscription.
+     * Required. The name of the subscription.
      * Format is `projects/{project}/subscriptions/{sub}`.
      *
-     * Generated from protobuf field <code>string subscription = 1;</code>
+     * Generated from protobuf field <code>string subscription = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -98,9 +98,9 @@ class ModifyAckDeadlineRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of acknowledgment IDs.
+     * Required. List of acknowledgment IDs.
      *
-     * Generated from protobuf field <code>repeated string ack_ids = 4;</code>
+     * Generated from protobuf field <code>repeated string ack_ids = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getAckIds()
@@ -109,9 +109,9 @@ class ModifyAckDeadlineRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of acknowledgment IDs.
+     * Required. List of acknowledgment IDs.
      *
-     * Generated from protobuf field <code>repeated string ack_ids = 4;</code>
+     * Generated from protobuf field <code>repeated string ack_ids = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -124,7 +124,7 @@ class ModifyAckDeadlineRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The new ack deadline with respect to the time this request was sent to
+     * Required. The new ack deadline with respect to the time this request was sent to
      * the Pub/Sub system. For example, if the value is 10, the new
      * ack deadline will expire 10 seconds after the `ModifyAckDeadline` call
      * was made. Specifying zero might immediately make the message available for
@@ -133,7 +133,7 @@ class ModifyAckDeadlineRequest extends \Google\Protobuf\Internal\Message
      * The minimum deadline you can specify is 0 seconds.
      * The maximum deadline you can specify is 600 seconds (10 minutes).
      *
-     * Generated from protobuf field <code>int32 ack_deadline_seconds = 3;</code>
+     * Generated from protobuf field <code>int32 ack_deadline_seconds = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getAckDeadlineSeconds()
@@ -142,7 +142,7 @@ class ModifyAckDeadlineRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The new ack deadline with respect to the time this request was sent to
+     * Required. The new ack deadline with respect to the time this request was sent to
      * the Pub/Sub system. For example, if the value is 10, the new
      * ack deadline will expire 10 seconds after the `ModifyAckDeadline` call
      * was made. Specifying zero might immediately make the message available for
@@ -151,7 +151,7 @@ class ModifyAckDeadlineRequest extends \Google\Protobuf\Internal\Message
      * The minimum deadline you can specify is 0 seconds.
      * The maximum deadline you can specify is 600 seconds (10 minutes).
      *
-     * Generated from protobuf field <code>int32 ack_deadline_seconds = 3;</code>
+     * Generated from protobuf field <code>int32 ack_deadline_seconds = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */

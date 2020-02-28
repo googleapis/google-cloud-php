@@ -16,16 +16,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateSnapshotRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The updated snapshot object.
+     * Required. The updated snapshot object.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.Snapshot snapshot = 1;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.Snapshot snapshot = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $snapshot = null;
     /**
-     * Indicates which fields in the provided snapshot to update.
+     * Required. Indicates which fields in the provided snapshot to update.
      * Must be specified and non-empty.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $update_mask = null;
 
@@ -36,9 +36,9 @@ class UpdateSnapshotRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\PubSub\V1\Snapshot $snapshot
-     *           The updated snapshot object.
+     *           Required. The updated snapshot object.
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Indicates which fields in the provided snapshot to update.
+     *           Required. Indicates which fields in the provided snapshot to update.
      *           Must be specified and non-empty.
      * }
      */
@@ -48,9 +48,9 @@ class UpdateSnapshotRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The updated snapshot object.
+     * Required. The updated snapshot object.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.Snapshot snapshot = 1;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.Snapshot snapshot = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\PubSub\V1\Snapshot
      */
     public function getSnapshot()
@@ -59,9 +59,9 @@ class UpdateSnapshotRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The updated snapshot object.
+     * Required. The updated snapshot object.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.Snapshot snapshot = 1;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.Snapshot snapshot = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\PubSub\V1\Snapshot $var
      * @return $this
      */
@@ -74,10 +74,10 @@ class UpdateSnapshotRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates which fields in the provided snapshot to update.
+     * Required. Indicates which fields in the provided snapshot to update.
      * Must be specified and non-empty.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask
      */
     public function getUpdateMask()
@@ -86,10 +86,10 @@ class UpdateSnapshotRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates which fields in the provided snapshot to update.
+     * Required. Indicates which fields in the provided snapshot to update.
      * Must be specified and non-empty.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var
      * @return $this
      */

@@ -29,7 +29,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     /**
      * The name of the topic from which this snapshot is retaining messages.
      *
-     * Generated from protobuf field <code>string topic = 2;</code>
+     * Generated from protobuf field <code>string topic = 2 [(.google.api.resource_reference) = {</code>
      */
     private $topic = '';
     /**
@@ -115,7 +115,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     /**
      * The name of the topic from which this snapshot is retaining messages.
      *
-     * Generated from protobuf field <code>string topic = 2;</code>
+     * Generated from protobuf field <code>string topic = 2 [(.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getTopic()
@@ -126,7 +126,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     /**
      * The name of the topic from which this snapshot is retaining messages.
      *
-     * Generated from protobuf field <code>string topic = 2;</code>
+     * Generated from protobuf field <code>string topic = 2 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

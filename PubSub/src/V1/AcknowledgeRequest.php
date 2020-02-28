@@ -16,17 +16,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class AcknowledgeRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The subscription whose message is being acknowledged.
+     * Required. The subscription whose message is being acknowledged.
      * Format is `projects/{project}/subscriptions/{sub}`.
      *
-     * Generated from protobuf field <code>string subscription = 1;</code>
+     * Generated from protobuf field <code>string subscription = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $subscription = '';
     /**
-     * The acknowledgment ID for the messages being acknowledged that was returned
+     * Required. The acknowledgment ID for the messages being acknowledged that was returned
      * by the Pub/Sub system in the `Pull` response. Must not be empty.
      *
-     * Generated from protobuf field <code>repeated string ack_ids = 2;</code>
+     * Generated from protobuf field <code>repeated string ack_ids = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $ack_ids;
 
@@ -37,10 +37,10 @@ class AcknowledgeRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $subscription
-     *           The subscription whose message is being acknowledged.
+     *           Required. The subscription whose message is being acknowledged.
      *           Format is `projects/{project}/subscriptions/{sub}`.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $ack_ids
-     *           The acknowledgment ID for the messages being acknowledged that was returned
+     *           Required. The acknowledgment ID for the messages being acknowledged that was returned
      *           by the Pub/Sub system in the `Pull` response. Must not be empty.
      * }
      */
@@ -50,10 +50,10 @@ class AcknowledgeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The subscription whose message is being acknowledged.
+     * Required. The subscription whose message is being acknowledged.
      * Format is `projects/{project}/subscriptions/{sub}`.
      *
-     * Generated from protobuf field <code>string subscription = 1;</code>
+     * Generated from protobuf field <code>string subscription = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getSubscription()
@@ -62,10 +62,10 @@ class AcknowledgeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The subscription whose message is being acknowledged.
+     * Required. The subscription whose message is being acknowledged.
      * Format is `projects/{project}/subscriptions/{sub}`.
      *
-     * Generated from protobuf field <code>string subscription = 1;</code>
+     * Generated from protobuf field <code>string subscription = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -78,10 +78,10 @@ class AcknowledgeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The acknowledgment ID for the messages being acknowledged that was returned
+     * Required. The acknowledgment ID for the messages being acknowledged that was returned
      * by the Pub/Sub system in the `Pull` response. Must not be empty.
      *
-     * Generated from protobuf field <code>repeated string ack_ids = 2;</code>
+     * Generated from protobuf field <code>repeated string ack_ids = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getAckIds()
@@ -90,10 +90,10 @@ class AcknowledgeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The acknowledgment ID for the messages being acknowledged that was returned
+     * Required. The acknowledgment ID for the messages being acknowledged that was returned
      * by the Pub/Sub system in the `Pull` response. Must not be empty.
      *
-     * Generated from protobuf field <code>repeated string ack_ids = 2;</code>
+     * Generated from protobuf field <code>repeated string ack_ids = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

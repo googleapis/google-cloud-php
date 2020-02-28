@@ -16,18 +16,18 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * User-provided name for this snapshot. If the name is not provided in the
+     * Required. User-provided name for this snapshot. If the name is not provided in the
      * request, the server will assign a random name for this snapshot on the same
      * project as the subscription. Note that for REST API requests, you must
      * specify a name.  See the <a
      * href="https://cloud.google.com/pubsub/docs/admin#resource_names"> resource
      * name rules</a>. Format is `projects/{project}/snapshots/{snap}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
-     * The subscription whose backlog the snapshot retains.
+     * Required. The subscription whose backlog the snapshot retains.
      * Specifically, the created snapshot is guaranteed to retain:
      *  (a) The existing backlog on the subscription. More precisely, this is
      *      defined as the messages in the subscription's backlog that are
@@ -37,7 +37,7 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
      *      successful completion of the CreateSnapshot request.
      * Format is `projects/{project}/subscriptions/{sub}`.
      *
-     * Generated from protobuf field <code>string subscription = 2;</code>
+     * Generated from protobuf field <code>string subscription = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $subscription = '';
     /**
@@ -55,14 +55,14 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           User-provided name for this snapshot. If the name is not provided in the
+     *           Required. User-provided name for this snapshot. If the name is not provided in the
      *           request, the server will assign a random name for this snapshot on the same
      *           project as the subscription. Note that for REST API requests, you must
      *           specify a name.  See the <a
      *           href="https://cloud.google.com/pubsub/docs/admin#resource_names"> resource
      *           name rules</a>. Format is `projects/{project}/snapshots/{snap}`.
      *     @type string $subscription
-     *           The subscription whose backlog the snapshot retains.
+     *           Required. The subscription whose backlog the snapshot retains.
      *           Specifically, the created snapshot is guaranteed to retain:
      *            (a) The existing backlog on the subscription. More precisely, this is
      *                defined as the messages in the subscription's backlog that are
@@ -82,14 +82,14 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User-provided name for this snapshot. If the name is not provided in the
+     * Required. User-provided name for this snapshot. If the name is not provided in the
      * request, the server will assign a random name for this snapshot on the same
      * project as the subscription. Note that for REST API requests, you must
      * specify a name.  See the <a
      * href="https://cloud.google.com/pubsub/docs/admin#resource_names"> resource
      * name rules</a>. Format is `projects/{project}/snapshots/{snap}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -98,14 +98,14 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User-provided name for this snapshot. If the name is not provided in the
+     * Required. User-provided name for this snapshot. If the name is not provided in the
      * request, the server will assign a random name for this snapshot on the same
      * project as the subscription. Note that for REST API requests, you must
      * specify a name.  See the <a
      * href="https://cloud.google.com/pubsub/docs/admin#resource_names"> resource
      * name rules</a>. Format is `projects/{project}/snapshots/{snap}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -118,7 +118,7 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The subscription whose backlog the snapshot retains.
+     * Required. The subscription whose backlog the snapshot retains.
      * Specifically, the created snapshot is guaranteed to retain:
      *  (a) The existing backlog on the subscription. More precisely, this is
      *      defined as the messages in the subscription's backlog that are
@@ -128,7 +128,7 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
      *      successful completion of the CreateSnapshot request.
      * Format is `projects/{project}/subscriptions/{sub}`.
      *
-     * Generated from protobuf field <code>string subscription = 2;</code>
+     * Generated from protobuf field <code>string subscription = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getSubscription()
@@ -137,7 +137,7 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The subscription whose backlog the snapshot retains.
+     * Required. The subscription whose backlog the snapshot retains.
      * Specifically, the created snapshot is guaranteed to retain:
      *  (a) The existing backlog on the subscription. More precisely, this is
      *      defined as the messages in the subscription's backlog that are
@@ -147,7 +147,7 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
      *      successful completion of the CreateSnapshot request.
      * Format is `projects/{project}/subscriptions/{sub}`.
      *
-     * Generated from protobuf field <code>string subscription = 2;</code>
+     * Generated from protobuf field <code>string subscription = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
