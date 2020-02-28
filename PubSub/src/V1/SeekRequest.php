@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class SeekRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The subscription to affect.
+     * Required. The subscription to affect.
      *
-     * Generated from protobuf field <code>string subscription = 1;</code>
+     * Generated from protobuf field <code>string subscription = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $subscription = '';
     protected $target;
@@ -30,7 +30,7 @@ class SeekRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $subscription
-     *           The subscription to affect.
+     *           Required. The subscription to affect.
      *     @type \Google\Protobuf\Timestamp $time
      *           The time to seek to.
      *           Messages retained in the subscription that were published before this
@@ -55,9 +55,9 @@ class SeekRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The subscription to affect.
+     * Required. The subscription to affect.
      *
-     * Generated from protobuf field <code>string subscription = 1;</code>
+     * Generated from protobuf field <code>string subscription = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getSubscription()
@@ -66,9 +66,9 @@ class SeekRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The subscription to affect.
+     * Required. The subscription to affect.
      *
-     * Generated from protobuf field <code>string subscription = 1;</code>
+     * Generated from protobuf field <code>string subscription = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -131,7 +131,7 @@ class SeekRequest extends \Google\Protobuf\Internal\Message
      * the provided subscription.
      * Format is `projects/{project}/snapshots/{snap}`.
      *
-     * Generated from protobuf field <code>string snapshot = 3;</code>
+     * Generated from protobuf field <code>string snapshot = 3 [(.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getSnapshot()
@@ -144,7 +144,7 @@ class SeekRequest extends \Google\Protobuf\Internal\Message
      * the provided subscription.
      * Format is `projects/{project}/snapshots/{snap}`.
      *
-     * Generated from protobuf field <code>string snapshot = 3;</code>
+     * Generated from protobuf field <code>string snapshot = 3 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

@@ -405,13 +405,13 @@ class SubscriberGapicClient
      * }
      * ```
      *
-     * @param string $name         The name of the subscription. It must have the format
+     * @param string $name         Required. The name of the subscription. It must have the format
      *                             `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must
      *                             start with a letter, and contain only letters (`[A-Za-z]`), numbers
      *                             (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`),
      *                             plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters
-     *                             in length, and it must not start with `"goog"`
-     * @param string $topic        The name of the topic from which this subscription is receiving messages.
+     *                             in length, and it must not start with `"goog"`.
+     * @param string $topic        Required. The name of the topic from which this subscription is receiving messages.
      *                             Format is `projects/{project}/topics/{topic}`.
      *                             The value of this field will be `_deleted-topic_` if the topic has been
      *                             deleted.
@@ -559,7 +559,7 @@ class SubscriberGapicClient
      * }
      * ```
      *
-     * @param string $subscription The name of the subscription to get.
+     * @param string $subscription Required. The name of the subscription to get.
      *                             Format is `projects/{project}/subscriptions/{sub}`.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -617,8 +617,8 @@ class SubscriberGapicClient
      * }
      * ```
      *
-     * @param Subscription $subscription The updated subscription object.
-     * @param FieldMask    $updateMask   Indicates which fields in the provided subscription to update.
+     * @param Subscription $subscription Required. The updated subscription object.
+     * @param FieldMask    $updateMask   Required. Indicates which fields in the provided subscription to update.
      *                                   Must be specified and non-empty.
      * @param array        $optionalArgs {
      *                                   Optional.
@@ -685,7 +685,7 @@ class SubscriberGapicClient
      * }
      * ```
      *
-     * @param string $project      The name of the project in which to list subscriptions.
+     * @param string $project      Required. The name of the project in which to list subscriptions.
      *                             Format is `projects/{project-id}`.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -755,7 +755,7 @@ class SubscriberGapicClient
      * }
      * ```
      *
-     * @param string $subscription The subscription to delete.
+     * @param string $subscription Required. The subscription to delete.
      *                             Format is `projects/{project}/subscriptions/{sub}`.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -810,10 +810,10 @@ class SubscriberGapicClient
      * }
      * ```
      *
-     * @param string   $subscription       The name of the subscription.
+     * @param string   $subscription       Required. The name of the subscription.
      *                                     Format is `projects/{project}/subscriptions/{sub}`.
-     * @param string[] $ackIds             List of acknowledgment IDs.
-     * @param int      $ackDeadlineSeconds The new ack deadline with respect to the time this request was sent to
+     * @param string[] $ackIds             Required. List of acknowledgment IDs.
+     * @param int      $ackDeadlineSeconds Required. The new ack deadline with respect to the time this request was sent to
      *                                     the Pub/Sub system. For example, if the value is 10, the new
      *                                     ack deadline will expire 10 seconds after the `ModifyAckDeadline` call
      *                                     was made. Specifying zero might immediately make the message available for
@@ -877,9 +877,9 @@ class SubscriberGapicClient
      * }
      * ```
      *
-     * @param string   $subscription The subscription whose message is being acknowledged.
+     * @param string   $subscription Required. The subscription whose message is being acknowledged.
      *                               Format is `projects/{project}/subscriptions/{sub}`.
-     * @param string[] $ackIds       The acknowledgment ID for the messages being acknowledged that was returned
+     * @param string[] $ackIds       Required. The acknowledgment ID for the messages being acknowledged that was returned
      *                               by the Pub/Sub system in the `Pull` response. Must not be empty.
      * @param array    $optionalArgs {
      *                               Optional.
@@ -932,9 +932,9 @@ class SubscriberGapicClient
      * }
      * ```
      *
-     * @param string $subscription The subscription from which messages should be pulled.
+     * @param string $subscription Required. The subscription from which messages should be pulled.
      *                             Format is `projects/{project}/subscriptions/{sub}`.
-     * @param int    $maxMessages  The maximum number of messages to return for this request. Must be a
+     * @param int    $maxMessages  Required. The maximum number of messages to return for this request. Must be a
      *                             positive integer. The Pub/Sub system may return fewer than the number
      *                             specified.
      * @param array  $optionalArgs {
@@ -1076,9 +1076,9 @@ class SubscriberGapicClient
      * }
      * ```
      *
-     * @param string     $subscription The name of the subscription.
+     * @param string     $subscription Required. The name of the subscription.
      *                                 Format is `projects/{project}/subscriptions/{sub}`.
-     * @param PushConfig $pushConfig   The push configuration for future deliveries.
+     * @param PushConfig $pushConfig   Required. The push configuration for future deliveries.
      *
      * An empty `pushConfig` indicates that the Pub/Sub system should
      * stop pushing messages from the given subscription and allow
@@ -1152,7 +1152,7 @@ class SubscriberGapicClient
      * }
      * ```
      *
-     * @param string $project      The name of the project in which to list snapshots.
+     * @param string $project      Required. The name of the project in which to list snapshots.
      *                             Format is `projects/{project-id}`.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -1236,13 +1236,13 @@ class SubscriberGapicClient
      * }
      * ```
      *
-     * @param string $name         User-provided name for this snapshot. If the name is not provided in the
+     * @param string $name         Required. User-provided name for this snapshot. If the name is not provided in the
      *                             request, the server will assign a random name for this snapshot on the same
      *                             project as the subscription. Note that for REST API requests, you must
      *                             specify a name.  See the <a
      *                             href="https://cloud.google.com/pubsub/docs/admin#resource_names"> resource
      *                             name rules</a>. Format is `projects/{project}/snapshots/{snap}`.
-     * @param string $subscription The subscription whose backlog the snapshot retains.
+     * @param string $subscription Required. The subscription whose backlog the snapshot retains.
      *                             Specifically, the created snapshot is guaranteed to retain:
      *                             (a) The existing backlog on the subscription. More precisely, this is
      *                             defined as the messages in the subscription's backlog that are
@@ -1320,8 +1320,8 @@ class SubscriberGapicClient
      * }
      * ```
      *
-     * @param Snapshot  $snapshot     The updated snapshot object.
-     * @param FieldMask $updateMask   Indicates which fields in the provided snapshot to update.
+     * @param Snapshot  $snapshot     Required. The updated snapshot object.
+     * @param FieldMask $updateMask   Required. Indicates which fields in the provided snapshot to update.
      *                                Must be specified and non-empty.
      * @param array     $optionalArgs {
      *                                Optional.
@@ -1382,7 +1382,7 @@ class SubscriberGapicClient
      * }
      * ```
      *
-     * @param string $snapshot     The name of the snapshot to delete.
+     * @param string $snapshot     Required. The name of the snapshot to delete.
      *                             Format is `projects/{project}/snapshots/{snap}`.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -1438,7 +1438,7 @@ class SubscriberGapicClient
      * }
      * ```
      *
-     * @param string $subscription The subscription to affect.
+     * @param string $subscription Required. The subscription to affect.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1497,8 +1497,11 @@ class SubscriberGapicClient
     }
 
     /**
-     * Sets the access control policy on the specified resource. Replaces any
-     * existing policy.
+     * Sets the access control policy on the specified resource. Replaces
+     * any existing policy.
+     *
+     * Can return Public Errors: NOT_FOUND, INVALID_ARGUMENT and
+     * PERMISSION_DENIED
      *
      * Sample code:
      * ```
@@ -1557,9 +1560,8 @@ class SubscriberGapicClient
     }
 
     /**
-     * Gets the access control policy for a resource.
-     * Returns an empty policy if the resource exists and does not have a policy
-     * set.
+     * Gets the access control policy for a resource. Returns an empty policy
+     * if the resource exists and does not have a policy set.
      *
      * Sample code:
      * ```
@@ -1618,13 +1620,13 @@ class SubscriberGapicClient
     }
 
     /**
-     * Returns permissions that a caller has on the specified resource.
-     * If the resource does not exist, this will return an empty set of
+     * Returns permissions that a caller has on the specified resource. If the
+     * resource does not exist, this will return an empty set of
      * permissions, not a NOT_FOUND error.
      *
-     * Note: This operation is designed to be used for building permission-aware
-     * UIs and command-line tools, not for authorization checking. This operation
-     * may "fail open" without warning.
+     * Note: This operation is designed to be used for building
+     * permission-aware UIs and command-line tools, not for authorization
+     * checking. This operation may "fail open" without warning.
      *
      * Sample code:
      * ```

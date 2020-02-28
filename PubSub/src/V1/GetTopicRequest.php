@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetTopicRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The name of the topic to get.
+     * Required. The name of the topic to get.
      * Format is `projects/{project}/topics/{topic}`.
      *
-     * Generated from protobuf field <code>string topic = 1;</code>
+     * Generated from protobuf field <code>string topic = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $topic = '';
 
@@ -30,7 +30,7 @@ class GetTopicRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $topic
-     *           The name of the topic to get.
+     *           Required. The name of the topic to get.
      *           Format is `projects/{project}/topics/{topic}`.
      * }
      */
@@ -40,10 +40,10 @@ class GetTopicRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the topic to get.
+     * Required. The name of the topic to get.
      * Format is `projects/{project}/topics/{topic}`.
      *
-     * Generated from protobuf field <code>string topic = 1;</code>
+     * Generated from protobuf field <code>string topic = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getTopic()
@@ -52,10 +52,10 @@ class GetTopicRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the topic to get.
+     * Required. The name of the topic to get.
      * Format is `projects/{project}/topics/{topic}`.
      *
-     * Generated from protobuf field <code>string topic = 1;</code>
+     * Generated from protobuf field <code>string topic = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

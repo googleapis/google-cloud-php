@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListTopicSubscriptionsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The name of the topic that subscriptions are attached to.
+     * Required. The name of the topic that subscriptions are attached to.
      * Format is `projects/{project}/topics/{topic}`.
      *
-     * Generated from protobuf field <code>string topic = 1;</code>
+     * Generated from protobuf field <code>string topic = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $topic = '';
     /**
@@ -44,7 +44,7 @@ class ListTopicSubscriptionsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $topic
-     *           The name of the topic that subscriptions are attached to.
+     *           Required. The name of the topic that subscriptions are attached to.
      *           Format is `projects/{project}/topics/{topic}`.
      *     @type int $page_size
      *           Maximum number of subscription names to return.
@@ -60,10 +60,10 @@ class ListTopicSubscriptionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the topic that subscriptions are attached to.
+     * Required. The name of the topic that subscriptions are attached to.
      * Format is `projects/{project}/topics/{topic}`.
      *
-     * Generated from protobuf field <code>string topic = 1;</code>
+     * Generated from protobuf field <code>string topic = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getTopic()
@@ -72,10 +72,10 @@ class ListTopicSubscriptionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the topic that subscriptions are attached to.
+     * Required. The name of the topic that subscriptions are attached to.
      * Format is `projects/{project}/topics/{topic}`.
      *
-     * Generated from protobuf field <code>string topic = 1;</code>
+     * Generated from protobuf field <code>string topic = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

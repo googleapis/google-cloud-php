@@ -16,16 +16,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateSubscriptionRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The updated subscription object.
+     * Required. The updated subscription object.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.Subscription subscription = 1;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.Subscription subscription = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $subscription = null;
     /**
-     * Indicates which fields in the provided subscription to update.
+     * Required. Indicates which fields in the provided subscription to update.
      * Must be specified and non-empty.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $update_mask = null;
 
@@ -36,9 +36,9 @@ class UpdateSubscriptionRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\PubSub\V1\Subscription $subscription
-     *           The updated subscription object.
+     *           Required. The updated subscription object.
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Indicates which fields in the provided subscription to update.
+     *           Required. Indicates which fields in the provided subscription to update.
      *           Must be specified and non-empty.
      * }
      */
@@ -48,9 +48,9 @@ class UpdateSubscriptionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The updated subscription object.
+     * Required. The updated subscription object.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.Subscription subscription = 1;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.Subscription subscription = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\PubSub\V1\Subscription
      */
     public function getSubscription()
@@ -59,9 +59,9 @@ class UpdateSubscriptionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The updated subscription object.
+     * Required. The updated subscription object.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.Subscription subscription = 1;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.Subscription subscription = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\PubSub\V1\Subscription $var
      * @return $this
      */
@@ -74,10 +74,10 @@ class UpdateSubscriptionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates which fields in the provided subscription to update.
+     * Required. Indicates which fields in the provided subscription to update.
      * Must be specified and non-empty.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask
      */
     public function getUpdateMask()
@@ -86,10 +86,10 @@ class UpdateSubscriptionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates which fields in the provided subscription to update.
+     * Required. Indicates which fields in the provided subscription to update.
      * Must be specified and non-empty.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var
      * @return $this
      */
