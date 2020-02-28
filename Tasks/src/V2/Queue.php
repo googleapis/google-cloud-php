@@ -115,6 +115,14 @@ class Queue extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp purge_time = 6;</code>
      */
     private $purge_time = null;
+    /**
+     * Configuration options for writing logs to
+     * [Stackdriver Logging](https://cloud.google.com/logging/docs/). If this
+     * field is unset, then no logs are written.
+     *
+     * Generated from protobuf field <code>.google.cloud.tasks.v2.StackdriverLoggingConfig stackdriver_logging_config = 9;</code>
+     */
+    private $stackdriver_logging_config = null;
 
     /**
      * Constructor.
@@ -196,6 +204,10 @@ class Queue extends \Google\Protobuf\Internal\Message
      *           Console](https://cloud.google.com/appengine/docs/standard/python/taskqueue/push/deleting-tasks-and-queues#purging_all_tasks_from_a_queue).
      *           Purge time will be truncated to the nearest microsecond. Purge
      *           time will be unset if the queue has never been purged.
+     *     @type \Google\Cloud\Tasks\V2\StackdriverLoggingConfig $stackdriver_logging_config
+     *           Configuration options for writing logs to
+     *           [Stackdriver Logging](https://cloud.google.com/logging/docs/). If this
+     *           field is unset, then no logs are written.
      * }
      */
     public function __construct($data = NULL) {
@@ -479,6 +491,36 @@ class Queue extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->purge_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration options for writing logs to
+     * [Stackdriver Logging](https://cloud.google.com/logging/docs/). If this
+     * field is unset, then no logs are written.
+     *
+     * Generated from protobuf field <code>.google.cloud.tasks.v2.StackdriverLoggingConfig stackdriver_logging_config = 9;</code>
+     * @return \Google\Cloud\Tasks\V2\StackdriverLoggingConfig
+     */
+    public function getStackdriverLoggingConfig()
+    {
+        return $this->stackdriver_logging_config;
+    }
+
+    /**
+     * Configuration options for writing logs to
+     * [Stackdriver Logging](https://cloud.google.com/logging/docs/). If this
+     * field is unset, then no logs are written.
+     *
+     * Generated from protobuf field <code>.google.cloud.tasks.v2.StackdriverLoggingConfig stackdriver_logging_config = 9;</code>
+     * @param \Google\Cloud\Tasks\V2\StackdriverLoggingConfig $var
+     * @return $this
+     */
+    public function setStackdriverLoggingConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Tasks\V2\StackdriverLoggingConfig::class);
+        $this->stackdriver_logging_config = $var;
 
         return $this;
     }

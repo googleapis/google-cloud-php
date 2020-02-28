@@ -12,7 +12,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * HTTP request.
  * The task will be pushed to the worker as an HTTP request. If the worker
  * or the redirected worker acknowledges the task by returning a successful HTTP
- * response code ([`200` - `299`]), the task will removed from the queue. If
+ * response code ([`200` - `299`]), the task will be removed from the queue. If
  * any other HTTP response code is returned or no response is received, the
  * task will be retried according to the following:
  * * User-specified throttling: [retry configuration][google.cloud.tasks.v2beta3.Queue.retry_config],
@@ -26,7 +26,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *     `429` (Too Many Requests), `503` (Service Unavailable), or the rate of
  *     errors is high, Cloud Tasks will use a higher backoff rate. The retry
  *     specified in the `Retry-After` HTTP response header is considered.
- *   * To prevent traffic spikes and to smooth sudden large traffic spikes,
+ *   * To prevent traffic spikes and to smooth sudden increases in traffic,
  *     dispatches ramp up slowly when the queue is newly created or idle and
  *     if large numbers of tasks suddenly become available to dispatch (due to
  *     spikes in create task rates, the queue being unpaused, or many tasks
