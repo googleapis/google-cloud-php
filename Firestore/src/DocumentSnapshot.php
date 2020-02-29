@@ -289,11 +289,11 @@ class DocumentSnapshot implements \ArrayAccess
 
         $fields = $this->data;
         foreach ($parts as $idx => $part) {
-            if ($idx === $len-1 && isset($fields[$part])) {
+            if ($idx === $len-1 && array_key_exists($part, $fields)) {
                 $res = $fields[$part];
                 break;
             } else {
-                if (!isset($fields[$part])) {
+                if (!array_key_exists($part, $fields)) {
                     throw new \InvalidArgumentException(sprintf(
                         'Field path `%s` does not exist.',
                         $fieldPath
