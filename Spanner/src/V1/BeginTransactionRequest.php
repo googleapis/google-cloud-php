@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for
- * [BeginTransaction][google.spanner.v1.Spanner.BeginTransaction].
+ * The request for [BeginTransaction][google.spanner.v1.Spanner.BeginTransaction].
  *
  * Generated from protobuf message <code>google.spanner.v1.BeginTransactionRequest</code>
  */
