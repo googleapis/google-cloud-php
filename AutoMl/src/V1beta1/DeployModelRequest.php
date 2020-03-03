@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeployModelRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Resource name of the model to deploy.
+     * Required. Resource name of the model to deploy.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     protected $model_deployment_metadata;
@@ -34,7 +34,7 @@ class DeployModelRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AutoMl\V1beta1\ImageClassificationModelDeploymentMetadata $image_classification_model_deployment_metadata
      *           Model deployment metadata specific to Image Classification.
      *     @type string $name
-     *           Resource name of the model to deploy.
+     *           Required. Resource name of the model to deploy.
      * }
      */
     public function __construct($data = NULL) {
@@ -95,9 +95,9 @@ class DeployModelRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource name of the model to deploy.
+     * Required. Resource name of the model to deploy.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -106,9 +106,9 @@ class DeployModelRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource name of the model to deploy.
+     * Required. Resource name of the model to deploy.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

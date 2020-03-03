@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateDatasetRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The dataset which replaces the resource on the server.
+     * Required. The dataset which replaces the resource on the server.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.Dataset dataset = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.Dataset dataset = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $dataset = null;
     /**
@@ -35,7 +35,7 @@ class UpdateDatasetRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\AutoMl\V1beta1\Dataset $dataset
-     *           The dataset which replaces the resource on the server.
+     *           Required. The dataset which replaces the resource on the server.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           The update mask applies to the resource.
      * }
@@ -46,9 +46,9 @@ class UpdateDatasetRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The dataset which replaces the resource on the server.
+     * Required. The dataset which replaces the resource on the server.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.Dataset dataset = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.Dataset dataset = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\AutoMl\V1beta1\Dataset
      */
     public function getDataset()
@@ -57,9 +57,9 @@ class UpdateDatasetRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The dataset which replaces the resource on the server.
+     * Required. The dataset which replaces the resource on the server.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.Dataset dataset = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.Dataset dataset = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\AutoMl\V1beta1\Dataset $var
      * @return $this
      */

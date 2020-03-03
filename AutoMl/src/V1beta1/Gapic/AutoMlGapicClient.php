@@ -565,8 +565,8 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param string  $parent       The resource name of the project to create the dataset for.
-     * @param Dataset $dataset      The dataset to create.
+     * @param string  $parent       Required. The resource name of the project to create the dataset for.
+     * @param Dataset $dataset      Required. The dataset to create.
      * @param array   $optionalArgs {
      *                              Optional.
      *
@@ -617,7 +617,7 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param Dataset $dataset      The dataset which replaces the resource on the server.
+     * @param Dataset $dataset      Required. The dataset which replaces the resource on the server.
      * @param array   $optionalArgs {
      *                              Optional.
      *
@@ -672,7 +672,7 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param string $name         The resource name of the dataset to retrieve.
+     * @param string $name         Required. The resource name of the dataset to retrieve.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -737,7 +737,7 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param string $parent       The resource name of the project from which to list datasets.
+     * @param string $parent       Required. The resource name of the project from which to list datasets.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -843,7 +843,7 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param string $name         The resource name of the dataset to delete.
+     * @param string $name         Required. The resource name of the dataset to delete.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1096,8 +1096,8 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param string $parent       Resource name of the parent project where the model is being created.
-     * @param Model  $model        The model to create.
+     * @param string $parent       Required. Resource name of the parent project where the model is being created.
+     * @param Model  $model        Required. The model to create.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1148,7 +1148,7 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param string $name         Resource name of the model.
+     * @param string $name         Required. Resource name of the model.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1213,7 +1213,7 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param string $parent       Resource name of the project, from which to list the models.
+     * @param string $parent       Required. Resource name of the project, from which to list the models.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1321,7 +1321,7 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param string $name         Resource name of the model being deleted.
+     * @param string $name         Required. Resource name of the model being deleted.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1365,7 +1365,8 @@ class AutoMlGapicClient
      * [node_number][google.cloud.automl.v1beta1.ImageObjectDetectionModelDeploymentMetadata.node_number])
      *  will reset the deployment state without pausing the model's availability.
      *
-     * Only applicable for Text Classification, Image Object Detection and Tables; all other domains manage deployment automatically.
+     * Only applicable for Text Classification, Image Object Detection , Tables, and Image Segmentation; all other domains manage
+     * deployment automatically.
      *
      * Returns an empty response in the
      * [response][google.longrunning.Operation.response] field when it completes.
@@ -1407,7 +1408,7 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param string $name         Resource name of the model to deploy.
+     * @param string $name         Required. Resource name of the model to deploy.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1499,7 +1500,7 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param string $name         Resource name of the model to undeploy.
+     * @param string $name         Required. Resource name of the model to undeploy.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1549,7 +1550,7 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param string $name         Resource name for the model evaluation.
+     * @param string $name         Required. Resource name for the model evaluation.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1793,7 +1794,7 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param string $parent       Resource name of the model to list the model evaluations for.
+     * @param string $parent       Required. Resource name of the model to list the model evaluations for.
      *                             If modelId is set as "-", this will list model evaluations from across all
      *                             models of the parent location.
      * @param array  $optionalArgs {
@@ -1875,7 +1876,7 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param string $name         The resource name of the annotation spec to retrieve.
+     * @param string $name         Required. The resource name of the annotation spec to retrieve.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1925,7 +1926,7 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param string $name         The resource name of the table spec to retrieve.
+     * @param string $name         Required. The resource name of the table spec to retrieve.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1995,7 +1996,7 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param string $parent       The resource name of the dataset to list table specs from.
+     * @param string $parent       Required. The resource name of the dataset to list table specs from.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -2070,7 +2071,7 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param TableSpec $tableSpec    The table spec which replaces the resource on the server.
+     * @param TableSpec $tableSpec    Required. The table spec which replaces the resource on the server.
      * @param array     $optionalArgs {
      *                                Optional.
      *
@@ -2125,7 +2126,7 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param string $name         The resource name of the column spec to retrieve.
+     * @param string $name         Required. The resource name of the column spec to retrieve.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -2195,7 +2196,7 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param string $parent       The resource name of the table spec to list column specs from.
+     * @param string $parent       Required. The resource name of the table spec to list column specs from.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -2270,7 +2271,7 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param ColumnSpec $columnSpec   The column spec which replaces the resource on the server.
+     * @param ColumnSpec $columnSpec   Required. The column spec which replaces the resource on the server.
      * @param array      $optionalArgs {
      *                                 Optional.
      *

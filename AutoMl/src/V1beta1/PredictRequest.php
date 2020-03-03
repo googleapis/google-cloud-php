@@ -9,24 +9,23 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for
- * [PredictionService.Predict][google.cloud.automl.v1beta1.PredictionService.Predict].
+ * Request message for [PredictionService.Predict][google.cloud.automl.v1beta1.PredictionService.Predict].
  *
  * Generated from protobuf message <code>google.cloud.automl.v1beta1.PredictRequest</code>
  */
 class PredictRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Name of the model requested to serve the prediction.
+     * Required. Name of the model requested to serve the prediction.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
      * Required. Payload to perform a prediction on. The payload must match the
      * problem type that the model was trained to solve.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ExamplePayload payload = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ExamplePayload payload = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $payload = null;
     /**
@@ -44,10 +43,8 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      *        boxes will be returned in the response. Default is 100, the
      *        requested value may be limited by server.
      * *  For Tables:
-     *    `feature_importance` - (boolean) Whether
-     * [feature_importance][[google.cloud.automl.v1beta1.TablesModelColumnInfo.feature_importance]
-     *        should be populated in the returned
-     * [TablesAnnotation(-s)][[google.cloud.automl.v1beta1.TablesAnnotation].
+     *    feature_imp<span>ortan</span>ce - (boolean) Whether feature importance
+     *        should be populated in the returned TablesAnnotation.
      *        The default is false.
      *
      * Generated from protobuf field <code>map<string, string> params = 3;</code>
@@ -61,7 +58,7 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Name of the model requested to serve the prediction.
+     *           Required. Name of the model requested to serve the prediction.
      *     @type \Google\Cloud\AutoMl\V1beta1\ExamplePayload $payload
      *           Required. Payload to perform a prediction on. The payload must match the
      *           problem type that the model was trained to solve.
@@ -80,10 +77,8 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      *                  boxes will be returned in the response. Default is 100, the
      *                  requested value may be limited by server.
      *           *  For Tables:
-     *              `feature_importance` - (boolean) Whether
-     *           [feature_importance][[google.cloud.automl.v1beta1.TablesModelColumnInfo.feature_importance]
-     *                  should be populated in the returned
-     *           [TablesAnnotation(-s)][[google.cloud.automl.v1beta1.TablesAnnotation].
+     *              feature_imp<span>ortan</span>ce - (boolean) Whether feature importance
+     *                  should be populated in the returned TablesAnnotation.
      *                  The default is false.
      * }
      */
@@ -93,9 +88,9 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the model requested to serve the prediction.
+     * Required. Name of the model requested to serve the prediction.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -104,9 +99,9 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the model requested to serve the prediction.
+     * Required. Name of the model requested to serve the prediction.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -122,7 +117,7 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      * Required. Payload to perform a prediction on. The payload must match the
      * problem type that the model was trained to solve.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ExamplePayload payload = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ExamplePayload payload = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\AutoMl\V1beta1\ExamplePayload
      */
     public function getPayload()
@@ -134,7 +129,7 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      * Required. Payload to perform a prediction on. The payload must match the
      * problem type that the model was trained to solve.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ExamplePayload payload = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ExamplePayload payload = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\AutoMl\V1beta1\ExamplePayload $var
      * @return $this
      */
@@ -161,10 +156,8 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      *        boxes will be returned in the response. Default is 100, the
      *        requested value may be limited by server.
      * *  For Tables:
-     *    `feature_importance` - (boolean) Whether
-     * [feature_importance][[google.cloud.automl.v1beta1.TablesModelColumnInfo.feature_importance]
-     *        should be populated in the returned
-     * [TablesAnnotation(-s)][[google.cloud.automl.v1beta1.TablesAnnotation].
+     *    feature_imp<span>ortan</span>ce - (boolean) Whether feature importance
+     *        should be populated in the returned TablesAnnotation.
      *        The default is false.
      *
      * Generated from protobuf field <code>map<string, string> params = 3;</code>
@@ -190,10 +183,8 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      *        boxes will be returned in the response. Default is 100, the
      *        requested value may be limited by server.
      * *  For Tables:
-     *    `feature_importance` - (boolean) Whether
-     * [feature_importance][[google.cloud.automl.v1beta1.TablesModelColumnInfo.feature_importance]
-     *        should be populated in the returned
-     * [TablesAnnotation(-s)][[google.cloud.automl.v1beta1.TablesAnnotation].
+     *    feature_imp<span>ortan</span>ce - (boolean) Whether feature importance
+     *        should be populated in the returned TablesAnnotation.
      *        The default is false.
      *
      * Generated from protobuf field <code>map<string, string> params = 3;</code>

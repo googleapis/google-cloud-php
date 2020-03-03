@@ -9,34 +9,33 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for
- * [PredictionService.BatchPredict][google.cloud.automl.v1beta1.PredictionService.BatchPredict].
+ * Request message for [PredictionService.BatchPredict][google.cloud.automl.v1beta1.PredictionService.BatchPredict].
  *
  * Generated from protobuf message <code>google.cloud.automl.v1beta1.BatchPredictRequest</code>
  */
 class BatchPredictRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Name of the model requested to serve the batch prediction.
+     * Required. Name of the model requested to serve the batch prediction.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
      * Required. The input configuration for batch prediction.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.BatchPredictInputConfig input_config = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.BatchPredictInputConfig input_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $input_config = null;
     /**
      * Required. The Configuration specifying where output predictions should
      * be written.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.BatchPredictOutputConfig output_config = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.BatchPredictOutputConfig output_config = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $output_config = null;
     /**
-     * Additional domain-specific parameters for the predictions, any string must
+     * Required. Additional domain-specific parameters for the predictions, any string must
      * be up to 25000 characters long.
      * *  For Text Classification:
      *    `score_threshold` - (float) A value from 0.0 to 1.0. When the model
@@ -80,6 +79,10 @@ class BatchPredictRequest extends \Google\Protobuf\Internal\Message
      *        type, the quality of it depends on training data, but there are no
      *        metrics provided to describe that quality. The default is
      *        "false".
+     * *  For Tables:
+     *    feature_imp<span>ortan</span>ce - (boolean) Whether feature importance
+     *        should be populated in the returned TablesAnnotations. The
+     *        default is false.
      * *  For Video Object Tracking:
      *    `score_threshold` - (float) When Model detects objects on video frames,
      *        it will only produce bounding boxes which have at least this
@@ -91,7 +94,7 @@ class BatchPredictRequest extends \Google\Protobuf\Internal\Message
      *      at least that long as a relative value of video frame size will be
      *      returned. Value in 0 to 1 range. Default is 0.
      *
-     * Generated from protobuf field <code>map<string, string> params = 5;</code>
+     * Generated from protobuf field <code>map<string, string> params = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $params;
 
@@ -102,14 +105,14 @@ class BatchPredictRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Name of the model requested to serve the batch prediction.
+     *           Required. Name of the model requested to serve the batch prediction.
      *     @type \Google\Cloud\AutoMl\V1beta1\BatchPredictInputConfig $input_config
      *           Required. The input configuration for batch prediction.
      *     @type \Google\Cloud\AutoMl\V1beta1\BatchPredictOutputConfig $output_config
      *           Required. The Configuration specifying where output predictions should
      *           be written.
      *     @type array|\Google\Protobuf\Internal\MapField $params
-     *           Additional domain-specific parameters for the predictions, any string must
+     *           Required. Additional domain-specific parameters for the predictions, any string must
      *           be up to 25000 characters long.
      *           *  For Text Classification:
      *              `score_threshold` - (float) A value from 0.0 to 1.0. When the model
@@ -153,6 +156,10 @@ class BatchPredictRequest extends \Google\Protobuf\Internal\Message
      *                  type, the quality of it depends on training data, but there are no
      *                  metrics provided to describe that quality. The default is
      *                  "false".
+     *           *  For Tables:
+     *              feature_imp<span>ortan</span>ce - (boolean) Whether feature importance
+     *                  should be populated in the returned TablesAnnotations. The
+     *                  default is false.
      *           *  For Video Object Tracking:
      *              `score_threshold` - (float) When Model detects objects on video frames,
      *                  it will only produce bounding boxes which have at least this
@@ -171,9 +178,9 @@ class BatchPredictRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the model requested to serve the batch prediction.
+     * Required. Name of the model requested to serve the batch prediction.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -182,9 +189,9 @@ class BatchPredictRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the model requested to serve the batch prediction.
+     * Required. Name of the model requested to serve the batch prediction.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -199,7 +206,7 @@ class BatchPredictRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The input configuration for batch prediction.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.BatchPredictInputConfig input_config = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.BatchPredictInputConfig input_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\AutoMl\V1beta1\BatchPredictInputConfig
      */
     public function getInputConfig()
@@ -210,7 +217,7 @@ class BatchPredictRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The input configuration for batch prediction.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.BatchPredictInputConfig input_config = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.BatchPredictInputConfig input_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\AutoMl\V1beta1\BatchPredictInputConfig $var
      * @return $this
      */
@@ -226,7 +233,7 @@ class BatchPredictRequest extends \Google\Protobuf\Internal\Message
      * Required. The Configuration specifying where output predictions should
      * be written.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.BatchPredictOutputConfig output_config = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.BatchPredictOutputConfig output_config = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\AutoMl\V1beta1\BatchPredictOutputConfig
      */
     public function getOutputConfig()
@@ -238,7 +245,7 @@ class BatchPredictRequest extends \Google\Protobuf\Internal\Message
      * Required. The Configuration specifying where output predictions should
      * be written.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.BatchPredictOutputConfig output_config = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.BatchPredictOutputConfig output_config = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\AutoMl\V1beta1\BatchPredictOutputConfig $var
      * @return $this
      */
@@ -251,7 +258,7 @@ class BatchPredictRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Additional domain-specific parameters for the predictions, any string must
+     * Required. Additional domain-specific parameters for the predictions, any string must
      * be up to 25000 characters long.
      * *  For Text Classification:
      *    `score_threshold` - (float) A value from 0.0 to 1.0. When the model
@@ -295,6 +302,10 @@ class BatchPredictRequest extends \Google\Protobuf\Internal\Message
      *        type, the quality of it depends on training data, but there are no
      *        metrics provided to describe that quality. The default is
      *        "false".
+     * *  For Tables:
+     *    feature_imp<span>ortan</span>ce - (boolean) Whether feature importance
+     *        should be populated in the returned TablesAnnotations. The
+     *        default is false.
      * *  For Video Object Tracking:
      *    `score_threshold` - (float) When Model detects objects on video frames,
      *        it will only produce bounding boxes which have at least this
@@ -306,7 +317,7 @@ class BatchPredictRequest extends \Google\Protobuf\Internal\Message
      *      at least that long as a relative value of video frame size will be
      *      returned. Value in 0 to 1 range. Default is 0.
      *
-     * Generated from protobuf field <code>map<string, string> params = 5;</code>
+     * Generated from protobuf field <code>map<string, string> params = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getParams()
@@ -315,7 +326,7 @@ class BatchPredictRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Additional domain-specific parameters for the predictions, any string must
+     * Required. Additional domain-specific parameters for the predictions, any string must
      * be up to 25000 characters long.
      * *  For Text Classification:
      *    `score_threshold` - (float) A value from 0.0 to 1.0. When the model
@@ -359,6 +370,10 @@ class BatchPredictRequest extends \Google\Protobuf\Internal\Message
      *        type, the quality of it depends on training data, but there are no
      *        metrics provided to describe that quality. The default is
      *        "false".
+     * *  For Tables:
+     *    feature_imp<span>ortan</span>ce - (boolean) Whether feature importance
+     *        should be populated in the returned TablesAnnotations. The
+     *        default is false.
      * *  For Video Object Tracking:
      *    `score_threshold` - (float) When Model detects objects on video frames,
      *        it will only produce bounding boxes which have at least this
@@ -370,7 +385,7 @@ class BatchPredictRequest extends \Google\Protobuf\Internal\Message
      *      at least that long as a relative value of video frame size will be
      *      returned. Value in 0 to 1 range. Default is 0.
      *
-     * Generated from protobuf field <code>map<string, string> params = 5;</code>
+     * Generated from protobuf field <code>map<string, string> params = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */

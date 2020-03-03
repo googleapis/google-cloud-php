@@ -11,8 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Result of the Batch Predict. This message is returned in
  * [response][google.longrunning.Operation.response] of the operation returned
- * by the
- * [PredictionService.BatchPredict][google.cloud.automl.v1beta1.PredictionService.BatchPredict].
+ * by the [PredictionService.BatchPredict][google.cloud.automl.v1beta1.PredictionService.BatchPredict].
  *
  * Generated from protobuf message <code>google.cloud.automl.v1beta1.BatchPredictResult</code>
  */
