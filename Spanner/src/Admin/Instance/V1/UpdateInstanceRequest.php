@@ -17,15 +17,15 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The instance to update, which must always include the instance
-     * name.  Otherwise, only fields mentioned in [field_mask][google.spanner.admin.instance.v1.UpdateInstanceRequest.field_mask] need be included.
+     * name.  Otherwise, only fields mentioned in [][google.spanner.admin.instance.v1.UpdateInstanceRequest.field_mask] need be included.
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance instance = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $instance = null;
     /**
-     * Required. A mask specifying which fields in [Instance][google.spanner.admin.instance.v1.Instance] should be updated.
+     * Required. A mask specifying which fields in [][google.spanner.admin.instance.v1.UpdateInstanceRequest.instance] should be updated.
      * The field mask must always be specified; this prevents any future fields in
-     * [Instance][google.spanner.admin.instance.v1.Instance] from being erased accidentally by clients that do not know
+     * [][google.spanner.admin.instance.v1.Instance] from being erased accidentally by clients that do not know
      * about them.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -40,11 +40,11 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Spanner\Admin\Instance\V1\Instance $instance
      *           Required. The instance to update, which must always include the instance
-     *           name.  Otherwise, only fields mentioned in [field_mask][google.spanner.admin.instance.v1.UpdateInstanceRequest.field_mask] need be included.
+     *           name.  Otherwise, only fields mentioned in [][google.spanner.admin.instance.v1.UpdateInstanceRequest.field_mask] need be included.
      *     @type \Google\Protobuf\FieldMask $field_mask
-     *           Required. A mask specifying which fields in [Instance][google.spanner.admin.instance.v1.Instance] should be updated.
+     *           Required. A mask specifying which fields in [][google.spanner.admin.instance.v1.UpdateInstanceRequest.instance] should be updated.
      *           The field mask must always be specified; this prevents any future fields in
-     *           [Instance][google.spanner.admin.instance.v1.Instance] from being erased accidentally by clients that do not know
+     *           [][google.spanner.admin.instance.v1.Instance] from being erased accidentally by clients that do not know
      *           about them.
      * }
      */
@@ -55,7 +55,7 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The instance to update, which must always include the instance
-     * name.  Otherwise, only fields mentioned in [field_mask][google.spanner.admin.instance.v1.UpdateInstanceRequest.field_mask] need be included.
+     * name.  Otherwise, only fields mentioned in [][google.spanner.admin.instance.v1.UpdateInstanceRequest.field_mask] need be included.
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance instance = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Spanner\Admin\Instance\V1\Instance
@@ -67,7 +67,7 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The instance to update, which must always include the instance
-     * name.  Otherwise, only fields mentioned in [field_mask][google.spanner.admin.instance.v1.UpdateInstanceRequest.field_mask] need be included.
+     * name.  Otherwise, only fields mentioned in [][google.spanner.admin.instance.v1.UpdateInstanceRequest.field_mask] need be included.
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance instance = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Spanner\Admin\Instance\V1\Instance $var
@@ -82,9 +82,9 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A mask specifying which fields in [Instance][google.spanner.admin.instance.v1.Instance] should be updated.
+     * Required. A mask specifying which fields in [][google.spanner.admin.instance.v1.UpdateInstanceRequest.instance] should be updated.
      * The field mask must always be specified; this prevents any future fields in
-     * [Instance][google.spanner.admin.instance.v1.Instance] from being erased accidentally by clients that do not know
+     * [][google.spanner.admin.instance.v1.Instance] from being erased accidentally by clients that do not know
      * about them.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -96,9 +96,9 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A mask specifying which fields in [Instance][google.spanner.admin.instance.v1.Instance] should be updated.
+     * Required. A mask specifying which fields in [][google.spanner.admin.instance.v1.UpdateInstanceRequest.instance] should be updated.
      * The field mask must always be specified; this prevents any future fields in
-     * [Instance][google.spanner.admin.instance.v1.Instance] from being erased accidentally by clients that do not know
+     * [][google.spanner.admin.instance.v1.Instance] from being erased accidentally by clients that do not know
      * about them.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>

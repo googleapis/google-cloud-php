@@ -382,8 +382,8 @@ class DatabaseAdminGapicClient
      * have a name of the format `<database_name>/operations/<operation_id>` and
      * can be used to track preparation of the database. The
      * [metadata][google.longrunning.Operation.metadata] field type is
-     * [CreateDatabaseMetadata][google.spanner.admin.database.v1.CreateDatabaseMetadata]. The
-     * [response][google.longrunning.Operation.response] field type is
+     * [CreateDatabaseMetadata][google.spanner.admin.database.v1.CreateDatabaseMetadata].
+     * The [response][google.longrunning.Operation.response] field type is
      * [Database][google.spanner.admin.database.v1.Database], if successful.
      *
      * Sample code:
@@ -535,7 +535,8 @@ class DatabaseAdminGapicClient
      * the format `<database_name>/operations/<operation_id>` and can be used to
      * track execution of the schema change(s). The
      * [metadata][google.longrunning.Operation.metadata] field type is
-     * [UpdateDatabaseDdlMetadata][google.spanner.admin.database.v1.UpdateDatabaseDdlMetadata].  The operation has no response.
+     * [UpdateDatabaseDdlMetadata][google.spanner.admin.database.v1.UpdateDatabaseDdlMetadata].
+     * The operation has no response.
      *
      * Sample code:
      * ```
@@ -588,18 +589,20 @@ class DatabaseAdminGapicClient
      *
      *          Specifying an explicit operation ID simplifies determining
      *          whether the statements were executed in the event that the
-     *          [UpdateDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl] call is replayed,
-     *          or the return value is otherwise lost: the [database][google.spanner.admin.database.v1.UpdateDatabaseDdlRequest.database] and
-     *          `operation_id` fields can be combined to form the
+     *          [UpdateDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl]
+     *          call is replayed, or the return value is otherwise lost: the
+     *          [database][google.spanner.admin.database.v1.UpdateDatabaseDdlRequest.database]
+     *          and `operation_id` fields can be combined to form the
      *          [name][google.longrunning.Operation.name] of the resulting
-     *          [longrunning.Operation][google.longrunning.Operation]: `<database>/operations/<operation_id>`.
+     *          [longrunning.Operation][google.longrunning.Operation]:
+     *          `<database>/operations/<operation_id>`.
      *
      *          `operation_id` should be unique within the database, and must be
      *          a valid identifier: `[a-z][a-z0-9_]*`. Note that
      *          automatically-generated operation IDs always begin with an
      *          underscore. If the named operation already exists,
-     *          [UpdateDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl] returns
-     *          `ALREADY_EXISTS`.
+     *          [UpdateDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl]
+     *          returns `ALREADY_EXISTS`.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array

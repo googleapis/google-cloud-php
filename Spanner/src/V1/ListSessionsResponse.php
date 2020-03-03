@@ -23,8 +23,8 @@ class ListSessionsResponse extends \Google\Protobuf\Internal\Message
     private $sessions;
     /**
      * `next_page_token` can be sent in a subsequent
-     * [ListSessions][google.spanner.v1.Spanner.ListSessions] call to fetch more of the matching
-     * sessions.
+     * [ListSessions][google.spanner.v1.Spanner.ListSessions] call to fetch more
+     * of the matching sessions.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -40,8 +40,8 @@ class ListSessionsResponse extends \Google\Protobuf\Internal\Message
      *           The list of requested sessions.
      *     @type string $next_page_token
      *           `next_page_token` can be sent in a subsequent
-     *           [ListSessions][google.spanner.v1.Spanner.ListSessions] call to fetch more of the matching
-     *           sessions.
+     *           [ListSessions][google.spanner.v1.Spanner.ListSessions] call to fetch more
+     *           of the matching sessions.
      * }
      */
     public function __construct($data = NULL) {
@@ -77,8 +77,8 @@ class ListSessionsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * `next_page_token` can be sent in a subsequent
-     * [ListSessions][google.spanner.v1.Spanner.ListSessions] call to fetch more of the matching
-     * sessions.
+     * [ListSessions][google.spanner.v1.Spanner.ListSessions] call to fetch more
+     * of the matching sessions.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -90,8 +90,8 @@ class ListSessionsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * `next_page_token` can be sent in a subsequent
-     * [ListSessions][google.spanner.v1.Spanner.ListSessions] call to fetch more of the matching
-     * sessions.
+     * [ListSessions][google.spanner.v1.Spanner.ListSessions] call to fetch more
+     * of the matching sessions.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var
