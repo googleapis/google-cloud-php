@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListColumnSpecsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The resource name of the table spec to list column specs from.
+     * Required. The resource name of the table spec to list column specs from.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -57,7 +57,7 @@ class ListColumnSpecsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The resource name of the table spec to list column specs from.
+     *           Required. The resource name of the table spec to list column specs from.
      *     @type \Google\Protobuf\FieldMask $field_mask
      *           Mask specifying which fields to read.
      *     @type string $filter
@@ -78,9 +78,9 @@ class ListColumnSpecsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the table spec to list column specs from.
+     * Required. The resource name of the table spec to list column specs from.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -89,9 +89,9 @@ class ListColumnSpecsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the table spec to list column specs from.
+     * Required. The resource name of the table spec to list column specs from.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

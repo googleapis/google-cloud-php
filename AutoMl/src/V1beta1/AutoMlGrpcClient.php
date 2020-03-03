@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2019 Google LLC.
+// Copyright 2019 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-//
 //
 namespace Google\Cloud\AutoMl\V1beta1;
 
@@ -328,7 +327,8 @@ class AutoMlGrpcClient extends \Grpc\BaseStub {
      * [node_number][google.cloud.automl.v1beta1.ImageObjectDetectionModelDeploymentMetadata.node_number])
      *  will reset the deployment state without pausing the model's availability.
      *
-     * Only applicable for Text Classification, Image Object Detection and Tables; all other domains manage deployment automatically.
+     * Only applicable for Text Classification, Image Object Detection , Tables, and Image Segmentation; all other domains manage
+     * deployment automatically.
      *
      * Returns an empty response in the
      * [response][google.longrunning.Operation.response] field when it completes.

@@ -19,13 +19,13 @@ class ExportEvaluatedExamplesRequest extends \Google\Protobuf\Internal\Message
      * Required. The resource name of the model whose evaluated examples are to
      * be exported.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
      * Required. The desired output location and configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ExportEvaluatedExamplesOutputConfig output_config = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ExportEvaluatedExamplesOutputConfig output_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $output_config = null;
 
@@ -51,7 +51,7 @@ class ExportEvaluatedExamplesRequest extends \Google\Protobuf\Internal\Message
      * Required. The resource name of the model whose evaluated examples are to
      * be exported.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -63,7 +63,7 @@ class ExportEvaluatedExamplesRequest extends \Google\Protobuf\Internal\Message
      * Required. The resource name of the model whose evaluated examples are to
      * be exported.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -78,7 +78,7 @@ class ExportEvaluatedExamplesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The desired output location and configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ExportEvaluatedExamplesOutputConfig output_config = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ExportEvaluatedExamplesOutputConfig output_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\AutoMl\V1beta1\ExportEvaluatedExamplesOutputConfig
      */
     public function getOutputConfig()
@@ -89,7 +89,7 @@ class ExportEvaluatedExamplesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The desired output location and configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ExportEvaluatedExamplesOutputConfig output_config = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ExportEvaluatedExamplesOutputConfig output_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\AutoMl\V1beta1\ExportEvaluatedExamplesOutputConfig $var
      * @return $this
      */

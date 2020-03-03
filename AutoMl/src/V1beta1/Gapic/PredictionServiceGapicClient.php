@@ -338,7 +338,7 @@ class PredictionServiceGapicClient
      * }
      * ```
      *
-     * @param string         $name         Name of the model requested to serve the prediction.
+     * @param string         $name         Required. Name of the model requested to serve the prediction.
      * @param ExamplePayload $payload      Required. Payload to perform a prediction on. The payload must match the
      *                                     problem type that the model was trained to solve.
      * @param array          $optionalArgs {
@@ -362,12 +362,8 @@ class PredictionServiceGapicClient
      *                 boxes will be returned in the response. Default is 100, the
      *                 requested value may be limited by server.
      *          *  For Tables:
-     *             `feature_importance` - (boolean) Whether
-     *
-     *          [feature_importance][[google.cloud.automl.v1beta1.TablesModelColumnInfo.feature_importance]
-     *                 should be populated in the returned
-     *
-     *          [TablesAnnotation(-s)][[google.cloud.automl.v1beta1.TablesAnnotation].
+     *             feature_imp<span>ortan</span>ce - (boolean) Whether feature importance
+     *                 should be populated in the returned TablesAnnotation.
      *                 The default is false.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -406,14 +402,12 @@ class PredictionServiceGapicClient
     }
 
     /**
-     * Perform a batch prediction. Unlike the online
-     * [Predict][google.cloud.automl.v1beta1.PredictionService.Predict], batch
+     * Perform a batch prediction. Unlike the online [Predict][google.cloud.automl.v1beta1.PredictionService.Predict], batch
      * prediction result won't be immediately available in the response. Instead,
      * a long running operation object is returned. User can poll the operation
      * result via [GetOperation][google.longrunning.Operations.GetOperation]
-     * method. Once the operation is done,
-     * [BatchPredictResult][google.cloud.automl.v1beta1.BatchPredictResult] is
-     * returned in the [response][google.longrunning.Operation.response] field.
+     * method. Once the operation is done, [BatchPredictResult][google.cloud.automl.v1beta1.BatchPredictResult] is returned in
+     * the [response][google.longrunning.Operation.response] field.
      * Available for following ML problems:
      * * Image Classification
      * * Image Object Detection
@@ -462,7 +456,7 @@ class PredictionServiceGapicClient
      * }
      * ```
      *
-     * @param string                   $name         Name of the model requested to serve the batch prediction.
+     * @param string                   $name         Required. Name of the model requested to serve the batch prediction.
      * @param BatchPredictInputConfig  $inputConfig  Required. The input configuration for batch prediction.
      * @param BatchPredictOutputConfig $outputConfig Required. The Configuration specifying where output predictions should
      *                                               be written.
@@ -470,7 +464,7 @@ class PredictionServiceGapicClient
      *                                               Optional.
      *
      *     @type array $params
-     *          Additional domain-specific parameters for the predictions, any string must
+     *          Required. Additional domain-specific parameters for the predictions, any string must
      *          be up to 25000 characters long.
      *
      *          *  For Text Classification:
@@ -495,6 +489,7 @@ class PredictionServiceGapicClient
      *                 requested value may be limited by server.
      *
      *          *  For Video Classification :
+     *
      *             `score_threshold` - (float) A value from 0.0 to 1.0. When the model
      *                 makes predictions for a video, it will only produce results that
      *                 have at least this confidence score. The default is 0.5.
@@ -522,7 +517,14 @@ class PredictionServiceGapicClient
      *                 metrics provided to describe that quality. The default is
      *                 "false".
      *
+     *          *  For Tables:
+     *
+     *             feature_imp<span>ortan</span>ce - (boolean) Whether feature importance
+     *                 should be populated in the returned TablesAnnotations. The
+     *                 default is false.
+     *
      *          *  For Video Object Tracking:
+     *
      *             `score_threshold` - (float) When Model detects objects on video frames,
      *                 it will only produce bounding boxes which have at least this
      *                 confidence score. Value in 0 to 1 range, default is 0.5.

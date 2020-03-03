@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateTableSpecRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The table spec which replaces the resource on the server.
+     * Required. The table spec which replaces the resource on the server.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TableSpec table_spec = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TableSpec table_spec = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $table_spec = null;
     /**
@@ -35,7 +35,7 @@ class UpdateTableSpecRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\AutoMl\V1beta1\TableSpec $table_spec
-     *           The table spec which replaces the resource on the server.
+     *           Required. The table spec which replaces the resource on the server.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           The update mask applies to the resource.
      * }
@@ -46,9 +46,9 @@ class UpdateTableSpecRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The table spec which replaces the resource on the server.
+     * Required. The table spec which replaces the resource on the server.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TableSpec table_spec = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TableSpec table_spec = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\AutoMl\V1beta1\TableSpec
      */
     public function getTableSpec()
@@ -57,9 +57,9 @@ class UpdateTableSpecRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The table spec which replaces the resource on the server.
+     * Required. The table spec which replaces the resource on the server.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TableSpec table_spec = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TableSpec table_spec = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\AutoMl\V1beta1\TableSpec $var
      * @return $this
      */

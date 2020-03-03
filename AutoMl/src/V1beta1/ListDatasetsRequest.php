@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListDatasetsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The resource name of the project from which to list datasets.
+     * Required. The resource name of the project from which to list datasets.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -55,7 +55,7 @@ class ListDatasetsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The resource name of the project from which to list datasets.
+     *           Required. The resource name of the project from which to list datasets.
      *     @type string $filter
      *           An expression for filtering the results of the request.
      *             * `dataset_metadata` - for existence of the case (e.g.
@@ -78,9 +78,9 @@ class ListDatasetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the project from which to list datasets.
+     * Required. The resource name of the project from which to list datasets.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -89,9 +89,9 @@ class ListDatasetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the project from which to list datasets.
+     * Required. The resource name of the project from which to list datasets.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

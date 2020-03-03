@@ -9,9 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Describes the layout information of a
- * [text_segment][google.cloud.automl.v1beta1.Document.Layout.text_segment] in
- * the document.
+ * Describes the layout information of a [text_segment][google.cloud.automl.v1beta1.Document.Layout.text_segment] in the document.
  *
  * Generated from protobuf message <code>google.cloud.automl.v1beta1.Document.Layout</code>
  */
@@ -25,17 +23,15 @@ class Layout extends \Google\Protobuf\Internal\Message
      */
     private $text_segment = null;
     /**
-     * Page number of the
-     * [text_segment][google.cloud.automl.v1beta1.Document.Layout.text_segment]
-     * in the original document, starts from 1.
+     * Page number of the [text_segment][google.cloud.automl.v1beta1.Document.Layout.text_segment] in the original document, starts
+     * from 1.
      *
      * Generated from protobuf field <code>int32 page_number = 2;</code>
      */
     private $page_number = 0;
     /**
-     * The position of the
-     * [text_segment][google.cloud.automl.v1beta1.Document.Layout.text_segment]
-     * in the page. Contains exactly 4
+     * The position of the [text_segment][google.cloud.automl.v1beta1.Document.Layout.text_segment] in the page.
+     * Contains exactly 4
      * [normalized_vertices][google.cloud.automl.v1beta1.BoundingPoly.normalized_vertices]
      * and they are connected by edges in the order provided, which will
      * represent a rectangle parallel to the frame. The
@@ -47,9 +43,7 @@ class Layout extends \Google\Protobuf\Internal\Message
      */
     private $bounding_poly = null;
     /**
-     * The type of the
-     * [text_segment][google.cloud.automl.v1beta1.Document.Layout.text_segment]
-     * in document.
+     * The type of the [text_segment][google.cloud.automl.v1beta1.Document.Layout.text_segment] in document.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.Document.Layout.TextSegmentType text_segment_type = 4;</code>
      */
@@ -65,13 +59,11 @@ class Layout extends \Google\Protobuf\Internal\Message
      *           Text Segment that represents a segment in
      *           [document_text][google.cloud.automl.v1beta1.Document.document_text].
      *     @type int $page_number
-     *           Page number of the
-     *           [text_segment][google.cloud.automl.v1beta1.Document.Layout.text_segment]
-     *           in the original document, starts from 1.
+     *           Page number of the [text_segment][google.cloud.automl.v1beta1.Document.Layout.text_segment] in the original document, starts
+     *           from 1.
      *     @type \Google\Cloud\AutoMl\V1beta1\BoundingPoly $bounding_poly
-     *           The position of the
-     *           [text_segment][google.cloud.automl.v1beta1.Document.Layout.text_segment]
-     *           in the page. Contains exactly 4
+     *           The position of the [text_segment][google.cloud.automl.v1beta1.Document.Layout.text_segment] in the page.
+     *           Contains exactly 4
      *           [normalized_vertices][google.cloud.automl.v1beta1.BoundingPoly.normalized_vertices]
      *           and they are connected by edges in the order provided, which will
      *           represent a rectangle parallel to the frame. The
@@ -79,9 +71,7 @@ class Layout extends \Google\Protobuf\Internal\Message
      *           relative to the page.
      *           Coordinates are based on top-left as point (0,0).
      *     @type int $text_segment_type
-     *           The type of the
-     *           [text_segment][google.cloud.automl.v1beta1.Document.Layout.text_segment]
-     *           in document.
+     *           The type of the [text_segment][google.cloud.automl.v1beta1.Document.Layout.text_segment] in document.
      * }
      */
     public function __construct($data = NULL) {
@@ -118,9 +108,8 @@ class Layout extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Page number of the
-     * [text_segment][google.cloud.automl.v1beta1.Document.Layout.text_segment]
-     * in the original document, starts from 1.
+     * Page number of the [text_segment][google.cloud.automl.v1beta1.Document.Layout.text_segment] in the original document, starts
+     * from 1.
      *
      * Generated from protobuf field <code>int32 page_number = 2;</code>
      * @return int
@@ -131,9 +120,8 @@ class Layout extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Page number of the
-     * [text_segment][google.cloud.automl.v1beta1.Document.Layout.text_segment]
-     * in the original document, starts from 1.
+     * Page number of the [text_segment][google.cloud.automl.v1beta1.Document.Layout.text_segment] in the original document, starts
+     * from 1.
      *
      * Generated from protobuf field <code>int32 page_number = 2;</code>
      * @param int $var
@@ -148,9 +136,8 @@ class Layout extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The position of the
-     * [text_segment][google.cloud.automl.v1beta1.Document.Layout.text_segment]
-     * in the page. Contains exactly 4
+     * The position of the [text_segment][google.cloud.automl.v1beta1.Document.Layout.text_segment] in the page.
+     * Contains exactly 4
      * [normalized_vertices][google.cloud.automl.v1beta1.BoundingPoly.normalized_vertices]
      * and they are connected by edges in the order provided, which will
      * represent a rectangle parallel to the frame. The
@@ -167,9 +154,8 @@ class Layout extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The position of the
-     * [text_segment][google.cloud.automl.v1beta1.Document.Layout.text_segment]
-     * in the page. Contains exactly 4
+     * The position of the [text_segment][google.cloud.automl.v1beta1.Document.Layout.text_segment] in the page.
+     * Contains exactly 4
      * [normalized_vertices][google.cloud.automl.v1beta1.BoundingPoly.normalized_vertices]
      * and they are connected by edges in the order provided, which will
      * represent a rectangle parallel to the frame. The
@@ -190,9 +176,7 @@ class Layout extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The type of the
-     * [text_segment][google.cloud.automl.v1beta1.Document.Layout.text_segment]
-     * in document.
+     * The type of the [text_segment][google.cloud.automl.v1beta1.Document.Layout.text_segment] in document.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.Document.Layout.TextSegmentType text_segment_type = 4;</code>
      * @return int
@@ -203,9 +187,7 @@ class Layout extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The type of the
-     * [text_segment][google.cloud.automl.v1beta1.Document.Layout.text_segment]
-     * in document.
+     * The type of the [text_segment][google.cloud.automl.v1beta1.Document.Layout.text_segment] in document.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.Document.Layout.TextSegmentType text_segment_type = 4;</code>
      * @param int $var

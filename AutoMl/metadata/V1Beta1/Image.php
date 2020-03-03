@@ -14,18 +14,20 @@ class Image
         if (static::$is_initialized == true) {
           return;
         }
-        \GPBMetadata\Google\Api\Annotations::initOnce();
+        \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Automl\V1Beta1\AnnotationSpec::initOnce();
         \GPBMetadata\Google\Cloud\Automl\V1Beta1\Classification::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
+        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(hex2bin(
-            "0a9e080a27676f6f676c652f636c6f75642f6175746f6d6c2f7631626574" .
+            "0abc080a27676f6f676c652f636c6f75642f6175746f6d6c2f7631626574" .
             "61312f696d6167652e70726f746f121b676f6f676c652e636c6f75642e61" .
             "75746f6d6c2e763162657461311a31676f6f676c652f636c6f75642f6175" .
             "746f6d6c2f763162657461312f616e6e6f746174696f6e5f737065632e70" .
             "726f746f1a30676f6f676c652f636c6f75642f6175746f6d6c2f76316265" .
             "7461312f636c617373696669636174696f6e2e70726f746f1a1f676f6f67" .
-            "6c652f70726f746f6275662f74696d657374616d702e70726f746f22720a" .
+            "6c652f70726f746f6275662f74696d657374616d702e70726f746f1a1c67" .
+            "6f6f676c652f6170692f616e6e6f746174696f6e732e70726f746f22720a" .
             "22496d616765436c617373696669636174696f6e446174617365744d6574" .
             "6164617461124c0a13636c617373696669636174696f6e5f747970651801" .
             "2001280e322f2e676f6f676c652e636c6f75642e6175746f6d6c2e763162" .
