@@ -70,24 +70,6 @@ class DatabaseTest extends TestCase
     private $database;
     private $session;
 
-    private static $databaseName;
-    private static $sessionName;
-    private $getDatabaseArgs;
-    private static $beginTransactionArgs;
-    private static $commitArgs;
-    private static $rollbackArgs;
-
-    public static function setUpBeforeClass()
-    {
-        self::$databaseName = SpannerClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE);
-        self::$sessionName = SpannerClient::sessionName(self::PROJECT, self::INSTANCE, self::DATABASE, self::SESSION);
-        self::$beginTransactionArgs = Argument::allOf(
-            Argument::withEntry('session', self::$sessionName),
-            Argument::withEntry('database', self::DATABASE)
-        );
-        self::$commitArgs = self::$beginTransactionArgs;
-        self::$rollbackArgs = self::$commitArgs;
-    }
 
     public function setUp()
     {
@@ -130,7 +112,6 @@ class DatabaseTest extends TestCase
         ];
 
         $this->database = TestHelpers::stub(Database::class, $args, $props);
-        $this->getDatabaseArgs = Argument::withEntry('name', $this->database->name());
     }
 
     public function testName()
@@ -147,7 +128,7 @@ class DatabaseTest extends TestCase
             'name' => $this->database->name()
         ];
 
-        $this->connection->getDatabase($this->getDatabaseArgs)
+        $this->connection->getDatabase(Argument::withEntry('name', $this->database->name()))
             ->shouldBeCalledTimes(1)
             ->willReturn($res);
 
@@ -165,7 +146,7 @@ class DatabaseTest extends TestCase
             'name' => $this->database->name()
         ];
 
-        $this->connection->getDatabase($this->getDatabaseArgs)
+        $this->connection->getDatabase(Argument::withEntry('name', $this->database->name()))
             ->shouldBeCalledTimes(2)
             ->willReturn($res);
 
@@ -197,7 +178,7 @@ class DatabaseTest extends TestCase
      */
     public function testExistsNotFound()
     {
-        $this->connection->getDatabase($this->getDatabaseArgs)
+        $this->connection->getDatabase(Argument::withEntry('name', $this->database->name()))
             ->shouldBeCalled()
             ->willThrow(new NotFoundException('', 404));
 
@@ -307,13 +288,16 @@ class DatabaseTest extends TestCase
      */
     public function testDropDeleteSession()
     {
-        $this->connection->createSession(Argument::withEntry('database', self::$databaseName))
+        $this->connection->createSession(Argument::withEntry('database', $this->database->name()))
             ->shouldBeCalled()
             ->willReturn([
-                'name' => self::$sessionName
+                'name' => $this->session->name()
             ]);
 
-        $this->connection->beginTransaction(self::$beginTransactionArgs)
+        $this->connection->beginTransaction(Argument::allOf(
+            Argument::withEntry('session', $this->session->name()),
+            Argument::withEntry('database', self::DATABASE)
+        ))
             ->shouldBeCalled()
             ->willReturn([
                 'id' => self::TRANSACTION
@@ -321,7 +305,7 @@ class DatabaseTest extends TestCase
 
         $this->connection->deleteSession(Argument::allOf(
             Argument::withEntry('database', self::DATABASE),
-            Argument::withEntry('name', self::$sessionName)
+            Argument::withEntry('name', $this->session->name())
         ))
             ->shouldBeCalled();
 
@@ -498,12 +482,18 @@ class DatabaseTest extends TestCase
             ]
         ]);
 
-        $this->connection->beginTransaction(self::$beginTransactionArgs)
+        $this->connection->beginTransaction(Argument::allOf(
+            Argument::withEntry('session', $this->session->name()),
+            Argument::withEntry('database', self::DATABASE)
+        ))
             ->shouldBeCalledTimes(3)
             ->willReturn(['id' => self::TRANSACTION]);
 
         $it = 0;
-        $this->connection->commit(self::$commitArgs)
+        $this->connection->commit(Argument::allOf(
+            Argument::withEntry('session', $this->session->name()),
+            Argument::withEntry('database', self::DATABASE)
+        ))
             ->shouldBeCalledTimes(3)
             ->will(function () use (&$it, $abort) {
                 $it++;
@@ -541,12 +531,18 @@ class DatabaseTest extends TestCase
             ]
         ]);
 
-        $this->connection->beginTransaction(self::$beginTransactionArgs)
+        $this->connection->beginTransaction(Argument::allOf(
+            Argument::withEntry('session', $this->session->name()),
+            Argument::withEntry('database', self::DATABASE)
+        ))
             ->shouldBeCalledTimes(Database::MAX_RETRIES + 1)
             ->willReturn(['id' => self::TRANSACTION]);
 
         $it = 0;
-        $this->connection->commit(self::$commitArgs)
+        $this->connection->commit(Argument::allOf(
+            Argument::withEntry('session', $this->session->name()),
+            Argument::withEntry('database', self::DATABASE)
+        ))
             ->shouldBeCalledTimes(Database::MAX_RETRIES + 1)
             ->will(function () use (&$it, $abort) {
                 $it++;
@@ -988,7 +984,7 @@ class DatabaseTest extends TestCase
     public function testCloseNoPool()
     {
         $this->connection->deleteSession(Argument::allOf(
-            Argument::withEntry('name', self::$sessionName),
+            Argument::withEntry('name', $this->session->name()),
             Argument::withEntry('database', self::DATABASE)
         ))
             ->shouldBeCalled()
