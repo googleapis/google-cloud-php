@@ -367,7 +367,10 @@ class DatabaseTest extends TestCase
 
     public function testSnapshot()
     {
-        $this->connection->beginTransaction(Argument::any())
+        $this->connection->beginTransaction(Argument::allOf(
+            Argument::withEntry('session', $this->session->name()),
+            Argument::withEntry('database', self::DATABASE)
+        ))
             ->shouldBeCalled()
             ->willReturn(['id' => self::TRANSACTION]);
 
@@ -398,7 +401,10 @@ class DatabaseTest extends TestCase
      */
     public function testSnapshotNestedTransaction()
     {
-        $this->connection->beginTransaction(Argument::any())
+        $this->connection->beginTransaction(Argument::allOf(
+            Argument::withEntry('session', $this->session->name()),
+            Argument::withEntry('database', self::DATABASE)
+        ))
             ->shouldBeCalled()
             ->willReturn(['id' => self::TRANSACTION]);
 
@@ -414,11 +420,17 @@ class DatabaseTest extends TestCase
 
     public function testRunTransaction()
     {
-        $this->connection->beginTransaction(Argument::any())
+        $this->connection->beginTransaction(Argument::allOf(
+            Argument::withEntry('session', $this->session->name()),
+            Argument::withEntry('database', self::DATABASE)
+        ))
             ->shouldBeCalled()
             ->willReturn(['id' => self::TRANSACTION]);
 
-        $this->connection->commit(Argument::any())
+        $this->connection->commit(Argument::allOf(
+            Argument::withEntry('session', $this->session->name()),
+            Argument::withEntry('database', self::DATABASE)
+        ))
             ->shouldBeCalled()
             ->willReturn(['commitTimestamp' => '2017-01-09T18:05:22.534799Z']);
 
@@ -440,11 +452,17 @@ class DatabaseTest extends TestCase
      */
     public function testRunTransactionNoCommit()
     {
-        $this->connection->beginTransaction(Argument::any())
+        $this->connection->beginTransaction(Argument::allOf(
+            Argument::withEntry('session', $this->session->name()),
+            Argument::withEntry('database', self::DATABASE)
+        ))
             ->shouldBeCalled()
             ->willReturn(['id' => self::TRANSACTION]);
 
-        $this->connection->rollback(Argument::any())
+        $this->connection->rollback(Argument::allOf(
+            Argument::withEntry('session', $this->session->name()),
+            Argument::withEntry('database', self::DATABASE)
+        ))
             ->shouldBeCalled();
 
         $this->refreshOperation($this->database, $this->connection->reveal());
@@ -457,7 +475,10 @@ class DatabaseTest extends TestCase
      */
     public function testRunTransactionNestedTransaction()
     {
-        $this->connection->beginTransaction(Argument::any())
+        $this->connection->beginTransaction(Argument::allOf(
+            Argument::withEntry('session', $this->session->name()),
+            Argument::withEntry('database', self::DATABASE)
+        ))
             ->shouldBeCalled()
             ->willReturn(['id' => self::TRANSACTION]);
 
@@ -563,7 +584,10 @@ class DatabaseTest extends TestCase
 
     public function testTransaction()
     {
-        $this->connection->beginTransaction(Argument::any())
+        $this->connection->beginTransaction(Argument::allOf(
+            Argument::withEntry('session', $this->session->name()),
+            Argument::withEntry('database', self::DATABASE)
+        ))
             ->shouldBeCalled()
             ->willReturn(['id' => self::TRANSACTION]);
 
@@ -578,7 +602,10 @@ class DatabaseTest extends TestCase
      */
     public function testTransactionNestedTransaction()
     {
-        $this->connection->beginTransaction(Argument::any())
+        $this->connection->beginTransaction(Argument::allOf(
+            Argument::withEntry('session', $this->session->name()),
+            Argument::withEntry('database', self::DATABASE)
+        ))
             ->shouldBeCalled()
             ->willReturn(['id' => self::TRANSACTION]);
 
