@@ -133,7 +133,8 @@ class DocumentSnapshotTest extends TestCase
                 'd' => [
                     'e' => 'f'
                 ]
-            ]
+            ],
+            'null' => null,
         ];
 
         $this->snapshot->___setProperty('data', $fields);
@@ -141,6 +142,7 @@ class DocumentSnapshotTest extends TestCase
         $this->assertEquals('bar', $this->snapshot->get('foo'));
         $this->assertEquals('c', $this->snapshot->get('a.b'));
         $this->assertEquals('f', $this->snapshot->get('a.d.e'));
+        $this->assertNull($this->snapshot->get('null'));
     }
 
     public function testGetWithFieldPath()
@@ -152,7 +154,8 @@ class DocumentSnapshotTest extends TestCase
                 'd' => [
                     'e' => 'f'
                 ]
-            ]
+            ],
+            'null' => null,
         ];
 
         $this->snapshot->___setProperty('data', $fields);
@@ -160,6 +163,7 @@ class DocumentSnapshotTest extends TestCase
         $this->assertEquals('bar', $this->snapshot->get(new FieldPath(['foo'])));
         $this->assertEquals('c', $this->snapshot->get(new FieldPath(['a', 'b'])));
         $this->assertEquals('f', $this->snapshot->get(new FieldPath(['a', 'd', 'e'])));
+        $this->assertNull($this->snapshot->get(new FieldPath(['null'])));
     }
 
     /**
