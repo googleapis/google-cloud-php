@@ -791,7 +791,7 @@ class StorageObject
      *
      * ```
      * // Using Bucket-Bound hostnames
-     * // By default, a custom bucket-bound hostname will use `http` as the schema rather than `https.
+     * // By default, a custom bucket-bound hostname will use `http` as the schema rather than `https`.
      * // In order to get an https URI, we need to specify the proper scheme.
      * $url = $object->signedUrl(new \DateTime('tomorrow'), [
      *     'version' => 'v4',
