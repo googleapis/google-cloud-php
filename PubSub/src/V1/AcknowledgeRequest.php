@@ -23,8 +23,9 @@ class AcknowledgeRequest extends \Google\Protobuf\Internal\Message
      */
     private $subscription = '';
     /**
-     * Required. The acknowledgment ID for the messages being acknowledged that was returned
-     * by the Pub/Sub system in the `Pull` response. Must not be empty.
+     * Required. The acknowledgment ID for the messages being acknowledged that
+     * was returned by the Pub/Sub system in the `Pull` response. Must not be
+     * empty.
      *
      * Generated from protobuf field <code>repeated string ack_ids = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -40,8 +41,9 @@ class AcknowledgeRequest extends \Google\Protobuf\Internal\Message
      *           Required. The subscription whose message is being acknowledged.
      *           Format is `projects/{project}/subscriptions/{sub}`.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $ack_ids
-     *           Required. The acknowledgment ID for the messages being acknowledged that was returned
-     *           by the Pub/Sub system in the `Pull` response. Must not be empty.
+     *           Required. The acknowledgment ID for the messages being acknowledged that
+     *           was returned by the Pub/Sub system in the `Pull` response. Must not be
+     *           empty.
      * }
      */
     public function __construct($data = NULL) {
@@ -78,8 +80,9 @@ class AcknowledgeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The acknowledgment ID for the messages being acknowledged that was returned
-     * by the Pub/Sub system in the `Pull` response. Must not be empty.
+     * Required. The acknowledgment ID for the messages being acknowledged that
+     * was returned by the Pub/Sub system in the `Pull` response. Must not be
+     * empty.
      *
      * Generated from protobuf field <code>repeated string ack_ids = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -90,8 +93,9 @@ class AcknowledgeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The acknowledgment ID for the messages being acknowledged that was returned
-     * by the Pub/Sub system in the `Pull` response. Must not be empty.
+     * Required. The acknowledgment ID for the messages being acknowledged that
+     * was returned by the Pub/Sub system in the `Pull` response. Must not be
+     * empty.
      *
      * Generated from protobuf field <code>repeated string ack_ids = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
