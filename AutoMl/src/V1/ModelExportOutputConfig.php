@@ -22,7 +22,8 @@ class ModelExportOutputConfig extends \Google\Protobuf\Internal\Message
      * exportable):
      * *  For Image Classification mobile-low-latency-1, mobile-versatile-1,
      *        mobile-high-accuracy-1:
-     *      "tflite" (default), "edgetpu_tflite", "tf_saved_model", "tf_js".
+     *      "tflite" (default), "edgetpu_tflite", "tf_saved_model", "tf_js",
+     *      "docker".
      * *  For Image Classification mobile-core-ml-low-latency-1,
      *        mobile-core-ml-versatile-1, mobile-core-ml-high-accuracy-1:
      *      "core_ml" (default).
@@ -35,7 +36,13 @@ class ModelExportOutputConfig extends \Google\Protobuf\Internal\Message
      *                    devices.
      * * tf_saved_model - A tensorflow model in SavedModel format.
      * * tf_js - A [TensorFlow.js](https://www.tensorflow.org/js) model that can
-     *           be used in the browser and in Node.js using JavaScript.x`
+     *           be used in the browser and in Node.js using JavaScript.
+     * * docker - Used for Docker containers. Use the params field to customize
+     *            the container. The container is verified to work correctly on
+     *            ubuntu 16.04 operating system. See more at
+     *            [containers
+     * quickstart](https:
+     * //cloud.google.com/vision/automl/docs/containers-gcs-quickstart)
      * * core_ml - Used for iOS mobile devices.
      *
      * Generated from protobuf field <code>string model_format = 4;</code>
@@ -45,6 +52,9 @@ class ModelExportOutputConfig extends \Google\Protobuf\Internal\Message
      * Additional model-type and format specific parameters describing the
      * requirements for the to be exported model files, any string must be up to
      * 25000 characters long.
+     *  * For `docker` format:
+     *     `cpu_architecture` - (string) "x86_64" (default).
+     *     `gpu_architecture` - (string) "none" (default), "nvidia".
      *
      * Generated from protobuf field <code>map<string, string> params = 2;</code>
      */
@@ -58,9 +68,8 @@ class ModelExportOutputConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\AutoMl\V1\GcsDestination $gcs_destination
-     *           Required. The Google Cloud Storage location where the model is to be
-     *           written to. This location may only be set for the following model
-     *           formats:
+     *           Required. The Google Cloud Storage location where the model is to be written to.
+     *           This location may only be set for the following model formats:
      *             "tflite", "edgetpu_tflite", "tf_saved_model", "tf_js", "core_ml".
      *            Under the directory given as the destination a new one with name
      *            "model-export-<model-display-name>-<timestamp-of-export-call>",
@@ -74,7 +83,8 @@ class ModelExportOutputConfig extends \Google\Protobuf\Internal\Message
      *           exportable):
      *           *  For Image Classification mobile-low-latency-1, mobile-versatile-1,
      *                  mobile-high-accuracy-1:
-     *                "tflite" (default), "edgetpu_tflite", "tf_saved_model", "tf_js".
+     *                "tflite" (default), "edgetpu_tflite", "tf_saved_model", "tf_js",
+     *                "docker".
      *           *  For Image Classification mobile-core-ml-low-latency-1,
      *                  mobile-core-ml-versatile-1, mobile-core-ml-high-accuracy-1:
      *                "core_ml" (default).
@@ -87,12 +97,21 @@ class ModelExportOutputConfig extends \Google\Protobuf\Internal\Message
      *                              devices.
      *           * tf_saved_model - A tensorflow model in SavedModel format.
      *           * tf_js - A [TensorFlow.js](https://www.tensorflow.org/js) model that can
-     *                     be used in the browser and in Node.js using JavaScript.x`
+     *                     be used in the browser and in Node.js using JavaScript.
+     *           * docker - Used for Docker containers. Use the params field to customize
+     *                      the container. The container is verified to work correctly on
+     *                      ubuntu 16.04 operating system. See more at
+     *                      [containers
+     *           quickstart](https:
+     *           //cloud.google.com/vision/automl/docs/containers-gcs-quickstart)
      *           * core_ml - Used for iOS mobile devices.
      *     @type array|\Google\Protobuf\Internal\MapField $params
      *           Additional model-type and format specific parameters describing the
      *           requirements for the to be exported model files, any string must be up to
      *           25000 characters long.
+     *            * For `docker` format:
+     *               `cpu_architecture` - (string) "x86_64" (default).
+     *               `gpu_architecture` - (string) "none" (default), "nvidia".
      * }
      */
     public function __construct($data = NULL) {
@@ -101,9 +120,8 @@ class ModelExportOutputConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Google Cloud Storage location where the model is to be
-     * written to. This location may only be set for the following model
-     * formats:
+     * Required. The Google Cloud Storage location where the model is to be written to.
+     * This location may only be set for the following model formats:
      *   "tflite", "edgetpu_tflite", "tf_saved_model", "tf_js", "core_ml".
      *  Under the directory given as the destination a new one with name
      *  "model-export-<model-display-name>-<timestamp-of-export-call>",
@@ -120,9 +138,8 @@ class ModelExportOutputConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Google Cloud Storage location where the model is to be
-     * written to. This location may only be set for the following model
-     * formats:
+     * Required. The Google Cloud Storage location where the model is to be written to.
+     * This location may only be set for the following model formats:
      *   "tflite", "edgetpu_tflite", "tf_saved_model", "tf_js", "core_ml".
      *  Under the directory given as the destination a new one with name
      *  "model-export-<model-display-name>-<timestamp-of-export-call>",
@@ -149,7 +166,8 @@ class ModelExportOutputConfig extends \Google\Protobuf\Internal\Message
      * exportable):
      * *  For Image Classification mobile-low-latency-1, mobile-versatile-1,
      *        mobile-high-accuracy-1:
-     *      "tflite" (default), "edgetpu_tflite", "tf_saved_model", "tf_js".
+     *      "tflite" (default), "edgetpu_tflite", "tf_saved_model", "tf_js",
+     *      "docker".
      * *  For Image Classification mobile-core-ml-low-latency-1,
      *        mobile-core-ml-versatile-1, mobile-core-ml-high-accuracy-1:
      *      "core_ml" (default).
@@ -162,7 +180,13 @@ class ModelExportOutputConfig extends \Google\Protobuf\Internal\Message
      *                    devices.
      * * tf_saved_model - A tensorflow model in SavedModel format.
      * * tf_js - A [TensorFlow.js](https://www.tensorflow.org/js) model that can
-     *           be used in the browser and in Node.js using JavaScript.x`
+     *           be used in the browser and in Node.js using JavaScript.
+     * * docker - Used for Docker containers. Use the params field to customize
+     *            the container. The container is verified to work correctly on
+     *            ubuntu 16.04 operating system. See more at
+     *            [containers
+     * quickstart](https:
+     * //cloud.google.com/vision/automl/docs/containers-gcs-quickstart)
      * * core_ml - Used for iOS mobile devices.
      *
      * Generated from protobuf field <code>string model_format = 4;</code>
@@ -180,7 +204,8 @@ class ModelExportOutputConfig extends \Google\Protobuf\Internal\Message
      * exportable):
      * *  For Image Classification mobile-low-latency-1, mobile-versatile-1,
      *        mobile-high-accuracy-1:
-     *      "tflite" (default), "edgetpu_tflite", "tf_saved_model", "tf_js".
+     *      "tflite" (default), "edgetpu_tflite", "tf_saved_model", "tf_js",
+     *      "docker".
      * *  For Image Classification mobile-core-ml-low-latency-1,
      *        mobile-core-ml-versatile-1, mobile-core-ml-high-accuracy-1:
      *      "core_ml" (default).
@@ -193,7 +218,13 @@ class ModelExportOutputConfig extends \Google\Protobuf\Internal\Message
      *                    devices.
      * * tf_saved_model - A tensorflow model in SavedModel format.
      * * tf_js - A [TensorFlow.js](https://www.tensorflow.org/js) model that can
-     *           be used in the browser and in Node.js using JavaScript.x`
+     *           be used in the browser and in Node.js using JavaScript.
+     * * docker - Used for Docker containers. Use the params field to customize
+     *            the container. The container is verified to work correctly on
+     *            ubuntu 16.04 operating system. See more at
+     *            [containers
+     * quickstart](https:
+     * //cloud.google.com/vision/automl/docs/containers-gcs-quickstart)
      * * core_ml - Used for iOS mobile devices.
      *
      * Generated from protobuf field <code>string model_format = 4;</code>
@@ -212,6 +243,9 @@ class ModelExportOutputConfig extends \Google\Protobuf\Internal\Message
      * Additional model-type and format specific parameters describing the
      * requirements for the to be exported model files, any string must be up to
      * 25000 characters long.
+     *  * For `docker` format:
+     *     `cpu_architecture` - (string) "x86_64" (default).
+     *     `gpu_architecture` - (string) "none" (default), "nvidia".
      *
      * Generated from protobuf field <code>map<string, string> params = 2;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -225,6 +259,9 @@ class ModelExportOutputConfig extends \Google\Protobuf\Internal\Message
      * Additional model-type and format specific parameters describing the
      * requirements for the to be exported model files, any string must be up to
      * 25000 characters long.
+     *  * For `docker` format:
+     *     `cpu_architecture` - (string) "x86_64" (default).
+     *     `gpu_architecture` - (string) "none" (default), "nvidia".
      *
      * Generated from protobuf field <code>map<string, string> params = 2;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

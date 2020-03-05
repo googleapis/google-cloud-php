@@ -9,9 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for
- * [AutoMl.ExportModel][google.cloud.automl.v1.AutoMl.ExportModel]. Models need
- * to be enabled for exporting, otherwise an error code will be returned.
+ * Request message for [AutoMl.ExportModel][google.cloud.automl.v1.AutoMl.ExportModel].
+ * Models need to be enabled for exporting, otherwise an error code will be
+ * returned.
  *
  * Generated from protobuf message <code>google.cloud.automl.v1.ExportModelRequest</code>
  */
@@ -20,13 +20,13 @@ class ExportModelRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the model to export.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
      * Required. The desired output location and configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1.ModelExportOutputConfig output_config = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1.ModelExportOutputConfig output_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $output_config = null;
 
@@ -50,7 +50,7 @@ class ExportModelRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the model to export.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -61,7 +61,7 @@ class ExportModelRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the model to export.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -76,7 +76,7 @@ class ExportModelRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The desired output location and configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1.ModelExportOutputConfig output_config = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1.ModelExportOutputConfig output_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\AutoMl\V1\ModelExportOutputConfig
      */
     public function getOutputConfig()
@@ -87,7 +87,7 @@ class ExportModelRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The desired output location and configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1.ModelExportOutputConfig output_config = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1.ModelExportOutputConfig output_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\AutoMl\V1\ModelExportOutputConfig $var
      * @return $this
      */

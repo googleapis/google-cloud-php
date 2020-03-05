@@ -24,10 +24,8 @@ class AnnotationSpec extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Required.
-     * The name of the annotation spec to show in the interface. The name can be
+     * Required. The name of the annotation spec to show in the interface. The name can be
      * up to 32 characters long and must match the regexp `[a-zA-Z0-9_]+`.
-     * (_), and ASCII digits 0-9.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
@@ -51,10 +49,8 @@ class AnnotationSpec extends \Google\Protobuf\Internal\Message
      *           Form:
      *           'projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationSpecs/{annotation_spec_id}'
      *     @type string $display_name
-     *           Required.
-     *           The name of the annotation spec to show in the interface. The name can be
+     *           Required. The name of the annotation spec to show in the interface. The name can be
      *           up to 32 characters long and must match the regexp `[a-zA-Z0-9_]+`.
-     *           (_), and ASCII digits 0-9.
      *     @type int $example_count
      *           Output only. The number of examples in the parent dataset
      *           labeled by the annotation spec.
@@ -96,10 +92,8 @@ class AnnotationSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The name of the annotation spec to show in the interface. The name can be
+     * Required. The name of the annotation spec to show in the interface. The name can be
      * up to 32 characters long and must match the regexp `[a-zA-Z0-9_]+`.
-     * (_), and ASCII digits 0-9.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      * @return string
@@ -110,10 +104,8 @@ class AnnotationSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The name of the annotation spec to show in the interface. The name can be
+     * Required. The name of the annotation spec to show in the interface. The name can be
      * up to 32 characters long and must match the regexp `[a-zA-Z0-9_]+`.
-     * (_), and ASCII digits 0-9.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      * @param string $var
