@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2019 Google LLC
+ * Copyright 2020 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,9 +20,9 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\SecurityCenter\Tests\Unit\V1;
+namespace Google\Cloud\SecurityCenter\Tests\Unit\V1p1beta1;
 
-use Google\Cloud\SecurityCenter\V1\SecurityCenterClient;
+use Google\Cloud\SecurityCenter\V1p1beta1\SecurityCenterClient;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
@@ -30,22 +30,22 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
-use Google\Cloud\SecurityCenter\V1\Finding;
-use Google\Cloud\SecurityCenter\V1\Finding\State;
-use Google\Cloud\SecurityCenter\V1\GroupAssetsResponse;
-use Google\Cloud\SecurityCenter\V1\GroupFindingsResponse;
-use Google\Cloud\SecurityCenter\V1\GroupResult;
-use Google\Cloud\SecurityCenter\V1\ListAssetsResponse;
-use Google\Cloud\SecurityCenter\V1\ListAssetsResponse\ListAssetsResult;
-use Google\Cloud\SecurityCenter\V1\ListFindingsResponse;
-use Google\Cloud\SecurityCenter\V1\ListFindingsResponse\ListFindingsResult;
-use Google\Cloud\SecurityCenter\V1\ListNotificationConfigsResponse;
-use Google\Cloud\SecurityCenter\V1\ListSourcesResponse;
-use Google\Cloud\SecurityCenter\V1\NotificationConfig;
-use Google\Cloud\SecurityCenter\V1\OrganizationSettings;
-use Google\Cloud\SecurityCenter\V1\RunAssetDiscoveryResponse;
-use Google\Cloud\SecurityCenter\V1\SecurityMarks;
-use Google\Cloud\SecurityCenter\V1\Source;
+use Google\Cloud\SecurityCenter\V1p1beta1\Finding;
+use Google\Cloud\SecurityCenter\V1p1beta1\Finding\State;
+use Google\Cloud\SecurityCenter\V1p1beta1\GroupAssetsResponse;
+use Google\Cloud\SecurityCenter\V1p1beta1\GroupFindingsResponse;
+use Google\Cloud\SecurityCenter\V1p1beta1\GroupResult;
+use Google\Cloud\SecurityCenter\V1p1beta1\ListAssetsResponse;
+use Google\Cloud\SecurityCenter\V1p1beta1\ListAssetsResponse\ListAssetsResult;
+use Google\Cloud\SecurityCenter\V1p1beta1\ListFindingsResponse;
+use Google\Cloud\SecurityCenter\V1p1beta1\ListFindingsResponse\ListFindingsResult;
+use Google\Cloud\SecurityCenter\V1p1beta1\ListNotificationConfigsResponse;
+use Google\Cloud\SecurityCenter\V1p1beta1\ListSourcesResponse;
+use Google\Cloud\SecurityCenter\V1p1beta1\NotificationConfig;
+use Google\Cloud\SecurityCenter\V1p1beta1\OrganizationSettings;
+use Google\Cloud\SecurityCenter\V1p1beta1\RunAssetDiscoveryResponse;
+use Google\Cloud\SecurityCenter\V1p1beta1\SecurityMarks;
+use Google\Cloud\SecurityCenter\V1p1beta1\Source;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -93,329 +93,6 @@ class SecurityCenterClientTest extends GeneratedTest
     /**
      * @test
      */
-    public function getIamPolicyTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        // Mock response
-        $version = 351608024;
-        $etag = '21';
-        $expectedResponse = new Policy();
-        $expectedResponse->setVersion($version);
-        $expectedResponse->setEtag($etag);
-        $transport->addResponse($expectedResponse);
-
-        // Mock request
-        $resource = 'resource-341064690';
-
-        $response = $client->getIamPolicy($resource);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/GetIamPolicy', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getResource();
-
-        $this->assertProtobufEquals($resource, $actualValue);
-
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function getIamPolicyExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
-        // Mock request
-        $resource = 'resource-341064690';
-
-        try {
-            $client->getIamPolicy($resource);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function groupAssetsTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        // Mock response
-        $nextPageToken = '';
-        $totalSize = 705419236;
-        $groupByResultsElement = new GroupResult();
-        $groupByResults = [$groupByResultsElement];
-        $expectedResponse = new GroupAssetsResponse();
-        $expectedResponse->setNextPageToken($nextPageToken);
-        $expectedResponse->setTotalSize($totalSize);
-        $expectedResponse->setGroupByResults($groupByResults);
-        $transport->addResponse($expectedResponse);
-
-        // Mock request
-        $formattedParent = $client->organizationName('[ORGANIZATION]');
-        $groupBy = 'groupBy506361367';
-
-        $response = $client->groupAssets($formattedParent, $groupBy);
-        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
-        $resources = iterator_to_array($response->iterateAllElements());
-        $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getGroupByResults()[0], $resources[0]);
-
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/GroupAssets', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getParent();
-
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getGroupBy();
-
-        $this->assertProtobufEquals($groupBy, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function groupAssetsExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
-        // Mock request
-        $formattedParent = $client->organizationName('[ORGANIZATION]');
-        $groupBy = 'groupBy506361367';
-
-        try {
-            $client->groupAssets($formattedParent, $groupBy);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function groupFindingsTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        // Mock response
-        $nextPageToken = '';
-        $totalSize = 705419236;
-        $groupByResultsElement = new GroupResult();
-        $groupByResults = [$groupByResultsElement];
-        $expectedResponse = new GroupFindingsResponse();
-        $expectedResponse->setNextPageToken($nextPageToken);
-        $expectedResponse->setTotalSize($totalSize);
-        $expectedResponse->setGroupByResults($groupByResults);
-        $transport->addResponse($expectedResponse);
-
-        // Mock request
-        $formattedParent = $client->sourceName('[ORGANIZATION]', '[SOURCE]');
-        $groupBy = 'groupBy506361367';
-
-        $response = $client->groupFindings($formattedParent, $groupBy);
-        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
-        $resources = iterator_to_array($response->iterateAllElements());
-        $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getGroupByResults()[0], $resources[0]);
-
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/GroupFindings', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getParent();
-
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getGroupBy();
-
-        $this->assertProtobufEquals($groupBy, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function groupFindingsExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
-        // Mock request
-        $formattedParent = $client->sourceName('[ORGANIZATION]', '[SOURCE]');
-        $groupBy = 'groupBy506361367';
-
-        try {
-            $client->groupFindings($formattedParent, $groupBy);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function testIamPermissionsTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        // Mock response
-        $expectedResponse = new TestIamPermissionsResponse();
-        $transport->addResponse($expectedResponse);
-
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-
-        $response = $client->testIamPermissions($resource, $permissions);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/TestIamPermissions', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getResource();
-
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPermissions();
-
-        $this->assertProtobufEquals($permissions, $actualValue);
-
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function testIamPermissionsExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-
-        try {
-            $client->testIamPermissions($resource, $permissions);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
     public function createSourceTest()
     {
         $transport = $this->createTransport();
@@ -443,7 +120,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/CreateSource', $actualFuncCall);
+        $this->assertSame('/google.cloud.securitycenter.v1p1beta1.SecurityCenter/CreateSource', $actualFuncCall);
 
         $actualValue = $actualRequestObject->getParent();
 
@@ -530,7 +207,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/CreateFinding', $actualFuncCall);
+        $this->assertSame('/google.cloud.securitycenter.v1p1beta1.SecurityCenter/CreateFinding', $actualFuncCall);
 
         $actualValue = $actualRequestObject->getParent();
 
@@ -619,7 +296,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/CreateNotificationConfig', $actualFuncCall);
+        $this->assertSame('/google.cloud.securitycenter.v1p1beta1.SecurityCenter/CreateNotificationConfig', $actualFuncCall);
 
         $actualValue = $actualRequestObject->getParent();
 
@@ -697,7 +374,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/DeleteNotificationConfig', $actualFuncCall);
+        $this->assertSame('/google.cloud.securitycenter.v1p1beta1.SecurityCenter/DeleteNotificationConfig', $actualFuncCall);
 
         $actualValue = $actualRequestObject->getName();
 
@@ -748,6 +425,81 @@ class SecurityCenterClientTest extends GeneratedTest
     /**
      * @test
      */
+    public function getIamPolicyTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $version = 351608024;
+        $etag = '21';
+        $expectedResponse = new Policy();
+        $expectedResponse->setVersion($version);
+        $expectedResponse->setEtag($etag);
+        $transport->addResponse($expectedResponse);
+
+        // Mock request
+        $resource = 'resource-341064690';
+
+        $response = $client->getIamPolicy($resource);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.securitycenter.v1p1beta1.SecurityCenter/GetIamPolicy', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getResource();
+
+        $this->assertProtobufEquals($resource, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function getIamPolicyExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        // Mock request
+        $resource = 'resource-341064690';
+
+        try {
+            $client->getIamPolicy($resource);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function getNotificationConfigTest()
     {
         $transport = $this->createTransport();
@@ -776,7 +528,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/GetNotificationConfig', $actualFuncCall);
+        $this->assertSame('/google.cloud.securitycenter.v1p1beta1.SecurityCenter/GetNotificationConfig', $actualFuncCall);
 
         $actualValue = $actualRequestObject->getName();
 
@@ -851,7 +603,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/GetOrganizationSettings', $actualFuncCall);
+        $this->assertSame('/google.cloud.securitycenter.v1p1beta1.SecurityCenter/GetOrganizationSettings', $actualFuncCall);
 
         $actualValue = $actualRequestObject->getName();
 
@@ -928,7 +680,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/GetSource', $actualFuncCall);
+        $this->assertSame('/google.cloud.securitycenter.v1p1beta1.SecurityCenter/GetSource', $actualFuncCall);
 
         $actualValue = $actualRequestObject->getName();
 
@@ -979,6 +731,178 @@ class SecurityCenterClientTest extends GeneratedTest
     /**
      * @test
      */
+    public function groupAssetsTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $nextPageToken = '';
+        $totalSize = 705419236;
+        $groupByResultsElement = new GroupResult();
+        $groupByResults = [$groupByResultsElement];
+        $expectedResponse = new GroupAssetsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setTotalSize($totalSize);
+        $expectedResponse->setGroupByResults($groupByResults);
+        $transport->addResponse($expectedResponse);
+
+        // Mock request
+        $formattedParent = $client->organizationName('[ORGANIZATION]');
+        $groupBy = 'groupBy506361367';
+
+        $response = $client->groupAssets($formattedParent, $groupBy);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getGroupByResults()[0], $resources[0]);
+
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.securitycenter.v1p1beta1.SecurityCenter/GroupAssets', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getParent();
+
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getGroupBy();
+
+        $this->assertProtobufEquals($groupBy, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function groupAssetsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        // Mock request
+        $formattedParent = $client->organizationName('[ORGANIZATION]');
+        $groupBy = 'groupBy506361367';
+
+        try {
+            $client->groupAssets($formattedParent, $groupBy);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function groupFindingsTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $nextPageToken = '';
+        $totalSize = 705419236;
+        $groupByResultsElement = new GroupResult();
+        $groupByResults = [$groupByResultsElement];
+        $expectedResponse = new GroupFindingsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setTotalSize($totalSize);
+        $expectedResponse->setGroupByResults($groupByResults);
+        $transport->addResponse($expectedResponse);
+
+        // Mock request
+        $formattedParent = $client->sourceName('[ORGANIZATION]', '[SOURCE]');
+        $groupBy = 'groupBy506361367';
+
+        $response = $client->groupFindings($formattedParent, $groupBy);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getGroupByResults()[0], $resources[0]);
+
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.securitycenter.v1p1beta1.SecurityCenter/GroupFindings', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getParent();
+
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getGroupBy();
+
+        $this->assertProtobufEquals($groupBy, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function groupFindingsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        // Mock request
+        $formattedParent = $client->sourceName('[ORGANIZATION]', '[SOURCE]');
+        $groupBy = 'groupBy506361367';
+
+        try {
+            $client->groupFindings($formattedParent, $groupBy);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function listAssetsTest()
     {
         $transport = $this->createTransport();
@@ -1010,7 +934,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/ListAssets', $actualFuncCall);
+        $this->assertSame('/google.cloud.securitycenter.v1p1beta1.SecurityCenter/ListAssets', $actualFuncCall);
 
         $actualValue = $actualRequestObject->getParent();
 
@@ -1091,7 +1015,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/ListFindings', $actualFuncCall);
+        $this->assertSame('/google.cloud.securitycenter.v1p1beta1.SecurityCenter/ListFindings', $actualFuncCall);
 
         $actualValue = $actualRequestObject->getParent();
 
@@ -1170,7 +1094,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/ListNotificationConfigs', $actualFuncCall);
+        $this->assertSame('/google.cloud.securitycenter.v1p1beta1.SecurityCenter/ListNotificationConfigs', $actualFuncCall);
 
         $actualValue = $actualRequestObject->getParent();
 
@@ -1249,7 +1173,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/ListSources', $actualFuncCall);
+        $this->assertSame('/google.cloud.securitycenter.v1p1beta1.SecurityCenter/ListSources', $actualFuncCall);
 
         $actualValue = $actualRequestObject->getParent();
 
@@ -1343,7 +1267,7 @@ class SecurityCenterClientTest extends GeneratedTest
 
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/RunAssetDiscovery', $actualApiFuncCall);
+        $this->assertSame('/google.cloud.securitycenter.v1p1beta1.SecurityCenter/RunAssetDiscovery', $actualApiFuncCall);
         $actualValue = $actualApiRequestObject->getParent();
 
         $this->assertProtobufEquals($formattedParent, $actualValue);
@@ -1471,7 +1395,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/SetFindingState', $actualFuncCall);
+        $this->assertSame('/google.cloud.securitycenter.v1p1beta1.SecurityCenter/SetFindingState', $actualFuncCall);
 
         $actualValue = $actualRequestObject->getName();
 
@@ -1555,7 +1479,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/SetIamPolicy', $actualFuncCall);
+        $this->assertSame('/google.cloud.securitycenter.v1p1beta1.SecurityCenter/SetIamPolicy', $actualFuncCall);
 
         $actualValue = $actualRequestObject->getResource();
 
@@ -1610,6 +1534,82 @@ class SecurityCenterClientTest extends GeneratedTest
     /**
      * @test
      */
+    public function testIamPermissionsTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $expectedResponse = new TestIamPermissionsResponse();
+        $transport->addResponse($expectedResponse);
+
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
+
+        $response = $client->testIamPermissions($resource, $permissions);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.securitycenter.v1p1beta1.SecurityCenter/TestIamPermissions', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getResource();
+
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPermissions();
+
+        $this->assertProtobufEquals($permissions, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function testIamPermissionsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
+
+        try {
+            $client->testIamPermissions($resource, $permissions);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function updateFindingTest()
     {
         $transport = $this->createTransport();
@@ -1640,7 +1640,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/UpdateFinding', $actualFuncCall);
+        $this->assertSame('/google.cloud.securitycenter.v1p1beta1.SecurityCenter/UpdateFinding', $actualFuncCall);
 
         $actualValue = $actualRequestObject->getFinding();
 
@@ -1719,7 +1719,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/UpdateNotificationConfig', $actualFuncCall);
+        $this->assertSame('/google.cloud.securitycenter.v1p1beta1.SecurityCenter/UpdateNotificationConfig', $actualFuncCall);
 
         $actualValue = $actualRequestObject->getNotificationConfig();
 
@@ -1794,7 +1794,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/UpdateOrganizationSettings', $actualFuncCall);
+        $this->assertSame('/google.cloud.securitycenter.v1p1beta1.SecurityCenter/UpdateOrganizationSettings', $actualFuncCall);
 
         $actualValue = $actualRequestObject->getOrganizationSettings();
 
@@ -1871,7 +1871,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/UpdateSource', $actualFuncCall);
+        $this->assertSame('/google.cloud.securitycenter.v1p1beta1.SecurityCenter/UpdateSource', $actualFuncCall);
 
         $actualValue = $actualRequestObject->getSource();
 
@@ -1944,7 +1944,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/UpdateSecurityMarks', $actualFuncCall);
+        $this->assertSame('/google.cloud.securitycenter.v1p1beta1.SecurityCenter/UpdateSecurityMarks', $actualFuncCall);
 
         $actualValue = $actualRequestObject->getSecurityMarks();
 

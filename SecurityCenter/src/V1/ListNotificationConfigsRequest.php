@@ -9,22 +9,22 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for listing sources.
+ * Request message for listing notification configs.
  *
- * Generated from protobuf message <code>google.cloud.securitycenter.v1.ListSourcesRequest</code>
+ * Generated from protobuf message <code>google.cloud.securitycenter.v1.ListNotificationConfigsRequest</code>
  */
-class ListSourcesRequest extends \Google\Protobuf\Internal\Message
+class ListNotificationConfigsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Resource name of the parent of sources to list. Its format should
-     * be "organizations/[organization_id]".
+     * Required. Name of the organization to list notification configs.
+     * Its format is "organizations/[organization_id]".
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * The value returned by the last `ListSourcesResponse`; indicates
-     * that this is a continuation of a prior `ListSources` call, and
+     * The value returned by the last `ListNotificationConfigsResponse`; indicates
+     * that this is a continuation of a prior `ListNotificationConfigs` call, and
      * that the system should return the next page of data.
      *
      * Generated from protobuf field <code>string page_token = 2;</code>
@@ -34,7 +34,7 @@ class ListSourcesRequest extends \Google\Protobuf\Internal\Message
      * The maximum number of results to return in a single response. Default is
      * 10, minimum is 1, maximum is 1000.
      *
-     * Generated from protobuf field <code>int32 page_size = 7;</code>
+     * Generated from protobuf field <code>int32 page_size = 3;</code>
      */
     private $page_size = 0;
 
@@ -45,11 +45,11 @@ class ListSourcesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. Resource name of the parent of sources to list. Its format should
-     *           be "organizations/[organization_id]".
+     *           Required. Name of the organization to list notification configs.
+     *           Its format is "organizations/[organization_id]".
      *     @type string $page_token
-     *           The value returned by the last `ListSourcesResponse`; indicates
-     *           that this is a continuation of a prior `ListSources` call, and
+     *           The value returned by the last `ListNotificationConfigsResponse`; indicates
+     *           that this is a continuation of a prior `ListNotificationConfigs` call, and
      *           that the system should return the next page of data.
      *     @type int $page_size
      *           The maximum number of results to return in a single response. Default is
@@ -62,8 +62,8 @@ class ListSourcesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name of the parent of sources to list. Its format should
-     * be "organizations/[organization_id]".
+     * Required. Name of the organization to list notification configs.
+     * Its format is "organizations/[organization_id]".
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -74,8 +74,8 @@ class ListSourcesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name of the parent of sources to list. Its format should
-     * be "organizations/[organization_id]".
+     * Required. Name of the organization to list notification configs.
+     * Its format is "organizations/[organization_id]".
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -90,8 +90,8 @@ class ListSourcesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value returned by the last `ListSourcesResponse`; indicates
-     * that this is a continuation of a prior `ListSources` call, and
+     * The value returned by the last `ListNotificationConfigsResponse`; indicates
+     * that this is a continuation of a prior `ListNotificationConfigs` call, and
      * that the system should return the next page of data.
      *
      * Generated from protobuf field <code>string page_token = 2;</code>
@@ -103,8 +103,8 @@ class ListSourcesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value returned by the last `ListSourcesResponse`; indicates
-     * that this is a continuation of a prior `ListSources` call, and
+     * The value returned by the last `ListNotificationConfigsResponse`; indicates
+     * that this is a continuation of a prior `ListNotificationConfigs` call, and
      * that the system should return the next page of data.
      *
      * Generated from protobuf field <code>string page_token = 2;</code>
@@ -123,7 +123,7 @@ class ListSourcesRequest extends \Google\Protobuf\Internal\Message
      * The maximum number of results to return in a single response. Default is
      * 10, minimum is 1, maximum is 1000.
      *
-     * Generated from protobuf field <code>int32 page_size = 7;</code>
+     * Generated from protobuf field <code>int32 page_size = 3;</code>
      * @return int
      */
     public function getPageSize()
@@ -135,7 +135,7 @@ class ListSourcesRequest extends \Google\Protobuf\Internal\Message
      * The maximum number of results to return in a single response. Default is
      * 10, minimum is 1, maximum is 1000.
      *
-     * Generated from protobuf field <code>int32 page_size = 7;</code>
+     * Generated from protobuf field <code>int32 page_size = 3;</code>
      * @param int $var
      * @return $this
      */

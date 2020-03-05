@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2019 Google LLC.
+// Copyright 2019 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-//
 //
 namespace Google\Cloud\SecurityCenter\V1;
 
@@ -63,6 +62,34 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Creates a notification config.
+     * @param \Google\Cloud\SecurityCenter\V1\CreateNotificationConfigRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function CreateNotificationConfig(\Google\Cloud\SecurityCenter\V1\CreateNotificationConfigRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.securitycenter.v1.SecurityCenter/CreateNotificationConfig',
+        $argument,
+        ['\Google\Cloud\SecurityCenter\V1\NotificationConfig', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Deletes a notification config.
+     * @param \Google\Cloud\SecurityCenter\V1\DeleteNotificationConfigRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function DeleteNotificationConfig(\Google\Cloud\SecurityCenter\V1\DeleteNotificationConfigRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.securitycenter.v1.SecurityCenter/DeleteNotificationConfig',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Gets the access control policy on the specified Source.
      * @param \Google\Cloud\Iam\V1\GetIamPolicyRequest $argument input argument
      * @param array $metadata metadata
@@ -73,6 +100,20 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.cloud.securitycenter.v1.SecurityCenter/GetIamPolicy',
         $argument,
         ['\Google\Cloud\Iam\V1\Policy', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Gets a notification config.
+     * @param \Google\Cloud\SecurityCenter\V1\GetNotificationConfigRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function GetNotificationConfig(\Google\Cloud\SecurityCenter\V1\GetNotificationConfigRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.securitycenter.v1.SecurityCenter/GetNotificationConfig',
+        $argument,
+        ['\Google\Cloud\SecurityCenter\V1\NotificationConfig', 'decode'],
         $metadata, $options);
     }
 
@@ -169,6 +210,20 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Lists notification configs.
+     * @param \Google\Cloud\SecurityCenter\V1\ListNotificationConfigsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function ListNotificationConfigs(\Google\Cloud\SecurityCenter\V1\ListNotificationConfigsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.securitycenter.v1.SecurityCenter/ListNotificationConfigs',
+        $argument,
+        ['\Google\Cloud\SecurityCenter\V1\ListNotificationConfigsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Lists all sources belonging to an organization.
      * @param \Google\Cloud\SecurityCenter\V1\ListSourcesRequest $argument input argument
      * @param array $metadata metadata
@@ -255,6 +310,21 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.cloud.securitycenter.v1.SecurityCenter/UpdateFinding',
         $argument,
         ['\Google\Cloud\SecurityCenter\V1\Finding', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     *
+     * Updates a notification config.
+     * @param \Google\Cloud\SecurityCenter\V1\UpdateNotificationConfigRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function UpdateNotificationConfig(\Google\Cloud\SecurityCenter\V1\UpdateNotificationConfigRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.securitycenter.v1.SecurityCenter/UpdateNotificationConfig',
+        $argument,
+        ['\Google\Cloud\SecurityCenter\V1\NotificationConfig', 'decode'],
         $metadata, $options);
     }
 
