@@ -411,10 +411,9 @@ class SubscriberGapicClient
      *                             (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`),
      *                             plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters
      *                             in length, and it must not start with `"goog"`.
-     * @param string $topic        Required. The name of the topic from which this subscription is receiving messages.
-     *                             Format is `projects/{project}/topics/{topic}`.
-     *                             The value of this field will be `_deleted-topic_` if the topic has been
-     *                             deleted.
+     * @param string $topic        Required. The name of the topic from which this subscription is receiving
+     *                             messages. Format is `projects/{project}/topics/{topic}`. The value of this
+     *                             field will be `_deleted-topic_` if the topic has been deleted.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -813,10 +812,10 @@ class SubscriberGapicClient
      * @param string   $subscription       Required. The name of the subscription.
      *                                     Format is `projects/{project}/subscriptions/{sub}`.
      * @param string[] $ackIds             Required. List of acknowledgment IDs.
-     * @param int      $ackDeadlineSeconds Required. The new ack deadline with respect to the time this request was sent to
-     *                                     the Pub/Sub system. For example, if the value is 10, the new
-     *                                     ack deadline will expire 10 seconds after the `ModifyAckDeadline` call
-     *                                     was made. Specifying zero might immediately make the message available for
+     * @param int      $ackDeadlineSeconds Required. The new ack deadline with respect to the time this request was
+     *                                     sent to the Pub/Sub system. For example, if the value is 10, the new ack
+     *                                     deadline will expire 10 seconds after the `ModifyAckDeadline` call was
+     *                                     made. Specifying zero might immediately make the message available for
      *                                     delivery to another subscriber client. This typically results in an
      *                                     increase in the rate of message redeliveries (that is, duplicates).
      *                                     The minimum deadline you can specify is 0 seconds.
@@ -879,8 +878,9 @@ class SubscriberGapicClient
      *
      * @param string   $subscription Required. The subscription whose message is being acknowledged.
      *                               Format is `projects/{project}/subscriptions/{sub}`.
-     * @param string[] $ackIds       Required. The acknowledgment ID for the messages being acknowledged that was returned
-     *                               by the Pub/Sub system in the `Pull` response. Must not be empty.
+     * @param string[] $ackIds       Required. The acknowledgment ID for the messages being acknowledged that
+     *                               was returned by the Pub/Sub system in the `Pull` response. Must not be
+     *                               empty.
      * @param array    $optionalArgs {
      *                               Optional.
      *
@@ -934,17 +934,20 @@ class SubscriberGapicClient
      *
      * @param string $subscription Required. The subscription from which messages should be pulled.
      *                             Format is `projects/{project}/subscriptions/{sub}`.
-     * @param int    $maxMessages  Required. The maximum number of messages to return for this request. Must be a
-     *                             positive integer. The Pub/Sub system may return fewer than the number
+     * @param int    $maxMessages  Required. The maximum number of messages to return for this request. Must
+     *                             be a positive integer. The Pub/Sub system may return fewer than the number
      *                             specified.
      * @param array  $optionalArgs {
      *                             Optional.
      *
      *     @type bool $returnImmediately
-     *          If this field set to true, the system will respond immediately even if
-     *          it there are no messages available to return in the `Pull` response.
-     *          Otherwise, the system may wait (for a bounded amount of time) until at
-     *          least one message is available, rather than returning no messages.
+     *          Optional. If this field set to true, the system will respond immediately
+     *          even if it there are no messages available to return in the `Pull`
+     *          response. Otherwise, the system may wait (for a bounded amount of time)
+     *          until at least one message is available, rather than returning no messages.
+     *          Warning: setting this field to `true` is discouraged because it adversely
+     *          impacts the performance of `Pull` operations. We recommend that users do
+     *          not set this field.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1236,10 +1239,10 @@ class SubscriberGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. User-provided name for this snapshot. If the name is not provided in the
-     *                             request, the server will assign a random name for this snapshot on the same
-     *                             project as the subscription. Note that for REST API requests, you must
-     *                             specify a name.  See the <a
+     * @param string $name         Required. User-provided name for this snapshot. If the name is not provided
+     *                             in the request, the server will assign a random name for this snapshot on
+     *                             the same project as the subscription. Note that for REST API requests, you
+     *                             must specify a name.  See the <a
      *                             href="https://cloud.google.com/pubsub/docs/admin#resource_names"> resource
      *                             name rules</a>. Format is `projects/{project}/snapshots/{snap}`.
      * @param string $subscription Required. The subscription whose backlog the snapshot retains.

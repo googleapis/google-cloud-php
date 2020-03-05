@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. User-provided name for this snapshot. If the name is not provided in the
-     * request, the server will assign a random name for this snapshot on the same
-     * project as the subscription. Note that for REST API requests, you must
-     * specify a name.  See the <a
+     * Required. User-provided name for this snapshot. If the name is not provided
+     * in the request, the server will assign a random name for this snapshot on
+     * the same project as the subscription. Note that for REST API requests, you
+     * must specify a name.  See the <a
      * href="https://cloud.google.com/pubsub/docs/admin#resource_names"> resource
      * name rules</a>. Format is `projects/{project}/snapshots/{snap}`.
      *
@@ -55,10 +55,10 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. User-provided name for this snapshot. If the name is not provided in the
-     *           request, the server will assign a random name for this snapshot on the same
-     *           project as the subscription. Note that for REST API requests, you must
-     *           specify a name.  See the <a
+     *           Required. User-provided name for this snapshot. If the name is not provided
+     *           in the request, the server will assign a random name for this snapshot on
+     *           the same project as the subscription. Note that for REST API requests, you
+     *           must specify a name.  See the <a
      *           href="https://cloud.google.com/pubsub/docs/admin#resource_names"> resource
      *           name rules</a>. Format is `projects/{project}/snapshots/{snap}`.
      *     @type string $subscription
@@ -82,10 +82,10 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. User-provided name for this snapshot. If the name is not provided in the
-     * request, the server will assign a random name for this snapshot on the same
-     * project as the subscription. Note that for REST API requests, you must
-     * specify a name.  See the <a
+     * Required. User-provided name for this snapshot. If the name is not provided
+     * in the request, the server will assign a random name for this snapshot on
+     * the same project as the subscription. Note that for REST API requests, you
+     * must specify a name.  See the <a
      * href="https://cloud.google.com/pubsub/docs/admin#resource_names"> resource
      * name rules</a>. Format is `projects/{project}/snapshots/{snap}`.
      *
@@ -98,10 +98,10 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. User-provided name for this snapshot. If the name is not provided in the
-     * request, the server will assign a random name for this snapshot on the same
-     * project as the subscription. Note that for REST API requests, you must
-     * specify a name.  See the <a
+     * Required. User-provided name for this snapshot. If the name is not provided
+     * in the request, the server will assign a random name for this snapshot on
+     * the same project as the subscription. Note that for REST API requests, you
+     * must specify a name.  See the <a
      * href="https://cloud.google.com/pubsub/docs/admin#resource_names"> resource
      * name rules</a>. Format is `projects/{project}/snapshots/{snap}`.
      *

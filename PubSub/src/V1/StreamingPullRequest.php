@@ -18,8 +18,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class StreamingPullRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The subscription for which to initialize the new stream. This must be
-     * provided in the first request on the stream, and must not be set in
+     * Required. The subscription for which to initialize the new stream. This
+     * must be provided in the first request on the stream, and must not be set in
      * subsequent requests from client to server.
      * Format is `projects/{project}/subscriptions/{sub}`.
      *
@@ -63,8 +63,8 @@ class StreamingPullRequest extends \Google\Protobuf\Internal\Message
      */
     private $modify_deadline_ack_ids;
     /**
-     * Required. The ack deadline to use for the stream. This must be provided in the
-     * first request on the stream, but it can also be updated on subsequent
+     * Required. The ack deadline to use for the stream. This must be provided in
+     * the first request on the stream, but it can also be updated on subsequent
      * requests from client to server. The minimum deadline you can specify is 10
      * seconds. The maximum deadline you can specify is 600 seconds (10 minutes).
      *
@@ -90,8 +90,8 @@ class StreamingPullRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $subscription
-     *           Required. The subscription for which to initialize the new stream. This must be
-     *           provided in the first request on the stream, and must not be set in
+     *           Required. The subscription for which to initialize the new stream. This
+     *           must be provided in the first request on the stream, and must not be set in
      *           subsequent requests from client to server.
      *           Format is `projects/{project}/subscriptions/{sub}`.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $ack_ids
@@ -119,8 +119,8 @@ class StreamingPullRequest extends \Google\Protobuf\Internal\Message
      *           subscriber, or to make the message available for redelivery if the
      *           processing was interrupted.
      *     @type int $stream_ack_deadline_seconds
-     *           Required. The ack deadline to use for the stream. This must be provided in the
-     *           first request on the stream, but it can also be updated on subsequent
+     *           Required. The ack deadline to use for the stream. This must be provided in
+     *           the first request on the stream, but it can also be updated on subsequent
      *           requests from client to server. The minimum deadline you can specify is 10
      *           seconds. The maximum deadline you can specify is 600 seconds (10 minutes).
      *     @type string $client_id
@@ -138,8 +138,8 @@ class StreamingPullRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The subscription for which to initialize the new stream. This must be
-     * provided in the first request on the stream, and must not be set in
+     * Required. The subscription for which to initialize the new stream. This
+     * must be provided in the first request on the stream, and must not be set in
      * subsequent requests from client to server.
      * Format is `projects/{project}/subscriptions/{sub}`.
      *
@@ -152,8 +152,8 @@ class StreamingPullRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The subscription for which to initialize the new stream. This must be
-     * provided in the first request on the stream, and must not be set in
+     * Required. The subscription for which to initialize the new stream. This
+     * must be provided in the first request on the stream, and must not be set in
      * subsequent requests from client to server.
      * Format is `projects/{project}/subscriptions/{sub}`.
      *
@@ -284,8 +284,8 @@ class StreamingPullRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ack deadline to use for the stream. This must be provided in the
-     * first request on the stream, but it can also be updated on subsequent
+     * Required. The ack deadline to use for the stream. This must be provided in
+     * the first request on the stream, but it can also be updated on subsequent
      * requests from client to server. The minimum deadline you can specify is 10
      * seconds. The maximum deadline you can specify is 600 seconds (10 minutes).
      *
@@ -298,8 +298,8 @@ class StreamingPullRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ack deadline to use for the stream. This must be provided in the
-     * first request on the stream, but it can also be updated on subsequent
+     * Required. The ack deadline to use for the stream. This must be provided in
+     * the first request on the stream, but it can also be updated on subsequent
      * requests from client to server. The minimum deadline you can specify is 10
      * seconds. The maximum deadline you can specify is 600 seconds (10 minutes).
      *

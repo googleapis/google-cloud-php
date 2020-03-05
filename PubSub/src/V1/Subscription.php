@@ -27,10 +27,9 @@ class Subscription extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Required. The name of the topic from which this subscription is receiving messages.
-     * Format is `projects/{project}/topics/{topic}`.
-     * The value of this field will be `_deleted-topic_` if the topic has been
-     * deleted.
+     * Required. The name of the topic from which this subscription is receiving
+     * messages. Format is `projects/{project}/topics/{topic}`. The value of this
+     * field will be `_deleted-topic_` if the topic has been deleted.
      *
      * Generated from protobuf field <code>string topic = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -148,10 +147,9 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *           plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters
      *           in length, and it must not start with `"goog"`.
      *     @type string $topic
-     *           Required. The name of the topic from which this subscription is receiving messages.
-     *           Format is `projects/{project}/topics/{topic}`.
-     *           The value of this field will be `_deleted-topic_` if the topic has been
-     *           deleted.
+     *           Required. The name of the topic from which this subscription is receiving
+     *           messages. Format is `projects/{project}/topics/{topic}`. The value of this
+     *           field will be `_deleted-topic_` if the topic has been deleted.
      *     @type \Google\Cloud\PubSub\V1\PushConfig $push_config
      *           If push delivery is used with this subscription, this field is
      *           used to configure it. An empty `pushConfig` signifies that the subscriber
@@ -262,10 +260,9 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the topic from which this subscription is receiving messages.
-     * Format is `projects/{project}/topics/{topic}`.
-     * The value of this field will be `_deleted-topic_` if the topic has been
-     * deleted.
+     * Required. The name of the topic from which this subscription is receiving
+     * messages. Format is `projects/{project}/topics/{topic}`. The value of this
+     * field will be `_deleted-topic_` if the topic has been deleted.
      *
      * Generated from protobuf field <code>string topic = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -276,10 +273,9 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the topic from which this subscription is receiving messages.
-     * Format is `projects/{project}/topics/{topic}`.
-     * The value of this field will be `_deleted-topic_` if the topic has been
-     * deleted.
+     * Required. The name of the topic from which this subscription is receiving
+     * messages. Format is `projects/{project}/topics/{topic}`. The value of this
+     * field will be `_deleted-topic_` if the topic has been deleted.
      *
      * Generated from protobuf field <code>string topic = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
