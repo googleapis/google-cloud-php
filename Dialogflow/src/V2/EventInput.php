@@ -26,9 +26,9 @@ class EventInput extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Optional. The collection of parameters associated with the event.
+     * The collection of parameters associated with the event.
      *
-     * Generated from protobuf field <code>.google.protobuf.Struct parameters = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct parameters = 2;</code>
      */
     private $parameters = null;
     /**
@@ -50,7 +50,7 @@ class EventInput extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The unique identifier of the event.
      *     @type \Google\Protobuf\Struct $parameters
-     *           Optional. The collection of parameters associated with the event.
+     *           The collection of parameters associated with the event.
      *     @type string $language_code
      *           Required. The language of this query. See [Language
      *           Support](https://cloud.google.com/dialogflow/docs/reference/language)
@@ -90,9 +90,9 @@ class EventInput extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The collection of parameters associated with the event.
+     * The collection of parameters associated with the event.
      *
-     * Generated from protobuf field <code>.google.protobuf.Struct parameters = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct parameters = 2;</code>
      * @return \Google\Protobuf\Struct
      */
     public function getParameters()
@@ -101,9 +101,9 @@ class EventInput extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The collection of parameters associated with the event.
+     * The collection of parameters associated with the event.
      *
-     * Generated from protobuf field <code>.google.protobuf.Struct parameters = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct parameters = 2;</code>
      * @param \Google\Protobuf\Struct $var
      * @return $this
      */

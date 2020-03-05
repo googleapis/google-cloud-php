@@ -97,15 +97,13 @@ return [
                     ],
                 ],
             ],
-        ],
-        'google.longrunning.Operations' => [
-            'GetOperation' => [
+            'GetValidationResult' => [
                 'method' => 'get',
-                'uriTemplate' => '/v2/{name=projects/*/operations/*}',
+                'uriTemplate' => '/v2/{parent=projects/*}/agent/validationResult',
                 'placeholders' => [
-                    'name' => [
+                    'parent' => [
                         'getters' => [
-                            'getName',
+                            'getParent',
                         ],
                     ],
                 ],

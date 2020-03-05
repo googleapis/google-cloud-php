@@ -28,9 +28,9 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      */
     private $session = '';
     /**
-     * Optional. The parameters of this query.
+     * The parameters of this query.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.QueryParameters query_params = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.QueryParameters query_params = 2;</code>
      */
     private $query_params = null;
     /**
@@ -44,19 +44,29 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      */
     private $query_input = null;
     /**
-     * Optional. Instructs the speech synthesizer how to generate the output
+     * Instructs the speech synthesizer how to generate the output
      * audio. If this field is not set and agent-level speech synthesizer is not
      * configured, no output audio is generated.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.OutputAudioConfig output_audio_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.OutputAudioConfig output_audio_config = 4;</code>
      */
     private $output_audio_config = null;
     /**
-     * Optional. The natural language speech audio to be processed. This field
+     * Mask for [output_audio_config][google.cloud.dialogflow.v2.DetectIntentRequest.output_audio_config] indicating which settings in this
+     * request-level config should override speech synthesizer settings defined at
+     * agent-level.
+     * If unspecified or empty, [output_audio_config][google.cloud.dialogflow.v2.DetectIntentRequest.output_audio_config] replaces the agent-level
+     * config in its entirety.
+     *
+     * Generated from protobuf field <code>.google.protobuf.FieldMask output_audio_config_mask = 7;</code>
+     */
+    private $output_audio_config_mask = null;
+    /**
+     * The natural language speech audio to be processed. This field
      * should be populated iff `query_input` is set to an input audio config.
      * A single request can contain up to 1 minute of speech audio data.
      *
-     * Generated from protobuf field <code>bytes input_audio = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bytes input_audio = 5;</code>
      */
     private $input_audio = '';
 
@@ -73,7 +83,7 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      *           some type of user identifier (preferably hashed). The length of the session
      *           ID must not exceed 36 bytes.
      *     @type \Google\Cloud\Dialogflow\V2\QueryParameters $query_params
-     *           Optional. The parameters of this query.
+     *           The parameters of this query.
      *     @type \Google\Cloud\Dialogflow\V2\QueryInput $query_input
      *           Required. The input specification. It can be set to:
      *           1.  an audio config
@@ -81,11 +91,17 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      *           2.  a conversational query in the form of text, or
      *           3.  an event that specifies which intent to trigger.
      *     @type \Google\Cloud\Dialogflow\V2\OutputAudioConfig $output_audio_config
-     *           Optional. Instructs the speech synthesizer how to generate the output
+     *           Instructs the speech synthesizer how to generate the output
      *           audio. If this field is not set and agent-level speech synthesizer is not
      *           configured, no output audio is generated.
+     *     @type \Google\Protobuf\FieldMask $output_audio_config_mask
+     *           Mask for [output_audio_config][google.cloud.dialogflow.v2.DetectIntentRequest.output_audio_config] indicating which settings in this
+     *           request-level config should override speech synthesizer settings defined at
+     *           agent-level.
+     *           If unspecified or empty, [output_audio_config][google.cloud.dialogflow.v2.DetectIntentRequest.output_audio_config] replaces the agent-level
+     *           config in its entirety.
      *     @type string $input_audio
-     *           Optional. The natural language speech audio to be processed. This field
+     *           The natural language speech audio to be processed. This field
      *           should be populated iff `query_input` is set to an input audio config.
      *           A single request can contain up to 1 minute of speech audio data.
      * }
@@ -130,9 +146,9 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The parameters of this query.
+     * The parameters of this query.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.QueryParameters query_params = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.QueryParameters query_params = 2;</code>
      * @return \Google\Cloud\Dialogflow\V2\QueryParameters
      */
     public function getQueryParams()
@@ -141,9 +157,9 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The parameters of this query.
+     * The parameters of this query.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.QueryParameters query_params = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.QueryParameters query_params = 2;</code>
      * @param \Google\Cloud\Dialogflow\V2\QueryParameters $var
      * @return $this
      */
@@ -190,11 +206,11 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Instructs the speech synthesizer how to generate the output
+     * Instructs the speech synthesizer how to generate the output
      * audio. If this field is not set and agent-level speech synthesizer is not
      * configured, no output audio is generated.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.OutputAudioConfig output_audio_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.OutputAudioConfig output_audio_config = 4;</code>
      * @return \Google\Cloud\Dialogflow\V2\OutputAudioConfig
      */
     public function getOutputAudioConfig()
@@ -203,11 +219,11 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Instructs the speech synthesizer how to generate the output
+     * Instructs the speech synthesizer how to generate the output
      * audio. If this field is not set and agent-level speech synthesizer is not
      * configured, no output audio is generated.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.OutputAudioConfig output_audio_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.OutputAudioConfig output_audio_config = 4;</code>
      * @param \Google\Cloud\Dialogflow\V2\OutputAudioConfig $var
      * @return $this
      */
@@ -220,11 +236,45 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The natural language speech audio to be processed. This field
+     * Mask for [output_audio_config][google.cloud.dialogflow.v2.DetectIntentRequest.output_audio_config] indicating which settings in this
+     * request-level config should override speech synthesizer settings defined at
+     * agent-level.
+     * If unspecified or empty, [output_audio_config][google.cloud.dialogflow.v2.DetectIntentRequest.output_audio_config] replaces the agent-level
+     * config in its entirety.
+     *
+     * Generated from protobuf field <code>.google.protobuf.FieldMask output_audio_config_mask = 7;</code>
+     * @return \Google\Protobuf\FieldMask
+     */
+    public function getOutputAudioConfigMask()
+    {
+        return $this->output_audio_config_mask;
+    }
+
+    /**
+     * Mask for [output_audio_config][google.cloud.dialogflow.v2.DetectIntentRequest.output_audio_config] indicating which settings in this
+     * request-level config should override speech synthesizer settings defined at
+     * agent-level.
+     * If unspecified or empty, [output_audio_config][google.cloud.dialogflow.v2.DetectIntentRequest.output_audio_config] replaces the agent-level
+     * config in its entirety.
+     *
+     * Generated from protobuf field <code>.google.protobuf.FieldMask output_audio_config_mask = 7;</code>
+     * @param \Google\Protobuf\FieldMask $var
+     * @return $this
+     */
+    public function setOutputAudioConfigMask($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\FieldMask::class);
+        $this->output_audio_config_mask = $var;
+
+        return $this;
+    }
+
+    /**
+     * The natural language speech audio to be processed. This field
      * should be populated iff `query_input` is set to an input audio config.
      * A single request can contain up to 1 minute of speech audio data.
      *
-     * Generated from protobuf field <code>bytes input_audio = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bytes input_audio = 5;</code>
      * @return string
      */
     public function getInputAudio()
@@ -233,11 +283,11 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The natural language speech audio to be processed. This field
+     * The natural language speech audio to be processed. This field
      * should be populated iff `query_input` is set to an input audio config.
      * A single request can contain up to 1 minute of speech audio data.
      *
-     * Generated from protobuf field <code>bytes input_audio = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bytes input_audio = 5;</code>
      * @param string $var
      * @return $this
      */
