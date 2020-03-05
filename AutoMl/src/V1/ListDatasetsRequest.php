@@ -9,24 +9,22 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for
- * [AutoMl.ListDatasets][google.cloud.automl.v1.AutoMl.ListDatasets].
+ * Request message for [AutoMl.ListDatasets][google.cloud.automl.v1.AutoMl.ListDatasets].
  *
  * Generated from protobuf message <code>google.cloud.automl.v1.ListDatasetsRequest</code>
  */
 class ListDatasetsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The resource name of the project from which to list datasets.
+     * Required. The resource name of the project from which to list datasets.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
      * An expression for filtering the results of the request.
      *   * `dataset_metadata` - for existence of the case (e.g.
-     *             image_classification_dataset_metadata:*). Some examples of
-     *             using the filter are:
+     *             image_classification_dataset_metadata:*). Some examples of using the filter are:
      *   * `translation_dataset_metadata:*` --> The dataset has
      *                                          translation_dataset_metadata.
      *
@@ -43,8 +41,7 @@ class ListDatasetsRequest extends \Google\Protobuf\Internal\Message
     /**
      * A token identifying a page of results for the server to return
      * Typically obtained via
-     * [ListDatasetsResponse.next_page_token][google.cloud.automl.v1.ListDatasetsResponse.next_page_token]
-     * of the previous
+     * [ListDatasetsResponse.next_page_token][google.cloud.automl.v1.ListDatasetsResponse.next_page_token] of the previous
      * [AutoMl.ListDatasets][google.cloud.automl.v1.AutoMl.ListDatasets] call.
      *
      * Generated from protobuf field <code>string page_token = 6;</code>
@@ -58,12 +55,11 @@ class ListDatasetsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The resource name of the project from which to list datasets.
+     *           Required. The resource name of the project from which to list datasets.
      *     @type string $filter
      *           An expression for filtering the results of the request.
      *             * `dataset_metadata` - for existence of the case (e.g.
-     *                       image_classification_dataset_metadata:*). Some examples of
-     *                       using the filter are:
+     *                       image_classification_dataset_metadata:*). Some examples of using the filter are:
      *             * `translation_dataset_metadata:*` --> The dataset has
      *                                                    translation_dataset_metadata.
      *     @type int $page_size
@@ -72,8 +68,7 @@ class ListDatasetsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $page_token
      *           A token identifying a page of results for the server to return
      *           Typically obtained via
-     *           [ListDatasetsResponse.next_page_token][google.cloud.automl.v1.ListDatasetsResponse.next_page_token]
-     *           of the previous
+     *           [ListDatasetsResponse.next_page_token][google.cloud.automl.v1.ListDatasetsResponse.next_page_token] of the previous
      *           [AutoMl.ListDatasets][google.cloud.automl.v1.AutoMl.ListDatasets] call.
      * }
      */
@@ -83,9 +78,9 @@ class ListDatasetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the project from which to list datasets.
+     * Required. The resource name of the project from which to list datasets.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -94,9 +89,9 @@ class ListDatasetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the project from which to list datasets.
+     * Required. The resource name of the project from which to list datasets.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -111,8 +106,7 @@ class ListDatasetsRequest extends \Google\Protobuf\Internal\Message
     /**
      * An expression for filtering the results of the request.
      *   * `dataset_metadata` - for existence of the case (e.g.
-     *             image_classification_dataset_metadata:*). Some examples of
-     *             using the filter are:
+     *             image_classification_dataset_metadata:*). Some examples of using the filter are:
      *   * `translation_dataset_metadata:*` --> The dataset has
      *                                          translation_dataset_metadata.
      *
@@ -127,8 +121,7 @@ class ListDatasetsRequest extends \Google\Protobuf\Internal\Message
     /**
      * An expression for filtering the results of the request.
      *   * `dataset_metadata` - for existence of the case (e.g.
-     *             image_classification_dataset_metadata:*). Some examples of
-     *             using the filter are:
+     *             image_classification_dataset_metadata:*). Some examples of using the filter are:
      *   * `translation_dataset_metadata:*` --> The dataset has
      *                                          translation_dataset_metadata.
      *
@@ -175,8 +168,7 @@ class ListDatasetsRequest extends \Google\Protobuf\Internal\Message
     /**
      * A token identifying a page of results for the server to return
      * Typically obtained via
-     * [ListDatasetsResponse.next_page_token][google.cloud.automl.v1.ListDatasetsResponse.next_page_token]
-     * of the previous
+     * [ListDatasetsResponse.next_page_token][google.cloud.automl.v1.ListDatasetsResponse.next_page_token] of the previous
      * [AutoMl.ListDatasets][google.cloud.automl.v1.AutoMl.ListDatasets] call.
      *
      * Generated from protobuf field <code>string page_token = 6;</code>
@@ -190,8 +182,7 @@ class ListDatasetsRequest extends \Google\Protobuf\Internal\Message
     /**
      * A token identifying a page of results for the server to return
      * Typically obtained via
-     * [ListDatasetsResponse.next_page_token][google.cloud.automl.v1.ListDatasetsResponse.next_page_token]
-     * of the previous
+     * [ListDatasetsResponse.next_page_token][google.cloud.automl.v1.ListDatasetsResponse.next_page_token] of the previous
      * [AutoMl.ListDatasets][google.cloud.automl.v1.AutoMl.ListDatasets] call.
      *
      * Generated from protobuf field <code>string page_token = 6;</code>

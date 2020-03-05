@@ -9,23 +9,22 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for
- * [AutoMl.CreateDataset][google.cloud.automl.v1.AutoMl.CreateDataset].
+ * Request message for [AutoMl.CreateDataset][google.cloud.automl.v1.AutoMl.CreateDataset].
  *
  * Generated from protobuf message <code>google.cloud.automl.v1.CreateDatasetRequest</code>
  */
 class CreateDatasetRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The resource name of the project to create the dataset for.
+     * Required. The resource name of the project to create the dataset for.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * The dataset to create.
+     * Required. The dataset to create.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1.Dataset dataset = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1.Dataset dataset = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $dataset = null;
 
@@ -36,9 +35,9 @@ class CreateDatasetRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The resource name of the project to create the dataset for.
+     *           Required. The resource name of the project to create the dataset for.
      *     @type \Google\Cloud\AutoMl\V1\Dataset $dataset
-     *           The dataset to create.
+     *           Required. The dataset to create.
      * }
      */
     public function __construct($data = NULL) {
@@ -47,9 +46,9 @@ class CreateDatasetRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the project to create the dataset for.
+     * Required. The resource name of the project to create the dataset for.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -58,9 +57,9 @@ class CreateDatasetRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the project to create the dataset for.
+     * Required. The resource name of the project to create the dataset for.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -73,9 +72,9 @@ class CreateDatasetRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The dataset to create.
+     * Required. The dataset to create.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1.Dataset dataset = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1.Dataset dataset = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\AutoMl\V1\Dataset
      */
     public function getDataset()
@@ -84,9 +83,9 @@ class CreateDatasetRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The dataset to create.
+     * Required. The dataset to create.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1.Dataset dataset = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1.Dataset dataset = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\AutoMl\V1\Dataset $var
      * @return $this
      */

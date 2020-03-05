@@ -540,8 +540,8 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param string  $parent       The resource name of the project to create the dataset for.
-     * @param Dataset $dataset      The dataset to create.
+     * @param string  $parent       Required. The resource name of the project to create the dataset for.
+     * @param Dataset $dataset      Required. The dataset to create.
      * @param array   $optionalArgs {
      *                              Optional.
      *
@@ -593,7 +593,7 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param Dataset   $dataset      The dataset which replaces the resource on the server.
+     * @param Dataset   $dataset      Required. The dataset which replaces the resource on the server.
      * @param FieldMask $updateMask   Required. The update mask applies to the resource.
      * @param array     $optionalArgs {
      *                                Optional.
@@ -645,7 +645,7 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param string $name         The resource name of the dataset to retrieve.
+     * @param string $name         Required. The resource name of the dataset to retrieve.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -710,7 +710,7 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param string $parent       The resource name of the project from which to list datasets.
+     * @param string $parent       Required. The resource name of the project from which to list datasets.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -718,8 +718,7 @@ class AutoMlGapicClient
      *          An expression for filtering the results of the request.
      *
      *            * `dataset_metadata` - for existence of the case (e.g.
-     *                      image_classification_dataset_metadata:*). Some examples of
-     *                      using the filter are:
+     *                      image_classification_dataset_metadata:*). Some examples of using the filter are:
      *
      *            * `translation_dataset_metadata:*` --> The dataset has
      *                                                   translation_dataset_metadata.
@@ -817,7 +816,7 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param string $name         The resource name of the dataset to delete.
+     * @param string $name         Required. The resource name of the dataset to delete.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -855,6 +854,14 @@ class AutoMlGapicClient
 
     /**
      * Imports data into a dataset.
+     * For Tables this method can only be called on an empty Dataset.
+     *
+     * For Tables:
+     * *   A
+     * [schema_inference_version][google.cloud.automl.v1.InputConfig.params]
+     *     parameter must be explicitly set.
+     * Returns an empty response in the
+     * [response][google.longrunning.Operation.response] field when it completes.
      *
      * Sample code:
      * ```
@@ -1029,7 +1036,7 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param string $name         The resource name of the annotation spec to retrieve.
+     * @param string $name         Required. The resource name of the annotation spec to retrieve.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1112,8 +1119,8 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param string $parent       Resource name of the parent project where the model is being created.
-     * @param Model  $model        The model to create.
+     * @param string $parent       Required. Resource name of the parent project where the model is being created.
+     * @param Model  $model        Required. The model to create.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1164,7 +1171,7 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param string $name         Resource name of the model.
+     * @param string $name         Required. Resource name of the model.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1215,7 +1222,7 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param Model     $model        The model which replaces the resource on the server.
+     * @param Model     $model        Required. The model which replaces the resource on the server.
      * @param FieldMask $updateMask   Required. The update mask applies to the resource.
      * @param array     $optionalArgs {
      *                                Optional.
@@ -1282,7 +1289,7 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param string $parent       Resource name of the project, from which to list the models.
+     * @param string $parent       Required. Resource name of the project, from which to list the models.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1290,7 +1297,7 @@ class AutoMlGapicClient
      *          An expression for filtering the results of the request.
      *
      *            * `model_metadata` - for existence of the case (e.g.
-     *                      image_classification_model_metadata:*).
+     *                      video_classification_model_metadata:*).
      *            * `dataset_id` - for = or !=. Some examples of using the filter are:
      *
      *            * `image_classification_model_metadata:*` --> The model has
@@ -1390,7 +1397,7 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param string $name         Resource name of the model being deleted.
+     * @param string $name         Required. Resource name of the model being deleted.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1431,11 +1438,11 @@ class AutoMlGapicClient
      * same parameters has no effect. Deploying with different parametrs
      * (as e.g. changing.
      *
-     * [node_number][google.cloud.automl.v1.ImageObjectDetectionModelDeploymentMetadata.node_number])
+     * [node_number][google.cloud.automl.v1p1beta.ImageObjectDetectionModelDeploymentMetadata.node_number])
      *  will reset the deployment state without pausing the model's availability.
      *
-     * Only applicable for Text Classification, Image Object Detection; all other
-     * domains manage deployment automatically.
+     * Only applicable for Text Classification, Image Object Detection , Tables, and Image Segmentation; all other domains manage
+     * deployment automatically.
      *
      * Returns an empty response in the
      * [response][google.longrunning.Operation.response] field when it completes.
@@ -1477,7 +1484,7 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param string $name         Resource name of the model to deploy.
+     * @param string $name         Required. Resource name of the model to deploy.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1526,7 +1533,7 @@ class AutoMlGapicClient
     /**
      * Undeploys a model. If the model is not deployed this method has no effect.
      *
-     * Only applicable for Text Classification, Image Object Detection;
+     * Only applicable for Text Classification, Image Object Detection and Tables;
      * all other domains manage deployment automatically.
      *
      * Returns an empty response in the
@@ -1569,7 +1576,7 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param string $name         Resource name of the model to undeploy.
+     * @param string $name         Required. Resource name of the model to undeploy.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1704,7 +1711,7 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param string $name         Resource name for the model evaluation.
+     * @param string $name         Required. Resource name for the model evaluation.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1770,10 +1777,10 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param string $parent Resource name of the model to list the model evaluations for.
+     * @param string $parent Required. Resource name of the model to list the model evaluations for.
      *                       If modelId is set as "-", this will list model evaluations from across all
      *                       models of the parent location.
-     * @param string $filter An expression for filtering the results of the request.
+     * @param string $filter Required. An expression for filtering the results of the request.
      *
      *   * `annotation_spec_id` - for =, !=  or existence. See example below for
      *                          the last.

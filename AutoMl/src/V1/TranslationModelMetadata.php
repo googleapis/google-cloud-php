@@ -26,14 +26,14 @@ class TranslationModelMetadata extends \Google\Protobuf\Internal\Message
     private $base_model = '';
     /**
      * Output only. Inferred from the dataset.
-     * The source languge (The BCP-47 language code) that is used for training.
+     * The source language (The BCP-47 language code) that is used for training.
      *
      * Generated from protobuf field <code>string source_language_code = 2;</code>
      */
     private $source_language_code = '';
     /**
-     * Output only. The target languge (The BCP-47 language code) that is used for
-     * training.
+     * Output only. The target language (The BCP-47 language code) that is used
+     * for training.
      *
      * Generated from protobuf field <code>string target_language_code = 3;</code>
      */
@@ -52,10 +52,10 @@ class TranslationModelMetadata extends \Google\Protobuf\Internal\Message
      *           `projects/{project_id}/locations/{location_id}/models/{model_id}`
      *     @type string $source_language_code
      *           Output only. Inferred from the dataset.
-     *           The source languge (The BCP-47 language code) that is used for training.
+     *           The source language (The BCP-47 language code) that is used for training.
      *     @type string $target_language_code
-     *           Output only. The target languge (The BCP-47 language code) that is used for
-     *           training.
+     *           Output only. The target language (The BCP-47 language code) that is used
+     *           for training.
      * }
      */
     public function __construct($data = NULL) {
@@ -97,7 +97,7 @@ class TranslationModelMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Inferred from the dataset.
-     * The source languge (The BCP-47 language code) that is used for training.
+     * The source language (The BCP-47 language code) that is used for training.
      *
      * Generated from protobuf field <code>string source_language_code = 2;</code>
      * @return string
@@ -109,7 +109,7 @@ class TranslationModelMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Inferred from the dataset.
-     * The source languge (The BCP-47 language code) that is used for training.
+     * The source language (The BCP-47 language code) that is used for training.
      *
      * Generated from protobuf field <code>string source_language_code = 2;</code>
      * @param string $var
@@ -124,8 +124,8 @@ class TranslationModelMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The target languge (The BCP-47 language code) that is used for
-     * training.
+     * Output only. The target language (The BCP-47 language code) that is used
+     * for training.
      *
      * Generated from protobuf field <code>string target_language_code = 3;</code>
      * @return string
@@ -136,8 +136,8 @@ class TranslationModelMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The target languge (The BCP-47 language code) that is used for
-     * training.
+     * Output only. The target language (The BCP-47 language code) that is used
+     * for training.
      *
      * Generated from protobuf field <code>string target_language_code = 3;</code>
      * @param string $var

@@ -22,8 +22,8 @@ class ImageObjectDetectionAnnotation extends \Google\Protobuf\Internal\Message
      */
     private $bounding_box = null;
     /**
-     * Output only. The confidence that this annotation is positive for the parent
-     * example, value in [0, 1], higher means higher positivity confidence.
+     * Output only. The confidence that this annotation is positive for the parent example,
+     * value in [0, 1], higher means higher positivity confidence.
      *
      * Generated from protobuf field <code>float score = 2;</code>
      */
@@ -38,8 +38,8 @@ class ImageObjectDetectionAnnotation extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AutoMl\V1\BoundingPoly $bounding_box
      *           Output only. The rectangle representing the object location.
      *     @type float $score
-     *           Output only. The confidence that this annotation is positive for the parent
-     *           example, value in [0, 1], higher means higher positivity confidence.
+     *           Output only. The confidence that this annotation is positive for the parent example,
+     *           value in [0, 1], higher means higher positivity confidence.
      * }
      */
     public function __construct($data = NULL) {
@@ -74,8 +74,8 @@ class ImageObjectDetectionAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The confidence that this annotation is positive for the parent
-     * example, value in [0, 1], higher means higher positivity confidence.
+     * Output only. The confidence that this annotation is positive for the parent example,
+     * value in [0, 1], higher means higher positivity confidence.
      *
      * Generated from protobuf field <code>float score = 2;</code>
      * @return float
@@ -86,8 +86,8 @@ class ImageObjectDetectionAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The confidence that this annotation is positive for the parent
-     * example, value in [0, 1], higher means higher positivity confidence.
+     * Output only. The confidence that this annotation is positive for the parent example,
+     * value in [0, 1], higher means higher positivity confidence.
      *
      * Generated from protobuf field <code>float score = 2;</code>
      * @param float $var

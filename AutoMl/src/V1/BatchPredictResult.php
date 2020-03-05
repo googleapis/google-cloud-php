@@ -11,8 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Result of the Batch Predict. This message is returned in
  * [response][google.longrunning.Operation.response] of the operation returned
- * by the
- * [PredictionService.BatchPredict][google.cloud.automl.v1.PredictionService.BatchPredict].
+ * by the [PredictionService.BatchPredict][google.cloud.automl.v1.PredictionService.BatchPredict].
  *
  * Generated from protobuf message <code>google.cloud.automl.v1.BatchPredictResult</code>
  */
@@ -20,9 +19,12 @@ class BatchPredictResult extends \Google\Protobuf\Internal\Message
 {
     /**
      * Additional domain-specific prediction response metadata.
-     * *  For Image Object Detection:
-     *  `max_bounding_box_count` - (int64) At most that many bounding boxes per
-     *      image could have been returned.
+     * <h4>AutoML Vision Object Detection</h4>
+     * `max_bounding_box_count`
+     * : (int64) The maximum number of bounding boxes returned per image.
+     * <h4>AutoML Video Intelligence Object Tracking</h4>
+     * `max_bounding_box_count`
+     * : (int64) The maximum number of bounding boxes returned per frame.
      *
      * Generated from protobuf field <code>map<string, string> metadata = 1;</code>
      */
@@ -36,9 +38,12 @@ class BatchPredictResult extends \Google\Protobuf\Internal\Message
      *
      *     @type array|\Google\Protobuf\Internal\MapField $metadata
      *           Additional domain-specific prediction response metadata.
-     *           *  For Image Object Detection:
-     *            `max_bounding_box_count` - (int64) At most that many bounding boxes per
-     *                image could have been returned.
+     *           <h4>AutoML Vision Object Detection</h4>
+     *           `max_bounding_box_count`
+     *           : (int64) The maximum number of bounding boxes returned per image.
+     *           <h4>AutoML Video Intelligence Object Tracking</h4>
+     *           `max_bounding_box_count`
+     *           : (int64) The maximum number of bounding boxes returned per frame.
      * }
      */
     public function __construct($data = NULL) {
@@ -48,9 +53,12 @@ class BatchPredictResult extends \Google\Protobuf\Internal\Message
 
     /**
      * Additional domain-specific prediction response metadata.
-     * *  For Image Object Detection:
-     *  `max_bounding_box_count` - (int64) At most that many bounding boxes per
-     *      image could have been returned.
+     * <h4>AutoML Vision Object Detection</h4>
+     * `max_bounding_box_count`
+     * : (int64) The maximum number of bounding boxes returned per image.
+     * <h4>AutoML Video Intelligence Object Tracking</h4>
+     * `max_bounding_box_count`
+     * : (int64) The maximum number of bounding boxes returned per frame.
      *
      * Generated from protobuf field <code>map<string, string> metadata = 1;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -62,9 +70,12 @@ class BatchPredictResult extends \Google\Protobuf\Internal\Message
 
     /**
      * Additional domain-specific prediction response metadata.
-     * *  For Image Object Detection:
-     *  `max_bounding_box_count` - (int64) At most that many bounding boxes per
-     *      image could have been returned.
+     * <h4>AutoML Vision Object Detection</h4>
+     * `max_bounding_box_count`
+     * : (int64) The maximum number of bounding boxes returned per image.
+     * <h4>AutoML Video Intelligence Object Tracking</h4>
+     * `max_bounding_box_count`
+     * : (int64) The maximum number of bounding boxes returned per frame.
      *
      * Generated from protobuf field <code>map<string, string> metadata = 1;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

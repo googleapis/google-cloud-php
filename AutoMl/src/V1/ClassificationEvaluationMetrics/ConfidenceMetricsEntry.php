@@ -80,10 +80,7 @@ class ConfidenceMetricsEntry extends \Google\Protobuf\Internal\Message
      */
     private $false_positive_rate_at1 = 0.0;
     /**
-     * Output only. The harmonic mean of
-     * [recall_at1][google.cloud.automl.v1.ClassificationEvaluationMetrics.ConfidenceMetricsEntry.recall_at1]
-     * and
-     * [precision_at1][google.cloud.automl.v1.ClassificationEvaluationMetrics.ConfidenceMetricsEntry.precision_at1].
+     * Output only. The harmonic mean of [recall_at1][google.cloud.automl.v1.ClassificationEvaluationMetrics.ConfidenceMetricsEntry.recall_at1] and [precision_at1][google.cloud.automl.v1.ClassificationEvaluationMetrics.ConfidenceMetricsEntry.precision_at1].
      *
      * Generated from protobuf field <code>float f1_score_at1 = 7;</code>
      */
@@ -152,10 +149,7 @@ class ConfidenceMetricsEntry extends \Google\Protobuf\Internal\Message
      *           has the highest prediction score and not below the confidence threshold
      *           for each example.
      *     @type float $f1_score_at1
-     *           Output only. The harmonic mean of
-     *           [recall_at1][google.cloud.automl.v1.ClassificationEvaluationMetrics.ConfidenceMetricsEntry.recall_at1]
-     *           and
-     *           [precision_at1][google.cloud.automl.v1.ClassificationEvaluationMetrics.ConfidenceMetricsEntry.precision_at1].
+     *           Output only. The harmonic mean of [recall_at1][google.cloud.automl.v1.ClassificationEvaluationMetrics.ConfidenceMetricsEntry.recall_at1] and [precision_at1][google.cloud.automl.v1.ClassificationEvaluationMetrics.ConfidenceMetricsEntry.precision_at1].
      *     @type int|string $true_positive_count
      *           Output only. The number of model created labels that match a ground truth
      *           label.
@@ -430,10 +424,7 @@ class ConfidenceMetricsEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The harmonic mean of
-     * [recall_at1][google.cloud.automl.v1.ClassificationEvaluationMetrics.ConfidenceMetricsEntry.recall_at1]
-     * and
-     * [precision_at1][google.cloud.automl.v1.ClassificationEvaluationMetrics.ConfidenceMetricsEntry.precision_at1].
+     * Output only. The harmonic mean of [recall_at1][google.cloud.automl.v1.ClassificationEvaluationMetrics.ConfidenceMetricsEntry.recall_at1] and [precision_at1][google.cloud.automl.v1.ClassificationEvaluationMetrics.ConfidenceMetricsEntry.precision_at1].
      *
      * Generated from protobuf field <code>float f1_score_at1 = 7;</code>
      * @return float
@@ -444,10 +435,7 @@ class ConfidenceMetricsEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The harmonic mean of
-     * [recall_at1][google.cloud.automl.v1.ClassificationEvaluationMetrics.ConfidenceMetricsEntry.recall_at1]
-     * and
-     * [precision_at1][google.cloud.automl.v1.ClassificationEvaluationMetrics.ConfidenceMetricsEntry.precision_at1].
+     * Output only. The harmonic mean of [recall_at1][google.cloud.automl.v1.ClassificationEvaluationMetrics.ConfidenceMetricsEntry.recall_at1] and [precision_at1][google.cloud.automl.v1.ClassificationEvaluationMetrics.ConfidenceMetricsEntry.precision_at1].
      *
      * Generated from protobuf field <code>float f1_score_at1 = 7;</code>
      * @param float $var

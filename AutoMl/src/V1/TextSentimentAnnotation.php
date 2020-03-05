@@ -17,9 +17,9 @@ class TextSentimentAnnotation extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The sentiment with the semantic, as given to the
-     * [AutoMl.ImportData][google.cloud.automl.v1.AutoMl.ImportData] when
-     * populating the dataset from which the model used for the prediction had
-     * been trained. The sentiment values are between 0 and
+     * [AutoMl.ImportData][google.cloud.automl.v1.AutoMl.ImportData] when populating the dataset from which the model used
+     * for the prediction had been trained.
+     * The sentiment values are between 0 and
      * Dataset.text_sentiment_dataset_metadata.sentiment_max (inclusive),
      * with higher value meaning more positive sentiment. They are completely
      * relative, i.e. 0 means least positive sentiment and sentiment_max means
@@ -41,9 +41,9 @@ class TextSentimentAnnotation extends \Google\Protobuf\Internal\Message
      *
      *     @type int $sentiment
      *           Output only. The sentiment with the semantic, as given to the
-     *           [AutoMl.ImportData][google.cloud.automl.v1.AutoMl.ImportData] when
-     *           populating the dataset from which the model used for the prediction had
-     *           been trained. The sentiment values are between 0 and
+     *           [AutoMl.ImportData][google.cloud.automl.v1.AutoMl.ImportData] when populating the dataset from which the model used
+     *           for the prediction had been trained.
+     *           The sentiment values are between 0 and
      *           Dataset.text_sentiment_dataset_metadata.sentiment_max (inclusive),
      *           with higher value meaning more positive sentiment. They are completely
      *           relative, i.e. 0 means least positive sentiment and sentiment_max means
@@ -61,9 +61,9 @@ class TextSentimentAnnotation extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The sentiment with the semantic, as given to the
-     * [AutoMl.ImportData][google.cloud.automl.v1.AutoMl.ImportData] when
-     * populating the dataset from which the model used for the prediction had
-     * been trained. The sentiment values are between 0 and
+     * [AutoMl.ImportData][google.cloud.automl.v1.AutoMl.ImportData] when populating the dataset from which the model used
+     * for the prediction had been trained.
+     * The sentiment values are between 0 and
      * Dataset.text_sentiment_dataset_metadata.sentiment_max (inclusive),
      * with higher value meaning more positive sentiment. They are completely
      * relative, i.e. 0 means least positive sentiment and sentiment_max means
@@ -83,9 +83,9 @@ class TextSentimentAnnotation extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The sentiment with the semantic, as given to the
-     * [AutoMl.ImportData][google.cloud.automl.v1.AutoMl.ImportData] when
-     * populating the dataset from which the model used for the prediction had
-     * been trained. The sentiment values are between 0 and
+     * [AutoMl.ImportData][google.cloud.automl.v1.AutoMl.ImportData] when populating the dataset from which the model used
+     * for the prediction had been trained.
+     * The sentiment values are between 0 and
      * Dataset.text_sentiment_dataset_metadata.sentiment_max (inclusive),
      * with higher value meaning more positive sentiment. They are completely
      * relative, i.e. 0 means least positive sentiment and sentiment_max means

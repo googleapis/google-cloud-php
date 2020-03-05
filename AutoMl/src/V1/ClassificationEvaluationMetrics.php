@@ -10,6 +10,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Model evaluation metrics for classification problems.
+ * Note: For Video Classification this metrics only describe quality of the
+ * Video Classification predictions of "segment_classification" type.
  *
  * Generated from protobuf message <code>google.cloud.automl.v1.ClassificationEvaluationMetrics</code>
  */

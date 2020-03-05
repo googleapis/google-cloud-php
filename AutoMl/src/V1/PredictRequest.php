@@ -9,40 +9,49 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for
- * [PredictionService.Predict][google.cloud.automl.v1.PredictionService.Predict].
+ * Request message for [PredictionService.Predict][google.cloud.automl.v1.PredictionService.Predict].
  *
  * Generated from protobuf message <code>google.cloud.automl.v1.PredictRequest</code>
  */
 class PredictRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Name of the model requested to serve the prediction.
+     * Required. Name of the model requested to serve the prediction.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
      * Required. Payload to perform a prediction on. The payload must match the
      * problem type that the model was trained to solve.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1.ExamplePayload payload = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1.ExamplePayload payload = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $payload = null;
     /**
      * Additional domain-specific parameters, any string must be up to 25000
      * characters long.
-     * *  For Image Classification:
-     *    `score_threshold` - (float) A value from 0.0 to 1.0. When the model
-     *     makes predictions for an image, it will only produce results that have
-     *     at least this confidence score. The default is 0.5.
-     *  *  For Image Object Detection:
-     *    `score_threshold` - (float) When Model detects objects on the image,
-     *        it will only produce bounding boxes which have at least this
-     *        confidence score. Value in 0 to 1 range, default is 0.5.
-     *    `max_bounding_box_count` - (int64) No more than this number of bounding
-     *        boxes will be returned in the response. Default is 100, the
-     *        requested value may be limited by server.
+     * <h4>AutoML Vision Classification</h4>
+     * `score_threshold`
+     * : (float) A value from 0.0 to 1.0. When the model
+     *   makes predictions for an image, it will only produce results that have
+     *   at least this confidence score. The default is 0.5.
+     * <h4>AutoML Vision Object Detection</h4>
+     * `score_threshold`
+     * : (float) When Model detects objects on the image,
+     *   it will only produce bounding boxes which have at least this
+     *   confidence score. Value in 0 to 1 range, default is 0.5.
+     * `max_bounding_box_count`
+     * : (int64) The maximum number of bounding
+     *   boxes returned. The default is 100. The
+     *   number of returned bounding boxes might be limited by the server.
+     * <h4>AutoML Tables</h4>
+     * `feature_importance`
+     * : (boolean) Whether
+     * [feature_importance][google.cloud.automl.v1.TablesModelColumnInfo.feature_importance]
+     *   is populated in the returned list of
+     *   [TablesAnnotation][google.cloud.automl.v1.TablesAnnotation]
+     *   objects. The default is false.
      *
      * Generated from protobuf field <code>map<string, string> params = 3;</code>
      */
@@ -55,24 +64,34 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Name of the model requested to serve the prediction.
+     *           Required. Name of the model requested to serve the prediction.
      *     @type \Google\Cloud\AutoMl\V1\ExamplePayload $payload
      *           Required. Payload to perform a prediction on. The payload must match the
      *           problem type that the model was trained to solve.
      *     @type array|\Google\Protobuf\Internal\MapField $params
      *           Additional domain-specific parameters, any string must be up to 25000
      *           characters long.
-     *           *  For Image Classification:
-     *              `score_threshold` - (float) A value from 0.0 to 1.0. When the model
-     *               makes predictions for an image, it will only produce results that have
-     *               at least this confidence score. The default is 0.5.
-     *            *  For Image Object Detection:
-     *              `score_threshold` - (float) When Model detects objects on the image,
-     *                  it will only produce bounding boxes which have at least this
-     *                  confidence score. Value in 0 to 1 range, default is 0.5.
-     *              `max_bounding_box_count` - (int64) No more than this number of bounding
-     *                  boxes will be returned in the response. Default is 100, the
-     *                  requested value may be limited by server.
+     *           <h4>AutoML Vision Classification</h4>
+     *           `score_threshold`
+     *           : (float) A value from 0.0 to 1.0. When the model
+     *             makes predictions for an image, it will only produce results that have
+     *             at least this confidence score. The default is 0.5.
+     *           <h4>AutoML Vision Object Detection</h4>
+     *           `score_threshold`
+     *           : (float) When Model detects objects on the image,
+     *             it will only produce bounding boxes which have at least this
+     *             confidence score. Value in 0 to 1 range, default is 0.5.
+     *           `max_bounding_box_count`
+     *           : (int64) The maximum number of bounding
+     *             boxes returned. The default is 100. The
+     *             number of returned bounding boxes might be limited by the server.
+     *           <h4>AutoML Tables</h4>
+     *           `feature_importance`
+     *           : (boolean) Whether
+     *           [feature_importance][google.cloud.automl.v1.TablesModelColumnInfo.feature_importance]
+     *             is populated in the returned list of
+     *             [TablesAnnotation][google.cloud.automl.v1.TablesAnnotation]
+     *             objects. The default is false.
      * }
      */
     public function __construct($data = NULL) {
@@ -81,9 +100,9 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the model requested to serve the prediction.
+     * Required. Name of the model requested to serve the prediction.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -92,9 +111,9 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the model requested to serve the prediction.
+     * Required. Name of the model requested to serve the prediction.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -110,7 +129,7 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      * Required. Payload to perform a prediction on. The payload must match the
      * problem type that the model was trained to solve.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1.ExamplePayload payload = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1.ExamplePayload payload = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\AutoMl\V1\ExamplePayload
      */
     public function getPayload()
@@ -122,7 +141,7 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      * Required. Payload to perform a prediction on. The payload must match the
      * problem type that the model was trained to solve.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1.ExamplePayload payload = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1.ExamplePayload payload = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\AutoMl\V1\ExamplePayload $var
      * @return $this
      */
@@ -137,17 +156,27 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
     /**
      * Additional domain-specific parameters, any string must be up to 25000
      * characters long.
-     * *  For Image Classification:
-     *    `score_threshold` - (float) A value from 0.0 to 1.0. When the model
-     *     makes predictions for an image, it will only produce results that have
-     *     at least this confidence score. The default is 0.5.
-     *  *  For Image Object Detection:
-     *    `score_threshold` - (float) When Model detects objects on the image,
-     *        it will only produce bounding boxes which have at least this
-     *        confidence score. Value in 0 to 1 range, default is 0.5.
-     *    `max_bounding_box_count` - (int64) No more than this number of bounding
-     *        boxes will be returned in the response. Default is 100, the
-     *        requested value may be limited by server.
+     * <h4>AutoML Vision Classification</h4>
+     * `score_threshold`
+     * : (float) A value from 0.0 to 1.0. When the model
+     *   makes predictions for an image, it will only produce results that have
+     *   at least this confidence score. The default is 0.5.
+     * <h4>AutoML Vision Object Detection</h4>
+     * `score_threshold`
+     * : (float) When Model detects objects on the image,
+     *   it will only produce bounding boxes which have at least this
+     *   confidence score. Value in 0 to 1 range, default is 0.5.
+     * `max_bounding_box_count`
+     * : (int64) The maximum number of bounding
+     *   boxes returned. The default is 100. The
+     *   number of returned bounding boxes might be limited by the server.
+     * <h4>AutoML Tables</h4>
+     * `feature_importance`
+     * : (boolean) Whether
+     * [feature_importance][google.cloud.automl.v1.TablesModelColumnInfo.feature_importance]
+     *   is populated in the returned list of
+     *   [TablesAnnotation][google.cloud.automl.v1.TablesAnnotation]
+     *   objects. The default is false.
      *
      * Generated from protobuf field <code>map<string, string> params = 3;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -160,17 +189,27 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
     /**
      * Additional domain-specific parameters, any string must be up to 25000
      * characters long.
-     * *  For Image Classification:
-     *    `score_threshold` - (float) A value from 0.0 to 1.0. When the model
-     *     makes predictions for an image, it will only produce results that have
-     *     at least this confidence score. The default is 0.5.
-     *  *  For Image Object Detection:
-     *    `score_threshold` - (float) When Model detects objects on the image,
-     *        it will only produce bounding boxes which have at least this
-     *        confidence score. Value in 0 to 1 range, default is 0.5.
-     *    `max_bounding_box_count` - (int64) No more than this number of bounding
-     *        boxes will be returned in the response. Default is 100, the
-     *        requested value may be limited by server.
+     * <h4>AutoML Vision Classification</h4>
+     * `score_threshold`
+     * : (float) A value from 0.0 to 1.0. When the model
+     *   makes predictions for an image, it will only produce results that have
+     *   at least this confidence score. The default is 0.5.
+     * <h4>AutoML Vision Object Detection</h4>
+     * `score_threshold`
+     * : (float) When Model detects objects on the image,
+     *   it will only produce bounding boxes which have at least this
+     *   confidence score. Value in 0 to 1 range, default is 0.5.
+     * `max_bounding_box_count`
+     * : (int64) The maximum number of bounding
+     *   boxes returned. The default is 100. The
+     *   number of returned bounding boxes might be limited by the server.
+     * <h4>AutoML Tables</h4>
+     * `feature_importance`
+     * : (boolean) Whether
+     * [feature_importance][google.cloud.automl.v1.TablesModelColumnInfo.feature_importance]
+     *   is populated in the returned list of
+     *   [TablesAnnotation][google.cloud.automl.v1.TablesAnnotation]
+     *   objects. The default is false.
      *
      * Generated from protobuf field <code>map<string, string> params = 3;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

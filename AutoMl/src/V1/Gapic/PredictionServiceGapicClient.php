@@ -306,21 +306,46 @@ class PredictionServiceGapicClient
     }
 
     /**
-     * Perform an online prediction. The prediction result will be directly
+     * Perform an online prediction. The prediction result is directly
      * returned in the response.
-     * Available for following ML problems, and their expected request payloads:
-     * * Image Classification - Image in .JPEG, .GIF or .PNG format, image_bytes
-     *                          up to 30MB.
-     * * Image Object Detection - Image in .JPEG, .GIF or .PNG format, image_bytes
-     *                            up to 30MB.
-     * * Text Classification - TextSnippet, content up to 60,000 characters,
-     *                         UTF-8 encoded.
-     * * Text Extraction - TextSnippet, content up to 30,000 characters,
-     *                     UTF-8 NFC encoded.
-     * * Translation - TextSnippet, content up to 25,000 characters, UTF-8
-     *                 encoded.
-     * * Text Sentiment - TextSnippet, content up 500 characters, UTF-8
-     *                     encoded.
+     * Available for following ML scenarios, and their expected request payloads:.
+     *
+     * <table>
+     * <tr>
+     * <td>AutoML Vision Classification</td>
+     * <td>An image in .JPEG, .GIF or .PNG format, image_bytes up to 30MB.</td>
+     * </tr>
+     * <tr>
+     * <td>AutoML Vision Object Detection</td>
+     * <td>An image in .JPEG, .GIF or .PNG format, image_bytes up to 30MB.</td>
+     * </tr>
+     * <tr>
+     * <td>AutoML Natural Language Classification</td>
+     * <td>A TextSnippet up to 60,000 characters, UTF-8 encoded or a document in
+     * .PDF, .TIF or .TIFF format with size upto 2MB.</td>
+     * </tr>
+     * <tr>
+     * <td>AutoML Natural Language Entity Extraction</td>
+     * <td>A TextSnippet up to 10,000 characters, UTF-8 NFC encoded or a document
+     *  in .PDF, .TIF or .TIFF format with size upto 20MB.</td>
+     * </tr>
+     * <tr>
+     * <td>AutoML Natural Language Sentiment Analysis</td>
+     * <td>A TextSnippet up to 60,000 characters, UTF-8 encoded or a document in
+     * .PDF, .TIF or .TIFF format with size upto 2MB.</td>
+     * </tr>
+     * <tr>
+     * <td>AutoML Translation</td>
+     * <td>A TextSnippet up to 25,000 characters, UTF-8 encoded.</td>
+     * </tr>
+     * <tr>
+     * <td>AutoML Tables</td>
+     * <td>A row with column values matching
+     *   the columns of the model, up to 5MB. Not available for FORECASTING
+     *   `prediction_type`.
+     * </td>
+     * </tr>
+     * </table>
      *
      * Sample code:
      * ```
@@ -334,7 +359,7 @@ class PredictionServiceGapicClient
      * }
      * ```
      *
-     * @param string         $name         Name of the model requested to serve the prediction.
+     * @param string         $name         Required. Name of the model requested to serve the prediction.
      * @param ExamplePayload $payload      Required. Payload to perform a prediction on. The payload must match the
      *                                     problem type that the model was trained to solve.
      * @param array          $optionalArgs {
@@ -344,19 +369,34 @@ class PredictionServiceGapicClient
      *          Additional domain-specific parameters, any string must be up to 25000
      *          characters long.
      *
-     *          *  For Image Classification:
+     *          <h4>AutoML Vision Classification</h4>
      *
-     *             `score_threshold` - (float) A value from 0.0 to 1.0. When the model
-     *              makes predictions for an image, it will only produce results that have
-     *              at least this confidence score. The default is 0.5.
+     *          `score_threshold`
+     *          : (float) A value from 0.0 to 1.0. When the model
+     *            makes predictions for an image, it will only produce results that have
+     *            at least this confidence score. The default is 0.5.
      *
-     *           *  For Image Object Detection:
-     *             `score_threshold` - (float) When Model detects objects on the image,
-     *                 it will only produce bounding boxes which have at least this
-     *                 confidence score. Value in 0 to 1 range, default is 0.5.
-     *             `max_bounding_box_count` - (int64) No more than this number of bounding
-     *                 boxes will be returned in the response. Default is 100, the
-     *                 requested value may be limited by server.
+     *          <h4>AutoML Vision Object Detection</h4>
+     *
+     *          `score_threshold`
+     *          : (float) When Model detects objects on the image,
+     *            it will only produce bounding boxes which have at least this
+     *            confidence score. Value in 0 to 1 range, default is 0.5.
+     *
+     *          `max_bounding_box_count`
+     *          : (int64) The maximum number of bounding
+     *            boxes returned. The default is 100. The
+     *            number of returned bounding boxes might be limited by the server.
+     *
+     *          <h4>AutoML Tables</h4>
+     *
+     *          `feature_importance`
+     *          : (boolean) Whether
+     *
+     *          [feature_importance][google.cloud.automl.v1.TablesModelColumnInfo.feature_importance]
+     *            is populated in the returned list of
+     *            [TablesAnnotation][google.cloud.automl.v1.TablesAnnotation]
+     *            objects. The default is false.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -394,18 +434,21 @@ class PredictionServiceGapicClient
     }
 
     /**
-     * Perform a batch prediction. Unlike the online
-     * [Predict][google.cloud.automl.v1.PredictionService.Predict], batch
+     * Perform a batch prediction. Unlike the online [Predict][google.cloud.automl.v1.PredictionService.Predict], batch
      * prediction result won't be immediately available in the response. Instead,
      * a long running operation object is returned. User can poll the operation
      * result via [GetOperation][google.longrunning.Operations.GetOperation]
-     * method. Once the operation is done,
-     * [BatchPredictResult][google.cloud.automl.v1.BatchPredictResult] is returned
-     * in the [response][google.longrunning.Operation.response] field. Available
-     * for following ML problems:
-     * * Image Classification
-     * * Image Object Detection
-     * * Text Extraction.
+     * method. Once the operation is done, [BatchPredictResult][google.cloud.automl.v1.BatchPredictResult] is returned in
+     * the [response][google.longrunning.Operation.response] field.
+     * Available for following ML scenarios:.
+     *
+     * * AutoML Vision Classification
+     * * AutoML Vision Object Detection
+     * * AutoML Video Intelligence Classification
+     * * AutoML Video Intelligence Object Tracking * AutoML Natural Language Classification
+     * * AutoML Natural Language Entity Extraction
+     * * AutoML Natural Language Sentiment Analysis
+     * * AutoML Tables
      *
      * Sample code:
      * ```
@@ -448,7 +491,7 @@ class PredictionServiceGapicClient
      * }
      * ```
      *
-     * @param string                   $name         Name of the model requested to serve the batch prediction.
+     * @param string                   $name         Required. Name of the model requested to serve the batch prediction.
      * @param BatchPredictInputConfig  $inputConfig  Required. The input configuration for batch prediction.
      * @param BatchPredictOutputConfig $outputConfig Required. The Configuration specifying where output predictions should
      *                                               be written.
@@ -459,26 +502,12 @@ class PredictionServiceGapicClient
      *          Additional domain-specific parameters for the predictions, any string must
      *          be up to 25000 characters long.
      *
-     *          *  For Text Classification:
+     *          <h4>AutoML Natural Language Classification</h4>
      *
-     *             `score_threshold` - (float) A value from 0.0 to 1.0. When the model
-     *                  makes predictions for a text snippet, it will only produce results
-     *                  that have at least this confidence score. The default is 0.5.
-     *
-     *          *  For Image Classification:
-     *
-     *             `score_threshold` - (float) A value from 0.0 to 1.0. When the model
-     *                  makes predictions for an image, it will only produce results that
-     *                  have at least this confidence score. The default is 0.5.
-     *
-     *          *  For Image Object Detection:
-     *
-     *             `score_threshold` - (float) When Model detects objects on the image,
-     *                 it will only produce bounding boxes which have at least this
-     *                 confidence score. Value in 0 to 1 range, default is 0.5.
-     *             `max_bounding_box_count` - (int64) No more than this number of bounding
-     *                 boxes will be produced per image. Default is 100, the
-     *                 requested value may be limited by server.
+     *          `score_threshold`
+     *          : (float) A value from 0.0 to 1.0. When the model
+     *            makes predictions for a text snippet, it will only produce results
+     *            that have at least this confidence score. The default is 0.5.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
