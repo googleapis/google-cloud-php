@@ -789,6 +789,25 @@ class StorageObject
      * ]);
      * ```
      *
+     * ```
+     * // Using Bucket-Bound hostnames
+     * // By default, a custom bucket-bound hostname will use `http` as the schema rather than `https.
+     * // In order to get an https URI, we need to specify the proper scheme.
+     * $url = $object->signedUrl(new \DateTime('tomorrow'), [
+     *     'version' => 'v4',
+     *     'bucketBoundHostname' => 'cdn.example.com',
+     *     'scheme' => 'https'
+     * ]);
+     * ```
+     *
+     * ```
+     * // Using virtual hosted style URIs
+     * // When true, returns a URL with the hostname `<bucket>.storage.googleapis.com`.
+     * $url = $object->signedUrl(new \DateTime('tomorrow'), [
+     *     'virtualHostedStyle' => true
+     * ]);
+     * ````
+     *
      * @see https://cloud.google.com/storage/docs/access-control/signed-urls Signed URLs
      *
      * @param Timestamp|\DateTimeInterface|int $expires Specifies when the URL
