@@ -24,7 +24,7 @@ class BigQueryOptions extends \Google\Protobuf\Internal\Message
      * syntax](/bigquery/docs/querying-partitioned-tables) has to be used instead.
      * In both cases, tables are sharded based on UTC timezone.
      *
-     * Generated from protobuf field <code>bool use_partitioned_tables = 1;</code>
+     * Generated from protobuf field <code>bool use_partitioned_tables = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $use_partitioned_tables = false;
     /**
@@ -76,7 +76,7 @@ class BigQueryOptions extends \Google\Protobuf\Internal\Message
      * syntax](/bigquery/docs/querying-partitioned-tables) has to be used instead.
      * In both cases, tables are sharded based on UTC timezone.
      *
-     * Generated from protobuf field <code>bool use_partitioned_tables = 1;</code>
+     * Generated from protobuf field <code>bool use_partitioned_tables = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getUsePartitionedTables()
@@ -93,7 +93,7 @@ class BigQueryOptions extends \Google\Protobuf\Internal\Message
      * syntax](/bigquery/docs/querying-partitioned-tables) has to be used instead.
      * In both cases, tables are sharded based on UTC timezone.
      *
-     * Generated from protobuf field <code>bool use_partitioned_tables = 1;</code>
+     * Generated from protobuf field <code>bool use_partitioned_tables = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */

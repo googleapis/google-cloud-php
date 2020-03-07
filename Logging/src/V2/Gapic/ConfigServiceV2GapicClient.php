@@ -40,15 +40,20 @@ use Google\Cloud\Logging\V2\CreateExclusionRequest;
 use Google\Cloud\Logging\V2\CreateSinkRequest;
 use Google\Cloud\Logging\V2\DeleteExclusionRequest;
 use Google\Cloud\Logging\V2\DeleteSinkRequest;
+use Google\Cloud\Logging\V2\GetBucketRequest;
 use Google\Cloud\Logging\V2\GetCmekSettingsRequest;
 use Google\Cloud\Logging\V2\GetExclusionRequest;
 use Google\Cloud\Logging\V2\GetSinkRequest;
+use Google\Cloud\Logging\V2\ListBucketsRequest;
+use Google\Cloud\Logging\V2\ListBucketsResponse;
 use Google\Cloud\Logging\V2\ListExclusionsRequest;
 use Google\Cloud\Logging\V2\ListExclusionsResponse;
 use Google\Cloud\Logging\V2\ListSinksRequest;
 use Google\Cloud\Logging\V2\ListSinksResponse;
+use Google\Cloud\Logging\V2\LogBucket;
 use Google\Cloud\Logging\V2\LogExclusion;
 use Google\Cloud\Logging\V2\LogSink;
+use Google\Cloud\Logging\V2\UpdateBucketRequest;
 use Google\Cloud\Logging\V2\UpdateCmekSettingsRequest;
 use Google\Cloud\Logging\V2\UpdateExclusionRequest;
 use Google\Cloud\Logging\V2\UpdateSinkRequest;
@@ -64,9 +69,9 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $configServiceV2Client = new ConfigServiceV2Client();
  * try {
- *     $formattedParent = $configServiceV2Client->projectName('[PROJECT]');
+ *     $parent = '';
  *     // Iterate over pages of elements
- *     $pagedResponse = $configServiceV2Client->listSinks($formattedParent);
+ *     $pagedResponse = $configServiceV2Client->listBuckets($parent);
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
  *             // doSomethingWith($element);
@@ -77,7 +82,7 @@ use Google\Protobuf\GPBEmpty;
  *     // Alternatively:
  *
  *     // Iterate through all elements
- *     $pagedResponse = $configServiceV2Client->listSinks($formattedParent);
+ *     $pagedResponse = $configServiceV2Client->listBuckets($parent);
  *     foreach ($pagedResponse->iterateAllElements() as $element) {
  *         // doSomethingWith($element);
  *     }
@@ -127,18 +132,10 @@ class ConfigServiceV2GapicClient
         'https://www.googleapis.com/auth/logging.read',
         'https://www.googleapis.com/auth/logging.write',
     ];
-    private static $billingNameTemplate;
-    private static $billingExclusionNameTemplate;
-    private static $billingSinkNameTemplate;
-    private static $exclusionNameTemplate;
+    private static $billingAccountNameTemplate;
     private static $folderNameTemplate;
-    private static $folderExclusionNameTemplate;
-    private static $folderSinkNameTemplate;
     private static $organizationNameTemplate;
-    private static $organizationExclusionNameTemplate;
-    private static $organizationSinkNameTemplate;
     private static $projectNameTemplate;
-    private static $sinkNameTemplate;
     private static $pathTemplateMap;
 
     private static function getClientDefaults()
@@ -160,40 +157,13 @@ class ConfigServiceV2GapicClient
         ];
     }
 
-    private static function getBillingNameTemplate()
+    private static function getBillingAccountNameTemplate()
     {
-        if (null == self::$billingNameTemplate) {
-            self::$billingNameTemplate = new PathTemplate('billingAccounts/{billing_account}');
+        if (null == self::$billingAccountNameTemplate) {
+            self::$billingAccountNameTemplate = new PathTemplate('billingAccounts/{billing_account}');
         }
 
-        return self::$billingNameTemplate;
-    }
-
-    private static function getBillingExclusionNameTemplate()
-    {
-        if (null == self::$billingExclusionNameTemplate) {
-            self::$billingExclusionNameTemplate = new PathTemplate('billingAccounts/{billing_account}/exclusions/{exclusion}');
-        }
-
-        return self::$billingExclusionNameTemplate;
-    }
-
-    private static function getBillingSinkNameTemplate()
-    {
-        if (null == self::$billingSinkNameTemplate) {
-            self::$billingSinkNameTemplate = new PathTemplate('billingAccounts/{billing_account}/sinks/{sink}');
-        }
-
-        return self::$billingSinkNameTemplate;
-    }
-
-    private static function getExclusionNameTemplate()
-    {
-        if (null == self::$exclusionNameTemplate) {
-            self::$exclusionNameTemplate = new PathTemplate('projects/{project}/exclusions/{exclusion}');
-        }
-
-        return self::$exclusionNameTemplate;
+        return self::$billingAccountNameTemplate;
     }
 
     private static function getFolderNameTemplate()
@@ -205,24 +175,6 @@ class ConfigServiceV2GapicClient
         return self::$folderNameTemplate;
     }
 
-    private static function getFolderExclusionNameTemplate()
-    {
-        if (null == self::$folderExclusionNameTemplate) {
-            self::$folderExclusionNameTemplate = new PathTemplate('folders/{folder}/exclusions/{exclusion}');
-        }
-
-        return self::$folderExclusionNameTemplate;
-    }
-
-    private static function getFolderSinkNameTemplate()
-    {
-        if (null == self::$folderSinkNameTemplate) {
-            self::$folderSinkNameTemplate = new PathTemplate('folders/{folder}/sinks/{sink}');
-        }
-
-        return self::$folderSinkNameTemplate;
-    }
-
     private static function getOrganizationNameTemplate()
     {
         if (null == self::$organizationNameTemplate) {
@@ -230,24 +182,6 @@ class ConfigServiceV2GapicClient
         }
 
         return self::$organizationNameTemplate;
-    }
-
-    private static function getOrganizationExclusionNameTemplate()
-    {
-        if (null == self::$organizationExclusionNameTemplate) {
-            self::$organizationExclusionNameTemplate = new PathTemplate('organizations/{organization}/exclusions/{exclusion}');
-        }
-
-        return self::$organizationExclusionNameTemplate;
-    }
-
-    private static function getOrganizationSinkNameTemplate()
-    {
-        if (null == self::$organizationSinkNameTemplate) {
-            self::$organizationSinkNameTemplate = new PathTemplate('organizations/{organization}/sinks/{sink}');
-        }
-
-        return self::$organizationSinkNameTemplate;
     }
 
     private static function getProjectNameTemplate()
@@ -259,31 +193,14 @@ class ConfigServiceV2GapicClient
         return self::$projectNameTemplate;
     }
 
-    private static function getSinkNameTemplate()
-    {
-        if (null == self::$sinkNameTemplate) {
-            self::$sinkNameTemplate = new PathTemplate('projects/{project}/sinks/{sink}');
-        }
-
-        return self::$sinkNameTemplate;
-    }
-
     private static function getPathTemplateMap()
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
-                'billing' => self::getBillingNameTemplate(),
-                'billingExclusion' => self::getBillingExclusionNameTemplate(),
-                'billingSink' => self::getBillingSinkNameTemplate(),
-                'exclusion' => self::getExclusionNameTemplate(),
+                'billingAccount' => self::getBillingAccountNameTemplate(),
                 'folder' => self::getFolderNameTemplate(),
-                'folderExclusion' => self::getFolderExclusionNameTemplate(),
-                'folderSink' => self::getFolderSinkNameTemplate(),
                 'organization' => self::getOrganizationNameTemplate(),
-                'organizationExclusion' => self::getOrganizationExclusionNameTemplate(),
-                'organizationSink' => self::getOrganizationSinkNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
-                'sink' => self::getSinkNameTemplate(),
             ];
         }
 
@@ -292,71 +209,17 @@ class ConfigServiceV2GapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a billing resource.
+     * a billing_account resource.
      *
      * @param string $billingAccount
      *
-     * @return string The formatted billing resource.
+     * @return string The formatted billing_account resource.
      * @experimental
      */
-    public static function billingName($billingAccount)
+    public static function billingAccountName($billingAccount)
     {
-        return self::getBillingNameTemplate()->render([
+        return self::getBillingAccountNameTemplate()->render([
             'billing_account' => $billingAccount,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a billing_exclusion resource.
-     *
-     * @param string $billingAccount
-     * @param string $exclusion
-     *
-     * @return string The formatted billing_exclusion resource.
-     * @experimental
-     */
-    public static function billingExclusionName($billingAccount, $exclusion)
-    {
-        return self::getBillingExclusionNameTemplate()->render([
-            'billing_account' => $billingAccount,
-            'exclusion' => $exclusion,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a billing_sink resource.
-     *
-     * @param string $billingAccount
-     * @param string $sink
-     *
-     * @return string The formatted billing_sink resource.
-     * @experimental
-     */
-    public static function billingSinkName($billingAccount, $sink)
-    {
-        return self::getBillingSinkNameTemplate()->render([
-            'billing_account' => $billingAccount,
-            'sink' => $sink,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a exclusion resource.
-     *
-     * @param string $project
-     * @param string $exclusion
-     *
-     * @return string The formatted exclusion resource.
-     * @experimental
-     */
-    public static function exclusionName($project, $exclusion)
-    {
-        return self::getExclusionNameTemplate()->render([
-            'project' => $project,
-            'exclusion' => $exclusion,
         ]);
     }
 
@@ -378,42 +241,6 @@ class ConfigServiceV2GapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a folder_exclusion resource.
-     *
-     * @param string $folder
-     * @param string $exclusion
-     *
-     * @return string The formatted folder_exclusion resource.
-     * @experimental
-     */
-    public static function folderExclusionName($folder, $exclusion)
-    {
-        return self::getFolderExclusionNameTemplate()->render([
-            'folder' => $folder,
-            'exclusion' => $exclusion,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a folder_sink resource.
-     *
-     * @param string $folder
-     * @param string $sink
-     *
-     * @return string The formatted folder_sink resource.
-     * @experimental
-     */
-    public static function folderSinkName($folder, $sink)
-    {
-        return self::getFolderSinkNameTemplate()->render([
-            'folder' => $folder,
-            'sink' => $sink,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
      * a organization resource.
      *
      * @param string $organization
@@ -425,42 +252,6 @@ class ConfigServiceV2GapicClient
     {
         return self::getOrganizationNameTemplate()->render([
             'organization' => $organization,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a organization_exclusion resource.
-     *
-     * @param string $organization
-     * @param string $exclusion
-     *
-     * @return string The formatted organization_exclusion resource.
-     * @experimental
-     */
-    public static function organizationExclusionName($organization, $exclusion)
-    {
-        return self::getOrganizationExclusionNameTemplate()->render([
-            'organization' => $organization,
-            'exclusion' => $exclusion,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a organization_sink resource.
-     *
-     * @param string $organization
-     * @param string $sink
-     *
-     * @return string The formatted organization_sink resource.
-     * @experimental
-     */
-    public static function organizationSinkName($organization, $sink)
-    {
-        return self::getOrganizationSinkNameTemplate()->render([
-            'organization' => $organization,
-            'sink' => $sink,
         ]);
     }
 
@@ -481,39 +272,13 @@ class ConfigServiceV2GapicClient
     }
 
     /**
-     * Formats a string containing the fully-qualified path to represent
-     * a sink resource.
-     *
-     * @param string $project
-     * @param string $sink
-     *
-     * @return string The formatted sink resource.
-     * @experimental
-     */
-    public static function sinkName($project, $sink)
-    {
-        return self::getSinkNameTemplate()->render([
-            'project' => $project,
-            'sink' => $sink,
-        ]);
-    }
-
-    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - billing: billingAccounts/{billing_account}
-     * - billingExclusion: billingAccounts/{billing_account}/exclusions/{exclusion}
-     * - billingSink: billingAccounts/{billing_account}/sinks/{sink}
-     * - exclusion: projects/{project}/exclusions/{exclusion}
+     * - billingAccount: billingAccounts/{billing_account}
      * - folder: folders/{folder}
-     * - folderExclusion: folders/{folder}/exclusions/{exclusion}
-     * - folderSink: folders/{folder}/sinks/{sink}
      * - organization: organizations/{organization}
-     * - organizationExclusion: organizations/{organization}/exclusions/{exclusion}
-     * - organizationSink: organizations/{organization}/sinks/{sink}
-     * - project: projects/{project}
-     * - sink: projects/{project}/sinks/{sink}.
+     * - project: projects/{project}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
@@ -612,6 +377,236 @@ class ConfigServiceV2GapicClient
     }
 
     /**
+     * Lists buckets (Beta).
+     *
+     * Sample code:
+     * ```
+     * $configServiceV2Client = new ConfigServiceV2Client();
+     * try {
+     *     $parent = '';
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $configServiceV2Client->listBuckets($parent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $configServiceV2Client->listBuckets($parent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $configServiceV2Client->close();
+     * }
+     * ```
+     *
+     * @param string $parent Required. The parent resource whose buckets are to be listed:
+     *
+     *     "projects/[PROJECT_ID]/locations/[LOCATION_ID]"
+     *     "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]"
+     *     "folders/[FOLDER_ID]/locations/[LOCATION_ID]"
+     *
+     * Note: The locations portion of the resource must be specified, but
+     * supplying the character `-` in place of [LOCATION_ID] will return all
+     * buckets.
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type string $pageToken
+     *          A page token is used to specify a page of values to be returned.
+     *          If no page token is specified (the default), the first page
+     *          of values will be returned. Any page token used here must have
+     *          been generated by a previous call to the API.
+     *     @type int $pageSize
+     *          The maximum number of resources contained in the underlying API
+     *          response. The API may return fewer values in a page, even if
+     *          there are additional values to be retrieved.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function listBuckets($parent, array $optionalArgs = [])
+    {
+        $request = new ListBucketsRequest();
+        $request->setParent($parent);
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->getPagedListResponse(
+            'ListBuckets',
+            $optionalArgs,
+            ListBucketsResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Gets a bucket (Beta).
+     *
+     * Sample code:
+     * ```
+     * $configServiceV2Client = new ConfigServiceV2Client();
+     * try {
+     *     $name = '';
+     *     $response = $configServiceV2Client->getBucket($name);
+     * } finally {
+     *     $configServiceV2Client->close();
+     * }
+     * ```
+     *
+     * @param string $name Required. The resource name of the bucket:
+     *
+     *     "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *
+     * Example:
+     * `"projects/my-project-id/locations/my-location/buckets/my-bucket-id"`.
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Logging\V2\LogBucket
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function getBucket($name, array $optionalArgs = [])
+    {
+        $request = new GetBucketRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'GetBucket',
+            LogBucket::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Updates a bucket. This method replaces the following fields in the
+     * existing bucket with values from the new bucket: `retention_period`.
+     *
+     * If the retention period is decreased and the bucket is locked,
+     * FAILED_PRECONDITION will be returned.
+     *
+     * If the bucket has a LifecycleState of DELETE_REQUESTED, FAILED_PRECONDITION
+     * will be returned.
+     *
+     * A buckets region may not be modified after it is created.
+     * This method is in Beta.
+     *
+     * Sample code:
+     * ```
+     * $configServiceV2Client = new ConfigServiceV2Client();
+     * try {
+     *     $name = '';
+     *     $bucket = new LogBucket();
+     *     $updateMask = new FieldMask();
+     *     $response = $configServiceV2Client->updateBucket($name, $bucket, $updateMask);
+     * } finally {
+     *     $configServiceV2Client->close();
+     * }
+     * ```
+     *
+     * @param string $name Required. The full resource name of the bucket to update.
+     *
+     *     "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *
+     * Example:
+     * `"projects/my-project-id/locations/my-location/buckets/my-bucket-id"`. Also
+     * requires permission "resourcemanager.projects.updateLiens" to set the
+     * locked property
+     * @param LogBucket $bucket     Required. The updated bucket.
+     * @param FieldMask $updateMask Required. Field mask that specifies the fields in `bucket` that need an update. A
+     *                              bucket field will be overwritten if, and only if, it is in the update
+     *                              mask. `name` and output only fields cannot be updated.
+     *
+     * For a detailed `FieldMask` definition, see
+     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMask
+     *
+     * Example: `updateMask=retention_days`.
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Logging\V2\LogBucket
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function updateBucket($name, $bucket, $updateMask, array $optionalArgs = [])
+    {
+        $request = new UpdateBucketRequest();
+        $request->setName($name);
+        $request->setBucket($bucket);
+        $request->setUpdateMask($updateMask);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'UpdateBucket',
+            LogBucket::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Lists sinks.
      *
      * Sample code:
@@ -703,8 +698,8 @@ class ConfigServiceV2GapicClient
      * ```
      * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $formattedSinkName = $configServiceV2Client->sinkName('[PROJECT]', '[SINK]');
-     *     $response = $configServiceV2Client->getSink($formattedSinkName);
+     *     $sinkName = '';
+     *     $response = $configServiceV2Client->getSink($sinkName);
      * } finally {
      *     $configServiceV2Client->close();
      * }
@@ -843,16 +838,16 @@ class ConfigServiceV2GapicClient
      * ```
      * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $formattedSinkName = $configServiceV2Client->sinkName('[PROJECT]', '[SINK]');
+     *     $sinkName = '';
      *     $sink = new LogSink();
-     *     $response = $configServiceV2Client->updateSink($formattedSinkName, $sink);
+     *     $response = $configServiceV2Client->updateSink($sinkName, $sink);
      * } finally {
      *     $configServiceV2Client->close();
      * }
      * ```
      *
-     * @param string $sinkName Required. The full resource name of the sink to update, including the
-     *                         parent resource and the sink identifier:
+     * @param string $sinkName Required. The full resource name of the sink to update, including the parent
+     *                         resource and the sink identifier:
      *
      *     "projects/[PROJECT_ID]/sinks/[SINK_ID]"
      *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
@@ -860,8 +855,8 @@ class ConfigServiceV2GapicClient
      *     "folders/[FOLDER_ID]/sinks/[SINK_ID]"
      *
      * Example: `"projects/my-project-id/sinks/my-sink-id"`.
-     * @param LogSink $sink         Required. The updated sink, whose name is the same identifier that appears
-     *                              as part of `sink_name`.
+     * @param LogSink $sink         Required. The updated sink, whose name is the same identifier that appears as part
+     *                              of `sink_name`.
      * @param array   $optionalArgs {
      *                              Optional.
      *
@@ -939,15 +934,15 @@ class ConfigServiceV2GapicClient
      * ```
      * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $formattedSinkName = $configServiceV2Client->sinkName('[PROJECT]', '[SINK]');
-     *     $configServiceV2Client->deleteSink($formattedSinkName);
+     *     $sinkName = '';
+     *     $configServiceV2Client->deleteSink($sinkName);
      * } finally {
      *     $configServiceV2Client->close();
      * }
      * ```
      *
-     * @param string $sinkName Required. The full resource name of the sink to delete, including the
-     *                         parent resource and the sink identifier:
+     * @param string $sinkName Required. The full resource name of the sink to delete, including the parent
+     *                         resource and the sink identifier:
      *
      *     "projects/[PROJECT_ID]/sinks/[SINK_ID]"
      *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
@@ -1080,8 +1075,8 @@ class ConfigServiceV2GapicClient
      * ```
      * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $formattedName = $configServiceV2Client->exclusionName('[PROJECT]', '[EXCLUSION]');
-     *     $response = $configServiceV2Client->getExclusion($formattedName);
+     *     $name = '';
+     *     $response = $configServiceV2Client->getExclusion($name);
      * } finally {
      *     $configServiceV2Client->close();
      * }
@@ -1200,10 +1195,10 @@ class ConfigServiceV2GapicClient
      * ```
      * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $formattedName = $configServiceV2Client->exclusionName('[PROJECT]', '[EXCLUSION]');
+     *     $name = '';
      *     $exclusion = new LogExclusion();
      *     $updateMask = new FieldMask();
-     *     $response = $configServiceV2Client->updateExclusion($formattedName, $exclusion, $updateMask);
+     *     $response = $configServiceV2Client->updateExclusion($name, $exclusion, $updateMask);
      * } finally {
      *     $configServiceV2Client->close();
      * }
@@ -1217,10 +1212,10 @@ class ConfigServiceV2GapicClient
      *     "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
      *
      * Example: `"projects/my-project-id/exclusions/my-exclusion-id"`.
-     * @param LogExclusion $exclusion  Required. New values for the existing exclusion. Only the fields specified
-     *                                 in `update_mask` are relevant.
-     * @param FieldMask    $updateMask Required. A non-empty list of fields to change in the existing exclusion.
-     *                                 New values for the fields are taken from the corresponding fields in the
+     * @param LogExclusion $exclusion  Required. New values for the existing exclusion. Only the fields specified in
+     *                                 `update_mask` are relevant.
+     * @param FieldMask    $updateMask Required. A non-empty list of fields to change in the existing exclusion. New values
+     *                                 for the fields are taken from the corresponding fields in the
      *                                 [LogExclusion][google.logging.v2.LogExclusion] included in this request. Fields not mentioned in
      *                                 `update_mask` are not changed and are ignored in the request.
      *
@@ -1270,8 +1265,8 @@ class ConfigServiceV2GapicClient
      * ```
      * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $formattedName = $configServiceV2Client->exclusionName('[PROJECT]', '[EXCLUSION]');
-     *     $configServiceV2Client->deleteExclusion($formattedName);
+     *     $name = '';
+     *     $configServiceV2Client->deleteExclusion($name);
      * } finally {
      *     $configServiceV2Client->close();
      * }
@@ -1332,28 +1327,28 @@ class ConfigServiceV2GapicClient
      * ```
      * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $response = $configServiceV2Client->getCmekSettings();
+     *     $name = '';
+     *     $response = $configServiceV2Client->getCmekSettings($name);
      * } finally {
      *     $configServiceV2Client->close();
      * }
      * ```
      *
+     * @param string $name Required. The resource for which to retrieve CMEK settings.
+     *
+     *     "projects/[PROJECT_ID]/cmekSettings"
+     *     "organizations/[ORGANIZATION_ID]/cmekSettings"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings"
+     *     "folders/[FOLDER_ID]/cmekSettings"
+     *
+     * Example: `"organizations/12345/cmekSettings"`.
+     *
+     * Note: CMEK for the Logs Router can currently only be configured for GCP
+     * organizations. Once configured, it applies to all projects and folders in
+     * the GCP organization.
      * @param array $optionalArgs {
      *                            Optional.
      *
-     *     @type string $name
-     *          Required. The resource for which to retrieve CMEK settings.
-     *
-     *              "projects/[PROJECT_ID]/cmekSettings"
-     *              "organizations/[ORGANIZATION_ID]/cmekSettings"
-     *              "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings"
-     *              "folders/[FOLDER_ID]/cmekSettings"
-     *
-     *          Example: `"organizations/12345/cmekSettings"`.
-     *
-     *          Note: CMEK for the Logs Router can currently only be configured for GCP
-     *          organizations. Once configured, it applies to all projects and folders in
-     *          the GCP organization.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1366,12 +1361,10 @@ class ConfigServiceV2GapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getCmekSettings(array $optionalArgs = [])
+    public function getCmekSettings($name, array $optionalArgs = [])
     {
         $request = new GetCmekSettingsRequest();
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-        }
+        $request->setName($name);
 
         $requestParams = new RequestParamsHeaderDescriptor([
           'name' => $request->getName(),
@@ -1408,33 +1401,33 @@ class ConfigServiceV2GapicClient
      * ```
      * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $response = $configServiceV2Client->updateCmekSettings();
+     *     $name = '';
+     *     $cmekSettings = new CmekSettings();
+     *     $response = $configServiceV2Client->updateCmekSettings($name, $cmekSettings);
      * } finally {
      *     $configServiceV2Client->close();
      * }
      * ```
      *
+     * @param string $name Required. The resource name for the CMEK settings to update.
+     *
+     *     "projects/[PROJECT_ID]/cmekSettings"
+     *     "organizations/[ORGANIZATION_ID]/cmekSettings"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings"
+     *     "folders/[FOLDER_ID]/cmekSettings"
+     *
+     * Example: `"organizations/12345/cmekSettings"`.
+     *
+     * Note: CMEK for the Logs Router can currently only be configured for GCP
+     * organizations. Once configured, it applies to all projects and folders in
+     * the GCP organization.
+     * @param CmekSettings $cmekSettings Required. The CMEK settings to update.
+     *
+     * See [Enabling CMEK for Logs
+     * Router](https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.
      * @param array $optionalArgs {
      *                            Optional.
      *
-     *     @type string $name
-     *          Required. The resource name for the CMEK settings to update.
-     *
-     *              "projects/[PROJECT_ID]/cmekSettings"
-     *              "organizations/[ORGANIZATION_ID]/cmekSettings"
-     *              "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings"
-     *              "folders/[FOLDER_ID]/cmekSettings"
-     *
-     *          Example: `"organizations/12345/cmekSettings"`.
-     *
-     *          Note: CMEK for the Logs Router can currently only be configured for GCP
-     *          organizations. Once configured, it applies to all projects and folders in
-     *          the GCP organization.
-     *     @type CmekSettings $cmekSettings
-     *          Required. The CMEK settings to update.
-     *
-     *          See [Enabling CMEK for Logs
-     *          Router](https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.
      *     @type FieldMask $updateMask
      *          Optional. Field mask identifying which fields from `cmek_settings` should
      *          be updated. A field will be overwritten if and only if it is in the update
@@ -1455,15 +1448,11 @@ class ConfigServiceV2GapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateCmekSettings(array $optionalArgs = [])
+    public function updateCmekSettings($name, $cmekSettings, array $optionalArgs = [])
     {
         $request = new UpdateCmekSettingsRequest();
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-        }
-        if (isset($optionalArgs['cmekSettings'])) {
-            $request->setCmekSettings($optionalArgs['cmekSettings']);
-        }
+        $request->setName($name);
+        $request->setCmekSettings($cmekSettings);
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }

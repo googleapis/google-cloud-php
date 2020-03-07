@@ -89,9 +89,9 @@ class LoggingServiceV2ClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedLogName = $client->logName('[PROJECT]', '[LOG]');
+        $logName = 'logName2013526694';
 
-        $client->deleteLog($formattedLogName);
+        $client->deleteLog($logName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -100,7 +100,7 @@ class LoggingServiceV2ClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getLogName();
 
-        $this->assertProtobufEquals($formattedLogName, $actualValue);
+        $this->assertProtobufEquals($logName, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -128,10 +128,10 @@ class LoggingServiceV2ClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedLogName = $client->logName('[PROJECT]', '[LOG]');
+        $logName = 'logName2013526694';
 
         try {
-            $client->deleteLog($formattedLogName);
+            $client->deleteLog($logName);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

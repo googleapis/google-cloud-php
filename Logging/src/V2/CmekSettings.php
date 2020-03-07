@@ -22,9 +22,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class CmekSettings extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output Only. The resource name of the CMEK settings.
+     * Output only. The resource name of the CMEK settings.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $name = '';
     /**
@@ -49,8 +49,8 @@ class CmekSettings extends \Google\Protobuf\Internal\Message
      */
     private $kms_key_name = '';
     /**
-     * Output Only. The service account that will be used by the Logs Router to
-     * access your Cloud KMS key.
+     * Output only. The service account that will be used by the Logs Router to access your
+     * Cloud KMS key.
      * Before enabling CMEK for Logs Router, you must first assign the role
      * `roles/cloudkms.cryptoKeyEncrypterDecrypter` to the service account that
      * the Logs Router will use to access your Cloud KMS key. Use
@@ -59,7 +59,7 @@ class CmekSettings extends \Google\Protobuf\Internal\Message
      * See [Enabling CMEK for Logs
      * Router](/logging/docs/routing/managed-encryption) for more information.
      *
-     * Generated from protobuf field <code>string service_account_id = 3;</code>
+     * Generated from protobuf field <code>string service_account_id = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $service_account_id = '';
 
@@ -70,7 +70,7 @@ class CmekSettings extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output Only. The resource name of the CMEK settings.
+     *           Output only. The resource name of the CMEK settings.
      *     @type string $kms_key_name
      *           The resource name for the configured Cloud KMS key.
      *           KMS key name format:
@@ -89,8 +89,8 @@ class CmekSettings extends \Google\Protobuf\Internal\Message
      *           See [Enabling CMEK for Logs
      *           Router](/logging/docs/routing/managed-encryption) for more information.
      *     @type string $service_account_id
-     *           Output Only. The service account that will be used by the Logs Router to
-     *           access your Cloud KMS key.
+     *           Output only. The service account that will be used by the Logs Router to access your
+     *           Cloud KMS key.
      *           Before enabling CMEK for Logs Router, you must first assign the role
      *           `roles/cloudkms.cryptoKeyEncrypterDecrypter` to the service account that
      *           the Logs Router will use to access your Cloud KMS key. Use
@@ -106,9 +106,9 @@ class CmekSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output Only. The resource name of the CMEK settings.
+     * Output only. The resource name of the CMEK settings.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getName()
@@ -117,9 +117,9 @@ class CmekSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output Only. The resource name of the CMEK settings.
+     * Output only. The resource name of the CMEK settings.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -188,8 +188,8 @@ class CmekSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output Only. The service account that will be used by the Logs Router to
-     * access your Cloud KMS key.
+     * Output only. The service account that will be used by the Logs Router to access your
+     * Cloud KMS key.
      * Before enabling CMEK for Logs Router, you must first assign the role
      * `roles/cloudkms.cryptoKeyEncrypterDecrypter` to the service account that
      * the Logs Router will use to access your Cloud KMS key. Use
@@ -198,7 +198,7 @@ class CmekSettings extends \Google\Protobuf\Internal\Message
      * See [Enabling CMEK for Logs
      * Router](/logging/docs/routing/managed-encryption) for more information.
      *
-     * Generated from protobuf field <code>string service_account_id = 3;</code>
+     * Generated from protobuf field <code>string service_account_id = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getServiceAccountId()
@@ -207,8 +207,8 @@ class CmekSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output Only. The service account that will be used by the Logs Router to
-     * access your Cloud KMS key.
+     * Output only. The service account that will be used by the Logs Router to access your
+     * Cloud KMS key.
      * Before enabling CMEK for Logs Router, you must first assign the role
      * `roles/cloudkms.cryptoKeyEncrypterDecrypter` to the service account that
      * the Logs Router will use to access your Cloud KMS key. Use
@@ -217,7 +217,7 @@ class CmekSettings extends \Google\Protobuf\Internal\Message
      * See [Enabling CMEK for Logs
      * Router](/logging/docs/routing/managed-encryption) for more information.
      *
-     * Generated from protobuf field <code>string service_account_id = 3;</code>
+     * Generated from protobuf field <code>string service_account_id = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */

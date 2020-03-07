@@ -29,7 +29,7 @@ class UpdateCmekSettingsRequest extends \Google\Protobuf\Internal\Message
      * organizations. Once configured, it applies to all projects and folders in
      * the GCP organization.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $name = '';
     /**
@@ -37,7 +37,7 @@ class UpdateCmekSettingsRequest extends \Google\Protobuf\Internal\Message
      * See [Enabling CMEK for Logs
      * Router](/logging/docs/routing/managed-encryption) for more information.
      *
-     * Generated from protobuf field <code>.google.logging.v2.CmekSettings cmek_settings = 2;</code>
+     * Generated from protobuf field <code>.google.logging.v2.CmekSettings cmek_settings = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $cmek_settings = null;
     /**
@@ -47,7 +47,7 @@ class UpdateCmekSettingsRequest extends \Google\Protobuf\Internal\Message
      * See [FieldMask][google.protobuf.FieldMask] for more information.
      * Example: `"updateMask=kmsKeyName"`
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $update_mask = null;
 
@@ -95,7 +95,7 @@ class UpdateCmekSettingsRequest extends \Google\Protobuf\Internal\Message
      * organizations. Once configured, it applies to all projects and folders in
      * the GCP organization.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getName()
@@ -114,7 +114,7 @@ class UpdateCmekSettingsRequest extends \Google\Protobuf\Internal\Message
      * organizations. Once configured, it applies to all projects and folders in
      * the GCP organization.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -131,7 +131,7 @@ class UpdateCmekSettingsRequest extends \Google\Protobuf\Internal\Message
      * See [Enabling CMEK for Logs
      * Router](/logging/docs/routing/managed-encryption) for more information.
      *
-     * Generated from protobuf field <code>.google.logging.v2.CmekSettings cmek_settings = 2;</code>
+     * Generated from protobuf field <code>.google.logging.v2.CmekSettings cmek_settings = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Logging\V2\CmekSettings
      */
     public function getCmekSettings()
@@ -144,7 +144,7 @@ class UpdateCmekSettingsRequest extends \Google\Protobuf\Internal\Message
      * See [Enabling CMEK for Logs
      * Router](/logging/docs/routing/managed-encryption) for more information.
      *
-     * Generated from protobuf field <code>.google.logging.v2.CmekSettings cmek_settings = 2;</code>
+     * Generated from protobuf field <code>.google.logging.v2.CmekSettings cmek_settings = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Logging\V2\CmekSettings $var
      * @return $this
      */
@@ -163,7 +163,7 @@ class UpdateCmekSettingsRequest extends \Google\Protobuf\Internal\Message
      * See [FieldMask][google.protobuf.FieldMask] for more information.
      * Example: `"updateMask=kmsKeyName"`
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\FieldMask
      */
     public function getUpdateMask()
@@ -178,7 +178,7 @@ class UpdateCmekSettingsRequest extends \Google\Protobuf\Internal\Message
      * See [FieldMask][google.protobuf.FieldMask] for more information.
      * Example: `"updateMask=kmsKeyName"`
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\FieldMask $var
      * @return $this
      */

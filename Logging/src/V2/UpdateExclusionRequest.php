@@ -27,15 +27,15 @@ class UpdateExclusionRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Required. New values for the existing exclusion. Only the fields specified
-     * in `update_mask` are relevant.
+     * Required. New values for the existing exclusion. Only the fields specified in
+     * `update_mask` are relevant.
      *
      * Generated from protobuf field <code>.google.logging.v2.LogExclusion exclusion = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $exclusion = null;
     /**
-     * Required. A non-empty list of fields to change in the existing exclusion.
-     * New values for the fields are taken from the corresponding fields in the
+     * Required. A non-empty list of fields to change in the existing exclusion. New values
+     * for the fields are taken from the corresponding fields in the
      * [LogExclusion][google.logging.v2.LogExclusion] included in this request. Fields not mentioned in
      * `update_mask` are not changed and are ignored in the request.
      * For example, to change the filter and description of an exclusion,
@@ -59,11 +59,11 @@ class UpdateExclusionRequest extends \Google\Protobuf\Internal\Message
      *               "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
      *           Example: `"projects/my-project-id/exclusions/my-exclusion-id"`.
      *     @type \Google\Cloud\Logging\V2\LogExclusion $exclusion
-     *           Required. New values for the existing exclusion. Only the fields specified
-     *           in `update_mask` are relevant.
+     *           Required. New values for the existing exclusion. Only the fields specified in
+     *           `update_mask` are relevant.
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Required. A non-empty list of fields to change in the existing exclusion.
-     *           New values for the fields are taken from the corresponding fields in the
+     *           Required. A non-empty list of fields to change in the existing exclusion. New values
+     *           for the fields are taken from the corresponding fields in the
      *           [LogExclusion][google.logging.v2.LogExclusion] included in this request. Fields not mentioned in
      *           `update_mask` are not changed and are ignored in the request.
      *           For example, to change the filter and description of an exclusion,
@@ -112,8 +112,8 @@ class UpdateExclusionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. New values for the existing exclusion. Only the fields specified
-     * in `update_mask` are relevant.
+     * Required. New values for the existing exclusion. Only the fields specified in
+     * `update_mask` are relevant.
      *
      * Generated from protobuf field <code>.google.logging.v2.LogExclusion exclusion = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Logging\V2\LogExclusion
@@ -124,8 +124,8 @@ class UpdateExclusionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. New values for the existing exclusion. Only the fields specified
-     * in `update_mask` are relevant.
+     * Required. New values for the existing exclusion. Only the fields specified in
+     * `update_mask` are relevant.
      *
      * Generated from protobuf field <code>.google.logging.v2.LogExclusion exclusion = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Logging\V2\LogExclusion $var
@@ -140,8 +140,8 @@ class UpdateExclusionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A non-empty list of fields to change in the existing exclusion.
-     * New values for the fields are taken from the corresponding fields in the
+     * Required. A non-empty list of fields to change in the existing exclusion. New values
+     * for the fields are taken from the corresponding fields in the
      * [LogExclusion][google.logging.v2.LogExclusion] included in this request. Fields not mentioned in
      * `update_mask` are not changed and are ignored in the request.
      * For example, to change the filter and description of an exclusion,
@@ -156,8 +156,8 @@ class UpdateExclusionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A non-empty list of fields to change in the existing exclusion.
-     * New values for the fields are taken from the corresponding fields in the
+     * Required. A non-empty list of fields to change in the existing exclusion. New values
+     * for the fields are taken from the corresponding fields in the
      * [LogExclusion][google.logging.v2.LogExclusion] included in this request. Fields not mentioned in
      * `update_mask` are not changed and are ignored in the request.
      * For example, to change the filter and description of an exclusion,

@@ -29,7 +29,7 @@ class GetCmekSettingsRequest extends \Google\Protobuf\Internal\Message
      * organizations. Once configured, it applies to all projects and folders in
      * the GCP organization.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
 
@@ -67,7 +67,7 @@ class GetCmekSettingsRequest extends \Google\Protobuf\Internal\Message
      * organizations. Once configured, it applies to all projects and folders in
      * the GCP organization.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -86,7 +86,7 @@ class GetCmekSettingsRequest extends \Google\Protobuf\Internal\Message
      * organizations. Once configured, it applies to all projects and folders in
      * the GCP organization.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
