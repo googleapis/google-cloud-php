@@ -61,6 +61,12 @@ class Feature
      * Generated from protobuf enum <code>OBJECT_TRACKING = 9;</code>
      */
     const OBJECT_TRACKING = 9;
+    /**
+     * Logo detection, tracking, and recognition.
+     *
+     * Generated from protobuf enum <code>LOGO_RECOGNITION = 12;</code>
+     */
+    const LOGO_RECOGNITION = 12;
 
     private static $valueToName = [
         self::FEATURE_UNSPECIFIED => 'FEATURE_UNSPECIFIED',
@@ -71,6 +77,7 @@ class Feature
         self::SPEECH_TRANSCRIPTION => 'SPEECH_TRANSCRIPTION',
         self::TEXT_DETECTION => 'TEXT_DETECTION',
         self::OBJECT_TRACKING => 'OBJECT_TRACKING',
+        self::LOGO_RECOGNITION => 'LOGO_RECOGNITION',
     ];
 
     public static function name($value)

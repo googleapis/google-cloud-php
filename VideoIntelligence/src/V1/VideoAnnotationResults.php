@@ -109,6 +109,12 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      */
     private $object_annotations;
     /**
+     * Annotations for list of logos detected, tracked and recognized in video.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.LogoRecognitionAnnotation logo_recognition_annotations = 19;</code>
+     */
+    private $logo_recognition_annotations;
+    /**
      * If set, indicates an error. Note that for a single `AnnotateVideoRequest`
      * some videos may succeed and some may fail.
      *
@@ -163,6 +169,8 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      *           frame information associated with it.
      *     @type \Google\Cloud\VideoIntelligence\V1\ObjectTrackingAnnotation[]|\Google\Protobuf\Internal\RepeatedField $object_annotations
      *           Annotations for list of objects detected and tracked in video.
+     *     @type \Google\Cloud\VideoIntelligence\V1\LogoRecognitionAnnotation[]|\Google\Protobuf\Internal\RepeatedField $logo_recognition_annotations
+     *           Annotations for list of logos detected, tracked and recognized in video.
      *     @type \Google\Rpc\Status $error
      *           If set, indicates an error. Note that for a single `AnnotateVideoRequest`
      *           some videos may succeed and some may fail.
@@ -537,6 +545,32 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\VideoIntelligence\V1\ObjectTrackingAnnotation::class);
         $this->object_annotations = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Annotations for list of logos detected, tracked and recognized in video.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.LogoRecognitionAnnotation logo_recognition_annotations = 19;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getLogoRecognitionAnnotations()
+    {
+        return $this->logo_recognition_annotations;
+    }
+
+    /**
+     * Annotations for list of logos detected, tracked and recognized in video.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.LogoRecognitionAnnotation logo_recognition_annotations = 19;</code>
+     * @param \Google\Cloud\VideoIntelligence\V1\LogoRecognitionAnnotation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setLogoRecognitionAnnotations($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\VideoIntelligence\V1\LogoRecognitionAnnotation::class);
+        $this->logo_recognition_annotations = $arr;
 
         return $this;
     }
