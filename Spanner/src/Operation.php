@@ -24,6 +24,7 @@ use Google\Cloud\Spanner\Batch\QueryPartition;
 use Google\Cloud\Spanner\Batch\ReadPartition;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Session\Session;
+use Google\Cloud\Spanner\V1\ExecuteSqlRequest\QueryOptions;
 use Google\Cloud\Spanner\V1\SpannerClient as GapicSpannerClient;
 use Google\Rpc\Code;
 
@@ -60,16 +61,28 @@ class Operation
     private $mapper;
 
     /**
+     * @var QueryOptions
+     */
+    private $defaultQueryOptions;
+
+    /**
      * @param ConnectionInterface $connection A connection to Google Cloud
      *        Spanner.
      * @param bool $returnInt64AsObject If true, 64 bit integers will be
      *        returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
      *        platform compatibility.
+     * @param QueryOptions $defaultQueryOptions [optional] The query options
+     *        that are used for executeSql queries if none are otherwise
+     *        specified. **Defaults to** null.
      */
-    public function __construct(ConnectionInterface $connection, $returnInt64AsObject)
+    public function __construct(
+        ConnectionInterface $connection,
+        $returnInt64AsObject,
+        QueryOptions $defaultQueryOptions = null)
     {
         $this->connection = $connection;
         $this->mapper = new ValueMapper($returnInt64AsObject);
+        $this->defaultQueryOptions = $defaultQueryOptions;
     }
 
     /**
@@ -167,10 +180,21 @@ class Operation
      */
     public function execute(Session $session, $sql, array $options = [])
     {
+        // Query-level query options have a higher precedence than default query
+        // options (ie client-level and environment-level query options).
+        if ((bool) $this->defaultQueryOptions and
+            array_key_exists('queryOptions', $options)) {
+            $queryOptions = new QueryOptions();
+            $queryOptions->mergeFrom($this->defaultQueryOptions);
+            $queryOptions->mergeFrom($options['queryOptions']);
+            $options['queryOptions'] = $queryOptions;
+        }
+
         $options += [
             'parameters' => [],
             'types' => [],
-            'transactionContext' => null
+            'transactionContext' => null,
+            'queryOptions' => $this->defaultQueryOptions
         ];
 
         $parameters = $this->pluck('parameters', $options);

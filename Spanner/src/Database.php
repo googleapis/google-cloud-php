@@ -32,6 +32,7 @@ use Google\Cloud\Spanner\Connection\IamDatabase;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Transaction;
+use Google\Cloud\Spanner\V1\ExecuteSqlRequest\QueryOptions;
 use Google\Cloud\Spanner\V1\SpannerClient as GapicSpannerClient;
 use Google\Cloud\Spanner\V1\TypeCode;
 
@@ -174,6 +175,9 @@ class Database
      * @param bool $returnInt64AsObject [optional If true, 64 bit integers will
      *        be returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
      *        platform compatibility. **Defaults to** false.
+     * @param QueryOptions $defaultQueryOptions [optional] The query options
+     *        that are used for executeSql queries if none are otherwise
+     *        specified. **Defaults to** null.
      */
     public function __construct(
         ConnectionInterface $connection,
@@ -184,14 +188,16 @@ class Database
         $name,
         SessionPoolInterface $sessionPool = null,
         $returnInt64AsObject = false,
-        array $info = []
+        array $info = [],
+        QueryOptions $defaultQueryOptions = null
     ) {
         $this->connection = $connection;
         $this->instance = $instance;
         $this->projectId = $projectId;
         $this->name = $this->fullyQualifiedDatabaseName($name);
         $this->sessionPool = $sessionPool;
-        $this->operation = new Operation($connection, $returnInt64AsObject);
+        $this->operation = new Operation(
+            $connection, $returnInt64AsObject, $defaultQueryOptions);
         $this->info = $info;
 
         if ($this->sessionPool) {
