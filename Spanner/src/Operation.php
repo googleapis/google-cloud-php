@@ -78,8 +78,8 @@ class Operation
     public function __construct(
         ConnectionInterface $connection,
         $returnInt64AsObject,
-        QueryOptions $defaultQueryOptions = null)
-    {
+        QueryOptions $defaultQueryOptions = null
+    ) {
         $this->connection = $connection;
         $this->mapper = new ValueMapper($returnInt64AsObject);
         $this->defaultQueryOptions = $defaultQueryOptions;

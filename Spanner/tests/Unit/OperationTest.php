@@ -61,9 +61,11 @@ class OperationTest extends TestCase
 
         $this->connection = $this->getConnStub();
 
-        $this->defaultQueryOptions = new QueryOptions([
-            'optimizer_version' => self::DEFAULT_OPTIMIZER_VERSION,
-        ]);
+        $this->defaultQueryOptions = new QueryOptions(
+            [
+                'optimizer_version' => self::DEFAULT_OPTIMIZER_VERSION,
+            ]
+        );
 
         $this->operation = TestHelpers::stub(Operation::class, [
             $this->connection->reveal(),
@@ -193,7 +195,7 @@ class OperationTest extends TestCase
         $this->operation->___setProperty('connection', $this->connection->reveal());
 
         $res = $this->operation->execute($this->session, $sql, [
-            'parameters' => $params,
+            'parameters' => $params
         ]);
 
         $this->assertInstanceOf(Result::class, $res);
@@ -205,9 +207,11 @@ class OperationTest extends TestCase
     {
         $sql = 'SELECT * FROM Posts WHERE ID = @id';
         $params = ['id' => 10];
-        $queryOptions = new QueryOptions([
-            'optimizer_version' => '1',
-        ]);
+        $queryOptions = new QueryOptions(
+            [
+                'optimizer_version' => '1',
+            ]
+        );
 
         $this->connection->executeStreamingSql(Argument::allOf(
             Argument::withEntry('sql', $sql),
@@ -228,6 +232,7 @@ class OperationTest extends TestCase
 
         $this->assertInstanceOf(Result::class, $res);
         $rows = iterator_to_array($res->rows());
+        $this->assertEquals(10, $rows[0]['ID']);
     }
 
     public function testRead()

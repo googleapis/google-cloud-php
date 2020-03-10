@@ -171,10 +171,12 @@ class SpannerClient
 
         $this->defaultQueryOptions = $config['defaultQueryOptions'];
 
-        $envQueryOptions = new QueryOptions([
-            'optimizer_version' =>
-                getenv('SPANNER_OPTIMIZER_VERSION') ?? ""
-        ]);
+        $envQueryOptions = new QueryOptions(
+            [
+                'optimizer_version' =>
+                    getenv('SPANNER_OPTIMIZER_VERSION') ?? ''
+            ]
+        );
 
         // If environment-level query options were set
         if ((bool) $envQueryOptions->getOptimizerVersion()) {

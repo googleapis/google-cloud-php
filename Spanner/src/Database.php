@@ -197,7 +197,8 @@ class Database
         $this->name = $this->fullyQualifiedDatabaseName($name);
         $this->sessionPool = $sessionPool;
         $this->operation = new Operation(
-            $connection, $returnInt64AsObject, $defaultQueryOptions);
+            $connection, $returnInt64AsObject, $defaultQueryOptions
+        );
         $this->info = $info;
 
         if ($this->sessionPool) {
