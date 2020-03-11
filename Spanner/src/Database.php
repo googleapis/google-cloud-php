@@ -32,7 +32,6 @@ use Google\Cloud\Spanner\Connection\IamDatabase;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Transaction;
-use Google\Cloud\Spanner\V1\ExecuteSqlRequest\QueryOptions;
 use Google\Cloud\Spanner\V1\SpannerClient as GapicSpannerClient;
 use Google\Cloud\Spanner\V1\TypeCode;
 
@@ -175,9 +174,6 @@ class Database
      * @param bool $returnInt64AsObject [optional If true, 64 bit integers will
      *        be returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
      *        platform compatibility. **Defaults to** false.
-     * @param QueryOptions $defaultQueryOptions [optional] The query options
-     *        that are used for executeSql queries if none are otherwise
-     *        specified. **Defaults to** null.
      */
     public function __construct(
         ConnectionInterface $connection,
@@ -188,17 +184,14 @@ class Database
         $name,
         SessionPoolInterface $sessionPool = null,
         $returnInt64AsObject = false,
-        array $info = [],
-        QueryOptions $defaultQueryOptions = null
+        array $info = []
     ) {
         $this->connection = $connection;
         $this->instance = $instance;
         $this->projectId = $projectId;
         $this->name = $this->fullyQualifiedDatabaseName($name);
         $this->sessionPool = $sessionPool;
-        $this->operation = new Operation(
-            $connection, $returnInt64AsObject, $defaultQueryOptions
-        );
+        $this->operation = new Operation($connection, $returnInt64AsObject);
         $this->info = $info;
 
         if ($this->sessionPool) {
@@ -1350,6 +1343,19 @@ class Database
      *           **Defaults to** `SessionPoolInterface::CONTEXT_READ`.
      *     @type array $sessionOptions Session configuration and request options.
      *           Session labels may be applied using the `labels` key.
+     *     @type array $queryOptions Query optimizer configuration.
+     *     @type string $queryOptions.optimizerVersion An option to control the
+     *           selection of optimizer version. This parameter allows
+     *           individual queries to pick different query optimizer versions.
+     *           Specifying "latest" as a value instructs Cloud Spanner to use
+     *           the latest supported query optimizer version. If not specified,
+     *           Cloud Spanner uses optimizer version set at the client level
+     *           options or set by the `SPANNER_QUERY_OPTIMIZER_VERSION` environment
+     *           variable. Any other positive integer (from the list of supported
+     *           optimizer versions) overrides the default optimizer version for
+     *           query execution. Executing a SQL statement with an invalid
+     *           optimizer version will fail with a syntax error
+     *           (`INVALID_ARGUMENT`) status.
      * }
      * @codingStandardsIgnoreEnd
      * @return Result

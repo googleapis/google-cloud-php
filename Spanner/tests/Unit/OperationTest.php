@@ -32,7 +32,6 @@ use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
-use Google\Cloud\Spanner\V1\ExecuteSqlRequest\QueryOptions;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 
@@ -48,12 +47,10 @@ class OperationTest extends TestCase
     const TRANSACTION = 'my-transaction-id';
     const DATABASE = 'my-database';
     const TIMESTAMP = '2017-01-09T18:05:22.534799Z';
-    const DEFAULT_OPTIMIZER_VERSION = "2";
 
     private $connection;
     private $operation;
     private $session;
-    private $defaultQueryOptions;
 
     public function setUp()
     {
@@ -61,16 +58,9 @@ class OperationTest extends TestCase
 
         $this->connection = $this->getConnStub();
 
-        $this->defaultQueryOptions = new QueryOptions(
-            [
-                'optimizer_version' => self::DEFAULT_OPTIMIZER_VERSION,
-            ]
-        );
-
         $this->operation = TestHelpers::stub(Operation::class, [
             $this->connection->reveal(),
-            false,
-            $this->defaultQueryOptions,
+            false
         ]);
 
         $session = $this->prophesize(Session::class);
@@ -186,7 +176,6 @@ class OperationTest extends TestCase
             Argument::withEntry('sql', $sql),
             Argument::withEntry('session', self::SESSION),
             Argument::withEntry('params', ['id' => '10']),
-            Argument::withEntry('queryOptions', $this->defaultQueryOptions),
             Argument::that(function ($arg) {
                 return $arg['paramTypes']['id']['code'] === Database::TYPE_INT64;
             })
@@ -196,38 +185,6 @@ class OperationTest extends TestCase
 
         $res = $this->operation->execute($this->session, $sql, [
             'parameters' => $params
-        ]);
-
-        $this->assertInstanceOf(Result::class, $res);
-        $rows = iterator_to_array($res->rows());
-        $this->assertEquals(10, $rows[0]['ID']);
-    }
-
-    public function testExecuteWithQueryOptions()
-    {
-        $sql = 'SELECT * FROM Posts WHERE ID = @id';
-        $params = ['id' => 10];
-        $queryOptions = new QueryOptions(
-            [
-                'optimizer_version' => '1',
-            ]
-        );
-
-        $this->connection->executeStreamingSql(Argument::allOf(
-            Argument::withEntry('sql', $sql),
-            Argument::withEntry('session', self::SESSION),
-            Argument::withEntry('params', ['id' => '10']),
-            Argument::withEntry('queryOptions', $queryOptions),
-            Argument::that(function ($arg) {
-                return $arg['paramTypes']['id']['code'] === Database::TYPE_INT64;
-            })
-        ))->shouldBeCalled()->willReturn($this->executeAndReadResponse());
-
-        $this->operation->___setProperty('connection', $this->connection->reveal());
-
-        $res = $this->operation->execute($this->session, $sql, [
-            'parameters' => $params,
-            'queryOptions' => $queryOptions,
         ]);
 
         $this->assertInstanceOf(Result::class, $res);

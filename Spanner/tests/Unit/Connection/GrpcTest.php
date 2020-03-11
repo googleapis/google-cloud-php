@@ -29,6 +29,7 @@ use Google\Cloud\Spanner\Admin\Instance\V1\Instance\State;
 use Google\Cloud\Spanner\Connection\Grpc;
 use Google\Cloud\Spanner\V1\DeleteSessionRequest;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest\Statement;
+use Google\Cloud\Spanner\V1\ExecuteSqlRequest\QueryOptions;
 use Google\Cloud\Spanner\V1\KeySet;
 use Google\Cloud\Spanner\V1\Mutation;
 use Google\Cloud\Spanner\V1\Mutation\Delete;
@@ -451,6 +452,7 @@ class GrpcTest extends TestCase
 
         $mapper = new ValueMapper(false);
         $mapped = $mapper->formatParamsForExecuteSql(['foo' => 'bar']);
+        $mapped['queryOptions'] = ['optimizerVersion' => 'latest'];
 
         $expectedParams = $this->serializer->decodeMessage(
             new Struct,
@@ -461,6 +463,11 @@ class GrpcTest extends TestCase
         foreach ($expectedParamTypes as $key => $param) {
             $expectedParamTypes[$key] = $this->serializer->decodeMessage(new Type, $param);
         }
+
+        $expectedQueryOptions = $this->serializer->decodeMessage(
+            new QueryOptions,
+            $mapped['queryOptions']
+        );
 
         $this->assertCallCorrect('executeStreamingSql', [
             'session' => self::SESSION,
@@ -473,7 +480,8 @@ class GrpcTest extends TestCase
             [
                 'transaction' => $this->transactionSelector(),
                 'params' => $expectedParams,
-                'paramTypes' => $expectedParamTypes
+                'paramTypes' => $expectedParamTypes,
+                'queryOptions' => $expectedQueryOptions
             ]
         ]));
     }

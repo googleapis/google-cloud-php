@@ -31,7 +31,6 @@ use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Connection\IamInstance;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
-use Google\Cloud\Spanner\V1\ExecuteSqlRequest\QueryOptions;
 
 /**
  * Represents a Cloud Spanner instance
@@ -116,11 +115,6 @@ class Instance
     private $info;
 
     /**
-     * @var QueryOptions
-     */
-    private $defaultQueryOptions;
-
-    /**
      * @var Iam|null
      */
     private $iam;
@@ -139,9 +133,6 @@ class Instance
      *        returned as a {@see Google\Cloud\Core\Int64} object for 32 bit platform
      *        compatibility. **Defaults to** false.
      * @param array $info [optional] A representation of the instance object.
-     * @param QueryOptions $defaultQueryOptions [optional] The query options
-     *        that are used for executeSql queries if none are otherwise
-     *        specified. **Defaults to** null.
      */
     public function __construct(
         ConnectionInterface $connection,
@@ -150,15 +141,13 @@ class Instance
         $projectId,
         $name,
         $returnInt64AsObject = false,
-        array $info = [],
-        QueryOptions $defaultQueryOptions = null
+        array $info = []
     ) {
         $this->connection = $connection;
         $this->projectId = $projectId;
         $this->name = $this->fullyQualifiedInstanceName($name, $projectId);
         $this->returnInt64AsObject = $returnInt64AsObject;
         $this->info = $info;
-        $this->defaultQueryOptions = $defaultQueryOptions;
 
         $this->setLroProperties($lroConnection, $lroCallables, $this->name);
     }
@@ -462,8 +451,7 @@ class Instance
             $name,
             isset($options['sessionPool']) ? $options['sessionPool'] : null,
             $this->returnInt64AsObject,
-            isset($options['database']) ? $options['database'] : [],
-            $this->defaultQueryOptions
+            isset($options['database']) ? $options['database'] : []
         );
     }
 

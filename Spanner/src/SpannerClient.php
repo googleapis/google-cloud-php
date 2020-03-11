@@ -33,7 +33,6 @@ use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Connection\Grpc;
 use Google\Cloud\Spanner\Connection\LongRunningConnection;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
-use Google\Cloud\Spanner\V1\ExecuteSqlRequest\QueryOptions;
 use Google\Cloud\Spanner\V1\SpannerClient as GapicSpannerClient;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\StreamInterface;
@@ -105,11 +104,6 @@ class SpannerClient
     private $returnInt64AsObject;
 
     /**
-     * @var QueryOptions
-     */
-    private $defaultQueryOptions;
-
-    /**
      * Create a Spanner client. Please note that this client requires
      * [the gRPC extension](https://cloud.google.com/php/grpc).
      *
@@ -143,9 +137,6 @@ class SpannerClient
      *     @type bool $returnInt64AsObject If true, 64 bit integers will be
      *           returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
      *           platform compatibility. **Defaults to** false.
-     *     @type QueryOptions $defaultQueryOptions [optional] The query options
-     *           that are used for executeSql queries if none are otherwise
-     *           specified. **Defaults to** null.
      * }
      * @throws GoogleException If the gRPC extension is not enabled.
      */
@@ -163,30 +154,17 @@ class SpannerClient
             'projectIdRequired' => true,
             'hasEmulator' => (bool) $emulatorHost,
             'emulatorHost' => $emulatorHost,
-            'defaultQueryOptions' => null
+            'queryOptions' => []
         ];
+
+        // Environment-level query options have a higher precedence than client-level query options.
+        $envQueryOptimizerVersion = getenv('SPANNER_QUERY_OPTIMIZER_VERSION');
+        if (isset($envQueryOptimizerVersion)) {
+            $config['queryOptions']['optimizerVersion'] = $envQueryOptimizerVersion;
+        }
 
         $this->connection = new Grpc($this->configureAuthentication($config));
         $this->returnInt64AsObject = $config['returnInt64AsObject'];
-
-        $this->defaultQueryOptions = $config['defaultQueryOptions'];
-
-        $envQueryOptions = new QueryOptions(
-            [
-                'optimizer_version' =>
-                    getenv('SPANNER_OPTIMIZER_VERSION') ?? ''
-            ]
-        );
-
-        // If environment-level query options were set
-        if ((bool) $envQueryOptions->getOptimizerVersion()) {
-            if ((bool) $this->defaultQueryOptions) {
-                // Environment-level has higher precedence than client-level
-                $this->defaultQueryOptions->mergeFrom($envQueryOptions);
-            } else {
-                $this->defaultQueryOptions = $envQueryOptions;
-            }
-        }
 
         $this->setLroProperties(new LongRunningConnection($this->connection), [
             [
@@ -234,8 +212,7 @@ class SpannerClient
     {
         $operation = new Operation(
             $this->connection,
-            $this->returnInt64AsObject,
-            $this->defaultQueryOptions
+            $this->returnInt64AsObject
         );
 
         return new BatchClient(
@@ -368,8 +345,7 @@ class SpannerClient
             $this->projectId,
             $name,
             $this->returnInt64AsObject,
-            $instance,
-            $this->defaultQueryOptions
+            $instance
         );
     }
 

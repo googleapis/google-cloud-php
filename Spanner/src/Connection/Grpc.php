@@ -33,6 +33,7 @@ use Google\Cloud\Spanner\SpannerClient as ManualSpannerClient;
 use Google\Cloud\Spanner\V1\CreateSessionRequest;
 use Google\Cloud\Spanner\V1\DeleteSessionRequest;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest\Statement;
+use Google\Cloud\Spanner\V1\ExecuteSqlRequest\QueryOptions;
 use Google\Cloud\Spanner\V1\KeySet;
 use Google\Cloud\Spanner\V1\Mutation;
 use Google\Cloud\Spanner\V1\Mutation\Delete;
@@ -82,6 +83,11 @@ class Grpc implements ConnectionInterface
      * @var Serializer
      */
     private $serializer;
+
+    /**
+     * @var array
+     */
+    private $defaultQueryOptions;
 
     /**
      * @var array
@@ -162,7 +168,10 @@ class Grpc implements ConnectionInterface
                 : null
         );
 
-        $config += ['emulatorHost' => null];
+        $config += [
+            'emulatorHost' => null,
+            'queryOptions' => []
+        ];
         if ((bool) $config['emulatorHost']) {
             $grpcConfig += $this->emulatorGapicConfig($config['emulatorHost']);
         } else {
@@ -171,6 +180,9 @@ class Grpc implements ConnectionInterface
                 $grpcConfig['apiEndpoint'] = $config['apiEndpoint'];
             }
         }
+
+        $this->defaultQueryOptions = $config['queryOptions'];
+
         $this->spannerClient = isset($config['gapicSpannerClient'])
             ? $config['gapicSpannerClient']
             : $this->constructGapic(SpannerClient::class, $grpcConfig);
@@ -592,6 +604,14 @@ class Grpc implements ConnectionInterface
         $args['transaction'] = $this->createTransactionSelector($args);
 
         $database = $this->pluck('database', $args);
+
+        $args['queryOptions'] += $this->defaultQueryOptions;
+        if (isset($args['queryOptions'])) {
+            $args['queryOptions'] = $this->serializer->decodeMessage(
+                new QueryOptions,
+                $args['queryOptions']
+            );
+        }
 
         return $this->send([$this->spannerClient, 'executeStreamingSql'], [
             $this->pluck('session', $args),
