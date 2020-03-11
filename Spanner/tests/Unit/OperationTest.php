@@ -255,7 +255,10 @@ class OperationTest extends TestCase
 
     public function testTransaction()
     {
-        $this->connection->beginTransaction(Argument::any())
+        $this->connection->beginTransaction(Argument::allOf(
+            Argument::withEntry('database', self::DATABASE),
+            Argument::withEntry('session', $this->session->name())
+        ))
             ->shouldBeCalled()
             ->willReturn(['id' => self::TRANSACTION]);
 
@@ -268,7 +271,10 @@ class OperationTest extends TestCase
 
     public function testSnapshot()
     {
-        $this->connection->beginTransaction(Argument::any())
+        $this->connection->beginTransaction(Argument::allOf(
+            Argument::withEntry('database', self::DATABASE),
+            Argument::withEntry('session', $this->session->name())
+        ))
             ->shouldBeCalled()
             ->willReturn(['id' => self::TRANSACTION]);
 
@@ -295,7 +301,10 @@ class OperationTest extends TestCase
 
     public function testSnapshotWithTimestamp()
     {
-        $this->connection->beginTransaction(Argument::any())
+        $this->connection->beginTransaction(Argument::allOf(
+            Argument::withEntry('database', self::DATABASE),
+            Argument::withEntry('session', $this->session->name())
+        ))
             ->shouldBeCalled()
             ->willReturn(['id' => self::TRANSACTION, 'readTimestamp' => self::TIMESTAMP]);
 

@@ -81,7 +81,10 @@ class InstanceTest extends TestCase
     {
         $instance = $this->getDefaultInstance();
 
-        $this->connection->getInstance(Argument::any())
+        $this->connection->getInstance(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('name', $this->instance->name())
+        ))
             ->shouldBeCalledTimes(1)
             ->willReturn($instance);
 
@@ -147,7 +150,10 @@ class InstanceTest extends TestCase
 
     public function testExistsNotFound()
     {
-        $this->connection->getInstance(Argument::any())
+        $this->connection->getInstance(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('name', $this->instance->name())
+        ))
             ->shouldBeCalled()
             ->willThrow(new NotFoundException('foo', 404));
 
@@ -201,7 +207,10 @@ class InstanceTest extends TestCase
     {
         $instance = $this->getDefaultInstance();
 
-        $this->connection->getInstance(Argument::any())
+        $this->connection->getInstance(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('name', $this->instance->name())
+        ))
             ->shouldBeCalledTimes(1)
             ->willReturn($instance);
 
@@ -212,7 +221,10 @@ class InstanceTest extends TestCase
 
     public function testStateIsNull()
     {
-        $this->connection->getInstance(Argument::any())
+        $this->connection->getInstance(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('name', $this->instance->name())
+        ))
             ->shouldBeCalledTimes(1)
             ->willReturn([]);
 
@@ -326,9 +338,10 @@ class InstanceTest extends TestCase
             ['name' => DatabaseAdminClient::databaseName(self::PROJECT_ID, self::NAME, 'database2')]
         ];
 
-        $this->connection->listDatabases(Argument::any())
+        $this->connection->listDatabases(Argument::withEntry('instance', $this->instance->name()))
             ->shouldBeCalled()
             ->willReturn(['databases' => $databases]);
+
         $this->connection->getDatabase()->shouldNotBeCalled();
 
         $this->instance->___setProperty('connection', $this->connection->reveal());
@@ -356,7 +369,7 @@ class InstanceTest extends TestCase
         ];
 
         $iteration = 0;
-        $this->connection->listDatabases(Argument::any())
+        $this->connection->listDatabases(Argument::withEntry('instance', $this->instance->name()))
             ->shouldBeCalledTimes(2)
             ->willReturn(['databases' => [$databases[0]], 'nextPageToken' => 'foo'], ['databases' => [$databases[1]]]);
 
