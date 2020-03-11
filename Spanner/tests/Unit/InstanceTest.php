@@ -71,7 +71,7 @@ class InstanceTest extends TestCase
 
     public function testInfo()
     {
-        $this->connection->getInstance()->shouldNotBeCalled();
+        $this->connection->getInstance(Argument::any())->shouldNotBeCalled();
 
         $this->instance->___setProperty('info', ['foo' => 'bar']);
         $this->assertEquals('bar', $this->instance->info()['foo']);
@@ -342,7 +342,7 @@ class InstanceTest extends TestCase
             ->shouldBeCalled()
             ->willReturn(['databases' => $databases]);
 
-        $this->connection->getDatabase()->shouldNotBeCalled();
+        $this->connection->getDatabase(Argument::any())->shouldNotBeCalled();
 
         $this->instance->___setProperty('connection', $this->connection->reveal());
 
