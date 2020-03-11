@@ -23,6 +23,26 @@ return [
                     'totalPollTimeoutMillis' => '86400000',
                 ],
             ],
+            'CreateBackup' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Spanner\Admin\Database\V1\Backup',
+                    'metadataReturnType' => '\Google\Cloud\Spanner\Admin\Database\V1\CreateBackupMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
+            'RestoreDatabase' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Spanner\Admin\Database\V1\Database',
+                    'metadataReturnType' => '\Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
             'ListDatabases' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -31,6 +51,36 @@ return [
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getDatabases',
+                ],
+            ],
+            'ListBackups' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getBackups',
+                ],
+            ],
+            'ListDatabaseOperations' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getOperations',
+                ],
+            ],
+            'ListBackupOperations' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getOperations',
                 ],
             ],
         ],
