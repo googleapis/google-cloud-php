@@ -7,7 +7,7 @@
         "psr-4": {
             "Google\\Cloud\\SecretManager\\": "src",
             "GPBMetadata\\Google\\Cloud\\Secrets\\": "metadata",
-            "GPBMetadata\\Google\\Cloud\\Secretmanager\\": "metadata",
+            "GPBMetadata\\Google\\Cloud\\Secretmanager\\": "metadata"
         }
     },
     "autoload-dev": {
