@@ -67,8 +67,8 @@ class TransactionTypeTest extends TestCase
         $this->connection = $this->getConnStub();
 
         $this->connection->createSession(
-            Argument::withEntry('database', SpannerClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE)
-        ))
+            Argument::withEntry('database', SpannerClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE))
+        )
             ->willReturn(['name' => SpannerClient::sessionName(
                 self::PROJECT,
                 self::INSTANCE,
