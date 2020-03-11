@@ -121,16 +121,9 @@ s.replace(
 
 ### [END] protoc backwards compatibility fixes
 
-# fix documentation links
+# fix relative cloud.google.com links
 s.replace(
-    '**/*.php',
-    r"\(\/compute\/docs",
-    '(https://cloud.google.com/compute/docs'
-)
-
-# fix documentation links
-s.replace(
-    '**/*.php',
-    r"\(\/dataproc\/docs",
-    '(https://cloud.google.com/dataproc/docs'
+    "src/**/V*/**/*.php",
+    r"(.{0,})\]\((/.{0,})\)",
+    r"\1](https://cloud.google.com\2)"
 )
