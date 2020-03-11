@@ -137,6 +137,20 @@ class SpannerClient
      *     @type bool $returnInt64AsObject If true, 64 bit integers will be
      *           returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
      *           platform compatibility. **Defaults to** false.
+     *     @type array $queryOptions Query optimizer configuration.
+     *     @type string $queryOptions.optimizerVersion An option to control the
+     *           selection of optimizer version. This parameter allows
+     *           all execute queries to use a specific query optimizer version.
+     *           Specifying "latest" as a value instructs Cloud Spanner to use
+     *           the latest supported query optimizer version.
+     *           The order of precedence for setting the optimizer version is:
+     *           this value < `SPANNER_QUERY_OPTIMIZER_VERSION` env var < query-level option
+     *           If an option of higher precedence is set, this value will be overwritten.
+     *           Any other positive integer (from the list of supported
+     *           optimizer versions) overrides the default optimizer version for
+     *           query execution. Executing a SQL statement with an invalid
+     *           optimizer version will fail with a syntax error
+     *           (`INVALID_ARGUMENT`) status.
      * }
      * @throws GoogleException If the gRPC extension is not enabled.
      */
