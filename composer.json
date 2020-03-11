@@ -132,6 +132,7 @@
             "GPBMetadata\\Google\\Cloud\\Redis\\": "Redis/metadata",
             "GPBMetadata\\Google\\Cloud\\Scheduler\\": "Scheduler/metadata",
             "GPBMetadata\\Google\\Cloud\\Secrets\\": "SecretManager/metadata",
+            "GPBMetadata\\Google\\Cloud\\Secretmanager\\": "SecretManager/metadata",
             "GPBMetadata\\Google\\Cloud\\Securitycenter\\": "SecurityCenter/metadata",
             "GPBMetadata\\Google\\Cloud\\Speech\\": "Speech/metadata",
             "GPBMetadata\\Google\\Cloud\\Talent\\": "Talent/metadata",
