@@ -143,9 +143,10 @@ class SpannerClient
      *           all execute queries to use a specific query optimizer version.
      *           Specifying "latest" as a value instructs Cloud Spanner to use
      *           the latest supported query optimizer version.
-     *           The order of precedence for setting the optimizer version is:
-     *           this value < `SPANNER_QUERY_OPTIMIZER_VERSION` env var < query-level option
-     *           If an option of higher precedence is set, this value will be overwritten.
+     *           query-level values will take precedence over any global settings.
+     *           If the SPANNER_QUERY_OPTIMIZER_VERSION environment variable is set,
+     *           it will take second priority. This value is used when neither a
+     *           query-level value nor the environment variable is set.
      *           Any other positive integer (from the list of supported
      *           optimizer versions) overrides the default optimizer version for
      *           query execution. Executing a SQL statement with an invalid
