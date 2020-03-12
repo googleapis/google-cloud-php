@@ -31,7 +31,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * representative data can be more easily graphed and comprehended, and the
  * individual time series data is still available for later drilldown. For more
  * details, see [Aggregating Time
- * Series](/monitoring/api/v3/metrics#aggregating_time_series).
+ * Series](https://cloud.google.com/monitoring/api/v3/metrics#aggregating_time_series).
  *
  * Generated from protobuf message <code>google.monitoring.v3.Aggregation</code>
  */
