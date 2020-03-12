@@ -86,6 +86,45 @@ class GrpcTest extends TestCase
         $this->lro = $this->prophesize(OperationResponse::class)->reveal();
     }
 
+    public function testConstruct_ClientQueryOptions()
+    {
+        $grpc = new Grpc;
+        $config = [
+            'queryOptions' => ['optimizerVersion' => '3']
+        ];
+
+        $reflection = new \ReflectionClass('Google\Cloud\Spanner\Connection\Grpc');
+        $constructor = $reflection->getConstructor();
+        $defaultQueryOptions = $reflection->getProperty('defaultQueryOptions');
+        $defaultQueryOptions->setAccessible(true);
+
+        $constructor->invoke($grpc, $config);
+        $this->assertEquals(
+            $config['queryOptions'], $defaultQueryOptions->getValue($grpc)
+        );
+    }
+
+
+    public function testConstruct_EnvQueryOptions()
+    {
+        putenv('SPANNER_OPTIMIZER_VERSION=latest');
+        $grpc = new Grpc;
+        $config = [
+            'queryOptions' => ['optimizerVersion' => '3']
+        ];
+        $expectedDefaultQueryOptions = ['optimizerVersion' => 'latest'];
+
+        $reflection = new \ReflectionClass('Google\Cloud\Spanner\Connection\Grpc');
+        $constructor = $reflection->getConstructor();
+        $defaultQueryOptions = $reflection->getProperty('defaultQueryOptions');
+        $defaultQueryOptions->setAccessible(true);
+
+        $constructor->invoke($grpc, $config);
+        $this->assertEquals(
+            $expectedDefaultQueryOptions, $defaultQueryOptions->getValue($grpc)
+        );
+    }
+
     public function testApiEndpoint()
     {
         $expected = 'foobar.com';
