@@ -112,7 +112,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *     gs://folder/vid3.avi,,,
  * </section><section><h5>Object Tracking</h5>
  * See [Preparing your training
- * data](/video-intelligence/automl/object-tracking/docs/prepare) for more
+ * data](https://cloud.google.com/video-intelligence/automl/object-tracking/docs/prepare) for more
  * information.
  * CSV file(s) with each line in format:
  *     ML_USE,GCS_FILE_PATH
@@ -152,7 +152,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * <h4>AutoML Natural Language</h4>
  * <div class="ds-selector-tabs"><section><h5>Entity Extraction</h5>
  * See [Preparing your training
- * data](/natural-language/automl/entity-analysis/docs/prepare) for more
+ * data](https://cloud.google.com/natural-language/automl/entity-analysis/docs/prepare) for more
  * information.
  * One or more CSV file(s) with each line in the following format:
  *     ML_USE,GCS_FILE_PATH
