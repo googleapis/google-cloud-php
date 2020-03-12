@@ -64,7 +64,7 @@ class BatchClientTest extends TestCase
     {
         $time = time();
 
-        $this->connection->createSession(Argument::any())
+        $this->connection->createSession(Argument::withEntry('database', self::DATABASE))
             ->shouldBeCalledTimes(1)
             ->willReturn([
                 'name' => self::SESSION

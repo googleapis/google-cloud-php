@@ -54,6 +54,7 @@ class TransactionTest extends TestCase
     private $instance;
     private $session;
     private $database;
+    private $operation;
 
     private $transaction;
     private $singleUseTransaction;
@@ -311,7 +312,7 @@ class TransactionTest extends TestCase
             'details' => []
         ];
 
-        $this->connection->executeBatchDml(Argument::any())
+        $this->connection->executeBatchDml(Argument::withEntry('session', $this->session->name()))
             ->shouldBeCalled()
             ->willReturn([
                 'resultSets' => [
@@ -432,7 +433,7 @@ class TransactionTest extends TestCase
 
     public function testRollback()
     {
-        $this->connection->rollback(Argument::any())
+        $this->connection->rollback(Argument::withEntry('session', $this->session->name()))
             ->shouldBeCalled();
 
         $this->refreshOperation($this->transaction, $this->connection->reveal());
