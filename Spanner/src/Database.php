@@ -1350,7 +1350,7 @@ class Database
      *           Specifying "latest" as a value instructs Cloud Spanner to use
      *           the latest supported query optimizer version. If not specified,
      *           Cloud Spanner uses optimizer version set at the client level
-     *           options or set by the `SPANNER_QUERY_OPTIMIZER_VERSION` environment
+     *           options or set by the `SPANNER_OPTIMIZER_VERSION` environment
      *           variable. Any other positive integer (from the list of supported
      *           optimizer versions) overrides the default optimizer version for
      *           query execution. Executing a SQL statement with an invalid

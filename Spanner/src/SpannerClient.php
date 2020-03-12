@@ -144,7 +144,7 @@ class SpannerClient
      *           Specifying "latest" as a value instructs Cloud Spanner to use
      *           the latest supported query optimizer version.
      *           query-level values will take precedence over any global settings.
-     *           If the SPANNER_QUERY_OPTIMIZER_VERSION environment variable is set,
+     *           If the SPANNER_OPTIMIZER_VERSION environment variable is set,
      *           it will take second priority. This value is used when neither a
      *           query-level value nor the environment variable is set.
      *           Any other positive integer (from the list of supported
