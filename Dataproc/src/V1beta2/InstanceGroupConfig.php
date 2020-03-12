@@ -84,7 +84,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the minimum cpu platform for the Instance Group.
      * See [Dataproc&rarr;Minimum CPU Platform]
-     * (https://cloud.google.com/dataproc/docs/concepts/compute/dataproc-min-cpu).
+     * (/dataproc/docs/concepts/compute/dataproc-min-cpu).
      *
      * Generated from protobuf field <code>string min_cpu_platform = 9;</code>
      */
@@ -132,7 +132,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      *     @type string $min_cpu_platform
      *           Specifies the minimum cpu platform for the Instance Group.
      *           See [Dataproc&rarr;Minimum CPU Platform]
-     *           (https://cloud.google.com/dataproc/docs/concepts/compute/dataproc-min-cpu).
+     *           (/dataproc/docs/concepts/compute/dataproc-min-cpu).
      * }
      */
     public function __construct($data = NULL) {
@@ -385,7 +385,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the minimum cpu platform for the Instance Group.
      * See [Dataproc&rarr;Minimum CPU Platform]
-     * (https://cloud.google.com/dataproc/docs/concepts/compute/dataproc-min-cpu).
+     * (/dataproc/docs/concepts/compute/dataproc-min-cpu).
      *
      * Generated from protobuf field <code>string min_cpu_platform = 9;</code>
      * @return string
@@ -398,7 +398,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the minimum cpu platform for the Instance Group.
      * See [Dataproc&rarr;Minimum CPU Platform]
-     * (https://cloud.google.com/dataproc/docs/concepts/compute/dataproc-min-cpu).
+     * (/dataproc/docs/concepts/compute/dataproc-min-cpu).
      *
      * Generated from protobuf field <code>string min_cpu_platform = 9;</code>
      * @param string $var
