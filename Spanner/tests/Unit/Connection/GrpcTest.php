@@ -100,7 +100,8 @@ class GrpcTest extends TestCase
 
         $constructor->invoke($grpc, $config);
         $this->assertEquals(
-            $config['queryOptions'], $defaultQueryOptions->getValue($grpc)
+            $config['queryOptions'],
+            $defaultQueryOptions->getValue($grpc)
         );
     }
 
@@ -121,7 +122,8 @@ class GrpcTest extends TestCase
 
         $constructor->invoke($grpc, $config);
         $this->assertEquals(
-            $expectedDefaultQueryOptions, $defaultQueryOptions->getValue($grpc)
+            $expectedDefaultQueryOptions,
+            $defaultQueryOptions->getValue($grpc)
         );
     }
 
@@ -580,7 +582,8 @@ class GrpcTest extends TestCase
         $connection->setRequestWrapper($this->requestWrapper->reveal());
 
         $this->assertEquals(
-            $this->successMessage, $connection->executeStreamingSql($args)
+            $this->successMessage,
+            $connection->executeStreamingSql($args)
         );
     }
 
