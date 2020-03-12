@@ -181,6 +181,11 @@ class Grpc implements ConnectionInterface
             }
         }
 
+        // Environment-level query options have a higher precedence than client-level query options.
+        $envQueryOptimizerVersion = getenv('SPANNER_OPTIMIZER_VERSION');
+        if (!empty($envQueryOptimizerVersion)) {
+            $config['queryOptions']['optimizerVersion'] = $envQueryOptimizerVersion;
+        }
         $this->defaultQueryOptions = $config['queryOptions'];
 
         $this->spannerClient = isset($config['gapicSpannerClient'])

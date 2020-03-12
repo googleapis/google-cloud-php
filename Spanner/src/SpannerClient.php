@@ -172,12 +172,6 @@ class SpannerClient
             'queryOptions' => []
         ];
 
-        // Environment-level query options have a higher precedence than client-level query options.
-        $envQueryOptimizerVersion = getenv('SPANNER_QUERY_OPTIMIZER_VERSION');
-        if (isset($envQueryOptimizerVersion)) {
-            $config['queryOptions']['optimizerVersion'] = $envQueryOptimizerVersion;
-        }
-
         $this->connection = new Grpc($this->configureAuthentication($config));
         $this->returnInt64AsObject = $config['returnInt64AsObject'];
 
