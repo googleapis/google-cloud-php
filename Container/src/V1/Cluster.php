@@ -301,7 +301,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
     private $current_master_version = '';
     /**
      * [Output only] Deprecated, use
-     * [NodePools.version](/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters.nodePools)
+     * [NodePools.version](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters.nodePools)
      * instead. The current version of the node software components. If they are
      * currently at multiple versions because they're in the process of being
      * upgraded, this reflects the minimum version of all nodes.
@@ -550,7 +550,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           [Output only] The current software version of the master endpoint.
      *     @type string $current_node_version
      *           [Output only] Deprecated, use
-     *           [NodePools.version](/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters.nodePools)
+     *           [NodePools.version](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters.nodePools)
      *           instead. The current version of the node software components. If they are
      *           currently at multiple versions because they're in the process of being
      *           upgraded, this reflects the minimum version of all nodes.
@@ -1661,7 +1661,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * [Output only] Deprecated, use
-     * [NodePools.version](/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters.nodePools)
+     * [NodePools.version](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters.nodePools)
      * instead. The current version of the node software components. If they are
      * currently at multiple versions because they're in the process of being
      * upgraded, this reflects the minimum version of all nodes.
@@ -1676,7 +1676,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * [Output only] Deprecated, use
-     * [NodePools.version](/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters.nodePools)
+     * [NodePools.version](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters.nodePools)
      * instead. The current version of the node software components. If they are
      * currently at multiple versions because they're in the process of being
      * upgraded, this reflects the minimum version of all nodes.
