@@ -17,7 +17,7 @@ class ClassificationCategory extends \Google\Protobuf\Internal\Message
 {
     /**
      * The name of the category representing the document, from the [predefined
-     * taxonomy](/natural-language/docs/categories).
+     * taxonomy](https://cloud.google.com/natural-language/docs/categories).
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -38,7 +38,7 @@ class ClassificationCategory extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The name of the category representing the document, from the [predefined
-     *           taxonomy](/natural-language/docs/categories).
+     *           taxonomy](https://cloud.google.com/natural-language/docs/categories).
      *     @type float $confidence
      *           The classifier's confidence of the category. Number represents how certain
      *           the classifier is that this category represents the given text.
@@ -51,7 +51,7 @@ class ClassificationCategory extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the category representing the document, from the [predefined
-     * taxonomy](/natural-language/docs/categories).
+     * taxonomy](https://cloud.google.com/natural-language/docs/categories).
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -63,7 +63,7 @@ class ClassificationCategory extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the category representing the document, from the [predefined
-     * taxonomy](/natural-language/docs/categories).
+     * taxonomy](https://cloud.google.com/natural-language/docs/categories).
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
