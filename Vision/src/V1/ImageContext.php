@@ -29,7 +29,7 @@ class ImageContext extends \Google\Protobuf\Internal\Message
      * setting a hint will help get better results (although it will be a
      * significant hindrance if the hint is wrong). Text detection returns an
      * error if one or more of the specified languages is not one of the
-     * [supported languages](/vision/docs/languages).
+     * [supported languages](https://cloud.google.com/vision/docs/languages).
      *
      * Generated from protobuf field <code>repeated string language_hints = 2;</code>
      */
@@ -69,7 +69,7 @@ class ImageContext extends \Google\Protobuf\Internal\Message
      *           setting a hint will help get better results (although it will be a
      *           significant hindrance if the hint is wrong). Text detection returns an
      *           error if one or more of the specified languages is not one of the
-     *           [supported languages](/vision/docs/languages).
+     *           [supported languages](https://cloud.google.com/vision/docs/languages).
      *     @type \Google\Cloud\Vision\V1\CropHintsParams $crop_hints_params
      *           Parameters for crop hints annotation request.
      *     @type \Google\Cloud\Vision\V1\ProductSearchParams $product_search_params
@@ -117,7 +117,7 @@ class ImageContext extends \Google\Protobuf\Internal\Message
      * setting a hint will help get better results (although it will be a
      * significant hindrance if the hint is wrong). Text detection returns an
      * error if one or more of the specified languages is not one of the
-     * [supported languages](/vision/docs/languages).
+     * [supported languages](https://cloud.google.com/vision/docs/languages).
      *
      * Generated from protobuf field <code>repeated string language_hints = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -135,7 +135,7 @@ class ImageContext extends \Google\Protobuf\Internal\Message
      * setting a hint will help get better results (although it will be a
      * significant hindrance if the hint is wrong). Text detection returns an
      * error if one or more of the specified languages is not one of the
-     * [supported languages](/vision/docs/languages).
+     * [supported languages](https://cloud.google.com/vision/docs/languages).
      *
      * Generated from protobuf field <code>repeated string language_hints = 2;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
