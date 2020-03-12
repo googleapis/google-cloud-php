@@ -62,9 +62,9 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      */
     private $filter = '';
     /**
-     * Required. Expression that defines what assets fields to use for grouping (including
-     * `state_change`). The string value should follow SQL syntax: comma separated
-     * list of fields. For example: "parent,resource_name".
+     * Required. Expression that defines what assets fields to use for grouping
+     * (including `state_change`). The string value should follow SQL syntax:
+     * comma separated list of fields. For example: "parent,resource_name".
      * The following fields are supported:
      * * resource_name
      * * category
@@ -96,12 +96,18 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      * two times don't affect the result. For example, the results aren't affected
      * if the finding is made inactive and then active again.
      * Possible "state_change" values when compare_duration is specified:
-     * * "CHANGED":   indicates that the finding was present at the start of
-     *                  compare_duration, but changed its state at read_time.
-     * * "UNCHANGED": indicates that the finding was present at the start of
-     *                  compare_duration and did not change state at read_time.
-     * * "ADDED":     indicates that the finding was not present at the start
-     *                  of compare_duration, but was present at read_time.
+     * * "CHANGED":   indicates that the finding was present and matched the given
+     *                  filter at the start of compare_duration, but changed its
+     *                  state at read_time.
+     * * "UNCHANGED": indicates that the finding was present and matched the given
+     *                  filter at the start of compare_duration and did not change
+     *                  state at read_time.
+     * * "ADDED":     indicates that the finding did not match the given filter or
+     *                  was not present at the start of compare_duration, but was
+     *                  present at read_time.
+     * * "REMOVED":   indicates that the finding was present and matched the
+     *                  filter at the start of compare_duration, but did not match
+     *                  the filter at read_time.
      * If compare_duration is not specified, then the only possible state_change
      * is "UNUSED",  which will be the state_change set for all findings present
      * at read_time.
@@ -172,9 +178,9 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      *           * source_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
      *           For example, `source_properties.size = 100` is a valid filter string.
      *     @type string $group_by
-     *           Required. Expression that defines what assets fields to use for grouping (including
-     *           `state_change`). The string value should follow SQL syntax: comma separated
-     *           list of fields. For example: "parent,resource_name".
+     *           Required. Expression that defines what assets fields to use for grouping
+     *           (including `state_change`). The string value should follow SQL syntax:
+     *           comma separated list of fields. For example: "parent,resource_name".
      *           The following fields are supported:
      *           * resource_name
      *           * category
@@ -198,12 +204,18 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      *           two times don't affect the result. For example, the results aren't affected
      *           if the finding is made inactive and then active again.
      *           Possible "state_change" values when compare_duration is specified:
-     *           * "CHANGED":   indicates that the finding was present at the start of
-     *                            compare_duration, but changed its state at read_time.
-     *           * "UNCHANGED": indicates that the finding was present at the start of
-     *                            compare_duration and did not change state at read_time.
-     *           * "ADDED":     indicates that the finding was not present at the start
-     *                            of compare_duration, but was present at read_time.
+     *           * "CHANGED":   indicates that the finding was present and matched the given
+     *                            filter at the start of compare_duration, but changed its
+     *                            state at read_time.
+     *           * "UNCHANGED": indicates that the finding was present and matched the given
+     *                            filter at the start of compare_duration and did not change
+     *                            state at read_time.
+     *           * "ADDED":     indicates that the finding did not match the given filter or
+     *                            was not present at the start of compare_duration, but was
+     *                            present at read_time.
+     *           * "REMOVED":   indicates that the finding was present and matched the
+     *                            filter at the start of compare_duration, but did not match
+     *                            the filter at read_time.
      *           If compare_duration is not specified, then the only possible state_change
      *           is "UNUSED",  which will be the state_change set for all findings present
      *           at read_time.
@@ -344,9 +356,9 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Expression that defines what assets fields to use for grouping (including
-     * `state_change`). The string value should follow SQL syntax: comma separated
-     * list of fields. For example: "parent,resource_name".
+     * Required. Expression that defines what assets fields to use for grouping
+     * (including `state_change`). The string value should follow SQL syntax:
+     * comma separated list of fields. For example: "parent,resource_name".
      * The following fields are supported:
      * * resource_name
      * * category
@@ -364,9 +376,9 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Expression that defines what assets fields to use for grouping (including
-     * `state_change`). The string value should follow SQL syntax: comma separated
-     * list of fields. For example: "parent,resource_name".
+     * Required. Expression that defines what assets fields to use for grouping
+     * (including `state_change`). The string value should follow SQL syntax:
+     * comma separated list of fields. For example: "parent,resource_name".
      * The following fields are supported:
      * * resource_name
      * * category
@@ -430,12 +442,18 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      * two times don't affect the result. For example, the results aren't affected
      * if the finding is made inactive and then active again.
      * Possible "state_change" values when compare_duration is specified:
-     * * "CHANGED":   indicates that the finding was present at the start of
-     *                  compare_duration, but changed its state at read_time.
-     * * "UNCHANGED": indicates that the finding was present at the start of
-     *                  compare_duration and did not change state at read_time.
-     * * "ADDED":     indicates that the finding was not present at the start
-     *                  of compare_duration, but was present at read_time.
+     * * "CHANGED":   indicates that the finding was present and matched the given
+     *                  filter at the start of compare_duration, but changed its
+     *                  state at read_time.
+     * * "UNCHANGED": indicates that the finding was present and matched the given
+     *                  filter at the start of compare_duration and did not change
+     *                  state at read_time.
+     * * "ADDED":     indicates that the finding did not match the given filter or
+     *                  was not present at the start of compare_duration, but was
+     *                  present at read_time.
+     * * "REMOVED":   indicates that the finding was present and matched the
+     *                  filter at the start of compare_duration, but did not match
+     *                  the filter at read_time.
      * If compare_duration is not specified, then the only possible state_change
      * is "UNUSED",  which will be the state_change set for all findings present
      * at read_time.
@@ -461,12 +479,18 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      * two times don't affect the result. For example, the results aren't affected
      * if the finding is made inactive and then active again.
      * Possible "state_change" values when compare_duration is specified:
-     * * "CHANGED":   indicates that the finding was present at the start of
-     *                  compare_duration, but changed its state at read_time.
-     * * "UNCHANGED": indicates that the finding was present at the start of
-     *                  compare_duration and did not change state at read_time.
-     * * "ADDED":     indicates that the finding was not present at the start
-     *                  of compare_duration, but was present at read_time.
+     * * "CHANGED":   indicates that the finding was present and matched the given
+     *                  filter at the start of compare_duration, but changed its
+     *                  state at read_time.
+     * * "UNCHANGED": indicates that the finding was present and matched the given
+     *                  filter at the start of compare_duration and did not change
+     *                  state at read_time.
+     * * "ADDED":     indicates that the finding did not match the given filter or
+     *                  was not present at the start of compare_duration, but was
+     *                  present at read_time.
+     * * "REMOVED":   indicates that the finding was present and matched the
+     *                  filter at the start of compare_duration, but did not match
+     *                  the filter at read_time.
      * If compare_duration is not specified, then the only possible state_change
      * is "UNUSED",  which will be the state_change set for all findings present
      * at read_time.
