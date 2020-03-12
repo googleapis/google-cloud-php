@@ -129,7 +129,6 @@ class CreateSecretRequest extends \Google\Protobuf\Internal\Message
      */
     public function setSecret($var)
     {
-        var_dump(get_class($var));
         GPBUtil::checkMessage($var, \Google\Cloud\SecretManager\V1\Secret::class);
         $this->secret = $var;
 
