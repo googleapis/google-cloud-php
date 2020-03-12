@@ -22,15 +22,28 @@ class Database extends \Google\Protobuf\Internal\Message
      * statement. This name can be passed to other API methods to
      * identify the database.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $name = '';
     /**
      * Output only. The current database state.
      *
-     * Generated from protobuf field <code>.google.spanner.admin.database.v1.Database.State state = 2;</code>
+     * Generated from protobuf field <code>.google.spanner.admin.database.v1.Database.State state = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $state = 0;
+    /**
+     * Output only. If exists, the time at which the database creation started.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $create_time = null;
+    /**
+     * Output only. Applicable only for restored databases. Contains information
+     * about the restore source.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.database.v1.RestoreInfo restore_info = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $restore_info = null;
 
     /**
      * Constructor.
@@ -46,6 +59,11 @@ class Database extends \Google\Protobuf\Internal\Message
      *           identify the database.
      *     @type int $state
      *           Output only. The current database state.
+     *     @type \Google\Protobuf\Timestamp $create_time
+     *           Output only. If exists, the time at which the database creation started.
+     *     @type \Google\Cloud\Spanner\Admin\Database\V1\RestoreInfo $restore_info
+     *           Output only. Applicable only for restored databases. Contains information
+     *           about the restore source.
      * }
      */
     public function __construct($data = NULL) {
@@ -60,7 +78,7 @@ class Database extends \Google\Protobuf\Internal\Message
      * statement. This name can be passed to other API methods to
      * identify the database.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getName()
@@ -75,7 +93,7 @@ class Database extends \Google\Protobuf\Internal\Message
      * statement. This name can be passed to other API methods to
      * identify the database.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -90,7 +108,7 @@ class Database extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The current database state.
      *
-     * Generated from protobuf field <code>.google.spanner.admin.database.v1.Database.State state = 2;</code>
+     * Generated from protobuf field <code>.google.spanner.admin.database.v1.Database.State state = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getState()
@@ -101,7 +119,7 @@ class Database extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The current database state.
      *
-     * Generated from protobuf field <code>.google.spanner.admin.database.v1.Database.State state = 2;</code>
+     * Generated from protobuf field <code>.google.spanner.admin.database.v1.Database.State state = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */
@@ -109,6 +127,60 @@ class Database extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Spanner\Admin\Database\V1\Database_State::class);
         $this->state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. If exists, the time at which the database creation started.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp
+     */
+    public function getCreateTime()
+    {
+        return $this->create_time;
+    }
+
+    /**
+     * Output only. If exists, the time at which the database creation started.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setCreateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->create_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Applicable only for restored databases. Contains information
+     * about the restore source.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.database.v1.RestoreInfo restore_info = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Spanner\Admin\Database\V1\RestoreInfo
+     */
+    public function getRestoreInfo()
+    {
+        return $this->restore_info;
+    }
+
+    /**
+     * Output only. Applicable only for restored databases. Contains information
+     * about the restore source.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.database.v1.RestoreInfo restore_info = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Spanner\Admin\Database\V1\RestoreInfo $var
+     * @return $this
+     */
+    public function setRestoreInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\Admin\Database\V1\RestoreInfo::class);
+        $this->restore_info = $var;
 
         return $this;
     }
