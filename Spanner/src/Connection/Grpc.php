@@ -610,7 +610,7 @@ class Grpc implements ConnectionInterface
 
         $database = $this->pluck('database', $args);
 
-        $args['queryOptions'] += $this->defaultQueryOptions;
+        $args += ['queryOptions' => $this->defaultQueryOptions];
         if (isset($args['queryOptions'])) {
             $args['queryOptions'] = $this->serializer->decodeMessage(
                 new QueryOptions,

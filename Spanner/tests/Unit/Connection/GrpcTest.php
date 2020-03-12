@@ -86,14 +86,14 @@ class GrpcTest extends TestCase
         $this->lro = $this->prophesize(OperationResponse::class)->reveal();
     }
 
-    public function testConstruct_ClientQueryOptions()
+    public function testConstructWithClientQueryOptions()
     {
         $grpc = new Grpc;
         $config = [
             'queryOptions' => ['optimizerVersion' => '3']
         ];
 
-        $reflection = new \ReflectionClass('Google\Cloud\Spanner\Connection\Grpc');
+        $reflection = new \ReflectionClass($grpc);
         $constructor = $reflection->getConstructor();
         $defaultQueryOptions = $reflection->getProperty('defaultQueryOptions');
         $defaultQueryOptions->setAccessible(true);
@@ -105,7 +105,7 @@ class GrpcTest extends TestCase
     }
 
 
-    public function testConstruct_EnvQueryOptions()
+    public function testConstructWithEnvQueryOptions()
     {
         putenv('SPANNER_OPTIMIZER_VERSION=latest');
         $grpc = new Grpc;
@@ -523,6 +523,65 @@ class GrpcTest extends TestCase
                 'queryOptions' => $expectedQueryOptions
             ]
         ]));
+    }
+
+    public function testExecuteStreamingSqlWithDefaultQueryOptions()
+    {
+        $sql = 'SELECT 1';
+
+        $mapper = new ValueMapper(false);
+        $mapped = $mapper->formatParamsForExecuteSql(['foo' => 'bar']);
+
+        $expectedParams = $this->serializer->decodeMessage(
+            new Struct,
+            $this->formatStructForApi($mapped['params'])
+        );
+
+        $expectedParamTypes = $mapped['paramTypes'];
+        foreach ($expectedParamTypes as $key => $param) {
+            $expectedParamTypes[$key] = $this->serializer->decodeMessage(new Type, $param);
+        }
+
+        $args = [
+            'session' => self::SESSION,
+            'sql' => $sql,
+            'transactionId' => self::TRANSACTION,
+            'database' => self::DATABASE
+        ] + $mapped;
+
+        $queryOptions = ['optimizerVersion' => '2'];
+
+        $connection = new Grpc;
+        $reflection = new \ReflectionClass($connection);
+        $defaultQueryOptions = $reflection->getProperty('defaultQueryOptions');
+        $defaultQueryOptions->setAccessible(true);
+        $defaultQueryOptions->setValue($connection, $queryOptions);
+
+        $expectedQueryOptions = $this->serializer->decodeMessage(
+            new QueryOptions,
+            $queryOptions
+        );
+
+        $this->requestWrapper->send(
+            Argument::type('callable'),
+            $this->expectResourceHeader(self::DATABASE, [
+                self::SESSION,
+                $sql,
+                [
+                    'transaction' => $this->transactionSelector(),
+                    'params' => $expectedParams,
+                    'paramTypes' => $expectedParamTypes,
+                    'queryOptions' => $expectedQueryOptions
+                ]
+            ]),
+            Argument::type('array')
+        )->willReturn($this->successMessage);
+
+        $connection->setRequestWrapper($this->requestWrapper->reveal());
+
+        $this->assertEquals(
+            $this->successMessage, $connection->executeStreamingSql($args)
+        );
     }
 
     /**
