@@ -54,9 +54,8 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $companyServiceClient = new CompanyServiceClient();
  * try {
- *     $formattedParent = $companyServiceClient->tenantName('[PROJECT]', '[TENANT]');
- *     $company = new Company();
- *     $response = $companyServiceClient->createCompany($formattedParent, $company);
+ *     $formattedName = $companyServiceClient->companyWithoutTenantName('[PROJECT]', '[COMPANY]');
+ *     $companyServiceClient->deleteCompany($formattedName);
  * } finally {
  *     $companyServiceClient->close();
  * }
@@ -184,7 +183,9 @@ class CompanyServiceGapicClient
      * @param string $company
      *
      * @return string The formatted company resource.
-     * @experimental
+     *
+     * @deprecated Multi-pattern resource names will have unified formatting functions.
+     *             This helper function will be deleted in the next major version.
      */
     public static function companyName($project, $tenant, $company)
     {
@@ -203,7 +204,9 @@ class CompanyServiceGapicClient
      * @param string $company
      *
      * @return string The formatted company_without_tenant resource.
-     * @experimental
+     *
+     * @deprecated Multi-pattern resource names will have unified formatting functions.
+     *             This helper function will be deleted in the next major version.
      */
     public static function companyWithoutTenantName($project, $company)
     {
@@ -353,13 +356,69 @@ class CompanyServiceGapicClient
     }
 
     /**
+     * Deletes specified company.
+     * Prerequisite: The company has no jobs associated with it.
+     *
+     * Sample code:
+     * ```
+     * $companyServiceClient = new CompanyServiceClient();
+     * try {
+     *     $formattedName = $companyServiceClient->companyWithoutTenantName('[PROJECT]', '[COMPANY]');
+     *     $companyServiceClient->deleteCompany($formattedName);
+     * } finally {
+     *     $companyServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name Required. The resource name of the company to be deleted.
+     *
+     * The format is
+     * "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}", for
+     * example, "projects/foo/tenants/bar/companies/baz".
+     *
+     * If tenant id is unspecified, the default tenant is used, for
+     * example, "projects/foo/companies/bar".
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function deleteCompany($name, array $optionalArgs = [])
+    {
+        $request = new DeleteCompanyRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteCompany',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Creates a new company entity.
      *
      * Sample code:
      * ```
      * $companyServiceClient = new CompanyServiceClient();
      * try {
-     *     $formattedParent = $companyServiceClient->tenantName('[PROJECT]', '[TENANT]');
+     *     $formattedParent = $companyServiceClient->projectName('[PROJECT]');
      *     $company = new Company();
      *     $response = $companyServiceClient->createCompany($formattedParent, $company);
      * } finally {
@@ -416,7 +475,7 @@ class CompanyServiceGapicClient
      * ```
      * $companyServiceClient = new CompanyServiceClient();
      * try {
-     *     $formattedName = $companyServiceClient->companyName('[PROJECT]', '[TENANT]', '[COMPANY]');
+     *     $formattedName = $companyServiceClient->companyWithoutTenantName('[PROJECT]', '[COMPANY]');
      *     $response = $companyServiceClient->getCompany($formattedName);
      * } finally {
      *     $companyServiceClient->close();
@@ -528,69 +587,13 @@ class CompanyServiceGapicClient
     }
 
     /**
-     * Deletes specified company.
-     * Prerequisite: The company has no jobs associated with it.
-     *
-     * Sample code:
-     * ```
-     * $companyServiceClient = new CompanyServiceClient();
-     * try {
-     *     $formattedName = $companyServiceClient->companyName('[PROJECT]', '[TENANT]', '[COMPANY]');
-     *     $companyServiceClient->deleteCompany($formattedName);
-     * } finally {
-     *     $companyServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $name Required. The resource name of the company to be deleted.
-     *
-     * The format is
-     * "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}", for
-     * example, "projects/foo/tenants/bar/companies/baz".
-     *
-     * If tenant id is unspecified, the default tenant is used, for
-     * example, "projects/foo/companies/bar".
-     * @param array $optionalArgs {
-     *                            Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function deleteCompany($name, array $optionalArgs = [])
-    {
-        $request = new DeleteCompanyRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteCompany',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
      * Lists all companies associated with the project.
      *
      * Sample code:
      * ```
      * $companyServiceClient = new CompanyServiceClient();
      * try {
-     *     $formattedParent = $companyServiceClient->tenantName('[PROJECT]', '[TENANT]');
+     *     $formattedParent = $companyServiceClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
      *     $pagedResponse = $companyServiceClient->listCompanies($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {

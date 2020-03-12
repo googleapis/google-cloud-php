@@ -55,9 +55,8 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $applicationServiceClient = new ApplicationServiceClient();
  * try {
- *     $formattedParent = $applicationServiceClient->profileName('[PROJECT]', '[TENANT]', '[PROFILE]');
- *     $application = new Application();
- *     $response = $applicationServiceClient->createApplication($formattedParent, $application);
+ *     $formattedName = $applicationServiceClient->applicationName('[PROJECT]', '[TENANT]', '[PROFILE]', '[APPLICATION]');
+ *     $applicationServiceClient->deleteApplication($formattedName);
  * } finally {
  *     $applicationServiceClient->close();
  * }
@@ -102,6 +101,8 @@ class ApplicationServiceGapicClient
         'https://www.googleapis.com/auth/jobs',
     ];
     private static $applicationNameTemplate;
+    private static $companyNameTemplate;
+    private static $companyWithoutTenantNameTemplate;
     private static $profileNameTemplate;
     private static $pathTemplateMap;
 
@@ -133,6 +134,24 @@ class ApplicationServiceGapicClient
         return self::$applicationNameTemplate;
     }
 
+    private static function getCompanyNameTemplate()
+    {
+        if (null == self::$companyNameTemplate) {
+            self::$companyNameTemplate = new PathTemplate('projects/{project}/tenants/{tenant}/companies/{company}');
+        }
+
+        return self::$companyNameTemplate;
+    }
+
+    private static function getCompanyWithoutTenantNameTemplate()
+    {
+        if (null == self::$companyWithoutTenantNameTemplate) {
+            self::$companyWithoutTenantNameTemplate = new PathTemplate('projects/{project}/companies/{company}');
+        }
+
+        return self::$companyWithoutTenantNameTemplate;
+    }
+
     private static function getProfileNameTemplate()
     {
         if (null == self::$profileNameTemplate) {
@@ -147,6 +166,8 @@ class ApplicationServiceGapicClient
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'application' => self::getApplicationNameTemplate(),
+                'company' => self::getCompanyNameTemplate(),
+                'companyWithoutTenant' => self::getCompanyWithoutTenantNameTemplate(),
                 'profile' => self::getProfileNameTemplate(),
             ];
         }
@@ -178,6 +199,48 @@ class ApplicationServiceGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
+     * a company resource.
+     *
+     * @param string $project
+     * @param string $tenant
+     * @param string $company
+     *
+     * @return string The formatted company resource.
+     *
+     * @deprecated Multi-pattern resource names will have unified formatting functions.
+     *             This helper function will be deleted in the next major version.
+     */
+    public static function companyName($project, $tenant, $company)
+    {
+        return self::getCompanyNameTemplate()->render([
+            'project' => $project,
+            'tenant' => $tenant,
+            'company' => $company,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a company_without_tenant resource.
+     *
+     * @param string $project
+     * @param string $company
+     *
+     * @return string The formatted company_without_tenant resource.
+     *
+     * @deprecated Multi-pattern resource names will have unified formatting functions.
+     *             This helper function will be deleted in the next major version.
+     */
+    public static function companyWithoutTenantName($project, $company)
+    {
+        return self::getCompanyWithoutTenantNameTemplate()->render([
+            'project' => $project,
+            'company' => $company,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
      * a profile resource.
      *
      * @param string $project
@@ -201,6 +264,8 @@ class ApplicationServiceGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - application: projects/{project}/tenants/{tenant}/profiles/{profile}/applications/{application}
+     * - company: projects/{project}/tenants/{tenant}/companies/{company}
+     * - companyWithoutTenant: projects/{project}/companies/{company}
      * - profile: projects/{project}/tenants/{tenant}/profiles/{profile}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
@@ -297,6 +362,58 @@ class ApplicationServiceGapicClient
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
+    }
+
+    /**
+     * Deletes specified application.
+     *
+     * Sample code:
+     * ```
+     * $applicationServiceClient = new ApplicationServiceClient();
+     * try {
+     *     $formattedName = $applicationServiceClient->applicationName('[PROJECT]', '[TENANT]', '[PROFILE]', '[APPLICATION]');
+     *     $applicationServiceClient->deleteApplication($formattedName);
+     * } finally {
+     *     $applicationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name Required. The resource name of the application to be deleted.
+     *
+     * The format is
+     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}/applications/{application_id}".
+     * For example, "projects/foo/tenants/bar/profiles/baz/applications/qux".
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function deleteApplication($name, array $optionalArgs = [])
+    {
+        $request = new DeleteApplicationRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteApplication',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -466,58 +583,6 @@ class ApplicationServiceGapicClient
         return $this->startCall(
             'UpdateApplication',
             Application::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Deletes specified application.
-     *
-     * Sample code:
-     * ```
-     * $applicationServiceClient = new ApplicationServiceClient();
-     * try {
-     *     $formattedName = $applicationServiceClient->applicationName('[PROJECT]', '[TENANT]', '[PROFILE]', '[APPLICATION]');
-     *     $applicationServiceClient->deleteApplication($formattedName);
-     * } finally {
-     *     $applicationServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $name Required. The resource name of the application to be deleted.
-     *
-     * The format is
-     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}/applications/{application_id}".
-     * For example, "projects/foo/tenants/bar/profiles/baz/applications/qux".
-     * @param array $optionalArgs {
-     *                            Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function deleteApplication($name, array $optionalArgs = [])
-    {
-        $request = new DeleteApplicationRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteApplication',
-            GPBEmpty::class,
             $optionalArgs,
             $request
         )->wait();
