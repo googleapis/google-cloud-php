@@ -487,8 +487,7 @@ class GrpcTest extends TestCase
         array $envOptions,
         array $clientOptions,
         array $expectedOptions
-    )
-    {
+    ) {
         $sql = 'SELECT 1';
 
         if ($envOptions && $envOptions['optimizerVersion']) {
