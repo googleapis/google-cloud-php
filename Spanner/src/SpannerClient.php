@@ -137,6 +137,21 @@ class SpannerClient
      *     @type bool $returnInt64AsObject If true, 64 bit integers will be
      *           returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
      *           platform compatibility. **Defaults to** false.
+     *     @type array $queryOptions Query optimizer configuration.
+     *     @type string $queryOptions.optimizerVersion An option to control the
+     *           selection of optimizer version. This parameter allows
+     *           all execute queries to use a specific query optimizer version.
+     *           Specifying "latest" as a value instructs Cloud Spanner to use
+     *           the latest supported query optimizer version.
+     *           query-level values will take precedence over any global settings.
+     *           If the SPANNER_OPTIMIZER_VERSION environment variable is set,
+     *           it will take second priority. This value is used when neither a
+     *           query-level value nor the environment variable is set.
+     *           Any other positive integer (from the list of supported
+     *           optimizer versions) overrides the default optimizer version for
+     *           query execution. Executing a SQL statement with an invalid
+     *           optimizer version will fail with a syntax error
+     *           (`INVALID_ARGUMENT`) status.
      * }
      * @throws GoogleException If the gRPC extension is not enabled.
      */
@@ -153,7 +168,8 @@ class SpannerClient
             'returnInt64AsObject' => false,
             'projectIdRequired' => true,
             'hasEmulator' => (bool) $emulatorHost,
-            'emulatorHost' => $emulatorHost
+            'emulatorHost' => $emulatorHost,
+            'queryOptions' => []
         ];
 
         $this->connection = new Grpc($this->configureAuthentication($config));
