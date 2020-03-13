@@ -86,47 +86,6 @@ class GrpcTest extends TestCase
         $this->lro = $this->prophesize(OperationResponse::class)->reveal();
     }
 
-    public function testConstructWithClientQueryOptions()
-    {
-        $grpc = new Grpc;
-        $config = [
-            'queryOptions' => ['optimizerVersion' => '3']
-        ];
-
-        $reflection = new \ReflectionClass($grpc);
-        $constructor = $reflection->getConstructor();
-        $defaultQueryOptions = $reflection->getProperty('defaultQueryOptions');
-        $defaultQueryOptions->setAccessible(true);
-
-        $constructor->invoke($grpc, $config);
-        $this->assertEquals(
-            $config['queryOptions'],
-            $defaultQueryOptions->getValue($grpc)
-        );
-    }
-
-
-    public function testConstructWithEnvQueryOptions()
-    {
-        putenv('SPANNER_OPTIMIZER_VERSION=latest');
-        $grpc = new Grpc;
-        $config = [
-            'queryOptions' => ['optimizerVersion' => '3']
-        ];
-        $expectedDefaultQueryOptions = ['optimizerVersion' => 'latest'];
-
-        $reflection = new \ReflectionClass('Google\Cloud\Spanner\Connection\Grpc');
-        $constructor = $reflection->getConstructor();
-        $defaultQueryOptions = $reflection->getProperty('defaultQueryOptions');
-        $defaultQueryOptions->setAccessible(true);
-
-        $constructor->invoke($grpc, $config);
-        $this->assertEquals(
-            $expectedDefaultQueryOptions,
-            $defaultQueryOptions->getValue($grpc)
-        );
-    }
-
     public function testApiEndpoint()
     {
         $expected = 'foobar.com';
@@ -493,7 +452,6 @@ class GrpcTest extends TestCase
 
         $mapper = new ValueMapper(false);
         $mapped = $mapper->formatParamsForExecuteSql(['foo' => 'bar']);
-        $mapped['queryOptions'] = ['optimizerVersion' => 'latest'];
 
         $expectedParams = $this->serializer->decodeMessage(
             new Struct,
@@ -504,11 +462,6 @@ class GrpcTest extends TestCase
         foreach ($expectedParamTypes as $key => $param) {
             $expectedParamTypes[$key] = $this->serializer->decodeMessage(new Type, $param);
         }
-
-        $expectedQueryOptions = $this->serializer->decodeMessage(
-            new QueryOptions,
-            $mapped['queryOptions']
-        );
 
         $this->assertCallCorrect('executeStreamingSql', [
             'session' => self::SESSION,
@@ -521,70 +474,78 @@ class GrpcTest extends TestCase
             [
                 'transaction' => $this->transactionSelector(),
                 'params' => $expectedParams,
-                'paramTypes' => $expectedParamTypes,
-                'queryOptions' => $expectedQueryOptions
+                'paramTypes' => $expectedParamTypes
             ]
         ]));
     }
 
-    public function testExecuteStreamingSqlWithDefaultQueryOptions()
+    /**
+     * @dataProvider queryOptions
+     */
+    public function testExecuteStreamingSqlWithQueryOptions(
+        array $methodOptions,
+        array $envOptions,
+        array $clientOptions,
+        array $expectedOptions
+    )
     {
         $sql = 'SELECT 1';
 
-        $mapper = new ValueMapper(false);
-        $mapped = $mapper->formatParamsForExecuteSql(['foo' => 'bar']);
-
-        $expectedParams = $this->serializer->decodeMessage(
-            new Struct,
-            $this->formatStructForApi($mapped['params'])
-        );
-
-        $expectedParamTypes = $mapped['paramTypes'];
-        foreach ($expectedParamTypes as $key => $param) {
-            $expectedParamTypes[$key] = $this->serializer->decodeMessage(new Type, $param);
+        if ($envOptions && $envOptions['optimizerVersion']) {
+            putenv('SPANNER_OPTIMIZER_VERSION=' . $envOptions['optimizerVersion']);
         }
 
-        $args = [
+        $gapic = $this->prophesize(SpannerClient::class);
+        $gapic->executeStreamingSql(
+            self::SESSION,
+            $sql,
+            Argument::withEntry('queryOptions', $expectedOptions)
+        );
+
+        $grpc = new Grpc([
+            'gapicSpannerClient' => $gapic->reveal()
+        ] + ['queryOptions' => $clientOptions]);
+
+        $grpc->executeStreamingSql([
+            'database' => self::DATABASE,
             'session' => self::SESSION,
             'sql' => $sql,
-            'transactionId' => self::TRANSACTION,
-            'database' => self::DATABASE
-        ] + $mapped;
+            'params' => []
+        ] + ['queryOptions' => $methodOptions]);
 
-        $queryOptions = ['optimizerVersion' => '2'];
+        if ($envOptions) {
+            putenv('SPANNER_OPTIMIZER_VERSION=');
+        }
+    }
 
-        $connection = new Grpc;
-        $reflection = new \ReflectionClass($connection);
-        $defaultQueryOptions = $reflection->getProperty('defaultQueryOptions');
-        $defaultQueryOptions->setAccessible(true);
-        $defaultQueryOptions->setValue($connection, $queryOptions);
-
-        $expectedQueryOptions = $this->serializer->decodeMessage(
-            new QueryOptions,
-            $queryOptions
-        );
-
-        $this->requestWrapper->send(
-            Argument::type('callable'),
-            $this->expectResourceHeader(self::DATABASE, [
-                self::SESSION,
-                $sql,
-                [
-                    'transaction' => $this->transactionSelector(),
-                    'params' => $expectedParams,
-                    'paramTypes' => $expectedParamTypes,
-                    'queryOptions' => $expectedQueryOptions
-                ]
-            ]),
-            Argument::type('array')
-        )->willReturn($this->successMessage);
-
-        $connection->setRequestWrapper($this->requestWrapper->reveal());
-
-        $this->assertEquals(
-            $this->successMessage,
-            $connection->executeStreamingSql($args)
-        );
+    public function queryOptions()
+    {
+        return [
+            [
+                ['optimizerVersion' => '8'],
+                ['optimizerVersion' => '7'],
+                ['optimizerVersion' => '6'],
+                ['optimizerVersion' => '8']
+            ],
+            [
+                [],
+                ['optimizerVersion' => '7'],
+                ['optimizerVersion' => '6'],
+                ['optimizerVersion' => '7']
+            ],
+            [
+                [],
+                [],
+                ['optimizerVersion' => '6'],
+                ['optimizerVersion' => '6']
+            ],
+            [
+                [],
+                [],
+                [],
+                []
+            ]
+        ];
     }
 
     /**

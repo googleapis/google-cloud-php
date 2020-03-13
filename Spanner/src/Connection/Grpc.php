@@ -181,11 +181,6 @@ class Grpc implements ConnectionInterface
             }
         }
 
-        // Environment-level query options have a higher precedence than client-level query options.
-        $envQueryOptimizerVersion = getenv('SPANNER_OPTIMIZER_VERSION');
-        if (!empty($envQueryOptimizerVersion)) {
-            $config['queryOptions']['optimizerVersion'] = $envQueryOptimizerVersion;
-        }
         $this->defaultQueryOptions = $config['queryOptions'];
 
         $this->spannerClient = isset($config['gapicSpannerClient'])
@@ -609,12 +604,19 @@ class Grpc implements ConnectionInterface
         $args['transaction'] = $this->createTransactionSelector($args);
 
         $database = $this->pluck('database', $args);
+        $queryOptions = $this->pluck('queryOptions', $args, false) ?: [];
 
-        $args += ['queryOptions' => $this->defaultQueryOptions];
-        if (isset($args['queryOptions'])) {
+        // Query options precedence is query-level, then environment-level, then client-level.
+        $envQueryOptimizerVersion = getenv('SPANNER_OPTIMIZER_VERSION');
+        if (!empty($envQueryOptimizerVersion)) {
+            $queryOptions += ['optimizerVersion' => $envQueryOptimizerVersion];
+        }
+        $queryOptions += $this->defaultQueryOptions;
+
+        if ($queryOptions) {
             $args['queryOptions'] = $this->serializer->decodeMessage(
                 new QueryOptions,
-                $args['queryOptions']
+                $queryOptions
             );
         }
 
