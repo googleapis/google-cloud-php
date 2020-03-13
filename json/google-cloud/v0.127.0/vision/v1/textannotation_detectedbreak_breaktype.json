@@ -1,0 +1,1 @@
+{"id":"vision\/v1\/textannotation_detectedbreak_breaktype","type":"","title":"Google\\Cloud\\Vision\\V1\\TextAnnotation_DetectedBreak_BreakType","name":"TextAnnotation_DetectedBreak_BreakType","description":"<p>This class is deprecated. Use Google\\Cloud\\Vision\\V1\\TextAnnotation\\DetectedBreak\\BreakType instead.<\/p>","examples":[],"resources":[],"methods":[]}

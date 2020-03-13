@@ -1,0 +1,1 @@
+{"id":"monitoring\/v3\/createtimeseriessummary_error","type":"","title":"Google\\Cloud\\Monitoring\\V3\\CreateTimeSeriesSummary_Error","name":"CreateTimeSeriesSummary_Error","description":"<p>This class is deprecated. Use Google\\Cloud\\Monitoring\\V3\\CreateTimeSeriesSummary\\Error instead.<\/p>","examples":[],"resources":[],"methods":[]}

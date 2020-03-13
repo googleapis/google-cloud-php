@@ -1,0 +1,1 @@
+{"id":"translate\/v3\/createglossarymetadata\/state","type":"","title":"Google\\Cloud\\Translate\\V3\\CreateGlossaryMetadata\\State","name":"State","description":"<p>Enumerates the possible states that the creation request can be in.<\/p>\n<p>Protobuf type <code>google.cloud.translation.v3.CreateGlossaryMetadata.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}
