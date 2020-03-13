@@ -33,6 +33,7 @@ use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Connection\Grpc;
 use Google\Cloud\Spanner\Connection\LongRunningConnection;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\V1\SpannerClient as GapicSpannerClient;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\StreamInterface;
@@ -177,10 +178,29 @@ class SpannerClient
                     return $instance->database($databaseName);
                 }
             ], [
+                'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata',
+                'callable' => function ($database) {
+                    $databaseNameComponents = DatabaseAdminClient::parseName($database['name']);
+                    $instanceName = $databaseNameComponents['instance'];
+                    $databaseName = $databaseNameComponents['database'];
+
+                    $instance = $this->instance($instanceName);
+                    return $instance->database($databaseName);
+                }
+            ],[
                 'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.CreateInstanceMetadata',
                 'callable' => function ($instance) {
                     $name = InstanceAdminClient::parseName($instance['name'])['instance'];
                     return $this->instance($name, $instance);
+                }
+            ], [
+                'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata',
+                'callable' => function ($backup) {
+                    $backupNameComponents = DatabaseAdminClient::parseName($backup['name']);
+                    $instanceName = $backupNameComponents['instance'];
+
+                    $instance = $this->instance($instanceName);
+                    return $instance->backup($backup['name'], $backup);
                 }
             ]
         ]);
