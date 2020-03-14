@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.128.0
+
+<details><summary>google/cloud-spanner 1.26.0</summary>
+
+
+
+### Features
+
+* **spanner:** implement query options versioning support ([#2747](https://www.github.com/googleapis/google-cloud-php/issues/2747)) ([27ad7e3](https://www.github.com/googleapis/google-cloud-php/commit/27ad7e31b0e703a33ff87528a8fd503e0670fdbc))
+
+</details>
+
 ## 0.127.0
 
 <details><summary>google/cloud-asset 0.6.1</summary>
