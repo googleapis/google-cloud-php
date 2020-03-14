@@ -34,7 +34,6 @@ use Google\Cloud\PubSub\V1\ListSnapshotsResponse;
 use Google\Cloud\PubSub\V1\ListSubscriptionsResponse;
 use Google\Cloud\PubSub\V1\PullResponse;
 use Google\Cloud\PubSub\V1\PushConfig;
-use Google\Cloud\PubSub\V1\ReceivedMessage;
 use Google\Cloud\PubSub\V1\SeekResponse;
 use Google\Cloud\PubSub\V1\Snapshot;
 use Google\Cloud\PubSub\V1\StreamingPullRequest;
@@ -737,20 +736,11 @@ class SubscriberClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
 
         // Mock response
-        $receivedMessagesElement = new ReceivedMessage();
-        $receivedMessages = [$receivedMessagesElement];
         $expectedResponse = new StreamingPullResponse();
-        $expectedResponse->setReceivedMessages($receivedMessages);
         $transport->addResponse($expectedResponse);
-        $receivedMessagesElement2 = new ReceivedMessage();
-        $receivedMessages2 = [$receivedMessagesElement2];
         $expectedResponse2 = new StreamingPullResponse();
-        $expectedResponse2->setReceivedMessages($receivedMessages2);
         $transport->addResponse($expectedResponse2);
-        $receivedMessagesElement3 = new ReceivedMessage();
-        $receivedMessages3 = [$receivedMessagesElement3];
         $expectedResponse3 = new StreamingPullResponse();
-        $expectedResponse3->setReceivedMessages($receivedMessages3);
         $transport->addResponse($expectedResponse3);
 
         // Mock request
@@ -782,11 +772,11 @@ class SubscriberClientTest extends GeneratedTest
             $responses[] = $response;
         }
 
-        $expectedResources = [];
-        $expectedResources[] = $expectedResponse->getReceivedMessages()[0];
-        $expectedResources[] = $expectedResponse2->getReceivedMessages()[0];
-        $expectedResources[] = $expectedResponse3->getReceivedMessages()[0];
-        $this->assertEquals($expectedResources, $responses);
+        $expectedResponses = [];
+        $expectedResponses[] = $expectedResponse;
+        $expectedResponses[] = $expectedResponse2;
+        $expectedResponses[] = $expectedResponse3;
+        $this->assertEquals($expectedResponses, $responses);
 
         $createStreamRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($createStreamRequests));
@@ -1337,10 +1327,10 @@ class SubscriberClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedResource = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $resource = 'resource-341064690';
         $policy = new Policy();
 
-        $response = $client->setIamPolicy($formattedResource, $policy);
+        $response = $client->setIamPolicy($resource, $policy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1350,7 +1340,7 @@ class SubscriberClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getResource();
 
-        $this->assertProtobufEquals($formattedResource, $actualValue);
+        $this->assertProtobufEquals($resource, $actualValue);
         $actualValue = $actualRequestObject->getPolicy();
 
         $this->assertProtobufEquals($policy, $actualValue);
@@ -1381,11 +1371,11 @@ class SubscriberClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedResource = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $resource = 'resource-341064690';
         $policy = new Policy();
 
         try {
-            $client->setIamPolicy($formattedResource, $policy);
+            $client->setIamPolicy($resource, $policy);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1417,9 +1407,9 @@ class SubscriberClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedResource = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $resource = 'resource-341064690';
 
-        $response = $client->getIamPolicy($formattedResource);
+        $response = $client->getIamPolicy($resource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1429,7 +1419,7 @@ class SubscriberClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getResource();
 
-        $this->assertProtobufEquals($formattedResource, $actualValue);
+        $this->assertProtobufEquals($resource, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -1457,10 +1447,10 @@ class SubscriberClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedResource = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $resource = 'resource-341064690';
 
         try {
-            $client->getIamPolicy($formattedResource);
+            $client->getIamPolicy($resource);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1488,10 +1478,10 @@ class SubscriberClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedResource = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $resource = 'resource-341064690';
         $permissions = [];
 
-        $response = $client->testIamPermissions($formattedResource, $permissions);
+        $response = $client->testIamPermissions($resource, $permissions);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1501,7 +1491,7 @@ class SubscriberClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getResource();
 
-        $this->assertProtobufEquals($formattedResource, $actualValue);
+        $this->assertProtobufEquals($resource, $actualValue);
         $actualValue = $actualRequestObject->getPermissions();
 
         $this->assertProtobufEquals($permissions, $actualValue);
@@ -1532,11 +1522,11 @@ class SubscriberClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedResource = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $resource = 'resource-341064690';
         $permissions = [];
 
         try {
-            $client->testIamPermissions($formattedResource, $permissions);
+            $client->testIamPermissions($resource, $permissions);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

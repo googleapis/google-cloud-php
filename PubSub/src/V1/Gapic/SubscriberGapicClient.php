@@ -58,6 +58,7 @@ use Google\Cloud\PubSub\V1\ModifyPushConfigRequest;
 use Google\Cloud\PubSub\V1\PullRequest;
 use Google\Cloud\PubSub\V1\PullResponse;
 use Google\Cloud\PubSub\V1\PushConfig;
+use Google\Cloud\PubSub\V1\RetryPolicy;
 use Google\Cloud\PubSub\V1\SeekRequest;
 use Google\Cloud\PubSub\V1\SeekResponse;
 use Google\Cloud\PubSub\V1\Snapshot;
@@ -263,7 +264,9 @@ class SubscriberGapicClient
      * @param string $topic
      *
      * @return string The formatted topic resource.
-     * @experimental
+     *
+     * @deprecated Multi-pattern resource names will have unified formatting functions.
+     *             This helper function will be deleted in the next major version.
      */
     public static function topicName($project, $topic)
     {
@@ -487,6 +490,17 @@ class SubscriberGapicClient
      *          <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
      *          API might be changed in backward-incompatible ways and is not recommended
      *          for production use. It is not subject to any SLA or deprecation policy.
+     *     @type RetryPolicy $retryPolicy
+     *          A policy that specifies how Cloud Pub/Sub retries message delivery for this
+     *          subscription.
+     *
+     *          If not set, the default retry policy is applied. This generally implies
+     *          that messages will be retried as soon as possible for healthy subscribers.
+     *          RetryPolicy will be triggered on NACKs or acknowledgement deadline
+     *          exceeded events for a given message.
+     *          <b>EXPERIMENTAL:</b> This API might be changed in backward-incompatible
+     *          ways and is not recommended for production use. It is not subject to any
+     *          SLA or deprecation policy.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -527,6 +541,9 @@ class SubscriberGapicClient
         }
         if (isset($optionalArgs['deadLetterPolicy'])) {
             $request->setDeadLetterPolicy($optionalArgs['deadLetterPolicy']);
+        }
+        if (isset($optionalArgs['retryPolicy'])) {
+            $request->setRetryPolicy($optionalArgs['retryPolicy']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor([
@@ -1510,9 +1527,9 @@ class SubscriberGapicClient
      * ```
      * $subscriberClient = new SubscriberClient();
      * try {
-     *     $formattedResource = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+     *     $resource = '';
      *     $policy = new Policy();
-     *     $response = $subscriberClient->setIamPolicy($formattedResource, $policy);
+     *     $response = $subscriberClient->setIamPolicy($resource, $policy);
      * } finally {
      *     $subscriberClient->close();
      * }
@@ -1570,8 +1587,8 @@ class SubscriberGapicClient
      * ```
      * $subscriberClient = new SubscriberClient();
      * try {
-     *     $formattedResource = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-     *     $response = $subscriberClient->getIamPolicy($formattedResource);
+     *     $resource = '';
+     *     $response = $subscriberClient->getIamPolicy($resource);
      * } finally {
      *     $subscriberClient->close();
      * }
@@ -1635,9 +1652,9 @@ class SubscriberGapicClient
      * ```
      * $subscriberClient = new SubscriberClient();
      * try {
-     *     $formattedResource = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+     *     $resource = '';
      *     $permissions = [];
-     *     $response = $subscriberClient->testIamPermissions($formattedResource, $permissions);
+     *     $response = $subscriberClient->testIamPermissions($resource, $permissions);
      * } finally {
      *     $subscriberClient->close();
      * }

@@ -132,6 +132,20 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.pubsub.v1.DeadLetterPolicy dead_letter_policy = 13;</code>
      */
     private $dead_letter_policy = null;
+    /**
+     * A policy that specifies how Cloud Pub/Sub retries message delivery for this
+     * subscription.
+     * If not set, the default retry policy is applied. This generally implies
+     * that messages will be retried as soon as possible for healthy subscribers.
+     * RetryPolicy will be triggered on NACKs or acknowledgement deadline
+     * exceeded events for a given message.
+     * <b>EXPERIMENTAL:</b> This API might be changed in backward-incompatible
+     * ways and is not recommended for production use. It is not subject to any
+     * SLA or deprecation policy.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.RetryPolicy retry_policy = 14;</code>
+     */
+    private $retry_policy = null;
 
     /**
      * Constructor.
@@ -216,6 +230,16 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *           <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
      *           API might be changed in backward-incompatible ways and is not recommended
      *           for production use. It is not subject to any SLA or deprecation policy.
+     *     @type \Google\Cloud\PubSub\V1\RetryPolicy $retry_policy
+     *           A policy that specifies how Cloud Pub/Sub retries message delivery for this
+     *           subscription.
+     *           If not set, the default retry policy is applied. This generally implies
+     *           that messages will be retried as soon as possible for healthy subscribers.
+     *           RetryPolicy will be triggered on NACKs or acknowledgement deadline
+     *           exceeded events for a given message.
+     *           <b>EXPERIMENTAL:</b> This API might be changed in backward-incompatible
+     *           ways and is not recommended for production use. It is not subject to any
+     *           SLA or deprecation policy.
      * }
      */
     public function __construct($data = NULL) {
@@ -593,6 +617,48 @@ class Subscription extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\DeadLetterPolicy::class);
         $this->dead_letter_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * A policy that specifies how Cloud Pub/Sub retries message delivery for this
+     * subscription.
+     * If not set, the default retry policy is applied. This generally implies
+     * that messages will be retried as soon as possible for healthy subscribers.
+     * RetryPolicy will be triggered on NACKs or acknowledgement deadline
+     * exceeded events for a given message.
+     * <b>EXPERIMENTAL:</b> This API might be changed in backward-incompatible
+     * ways and is not recommended for production use. It is not subject to any
+     * SLA or deprecation policy.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.RetryPolicy retry_policy = 14;</code>
+     * @return \Google\Cloud\PubSub\V1\RetryPolicy
+     */
+    public function getRetryPolicy()
+    {
+        return $this->retry_policy;
+    }
+
+    /**
+     * A policy that specifies how Cloud Pub/Sub retries message delivery for this
+     * subscription.
+     * If not set, the default retry policy is applied. This generally implies
+     * that messages will be retried as soon as possible for healthy subscribers.
+     * RetryPolicy will be triggered on NACKs or acknowledgement deadline
+     * exceeded events for a given message.
+     * <b>EXPERIMENTAL:</b> This API might be changed in backward-incompatible
+     * ways and is not recommended for production use. It is not subject to any
+     * SLA or deprecation policy.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.RetryPolicy retry_policy = 14;</code>
+     * @param \Google\Cloud\PubSub\V1\RetryPolicy $var
+     * @return $this
+     */
+    public function setRetryPolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\RetryPolicy::class);
+        $this->retry_policy = $var;
 
         return $this;
     }
