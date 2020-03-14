@@ -44,7 +44,7 @@ class FileBreakpointStorage implements BreakpointStorageInterface
     {
         $filename = $filename ?: self::DEFAULT_FILENAME;
         $this->filename = implode(DIRECTORY_SEPARATOR, [sys_get_temp_dir(), $filename]);
-        $this->lockFilename = $filename . '.lock';
+        $this->lockFilename = $filename;
     }
 
     /**
