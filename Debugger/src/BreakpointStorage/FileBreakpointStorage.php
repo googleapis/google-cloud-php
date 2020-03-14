@@ -37,14 +37,14 @@ class FileBreakpointStorage implements BreakpointStorageInterface
     /**
      * Create a new FileBreakpointStorage instance.
      *
-     * @param string $filename [optional] The full path to the storage file.
-     *      **Defaults to** a temporary file in the system's temp directory.
+     * @param string $filename [optional] The name of the file to create in the
+     *        system's temp directory. **Defaults to** `debugger-breakpoints`.
      */
     public function __construct($filename = null)
     {
         $filename = $filename ?: self::DEFAULT_FILENAME;
         $this->filename = implode(DIRECTORY_SEPARATOR, [sys_get_temp_dir(), $filename]);
-        $this->lockFilename = $filename . '.lock';
+        $this->lockFilename = $filename;
     }
 
     /**
