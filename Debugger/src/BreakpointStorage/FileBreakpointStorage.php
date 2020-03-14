@@ -38,7 +38,7 @@ class FileBreakpointStorage implements BreakpointStorageInterface
      * Create a new FileBreakpointStorage instance.
      *
      * @param string $filename [optional] The name of the file to create in the
-     *        systems temp directory. **Defaults to** `debugger-breakpoints`.
+     *        system's temp directory. **Defaults to** `debugger-breakpoints`.
      */
     public function __construct($filename = null)
     {
