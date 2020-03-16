@@ -394,7 +394,7 @@ class SigningHelper
      *
      * @param string $scheme The scheme provided by the user or defaults.
      * @param string $bucketBoundHostname The bucketBoundHostname provided by the user or defaults.
-     * @param boolean $virtualHostedStyle Whether virtual host style is enabled.
+     * @param bool $virtualHostedStyle Whether virtual host style is enabled.
      * @return string
      */
     private function chooseScheme($scheme, $bucketBoundHostname, $virtualHostedStyle = false)
@@ -594,7 +594,7 @@ class SigningHelper
                 $headerValue = str_replace(PHP_EOL, '', $headerValue);
 
                 // collapse multiple whitespace chars to a single space.
-                $headerValue = preg_replace('/[\s\t]+/', ' ', $headerValue);
+                $headerValue = preg_replace('/[\s]+/', ' ', $headerValue);
             }
 
             $out[$name] = implode(', ', $value);
@@ -632,8 +632,6 @@ class SigningHelper
 
     /**
      * Normalize the resource provided to the canonical request string.
-     *
-     * bucketBoundHostname behavior is particular.
      *
      * @param string $resource
      * @param string $bucketBoundHostname

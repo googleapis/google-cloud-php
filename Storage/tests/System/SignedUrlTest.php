@@ -84,7 +84,6 @@ class SignedUrlTest extends StorageTestCase
         $obj = $this->createFile($objectName);
         $ts = new Timestamp(new \DateTime('tomorrow'));
         $url = $obj->signedUrl($ts, $urlOpts);
-        // echo $url;exit;
 
         $this->assertEquals(self::CONTENT, $this->getFile($url, $urlOpts));
     }

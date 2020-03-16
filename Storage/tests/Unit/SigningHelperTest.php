@@ -600,10 +600,10 @@ class SigningHelperTest extends TestCase
     /**
      * @dataProvider resources
      */
-    public function testNormalizeUriPath($resource, $cname, $expected)
+    public function testNormalizeUriPath($resource, $bucketBoundHostname, $expected)
     {
         $res = $this->helper->normalizeProxy('normalizeUriPath', [
-            $cname,
+            $bucketBoundHostname,
             $resource
         ]);
 

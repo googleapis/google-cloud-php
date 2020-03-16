@@ -939,10 +939,6 @@ class StorageObject
      * @param array $options {
      *     Configuration Options.
      *
-     *     @type string $bucketBoundHostname The hostname for the bucket, for
-     *           instance `cdn.example.com`. May be used for Google Cloud Load
-     *           Balancers or for custom bucket CNAMEs. **Defaults to**
-     *           `storage.googleapis.com`.
      *     @type string $contentMd5 The MD5 digest value in base64. If you
      *           provide this, the client must provide this HTTP header with
      *           this same value in its request. If provided, take care to
@@ -988,9 +984,6 @@ class StorageObject
      *           as part of the signed URL query string. For allowed values,
      *           see [Reference Headers](https://cloud.google.com/storage/docs/xml-api/reference-headers#query).
      *     @type string $version One of "v2" or "v4". **Defaults to** `"v2"`.
-     *     @type bool $virtualHostedStyle If `true`, URL will be of form
-     *           `mybucket.storage.googleapis.com`. If `false`,
-     *           `storage.googleapis.com/mybucket`. **Defaults to** `false`.
      * }
      * @return string
      */
@@ -1003,10 +996,12 @@ class StorageObject
         $options['headers']['x-goog-resumable'] = 'start';
 
         unset(
+            $options['cname'],
             $options['bucketBoundHostname'],
             $options['saveAsName'],
             $options['responseDisposition'],
-            $options['responseType']
+            $options['responseType'],
+            $options['virtualHostedStyle']
         );
 
         return $this->signedUrl($expires, [
@@ -1077,9 +1072,6 @@ class StorageObject
      *           as part of the signed URL query string. For allowed values,
      *           see [Reference Headers](https://cloud.google.com/storage/docs/xml-api/reference-headers#query).
      *     @type string $version One of "v2" or "v4". **Defaults to** `"v2"`.
-     *     @type bool $virtualHostedStyle If `true`, URL will be of form
-     *           `mybucket.storage.googleapis.com`. If `false`,
-     *           `storage.googleapis.com/mybucket`. **Defaults to** `false`.
      * }
      * @return string
      */

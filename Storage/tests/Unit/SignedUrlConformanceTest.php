@@ -64,8 +64,7 @@ class SignedUrlConformanceTest extends TestCase
                     $testdata['virtualHostedStyle'] = true;
                     break;
 
-                case 'BUCKET_BOUND_DOMAIN':
-                    $testdata['bucketBoundHostname'] = $testdata['bucketBoundDomain'];
+                case 'BUCKET_BOUND_HOSTNAME':
                     break;
 
                 default:
@@ -105,8 +104,16 @@ class SignedUrlConformanceTest extends TestCase
         // rekey with description for more useful error reporting.
         $out = [];
         foreach (self::$cases['signingV4Tests'] as $case) {
-            $out[$case['description']] = [$case];
+            $desc = $case['description'];
             unset($case['description']);
+
+            if (isset($case['urlStyle']) && $case['urlStyle'] === 'BUCKET_BOUND_HOSTNAME') {
+                $cnameCase = $case;
+                $cnameCase['cname'] = $case['bucketBoundHostname'];
+                $out[$desc . ' CNAME backwards compatibility'] = [$cnameCase];
+            }
+
+            $out[$desc] = [$case];
         }
 
         return $out;
@@ -119,8 +126,16 @@ class SignedUrlConformanceTest extends TestCase
         // rekey with description for more useful error reporting.
         $out = [];
         foreach (self::$cases['postPolicyV4Tests'] as $case) {
-            $out[$case['description']] = [$case];
+            $desc = $case['description'];
             unset($case['description']);
+
+            if (isset($case['urlStyle']) && $case['urlStyle'] === 'BUCKET_BOUND_HOSTNAME') {
+                $cnameCase = $case;
+                $cnameCase['cname'] = $case['bucketBoundHostname'];
+                $out[$desc . ' CNAME backwards compatibility'] = [$cnameCase];
+            }
+
+            $out[$desc] = [$case];
         }
 
         return $out;
