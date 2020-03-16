@@ -26,7 +26,6 @@ return [
             'StreamingPull' => [
                 'grpcStreaming' => [
                     'grpcStreamingType' => 'BidiStreaming',
-                    'resourcesGetMethod' => 'getReceivedMessages',
                 ],
             ],
         ],
