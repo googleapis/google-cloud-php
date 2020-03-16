@@ -109,4 +109,22 @@ class ManageJobsTest extends BigQueryTestCase
     {
         $this->assertEquals('bigquery#job', $job->reload()['kind']);
     }
+
+    public function testListsJobsWithParent()
+    {
+        $query = self::$client->query('SELECT "a";SELECT "b";');
+        $job = self::$client->startQuery($query);
+        $jobId = $job->id();
+
+        // wait a second for the children to become available.
+        sleep(1);
+
+        $children = iterator_to_array(self::$client->jobs([
+            'parentJobId' => $jobId
+        ]));
+
+        $this->assertEquals(2, count($children));
+        $this->assertStringStartsWith('script_job_', $children[0]->id());
+        $this->assertStringStartsWith('script_job_', $children[1]->id());
+    }
 }
