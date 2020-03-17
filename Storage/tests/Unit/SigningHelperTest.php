@@ -81,7 +81,7 @@ class SigningHelperTest extends TestCase
     /**
      * @dataProvider v2Params
      */
-    public function testV2SignParams($key, $value, $paramKey, $paramValue = null, $isOpt = true)
+    public function testV2SignParams($key, $value, $paramKey, $paramValue = null)
     {
         $credentials = $this->createCredentialsMock();
         $expires = time() + 2;
@@ -116,7 +116,7 @@ class SigningHelperTest extends TestCase
         ];
     }
 
-    public function testV2CanonicalRequestAndCname()
+    public function testV2CanonicalRequestAndBucketBoundHostname()
     {
         $credentials = $this->createCredentialsMock();
         $expires = time() + 2;
@@ -162,7 +162,7 @@ class SigningHelperTest extends TestCase
             self::GENERATION,
             [
                 'headers' => $headers,
-                'cname' => 'example.com',
+                'bucketBoundHostname' => 'example.com',
                 'contentMd5' => $contentMd5,
                 'contentType' => $contentType
             ]
@@ -213,7 +213,7 @@ class SigningHelperTest extends TestCase
         $this->assertArrayHasKey('X-Goog-SignedHeaders', $query);
     }
 
-    public function testV4SignCanonicalRequestAndCname()
+    public function testV4SignCanonicalRequestAndBucketBoundHostname()
     {
         $credentials = $this->createCredentialsMock();
         $now = new \DateTimeImmutable('now', new \DateTimeZone('UTC'));
@@ -223,7 +223,7 @@ class SigningHelperTest extends TestCase
         $contentMd5 = 'md5-string';
         $responseType = 'text/pdf';
         $responseDisposition = 'dispo';
-        $cname = 'foo.bar.com';
+        $bucketBoundHostname = 'foo.bar.com';
 
         $requestTimestamp = $now->format('Ymd\THis\Z');
         $requestDatestamp = $now->format('Ymd');
@@ -240,7 +240,7 @@ class SigningHelperTest extends TestCase
             $contentMd5,
             $responseType,
             $responseDisposition,
-            $cname,
+            $bucketBoundHostname,
             $credential,
             $requestTimestamp
         ) {
@@ -261,7 +261,7 @@ class SigningHelperTest extends TestCase
             $headers = explode("\n", $request[3]);
             $this->assertContains('content-md5:' . $contentMd5, $headers);
             $this->assertContains('content-type:' . $contentType, $headers);
-            $this->assertContains('host:' . $cname, $headers);
+            $this->assertContains('host:' . $bucketBoundHostname, $headers);
 
             $this->assertEquals($expectedHeaders, $request[4]);
             $this->assertEquals('UNSIGNED-PAYLOAD', $request[5]);
@@ -277,20 +277,20 @@ class SigningHelperTest extends TestCase
                 'contentMd5' => $contentMd5,
                 'responseType' => $responseType,
                 'responseDisposition' => $responseDisposition,
-                'cname' => $cname,
+                'bucketBoundHostname' => $bucketBoundHostname,
                 'timestamp' => $now
             ]
         );
 
         $parts = parse_url($url);
-        $this->assertEquals($cname, $parts['host']);
+        $this->assertEquals($bucketBoundHostname, $parts['host']);
         $this->assertEquals('/' . self::OBJECT, $parts['path']);
     }
 
     /**
-     * @dataProvider cnames
+     * @dataProvider hostnames
      */
-    public function testV4CnameFix($cname, $expected = null)
+    public function testV4BucketBoundHostnameFix($bucketBoundHostname, $expected = null)
     {
         $credentials = $this->createCredentialsMock();
         $expires = time() + 2;
@@ -307,18 +307,18 @@ class SigningHelperTest extends TestCase
             $resource,
             self::GENERATION,
             [
-                'cname' => $cname
+                'bucketBoundHostname' => $bucketBoundHostname
             ]
         );
 
         $parts = parse_url($url);
-        $this->assertEquals($expected ?: $cname, $parts['host']);
+        $this->assertEquals($expected ?: $bucketBoundHostname, $parts['host']);
     }
 
     /**
-     * @dataProvider cnames
+     * @dataProvider hostnames
      */
-    public function testV2CnameFix($cname, $expected = null)
+    public function testV2BucketBoundHostnameFix($bucketBoundHostname, $expected = null)
     {
         $credentials = $this->createCredentialsMock();
         $expires = time() + 2;
@@ -335,15 +335,15 @@ class SigningHelperTest extends TestCase
             $resource,
             self::GENERATION,
             [
-                'cname' => $cname
+                'bucketBoundHostname' => $bucketBoundHostname
             ]
         );
 
         $parts = parse_url($url);
-        $this->assertEquals($expected ?: $cname, $parts['host']);
+        $this->assertEquals($expected ?: $bucketBoundHostname, $parts['host']);
     }
 
-    public function cnames()
+    public function hostnames()
     {
         return [
             ['example.com'],
@@ -600,10 +600,10 @@ class SigningHelperTest extends TestCase
     /**
      * @dataProvider resources
      */
-    public function testNormalizeUriPath($resource, $cname, $expected)
+    public function testNormalizeUriPath($resource, $bucketBoundHostname, $expected)
     {
         $res = $this->helper->normalizeProxy('normalizeUriPath', [
-            $cname,
+            $bucketBoundHostname,
             $resource
         ]);
 
@@ -639,6 +639,33 @@ class SigningHelperTest extends TestCase
                 '/'
             ],
         ];
+    }
+
+    /**
+     * @dataProvider urlMethods
+     */
+    public function testVirtualHostedStyle($method)
+    {
+        $bucket = 'foo';
+        $object = 'bar.gif';
+        $resource = sprintf('%s/%s', $bucket, $object);
+
+        $url = $this->helper->$method(
+            $this->mockConnection($this->prophesize(SignBlobInterface::class)->reveal()),
+            time() + 10,
+            $resource,
+            null,
+            [
+                'virtualHostedStyle' => true
+            ]
+        );
+
+        $parts = parse_url($url);
+        $this->assertEquals(
+            sprintf('%s.storage.googleapis.com', $bucket),
+            $parts['host']
+        );
+        $this->assertEquals('/bar.gif', $parts['path']);
     }
 
     private function createCredentialsMock()

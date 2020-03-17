@@ -18,7 +18,6 @@
 namespace Google\Cloud\Storage\Tests\Snippet;
 
 use Google\Auth\Credentials\ServiceAccountCredentials;
-use Google\Auth\FetchAuthTokenCache;
 use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Core\Testing\KeyPairGenerateTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
@@ -436,7 +435,6 @@ class StorageObjectTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromMethod(StorageObject::class, 'signedUrl');
         $snippet->addLocal('object', $this->object);
-        $snippet->addUse(Timestamp::class);
 
         list($pkey, $pub) = $this->getKeyPair();
         $kf = [
@@ -467,7 +465,6 @@ class StorageObjectTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromMethod(StorageObject::class, 'signedUrl', 1);
         $snippet->addLocal('object', $this->object);
-        $snippet->addUse(Timestamp::class);
 
         list($pkey, $pub) = $this->getKeyPair();
         $kf = [
@@ -498,7 +495,6 @@ class StorageObjectTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromMethod(StorageObject::class, 'signedUrl', 2);
         $snippet->addLocal('object', $this->object);
-        $snippet->addUse(Timestamp::class);
 
         list($pkey, $pub) = $this->getKeyPair();
         $kf = [
@@ -522,6 +518,62 @@ class StorageObjectTest extends SnippetTestCase
         $res = $snippet->invoke('url');
         $this->assertContains('https://storage.googleapis.com/my-bucket/my-object', $res->returnVal());
         $this->assertContains('X-Goog-Signature=', $res->returnVal());
+    }
+
+    public function testSignedUrlBucketBoundHostname()
+    {
+        $snippet = $this->snippetFromMethod(StorageObject::class, 'signedUrl', 3);
+        $snippet->addLocal('object', $this->object);
+
+        list($pkey, $pub) = $this->getKeyPair();
+        $kf = [
+            'private_key' => $pkey,
+            'client_email' => 'test@example.com'
+        ];
+
+        $rw = $this->prophesize(RequestWrapper::class);
+        $rw->keyFile()->willReturn($kf);
+
+        $creds = $this->prophesize(ServiceAccountCredentials::class);
+        $creds->signBlob(Argument::any(), Argument::any())->willReturn('foo');
+        $creds->getClientName()->willReturn($kf['client_email']);
+        $rw->getCredentialsFetcher()->willReturn($creds->reveal());
+
+        $conn = $this->prophesize(Rest::class);
+        $conn->requestWrapper()->willReturn($rw->reveal());
+
+        $this->object->___setProperty('connection', $conn->reveal());
+
+        $res = $snippet->invoke('url');
+        $this->assertContains('https://cdn.example.com/my-object', $res->returnVal());
+    }
+
+    public function testSignedUrlVirtualHostedStyle()
+    {
+        $snippet = $this->snippetFromMethod(StorageObject::class, 'signedUrl', 4);
+        $snippet->addLocal('object', $this->object);
+
+        list($pkey, $pub) = $this->getKeyPair();
+        $kf = [
+            'private_key' => $pkey,
+            'client_email' => 'test@example.com'
+        ];
+
+        $rw = $this->prophesize(RequestWrapper::class);
+        $rw->keyFile()->willReturn($kf);
+
+        $creds = $this->prophesize(ServiceAccountCredentials::class);
+        $creds->signBlob(Argument::any(), Argument::any())->willReturn('foo');
+        $creds->getClientName()->willReturn($kf['client_email']);
+        $rw->getCredentialsFetcher()->willReturn($creds->reveal());
+
+        $conn = $this->prophesize(Rest::class);
+        $conn->requestWrapper()->willReturn($rw->reveal());
+
+        $this->object->___setProperty('connection', $conn->reveal());
+
+        $res = $snippet->invoke('url');
+        $this->assertContains('https://my-bucket.storage.googleapis.com/my-object', $res->returnVal());
     }
 
     public function testSignedUploadUrl()

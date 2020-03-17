@@ -23,10 +23,23 @@ use PHPUnit\Framework\TestCase;
 /**
  * @group storage
  * @group storage-signed-url
- * @group storage-signed-url-conformance
+ * @group storage-conformance
  */
 class SignedUrlConformanceTest extends TestCase
 {
+    private static $cases;
+
+    public static function setUpBeforeClass()
+    {
+        static $setup = false;
+        if ($setup) {
+            return;
+        }
+
+        $setup = true;
+        self::$cases = json_decode(file_get_contents(__DIR__ . '/data/signed-url-v4-testdata.json'), true);
+    }
+
     /**
      * @dataProvider signedUrlConformanceCases
      */
@@ -37,15 +50,33 @@ class SignedUrlConformanceTest extends TestCase
         ]);
 
         $signingObject = $client->bucket($testdata['bucket']);
-        if ($testdata['object']) {
+        if (isset($testdata['object']) && $testdata['object']) {
             $signingObject = $signingObject->object($testdata['object']);
+        }
+
+        if (isset($testdata['queryParameters'])) {
+            $testdata['queryParams'] = $testdata['queryParameters'];
+        }
+
+        if (isset($testdata['urlStyle'])) {
+            switch ($testdata['urlStyle']) {
+                case 'VIRTUAL_HOSTED_STYLE':
+                    $testdata['virtualHostedStyle'] = true;
+                    break;
+
+                case 'BUCKET_BOUND_HOSTNAME':
+                    break;
+
+                default:
+                    throw new \Exception('url style ' . $testdata['urlStyle'] . ' not implemented.');
+            }
         }
 
         $instanceMethodName = $testdata['method'] === 'POST'
             ? 'signedUploadUrl'
             : 'signedUrl';
 
-        $generationTimestamp = \DateTimeImmutable::createFromFormat('Ymd\THis\Z', $testdata['timestamp']);
+        $generationTimestamp = \DateTimeImmutable::createFromFormat(\DateTime::RFC3339, $testdata['timestamp']);
         $expiration = $generationTimestamp->format('U') + $testdata['expiration'];
 
         $expectedUrl = $testdata['expectedUrl'];
@@ -53,7 +84,10 @@ class SignedUrlConformanceTest extends TestCase
             $testdata['expectedUrl'],
             $testdata['bucket'],
             $testdata['object'],
-            $testdata['expiration']
+            $testdata['expiration'],
+            $testdata['queryParameters'],
+            $testdata['urlStyle'],
+            $testdata['bucketBoundDomain']
         );
 
         $signedUrl = $signingObject->$instanceMethodName($expiration, $testdata + [
@@ -65,13 +99,43 @@ class SignedUrlConformanceTest extends TestCase
 
     public function signedUrlConformanceCases()
     {
-        $cases = json_decode(file_get_contents(__DIR__ . '/data/signed-url-v4-testdata.json'), true);
+        self::setUpBeforeClass();
 
         // rekey with description for more useful error reporting.
         $out = [];
-        foreach ($cases as $key => $case) {
-            $out[$case['description']] = [$case];
+        foreach (self::$cases['signingV4Tests'] as $case) {
+            $desc = $case['description'];
             unset($case['description']);
+
+            if (isset($case['urlStyle']) && $case['urlStyle'] === 'BUCKET_BOUND_HOSTNAME') {
+                $cnameCase = $case;
+                $cnameCase['cname'] = $case['bucketBoundHostname'];
+                $out[$desc . ' CNAME backwards compatibility'] = [$cnameCase];
+            }
+
+            $out[$desc] = [$case];
+        }
+
+        return $out;
+    }
+
+    public function postPolicyConformanceCases()
+    {
+        self::setUpBeforeClass();
+
+        // rekey with description for more useful error reporting.
+        $out = [];
+        foreach (self::$cases['postPolicyV4Tests'] as $case) {
+            $desc = $case['description'];
+            unset($case['description']);
+
+            if (isset($case['urlStyle']) && $case['urlStyle'] === 'BUCKET_BOUND_HOSTNAME') {
+                $cnameCase = $case;
+                $cnameCase['cname'] = $case['bucketBoundHostname'];
+                $out[$desc . ' CNAME backwards compatibility'] = [$cnameCase];
+            }
+
+            $out[$desc] = [$case];
         }
 
         return $out;
