@@ -9,17 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for DeleteDeidentifyTemplate.
+ * The request message for finishing a DLP hybrid job.
  *
- * Generated from protobuf message <code>google.privacy.dlp.v2.DeleteDeidentifyTemplateRequest</code>
+ * Generated from protobuf message <code>google.privacy.dlp.v2.FinishDlpJobRequest</code>
  */
-class DeleteDeidentifyTemplateRequest extends \Google\Protobuf\Internal\Message
+class FinishDlpJobRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Resource name of the organization and deidentify template to be
-     * deleted, for example
-     * `organizations/433245324/deidentifyTemplates/432452342` or
-     * projects/project-id/deidentifyTemplates/432452342.
+     * Required. The name of the DlpJob resource to be cancelled.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -32,10 +29,7 @@ class DeleteDeidentifyTemplateRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. Resource name of the organization and deidentify template to be
-     *           deleted, for example
-     *           `organizations/433245324/deidentifyTemplates/432452342` or
-     *           projects/project-id/deidentifyTemplates/432452342.
+     *           Required. The name of the DlpJob resource to be cancelled.
      * }
      */
     public function __construct($data = NULL) {
@@ -44,10 +38,7 @@ class DeleteDeidentifyTemplateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name of the organization and deidentify template to be
-     * deleted, for example
-     * `organizations/433245324/deidentifyTemplates/432452342` or
-     * projects/project-id/deidentifyTemplates/432452342.
+     * Required. The name of the DlpJob resource to be cancelled.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -58,10 +49,7 @@ class DeleteDeidentifyTemplateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name of the organization and deidentify template to be
-     * deleted, for example
-     * `organizations/433245324/deidentifyTemplates/432452342` or
-     * projects/project-id/deidentifyTemplates/432452342.
+     * Required. The name of the DlpJob resource to be cancelled.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

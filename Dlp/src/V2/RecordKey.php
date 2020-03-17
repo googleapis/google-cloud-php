@@ -17,7 +17,7 @@ class RecordKey extends \Google\Protobuf\Internal\Message
 {
     /**
      * Values of identifying columns in the given row. Order of values matches
-     * the order of field identifiers specified in the scanning request.
+     * the order of `identifying_fields` specified in the scanning request.
      *
      * Generated from protobuf field <code>repeated string id_values = 5;</code>
      */
@@ -34,7 +34,7 @@ class RecordKey extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dlp\V2\BigQueryKey $big_query_key
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $id_values
      *           Values of identifying columns in the given row. Order of values matches
-     *           the order of field identifiers specified in the scanning request.
+     *           the order of `identifying_fields` specified in the scanning request.
      * }
      */
     public function __construct($data = NULL) {
@@ -88,7 +88,7 @@ class RecordKey extends \Google\Protobuf\Internal\Message
 
     /**
      * Values of identifying columns in the given row. Order of values matches
-     * the order of field identifiers specified in the scanning request.
+     * the order of `identifying_fields` specified in the scanning request.
      *
      * Generated from protobuf field <code>repeated string id_values = 5;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -100,7 +100,7 @@ class RecordKey extends \Google\Protobuf\Internal\Message
 
     /**
      * Values of identifying columns in the given row. Order of values matches
-     * the order of field identifiers specified in the scanning request.
+     * the order of `identifying_fields` specified in the scanning request.
      *
      * Generated from protobuf field <code>repeated string id_values = 5;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var

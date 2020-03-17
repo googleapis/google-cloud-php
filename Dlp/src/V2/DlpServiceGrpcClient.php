@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2019 Google LLC.
+// Copyright 2020 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-//
 //
 namespace Google\Cloud\Dlp\V2;
 
@@ -327,6 +326,25 @@ class DlpServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Inspect hybrid content and store findings to a trigger. The inspection
+     * will be processed asynchronously. To review the findings monitor the
+     * jobs within the trigger.
+     * Early access feature is in a pre-release state and might change or have
+     * limited support. For more information, see
+     * https://cloud.google.com/products#product-launch-stages.
+     * @param \Google\Cloud\Dlp\V2\HybridInspectJobTriggerRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function HybridInspectJobTrigger(\Google\Cloud\Dlp\V2\HybridInspectJobTriggerRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.privacy.dlp.v2.DlpService/HybridInspectJobTrigger',
+        $argument,
+        ['\Google\Cloud\Dlp\V2\HybridInspectResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Gets a job trigger.
      * See https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
      * @param \Google\Cloud\Dlp\V2\GetJobTriggerRequest $argument input argument
@@ -550,6 +568,43 @@ class DlpServiceGrpcClient extends \Grpc\BaseStub {
     public function DeleteStoredInfoType(\Google\Cloud\Dlp\V2\DeleteStoredInfoTypeRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.privacy.dlp.v2.DlpService/DeleteStoredInfoType',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Inspect hybrid content and store findings to a job.
+     * To review the findings inspect the job. Inspection will occur
+     * asynchronously.
+     * Early access feature is in a pre-release state and might change or have
+     * limited support. For more information, see
+     * https://cloud.google.com/products#product-launch-stages.
+     * @param \Google\Cloud\Dlp\V2\HybridInspectDlpJobRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function HybridInspectDlpJob(\Google\Cloud\Dlp\V2\HybridInspectDlpJobRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.privacy.dlp.v2.DlpService/HybridInspectDlpJob',
+        $argument,
+        ['\Google\Cloud\Dlp\V2\HybridInspectResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Finish a running hybrid DlpJob. Triggers the finalization steps and running
+     * of any enabled actions that have not yet run.
+     * Early access feature is in a pre-release state and might change or have
+     * limited support. For more information, see
+     * https://cloud.google.com/products#product-launch-stages.
+     * @param \Google\Cloud\Dlp\V2\FinishDlpJobRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function FinishDlpJob(\Google\Cloud\Dlp\V2\FinishDlpJobRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.privacy.dlp.v2.DlpService/FinishDlpJob',
         $argument,
         ['\Google\Protobuf\GPBEmpty', 'decode'],
         $metadata, $options);

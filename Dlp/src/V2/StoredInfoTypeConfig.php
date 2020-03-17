@@ -43,6 +43,10 @@ class StoredInfoTypeConfig extends \Google\Protobuf\Internal\Message
      *           Description of the StoredInfoType (max 256 characters).
      *     @type \Google\Cloud\Dlp\V2\LargeCustomDictionaryConfig $large_custom_dictionary
      *           StoredInfoType where findings are defined by a dictionary of phrases.
+     *     @type \Google\Cloud\Dlp\V2\CustomInfoType\Dictionary $dictionary
+     *           Store dictionary-based CustomInfoType.
+     *     @type \Google\Cloud\Dlp\V2\CustomInfoType\Regex $regex
+     *           Store regular expression-based StoredInfoType.
      * }
      */
     public function __construct($data = NULL) {
@@ -124,6 +128,58 @@ class StoredInfoTypeConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\LargeCustomDictionaryConfig::class);
         $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * Store dictionary-based CustomInfoType.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.Dictionary dictionary = 4;</code>
+     * @return \Google\Cloud\Dlp\V2\CustomInfoType\Dictionary
+     */
+    public function getDictionary()
+    {
+        return $this->readOneof(4);
+    }
+
+    /**
+     * Store dictionary-based CustomInfoType.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.Dictionary dictionary = 4;</code>
+     * @param \Google\Cloud\Dlp\V2\CustomInfoType\Dictionary $var
+     * @return $this
+     */
+    public function setDictionary($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\CustomInfoType_Dictionary::class);
+        $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * Store regular expression-based StoredInfoType.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.Regex regex = 5;</code>
+     * @return \Google\Cloud\Dlp\V2\CustomInfoType\Regex
+     */
+    public function getRegex()
+    {
+        return $this->readOneof(5);
+    }
+
+    /**
+     * Store regular expression-based StoredInfoType.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.Regex regex = 5;</code>
+     * @param \Google\Cloud\Dlp\V2\CustomInfoType\Regex $var
+     * @return $this
+     */
+    public function setRegex($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\CustomInfoType_Regex::class);
+        $this->writeOneof(5, $var);
 
         return $this;
     }

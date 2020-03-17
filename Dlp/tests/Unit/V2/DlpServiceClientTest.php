@@ -30,6 +30,7 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Dlp\V2\DeidentifyContentResponse;
 use Google\Cloud\Dlp\V2\DeidentifyTemplate;
 use Google\Cloud\Dlp\V2\DlpJob;
+use Google\Cloud\Dlp\V2\HybridInspectResponse;
 use Google\Cloud\Dlp\V2\InspectContentResponse;
 use Google\Cloud\Dlp\V2\InspectTemplate;
 use Google\Cloud\Dlp\V2\JobTrigger;
@@ -1554,6 +1555,147 @@ class DlpServiceClientTest extends GeneratedTest
     /**
      * @test
      */
+    public function finishDlpJobTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+
+        // Mock request
+        $formattedName = $client->dlpJobName('[PROJECT]', '[DLP_JOB]');
+
+        $client->finishDlpJob($formattedName);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.privacy.dlp.v2.DlpService/FinishDlpJob', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getName();
+
+        $this->assertProtobufEquals($formattedName, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function finishDlpJobExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        // Mock request
+        $formattedName = $client->dlpJobName('[PROJECT]', '[DLP_JOB]');
+
+        try {
+            $client->finishDlpJob($formattedName);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function hybridInspectDlpJobTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $expectedResponse = new HybridInspectResponse();
+        $transport->addResponse($expectedResponse);
+
+        // Mock request
+        $name = 'name3373707';
+
+        $response = $client->hybridInspectDlpJob($name);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.privacy.dlp.v2.DlpService/HybridInspectDlpJob', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getName();
+
+        $this->assertProtobufEquals($name, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function hybridInspectDlpJobExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        // Mock request
+        $name = 'name3373707';
+
+        try {
+            $client->hybridInspectDlpJob($name);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function listJobTriggersTest()
     {
         $transport = $this->createTransport();
@@ -1765,6 +1907,77 @@ class DlpServiceClientTest extends GeneratedTest
 
         try {
             $client->deleteJobTrigger($name);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function hybridInspectJobTriggerTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $expectedResponse = new HybridInspectResponse();
+        $transport->addResponse($expectedResponse);
+
+        // Mock request
+        $name = 'name3373707';
+
+        $response = $client->hybridInspectJobTrigger($name);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.privacy.dlp.v2.DlpService/HybridInspectJobTrigger', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getName();
+
+        $this->assertProtobufEquals($name, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function hybridInspectJobTriggerExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        // Mock request
+        $name = 'name3373707';
+
+        try {
+            $client->hybridInspectJobTrigger($name);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
