@@ -24,6 +24,7 @@ class OutputStorageConfig extends \Google\Protobuf\Internal\Message
      * If unspecified, then all available columns will be used for a new table or
      * an (existing) table with no schema, and no changes will be made to an
      * existing table that has a schema.
+     * Only for use with external storage.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.OutputStorageConfig.OutputSchema output_schema = 3;</code>
      */
@@ -58,6 +59,7 @@ class OutputStorageConfig extends \Google\Protobuf\Internal\Message
      *           If unspecified, then all available columns will be used for a new table or
      *           an (existing) table with no schema, and no changes will be made to an
      *           existing table that has a schema.
+     *           Only for use with external storage.
      * }
      */
     public function __construct($data = NULL) {
@@ -122,6 +124,7 @@ class OutputStorageConfig extends \Google\Protobuf\Internal\Message
      * If unspecified, then all available columns will be used for a new table or
      * an (existing) table with no schema, and no changes will be made to an
      * existing table that has a schema.
+     * Only for use with external storage.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.OutputStorageConfig.OutputSchema output_schema = 3;</code>
      * @return int
@@ -140,6 +143,7 @@ class OutputStorageConfig extends \Google\Protobuf\Internal\Message
      * If unspecified, then all available columns will be used for a new table or
      * an (existing) table with no schema, and no changes will be made to an
      * existing table that has a schema.
+     * Only for use with external storage.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.OutputStorageConfig.OutputSchema output_schema = 3;</code>
      * @param int $var

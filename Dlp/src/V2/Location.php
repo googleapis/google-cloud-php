@@ -40,6 +40,12 @@ class Location extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.ContentLocation content_locations = 7;</code>
      */
     private $content_locations;
+    /**
+     * Information about the container where this finding occurred, if available.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.Container container = 8;</code>
+     */
+    private $container = null;
 
     /**
      * Constructor.
@@ -60,6 +66,8 @@ class Location extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dlp\V2\ContentLocation[]|\Google\Protobuf\Internal\RepeatedField $content_locations
      *           List of nested objects pointing to the precise location of the finding
      *           within the file or record.
+     *     @type \Google\Cloud\Dlp\V2\Container $container
+     *           Information about the container where this finding occurred, if available.
      * }
      */
     public function __construct($data = NULL) {
@@ -155,6 +163,32 @@ class Location extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dlp\V2\ContentLocation::class);
         $this->content_locations = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Information about the container where this finding occurred, if available.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.Container container = 8;</code>
+     * @return \Google\Cloud\Dlp\V2\Container
+     */
+    public function getContainer()
+    {
+        return $this->container;
+    }
+
+    /**
+     * Information about the container where this finding occurred, if available.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.Container container = 8;</code>
+     * @param \Google\Cloud\Dlp\V2\Container $var
+     * @return $this
+     */
+    public function setContainer($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\Container::class);
+        $this->container = $var;
 
         return $this;
     }

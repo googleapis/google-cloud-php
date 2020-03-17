@@ -54,11 +54,16 @@ use Google\Cloud\Dlp\V2\DeleteJobTriggerRequest;
 use Google\Cloud\Dlp\V2\DeleteStoredInfoTypeRequest;
 use Google\Cloud\Dlp\V2\DlpJob;
 use Google\Cloud\Dlp\V2\DlpJobType;
+use Google\Cloud\Dlp\V2\FinishDlpJobRequest;
 use Google\Cloud\Dlp\V2\GetDeidentifyTemplateRequest;
 use Google\Cloud\Dlp\V2\GetDlpJobRequest;
 use Google\Cloud\Dlp\V2\GetInspectTemplateRequest;
 use Google\Cloud\Dlp\V2\GetJobTriggerRequest;
 use Google\Cloud\Dlp\V2\GetStoredInfoTypeRequest;
+use Google\Cloud\Dlp\V2\HybridContentItem;
+use Google\Cloud\Dlp\V2\HybridInspectDlpJobRequest;
+use Google\Cloud\Dlp\V2\HybridInspectJobTriggerRequest;
+use Google\Cloud\Dlp\V2\HybridInspectResponse;
 use Google\Cloud\Dlp\V2\InspectConfig;
 use Google\Cloud\Dlp\V2\InspectContentRequest;
 use Google\Cloud\Dlp\V2\InspectContentResponse;
@@ -1106,8 +1111,8 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of organization and inspectTemplate to be updated, for
-     *                             example `organizations/433245324/inspectTemplates/432452342` or
+     * @param string $name         Required. Resource name of organization and inspectTemplate to be updated,
+     *                             for example `organizations/433245324/inspectTemplates/432452342` or
      *                             projects/project-id/inspectTemplates/432452342.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -1172,8 +1177,8 @@ class DlpServiceGapicClient
      *                            Optional.
      *
      *     @type string $name
-     *          Required. Resource name of the organization and inspectTemplate to be read, for
-     *          example `organizations/433245324/inspectTemplates/432452342` or
+     *          Required. Resource name of the organization and inspectTemplate to be read,
+     *          for example `organizations/433245324/inspectTemplates/432452342` or
      *          projects/project-id/inspectTemplates/432452342.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1329,9 +1334,9 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the organization and inspectTemplate to be deleted, for
-     *                             example `organizations/433245324/inspectTemplates/432452342` or
-     *                             projects/project-id/inspectTemplates/432452342.
+     * @param string $name         Required. Resource name of the organization and inspectTemplate to be
+     *                             deleted, for example `organizations/433245324/inspectTemplates/432452342`
+     *                             or projects/project-id/inspectTemplates/432452342.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1454,8 +1459,9 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of organization and deidentify template to be updated, for
-     *                             example `organizations/433245324/deidentifyTemplates/432452342` or
+     * @param string $name         Required. Resource name of organization and deidentify template to be
+     *                             updated, for example
+     *                             `organizations/433245324/deidentifyTemplates/432452342` or
      *                             projects/project-id/deidentifyTemplates/432452342.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -1518,9 +1524,9 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the organization and deidentify template to be read, for
-     *                             example `organizations/433245324/deidentifyTemplates/432452342` or
-     *                             projects/project-id/deidentifyTemplates/432452342.
+     * @param string $name         Required. Resource name of the organization and deidentify template to be
+     *                             read, for example `organizations/433245324/deidentifyTemplates/432452342`
+     *                             or projects/project-id/deidentifyTemplates/432452342.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1678,8 +1684,9 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the organization and deidentify template to be deleted,
-     *                             for example `organizations/433245324/deidentifyTemplates/432452342` or
+     * @param string $name         Required. Resource name of the organization and deidentify template to be
+     *                             deleted, for example
+     *                             `organizations/433245324/deidentifyTemplates/432452342` or
      *                             projects/project-id/deidentifyTemplates/432452342.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -2096,6 +2103,119 @@ class DlpServiceGapicClient
     }
 
     /**
+     * Finish a running hybrid DlpJob. Triggers the finalization steps and running
+     * of any enabled actions that have not yet run.
+     * Early access feature is in a pre-release state and might change or have
+     * limited support. For more information, see
+     * https://cloud.google.com/products#product-launch-stages.
+     *
+     * Sample code:
+     * ```
+     * $dlpServiceClient = new DlpServiceClient();
+     * try {
+     *     $formattedName = $dlpServiceClient->dlpJobName('[PROJECT]', '[DLP_JOB]');
+     *     $dlpServiceClient->finishDlpJob($formattedName);
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the DlpJob resource to be cancelled.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function finishDlpJob($name, array $optionalArgs = [])
+    {
+        $request = new FinishDlpJobRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'FinishDlpJob',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Inspect hybrid content and store findings to a job.
+     * To review the findings inspect the job. Inspection will occur
+     * asynchronously.
+     * Early access feature is in a pre-release state and might change or have
+     * limited support. For more information, see
+     * https://cloud.google.com/products#product-launch-stages.
+     *
+     * Sample code:
+     * ```
+     * $dlpServiceClient = new DlpServiceClient();
+     * try {
+     *     $name = '';
+     *     $response = $dlpServiceClient->hybridInspectDlpJob($name);
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Resource name of the job to execute a hybrid inspect on, for
+     *                             example `projects/dlp-test-project/dlpJob/53234423`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type HybridContentItem $hybridItem
+     *          The item to inspect.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dlp\V2\HybridInspectResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function hybridInspectDlpJob($name, array $optionalArgs = [])
+    {
+        $request = new HybridInspectDlpJobRequest();
+        $request->setName($name);
+        if (isset($optionalArgs['hybridItem'])) {
+            $request->setHybridItem($optionalArgs['hybridItem']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'HybridInspectDlpJob',
+            HybridInspectResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Lists job triggers.
      * See https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
      *
@@ -2332,6 +2452,67 @@ class DlpServiceGapicClient
     }
 
     /**
+     * Inspect hybrid content and store findings to a trigger. The inspection
+     * will be processed asynchronously. To review the findings monitor the
+     * jobs within the trigger.
+     * Early access feature is in a pre-release state and might change or have
+     * limited support. For more information, see
+     * https://cloud.google.com/products#product-launch-stages.
+     *
+     * Sample code:
+     * ```
+     * $dlpServiceClient = new DlpServiceClient();
+     * try {
+     *     $name = '';
+     *     $response = $dlpServiceClient->hybridInspectJobTrigger($name);
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Resource name of the trigger to execute a hybrid inspect on, for
+     *                             example `projects/dlp-test-project/jobTriggers/53234423`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type HybridContentItem $hybridItem
+     *          The item to inspect.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dlp\V2\HybridInspectResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function hybridInspectJobTrigger($name, array $optionalArgs = [])
+    {
+        $request = new HybridInspectJobTriggerRequest();
+        $request->setName($name);
+        if (isset($optionalArgs['hybridItem'])) {
+            $request->setHybridItem($optionalArgs['hybridItem']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'HybridInspectJobTrigger',
+            HybridInspectResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Updates a job trigger.
      * See https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
      *
@@ -2553,8 +2734,8 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of organization and storedInfoType to be updated, for
-     *                             example `organizations/433245324/storedInfoTypes/432452342` or
+     * @param string $name         Required. Resource name of organization and storedInfoType to be updated,
+     *                             for example `organizations/433245324/storedInfoTypes/432452342` or
      *                             projects/project-id/storedInfoTypes/432452342.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -2619,8 +2800,8 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the organization and storedInfoType to be read, for
-     *                             example `organizations/433245324/storedInfoTypes/432452342` or
+     * @param string $name         Required. Resource name of the organization and storedInfoType to be read,
+     *                             for example `organizations/433245324/storedInfoTypes/432452342` or
      *                             projects/project-id/storedInfoTypes/432452342.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -2780,8 +2961,8 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the organization and storedInfoType to be deleted, for
-     *                             example `organizations/433245324/storedInfoTypes/432452342` or
+     * @param string $name         Required. Resource name of the organization and storedInfoType to be
+     *                             deleted, for example `organizations/433245324/storedInfoTypes/432452342` or
      *                             projects/project-id/storedInfoTypes/432452342.
      * @param array  $optionalArgs {
      *                             Optional.

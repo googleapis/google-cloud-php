@@ -7,7 +7,7 @@ namespace Google\Cloud\Dlp\V2\DlpJob;
 use UnexpectedValueException;
 
 /**
- * Possible states of a job.
+ * Possible states of a job. New items may be added.
  *
  * Protobuf type <code>google.privacy.dlp.v2.DlpJob.JobState</code>
  */
@@ -26,7 +26,8 @@ class JobState
      */
     const PENDING = 1;
     /**
-     * The job is currently running.
+     * The job is currently running. Once a job has finished it will transition
+     * to FAILED or DONE.
      *
      * Generated from protobuf enum <code>RUNNING = 2;</code>
      */
@@ -49,6 +50,15 @@ class JobState
      * Generated from protobuf enum <code>FAILED = 5;</code>
      */
     const FAILED = 5;
+    /**
+     * The job is currently accepting findings via hybridInspect.
+     * A hybrid job in ACTIVE state may continue to have findings added to it
+     * through calling of hybridInspect. After the job has finished no more
+     * calls to hybridInspect may be made. ACTIVE jobs can transition to DONE.
+     *
+     * Generated from protobuf enum <code>ACTIVE = 6;</code>
+     */
+    const ACTIVE = 6;
 
     private static $valueToName = [
         self::JOB_STATE_UNSPECIFIED => 'JOB_STATE_UNSPECIFIED',
@@ -57,6 +67,7 @@ class JobState
         self::DONE => 'DONE',
         self::CANCELED => 'CANCELED',
         self::FAILED => 'FAILED',
+        self::ACTIVE => 'ACTIVE',
     ];
 
     public static function name($value)

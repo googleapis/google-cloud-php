@@ -22,8 +22,11 @@ class BigQueryOptions extends \Google\Protobuf\Internal\Message
      */
     private $table_reference = null;
     /**
-     * References to fields uniquely identifying rows within the table.
-     * Nested fields in the format, like `person.birthdate.year`, are allowed.
+     * Table fields that may uniquely identify a row within the table. When
+     * `actions.saveFindings.outputConfig.table` is specified, the values of
+     * columns specified here are available in the output table under
+     * `location.content_locations.record_location.record_key.id_values`. Nested
+     * fields such as `person.birthdate.year` are allowed.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FieldId identifying_fields = 2;</code>
      */
@@ -68,8 +71,11 @@ class BigQueryOptions extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dlp\V2\BigQueryTable $table_reference
      *           Complete BigQuery table reference.
      *     @type \Google\Cloud\Dlp\V2\FieldId[]|\Google\Protobuf\Internal\RepeatedField $identifying_fields
-     *           References to fields uniquely identifying rows within the table.
-     *           Nested fields in the format, like `person.birthdate.year`, are allowed.
+     *           Table fields that may uniquely identify a row within the table. When
+     *           `actions.saveFindings.outputConfig.table` is specified, the values of
+     *           columns specified here are available in the output table under
+     *           `location.content_locations.record_location.record_key.id_values`. Nested
+     *           fields such as `person.birthdate.year` are allowed.
      *     @type int|string $rows_limit
      *           Max number of rows to scan. If the table has more rows than this value, the
      *           rest of the rows are omitted. If not set, or if set to 0, all rows will be
@@ -119,8 +125,11 @@ class BigQueryOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * References to fields uniquely identifying rows within the table.
-     * Nested fields in the format, like `person.birthdate.year`, are allowed.
+     * Table fields that may uniquely identify a row within the table. When
+     * `actions.saveFindings.outputConfig.table` is specified, the values of
+     * columns specified here are available in the output table under
+     * `location.content_locations.record_location.record_key.id_values`. Nested
+     * fields such as `person.birthdate.year` are allowed.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FieldId identifying_fields = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -131,8 +140,11 @@ class BigQueryOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * References to fields uniquely identifying rows within the table.
-     * Nested fields in the format, like `person.birthdate.year`, are allowed.
+     * Table fields that may uniquely identify a row within the table. When
+     * `actions.saveFindings.outputConfig.table` is specified, the values of
+     * columns specified here are available in the output table under
+     * `location.content_locations.record_location.record_key.id_values`. Nested
+     * fields such as `person.birthdate.year` are allowed.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FieldId identifying_fields = 2;</code>
      * @param \Google\Cloud\Dlp\V2\FieldId[]|\Google\Protobuf\Internal\RepeatedField $var

@@ -34,6 +34,15 @@ class Result extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InfoTypeStats info_type_stats = 3;</code>
      */
     private $info_type_stats;
+    /**
+     * Statistics related to the processing of hybrid inspect.
+     * Early access feature is in a pre-release state and might change or have
+     * limited support. For more information, see
+     * https://cloud.google.com/products#product-launch-stages.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.HybridInspectStatistics hybrid_stats = 7;</code>
+     */
+    private $hybrid_stats = null;
 
     /**
      * Constructor.
@@ -48,6 +57,11 @@ class Result extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dlp\V2\InfoTypeStats[]|\Google\Protobuf\Internal\RepeatedField $info_type_stats
      *           Statistics of how many instances of each info type were found during
      *           inspect job.
+     *     @type \Google\Cloud\Dlp\V2\HybridInspectStatistics $hybrid_stats
+     *           Statistics related to the processing of hybrid inspect.
+     *           Early access feature is in a pre-release state and might change or have
+     *           limited support. For more information, see
+     *           https://cloud.google.com/products#product-launch-stages.
      * }
      */
     public function __construct($data = NULL) {
@@ -131,6 +145,38 @@ class Result extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dlp\V2\InfoTypeStats::class);
         $this->info_type_stats = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Statistics related to the processing of hybrid inspect.
+     * Early access feature is in a pre-release state and might change or have
+     * limited support. For more information, see
+     * https://cloud.google.com/products#product-launch-stages.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.HybridInspectStatistics hybrid_stats = 7;</code>
+     * @return \Google\Cloud\Dlp\V2\HybridInspectStatistics
+     */
+    public function getHybridStats()
+    {
+        return $this->hybrid_stats;
+    }
+
+    /**
+     * Statistics related to the processing of hybrid inspect.
+     * Early access feature is in a pre-release state and might change or have
+     * limited support. For more information, see
+     * https://cloud.google.com/products#product-launch-stages.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.HybridInspectStatistics hybrid_stats = 7;</code>
+     * @param \Google\Cloud\Dlp\V2\HybridInspectStatistics $var
+     * @return $this
+     */
+    public function setHybridStats($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\HybridInspectStatistics::class);
+        $this->hybrid_stats = $var;
 
         return $this;
     }
