@@ -133,7 +133,7 @@ class StorageConformanceTest extends TestCase
             'conditions' => $conditions,
         ];
 
-        $policy = $bucket->uploadPolicy(
+        $policy = $bucket->postPolicy(
             $expiration,
             $testdata['policyInput']['object'],
             $hostnameOptions + $options

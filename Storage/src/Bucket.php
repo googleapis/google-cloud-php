@@ -1368,9 +1368,11 @@ class Bucket
      * documents to allow visitors to a website to upload files to Google Cloud
      * Storage without giving them direct write access.
      *
+     * Google Cloud PHP does not support v2 post policies.
+     *
      * Example:
      * ```
-     * $policy = $bucket->uploadPolicy(new \DateTime('tomorrow'), $objectName, [
+     * $policy = $bucket->postPolicy(new \DateTime('tomorrow'), $objectName, [
      *     'conditions' => [
      *         ['content-length-range', 0, 255]
      *     ],
