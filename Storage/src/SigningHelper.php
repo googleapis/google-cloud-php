@@ -393,7 +393,7 @@ class SigningHelper
         $time = $options['timestamp'];
         $requestTimestamp = $time->format(self::V4_TIMESTAMP_FORMAT);
         $requestDatestamp = $time->format(self::V4_DATESTAMP_FORMAT);
-        $expiration = \DateTimeImmutable::createFromFormat('U', $expires);
+        $expiration = \DateTimeImmutable::createFromFormat('U', (string) $expires);
         $expirationTimestamp = str_replace(
             '+00:00',
             'Z',
