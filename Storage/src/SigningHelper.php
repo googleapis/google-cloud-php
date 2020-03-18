@@ -461,7 +461,7 @@ class SigningHelper
                 '%s://%s%s',
                 $scheme,
                 $options['bucketBoundHostname'],
-                $resource,
+                $resource
             ),
             'fields' => $fields
         ];
