@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2019 Google LLC.
+// Copyright 2020 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-//
 //
 namespace Google\Cloud\Bigtable\Admin\V2;
 
@@ -260,6 +259,105 @@ class BigtableTableAdminGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.bigtable.admin.v2.BigtableTableAdmin/DeleteSnapshot',
         $argument,
         ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Starts creating a new Cloud Bigtable Backup. The returned backup
+     * [long-running operation][google.longrunning.Operation] can be used to
+     * track creation of the backup. The
+     * [metadata][google.longrunning.Operation.metadata] field type is
+     * [CreateBackupMetadata][google.bigtable.admin.v2.CreateBackupMetadata]. The
+     * [response][google.longrunning.Operation.response] field type is
+     * [Backup][google.bigtable.admin.v2.Backup], if successful. Cancelling the
+     * returned operation will stop the creation and delete the backup.
+     * @param \Google\Cloud\Bigtable\Admin\V2\CreateBackupRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function CreateBackup(\Google\Cloud\Bigtable\Admin\V2\CreateBackupRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.bigtable.admin.v2.BigtableTableAdmin/CreateBackup',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Gets metadata on a pending or completed Cloud Bigtable Backup.
+     * @param \Google\Cloud\Bigtable\Admin\V2\GetBackupRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function GetBackup(\Google\Cloud\Bigtable\Admin\V2\GetBackupRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.bigtable.admin.v2.BigtableTableAdmin/GetBackup',
+        $argument,
+        ['\Google\Cloud\Bigtable\Admin\V2\Backup', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Updates a pending or completed Cloud Bigtable Backup.
+     * @param \Google\Cloud\Bigtable\Admin\V2\UpdateBackupRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function UpdateBackup(\Google\Cloud\Bigtable\Admin\V2\UpdateBackupRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.bigtable.admin.v2.BigtableTableAdmin/UpdateBackup',
+        $argument,
+        ['\Google\Cloud\Bigtable\Admin\V2\Backup', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Deletes a pending or completed Cloud Bigtable backup.
+     * @param \Google\Cloud\Bigtable\Admin\V2\DeleteBackupRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function DeleteBackup(\Google\Cloud\Bigtable\Admin\V2\DeleteBackupRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.bigtable.admin.v2.BigtableTableAdmin/DeleteBackup',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lists Cloud Bigtable backups. Returns both completed and pending
+     * backups.
+     * @param \Google\Cloud\Bigtable\Admin\V2\ListBackupsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function ListBackups(\Google\Cloud\Bigtable\Admin\V2\ListBackupsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.bigtable.admin.v2.BigtableTableAdmin/ListBackups',
+        $argument,
+        ['\Google\Cloud\Bigtable\Admin\V2\ListBackupsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Create a new table by restoring from a completed backup. The new table
+     * must be in the same instance as the instance containing the backup. The
+     * returned table [long-running operation][google.longrunning.Operation] can
+     * be used to track the progress of the operation, and to cancel it. The
+     * [metadata][google.longrunning.Operation.metadata] field type is
+     * [RestoreTableMetadata][google.bigtable.admin.RestoreTableMetadata]. The
+     * [response][google.longrunning.Operation.response] type is
+     * [Table][google.bigtable.admin.v2.Table], if successful.
+     * @param \Google\Cloud\Bigtable\Admin\V2\RestoreTableRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function RestoreTable(\Google\Cloud\Bigtable\Admin\V2\RestoreTableRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.bigtable.admin.v2.BigtableTableAdmin/RestoreTable',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
         $metadata, $options);
     }
 

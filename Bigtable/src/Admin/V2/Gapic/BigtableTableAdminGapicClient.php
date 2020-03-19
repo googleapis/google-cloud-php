@@ -37,28 +37,38 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Bigtable\Admin\V2\Backup;
 use Google\Cloud\Bigtable\Admin\V2\CheckConsistencyRequest;
 use Google\Cloud\Bigtable\Admin\V2\CheckConsistencyResponse;
+use Google\Cloud\Bigtable\Admin\V2\CreateBackupMetadata;
+use Google\Cloud\Bigtable\Admin\V2\CreateBackupRequest;
 use Google\Cloud\Bigtable\Admin\V2\CreateTableFromSnapshotRequest;
 use Google\Cloud\Bigtable\Admin\V2\CreateTableRequest;
 use Google\Cloud\Bigtable\Admin\V2\CreateTableRequest\Split;
+use Google\Cloud\Bigtable\Admin\V2\DeleteBackupRequest;
 use Google\Cloud\Bigtable\Admin\V2\DeleteSnapshotRequest;
 use Google\Cloud\Bigtable\Admin\V2\DeleteTableRequest;
 use Google\Cloud\Bigtable\Admin\V2\DropRowRangeRequest;
 use Google\Cloud\Bigtable\Admin\V2\GenerateConsistencyTokenRequest;
 use Google\Cloud\Bigtable\Admin\V2\GenerateConsistencyTokenResponse;
+use Google\Cloud\Bigtable\Admin\V2\GetBackupRequest;
 use Google\Cloud\Bigtable\Admin\V2\GetSnapshotRequest;
 use Google\Cloud\Bigtable\Admin\V2\GetTableRequest;
+use Google\Cloud\Bigtable\Admin\V2\ListBackupsRequest;
+use Google\Cloud\Bigtable\Admin\V2\ListBackupsResponse;
 use Google\Cloud\Bigtable\Admin\V2\ListSnapshotsRequest;
 use Google\Cloud\Bigtable\Admin\V2\ListSnapshotsResponse;
 use Google\Cloud\Bigtable\Admin\V2\ListTablesRequest;
 use Google\Cloud\Bigtable\Admin\V2\ListTablesResponse;
 use Google\Cloud\Bigtable\Admin\V2\ModifyColumnFamiliesRequest;
 use Google\Cloud\Bigtable\Admin\V2\ModifyColumnFamiliesRequest\Modification;
+use Google\Cloud\Bigtable\Admin\V2\RestoreTableMetadata;
+use Google\Cloud\Bigtable\Admin\V2\RestoreTableRequest;
 use Google\Cloud\Bigtable\Admin\V2\Snapshot;
 use Google\Cloud\Bigtable\Admin\V2\SnapshotTableRequest;
 use Google\Cloud\Bigtable\Admin\V2\Table;
 use Google\Cloud\Bigtable\Admin\V2\Table\View;
+use Google\Cloud\Bigtable\Admin\V2\UpdateBackupRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\GetPolicyOptions;
 use Google\Cloud\Iam\V1\Policy;
@@ -67,6 +77,7 @@ use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Duration;
+use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 
 /**
@@ -136,6 +147,7 @@ class BigtableTableAdminGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/cloud-platform.read-only',
     ];
+    private static $backupNameTemplate;
     private static $clusterNameTemplate;
     private static $instanceNameTemplate;
     private static $snapshotNameTemplate;
@@ -161,6 +173,15 @@ class BigtableTableAdminGapicClient
                 ],
             ],
         ];
+    }
+
+    private static function getBackupNameTemplate()
+    {
+        if (null == self::$backupNameTemplate) {
+            self::$backupNameTemplate = new PathTemplate('projects/{project}/instances/{instance}/clusters/{cluster}/backups/{backup}');
+        }
+
+        return self::$backupNameTemplate;
     }
 
     private static function getClusterNameTemplate()
@@ -203,6 +224,7 @@ class BigtableTableAdminGapicClient
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
+                'backup' => self::getBackupNameTemplate(),
                 'cluster' => self::getClusterNameTemplate(),
                 'instance' => self::getInstanceNameTemplate(),
                 'snapshot' => self::getSnapshotNameTemplate(),
@@ -211,6 +233,28 @@ class BigtableTableAdminGapicClient
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a backup resource.
+     *
+     * @param string $project
+     * @param string $instance
+     * @param string $cluster
+     * @param string $backup
+     *
+     * @return string The formatted backup resource.
+     * @experimental
+     */
+    public static function backupName($project, $instance, $cluster, $backup)
+    {
+        return self::getBackupNameTemplate()->render([
+            'project' => $project,
+            'instance' => $instance,
+            'cluster' => $cluster,
+            'backup' => $backup,
+        ]);
     }
 
     /**
@@ -297,6 +341,7 @@ class BigtableTableAdminGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - backup: projects/{project}/instances/{instance}/clusters/{cluster}/backups/{backup}
      * - cluster: projects/{project}/instances/{instance}/clusters/{cluster}
      * - instance: projects/{project}/instances/{instance}
      * - snapshot: projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/{snapshot}
@@ -454,8 +499,8 @@ class BigtableTableAdminGapicClient
      *
      * @param string $parent       Required. The unique name of the instance in which to create the table.
      *                             Values are of the form `projects/{project}/instances/{instance}`.
-     * @param string $tableId      Required. The name by which the new table should be referred to within the parent
-     *                             instance, e.g., `foobar` rather than `{parent}/tables/foobar`.
+     * @param string $tableId      Required. The name by which the new table should be referred to within the
+     *                             parent instance, e.g., `foobar` rather than `{parent}/tables/foobar`.
      *                             Maximum 50 characters.
      * @param Table  $table        Required. The Table to create.
      * @param array  $optionalArgs {
@@ -568,11 +613,11 @@ class BigtableTableAdminGapicClient
      *
      * @param string $parent         Required. The unique name of the instance in which to create the table.
      *                               Values are of the form `projects/{project}/instances/{instance}`.
-     * @param string $tableId        Required. The name by which the new table should be referred to within the parent
-     *                               instance, e.g., `foobar` rather than `{parent}/tables/foobar`.
-     * @param string $sourceSnapshot Required. The unique name of the snapshot from which to restore the table. The
-     *                               snapshot and the table must be in the same instance.
-     *                               Values are of the form
+     * @param string $tableId        Required. The name by which the new table should be referred to within the
+     *                               parent instance, e.g., `foobar` rather than `{parent}/tables/foobar`.
+     * @param string $sourceSnapshot Required. The unique name of the snapshot from which to restore the table.
+     *                               The snapshot and the table must be in the same instance. Values are of the
+     *                               form
      *                               `projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/{snapshot}`.
      * @param array  $optionalArgs   {
      *                               Optional.
@@ -640,8 +685,8 @@ class BigtableTableAdminGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The unique name of the instance for which tables should be listed.
-     *                             Values are of the form `projects/{project}/instances/{instance}`.
+     * @param string $parent       Required. The unique name of the instance for which tables should be
+     *                             listed. Values are of the form `projects/{project}/instances/{instance}`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -835,10 +880,10 @@ class BigtableTableAdminGapicClient
      * @param string         $name          Required. The unique name of the table whose families should be modified.
      *                                      Values are of the form
      *                                      `projects/{project}/instances/{instance}/tables/{table}`.
-     * @param Modification[] $modifications Required. Modifications to be atomically applied to the specified table's families.
-     *                                      Entries are applied in order, meaning that earlier modifications can be
-     *                                      masked by later ones (in the case of repeated updates to the same family,
-     *                                      for example).
+     * @param Modification[] $modifications Required. Modifications to be atomically applied to the specified table's
+     *                                      families. Entries are applied in order, meaning that earlier modifications
+     *                                      can be masked by later ones (in the case of repeated updates to the same
+     *                                      family, for example).
      * @param array          $optionalArgs  {
      *                                      Optional.
      *
@@ -955,8 +1000,8 @@ class BigtableTableAdminGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The unique name of the Table for which to create a consistency token.
-     *                             Values are of the form
+     * @param string $name         Required. The unique name of the Table for which to create a consistency
+     *                             token. Values are of the form
      *                             `projects/{project}/instances/{instance}/tables/{table}`.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -1010,8 +1055,8 @@ class BigtableTableAdminGapicClient
      * }
      * ```
      *
-     * @param string $name             Required. The unique name of the Table for which to check replication consistency.
-     *                                 Values are of the form
+     * @param string $name             Required. The unique name of the Table for which to check replication
+     *                                 consistency. Values are of the form
      *                                 `projects/{project}/instances/{instance}/tables/{table}`.
      * @param string $consistencyToken Required. The token created using GenerateConsistencyToken for the Table.
      * @param array  $optionalArgs     {
@@ -1276,15 +1321,15 @@ class BigtableTableAdminGapicClient
      * }
      * ```
      *
-     * @param string $name         The unique name of the table to have the snapshot taken.
+     * @param string $name         Required. The unique name of the table to have the snapshot taken.
      *                             Values are of the form
      *                             `projects/{project}/instances/{instance}/tables/{table}`.
-     * @param string $cluster      The name of the cluster where the snapshot will be created in.
+     * @param string $cluster      Required. The name of the cluster where the snapshot will be created in.
      *                             Values are of the form
      *                             `projects/{project}/instances/{instance}/clusters/{cluster}`.
-     * @param string $snapshotId   The ID by which the new snapshot should be referred to within the parent
-     *                             cluster, e.g., `mysnapshot` of the form: `[_a-zA-Z0-9][-_.a-zA-Z0-9]*`
-     *                             rather than
+     * @param string $snapshotId   Required. The ID by which the new snapshot should be referred to within the
+     *                             parent cluster, e.g., `mysnapshot` of the form:
+     *                             `[_a-zA-Z0-9][-_.a-zA-Z0-9]*` rather than
      *                             `projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/mysnapshot`.
      * @param string $description  Description of the snapshot.
      * @param array  $optionalArgs {
@@ -1426,8 +1471,8 @@ class BigtableTableAdminGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The unique name of the cluster for which snapshots should be listed.
-     *                             Values are of the form
+     * @param string $parent       Required. The unique name of the cluster for which snapshots should be
+     *                             listed. Values are of the form
      *                             `projects/{project}/instances/{instance}/clusters/{cluster}`.
      *                             Use `{cluster} = '-'` to list snapshots for all clusters in an instance,
      *                             e.g., `projects/{project}/instances/{instance}/clusters/-`.
@@ -1534,6 +1579,512 @@ class BigtableTableAdminGapicClient
             GPBEmpty::class,
             $optionalArgs,
             $request
+        )->wait();
+    }
+
+    /**
+     * Starts creating a new Cloud Bigtable Backup. The returned backup
+     * [long-running operation][google.longrunning.Operation] can be used to
+     * track creation of the backup. The
+     * [metadata][google.longrunning.Operation.metadata] field type is
+     * [CreateBackupMetadata][google.bigtable.admin.v2.CreateBackupMetadata]. The
+     * [response][google.longrunning.Operation.response] field type is
+     * [Backup][google.bigtable.admin.v2.Backup], if successful. Cancelling the
+     * returned operation will stop the creation and delete the backup.
+     *
+     * Sample code:
+     * ```
+     * $bigtableTableAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient();
+     * try {
+     *     $formattedParent = $bigtableTableAdminClient->clusterName('[PROJECT]', '[INSTANCE]', '[CLUSTER]');
+     *     $backupId = '';
+     *     $backup = new Backup();
+     *     $operationResponse = $bigtableTableAdminClient->createBackup($formattedParent, $backupId, $backup);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $bigtableTableAdminClient->createBackup($formattedParent, $backupId, $backup);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $bigtableTableAdminClient->resumeOperation($operationName, 'createBackup');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       $result = $newOperationResponse->getResult();
+     *       // doSomethingWith($result)
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $bigtableTableAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. This must be one of the clusters in the instance in which this
+     *                             table is located. The backup will be stored in this cluster. Values are
+     *                             of the form `projects/{project}/instances/{instance}/clusters/{cluster}`.
+     * @param string $backupId     Required. The id of the backup to be created. The `backup_id` along with
+     *                             the parent `parent` are combined as {parent}/backups/{backup_id} to create
+     *                             the full backup name, of the form:
+     *                             `projects/{project}/instances/{instance}/clusters/{cluster}/backups/{backup_id}`.
+     *                             This string must be between 1 and 50 characters in length and match the
+     *                             regex [_a-zA-Z0-9][-_.a-zA-Z0-9]*.
+     * @param Backup $backup       Required. The backup to create.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function createBackup($parent, $backupId, $backup, array $optionalArgs = [])
+    {
+        $request = new CreateBackupRequest();
+        $request->setParent($parent);
+        $request->setBackupId($backupId);
+        $request->setBackup($backup);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startOperationsCall(
+            'CreateBackup',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Gets metadata on a pending or completed Cloud Bigtable Backup.
+     *
+     * Sample code:
+     * ```
+     * $bigtableTableAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient();
+     * try {
+     *     $formattedName = $bigtableTableAdminClient->backupName('[PROJECT]', '[INSTANCE]', '[CLUSTER]', '[BACKUP]');
+     *     $response = $bigtableTableAdminClient->getBackup($formattedName);
+     * } finally {
+     *     $bigtableTableAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Name of the backup.
+     *                             Values are of the form
+     *                             `projects/{project}/instances/{instance}/clusters/{cluster}/backups/{backup}`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Bigtable\Admin\V2\Backup
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function getBackup($name, array $optionalArgs = [])
+    {
+        $request = new GetBackupRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'GetBackup',
+            Backup::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Lists Cloud Bigtable backups. Returns both completed and pending
+     * backups.
+     *
+     * Sample code:
+     * ```
+     * $bigtableTableAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient();
+     * try {
+     *     $formattedParent = $bigtableTableAdminClient->clusterName('[PROJECT]', '[INSTANCE]', '[CLUSTER]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $bigtableTableAdminClient->listBackups($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $bigtableTableAdminClient->listBackups($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $bigtableTableAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The cluster to list backups from. Values are of the
+     *                             form `projects/{project}/instances/{instance}/clusters/{cluster}`.
+     *                             Use `{cluster} = '-'` to list backups for all clusters in an instance,
+     *                             e.g., `projects/{project}/instances/{instance}/clusters/-`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type string $filter
+     *          A filter expression that filters backups listed in the response.
+     *          The expression must specify the field name, a comparison operator,
+     *          and the value that you want to use for filtering. The value must be a
+     *          string, a number, or a boolean. The comparison operator must be
+     *          <, >, <=, >=, !=, =, or :. Colon ‘:’ represents a HAS operator which is
+     *          roughly synonymous with equality. Filter rules are case insensitive.
+     *
+     *          The fields eligible for filtering are:
+     *            * `name`
+     *            * `source_table`
+     *            * `state`
+     *            * `start_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)
+     *            * `end_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)
+     *            * `expire_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)
+     *            * `size_bytes`
+     *
+     *          To filter on multiple expressions, provide each separate expression within
+     *          parentheses. By default, each expression is an AND expression. However,
+     *          you can include AND, OR, and NOT expressions explicitly.
+     *
+     *          Some examples of using filters are:
+     *
+     *            * `name:"exact"` --> The backup's name is the string "exact".
+     *            * `name:howl` --> The backup's name contains the string "howl".
+     *            * `source_table:prod`
+     *                   --> The source_table's name contains the string "prod".
+     *            * `state:CREATING` --> The backup is pending creation.
+     *            * `state:READY` --> The backup is fully created and ready for use.
+     *            * `(name:howl) AND (start_time < \"2018-03-28T14:50:00Z\")`
+     *                   --> The backup name contains the string "howl" and start_time
+     *                       of the backup is before 2018-03-28T14:50:00Z.
+     *            * `size_bytes > 10000000000` --> The backup's size is greater than 10GB
+     *     @type string $orderBy
+     *          An expression for specifying the sort order of the results of the request.
+     *          The string value should specify one or more fields in
+     *          [Backup][google.bigtable.admin.v2.Backup]. The full syntax is described at
+     *          https://aip.dev/132#ordering.
+     *
+     *          Fields supported are:
+     *             * name
+     *             * source_table
+     *             * expire_time
+     *             * start_time
+     *             * end_time
+     *             * size_bytes
+     *             * state
+     *
+     *          For example, "start_time". The default sorting order is ascending.
+     *          To specify descending order for the field, a suffix " desc" should
+     *          be appended to the field name. For example, "start_time desc".
+     *          Redundant space characters in the syntax are insigificant.
+     *
+     *          If order_by is empty, results will be sorted by `start_time` in descending
+     *          order starting from the most recently created backup.
+     *     @type int $pageSize
+     *          The maximum number of resources contained in the underlying API
+     *          response. The API may return fewer values in a page, even if
+     *          there are additional values to be retrieved.
+     *     @type string $pageToken
+     *          A page token is used to specify a page of values to be returned.
+     *          If no page token is specified (the default), the first page
+     *          of values will be returned. Any page token used here must have
+     *          been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function listBackups($parent, array $optionalArgs = [])
+    {
+        $request = new ListBackupsRequest();
+        $request->setParent($parent);
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
+        }
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->getPagedListResponse(
+            'ListBackups',
+            $optionalArgs,
+            ListBackupsResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Updates a pending or completed Cloud Bigtable Backup.
+     *
+     * Sample code:
+     * ```
+     * $bigtableTableAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient();
+     * try {
+     *     $backup = new Backup();
+     *     $updateMask = new Google\Protobuf\FieldMask();
+     *     $response = $bigtableTableAdminClient->updateBackup($backup, $updateMask);
+     * } finally {
+     *     $bigtableTableAdminClient->close();
+     * }
+     * ```
+     *
+     * @param Backup    $backup       Required. The backup to update. `backup.name`, and the fields to be updated
+     *                                as specified by `update_mask` are required. Other fields are ignored.
+     *                                Update is only supported for the following fields:
+     *                                * `backup.expire_time`.
+     * @param FieldMask $updateMask   Required. A mask specifying which fields (e.g. `expire_time`) in the
+     *                                Backup resource should be updated. This mask is relative to the Backup
+     *                                resource, not to the request message. The field mask must always be
+     *                                specified; this prevents any future fields from being erased accidentally
+     *                                by clients that do not know about them.
+     * @param array     $optionalArgs {
+     *                                Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Bigtable\Admin\V2\Backup
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function updateBackup($backup, $updateMask, array $optionalArgs = [])
+    {
+        $request = new UpdateBackupRequest();
+        $request->setBackup($backup);
+        $request->setUpdateMask($updateMask);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'backup.name' => $request->getBackup()->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'UpdateBackup',
+            Backup::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Deletes a pending or completed Cloud Bigtable backup.
+     *
+     * Sample code:
+     * ```
+     * $bigtableTableAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient();
+     * try {
+     *     $formattedName = $bigtableTableAdminClient->backupName('[PROJECT]', '[INSTANCE]', '[CLUSTER]', '[BACKUP]');
+     *     $bigtableTableAdminClient->deleteBackup($formattedName);
+     * } finally {
+     *     $bigtableTableAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Name of the backup to delete.
+     *                             Values are of the form
+     *                             `projects/{project}/instances/{instance}/clusters/{cluster}/backups/{backup}`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function deleteBackup($name, array $optionalArgs = [])
+    {
+        $request = new DeleteBackupRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteBackup',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Create a new table by restoring from a completed backup. The new table
+     * must be in the same instance as the instance containing the backup. The
+     * returned table [long-running operation][google.longrunning.Operation] can
+     * be used to track the progress of the operation, and to cancel it. The
+     * [metadata][google.longrunning.Operation.metadata] field type is
+     * [RestoreTableMetadata][google.bigtable.admin.RestoreTableMetadata]. The
+     * [response][google.longrunning.Operation.response] type is
+     * [Table][google.bigtable.admin.v2.Table], if successful.
+     *
+     * Sample code:
+     * ```
+     * $bigtableTableAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient();
+     * try {
+     *     $parent = '';
+     *     $operationResponse = $bigtableTableAdminClient->restoreTable($parent);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $bigtableTableAdminClient->restoreTable($parent);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $bigtableTableAdminClient->resumeOperation($operationName, 'restoreTable');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       $result = $newOperationResponse->getResult();
+     *       // doSomethingWith($result)
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $bigtableTableAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The name of the instance in which to create the restored
+     *                             table. This instance must be the parent of the source backup. Values are
+     *                             of the form `projects/<project>/instances/<instance>`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type string $tableId
+     *          Required. The id of the table to create and restore to. This
+     *          table must not already exist. The `table_id` appended to
+     *          `parent` forms the full table name of the form
+     *          `projects/<project>/instances/<instance>/tables/<table_id>`.
+     *     @type string $backup
+     *          Name of the backup from which to restore. Values are of the form
+     *          `projects/<project>/instances/<instance>/clusters/<cluster>/backups/<backup>`.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function restoreTable($parent, array $optionalArgs = [])
+    {
+        $request = new RestoreTableRequest();
+        $request->setParent($parent);
+        if (isset($optionalArgs['tableId'])) {
+            $request->setTableId($optionalArgs['tableId']);
+        }
+        if (isset($optionalArgs['backup'])) {
+            $request->setBackup($optionalArgs['backup']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startOperationsCall(
+            'RestoreTable',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
         )->wait();
     }
 }

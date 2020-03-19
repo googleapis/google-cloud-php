@@ -17,8 +17,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListTablesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The unique name of the instance for which tables should be listed.
-     * Values are of the form `projects/{project}/instances/{instance}`.
+     * Required. The unique name of the instance for which tables should be
+     * listed. Values are of the form `projects/{project}/instances/{instance}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -56,8 +56,8 @@ class ListTablesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The unique name of the instance for which tables should be listed.
-     *           Values are of the form `projects/{project}/instances/{instance}`.
+     *           Required. The unique name of the instance for which tables should be
+     *           listed. Values are of the form `projects/{project}/instances/{instance}`.
      *     @type int $view
      *           The view to be applied to the returned tables' fields.
      *           Only NAME_ONLY view (default) and REPLICATION_VIEW are supported.
@@ -79,8 +79,8 @@ class ListTablesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique name of the instance for which tables should be listed.
-     * Values are of the form `projects/{project}/instances/{instance}`.
+     * Required. The unique name of the instance for which tables should be
+     * listed. Values are of the form `projects/{project}/instances/{instance}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -91,8 +91,8 @@ class ListTablesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique name of the instance for which tables should be listed.
-     * Values are of the form `projects/{project}/instances/{instance}`.
+     * Required. The unique name of the instance for which tables should be
+     * listed. Values are of the form `projects/{project}/instances/{instance}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
