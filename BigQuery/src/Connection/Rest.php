@@ -336,4 +336,49 @@ class Rest implements ConnectionInterface
     {
         return $this->send('models', 'list', $args);
     }
+
+    /**
+     * @param array $args
+     * @return array
+     */
+    public function insertRoutine(array $args = [])
+    {
+        return $this->send('routines', 'insert', $args);
+    }
+
+    /**
+     * @param array $args
+     * @return array
+     */
+    public function updateRoutine(array $args = [])
+    {
+        return $this->send('routines', 'update', $args);
+    }
+
+    /**
+     * @param array $args
+     * @return array
+     */
+    public function getRoutine(array $args = [])
+    {
+        return $this->send('routines', 'get', $args);
+    }
+
+    /**
+     * @param array $args
+     * @return array
+     */
+    public function deleteRoutine(array $args = [])
+    {
+        return $this->send('routines', 'delete', $args);
+    }
+
+    /**
+     * @param array $args
+     * @return array
+     */
+    public function listRoutines(array $args = [])
+    {
+        return $this->send('routines', 'list', $args);
+    }
 }

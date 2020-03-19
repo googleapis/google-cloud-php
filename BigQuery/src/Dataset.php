@@ -305,82 +305,6 @@ class Dataset
     }
 
     /**
-     * Retrieves the dataset's details. If no dataset data is cached a network
-     * request will be made to retrieve it.
-     *
-     * Example:
-     * ```
-     * $info = $dataset->info();
-     * echo $info['selfLink'];
-     * ```
-     *
-     * @see https://cloud.google.com/bigquery/docs/reference/v2/datasets#resource Datasets resource documentation.
-     *
-     * @param array $options [optional] Configuration options.
-     * @return array
-     */
-    public function info(array $options = [])
-    {
-        if (!$this->info) {
-            $this->reload($options);
-        }
-
-        return $this->info;
-    }
-
-    /**
-     * Triggers a network request to reload the dataset's details.
-     *
-     * Example:
-     * ```
-     * $dataset->reload();
-     * $info = $dataset->info();
-     * echo $info['selfLink'];
-     * ```
-     *
-     * @see https://cloud.google.com/bigquery/docs/reference/v2/datasets/get Datasets get API documentation.
-     *
-     * @param array $options [optional] Configuration options.
-     * @return array
-     */
-    public function reload(array $options = [])
-    {
-        return $this->info = $this->connection->getDataset($options + $this->identity);
-    }
-
-    /**
-     * Retrieves the dataset's ID.
-     *
-     * Example:
-     * ```
-     * echo $dataset->id();
-     * ```
-     *
-     * @return string
-     */
-    public function id()
-    {
-        return $this->identity['datasetId'];
-    }
-
-    /**
-     * Retrieves the dataset's identity.
-     *
-     * An identity provides a description of a resource that is nested in nature.
-     *
-     * Example:
-     * ```
-     * echo $dataset->identity()['projectId'];
-     * ```
-     *
-     * @return array
-     */
-    public function identity()
-    {
-        return $this->identity;
-    }
-
-    /**
      * Lazily instantiates a machine learning model in the dataset. There are no
      * network requests made at this point. To see the operations that can be performed on a
      * model, please see {@see Google\Cloud\BigQuery\Model}.
@@ -456,5 +380,212 @@ class Dataset
                 ]
             )
         );
+    }
+
+    /**
+     * Lazily instantiates a routine.
+     *
+     * There are no network requests made at this point. To see the operations
+     * that can be performed on a routine, please see
+     * {@see Google\Cloud\BigQuery\Routine}.
+     *
+     * Example:
+     * ```
+     * $routine = $dataset->routine('my_routine');
+     * echo $routine->identity()['routineId'];
+     * ```
+     *
+     * @param string $id The routine's ID.
+     * @param array $info [optional] The routine resource data.
+     * @return Routine
+     */
+    public function routine($id, array $info = [])
+    {
+        return new Routine(
+            $this->connection,
+            $id,
+            $this->identity['datasetId'],
+            $this->identity['projectId'],
+            $info
+        );
+    }
+
+    /**
+     * Fetches all of the routines in the dataset.
+     *
+     * Please note that Routine instances obtained from this method contain only a
+     * subset of the resource representation. Fields returned include `etag`,
+     * `projectId`, `datasetId`, `routineId`, `routineType`, `creationTime`,
+     * `lastModifiedTime` and `language`. To obtain a full representation, call
+     * {@see Google\Cloud\BigQuery\Routine::reload()}.
+     *
+     * Example:
+     * ```
+     * $routines = $dataset->routines();
+     *
+     * foreach ($routines as $routine) {
+     *     echo $routine->identity()['routineId'] . PHP_EOL;
+     * }
+     * ```
+     *
+     * @see https://cloud.google.com/bigquery/docs/reference/v2/routines/list List Routines API documentation.
+     *
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type int $maxResults Maximum number of results to return per page.
+     *     @type int $resultLimit Limit the number of results returned in total.
+     *           **Defaults to** `0` (return all results).
+     *     @type string $pageToken A previously-returned page token used to
+     *           resume the loading of results from a specific point.
+     * }
+     * @return ItemIterator<Model>
+     */
+    public function routines(array $options = [])
+    {
+        $resultLimit = $this->pluck('resultLimit', $options, false);
+
+        return new ItemIterator(
+            new PageIterator(
+                function (array $routine) {
+                    return $this->routine($routine['routineReference']['routineId'], $routine);
+                },
+                [$this->connection, 'listRoutines'],
+                $this->identity + $options,
+                [
+                    'itemsKey' => 'routines',
+                    'resultLimit' => $resultLimit
+                ]
+            )
+        );
+    }
+
+    /**
+     * Creates a routine.
+     *
+     * Please note that by default the library will not attempt to retry this
+     * call on your behalf.
+     *
+     * Example:
+     * ```
+     * $routine = $dataset->createRoutine('my_routine', [
+     *     'routineType' => 'SCALAR_FUNCTION',
+     *     'definitionBody' => 'concat(x, "\n", y)',
+     *     'arguments' => [
+     *         [
+     *             'name' => 'x',
+     *             'dataType' => [
+     *                 'typeKind' => 'STRING'
+     *             ]
+     *         ], [
+     *             'name' => 'y',
+     *             'dataType' => [
+     *                 'typeKind' => 'STRING'
+     *             ]
+     *         ]
+     *     ]
+     * ]);
+     * ```
+     *
+     * @see https://cloud.google.com/bigquery/docs/reference/v2/routines/insert Insert Routines API documentation.
+     *
+     * @param string $id The routine ID.
+     * @param array $metadata The available options for metadata are outlined at the
+     *        [Routine Resource API docs](https://cloud.google.com/bigquery/docs/reference/v2/routines#resource).
+     *        Omit `routineReference` as it is computed and appended by the
+     *        client.
+     * @param array $options [optional] Configuration options.
+     * @return Routine
+     */
+    public function createRoutine($id, array $metadata, array $options = [])
+    {
+        $metadata = [
+            'routineReference' => $this->identity + ['routineId' => $id]
+        ] + $metadata;
+
+        $response = $this->connection->insertRoutine(
+            $this->identity
+            + $metadata
+            + $options
+            + ['retries' => 0]
+        );
+
+        return $this->routine($id, $response);
+    }
+
+    /**
+     * Retrieves the dataset's details. If no dataset data is cached a network
+     * request will be made to retrieve it.
+     *
+     * Example:
+     * ```
+     * $info = $dataset->info();
+     * echo $info['selfLink'];
+     * ```
+     *
+     * @see https://cloud.google.com/bigquery/docs/reference/v2/datasets#resource Datasets resource documentation.
+     *
+     * @param array $options [optional] Configuration options.
+     * @return array
+     */
+    public function info(array $options = [])
+    {
+        if (!$this->info) {
+            $this->reload($options);
+        }
+
+        return $this->info;
+    }
+
+    /**
+     * Triggers a network request to reload the dataset's details.
+     *
+     * Example:
+     * ```
+     * $dataset->reload();
+     * $info = $dataset->info();
+     * echo $info['selfLink'];
+     * ```
+     *
+     * @see https://cloud.google.com/bigquery/docs/reference/v2/datasets/get Datasets get API documentation.
+     *
+     * @param array $options [optional] Configuration options.
+     * @return array
+     */
+    public function reload(array $options = [])
+    {
+        return $this->info = $this->connection->getDataset($options + $this->identity);
+    }
+
+    /**
+     * Retrieves the dataset's ID.
+     *
+     * Example:
+     * ```
+     * echo $dataset->id();
+     * ```
+     *
+     * @return string
+     */
+    public function id()
+    {
+        return $this->identity['datasetId'];
+    }
+
+    /**
+     * Retrieves the dataset's identity.
+     *
+     * An identity provides a description of a resource that is nested in nature.
+     *
+     * Example:
+     * ```
+     * echo $dataset->identity()['projectId'];
+     * ```
+     *
+     * @return array
+     */
+    public function identity()
+    {
+        return $this->identity;
     }
 }

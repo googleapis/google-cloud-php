@@ -20,15 +20,18 @@ namespace Google\Cloud\BigQuery\Tests\Unit;
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\BigQuery\Dataset;
 use Google\Cloud\BigQuery\Model;
+use Google\Cloud\BigQuery\Routine;
 use Google\Cloud\BigQuery\Table;
 use Google\Cloud\BigQuery\ValueMapper;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iterator\ItemIterator;
-use Prophecy\Argument;
+use Google\Cloud\Core\Testing\TestHelpers;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group bigquery
+ * @group bigquery-dataset
  */
 class DatasetTest extends TestCase
 {
@@ -38,6 +41,7 @@ class DatasetTest extends TestCase
     public $datasetId = 'myDatasetId';
     public $tableId = 'myTableId';
     public $modelId = 'testModelId';
+    public $routineId = 'testRoutineId';
 
     public function setUp()
     {
@@ -45,14 +49,15 @@ class DatasetTest extends TestCase
         $this->connection = $this->prophesize(ConnectionInterface::class);
     }
 
-    public function getDataset($connection, array $data = [])
+    public function getDataset($connection, array $data = [], $location = null)
     {
         return new Dataset(
             $connection->reveal(),
             $this->datasetId,
             $this->projectId,
             $this->mapper,
-            $data
+            $data,
+            $location
         );
     }
 
@@ -116,6 +121,33 @@ class DatasetTest extends TestCase
     {
         $dataset = $this->getDataset($this->connection);
         $this->assertInstanceOf(Table::class, $dataset->table($this->tableId));
+    }
+
+    /**
+     * @dataProvider locations
+     */
+    public function testGetsTableWithLocationFromDataset($expected, $info, $location)
+    {
+        $dataset = TestHelpers::stub(Dataset::class, [
+            $this->connection->reveal(),
+            $this->datasetId,
+            $this->projectId,
+            new ValueMapper(false),
+            $info,
+            $location
+        ]);
+
+        $table = $dataset->table($this->tableId);
+        $this->assertInstanceOf(Table::class, $table);
+        $this->assertEquals($expected, TestHelpers::getPrivateProperty($table, 'location'));
+    }
+
+    public function locations()
+    {
+        return [
+            ['foo', ['location' => 'foo'], 'bar'],
+            ['bar', [], 'bar']
+        ];
     }
 
     public function testGetsTablesWithNoResults()
@@ -186,41 +218,6 @@ class DatasetTest extends TestCase
         $this->assertInstanceOf(Table::class, $table);
     }
 
-    public function testGetsInfo()
-    {
-        $datasetInfo = ['friendlyName' => 'A dataset.'];
-        $this->connection->getDataset(Argument::any())->shouldNotBeCalled();
-        $dataset = $this->getDataset($this->connection, $datasetInfo);
-
-        $this->assertEquals($datasetInfo, $dataset->info());
-    }
-
-    public function testGetsInfoWithReload()
-    {
-        $datasetInfo = ['friendlyName' => 'A dataset.'];
-        $this->connection->getDataset(Argument::any())
-            ->willReturn($datasetInfo)
-            ->shouldBeCalledTimes(1);
-        $dataset = $this->getDataset($this->connection);
-
-        $this->assertEquals($datasetInfo, $dataset->info());
-    }
-
-    public function testGetsId()
-    {
-        $dataset = $this->getDataset($this->connection);
-
-        $this->assertEquals($this->datasetId, $dataset->id());
-    }
-
-    public function testGetsIdentity()
-    {
-        $dataset = $this->getDataset($this->connection);
-
-        $this->assertEquals($this->datasetId, $dataset->identity()['datasetId']);
-        $this->assertEquals($this->projectId, $dataset->identity()['projectId']);
-    }
-
     public function testsGetsModel()
     {
         $dataset = $this->getDataset($this->connection);
@@ -268,5 +265,141 @@ class DatasetTest extends TestCase
 
         $this->assertEquals($this->modelId, $models[0]->id());
         $this->assertEquals('testModelId2', $models[1]->id());
+    }
+
+    /**
+     * @covers Google\Cloud\BigQuery\Dataset::routine
+     */
+    public function testRoutine()
+    {
+        $routine = $this->getDataset($this->connection)->routine($this->routineId);
+        $this->assertInstanceOf(Routine::class, $routine);
+        $this->assertEquals([
+            'routineId' => $this->routineId,
+            'datasetId' => $this->datasetId,
+            'projectId' => $this->projectId
+        ], $routine->identity());
+    }
+
+    /**
+     * @covers Google\Cloud\BigQuery\Dataset::routines
+     */
+    public function testRoutines()
+    {
+        $this->connection->listRoutines(Argument::any())
+            ->willReturn([
+                'routines' => [
+                    ['routineReference' => ['routineId' => $this->routineId]]
+                ]
+            ])
+            ->shouldBeCalledTimes(1);
+
+        $dataset = $this->getDataset($this->connection);
+        $routines = $dataset->routines();
+        $this->assertInstanceOf(ItemIterator::class, $routines);
+        $routinesArray = iterator_to_array($routines);
+
+        $this->assertEquals(
+            $this->routineId,
+            $routinesArray[0]->identity()['routineId']
+        );
+    }
+
+    /**
+     * @covers Google\Cloud\BigQuery\Dataset::routines
+     */
+    public function testRoutinesWithToken()
+    {
+        $this->connection->listRoutines(Argument::any())
+            ->willReturn([
+                'nextPageToken' => 'token',
+                'routines' => [
+                    ['routineReference' => ['routineId' => $this->routineId]]
+                ]
+            ], [
+                'routines' => [
+                    ['routineReference' => ['routineId' => 'testRoutineId2']]
+                ]
+            ])->shouldBeCalledTimes(2);
+
+        $dataset = $this->getDataset($this->connection);
+        $routines = iterator_to_array($dataset->routines());
+
+        $this->assertEquals(
+            $this->routineId,
+            $routines[0]->identity()['routineId']
+        );
+        $this->assertEquals(
+            'testRoutineId2',
+            $routines[1]->identity()['routineId']
+        );
+    }
+
+    /**
+     * @covers Google\Cloud\BigQuery\Dataset::createRoutine
+     */
+    public function testCreateRoutine()
+    {
+        $routineReference = [
+            'routineId' => $this->routineId,
+            'datasetId' => $this->datasetId,
+            'projectId' => $this->projectId
+        ];
+
+        $metadata = [
+            'foo' => 'bar',
+            'routineReference' => [ // this gets overwritten by client
+                'a' => 'b'
+            ]
+        ];
+
+        $this->connection->insertRoutine(Argument::allOf(
+            Argument::withEntry('routineReference', $routineReference),
+            Argument::withEntry('foo', 'bar'),
+            Argument::withEntry('retries', 0)
+        ))->shouldBeCalled()->willReturn([
+            'routineReference' => $routineReference
+        ]);
+
+        $dataset = $this->getDataset($this->connection);
+
+        $routine = $dataset->createRoutine($this->routineId, $metadata);
+        $this->assertInstanceOf(Routine::class, $routine);
+        $this->assertEquals($routineReference, $routine->identity());
+    }
+
+    public function testGetsInfo()
+    {
+        $datasetInfo = ['friendlyName' => 'A dataset.'];
+        $this->connection->getDataset(Argument::any())->shouldNotBeCalled();
+        $dataset = $this->getDataset($this->connection, $datasetInfo);
+
+        $this->assertEquals($datasetInfo, $dataset->info());
+    }
+
+    public function testGetsInfoWithReload()
+    {
+        $datasetInfo = ['friendlyName' => 'A dataset.'];
+        $this->connection->getDataset(Argument::any())
+            ->willReturn($datasetInfo)
+            ->shouldBeCalledTimes(1);
+        $dataset = $this->getDataset($this->connection);
+
+        $this->assertEquals($datasetInfo, $dataset->info());
+    }
+
+    public function testGetsId()
+    {
+        $dataset = $this->getDataset($this->connection);
+
+        $this->assertEquals($this->datasetId, $dataset->id());
+    }
+
+    public function testGetsIdentity()
+    {
+        $dataset = $this->getDataset($this->connection);
+
+        $this->assertEquals($this->datasetId, $dataset->identity()['datasetId']);
+        $this->assertEquals($this->projectId, $dataset->identity()['projectId']);
     }
 }
