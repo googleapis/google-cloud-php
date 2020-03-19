@@ -355,12 +355,9 @@ class Grpc implements ConnectionInterface
      */
     public function listBackups(array $args)
     {
-        $filter = $this->pluck('filter', $args, false) ?: '';
-
         $instanceName = $this->pluck('instance', $args);
         return $this->send([$this->getDatabaseAdminClient(), 'listBackups'], [
             $instanceName,
-            $filter,
             $this->addResourcePrefixHeader($args, $instanceName)
         ]);
     }
@@ -370,12 +367,9 @@ class Grpc implements ConnectionInterface
      */
     public function listBackupOperations(array $args)
     {
-        $filter = $this->pluck('filter', $args, false) ?: '';
-
         $instanceName = $this->pluck('instance', $args);
         return $this->send([$this->getDatabaseAdminClient(), 'listBackupOperations'], [
             $instanceName,
-            $filter,
             $this->addResourcePrefixHeader($args, $instanceName)
         ]);
     }
@@ -385,12 +379,9 @@ class Grpc implements ConnectionInterface
      */
     public function listDatabaseOperations(array $args)
     {
-        $filter = $this->pluck('filter', $args, false) ?: '';
-
         $instanceName = $this->pluck('instance', $args);
         return $this->send([$this->getDatabaseAdminClient(), 'listDatabaseOperations'], [
             $instanceName,
-            $filter,
             $this->addResourcePrefixHeader($args, $instanceName)
         ]);
     }
