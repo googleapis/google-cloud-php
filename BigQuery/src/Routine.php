@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2019 Google LLC
+ * Copyright 2020 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -205,7 +205,7 @@ class Routine
      *     Configuration options
      *
      *     @type array $updateMask A list of field paths to be modified. Nested
-     *           key names should be dot-separated, e.g. `pushConfig.pushEndpoint`.
+     *           key names should be dot-separated, e.g. `returnType.typeKind`.
      *           Google Cloud PHP will attempt to infer this value on your
      *           behalf. You may use this field to limit which parts of the
      *           resource are updated, should you choose to provide the full
@@ -266,7 +266,11 @@ class Routine
      */
     public function delete(array $options = [])
     {
-        return $this->connection->deleteRoutine($this->identity + ['retries' => 0] + $options);
+        return $this->connection->deleteRoutine(
+            $this->identity
+            + $options
+            + ['retries' => 0]
+        );
     }
 
     /**

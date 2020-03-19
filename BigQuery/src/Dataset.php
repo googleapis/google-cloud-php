@@ -506,8 +506,8 @@ class Dataset
         $response = $this->connection->insertRoutine(
             $this->identity
             + $metadata
-            + ['retries' => 0]
             + $options
+            + ['retries' => 0]
         );
 
         return $this->routine($id, $response);
