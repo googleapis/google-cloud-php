@@ -98,12 +98,14 @@ class SubscriberClientTest extends GeneratedTest
         $ackDeadlineSeconds = 2135351438;
         $retainAckedMessages = false;
         $enableMessageOrdering = true;
+        $filter = 'filter-1274492040';
         $expectedResponse = new Subscription();
         $expectedResponse->setName($name2);
         $expectedResponse->setTopic($topic2);
         $expectedResponse->setAckDeadlineSeconds($ackDeadlineSeconds);
         $expectedResponse->setRetainAckedMessages($retainAckedMessages);
         $expectedResponse->setEnableMessageOrdering($enableMessageOrdering);
+        $expectedResponse->setFilter($filter);
         $transport->addResponse($expectedResponse);
 
         // Mock request
@@ -184,12 +186,14 @@ class SubscriberClientTest extends GeneratedTest
         $ackDeadlineSeconds = 2135351438;
         $retainAckedMessages = false;
         $enableMessageOrdering = true;
+        $filter = 'filter-1274492040';
         $expectedResponse = new Subscription();
         $expectedResponse->setName($name);
         $expectedResponse->setTopic($topic);
         $expectedResponse->setAckDeadlineSeconds($ackDeadlineSeconds);
         $expectedResponse->setRetainAckedMessages($retainAckedMessages);
         $expectedResponse->setEnableMessageOrdering($enableMessageOrdering);
+        $expectedResponse->setFilter($filter);
         $transport->addResponse($expectedResponse);
 
         // Mock request
@@ -265,12 +269,14 @@ class SubscriberClientTest extends GeneratedTest
         $ackDeadlineSeconds2 = 921632575;
         $retainAckedMessages = false;
         $enableMessageOrdering = true;
+        $filter = 'filter-1274492040';
         $expectedResponse = new Subscription();
         $expectedResponse->setName($name);
         $expectedResponse->setTopic($topic);
         $expectedResponse->setAckDeadlineSeconds($ackDeadlineSeconds2);
         $expectedResponse->setRetainAckedMessages($retainAckedMessages);
         $expectedResponse->setEnableMessageOrdering($enableMessageOrdering);
+        $expectedResponse->setFilter($filter);
         $transport->addResponse($expectedResponse);
 
         // Mock request

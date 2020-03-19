@@ -118,6 +118,18 @@ class Subscription extends \Google\Protobuf\Internal\Message
      */
     private $expiration_policy = null;
     /**
+     * An expression written in the Cloud Pub/Sub filter language. If non-empty,
+     * then only `PubsubMessage`s whose `attributes` field matches the filter are
+     * delivered on this subscription. If empty, then no messages are filtered
+     * out.
+     * <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
+     * API might be changed in backward-incompatible ways and is not recommended
+     * for production use. It is not subject to any SLA or deprecation policy.
+     *
+     * Generated from protobuf field <code>string filter = 12;</code>
+     */
+    private $filter = '';
+    /**
      * A policy that specifies the conditions for dead lettering messages in
      * this subscription. If dead_letter_policy is not set, dead lettering
      * is disabled.
@@ -219,6 +231,14 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *           operations on the subscription. If `expiration_policy` is not set, a
      *           *default policy* with `ttl` of 31 days will be used. The minimum allowed
      *           value for `expiration_policy.ttl` is 1 day.
+     *     @type string $filter
+     *           An expression written in the Cloud Pub/Sub filter language. If non-empty,
+     *           then only `PubsubMessage`s whose `attributes` field matches the filter are
+     *           delivered on this subscription. If empty, then no messages are filtered
+     *           out.
+     *           <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
+     *           API might be changed in backward-incompatible ways and is not recommended
+     *           for production use. It is not subject to any SLA or deprecation policy.
      *     @type \Google\Cloud\PubSub\V1\DeadLetterPolicy $dead_letter_policy
      *           A policy that specifies the conditions for dead lettering messages in
      *           this subscription. If dead_letter_policy is not set, dead lettering
@@ -573,6 +593,44 @@ class Subscription extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\ExpirationPolicy::class);
         $this->expiration_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * An expression written in the Cloud Pub/Sub filter language. If non-empty,
+     * then only `PubsubMessage`s whose `attributes` field matches the filter are
+     * delivered on this subscription. If empty, then no messages are filtered
+     * out.
+     * <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
+     * API might be changed in backward-incompatible ways and is not recommended
+     * for production use. It is not subject to any SLA or deprecation policy.
+     *
+     * Generated from protobuf field <code>string filter = 12;</code>
+     * @return string
+     */
+    public function getFilter()
+    {
+        return $this->filter;
+    }
+
+    /**
+     * An expression written in the Cloud Pub/Sub filter language. If non-empty,
+     * then only `PubsubMessage`s whose `attributes` field matches the filter are
+     * delivered on this subscription. If empty, then no messages are filtered
+     * out.
+     * <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
+     * API might be changed in backward-incompatible ways and is not recommended
+     * for production use. It is not subject to any SLA or deprecation policy.
+     *
+     * Generated from protobuf field <code>string filter = 12;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFilter($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->filter = $var;
 
         return $this;
     }
