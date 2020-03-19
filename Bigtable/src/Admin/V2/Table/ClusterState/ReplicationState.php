@@ -49,6 +49,14 @@ class ReplicationState
      * Generated from protobuf enum <code>READY = 4;</code>
      */
     const READY = 4;
+    /**
+     * The table is fully created and ready for use after a restore, and is
+     * being optimized for performance. When optimizations are complete, the
+     * table will transition to `READY` state.
+     *
+     * Generated from protobuf enum <code>READY_OPTIMIZING = 5;</code>
+     */
+    const READY_OPTIMIZING = 5;
 
     private static $valueToName = [
         self::STATE_NOT_KNOWN => 'STATE_NOT_KNOWN',
@@ -56,6 +64,7 @@ class ReplicationState
         self::PLANNED_MAINTENANCE => 'PLANNED_MAINTENANCE',
         self::UNPLANNED_MAINTENANCE => 'UNPLANNED_MAINTENANCE',
         self::READY => 'READY',
+        self::READY_OPTIMIZING => 'READY_OPTIMIZING',
     ];
 
     public static function name($value)

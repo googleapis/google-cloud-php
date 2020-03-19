@@ -9,17 +9,17 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for
- * [google.bigtable.admin.v2.BigtableTableAdmin.GenerateConsistencyToken][google.bigtable.admin.v2.BigtableTableAdmin.GenerateConsistencyToken]
+ * The request for
+ * [DeleteBackup][google.bigtable.admin.v2.BigtableTableAdmin.DeleteBackup].
  *
- * Generated from protobuf message <code>google.bigtable.admin.v2.GenerateConsistencyTokenRequest</code>
+ * Generated from protobuf message <code>google.bigtable.admin.v2.DeleteBackupRequest</code>
  */
-class GenerateConsistencyTokenRequest extends \Google\Protobuf\Internal\Message
+class DeleteBackupRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The unique name of the Table for which to create a consistency
-     * token. Values are of the form
-     * `projects/{project}/instances/{instance}/tables/{table}`.
+     * Required. Name of the backup to delete.
+     * Values are of the form
+     * `projects/{project}/instances/{instance}/clusters/{cluster}/backups/{backup}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -32,9 +32,9 @@ class GenerateConsistencyTokenRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The unique name of the Table for which to create a consistency
-     *           token. Values are of the form
-     *           `projects/{project}/instances/{instance}/tables/{table}`.
+     *           Required. Name of the backup to delete.
+     *           Values are of the form
+     *           `projects/{project}/instances/{instance}/clusters/{cluster}/backups/{backup}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -43,9 +43,9 @@ class GenerateConsistencyTokenRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique name of the Table for which to create a consistency
-     * token. Values are of the form
-     * `projects/{project}/instances/{instance}/tables/{table}`.
+     * Required. Name of the backup to delete.
+     * Values are of the form
+     * `projects/{project}/instances/{instance}/clusters/{cluster}/backups/{backup}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -56,9 +56,9 @@ class GenerateConsistencyTokenRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique name of the Table for which to create a consistency
-     * token. Values are of the form
-     * `projects/{project}/instances/{instance}/tables/{table}`.
+     * Required. Name of the backup to delete.
+     * Values are of the form
+     * `projects/{project}/instances/{instance}/clusters/{cluster}/backups/{backup}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

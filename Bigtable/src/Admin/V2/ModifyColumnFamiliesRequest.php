@@ -25,10 +25,10 @@ class ModifyColumnFamiliesRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Required. Modifications to be atomically applied to the specified table's families.
-     * Entries are applied in order, meaning that earlier modifications can be
-     * masked by later ones (in the case of repeated updates to the same family,
-     * for example).
+     * Required. Modifications to be atomically applied to the specified table's
+     * families. Entries are applied in order, meaning that earlier modifications
+     * can be masked by later ones (in the case of repeated updates to the same
+     * family, for example).
      *
      * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.ModifyColumnFamiliesRequest.Modification modifications = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -45,10 +45,10 @@ class ModifyColumnFamiliesRequest extends \Google\Protobuf\Internal\Message
      *           Values are of the form
      *           `projects/{project}/instances/{instance}/tables/{table}`.
      *     @type \Google\Cloud\Bigtable\Admin\V2\ModifyColumnFamiliesRequest\Modification[]|\Google\Protobuf\Internal\RepeatedField $modifications
-     *           Required. Modifications to be atomically applied to the specified table's families.
-     *           Entries are applied in order, meaning that earlier modifications can be
-     *           masked by later ones (in the case of repeated updates to the same family,
-     *           for example).
+     *           Required. Modifications to be atomically applied to the specified table's
+     *           families. Entries are applied in order, meaning that earlier modifications
+     *           can be masked by later ones (in the case of repeated updates to the same
+     *           family, for example).
      * }
      */
     public function __construct($data = NULL) {
@@ -87,10 +87,10 @@ class ModifyColumnFamiliesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Modifications to be atomically applied to the specified table's families.
-     * Entries are applied in order, meaning that earlier modifications can be
-     * masked by later ones (in the case of repeated updates to the same family,
-     * for example).
+     * Required. Modifications to be atomically applied to the specified table's
+     * families. Entries are applied in order, meaning that earlier modifications
+     * can be masked by later ones (in the case of repeated updates to the same
+     * family, for example).
      *
      * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.ModifyColumnFamiliesRequest.Modification modifications = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -101,10 +101,10 @@ class ModifyColumnFamiliesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Modifications to be atomically applied to the specified table's families.
-     * Entries are applied in order, meaning that earlier modifications can be
-     * masked by later ones (in the case of repeated updates to the same family,
-     * for example).
+     * Required. Modifications to be atomically applied to the specified table's
+     * families. Entries are applied in order, meaning that earlier modifications
+     * can be masked by later ones (in the case of repeated updates to the same
+     * family, for example).
      *
      * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.ModifyColumnFamiliesRequest.Modification modifications = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Bigtable\Admin\V2\ModifyColumnFamiliesRequest\Modification[]|\Google\Protobuf\Internal\RepeatedField $var

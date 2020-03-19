@@ -24,8 +24,8 @@ class CreateTableRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Required. The name by which the new table should be referred to within the parent
-     * instance, e.g., `foobar` rather than `{parent}/tables/foobar`.
+     * Required. The name by which the new table should be referred to within the
+     * parent instance, e.g., `foobar` rather than `{parent}/tables/foobar`.
      * Maximum 50 characters.
      *
      * Generated from protobuf field <code>string table_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -67,8 +67,8 @@ class CreateTableRequest extends \Google\Protobuf\Internal\Message
      *           Required. The unique name of the instance in which to create the table.
      *           Values are of the form `projects/{project}/instances/{instance}`.
      *     @type string $table_id
-     *           Required. The name by which the new table should be referred to within the parent
-     *           instance, e.g., `foobar` rather than `{parent}/tables/foobar`.
+     *           Required. The name by which the new table should be referred to within the
+     *           parent instance, e.g., `foobar` rather than `{parent}/tables/foobar`.
      *           Maximum 50 characters.
      *     @type \Google\Cloud\Bigtable\Admin\V2\Table $table
      *           Required. The Table to create.
@@ -123,8 +123,8 @@ class CreateTableRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name by which the new table should be referred to within the parent
-     * instance, e.g., `foobar` rather than `{parent}/tables/foobar`.
+     * Required. The name by which the new table should be referred to within the
+     * parent instance, e.g., `foobar` rather than `{parent}/tables/foobar`.
      * Maximum 50 characters.
      *
      * Generated from protobuf field <code>string table_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -136,8 +136,8 @@ class CreateTableRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name by which the new table should be referred to within the parent
-     * instance, e.g., `foobar` rather than `{parent}/tables/foobar`.
+     * Required. The name by which the new table should be referred to within the
+     * parent instance, e.g., `foobar` rather than `{parent}/tables/foobar`.
      * Maximum 50 characters.
      *
      * Generated from protobuf field <code>string table_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>

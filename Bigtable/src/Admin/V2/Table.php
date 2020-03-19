@@ -52,6 +52,13 @@ class Table extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.TimestampGranularity granularity = 4;</code>
      */
     private $granularity = 0;
+    /**
+     * Output only. If this table was restored from another data source (e.g. a
+     * backup), this field will be populated with information about the restore.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.RestoreInfo restore_info = 6;</code>
+     */
+    private $restore_info = null;
 
     /**
      * Constructor.
@@ -79,6 +86,9 @@ class Table extends \Google\Protobuf\Internal\Message
      *           this table. Timestamps not matching the granularity will be rejected.
      *           If unspecified at creation time, the value will be set to `MILLIS`.
      *           Views: `SCHEMA_VIEW`, `FULL`.
+     *     @type \Google\Cloud\Bigtable\Admin\V2\RestoreInfo $restore_info
+     *           Output only. If this table was restored from another data source (e.g. a
+     *           backup), this field will be populated with information about the restore.
      * }
      */
     public function __construct($data = NULL) {
@@ -210,6 +220,34 @@ class Table extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Bigtable\Admin\V2\Table_TimestampGranularity::class);
         $this->granularity = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. If this table was restored from another data source (e.g. a
+     * backup), this field will be populated with information about the restore.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.RestoreInfo restore_info = 6;</code>
+     * @return \Google\Cloud\Bigtable\Admin\V2\RestoreInfo
+     */
+    public function getRestoreInfo()
+    {
+        return $this->restore_info;
+    }
+
+    /**
+     * Output only. If this table was restored from another data source (e.g. a
+     * backup), this field will be populated with information about the restore.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.RestoreInfo restore_info = 6;</code>
+     * @param \Google\Cloud\Bigtable\Admin\V2\RestoreInfo $var
+     * @return $this
+     */
+    public function setRestoreInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\RestoreInfo::class);
+        $this->restore_info = $var;
 
         return $this;
     }
