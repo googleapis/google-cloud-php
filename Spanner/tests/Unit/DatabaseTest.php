@@ -126,7 +126,7 @@ class DatabaseTest extends TestCase
 
         $this->database = TestHelpers::stub(Database::class, $args, $props);
     }
-    
+
     public function testName()
     {
         $this->assertEquals(

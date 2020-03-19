@@ -210,7 +210,7 @@ class Database
      * Return the database state.
      *
      * When databases are created or restored, they may take some time before
-     * they are ready for use. This method allows for checking whether an
+     * they are ready for use. This method allows for checking whether a
      * database is ready. Note that this value is cached within the class instance,
      * so if you are polling it, first call {@see Google\Cloud\Spanner\Database::reload()}
      * to refresh the cached value.
@@ -225,7 +225,6 @@ class Database
      * @param array $options [optional] Configuration options.
      * @return int|null
      */
-
     public function state(array $options = [])
     {
         $info = $this->info($options);
@@ -249,8 +248,7 @@ class Database
      *           **NOTE**: This method always sets the database filter as a name of this database.
      *           User may provide additional filter expressions which would be appended in the form of
      *           "(database:<databaseName>) AND (<additional filter expression from user>)"
-     *     @type int $pageSize Maximum number of results to return per
-     *           request.
+     *     @type int $pageSize Maximum number of results to return per request.
      *     @type int $resultLimit Limit the number of results returned in total.
      *           **Defaults to** `0` (return all results).
      *     @type string $pageToken A previously-returned page token used to
@@ -329,7 +327,7 @@ class Database
     {
         return $this->info ?: $this->reload($options);
     }
-    
+
     /**
      * Reload the database info from the Cloud Spanner API.
      *
@@ -427,7 +425,7 @@ class Database
      * $operation = $database->restore($backup);
      * ```
      *
-     * @param Backup|string The backup to restore, given as a Backup instance or a string of the form
+     * @param Backup|string $backup The backup to restore, given as a Backup instance or a string of the form
      *        `projects/<project>/instances/<instance>/backups/<backup>`.
      * @param array $options [optional] Configuration options.
      *

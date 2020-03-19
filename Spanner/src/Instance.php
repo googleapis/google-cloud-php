@@ -436,7 +436,8 @@ class Instance
      * ```
      *
      * @param string $name The database name.
-     * @param Backup|string The backup to restore, given as a Backup instance or a string of the form
+     * @param Backup|string $backup The backup to restore, given
+     *        as a Backup instance or a string of the form
      *        `projects/<project>/instances/<instance>/backups/<backup>`.
      * @param array $options [optional] Configuration options.
      *
@@ -544,7 +545,7 @@ class Instance
      *
      * @return Backup
      */
-    public function backup(string $name, array $options = [])
+    public function backup($name, array $backup = [])
     {
         return new Backup(
             $this->connection,
@@ -552,7 +553,8 @@ class Instance
             $this->lroConnection,
             $this->lroCallables,
             $this->projectId,
-            $name
+            $name,
+            $backup
         );
     }
 

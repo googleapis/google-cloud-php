@@ -33,7 +33,6 @@ use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\Timestamp;
-// use Google\Protobuf\Timestamp;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 
