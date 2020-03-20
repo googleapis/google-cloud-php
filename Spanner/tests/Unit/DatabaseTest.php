@@ -20,13 +20,16 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iam\Iam;
+use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Database\V1\RestoreInfo;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
+use Google\Cloud\Spanner\Backup;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Duration;
 use Google\Cloud\Spanner\Instance;
@@ -61,6 +64,7 @@ class DatabaseTest extends TestCase
     const INSTANCE = 'my-instance';
     const SESSION = 'my-session';
     const TRANSACTION = 'my-transaction';
+    const BACKUP = 'my-backup';
 
     private $connection;
     private $instance;
@@ -75,8 +79,8 @@ class DatabaseTest extends TestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->connection = $this->getConnStub();
-        $this->instance = $this->prophesize(Instance::class);
+        $this->connection = $this->prophesize(ConnectionInterface::class);
+
         $this->sessionPool = $this->prophesize(SessionPoolInterface::class);
         $this->lro = $this->prophesize(LongRunningConnectionInterface::class);
         $this->lroCallables = [];
@@ -88,6 +92,17 @@ class DatabaseTest extends TestCase
             self::SESSION
         ]);
 
+        $this->instance = TestHelpers::stub(Instance::class, [
+            $this->connection->reveal(),
+            $this->lro->reveal(),
+            $this->lroCallables,
+            self::PROJECT,
+            self::INSTANCE
+        ], [
+            'info',
+            'connection'
+        ]);
+
         $this->sessionPool->acquire(Argument::type('string'))
             ->willReturn($this->session);
         $this->sessionPool->setDatabase(Argument::type(Database::class))
@@ -95,11 +110,9 @@ class DatabaseTest extends TestCase
         $this->sessionPool->release(Argument::type(Session::class))
             ->willReturn(null);
 
-        $this->instance->name()->willReturn(InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE));
-
         $args = [
             $this->connection->reveal(),
-            $this->instance->reveal(),
+            $this->instance,
             $this->lro->reveal(),
             $this->lroCallables,
             self::PROJECT,
@@ -108,7 +121,7 @@ class DatabaseTest extends TestCase
         ];
 
         $props = [
-            'connection', 'operation', 'session', 'sessionPool'
+            'connection', 'operation', 'session', 'sessionPool', 'instance'
         ];
 
         $this->database = TestHelpers::stub(Database::class, $args, $props);
@@ -138,6 +151,104 @@ class DatabaseTest extends TestCase
 
         // Make sure the request only is sent once.
         $this->database->info();
+    }
+
+    public function testState()
+    {
+        $res = [
+            'state' => Database::STATE_READY
+        ];
+        $this->connection->getDatabase(Argument::withEntry('name', $this->database->name()))
+            ->shouldBeCalledTimes(1)
+            ->willReturn($res);
+
+        $this->database->___setProperty('connection', $this->connection->reveal());
+
+        $this->assertEquals(Database::STATE_READY, $this->database->state());
+        
+        // Make sure the request only is sent once.
+        $this->database->state();
+    }
+
+    public function testCreateBackup()
+    {
+        $expireTime = new \DateTime();
+        $this->connection->createBackup(Argument::allOf(
+            Argument::withEntry('instance', $this->instance->name()),
+            Argument::withEntry('backupId', self::BACKUP),
+            Argument::withEntry('backup', [
+                'database' => $this->database->name(),
+                'expireTime' => $expireTime->format('Y-m-d\TH:i:s.u\Z')
+            ])
+        ))
+            ->shouldBeCalled()
+            ->willReturn(['name' => 'operations/foo']);
+
+        $this->database->___setProperty('connection', $this->connection->reveal());
+        
+        $op = $this->database->createBackup(self::BACKUP, $expireTime);
+        
+        $this->assertInstanceOf(LongRunningOperation::class, $op);
+    }
+
+    public function testBackups()
+    {
+        $backups = [
+            [
+                'name' => DatabaseAdminClient::backupName(self::PROJECT, self::INSTANCE, 'backup1'),
+            ],
+            [
+                'name' => DatabaseAdminClient::backupName(self::PROJECT, self::INSTANCE, 'backup2'),
+            ]
+        ];
+            
+        $expectedFilter = "database:".$this->database->name();
+        $this->connection->listBackups(Argument::withEntry('filter', $expectedFilter))
+            ->shouldBeCalled()
+            ->willReturn(['backups' => $backups]);
+
+        $this->instance->___setProperty('connection', $this->connection->reveal());
+
+        $bkps = $this->database->backups();
+
+        $this->assertInstanceOf(ItemIterator::class, $bkps);
+
+        $bkps = iterator_to_array($bkps);
+
+        $this->assertCount(2, $bkps);
+        $this->assertEquals('backup1', DatabaseAdminClient::parseName($bkps[0]->name())['backup']);
+        $this->assertEquals('backup2', DatabaseAdminClient::parseName($bkps[1]->name())['backup']);
+    }
+
+    public function testBackupsWithCustomFilter()
+    {
+        $backups = [
+            [
+                'name' => DatabaseAdminClient::backupName(self::PROJECT, self::INSTANCE, 'backup1'),
+            ],
+            [
+                'name' => DatabaseAdminClient::backupName(self::PROJECT, self::INSTANCE, 'backup2'),
+            ]
+        ];
+        $defaultFilter = "database:" . $this->database->name();
+        $customFilter = "customFilter";
+        $expectedFilter = sprintf('(%1$s) AND (%2$s)', $defaultFilter, $customFilter);
+
+        $this->connection->listBackups(Argument::withEntry('filter', $expectedFilter))
+            ->shouldBeCalled()
+            ->willReturn(['backups' => $backups]);
+
+        $this->instance->___setProperty('connection', $this->connection->reveal());
+
+        $bkps = $this->database->backups(['filter' => $customFilter]);
+
+        $this->assertInstanceOf(ItemIterator::class, $bkps);
+
+        $bkps = iterator_to_array($bkps);
+
+        $this->assertCount(2, $bkps);
+        $this->assertEquals('backup1', DatabaseAdminClient::parseName($bkps[0]->name())['backup']);
+        $this->assertEquals('backup2', DatabaseAdminClient::parseName($bkps[1]->name())['backup']);
     }
 
     public function testReload()
@@ -174,7 +285,7 @@ class DatabaseTest extends TestCase
     }
 
     /**
-     * @group spanneradmin
+     * @group spanner-admin
      */
     public function testExistsNotFound()
     {
@@ -209,6 +320,51 @@ class DatabaseTest extends TestCase
             ]
         ]);
 
+        $this->assertInstanceOf(LongRunningOperation::class, $op);
+    }
+
+    /**
+     * @group spanner-admin
+     */
+    public function testRestoreFromBackupName()
+    {
+        $backupName = DatabaseAdminClient::backupName(self::PROJECT, self::INSTANCE, self::BACKUP);
+        $this->connection->restoreDatabase(Argument::allOf(
+            Argument::withEntry('instance', $this->instance->name()),
+            Argument::withEntry('databaseId', self::DATABASE),
+            Argument::withEntry('backup', $backupName)
+        ))
+            ->shouldBeCalled()
+            ->willReturn([
+                'name' => 'my-operation'
+            ]);
+
+        $this->instance->___setProperty('connection', $this->connection->reveal());
+        
+        $op = $this->database->restore($backupName);
+        $this->assertInstanceOf(LongRunningOperation::class, $op);
+    }
+
+    /**
+     * @group spanner-admin
+     */
+    public function testRestoreFromBackupObject()
+    {
+        $backupObj = $this->instance->backup(self::BACKUP);
+
+        $this->connection->restoreDatabase(Argument::allOf(
+            Argument::withEntry('instance', $this->instance->name()),
+            Argument::withEntry('databaseId', self::DATABASE),
+            Argument::withEntry('backup', $backupObj->name())
+        ))
+            ->shouldBeCalled()
+            ->willReturn([
+            'name' => 'my-operation'
+            ]);
+    
+        $this->instance->___setProperty('connection', $this->connection->reveal());
+
+        $op = $this->database->restore($backupObj);
         $this->assertInstanceOf(LongRunningOperation::class, $op);
     }
 
@@ -315,7 +471,7 @@ class DatabaseTest extends TestCase
 
         $database = TestHelpers::stub(Database::class, [
             $this->connection->reveal(),
-            $this->instance->reveal(),
+            $this->instance,
             $this->lro->reveal(),
             $this->lroCallables,
             self::PROJECT,
@@ -329,7 +485,7 @@ class DatabaseTest extends TestCase
     }
 
     /**
-     * @group spanneradmin
+     * @group spanner-admin
      */
     public function testDdl()
     {

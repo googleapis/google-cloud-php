@@ -26,6 +26,8 @@ use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
+use Google\Cloud\Spanner\Connection\ConnectionInterface;
+use Google\Cloud\Spanner\Backup;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\InstanceConfiguration;
@@ -44,6 +46,8 @@ class InstanceTest extends SnippetTestCase
     const PROJECT = 'my-awesome-project';
     const INSTANCE = 'my-instance';
     const DATABASE = 'my-database';
+    const BACKUP = 'my-backup';
+    const OPERATION = 'my-operation';
 
     private $connection;
     private $instance;
@@ -210,6 +214,25 @@ class InstanceTest extends SnippetTestCase
         $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal());
     }
 
+    public function testCreateDatabaseFromBackup()
+    {
+        $backup = DatabaseAdminClient::backupName(self::PROJECT, self::INSTANCE, self::BACKUP);
+        $snippet = $this->snippetFromMethod(Instance::class, 'createDatabaseFromBackup');
+        $snippet->addLocal('instance', $this->instance);
+        $snippet->addLocal('backup', $backup);
+
+        $this->connection->restoreDatabase(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'name' => 'my-operation'
+            ]);
+
+        $this->instance->___setProperty('connection', $this->connection->reveal());
+
+        $res = $snippet->invoke('operation');
+        $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal());
+    }
+
     public function testDatabase()
     {
         $snippet = $this->snippetFromMethod(Instance::class, 'database');
@@ -241,6 +264,97 @@ class InstanceTest extends SnippetTestCase
 
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
         $this->assertInstanceOf(Database::class, $res->returnVal()->current());
+    }
+
+    public function testBackup()
+    {
+        $snippet = $this->snippetFromMethod(Instance::class, 'backup');
+        $snippet->addLocal('instance', $this->instance);
+
+        $res = $snippet->invoke('backup');
+        $this->assertInstanceOf(Backup::class, $res->returnVal());
+        $this->assertEquals(self::BACKUP, DatabaseAdminClient::parseName($res->returnVal()->name())['backup']);
+    }
+
+    public function testBackups()
+    {
+        $snippet = $this->snippetFromMethod(Instance::class, 'backups');
+        $snippet->addLocal('instance', $this->instance);
+
+        $this->connection->listBackups(Argument::any())
+            ->shouldBeCalled()
+            ->WillReturn([
+                'backups' => [
+                    [
+                        'name' => DatabaseAdminClient::backupName(self::PROJECT, self::INSTANCE, self::BACKUP)
+                    ]
+                ]
+            ]);
+    
+        $this->instance->___setProperty('connection', $this->connection->reveal());
+
+        $res = $snippet->invoke('backups');
+
+        $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
+        $this->assertInstanceOf(Backup::class, $res->returnVal()->current());
+    }
+
+    public function testBackupOperations()
+    {
+        $backupOperationName = sprintf(
+            "%s/operations/%s",
+            DatabaseAdminClient::backupName(self::PROJECT, self::INSTANCE, self::BACKUP),
+            self::OPERATION
+        );
+
+        $snippet = $this->snippetFromMethod(Instance::class, 'backupOperations');
+        $snippet->addLocal('instance', $this->instance);
+
+        $this->connection->listBackupOperations(Argument::any())
+            ->shouldBeCalled()
+            ->WillReturn([
+                'operations' => [
+                    [
+                        'name' => $backupOperationName
+                    ]
+                ]
+            ]);
+
+        $this->instance->___setProperty('connection', $this->connection->reveal());
+
+        $res = $snippet->invoke('backupOperations');
+
+        $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
+        $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal()->current());
+    }
+
+    public function testDatabaseOperations()
+    {
+        $databaseOperationName = sprintf(
+            "%s/operations/%s",
+            DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE),
+            self::OPERATION
+        );
+
+        $snippet = $this->snippetFromMethod(Instance::class, 'databaseOperations');
+        $snippet->addLocal('instance', $this->instance);
+
+        $this->connection->listDatabaseOperations(Argument::any())
+            ->shouldBeCalled()
+            ->WillReturn([
+                'operations' => [
+                    [
+                        'name' => $databaseOperationName
+                    ]
+                ]
+            ]);
+    
+        $this->instance->___setProperty('connection', $this->connection->reveal());
+
+        $res = $snippet->invoke('databaseOperations');
+
+        $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
+        $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal()->current());
     }
 
     public function testIam()

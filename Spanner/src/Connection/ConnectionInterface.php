@@ -77,6 +77,45 @@ interface ConnectionInterface
     /**
      * @param array $args
      */
+    public function listBackups(array $args);
+
+    /**
+     * @param array $args
+     */
+    public function listBackupOperations(array $args);
+    /**
+     * @param array $args
+     */
+    public function listDatabaseOperations(array $args);
+
+    /**
+     * @param array $args
+     */
+    public function restoreDatabase(array $args);
+
+    /**
+     * @param array $args
+     */
+    public function updateBackup(array $args);
+
+    /**
+     * @param array $args
+     */
+    public function createBackup(array $args);
+
+    /**
+     * @param array $args
+     */
+    public function deleteBackup(array $args);
+
+    /**
+     * @param array $args
+     */
+    public function getBackup(array $args);
+
+    /**
+     * @param array $args
+     */
     public function listDatabases(array $args);
 
     /**
