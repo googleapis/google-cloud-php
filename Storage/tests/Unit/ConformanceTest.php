@@ -179,7 +179,7 @@ class ConformanceTest extends TestCase
         foreach (self::$cases['postPolicyV4Tests'] as $case) {
             $desc = $case['description'];
 
-            if ($desc !== 'POST Policy Cache-Control File Header') continue;
+            // if ($desc !== 'POST Policy Cache-Control File Header') continue;
 
             $out[$case['description']] = [$case];
             unset($case['description']);

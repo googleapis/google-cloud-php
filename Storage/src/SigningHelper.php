@@ -422,14 +422,8 @@ class SigningHelper
             'x-goog-date' => $requestTimestamp
         ]);
 
-        // foreach ($fields as $key => $value) {
-        //     $key = $this->applyPostPolicyEscapingRules($key);
-        //     $value = $this->applyPostPolicyEscapingRules($value);
-        //     $fields[$key] = $value;
-        // }
-
         $conditions = $options['conditions'];
-        foreach (array_reverse($options['fields']) as $key => $value) {
+        foreach ($options['fields'] as $key => $value) {
             $conditions[] = [$key => $value];
         }
 
@@ -921,7 +915,7 @@ class SigningHelper
             return $input;
         }
 
-        $output = addslashes($input);
+        $output = preg_replace('/[\\\]{1,}/', '\\\\', $input);
         $output = str_replace(PHP_EOL, '\n', $output);
         $output = preg_replace('/[\t]+/', '\t', $output);
 
