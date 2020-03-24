@@ -1372,7 +1372,7 @@ class Bucket
      *
      * Example:
      * ```
-     * $policy = $bucket->postPolicy(new \DateTime('tomorrow'), $objectName, [
+     * $policy = $bucket->generateSignedPostPolicyV4(new \DateTime('tomorrow'), $objectName, [
      *     'conditions' => [
      *         ['content-length-range', 0, 255]
      *     ],
@@ -1433,7 +1433,7 @@ class Bucket
      * }
      * @return array
      */
-    public function postPolicy($expires, $objectName, array $options = [])
+    public function generateSignedPostPolicyV4($expires, $objectName, array $options = [])
     {
         // May be overridden for testing.
         $signingHelper = $this->pluck('helper', $options, false)

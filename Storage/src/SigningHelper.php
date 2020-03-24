@@ -382,7 +382,7 @@ class SigningHelper
         list($credentials, $options) = $this->getSigningCredentials($connection, $options);
 
         $expires = $this->normalizeExpiration($expires);
-        list($resource, $bucket, $object) = $this->normalizeResource($resource);
+        list($resource, $bucket, $object) = $this->normalizeResource($resource, false);
         $object = trim($object, '/');
 
         $options = $this->normalizeOptions($options) + [
@@ -422,20 +422,25 @@ class SigningHelper
             'x-goog-date' => $requestTimestamp
         ]);
 
+        // foreach ($fields as $key => $value) {
+        //     $key = $this->applyPostPolicyEscapingRules($key);
+        //     $value = $this->applyPostPolicyEscapingRules($value);
+        //     $fields[$key] = $value;
+        // }
+
         $conditions = $options['conditions'];
-        foreach ($options['fields'] as $key => $value) {
+        foreach (array_reverse($options['fields']) as $key => $value) {
             $conditions[] = [$key => $value];
         }
 
-        foreach ($conditions as &$condition) {
-            if (is_array($condition) && !$this->isAssoc($condition)) {
-                $end = array_pop($condition);
-                $condition[] = addslashes($end);
-            }
+        foreach ($conditions as $key => $value) {
+            $key = $this->applyPostPolicyEscapingRules($key);
+            $value = $this->applyPostPolicyEscapingRules($value);
+            $conditions[$key] = $value;
         }
 
         $conditions = array_merge($conditions, [
-            ['key' => $object],
+            ['key' => $this->applyPostPolicyEscapingRules($object)],
             ['x-goog-date' => $requestTimestamp],
             ['x-goog-credential' => $credential],
             ['x-goog-algorithm' => self::V4_ALGO_NAME],
@@ -446,7 +451,8 @@ class SigningHelper
             'expiration' => $expirationTimestamp
         ];
 
-        $stringToSign = base64_encode(json_encode($policy, JSON_UNESCAPED_SLASHES));
+        $json = str_replace('\\\u', '\\u', json_encode($policy, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE));
+        $stringToSign = base64_encode($json);
 
         $signature = bin2hex(base64_decode($credentials->signBlob($stringToSign, [
             'forceOpenssl' => $options['forceOpenssl']
@@ -578,12 +584,15 @@ class SigningHelper
      *        encoded and prefixed with a forward slash, index 1 is the bucket
      *        name, and index 2 is the object name, relative to the bucket.
      */
-    private function normalizeResource($resource)
+    private function normalizeResource($resource, $urlencode = true)
     {
         $pieces = explode('/', trim($resource, '/'));
-        array_walk($pieces, function (&$piece) {
-            $piece = rawurlencode($piece);
-        });
+
+        if ($urlencode) {
+            array_walk($pieces, function (&$piece) {
+                $piece = rawurlencode($piece);
+            });
+        }
 
         $bucket = $pieces[0];
 
@@ -880,5 +889,45 @@ class SigningHelper
         }
 
         return implode('&', $q);
+    }
+
+    /**
+     * Apply post policy escaping rules.
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-HTTPPOSTConstructPolicy.html#sigv4-HTTPPOSTEscaping Character Escaping
+     * @codingStandardsIgnoreEnd
+     *
+     * @param string $input
+     * @return string
+     */
+    private function applyPostPolicyEscapingRules($input)
+    {
+        if (is_array($input)) {
+            foreach ($input as $key => $value) {
+                if (is_string($key)) {
+                    $key = $this->applyPostPolicyEscapingRules($key);
+                }
+
+                $value = $this->applyPostPolicyEscapingRules($value);
+
+                $input[$key] = $value;
+            }
+
+            return $input;
+        }
+
+        if (!is_string($input)) {
+            return $input;
+        }
+
+        $output = addslashes($input);
+        $output = str_replace(PHP_EOL, '\n', $output);
+        $output = preg_replace('/[\t]+/', '\t', $output);
+
+        // convert unicode chars. i don't make the rules, this is just how its done.
+        $output = trim(json_encode($output, JSON_UNESCAPED_SLASHES), '"');
+
+        return $output;
     }
 }
