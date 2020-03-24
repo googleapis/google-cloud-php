@@ -63,9 +63,11 @@ class Rest implements ConnectionInterface
         ];
 
         $this->setRequestWrapper(new RequestWrapper($config));
+
+        $apiEndpoint = $this->getApiEndpoint(self::BASE_URI, $config);
         $this->setRequestBuilder(new RequestBuilder(
             $config['serviceDefinitionPath'],
-            self::BASE_URI
+            $apiEndpoint
         ));
 
         $this->projectId = $this->pluck('projectId', $config, false);
