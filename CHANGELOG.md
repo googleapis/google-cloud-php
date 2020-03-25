@@ -1,5 +1,103 @@
 # Changelog
 
+## 0.129.0
+
+<details><summary>google/cloud-bigquery 1.14.0</summary>
+
+
+
+### Features
+
+* add support for BigQuery routines ([#2532](https://www.github.com/googleapis/google-cloud-php/issues/2532)) ([235eb2b](https://www.github.com/googleapis/google-cloud-php/commit/235eb2bd885c67b79ecb1e6e18b5a808a4792bba))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.3.0</summary>
+
+
+
+### Features
+
+* add backup support ([#2782](https://www.github.com/googleapis/google-cloud-php/issues/2782)) ([f101479](https://www.github.com/googleapis/google-cloud-php/commit/f101479cf86464c758c8c84f45b04fba99723a2b))
+
+</details>
+
+<details><summary>google/cloud-core 1.36.0</summary>
+
+
+
+### Features
+
+* add support for BigQuery routines ([#2532](https://www.github.com/googleapis/google-cloud-php/issues/2532)) ([235eb2b](https://www.github.com/googleapis/google-cloud-php/commit/235eb2bd885c67b79ecb1e6e18b5a808a4792bba))
+
+</details>
+
+<details><summary>google/cloud-debugger 0.21.2</summary>
+
+
+
+### Bug Fixes
+
+* remove redundant extension from lock file name ([#2772](https://www.github.com/googleapis/google-cloud-php/issues/2772)) ([0eaa46b](https://www.github.com/googleapis/google-cloud-php/commit/0eaa46b5780f9eb0f71ae325782781cbc4155c5c))
+
+</details>
+
+<details><summary>google/cloud-dlp 0.26.0</summary>
+
+
+
+### Features
+
+* update DLP client ([#2779](https://www.github.com/googleapis/google-cloud-php/issues/2779)) ([d14975a](https://www.github.com/googleapis/google-cloud-php/commit/d14975a2dfbf29ede3a29638a21f632e8d14f7ee))
+
+
+### Miscellaneous Chores
+
+* update metadata ([#2783](https://www.github.com/googleapis/google-cloud-php/issues/2783)) ([1ee21f8](https://www.github.com/googleapis/google-cloud-php/commit/1ee21f824fe057ac9b37077c0142bff96588aceb))
+
+</details>
+
+<details><summary>google/cloud-monitoring 0.21.0</summary>
+
+
+
+### Features
+
+* update v3 client ([#2789](https://www.github.com/googleapis/google-cloud-php/issues/2789)) ([5cd2dc1](https://www.github.com/googleapis/google-cloud-php/commit/5cd2dc1879aafb171fed7aa329c64b6cd22d4869))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.22.0</summary>
+
+
+
+### Features
+
+* add retry policy ([#2773](https://www.github.com/googleapis/google-cloud-php/issues/2773)) ([703e5ce](https://www.github.com/googleapis/google-cloud-php/commit/703e5ce01438e7961366cc58065600cf57c34683))
+* add subscription filter field ([#2784](https://www.github.com/googleapis/google-cloud-php/issues/2784)) ([f55e87f](https://www.github.com/googleapis/google-cloud-php/commit/f55e87f0874feeacdbdf2b1baa2430b4e89c4ad8))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.27.0</summary>
+
+
+
+### Features
+
+* add backup/restore functionality ([#2781](https://www.github.com/googleapis/google-cloud-php/issues/2781)) ([c4d214f](https://www.github.com/googleapis/google-cloud-php/commit/c4d214f278c4c66d1064cf7205b3a0f80a4f147c))
+
+</details>
+
+<details><summary>google/cloud-storage 1.19.0</summary>
+
+
+
+### Features
+
+* implement new GCS signed URL features ([#2720](https://www.github.com/googleapis/google-cloud-php/issues/2720)) ([3071a83](https://www.github.com/googleapis/google-cloud-php/commit/3071a839bca242dd41e59c523d172a4bd8a2826b))
+
+</details>
+
 ## 0.128.0
 
 <details><summary>google/cloud-spanner 1.26.0</summary>
