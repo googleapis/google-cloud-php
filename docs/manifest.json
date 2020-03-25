@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.129.0",
                 "v0.128.0",
                 "v0.127.0",
                 "v0.126.0",
@@ -222,6 +223,7 @@
             "name": "google/cloud-bigquery",
             "defaultService": "bigquery/bigqueryclient",
             "versions": [
+                "v1.14.0",
                 "v1.13.0",
                 "v1.12.2",
                 "v1.12.1",
@@ -313,6 +315,7 @@
             "name": "google/cloud-bigtable",
             "defaultService": "bigtable/readme",
             "versions": [
+                "v1.3.0",
                 "v1.2.2",
                 "v1.2.1",
                 "v1.2.0",
@@ -426,6 +429,7 @@
             "name": "google/cloud-core",
             "defaultService": "core/servicebuilder",
             "versions": [
+                "v1.36.0",
                 "v1.35.0",
                 "v1.34.0",
                 "v1.33.1",
@@ -604,6 +608,7 @@
             "name": "google/cloud-debugger",
             "defaultService": "debugger/debuggerclient",
             "versions": [
+                "v0.21.2",
                 "v0.21.1",
                 "v0.21.0",
                 "v0.20.0",
@@ -689,6 +694,7 @@
             "name": "google/cloud-dlp",
             "defaultService": "dlp/readme",
             "versions": [
+                "v0.26.0",
                 "v0.25.1",
                 "v0.25.0",
                 "v0.24.0",
@@ -1070,6 +1076,7 @@
             "name": "google/cloud-monitoring",
             "defaultService": "monitoring/readme",
             "versions": [
+                "v0.21.0",
                 "v0.20.2",
                 "v0.20.1",
                 "v0.20.0",
@@ -1170,6 +1177,7 @@
             "name": "google/cloud-pubsub",
             "defaultService": "pubsub/pubsubclient",
             "versions": [
+                "v1.22.0",
                 "v1.21.1",
                 "v1.21.0",
                 "v1.20.0",
@@ -1338,6 +1346,7 @@
             "name": "google/cloud-spanner",
             "defaultService": "spanner/spannerclient",
             "versions": [
+                "v1.27.0",
                 "v1.26.0",
                 "v1.25.0",
                 "v1.24.1",
@@ -1485,6 +1494,7 @@
             "name": "google/cloud-storage",
             "defaultService": "storage/storageclient",
             "versions": [
+                "v1.19.0",
                 "v1.18.0",
                 "v1.17.0",
                 "v1.16.1",
