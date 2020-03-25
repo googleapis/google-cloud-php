@@ -345,10 +345,11 @@ class UptimeCheckServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The project whose Uptime check configurations are listed. The format
-     *                             is `projects/[PROJECT_ID]`.
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $parent Required. The project whose Uptime check configurations are listed. The format is:
+     *
+     *     projects/[PROJECT_ID_OR_NUMBER]
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
@@ -411,10 +412,11 @@ class UptimeCheckServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The Uptime check configuration to retrieve. The format
-     *                             is `projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID]`.
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $name Required. The Uptime check configuration to retrieve. The format is:
+     *
+     *     projects/[PROJECT_ID_OR_NUMBER]/uptimeCheckConfigs/[UPTIME_CHECK_ID]
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -463,8 +465,9 @@ class UptimeCheckServiceGapicClient
      * }
      * ```
      *
-     * @param string            $parent            Required. The project in which to create the Uptime check. The format
-     *                                             is `projects/[PROJECT_ID]`.
+     * @param string $parent Required. The project in which to create the Uptime check. The format is:
+     *
+     *     projects/[PROJECT_ID_OR_NUMBER]
      * @param UptimeCheckConfig $uptimeCheckConfig Required. The new Uptime check configuration.
      * @param array             $optionalArgs      {
      *                                             Optional.
@@ -589,10 +592,11 @@ class UptimeCheckServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The Uptime check configuration to delete. The format
-     *                             is `projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID]`.
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $name Required. The Uptime check configuration to delete. The format is:
+     *
+     *     projects/[PROJECT_ID_OR_NUMBER]/uptimeCheckConfigs/[UPTIME_CHECK_ID]
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a

@@ -16,9 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetServiceLevelObjectiveRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Resource name of the `ServiceLevelObjective` to get.
-     * Of the form
-     * `projects/{project_id}/services/{service_id}/serviceLevelObjectives/{slo_name}`.
+     * Required. Resource name of the `ServiceLevelObjective` to get. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME]
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -40,9 +39,8 @@ class GetServiceLevelObjectiveRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. Resource name of the `ServiceLevelObjective` to get.
-     *           Of the form
-     *           `projects/{project_id}/services/{service_id}/serviceLevelObjectives/{slo_name}`.
+     *           Required. Resource name of the `ServiceLevelObjective` to get. The format is:
+     *               projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME]
      *     @type int $view
      *           View of the `ServiceLevelObjective` to return. If `DEFAULT`, return the
      *           `ServiceLevelObjective` as originally defined. If `EXPLICIT` and the
@@ -56,9 +54,8 @@ class GetServiceLevelObjectiveRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name of the `ServiceLevelObjective` to get.
-     * Of the form
-     * `projects/{project_id}/services/{service_id}/serviceLevelObjectives/{slo_name}`.
+     * Required. Resource name of the `ServiceLevelObjective` to get. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME]
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -69,9 +66,8 @@ class GetServiceLevelObjectiveRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name of the `ServiceLevelObjective` to get.
-     * Of the form
-     * `projects/{project_id}/services/{service_id}/serviceLevelObjectives/{slo_name}`.
+     * Required. Resource name of the `ServiceLevelObjective` to get. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME]
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

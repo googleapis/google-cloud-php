@@ -21,8 +21,8 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
      * identifies which time series should be compared with the threshold.
      * The filter is similar to the one that is specified in the
      * [`ListTimeSeries`
-     * request](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list) (that
-     * call is useful to verify the time series that will be retrieved /
+     * request](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list)
+     * (that call is useful to verify the time series that will be retrieved /
      * processed) and must specify the metric type and optionally may contain
      * restrictions on resource type, resource labels, and metric labels.
      * This field may not exceed 2048 Unicode characters in length.
@@ -38,8 +38,8 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
      * members of a group of resrouces). Multiple aggregations
      * are applied in the order specified.
      * This field is similar to the one in the [`ListTimeSeries`
-     * request](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list). It
-     * is advisable to use the `ListTimeSeries` method when debugging this
+     * request](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list).
+     * It is advisable to use the `ListTimeSeries` method when debugging this
      * field.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.Aggregation aggregations = 8;</code>
@@ -126,8 +126,8 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
      *           identifies which time series should be compared with the threshold.
      *           The filter is similar to the one that is specified in the
      *           [`ListTimeSeries`
-     *           request](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list) (that
-     *           call is useful to verify the time series that will be retrieved /
+     *           request](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list)
+     *           (that call is useful to verify the time series that will be retrieved /
      *           processed) and must specify the metric type and optionally may contain
      *           restrictions on resource type, resource labels, and metric labels.
      *           This field may not exceed 2048 Unicode characters in length.
@@ -139,8 +139,8 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
      *           members of a group of resrouces). Multiple aggregations
      *           are applied in the order specified.
      *           This field is similar to the one in the [`ListTimeSeries`
-     *           request](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list). It
-     *           is advisable to use the `ListTimeSeries` method when debugging this
+     *           request](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list).
+     *           It is advisable to use the `ListTimeSeries` method when debugging this
      *           field.
      *     @type string $denominator_filter
      *           A [filter](https://cloud.google.com/monitoring/api/v3/filters) that
@@ -199,8 +199,8 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
      * identifies which time series should be compared with the threshold.
      * The filter is similar to the one that is specified in the
      * [`ListTimeSeries`
-     * request](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list) (that
-     * call is useful to verify the time series that will be retrieved /
+     * request](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list)
+     * (that call is useful to verify the time series that will be retrieved /
      * processed) and must specify the metric type and optionally may contain
      * restrictions on resource type, resource labels, and metric labels.
      * This field may not exceed 2048 Unicode characters in length.
@@ -218,8 +218,8 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
      * identifies which time series should be compared with the threshold.
      * The filter is similar to the one that is specified in the
      * [`ListTimeSeries`
-     * request](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list) (that
-     * call is useful to verify the time series that will be retrieved /
+     * request](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list)
+     * (that call is useful to verify the time series that will be retrieved /
      * processed) and must specify the metric type and optionally may contain
      * restrictions on resource type, resource labels, and metric labels.
      * This field may not exceed 2048 Unicode characters in length.
@@ -244,8 +244,8 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
      * members of a group of resrouces). Multiple aggregations
      * are applied in the order specified.
      * This field is similar to the one in the [`ListTimeSeries`
-     * request](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list). It
-     * is advisable to use the `ListTimeSeries` method when debugging this
+     * request](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list).
+     * It is advisable to use the `ListTimeSeries` method when debugging this
      * field.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.Aggregation aggregations = 8;</code>
@@ -264,8 +264,8 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
      * members of a group of resrouces). Multiple aggregations
      * are applied in the order specified.
      * This field is similar to the one in the [`ListTimeSeries`
-     * request](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list). It
-     * is advisable to use the `ListTimeSeries` method when debugging this
+     * request](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list).
+     * It is advisable to use the `ListTimeSeries` method when debugging this
      * field.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.Aggregation aggregations = 8;</code>

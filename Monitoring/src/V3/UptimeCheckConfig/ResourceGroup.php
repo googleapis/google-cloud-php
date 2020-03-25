@@ -18,7 +18,8 @@ class ResourceGroup extends \Google\Protobuf\Internal\Message
 {
     /**
      * The group of resources being monitored. Should be only the `[GROUP_ID]`,
-     * and not the full-path `projects/[PROJECT_ID]/groups/[GROUP_ID]`.
+     * and not the full-path
+     * `projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]`.
      *
      * Generated from protobuf field <code>string group_id = 1;</code>
      */
@@ -38,7 +39,8 @@ class ResourceGroup extends \Google\Protobuf\Internal\Message
      *
      *     @type string $group_id
      *           The group of resources being monitored. Should be only the `[GROUP_ID]`,
-     *           and not the full-path `projects/[PROJECT_ID]/groups/[GROUP_ID]`.
+     *           and not the full-path
+     *           `projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]`.
      *     @type int $resource_type
      *           The resource type of the group members.
      * }
@@ -50,7 +52,8 @@ class ResourceGroup extends \Google\Protobuf\Internal\Message
 
     /**
      * The group of resources being monitored. Should be only the `[GROUP_ID]`,
-     * and not the full-path `projects/[PROJECT_ID]/groups/[GROUP_ID]`.
+     * and not the full-path
+     * `projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]`.
      *
      * Generated from protobuf field <code>string group_id = 1;</code>
      * @return string
@@ -62,7 +65,8 @@ class ResourceGroup extends \Google\Protobuf\Internal\Message
 
     /**
      * The group of resources being monitored. Should be only the `[GROUP_ID]`,
-     * and not the full-path `projects/[PROJECT_ID]/groups/[GROUP_ID]`.
+     * and not the full-path
+     * `projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]`.
      *
      * Generated from protobuf field <code>string group_id = 1;</code>
      * @param string $var

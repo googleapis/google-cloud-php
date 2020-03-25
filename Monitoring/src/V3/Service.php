@@ -12,7 +12,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * A `Service` is a discrete, autonomous, and network-accessible unit, designed
  * to solve an individual concern
  * ([Wikipedia](https://en.wikipedia.org/wiki/Service-orientation)). In
- * Stackdriver Monitoring, a `Service` acts as the root resource under which
+ * Cloud Monitoring, a `Service` acts as the root resource under which
  * operational aspects of the service are accessible.
  *
  * Generated from protobuf message <code>google.monitoring.v3.Service</code>
@@ -20,8 +20,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class Service extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Resource name for this Service. Of the form
-     * `projects/{project_id}/services/{service_id}`.
+     * Resource name for this Service. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -47,8 +47,8 @@ class Service extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Resource name for this Service. Of the form
-     *           `projects/{project_id}/services/{service_id}`.
+     *           Resource name for this Service. The format is:
+     *               projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
      *     @type string $display_name
      *           Name used for UI elements listing this Service.
      *     @type \Google\Cloud\Monitoring\V3\Service\Custom $custom
@@ -59,6 +59,8 @@ class Service extends \Google\Protobuf\Internal\Message
      *           Type used for Cloud Endpoints services.
      *     @type \Google\Cloud\Monitoring\V3\Service\ClusterIstio $cluster_istio
      *           Type used for Istio services that live in a Kubernetes cluster.
+     *     @type \Google\Cloud\Monitoring\V3\Service\MeshIstio $mesh_istio
+     *           Type used for Istio services scoped to an Istio mesh.
      *     @type \Google\Cloud\Monitoring\V3\Service\Telemetry $telemetry
      *           Configuration for how to query telemetry on a Service.
      * }
@@ -69,8 +71,8 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource name for this Service. Of the form
-     * `projects/{project_id}/services/{service_id}`.
+     * Resource name for this Service. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -81,8 +83,8 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource name for this Service. Of the form
-     * `projects/{project_id}/services/{service_id}`.
+     * Resource name for this Service. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -203,7 +205,7 @@ class Service extends \Google\Protobuf\Internal\Message
     /**
      * Type used for Istio services that live in a Kubernetes cluster.
      *
-     * Generated from protobuf field <code>.google.monitoring.v3.Service.ClusterIstio cluster_istio = 9;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.Service.ClusterIstio cluster_istio = 9 [deprecated = true];</code>
      * @return \Google\Cloud\Monitoring\V3\Service\ClusterIstio
      */
     public function getClusterIstio()
@@ -214,7 +216,7 @@ class Service extends \Google\Protobuf\Internal\Message
     /**
      * Type used for Istio services that live in a Kubernetes cluster.
      *
-     * Generated from protobuf field <code>.google.monitoring.v3.Service.ClusterIstio cluster_istio = 9;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.Service.ClusterIstio cluster_istio = 9 [deprecated = true];</code>
      * @param \Google\Cloud\Monitoring\V3\Service\ClusterIstio $var
      * @return $this
      */
@@ -222,6 +224,32 @@ class Service extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\Service_ClusterIstio::class);
         $this->writeOneof(9, $var);
+
+        return $this;
+    }
+
+    /**
+     * Type used for Istio services scoped to an Istio mesh.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.Service.MeshIstio mesh_istio = 10;</code>
+     * @return \Google\Cloud\Monitoring\V3\Service\MeshIstio
+     */
+    public function getMeshIstio()
+    {
+        return $this->readOneof(10);
+    }
+
+    /**
+     * Type used for Istio services scoped to an Istio mesh.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.Service.MeshIstio mesh_istio = 10;</code>
+     * @param \Google\Cloud\Monitoring\V3\Service\MeshIstio $var
+     * @return $this
+     */
+    public function setMeshIstio($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\Service_MeshIstio::class);
+        $this->writeOneof(10, $var);
 
         return $this;
     }

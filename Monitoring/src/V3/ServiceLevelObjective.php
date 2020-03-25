@@ -21,9 +21,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ServiceLevelObjective extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Resource name for this `ServiceLevelObjective`.
-     * Of the form
-     * `projects/{project_id}/services/{service_id}/serviceLevelObjectives/{slo_name}`.
+     * Resource name for this `ServiceLevelObjective`. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME]
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -58,9 +57,8 @@ class ServiceLevelObjective extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Resource name for this `ServiceLevelObjective`.
-     *           Of the form
-     *           `projects/{project_id}/services/{service_id}/serviceLevelObjectives/{slo_name}`.
+     *           Resource name for this `ServiceLevelObjective`. The format is:
+     *               projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME]
      *     @type string $display_name
      *           Name used for UI elements listing this SLO.
      *     @type \Google\Cloud\Monitoring\V3\ServiceLevelIndicator $service_level_indicator
@@ -85,9 +83,8 @@ class ServiceLevelObjective extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource name for this `ServiceLevelObjective`.
-     * Of the form
-     * `projects/{project_id}/services/{service_id}/serviceLevelObjectives/{slo_name}`.
+     * Resource name for this `ServiceLevelObjective`. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME]
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -98,9 +95,8 @@ class ServiceLevelObjective extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource name for this `ServiceLevelObjective`.
-     * Of the form
-     * `projects/{project_id}/services/{service_id}/serviceLevelObjectives/{slo_name}`.
+     * Resource name for this `ServiceLevelObjective`. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME]
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

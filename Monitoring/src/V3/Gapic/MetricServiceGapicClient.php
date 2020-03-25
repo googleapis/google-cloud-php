@@ -347,7 +347,7 @@ class MetricServiceGapicClient
     }
 
     /**
-     * Lists monitored resource descriptors that match a filter. This method does not require a Stackdriver account.
+     * Lists monitored resource descriptors that match a filter. This method does not require a Workspace.
      *
      * Sample code:
      * ```
@@ -439,7 +439,7 @@ class MetricServiceGapicClient
     }
 
     /**
-     * Gets a single monitored resource descriptor. This method does not require a Stackdriver account.
+     * Gets a single monitored resource descriptor. This method does not require a Workspace.
      *
      * Sample code:
      * ```
@@ -494,7 +494,7 @@ class MetricServiceGapicClient
     }
 
     /**
-     * Lists metric descriptors that match a filter. This method does not require a Stackdriver account.
+     * Lists metric descriptors that match a filter. This method does not require a Workspace.
      *
      * Sample code:
      * ```
@@ -588,7 +588,7 @@ class MetricServiceGapicClient
     }
 
     /**
-     * Gets a single metric descriptor. This method does not require a Stackdriver account.
+     * Gets a single metric descriptor. This method does not require a Workspace.
      *
      * Sample code:
      * ```
@@ -756,7 +756,7 @@ class MetricServiceGapicClient
     }
 
     /**
-     * Lists time series that match a filter. This method does not require a Stackdriver account.
+     * Lists time series that match a filter. This method does not require a Workspace.
      *
      * Sample code:
      * ```

@@ -16,8 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListServiceLevelObjectivesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Resource name of the parent `Service`.
-     * Of the form `projects/{project_id}/services/{service_id}`.
+     * Required. Resource name of the parent containing the listed SLOs, either a
+     * project or a Monitoring Workspace. The formats are:
+     *     projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
+     *     workspaces/[HOST_PROJECT_ID_OR_NUMBER]/services/-
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -60,8 +62,10 @@ class ListServiceLevelObjectivesRequest extends \Google\Protobuf\Internal\Messag
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. Resource name of the parent `Service`.
-     *           Of the form `projects/{project_id}/services/{service_id}`.
+     *           Required. Resource name of the parent containing the listed SLOs, either a
+     *           project or a Monitoring Workspace. The formats are:
+     *               projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
+     *               workspaces/[HOST_PROJECT_ID_OR_NUMBER]/services/-
      *     @type string $filter
      *           A filter specifying what `ServiceLevelObjective`s to return.
      *     @type int $page_size
@@ -84,8 +88,10 @@ class ListServiceLevelObjectivesRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Required. Resource name of the parent `Service`.
-     * Of the form `projects/{project_id}/services/{service_id}`.
+     * Required. Resource name of the parent containing the listed SLOs, either a
+     * project or a Monitoring Workspace. The formats are:
+     *     projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
+     *     workspaces/[HOST_PROJECT_ID_OR_NUMBER]/services/-
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -96,8 +102,10 @@ class ListServiceLevelObjectivesRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Required. Resource name of the parent `Service`.
-     * Of the form `projects/{project_id}/services/{service_id}`.
+     * Required. Resource name of the parent containing the listed SLOs, either a
+     * project or a Monitoring Workspace. The formats are:
+     *     projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
+     *     workspaces/[HOST_PROJECT_ID_OR_NUMBER]/services/-
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
