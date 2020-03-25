@@ -697,11 +697,11 @@ class BucketTest extends SnippetTestCase
         $this->assertContains('X-Goog-Signature=', $res->returnVal());
     }
 
-    public function testPostPolicy()
+    public function testGgenerateSignedPostPolicyV4()
     {
         $objectName = 'foo.txt';
 
-        $snippet = $this->snippetFromMethod(Bucket::class, 'postPolicy');
+        $snippet = $this->snippetFromMethod(Bucket::class, 'generateSignedPostPolicyV4');
         $snippet->addLocal('bucket', $this->bucket);
         $snippet->addLocal('objectName', $objectName);
 
