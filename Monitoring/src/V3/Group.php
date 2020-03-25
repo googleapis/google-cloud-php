@@ -38,11 +38,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class Group extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The name of this group. The format is
-     * `"projects/{project_id_or_number}/groups/{group_id}"`.
+     * Output only. The name of this group. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]
      * When creating a group, this field is ignored and a new name is created
      * consisting of the project specified in the call to `CreateGroup`
-     * and a unique `{group_id}` that is generated automatically.
+     * and a unique `[GROUP_ID]` that is generated automatically.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -54,9 +54,9 @@ class Group extends \Google\Protobuf\Internal\Message
      */
     private $display_name = '';
     /**
-     * The name of the group's parent, if it has one.
-     * The format is `"projects/{project_id_or_number}/groups/{group_id}"`.
-     * For groups with no parent, `parentName` is the empty string, `""`.
+     * The name of the group's parent, if it has one. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]
+     * For groups with no parent, `parent_name` is the empty string, `""`.
      *
      * Generated from protobuf field <code>string parent_name = 3;</code>
      */
@@ -83,17 +83,17 @@ class Group extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The name of this group. The format is
-     *           `"projects/{project_id_or_number}/groups/{group_id}"`.
+     *           Output only. The name of this group. The format is:
+     *               projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]
      *           When creating a group, this field is ignored and a new name is created
      *           consisting of the project specified in the call to `CreateGroup`
-     *           and a unique `{group_id}` that is generated automatically.
+     *           and a unique `[GROUP_ID]` that is generated automatically.
      *     @type string $display_name
      *           A user-assigned name for this group, used only for display purposes.
      *     @type string $parent_name
-     *           The name of the group's parent, if it has one.
-     *           The format is `"projects/{project_id_or_number}/groups/{group_id}"`.
-     *           For groups with no parent, `parentName` is the empty string, `""`.
+     *           The name of the group's parent, if it has one. The format is:
+     *               projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]
+     *           For groups with no parent, `parent_name` is the empty string, `""`.
      *     @type string $filter
      *           The filter used to determine which monitored resources belong to this
      *           group.
@@ -108,11 +108,11 @@ class Group extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The name of this group. The format is
-     * `"projects/{project_id_or_number}/groups/{group_id}"`.
+     * Output only. The name of this group. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]
      * When creating a group, this field is ignored and a new name is created
      * consisting of the project specified in the call to `CreateGroup`
-     * and a unique `{group_id}` that is generated automatically.
+     * and a unique `[GROUP_ID]` that is generated automatically.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -123,11 +123,11 @@ class Group extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The name of this group. The format is
-     * `"projects/{project_id_or_number}/groups/{group_id}"`.
+     * Output only. The name of this group. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]
      * When creating a group, this field is ignored and a new name is created
      * consisting of the project specified in the call to `CreateGroup`
-     * and a unique `{group_id}` that is generated automatically.
+     * and a unique `[GROUP_ID]` that is generated automatically.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -168,9 +168,9 @@ class Group extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the group's parent, if it has one.
-     * The format is `"projects/{project_id_or_number}/groups/{group_id}"`.
-     * For groups with no parent, `parentName` is the empty string, `""`.
+     * The name of the group's parent, if it has one. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]
+     * For groups with no parent, `parent_name` is the empty string, `""`.
      *
      * Generated from protobuf field <code>string parent_name = 3;</code>
      * @return string
@@ -181,9 +181,9 @@ class Group extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the group's parent, if it has one.
-     * The format is `"projects/{project_id_or_number}/groups/{group_id}"`.
-     * For groups with no parent, `parentName` is the empty string, `""`.
+     * The name of the group's parent, if it has one. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]
+     * For groups with no parent, `parent_name` is the empty string, `""`.
      *
      * Generated from protobuf field <code>string parent_name = 3;</code>
      * @param string $var

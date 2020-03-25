@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateServiceLevelObjectiveRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Resource name of the parent `Service`.
-     * Of the form `projects/{project_id}/services/{service_id}`.
+     * Required. Resource name of the parent `Service`. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -25,7 +25,7 @@ class CreateServiceLevelObjectiveRequest extends \Google\Protobuf\Internal\Messa
     /**
      * Optional. The ServiceLevelObjective id to use for this
      * ServiceLevelObjective. If omitted, an id will be generated instead. Must
-     * match the pattern [a-z0-9\-]+
+     * match the pattern `[a-z0-9\-]+`
      *
      * Generated from protobuf field <code>string service_level_objective_id = 3;</code>
      */
@@ -46,12 +46,12 @@ class CreateServiceLevelObjectiveRequest extends \Google\Protobuf\Internal\Messa
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. Resource name of the parent `Service`.
-     *           Of the form `projects/{project_id}/services/{service_id}`.
+     *           Required. Resource name of the parent `Service`. The format is:
+     *               projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
      *     @type string $service_level_objective_id
      *           Optional. The ServiceLevelObjective id to use for this
      *           ServiceLevelObjective. If omitted, an id will be generated instead. Must
-     *           match the pattern [a-z0-9\-]+
+     *           match the pattern `[a-z0-9\-]+`
      *     @type \Google\Cloud\Monitoring\V3\ServiceLevelObjective $service_level_objective
      *           Required. The `ServiceLevelObjective` to create.
      *           The provided `name` will be respected if no `ServiceLevelObjective` exists
@@ -64,8 +64,8 @@ class CreateServiceLevelObjectiveRequest extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Required. Resource name of the parent `Service`.
-     * Of the form `projects/{project_id}/services/{service_id}`.
+     * Required. Resource name of the parent `Service`. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -76,8 +76,8 @@ class CreateServiceLevelObjectiveRequest extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Required. Resource name of the parent `Service`.
-     * Of the form `projects/{project_id}/services/{service_id}`.
+     * Required. Resource name of the parent `Service`. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -94,7 +94,7 @@ class CreateServiceLevelObjectiveRequest extends \Google\Protobuf\Internal\Messa
     /**
      * Optional. The ServiceLevelObjective id to use for this
      * ServiceLevelObjective. If omitted, an id will be generated instead. Must
-     * match the pattern [a-z0-9\-]+
+     * match the pattern `[a-z0-9\-]+`
      *
      * Generated from protobuf field <code>string service_level_objective_id = 3;</code>
      * @return string
@@ -107,7 +107,7 @@ class CreateServiceLevelObjectiveRequest extends \Google\Protobuf\Internal\Messa
     /**
      * Optional. The ServiceLevelObjective id to use for this
      * ServiceLevelObjective. If omitted, an id will be generated instead. Must
-     * match the pattern [a-z0-9\-]+
+     * match the pattern `[a-z0-9\-]+`
      *
      * Generated from protobuf field <code>string service_level_objective_id = 3;</code>
      * @param string $var

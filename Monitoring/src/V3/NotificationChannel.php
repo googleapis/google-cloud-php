@@ -27,8 +27,8 @@ class NotificationChannel extends \Google\Protobuf\Internal\Message
      */
     private $type = '';
     /**
-     * The full REST resource name for this channel. The syntax is:
-     *     projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID]
+     * The full REST resource name for this channel. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID]
      * The `[CHANNEL_ID]` is automatically assigned by the server on creation.
      *
      * Generated from protobuf field <code>string name = 6;</code>
@@ -116,8 +116,8 @@ class NotificationChannel extends \Google\Protobuf\Internal\Message
      *           The type of the notification channel. This field matches the
      *           value of the [NotificationChannelDescriptor.type][google.monitoring.v3.NotificationChannelDescriptor.type] field.
      *     @type string $name
-     *           The full REST resource name for this channel. The syntax is:
-     *               projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID]
+     *           The full REST resource name for this channel. The format is:
+     *               projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID]
      *           The `[CHANNEL_ID]` is automatically assigned by the server on creation.
      *     @type string $display_name
      *           An optional human-readable name for this notification channel. It is
@@ -202,8 +202,8 @@ class NotificationChannel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The full REST resource name for this channel. The syntax is:
-     *     projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID]
+     * The full REST resource name for this channel. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID]
      * The `[CHANNEL_ID]` is automatically assigned by the server on creation.
      *
      * Generated from protobuf field <code>string name = 6;</code>
@@ -215,8 +215,8 @@ class NotificationChannel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The full REST resource name for this channel. The syntax is:
-     *     projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID]
+     * The full REST resource name for this channel. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID]
      * The `[CHANNEL_ID]` is automatically assigned by the server on creation.
      *
      * Generated from protobuf field <code>string name = 6;</code>

@@ -16,15 +16,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateServiceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Resource name of the parent workspace.
-     * Of the form `projects/{project_id}`.
+     * Required. Resource name of the parent workspace. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
      * Optional. The Service id to use for this Service. If omitted, an id will be
-     * generated instead. Must match the pattern [a-z0-9\-]+
+     * generated instead. Must match the pattern `[a-z0-9\-]+`
      *
      * Generated from protobuf field <code>string service_id = 3;</code>
      */
@@ -43,11 +43,11 @@ class CreateServiceRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. Resource name of the parent workspace.
-     *           Of the form `projects/{project_id}`.
+     *           Required. Resource name of the parent workspace. The format is:
+     *               projects/[PROJECT_ID_OR_NUMBER]
      *     @type string $service_id
      *           Optional. The Service id to use for this Service. If omitted, an id will be
-     *           generated instead. Must match the pattern [a-z0-9\-]+
+     *           generated instead. Must match the pattern `[a-z0-9\-]+`
      *     @type \Google\Cloud\Monitoring\V3\Service $service
      *           Required. The `Service` to create.
      * }
@@ -58,8 +58,8 @@ class CreateServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name of the parent workspace.
-     * Of the form `projects/{project_id}`.
+     * Required. Resource name of the parent workspace. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -70,8 +70,8 @@ class CreateServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name of the parent workspace.
-     * Of the form `projects/{project_id}`.
+     * Required. Resource name of the parent workspace. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -87,7 +87,7 @@ class CreateServiceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The Service id to use for this Service. If omitted, an id will be
-     * generated instead. Must match the pattern [a-z0-9\-]+
+     * generated instead. Must match the pattern `[a-z0-9\-]+`
      *
      * Generated from protobuf field <code>string service_id = 3;</code>
      * @return string
@@ -99,7 +99,7 @@ class CreateServiceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The Service id to use for this Service. If omitted, an id will be
-     * generated instead. Must match the pattern [a-z0-9\-]+
+     * generated instead. Must match the pattern `[a-z0-9\-]+`
      *
      * Generated from protobuf field <code>string service_id = 3;</code>
      * @param string $var

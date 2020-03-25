@@ -18,8 +18,8 @@ class InternalChecker extends \Google\Protobuf\Internal\Message
 {
     /**
      * A unique resource name for this InternalChecker. The format is:
-     *   `projects/[PROJECT_ID]/internalCheckers/[INTERNAL_CHECKER_ID]`.
-     * `[PROJECT_ID]` is the Stackdriver Workspace project for the
+     *     projects/[PROJECT_ID_OR_NUMBER]/internalCheckers/[INTERNAL_CHECKER_ID]
+     * `[PROJECT_ID_OR_NUMBER]` is the Stackdriver Workspace project for the
      * Uptime check config associated with the internal checker.
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -69,8 +69,8 @@ class InternalChecker extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           A unique resource name for this InternalChecker. The format is:
-     *             `projects/[PROJECT_ID]/internalCheckers/[INTERNAL_CHECKER_ID]`.
-     *           `[PROJECT_ID]` is the Stackdriver Workspace project for the
+     *               projects/[PROJECT_ID_OR_NUMBER]/internalCheckers/[INTERNAL_CHECKER_ID]
+     *           `[PROJECT_ID_OR_NUMBER]` is the Stackdriver Workspace project for the
      *           Uptime check config associated with the internal checker.
      *     @type string $display_name
      *           The checker's human-readable name. The display name
@@ -96,8 +96,8 @@ class InternalChecker extends \Google\Protobuf\Internal\Message
 
     /**
      * A unique resource name for this InternalChecker. The format is:
-     *   `projects/[PROJECT_ID]/internalCheckers/[INTERNAL_CHECKER_ID]`.
-     * `[PROJECT_ID]` is the Stackdriver Workspace project for the
+     *     projects/[PROJECT_ID_OR_NUMBER]/internalCheckers/[INTERNAL_CHECKER_ID]
+     * `[PROJECT_ID_OR_NUMBER]` is the Stackdriver Workspace project for the
      * Uptime check config associated with the internal checker.
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -110,8 +110,8 @@ class InternalChecker extends \Google\Protobuf\Internal\Message
 
     /**
      * A unique resource name for this InternalChecker. The format is:
-     *   `projects/[PROJECT_ID]/internalCheckers/[INTERNAL_CHECKER_ID]`.
-     * `[PROJECT_ID]` is the Stackdriver Workspace project for the
+     *     projects/[PROJECT_ID_OR_NUMBER]/internalCheckers/[INTERNAL_CHECKER_ID]
+     * `[PROJECT_ID_OR_NUMBER]` is the Stackdriver Workspace project for the
      * Uptime check config associated with the internal checker.
      *
      * Generated from protobuf field <code>string name = 1;</code>

@@ -16,8 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListServicesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Resource name of the parent `Workspace`.
-     * Of the form `projects/{project_id}`.
+     * Required. Resource name of the parent containing the listed services, either a
+     * project or a Monitoring Workspace. The formats are:
+     *     projects/[PROJECT_ID_OR_NUMBER]
+     *     workspaces/[HOST_PROJECT_ID_OR_NUMBER]
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -63,8 +65,10 @@ class ListServicesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. Resource name of the parent `Workspace`.
-     *           Of the form `projects/{project_id}`.
+     *           Required. Resource name of the parent containing the listed services, either a
+     *           project or a Monitoring Workspace. The formats are:
+     *               projects/[PROJECT_ID_OR_NUMBER]
+     *               workspaces/[HOST_PROJECT_ID_OR_NUMBER]
      *     @type string $filter
      *           A filter specifying what `Service`s to return. The filter currently
      *           supports the following fields:
@@ -94,8 +98,10 @@ class ListServicesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name of the parent `Workspace`.
-     * Of the form `projects/{project_id}`.
+     * Required. Resource name of the parent containing the listed services, either a
+     * project or a Monitoring Workspace. The formats are:
+     *     projects/[PROJECT_ID_OR_NUMBER]
+     *     workspaces/[HOST_PROJECT_ID_OR_NUMBER]
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -106,8 +112,10 @@ class ListServicesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name of the parent `Workspace`.
-     * Of the form `projects/{project_id}`.
+     * Required. Resource name of the parent containing the listed services, either a
+     * project or a Monitoring Workspace. The formats are:
+     *     projects/[PROJECT_ID_OR_NUMBER]
+     *     workspaces/[HOST_PROJECT_ID_OR_NUMBER]
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

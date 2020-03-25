@@ -18,8 +18,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class NotificationChannelDescriptor extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The full REST resource name for this descriptor. The syntax is:
-     *     projects/[PROJECT_ID]/notificationChannelDescriptors/[TYPE]
+     * The full REST resource name for this descriptor. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/notificationChannelDescriptors/[TYPE]
      * In the above, `[TYPE]` is the value of the `type` field.
      *
      * Generated from protobuf field <code>string name = 6;</code>
@@ -76,8 +76,8 @@ class NotificationChannelDescriptor extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The full REST resource name for this descriptor. The syntax is:
-     *               projects/[PROJECT_ID]/notificationChannelDescriptors/[TYPE]
+     *           The full REST resource name for this descriptor. The format is:
+     *               projects/[PROJECT_ID_OR_NUMBER]/notificationChannelDescriptors/[TYPE]
      *           In the above, `[TYPE]` is the value of the `type` field.
      *     @type string $type
      *           The type of notification channel, such as "email", "sms", etc.
@@ -106,8 +106,8 @@ class NotificationChannelDescriptor extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The full REST resource name for this descriptor. The syntax is:
-     *     projects/[PROJECT_ID]/notificationChannelDescriptors/[TYPE]
+     * The full REST resource name for this descriptor. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/notificationChannelDescriptors/[TYPE]
      * In the above, `[TYPE]` is the value of the `type` field.
      *
      * Generated from protobuf field <code>string name = 6;</code>
@@ -119,8 +119,8 @@ class NotificationChannelDescriptor extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The full REST resource name for this descriptor. The syntax is:
-     *     projects/[PROJECT_ID]/notificationChannelDescriptors/[TYPE]
+     * The full REST resource name for this descriptor. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/notificationChannelDescriptors/[TYPE]
      * In the above, `[TYPE]` is the value of the `type` field.
      *
      * Generated from protobuf field <code>string name = 6;</code>

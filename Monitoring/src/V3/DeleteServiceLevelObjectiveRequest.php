@@ -16,9 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeleteServiceLevelObjectiveRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Resource name of the `ServiceLevelObjective` to delete.
-     * Of the form
-     * `projects/{project_id}/services/{service_id}/serviceLevelObjectives/{slo_name}`.
+     * Required. Resource name of the `ServiceLevelObjective` to delete. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME]
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -31,9 +30,8 @@ class DeleteServiceLevelObjectiveRequest extends \Google\Protobuf\Internal\Messa
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. Resource name of the `ServiceLevelObjective` to delete.
-     *           Of the form
-     *           `projects/{project_id}/services/{service_id}/serviceLevelObjectives/{slo_name}`.
+     *           Required. Resource name of the `ServiceLevelObjective` to delete. The format is:
+     *               projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME]
      * }
      */
     public function __construct($data = NULL) {
@@ -42,9 +40,8 @@ class DeleteServiceLevelObjectiveRequest extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Required. Resource name of the `ServiceLevelObjective` to delete.
-     * Of the form
-     * `projects/{project_id}/services/{service_id}/serviceLevelObjectives/{slo_name}`.
+     * Required. Resource name of the `ServiceLevelObjective` to delete. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME]
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -55,9 +52,8 @@ class DeleteServiceLevelObjectiveRequest extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Required. Resource name of the `ServiceLevelObjective` to delete.
-     * Of the form
-     * `projects/{project_id}/services/{service_id}/serviceLevelObjectives/{slo_name}`.
+     * Required. Resource name of the `ServiceLevelObjective` to delete. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME]
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
