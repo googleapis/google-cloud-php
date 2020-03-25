@@ -44,8 +44,13 @@ class Rest implements ConnectionInterface
     use UriTrait;
 
     const BASE_URI = 'https://storage.googleapis.com/storage/v1/';
-    const UPLOAD_URI = 'https://storage.googleapis.com/upload/storage/v1/b/{bucket}/o{?query*}';
-    const DOWNLOAD_URI = 'https://storage.googleapis.com/storage/v1/b/{bucket}/o/{object}{?query*}';
+    const UPLOAD_PATH = 'b/{bucket}/o{?query*}';
+    const DOWNLOAD_PATH = 'b/{bucket}/o/{object}{?query*}';
+
+    /**
+     * @var string
+     */
+    private $apiEndpoint;
 
     /**
      * @var string
@@ -64,10 +69,10 @@ class Rest implements ConnectionInterface
 
         $this->setRequestWrapper(new RequestWrapper($config));
 
-        $apiEndpoint = $this->getApiEndpoint(self::BASE_URI, $config);
+        $this->apiEndpoint = $this->getApiEndpoint(self::BASE_URI, $config);
         $this->setRequestBuilder(new RequestBuilder(
             $config['serviceDefinitionPath'],
-            $apiEndpoint
+            $this->apiEndpoint
         ));
 
         $this->projectId = $this->pluck('projectId', $config, false);
@@ -278,7 +283,7 @@ class Rest implements ConnectionInterface
         return new $uploaderClass(
             $this->requestWrapper,
             $args['data'],
-            $this->expandUri(self::UPLOAD_URI, $uriParams),
+            $this->expandUri($this->apiEndpoint . self::UPLOAD_PATH, $uriParams),
             $args['uploaderOptions']
         );
     }
@@ -471,7 +476,7 @@ class Rest implements ConnectionInterface
             'restDelayFunction' => null
         ]);
 
-        $uri = $this->expandUri(self::DOWNLOAD_URI, [
+        $uri = $this->expandUri($this->apiEndpoint . self::DOWNLOAD_PATH, [
             'bucket' => $args['bucket'],
             'object' => $args['object'],
             'query' => [
