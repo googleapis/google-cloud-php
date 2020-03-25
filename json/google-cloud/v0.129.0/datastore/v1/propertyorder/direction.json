@@ -1,0 +1,1 @@
+{"id":"datastore\/v1\/propertyorder\/direction","type":"","title":"Google\\Cloud\\Datastore\\V1\\PropertyOrder\\Direction","name":"Direction","description":"<p>The sort direction.<\/p>\n<p>Protobuf type <code>google.datastore.v1.PropertyOrder.Direction<\/code><\/p>","examples":[],"resources":[],"methods":[]}
