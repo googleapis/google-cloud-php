@@ -125,5 +125,6 @@ class ManageJobsTest extends BigQueryTestCase
         $this->assertEquals(2, count($children));
         $this->assertStringStartsWith('script_job_', $children[0]->id());
         $this->assertStringStartsWith('script_job_', $children[1]->id());
+        $this->assertNotEquals($children[0]->id(), $children[1]->id());
     }
 }
