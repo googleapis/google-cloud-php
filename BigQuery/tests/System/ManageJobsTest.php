@@ -116,8 +116,7 @@ class ManageJobsTest extends BigQueryTestCase
         $job = self::$client->startQuery($query);
         $jobId = $job->id();
 
-        // wait a second for the children to become available.
-        sleep(1);
+        $job->waitUntilComplete();
 
         $children = iterator_to_array(self::$client->jobs([
             'parentJobId' => $jobId
