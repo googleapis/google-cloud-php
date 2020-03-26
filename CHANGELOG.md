@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.129.1
+
+<details><summary>google/cloud-redis 0.12.3</summary>
+
+
+
+### Documentation
+
+* update documentation ([#2791](https://www.github.com/googleapis/google-cloud-php/issues/2791)) ([ce72fef](https://www.github.com/googleapis/google-cloud-php/commit/ce72fefe1aaf9046625696f5323cfc676188edd5))
+
+</details>
+
 ## 0.129.0
 
 <details><summary>google/cloud-bigquery 1.14.0</summary>
