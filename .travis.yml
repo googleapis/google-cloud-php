@@ -17,30 +17,9 @@ jobs:
       script:
       - git fetch --unshallow
       - ./dev/google-cloud split $TRAVIS_TAG
-      notifications:
-        email:
-          recipients:
-            - john@pedrie.com
-            - dwsupplee@gmail.com
-            - michaelbausor@google.com
-            - tmatsuo@google.com
-            - chingor@google.com
-          on_success: always
-          on_failure: always
 
 stages:
   - name: "Push Docs"
     if: ((type != pull_request) AND (branch = master)) OR (tag IS present)
   - name: "Split Components"
     if: (tag IS present)
-
-env:
-  global:
-    - GOOGLE_CLOUD_PHP_TESTS_KEY_PATH=$TRAVIS_BUILD_DIR/keys/GOOGLE_CLOUD_PHP_TESTS.json
-    - GOOGLE_CLOUD_PHP_WHITELIST_TESTS_KEY_PATH=$TRAVIS_BUILD_DIR/keys/GOOGLE_CLOUD_PHP_TESTS_WHITELIST.json
-
-script:
-- ./dev/sh/tests
-
-after_success:
-- if [[ $TRAVIS_PHP_VERSION =~ ^hhvm ]]; then bash <(curl -s https://codecov.io/bash); fi
