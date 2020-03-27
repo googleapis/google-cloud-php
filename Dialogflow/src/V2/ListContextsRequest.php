@@ -17,7 +17,11 @@ class ListContextsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The session to list all contexts from.
-     * Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
+     * Format: `projects/<Project ID>/agent/sessions/<Session ID>` or
+     * `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     * ID>/sessions/<Session ID>`.
+     * If `Environment ID` is not specified, we assume default 'draft'
+     * environment. If `User ID` is not specified, we assume default '-' user.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -44,7 +48,11 @@ class ListContextsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The session to list all contexts from.
-     *           Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
+     *           Format: `projects/<Project ID>/agent/sessions/<Session ID>` or
+     *           `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *           ID>/sessions/<Session ID>`.
+     *           If `Environment ID` is not specified, we assume default 'draft'
+     *           environment. If `User ID` is not specified, we assume default '-' user.
      *     @type int $page_size
      *           Optional. The maximum number of items to return in a single page. By
      *           default 100 and at most 1000.
@@ -59,7 +67,11 @@ class ListContextsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The session to list all contexts from.
-     * Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
+     * Format: `projects/<Project ID>/agent/sessions/<Session ID>` or
+     * `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     * ID>/sessions/<Session ID>`.
+     * If `Environment ID` is not specified, we assume default 'draft'
+     * environment. If `User ID` is not specified, we assume default '-' user.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -71,7 +83,11 @@ class ListContextsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The session to list all contexts from.
-     * Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
+     * Format: `projects/<Project ID>/agent/sessions/<Session ID>` or
+     * `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     * ID>/sessions/<Session ID>`.
+     * If `Environment ID` is not specified, we assume default 'draft'
+     * environment. If `User ID` is not specified, we assume default '-' user.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

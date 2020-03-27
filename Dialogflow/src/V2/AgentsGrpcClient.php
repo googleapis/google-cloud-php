@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2019 Google LLC.
+// Copyright 2020 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-//
 //
 namespace Google\Cloud\Dialogflow\V2;
 
@@ -190,6 +189,21 @@ class AgentsGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.cloud.dialogflow.v2.Agents/RestoreAgent',
         $argument,
         ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Gets agent validation result. Agent validation is performed during
+     * training time and is updated automatically when training is completed.
+     * @param \Google\Cloud\Dialogflow\V2\GetValidationResultRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function GetValidationResult(\Google\Cloud\Dialogflow\V2\GetValidationResultRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.dialogflow.v2.Agents/GetValidationResult',
+        $argument,
+        ['\Google\Cloud\Dialogflow\V2\ValidationResult', 'decode'],
         $metadata, $options);
     }
 

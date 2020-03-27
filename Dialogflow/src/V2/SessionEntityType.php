@@ -22,7 +22,11 @@ class SessionEntityType extends \Google\Protobuf\Internal\Message
     /**
      * Required. The unique identifier of this session entity type. Format:
      * `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
-     * Display Name>`.
+     * Display Name>`, or `projects/<Project ID>/agent/environments/<Environment
+     * ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display
+     * Name>`.
+     * If `Environment ID` is not specified, we assume default 'draft'
+     * environment. If `User ID` is not specified, we assume default '-' user.
      * `<Entity Type Display Name>` must be the display name of an existing entity
      * type in the same agent that will be overridden or supplemented.
      *
@@ -53,7 +57,11 @@ class SessionEntityType extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The unique identifier of this session entity type. Format:
      *           `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
-     *           Display Name>`.
+     *           Display Name>`, or `projects/<Project ID>/agent/environments/<Environment
+     *           ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display
+     *           Name>`.
+     *           If `Environment ID` is not specified, we assume default 'draft'
+     *           environment. If `User ID` is not specified, we assume default '-' user.
      *           `<Entity Type Display Name>` must be the display name of an existing entity
      *           type in the same agent that will be overridden or supplemented.
      *     @type int $entity_override_mode
@@ -72,7 +80,11 @@ class SessionEntityType extends \Google\Protobuf\Internal\Message
     /**
      * Required. The unique identifier of this session entity type. Format:
      * `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
-     * Display Name>`.
+     * Display Name>`, or `projects/<Project ID>/agent/environments/<Environment
+     * ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display
+     * Name>`.
+     * If `Environment ID` is not specified, we assume default 'draft'
+     * environment. If `User ID` is not specified, we assume default '-' user.
      * `<Entity Type Display Name>` must be the display name of an existing entity
      * type in the same agent that will be overridden or supplemented.
      *
@@ -87,7 +99,11 @@ class SessionEntityType extends \Google\Protobuf\Internal\Message
     /**
      * Required. The unique identifier of this session entity type. Format:
      * `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
-     * Display Name>`.
+     * Display Name>`, or `projects/<Project ID>/agent/environments/<Environment
+     * ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display
+     * Name>`.
+     * If `Environment ID` is not specified, we assume default 'draft'
+     * environment. If `User ID` is not specified, we assume default '-' user.
      * `<Entity Type Display Name>` must be the display name of an existing entity
      * type in the same agent that will be overridden or supplemented.
      *

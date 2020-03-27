@@ -77,6 +77,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      * Optional. The collection of event names that trigger the intent.
      * If the collection of input contexts is not empty, all of the contexts must
      * be present in the active user session for an event to trigger this intent.
+     * Event names are limited to 150 characters.
      *
      * Generated from protobuf field <code>repeated string events = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -199,6 +200,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      *           Optional. The collection of event names that trigger the intent.
      *           If the collection of input contexts is not empty, all of the contexts must
      *           be present in the active user session for an event to trigger this intent.
+     *           Event names are limited to 150 characters.
      *     @type \Google\Cloud\Dialogflow\V2\Intent\TrainingPhrase[]|\Google\Protobuf\Internal\RepeatedField $training_phrases
      *           Optional. The collection of examples that the agent is
      *           trained on.
@@ -459,6 +461,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      * Optional. The collection of event names that trigger the intent.
      * If the collection of input contexts is not empty, all of the contexts must
      * be present in the active user session for an event to trigger this intent.
+     * Event names are limited to 150 characters.
      *
      * Generated from protobuf field <code>repeated string events = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -472,6 +475,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      * Optional. The collection of event names that trigger the intent.
      * If the collection of input contexts is not empty, all of the contexts must
      * be present in the active user session for an event to trigger this intent.
+     * Event names are limited to 150 characters.
      *
      * Generated from protobuf field <code>repeated string events = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var

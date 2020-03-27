@@ -17,9 +17,13 @@ class CreateContextRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The session to create a context for.
-     * Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
+     * Format: `projects/<Project ID>/agent/sessions/<Session ID>` or
+     * `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     * ID>/sessions/<Session ID>`.
+     * If `Environment ID` is not specified, we assume default 'draft'
+     * environment. If `User ID` is not specified, we assume default '-' user.
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -37,7 +41,11 @@ class CreateContextRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The session to create a context for.
-     *           Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
+     *           Format: `projects/<Project ID>/agent/sessions/<Session ID>` or
+     *           `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *           ID>/sessions/<Session ID>`.
+     *           If `Environment ID` is not specified, we assume default 'draft'
+     *           environment. If `User ID` is not specified, we assume default '-' user.
      *     @type \Google\Cloud\Dialogflow\V2\Context $context
      *           Required. The context to create.
      * }
@@ -49,9 +57,13 @@ class CreateContextRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The session to create a context for.
-     * Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
+     * Format: `projects/<Project ID>/agent/sessions/<Session ID>` or
+     * `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     * ID>/sessions/<Session ID>`.
+     * If `Environment ID` is not specified, we assume default 'draft'
+     * environment. If `User ID` is not specified, we assume default '-' user.
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -61,9 +73,13 @@ class CreateContextRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The session to create a context for.
-     * Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
+     * Format: `projects/<Project ID>/agent/sessions/<Session ID>` or
+     * `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     * ID>/sessions/<Session ID>`.
+     * If `Environment ID` is not specified, we assume default 'draft'
+     * environment. If `User ID` is not specified, we assume default '-' user.
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

@@ -42,12 +42,14 @@ use Google\Cloud\Dialogflow\V2\DeleteAgentRequest;
 use Google\Cloud\Dialogflow\V2\ExportAgentRequest;
 use Google\Cloud\Dialogflow\V2\ExportAgentResponse;
 use Google\Cloud\Dialogflow\V2\GetAgentRequest;
+use Google\Cloud\Dialogflow\V2\GetValidationResultRequest;
 use Google\Cloud\Dialogflow\V2\ImportAgentRequest;
 use Google\Cloud\Dialogflow\V2\RestoreAgentRequest;
 use Google\Cloud\Dialogflow\V2\SearchAgentsRequest;
 use Google\Cloud\Dialogflow\V2\SearchAgentsResponse;
 use Google\Cloud\Dialogflow\V2\SetAgentRequest;
 use Google\Cloud\Dialogflow\V2\TrainAgentRequest;
+use Google\Cloud\Dialogflow\V2\ValidationResult;
 use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
@@ -925,6 +927,69 @@ class AgentsGapicClient
             $optionalArgs,
             $request,
             $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Gets agent validation result. Agent validation is performed during
+     * training time and is updated automatically when training is completed.
+     *
+     * Sample code:
+     * ```
+     * $agentsClient = new AgentsClient();
+     * try {
+     *     $response = $agentsClient->getValidationResult();
+     * } finally {
+     *     $agentsClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type string $parent
+     *          Required. The project that the agent is associated with.
+     *          Format: `projects/<Project ID>`.
+     *     @type string $languageCode
+     *          Optional. The language for which you want a validation result. If not
+     *          specified, the agent's default language is used. [Many
+     *          languages](https://cloud.google.com/dialogflow/docs/reference/language)
+     *          are supported. Note: languages must be enabled in the agent before they can
+     *          be used.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dialogflow\V2\ValidationResult
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function getValidationResult(array $optionalArgs = [])
+    {
+        $request = new GetValidationResultRequest();
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+        }
+        if (isset($optionalArgs['languageCode'])) {
+            $request->setLanguageCode($optionalArgs['languageCode']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'GetValidationResult',
+            ValidationResult::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 }
