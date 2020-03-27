@@ -3,6 +3,17 @@
 return [
     'interfaces' => [
         'google.cloud.talent.v4beta1.TenantService' => [
+            'DeleteTenant' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v4beta1/{name=projects/*/tenants/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'CreateTenant' => [
                 'method' => 'post',
                 'uriTemplate' => '/v4beta1/{parent=projects/*}/tenants',
@@ -34,17 +45,6 @@ return [
                     'tenant.name' => [
                         'getters' => [
                             'getTenant',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteTenant' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v4beta1/{name=projects/*/tenants/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
                             'getName',
                         ],
                     ],
