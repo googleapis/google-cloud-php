@@ -1,0 +1,19 @@
+{
+    "title": "servicedirectory",
+    "defaultService": "servicedirectory\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "servicedirectory\/readme"
+        },
+        {
+            "title": "v1beta1",
+            "type": "servicedirectory\/v1beta1\/readme",
+            "nav": [],
+            "patterns": [
+                "servicedirectory\/v1beta1\/\\w{1,}"
+            ]
+        }
+    ],
+    "pattern": "servicedirectory\/\\w{1,}"
+}

@@ -39,6 +39,7 @@ This client supports the following Google Cloud Platform services at a [Beta](#v
 * [Google Cloud Text-to-Speech](#google-cloud-text-to-speech-beta) (Beta)
 * [Google Cloud Vision](#google-cloud-vision-beta) (Beta)
 * [Google DLP](#google-dlp-beta) (Beta)
+* [Google Service Directory](#google-service-directory-beta) (Beta)
 * [Google Stackdriver Error Reporting](#google-stackdriver-error-reporting-beta) (Beta)
 * [Google Stackdriver Monitoring](#google-stackdriver-monitoring-beta) (Beta)
 
@@ -1119,6 +1120,50 @@ foreach ($findings as $finding) {
 
 ```
 $ composer require google/cloud-dlp
+```
+
+## Google Service Directory (Beta)
+
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/servicedirectory/readme)
+- [Official Documentation](https://cloud.google.com/service-directory/)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\ServiceDirectory\V1beta1\RegistrationServiceClient;
+use Google\Cloud\ServiceDirectory\V1beta1\Service;
+
+$client = new RegistrationServiceClient();
+
+$projectId = '[YOUR_PROJECT_ID]';
+$location = 'us-central1';
+$serviceId = '[YOUR_SERVICE_ID]';
+$namespace = '[YOUR_NAMESPACE]';
+
+$service = $client->createService(
+    RegistrationServiceClient::namespaceName(
+        $projectId,
+        $location,
+        $namespace
+    ),
+    $serviceId,
+    new Service()
+);
+
+printf(
+    'Created service: %s' . PHP_EOL,
+    $service->getName()
+);
+```
+
+#### google/cloud-service-directory
+
+[Google Service Directory](https://github.com/googleapis/google-cloud-php-service-directory) can be installed separately by requiring the [`google/cloud-service-directory`](https://packagist.org/packages/google/cloud-service-directory) composer package:
+
+```
+$ composer require google/cloud-service-directory
 ```
 
 ## Google Stackdriver Error Reporting (Beta)
