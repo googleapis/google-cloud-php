@@ -37,7 +37,7 @@ class PostPolicyTest extends StorageTestCase
     {
         $filename = $this->createFilename();
         $content = 'helloworld';
-        $policy = self::$bucket->postPolicy(time() + 3600, $filename);
+        $policy = self::$bucket->generateSignedPostPolicyV4(time() + 3600, $filename);
         $res = $this->uploadWithPolicy($policy, $content);
         self::$deletionQueue->add($this->getObject($filename));
 
@@ -50,7 +50,7 @@ class PostPolicyTest extends StorageTestCase
         $filename = $this->createFilename();
         $content = 'helloworld';
         $location = 'https://google.com';
-        $policy = self::$bucket->postPolicy(time() + 3600, $filename, [
+        $policy = self::$bucket->generateSignedPostPolicyV4(time() + 3600, $filename, [
             'fields' => [
                 'success_action_redirect' => $location
             ]
@@ -68,7 +68,7 @@ class PostPolicyTest extends StorageTestCase
     public function testUploadPolicyInvalidField()
     {
         $filename = $this->createFilename();
-        $policy = self::$bucket->postPolicy(time() + 3600, $filename, [
+        $policy = self::$bucket->generateSignedPostPolicyV4(time() + 3600, $filename, [
             'fields' => [
                 'x-goog-random' => 'foo'
             ]
@@ -79,19 +79,35 @@ class PostPolicyTest extends StorageTestCase
         $this->assertEquals(400, $res->getStatusCode());
     }
 
-    public function testUploadPolicyEscapingSequence()
+    /**
+     * @dataProvider escapingSequences
+     */
+    public function testUploadPolicyEscapingSequence($cond)
     {
         $filename = $this->createFilename();
-        $content = "foo\n";
-        $policy = self::$bucket->postPolicy(time() + 3600, $filename, [
+        $policy = self::$bucket->generateSignedPostPolicyV4(time() + 3600, $filename, [
             'conditions' => [
-                ['starts-with', '$key', "foo\n"]
+                ['x-goog-meta-foo' => $cond]
+            ],
+            'fields' => [
+                'x-goog-meta-foo' => $cond
             ]
         ]);
-        $res = $this->uploadWithPolicy($policy, $content);
+        $res = $this->uploadWithPolicy($policy);
         self::$deletionQueue->add($this->getObject($filename));
 
-        $this->assertEquals(203, $res->getStatusCode());
+        $this->assertGreaterThanOrEqual(200, (int)$res->getStatusCode());
+        $this->assertLessThan(300, (int)$res->getStatusCode());
+    }
+
+    public function escapingSequences()
+    {
+        return [
+            ["foo
+            "],
+            ["é"],
+            ["hello\world"]
+        ];
     }
 
     private function uploadWithPolicy(array $policy, $content = '')

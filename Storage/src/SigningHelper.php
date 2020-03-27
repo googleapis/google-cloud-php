@@ -369,7 +369,7 @@ class SigningHelper
      * @param string $resource The URI to the storage resource, preceded by a
      *        leading slash.
      * @param array $options Configuration options. See
-     *        {@see Google\Cloud\Storage\Bucket::postPolicy()} for details.
+     *        {@see Google\Cloud\Storage\Bucket::generateSignedPostPolicyV4()} for details.
      * @return array An associative array, containing (string) `uri` and
      *        (array) `fields` keys.
      */
@@ -428,13 +428,13 @@ class SigningHelper
         }
 
         foreach ($conditions as $key => $value) {
-            $key = $this->applyPostPolicyEscapingRules($key);
-            $value = $this->applyPostPolicyEscapingRules($value);
+            $key = $key;
+            $value = $value;
             $conditions[$key] = $value;
         }
 
         $conditions = array_merge($conditions, [
-            ['key' => $this->applyPostPolicyEscapingRules($object)],
+            ['key' => $object],
             ['x-goog-date' => $requestTimestamp],
             ['x-goog-credential' => $credential],
             ['x-goog-algorithm' => self::V4_ALGO_NAME],
@@ -445,7 +445,7 @@ class SigningHelper
             'expiration' => $expirationTimestamp
         ];
 
-        $json = str_replace('\\\u', '\\u', json_encode($policy, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE));
+        $json = str_replace('\\\u', '\\u', json_encode($policy, JSON_UNESCAPED_SLASHES));
         $stringToSign = base64_encode($json);
 
         $signature = bin2hex(base64_decode($credentials->signBlob($stringToSign, [
@@ -883,45 +883,5 @@ class SigningHelper
         }
 
         return implode('&', $q);
-    }
-
-    /**
-     * Apply post policy escaping rules.
-     *
-     * @codingStandardsIgnoreStart
-     * @see https://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-HTTPPOSTConstructPolicy.html#sigv4-HTTPPOSTEscaping Character Escaping
-     * @codingStandardsIgnoreEnd
-     *
-     * @param string $input
-     * @return string
-     */
-    private function applyPostPolicyEscapingRules($input)
-    {
-        if (is_array($input)) {
-            foreach ($input as $key => $value) {
-                if (is_string($key)) {
-                    $key = $this->applyPostPolicyEscapingRules($key);
-                }
-
-                $value = $this->applyPostPolicyEscapingRules($value);
-
-                $input[$key] = $value;
-            }
-
-            return $input;
-        }
-
-        if (!is_string($input)) {
-            return $input;
-        }
-
-        $output = preg_replace('/[\\\]{1,}/', '\\\\', $input);
-        $output = str_replace(PHP_EOL, '\n', $output);
-        $output = preg_replace('/[\t]+/', '\t', $output);
-
-        // convert unicode chars. i don't make the rules, this is just how its done.
-        $output = trim(json_encode($output, JSON_UNESCAPED_SLASHES), '"');
-
-        return $output;
     }
 }
