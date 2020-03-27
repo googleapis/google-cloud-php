@@ -57,8 +57,8 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $loggingServiceV2Client = new LoggingServiceV2Client();
  * try {
- *     $formattedLogName = $loggingServiceV2Client->logName('[PROJECT]', '[LOG]');
- *     $loggingServiceV2Client->deleteLog($formattedLogName);
+ *     $entries = [];
+ *     $response = $loggingServiceV2Client->writeLogEntries($entries);
  * } finally {
  *     $loggingServiceV2Client->close();
  * }
@@ -105,13 +105,9 @@ class LoggingServiceV2GapicClient
         'https://www.googleapis.com/auth/logging.read',
         'https://www.googleapis.com/auth/logging.write',
     ];
-    private static $billingNameTemplate;
-    private static $billingLogNameTemplate;
+    private static $billingAccountNameTemplate;
     private static $folderNameTemplate;
-    private static $folderLogNameTemplate;
-    private static $logNameTemplate;
     private static $organizationNameTemplate;
-    private static $organizationLogNameTemplate;
     private static $projectNameTemplate;
     private static $pathTemplateMap;
 
@@ -134,22 +130,13 @@ class LoggingServiceV2GapicClient
         ];
     }
 
-    private static function getBillingNameTemplate()
+    private static function getBillingAccountNameTemplate()
     {
-        if (null == self::$billingNameTemplate) {
-            self::$billingNameTemplate = new PathTemplate('billingAccounts/{billing_account}');
+        if (null == self::$billingAccountNameTemplate) {
+            self::$billingAccountNameTemplate = new PathTemplate('billingAccounts/{billing_account}');
         }
 
-        return self::$billingNameTemplate;
-    }
-
-    private static function getBillingLogNameTemplate()
-    {
-        if (null == self::$billingLogNameTemplate) {
-            self::$billingLogNameTemplate = new PathTemplate('billingAccounts/{billing_account}/logs/{log}');
-        }
-
-        return self::$billingLogNameTemplate;
+        return self::$billingAccountNameTemplate;
     }
 
     private static function getFolderNameTemplate()
@@ -161,24 +148,6 @@ class LoggingServiceV2GapicClient
         return self::$folderNameTemplate;
     }
 
-    private static function getFolderLogNameTemplate()
-    {
-        if (null == self::$folderLogNameTemplate) {
-            self::$folderLogNameTemplate = new PathTemplate('folders/{folder}/logs/{log}');
-        }
-
-        return self::$folderLogNameTemplate;
-    }
-
-    private static function getLogNameTemplate()
-    {
-        if (null == self::$logNameTemplate) {
-            self::$logNameTemplate = new PathTemplate('projects/{project}/logs/{log}');
-        }
-
-        return self::$logNameTemplate;
-    }
-
     private static function getOrganizationNameTemplate()
     {
         if (null == self::$organizationNameTemplate) {
@@ -186,15 +155,6 @@ class LoggingServiceV2GapicClient
         }
 
         return self::$organizationNameTemplate;
-    }
-
-    private static function getOrganizationLogNameTemplate()
-    {
-        if (null == self::$organizationLogNameTemplate) {
-            self::$organizationLogNameTemplate = new PathTemplate('organizations/{organization}/logs/{log}');
-        }
-
-        return self::$organizationLogNameTemplate;
     }
 
     private static function getProjectNameTemplate()
@@ -210,13 +170,9 @@ class LoggingServiceV2GapicClient
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
-                'billing' => self::getBillingNameTemplate(),
-                'billingLog' => self::getBillingLogNameTemplate(),
+                'billingAccount' => self::getBillingAccountNameTemplate(),
                 'folder' => self::getFolderNameTemplate(),
-                'folderLog' => self::getFolderLogNameTemplate(),
-                'log' => self::getLogNameTemplate(),
                 'organization' => self::getOrganizationNameTemplate(),
-                'organizationLog' => self::getOrganizationLogNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
             ];
         }
@@ -226,35 +182,17 @@ class LoggingServiceV2GapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a billing resource.
+     * a billing_account resource.
      *
      * @param string $billingAccount
      *
-     * @return string The formatted billing resource.
+     * @return string The formatted billing_account resource.
      * @experimental
      */
-    public static function billingName($billingAccount)
+    public static function billingAccountName($billingAccount)
     {
-        return self::getBillingNameTemplate()->render([
+        return self::getBillingAccountNameTemplate()->render([
             'billing_account' => $billingAccount,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a billing_log resource.
-     *
-     * @param string $billingAccount
-     * @param string $log
-     *
-     * @return string The formatted billing_log resource.
-     * @experimental
-     */
-    public static function billingLogName($billingAccount, $log)
-    {
-        return self::getBillingLogNameTemplate()->render([
-            'billing_account' => $billingAccount,
-            'log' => $log,
         ]);
     }
 
@@ -276,42 +214,6 @@ class LoggingServiceV2GapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a folder_log resource.
-     *
-     * @param string $folder
-     * @param string $log
-     *
-     * @return string The formatted folder_log resource.
-     * @experimental
-     */
-    public static function folderLogName($folder, $log)
-    {
-        return self::getFolderLogNameTemplate()->render([
-            'folder' => $folder,
-            'log' => $log,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a log resource.
-     *
-     * @param string $project
-     * @param string $log
-     *
-     * @return string The formatted log resource.
-     * @experimental
-     */
-    public static function logName($project, $log)
-    {
-        return self::getLogNameTemplate()->render([
-            'project' => $project,
-            'log' => $log,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
      * a organization resource.
      *
      * @param string $organization
@@ -323,24 +225,6 @@ class LoggingServiceV2GapicClient
     {
         return self::getOrganizationNameTemplate()->render([
             'organization' => $organization,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a organization_log resource.
-     *
-     * @param string $organization
-     * @param string $log
-     *
-     * @return string The formatted organization_log resource.
-     * @experimental
-     */
-    public static function organizationLogName($organization, $log)
-    {
-        return self::getOrganizationLogNameTemplate()->render([
-            'organization' => $organization,
-            'log' => $log,
         ]);
     }
 
@@ -364,13 +248,9 @@ class LoggingServiceV2GapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - billing: billingAccounts/{billing_account}
-     * - billingLog: billingAccounts/{billing_account}/logs/{log}
+     * - billingAccount: billingAccounts/{billing_account}
      * - folder: folders/{folder}
-     * - folderLog: folders/{folder}/logs/{log}
-     * - log: projects/{project}/logs/{log}
      * - organization: organizations/{organization}
-     * - organizationLog: organizations/{organization}/logs/{log}
      * - project: projects/{project}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
@@ -470,68 +350,6 @@ class LoggingServiceV2GapicClient
     }
 
     /**
-     * Deletes all the log entries in a log. The log reappears if it receives new
-     * entries. Log entries written shortly before the delete operation might not
-     * be deleted. Entries received after the delete operation with a timestamp
-     * before the operation will be deleted.
-     *
-     * Sample code:
-     * ```
-     * $loggingServiceV2Client = new LoggingServiceV2Client();
-     * try {
-     *     $formattedLogName = $loggingServiceV2Client->logName('[PROJECT]', '[LOG]');
-     *     $loggingServiceV2Client->deleteLog($formattedLogName);
-     * } finally {
-     *     $loggingServiceV2Client->close();
-     * }
-     * ```
-     *
-     * @param string $logName Required. The resource name of the log to delete:
-     *
-     *     "projects/[PROJECT_ID]/logs/[LOG_ID]"
-     *     "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
-     *     "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
-     *     "folders/[FOLDER_ID]/logs/[LOG_ID]"
-     *
-     * `[LOG_ID]` must be URL-encoded. For example,
-     * `"projects/my-project-id/logs/syslog"`,
-     * `"organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity"`.
-     * For more information about log names, see
-     * [LogEntry][google.logging.v2.LogEntry].
-     * @param array $optionalArgs {
-     *                            Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function deleteLog($logName, array $optionalArgs = [])
-    {
-        $request = new DeleteLogRequest();
-        $request->setLogName($logName);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'log_name' => $request->getLogName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteLog',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
      * Writes log entries to Logging. This API method is the
      * only way to send log entries to Logging. This method
      * is used, directly or indirectly, by the Logging agent
@@ -591,10 +409,10 @@ class LoggingServiceV2GapicClient
      *              "projects/my-project-id/logs/syslog"
      *              "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity"
      *
-     *          The permission <code>logging.logEntries.create</code> is needed on each
-     *          project, organization, billing account, or folder that is receiving
-     *          new log entries, whether the resource is specified in
-     *          <code>logName</code> or in an individual log entry.
+     *          The permission `logging.logEntries.create` is needed on each project,
+     *          organization, billing account, or folder that is receiving new log
+     *          entries, whether the resource is specified in `logName` or in an
+     *          individual log entry.
      *     @type MonitoredResource $resource
      *          Optional. A default monitored resource object that is assigned to all log
      *          entries in `entries` that do not specify a value for `resource`. Example:
@@ -660,6 +478,68 @@ class LoggingServiceV2GapicClient
     }
 
     /**
+     * Deletes all the log entries in a log. The log reappears if it receives new
+     * entries. Log entries written shortly before the delete operation might not
+     * be deleted. Entries received after the delete operation with a timestamp
+     * before the operation will be deleted.
+     *
+     * Sample code:
+     * ```
+     * $loggingServiceV2Client = new LoggingServiceV2Client();
+     * try {
+     *     $logName = '';
+     *     $loggingServiceV2Client->deleteLog($logName);
+     * } finally {
+     *     $loggingServiceV2Client->close();
+     * }
+     * ```
+     *
+     * @param string $logName Required. The resource name of the log to delete:
+     *
+     *     "projects/[PROJECT_ID]/logs/[LOG_ID]"
+     *     "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
+     *     "folders/[FOLDER_ID]/logs/[LOG_ID]"
+     *
+     * `[LOG_ID]` must be URL-encoded. For example,
+     * `"projects/my-project-id/logs/syslog"`,
+     * `"organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity"`.
+     * For more information about log names, see
+     * [LogEntry][google.logging.v2.LogEntry].
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function deleteLog($logName, array $optionalArgs = [])
+    {
+        $request = new DeleteLogRequest();
+        $request->setLogName($logName);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'log_name' => $request->getLogName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteLog',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Lists log entries.  Use this method to retrieve log entries that originated
      * from a project/folder/organization/billing account.  For ways to export log
      * entries, see [Exporting Logs](https://cloud.google.com/logging/docs/export).
@@ -700,10 +580,6 @@ class LoggingServiceV2GapicClient
      * @param array $optionalArgs {
      *                            Optional.
      *
-     *     @type string[] $projectIds
-     *          Deprecated. Use `resource_names` instead.  One or more project identifiers
-     *          or project numbers from which to retrieve log entries.  Example:
-     *          `"my-project-1A"`.
      *     @type string $filter
      *          Optional. A filter that chooses which log entries to return.  See [Advanced
      *          Logs Queries](https://cloud.google.com/logging/docs/view/advanced-queries).  Only log entries that
@@ -744,9 +620,6 @@ class LoggingServiceV2GapicClient
     {
         $request = new ListLogEntriesRequest();
         $request->setResourceNames($resourceNames);
-        if (isset($optionalArgs['projectIds'])) {
-            $request->setProjectIds($optionalArgs['projectIds']);
-        }
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }

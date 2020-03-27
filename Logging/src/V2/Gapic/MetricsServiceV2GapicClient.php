@@ -116,10 +116,7 @@ class MetricsServiceV2GapicClient
         'https://www.googleapis.com/auth/logging.read',
         'https://www.googleapis.com/auth/logging.write',
     ];
-    private static $billingNameTemplate;
-    private static $folderNameTemplate;
-    private static $metricNameTemplate;
-    private static $organizationNameTemplate;
+    private static $logMetricNameTemplate;
     private static $projectNameTemplate;
     private static $pathTemplateMap;
 
@@ -142,40 +139,13 @@ class MetricsServiceV2GapicClient
         ];
     }
 
-    private static function getBillingNameTemplate()
+    private static function getLogMetricNameTemplate()
     {
-        if (null == self::$billingNameTemplate) {
-            self::$billingNameTemplate = new PathTemplate('billingAccounts/{billing_account}');
+        if (null == self::$logMetricNameTemplate) {
+            self::$logMetricNameTemplate = new PathTemplate('projects/{project}/metrics/{metric}');
         }
 
-        return self::$billingNameTemplate;
-    }
-
-    private static function getFolderNameTemplate()
-    {
-        if (null == self::$folderNameTemplate) {
-            self::$folderNameTemplate = new PathTemplate('folders/{folder}');
-        }
-
-        return self::$folderNameTemplate;
-    }
-
-    private static function getMetricNameTemplate()
-    {
-        if (null == self::$metricNameTemplate) {
-            self::$metricNameTemplate = new PathTemplate('projects/{project}/metrics/{metric}');
-        }
-
-        return self::$metricNameTemplate;
-    }
-
-    private static function getOrganizationNameTemplate()
-    {
-        if (null == self::$organizationNameTemplate) {
-            self::$organizationNameTemplate = new PathTemplate('organizations/{organization}');
-        }
-
-        return self::$organizationNameTemplate;
+        return self::$logMetricNameTemplate;
     }
 
     private static function getProjectNameTemplate()
@@ -191,10 +161,7 @@ class MetricsServiceV2GapicClient
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
-                'billing' => self::getBillingNameTemplate(),
-                'folder' => self::getFolderNameTemplate(),
-                'metric' => self::getMetricNameTemplate(),
-                'organization' => self::getOrganizationNameTemplate(),
+                'logMetric' => self::getLogMetricNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
             ];
         }
@@ -204,67 +171,19 @@ class MetricsServiceV2GapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a billing resource.
-     *
-     * @param string $billingAccount
-     *
-     * @return string The formatted billing resource.
-     * @experimental
-     */
-    public static function billingName($billingAccount)
-    {
-        return self::getBillingNameTemplate()->render([
-            'billing_account' => $billingAccount,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a folder resource.
-     *
-     * @param string $folder
-     *
-     * @return string The formatted folder resource.
-     * @experimental
-     */
-    public static function folderName($folder)
-    {
-        return self::getFolderNameTemplate()->render([
-            'folder' => $folder,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a metric resource.
+     * a log_metric resource.
      *
      * @param string $project
      * @param string $metric
      *
-     * @return string The formatted metric resource.
+     * @return string The formatted log_metric resource.
      * @experimental
      */
-    public static function metricName($project, $metric)
+    public static function logMetricName($project, $metric)
     {
-        return self::getMetricNameTemplate()->render([
+        return self::getLogMetricNameTemplate()->render([
             'project' => $project,
             'metric' => $metric,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a organization resource.
-     *
-     * @param string $organization
-     *
-     * @return string The formatted organization resource.
-     * @experimental
-     */
-    public static function organizationName($organization)
-    {
-        return self::getOrganizationNameTemplate()->render([
-            'organization' => $organization,
         ]);
     }
 
@@ -288,10 +207,7 @@ class MetricsServiceV2GapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - billing: billingAccounts/{billing_account}
-     * - folder: folders/{folder}
-     * - metric: projects/{project}/metrics/{metric}
-     * - organization: organizations/{organization}
+     * - logMetric: projects/{project}/metrics/{metric}
      * - project: projects/{project}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
@@ -479,7 +395,7 @@ class MetricsServiceV2GapicClient
      * ```
      * $metricsServiceV2Client = new MetricsServiceV2Client();
      * try {
-     *     $formattedMetricName = $metricsServiceV2Client->metricName('[PROJECT]', '[METRIC]');
+     *     $formattedMetricName = $metricsServiceV2Client->logMetricName('[PROJECT]', '[METRIC]');
      *     $response = $metricsServiceV2Client->getLogMetric($formattedMetricName);
      * } finally {
      *     $metricsServiceV2Client->close();
@@ -589,7 +505,7 @@ class MetricsServiceV2GapicClient
      * ```
      * $metricsServiceV2Client = new MetricsServiceV2Client();
      * try {
-     *     $formattedMetricName = $metricsServiceV2Client->metricName('[PROJECT]', '[METRIC]');
+     *     $formattedMetricName = $metricsServiceV2Client->logMetricName('[PROJECT]', '[METRIC]');
      *     $metric = new LogMetric();
      *     $response = $metricsServiceV2Client->updateLogMetric($formattedMetricName, $metric);
      * } finally {
@@ -648,7 +564,7 @@ class MetricsServiceV2GapicClient
      * ```
      * $metricsServiceV2Client = new MetricsServiceV2Client();
      * try {
-     *     $formattedMetricName = $metricsServiceV2Client->metricName('[PROJECT]', '[METRIC]');
+     *     $formattedMetricName = $metricsServiceV2Client->logMetricName('[PROJECT]', '[METRIC]');
      *     $metricsServiceV2Client->deleteLogMetric($formattedMetricName);
      * } finally {
      *     $metricsServiceV2Client->close();

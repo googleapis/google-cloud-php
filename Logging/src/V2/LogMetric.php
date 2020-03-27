@@ -33,24 +33,24 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      * `metric_name` API parameter, then the metric identifier must be
      * URL-encoded. Example: `"projects/my-project/metrics/nginx%2Frequests"`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $name = '';
     /**
      * Optional. A description of this metric, which is used in documentation.
      * The maximum length of the description is 8000 characters.
      *
-     * Generated from protobuf field <code>string description = 2;</code>
+     * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $description = '';
     /**
-     * Required. An [advanced logs filter](/logging/docs/view/advanced_filters)
-     * which is used to match log entries.
+     * Required. An [advanced logs filter](https://cloud.google.com/logging/docs/view/advanced_filters) which is
+     * used to match log entries.
      * Example:
      *     "resource.type=gae_app AND severity>=ERROR"
      * The maximum length of the filter is 20000 characters.
      *
-     * Generated from protobuf field <code>string filter = 3;</code>
+     * Generated from protobuf field <code>string filter = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $filter = '';
     /**
@@ -72,7 +72,7 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      * `metric_descriptor`, but existing labels cannot be modified except for
      * their description.
      *
-     * Generated from protobuf field <code>.google.api.MetricDescriptor metric_descriptor = 5;</code>
+     * Generated from protobuf field <code>.google.api.MetricDescriptor metric_descriptor = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $metric_descriptor = null;
     /**
@@ -94,7 +94,7 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      * distribution.
      * Example: `REGEXP_EXTRACT(jsonPayload.request, ".*quantity=(\d+).*")`
      *
-     * Generated from protobuf field <code>string value_extractor = 6;</code>
+     * Generated from protobuf field <code>string value_extractor = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $value_extractor = '';
     /**
@@ -111,7 +111,7 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      * Note that there are upper bounds on the maximum number of labels and the
      * number of active time series that are allowed in a project.
      *
-     * Generated from protobuf field <code>map<string, string> label_extractors = 7;</code>
+     * Generated from protobuf field <code>map<string, string> label_extractors = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $label_extractors;
     /**
@@ -119,21 +119,21 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      * using a DISTRIBUTION value type and it describes the bucket boundaries
      * used to create a histogram of the extracted values.
      *
-     * Generated from protobuf field <code>.google.api.Distribution.BucketOptions bucket_options = 8;</code>
+     * Generated from protobuf field <code>.google.api.Distribution.BucketOptions bucket_options = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $bucket_options = null;
     /**
      * Output only. The creation timestamp of the metric.
      * This field may not be present for older metrics.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 9;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $create_time = null;
     /**
      * Output only. The last update timestamp of the metric.
      * This field may not be present for older metrics.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 10;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $update_time = null;
     /**
@@ -166,8 +166,8 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      *           Optional. A description of this metric, which is used in documentation.
      *           The maximum length of the description is 8000 characters.
      *     @type string $filter
-     *           Required. An [advanced logs filter](/logging/docs/view/advanced_filters)
-     *           which is used to match log entries.
+     *           Required. An [advanced logs filter](https://cloud.google.com/logging/docs/view/advanced_filters) which is
+     *           used to match log entries.
      *           Example:
      *               "resource.type=gae_app AND severity>=ERROR"
      *           The maximum length of the filter is 20000 characters.
@@ -253,7 +253,7 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      * `metric_name` API parameter, then the metric identifier must be
      * URL-encoded. Example: `"projects/my-project/metrics/nginx%2Frequests"`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getName()
@@ -274,7 +274,7 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      * `metric_name` API parameter, then the metric identifier must be
      * URL-encoded. Example: `"projects/my-project/metrics/nginx%2Frequests"`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -290,7 +290,7 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      * Optional. A description of this metric, which is used in documentation.
      * The maximum length of the description is 8000 characters.
      *
-     * Generated from protobuf field <code>string description = 2;</code>
+     * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getDescription()
@@ -302,7 +302,7 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      * Optional. A description of this metric, which is used in documentation.
      * The maximum length of the description is 8000 characters.
      *
-     * Generated from protobuf field <code>string description = 2;</code>
+     * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -315,13 +315,13 @@ class LogMetric extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. An [advanced logs filter](/logging/docs/view/advanced_filters)
-     * which is used to match log entries.
+     * Required. An [advanced logs filter](https://cloud.google.com/logging/docs/view/advanced_filters) which is
+     * used to match log entries.
      * Example:
      *     "resource.type=gae_app AND severity>=ERROR"
      * The maximum length of the filter is 20000 characters.
      *
-     * Generated from protobuf field <code>string filter = 3;</code>
+     * Generated from protobuf field <code>string filter = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getFilter()
@@ -330,13 +330,13 @@ class LogMetric extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. An [advanced logs filter](/logging/docs/view/advanced_filters)
-     * which is used to match log entries.
+     * Required. An [advanced logs filter](https://cloud.google.com/logging/docs/view/advanced_filters) which is
+     * used to match log entries.
      * Example:
      *     "resource.type=gae_app AND severity>=ERROR"
      * The maximum length of the filter is 20000 characters.
      *
-     * Generated from protobuf field <code>string filter = 3;</code>
+     * Generated from protobuf field <code>string filter = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -367,7 +367,7 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      * `metric_descriptor`, but existing labels cannot be modified except for
      * their description.
      *
-     * Generated from protobuf field <code>.google.api.MetricDescriptor metric_descriptor = 5;</code>
+     * Generated from protobuf field <code>.google.api.MetricDescriptor metric_descriptor = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Api\MetricDescriptor
      */
     public function getMetricDescriptor()
@@ -394,7 +394,7 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      * `metric_descriptor`, but existing labels cannot be modified except for
      * their description.
      *
-     * Generated from protobuf field <code>.google.api.MetricDescriptor metric_descriptor = 5;</code>
+     * Generated from protobuf field <code>.google.api.MetricDescriptor metric_descriptor = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Api\MetricDescriptor $var
      * @return $this
      */
@@ -425,7 +425,7 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      * distribution.
      * Example: `REGEXP_EXTRACT(jsonPayload.request, ".*quantity=(\d+).*")`
      *
-     * Generated from protobuf field <code>string value_extractor = 6;</code>
+     * Generated from protobuf field <code>string value_extractor = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getValueExtractor()
@@ -452,7 +452,7 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      * distribution.
      * Example: `REGEXP_EXTRACT(jsonPayload.request, ".*quantity=(\d+).*")`
      *
-     * Generated from protobuf field <code>string value_extractor = 6;</code>
+     * Generated from protobuf field <code>string value_extractor = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -478,7 +478,7 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      * Note that there are upper bounds on the maximum number of labels and the
      * number of active time series that are allowed in a project.
      *
-     * Generated from protobuf field <code>map<string, string> label_extractors = 7;</code>
+     * Generated from protobuf field <code>map<string, string> label_extractors = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getLabelExtractors()
@@ -500,7 +500,7 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      * Note that there are upper bounds on the maximum number of labels and the
      * number of active time series that are allowed in a project.
      *
-     * Generated from protobuf field <code>map<string, string> label_extractors = 7;</code>
+     * Generated from protobuf field <code>map<string, string> label_extractors = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -517,7 +517,7 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      * using a DISTRIBUTION value type and it describes the bucket boundaries
      * used to create a histogram of the extracted values.
      *
-     * Generated from protobuf field <code>.google.api.Distribution.BucketOptions bucket_options = 8;</code>
+     * Generated from protobuf field <code>.google.api.Distribution.BucketOptions bucket_options = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Api\Distribution\BucketOptions
      */
     public function getBucketOptions()
@@ -530,7 +530,7 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      * using a DISTRIBUTION value type and it describes the bucket boundaries
      * used to create a histogram of the extracted values.
      *
-     * Generated from protobuf field <code>.google.api.Distribution.BucketOptions bucket_options = 8;</code>
+     * Generated from protobuf field <code>.google.api.Distribution.BucketOptions bucket_options = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Api\Distribution\BucketOptions $var
      * @return $this
      */
@@ -546,7 +546,7 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      * Output only. The creation timestamp of the metric.
      * This field may not be present for older metrics.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 9;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getCreateTime()
@@ -558,7 +558,7 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      * Output only. The creation timestamp of the metric.
      * This field may not be present for older metrics.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 9;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -574,7 +574,7 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      * Output only. The last update timestamp of the metric.
      * This field may not be present for older metrics.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 10;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getUpdateTime()
@@ -586,7 +586,7 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      * Output only. The last update timestamp of the metric.
      * This field may not be present for older metrics.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 10;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */

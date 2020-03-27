@@ -3,6 +3,98 @@
 return [
     'interfaces' => [
         'google.logging.v2.ConfigServiceV2' => [
+            'ListBuckets' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=*/*/locations/*}/buckets',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*}/buckets',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=organizations/*/locations/*}/buckets',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=folders/*/locations/*}/buckets',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=billingAccounts/*/locations/*}/buckets',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'GetBucket' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=*/*/locations/*/buckets/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/buckets/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=organizations/*/locations/*/buckets/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=folders/*/locations/*/buckets/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=billingAccounts/*/buckets/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateBucket' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v2/{name=*/*/locations/*/buckets/*}',
+                'body' => 'bucket',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/buckets/*}',
+                        'body' => 'bucket',
+                    ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v2/{name=organizations/*/locations/*/buckets/*}',
+                        'body' => 'bucket',
+                    ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v2/{name=folders/*/locations/*/buckets/*}',
+                        'body' => 'bucket',
+                    ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v2/{name=billingAccounts/*/locations/*/buckets/*}',
+                        'body' => 'bucket',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListSinks' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{parent=*/*}/sinks',
