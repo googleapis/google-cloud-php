@@ -106,7 +106,8 @@ class PostPolicyTest extends StorageTestCase
             ["foo
             "],
             ["é"],
-            ["hello\world"]
+            ["hello\world"],
+            ["	"] // tab
         ];
     }
 
