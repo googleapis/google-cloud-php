@@ -1342,6 +1342,14 @@
             ]
         },
         {
+            "id": "cloud-service-directory",
+            "name": "google/cloud-service-directory",
+            "defaultService": "servicedirectory/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-spanner",
             "name": "google/cloud-spanner",
             "defaultService": "spanner/spannerclient",
