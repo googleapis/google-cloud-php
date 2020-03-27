@@ -1160,7 +1160,7 @@ printf(
 
 #### google/cloud-service-directory
 
-[Google DLP](https://github.com/googleapis/google-cloud-php-service-directory) can be installed separately by requiring the [`google/cloud-service-directory`](https://packagist.org/packages/google/cloud-service-directory) composer package:
+[Google Service Directory](https://github.com/googleapis/google-cloud-php-service-directory) can be installed separately by requiring the [`google/cloud-service-directory`](https://packagist.org/packages/google/cloud-service-directory) composer package:
 
 ```
 $ composer require google/cloud-service-directory
