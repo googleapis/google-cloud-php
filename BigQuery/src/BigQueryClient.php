@@ -457,6 +457,8 @@ class BigQueryClient
      *           before or at this timestamp are returned.
      *     @type int $minCreationTime Milliseconds since the POSIX epoch. If set, only jobs created
      *           after or at this timestamp are returned.
+     *     @type string $parentJobId If set, show only child jobs of the
+     *           specified parent. Otherwise, show all top-level jobs.
      * }
      * @return ItemIterator<Job>
      */
