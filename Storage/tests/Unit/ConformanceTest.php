@@ -142,10 +142,6 @@ class ConformanceTest extends TestCase
         $decodedPolicy = base64_decode($policy['fields']['policy']);
         $this->assertEquals($testdata['policyOutput']['fields'], $policy['fields']);
         $this->assertEquals($testdata['policyOutput']['url'], $policy['url']);
-        // $this->assertEquals(
-        //     $testdata['policyOutput']['expectedDecodedPolicy'],
-        //     $decodedPolicy
-        // );
     }
 
     public function signedUrlConformanceCases()

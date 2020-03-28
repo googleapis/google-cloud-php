@@ -413,9 +413,7 @@ class SigningHelper
             );
         }
 
-        $fields = $options['fields'];
-
-        $fields = array_merge($fields, [
+        $fields = array_merge($options['fields'], [
             'key' => $object,
             'x-goog-algorithm' => self::V4_ALGO_NAME,
             'x-goog-credential' => $credential,

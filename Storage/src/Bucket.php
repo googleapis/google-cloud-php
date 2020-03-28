@@ -1431,7 +1431,8 @@ class Bucket
      *           `mybucket.storage.googleapis.com`. If `false`,
      *           `storage.googleapis.com/mybucket`. **Defaults to** `false`.
      * }
-     * @return array
+     * @return array An associative array, containing (string) `uri` and
+     *        (array) `fields` keys.
      */
     public function generateSignedPostPolicyV4($expires, $objectName, array $options = [])
     {
