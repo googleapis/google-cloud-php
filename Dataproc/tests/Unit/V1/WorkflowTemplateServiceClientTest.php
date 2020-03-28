@@ -94,7 +94,7 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = $client->regionName('[PROJECT]', '[REGION]');
+        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
         $template = new WorkflowTemplate();
 
         $response = $client->createWorkflowTemplate($formattedParent, $template);
@@ -138,7 +138,7 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = $client->regionName('[PROJECT]', '[REGION]');
+        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
         $template = new WorkflowTemplate();
 
         try {
@@ -176,9 +176,9 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->workflowTemplateName('[PROJECT]', '[REGION]', '[WORKFLOW_TEMPLATE]');
+        $name = 'name3373707';
 
-        $response = $client->getWorkflowTemplate($formattedName);
+        $response = $client->getWorkflowTemplate($name);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -188,7 +188,7 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getName();
 
-        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertProtobufEquals($name, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -216,10 +216,10 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->workflowTemplateName('[PROJECT]', '[REGION]', '[WORKFLOW_TEMPLATE]');
+        $name = 'name3373707';
 
         try {
-            $client->getWorkflowTemplate($formattedName);
+            $client->getWorkflowTemplate($name);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -267,9 +267,9 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
 
         // Mock request
-        $formattedName = $client->workflowTemplateName('[PROJECT]', '[REGION]', '[WORKFLOW_TEMPLATE]');
+        $name = 'name3373707';
 
-        $response = $client->instantiateWorkflowTemplate($formattedName);
+        $response = $client->instantiateWorkflowTemplate($name);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -282,7 +282,7 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $this->assertSame('/google.cloud.dataproc.v1.WorkflowTemplateService/InstantiateWorkflowTemplate', $actualApiFuncCall);
         $actualValue = $actualApiRequestObject->getName();
 
-        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertProtobufEquals($name, $actualValue);
 
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/instantiateWorkflowTemplateTest');
@@ -345,9 +345,9 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->workflowTemplateName('[PROJECT]', '[REGION]', '[WORKFLOW_TEMPLATE]');
+        $name = 'name3373707';
 
-        $response = $client->instantiateWorkflowTemplate($formattedName);
+        $response = $client->instantiateWorkflowTemplate($name);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
 
@@ -407,7 +407,7 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
 
         // Mock request
-        $formattedParent = $client->regionName('[PROJECT]', '[REGION]');
+        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
         $template = new WorkflowTemplate();
 
         $response = $client->instantiateInlineWorkflowTemplate($formattedParent, $template);
@@ -489,7 +489,7 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = $client->regionName('[PROJECT]', '[REGION]');
+        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
         $template = new WorkflowTemplate();
 
         $response = $client->instantiateInlineWorkflowTemplate($formattedParent, $template);
@@ -614,7 +614,7 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = $client->regionName('[PROJECT]', '[REGION]');
+        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
 
         $response = $client->listWorkflowTemplates($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
@@ -657,7 +657,7 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = $client->regionName('[PROJECT]', '[REGION]');
+        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
 
         try {
             $client->listWorkflowTemplates($formattedParent);
@@ -688,9 +688,9 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->workflowTemplateName('[PROJECT]', '[REGION]', '[WORKFLOW_TEMPLATE]');
+        $name = 'name3373707';
 
-        $client->deleteWorkflowTemplate($formattedName);
+        $client->deleteWorkflowTemplate($name);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -699,7 +699,7 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getName();
 
-        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertProtobufEquals($name, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -727,10 +727,10 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->workflowTemplateName('[PROJECT]', '[REGION]', '[WORKFLOW_TEMPLATE]');
+        $name = 'name3373707';
 
         try {
-            $client->deleteWorkflowTemplate($formattedName);
+            $client->deleteWorkflowTemplate($name);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

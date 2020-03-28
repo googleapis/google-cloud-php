@@ -54,9 +54,8 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $autoscalingPolicyServiceClient = new AutoscalingPolicyServiceClient();
  * try {
- *     $formattedParent = $autoscalingPolicyServiceClient->regionName('[PROJECT]', '[REGION]');
- *     $policy = new AutoscalingPolicy();
- *     $response = $autoscalingPolicyServiceClient->createAutoscalingPolicy($formattedParent, $policy);
+ *     $formattedParent = $autoscalingPolicyServiceClient->locationName('[PROJECT]', '[LOCATION]');
+ *     $response = $autoscalingPolicyServiceClient->createAutoscalingPolicy($formattedParent);
  * } finally {
  *     $autoscalingPolicyServiceClient->close();
  * }
@@ -99,7 +98,7 @@ class AutoscalingPolicyServiceGapicClient
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
-    private static $autoscalingPolicyNameTemplate;
+    private static $locationNameTemplate;
     private static $regionNameTemplate;
     private static $pathTemplateMap;
 
@@ -122,13 +121,13 @@ class AutoscalingPolicyServiceGapicClient
         ];
     }
 
-    private static function getAutoscalingPolicyNameTemplate()
+    private static function getLocationNameTemplate()
     {
-        if (null == self::$autoscalingPolicyNameTemplate) {
-            self::$autoscalingPolicyNameTemplate = new PathTemplate('projects/{project}/regions/{region}/autoscalingPolicies/{autoscaling_policy}');
+        if (null == self::$locationNameTemplate) {
+            self::$locationNameTemplate = new PathTemplate('projects/{project}/locations/{location}');
         }
 
-        return self::$autoscalingPolicyNameTemplate;
+        return self::$locationNameTemplate;
     }
 
     private static function getRegionNameTemplate()
@@ -144,7 +143,7 @@ class AutoscalingPolicyServiceGapicClient
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
-                'autoscalingPolicy' => self::getAutoscalingPolicyNameTemplate(),
+                'location' => self::getLocationNameTemplate(),
                 'region' => self::getRegionNameTemplate(),
             ];
         }
@@ -154,21 +153,19 @@ class AutoscalingPolicyServiceGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a autoscaling_policy resource.
+     * a location resource.
      *
      * @param string $project
-     * @param string $region
-     * @param string $autoscalingPolicy
+     * @param string $location
      *
-     * @return string The formatted autoscaling_policy resource.
+     * @return string The formatted location resource.
      * @experimental
      */
-    public static function autoscalingPolicyName($project, $region, $autoscalingPolicy)
+    public static function locationName($project, $location)
     {
-        return self::getAutoscalingPolicyNameTemplate()->render([
+        return self::getLocationNameTemplate()->render([
             'project' => $project,
-            'region' => $region,
-            'autoscaling_policy' => $autoscalingPolicy,
+            'location' => $location,
         ]);
     }
 
@@ -194,7 +191,7 @@ class AutoscalingPolicyServiceGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - autoscalingPolicy: projects/{project}/regions/{region}/autoscalingPolicies/{autoscaling_policy}
+     * - location: projects/{project}/locations/{location}
      * - region: projects/{project}/regions/{region}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
@@ -300,9 +297,8 @@ class AutoscalingPolicyServiceGapicClient
      * ```
      * $autoscalingPolicyServiceClient = new AutoscalingPolicyServiceClient();
      * try {
-     *     $formattedParent = $autoscalingPolicyServiceClient->regionName('[PROJECT]', '[REGION]');
-     *     $policy = new AutoscalingPolicy();
-     *     $response = $autoscalingPolicyServiceClient->createAutoscalingPolicy($formattedParent, $policy);
+     *     $formattedParent = $autoscalingPolicyServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $response = $autoscalingPolicyServiceClient->createAutoscalingPolicy($formattedParent);
      * } finally {
      *     $autoscalingPolicyServiceClient->close();
      * }
@@ -318,10 +314,11 @@ class AutoscalingPolicyServiceGapicClient
      * * For `projects.locations.autoscalingPolicies.create`, the resource name
      *   of the location has the following format:
      *   `projects/{project_id}/locations/{location}`
-     * @param AutoscalingPolicy $policy       The autoscaling policy to create.
-     * @param array             $optionalArgs {
-     *                                        Optional.
+     * @param array $optionalArgs {
+     *                            Optional.
      *
+     *     @type AutoscalingPolicy $policy
+     *          The autoscaling policy to create.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -334,11 +331,13 @@ class AutoscalingPolicyServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createAutoscalingPolicy($parent, $policy, array $optionalArgs = [])
+    public function createAutoscalingPolicy($parent, array $optionalArgs = [])
     {
         $request = new CreateAutoscalingPolicyRequest();
         $request->setParent($parent);
-        $request->setPolicy($policy);
+        if (isset($optionalArgs['policy'])) {
+            $request->setPolicy($optionalArgs['policy']);
+        }
 
         $requestParams = new RequestParamsHeaderDescriptor([
           'parent' => $request->getParent(),
@@ -415,8 +414,8 @@ class AutoscalingPolicyServiceGapicClient
      * ```
      * $autoscalingPolicyServiceClient = new AutoscalingPolicyServiceClient();
      * try {
-     *     $formattedName = $autoscalingPolicyServiceClient->autoscalingPolicyName('[PROJECT]', '[REGION]', '[AUTOSCALING_POLICY]');
-     *     $response = $autoscalingPolicyServiceClient->getAutoscalingPolicy($formattedName);
+     *     $name = '';
+     *     $response = $autoscalingPolicyServiceClient->getAutoscalingPolicy($name);
      * } finally {
      *     $autoscalingPolicyServiceClient->close();
      * }
@@ -474,7 +473,7 @@ class AutoscalingPolicyServiceGapicClient
      * ```
      * $autoscalingPolicyServiceClient = new AutoscalingPolicyServiceClient();
      * try {
-     *     $formattedParent = $autoscalingPolicyServiceClient->regionName('[PROJECT]', '[REGION]');
+     *     $formattedParent = $autoscalingPolicyServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
      *     $pagedResponse = $autoscalingPolicyServiceClient->listAutoscalingPolicies($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
@@ -564,8 +563,8 @@ class AutoscalingPolicyServiceGapicClient
      * ```
      * $autoscalingPolicyServiceClient = new AutoscalingPolicyServiceClient();
      * try {
-     *     $formattedName = $autoscalingPolicyServiceClient->autoscalingPolicyName('[PROJECT]', '[REGION]', '[AUTOSCALING_POLICY]');
-     *     $autoscalingPolicyServiceClient->deleteAutoscalingPolicy($formattedName);
+     *     $name = '';
+     *     $autoscalingPolicyServiceClient->deleteAutoscalingPolicy($name);
      * } finally {
      *     $autoscalingPolicyServiceClient->close();
      * }

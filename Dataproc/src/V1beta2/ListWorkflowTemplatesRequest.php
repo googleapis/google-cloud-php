@@ -25,7 +25,7 @@ class ListWorkflowTemplatesRequest extends \Google\Protobuf\Internal\Message
      *   resource name of the location has the following format:
      *   `projects/{project_id}/locations/{location}`
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -79,7 +79,7 @@ class ListWorkflowTemplatesRequest extends \Google\Protobuf\Internal\Message
      *   resource name of the location has the following format:
      *   `projects/{project_id}/locations/{location}`
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -97,7 +97,7 @@ class ListWorkflowTemplatesRequest extends \Google\Protobuf\Internal\Message
      *   resource name of the location has the following format:
      *   `projects/{project_id}/locations/{location}`
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
