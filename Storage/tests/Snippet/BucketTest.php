@@ -642,7 +642,6 @@ class BucketTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromMethod(Bucket::class, 'signedUrl');
         $snippet->addLocal('bucket', $this->bucket);
-        $snippet->addUse(Timestamp::class);
 
         list($pkey, $pub) = $this->getKeyPair();
         $kf = [
@@ -673,7 +672,6 @@ class BucketTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromMethod(Bucket::class, 'signedUrl', 1);
         $snippet->addLocal('bucket', $this->bucket);
-        $snippet->addUse(Timestamp::class);
 
         list($pkey, $pub) = $this->getKeyPair();
         $kf = [
@@ -697,6 +695,39 @@ class BucketTest extends SnippetTestCase
         $res = $snippet->invoke('url');
         $this->assertContains('https://storage.googleapis.com/my-bucket', $res->returnVal());
         $this->assertContains('X-Goog-Signature=', $res->returnVal());
+    }
+
+    public function testGgenerateSignedPostPolicyV4()
+    {
+        $objectName = 'foo.txt';
+
+        $snippet = $this->snippetFromMethod(Bucket::class, 'generateSignedPostPolicyV4');
+        $snippet->addLocal('bucket', $this->bucket);
+        $snippet->addLocal('objectName', $objectName);
+
+        list($pkey, $pub) = $this->getKeyPair();
+        $kf = [
+            'private_key' => $pkey,
+            'client_email' => 'test@example.com'
+        ];
+
+        $rw = $this->prophesize(RequestWrapper::class);
+        $rw->keyFile()->willReturn($kf);
+
+        $creds = $this->prophesize(ServiceAccountCredentials::class);
+        $creds->signBlob(Argument::any(), Argument::any())->willReturn('foo');
+        $creds->getClientName()->willReturn($kf['client_email']);
+        $rw->getCredentialsFetcher()->willReturn($creds->reveal());
+
+        $conn = $this->prophesize(Rest::class);
+        $conn->requestWrapper()->willReturn($rw->reveal());
+
+        $this->bucket->___setProperty('connection', $conn->reveal());
+
+        $res = $snippet->invoke('policy');
+
+        $this->assertContains('https://storage.googleapis.com/my-bucket', $res->returnVal()['url']);
+        $this->assertEquals($objectName, $res->returnVal()['fields']['key']);
     }
 
     private function assertSnippetBuildsNotification($snippet, $expectedArgs)

@@ -22,10 +22,9 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @group storage
- * @group storage-signed-url
  * @group storage-conformance
  */
-class SignedUrlConformanceTest extends TestCase
+class ConformanceTest extends TestCase
 {
     private static $cases;
 
@@ -41,6 +40,7 @@ class SignedUrlConformanceTest extends TestCase
     }
 
     /**
+     * @group storage-conformance-signed-url
      * @dataProvider signedUrlConformanceCases
      */
     public function testSignedUrlConformance(array $testdata)
@@ -58,19 +58,7 @@ class SignedUrlConformanceTest extends TestCase
             $testdata['queryParams'] = $testdata['queryParameters'];
         }
 
-        if (isset($testdata['urlStyle'])) {
-            switch ($testdata['urlStyle']) {
-                case 'VIRTUAL_HOSTED_STYLE':
-                    $testdata['virtualHostedStyle'] = true;
-                    break;
-
-                case 'BUCKET_BOUND_HOSTNAME':
-                    break;
-
-                default:
-                    throw new \Exception('url style ' . $testdata['urlStyle'] . ' not implemented.');
-            }
-        }
+        $hostnameOptions = $this->getHostnameOptions($testdata);
 
         $instanceMethodName = $testdata['method'] === 'POST'
             ? 'signedUploadUrl'
@@ -90,11 +78,70 @@ class SignedUrlConformanceTest extends TestCase
             $testdata['bucketBoundDomain']
         );
 
-        $signedUrl = $signingObject->$instanceMethodName($expiration, $testdata + [
+        $signedUrl = $signingObject->$instanceMethodName($expiration, $hostnameOptions + $testdata + [
             'version' => 'v4'
         ]);
 
         $this->assertEquals($expectedUrl, $signedUrl);
+    }
+
+    /**
+     * @group storage-conformance-post-policy
+     * @dataProvider postPolicyConformanceCases
+     */
+    public function testPostPolicy(array $testdata)
+    {
+        $testdata['policyInput'] = $testdata['policyInput'] + [
+            'conditions' => [],
+            'fields' => []
+        ];
+
+        $client = new StorageClient([
+            'keyFilePath' => __DIR__ . '/data/signed-url-v4-service-account.json'
+        ]);
+
+        $generationTimestamp = \DateTimeImmutable::createFromFormat(
+            \DateTime::RFC3339,
+            $testdata['policyInput']['timestamp']
+        );
+        $bucket = $client->bucket($testdata['policyInput']['bucket']);
+
+        $expiration = $generationTimestamp->format('U') + $testdata['policyInput']['expiration'];
+
+        $hostnameOptions = $this->getHostnameOptions($testdata['policyInput']);
+
+        $conditions = [];
+        foreach ($testdata['policyInput']['conditions'] as $key => $condition) {
+            if ($key === 'startsWith') {
+                $key = 'starts-with';
+            }
+
+            if ($key === 'contentLengthRange') {
+                $key = 'content-length-range';
+            }
+
+            if (!is_array($condition)) {
+                $condition = [$condition];
+            }
+
+            $conditions[] = array_merge([$key], $condition);
+        }
+
+        $options = [
+            'timestamp' => $generationTimestamp,
+            'fields' => $testdata['policyInput']['fields'],
+            'conditions' => $conditions,
+        ];
+
+        $policy = $bucket->generateSignedPostPolicyV4(
+            $expiration,
+            $testdata['policyInput']['object'],
+            $hostnameOptions + $options
+        );
+
+        $decodedPolicy = base64_decode($policy['fields']['policy']);
+        $this->assertEquals($testdata['policyOutput']['fields'], $policy['fields']);
+        $this->assertEquals($testdata['policyOutput']['url'], $policy['url']);
     }
 
     public function signedUrlConformanceCases()
@@ -127,6 +174,8 @@ class SignedUrlConformanceTest extends TestCase
         $out = [];
         foreach (self::$cases['postPolicyV4Tests'] as $case) {
             $desc = $case['description'];
+
+            $out[$case['description']] = [$case];
             unset($case['description']);
 
             if (isset($case['urlStyle']) && $case['urlStyle'] === 'BUCKET_BOUND_HOSTNAME') {
@@ -139,5 +188,31 @@ class SignedUrlConformanceTest extends TestCase
         }
 
         return $out;
+    }
+
+    private function getHostnameOptions(array $testdata)
+    {
+        $options = [];
+        $options['virtualHostedStyle'] = false;
+        if (isset($testdata['urlStyle'])) {
+            switch ($testdata['urlStyle']) {
+                case 'VIRTUAL_HOSTED_STYLE':
+                    $options['virtualHostedStyle'] = true;
+                    break;
+
+                case 'BUCKET_BOUND_HOSTNAME':
+                    $options['bucketBoundHostname'] = $testdata['bucketBoundHostname'];
+                    break;
+
+                default:
+                    throw new \Exception('url style ' . $testdata['urlStyle'] . ' not implemented.');
+            }
+        }
+
+        if (isset($testdata['scheme'])) {
+            $options['scheme'] = $testdata['scheme'];
+        }
+
+        return $options;
     }
 }
