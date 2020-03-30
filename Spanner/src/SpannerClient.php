@@ -120,14 +120,16 @@ class SpannerClient
      *           Console.
      *     @type float $requestTimeout Seconds to wait before timing out the
      *           request. **Defaults to** `0` with REST and `60` with gRPC.
-     *     @type int $retries Number of retries for a failed request.
-     *           **Defaults to** `3`.
+     *     @type int $retries Number of retries for a failed request. Used only
+     *           with default backoff strategy. **Defaults to** `3`.
      *     @type array $scopes Scopes to be used for the request.
      *     @type bool $returnInt64AsObject If true, 64 bit integers will be
      *           returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
      *           platform compatibility. **Defaults to** false.
-     *     @type bool $useGapicBackoffs If true, GAPIC backoff strategy
-     *           will be used.
+     *     @type bool $useDiscreteBackoffs `false`: use default backoff strategy
+     *           (retry every failed request up to `retries` times).
+     *           `true`: use discrete backoff settings based on called method name.
+     *           **Defaults to** `false`.
      * }
      * @throws GoogleException If the gRPC extension is not enabled.
      */
@@ -143,8 +145,9 @@ class SpannerClient
             'projectIdRequired' => true
         ];
 
-        if (!empty($config['useGapicBackoffs'])) {
+        if (!empty($config['useDiscreteBackoffs'])) {
             $config = array_merge_recursive($config, [
+                'retries' => 0,
                 'grpcOptions' => [
                     'retrySettings' => [],
                 ],

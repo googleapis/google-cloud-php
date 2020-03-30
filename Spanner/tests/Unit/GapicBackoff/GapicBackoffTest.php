@@ -39,7 +39,7 @@ class GapicBackoffTest extends TestCase
     {
         return [
             [[]],
-            [['useGapicBackoffs' => false]],
+            [['useDiscreteBackoffs' => false]],
         ];
     }
 
@@ -64,7 +64,7 @@ class GapicBackoffTest extends TestCase
     public function testBackoffEnabledManually()
     {
         $config = [
-            'useGapicBackoffs' => true,
+            'useDiscreteBackoffs' => true,
         ];
         $wrapper = $this->getWrapper($config);
         $handler = function () {
@@ -83,7 +83,7 @@ class GapicBackoffTest extends TestCase
             'noRetriesRpcTimeoutMillis' => 1234,
         ];
         $config = [
-            'useGapicBackoffs' => true,
+            'useDiscreteBackoffs' => true,
             'grpcOptions' => [
                 'retrySettings' => $retrySettings,
             ],
