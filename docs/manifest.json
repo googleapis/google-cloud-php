@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.130.0",
                 "v0.129.0",
                 "v0.128.0",
                 "v0.127.0",
@@ -223,6 +224,7 @@
             "name": "google/cloud-bigquery",
             "defaultService": "bigquery/bigqueryclient",
             "versions": [
+                "v1.15.0",
                 "v1.14.0",
                 "v1.13.0",
                 "v1.12.2",
@@ -655,6 +657,7 @@
             "name": "google/cloud-dialogflow",
             "defaultService": "dialogflow/readme",
             "versions": [
+                "v0.14.0",
                 "v0.13.1",
                 "v0.13.0",
                 "v0.12.0",
@@ -810,6 +813,7 @@
             "name": "google/cloud-firestore",
             "defaultService": "firestore/firestoreclient",
             "versions": [
+                "v1.12.0",
                 "v1.11.1",
                 "v1.11.0",
                 "v1.10.1",
@@ -1262,6 +1266,7 @@
             "name": "google/cloud-redis",
             "defaultService": "redis/readme",
             "versions": [
+                "v0.12.3",
                 "v0.12.2",
                 "v0.12.1",
                 "v0.12.0",
@@ -1346,6 +1351,7 @@
             "name": "google/cloud-service-directory",
             "defaultService": "servicedirectory/readme",
             "versions": [
+                "v0.1.0",
                 "master"
             ]
         },
@@ -1502,6 +1508,7 @@
             "name": "google/cloud-storage",
             "defaultService": "storage/storageclient",
             "versions": [
+                "v1.20.0",
                 "v1.19.0",
                 "v1.18.0",
                 "v1.17.0",
@@ -1555,6 +1562,7 @@
             "name": "google/cloud-talent",
             "defaultService": "talent/readme",
             "versions": [
+                "v0.10.0",
                 "v0.9.1",
                 "v0.9.0",
                 "v0.8.2",
@@ -1639,6 +1647,7 @@
             "name": "google/cloud-trace",
             "defaultService": "trace/traceclient",
             "versions": [
+                "v0.18.0",
                 "v0.17.1",
                 "v0.17.0",
                 "v0.16.0",
