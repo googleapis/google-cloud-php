@@ -1372,7 +1372,7 @@ class Bucket
      *
      * Example:
      * ```
-     * $policy = $bucket->generateSignedPostPolicyV4(new \DateTime('tomorrow'), $objectName, [
+     * $policy = $bucket->generateSignedPostPolicyV4($objectName, new \DateTime('tomorrow'), [
      *     'conditions' => [
      *         ['content-length-range', 0, 255]
      *     ],
@@ -1395,12 +1395,12 @@ class Bucket
      *
      * @see https://cloud.google.com/storage/docs/xml-api/post-object#policydocument Policy Documents
      *
+     * @param string $objectName The path to the file in Google Cloud Storage,
+     *        relative to the bucket.
      * @param Timestamp|\DateTimeInterface|int $expires Specifies when the URL
      *        will expire. May provide an instance of {@see Google\Cloud\Core\Timestamp},
      *        [http://php.net/datetimeimmutable](`\DateTimeImmutable`), or a
      *        UNIX timestamp as an integer.
-     * @param string $objectName The path to the file in Google Cloud Storage,
-     *        relative to the bucket.
      * @param array $options [optional] {
      *     Configuration options
      *
@@ -1434,7 +1434,7 @@ class Bucket
      * @return array An associative array, containing (string) `uri` and
      *        (array) `fields` keys.
      */
-    public function generateSignedPostPolicyV4($expires, $objectName, array $options = [])
+    public function generateSignedPostPolicyV4($objectName, $expires, array $options = [])
     {
         // May be overridden for testing.
         $signingHelper = $this->pluck('helper', $options, false)
