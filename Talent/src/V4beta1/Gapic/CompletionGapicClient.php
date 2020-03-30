@@ -49,7 +49,7 @@ use Google\Cloud\Talent\V4beta1\CompleteQueryResponse;
  * ```
  * $completionClient = new CompletionClient();
  * try {
- *     $formattedParent = $completionClient->tenantName('[PROJECT]', '[TENANT]');
+ *     $formattedParent = $completionClient->projectName('[PROJECT]');
  *     $query = '';
  *     $pageSize = 0;
  *     $response = $completionClient->completeQuery($formattedParent, $query, $pageSize);
@@ -180,7 +180,9 @@ class CompletionGapicClient
      * @param string $company
      *
      * @return string The formatted company resource.
-     * @experimental
+     *
+     * @deprecated Multi-pattern resource names will have unified formatting functions.
+     *             This helper function will be deleted in the next major version.
      */
     public static function companyName($project, $tenant, $company)
     {
@@ -199,7 +201,9 @@ class CompletionGapicClient
      * @param string $company
      *
      * @return string The formatted company_without_tenant resource.
-     * @experimental
+     *
+     * @deprecated Multi-pattern resource names will have unified formatting functions.
+     *             This helper function will be deleted in the next major version.
      */
     public static function companyWithoutTenantName($project, $company)
     {
@@ -356,7 +360,7 @@ class CompletionGapicClient
      * ```
      * $completionClient = new CompletionClient();
      * try {
-     *     $formattedParent = $completionClient->tenantName('[PROJECT]', '[TENANT]');
+     *     $formattedParent = $completionClient->projectName('[PROJECT]');
      *     $query = '';
      *     $pageSize = 0;
      *     $response = $completionClient->completeQuery($formattedParent, $query, $pageSize);

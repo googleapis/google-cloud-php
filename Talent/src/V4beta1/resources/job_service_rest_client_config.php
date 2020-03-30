@@ -3,6 +3,23 @@
 return [
     'interfaces' => [
         'google.cloud.talent.v4beta1.JobService' => [
+            'DeleteJob' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v4beta1/{name=projects/*/tenants/*/jobs/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v4beta1/{name=projects/*/jobs/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'CreateJob' => [
                 'method' => 'post',
                 'uriTemplate' => '/v4beta1/{parent=projects/*/tenants/*}/jobs',
@@ -11,6 +28,25 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v4beta1/{parent=projects/*}/jobs',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchCreateJobs' => [
+                'method' => 'post',
+                'uriTemplate' => '/v4beta1/{parent=projects/*/tenants/*}/jobs:batchCreate',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v4beta1/{parent=projects/*}/jobs:batchCreate',
                         'body' => '*',
                     ],
                 ],
@@ -59,30 +95,15 @@ return [
                     ],
                 ],
             ],
-            'DeleteJob' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v4beta1/{name=projects/*/tenants/*/jobs/*}',
+            'BatchUpdateJobs' => [
+                'method' => 'post',
+                'uriTemplate' => '/v4beta1/{parent=projects/*/tenants/*}/jobs:batchUpdate',
+                'body' => '*',
                 'additionalBindings' => [
                     [
-                        'method' => 'delete',
-                        'uriTemplate' => '/v4beta1/{name=projects/*/jobs/*}',
-                    ],
-                ],
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ListJobs' => [
-                'method' => 'get',
-                'uriTemplate' => '/v4beta1/{parent=projects/*/tenants/*}/jobs',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v4beta1/{parent=projects/*}/jobs',
+                        'method' => 'post',
+                        'uriTemplate' => '/v4beta1/{parent=projects/*}/jobs:batchUpdate',
+                        'body' => '*',
                     ],
                 ],
                 'placeholders' => [
@@ -102,6 +123,23 @@ return [
                         'method' => 'post',
                         'uriTemplate' => '/v4beta1/{parent=projects/*}/jobs:batchDelete',
                         'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListJobs' => [
+                'method' => 'get',
+                'uriTemplate' => '/v4beta1/{parent=projects/*/tenants/*}/jobs',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v4beta1/{parent=projects/*}/jobs',
                     ],
                 ],
                 'placeholders' => [
@@ -139,44 +177,6 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v4beta1/{parent=projects/*}/jobs:searchForAlert',
-                        'body' => '*',
-                    ],
-                ],
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'BatchCreateJobs' => [
-                'method' => 'post',
-                'uriTemplate' => '/v4beta1/{parent=projects/*/tenants/*}/jobs:batchCreate',
-                'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v4beta1/{parent=projects/*}/jobs:batchCreate',
-                        'body' => '*',
-                    ],
-                ],
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'BatchUpdateJobs' => [
-                'method' => 'post',
-                'uriTemplate' => '/v4beta1/{parent=projects/*/tenants/*}/jobs:batchUpdate',
-                'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v4beta1/{parent=projects/*}/jobs:batchUpdate',
                         'body' => '*',
                     ],
                 ],
