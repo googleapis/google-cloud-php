@@ -17,7 +17,11 @@ class CreateSessionEntityTypeRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The session to create a session entity type for.
-     * Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
+     * Format: `projects/<Project ID>/agent/sessions/<Session ID>` or
+     * `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/
+     * sessions/<Session ID>`.
+     * If `Environment ID` is not specified, we assume default 'draft'
+     * environment. If `User ID` is not specified, we assume default '-' user.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -37,7 +41,11 @@ class CreateSessionEntityTypeRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The session to create a session entity type for.
-     *           Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
+     *           Format: `projects/<Project ID>/agent/sessions/<Session ID>` or
+     *           `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/
+     *           sessions/<Session ID>`.
+     *           If `Environment ID` is not specified, we assume default 'draft'
+     *           environment. If `User ID` is not specified, we assume default '-' user.
      *     @type \Google\Cloud\Dialogflow\V2\SessionEntityType $session_entity_type
      *           Required. The session entity type to create.
      * }
@@ -49,7 +57,11 @@ class CreateSessionEntityTypeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The session to create a session entity type for.
-     * Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
+     * Format: `projects/<Project ID>/agent/sessions/<Session ID>` or
+     * `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/
+     * sessions/<Session ID>`.
+     * If `Environment ID` is not specified, we assume default 'draft'
+     * environment. If `User ID` is not specified, we assume default '-' user.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -61,7 +73,11 @@ class CreateSessionEntityTypeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The session to create a session entity type for.
-     * Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
+     * Format: `projects/<Project ID>/agent/sessions/<Session ID>` or
+     * `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/
+     * sessions/<Session ID>`.
+     * If `Environment ID` is not specified, we assume default 'draft'
+     * environment. If `User ID` is not specified, we assume default '-' user.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

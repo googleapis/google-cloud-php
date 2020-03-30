@@ -97,6 +97,17 @@ return [
                     ],
                 ],
             ],
+            'GetValidationResult' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=projects/*}/agent/validationResult',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.longrunning.Operations' => [
             'GetOperation' => [

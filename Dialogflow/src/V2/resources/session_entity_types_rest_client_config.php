@@ -6,6 +6,12 @@ return [
             'ListSessionEntityTypes' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{parent=projects/*/agent/sessions/*}/entityTypes',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=projects/*/agent/environments/*/users/*/sessions/*}/entityTypes',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -17,6 +23,12 @@ return [
             'GetSessionEntityType' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{name=projects/*/agent/sessions/*/entityTypes/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=projects/*/agent/environments/*/users/*/sessions/*/entityTypes/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -29,6 +41,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{parent=projects/*/agent/sessions/*}/entityTypes',
                 'body' => 'session_entity_type',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*/agent/environments/*/users/*/sessions/*}/entityTypes',
+                        'body' => 'session_entity_type',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -41,6 +60,13 @@ return [
                 'method' => 'patch',
                 'uriTemplate' => '/v2/{session_entity_type.name=projects/*/agent/sessions/*/entityTypes/*}',
                 'body' => 'session_entity_type',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v2/{session_entity_type.name=projects/*/agent/environments/*/users/*/sessions/*/entityTypes/*}',
+                        'body' => 'session_entity_type',
+                    ],
+                ],
                 'placeholders' => [
                     'session_entity_type.name' => [
                         'getters' => [
@@ -53,6 +79,12 @@ return [
             'DeleteSessionEntityType' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v2/{name=projects/*/agent/sessions/*/entityTypes/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{name=projects/*/agent/environments/*/users/*/sessions/*/entityTypes/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [

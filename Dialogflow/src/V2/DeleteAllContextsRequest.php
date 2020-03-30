@@ -17,9 +17,13 @@ class DeleteAllContextsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the session to delete all contexts from. Format:
-     * `projects/<Project ID>/agent/sessions/<Session ID>`.
+     * `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project
+     * ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session
+     * ID>`.
+     * If `Environment ID` is not specified we assume default 'draft' environment.
+     * If `User ID` is not specified, we assume default '-' user.
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
 
@@ -31,7 +35,11 @@ class DeleteAllContextsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The name of the session to delete all contexts from. Format:
-     *           `projects/<Project ID>/agent/sessions/<Session ID>`.
+     *           `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project
+     *           ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session
+     *           ID>`.
+     *           If `Environment ID` is not specified we assume default 'draft' environment.
+     *           If `User ID` is not specified, we assume default '-' user.
      * }
      */
     public function __construct($data = NULL) {
@@ -41,9 +49,13 @@ class DeleteAllContextsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the session to delete all contexts from. Format:
-     * `projects/<Project ID>/agent/sessions/<Session ID>`.
+     * `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project
+     * ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session
+     * ID>`.
+     * If `Environment ID` is not specified we assume default 'draft' environment.
+     * If `User ID` is not specified, we assume default '-' user.
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -53,9 +65,13 @@ class DeleteAllContextsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the session to delete all contexts from. Format:
-     * `projects/<Project ID>/agent/sessions/<Session ID>`.
+     * `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project
+     * ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session
+     * ID>`.
+     * If `Environment ID` is not specified we assume default 'draft' environment.
+     * If `User ID` is not specified, we assume default '-' user.
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

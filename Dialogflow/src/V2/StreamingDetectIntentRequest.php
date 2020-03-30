@@ -42,18 +42,22 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the session the query is sent to.
      * Format of the session name:
-     * `projects/<Project ID>/agent/sessions/<Session ID>`. It's up to the API
-     * caller to choose an appropriate `Session ID`. It can be a random number or
-     * some type of user identifier (preferably hashed). The length of the session
-     * ID must not exceed 36 characters.
+     * `projects/<Project ID>/agent/sessions/<Session ID>`, or
+     * `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     * ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume
+     * default 'draft' environment. If `User ID` is not specified, we are using
+     * "-". It's up to the API caller to choose an appropriate `Session ID` and
+     * `User Id`. They can be a random number or some type of user and session
+     * identifiers (preferably hashed). The length of the `Session ID` and
+     * `User ID` must not exceed 36 characters.
      *
-     * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $session = '';
     /**
-     * Optional. The parameters of this query.
+     * The parameters of this query.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.QueryParameters query_params = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.QueryParameters query_params = 2;</code>
      */
     private $query_params = null;
     /**
@@ -67,7 +71,7 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
      */
     private $query_input = null;
     /**
-     * Optional. Please use [InputAudioConfig.single_utterance][google.cloud.dialogflow.v2.InputAudioConfig.single_utterance] instead.
+     * Please use [InputAudioConfig.single_utterance][google.cloud.dialogflow.v2.InputAudioConfig.single_utterance] instead.
      * If `false` (default), recognition does not cease until
      * the client closes the stream. If `true`, the recognizer will detect a
      * single spoken utterance in input audio. Recognition ceases when it detects
@@ -76,23 +80,33 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
      * request with a new stream as needed.
      * This setting is ignored when `query_input` is a piece of text or an event.
      *
-     * Generated from protobuf field <code>bool single_utterance = 4 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool single_utterance = 4 [deprecated = true];</code>
      */
     private $single_utterance = false;
     /**
-     * Optional. Instructs the speech synthesizer how to generate the output
+     * Instructs the speech synthesizer how to generate the output
      * audio. If this field is not set and agent-level speech synthesizer is not
      * configured, no output audio is generated.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.OutputAudioConfig output_audio_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.OutputAudioConfig output_audio_config = 5;</code>
      */
     private $output_audio_config = null;
     /**
-     * Optional. The input audio content to be recognized. Must be sent if
+     * Mask for [output_audio_config][google.cloud.dialogflow.v2.StreamingDetectIntentRequest.output_audio_config] indicating which settings in this
+     * request-level config should override speech synthesizer settings defined at
+     * agent-level.
+     * If unspecified or empty, [output_audio_config][google.cloud.dialogflow.v2.StreamingDetectIntentRequest.output_audio_config] replaces the agent-level
+     * config in its entirety.
+     *
+     * Generated from protobuf field <code>.google.protobuf.FieldMask output_audio_config_mask = 7;</code>
+     */
+    private $output_audio_config_mask = null;
+    /**
+     * The input audio content to be recognized. Must be sent if
      * `query_input` was set to a streaming input audio config. The complete audio
      * over all streaming messages must not exceed 1 minute.
      *
-     * Generated from protobuf field <code>bytes input_audio = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bytes input_audio = 6;</code>
      */
     private $input_audio = '';
 
@@ -105,12 +119,16 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
      *     @type string $session
      *           Required. The name of the session the query is sent to.
      *           Format of the session name:
-     *           `projects/<Project ID>/agent/sessions/<Session ID>`. It's up to the API
-     *           caller to choose an appropriate `Session ID`. It can be a random number or
-     *           some type of user identifier (preferably hashed). The length of the session
-     *           ID must not exceed 36 characters.
+     *           `projects/<Project ID>/agent/sessions/<Session ID>`, or
+     *           `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *           ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume
+     *           default 'draft' environment. If `User ID` is not specified, we are using
+     *           "-". It's up to the API caller to choose an appropriate `Session ID` and
+     *           `User Id`. They can be a random number or some type of user and session
+     *           identifiers (preferably hashed). The length of the `Session ID` and
+     *           `User ID` must not exceed 36 characters.
      *     @type \Google\Cloud\Dialogflow\V2\QueryParameters $query_params
-     *           Optional. The parameters of this query.
+     *           The parameters of this query.
      *     @type \Google\Cloud\Dialogflow\V2\QueryInput $query_input
      *           Required. The input specification. It can be set to:
      *           1.  an audio config which instructs the speech recognizer how to process
@@ -118,7 +136,7 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
      *           2.  a conversational query in the form of text, or
      *           3.  an event that specifies which intent to trigger.
      *     @type bool $single_utterance
-     *           Optional. Please use [InputAudioConfig.single_utterance][google.cloud.dialogflow.v2.InputAudioConfig.single_utterance] instead.
+     *           Please use [InputAudioConfig.single_utterance][google.cloud.dialogflow.v2.InputAudioConfig.single_utterance] instead.
      *           If `false` (default), recognition does not cease until
      *           the client closes the stream. If `true`, the recognizer will detect a
      *           single spoken utterance in input audio. Recognition ceases when it detects
@@ -127,11 +145,17 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
      *           request with a new stream as needed.
      *           This setting is ignored when `query_input` is a piece of text or an event.
      *     @type \Google\Cloud\Dialogflow\V2\OutputAudioConfig $output_audio_config
-     *           Optional. Instructs the speech synthesizer how to generate the output
+     *           Instructs the speech synthesizer how to generate the output
      *           audio. If this field is not set and agent-level speech synthesizer is not
      *           configured, no output audio is generated.
+     *     @type \Google\Protobuf\FieldMask $output_audio_config_mask
+     *           Mask for [output_audio_config][google.cloud.dialogflow.v2.StreamingDetectIntentRequest.output_audio_config] indicating which settings in this
+     *           request-level config should override speech synthesizer settings defined at
+     *           agent-level.
+     *           If unspecified or empty, [output_audio_config][google.cloud.dialogflow.v2.StreamingDetectIntentRequest.output_audio_config] replaces the agent-level
+     *           config in its entirety.
      *     @type string $input_audio
-     *           Optional. The input audio content to be recognized. Must be sent if
+     *           The input audio content to be recognized. Must be sent if
      *           `query_input` was set to a streaming input audio config. The complete audio
      *           over all streaming messages must not exceed 1 minute.
      * }
@@ -144,12 +168,16 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the session the query is sent to.
      * Format of the session name:
-     * `projects/<Project ID>/agent/sessions/<Session ID>`. It's up to the API
-     * caller to choose an appropriate `Session ID`. It can be a random number or
-     * some type of user identifier (preferably hashed). The length of the session
-     * ID must not exceed 36 characters.
+     * `projects/<Project ID>/agent/sessions/<Session ID>`, or
+     * `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     * ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume
+     * default 'draft' environment. If `User ID` is not specified, we are using
+     * "-". It's up to the API caller to choose an appropriate `Session ID` and
+     * `User Id`. They can be a random number or some type of user and session
+     * identifiers (preferably hashed). The length of the `Session ID` and
+     * `User ID` must not exceed 36 characters.
      *
-     * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getSession()
@@ -160,12 +188,16 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the session the query is sent to.
      * Format of the session name:
-     * `projects/<Project ID>/agent/sessions/<Session ID>`. It's up to the API
-     * caller to choose an appropriate `Session ID`. It can be a random number or
-     * some type of user identifier (preferably hashed). The length of the session
-     * ID must not exceed 36 characters.
+     * `projects/<Project ID>/agent/sessions/<Session ID>`, or
+     * `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     * ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume
+     * default 'draft' environment. If `User ID` is not specified, we are using
+     * "-". It's up to the API caller to choose an appropriate `Session ID` and
+     * `User Id`. They can be a random number or some type of user and session
+     * identifiers (preferably hashed). The length of the `Session ID` and
+     * `User ID` must not exceed 36 characters.
      *
-     * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -178,9 +210,9 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The parameters of this query.
+     * The parameters of this query.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.QueryParameters query_params = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.QueryParameters query_params = 2;</code>
      * @return \Google\Cloud\Dialogflow\V2\QueryParameters
      */
     public function getQueryParams()
@@ -189,9 +221,9 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The parameters of this query.
+     * The parameters of this query.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.QueryParameters query_params = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.QueryParameters query_params = 2;</code>
      * @param \Google\Cloud\Dialogflow\V2\QueryParameters $var
      * @return $this
      */
@@ -238,7 +270,7 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Please use [InputAudioConfig.single_utterance][google.cloud.dialogflow.v2.InputAudioConfig.single_utterance] instead.
+     * Please use [InputAudioConfig.single_utterance][google.cloud.dialogflow.v2.InputAudioConfig.single_utterance] instead.
      * If `false` (default), recognition does not cease until
      * the client closes the stream. If `true`, the recognizer will detect a
      * single spoken utterance in input audio. Recognition ceases when it detects
@@ -247,7 +279,7 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
      * request with a new stream as needed.
      * This setting is ignored when `query_input` is a piece of text or an event.
      *
-     * Generated from protobuf field <code>bool single_utterance = 4 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool single_utterance = 4 [deprecated = true];</code>
      * @return bool
      */
     public function getSingleUtterance()
@@ -256,7 +288,7 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Please use [InputAudioConfig.single_utterance][google.cloud.dialogflow.v2.InputAudioConfig.single_utterance] instead.
+     * Please use [InputAudioConfig.single_utterance][google.cloud.dialogflow.v2.InputAudioConfig.single_utterance] instead.
      * If `false` (default), recognition does not cease until
      * the client closes the stream. If `true`, the recognizer will detect a
      * single spoken utterance in input audio. Recognition ceases when it detects
@@ -265,7 +297,7 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
      * request with a new stream as needed.
      * This setting is ignored when `query_input` is a piece of text or an event.
      *
-     * Generated from protobuf field <code>bool single_utterance = 4 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool single_utterance = 4 [deprecated = true];</code>
      * @param bool $var
      * @return $this
      */
@@ -278,11 +310,11 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Instructs the speech synthesizer how to generate the output
+     * Instructs the speech synthesizer how to generate the output
      * audio. If this field is not set and agent-level speech synthesizer is not
      * configured, no output audio is generated.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.OutputAudioConfig output_audio_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.OutputAudioConfig output_audio_config = 5;</code>
      * @return \Google\Cloud\Dialogflow\V2\OutputAudioConfig
      */
     public function getOutputAudioConfig()
@@ -291,11 +323,11 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Instructs the speech synthesizer how to generate the output
+     * Instructs the speech synthesizer how to generate the output
      * audio. If this field is not set and agent-level speech synthesizer is not
      * configured, no output audio is generated.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.OutputAudioConfig output_audio_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.OutputAudioConfig output_audio_config = 5;</code>
      * @param \Google\Cloud\Dialogflow\V2\OutputAudioConfig $var
      * @return $this
      */
@@ -308,11 +340,45 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The input audio content to be recognized. Must be sent if
+     * Mask for [output_audio_config][google.cloud.dialogflow.v2.StreamingDetectIntentRequest.output_audio_config] indicating which settings in this
+     * request-level config should override speech synthesizer settings defined at
+     * agent-level.
+     * If unspecified or empty, [output_audio_config][google.cloud.dialogflow.v2.StreamingDetectIntentRequest.output_audio_config] replaces the agent-level
+     * config in its entirety.
+     *
+     * Generated from protobuf field <code>.google.protobuf.FieldMask output_audio_config_mask = 7;</code>
+     * @return \Google\Protobuf\FieldMask
+     */
+    public function getOutputAudioConfigMask()
+    {
+        return $this->output_audio_config_mask;
+    }
+
+    /**
+     * Mask for [output_audio_config][google.cloud.dialogflow.v2.StreamingDetectIntentRequest.output_audio_config] indicating which settings in this
+     * request-level config should override speech synthesizer settings defined at
+     * agent-level.
+     * If unspecified or empty, [output_audio_config][google.cloud.dialogflow.v2.StreamingDetectIntentRequest.output_audio_config] replaces the agent-level
+     * config in its entirety.
+     *
+     * Generated from protobuf field <code>.google.protobuf.FieldMask output_audio_config_mask = 7;</code>
+     * @param \Google\Protobuf\FieldMask $var
+     * @return $this
+     */
+    public function setOutputAudioConfigMask($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\FieldMask::class);
+        $this->output_audio_config_mask = $var;
+
+        return $this;
+    }
+
+    /**
+     * The input audio content to be recognized. Must be sent if
      * `query_input` was set to a streaming input audio config. The complete audio
      * over all streaming messages must not exceed 1 minute.
      *
-     * Generated from protobuf field <code>bytes input_audio = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bytes input_audio = 6;</code>
      * @return string
      */
     public function getInputAudio()
@@ -321,11 +387,11 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The input audio content to be recognized. Must be sent if
+     * The input audio content to be recognized. Must be sent if
      * `query_input` was set to a streaming input audio config. The complete audio
      * over all streaming messages must not exceed 1 minute.
      *
-     * Generated from protobuf field <code>bytes input_audio = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bytes input_audio = 6;</code>
      * @param string $var
      * @return $this
      */

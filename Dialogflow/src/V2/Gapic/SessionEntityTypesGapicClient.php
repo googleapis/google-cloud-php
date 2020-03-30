@@ -358,7 +358,11 @@ class SessionEntityTypesGapicClient
      * ```
      *
      * @param string $parent       Required. The session to list all session entity types from.
-     *                             Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
+     *                             Format: `projects/<Project ID>/agent/sessions/<Session ID>` or
+     *                             `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/
+     *                             sessions/<Session ID>`.
+     *                             If `Environment ID` is not specified, we assume default 'draft'
+     *                             environment. If `User ID` is not specified, we assume default '-' user.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -429,7 +433,11 @@ class SessionEntityTypesGapicClient
      *
      * @param string $name         Required. The name of the session entity type. Format:
      *                             `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
-     *                             Display Name>`.
+     *                             Display Name>` or `projects/<Project ID>/agent/environments/<Environment
+     *                             ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display
+     *                             Name>`.
+     *                             If `Environment ID` is not specified, we assume default 'draft'
+     *                             environment. If `User ID` is not specified, we assume default '-' user.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -488,7 +496,11 @@ class SessionEntityTypesGapicClient
      * ```
      *
      * @param string            $parent            Required. The session to create a session entity type for.
-     *                                             Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
+     *                                             Format: `projects/<Project ID>/agent/sessions/<Session ID>` or
+     *                                             `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/
+     *                                             sessions/<Session ID>`.
+     *                                             If `Environment ID` is not specified, we assume default 'draft'
+     *                                             environment. If `User ID` is not specified, we assume default '-' user.
      * @param SessionEntityType $sessionEntityType Required. The session entity type to create.
      * @param array             $optionalArgs      {
      *                                             Optional.
@@ -544,9 +556,7 @@ class SessionEntityTypesGapicClient
      * }
      * ```
      *
-     * @param SessionEntityType $sessionEntityType Required. The entity type to update. Format:
-     *                                             `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
-     *                                             Display Name>`.
+     * @param SessionEntityType $sessionEntityType Required. The session entity type to update.
      * @param array             $optionalArgs      {
      *                                             Optional.
      *
@@ -607,7 +617,11 @@ class SessionEntityTypesGapicClient
      *
      * @param string $name         Required. The name of the entity type to delete. Format:
      *                             `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
-     *                             Display Name>`.
+     *                             Display Name>` or `projects/<Project ID>/agent/environments/<Environment
+     *                             ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display
+     *                             Name>`.
+     *                             If `Environment ID` is not specified, we assume default 'draft'
+     *                             environment. If `User ID` is not specified, we assume default '-' user.
      * @param array  $optionalArgs {
      *                             Optional.
      *

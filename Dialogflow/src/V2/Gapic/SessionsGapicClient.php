@@ -43,6 +43,7 @@ use Google\Cloud\Dialogflow\V2\QueryInput;
 use Google\Cloud\Dialogflow\V2\QueryParameters;
 use Google\Cloud\Dialogflow\V2\StreamingDetectIntentRequest;
 use Google\Cloud\Dialogflow\V2\StreamingDetectIntentResponse;
+use Google\Protobuf\FieldMask;
 
 /**
  * Service Description: A session represents an interaction with a user. You retrieve user input
@@ -283,10 +284,14 @@ class SessionsGapicClient
      * ```
      *
      * @param string     $session    Required. The name of the session this query is sent to. Format:
-     *                               `projects/<Project ID>/agent/sessions/<Session ID>`. It's up to the API
-     *                               caller to choose an appropriate session ID. It can be a random number or
-     *                               some type of user identifier (preferably hashed). The length of the session
-     *                               ID must not exceed 36 bytes.
+     *                               `projects/<Project ID>/agent/sessions/<Session ID>`, or
+     *                               `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *                               ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume
+     *                               default 'draft' environment. If `User ID` is not specified, we are using
+     *                               "-". It's up to the API caller to choose an appropriate `Session ID` and
+     *                               `User Id`. They can be a random number or some type of user and session
+     *                               identifiers (preferably hashed). The length of the `Session ID` and
+     *                               `User ID` must not exceed 36 characters.
      * @param QueryInput $queryInput Required. The input specification. It can be set to:
      *
      * 1.  an audio config
@@ -299,13 +304,20 @@ class SessionsGapicClient
      *                            Optional.
      *
      *     @type QueryParameters $queryParams
-     *          Optional. The parameters of this query.
+     *          The parameters of this query.
      *     @type OutputAudioConfig $outputAudioConfig
-     *          Optional. Instructs the speech synthesizer how to generate the output
+     *          Instructs the speech synthesizer how to generate the output
      *          audio. If this field is not set and agent-level speech synthesizer is not
      *          configured, no output audio is generated.
+     *     @type FieldMask $outputAudioConfigMask
+     *          Mask for [output_audio_config][google.cloud.dialogflow.v2.DetectIntentRequest.output_audio_config] indicating which settings in this
+     *          request-level config should override speech synthesizer settings defined at
+     *          agent-level.
+     *
+     *          If unspecified or empty, [output_audio_config][google.cloud.dialogflow.v2.DetectIntentRequest.output_audio_config] replaces the agent-level
+     *          config in its entirety.
      *     @type string $inputAudio
-     *          Optional. The natural language speech audio to be processed. This field
+     *          The natural language speech audio to be processed. This field
      *          should be populated iff `query_input` is set to an input audio config.
      *          A single request can contain up to 1 minute of speech audio data.
      *     @type RetrySettings|array $retrySettings
@@ -330,6 +342,9 @@ class SessionsGapicClient
         }
         if (isset($optionalArgs['outputAudioConfig'])) {
             $request->setOutputAudioConfig($optionalArgs['outputAudioConfig']);
+        }
+        if (isset($optionalArgs['outputAudioConfigMask'])) {
+            $request->setOutputAudioConfigMask($optionalArgs['outputAudioConfigMask']);
         }
         if (isset($optionalArgs['inputAudio'])) {
             $request->setInputAudio($optionalArgs['inputAudio']);
