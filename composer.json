@@ -49,7 +49,7 @@
         "guzzlehttp/psr7": "^1.2",
         "monolog/monolog": "^1.1|^2.0",
         "psr/http-message": "1.0.*",
-        "ramsey/uuid": "~3",
+        "ramsey/uuid": "^3.0|^4.0",
         "google/gax": "^1.1",
         "google/common-protos": "^1.0",
         "google/auth": "^1.6",
