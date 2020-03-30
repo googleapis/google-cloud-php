@@ -134,8 +134,8 @@ class ConformanceTest extends TestCase
         ];
 
         $policy = $bucket->generateSignedPostPolicyV4(
-            $expiration,
             $testdata['policyInput']['object'],
+            $expiration,
             $hostnameOptions + $options
         );
 

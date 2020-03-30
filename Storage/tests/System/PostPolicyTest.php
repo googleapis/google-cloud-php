@@ -37,7 +37,7 @@ class PostPolicyTest extends StorageTestCase
     {
         $filename = $this->createFilename();
         $content = 'helloworld';
-        $policy = self::$bucket->generateSignedPostPolicyV4(time() + 3600, $filename);
+        $policy = self::$bucket->generateSignedPostPolicyV4($filename, time() + 3600);
         $res = $this->uploadWithPolicy($policy, $content);
         self::$deletionQueue->add($this->getObject($filename));
 
@@ -50,7 +50,7 @@ class PostPolicyTest extends StorageTestCase
         $filename = $this->createFilename();
         $content = 'helloworld';
         $location = 'https://google.com';
-        $policy = self::$bucket->generateSignedPostPolicyV4(time() + 3600, $filename, [
+        $policy = self::$bucket->generateSignedPostPolicyV4($filename, time() + 3600, [
             'fields' => [
                 'success_action_redirect' => $location
             ]
@@ -68,7 +68,7 @@ class PostPolicyTest extends StorageTestCase
     public function testUploadPolicyInvalidField()
     {
         $filename = $this->createFilename();
-        $policy = self::$bucket->generateSignedPostPolicyV4(time() + 3600, $filename, [
+        $policy = self::$bucket->generateSignedPostPolicyV4($filename, time() + 3600, [
             'fields' => [
                 'x-goog-random' => 'foo'
             ]
@@ -85,7 +85,7 @@ class PostPolicyTest extends StorageTestCase
     public function testUploadPolicyEscapingSequence($cond)
     {
         $filename = $this->createFilename();
-        $policy = self::$bucket->generateSignedPostPolicyV4(time() + 3600, $filename, [
+        $policy = self::$bucket->generateSignedPostPolicyV4($filename, time() + 3600, [
             'conditions' => [
                 ['x-goog-meta-foo' => $cond]
             ],
