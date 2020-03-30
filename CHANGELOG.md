@@ -1,5 +1,93 @@
 # Changelog
 
+## 0.130.0
+
+<details><summary>google/cloud-bigquery 1.15.0</summary>
+
+
+
+### Features
+
+* add support for ramsey/uuid v4 ([#2804](https://www.github.com/googleapis/google-cloud-php/issues/2804)) ([98fee99](https://www.github.com/googleapis/google-cloud-php/commit/98fee998bff87f43182c72ac2ffe29f01a90308b))
+
+
+### Documentation
+
+* add parentJobId to list jobs ([#2776](https://www.github.com/googleapis/google-cloud-php/issues/2776)) ([fa77445](https://www.github.com/googleapis/google-cloud-php/commit/fa77445ce2e712cd50ddbc2d68b9868ce4b7be98))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 0.14.0</summary>
+
+
+
+### Features
+
+* add get validation result method ([#2795](https://www.github.com/googleapis/google-cloud-php/issues/2795)) ([f0efb93](https://www.github.com/googleapis/google-cloud-php/commit/f0efb930c46a0f32df21640d33f9eff5c2422b87))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.12.0</summary>
+
+
+
+### Features
+
+* add support for ramsey/uuid v4 ([#2804](https://www.github.com/googleapis/google-cloud-php/issues/2804)) ([98fee99](https://www.github.com/googleapis/google-cloud-php/commit/98fee998bff87f43182c72ac2ffe29f01a90308b))
+
+</details>
+
+<details><summary>google/cloud-redis 0.12.3</summary>
+
+
+
+### Documentation
+
+* update documentation ([#2791](https://www.github.com/googleapis/google-cloud-php/issues/2791)) ([ce72fef](https://www.github.com/googleapis/google-cloud-php/commit/ce72fefe1aaf9046625696f5323cfc676188edd5))
+
+</details>
+
+<details><summary>google/cloud-service-directory 0.1.0</summary>
+
+
+
+### Features
+
+* introduce service directory v1beta1 client ([#2793](https://www.github.com/googleapis/google-cloud-php/issues/2793)) ([0676dfd](https://www.github.com/googleapis/google-cloud-php/commit/0676dfd60981190ffd42b1de93b8931689f3262a))
+
+</details>
+
+<details><summary>google/cloud-storage 1.20.0</summary>
+
+
+
+### Features
+
+* add support for signed post policies ([#2750](https://www.github.com/googleapis/google-cloud-php/issues/2750)) ([2786f02](https://www.github.com/googleapis/google-cloud-php/commit/2786f02d31e30093705414c1d3beb129449646bb))
+* reorder post policy method arguments ([#2803](https://www.github.com/googleapis/google-cloud-php/issues/2803)) ([1942ee2](https://www.github.com/googleapis/google-cloud-php/commit/1942ee2bea29d5b26ea19248080e9b652dc306db))
+
+</details>
+
+<details><summary>google/cloud-talent 0.10.0</summary>
+
+
+
+### Features
+
+* update clients ([#2798](https://www.github.com/googleapis/google-cloud-php/issues/2798)) ([e8ec32b](https://www.github.com/googleapis/google-cloud-php/commit/e8ec32b8341af8a474ea6733d6b83f8e9d4953ad))
+
+</details>
+
+<details><summary>google/cloud-trace 0.18.0</summary>
+
+
+
+### Features
+
+* add support for ramsey/uuid v4 ([#2804](https://www.github.com/googleapis/google-cloud-php/issues/2804)) ([98fee99](https://www.github.com/googleapis/google-cloud-php/commit/98fee998bff87f43182c72ac2ffe29f01a90308b))
+
+</details>
+
 ## 0.129.0
 
 <details><summary>google/cloud-bigquery 1.14.0</summary>
