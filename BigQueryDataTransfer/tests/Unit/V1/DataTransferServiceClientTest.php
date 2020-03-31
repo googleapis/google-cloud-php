@@ -856,7 +856,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->projectRunName('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
+        $formattedName = $client->projectTransferConfigRunName('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
 
         $response = $client->getTransferRun($formattedName);
         $this->assertEquals($expectedResponse, $response);
@@ -896,7 +896,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->projectRunName('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
+        $formattedName = $client->projectTransferConfigRunName('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
 
         try {
             $client->getTransferRun($formattedName);
@@ -927,7 +927,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->projectRunName('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
+        $formattedName = $client->projectTransferConfigRunName('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
 
         $client->deleteTransferRun($formattedName);
         $actualRequests = $transport->popReceivedCalls();
@@ -966,7 +966,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->projectRunName('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
+        $formattedName = $client->projectTransferConfigRunName('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
 
         try {
             $client->deleteTransferRun($formattedName);
@@ -1081,7 +1081,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = $client->projectRunName('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
+        $formattedParent = $client->projectTransferConfigRunName('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
 
         $response = $client->listTransferLogs($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
@@ -1124,7 +1124,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = $client->projectRunName('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
+        $formattedParent = $client->projectTransferConfigRunName('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
 
         try {
             $client->listTransferLogs($formattedParent);
