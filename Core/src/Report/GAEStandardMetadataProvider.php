@@ -18,7 +18,7 @@
 namespace Google\Cloud\Core\Report;
 
 /**
- * An MetadataProvider for GAE Standard.
+ * A MetadataProvider for GAE Standard.
  */
 class GAEStandardMetadataProvider extends GAEMetadataProvider
 {
