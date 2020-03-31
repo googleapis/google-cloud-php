@@ -20,8 +20,6 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/cloud/dataproc/v1/jobs.proto
  * and updates to that file get reflected here through a refresh process.
- *
- * @experimental
  */
 
 namespace Google\Cloud\Dataproc\V1\Gapic;
@@ -62,8 +60,6 @@ use Google\Protobuf\GPBEmpty;
  *     $jobControllerClient->close();
  * }
  * ```
- *
- * @experimental
  */
 class JobControllerGapicClient
 {
@@ -168,7 +164,6 @@ class JobControllerGapicClient
      * }
      *
      * @throws ValidationException
-     * @experimental
      */
     public function __construct(array $options = [])
     {
@@ -221,7 +216,6 @@ class JobControllerGapicClient
      * @return \Google\Cloud\Dataproc\V1\Job
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function submitJob($projectId, $region, $job, array $optionalArgs = [])
     {
@@ -274,7 +268,6 @@ class JobControllerGapicClient
      * @return \Google\Cloud\Dataproc\V1\Job
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getJob($projectId, $region, $jobId, array $optionalArgs = [])
     {
@@ -370,7 +363,6 @@ class JobControllerGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listJobs($projectId, $region, array $optionalArgs = [])
     {
@@ -443,7 +435,6 @@ class JobControllerGapicClient
      * @return \Google\Cloud\Dataproc\V1\Job
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function updateJob($projectId, $region, $jobId, $job, $updateMask, array $optionalArgs = [])
     {
@@ -499,7 +490,6 @@ class JobControllerGapicClient
      * @return \Google\Cloud\Dataproc\V1\Job
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function cancelJob($projectId, $region, $jobId, array $optionalArgs = [])
     {
@@ -548,7 +538,6 @@ class JobControllerGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function deleteJob($projectId, $region, $jobId, array $optionalArgs = [])
     {

@@ -1,0 +1,5 @@
+{
+    "distribution_name": "google/cloud-web-security-scanner",
+    "release_level": "beta",
+    "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-web-security-scanner/latest"
+}

@@ -20,8 +20,6 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/cloud/automl/v1/service.proto
  * and updates to that file get reflected here through a refresh process.
- *
- * @experimental
  */
 
 namespace Google\Cloud\AutoMl\V1\Gapic;
@@ -132,8 +130,6 @@ use Google\Protobuf\FieldMask;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parseName method to extract the individual identifiers contained within formatted names
  * that are returned by the API.
- *
- * @experimental
  */
 class AutoMlGapicClient
 {
@@ -263,7 +259,6 @@ class AutoMlGapicClient
      * @param string $annotationSpec
      *
      * @return string The formatted annotation_spec resource.
-     * @experimental
      */
     public static function annotationSpecName($project, $location, $dataset, $annotationSpec)
     {
@@ -284,7 +279,6 @@ class AutoMlGapicClient
      * @param string $dataset
      *
      * @return string The formatted dataset resource.
-     * @experimental
      */
     public static function datasetName($project, $location, $dataset)
     {
@@ -303,7 +297,6 @@ class AutoMlGapicClient
      * @param string $location
      *
      * @return string The formatted location resource.
-     * @experimental
      */
     public static function locationName($project, $location)
     {
@@ -322,7 +315,6 @@ class AutoMlGapicClient
      * @param string $model
      *
      * @return string The formatted model resource.
-     * @experimental
      */
     public static function modelName($project, $location, $model)
     {
@@ -343,7 +335,6 @@ class AutoMlGapicClient
      * @param string $modelEvaluation
      *
      * @return string The formatted model_evaluation resource.
-     * @experimental
      */
     public static function modelEvaluationName($project, $location, $model, $modelEvaluation)
     {
@@ -376,7 +367,6 @@ class AutoMlGapicClient
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
-     * @experimental
      */
     public static function parseName($formattedName, $template = null)
     {
@@ -404,7 +394,6 @@ class AutoMlGapicClient
      * Return an OperationsClient object with the same endpoint as $this.
      *
      * @return OperationsClient
-     * @experimental
      */
     public function getOperationsClient()
     {
@@ -422,7 +411,6 @@ class AutoMlGapicClient
      * @param string $methodName    The name of the method used to start the operation
      *
      * @return OperationResponse
-     * @experimental
      */
     public function resumeOperation($operationName, $methodName = null)
     {
@@ -488,7 +476,6 @@ class AutoMlGapicClient
      * }
      *
      * @throws ValidationException
-     * @experimental
      */
     public function __construct(array $options = [])
     {
@@ -555,7 +542,6 @@ class AutoMlGapicClient
      * @return \Google\ApiCore\OperationResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function createDataset($parent, $dataset, array $optionalArgs = [])
     {
@@ -608,7 +594,6 @@ class AutoMlGapicClient
      * @return \Google\Cloud\AutoMl\V1\Dataset
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function updateDataset($dataset, $updateMask, array $optionalArgs = [])
     {
@@ -659,7 +644,6 @@ class AutoMlGapicClient
      * @return \Google\Cloud\AutoMl\V1\Dataset
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getDataset($name, array $optionalArgs = [])
     {
@@ -741,7 +725,6 @@ class AutoMlGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listDatasets($parent, array $optionalArgs = [])
     {
@@ -830,7 +813,6 @@ class AutoMlGapicClient
      * @return \Google\ApiCore\OperationResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function deleteDataset($name, array $optionalArgs = [])
     {
@@ -918,7 +900,6 @@ class AutoMlGapicClient
      * @return \Google\ApiCore\OperationResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function importData($name, $inputConfig, array $optionalArgs = [])
     {
@@ -999,7 +980,6 @@ class AutoMlGapicClient
      * @return \Google\ApiCore\OperationResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function exportData($name, $outputConfig, array $optionalArgs = [])
     {
@@ -1050,7 +1030,6 @@ class AutoMlGapicClient
      * @return \Google\Cloud\AutoMl\V1\AnnotationSpec
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getAnnotationSpec($name, array $optionalArgs = [])
     {
@@ -1134,7 +1113,6 @@ class AutoMlGapicClient
      * @return \Google\ApiCore\OperationResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function createModel($parent, $model, array $optionalArgs = [])
     {
@@ -1185,7 +1163,6 @@ class AutoMlGapicClient
      * @return \Google\Cloud\AutoMl\V1\Model
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getModel($name, array $optionalArgs = [])
     {
@@ -1237,7 +1214,6 @@ class AutoMlGapicClient
      * @return \Google\Cloud\AutoMl\V1\Model
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function updateModel($model, $updateMask, array $optionalArgs = [])
     {
@@ -1322,7 +1298,6 @@ class AutoMlGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listModels($parent, array $optionalArgs = [])
     {
@@ -1411,7 +1386,6 @@ class AutoMlGapicClient
      * @return \Google\ApiCore\OperationResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function deleteModel($name, array $optionalArgs = [])
     {
@@ -1502,7 +1476,6 @@ class AutoMlGapicClient
      * @return \Google\ApiCore\OperationResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function deployModel($name, array $optionalArgs = [])
     {
@@ -1590,7 +1563,6 @@ class AutoMlGapicClient
      * @return \Google\ApiCore\OperationResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function undeployModel($name, array $optionalArgs = [])
     {
@@ -1674,7 +1646,6 @@ class AutoMlGapicClient
      * @return \Google\ApiCore\OperationResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function exportModel($name, $outputConfig, array $optionalArgs = [])
     {
@@ -1725,7 +1696,6 @@ class AutoMlGapicClient
      * @return \Google\Cloud\AutoMl\V1\ModelEvaluation
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getModelEvaluation($name, array $optionalArgs = [])
     {
@@ -1813,7 +1783,6 @@ class AutoMlGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listModelEvaluations($parent, $filter, array $optionalArgs = [])
     {

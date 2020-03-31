@@ -20,8 +20,6 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/monitoring/v3/uptime_service.proto
  * and updates to that file get reflected here through a refresh process.
- *
- * @experimental
  */
 
 namespace Google\Cloud\Monitoring\V3\Gapic;
@@ -89,8 +87,6 @@ use Google\Protobuf\GPBEmpty;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parseName method to extract the individual identifiers contained within formatted names
  * that are returned by the API.
- *
- * @experimental
  */
 class UptimeCheckServiceGapicClient
 {
@@ -185,7 +181,6 @@ class UptimeCheckServiceGapicClient
      * @param string $project
      *
      * @return string The formatted project resource.
-     * @experimental
      */
     public static function projectName($project)
     {
@@ -202,7 +197,6 @@ class UptimeCheckServiceGapicClient
      * @param string $uptimeCheckConfig
      *
      * @return string The formatted uptime_check_config resource.
-     * @experimental
      */
     public static function uptimeCheckConfigName($project, $uptimeCheckConfig)
     {
@@ -230,7 +224,6 @@ class UptimeCheckServiceGapicClient
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
-     * @experimental
      */
     public static function parseName($formattedName, $template = null)
     {
@@ -307,7 +300,6 @@ class UptimeCheckServiceGapicClient
      * }
      *
      * @throws ValidationException
-     * @experimental
      */
     public function __construct(array $options = [])
     {
@@ -370,7 +362,6 @@ class UptimeCheckServiceGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listUptimeCheckConfigs($parent, array $optionalArgs = [])
     {
@@ -428,7 +419,6 @@ class UptimeCheckServiceGapicClient
      * @return \Google\Cloud\Monitoring\V3\UptimeCheckConfig
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getUptimeCheckConfig($name, array $optionalArgs = [])
     {
@@ -482,7 +472,6 @@ class UptimeCheckServiceGapicClient
      * @return \Google\Cloud\Monitoring\V3\UptimeCheckConfig
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function createUptimeCheckConfig($parent, $uptimeCheckConfig, array $optionalArgs = [])
     {
@@ -551,7 +540,6 @@ class UptimeCheckServiceGapicClient
      * @return \Google\Cloud\Monitoring\V3\UptimeCheckConfig
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function updateUptimeCheckConfig($uptimeCheckConfig, array $optionalArgs = [])
     {
@@ -606,7 +594,6 @@ class UptimeCheckServiceGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function deleteUptimeCheckConfig($name, array $optionalArgs = [])
     {
@@ -678,7 +665,6 @@ class UptimeCheckServiceGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listUptimeCheckIps(array $optionalArgs = [])
     {

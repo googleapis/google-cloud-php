@@ -20,8 +20,6 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/cloud/billing/v1/cloud_catalog.proto
  * and updates to that file get reflected here through a refresh process.
- *
- * @experimental
  */
 
 namespace Google\Cloud\Billing\V1\Gapic;
@@ -77,8 +75,6 @@ use Google\Protobuf\Timestamp;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parseName method to extract the individual identifiers contained within formatted names
  * that are returned by the API.
- *
- * @experimental
  */
 class CloudCatalogGapicClient
 {
@@ -159,7 +155,6 @@ class CloudCatalogGapicClient
      * @param string $service
      *
      * @return string The formatted service resource.
-     * @experimental
      */
     public static function serviceName($service)
     {
@@ -185,7 +180,6 @@ class CloudCatalogGapicClient
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
-     * @experimental
      */
     public static function parseName($formattedName, $template = null)
     {
@@ -262,7 +256,6 @@ class CloudCatalogGapicClient
      * }
      *
      * @throws ValidationException
-     * @experimental
      */
     public function __construct(array $options = [])
     {
@@ -320,7 +313,6 @@ class CloudCatalogGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listServices(array $optionalArgs = [])
     {
@@ -411,7 +403,6 @@ class CloudCatalogGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listSkus($parent, array $optionalArgs = [])
     {

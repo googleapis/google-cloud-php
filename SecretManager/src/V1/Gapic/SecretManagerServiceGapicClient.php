@@ -20,8 +20,6 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/cloud/secretmanager/v1/service.proto
  * and updates to that file get reflected here through a refresh process.
- *
- * @experimental
  */
 
 namespace Google\Cloud\SecretManager\V1\Gapic;
@@ -103,8 +101,6 @@ use Google\Protobuf\GPBEmpty;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parseName method to extract the individual identifiers contained within formatted names
  * that are returned by the API.
- *
- * @experimental
  */
 class SecretManagerServiceGapicClient
 {
@@ -207,7 +203,6 @@ class SecretManagerServiceGapicClient
      * @param string $project
      *
      * @return string The formatted project resource.
-     * @experimental
      */
     public static function projectName($project)
     {
@@ -224,7 +219,6 @@ class SecretManagerServiceGapicClient
      * @param string $secret
      *
      * @return string The formatted secret resource.
-     * @experimental
      */
     public static function secretName($project, $secret)
     {
@@ -243,7 +237,6 @@ class SecretManagerServiceGapicClient
      * @param string $secretVersion
      *
      * @return string The formatted secret_version resource.
-     * @experimental
      */
     public static function secretVersionName($project, $secret, $secretVersion)
     {
@@ -273,7 +266,6 @@ class SecretManagerServiceGapicClient
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
-     * @experimental
      */
     public static function parseName($formattedName, $template = null)
     {
@@ -350,7 +342,6 @@ class SecretManagerServiceGapicClient
      * }
      *
      * @throws ValidationException
-     * @experimental
      */
     public function __construct(array $options = [])
     {
@@ -411,7 +402,6 @@ class SecretManagerServiceGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listSecrets($parent, array $optionalArgs = [])
     {
@@ -472,7 +462,6 @@ class SecretManagerServiceGapicClient
      * @return \Google\Cloud\SecretManager\V1\Secret
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function createSecret($parent, $secretId, $secret, array $optionalArgs = [])
     {
@@ -528,7 +517,6 @@ class SecretManagerServiceGapicClient
      * @return \Google\Cloud\SecretManager\V1\SecretVersion
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function addSecretVersion($parent, $payload, array $optionalArgs = [])
     {
@@ -579,7 +567,6 @@ class SecretManagerServiceGapicClient
      * @return \Google\Cloud\SecretManager\V1\Secret
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getSecret($name, array $optionalArgs = [])
     {
@@ -631,7 +618,6 @@ class SecretManagerServiceGapicClient
      * @return \Google\Cloud\SecretManager\V1\Secret
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function updateSecret($secret, $updateMask, array $optionalArgs = [])
     {
@@ -681,7 +667,6 @@ class SecretManagerServiceGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function deleteSecret($name, array $optionalArgs = [])
     {
@@ -758,7 +743,6 @@ class SecretManagerServiceGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listSecretVersions($parent, array $optionalArgs = [])
     {
@@ -820,7 +804,6 @@ class SecretManagerServiceGapicClient
      * @return \Google\Cloud\SecretManager\V1\SecretVersion
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getSecretVersion($name, array $optionalArgs = [])
     {
@@ -874,7 +857,6 @@ class SecretManagerServiceGapicClient
      * @return \Google\Cloud\SecretManager\V1\AccessSecretVersionResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function accessSecretVersion($name, array $optionalArgs = [])
     {
@@ -928,7 +910,6 @@ class SecretManagerServiceGapicClient
      * @return \Google\Cloud\SecretManager\V1\SecretVersion
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function disableSecretVersion($name, array $optionalArgs = [])
     {
@@ -982,7 +963,6 @@ class SecretManagerServiceGapicClient
      * @return \Google\Cloud\SecretManager\V1\SecretVersion
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function enableSecretVersion($name, array $optionalArgs = [])
     {
@@ -1037,7 +1017,6 @@ class SecretManagerServiceGapicClient
      * @return \Google\Cloud\SecretManager\V1\SecretVersion
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function destroySecretVersion($name, array $optionalArgs = [])
     {
@@ -1097,7 +1076,6 @@ class SecretManagerServiceGapicClient
      * @return \Google\Cloud\Iam\V1\Policy
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function setIamPolicy($resource, $policy, array $optionalArgs = [])
     {
@@ -1153,7 +1131,6 @@ class SecretManagerServiceGapicClient
      * @return \Google\Cloud\Iam\V1\Policy
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getIamPolicy($resource, array $optionalArgs = [])
     {
@@ -1218,7 +1195,6 @@ class SecretManagerServiceGapicClient
      * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
     {

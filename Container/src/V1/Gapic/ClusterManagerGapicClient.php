@@ -20,8 +20,6 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/container/v1/cluster_service.proto
  * and updates to that file get reflected here through a refresh process.
- *
- * @experimental
  */
 
 namespace Google\Cloud\Container\V1\Gapic;
@@ -97,8 +95,6 @@ use Google\Protobuf\GPBEmpty;
  *     $clusterManagerClient->close();
  * }
  * ```
- *
- * @experimental
  */
 class ClusterManagerGapicClient
 {
@@ -203,7 +199,6 @@ class ClusterManagerGapicClient
      * }
      *
      * @throws ValidationException
-     * @experimental
      */
     public function __construct(array $options = [])
     {
@@ -251,7 +246,6 @@ class ClusterManagerGapicClient
      * @return \Google\Cloud\Container\V1\ListClustersResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listClusters(array $optionalArgs = [])
     {
@@ -322,7 +316,6 @@ class ClusterManagerGapicClient
      * @return \Google\Cloud\Container\V1\Cluster
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getCluster(array $optionalArgs = [])
     {
@@ -408,7 +401,6 @@ class ClusterManagerGapicClient
      * @return \Google\Cloud\Container\V1\Operation
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function createCluster($cluster, array $optionalArgs = [])
     {
@@ -482,7 +474,6 @@ class ClusterManagerGapicClient
      * @return \Google\Cloud\Container\V1\Operation
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function updateCluster($update, array $optionalArgs = [])
     {
@@ -575,7 +566,6 @@ class ClusterManagerGapicClient
      * @return \Google\Cloud\Container\V1\Operation
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function updateNodePool($nodeVersion, $imageType, array $optionalArgs = [])
     {
@@ -660,7 +650,6 @@ class ClusterManagerGapicClient
      * @return \Google\Cloud\Container\V1\Operation
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function setNodePoolAutoscaling($autoscaling, array $optionalArgs = [])
     {
@@ -744,7 +733,6 @@ class ClusterManagerGapicClient
      * @return \Google\Cloud\Container\V1\Operation
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function setLoggingService($loggingService, array $optionalArgs = [])
     {
@@ -827,7 +815,6 @@ class ClusterManagerGapicClient
      * @return \Google\Cloud\Container\V1\Operation
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function setMonitoringService($monitoringService, array $optionalArgs = [])
     {
@@ -905,7 +892,6 @@ class ClusterManagerGapicClient
      * @return \Google\Cloud\Container\V1\Operation
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function setAddonsConfig($addonsConfig, array $optionalArgs = [])
     {
@@ -988,7 +974,6 @@ class ClusterManagerGapicClient
      * @return \Google\Cloud\Container\V1\Operation
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function setLocations($locations, array $optionalArgs = [])
     {
@@ -1074,7 +1059,6 @@ class ClusterManagerGapicClient
      * @return \Google\Cloud\Container\V1\Operation
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function updateMaster($masterVersion, array $optionalArgs = [])
     {
@@ -1156,7 +1140,6 @@ class ClusterManagerGapicClient
      * @return \Google\Cloud\Container\V1\Operation
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function setMasterAuth($action, $update, array $optionalArgs = [])
     {
@@ -1240,7 +1223,6 @@ class ClusterManagerGapicClient
      * @return \Google\Cloud\Container\V1\Operation
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function deleteCluster(array $optionalArgs = [])
     {
@@ -1311,7 +1293,6 @@ class ClusterManagerGapicClient
      * @return \Google\Cloud\Container\V1\ListOperationsResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listOperations(array $optionalArgs = [])
     {
@@ -1382,7 +1363,6 @@ class ClusterManagerGapicClient
      * @return \Google\Cloud\Container\V1\Operation
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getOperation(array $optionalArgs = [])
     {
@@ -1453,7 +1433,6 @@ class ClusterManagerGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function cancelOperation(array $optionalArgs = [])
     {
@@ -1523,7 +1502,6 @@ class ClusterManagerGapicClient
      * @return \Google\Cloud\Container\V1\ServerConfig
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getServerConfig(array $optionalArgs = [])
     {
@@ -1594,7 +1572,6 @@ class ClusterManagerGapicClient
      * @return \Google\Cloud\Container\V1\ListNodePoolsResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listNodePools(array $optionalArgs = [])
     {
@@ -1672,7 +1649,6 @@ class ClusterManagerGapicClient
      * @return \Google\Cloud\Container\V1\NodePool
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getNodePool(array $optionalArgs = [])
     {
@@ -1752,7 +1728,6 @@ class ClusterManagerGapicClient
      * @return \Google\Cloud\Container\V1\Operation
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function createNodePool($nodePool, array $optionalArgs = [])
     {
@@ -1831,7 +1806,6 @@ class ClusterManagerGapicClient
      * @return \Google\Cloud\Container\V1\Operation
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function deleteNodePool(array $optionalArgs = [])
     {
@@ -1913,7 +1887,6 @@ class ClusterManagerGapicClient
      * @return \Google\Cloud\Container\V1\Operation
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function rollbackNodePoolUpgrade(array $optionalArgs = [])
     {
@@ -1996,7 +1969,6 @@ class ClusterManagerGapicClient
      * @return \Google\Cloud\Container\V1\Operation
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function setNodePoolManagement($management, array $optionalArgs = [])
     {
@@ -2083,7 +2055,6 @@ class ClusterManagerGapicClient
      * @return \Google\Cloud\Container\V1\Operation
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function setLabels($resourceLabels, $labelFingerprint, array $optionalArgs = [])
     {
@@ -2161,7 +2132,6 @@ class ClusterManagerGapicClient
      * @return \Google\Cloud\Container\V1\Operation
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function setLegacyAbac($enabled, array $optionalArgs = [])
     {
@@ -2238,7 +2208,6 @@ class ClusterManagerGapicClient
      * @return \Google\Cloud\Container\V1\Operation
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function startIPRotation(array $optionalArgs = [])
     {
@@ -2315,7 +2284,6 @@ class ClusterManagerGapicClient
      * @return \Google\Cloud\Container\V1\Operation
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function completeIPRotation(array $optionalArgs = [])
     {
@@ -2395,7 +2363,6 @@ class ClusterManagerGapicClient
      * @return \Google\Cloud\Container\V1\Operation
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function setNodePoolSize($nodeCount, array $optionalArgs = [])
     {
@@ -2475,7 +2442,6 @@ class ClusterManagerGapicClient
      * @return \Google\Cloud\Container\V1\Operation
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function setNetworkPolicy($networkPolicy, array $optionalArgs = [])
     {
@@ -2551,7 +2517,6 @@ class ClusterManagerGapicClient
      * @return \Google\Cloud\Container\V1\Operation
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function setMaintenancePolicy($projectId, $zone, $clusterId, $maintenancePolicy, array $optionalArgs = [])
     {
@@ -2637,7 +2602,6 @@ class ClusterManagerGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listUsableSubnetworks(array $optionalArgs = [])
     {

@@ -20,8 +20,6 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/cloud/dataproc/v1/autoscaling_policies.proto
  * and updates to that file get reflected here through a refresh process.
- *
- * @experimental
  */
 
 namespace Google\Cloud\Dataproc\V1\Gapic;
@@ -66,8 +64,6 @@ use Google\Protobuf\GPBEmpty;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parseName method to extract the individual identifiers contained within formatted names
  * that are returned by the API.
- *
- * @experimental
  */
 class AutoscalingPolicyServiceGapicClient
 {
@@ -161,7 +157,6 @@ class AutoscalingPolicyServiceGapicClient
      * @param string $autoscalingPolicy
      *
      * @return string The formatted autoscaling_policy resource.
-     * @experimental
      */
     public static function autoscalingPolicyName($project, $region, $autoscalingPolicy)
     {
@@ -180,7 +175,6 @@ class AutoscalingPolicyServiceGapicClient
      * @param string $region
      *
      * @return string The formatted region resource.
-     * @experimental
      */
     public static function regionName($project, $region)
     {
@@ -208,7 +202,6 @@ class AutoscalingPolicyServiceGapicClient
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
-     * @experimental
      */
     public static function parseName($formattedName, $template = null)
     {
@@ -285,7 +278,6 @@ class AutoscalingPolicyServiceGapicClient
      * }
      *
      * @throws ValidationException
-     * @experimental
      */
     public function __construct(array $options = [])
     {
@@ -332,7 +324,6 @@ class AutoscalingPolicyServiceGapicClient
      * @return \Google\Cloud\Dataproc\V1\AutoscalingPolicy
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function createAutoscalingPolicy($parent, $policy, array $optionalArgs = [])
     {
@@ -386,7 +377,6 @@ class AutoscalingPolicyServiceGapicClient
      * @return \Google\Cloud\Dataproc\V1\AutoscalingPolicy
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function updateAutoscalingPolicy($policy, array $optionalArgs = [])
     {
@@ -445,7 +435,6 @@ class AutoscalingPolicyServiceGapicClient
      * @return \Google\Cloud\Dataproc\V1\AutoscalingPolicy
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getAutoscalingPolicy($name, array $optionalArgs = [])
     {
@@ -528,7 +517,6 @@ class AutoscalingPolicyServiceGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listAutoscalingPolicies($parent, array $optionalArgs = [])
     {
@@ -592,7 +580,6 @@ class AutoscalingPolicyServiceGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function deleteAutoscalingPolicy($name, array $optionalArgs = [])
     {

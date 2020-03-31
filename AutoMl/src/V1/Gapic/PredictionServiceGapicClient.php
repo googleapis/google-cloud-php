@@ -20,8 +20,6 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/cloud/automl/v1/prediction_service.proto
  * and updates to that file get reflected here through a refresh process.
- *
- * @experimental
  */
 
 namespace Google\Cloud\AutoMl\V1\Gapic;
@@ -70,8 +68,6 @@ use Google\LongRunning\Operation;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parseName method to extract the individual identifiers contained within formatted names
  * that are returned by the API.
- *
- * @experimental
  */
 class PredictionServiceGapicClient
 {
@@ -156,7 +152,6 @@ class PredictionServiceGapicClient
      * @param string $model
      *
      * @return string The formatted model resource.
-     * @experimental
      */
     public static function modelName($project, $location, $model)
     {
@@ -184,7 +179,6 @@ class PredictionServiceGapicClient
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
-     * @experimental
      */
     public static function parseName($formattedName, $template = null)
     {
@@ -212,7 +206,6 @@ class PredictionServiceGapicClient
      * Return an OperationsClient object with the same endpoint as $this.
      *
      * @return OperationsClient
-     * @experimental
      */
     public function getOperationsClient()
     {
@@ -230,7 +223,6 @@ class PredictionServiceGapicClient
      * @param string $methodName    The name of the method used to start the operation
      *
      * @return OperationResponse
-     * @experimental
      */
     public function resumeOperation($operationName, $methodName = null)
     {
@@ -296,7 +288,6 @@ class PredictionServiceGapicClient
      * }
      *
      * @throws ValidationException
-     * @experimental
      */
     public function __construct(array $options = [])
     {
@@ -407,7 +398,6 @@ class PredictionServiceGapicClient
      * @return \Google\Cloud\AutoMl\V1\PredictResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function predict($name, $payload, array $optionalArgs = [])
     {
@@ -518,7 +508,6 @@ class PredictionServiceGapicClient
      * @return \Google\ApiCore\OperationResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function batchPredict($name, $inputConfig, $outputConfig, array $optionalArgs = [])
     {

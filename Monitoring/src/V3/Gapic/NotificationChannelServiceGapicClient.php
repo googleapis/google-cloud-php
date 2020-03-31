@@ -20,8 +20,6 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/monitoring/v3/notification_service.proto
  * and updates to that file get reflected here through a refresh process.
- *
- * @experimental
  */
 
 namespace Google\Cloud\Monitoring\V3\Gapic;
@@ -90,8 +88,6 @@ use Google\Protobuf\Timestamp;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parseName method to extract the individual identifiers contained within formatted names
  * that are returned by the API.
- *
- * @experimental
  */
 class NotificationChannelServiceGapicClient
 {
@@ -198,7 +194,6 @@ class NotificationChannelServiceGapicClient
      * @param string $notificationChannel
      *
      * @return string The formatted notification_channel resource.
-     * @experimental
      */
     public static function notificationChannelName($project, $notificationChannel)
     {
@@ -216,7 +211,6 @@ class NotificationChannelServiceGapicClient
      * @param string $channelDescriptor
      *
      * @return string The formatted notification_channel_descriptor resource.
-     * @experimental
      */
     public static function notificationChannelDescriptorName($project, $channelDescriptor)
     {
@@ -233,7 +227,6 @@ class NotificationChannelServiceGapicClient
      * @param string $project
      *
      * @return string The formatted project resource.
-     * @experimental
      */
     public static function projectName($project)
     {
@@ -261,7 +254,6 @@ class NotificationChannelServiceGapicClient
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
-     * @experimental
      */
     public static function parseName($formattedName, $template = null)
     {
@@ -338,7 +330,6 @@ class NotificationChannelServiceGapicClient
      * }
      *
      * @throws ValidationException
-     * @experimental
      */
     public function __construct(array $options = [])
     {
@@ -407,7 +398,6 @@ class NotificationChannelServiceGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listNotificationChannelDescriptors($name, array $optionalArgs = [])
     {
@@ -466,7 +456,6 @@ class NotificationChannelServiceGapicClient
      * @return \Google\Cloud\Monitoring\V3\NotificationChannelDescriptor
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getNotificationChannelDescriptor($name, array $optionalArgs = [])
     {
@@ -562,7 +551,6 @@ class NotificationChannelServiceGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listNotificationChannels($name, array $optionalArgs = [])
     {
@@ -630,7 +618,6 @@ class NotificationChannelServiceGapicClient
      * @return \Google\Cloud\Monitoring\V3\NotificationChannel
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getNotificationChannel($name, array $optionalArgs = [])
     {
@@ -690,7 +677,6 @@ class NotificationChannelServiceGapicClient
      * @return \Google\Cloud\Monitoring\V3\NotificationChannel
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function createNotificationChannel($name, $notificationChannel, array $optionalArgs = [])
     {
@@ -747,7 +733,6 @@ class NotificationChannelServiceGapicClient
      * @return \Google\Cloud\Monitoring\V3\NotificationChannel
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function updateNotificationChannel($notificationChannel, array $optionalArgs = [])
     {
@@ -805,7 +790,6 @@ class NotificationChannelServiceGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function deleteNotificationChannel($name, array $optionalArgs = [])
     {
@@ -857,7 +841,6 @@ class NotificationChannelServiceGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function sendNotificationChannelVerificationCode($name, array $optionalArgs = [])
     {
@@ -939,7 +922,6 @@ class NotificationChannelServiceGapicClient
      * @return \Google\Cloud\Monitoring\V3\GetNotificationChannelVerificationCodeResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getNotificationChannelVerificationCode($name, array $optionalArgs = [])
     {
@@ -1002,7 +984,6 @@ class NotificationChannelServiceGapicClient
      * @return \Google\Cloud\Monitoring\V3\NotificationChannel
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function verifyNotificationChannel($name, $code, array $optionalArgs = [])
     {

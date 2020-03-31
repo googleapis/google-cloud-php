@@ -20,8 +20,6 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/cloud/texttospeech/v1/cloud_tts.proto
  * and updates to that file get reflected here through a refresh process.
- *
- * @experimental
  */
 
 namespace Google\Cloud\TextToSpeech\V1\Gapic;
@@ -55,8 +53,6 @@ use Google\Cloud\TextToSpeech\V1\VoiceSelectionParams;
  *     $textToSpeechClient->close();
  * }
  * ```
- *
- * @experimental
  */
 class TextToSpeechGapicClient
 {
@@ -161,7 +157,6 @@ class TextToSpeechGapicClient
      * }
      *
      * @throws ValidationException
-     * @experimental
      */
     public function __construct(array $options = [])
     {
@@ -204,7 +199,6 @@ class TextToSpeechGapicClient
      * @return \Google\Cloud\TextToSpeech\V1\ListVoicesResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listVoices(array $optionalArgs = [])
     {
@@ -254,7 +248,6 @@ class TextToSpeechGapicClient
      * @return \Google\Cloud\TextToSpeech\V1\SynthesizeSpeechResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function synthesizeSpeech($input, $voice, $audioConfig, array $optionalArgs = [])
     {
