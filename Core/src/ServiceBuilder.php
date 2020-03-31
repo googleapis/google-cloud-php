@@ -27,11 +27,9 @@ use Google\Cloud\Language\LanguageClient;
 use Google\Cloud\Logging\LoggingClient;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\Spanner\SpannerClient;
-use Google\Cloud\Speech\SpeechClient;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Trace\TraceClient;
 use Google\Cloud\Translate\TranslateClient;
-use Google\Cloud\Vision\VisionClient;
 use Psr\Cache\CacheItemPoolInterface;
 
 /**
@@ -269,35 +267,6 @@ class ServiceBuilder
     }
 
     /**
-     * Google Cloud Speech enables easy integration of Google speech recognition
-     * technologies into developer applications. Send audio and receive a text
-     * transcription from the Cloud Speech API service. Find more information at
-     * the [Google Cloud Speech API docs](https://cloud.google.com/speech/docs/).
-     *
-     * Example:
-     * ```
-     * $speech = $cloud->speech([
-     *     'languageCode' => 'en-US'
-     * ]);
-     * ```
-     *
-     * @param array $config [optional] {
-     *     Configuration options. See
-     *     {@see Google\Cloud\Core\ServiceBuilder::__construct()} for the other available options.
-     *
-     *     @type string $languageCode The language of the content to
-     *           be recognized. Only BCP-47 (e.g., `"en-US"`, `"es-ES"`)
-     *           language codes are accepted. See
-     *           [Language Support](https://cloud.google.com/speech/docs/languages)
-     *           for a list of the currently supported language codes.
-     * @return SpeechClient
-     */
-    public function speech(array $config = [])
-    {
-        return $this->createClient(SpeechClient::class, 'speech', $config);
-    }
-
-    /**
      * Google Cloud Storage allows you to store and retrieve data on Google's
      * infrastructure. Find more information at the
      * [Google Cloud Storage API docs](https://developers.google.com/storage).
@@ -334,26 +303,6 @@ class ServiceBuilder
     public function trace(array $config = [])
     {
         return $this->createClient(TraceClient::class, 'trace', $config);
-    }
-
-    /**
-     * Google Cloud Vision allows you to understand the content of an image,
-     * classify images into categories, detect text, objects, faces and more.
-     * Find more information at the
-     * [Google Cloud Vision docs](https://cloud.google.com/vision/docs/).
-     *
-     * Example:
-     * ```
-     * $vision = $cloud->vision();
-     * ```
-     *
-     * @param array $config [optional] Configuration options. See
-     *        {@see Google\Cloud\Core\ServiceBuilder::__construct()} for the available options.
-     * @return VisionClient
-     */
-    public function vision(array $config = [])
-    {
-        return $this->createClient(VisionClient::class, 'vision', $config);
     }
 
     /**
