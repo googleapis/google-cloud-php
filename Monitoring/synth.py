@@ -58,6 +58,12 @@ s.replace(
     r"\$transportConfig, and any \$serviceAddress",
     r"$transportConfig, and any `$apiEndpoint`")
 
+# V3 is GA, so remove @experimental tags
+s.replace(
+    'src/V3/**/*Client.php',
+    r'^(\s+\*\n)?\s+\*\s@experimental\n',
+    '')
+
 # fix year
 for client in ['GroupService', 'MetricService', 'UptimeCheckService']:
     s.replace(

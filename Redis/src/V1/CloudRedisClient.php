@@ -20,8 +20,6 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/cloud/redis/v1/cloud_redis.proto
  * and updates to that file get reflected here through a refresh process.
- *
- * @experimental
  */
 
 namespace Google\Cloud\Redis\V1;

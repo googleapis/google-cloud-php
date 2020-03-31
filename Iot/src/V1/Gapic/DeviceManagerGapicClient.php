@@ -20,8 +20,6 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/cloud/iot/v1/device_manager.proto
  * and updates to that file get reflected here through a refresh process.
- *
- * @experimental
  */
 
 namespace Google\Cloud\Iot\V1\Gapic;
@@ -92,8 +90,6 @@ use Google\Protobuf\GPBEmpty;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parseName method to extract the individual identifiers contained within formatted names
  * that are returned by the API.
- *
- * @experimental
  */
 class DeviceManagerGapicClient
 {
@@ -200,7 +196,6 @@ class DeviceManagerGapicClient
      * @param string $device
      *
      * @return string The formatted device resource.
-     * @experimental
      */
     public static function deviceName($project, $location, $registry, $device)
     {
@@ -220,7 +215,6 @@ class DeviceManagerGapicClient
      * @param string $location
      *
      * @return string The formatted location resource.
-     * @experimental
      */
     public static function locationName($project, $location)
     {
@@ -239,7 +233,6 @@ class DeviceManagerGapicClient
      * @param string $registry
      *
      * @return string The formatted registry resource.
-     * @experimental
      */
     public static function registryName($project, $location, $registry)
     {
@@ -269,7 +262,6 @@ class DeviceManagerGapicClient
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
-     * @experimental
      */
     public static function parseName($formattedName, $template = null)
     {
@@ -346,7 +338,6 @@ class DeviceManagerGapicClient
      * }
      *
      * @throws ValidationException
-     * @experimental
      */
     public function __construct(array $options = [])
     {
@@ -387,7 +378,6 @@ class DeviceManagerGapicClient
      * @return \Google\Cloud\Iot\V1\DeviceRegistry
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function createDeviceRegistry($parent, $deviceRegistry, array $optionalArgs = [])
     {
@@ -439,7 +429,6 @@ class DeviceManagerGapicClient
      * @return \Google\Cloud\Iot\V1\DeviceRegistry
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getDeviceRegistry($name, array $optionalArgs = [])
     {
@@ -497,7 +486,6 @@ class DeviceManagerGapicClient
      * @return \Google\Cloud\Iot\V1\DeviceRegistry
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function updateDeviceRegistry($deviceRegistry, $updateMask, array $optionalArgs = [])
     {
@@ -547,7 +535,6 @@ class DeviceManagerGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function deleteDeviceRegistry($name, array $optionalArgs = [])
     {
@@ -622,7 +609,6 @@ class DeviceManagerGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listDeviceRegistries($parent, array $optionalArgs = [])
     {
@@ -684,7 +670,6 @@ class DeviceManagerGapicClient
      * @return \Google\Cloud\Iot\V1\Device
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function createDevice($parent, $device, array $optionalArgs = [])
     {
@@ -740,7 +725,6 @@ class DeviceManagerGapicClient
      * @return \Google\Cloud\Iot\V1\Device
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getDevice($name, array $optionalArgs = [])
     {
@@ -801,7 +785,6 @@ class DeviceManagerGapicClient
      * @return \Google\Cloud\Iot\V1\Device
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function updateDevice($device, $updateMask, array $optionalArgs = [])
     {
@@ -852,7 +835,6 @@ class DeviceManagerGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function deleteDevice($name, array $optionalArgs = [])
     {
@@ -939,7 +921,6 @@ class DeviceManagerGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listDevices($parent, array $optionalArgs = [])
     {
@@ -1019,7 +1000,6 @@ class DeviceManagerGapicClient
      * @return \Google\Cloud\Iot\V1\DeviceConfig
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function modifyCloudToDeviceConfig($name, $binaryData, array $optionalArgs = [])
     {
@@ -1080,7 +1060,6 @@ class DeviceManagerGapicClient
      * @return \Google\Cloud\Iot\V1\ListDeviceConfigVersionsResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listDeviceConfigVersions($name, array $optionalArgs = [])
     {
@@ -1140,7 +1119,6 @@ class DeviceManagerGapicClient
      * @return \Google\Cloud\Iot\V1\ListDeviceStatesResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listDeviceStates($name, array $optionalArgs = [])
     {
@@ -1200,7 +1178,6 @@ class DeviceManagerGapicClient
      * @return \Google\Cloud\Iam\V1\Policy
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function setIamPolicy($resource, $policy, array $optionalArgs = [])
     {
@@ -1257,7 +1234,6 @@ class DeviceManagerGapicClient
      * @return \Google\Cloud\Iam\V1\Policy
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getIamPolicy($resource, array $optionalArgs = [])
     {
@@ -1318,7 +1294,6 @@ class DeviceManagerGapicClient
      * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
     {
@@ -1391,7 +1366,6 @@ class DeviceManagerGapicClient
      * @return \Google\Cloud\Iot\V1\SendCommandToDeviceResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function sendCommandToDevice($name, $binaryData, array $optionalArgs = [])
     {
@@ -1453,7 +1427,6 @@ class DeviceManagerGapicClient
      * @return \Google\Cloud\Iot\V1\BindDeviceToGatewayResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function bindDeviceToGateway($parent, $gatewayId, $deviceId, array $optionalArgs = [])
     {
@@ -1513,7 +1486,6 @@ class DeviceManagerGapicClient
      * @return \Google\Cloud\Iot\V1\UnbindDeviceFromGatewayResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function unbindDeviceFromGateway($parent, $gatewayId, $deviceId, array $optionalArgs = [])
     {

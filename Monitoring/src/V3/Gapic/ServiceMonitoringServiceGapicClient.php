@@ -20,8 +20,6 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/monitoring/v3/service_service.proto
  * and updates to that file get reflected here through a refresh process.
- *
- * @experimental
  */
 
 namespace Google\Cloud\Monitoring\V3\Gapic;
@@ -77,8 +75,6 @@ use Google\Protobuf\GPBEmpty;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parseName method to extract the individual identifiers contained within formatted names
  * that are returned by the API.
- *
- * @experimental
  */
 class ServiceMonitoringServiceGapicClient
 {
@@ -184,7 +180,6 @@ class ServiceMonitoringServiceGapicClient
      * @param string $project
      *
      * @return string The formatted project resource.
-     * @experimental
      */
     public static function projectName($project)
     {
@@ -201,7 +196,6 @@ class ServiceMonitoringServiceGapicClient
      * @param string $service
      *
      * @return string The formatted service resource.
-     * @experimental
      */
     public static function serviceName($project, $service)
     {
@@ -220,7 +214,6 @@ class ServiceMonitoringServiceGapicClient
      * @param string $serviceLevelObjective
      *
      * @return string The formatted service_level_objective resource.
-     * @experimental
      */
     public static function serviceLevelObjectiveName($project, $service, $serviceLevelObjective)
     {
@@ -250,7 +243,6 @@ class ServiceMonitoringServiceGapicClient
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
-     * @experimental
      */
     public static function parseName($formattedName, $template = null)
     {
@@ -327,7 +319,6 @@ class ServiceMonitoringServiceGapicClient
      * }
      *
      * @throws ValidationException
-     * @experimental
      */
     public function __construct(array $options = [])
     {
@@ -370,7 +361,6 @@ class ServiceMonitoringServiceGapicClient
      * @return \Google\Cloud\Monitoring\V3\Service
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function createService($parent, $service, array $optionalArgs = [])
     {
@@ -426,7 +416,6 @@ class ServiceMonitoringServiceGapicClient
      * @return \Google\Cloud\Monitoring\V3\Service
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getService($name, array $optionalArgs = [])
     {
@@ -520,7 +509,6 @@ class ServiceMonitoringServiceGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listServices($parent, array $optionalArgs = [])
     {
@@ -582,7 +570,6 @@ class ServiceMonitoringServiceGapicClient
      * @return \Google\Cloud\Monitoring\V3\Service
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function updateService($service, array $optionalArgs = [])
     {
@@ -635,7 +622,6 @@ class ServiceMonitoringServiceGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function deleteService($name, array $optionalArgs = [])
     {
@@ -695,7 +681,6 @@ class ServiceMonitoringServiceGapicClient
      * @return \Google\Cloud\Monitoring\V3\ServiceLevelObjective
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function createServiceLevelObjective($parent, $serviceLevelObjective, array $optionalArgs = [])
     {
@@ -757,7 +742,6 @@ class ServiceMonitoringServiceGapicClient
      * @return \Google\Cloud\Monitoring\V3\ServiceLevelObjective
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getServiceLevelObjective($name, array $optionalArgs = [])
     {
@@ -846,7 +830,6 @@ class ServiceMonitoringServiceGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listServiceLevelObjectives($parent, array $optionalArgs = [])
     {
@@ -911,7 +894,6 @@ class ServiceMonitoringServiceGapicClient
      * @return \Google\Cloud\Monitoring\V3\ServiceLevelObjective
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function updateServiceLevelObjective($serviceLevelObjective, array $optionalArgs = [])
     {
@@ -964,7 +946,6 @@ class ServiceMonitoringServiceGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function deleteServiceLevelObjective($name, array $optionalArgs = [])
     {

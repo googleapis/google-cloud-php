@@ -20,8 +20,6 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/cloud/dataproc/v1/clusters.proto
  * and updates to that file get reflected here through a refresh process.
- *
- * @experimental
  */
 
 namespace Google\Cloud\Dataproc\V1\Gapic;
@@ -95,8 +93,6 @@ use Google\Protobuf\FieldMask;
  *     $clusterControllerClient->close();
  * }
  * ```
- *
- * @experimental
  */
 class ClusterControllerGapicClient
 {
@@ -154,7 +150,6 @@ class ClusterControllerGapicClient
      * Return an OperationsClient object with the same endpoint as $this.
      *
      * @return OperationsClient
-     * @experimental
      */
     public function getOperationsClient()
     {
@@ -172,7 +167,6 @@ class ClusterControllerGapicClient
      * @param string $methodName    The name of the method used to start the operation
      *
      * @return OperationResponse
-     * @experimental
      */
     public function resumeOperation($operationName, $methodName = null)
     {
@@ -238,7 +232,6 @@ class ClusterControllerGapicClient
      * }
      *
      * @throws ValidationException
-     * @experimental
      */
     public function __construct(array $options = [])
     {
@@ -322,7 +315,6 @@ class ClusterControllerGapicClient
      * @return \Google\ApiCore\OperationResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function createCluster($projectId, $region, $cluster, array $optionalArgs = [])
     {
@@ -481,7 +473,6 @@ class ClusterControllerGapicClient
      * @return \Google\ApiCore\OperationResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function updateCluster($projectId, $region, $clusterName, $cluster, $updateMask, array $optionalArgs = [])
     {
@@ -582,7 +573,6 @@ class ClusterControllerGapicClient
      * @return \Google\ApiCore\OperationResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function deleteCluster($projectId, $region, $clusterName, array $optionalArgs = [])
     {
@@ -638,7 +628,6 @@ class ClusterControllerGapicClient
      * @return \Google\Cloud\Dataproc\V1\Cluster
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getCluster($projectId, $region, $clusterName, array $optionalArgs = [])
     {
@@ -730,7 +719,6 @@ class ClusterControllerGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listClusters($projectId, $region, array $optionalArgs = [])
     {
@@ -820,7 +808,6 @@ class ClusterControllerGapicClient
      * @return \Google\ApiCore\OperationResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function diagnoseCluster($projectId, $region, $clusterName, array $optionalArgs = [])
     {

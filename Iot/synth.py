@@ -30,9 +30,8 @@ library = gapic.php_library(
     config_path='artman_cloudiot.yaml',
     artman_output_name='google-cloud-iot-v1')
 
-# copy all src except partial veneer classes
-s.move(library / f'src/V1/Gapic')
-s.move(library / f'src/V1/resources')
+# copy all src including partial veneer classes
+s.move(library / f'src')
 
 # copy proto files to src also
 s.move(library / f'proto/src/Google/Cloud/Iot', f'src/')
@@ -58,6 +57,12 @@ s.replace(
     "**/Gapic/*GapicClient.php",
     r"\$transportConfig, and any \$serviceAddress",
     r"$transportConfig, and any `$apiEndpoint`")
+
+# V1 is GA, so remove @experimental tags
+s.replace(
+    'src/V1/**/*Client.php',
+    r'^(\s+\*\n)?\s+\*\s@experimental\n',
+    '')
 
 # fix year
 s.replace(

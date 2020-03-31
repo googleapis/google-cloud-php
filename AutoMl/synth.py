@@ -82,11 +82,11 @@ for client in clients:
             r'Copyright \d{4}',
             'Copyright 2019')
 
-# temporary namespace fix for V1
+# V1 is GA, so remove @experimental tags
 s.replace(
-    '**/V1/**/*.php',
-    r'Google\\Cloud\\AutoML\\V1',
-    r'Google\\Cloud\\AutoMl\\V1')
+    'src/V1/**/*Client.php',
+    r'^(\s+\*\n)?\s+\*\s@experimental\n',
+    '')
 
 # Fix class references in gapic samples
 for version in versions:

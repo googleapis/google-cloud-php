@@ -20,8 +20,6 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/cloud/bigquery/datatransfer/v1/datatransfer.proto
  * and updates to that file get reflected here through a refresh process.
- *
- * @experimental
  */
 
 namespace Google\Cloud\BigQuery\DataTransfer\V1\Gapic;
@@ -88,8 +86,6 @@ use Google\Protobuf\Timestamp;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parseName method to extract the individual identifiers contained within formatted names
  * that are returned by the API.
- *
- * @experimental
  */
 class DataTransferServiceGapicClient
 {
@@ -343,7 +339,6 @@ class DataTransferServiceGapicClient
      * @param string $location
      *
      * @return string The formatted location resource.
-     * @experimental
      */
     public static function locationName($project, $location)
     {
@@ -428,7 +423,6 @@ class DataTransferServiceGapicClient
      * @param string $project
      *
      * @return string The formatted project resource.
-     * @experimental
      */
     public static function projectName($project)
     {
@@ -646,7 +640,6 @@ class DataTransferServiceGapicClient
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
-     * @experimental
      */
     public static function parseName($formattedName, $template = null)
     {
@@ -723,7 +716,6 @@ class DataTransferServiceGapicClient
      * }
      *
      * @throws ValidationException
-     * @experimental
      */
     public function __construct(array $options = [])
     {
@@ -762,7 +754,6 @@ class DataTransferServiceGapicClient
      * @return \Google\Cloud\BigQuery\DataTransfer\V1\DataSource
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getDataSource($name, array $optionalArgs = [])
     {
@@ -839,7 +830,6 @@ class DataTransferServiceGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listDataSources($parent, array $optionalArgs = [])
     {
@@ -929,7 +919,6 @@ class DataTransferServiceGapicClient
      * @return \Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function createTransferConfig($parent, $transferConfig, array $optionalArgs = [])
     {
@@ -1022,7 +1011,6 @@ class DataTransferServiceGapicClient
      * @return \Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function updateTransferConfig($transferConfig, $updateMask, array $optionalArgs = [])
     {
@@ -1083,7 +1071,6 @@ class DataTransferServiceGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function deleteTransferConfig($name, array $optionalArgs = [])
     {
@@ -1135,7 +1122,6 @@ class DataTransferServiceGapicClient
      * @return \Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getTransferConfig($name, array $optionalArgs = [])
     {
@@ -1213,7 +1199,6 @@ class DataTransferServiceGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listTransferConfigs($parent, array $optionalArgs = [])
     {
@@ -1284,7 +1269,6 @@ class DataTransferServiceGapicClient
      * @return \Google\Cloud\BigQuery\DataTransfer\V1\ScheduleTransferRunsResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function scheduleTransferRuns($parent, $startTime, $endTime, array $optionalArgs = [])
     {
@@ -1346,7 +1330,6 @@ class DataTransferServiceGapicClient
      * @return \Google\Cloud\BigQuery\DataTransfer\V1\StartManualTransferRunsResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function startManualTransferRuns(array $optionalArgs = [])
     {
@@ -1406,7 +1389,6 @@ class DataTransferServiceGapicClient
      * @return \Google\Cloud\BigQuery\DataTransfer\V1\TransferRun
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getTransferRun($name, array $optionalArgs = [])
     {
@@ -1456,7 +1438,6 @@ class DataTransferServiceGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function deleteTransferRun($name, array $optionalArgs = [])
     {
@@ -1539,7 +1520,6 @@ class DataTransferServiceGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listTransferRuns($parent, array $optionalArgs = [])
     {
@@ -1631,7 +1611,6 @@ class DataTransferServiceGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listTransferLogs($parent, array $optionalArgs = [])
     {
@@ -1697,7 +1676,6 @@ class DataTransferServiceGapicClient
      * @return \Google\Cloud\BigQuery\DataTransfer\V1\CheckValidCredsResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function checkValidCreds($name, array $optionalArgs = [])
     {

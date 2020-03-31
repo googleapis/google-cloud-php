@@ -20,8 +20,6 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/cloud/vision/v1/product_search_service.proto
  * and updates to that file get reflected here through a refresh process.
- *
- * @experimental
  */
 
 namespace Google\Cloud\Vision\V1\Gapic;
@@ -105,8 +103,6 @@ use Google\Protobuf\GPBEmpty;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parseName method to extract the individual identifiers contained within formatted names
  * that are returned by the API.
- *
- * @experimental
  */
 class ProductSearchGapicClient
 {
@@ -224,7 +220,6 @@ class ProductSearchGapicClient
      * @param string $location
      *
      * @return string The formatted location resource.
-     * @experimental
      */
     public static function locationName($project, $location)
     {
@@ -243,7 +238,6 @@ class ProductSearchGapicClient
      * @param string $product
      *
      * @return string The formatted product resource.
-     * @experimental
      */
     public static function productName($project, $location, $product)
     {
@@ -263,7 +257,6 @@ class ProductSearchGapicClient
      * @param string $productSet
      *
      * @return string The formatted product_set resource.
-     * @experimental
      */
     public static function productSetName($project, $location, $productSet)
     {
@@ -284,7 +277,6 @@ class ProductSearchGapicClient
      * @param string $referenceImage
      *
      * @return string The formatted reference_image resource.
-     * @experimental
      */
     public static function referenceImageName($project, $location, $product, $referenceImage)
     {
@@ -316,7 +308,6 @@ class ProductSearchGapicClient
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
-     * @experimental
      */
     public static function parseName($formattedName, $template = null)
     {
@@ -344,7 +335,6 @@ class ProductSearchGapicClient
      * Return an OperationsClient object with the same endpoint as $this.
      *
      * @return OperationsClient
-     * @experimental
      */
     public function getOperationsClient()
     {
@@ -362,7 +352,6 @@ class ProductSearchGapicClient
      * @param string $methodName    The name of the method used to start the operation
      *
      * @return OperationResponse
-     * @experimental
      */
     public function resumeOperation($operationName, $methodName = null)
     {
@@ -428,7 +417,6 @@ class ProductSearchGapicClient
      * }
      *
      * @throws ValidationException
-     * @experimental
      */
     public function __construct(array $options = [])
     {
@@ -479,7 +467,6 @@ class ProductSearchGapicClient
      * @return \Google\Cloud\Vision\V1\ProductSet
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function createProductSet($parent, $productSet, array $optionalArgs = [])
     {
@@ -564,7 +551,6 @@ class ProductSearchGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listProductSets($parent, array $optionalArgs = [])
     {
@@ -627,7 +613,6 @@ class ProductSearchGapicClient
      * @return \Google\Cloud\Vision\V1\ProductSet
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getProductSet($name, array $optionalArgs = [])
     {
@@ -689,7 +674,6 @@ class ProductSearchGapicClient
      * @return \Google\Cloud\Vision\V1\ProductSet
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function updateProductSet($productSet, array $optionalArgs = [])
     {
@@ -746,7 +730,6 @@ class ProductSearchGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function deleteProductSet($name, array $optionalArgs = [])
     {
@@ -813,7 +796,6 @@ class ProductSearchGapicClient
      * @return \Google\Cloud\Vision\V1\Product
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function createProduct($parent, $product, array $optionalArgs = [])
     {
@@ -898,7 +880,6 @@ class ProductSearchGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listProducts($parent, array $optionalArgs = [])
     {
@@ -961,7 +942,6 @@ class ProductSearchGapicClient
      * @return \Google\Cloud\Vision\V1\Product
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getProduct($name, array $optionalArgs = [])
     {
@@ -1032,7 +1012,6 @@ class ProductSearchGapicClient
      * @return \Google\Cloud\Vision\V1\Product
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function updateProduct($product, array $optionalArgs = [])
     {
@@ -1090,7 +1069,6 @@ class ProductSearchGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function deleteProduct($name, array $optionalArgs = [])
     {
@@ -1169,7 +1147,6 @@ class ProductSearchGapicClient
      * @return \Google\Cloud\Vision\V1\ReferenceImage
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function createReferenceImage($parent, $referenceImage, array $optionalArgs = [])
     {
@@ -1231,7 +1208,6 @@ class ProductSearchGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function deleteReferenceImage($name, array $optionalArgs = [])
     {
@@ -1314,7 +1290,6 @@ class ProductSearchGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listReferenceImages($parent, array $optionalArgs = [])
     {
@@ -1378,7 +1353,6 @@ class ProductSearchGapicClient
      * @return \Google\Cloud\Vision\V1\ReferenceImage
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getReferenceImage($name, array $optionalArgs = [])
     {
@@ -1441,7 +1415,6 @@ class ProductSearchGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function addProductToProductSet($name, $product, array $optionalArgs = [])
     {
@@ -1498,7 +1471,6 @@ class ProductSearchGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function removeProductFromProductSet($name, $product, array $optionalArgs = [])
     {
@@ -1582,7 +1554,6 @@ class ProductSearchGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listProductsInProductSet($name, array $optionalArgs = [])
     {
@@ -1680,7 +1651,6 @@ class ProductSearchGapicClient
      * @return \Google\ApiCore\OperationResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function importProductSets($parent, $inputConfig, array $optionalArgs = [])
     {
@@ -1790,7 +1760,6 @@ class ProductSearchGapicClient
      * @return \Google\ApiCore\OperationResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function purgeProducts($parent, array $optionalArgs = [])
     {

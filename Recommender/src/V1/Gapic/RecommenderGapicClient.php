@@ -20,8 +20,6 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/cloud/recommender/v1/recommender_service.proto
  * and updates to that file get reflected here through a refresh process.
- *
- * @experimental
  */
 
 namespace Google\Cloud\Recommender\V1\Gapic;
@@ -81,8 +79,6 @@ use Google\Cloud\Recommender\V1\Recommendation;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parseName method to extract the individual identifiers contained within formatted names
  * that are returned by the API.
- *
- * @experimental
  */
 class RecommenderGapicClient
 {
@@ -177,7 +173,6 @@ class RecommenderGapicClient
      * @param string $recommendation
      *
      * @return string The formatted recommendation resource.
-     * @experimental
      */
     public static function recommendationName($project, $location, $recommender, $recommendation)
     {
@@ -198,7 +193,6 @@ class RecommenderGapicClient
      * @param string $recommender
      *
      * @return string The formatted recommender resource.
-     * @experimental
      */
     public static function recommenderName($project, $location, $recommender)
     {
@@ -227,7 +221,6 @@ class RecommenderGapicClient
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
-     * @experimental
      */
     public static function parseName($formattedName, $template = null)
     {
@@ -304,7 +297,6 @@ class RecommenderGapicClient
      * }
      *
      * @throws ValidationException
-     * @experimental
      */
     public function __construct(array $options = [])
     {
@@ -376,7 +368,6 @@ class RecommenderGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listRecommendations($parent, array $optionalArgs = [])
     {
@@ -436,7 +427,6 @@ class RecommenderGapicClient
      * @return \Google\Cloud\Recommender\V1\Recommendation
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getRecommendation($name, array $optionalArgs = [])
     {
@@ -502,7 +492,6 @@ class RecommenderGapicClient
      * @return \Google\Cloud\Recommender\V1\Recommendation
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function markRecommendationClaimed($name, $etag, array $optionalArgs = [])
     {
@@ -572,7 +561,6 @@ class RecommenderGapicClient
      * @return \Google\Cloud\Recommender\V1\Recommendation
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function markRecommendationSucceeded($name, $etag, array $optionalArgs = [])
     {
@@ -642,7 +630,6 @@ class RecommenderGapicClient
      * @return \Google\Cloud\Recommender\V1\Recommendation
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function markRecommendationFailed($name, $etag, array $optionalArgs = [])
     {

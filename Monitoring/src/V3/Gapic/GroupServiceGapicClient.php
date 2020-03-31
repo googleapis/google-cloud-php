@@ -20,8 +20,6 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/monitoring/v3/group_service.proto
  * and updates to that file get reflected here through a refresh process.
- *
- * @experimental
  */
 
 namespace Google\Cloud\Monitoring\V3\Gapic;
@@ -93,8 +91,6 @@ use Google\Protobuf\GPBEmpty;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parseName method to extract the individual identifiers contained within formatted names
  * that are returned by the API.
- *
- * @experimental
  */
 class GroupServiceGapicClient
 {
@@ -190,7 +186,6 @@ class GroupServiceGapicClient
      * @param string $group
      *
      * @return string The formatted group resource.
-     * @experimental
      */
     public static function groupName($project, $group)
     {
@@ -207,7 +202,6 @@ class GroupServiceGapicClient
      * @param string $project
      *
      * @return string The formatted project resource.
-     * @experimental
      */
     public static function projectName($project)
     {
@@ -234,7 +228,6 @@ class GroupServiceGapicClient
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
-     * @experimental
      */
     public static function parseName($formattedName, $template = null)
     {
@@ -311,7 +304,6 @@ class GroupServiceGapicClient
      * }
      *
      * @throws ValidationException
-     * @experimental
      */
     public function __construct(array $options = [])
     {
@@ -397,7 +389,6 @@ class GroupServiceGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listGroups($name, array $optionalArgs = [])
     {
@@ -464,7 +455,6 @@ class GroupServiceGapicClient
      * @return \Google\Cloud\Monitoring\V3\Group
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getGroup($name, array $optionalArgs = [])
     {
@@ -521,7 +511,6 @@ class GroupServiceGapicClient
      * @return \Google\Cloud\Monitoring\V3\Group
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function createGroup($name, $group, array $optionalArgs = [])
     {
@@ -579,7 +568,6 @@ class GroupServiceGapicClient
      * @return \Google\Cloud\Monitoring\V3\Group
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function updateGroup($group, array $optionalArgs = [])
     {
@@ -636,7 +624,6 @@ class GroupServiceGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function deleteGroup($name, array $optionalArgs = [])
     {
@@ -729,7 +716,6 @@ class GroupServiceGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listGroupMembers($name, array $optionalArgs = [])
     {

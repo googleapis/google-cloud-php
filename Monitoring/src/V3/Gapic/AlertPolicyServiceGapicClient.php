@@ -20,8 +20,6 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/monitoring/v3/alert_service.proto
  * and updates to that file get reflected here through a refresh process.
- *
- * @experimental
  */
 
 namespace Google\Cloud\Monitoring\V3\Gapic;
@@ -88,8 +86,6 @@ use Google\Protobuf\GPBEmpty;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parseName method to extract the individual identifiers contained within formatted names
  * that are returned by the API.
- *
- * @experimental
  */
 class AlertPolicyServiceGapicClient
 {
@@ -196,7 +192,6 @@ class AlertPolicyServiceGapicClient
      * @param string $alertPolicy
      *
      * @return string The formatted alert_policy resource.
-     * @experimental
      */
     public static function alertPolicyName($project, $alertPolicy)
     {
@@ -215,7 +210,6 @@ class AlertPolicyServiceGapicClient
      * @param string $condition
      *
      * @return string The formatted alert_policy_condition resource.
-     * @experimental
      */
     public static function alertPolicyConditionName($project, $alertPolicy, $condition)
     {
@@ -233,7 +227,6 @@ class AlertPolicyServiceGapicClient
      * @param string $project
      *
      * @return string The formatted project resource.
-     * @experimental
      */
     public static function projectName($project)
     {
@@ -261,7 +254,6 @@ class AlertPolicyServiceGapicClient
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
-     * @experimental
      */
     public static function parseName($formattedName, $template = null)
     {
@@ -338,7 +330,6 @@ class AlertPolicyServiceGapicClient
      * }
      *
      * @throws ValidationException
-     * @experimental
      */
     public function __construct(array $options = [])
     {
@@ -419,7 +410,6 @@ class AlertPolicyServiceGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listAlertPolicies($name, array $optionalArgs = [])
     {
@@ -483,7 +473,6 @@ class AlertPolicyServiceGapicClient
      * @return \Google\Cloud\Monitoring\V3\AlertPolicy
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getAlertPolicy($name, array $optionalArgs = [])
     {
@@ -546,7 +535,6 @@ class AlertPolicyServiceGapicClient
      * @return \Google\Cloud\Monitoring\V3\AlertPolicy
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function createAlertPolicy($name, $alertPolicy, array $optionalArgs = [])
     {
@@ -599,7 +587,6 @@ class AlertPolicyServiceGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function deleteAlertPolicy($name, array $optionalArgs = [])
     {
@@ -677,7 +664,6 @@ class AlertPolicyServiceGapicClient
      * @return \Google\Cloud\Monitoring\V3\AlertPolicy
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function updateAlertPolicy($alertPolicy, array $optionalArgs = [])
     {

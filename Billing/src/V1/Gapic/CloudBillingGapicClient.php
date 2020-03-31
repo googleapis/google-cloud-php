@@ -20,8 +20,6 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/cloud/billing/v1/cloud_billing.proto
  * and updates to that file get reflected here through a refresh process.
- *
- * @experimental
  */
 
 namespace Google\Cloud\Billing\V1\Gapic;
@@ -74,8 +72,6 @@ use Google\Protobuf\FieldMask;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parseName method to extract the individual identifiers contained within formatted names
  * that are returned by the API.
- *
- * @experimental
  */
 class CloudBillingGapicClient
 {
@@ -156,7 +152,6 @@ class CloudBillingGapicClient
      * @param string $billingAccount
      *
      * @return string The formatted billing_account resource.
-     * @experimental
      */
     public static function billingAccountName($billingAccount)
     {
@@ -182,7 +177,6 @@ class CloudBillingGapicClient
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
-     * @experimental
      */
     public static function parseName($formattedName, $template = null)
     {
@@ -259,7 +253,6 @@ class CloudBillingGapicClient
      * }
      *
      * @throws ValidationException
-     * @experimental
      */
     public function __construct(array $options = [])
     {
@@ -298,7 +291,6 @@ class CloudBillingGapicClient
      * @return \Google\Cloud\Billing\V1\BillingAccount
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getBillingAccount($name, array $optionalArgs = [])
     {
@@ -379,7 +371,6 @@ class CloudBillingGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listBillingAccounts(array $optionalArgs = [])
     {
@@ -440,7 +431,6 @@ class CloudBillingGapicClient
      * @return \Google\Cloud\Billing\V1\BillingAccount
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function updateBillingAccount($name, $account, array $optionalArgs = [])
     {
@@ -506,7 +496,6 @@ class CloudBillingGapicClient
      * @return \Google\Cloud\Billing\V1\BillingAccount
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function createBillingAccount($billingAccount, array $optionalArgs = [])
     {
@@ -577,7 +566,6 @@ class CloudBillingGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listProjectBillingInfo($name, array $optionalArgs = [])
     {
@@ -637,7 +625,6 @@ class CloudBillingGapicClient
      * @return \Google\Cloud\Billing\V1\ProjectBillingInfo
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getProjectBillingInfo($name, array $optionalArgs = [])
     {
@@ -721,7 +708,6 @@ class CloudBillingGapicClient
      * @return \Google\Cloud\Billing\V1\ProjectBillingInfo
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function updateProjectBillingInfo($name, array $optionalArgs = [])
     {
@@ -781,7 +767,6 @@ class CloudBillingGapicClient
      * @return \Google\Cloud\Iam\V1\Policy
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getIamPolicy($resource, array $optionalArgs = [])
     {
@@ -844,7 +829,6 @@ class CloudBillingGapicClient
      * @return \Google\Cloud\Iam\V1\Policy
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function setIamPolicy($resource, $policy, array $optionalArgs = [])
     {
@@ -903,7 +887,6 @@ class CloudBillingGapicClient
      * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
     {
