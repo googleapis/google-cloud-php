@@ -84,7 +84,7 @@ use Google\Protobuf\Timestamp;
  * $subscriberClient = new SubscriberClient();
  * try {
  *     $formattedName = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
- *     $formattedTopic = $subscriberClient->topicName('[PROJECT]', '[TOPIC]');
+ *     $formattedTopic = $subscriberClient->projectTopicName('[PROJECT]', '[TOPIC]');
  *     $response = $subscriberClient->createSubscription($formattedName, $formattedTopic);
  * } finally {
  *     $subscriberClient->close();
@@ -130,6 +130,7 @@ class SubscriberGapicClient
         'https://www.googleapis.com/auth/pubsub',
     ];
     private static $projectNameTemplate;
+    private static $projectTopicNameTemplate;
     private static $snapshotNameTemplate;
     private static $subscriptionNameTemplate;
     private static $topicNameTemplate;
@@ -161,6 +162,15 @@ class SubscriberGapicClient
         }
 
         return self::$projectNameTemplate;
+    }
+
+    private static function getProjectTopicNameTemplate()
+    {
+        if (null == self::$projectTopicNameTemplate) {
+            self::$projectTopicNameTemplate = new PathTemplate('projects/{project}/topics/{topic}');
+        }
+
+        return self::$projectTopicNameTemplate;
     }
 
     private static function getSnapshotNameTemplate()
@@ -195,6 +205,7 @@ class SubscriberGapicClient
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'project' => self::getProjectNameTemplate(),
+                'projectTopic' => self::getProjectTopicNameTemplate(),
                 'snapshot' => self::getSnapshotNameTemplate(),
                 'subscription' => self::getSubscriptionNameTemplate(),
                 'topic' => self::getTopicNameTemplate(),
@@ -217,6 +228,24 @@ class SubscriberGapicClient
     {
         return self::getProjectNameTemplate()->render([
             'project' => $project,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project_topic resource.
+     *
+     * @param string $project
+     * @param string $topic
+     *
+     * @return string The formatted project_topic resource.
+     * @experimental
+     */
+    public static function projectTopicName($project, $topic)
+    {
+        return self::getProjectTopicNameTemplate()->render([
+            'project' => $project,
+            'topic' => $topic,
         ]);
     }
 
@@ -264,9 +293,7 @@ class SubscriberGapicClient
      * @param string $topic
      *
      * @return string The formatted topic resource.
-     *
-     * @deprecated Multi-pattern resource names will have unified formatting functions.
-     *             This helper function will be deleted in the next major version.
+     * @experimental
      */
     public static function topicName($project, $topic)
     {
@@ -281,6 +308,7 @@ class SubscriberGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - project: projects/{project}
+     * - projectTopic: projects/{project}/topics/{topic}
      * - snapshot: projects/{project}/snapshots/{snapshot}
      * - subscription: projects/{project}/subscriptions/{subscription}
      * - topic: projects/{project}/topics/{topic}.
@@ -401,7 +429,7 @@ class SubscriberGapicClient
      * $subscriberClient = new SubscriberClient();
      * try {
      *     $formattedName = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-     *     $formattedTopic = $subscriberClient->topicName('[PROJECT]', '[TOPIC]');
+     *     $formattedTopic = $subscriberClient->projectTopicName('[PROJECT]', '[TOPIC]');
      *     $response = $subscriberClient->createSubscription($formattedName, $formattedTopic);
      * } finally {
      *     $subscriberClient->close();

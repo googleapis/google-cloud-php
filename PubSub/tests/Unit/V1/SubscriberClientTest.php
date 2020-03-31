@@ -110,7 +110,7 @@ class SubscriberClientTest extends GeneratedTest
 
         // Mock request
         $formattedName = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-        $formattedTopic = $client->topicName('[PROJECT]', '[TOPIC]');
+        $formattedTopic = $client->projectTopicName('[PROJECT]', '[TOPIC]');
 
         $response = $client->createSubscription($formattedName, $formattedTopic);
         $this->assertEquals($expectedResponse, $response);
@@ -154,7 +154,7 @@ class SubscriberClientTest extends GeneratedTest
 
         // Mock request
         $formattedName = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-        $formattedTopic = $client->topicName('[PROJECT]', '[TOPIC]');
+        $formattedTopic = $client->projectTopicName('[PROJECT]', '[TOPIC]');
 
         try {
             $client->createSubscription($formattedName, $formattedTopic);
