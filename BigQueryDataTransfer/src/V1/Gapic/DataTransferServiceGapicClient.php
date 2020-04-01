@@ -321,7 +321,6 @@ class DataTransferServiceGapicClient
      * @param string $dataSource
      *
      * @return string The formatted data_source resource.
-     * @experimental
      */
     public static function dataSourceName($project, $dataSource)
     {
@@ -439,7 +438,6 @@ class DataTransferServiceGapicClient
      * @param string $dataSource
      *
      * @return string The formatted project_data_source resource.
-     * @experimental
      */
     public static function projectDataSourceName($project, $dataSource)
     {
@@ -458,7 +456,6 @@ class DataTransferServiceGapicClient
      * @param string $dataSource
      *
      * @return string The formatted project_location_data_source resource.
-     * @experimental
      */
     public static function projectLocationDataSourceName($project, $location, $dataSource)
     {
@@ -478,7 +475,6 @@ class DataTransferServiceGapicClient
      * @param string $transferConfig
      *
      * @return string The formatted project_location_transfer_config resource.
-     * @experimental
      */
     public static function projectLocationTransferConfigName($project, $location, $transferConfig)
     {
@@ -499,7 +495,6 @@ class DataTransferServiceGapicClient
      * @param string $run
      *
      * @return string The formatted project_location_transfer_config_run resource.
-     * @experimental
      */
     public static function projectLocationTransferConfigRunName($project, $location, $transferConfig, $run)
     {
@@ -541,7 +536,6 @@ class DataTransferServiceGapicClient
      * @param string $transferConfig
      *
      * @return string The formatted project_transfer_config resource.
-     * @experimental
      */
     public static function projectTransferConfigName($project, $transferConfig)
     {
@@ -560,7 +554,6 @@ class DataTransferServiceGapicClient
      * @param string $run
      *
      * @return string The formatted project_transfer_config_run resource.
-     * @experimental
      */
     public static function projectTransferConfigRunName($project, $transferConfig, $run)
     {
@@ -580,7 +573,6 @@ class DataTransferServiceGapicClient
      * @param string $run
      *
      * @return string The formatted run resource.
-     * @experimental
      */
     public static function runName($project, $transferConfig, $run)
     {
@@ -599,7 +591,6 @@ class DataTransferServiceGapicClient
      * @param string $transferConfig
      *
      * @return string The formatted transfer_config resource.
-     * @experimental
      */
     public static function transferConfigName($project, $transferConfig)
     {
