@@ -24,7 +24,7 @@
             "id": "cloud-vision",
             "target": "googleapis/google-cloud-php-vision.git",
             "path": "Vision",
-            "entry": null
+            "entry": "src/VisionClient.php"
         }
     },
     "autoload": {
