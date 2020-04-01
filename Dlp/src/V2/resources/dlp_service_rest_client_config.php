@@ -402,6 +402,117 @@ return [
                     ],
                 ],
             ],
+            'CreateJobTrigger' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=projects/*}/jobTriggers',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*}/locations/{location_id}/jobTriggers',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                    'location_id' => [
+                        'getters' => [
+                            'getLocationId',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateJobTrigger' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v2/{name=projects/*/jobTriggers/*}',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/jobTriggers/*}',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'HybridInspectJobTrigger' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/jobTriggers/*}:hybridInspect',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetJobTrigger' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=projects/*/jobTriggers/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/jobTriggers/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListJobTriggers' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=projects/*}/jobTriggers',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=projects/*}/locations/{location_id}/jobTriggers',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                    'location_id' => [
+                        'getters' => [
+                            'getLocationId',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteJobTrigger' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v2/{name=projects/*/jobTriggers/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/jobTriggers/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'CreateDlpJob' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{parent=projects/*}/dlpJobs',
@@ -497,141 +608,6 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'FinishDlpJob' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2/{name=projects/*/locations/*/dlpJobs/*}:finish',
-                'body' => '*',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'HybridInspectDlpJob' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2/{name=projects/*/locations/*/dlpJobs/*}:hybridInspect',
-                'body' => '*',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ListJobTriggers' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/{parent=projects/*}/jobTriggers',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v2/{parent=projects/*}/locations/{location_id}/jobTriggers',
-                    ],
-                ],
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                    'location_id' => [
-                        'getters' => [
-                            'getLocationId',
-                        ],
-                    ],
-                ],
-            ],
-            'GetJobTrigger' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/{name=projects/*/jobTriggers/*}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v2/{name=projects/*/locations/*/jobTriggers/*}',
-                    ],
-                ],
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteJobTrigger' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v2/{name=projects/*/jobTriggers/*}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'delete',
-                        'uriTemplate' => '/v2/{name=projects/*/locations/*/jobTriggers/*}',
-                    ],
-                ],
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'HybridInspectJobTrigger' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2/{name=projects/*/locations/*/jobTriggers/*}:hybridInspect',
-                'body' => '*',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'UpdateJobTrigger' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v2/{name=projects/*/jobTriggers/*}',
-                'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'patch',
-                        'uriTemplate' => '/v2/{name=projects/*/locations/*/jobTriggers/*}',
-                        'body' => '*',
-                    ],
-                ],
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'CreateJobTrigger' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2/{parent=projects/*}/jobTriggers',
-                'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v2/{parent=projects/*}/locations/{location_id}/jobTriggers',
-                        'body' => '*',
-                    ],
-                ],
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                    'location_id' => [
-                        'getters' => [
-                            'getLocationId',
                         ],
                     ],
                 ],
@@ -771,6 +747,30 @@ return [
                         'uriTemplate' => '/v2/{name=projects/*/locations/*/storedInfoTypes/*}',
                     ],
                 ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'HybridInspectDlpJob' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/dlpJobs/*}:hybridInspect',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'FinishDlpJob' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/dlpJobs/*}:finish',
+                'body' => '*',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
