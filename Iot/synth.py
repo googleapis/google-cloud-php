@@ -66,7 +66,7 @@ s.replace(
 
 # fix year
 s.replace(
-    '**/Gapic/*GapicClient.php',
+    '**/*Client.php',
     r'Copyright \d{4}',
     r'Copyright 2018')
 s.replace(
