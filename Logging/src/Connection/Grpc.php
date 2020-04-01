@@ -17,18 +17,18 @@
 
 namespace Google\Cloud\Logging\Connection;
 
+use Google\ApiCore\Serializer;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Logging\Logger;
 use Google\Cloud\Logging\LoggingClient;
 use Google\Cloud\Logging\V2\ConfigServiceV2Client;
-use Google\Cloud\Logging\V2\LoggingServiceV2Client;
-use Google\Cloud\Logging\V2\MetricsServiceV2Client;
-use Google\ApiCore\Serializer;
 use Google\Cloud\Logging\V2\LogEntry;
+use Google\Cloud\Logging\V2\LoggingServiceV2Client;
 use Google\Cloud\Logging\V2\LogMetric;
 use Google\Cloud\Logging\V2\LogSink;
-use Google\Cloud\Logging\V2\LogSink_VersionFormat;
+use Google\Cloud\Logging\V2\LogSink\VersionFormat;
+use Google\Cloud\Logging\V2\MetricsServiceV2Client;
 
 /**
  * Implementation of the
@@ -39,9 +39,9 @@ class Grpc implements ConnectionInterface
     use GrpcTrait;
 
     private static $versionFormatMap = [
-        LogSink_VersionFormat::VERSION_FORMAT_UNSPECIFIED => 'VERSION_FORMAT_UNSPECIFIED',
-        LogSink_VersionFormat::V1 => 'V1',
-        LogSink_VersionFormat::V2 => 'V2'
+        VersionFormat::VERSION_FORMAT_UNSPECIFIED => 'VERSION_FORMAT_UNSPECIFIED',
+        VersionFormat::V1 => 'V1',
+        VersionFormat::V2 => 'V2'
     ];
 
     /**
