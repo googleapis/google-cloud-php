@@ -80,6 +80,7 @@ class Logger
         'httpRequest',
         'labels',
         'operation',
+        'spanId',
         'trace',
         'traceSampled',
         'sourceLocation',
@@ -291,6 +292,11 @@ class Logger
      *           Please see the
      *           [API docs](https://cloud.google.com/logging/docs/api/reference/rest/v2/LogEntry#logentryoperation)
      *           for more information.
+     *     @type string $spanId Optional. The span ID within the trace
+     *           associated with the log entry. For Trace spans, this is the
+     *           same format that the Trace API v2 uses: a 16-character
+     *           hexadecimal encoding of an 8-byte array, such as
+     *           000000000000004a.
      *     @type string $trace Optional. Resource name of the trace associated
      *           with the log entry, if any. If it contains a relative resource
      *           name, the name is assumed to be relative to
@@ -301,7 +307,7 @@ class Logger
      *           this log entry was written, or the sampling decision was
      *           unknown at the time. A non-sampled trace value is still useful
      *           as a request correlation identifier. The default is False.
-     *     @type xxx $sourceLocation Source code location information associated
+     *     @type array $sourceLocation Source code location information associated
      *           with the log entry, if any. Please see the
      *           [API docs](https://cloud.google.com/logging/docs/reference/v2/rest/v2/LogEntry#LogEntrySourceLocation)
      *           for more information.
