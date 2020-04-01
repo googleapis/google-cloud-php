@@ -264,6 +264,7 @@ class RestTest extends TestCase
                 [
                     'data' => $tempFile,
                     'name' => 'file.txt',
+                    'resumable' => true,
                     'predefinedAcl' => 'private',
                     'metadata' => ['contentType' => 'text/plain'],
                     'validate' => 'md5'
