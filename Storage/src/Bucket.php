@@ -304,6 +304,116 @@ class Bucket
     }
 
     /**
+     * Asynchronously upload an object as a string
+     *
+     * Example:
+     * ```
+     * use GuzzleHttp\Promise;
+     *
+     * $promise = $object->uploadAsync('Lorem Ipsum', ['name' => 'keyToData']);
+     * $resp = $promise->wait();
+     * echo $resp->getResponseCode();
+     * ```
+     *
+     * ```
+     * // upload multiple objects to a bucket asynchronously.
+     * use GuzzleHttp\Promise;
+     *
+     * $promises = [];
+     * $objects = ['key1'=>'Lorem', 'key2'=>'Ipsum', 'key3'=>'Gypsum']
+     *
+     * foreach ($objects() as $k=>$v) {
+     *     $promises[] = $object->uploadAsync($v, ['name' => $k ])
+     *         ->then(function (StreamInterface $data) {
+     *             echo $data->getContents();
+     *         });
+     * }
+     *
+     * foreach ($promises as $promise) {
+     *     $res=$promise->wait();
+     *     if ($res->getResultCode() != 200) {
+     *          throw new Exception('An error has occurred in the matrix');
+     *     }
+     * }
+     * ```
+     *
+     * @see https://cloud.google.com/storage/docs/json_api/v1/objects/insert Objects insert API documentation.
+     * @see https://cloud.google.com/storage/docs/encryption#customer-supplied Customer-supplied encryption keys.
+     * @see https://github.com/google/php-crc32 crc32c PHP extension for hardware-accelerated validation hashes.
+     *
+     * @param string|resource|StreamInterface|null $data The data to be uploaded.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type string $name The name of the destination. Required when data is
+     *           of type string or null.
+     *     @type bool $resumable Indicates whether or not the upload will be
+     *           performed in a resumable fashion.
+     *     @type bool|string $validate Indicates whether or not validation will
+     *           be applied using md5 or crc32c hashing functionality. If
+     *           enabled, and the calculated hash does not match that of the
+     *           upstream server, the upload will be rejected. Available options
+     *           are `true`, `false`, `md5` and `crc32`. If true, either md5 or
+     *           crc32c will be chosen based on your platform. If false, no
+     *           validation hash will be sent. Choose either `md5` or `crc32` to
+     *           force a hash method regardless of performance implications. In
+     *           PHP versions earlier than 7.4, performance will be very
+     *           adversely impacted by using crc32c unless you install the
+     *           `crc32c` PHP extension. **Defaults to** `true`.
+     *     @type int $chunkSize If provided the upload will be done in chunks.
+     *           The size must be in multiples of 262144 bytes. With chunking
+     *           you have increased reliability at the risk of higher overhead.
+     *           It is recommended to not use chunking.
+     *     @type callable $uploadProgressCallback If provided together with
+     *           $resumable == true the given callable function/method will be
+     *           called after each successfully uploaded chunk. The callable
+     *           function/method will receive the number of uploaded bytes
+     *           after each uploaded chunk as a parameter to this callable.
+     *           It's useful if you want to create a progress bar when using
+     *           resumable upload type together with $chunkSize parameter.
+     *           If $chunkSize is not set the callable function/method will be
+     *           called only once after the successful file upload.
+     *     @type string $predefinedAcl Predefined ACL to apply to the object.
+     *           Acceptable values include, `"authenticatedRead"`,
+     *           `"bucketOwnerFullControl"`, `"bucketOwnerRead"`, `"private"`,
+     *           `"projectPrivate"`, and `"publicRead"`.
+     *     @type array $metadata The full list of available options are outlined
+     *           at the [JSON API docs](https://cloud.google.com/storage/docs/json_api/v1/objects/insert#request-body).
+     *     @type array $metadata.metadata User-provided metadata, in key/value pairs.
+     *     @type string $encryptionKey A base64 encoded AES-256 customer-supplied
+     *           encryption key. If you would prefer to manage encryption
+     *           utilizing the Cloud Key Management Service (KMS) please use the
+     *           `$metadata.kmsKeyName` setting. Please note if using KMS the
+     *           key ring must use the same location as the bucket.
+     *     @type string $encryptionKeySHA256 Base64 encoded SHA256 hash of the
+     *           customer-supplied encryption key. This value will be calculated
+     *           from the `encryptionKey` on your behalf if not provided, but
+     *           for best performance it is recommended to pass in a cached
+     *           version of the already calculated SHA.
+     * }
+     * @return \PromiseInterface
+     * @throws \InvalidArgumentException
+     */
+    public function uploadAsync($data, array $options = [])
+    {
+        if ($this->isObjectNameRequired($data) && !isset($options['name'])) {
+            throw new \InvalidArgumentException('A name is required when data is of type string or null.');
+        }
+
+        $encryptionKey = isset($options['encryptionKey']) ? $options['encryptionKey'] : null;
+        $encryptionKeySHA256 = isset($options['encryptionKeySHA256']) ? $options['encryptionKeySHA256'] : null;
+
+        $promise = $this->connection->insertObject(
+            $this->formatEncryptionHeaders($options) +
+            $this->identity +
+            [
+               'data' => $data
+            ]
+        )->uploadAsync();
+        return $promise;
+    }
+
+    /**
      * Get a resumable uploader which can provide greater control over the
      * upload process. This is recommended when dealing with large files where
      * reliability is key.

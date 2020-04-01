@@ -70,4 +70,44 @@ class MultipartUploader extends AbstractUploader
             true
         );
     }
+
+    /**
+     * Triggers the upload process.
+     *
+     * @return PromiseInterface
+     */
+    public function uploadAsync()
+    {
+        $multipartStream = new Psr7\MultipartStream([
+            [
+                'name' => 'metadata',
+                'headers' => ['Content-Type' => 'application/json; charset=UTF-8'],
+                'contents' => $this->jsonEncode($this->metadata)
+            ],
+            [
+                'name' => 'data',
+                'headers' => ['Content-Type' => $this->contentType],
+                'contents' => $this->data
+            ]
+        ], 'boundary');
+
+        $headers = [
+            'Content-Type' => 'multipart/related; boundary=boundary',
+        ];
+
+        $size = $multipartStream->getSize();
+        if ($size !== null) {
+            $headers['Content-Length'] = $size;
+        }
+
+        return $this->requestWrapper->sendAsync(
+            new Request(
+                'POST',
+                $this->uri,
+                $headers,
+                $multipartStream
+            ),
+            $this->requestOptions
+        );
+    }
 }

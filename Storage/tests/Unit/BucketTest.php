@@ -25,6 +25,7 @@ use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Upload\ResumableUploader;
+use Google\Cloud\Core\Upload\MultipartUploader;
 use Google\Cloud\PubSub\Topic;
 use Google\Cloud\Storage\Acl;
 use Google\Cloud\Storage\Bucket;
@@ -36,6 +37,9 @@ use Google\Cloud\Storage\SigningHelper;
 use Google\Cloud\Storage\StorageObject;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use GuzzleHttp\Promise;
+use GuzzleHttp\Promise\PromiseInterface;
+use GuzzleHttp\Psr7\Response;
 
 /**
  * @group storage
@@ -54,6 +58,7 @@ class BucketTest extends TestCase
     {
         $this->connection = $this->prophesize(Rest::class);
         $this->resumableUploader = $this->prophesize(ResumableUploader::class);
+        $this->multipartUploader = $this->prophesize(MultipartUploader::class);
     }
 
     private function getBucket(
@@ -115,6 +120,23 @@ class BucketTest extends TestCase
         $this->assertInstanceOf(
             StorageObject::class,
             $bucket->upload('some data to upload', ['name' => 'data.txt'])
+        );
+    }
+
+    public function testUploadAsyncData()
+    {
+        $actualRequest = null;
+        $response = new Response(200, ['Location' => 'http://www.mordor.com'], 'foo');
+
+        $this->connection->insertObject(Argument::any())->willReturn($this->multipartUploader);
+        $this->multipartUploader->uploadAsync()->willReturn(Promise\promise_for($response));
+
+        $bucket = $this->getBucket();
+        $promise = $bucket->uploadAsync('some data to upload', ['name' => 'data.txt']);
+
+        $this->assertInstanceOf(
+            PromiseInterface::class,
+            $promise
         );
     }
 

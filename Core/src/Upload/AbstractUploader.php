@@ -115,4 +115,9 @@ abstract class AbstractUploader
      * @return array
      */
     abstract public function upload();
+
+    /**
+     * @return Promise
+     */
+    abstract public function uploadAsync();
 }

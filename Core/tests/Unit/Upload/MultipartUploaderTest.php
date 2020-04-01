@@ -22,9 +22,12 @@ use Google\Cloud\Core\Upload\MultipartUploader;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Promise;
+use GuzzleHttp\Promise\PromiseInterface;
 use Prophecy\Argument;
 use Psr\Http\Message\RequestInterface;
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\StreamInterface;
 
 /**
  * @group core
@@ -53,6 +56,37 @@ class MultipartUploaderTest extends TestCase
         $this->assertEquals(json_decode($successBody, true), $uploader->upload());
     }
 
+    public function testUploadsAsyncData()
+    {
+        $requestWrapper = $this->prophesize(RequestWrapper::class);
+        $stream = Psr7\stream_for('abcd');
+        $successBody = '{"canI":"kickIt"}';
+        $response = new Response(200, [], $successBody);
+        $promise = Promise\promise_for($response);
+
+        $requestWrapper->sendAsync(
+            Argument::type(RequestInterface::class),
+            Argument::type('array')
+        )->willReturn($promise);
+
+        $uploader = new MultipartUploader(
+            $requestWrapper->reveal(),
+            $stream,
+            'http://www.example.com'
+        );
+
+
+        $actual_promise = $uploader->uploadAsync();
+        $actual_promise->wait();
+        $this->assertInstanceOf(PromiseInterface::class, $actual_promise);
+        $this->assertEquals(
+            '{"canI":"kickIt"}',
+            (string) $actual_promise
+                ->wait()
+                ->getBody()
+        );
+        return false;
+    }
     /**
      * @dataProvider streamSizes
      */

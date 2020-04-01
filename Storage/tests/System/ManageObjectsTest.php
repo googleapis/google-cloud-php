@@ -19,6 +19,7 @@ namespace Google\Cloud\Storage\Tests\System;
 
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Http\Message\StreamInterface;
+use GuzzleHttp\Psr7\Response;
 
 /**
  * @group storage
@@ -59,6 +60,15 @@ class ManageObjectsTest extends StorageTestCase
         $this->assertTrue($object->exists());
         $object->delete();
         $this->assertFalse($object->exists());
+    }
+
+    public function testUploadAsync()
+    {
+        $name = uniqid(self::TESTING_PREFIX);
+        $promise = self::$bucket->uploadAsync(self::DATA, ['name' => $name]);
+        $this->assertInstanceOf(PromiseInterface::class, $promise);
+        $resp = $promise->wait();
+        $this->assertInstanceOf(Response::class, $resp);
     }
 
     public function testUpdateObject()

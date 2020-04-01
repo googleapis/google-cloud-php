@@ -200,6 +200,19 @@ class ResumableUploader extends AbstractUploader
     }
 
     /**
+     * Currently only the MultiPartUploader support async.
+     *
+     * Any calls to this will throw a generic Google Exception
+     *
+     * @return Promise
+     * @throws GoogleException
+     */
+    public function uploadAsync()
+    {
+        throw new GoogleException("Currently only the MultiPartUploader support async.");
+    }
+
+    /**
      * Fetch and decode the response body
      *
      * @param ResponseInterface $response
