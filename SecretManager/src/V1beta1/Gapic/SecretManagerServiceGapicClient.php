@@ -454,11 +454,15 @@ class SecretManagerServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the project to associate with the
-     *                             [Secret][google.cloud.secrets.v1beta1.Secret], in the format `projects/*`.
-     * @param string $secretId     Required. This must be unique within the project.
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $parent   Required. The resource name of the project to associate with the
+     *                         [Secret][google.cloud.secrets.v1beta1.Secret], in the format `projects/*`.
+     * @param string $secretId Required. This must be unique within the project.
+     *
+     * A secret ID is a string with a maximum length of 255 characters and can
+     * contain uppercase and lowercase letters, numerals, and the hyphen (`-`) and
+     * underscore (`_`) characters.
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type Secret $secret
      *          A [Secret][google.cloud.secrets.v1beta1.Secret] with initial field values.
