@@ -24,6 +24,9 @@ class CreateSecretRequest extends \Google\Protobuf\Internal\Message
     private $parent = '';
     /**
      * Required. This must be unique within the project.
+     * A secret ID is a string with a maximum length of 255 characters and can
+     * contain uppercase and lowercase letters, numerals, and the hyphen (`-`) and
+     * underscore (`_`) characters.
      *
      * Generated from protobuf field <code>string secret_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -46,6 +49,9 @@ class CreateSecretRequest extends \Google\Protobuf\Internal\Message
      *           [Secret][google.cloud.secretmanager.v1.Secret], in the format `projects/&#42;`.
      *     @type string $secret_id
      *           Required. This must be unique within the project.
+     *           A secret ID is a string with a maximum length of 255 characters and can
+     *           contain uppercase and lowercase letters, numerals, and the hyphen (`-`) and
+     *           underscore (`_`) characters.
      *     @type \Google\Cloud\SecretManager\V1\Secret $secret
      *           Required. A [Secret][google.cloud.secretmanager.v1.Secret] with initial field values.
      * }
@@ -85,6 +91,9 @@ class CreateSecretRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. This must be unique within the project.
+     * A secret ID is a string with a maximum length of 255 characters and can
+     * contain uppercase and lowercase letters, numerals, and the hyphen (`-`) and
+     * underscore (`_`) characters.
      *
      * Generated from protobuf field <code>string secret_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -96,6 +105,9 @@ class CreateSecretRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. This must be unique within the project.
+     * A secret ID is a string with a maximum length of 255 characters and can
+     * contain uppercase and lowercase letters, numerals, and the hyphen (`-`) and
+     * underscore (`_`) characters.
      *
      * Generated from protobuf field <code>string secret_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
