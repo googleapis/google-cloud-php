@@ -89,8 +89,10 @@ class ServicesNotFoundTest extends TestCase
             ['language'],
             ['pubsub'],
             ['spanner'],
+            ['speech'],
             ['storage'],
             ['trace'],
+            ['vision'],
             ['translate']
         ];
     }
