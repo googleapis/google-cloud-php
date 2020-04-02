@@ -3,25 +3,6 @@
 return [
     'interfaces' => [
         'google.cloud.dataproc.v1.AutoscalingPolicyService' => [
-            'CreateAutoscalingPolicy' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/autoscalingPolicies',
-                'body' => 'policy',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/{parent=projects/*/regions/*}/autoscalingPolicies',
-                        'body' => 'policy',
-                    ],
-                ],
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
             'UpdateAutoscalingPolicy' => [
                 'method' => 'put',
                 'uriTemplate' => '/v1/{policy.name=projects/*/locations/*/autoscalingPolicies/*}',
@@ -38,6 +19,25 @@ return [
                         'getters' => [
                             'getPolicy',
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateAutoscalingPolicy' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/autoscalingPolicies',
+                'body' => 'policy',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*/regions/*}/autoscalingPolicies',
+                        'body' => 'policy',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],

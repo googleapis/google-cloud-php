@@ -89,7 +89,7 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = $client->regionName('[PROJECT]', '[REGION]');
+        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
         $policy = new AutoscalingPolicy();
 
         $response = $client->createAutoscalingPolicy($formattedParent, $policy);
@@ -133,7 +133,7 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = $client->regionName('[PROJECT]', '[REGION]');
+        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
         $policy = new AutoscalingPolicy();
 
         try {
@@ -244,9 +244,9 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->autoscalingPolicyName('[PROJECT]', '[REGION]', '[AUTOSCALING_POLICY]');
+        $name = 'name3373707';
 
-        $response = $client->getAutoscalingPolicy($formattedName);
+        $response = $client->getAutoscalingPolicy($name);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -256,7 +256,7 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getName();
 
-        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertProtobufEquals($name, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -284,10 +284,10 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->autoscalingPolicyName('[PROJECT]', '[REGION]', '[AUTOSCALING_POLICY]');
+        $name = 'name3373707';
 
         try {
-            $client->getAutoscalingPolicy($formattedName);
+            $client->getAutoscalingPolicy($name);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -320,7 +320,7 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = $client->regionName('[PROJECT]', '[REGION]');
+        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
 
         $response = $client->listAutoscalingPolicies($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
@@ -363,7 +363,7 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = $client->regionName('[PROJECT]', '[REGION]');
+        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
 
         try {
             $client->listAutoscalingPolicies($formattedParent);
@@ -394,9 +394,9 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->autoscalingPolicyName('[PROJECT]', '[REGION]', '[AUTOSCALING_POLICY]');
+        $name = 'name3373707';
 
-        $client->deleteAutoscalingPolicy($formattedName);
+        $client->deleteAutoscalingPolicy($name);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -405,7 +405,7 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getName();
 
-        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertProtobufEquals($name, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -433,10 +433,10 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->autoscalingPolicyName('[PROJECT]', '[REGION]', '[AUTOSCALING_POLICY]');
+        $name = 'name3373707';
 
         try {
-            $client->deleteAutoscalingPolicy($formattedName);
+            $client->deleteAutoscalingPolicy($name);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
