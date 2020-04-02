@@ -24,7 +24,7 @@ class ListGroupMembersResponse extends \Google\Protobuf\Internal\Message
     /**
      * If there are more results than have been returned, then this field is
      * set to a non-empty value.  To see the additional results, use that value as
-     * `pageToken` in the next call to this method.
+     * `page_token` in the next call to this method.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -47,7 +47,7 @@ class ListGroupMembersResponse extends \Google\Protobuf\Internal\Message
      *     @type string $next_page_token
      *           If there are more results than have been returned, then this field is
      *           set to a non-empty value.  To see the additional results, use that value as
-     *           `pageToken` in the next call to this method.
+     *           `page_token` in the next call to this method.
      *     @type int $total_size
      *           The total number of elements matching this request.
      * }
@@ -86,7 +86,7 @@ class ListGroupMembersResponse extends \Google\Protobuf\Internal\Message
     /**
      * If there are more results than have been returned, then this field is
      * set to a non-empty value.  To see the additional results, use that value as
-     * `pageToken` in the next call to this method.
+     * `page_token` in the next call to this method.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -99,7 +99,7 @@ class ListGroupMembersResponse extends \Google\Protobuf\Internal\Message
     /**
      * If there are more results than have been returned, then this field is
      * set to a non-empty value.  To see the additional results, use that value as
-     * `pageToken` in the next call to this method.
+     * `page_token` in the next call to this method.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var

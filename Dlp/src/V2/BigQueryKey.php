@@ -22,8 +22,11 @@ class BigQueryKey extends \Google\Protobuf\Internal\Message
      */
     private $table_reference = null;
     /**
-     * Absolute number of the row from the beginning of the table at the time
-     * of scanning.
+     * Row number inferred at the time the table was scanned. This value is
+     * nondeterministic, cannot be queried, and may be null for inspection
+     * jobs. To locate findings within a table, specify
+     * `inspect_job.storage_config.big_query_options.identifying_fields` in
+     * `CreateDlpJobRequest`.
      *
      * Generated from protobuf field <code>int64 row_number = 2;</code>
      */
@@ -38,8 +41,11 @@ class BigQueryKey extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dlp\V2\BigQueryTable $table_reference
      *           Complete BigQuery table reference.
      *     @type int|string $row_number
-     *           Absolute number of the row from the beginning of the table at the time
-     *           of scanning.
+     *           Row number inferred at the time the table was scanned. This value is
+     *           nondeterministic, cannot be queried, and may be null for inspection
+     *           jobs. To locate findings within a table, specify
+     *           `inspect_job.storage_config.big_query_options.identifying_fields` in
+     *           `CreateDlpJobRequest`.
      * }
      */
     public function __construct($data = NULL) {
@@ -74,8 +80,11 @@ class BigQueryKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Absolute number of the row from the beginning of the table at the time
-     * of scanning.
+     * Row number inferred at the time the table was scanned. This value is
+     * nondeterministic, cannot be queried, and may be null for inspection
+     * jobs. To locate findings within a table, specify
+     * `inspect_job.storage_config.big_query_options.identifying_fields` in
+     * `CreateDlpJobRequest`.
      *
      * Generated from protobuf field <code>int64 row_number = 2;</code>
      * @return int|string
@@ -86,8 +95,11 @@ class BigQueryKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Absolute number of the row from the beginning of the table at the time
-     * of scanning.
+     * Row number inferred at the time the table was scanned. This value is
+     * nondeterministic, cannot be queried, and may be null for inspection
+     * jobs. To locate findings within a table, specify
+     * `inspect_job.storage_config.big_query_options.identifying_fields` in
+     * `CreateDlpJobRequest`.
      *
      * Generated from protobuf field <code>int64 row_number = 2;</code>
      * @param int|string $var

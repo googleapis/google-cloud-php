@@ -35,7 +35,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * communications. Cannot be specified with subnetwork_uri. If neither
      * `network_uri` nor `subnetwork_uri` is specified, the "default" network of
      * the project is used, if it exists. Cannot be a "Custom Subnet Network" (see
-     * [Using Subnetworks](/compute/docs/subnetworks) for more information).
+     * [Using Subnetworks](https://cloud.google.com/compute/docs/subnetworks) for more information).
      * A full URL, partial URI, or short name are valid. Examples:
      * * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/global/default`
      * * `projects/[project_id]/regions/global/default`
@@ -68,14 +68,14 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     private $internal_ip_only = false;
     /**
      * Optional. The [Dataproc service
-     * account](/dataproc/docs/concepts/configuring-clusters/service-accounts#service_accounts_in_cloud_dataproc)
+     * account](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/service-accounts#service_accounts_in_cloud_dataproc)
      * (also see [VM Data Plane
-     * identity](/dataproc/docs/concepts/iam/dataproc-principals#vm_service_account_data_plane_identity))
+     * identity](https://cloud.google.com/dataproc/docs/concepts/iam/dataproc-principals#vm_service_account_data_plane_identity))
      * used by Dataproc cluster VM instances to access Google Cloud Platform
      * services.
      * If not specified, the
      * [Compute Engine default service
-     * account](/compute/docs/access/service-accounts#default_service_account)
+     * account](https://cloud.google.com/compute/docs/access/service-accounts#default_service_account)
      * is used.
      *
      * Generated from protobuf field <code>string service_account = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -99,7 +99,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     private $service_account_scopes;
     /**
      * The Compute Engine tags to add to all instances (see
-     * [Tagging instances](/compute/docs/label-or-tag-resources#tags)).
+     * [Tagging instances](https://cloud.google.com/compute/docs/label-or-tag-resources#tags)).
      *
      * Generated from protobuf field <code>repeated string tags = 4;</code>
      */
@@ -112,6 +112,12 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> metadata = 5;</code>
      */
     private $metadata;
+    /**
+     * Optional. Reservation Affinity for consuming Zonal reservation.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ReservationAffinity reservation_affinity = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $reservation_affinity = null;
 
     /**
      * Constructor.
@@ -134,7 +140,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      *           communications. Cannot be specified with subnetwork_uri. If neither
      *           `network_uri` nor `subnetwork_uri` is specified, the "default" network of
      *           the project is used, if it exists. Cannot be a "Custom Subnet Network" (see
-     *           [Using Subnetworks](/compute/docs/subnetworks) for more information).
+     *           [Using Subnetworks](https://cloud.google.com/compute/docs/subnetworks) for more information).
      *           A full URL, partial URI, or short name are valid. Examples:
      *           * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/global/default`
      *           * `projects/[project_id]/regions/global/default`
@@ -155,14 +161,14 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      *           configured to be accessible without external IP addresses.
      *     @type string $service_account
      *           Optional. The [Dataproc service
-     *           account](/dataproc/docs/concepts/configuring-clusters/service-accounts#service_accounts_in_cloud_dataproc)
+     *           account](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/service-accounts#service_accounts_in_cloud_dataproc)
      *           (also see [VM Data Plane
-     *           identity](/dataproc/docs/concepts/iam/dataproc-principals#vm_service_account_data_plane_identity))
+     *           identity](https://cloud.google.com/dataproc/docs/concepts/iam/dataproc-principals#vm_service_account_data_plane_identity))
      *           used by Dataproc cluster VM instances to access Google Cloud Platform
      *           services.
      *           If not specified, the
      *           [Compute Engine default service
-     *           account](/compute/docs/access/service-accounts#default_service_account)
+     *           account](https://cloud.google.com/compute/docs/access/service-accounts#default_service_account)
      *           is used.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $service_account_scopes
      *           Optional. The URIs of service account scopes to be included in
@@ -178,11 +184,13 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      *           * https://www.googleapis.com/auth/devstorage.full_control
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $tags
      *           The Compute Engine tags to add to all instances (see
-     *           [Tagging instances](/compute/docs/label-or-tag-resources#tags)).
+     *           [Tagging instances](https://cloud.google.com/compute/docs/label-or-tag-resources#tags)).
      *     @type array|\Google\Protobuf\Internal\MapField $metadata
      *           The Compute Engine metadata entries to add to all instances (see
      *           [Project and instance
      *           metadata](https://cloud.google.com/compute/docs/storing-retrieving-metadata#project_and_instance_metadata)).
+     *     @type \Google\Cloud\Dataproc\V1\ReservationAffinity $reservation_affinity
+     *           Optional. Reservation Affinity for consuming Zonal reservation.
      * }
      */
     public function __construct($data = NULL) {
@@ -237,7 +245,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * communications. Cannot be specified with subnetwork_uri. If neither
      * `network_uri` nor `subnetwork_uri` is specified, the "default" network of
      * the project is used, if it exists. Cannot be a "Custom Subnet Network" (see
-     * [Using Subnetworks](/compute/docs/subnetworks) for more information).
+     * [Using Subnetworks](https://cloud.google.com/compute/docs/subnetworks) for more information).
      * A full URL, partial URI, or short name are valid. Examples:
      * * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/global/default`
      * * `projects/[project_id]/regions/global/default`
@@ -256,7 +264,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * communications. Cannot be specified with subnetwork_uri. If neither
      * `network_uri` nor `subnetwork_uri` is specified, the "default" network of
      * the project is used, if it exists. Cannot be a "Custom Subnet Network" (see
-     * [Using Subnetworks](/compute/docs/subnetworks) for more information).
+     * [Using Subnetworks](https://cloud.google.com/compute/docs/subnetworks) for more information).
      * A full URL, partial URI, or short name are valid. Examples:
      * * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/global/default`
      * * `projects/[project_id]/regions/global/default`
@@ -348,14 +356,14 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The [Dataproc service
-     * account](/dataproc/docs/concepts/configuring-clusters/service-accounts#service_accounts_in_cloud_dataproc)
+     * account](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/service-accounts#service_accounts_in_cloud_dataproc)
      * (also see [VM Data Plane
-     * identity](/dataproc/docs/concepts/iam/dataproc-principals#vm_service_account_data_plane_identity))
+     * identity](https://cloud.google.com/dataproc/docs/concepts/iam/dataproc-principals#vm_service_account_data_plane_identity))
      * used by Dataproc cluster VM instances to access Google Cloud Platform
      * services.
      * If not specified, the
      * [Compute Engine default service
-     * account](/compute/docs/access/service-accounts#default_service_account)
+     * account](https://cloud.google.com/compute/docs/access/service-accounts#default_service_account)
      * is used.
      *
      * Generated from protobuf field <code>string service_account = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -368,14 +376,14 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The [Dataproc service
-     * account](/dataproc/docs/concepts/configuring-clusters/service-accounts#service_accounts_in_cloud_dataproc)
+     * account](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/service-accounts#service_accounts_in_cloud_dataproc)
      * (also see [VM Data Plane
-     * identity](/dataproc/docs/concepts/iam/dataproc-principals#vm_service_account_data_plane_identity))
+     * identity](https://cloud.google.com/dataproc/docs/concepts/iam/dataproc-principals#vm_service_account_data_plane_identity))
      * used by Dataproc cluster VM instances to access Google Cloud Platform
      * services.
      * If not specified, the
      * [Compute Engine default service
-     * account](/compute/docs/access/service-accounts#default_service_account)
+     * account](https://cloud.google.com/compute/docs/access/service-accounts#default_service_account)
      * is used.
      *
      * Generated from protobuf field <code>string service_account = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -438,7 +446,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * The Compute Engine tags to add to all instances (see
-     * [Tagging instances](/compute/docs/label-or-tag-resources#tags)).
+     * [Tagging instances](https://cloud.google.com/compute/docs/label-or-tag-resources#tags)).
      *
      * Generated from protobuf field <code>repeated string tags = 4;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -450,7 +458,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * The Compute Engine tags to add to all instances (see
-     * [Tagging instances](/compute/docs/label-or-tag-resources#tags)).
+     * [Tagging instances](https://cloud.google.com/compute/docs/label-or-tag-resources#tags)).
      *
      * Generated from protobuf field <code>repeated string tags = 4;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -490,6 +498,32 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->metadata = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Reservation Affinity for consuming Zonal reservation.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ReservationAffinity reservation_affinity = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataproc\V1\ReservationAffinity
+     */
+    public function getReservationAffinity()
+    {
+        return $this->reservation_affinity;
+    }
+
+    /**
+     * Optional. Reservation Affinity for consuming Zonal reservation.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ReservationAffinity reservation_affinity = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataproc\V1\ReservationAffinity $var
+     * @return $this
+     */
+    public function setReservationAffinity($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\ReservationAffinity::class);
+        $this->reservation_affinity = $var;
 
         return $this;
     }

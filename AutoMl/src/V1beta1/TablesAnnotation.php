@@ -58,6 +58,18 @@ class TablesAnnotation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1beta1.TablesModelColumnInfo tables_model_column_info = 3;</code>
      */
     private $tables_model_column_info;
+    /**
+     * Output only. Stores the prediction score for the baseline example, which
+     * is defined as the example with all values set to their baseline values.
+     * This is used as part of the Sampled Shapley explanation of the model's
+     * prediction. This field is populated only when feature importance is
+     * requested. For regression models, this holds the baseline prediction for
+     * the baseline example. For classification models, this holds the baseline
+     * prediction for the baseline example for the argmax class.
+     *
+     * Generated from protobuf field <code>float baseline_score = 5;</code>
+     */
+    private $baseline_score = 0.0;
 
     /**
      * Constructor.
@@ -92,6 +104,14 @@ class TablesAnnotation extends \Google\Protobuf\Internal\Message
      *           and
      *           [column_display_name][google.cloud.automl.v1beta1.TablesModelColumnInfo.column_display_name]
      *           would be populated, then this whole field is not.
+     *     @type float $baseline_score
+     *           Output only. Stores the prediction score for the baseline example, which
+     *           is defined as the example with all values set to their baseline values.
+     *           This is used as part of the Sampled Shapley explanation of the model's
+     *           prediction. This field is populated only when feature importance is
+     *           requested. For regression models, this holds the baseline prediction for
+     *           the baseline example. For classification models, this holds the baseline
+     *           prediction for the baseline example for the argmax class.
      * }
      */
     public function __construct($data = NULL) {
@@ -237,6 +257,44 @@ class TablesAnnotation extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AutoMl\V1beta1\TablesModelColumnInfo::class);
         $this->tables_model_column_info = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Stores the prediction score for the baseline example, which
+     * is defined as the example with all values set to their baseline values.
+     * This is used as part of the Sampled Shapley explanation of the model's
+     * prediction. This field is populated only when feature importance is
+     * requested. For regression models, this holds the baseline prediction for
+     * the baseline example. For classification models, this holds the baseline
+     * prediction for the baseline example for the argmax class.
+     *
+     * Generated from protobuf field <code>float baseline_score = 5;</code>
+     * @return float
+     */
+    public function getBaselineScore()
+    {
+        return $this->baseline_score;
+    }
+
+    /**
+     * Output only. Stores the prediction score for the baseline example, which
+     * is defined as the example with all values set to their baseline values.
+     * This is used as part of the Sampled Shapley explanation of the model's
+     * prediction. This field is populated only when feature importance is
+     * requested. For regression models, this holds the baseline prediction for
+     * the baseline example. For classification models, this holds the baseline
+     * prediction for the baseline example for the argmax class.
+     *
+     * Generated from protobuf field <code>float baseline_score = 5;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setBaselineScore($var)
+    {
+        GPBUtil::checkFloat($var);
+        $this->baseline_score = $var;
 
         return $this;
     }

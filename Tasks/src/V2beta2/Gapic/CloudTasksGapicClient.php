@@ -233,22 +233,6 @@ class CloudTasksGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a project resource.
-     *
-     * @param string $project
-     *
-     * @return string The formatted project resource.
-     * @experimental
-     */
-    public static function projectName($project)
-    {
-        return self::getProjectNameTemplate()->render([
-            'project' => $project,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
      * a queue resource.
      *
      * @param string $project
@@ -290,11 +274,25 @@ class CloudTasksGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     */
+    public static function projectName($project)
+    {
+        return self::getProjectNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - location: projects/{project}/locations/{location}
-     * - project: projects/{project}
      * - queue: projects/{project}/locations/{location}/queues/{queue}
      * - task: projects/{project}/locations/{location}/queues/{queue}/tasks/{task}.
      *
@@ -943,8 +941,8 @@ class CloudTasksGapicClient
      * ```
      * $cloudTasksClient = new CloudTasksClient();
      * try {
-     *     $formattedResource = $cloudTasksClient->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
-     *     $response = $cloudTasksClient->getIamPolicy($formattedResource);
+     *     $resource = '';
+     *     $response = $cloudTasksClient->getIamPolicy($resource);
      * } finally {
      *     $cloudTasksClient->close();
      * }
@@ -1010,9 +1008,9 @@ class CloudTasksGapicClient
      * ```
      * $cloudTasksClient = new CloudTasksClient();
      * try {
-     *     $formattedResource = $cloudTasksClient->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
+     *     $resource = '';
      *     $policy = new Policy();
-     *     $response = $cloudTasksClient->setIamPolicy($formattedResource, $policy);
+     *     $response = $cloudTasksClient->setIamPolicy($resource, $policy);
      * } finally {
      *     $cloudTasksClient->close();
      * }
@@ -1073,9 +1071,9 @@ class CloudTasksGapicClient
      * ```
      * $cloudTasksClient = new CloudTasksClient();
      * try {
-     *     $formattedResource = $cloudTasksClient->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
+     *     $resource = '';
      *     $permissions = [];
-     *     $response = $cloudTasksClient->testIamPermissions($formattedResource, $permissions);
+     *     $response = $cloudTasksClient->testIamPermissions($resource, $permissions);
      * } finally {
      *     $cloudTasksClient->close();
      * }

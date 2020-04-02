@@ -21,7 +21,6 @@ namespace Google\Cloud\Core\Testing;
 use Google\Cloud\Core\Testing\RegexFileFilter;
 use Google\Cloud\Core\Testing\Snippet\Container;
 use Google\Cloud\Core\Testing\Snippet\Coverage\Coverage;
-use Google\Cloud\Core\Testing\Snippet\Coverage\ExcludeFilter;
 use Google\Cloud\Core\Testing\Snippet\Coverage\Scanner;
 use Google\Cloud\Core\Testing\Snippet\Parser\Parser;
 use Google\Cloud\Core\Testing\System\SystemTestCase;

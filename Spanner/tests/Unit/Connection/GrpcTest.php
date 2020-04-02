@@ -29,6 +29,7 @@ use Google\Cloud\Spanner\Admin\Instance\V1\Instance\State;
 use Google\Cloud\Spanner\Connection\Grpc;
 use Google\Cloud\Spanner\V1\DeleteSessionRequest;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest\Statement;
+use Google\Cloud\Spanner\V1\ExecuteSqlRequest\QueryOptions;
 use Google\Cloud\Spanner\V1\KeySet;
 use Google\Cloud\Spanner\V1\Mutation;
 use Google\Cloud\Spanner\V1\Mutation\Delete;
@@ -476,6 +477,74 @@ class GrpcTest extends TestCase
                 'paramTypes' => $expectedParamTypes
             ]
         ]));
+    }
+
+    /**
+     * @dataProvider queryOptions
+     */
+    public function testExecuteStreamingSqlWithQueryOptions(
+        array $methodOptions,
+        array $envOptions,
+        array $clientOptions,
+        array $expectedOptions
+    ) {
+        $sql = 'SELECT 1';
+
+        if ($envOptions && $envOptions['optimizerVersion']) {
+            putenv('SPANNER_OPTIMIZER_VERSION=' . $envOptions['optimizerVersion']);
+        }
+
+        $gapic = $this->prophesize(SpannerClient::class);
+        $gapic->executeStreamingSql(
+            self::SESSION,
+            $sql,
+            Argument::withEntry('queryOptions', $expectedOptions)
+        );
+
+        $grpc = new Grpc([
+            'gapicSpannerClient' => $gapic->reveal()
+        ] + ['queryOptions' => $clientOptions]);
+
+        $grpc->executeStreamingSql([
+            'database' => self::DATABASE,
+            'session' => self::SESSION,
+            'sql' => $sql,
+            'params' => []
+        ] + ['queryOptions' => $methodOptions]);
+
+        if ($envOptions) {
+            putenv('SPANNER_OPTIMIZER_VERSION=');
+        }
+    }
+
+    public function queryOptions()
+    {
+        return [
+            [
+                ['optimizerVersion' => '8'],
+                ['optimizerVersion' => '7'],
+                ['optimizerVersion' => '6'],
+                ['optimizerVersion' => '8']
+            ],
+            [
+                [],
+                ['optimizerVersion' => '7'],
+                ['optimizerVersion' => '6'],
+                ['optimizerVersion' => '7']
+            ],
+            [
+                [],
+                [],
+                ['optimizerVersion' => '6'],
+                ['optimizerVersion' => '6']
+            ],
+            [
+                [],
+                [],
+                [],
+                []
+            ]
+        ];
     }
 
     /**

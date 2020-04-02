@@ -9,23 +9,22 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for
- * [AutoMl.ListModels][google.cloud.automl.v1.AutoMl.ListModels].
+ * Request message for [AutoMl.ListModels][google.cloud.automl.v1.AutoMl.ListModels].
  *
  * Generated from protobuf message <code>google.cloud.automl.v1.ListModelsRequest</code>
  */
 class ListModelsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Resource name of the project, from which to list the models.
+     * Required. Resource name of the project, from which to list the models.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
      * An expression for filtering the results of the request.
      *   * `model_metadata` - for existence of the case (e.g.
-     *             image_classification_model_metadata:*).
+     *             video_classification_model_metadata:*).
      *   * `dataset_id` - for = or !=. Some examples of using the filter are:
      *   * `image_classification_model_metadata:*` --> The model has
      *                                        image_classification_model_metadata.
@@ -43,8 +42,7 @@ class ListModelsRequest extends \Google\Protobuf\Internal\Message
     /**
      * A token identifying a page of results for the server to return
      * Typically obtained via
-     * [ListModelsResponse.next_page_token][google.cloud.automl.v1.ListModelsResponse.next_page_token]
-     * of the previous
+     * [ListModelsResponse.next_page_token][google.cloud.automl.v1.ListModelsResponse.next_page_token] of the previous
      * [AutoMl.ListModels][google.cloud.automl.v1.AutoMl.ListModels] call.
      *
      * Generated from protobuf field <code>string page_token = 6;</code>
@@ -58,11 +56,11 @@ class ListModelsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Resource name of the project, from which to list the models.
+     *           Required. Resource name of the project, from which to list the models.
      *     @type string $filter
      *           An expression for filtering the results of the request.
      *             * `model_metadata` - for existence of the case (e.g.
-     *                       image_classification_model_metadata:*).
+     *                       video_classification_model_metadata:*).
      *             * `dataset_id` - for = or !=. Some examples of using the filter are:
      *             * `image_classification_model_metadata:*` --> The model has
      *                                                  image_classification_model_metadata.
@@ -72,8 +70,7 @@ class ListModelsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $page_token
      *           A token identifying a page of results for the server to return
      *           Typically obtained via
-     *           [ListModelsResponse.next_page_token][google.cloud.automl.v1.ListModelsResponse.next_page_token]
-     *           of the previous
+     *           [ListModelsResponse.next_page_token][google.cloud.automl.v1.ListModelsResponse.next_page_token] of the previous
      *           [AutoMl.ListModels][google.cloud.automl.v1.AutoMl.ListModels] call.
      * }
      */
@@ -83,9 +80,9 @@ class ListModelsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource name of the project, from which to list the models.
+     * Required. Resource name of the project, from which to list the models.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -94,9 +91,9 @@ class ListModelsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource name of the project, from which to list the models.
+     * Required. Resource name of the project, from which to list the models.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -111,7 +108,7 @@ class ListModelsRequest extends \Google\Protobuf\Internal\Message
     /**
      * An expression for filtering the results of the request.
      *   * `model_metadata` - for existence of the case (e.g.
-     *             image_classification_model_metadata:*).
+     *             video_classification_model_metadata:*).
      *   * `dataset_id` - for = or !=. Some examples of using the filter are:
      *   * `image_classification_model_metadata:*` --> The model has
      *                                        image_classification_model_metadata.
@@ -128,7 +125,7 @@ class ListModelsRequest extends \Google\Protobuf\Internal\Message
     /**
      * An expression for filtering the results of the request.
      *   * `model_metadata` - for existence of the case (e.g.
-     *             image_classification_model_metadata:*).
+     *             video_classification_model_metadata:*).
      *   * `dataset_id` - for = or !=. Some examples of using the filter are:
      *   * `image_classification_model_metadata:*` --> The model has
      *                                        image_classification_model_metadata.
@@ -175,8 +172,7 @@ class ListModelsRequest extends \Google\Protobuf\Internal\Message
     /**
      * A token identifying a page of results for the server to return
      * Typically obtained via
-     * [ListModelsResponse.next_page_token][google.cloud.automl.v1.ListModelsResponse.next_page_token]
-     * of the previous
+     * [ListModelsResponse.next_page_token][google.cloud.automl.v1.ListModelsResponse.next_page_token] of the previous
      * [AutoMl.ListModels][google.cloud.automl.v1.AutoMl.ListModels] call.
      *
      * Generated from protobuf field <code>string page_token = 6;</code>
@@ -190,8 +186,7 @@ class ListModelsRequest extends \Google\Protobuf\Internal\Message
     /**
      * A token identifying a page of results for the server to return
      * Typically obtained via
-     * [ListModelsResponse.next_page_token][google.cloud.automl.v1.ListModelsResponse.next_page_token]
-     * of the previous
+     * [ListModelsResponse.next_page_token][google.cloud.automl.v1.ListModelsResponse.next_page_token] of the previous
      * [AutoMl.ListModels][google.cloud.automl.v1.AutoMl.ListModels] call.
      *
      * Generated from protobuf field <code>string page_token = 6;</code>

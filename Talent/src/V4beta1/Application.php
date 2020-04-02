@@ -43,17 +43,15 @@ class Application extends \Google\Protobuf\Internal\Message
      */
     private $profile = '';
     /**
-     * One of either a job or a company is required.
-     * Resource name of the job which the candidate applied for.
+     * Required. Resource name of the job which the candidate applied for.
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}". For example,
      * "projects/foo/tenants/bar/jobs/baz".
      *
-     * Generated from protobuf field <code>string job = 4 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string job = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $job = '';
     /**
-     * One of either a job or a company is required.
      * Resource name of the company which the candidate applied for.
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}".
@@ -69,8 +67,8 @@ class Application extends \Google\Protobuf\Internal\Message
      */
     private $application_date = null;
     /**
-     * Required. What is the most recent stage of the application (that is, new, screen,
-     * send cv, hired, finished work)?  This field is intentionally not
+     * Required. What is the most recent stage of the application (that is, new,
+     * screen, send cv, hired, finished work)?  This field is intentionally not
      * comprehensive of every possible status, but instead, represents statuses
      * that would be used to indicate to the ML models good / bad matches.
      *
@@ -162,13 +160,11 @@ class Application extends \Google\Protobuf\Internal\Message
      *           "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}".
      *           For example, "projects/foo/tenants/bar/profiles/baz".
      *     @type string $job
-     *           One of either a job or a company is required.
-     *           Resource name of the job which the candidate applied for.
+     *           Required. Resource name of the job which the candidate applied for.
      *           The format is
      *           "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}". For example,
      *           "projects/foo/tenants/bar/jobs/baz".
      *     @type string $company
-     *           One of either a job or a company is required.
      *           Resource name of the company which the candidate applied for.
      *           The format is
      *           "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}".
@@ -176,8 +172,8 @@ class Application extends \Google\Protobuf\Internal\Message
      *     @type \Google\Type\Date $application_date
      *           The application date.
      *     @type int $stage
-     *           Required. What is the most recent stage of the application (that is, new, screen,
-     *           send cv, hired, finished work)?  This field is intentionally not
+     *           Required. What is the most recent stage of the application (that is, new,
+     *           screen, send cv, hired, finished work)?  This field is intentionally not
      *           comprehensive of every possible status, but instead, represents statuses
      *           that would be used to indicate to the ML models good / bad matches.
      *     @type int $state
@@ -310,13 +306,12 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * One of either a job or a company is required.
-     * Resource name of the job which the candidate applied for.
+     * Required. Resource name of the job which the candidate applied for.
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}". For example,
      * "projects/foo/tenants/bar/jobs/baz".
      *
-     * Generated from protobuf field <code>string job = 4 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string job = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getJob()
@@ -325,13 +320,12 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * One of either a job or a company is required.
-     * Resource name of the job which the candidate applied for.
+     * Required. Resource name of the job which the candidate applied for.
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}". For example,
      * "projects/foo/tenants/bar/jobs/baz".
      *
-     * Generated from protobuf field <code>string job = 4 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string job = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -344,7 +338,6 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * One of either a job or a company is required.
      * Resource name of the company which the candidate applied for.
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}".
@@ -359,7 +352,6 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * One of either a job or a company is required.
      * Resource name of the company which the candidate applied for.
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}".
@@ -404,8 +396,8 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. What is the most recent stage of the application (that is, new, screen,
-     * send cv, hired, finished work)?  This field is intentionally not
+     * Required. What is the most recent stage of the application (that is, new,
+     * screen, send cv, hired, finished work)?  This field is intentionally not
      * comprehensive of every possible status, but instead, represents statuses
      * that would be used to indicate to the ML models good / bad matches.
      *
@@ -418,8 +410,8 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. What is the most recent stage of the application (that is, new, screen,
-     * send cv, hired, finished work)?  This field is intentionally not
+     * Required. What is the most recent stage of the application (that is, new,
+     * screen, send cv, hired, finished work)?  This field is intentionally not
      * comprehensive of every possible status, but instead, represents statuses
      * that would be used to indicate to the ML models good / bad matches.
      *

@@ -14,24 +14,26 @@ class DataItems
         if (static::$is_initialized == true) {
           return;
         }
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Cloud\Automl\V1Beta1\Geometry::initOnce();
         \GPBMetadata\Google\Cloud\Automl\V1Beta1\Io::initOnce();
+        \GPBMetadata\Google\Cloud\Automl\V1Beta1\Temporal::initOnce();
         \GPBMetadata\Google\Cloud\Automl\V1Beta1\TextSegment::initOnce();
         \GPBMetadata\Google\Protobuf\Any::initOnce();
         \GPBMetadata\Google\Protobuf\Duration::initOnce();
         \GPBMetadata\Google\Protobuf\Struct::initOnce();
+        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(hex2bin(
-            "0ad60f0a2c676f6f676c652f636c6f75642f6175746f6d6c2f7631626574" .
+            "0af40f0a2c676f6f676c652f636c6f75642f6175746f6d6c2f7631626574" .
             "61312f646174615f6974656d732e70726f746f121b676f6f676c652e636c" .
-            "6f75642e6175746f6d6c2e763162657461311a2a676f6f676c652f636c6f" .
-            "75642f6175746f6d6c2f763162657461312f67656f6d657472792e70726f" .
-            "746f1a24676f6f676c652f636c6f75642f6175746f6d6c2f763162657461" .
-            "312f696f2e70726f746f1a2e676f6f676c652f636c6f75642f6175746f6d" .
+            "6f75642e6175746f6d6c2e763162657461311a24676f6f676c652f636c6f" .
+            "75642f6175746f6d6c2f763162657461312f696f2e70726f746f1a2a676f" .
+            "6f676c652f636c6f75642f6175746f6d6c2f763162657461312f74656d70" .
+            "6f72616c2e70726f746f1a2e676f6f676c652f636c6f75642f6175746f6d" .
             "6c2f763162657461312f746578745f7365676d656e742e70726f746f1a19" .
             "676f6f676c652f70726f746f6275662f616e792e70726f746f1a1e676f6f" .
             "676c652f70726f746f6275662f6475726174696f6e2e70726f746f1a1c67" .
-            "6f6f676c652f70726f746f6275662f7374727563742e70726f746f227f0a" .
+            "6f6f676c652f70726f746f6275662f7374727563742e70726f746f1a1c67" .
+            "6f6f676c652f6170692f616e6e6f746174696f6e732e70726f746f227f0a" .
             "05496d61676512150a0b696d6167655f627974657318012001280c480012" .
             "400a0c696e7075745f636f6e66696718062001280b32282e676f6f676c65" .
             "2e636c6f75642e6175746f6d6c2e763162657461312e496e707574436f6e" .

@@ -16,54 +16,54 @@ use Google\Protobuf\Internal\GPBUtil;
 class QueryParameters extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. The time zone of this conversational query from the
+     * The time zone of this conversational query from the
      * [time zone database](https://www.iana.org/time-zones), e.g.,
      * America/New_York, Europe/Paris. If not provided, the time zone specified in
      * agent settings is used.
      *
-     * Generated from protobuf field <code>string time_zone = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string time_zone = 1;</code>
      */
     private $time_zone = '';
     /**
-     * Optional. The geo location of this conversational query.
+     * The geo location of this conversational query.
      *
-     * Generated from protobuf field <code>.google.type.LatLng geo_location = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.type.LatLng geo_location = 2;</code>
      */
     private $geo_location = null;
     /**
-     * Optional. The collection of contexts to be activated before this query is
+     * The collection of contexts to be activated before this query is
      * executed.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Context contexts = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Context contexts = 3;</code>
      */
     private $contexts;
     /**
-     * Optional. Specifies whether to delete all contexts in the current session
+     * Specifies whether to delete all contexts in the current session
      * before the new ones are activated.
      *
-     * Generated from protobuf field <code>bool reset_contexts = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool reset_contexts = 4;</code>
      */
     private $reset_contexts = false;
     /**
-     * Optional. Additional session entity types to replace or extend developer
+     * Additional session entity types to replace or extend developer
      * entity types with. The entity synonyms apply to all languages and persist
      * for the session of this query.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SessionEntityType session_entity_types = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SessionEntityType session_entity_types = 5;</code>
      */
     private $session_entity_types;
     /**
-     * Optional. This field can be used to pass custom data into the webhook
+     * This field can be used to pass custom data into the webhook
      * associated with the agent. Arbitrary JSON objects are supported.
      *
-     * Generated from protobuf field <code>.google.protobuf.Struct payload = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct payload = 6;</code>
      */
     private $payload = null;
     /**
-     * Optional. Configures the type of sentiment analysis to perform. If not
+     * Configures the type of sentiment analysis to perform. If not
      * provided, sentiment analysis is not performed.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SentimentAnalysisRequestConfig sentiment_analysis_request_config = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SentimentAnalysisRequestConfig sentiment_analysis_request_config = 10;</code>
      */
     private $sentiment_analysis_request_config = null;
 
@@ -74,27 +74,27 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $time_zone
-     *           Optional. The time zone of this conversational query from the
+     *           The time zone of this conversational query from the
      *           [time zone database](https://www.iana.org/time-zones), e.g.,
      *           America/New_York, Europe/Paris. If not provided, the time zone specified in
      *           agent settings is used.
      *     @type \Google\Type\LatLng $geo_location
-     *           Optional. The geo location of this conversational query.
+     *           The geo location of this conversational query.
      *     @type \Google\Cloud\Dialogflow\V2\Context[]|\Google\Protobuf\Internal\RepeatedField $contexts
-     *           Optional. The collection of contexts to be activated before this query is
+     *           The collection of contexts to be activated before this query is
      *           executed.
      *     @type bool $reset_contexts
-     *           Optional. Specifies whether to delete all contexts in the current session
+     *           Specifies whether to delete all contexts in the current session
      *           before the new ones are activated.
      *     @type \Google\Cloud\Dialogflow\V2\SessionEntityType[]|\Google\Protobuf\Internal\RepeatedField $session_entity_types
-     *           Optional. Additional session entity types to replace or extend developer
+     *           Additional session entity types to replace or extend developer
      *           entity types with. The entity synonyms apply to all languages and persist
      *           for the session of this query.
      *     @type \Google\Protobuf\Struct $payload
-     *           Optional. This field can be used to pass custom data into the webhook
+     *           This field can be used to pass custom data into the webhook
      *           associated with the agent. Arbitrary JSON objects are supported.
      *     @type \Google\Cloud\Dialogflow\V2\SentimentAnalysisRequestConfig $sentiment_analysis_request_config
-     *           Optional. Configures the type of sentiment analysis to perform. If not
+     *           Configures the type of sentiment analysis to perform. If not
      *           provided, sentiment analysis is not performed.
      * }
      */
@@ -104,12 +104,12 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The time zone of this conversational query from the
+     * The time zone of this conversational query from the
      * [time zone database](https://www.iana.org/time-zones), e.g.,
      * America/New_York, Europe/Paris. If not provided, the time zone specified in
      * agent settings is used.
      *
-     * Generated from protobuf field <code>string time_zone = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string time_zone = 1;</code>
      * @return string
      */
     public function getTimeZone()
@@ -118,12 +118,12 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The time zone of this conversational query from the
+     * The time zone of this conversational query from the
      * [time zone database](https://www.iana.org/time-zones), e.g.,
      * America/New_York, Europe/Paris. If not provided, the time zone specified in
      * agent settings is used.
      *
-     * Generated from protobuf field <code>string time_zone = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string time_zone = 1;</code>
      * @param string $var
      * @return $this
      */
@@ -136,9 +136,9 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The geo location of this conversational query.
+     * The geo location of this conversational query.
      *
-     * Generated from protobuf field <code>.google.type.LatLng geo_location = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.type.LatLng geo_location = 2;</code>
      * @return \Google\Type\LatLng
      */
     public function getGeoLocation()
@@ -147,9 +147,9 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The geo location of this conversational query.
+     * The geo location of this conversational query.
      *
-     * Generated from protobuf field <code>.google.type.LatLng geo_location = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.type.LatLng geo_location = 2;</code>
      * @param \Google\Type\LatLng $var
      * @return $this
      */
@@ -162,10 +162,10 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The collection of contexts to be activated before this query is
+     * The collection of contexts to be activated before this query is
      * executed.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Context contexts = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Context contexts = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getContexts()
@@ -174,10 +174,10 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The collection of contexts to be activated before this query is
+     * The collection of contexts to be activated before this query is
      * executed.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Context contexts = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Context contexts = 3;</code>
      * @param \Google\Cloud\Dialogflow\V2\Context[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -190,10 +190,10 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Specifies whether to delete all contexts in the current session
+     * Specifies whether to delete all contexts in the current session
      * before the new ones are activated.
      *
-     * Generated from protobuf field <code>bool reset_contexts = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool reset_contexts = 4;</code>
      * @return bool
      */
     public function getResetContexts()
@@ -202,10 +202,10 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Specifies whether to delete all contexts in the current session
+     * Specifies whether to delete all contexts in the current session
      * before the new ones are activated.
      *
-     * Generated from protobuf field <code>bool reset_contexts = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool reset_contexts = 4;</code>
      * @param bool $var
      * @return $this
      */
@@ -218,11 +218,11 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Additional session entity types to replace or extend developer
+     * Additional session entity types to replace or extend developer
      * entity types with. The entity synonyms apply to all languages and persist
      * for the session of this query.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SessionEntityType session_entity_types = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SessionEntityType session_entity_types = 5;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSessionEntityTypes()
@@ -231,11 +231,11 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Additional session entity types to replace or extend developer
+     * Additional session entity types to replace or extend developer
      * entity types with. The entity synonyms apply to all languages and persist
      * for the session of this query.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SessionEntityType session_entity_types = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SessionEntityType session_entity_types = 5;</code>
      * @param \Google\Cloud\Dialogflow\V2\SessionEntityType[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -248,10 +248,10 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This field can be used to pass custom data into the webhook
+     * This field can be used to pass custom data into the webhook
      * associated with the agent. Arbitrary JSON objects are supported.
      *
-     * Generated from protobuf field <code>.google.protobuf.Struct payload = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct payload = 6;</code>
      * @return \Google\Protobuf\Struct
      */
     public function getPayload()
@@ -260,10 +260,10 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This field can be used to pass custom data into the webhook
+     * This field can be used to pass custom data into the webhook
      * associated with the agent. Arbitrary JSON objects are supported.
      *
-     * Generated from protobuf field <code>.google.protobuf.Struct payload = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct payload = 6;</code>
      * @param \Google\Protobuf\Struct $var
      * @return $this
      */
@@ -276,10 +276,10 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Configures the type of sentiment analysis to perform. If not
+     * Configures the type of sentiment analysis to perform. If not
      * provided, sentiment analysis is not performed.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SentimentAnalysisRequestConfig sentiment_analysis_request_config = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SentimentAnalysisRequestConfig sentiment_analysis_request_config = 10;</code>
      * @return \Google\Cloud\Dialogflow\V2\SentimentAnalysisRequestConfig
      */
     public function getSentimentAnalysisRequestConfig()
@@ -288,10 +288,10 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Configures the type of sentiment analysis to perform. If not
+     * Configures the type of sentiment analysis to perform. If not
      * provided, sentiment analysis is not performed.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SentimentAnalysisRequestConfig sentiment_analysis_request_config = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SentimentAnalysisRequestConfig sentiment_analysis_request_config = 10;</code>
      * @param \Google\Cloud\Dialogflow\V2\SentimentAnalysisRequestConfig $var
      * @return $this
      */

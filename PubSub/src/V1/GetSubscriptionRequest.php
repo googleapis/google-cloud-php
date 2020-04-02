@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetSubscriptionRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The name of the subscription to get.
+     * Required. The name of the subscription to get.
      * Format is `projects/{project}/subscriptions/{sub}`.
      *
-     * Generated from protobuf field <code>string subscription = 1;</code>
+     * Generated from protobuf field <code>string subscription = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $subscription = '';
 
@@ -30,7 +30,7 @@ class GetSubscriptionRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $subscription
-     *           The name of the subscription to get.
+     *           Required. The name of the subscription to get.
      *           Format is `projects/{project}/subscriptions/{sub}`.
      * }
      */
@@ -40,10 +40,10 @@ class GetSubscriptionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the subscription to get.
+     * Required. The name of the subscription to get.
      * Format is `projects/{project}/subscriptions/{sub}`.
      *
-     * Generated from protobuf field <code>string subscription = 1;</code>
+     * Generated from protobuf field <code>string subscription = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getSubscription()
@@ -52,10 +52,10 @@ class GetSubscriptionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the subscription to get.
+     * Required. The name of the subscription to get.
      * Format is `projects/{project}/subscriptions/{sub}`.
      *
-     * Generated from protobuf field <code>string subscription = 1;</code>
+     * Generated from protobuf field <code>string subscription = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

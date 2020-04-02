@@ -1,0 +1,5 @@
+{
+    "distribution_name": "google/cloud-datastore",
+    "release_level": "ga",
+    "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-datastore/latest"
+}

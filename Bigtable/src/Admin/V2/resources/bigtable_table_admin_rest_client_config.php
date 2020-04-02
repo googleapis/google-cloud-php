@@ -203,6 +203,76 @@ return [
                     ],
                 ],
             ],
+            'CreateBackup' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=projects/*/instances/*/clusters/*}/backups',
+                'body' => 'backup',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'GetBackup' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=projects/*/instances/*/clusters/*/backups/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListBackups' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=projects/*/instances/*/clusters/*}/backups',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateBackup' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v2/{backup.name=projects/*/instances/*/clusters/*/backups/*}',
+                'body' => 'backup',
+                'placeholders' => [
+                    'backup.name' => [
+                        'getters' => [
+                            'getBackup',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteBackup' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v2/{name=projects/*/instances/*/clusters/*/backups/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'RestoreTable' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=projects/*/instances/*}/tables:restore',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.longrunning.Operations' => [
             'CancelOperation' => [

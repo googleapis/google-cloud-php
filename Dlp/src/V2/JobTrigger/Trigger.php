@@ -25,6 +25,11 @@ class Trigger extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Dlp\V2\Schedule $schedule
      *           Create a job on a repeating basis based on the elapse of time.
+     *     @type \Google\Cloud\Dlp\V2\Manual $manual
+     *           For use with hybrid jobs. Jobs must be manually created and finished.
+     *           Early access feature is in a pre-release state and might change or have
+     *           limited support. For more information, see
+     *           https://cloud.google.com/products#product-launch-stages.
      * }
      */
     public function __construct($data = NULL) {
@@ -54,6 +59,38 @@ class Trigger extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\Schedule::class);
         $this->writeOneof(1, $var);
+
+        return $this;
+    }
+
+    /**
+     * For use with hybrid jobs. Jobs must be manually created and finished.
+     * Early access feature is in a pre-release state and might change or have
+     * limited support. For more information, see
+     * https://cloud.google.com/products#product-launch-stages.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.Manual manual = 2;</code>
+     * @return \Google\Cloud\Dlp\V2\Manual
+     */
+    public function getManual()
+    {
+        return $this->readOneof(2);
+    }
+
+    /**
+     * For use with hybrid jobs. Jobs must be manually created and finished.
+     * Early access feature is in a pre-release state and might change or have
+     * limited support. For more information, see
+     * https://cloud.google.com/products#product-launch-stages.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.Manual manual = 2;</code>
+     * @param \Google\Cloud\Dlp\V2\Manual $var
+     * @return $this
+     */
+    public function setManual($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\Manual::class);
+        $this->writeOneof(2, $var);
 
         return $this;
     }

@@ -35,9 +35,10 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      */
     private $source_table = null;
     /**
-     * Output only. The size of the data in the source table at the time the snapshot was
-     * taken. In some cases, this value may be computed asynchronously via a
-     * background process and a placeholder of 0 will be used in the meantime.
+     * Output only. The size of the data in the source table at the time the
+     * snapshot was taken. In some cases, this value may be computed
+     * asynchronously via a background process and a placeholder of 0 will be used
+     * in the meantime.
      *
      * Generated from protobuf field <code>int64 data_size_bytes = 3;</code>
      */
@@ -49,8 +50,8 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      */
     private $create_time = null;
     /**
-     * Output only. The time when the snapshot will be deleted. The maximum amount of time a
-     * snapshot can stay active is 365 days. If 'ttl' is not specified,
+     * Output only. The time when the snapshot will be deleted. The maximum amount
+     * of time a snapshot can stay active is 365 days. If 'ttl' is not specified,
      * the default maximum of 365 days will be used.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 5;</code>
@@ -82,14 +83,15 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Bigtable\Admin\V2\Table $source_table
      *           Output only. The source table at the time the snapshot was taken.
      *     @type int|string $data_size_bytes
-     *           Output only. The size of the data in the source table at the time the snapshot was
-     *           taken. In some cases, this value may be computed asynchronously via a
-     *           background process and a placeholder of 0 will be used in the meantime.
+     *           Output only. The size of the data in the source table at the time the
+     *           snapshot was taken. In some cases, this value may be computed
+     *           asynchronously via a background process and a placeholder of 0 will be used
+     *           in the meantime.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The time when the snapshot is created.
      *     @type \Google\Protobuf\Timestamp $delete_time
-     *           Output only. The time when the snapshot will be deleted. The maximum amount of time a
-     *           snapshot can stay active is 365 days. If 'ttl' is not specified,
+     *           Output only. The time when the snapshot will be deleted. The maximum amount
+     *           of time a snapshot can stay active is 365 days. If 'ttl' is not specified,
      *           the default maximum of 365 days will be used.
      *     @type int $state
      *           Output only. The current state of the snapshot.
@@ -159,9 +161,10 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The size of the data in the source table at the time the snapshot was
-     * taken. In some cases, this value may be computed asynchronously via a
-     * background process and a placeholder of 0 will be used in the meantime.
+     * Output only. The size of the data in the source table at the time the
+     * snapshot was taken. In some cases, this value may be computed
+     * asynchronously via a background process and a placeholder of 0 will be used
+     * in the meantime.
      *
      * Generated from protobuf field <code>int64 data_size_bytes = 3;</code>
      * @return int|string
@@ -172,9 +175,10 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The size of the data in the source table at the time the snapshot was
-     * taken. In some cases, this value may be computed asynchronously via a
-     * background process and a placeholder of 0 will be used in the meantime.
+     * Output only. The size of the data in the source table at the time the
+     * snapshot was taken. In some cases, this value may be computed
+     * asynchronously via a background process and a placeholder of 0 will be used
+     * in the meantime.
      *
      * Generated from protobuf field <code>int64 data_size_bytes = 3;</code>
      * @param int|string $var
@@ -215,8 +219,8 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time when the snapshot will be deleted. The maximum amount of time a
-     * snapshot can stay active is 365 days. If 'ttl' is not specified,
+     * Output only. The time when the snapshot will be deleted. The maximum amount
+     * of time a snapshot can stay active is 365 days. If 'ttl' is not specified,
      * the default maximum of 365 days will be used.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 5;</code>
@@ -228,8 +232,8 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time when the snapshot will be deleted. The maximum amount of time a
-     * snapshot can stay active is 365 days. If 'ttl' is not specified,
+     * Output only. The time when the snapshot will be deleted. The maximum amount
+     * of time a snapshot can stay active is 365 days. If 'ttl' is not specified,
      * the default maximum of 365 days will be used.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 5;</code>

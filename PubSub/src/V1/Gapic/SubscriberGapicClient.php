@@ -58,6 +58,7 @@ use Google\Cloud\PubSub\V1\ModifyPushConfigRequest;
 use Google\Cloud\PubSub\V1\PullRequest;
 use Google\Cloud\PubSub\V1\PullResponse;
 use Google\Cloud\PubSub\V1\PushConfig;
+use Google\Cloud\PubSub\V1\RetryPolicy;
 use Google\Cloud\PubSub\V1\SeekRequest;
 use Google\Cloud\PubSub\V1\SeekResponse;
 use Google\Cloud\PubSub\V1\Snapshot;
@@ -263,7 +264,9 @@ class SubscriberGapicClient
      * @param string $topic
      *
      * @return string The formatted topic resource.
-     * @experimental
+     *
+     * @deprecated Multi-pattern resource names will have unified formatting functions.
+     *             This helper function will be deleted in the next major version.
      */
     public static function topicName($project, $topic)
     {
@@ -405,16 +408,15 @@ class SubscriberGapicClient
      * }
      * ```
      *
-     * @param string $name         The name of the subscription. It must have the format
+     * @param string $name         Required. The name of the subscription. It must have the format
      *                             `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must
      *                             start with a letter, and contain only letters (`[A-Za-z]`), numbers
      *                             (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`),
      *                             plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters
-     *                             in length, and it must not start with `"goog"`
-     * @param string $topic        The name of the topic from which this subscription is receiving messages.
-     *                             Format is `projects/{project}/topics/{topic}`.
-     *                             The value of this field will be `_deleted-topic_` if the topic has been
-     *                             deleted.
+     *                             in length, and it must not start with `"goog"`.
+     * @param string $topic        Required. The name of the topic from which this subscription is receiving
+     *                             messages. Format is `projects/{project}/topics/{topic}`. The value of this
+     *                             field will be `_deleted-topic_` if the topic has been deleted.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -476,6 +478,14 @@ class SubscriberGapicClient
      *          operations on the subscription. If `expiration_policy` is not set, a
      *          *default policy* with `ttl` of 31 days will be used. The minimum allowed
      *          value for `expiration_policy.ttl` is 1 day.
+     *     @type string $filter
+     *          An expression written in the Cloud Pub/Sub filter language. If non-empty,
+     *          then only `PubsubMessage`s whose `attributes` field matches the filter are
+     *          delivered on this subscription. If empty, then no messages are filtered
+     *          out.
+     *          <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
+     *          API might be changed in backward-incompatible ways and is not recommended
+     *          for production use. It is not subject to any SLA or deprecation policy.
      *     @type DeadLetterPolicy $deadLetterPolicy
      *          A policy that specifies the conditions for dead lettering messages in
      *          this subscription. If dead_letter_policy is not set, dead lettering
@@ -488,6 +498,17 @@ class SubscriberGapicClient
      *          <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
      *          API might be changed in backward-incompatible ways and is not recommended
      *          for production use. It is not subject to any SLA or deprecation policy.
+     *     @type RetryPolicy $retryPolicy
+     *          A policy that specifies how Cloud Pub/Sub retries message delivery for this
+     *          subscription.
+     *
+     *          If not set, the default retry policy is applied. This generally implies
+     *          that messages will be retried as soon as possible for healthy subscribers.
+     *          RetryPolicy will be triggered on NACKs or acknowledgement deadline
+     *          exceeded events for a given message.
+     *          <b>EXPERIMENTAL:</b> This API might be changed in backward-incompatible
+     *          ways and is not recommended for production use. It is not subject to any
+     *          SLA or deprecation policy.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -526,8 +547,14 @@ class SubscriberGapicClient
         if (isset($optionalArgs['expirationPolicy'])) {
             $request->setExpirationPolicy($optionalArgs['expirationPolicy']);
         }
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
         if (isset($optionalArgs['deadLetterPolicy'])) {
             $request->setDeadLetterPolicy($optionalArgs['deadLetterPolicy']);
+        }
+        if (isset($optionalArgs['retryPolicy'])) {
+            $request->setRetryPolicy($optionalArgs['retryPolicy']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor([
@@ -559,7 +586,7 @@ class SubscriberGapicClient
      * }
      * ```
      *
-     * @param string $subscription The name of the subscription to get.
+     * @param string $subscription Required. The name of the subscription to get.
      *                             Format is `projects/{project}/subscriptions/{sub}`.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -617,8 +644,8 @@ class SubscriberGapicClient
      * }
      * ```
      *
-     * @param Subscription $subscription The updated subscription object.
-     * @param FieldMask    $updateMask   Indicates which fields in the provided subscription to update.
+     * @param Subscription $subscription Required. The updated subscription object.
+     * @param FieldMask    $updateMask   Required. Indicates which fields in the provided subscription to update.
      *                                   Must be specified and non-empty.
      * @param array        $optionalArgs {
      *                                   Optional.
@@ -685,7 +712,7 @@ class SubscriberGapicClient
      * }
      * ```
      *
-     * @param string $project      The name of the project in which to list subscriptions.
+     * @param string $project      Required. The name of the project in which to list subscriptions.
      *                             Format is `projects/{project-id}`.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -755,7 +782,7 @@ class SubscriberGapicClient
      * }
      * ```
      *
-     * @param string $subscription The subscription to delete.
+     * @param string $subscription Required. The subscription to delete.
      *                             Format is `projects/{project}/subscriptions/{sub}`.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -810,13 +837,13 @@ class SubscriberGapicClient
      * }
      * ```
      *
-     * @param string   $subscription       The name of the subscription.
+     * @param string   $subscription       Required. The name of the subscription.
      *                                     Format is `projects/{project}/subscriptions/{sub}`.
-     * @param string[] $ackIds             List of acknowledgment IDs.
-     * @param int      $ackDeadlineSeconds The new ack deadline with respect to the time this request was sent to
-     *                                     the Pub/Sub system. For example, if the value is 10, the new
-     *                                     ack deadline will expire 10 seconds after the `ModifyAckDeadline` call
-     *                                     was made. Specifying zero might immediately make the message available for
+     * @param string[] $ackIds             Required. List of acknowledgment IDs.
+     * @param int      $ackDeadlineSeconds Required. The new ack deadline with respect to the time this request was
+     *                                     sent to the Pub/Sub system. For example, if the value is 10, the new ack
+     *                                     deadline will expire 10 seconds after the `ModifyAckDeadline` call was
+     *                                     made. Specifying zero might immediately make the message available for
      *                                     delivery to another subscriber client. This typically results in an
      *                                     increase in the rate of message redeliveries (that is, duplicates).
      *                                     The minimum deadline you can specify is 0 seconds.
@@ -877,10 +904,11 @@ class SubscriberGapicClient
      * }
      * ```
      *
-     * @param string   $subscription The subscription whose message is being acknowledged.
+     * @param string   $subscription Required. The subscription whose message is being acknowledged.
      *                               Format is `projects/{project}/subscriptions/{sub}`.
-     * @param string[] $ackIds       The acknowledgment ID for the messages being acknowledged that was returned
-     *                               by the Pub/Sub system in the `Pull` response. Must not be empty.
+     * @param string[] $ackIds       Required. The acknowledgment ID for the messages being acknowledged that
+     *                               was returned by the Pub/Sub system in the `Pull` response. Must not be
+     *                               empty.
      * @param array    $optionalArgs {
      *                               Optional.
      *
@@ -932,19 +960,22 @@ class SubscriberGapicClient
      * }
      * ```
      *
-     * @param string $subscription The subscription from which messages should be pulled.
+     * @param string $subscription Required. The subscription from which messages should be pulled.
      *                             Format is `projects/{project}/subscriptions/{sub}`.
-     * @param int    $maxMessages  The maximum number of messages to return for this request. Must be a
-     *                             positive integer. The Pub/Sub system may return fewer than the number
+     * @param int    $maxMessages  Required. The maximum number of messages to return for this request. Must
+     *                             be a positive integer. The Pub/Sub system may return fewer than the number
      *                             specified.
      * @param array  $optionalArgs {
      *                             Optional.
      *
      *     @type bool $returnImmediately
-     *          If this field set to true, the system will respond immediately even if
-     *          it there are no messages available to return in the `Pull` response.
-     *          Otherwise, the system may wait (for a bounded amount of time) until at
-     *          least one message is available, rather than returning no messages.
+     *          Optional. If this field set to true, the system will respond immediately
+     *          even if it there are no messages available to return in the `Pull`
+     *          response. Otherwise, the system may wait (for a bounded amount of time)
+     *          until at least one message is available, rather than returning no messages.
+     *          Warning: setting this field to `true` is discouraged because it adversely
+     *          impacts the performance of `Pull` operations. We recommend that users do
+     *          not set this field.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1076,9 +1107,9 @@ class SubscriberGapicClient
      * }
      * ```
      *
-     * @param string     $subscription The name of the subscription.
+     * @param string     $subscription Required. The name of the subscription.
      *                                 Format is `projects/{project}/subscriptions/{sub}`.
-     * @param PushConfig $pushConfig   The push configuration for future deliveries.
+     * @param PushConfig $pushConfig   Required. The push configuration for future deliveries.
      *
      * An empty `pushConfig` indicates that the Pub/Sub system should
      * stop pushing messages from the given subscription and allow
@@ -1152,7 +1183,7 @@ class SubscriberGapicClient
      * }
      * ```
      *
-     * @param string $project      The name of the project in which to list snapshots.
+     * @param string $project      Required. The name of the project in which to list snapshots.
      *                             Format is `projects/{project-id}`.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -1236,13 +1267,13 @@ class SubscriberGapicClient
      * }
      * ```
      *
-     * @param string $name         User-provided name for this snapshot. If the name is not provided in the
-     *                             request, the server will assign a random name for this snapshot on the same
-     *                             project as the subscription. Note that for REST API requests, you must
-     *                             specify a name.  See the <a
+     * @param string $name         Required. User-provided name for this snapshot. If the name is not provided
+     *                             in the request, the server will assign a random name for this snapshot on
+     *                             the same project as the subscription. Note that for REST API requests, you
+     *                             must specify a name.  See the <a
      *                             href="https://cloud.google.com/pubsub/docs/admin#resource_names"> resource
      *                             name rules</a>. Format is `projects/{project}/snapshots/{snap}`.
-     * @param string $subscription The subscription whose backlog the snapshot retains.
+     * @param string $subscription Required. The subscription whose backlog the snapshot retains.
      *                             Specifically, the created snapshot is guaranteed to retain:
      *                             (a) The existing backlog on the subscription. More precisely, this is
      *                             defined as the messages in the subscription's backlog that are
@@ -1320,8 +1351,8 @@ class SubscriberGapicClient
      * }
      * ```
      *
-     * @param Snapshot  $snapshot     The updated snapshot object.
-     * @param FieldMask $updateMask   Indicates which fields in the provided snapshot to update.
+     * @param Snapshot  $snapshot     Required. The updated snapshot object.
+     * @param FieldMask $updateMask   Required. Indicates which fields in the provided snapshot to update.
      *                                Must be specified and non-empty.
      * @param array     $optionalArgs {
      *                                Optional.
@@ -1382,7 +1413,7 @@ class SubscriberGapicClient
      * }
      * ```
      *
-     * @param string $snapshot     The name of the snapshot to delete.
+     * @param string $snapshot     Required. The name of the snapshot to delete.
      *                             Format is `projects/{project}/snapshots/{snap}`.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -1438,7 +1469,7 @@ class SubscriberGapicClient
      * }
      * ```
      *
-     * @param string $subscription The subscription to affect.
+     * @param string $subscription Required. The subscription to affect.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1497,16 +1528,19 @@ class SubscriberGapicClient
     }
 
     /**
-     * Sets the access control policy on the specified resource. Replaces any
-     * existing policy.
+     * Sets the access control policy on the specified resource. Replaces
+     * any existing policy.
+     *
+     * Can return Public Errors: NOT_FOUND, INVALID_ARGUMENT and
+     * PERMISSION_DENIED
      *
      * Sample code:
      * ```
      * $subscriberClient = new SubscriberClient();
      * try {
-     *     $formattedResource = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+     *     $resource = '';
      *     $policy = new Policy();
-     *     $response = $subscriberClient->setIamPolicy($formattedResource, $policy);
+     *     $response = $subscriberClient->setIamPolicy($resource, $policy);
      * } finally {
      *     $subscriberClient->close();
      * }
@@ -1557,16 +1591,15 @@ class SubscriberGapicClient
     }
 
     /**
-     * Gets the access control policy for a resource.
-     * Returns an empty policy if the resource exists and does not have a policy
-     * set.
+     * Gets the access control policy for a resource. Returns an empty policy
+     * if the resource exists and does not have a policy set.
      *
      * Sample code:
      * ```
      * $subscriberClient = new SubscriberClient();
      * try {
-     *     $formattedResource = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-     *     $response = $subscriberClient->getIamPolicy($formattedResource);
+     *     $resource = '';
+     *     $response = $subscriberClient->getIamPolicy($resource);
      * } finally {
      *     $subscriberClient->close();
      * }
@@ -1618,21 +1651,21 @@ class SubscriberGapicClient
     }
 
     /**
-     * Returns permissions that a caller has on the specified resource.
-     * If the resource does not exist, this will return an empty set of
+     * Returns permissions that a caller has on the specified resource. If the
+     * resource does not exist, this will return an empty set of
      * permissions, not a NOT_FOUND error.
      *
-     * Note: This operation is designed to be used for building permission-aware
-     * UIs and command-line tools, not for authorization checking. This operation
-     * may "fail open" without warning.
+     * Note: This operation is designed to be used for building
+     * permission-aware UIs and command-line tools, not for authorization
+     * checking. This operation may "fail open" without warning.
      *
      * Sample code:
      * ```
      * $subscriberClient = new SubscriberClient();
      * try {
-     *     $formattedResource = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+     *     $resource = '';
      *     $permissions = [];
-     *     $response = $subscriberClient->testIamPermissions($formattedResource, $permissions);
+     *     $response = $subscriberClient->testIamPermissions($resource, $permissions);
      * } finally {
      *     $subscriberClient->close();
      * }

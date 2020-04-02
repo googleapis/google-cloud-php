@@ -21,7 +21,7 @@ class ConditionCombinerType
     const COMBINE_UNSPECIFIED = 0;
     /**
      * Combine conditions using the logical `AND` operator. An
-     * incident is created only if all conditions are met
+     * incident is created only if all the conditions are met
      * simultaneously. This combiner is satisfied if all conditions are
      * met, even if they are met on completely different resources.
      *

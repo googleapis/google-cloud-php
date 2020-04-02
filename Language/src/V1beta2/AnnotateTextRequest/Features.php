@@ -44,7 +44,7 @@ class Features extends \Google\Protobuf\Internal\Message
     /**
      * Classify the full document into categories. If this is true,
      * the API will use the default model which classifies into a
-     * [predefined taxonomy](/natural-language/docs/categories).
+     * [predefined taxonomy](https://cloud.google.com/natural-language/docs/categories).
      *
      * Generated from protobuf field <code>bool classify_text = 6;</code>
      */
@@ -67,7 +67,7 @@ class Features extends \Google\Protobuf\Internal\Message
      *     @type bool $classify_text
      *           Classify the full document into categories. If this is true,
      *           the API will use the default model which classifies into a
-     *           [predefined taxonomy](/natural-language/docs/categories).
+     *           [predefined taxonomy](https://cloud.google.com/natural-language/docs/categories).
      * }
      */
     public function __construct($data = NULL) {
@@ -182,7 +182,7 @@ class Features extends \Google\Protobuf\Internal\Message
     /**
      * Classify the full document into categories. If this is true,
      * the API will use the default model which classifies into a
-     * [predefined taxonomy](/natural-language/docs/categories).
+     * [predefined taxonomy](https://cloud.google.com/natural-language/docs/categories).
      *
      * Generated from protobuf field <code>bool classify_text = 6;</code>
      * @return bool
@@ -195,7 +195,7 @@ class Features extends \Google\Protobuf\Internal\Message
     /**
      * Classify the full document into categories. If this is true,
      * the API will use the default model which classifies into a
-     * [predefined taxonomy](/natural-language/docs/categories).
+     * [predefined taxonomy](https://cloud.google.com/natural-language/docs/categories).
      *
      * Generated from protobuf field <code>bool classify_text = 6;</code>
      * @param bool $var

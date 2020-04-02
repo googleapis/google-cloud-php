@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2019 Google LLC.
+// Copyright 2019 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,12 +16,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-//
 namespace Google\Cloud\Dataproc\V1beta2;
 
 /**
  * The API interface for managing autoscaling policies in the
- * Google Cloud Dataproc API.
+ * Cloud Dataproc API.
  */
 class AutoscalingPolicyServiceGrpcClient extends \Grpc\BaseStub {
 

@@ -20,12 +20,6 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/cloud/vision/v1/image_annotator.proto
  * and updates to that file get reflected here through a refresh process.
- *
- * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
- * even though we intend the surface to be stable, we may make backwards incompatible changes
- * if necessary.
- *
- * @experimental
  */
 
 namespace Google\Cloud\Vision\V1;
@@ -111,7 +105,6 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      * @return AnnotateImageResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function annotateImage($image, $features, $optionalArgs = [])
     {
@@ -149,7 +142,6 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      * @return AnnotateImageResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function faceDetection($image, $optionalArgs = [])
     {
@@ -184,7 +176,6 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      * @return AnnotateImageResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function landmarkDetection($image, $optionalArgs = [])
     {
@@ -219,7 +210,6 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      * @return AnnotateImageResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function logoDetection($image, $optionalArgs = [])
     {
@@ -254,7 +244,6 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      * @return AnnotateImageResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function labelDetection($image, $optionalArgs = [])
     {
@@ -289,7 +278,6 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      * @return AnnotateImageResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function textDetection($image, $optionalArgs = [])
     {
@@ -324,7 +312,6 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      * @return AnnotateImageResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function documentTextDetection($image, $optionalArgs = [])
     {
@@ -359,7 +346,6 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      * @return AnnotateImageResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function safeSearchDetection($image, $optionalArgs = [])
     {
@@ -394,7 +380,6 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      * @return AnnotateImageResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function imagePropertiesDetection($image, $optionalArgs = [])
     {
@@ -429,7 +414,6 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      * @return AnnotateImageResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function cropHintsDetection($image, $optionalArgs = [])
     {
@@ -464,7 +448,6 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      * @return AnnotateImageResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function webDetection($image, $optionalArgs = [])
     {
@@ -499,7 +482,6 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      * @return AnnotateImageResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function objectLocalization($image, $optionalArgs = [])
     {
@@ -546,7 +528,6 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      * @return AnnotateImageResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function productSearch($image, ProductSearchParams $productSearchParams, $optionalArgs = [])
     {

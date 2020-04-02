@@ -151,6 +151,6 @@ trait JobConfigurationTrait
      */
     protected function generateJobId()
     {
-        return (string) Uuid::uuid4();
+        return Uuid::uuid4()->toString();
     }
 }

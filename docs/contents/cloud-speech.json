@@ -6,15 +6,6 @@
         "title": "Overview",
         "type": "speech/readme"
     },{
-        "title": "SpeechClient",
-        "type": "speech/speechclient"
-    }, {
-        "title": "Operation",
-        "type": "speech/operation"
-    }, {
-        "title": "Result",
-        "type": "speech/result"
-    }, {
         "title": "v1",
         "type": "speech/v1/readme",
         "patterns": [

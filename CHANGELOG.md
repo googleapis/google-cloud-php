@@ -1,5 +1,785 @@
 # Changelog
 
+## 0.130.0
+
+<details><summary>google/cloud-bigquery 1.15.0</summary>
+
+
+
+### Features
+
+* add support for ramsey/uuid v4 ([#2804](https://www.github.com/googleapis/google-cloud-php/issues/2804)) ([98fee99](https://www.github.com/googleapis/google-cloud-php/commit/98fee998bff87f43182c72ac2ffe29f01a90308b))
+
+
+### Documentation
+
+* add parentJobId to list jobs ([#2776](https://www.github.com/googleapis/google-cloud-php/issues/2776)) ([fa77445](https://www.github.com/googleapis/google-cloud-php/commit/fa77445ce2e712cd50ddbc2d68b9868ce4b7be98))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 0.14.0</summary>
+
+
+
+### Features
+
+* add get validation result method ([#2795](https://www.github.com/googleapis/google-cloud-php/issues/2795)) ([f0efb93](https://www.github.com/googleapis/google-cloud-php/commit/f0efb930c46a0f32df21640d33f9eff5c2422b87))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.12.0</summary>
+
+
+
+### Features
+
+* add support for ramsey/uuid v4 ([#2804](https://www.github.com/googleapis/google-cloud-php/issues/2804)) ([98fee99](https://www.github.com/googleapis/google-cloud-php/commit/98fee998bff87f43182c72ac2ffe29f01a90308b))
+
+</details>
+
+<details><summary>google/cloud-redis 0.12.3</summary>
+
+
+
+### Documentation
+
+* update documentation ([#2791](https://www.github.com/googleapis/google-cloud-php/issues/2791)) ([ce72fef](https://www.github.com/googleapis/google-cloud-php/commit/ce72fefe1aaf9046625696f5323cfc676188edd5))
+
+</details>
+
+<details><summary>google/cloud-service-directory 0.1.0</summary>
+
+
+
+### Features
+
+* introduce service directory v1beta1 client ([#2793](https://www.github.com/googleapis/google-cloud-php/issues/2793)) ([0676dfd](https://www.github.com/googleapis/google-cloud-php/commit/0676dfd60981190ffd42b1de93b8931689f3262a))
+
+</details>
+
+<details><summary>google/cloud-storage 1.20.0</summary>
+
+
+
+### Features
+
+* add support for signed post policies ([#2750](https://www.github.com/googleapis/google-cloud-php/issues/2750)) ([2786f02](https://www.github.com/googleapis/google-cloud-php/commit/2786f02d31e30093705414c1d3beb129449646bb))
+* reorder post policy method arguments ([#2803](https://www.github.com/googleapis/google-cloud-php/issues/2803)) ([1942ee2](https://www.github.com/googleapis/google-cloud-php/commit/1942ee2bea29d5b26ea19248080e9b652dc306db))
+
+</details>
+
+<details><summary>google/cloud-talent 0.10.0</summary>
+
+
+
+### Features
+
+* update clients ([#2798](https://www.github.com/googleapis/google-cloud-php/issues/2798)) ([e8ec32b](https://www.github.com/googleapis/google-cloud-php/commit/e8ec32b8341af8a474ea6733d6b83f8e9d4953ad))
+
+</details>
+
+<details><summary>google/cloud-trace 0.18.0</summary>
+
+
+
+### Features
+
+* add support for ramsey/uuid v4 ([#2804](https://www.github.com/googleapis/google-cloud-php/issues/2804)) ([98fee99](https://www.github.com/googleapis/google-cloud-php/commit/98fee998bff87f43182c72ac2ffe29f01a90308b))
+
+</details>
+
+## 0.129.0
+
+<details><summary>google/cloud-bigquery 1.14.0</summary>
+
+
+
+### Features
+
+* add support for BigQuery routines ([#2532](https://www.github.com/googleapis/google-cloud-php/issues/2532)) ([235eb2b](https://www.github.com/googleapis/google-cloud-php/commit/235eb2bd885c67b79ecb1e6e18b5a808a4792bba))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.3.0</summary>
+
+
+
+### Features
+
+* add backup support ([#2782](https://www.github.com/googleapis/google-cloud-php/issues/2782)) ([f101479](https://www.github.com/googleapis/google-cloud-php/commit/f101479cf86464c758c8c84f45b04fba99723a2b))
+
+</details>
+
+<details><summary>google/cloud-core 1.36.0</summary>
+
+
+
+### Features
+
+* add support for BigQuery routines ([#2532](https://www.github.com/googleapis/google-cloud-php/issues/2532)) ([235eb2b](https://www.github.com/googleapis/google-cloud-php/commit/235eb2bd885c67b79ecb1e6e18b5a808a4792bba))
+
+</details>
+
+<details><summary>google/cloud-debugger 0.21.2</summary>
+
+
+
+### Bug Fixes
+
+* remove redundant extension from lock file name ([#2772](https://www.github.com/googleapis/google-cloud-php/issues/2772)) ([0eaa46b](https://www.github.com/googleapis/google-cloud-php/commit/0eaa46b5780f9eb0f71ae325782781cbc4155c5c))
+
+</details>
+
+<details><summary>google/cloud-dlp 0.26.0</summary>
+
+
+
+### Features
+
+* update DLP client ([#2779](https://www.github.com/googleapis/google-cloud-php/issues/2779)) ([d14975a](https://www.github.com/googleapis/google-cloud-php/commit/d14975a2dfbf29ede3a29638a21f632e8d14f7ee))
+
+
+### Miscellaneous Chores
+
+* update metadata ([#2783](https://www.github.com/googleapis/google-cloud-php/issues/2783)) ([1ee21f8](https://www.github.com/googleapis/google-cloud-php/commit/1ee21f824fe057ac9b37077c0142bff96588aceb))
+
+</details>
+
+<details><summary>google/cloud-monitoring 0.21.0</summary>
+
+
+
+### Features
+
+* update v3 client ([#2789](https://www.github.com/googleapis/google-cloud-php/issues/2789)) ([5cd2dc1](https://www.github.com/googleapis/google-cloud-php/commit/5cd2dc1879aafb171fed7aa329c64b6cd22d4869))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.22.0</summary>
+
+
+
+### Features
+
+* add retry policy ([#2773](https://www.github.com/googleapis/google-cloud-php/issues/2773)) ([703e5ce](https://www.github.com/googleapis/google-cloud-php/commit/703e5ce01438e7961366cc58065600cf57c34683))
+* add subscription filter field ([#2784](https://www.github.com/googleapis/google-cloud-php/issues/2784)) ([f55e87f](https://www.github.com/googleapis/google-cloud-php/commit/f55e87f0874feeacdbdf2b1baa2430b4e89c4ad8))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.27.0</summary>
+
+
+
+### Features
+
+* add backup/restore functionality ([#2781](https://www.github.com/googleapis/google-cloud-php/issues/2781)) ([c4d214f](https://www.github.com/googleapis/google-cloud-php/commit/c4d214f278c4c66d1064cf7205b3a0f80a4f147c))
+
+</details>
+
+<details><summary>google/cloud-storage 1.19.0</summary>
+
+
+
+### Features
+
+* implement new GCS signed URL features ([#2720](https://www.github.com/googleapis/google-cloud-php/issues/2720)) ([3071a83](https://www.github.com/googleapis/google-cloud-php/commit/3071a839bca242dd41e59c523d172a4bd8a2826b))
+
+</details>
+
+## 0.128.0
+
+<details><summary>google/cloud-spanner 1.26.0</summary>
+
+
+
+### Features
+
+* **spanner:** implement query options versioning support ([#2747](https://www.github.com/googleapis/google-cloud-php/issues/2747)) ([27ad7e3](https://www.github.com/googleapis/google-cloud-php/commit/27ad7e31b0e703a33ff87528a8fd503e0670fdbc))
+
+</details>
+
+## 0.127.0
+
+<details><summary>google/cloud-asset 0.6.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update synth to fix relative cloud.google.com links ([#2745](https://www.github.com/googleapis/google-cloud-php/issues/2745)) ([277ea7b](https://www.github.com/googleapis/google-cloud-php/commit/277ea7b39e6741ca238fef3f991cf4152d935b90))
+
+</details>
+
+<details><summary>google/cloud-automl 0.10.0</summary>
+
+
+
+### Features
+
+* add baseline score to tables annotation, update docs ([#2735](https://www.github.com/googleapis/google-cloud-php/issues/2735)) ([9b6415b](https://www.github.com/googleapis/google-cloud-php/commit/9b6415bc78fc99b017ec887096c54aa6454d4a64))
+
+
+### Documentation
+
+* fix cloud.google.com links ([#2756](https://www.github.com/googleapis/google-cloud-php/issues/2756)) ([bf78c44](https://www.github.com/googleapis/google-cloud-php/commit/bf78c440ce88ecc65f0ae2358fec111a2382ac40))
+* update documentation ([#2740](https://www.github.com/googleapis/google-cloud-php/issues/2740)) ([a9cc4ca](https://www.github.com/googleapis/google-cloud-php/commit/a9cc4cae532923c31b8a4ba66566066cacbf0339))
+
+
+### Miscellaneous Chores
+
+* update synth to fix relative cloud.google.com links ([#2745](https://www.github.com/googleapis/google-cloud-php/issues/2745)) ([277ea7b](https://www.github.com/googleapis/google-cloud-php/commit/277ea7b39e6741ca238fef3f991cf4152d935b90))
+
+</details>
+
+<details><summary>google/cloud-bigquerydatatransfer 0.17.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update synth to fix relative cloud.google.com links ([#2745](https://www.github.com/googleapis/google-cloud-php/issues/2745)) ([277ea7b](https://www.github.com/googleapis/google-cloud-php/commit/277ea7b39e6741ca238fef3f991cf4152d935b90))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update synth to fix relative cloud.google.com links ([#2745](https://www.github.com/googleapis/google-cloud-php/issues/2745)) ([277ea7b](https://www.github.com/googleapis/google-cloud-php/commit/277ea7b39e6741ca238fef3f991cf4152d935b90))
+
+</details>
+
+<details><summary>google/cloud-container 0.12.1</summary>
+
+
+
+### Documentation
+
+* fix cloud.google.com links ([#2757](https://www.github.com/googleapis/google-cloud-php/issues/2757)) ([1fc4048](https://www.github.com/googleapis/google-cloud-php/commit/1fc4048cdcd1fd408a509c095d978ae21bac3d85))
+
+
+### Miscellaneous Chores
+
+* update synth to fix relative cloud.google.com links ([#2745](https://www.github.com/googleapis/google-cloud-php/issues/2745)) ([277ea7b](https://www.github.com/googleapis/google-cloud-php/commit/277ea7b39e6741ca238fef3f991cf4152d935b90))
+
+</details>
+
+<details><summary>google/cloud-dataproc 0.18.1</summary>
+
+
+
+### Documentation
+
+* fix cloud.google.com links ([#2758](https://www.github.com/googleapis/google-cloud-php/issues/2758)) ([c38fc20](https://www.github.com/googleapis/google-cloud-php/commit/c38fc20825b8349c4cd091e0b68f144de71aaee9))
+* update doc references ([#2723](https://www.github.com/googleapis/google-cloud-php/issues/2723)) ([97f1e05](https://www.github.com/googleapis/google-cloud-php/commit/97f1e057980bd19102902207bff4831c56e86106))
+
+
+### Miscellaneous Chores
+
+* update metadata ([#2718](https://www.github.com/googleapis/google-cloud-php/issues/2718)) ([b5dd56a](https://www.github.com/googleapis/google-cloud-php/commit/b5dd56a62cb725a9e2ef33e98fcd4fd34cb2f810))
+* update synth to fix relative cloud.google.com links ([#2745](https://www.github.com/googleapis/google-cloud-php/issues/2745)) ([277ea7b](https://www.github.com/googleapis/google-cloud-php/commit/277ea7b39e6741ca238fef3f991cf4152d935b90))
+
+</details>
+
+<details><summary>google/cloud-datastore 1.11.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update synth to fix relative cloud.google.com links ([#2745](https://www.github.com/googleapis/google-cloud-php/issues/2745)) ([277ea7b](https://www.github.com/googleapis/google-cloud-php/commit/277ea7b39e6741ca238fef3f991cf4152d935b90))
+
+</details>
+
+<details><summary>google/cloud-debugger 0.21.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update synth to fix relative cloud.google.com links ([#2745](https://www.github.com/googleapis/google-cloud-php/issues/2745)) ([277ea7b](https://www.github.com/googleapis/google-cloud-php/commit/277ea7b39e6741ca238fef3f991cf4152d935b90))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 0.13.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update synth to fix relative cloud.google.com links ([#2745](https://www.github.com/googleapis/google-cloud-php/issues/2745)) ([277ea7b](https://www.github.com/googleapis/google-cloud-php/commit/277ea7b39e6741ca238fef3f991cf4152d935b90))
+
+</details>
+
+<details><summary>google/cloud-dlp 0.25.1</summary>
+
+
+
+### Documentation
+
+* fix cloud.google.com links ([#2759](https://www.github.com/googleapis/google-cloud-php/issues/2759)) ([91e6b84](https://www.github.com/googleapis/google-cloud-php/commit/91e6b8489fe565340b80ebabf65c8e5225bbf846))
+
+
+### Miscellaneous Chores
+
+* update synth to fix relative cloud.google.com links ([#2745](https://www.github.com/googleapis/google-cloud-php/issues/2745)) ([277ea7b](https://www.github.com/googleapis/google-cloud-php/commit/277ea7b39e6741ca238fef3f991cf4152d935b90))
+
+</details>
+
+<details><summary>google/cloud-error-reporting 0.16.1</summary>
+
+
+
+### Documentation
+
+* fix cloud.google.com links ([#2760](https://www.github.com/googleapis/google-cloud-php/issues/2760)) ([efe46ec](https://www.github.com/googleapis/google-cloud-php/commit/efe46ecb788617674019247abb47705319343633))
+
+
+### Miscellaneous Chores
+
+* update synth to fix relative cloud.google.com links ([#2745](https://www.github.com/googleapis/google-cloud-php/issues/2745)) ([277ea7b](https://www.github.com/googleapis/google-cloud-php/commit/277ea7b39e6741ca238fef3f991cf4152d935b90))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.11.1</summary>
+
+
+
+### Bug Fixes
+
+* allow root-level collection named projects ([#2705](https://www.github.com/googleapis/google-cloud-php/issues/2705)) ([606a9ba](https://www.github.com/googleapis/google-cloud-php/commit/606a9ba3b3b20091c31b37d6757eed32fb41f584))
+* getting of null values in Firestore ([#2731](https://www.github.com/googleapis/google-cloud-php/issues/2731)) ([f759a87](https://www.github.com/googleapis/google-cloud-php/commit/f759a87f0d1358766becb234e4c667455f78bfcd))
+
+
+### Miscellaneous Chores
+
+* update synth to fix relative cloud.google.com links ([#2745](https://www.github.com/googleapis/google-cloud-php/issues/2745)) ([277ea7b](https://www.github.com/googleapis/google-cloud-php/commit/277ea7b39e6741ca238fef3f991cf4152d935b90))
+
+</details>
+
+<details><summary>google/cloud-iot 0.11.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update synth to fix relative cloud.google.com links ([#2745](https://www.github.com/googleapis/google-cloud-php/issues/2745)) ([277ea7b](https://www.github.com/googleapis/google-cloud-php/commit/277ea7b39e6741ca238fef3f991cf4152d935b90))
+
+</details>
+
+<details><summary>google/cloud-kms 1.9.2</summary>
+
+
+
+### Documentation
+
+* fix cloud.google.com links ([#2761](https://www.github.com/googleapis/google-cloud-php/issues/2761)) ([98c49d2](https://www.github.com/googleapis/google-cloud-php/commit/98c49d232be14f0ad95c57af465243e824938ee0))
+
+
+### Miscellaneous Chores
+
+* update synth to fix relative cloud.google.com links ([#2745](https://www.github.com/googleapis/google-cloud-php/issues/2745)) ([277ea7b](https://www.github.com/googleapis/google-cloud-php/commit/277ea7b39e6741ca238fef3f991cf4152d935b90))
+
+</details>
+
+<details><summary>google/cloud-language 0.22.1</summary>
+
+
+
+### Documentation
+
+* fix cloud.google.com links ([#2762](https://www.github.com/googleapis/google-cloud-php/issues/2762)) ([d5ccc00](https://www.github.com/googleapis/google-cloud-php/commit/d5ccc000fbf4d11a66efdafacacd98ad84f18f74))
+
+
+### Miscellaneous Chores
+
+* update synth to fix relative cloud.google.com links ([#2745](https://www.github.com/googleapis/google-cloud-php/issues/2745)) ([277ea7b](https://www.github.com/googleapis/google-cloud-php/commit/277ea7b39e6741ca238fef3f991cf4152d935b90))
+
+</details>
+
+<details><summary>google/cloud-logging 1.19.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update synth to fix relative cloud.google.com links ([#2745](https://www.github.com/googleapis/google-cloud-php/issues/2745)) ([277ea7b](https://www.github.com/googleapis/google-cloud-php/commit/277ea7b39e6741ca238fef3f991cf4152d935b90))
+
+</details>
+
+<details><summary>google/cloud-monitoring 0.20.2</summary>
+
+
+
+### Documentation
+
+* fix cloud.google.com links ([#2763](https://www.github.com/googleapis/google-cloud-php/issues/2763)) ([402c859](https://www.github.com/googleapis/google-cloud-php/commit/402c859fdf61089d4e71e7d7da6a380580c160b6))
+
+
+### Miscellaneous Chores
+
+* update synth to fix relative cloud.google.com links ([#2745](https://www.github.com/googleapis/google-cloud-php/issues/2745)) ([277ea7b](https://www.github.com/googleapis/google-cloud-php/commit/277ea7b39e6741ca238fef3f991cf4152d935b90))
+
+</details>
+
+<details><summary>google/cloud-oslogin 0.11.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update synth to fix relative cloud.google.com links ([#2745](https://www.github.com/googleapis/google-cloud-php/issues/2745)) ([277ea7b](https://www.github.com/googleapis/google-cloud-php/commit/277ea7b39e6741ca238fef3f991cf4152d935b90))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.21.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update synth to fix relative cloud.google.com links ([#2745](https://www.github.com/googleapis/google-cloud-php/issues/2745)) ([277ea7b](https://www.github.com/googleapis/google-cloud-php/commit/277ea7b39e6741ca238fef3f991cf4152d935b90))
+
+
+### Documentation
+
+* update documentation ([#2727](https://www.github.com/googleapis/google-cloud-php/issues/2727)) ([45b446c](https://www.github.com/googleapis/google-cloud-php/commit/45b446c693ccd0c7a12460bd10bfa7f2917c352c))
+* update documentation ([#2742](https://www.github.com/googleapis/google-cloud-php/issues/2742)) ([b7c8717](https://www.github.com/googleapis/google-cloud-php/commit/b7c8717a08583e38fcc1209d5ced466bfea4d48f))
+
+</details>
+
+<details><summary>google/cloud-recommender 0.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update synth to fix relative cloud.google.com links ([#2745](https://www.github.com/googleapis/google-cloud-php/issues/2745)) ([277ea7b](https://www.github.com/googleapis/google-cloud-php/commit/277ea7b39e6741ca238fef3f991cf4152d935b90))
+
+</details>
+
+<details><summary>google/cloud-redis 0.12.2</summary>
+
+
+
+### Documentation
+
+* fix cloud.google.com links ([#2764](https://www.github.com/googleapis/google-cloud-php/issues/2764)) ([98972d7](https://www.github.com/googleapis/google-cloud-php/commit/98972d76e30f2597ab0f691fe4c46d3713a388ea))
+
+
+### Miscellaneous Chores
+
+* update synth to fix relative cloud.google.com links ([#2745](https://www.github.com/googleapis/google-cloud-php/issues/2745)) ([277ea7b](https://www.github.com/googleapis/google-cloud-php/commit/277ea7b39e6741ca238fef3f991cf4152d935b90))
+
+</details>
+
+<details><summary>google/cloud-scheduler 1.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update synth to fix relative cloud.google.com links ([#2745](https://www.github.com/googleapis/google-cloud-php/issues/2745)) ([277ea7b](https://www.github.com/googleapis/google-cloud-php/commit/277ea7b39e6741ca238fef3f991cf4152d935b90))
+
+</details>
+
+<details><summary>google/cloud-secret-manager 0.3.0</summary>
+
+
+
+### Features
+
+* introduce secret manager v1 client ([#2751](https://www.github.com/googleapis/google-cloud-php/issues/2751)) ([45ebf84](https://www.github.com/googleapis/google-cloud-php/commit/45ebf8465c0374f692879cf50b32f1837e6ba1b9))
+
+
+### Bug Fixes
+
+* remove debugging code ([#2765](https://www.github.com/googleapis/google-cloud-php/issues/2765)) ([03cef9c](https://www.github.com/googleapis/google-cloud-php/commit/03cef9c23126ba9be6866609650ea6e1a5f78fa4))
+
+
+### Miscellaneous Chores
+
+* update synth to fix relative cloud.google.com links ([#2745](https://www.github.com/googleapis/google-cloud-php/issues/2745)) ([277ea7b](https://www.github.com/googleapis/google-cloud-php/commit/277ea7b39e6741ca238fef3f991cf4152d935b90))
+
+</details>
+
+<details><summary>google/cloud-security-center 0.5.0</summary>
+
+
+
+### Features
+
+* introduce notification configs ([#2743](https://www.github.com/googleapis/google-cloud-php/issues/2743)) ([3935299](https://www.github.com/googleapis/google-cloud-php/commit/393529935d59d31e5ec2fc0a32bd91cf4e8fb6d5))
+
+
+### Miscellaneous Chores
+
+* update synth to fix relative cloud.google.com links ([#2745](https://www.github.com/googleapis/google-cloud-php/issues/2745)) ([277ea7b](https://www.github.com/googleapis/google-cloud-php/commit/277ea7b39e6741ca238fef3f991cf4152d935b90))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.25.0</summary>
+
+
+
+### Features
+
+* **spanner:** add emulator support ([#2710](https://www.github.com/googleapis/google-cloud-php/issues/2710)) ([abedee8](https://www.github.com/googleapis/google-cloud-php/commit/abedee8d571b0b53737981ae0f4f75e8eef0482f))
+* add database backup support ([#2766](https://www.github.com/googleapis/google-cloud-php/issues/2766)) ([4697295](https://www.github.com/googleapis/google-cloud-php/commit/46972957bf66340f687be06cdb8ef9d4628425ac))
+* add query options ([#2726](https://www.github.com/googleapis/google-cloud-php/issues/2726)) ([661f8f5](https://www.github.com/googleapis/google-cloud-php/commit/661f8f5785bad84b9f052614fb8075d8c83ee60c))
+* return limited resource representation on instance exists ([#2708](https://www.github.com/googleapis/google-cloud-php/issues/2708)) ([90f8f74](https://www.github.com/googleapis/google-cloud-php/commit/90f8f74bbf0adc54bce31d8181ed9cfd3d42350a))
+
+
+### Miscellaneous Chores
+
+* update synth to fix relative cloud.google.com links ([#2745](https://www.github.com/googleapis/google-cloud-php/issues/2745)) ([277ea7b](https://www.github.com/googleapis/google-cloud-php/commit/277ea7b39e6741ca238fef3f991cf4152d935b90))
+
+</details>
+
+<details><summary>google/cloud-speech 0.31.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update synth to fix relative cloud.google.com links ([#2745](https://www.github.com/googleapis/google-cloud-php/issues/2745)) ([277ea7b](https://www.github.com/googleapis/google-cloud-php/commit/277ea7b39e6741ca238fef3f991cf4152d935b90))
+
+</details>
+
+<details><summary>google/cloud-talent 0.9.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update synth to fix relative cloud.google.com links ([#2745](https://www.github.com/googleapis/google-cloud-php/issues/2745)) ([277ea7b](https://www.github.com/googleapis/google-cloud-php/commit/277ea7b39e6741ca238fef3f991cf4152d935b90))
+
+
+### Documentation
+
+* update documentation ([#2755](https://www.github.com/googleapis/google-cloud-php/issues/2755)) ([95e5b46](https://www.github.com/googleapis/google-cloud-php/commit/95e5b46b51336ac39e1f297773dbceca08e97e34))
+
+</details>
+
+<details><summary>google/cloud-tasks 1.6.0</summary>
+
+
+
+### Features
+
+* add stackdriver logging config ([#2728](https://www.github.com/googleapis/google-cloud-php/issues/2728)) ([0f543ef](https://www.github.com/googleapis/google-cloud-php/commit/0f543ef57294e4f99d9ee0557e19fdbdb89196aa))
+
+
+### Miscellaneous Chores
+
+* update synth to fix relative cloud.google.com links ([#2745](https://www.github.com/googleapis/google-cloud-php/issues/2745)) ([277ea7b](https://www.github.com/googleapis/google-cloud-php/commit/277ea7b39e6741ca238fef3f991cf4152d935b90))
+
+</details>
+
+<details><summary>google/cloud-text-to-speech 0.6.1</summary>
+
+
+
+### Documentation
+
+* fix cloud.google.com links ([#2768](https://www.github.com/googleapis/google-cloud-php/issues/2768)) ([9de6a40](https://www.github.com/googleapis/google-cloud-php/commit/9de6a40a66c9cfb8d46e44d908e5a0e9327bb002))
+
+
+### Miscellaneous Chores
+
+* update synth to fix relative cloud.google.com links ([#2745](https://www.github.com/googleapis/google-cloud-php/issues/2745)) ([277ea7b](https://www.github.com/googleapis/google-cloud-php/commit/277ea7b39e6741ca238fef3f991cf4152d935b90))
+
+</details>
+
+<details><summary>google/cloud-trace 0.17.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update synth to fix relative cloud.google.com links ([#2745](https://www.github.com/googleapis/google-cloud-php/issues/2745)) ([277ea7b](https://www.github.com/googleapis/google-cloud-php/commit/277ea7b39e6741ca238fef3f991cf4152d935b90))
+
+</details>
+
+<details><summary>google/cloud-translate 1.7.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update synth to fix relative cloud.google.com links ([#2745](https://www.github.com/googleapis/google-cloud-php/issues/2745)) ([277ea7b](https://www.github.com/googleapis/google-cloud-php/commit/277ea7b39e6741ca238fef3f991cf4152d935b90))
+
+</details>
+
+<details><summary>google/cloud-videointelligence 1.9.0</summary>
+
+
+
+### Features
+
+* add logo recognition feature ([#2749](https://www.github.com/googleapis/google-cloud-php/issues/2749)) ([d78c996](https://www.github.com/googleapis/google-cloud-php/commit/d78c996b2c55b8fae81c0b7e3ec3a02cfadf2407))
+
+
+### Miscellaneous Chores
+
+* update synth to fix relative cloud.google.com links ([#2745](https://www.github.com/googleapis/google-cloud-php/issues/2745)) ([277ea7b](https://www.github.com/googleapis/google-cloud-php/commit/277ea7b39e6741ca238fef3f991cf4152d935b90))
+
+
+### Documentation
+
+* update documentation ([#2744](https://www.github.com/googleapis/google-cloud-php/issues/2744)) ([83b7073](https://www.github.com/googleapis/google-cloud-php/commit/83b70734ae17ca680b5b6e14f881d182da28bd9d))
+
+</details>
+
+<details><summary>google/cloud-vision 0.25.1</summary>
+
+
+
+### Documentation
+
+* fix cloud.google.com links ([#2769](https://www.github.com/googleapis/google-cloud-php/issues/2769)) ([c4b9eae](https://www.github.com/googleapis/google-cloud-php/commit/c4b9eaea39948bd7766bc7d1e0b03b27b855353a))
+
+
+### Miscellaneous Chores
+
+* update synth to fix relative cloud.google.com links ([#2745](https://www.github.com/googleapis/google-cloud-php/issues/2745)) ([277ea7b](https://www.github.com/googleapis/google-cloud-php/commit/277ea7b39e6741ca238fef3f991cf4152d935b90))
+
+</details>
+
+<details><summary>google/cloud-web-risk 0.4.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update synth to fix relative cloud.google.com links ([#2745](https://www.github.com/googleapis/google-cloud-php/issues/2745)) ([277ea7b](https://www.github.com/googleapis/google-cloud-php/commit/277ea7b39e6741ca238fef3f991cf4152d935b90))
+
+</details>
+
+<details><summary>google/cloud-web-security-scanner 0.4.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update synth to fix relative cloud.google.com links ([#2745](https://www.github.com/googleapis/google-cloud-php/issues/2745)) ([277ea7b](https://www.github.com/googleapis/google-cloud-php/commit/277ea7b39e6741ca238fef3f991cf4152d935b90))
+
+</details>
+
+## 0.126.0
+
+<details><summary>google/cloud-bigquerydatatransfer 0.17.0</summary>
+
+
+
+### Features
+
+* update timeout and retry configuration ([#2693](https://www.github.com/googleapis/google-cloud-php/issues/2693)) ([7ec7e88](https://www.github.com/googleapis/google-cloud-php/commit/7ec7e888c219ec84f8b0f02e93a71ac9a1e3a08f))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.2.1</summary>
+
+
+
+### Documentation
+
+* update documentation ([#2694](https://www.github.com/googleapis/google-cloud-php/issues/2694)) ([7062ba9](https://www.github.com/googleapis/google-cloud-php/commit/7062ba96fcdb224740fd9defc2f64cc94a1e1e7a))
+
+</details>
+
+<details><summary>google/cloud-billing 0.1.0</summary>
+
+
+
+### Features
+
+* introduce billing client ([#2717](https://www.github.com/googleapis/google-cloud-php/issues/2717)) ([d916fc5](https://www.github.com/googleapis/google-cloud-php/commit/d916fc5ed56b2c5a5dc0c252b31f66e064eb3751))
+
+</details>
+
+<details><summary>google/cloud-dataproc 0.18.0</summary>
+
+
+
+### Features
+
+* add autoscaling policy client for v1 API ([#2662](https://www.github.com/googleapis/google-cloud-php/issues/2662)) ([b0411aa](https://www.github.com/googleapis/google-cloud-php/commit/b0411aaa5d434267fe2e86baf055ba8a38b4d363))
+* add lifecycle config, presto jobs and reservation affinity ([#2712](https://www.github.com/googleapis/google-cloud-php/issues/2712)) ([4861920](https://www.github.com/googleapis/google-cloud-php/commit/4861920a6130be28b1058cd0b952211aacba8fbe))
+
+
+### Documentation
+
+* update documentation ([#2714](https://www.github.com/googleapis/google-cloud-php/issues/2714)) ([e3d0ee1](https://www.github.com/googleapis/google-cloud-php/commit/e3d0ee13a84b2513684fa9bc2a8ca27b429b2f4f))
+
+
+### Miscellaneous Chores
+
+* update metadata ([#2707](https://www.github.com/googleapis/google-cloud-php/issues/2707)) ([80e785c](https://www.github.com/googleapis/google-cloud-php/commit/80e785c1955c9e26265d16621c822b1009fb1328))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 0.13.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* move $languageCode to optional args (#2691)
+
+### Features
+
+* move $languageCode to optional args ([#2691](https://www.github.com/googleapis/google-cloud-php/issues/2691)) ([13983d5](https://www.github.com/googleapis/google-cloud-php/commit/13983d570bb22ab677357539c0beadf17d160bcf))
+
+</details>
+
+<details><summary>google/cloud-kms 1.9.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update metadata ([#2715](https://www.github.com/googleapis/google-cloud-php/issues/2715)) ([08f995c](https://www.github.com/googleapis/google-cloud-php/commit/08f995ce76196e552de79cb81757fdd253535cdf))
+
+</details>
+
+<details><summary>google/cloud-monitoring 0.20.1</summary>
+
+
+
+### Documentation
+
+* update documentation ([#2702](https://www.github.com/googleapis/google-cloud-php/issues/2702)) ([b367012](https://www.github.com/googleapis/google-cloud-php/commit/b367012b9af21c3d71e47f1428824b6ae0716773))
+
+
+### Miscellaneous Chores
+
+* update metadata ([#2700](https://www.github.com/googleapis/google-cloud-php/issues/2700)) ([6a5c496](https://www.github.com/googleapis/google-cloud-php/commit/6a5c496124ff5f2bac2f806dd5303065dde14592))
+
+</details>
+
+<details><summary>google/cloud-redis 0.12.1</summary>
+
+
+
+### Documentation
+
+* update documentation ([#2695](https://www.github.com/googleapis/google-cloud-php/issues/2695)) ([675ec72](https://www.github.com/googleapis/google-cloud-php/commit/675ec72c89f53fd3cffaff0ffb909f8719e0e0d7))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.24.1</summary>
+
+
+
+### Documentation
+
+* fix typo for CacheSessionPool config ([#2716](https://www.github.com/googleapis/google-cloud-php/issues/2716)) ([b21de1e](https://www.github.com/googleapis/google-cloud-php/commit/b21de1e54d162a19c4f93c88752ca45edde478e1))
+
+</details>
+
 ## 0.125.0
 
 <details><summary>google/cloud-asset 0.6.0</summary>

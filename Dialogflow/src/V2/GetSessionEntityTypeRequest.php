@@ -18,7 +18,11 @@ class GetSessionEntityTypeRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the session entity type. Format:
      * `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
-     * Display Name>`.
+     * Display Name>` or `projects/<Project ID>/agent/environments/<Environment
+     * ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display
+     * Name>`.
+     * If `Environment ID` is not specified, we assume default 'draft'
+     * environment. If `User ID` is not specified, we assume default '-' user.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -33,7 +37,11 @@ class GetSessionEntityTypeRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The name of the session entity type. Format:
      *           `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
-     *           Display Name>`.
+     *           Display Name>` or `projects/<Project ID>/agent/environments/<Environment
+     *           ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display
+     *           Name>`.
+     *           If `Environment ID` is not specified, we assume default 'draft'
+     *           environment. If `User ID` is not specified, we assume default '-' user.
      * }
      */
     public function __construct($data = NULL) {
@@ -44,7 +52,11 @@ class GetSessionEntityTypeRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the session entity type. Format:
      * `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
-     * Display Name>`.
+     * Display Name>` or `projects/<Project ID>/agent/environments/<Environment
+     * ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display
+     * Name>`.
+     * If `Environment ID` is not specified, we assume default 'draft'
+     * environment. If `User ID` is not specified, we assume default '-' user.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -57,7 +69,11 @@ class GetSessionEntityTypeRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the session entity type. Format:
      * `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
-     * Display Name>`.
+     * Display Name>` or `projects/<Project ID>/agent/environments/<Environment
+     * ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display
+     * Name>`.
+     * If `Environment ID` is not specified, we assume default 'draft'
+     * environment. If `User ID` is not specified, we assume default '-' user.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

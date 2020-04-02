@@ -23,6 +23,26 @@ return [
                     'totalPollTimeoutMillis' => '600000',
                 ],
             ],
+            'CreateBackup' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Bigtable\Admin\V2\Backup',
+                    'metadataReturnType' => '\Google\Cloud\Bigtable\Admin\V2\CreateBackupMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '600000',
+                ],
+            ],
+            'RestoreTable' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Bigtable\Admin\V2\Table',
+                    'metadataReturnType' => '\Google\Cloud\Bigtable\Admin\V2\RestoreTableMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '600000',
+                ],
+            ],
             'ListTables' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -39,6 +59,16 @@ return [
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getSnapshots',
+                ],
+            ],
+            'ListBackups' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getBackups',
                 ],
             ],
         ],

@@ -26,6 +26,8 @@ use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
+use Google\Cloud\Spanner\Connection\ConnectionInterface;
+use Google\Cloud\Spanner\Backup;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\KeySet;
@@ -55,16 +57,15 @@ class DatabaseTest extends SnippetTestCase
     const DATABASE = 'my-database';
     const INSTANCE = 'my-instance';
     const TRANSACTION = 'my-transaction';
+    const BACKUP = 'my-backup';
 
     private $connection;
     private $database;
+    private $instance;
 
     public function setUp()
     {
         $this->checkAndSkipGrpcTests();
-
-        $instance = $this->prophesize(Instance::class);
-        $instance->name()->willReturn(InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE));
 
         $session = $this->prophesize(Session::class);
 
@@ -75,10 +76,18 @@ class DatabaseTest extends SnippetTestCase
             ->willReturn(null);
         $sessionPool->clear()->willReturn(null);
 
-        $this->connection = $this->getConnStub();
+        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->instance = TestHelpers::stub(Instance::class, [
+            $this->connection->reveal(),
+            $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
+            [],
+            self::PROJECT,
+            self::INSTANCE
+        ], ['connection', 'lroConnection']);
+
         $this->database = TestHelpers::stub(Database::class, [
             $this->connection->reveal(),
-            $instance->reveal(),
+            $this->instance,
             $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
             [],
             self::PROJECT,
@@ -105,6 +114,68 @@ class DatabaseTest extends SnippetTestCase
         $res = $snippet->invoke('database');
         $this->assertInstanceOf(Database::class, $res->returnVal());
         $this->assertEquals(self::DATABASE, DatabaseAdminClient::parseName($res->returnVal()->name())['database']);
+    }
+
+    /**
+     * @group spanner-admin
+     */
+    public function testState()
+    {
+        $snippet = $this->snippetFromMethod(Database::class, 'state');
+        $snippet->addLocal('database', $this->database);
+        $snippet->addUse(Database::class);
+
+        $this->connection->getDatabase(Argument::any())
+            ->shouldBeCalledTimes(1)
+            ->WillReturn(['state' => Database::STATE_READY]);
+
+        $this->database->___setProperty('connection', $this->connection->reveal());
+        
+        $res = $snippet->invoke();
+        $this->assertEquals('Database is ready!', $res->output());
+    }
+
+    /**
+     * @group spanner-admin
+     */
+    public function testBackups()
+    {
+        $snippet = $this->snippetFromMethod(Database::class, 'backups');
+        $snippet->addLocal('database', $this->database);
+
+        $this->connection->listBackups(Argument::any())
+            ->shouldBeCalled()
+            ->WillReturn([
+                'backups' => [
+                    [
+                        'name' => DatabaseAdminClient::backupName(self::PROJECT, self::INSTANCE, self::BACKUP)
+                    ]
+                ]
+            ]);
+
+        $this->instance->___setProperty('connection', $this->connection->reveal());
+
+        $res = $snippet->invoke('backups');
+
+        $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
+        $this->assertContainsOnlyInstancesOf(Backup::class, $res->returnVal());
+    }
+
+    /**
+     * @group spanner-admin
+     */
+    public function testCreateBackup()
+    {
+        $snippet = $this->snippetFromMethod(Database::class, 'createBackup');
+        $snippet->addLocal('database', $this->database);
+
+        $this->connection->createBackup(Argument::any(), Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(['name' => 'my-operations']);
+
+        $this->database->___setProperty('connection', $this->connection->reveal());
+        $res = $snippet->invoke('operation');
+        $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal());
     }
 
     public function testName()
@@ -190,6 +261,28 @@ class DatabaseTest extends SnippetTestCase
             ]);
 
         $this->database->___setProperty('connection', $this->connection->reveal());
+
+        $res = $snippet->invoke('operation');
+        $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal());
+    }
+
+    /**
+     * @group spanner-admin
+     */
+    public function testRestore()
+    {
+        $backup = DatabaseAdminClient::backupName(self::PROJECT, self::INSTANCE, self::BACKUP);
+        $snippet = $this->snippetFromMethod(Database::class, 'restore');
+        $snippet->addLocal('database', $this->database);
+        $snippet->addLocal('backup', $backup);
+        
+        $this->connection->restoreDatabase(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'name' => 'my-operation'
+            ]);
+
+        $this->instance->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('operation');
         $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal());

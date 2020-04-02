@@ -16,15 +16,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateModelRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Resource name of the parent project where the model is being created.
+     * Required. Resource name of the parent project where the model is being created.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * The model to create.
+     * Required. The model to create.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.Model model = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.Model model = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $model = null;
 
@@ -35,9 +35,9 @@ class CreateModelRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Resource name of the parent project where the model is being created.
+     *           Required. Resource name of the parent project where the model is being created.
      *     @type \Google\Cloud\AutoMl\V1beta1\Model $model
-     *           The model to create.
+     *           Required. The model to create.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,9 +46,9 @@ class CreateModelRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource name of the parent project where the model is being created.
+     * Required. Resource name of the parent project where the model is being created.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -57,9 +57,9 @@ class CreateModelRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource name of the parent project where the model is being created.
+     * Required. Resource name of the parent project where the model is being created.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -72,9 +72,9 @@ class CreateModelRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The model to create.
+     * Required. The model to create.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.Model model = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.Model model = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\AutoMl\V1beta1\Model
      */
     public function getModel()
@@ -83,9 +83,9 @@ class CreateModelRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The model to create.
+     * Required. The model to create.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.Model model = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.Model model = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\AutoMl\V1beta1\Model $var
      * @return $this
      */

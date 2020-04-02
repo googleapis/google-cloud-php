@@ -39,31 +39,29 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ```php
 require 'vendor/autoload.php';
 
-use Google\Cloud\Vision\VisionClient;
+use Google\Cloud\Vision\V1\Feature\Type;
+use Google\Cloud\Vision\V1\ImageAnnotatorClient;
+use Google\Cloud\Vision\V1\Likelihood;
 
-$vision = new VisionClient();
+$client = new ImageAnnotatorClient();
 
 // Annotate an image, detecting faces.
-$image = $vision->image(
-    fopen('/data/family_photo.jpg', 'r'),
-    ['faces']
+$annotation = $client->annotateImage(
+    fopen('/data/photos/family_photo.jpg', 'r'),
+    [Type::FACE_DETECTION]
 );
 
-$annotation = $vision->annotate($image);
-
 // Determine if the detected faces have headwear.
-foreach ($annotation->faces() as $key => $face) {
-    if ($face->hasHeadwear()) {
-        echo "Face $key has headwear.\n";
-    }
+foreach ($annotation->getFaceAnnotations() as $faceAnnotation) {
+	$likelehood = Likelihood::name($faceAnnotation->getHeadwearLikelihood());
+    echo "Likelihood of headwear: $likelehood" . PHP_EOL;
 }
 ```
 
 ### Version
 
-This component is considered beta. As such, it should be expected to be mostly
-stable and we're working towards a release candidate. We will address issues
-and requests with a higher priority.
+This component is considered GA (generally available). As such, it will not introduce backwards-incompatible changes in
+any minor or patch releases. We will address issues and requests with the highest priority.
 
 ### Next Steps
 

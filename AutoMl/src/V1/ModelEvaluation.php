@@ -24,8 +24,14 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Output only. The ID of the annotation spec that the model evaluation
-     * applies to. The The ID is empty for the overall model evaluation.
+     * Output only. The ID of the annotation spec that the model evaluation applies to. The
+     * The ID is empty for the overall model evaluation.
+     * For Tables annotation specs in the dataset do not exist and this ID is
+     * always not set, but for CLASSIFICATION
+     * [prediction_type-s][google.cloud.automl.v1.TablesModelMetadata.prediction_type]
+     * the
+     * [display_name][google.cloud.automl.v1.ModelEvaluation.display_name]
+     * field is used.
      *
      * Generated from protobuf field <code>string annotation_spec_id = 2;</code>
      */
@@ -36,7 +42,11 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      * at the moment when the model was trained. Because this field returns a
      * value at model training time, for different models trained from the same
      * dataset, the values may differ, since display names could had been changed
-     * between the two model's trainings.
+     * between the two model's trainings. For Tables CLASSIFICATION
+     * [prediction_type-s][google.cloud.automl.v1.TablesModelMetadata.prediction_type]
+     * distinct values of the target column at the moment of the model evaluation
+     * are populated here.
+     * The display_name is empty for the overall model evaluation.
      *
      * Generated from protobuf field <code>string display_name = 15;</code>
      */
@@ -69,7 +79,10 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\AutoMl\V1\ClassificationEvaluationMetrics $classification_evaluation_metrics
-     *           Model evaluation metrics for image, text classification.
+     *           Model evaluation metrics for image, text, video and tables
+     *           classification.
+     *           Tables problem is considered a classification when the target column
+     *           is CATEGORY DataType.
      *     @type \Google\Cloud\AutoMl\V1\TranslationEvaluationMetrics $translation_evaluation_metrics
      *           Model evaluation metrics for translation.
      *     @type \Google\Cloud\AutoMl\V1\ImageObjectDetectionEvaluationMetrics $image_object_detection_evaluation_metrics
@@ -83,15 +96,25 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      *           Format:
      *           `projects/{project_id}/locations/{location_id}/models/{model_id}/modelEvaluations/{model_evaluation_id}`
      *     @type string $annotation_spec_id
-     *           Output only. The ID of the annotation spec that the model evaluation
-     *           applies to. The The ID is empty for the overall model evaluation.
+     *           Output only. The ID of the annotation spec that the model evaluation applies to. The
+     *           The ID is empty for the overall model evaluation.
+     *           For Tables annotation specs in the dataset do not exist and this ID is
+     *           always not set, but for CLASSIFICATION
+     *           [prediction_type-s][google.cloud.automl.v1.TablesModelMetadata.prediction_type]
+     *           the
+     *           [display_name][google.cloud.automl.v1.ModelEvaluation.display_name]
+     *           field is used.
      *     @type string $display_name
      *           Output only. The value of
      *           [display_name][google.cloud.automl.v1.AnnotationSpec.display_name]
      *           at the moment when the model was trained. Because this field returns a
      *           value at model training time, for different models trained from the same
      *           dataset, the values may differ, since display names could had been changed
-     *           between the two model's trainings.
+     *           between the two model's trainings. For Tables CLASSIFICATION
+     *           [prediction_type-s][google.cloud.automl.v1.TablesModelMetadata.prediction_type]
+     *           distinct values of the target column at the moment of the model evaluation
+     *           are populated here.
+     *           The display_name is empty for the overall model evaluation.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Timestamp when this model evaluation was created.
      *     @type int $evaluated_example_count
@@ -111,7 +134,10 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Model evaluation metrics for image, text classification.
+     * Model evaluation metrics for image, text, video and tables
+     * classification.
+     * Tables problem is considered a classification when the target column
+     * is CATEGORY DataType.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1.ClassificationEvaluationMetrics classification_evaluation_metrics = 8;</code>
      * @return \Google\Cloud\AutoMl\V1\ClassificationEvaluationMetrics
@@ -122,7 +148,10 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Model evaluation metrics for image, text classification.
+     * Model evaluation metrics for image, text, video and tables
+     * classification.
+     * Tables problem is considered a classification when the target column
+     * is CATEGORY DataType.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1.ClassificationEvaluationMetrics classification_evaluation_metrics = 8;</code>
      * @param \Google\Cloud\AutoMl\V1\ClassificationEvaluationMetrics $var
@@ -271,8 +300,14 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The ID of the annotation spec that the model evaluation
-     * applies to. The The ID is empty for the overall model evaluation.
+     * Output only. The ID of the annotation spec that the model evaluation applies to. The
+     * The ID is empty for the overall model evaluation.
+     * For Tables annotation specs in the dataset do not exist and this ID is
+     * always not set, but for CLASSIFICATION
+     * [prediction_type-s][google.cloud.automl.v1.TablesModelMetadata.prediction_type]
+     * the
+     * [display_name][google.cloud.automl.v1.ModelEvaluation.display_name]
+     * field is used.
      *
      * Generated from protobuf field <code>string annotation_spec_id = 2;</code>
      * @return string
@@ -283,8 +318,14 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The ID of the annotation spec that the model evaluation
-     * applies to. The The ID is empty for the overall model evaluation.
+     * Output only. The ID of the annotation spec that the model evaluation applies to. The
+     * The ID is empty for the overall model evaluation.
+     * For Tables annotation specs in the dataset do not exist and this ID is
+     * always not set, but for CLASSIFICATION
+     * [prediction_type-s][google.cloud.automl.v1.TablesModelMetadata.prediction_type]
+     * the
+     * [display_name][google.cloud.automl.v1.ModelEvaluation.display_name]
+     * field is used.
      *
      * Generated from protobuf field <code>string annotation_spec_id = 2;</code>
      * @param string $var
@@ -304,7 +345,11 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      * at the moment when the model was trained. Because this field returns a
      * value at model training time, for different models trained from the same
      * dataset, the values may differ, since display names could had been changed
-     * between the two model's trainings.
+     * between the two model's trainings. For Tables CLASSIFICATION
+     * [prediction_type-s][google.cloud.automl.v1.TablesModelMetadata.prediction_type]
+     * distinct values of the target column at the moment of the model evaluation
+     * are populated here.
+     * The display_name is empty for the overall model evaluation.
      *
      * Generated from protobuf field <code>string display_name = 15;</code>
      * @return string
@@ -320,7 +365,11 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      * at the moment when the model was trained. Because this field returns a
      * value at model training time, for different models trained from the same
      * dataset, the values may differ, since display names could had been changed
-     * between the two model's trainings.
+     * between the two model's trainings. For Tables CLASSIFICATION
+     * [prediction_type-s][google.cloud.automl.v1.TablesModelMetadata.prediction_type]
+     * distinct values of the target column at the moment of the model evaluation
+     * are populated here.
+     * The display_name is empty for the overall model evaluation.
      *
      * Generated from protobuf field <code>string display_name = 15;</code>
      * @param string $var

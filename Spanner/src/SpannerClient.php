@@ -33,6 +33,7 @@ use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Connection\Grpc;
 use Google\Cloud\Spanner\Connection\LongRunningConnection;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\V1\SpannerClient as GapicSpannerClient;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\StreamInterface;
@@ -57,6 +58,17 @@ use Psr\Http\StreamInterface;
  * $spanner = new SpannerClient();
  * ```
  *
+ * ```
+ * // Using a Spanner Emulator
+ * use Google\Cloud\Spanner\SpannerClient;
+ *
+ * // Be sure to use the port specified when starting the emulator.
+ * // `9010` is used as an example only.
+ * putenv('SPANNER_EMULATOR_HOST=localhost:9010');
+ *
+ * $spanner = new SpannerClient();
+ * ```
+ *
  * @method resumeOperation() {
  *     Resume a Long Running Operation
  *
@@ -77,7 +89,7 @@ class SpannerClient
     use LROTrait;
     use ValidateTrait;
 
-    const VERSION = '1.24.0';
+    const VERSION = '1.27.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/spanner.data';
     const ADMIN_SCOPE = 'https://www.googleapis.com/auth/spanner.admin';
@@ -126,6 +138,21 @@ class SpannerClient
      *     @type bool $returnInt64AsObject If true, 64 bit integers will be
      *           returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
      *           platform compatibility. **Defaults to** false.
+     *     @type array $queryOptions Query optimizer configuration.
+     *     @type string $queryOptions.optimizerVersion An option to control the
+     *           selection of optimizer version. This parameter allows
+     *           all execute queries to use a specific query optimizer version.
+     *           Specifying "latest" as a value instructs Cloud Spanner to use
+     *           the latest supported query optimizer version.
+     *           query-level values will take precedence over any global settings.
+     *           If the SPANNER_OPTIMIZER_VERSION environment variable is set,
+     *           it will take second priority. This value is used when neither a
+     *           query-level value nor the environment variable is set.
+     *           Any other positive integer (from the list of supported
+     *           optimizer versions) overrides the default optimizer version for
+     *           query execution. Executing a SQL statement with an invalid
+     *           optimizer version will fail with a syntax error
+     *           (`INVALID_ARGUMENT`) status.
      *     @type bool $useDiscreteBackoffs `false`: use default backoff strategy
      *           (retry every failed request up to `retries` times).
      *           `true`: use discrete backoff settings based on called method name.
@@ -135,6 +162,8 @@ class SpannerClient
      */
     public function __construct(array $config = [])
     {
+        $emulatorHost = getenv('SPANNER_EMULATOR_HOST');
+
         $this->requireGrpc();
         $config += [
             'scopes' => [
@@ -142,7 +171,10 @@ class SpannerClient
                 self::ADMIN_SCOPE
             ],
             'returnInt64AsObject' => false,
-            'projectIdRequired' => true
+            'projectIdRequired' => true,
+            'hasEmulator' => (bool) $emulatorHost,
+            'emulatorHost' => $emulatorHost,
+            'queryOptions' => []
         ];
 
         if (!empty($config['useDiscreteBackoffs'])) {
@@ -175,10 +207,29 @@ class SpannerClient
                     return $instance->database($databaseName);
                 }
             ], [
+                'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata',
+                'callable' => function ($database) {
+                    $databaseNameComponents = DatabaseAdminClient::parseName($database['name']);
+                    $instanceName = $databaseNameComponents['instance'];
+                    $databaseName = $databaseNameComponents['database'];
+
+                    $instance = $this->instance($instanceName);
+                    return $instance->database($databaseName);
+                }
+            ],[
                 'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.CreateInstanceMetadata',
                 'callable' => function ($instance) {
                     $name = InstanceAdminClient::parseName($instance['name'])['instance'];
                     return $this->instance($name, $instance);
+                }
+            ], [
+                'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata',
+                'callable' => function ($backup) {
+                    $backupNameComponents = DatabaseAdminClient::parseName($backup['name']);
+                    $instanceName = $backupNameComponents['instance'];
+
+                    $instance = $this->instance($instanceName);
+                    return $instance->backup($backup['name'], $backup);
                 }
             ]
         ]);

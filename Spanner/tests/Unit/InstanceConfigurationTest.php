@@ -93,7 +93,12 @@ class InstanceConfigurationTest extends TestCase
 
     public function testExists()
     {
-        $this->connection->getInstanceConfig(Argument::any())->willReturn([]);
+        $this->connection->getInstanceConfig(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('name', $this->configuration->name())
+        ))
+            ->shouldBeCalled()
+            ->willReturn([]);
         $this->configuration->___setProperty('connection', $this->connection->reveal());
 
         $this->assertTrue($this->configuration->exists());
@@ -101,7 +106,12 @@ class InstanceConfigurationTest extends TestCase
 
     public function testExistsDoesntExist()
     {
-        $this->connection->getInstanceConfig(Argument::any())->willThrow(new NotFoundException('', 404));
+        $this->connection->getInstanceConfig(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('name', $this->configuration->name())
+        ))
+            ->shouldBeCalled()
+            ->willThrow(new NotFoundException('', 404));
         $this->configuration->___setProperty('connection', $this->connection->reveal());
 
         $this->assertFalse($this->configuration->exists());

@@ -20,8 +20,6 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/cloud/dataproc/v1/workflow_templates.proto
  * and updates to that file get reflected here through a refresh process.
- *
- * @experimental
  */
 
 namespace Google\Cloud\Dataproc\V1\Gapic;
@@ -72,8 +70,6 @@ use Google\Protobuf\GPBEmpty;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parseName method to extract the individual identifiers contained within formatted names
  * that are returned by the API.
- *
- * @experimental
  */
 class WorkflowTemplateServiceGapicClient
 {
@@ -168,7 +164,6 @@ class WorkflowTemplateServiceGapicClient
      * @param string $region
      *
      * @return string The formatted region resource.
-     * @experimental
      */
     public static function regionName($project, $region)
     {
@@ -187,7 +182,6 @@ class WorkflowTemplateServiceGapicClient
      * @param string $workflowTemplate
      *
      * @return string The formatted workflow_template resource.
-     * @experimental
      */
     public static function workflowTemplateName($project, $region, $workflowTemplate)
     {
@@ -216,7 +210,6 @@ class WorkflowTemplateServiceGapicClient
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
-     * @experimental
      */
     public static function parseName($formattedName, $template = null)
     {
@@ -244,7 +237,6 @@ class WorkflowTemplateServiceGapicClient
      * Return an OperationsClient object with the same endpoint as $this.
      *
      * @return OperationsClient
-     * @experimental
      */
     public function getOperationsClient()
     {
@@ -262,7 +254,6 @@ class WorkflowTemplateServiceGapicClient
      * @param string $methodName    The name of the method used to start the operation
      *
      * @return OperationResponse
-     * @experimental
      */
     public function resumeOperation($operationName, $methodName = null)
     {
@@ -328,7 +319,6 @@ class WorkflowTemplateServiceGapicClient
      * }
      *
      * @throws ValidationException
-     * @experimental
      */
     public function __construct(array $options = [])
     {
@@ -376,7 +366,6 @@ class WorkflowTemplateServiceGapicClient
      * @return \Google\Cloud\Dataproc\V1\WorkflowTemplate
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function createWorkflowTemplate($parent, $template, array $optionalArgs = [])
     {
@@ -444,7 +433,6 @@ class WorkflowTemplateServiceGapicClient
      * @return \Google\Cloud\Dataproc\V1\WorkflowTemplate
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getWorkflowTemplate($name, array $optionalArgs = [])
     {
@@ -571,7 +559,6 @@ class WorkflowTemplateServiceGapicClient
      * @return \Google\ApiCore\OperationResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function instantiateWorkflowTemplate($name, array $optionalArgs = [])
     {
@@ -700,7 +687,6 @@ class WorkflowTemplateServiceGapicClient
      * @return \Google\ApiCore\OperationResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function instantiateInlineWorkflowTemplate($parent, $template, array $optionalArgs = [])
     {
@@ -757,7 +743,6 @@ class WorkflowTemplateServiceGapicClient
      * @return \Google\Cloud\Dataproc\V1\WorkflowTemplate
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function updateWorkflowTemplate($template, array $optionalArgs = [])
     {
@@ -840,7 +825,6 @@ class WorkflowTemplateServiceGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listWorkflowTemplates($parent, array $optionalArgs = [])
     {
@@ -907,7 +891,6 @@ class WorkflowTemplateServiceGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function deleteWorkflowTemplate($name, array $optionalArgs = [])
     {

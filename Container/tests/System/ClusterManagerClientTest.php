@@ -74,7 +74,9 @@ class ClusterManagerClientTest extends TestCase
      */
     public function testListOperations(ClusterManagerClient $client)
     {
-        $response = $client->listOperations(self::$projectId, self::ZONE);
+        $response = $client->listOperations([
+            'parent' => sprintf('projects/%s/locations/%s', self::$projectId, self::ZONE)
+        ]);
 
         $this->assertInstanceOf(ListOperationsResponse::class, $response);
     }

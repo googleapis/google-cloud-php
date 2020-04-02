@@ -51,7 +51,7 @@ class BigQueryClient
         ClientTrait::jsonDecode insteadof RetryDeciderTrait;
     }
 
-    const VERSION = '1.13.0';
+    const VERSION = '1.15.0';
 
     const MAX_DELAY_MICROSECONDS = 32000000;
 
@@ -129,12 +129,14 @@ class BigQueryClient
             'projectIdRequired' => true,
             'returnInt64AsObject' => false,
             'restRetryFunction' => $this->getRetryFunction(),
+            //@codeCoverageIgnoreStart
             'restCalcDelayFunction' => function ($attempt) {
                 return min(
                     mt_rand(0, 1000000) + (pow(2, $attempt) * 1000000),
                     self::MAX_DELAY_MICROSECONDS
                 );
             }
+            //@codeCoverageIgnoreEnd
         ];
 
         $this->connection = new Rest($this->configureAuthentication($config));
@@ -455,6 +457,8 @@ class BigQueryClient
      *           before or at this timestamp are returned.
      *     @type int $minCreationTime Milliseconds since the POSIX epoch. If set, only jobs created
      *           after or at this timestamp are returned.
+     *     @type string $parentJobId If set, show only child jobs of the
+     *           specified parent. Otherwise, show all top-level jobs.
      * }
      * @return ItemIterator<Job>
      */

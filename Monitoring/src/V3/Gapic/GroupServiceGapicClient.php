@@ -20,8 +20,6 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/monitoring/v3/group_service.proto
  * and updates to that file get reflected here through a refresh process.
- *
- * @experimental
  */
 
 namespace Google\Cloud\Monitoring\V3\Gapic;
@@ -93,8 +91,6 @@ use Google\Protobuf\GPBEmpty;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parseName method to extract the individual identifiers contained within formatted names
  * that are returned by the API.
- *
- * @experimental
  */
 class GroupServiceGapicClient
 {
@@ -190,7 +186,6 @@ class GroupServiceGapicClient
      * @param string $group
      *
      * @return string The formatted group resource.
-     * @experimental
      */
     public static function groupName($project, $group)
     {
@@ -207,7 +202,6 @@ class GroupServiceGapicClient
      * @param string $project
      *
      * @return string The formatted project resource.
-     * @experimental
      */
     public static function projectName($project)
     {
@@ -234,7 +228,6 @@ class GroupServiceGapicClient
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
-     * @experimental
      */
     public static function parseName($formattedName, $template = null)
     {
@@ -311,7 +304,6 @@ class GroupServiceGapicClient
      * }
      *
      * @throws ValidationException
-     * @experimental
      */
     public function __construct(array $options = [])
     {
@@ -348,25 +340,35 @@ class GroupServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The project whose groups are to be listed. The format is
-     *                             `"projects/{project_id_or_number}"`.
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $name Required. The project whose groups are to be listed. The format is:
+     *
+     *     projects/[PROJECT_ID_OR_NUMBER]
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type string $childrenOfGroup
-     *          A group name: `"projects/{project_id_or_number}/groups/{group_id}"`.
-     *          Returns groups whose `parentName` field contains the group
+     *          A group name. The format is:
+     *
+     *              projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]
+     *
+     *          Returns groups whose `parent_name` field contains the group
      *          name.  If no groups have this parent, the results are empty.
      *     @type string $ancestorsOfGroup
-     *          A group name: `"projects/{project_id_or_number}/groups/{group_id}"`.
+     *          A group name. The format is:
+     *
+     *              projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]
+     *
      *          Returns groups that are ancestors of the specified group.
      *          The groups are returned in order, starting with the immediate parent and
      *          ending with the most distant ancestor.  If the specified group has no
      *          immediate parent, the results are empty.
      *     @type string $descendantsOfGroup
-     *          A group name: `"projects/{project_id_or_number}/groups/{group_id}"`.
+     *          A group name. The format is:
+     *
+     *              projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]
+     *
      *          Returns the descendants of the specified group.  This is a superset of
-     *          the results returned by the `childrenOfGroup` filter, and includes
+     *          the results returned by the `children_of_group` filter, and includes
      *          children-of-children, and so forth.
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
@@ -387,7 +389,6 @@ class GroupServiceGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listGroups($name, array $optionalArgs = [])
     {
@@ -438,10 +439,11 @@ class GroupServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The group to retrieve. The format is
-     *                             `"projects/{project_id_or_number}/groups/{group_id}"`.
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $name Required. The group to retrieve. The format is:
+     *
+     *     projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -453,7 +455,6 @@ class GroupServiceGapicClient
      * @return \Google\Cloud\Monitoring\V3\Group
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getGroup($name, array $optionalArgs = [])
     {
@@ -490,12 +491,13 @@ class GroupServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The project in which to create the group. The format is
-     *                             `"projects/{project_id_or_number}"`.
-     * @param Group  $group        Required. A group definition. It is an error to define the `name` field because
-     *                             the system assigns the name.
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $name Required. The project in which to create the group. The format is:
+     *
+     *     projects/[PROJECT_ID_OR_NUMBER]
+     * @param Group $group        Required. A group definition. It is an error to define the `name` field because
+     *                            the system assigns the name.
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type bool $validateOnly
      *          If true, validate this request but do not create the group.
@@ -509,7 +511,6 @@ class GroupServiceGapicClient
      * @return \Google\Cloud\Monitoring\V3\Group
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function createGroup($name, $group, array $optionalArgs = [])
     {
@@ -567,7 +568,6 @@ class GroupServiceGapicClient
      * @return \Google\Cloud\Monitoring\V3\Group
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function updateGroup($group, array $optionalArgs = [])
     {
@@ -606,10 +606,11 @@ class GroupServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The group to delete. The format is
-     *                             `"projects/{project_id_or_number}/groups/{group_id}"`.
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $name Required. The group to delete. The format is:
+     *
+     *     projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type bool $recursive
      *          If this field is true, then the request means to delete a group with all
@@ -623,7 +624,6 @@ class GroupServiceGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function deleteGroup($name, array $optionalArgs = [])
     {
@@ -677,10 +677,11 @@ class GroupServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The group whose members are listed. The format is
-     *                             `"projects/{project_id_or_number}/groups/{group_id}"`.
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $name Required. The group whose members are listed. The format is:
+     *
+     *     projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
@@ -692,13 +693,14 @@ class GroupServiceGapicClient
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
      *     @type string $filter
-     *          An optional [list filter](https://cloud.google.com/monitoring/api/learn_more#filtering) describing
-     *          the members to be returned.  The filter may reference the type, labels, and
-     *          metadata of monitored resources that comprise the group.
-     *          For example, to return only resources representing Compute Engine VM
-     *          instances, use this filter:
+     *          An optional [list
+     *          filter](https://cloud.google.com/monitoring/api/learn_more#filtering)
+     *          describing the members to be returned.  The filter may reference the type,
+     *          labels, and metadata of monitored resources that comprise the group. For
+     *          example, to return only resources representing Compute Engine VM instances,
+     *          use this filter:
      *
-     *              resource.type = "gce_instance"
+     *              `resource.type = "gce_instance"`
      *     @type TimeInterval $interval
      *          An optional time interval for which results should be returned. Only
      *          members that were part of the group during the specified interval are
@@ -714,7 +716,6 @@ class GroupServiceGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listGroupMembers($name, array $optionalArgs = [])
     {

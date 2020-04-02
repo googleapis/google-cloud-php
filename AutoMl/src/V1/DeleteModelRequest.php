@@ -9,17 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for
- * [AutoMl.DeleteModel][google.cloud.automl.v1.AutoMl.DeleteModel].
+ * Request message for [AutoMl.DeleteModel][google.cloud.automl.v1.AutoMl.DeleteModel].
  *
  * Generated from protobuf message <code>google.cloud.automl.v1.DeleteModelRequest</code>
  */
 class DeleteModelRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Resource name of the model being deleted.
+     * Required. Resource name of the model being deleted.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
 
@@ -30,7 +29,7 @@ class DeleteModelRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Resource name of the model being deleted.
+     *           Required. Resource name of the model being deleted.
      * }
      */
     public function __construct($data = NULL) {
@@ -39,9 +38,9 @@ class DeleteModelRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource name of the model being deleted.
+     * Required. Resource name of the model being deleted.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -50,9 +49,9 @@ class DeleteModelRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource name of the model being deleted.
+     * Required. Resource name of the model being deleted.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

@@ -20,8 +20,6 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/cloud/vision/v1/image_annotator.proto
  * and updates to that file get reflected here through a refresh process.
- *
- * @experimental
  */
 
 namespace Google\Cloud\Vision\V1\Gapic;
@@ -68,8 +66,6 @@ use Google\LongRunning\Operation;
  *     $imageAnnotatorClient->close();
  * }
  * ```
- *
- * @experimental
  */
 class ImageAnnotatorGapicClient
 {
@@ -128,7 +124,6 @@ class ImageAnnotatorGapicClient
      * Return an OperationsClient object with the same endpoint as $this.
      *
      * @return OperationsClient
-     * @experimental
      */
     public function getOperationsClient()
     {
@@ -146,7 +141,6 @@ class ImageAnnotatorGapicClient
      * @param string $methodName    The name of the method used to start the operation
      *
      * @return OperationResponse
-     * @experimental
      */
     public function resumeOperation($operationName, $methodName = null)
     {
@@ -212,7 +206,6 @@ class ImageAnnotatorGapicClient
      * }
      *
      * @throws ValidationException
-     * @experimental
      */
     public function __construct(array $options = [])
     {
@@ -262,7 +255,6 @@ class ImageAnnotatorGapicClient
      * @return \Google\Cloud\Vision\V1\BatchAnnotateImagesResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function batchAnnotateImages($requests, array $optionalArgs = [])
     {
@@ -335,7 +327,6 @@ class ImageAnnotatorGapicClient
      * @return \Google\Cloud\Vision\V1\BatchAnnotateFilesResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function batchAnnotateFiles($requests, array $optionalArgs = [])
     {
@@ -439,7 +430,6 @@ class ImageAnnotatorGapicClient
      * @return \Google\ApiCore\OperationResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function asyncBatchAnnotateImages($requests, $outputConfig, array $optionalArgs = [])
     {
@@ -539,7 +529,6 @@ class ImageAnnotatorGapicClient
      * @return \Google\ApiCore\OperationResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function asyncBatchAnnotateFiles($requests, array $optionalArgs = [])
     {

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Istio service. Learn more at http://istio.io.
+ * Istio service scoped to a single Kubernetes cluster. Learn more at
+ * http://istio.io.
  *
  * Generated from protobuf message <code>google.monitoring.v3.Service.ClusterIstio</code>
  */

@@ -16,11 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListModelEvaluationsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Resource name of the model to list the model evaluations for.
+     * Required. Resource name of the model to list the model evaluations for.
      * If modelId is set as "-", this will list model evaluations from across all
      * models of the parent location.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -59,7 +59,7 @@ class ListModelEvaluationsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Resource name of the model to list the model evaluations for.
+     *           Required. Resource name of the model to list the model evaluations for.
      *           If modelId is set as "-", this will list model evaluations from across all
      *           models of the parent location.
      *     @type string $filter
@@ -86,11 +86,11 @@ class ListModelEvaluationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource name of the model to list the model evaluations for.
+     * Required. Resource name of the model to list the model evaluations for.
      * If modelId is set as "-", this will list model evaluations from across all
      * models of the parent location.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -99,11 +99,11 @@ class ListModelEvaluationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource name of the model to list the model evaluations for.
+     * Required. Resource name of the model to list the model evaluations for.
      * If modelId is set as "-", this will list model evaluations from across all
      * models of the parent location.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

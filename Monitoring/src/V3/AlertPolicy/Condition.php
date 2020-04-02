@@ -19,8 +19,8 @@ class Condition extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required if the condition exists. The unique resource name for this
-     * condition. Its syntax is:
-     *     projects/[PROJECT_ID]/alertPolicies/[POLICY_ID]/conditions/[CONDITION_ID]
+     * condition. Its format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[POLICY_ID]/conditions/[CONDITION_ID]
      * `[CONDITION_ID]` is assigned by Stackdriver Monitoring when the
      * condition is created as part of a new or updated alerting policy.
      * When calling the
@@ -60,8 +60,8 @@ class Condition extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required if the condition exists. The unique resource name for this
-     *           condition. Its syntax is:
-     *               projects/[PROJECT_ID]/alertPolicies/[POLICY_ID]/conditions/[CONDITION_ID]
+     *           condition. Its format is:
+     *               projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[POLICY_ID]/conditions/[CONDITION_ID]
      *           `[CONDITION_ID]` is assigned by Stackdriver Monitoring when the
      *           condition is created as part of a new or updated alerting policy.
      *           When calling the
@@ -88,6 +88,10 @@ class Condition extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\MetricAbsence $condition_absent
      *           A condition that checks that a time series continues to
      *           receive new data points.
+     *     @type \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\TimeSeriesQueryLanguageCondition $condition_time_series_query_language
+     *           A condition that uses the time series query language format to define
+     *           alerts.
+     *           If set, no other conditions can be present.
      * }
      */
     public function __construct($data = NULL) {
@@ -97,8 +101,8 @@ class Condition extends \Google\Protobuf\Internal\Message
 
     /**
      * Required if the condition exists. The unique resource name for this
-     * condition. Its syntax is:
-     *     projects/[PROJECT_ID]/alertPolicies/[POLICY_ID]/conditions/[CONDITION_ID]
+     * condition. Its format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[POLICY_ID]/conditions/[CONDITION_ID]
      * `[CONDITION_ID]` is assigned by Stackdriver Monitoring when the
      * condition is created as part of a new or updated alerting policy.
      * When calling the
@@ -127,8 +131,8 @@ class Condition extends \Google\Protobuf\Internal\Message
 
     /**
      * Required if the condition exists. The unique resource name for this
-     * condition. Its syntax is:
-     *     projects/[PROJECT_ID]/alertPolicies/[POLICY_ID]/conditions/[CONDITION_ID]
+     * condition. Its format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[POLICY_ID]/conditions/[CONDITION_ID]
      * `[CONDITION_ID]` is assigned by Stackdriver Monitoring when the
      * condition is created as part of a new or updated alerting policy.
      * When calling the
@@ -239,6 +243,36 @@ class Condition extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\AlertPolicy_Condition_MetricAbsence::class);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * A condition that uses the time series query language format to define
+     * alerts.
+     * If set, no other conditions can be present.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.Condition.TimeSeriesQueryLanguageCondition condition_time_series_query_language = 14;</code>
+     * @return \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\TimeSeriesQueryLanguageCondition
+     */
+    public function getConditionTimeSeriesQueryLanguage()
+    {
+        return $this->readOneof(14);
+    }
+
+    /**
+     * A condition that uses the time series query language format to define
+     * alerts.
+     * If set, no other conditions can be present.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.Condition.TimeSeriesQueryLanguageCondition condition_time_series_query_language = 14;</code>
+     * @param \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\TimeSeriesQueryLanguageCondition $var
+     * @return $this
+     */
+    public function setConditionTimeSeriesQueryLanguage($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\AlertPolicy_Condition_TimeSeriesQueryLanguageCondition::class);
+        $this->writeOneof(14, $var);
 
         return $this;
     }

@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2019 Google LLC.
+// Copyright 2020 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-//
 //
 namespace Google\Cloud\Redis\V1beta1;
 
@@ -87,7 +86,7 @@ class CloudRedisGrpcClient extends \Grpc\BaseStub {
      * Creates a Redis instance based on the specified tier and memory size.
      *
      * By default, the instance is accessible from the project's
-     * [default network](/compute/docs/networks-and-firewalls#networks).
+     * [default network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks).
      *
      * The creation is executed asynchronously and callers may check the returned
      * operation to track its progress. Once the operation is completed the Redis

@@ -28,9 +28,10 @@ use Google\Cloud\BigQuery\QueryJobConfiguration;
 use Google\Cloud\BigQuery\QueryResults;
 use Google\Cloud\BigQuery\Time;
 use Google\Cloud\BigQuery\Timestamp;
+use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group bigquery
@@ -408,6 +409,14 @@ class BigQueryClientTest extends TestCase
         $date = $this->getClient()->date(new \DateTime());
 
         $this->assertInstanceOf(Date::class, $date);
+    }
+
+    public function testInt64()
+    {
+        $i = 1111;
+        $i64 = $this->getClient()->int64($i);
+        $this->assertInstanceOf(Int64::class, $i64);
+        $this->assertEquals((string)$i, $i64->get());
     }
 
     public function testGetsTime()

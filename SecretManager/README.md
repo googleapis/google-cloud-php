@@ -39,23 +39,20 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ```php
 require 'vendor/autoload.php';
 
-use Google\Cloud\SecretManager\V1beta1\Replication;
-use Google\Cloud\SecretManager\V1beta1\Replication\Automatic;
-use Google\Cloud\SecretManager\V1beta1\Secret;
-use Google\Cloud\SecretManager\V1beta1\SecretManagerServiceClient;
+use Google\Cloud\SecretManager\V1\Replication;
+use Google\Cloud\SecretManager\V1\Replication\Automatic;
+use Google\Cloud\SecretManager\V1\Secret;
+use Google\Cloud\SecretManager\V1\SecretManagerServiceClient;
 
 $client = new SecretManagerServiceClient();
 
 $secret = $client->createSecret(
     SecretManagerServiceClient::projectName('[MY_PROJECT_ID]'),
     '[MY_SECRET_ID]',
-    [
-        'secret' => new Secret([
-            'replication' => new Replication([
-                'automatic' => new Automatic()
-            ])
-        ])
-    ]
+    new Secret([
+    'replication' => new Replication([
+        'automatic' => new Automatic()
+    ])
 );
 
 printf(
@@ -66,7 +63,8 @@ printf(
 
 ### Version
 
-This component is considered alpha. As such, it is still a work-in-progress and is more likely to get backwards-incompatible updates.
+This component is considered GA (generally available). As such, it will not introduce backwards-incompatible changes in
+any minor or patch releases. We will address issues and requests with the highest priority.
 
 ### Next Steps
 

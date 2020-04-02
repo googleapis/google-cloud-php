@@ -8,6 +8,7 @@ use UnexpectedValueException;
 
 /**
  * Predefined schemas for storing findings.
+ * Only for use with external storage.
  *
  * Protobuf type <code>google.privacy.dlp.v2.OutputStorageConfig.OutputSchema</code>
  */

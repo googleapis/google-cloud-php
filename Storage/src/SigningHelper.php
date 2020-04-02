@@ -19,6 +19,7 @@ namespace Google\Cloud\Storage;
 
 use Google\Auth\CredentialsLoader;
 use Google\Auth\SignBlobInterface;
+use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\JsonTrait;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
@@ -30,6 +31,7 @@ use Google\Cloud\Storage\Connection\ConnectionInterface;
  */
 class SigningHelper
 {
+    use ArrayTrait;
     use JsonTrait;
 
     const DEFAULT_URL_SIGNING_VERSION = 'v2';
@@ -95,7 +97,13 @@ class SigningHelper
                 throw new \InvalidArgumentException('Invalid signing version.');
         }
 
-        return call_user_func_array([$this, $method], func_get_args());
+        return call_user_func_array([$this, $method], [
+            $connection,
+            $expires,
+            $resource,
+            $generation,
+            $options
+        ]);
     }
 
     /**
@@ -125,9 +133,16 @@ class SigningHelper
         list($credentials, $options) = $this->getSigningCredentials($connection, $options);
 
         $expires = $this->normalizeExpiration($expires);
-        $resource = $this->normalizeResource($resource);
+        list($resource, $bucket) = $this->normalizeResource($resource);
         $options = $this->normalizeOptions($options);
         $headers = $this->normalizeHeaders($options['headers']);
+
+        if ($options['virtualHostedStyle']) {
+            $options['bucketBoundHostname'] = sprintf(
+                '%s.storage.googleapis.com',
+                $bucket
+            );
+        }
 
         // Make sure disallowed headers are not included.
         $illegalHeaders = [
@@ -176,12 +191,17 @@ class SigningHelper
         $params['Expires'] = $expires;
         $params['Signature'] = $signature;
 
+        // urlencode parameter values
+        foreach ($params as &$value) {
+            $value = rawurlencode($value);
+        }
+
         $params = $this->addCommonParams($generation, $params, $options);
 
         $queryString = $this->buildQueryString($params);
 
-        $resource = $this->normalizeUriPath($options['cname'], $resource);
-        return 'https://' . $options['cname'] . $resource . '?' . $queryString;
+        $resource = $this->normalizeUriPath($options['bucketBoundHostname'], $resource);
+        return 'https://' . $options['bucketBoundHostname'] . $resource . '?' . $queryString;
     }
 
     /**
@@ -209,7 +229,7 @@ class SigningHelper
         list($credentials, $options) = $this->getSigningCredentials($connection, $options);
 
         $expires = $this->normalizeExpiration($expires);
-        $resource = $this->normalizeResource($resource);
+        list($resource, $bucket) = $this->normalizeResource($resource);
         $options = $this->normalizeOptions($options);
 
         $time = $options['timestamp'];
@@ -228,10 +248,17 @@ class SigningHelper
         $credentialScope = sprintf('%s/auto/storage/goog4_request', $requestDatestamp);
         $credential = sprintf('%s/%s', $clientEmail, $credentialScope);
 
+        if ($options['virtualHostedStyle']) {
+            $options['bucketBoundHostname'] = sprintf(
+                '%s.storage.googleapis.com',
+                $bucket
+            );
+        }
+
         // Add headers and query params based on provided options.
         $params = $options['queryParams'];
         $headers = $options['headers'] + [
-            'host' => $options['cname']
+            'host' => $options['bucketBoundHostname']
         ];
 
         if ($options['contentType']) {
@@ -263,24 +290,40 @@ class SigningHelper
         $signedHeaders = implode(';', $signedHeaders);
 
         // Add required query parameters.
-        $params['X-Goog-Algorithm'] = self::V4_ALGO_NAME;
-        $params['X-Goog-Credential'] = $credential;
-        $params['X-Goog-Date'] = $requestTimestamp;
-        $params['X-Goog-Expires'] = $expires - $timeSeconds;
-        $params['X-Goog-SignedHeaders'] = $signedHeaders;
+        $params  = [
+            'X-Goog-Algorithm' => self::V4_ALGO_NAME,
+            'X-Goog-Credential' => $credential,
+            'X-Goog-Date' => $requestTimestamp,
+            'X-Goog-Expires' => $expires - $timeSeconds,
+            'X-Goog-SignedHeaders' => $signedHeaders,
+        ] + $params;
 
-        // Sort query string params by name.
-        ksort($params, SORT_NATURAL | SORT_FLAG_CASE);
+        $paramNames = [];
+        foreach ($params as $key => $val) {
+            $paramNames[] = $key;
+        }
 
-        $canonicalQueryString = $this->buildQueryString($params);
+        sort($paramNames, SORT_REGULAR);
+
+        $sortedParams = [];
+        foreach ($paramNames as $name) {
+            $sortedParams[rawurlencode($name)] = rawurlencode($params[$name]);
+        }
+
+        $canonicalQueryString = $this->buildQueryString($sortedParams);
+        $canonicalResource = $this->normalizeCanonicalRequestResource(
+            $resource,
+            $options['bucketBoundHostname'],
+            $options['virtualHostedStyle']
+        );
 
         $canonicalRequest = [
             $options['method'],
-            $resource,
+            $canonicalResource,
             $canonicalQueryString,
             $canonicalHeaders,
             $signedHeaders,
-            'UNSIGNED-PAYLOAD'
+            $this->getPayloadHash($headers)
         ];
 
         $requestHash = $this->createV4CanonicalRequest($canonicalRequest);
@@ -297,17 +340,138 @@ class SigningHelper
             'forceOpenssl' => $options['forceOpenssl']
         ])));
 
-        // Construct the modified resource name. If a custom cname is provided,
+        // Construct the modified resource name. If a custom hostname is provided,
         // this will remove the bucket name from the resource.
-        $resource = $this->normalizeUriPath($options['cname'], $resource);
+        $resource = $this->normalizeUriPath($options['bucketBoundHostname'], $resource);
+
+        $scheme = $this->chooseScheme(
+            $options['scheme'],
+            $options['bucketBoundHostname'],
+            $options['virtualHostedStyle']
+        );
 
         return sprintf(
-            'https://%s%s?%s&X-Goog-Signature=%s',
-            $options['cname'],
+            '%s://%s%s?%s&X-Goog-Signature=%s',
+            $scheme,
+            $options['bucketBoundHostname'],
             $resource,
             $canonicalQueryString,
             $signature
         );
+    }
+
+    /**
+     * Create an HTTP POST policy using v4 signing.
+     *
+     * @param ConnectionInterface $connection A Connection to Google Cloud Storage.
+     * @param Timestamp|\DateTimeInterface|int $expires The signed URL
+     *        expiration.
+     * @param string $resource The URI to the storage resource, preceded by a
+     *        leading slash.
+     * @param array $options Configuration options. See
+     *        {@see Google\Cloud\Storage\Bucket::generateSignedPostPolicyV4()} for details.
+     * @return array An associative array, containing (string) `uri` and
+     *        (array) `fields` keys.
+     */
+    public function v4PostPolicy(
+        ConnectionInterface $connection,
+        $expires,
+        $resource,
+        array $options = []
+    ) {
+        list($credentials, $options) = $this->getSigningCredentials($connection, $options);
+
+        $expires = $this->normalizeExpiration($expires);
+        list($resource, $bucket, $object) = $this->normalizeResource($resource, false);
+        $object = trim($object, '/');
+
+        $options = $this->normalizeOptions($options) + [
+            'fields' => [],
+            'conditions' => [],
+            'successActionRedirect' => null,
+            'successActionStatus' => null
+        ];
+
+        $time = $options['timestamp'];
+        $requestTimestamp = $time->format(self::V4_TIMESTAMP_FORMAT);
+        $requestDatestamp = $time->format(self::V4_DATESTAMP_FORMAT);
+        $expiration = \DateTimeImmutable::createFromFormat('U', (string) $expires);
+        $expirationTimestamp = str_replace(
+            '+00:00',
+            'Z',
+            $expiration->format(\DateTime::RFC3339)
+        );
+
+        $clientEmail = $credentials->getClientName();
+        $credentialScope = sprintf('%s/auto/storage/goog4_request', $requestDatestamp);
+        $credential = sprintf('%s/%s', $clientEmail, $credentialScope);
+
+        if ($options['virtualHostedStyle']) {
+            $options['bucketBoundHostname'] = sprintf(
+                '%s.storage.googleapis.com',
+                $bucket
+            );
+        }
+
+        $fields = array_merge($options['fields'], [
+            'key' => $object,
+            'x-goog-algorithm' => self::V4_ALGO_NAME,
+            'x-goog-credential' => $credential,
+            'x-goog-date' => $requestTimestamp
+        ]);
+
+        $conditions = $options['conditions'];
+        foreach ($options['fields'] as $key => $value) {
+            $conditions[] = [$key => $value];
+        }
+
+        foreach ($conditions as $key => $value) {
+            $key = $key;
+            $value = $value;
+            $conditions[$key] = $value;
+        }
+
+        $conditions = array_merge($conditions, [
+            ['key' => $object],
+            ['x-goog-date' => $requestTimestamp],
+            ['x-goog-credential' => $credential],
+            ['x-goog-algorithm' => self::V4_ALGO_NAME],
+        ]);
+
+        $policy = [
+            'conditions' => $conditions,
+            'expiration' => $expirationTimestamp
+        ];
+
+        $json = str_replace('\\\u', '\\u', json_encode($policy, JSON_UNESCAPED_SLASHES));
+        $stringToSign = base64_encode($json);
+
+        $signature = bin2hex(base64_decode($credentials->signBlob($stringToSign, [
+            'forceOpenssl' => $options['forceOpenssl']
+        ])));
+
+        $fields['x-goog-signature'] = $signature;
+        $fields['policy'] = $stringToSign;
+
+        // Construct the modified resource name. If a custom hostname is provided,
+        // this will remove the bucket name from the resource.
+        $resource = $this->normalizeUriPath($options['bucketBoundHostname'], '/' . $bucket, true);
+
+        $scheme = $this->chooseScheme(
+            $options['scheme'],
+            $options['bucketBoundHostname'],
+            $options['virtualHostedStyle']
+        );
+
+        return [
+            'url' => sprintf(
+                '%s://%s%s',
+                $scheme,
+                $options['bucketBoundHostname'],
+                $resource
+            ),
+            'fields' => $fields
+        ];
     }
 
     /**
@@ -322,7 +486,8 @@ class SigningHelper
      */
     private function createV4CanonicalRequest(array $canonicalRequest)
     {
-        return bin2hex(hash('sha256', implode("\n", $canonicalRequest), true));
+        $canonicalRequestString = implode("\n", $canonicalRequest);
+        return bin2hex(hash('sha256', $canonicalRequestString, true));
     }
 
     /**
@@ -338,6 +503,46 @@ class SigningHelper
     private function createV2CanonicalRequest(array $canonicalRequest)
     {
         return implode("\n", $canonicalRequest);
+    }
+
+    /**
+     * Choose the correct URL scheme.
+     *
+     * @param string $scheme The scheme provided by the user or defaults.
+     * @param string $bucketBoundHostname The bucketBoundHostname provided by the user or defaults.
+     * @param bool $virtualHostedStyle Whether virtual host style is enabled.
+     * @return string
+     */
+    private function chooseScheme($scheme, $bucketBoundHostname, $virtualHostedStyle = false)
+    {
+        // bucketBoundHostname not used -- always https.
+        if ($bucketBoundHostname === self::DEFAULT_DOWNLOAD_HOST) {
+            return 'https';
+        }
+
+        // virtualHostedStyle enabled -- always https.
+        if ($virtualHostedStyle) {
+            return 'https';
+        }
+
+        // not virtual hosted style, and custom hostname -- use default (http) or user choice.
+        return $scheme;
+    }
+
+    /**
+     * If `X-Goog-Content-SHA256` header is provided, use that as the payload.
+     * Otherwise, `UNSIGNED-PAYLOAD`.
+     *
+     * @param array $headers
+     * @return string
+     */
+    private function getPayloadHash(array $headers)
+    {
+        if (!isset($headers['x-goog-content-sha256'])) {
+            return 'UNSIGNED-PAYLOAD';
+        }
+
+        return $headers['x-goog-content-sha256'];
     }
 
     /**
@@ -367,16 +572,30 @@ class SigningHelper
      *
      * @param string $resource The resource identifier. In form
      *        `[/]$bucket/$object`.
-     * @return string The resource, with pieces encoded and prefixed with a
-     *        forward slash.
+     * @return array A list, where index 0 is the resource path, with pieces
+     *        encoded and prefixed with a forward slash, index 1 is the bucket
+     *        name, and index 2 is the object name, relative to the bucket.
      */
-    private function normalizeResource($resource)
+    private function normalizeResource($resource, $urlencode = true)
     {
         $pieces = explode('/', trim($resource, '/'));
-        array_walk($pieces, function (&$piece) {
-            $piece = rawurlencode($piece);
-        });
-        return '/' . implode('/', $pieces);
+
+        if ($urlencode) {
+            array_walk($pieces, function (&$piece) {
+                $piece = rawurlencode($piece);
+            });
+        }
+
+        $bucket = $pieces[0];
+
+        $relative = $pieces;
+        array_shift($relative);
+
+        return [
+            '/' . implode('/', $pieces),
+            $bucket,
+            '/' . implode('/', $relative),
+        ];
     }
 
     /**
@@ -389,20 +608,25 @@ class SigningHelper
     private function normalizeOptions(array $options)
     {
         $options += [
-            'method' => 'GET',
-            'cname' => self::DEFAULT_DOWNLOAD_HOST,
+            'allowPost' => false,
+            'cname' => null, //@deprecated
+            'bucketBoundHostname' => self::DEFAULT_DOWNLOAD_HOST,
             'contentMd5' => null,
             'contentType' => null,
+            'forceOpenssl' => false,
             'headers' => [],
-            'saveAsName' => null,
-            'responseDisposition' => null,
-            'responseType' => null,
             'keyFile' => null,
             'keyFilePath' => null,
-            'allowPost' => false,
-            'forceOpenssl' => false,
+            'method' => 'GET',
             'queryParams' => [],
-            'timestamp' => null
+            'responseDisposition' => null,
+            'responseType' => null,
+            'saveAsName' => null,
+
+            // note that in almost every case this default will be overridden.
+            'scheme' => 'http',
+            'timestamp' => null,
+            'virtualHostedStyle' => false,
         ];
 
         $allowedMethods = ['GET', 'PUT', 'POST', 'DELETE'];
@@ -416,15 +640,19 @@ class SigningHelper
                 'Invalid method. To create an upload URI, use StorageObject::signedUploadUrl().'
             );
         }
-        unset($options['allowPost']);
 
-        // For backwards compatibility, strip protocol from cname.
-        $cnameParts = explode('//', $options['cname']);
-        if (count($cnameParts) > 1) {
-            $options['cname'] = $cnameParts[1];
+        // Rewrite deprecated `cname` to new `bucketBoundHostname`.
+        if ($options['cname'] && $options['bucketBoundHostname'] === self::DEFAULT_DOWNLOAD_HOST) {
+            $options['bucketBoundHostname'] = $options['cname'];
         }
 
-        $options['cname'] = trim($options['cname'], '/');
+        // strip protocol from hostname.
+        $hostnameParts = explode('//', $options['bucketBoundHostname']);
+        if (count($hostnameParts) > 1) {
+            $options['bucketBoundHostname'] = $hostnameParts[1];
+        }
+
+        $options['bucketBoundHostname'] = trim($options['bucketBoundHostname'], '/');
 
         // If a timestamp is provided, use it in place of `now` for v4 URLs only..
         // This option exists for testing purposes, and should not generally be provided by users.
@@ -437,7 +665,7 @@ class SigningHelper
                 }
 
                 $options['timestamp'] = \DateTimeImmutable::createFromFormat(
-                    self::V4_TIMESTAMP_FORMAT,
+                    \DateTime::RFC3339,
                     $options['timestamp'],
                     new \DateTimeZone('UTC')
                 );
@@ -445,7 +673,7 @@ class SigningHelper
                 if (!$options['timestamp']) {
                     throw new \InvalidArgumentException(
                         'Given timestamp string is in an invalid format. Provide timestamp formatted as follows: `' .
-                        self::V4_TIMESTAMP_FORMAT .
+                        \DateTime::RFC3339 .
                         '`. Note that timestamps MUST be in UTC.'
                     );
                 }
@@ -453,6 +681,11 @@ class SigningHelper
         } else {
             $options['timestamp'] = new \DateTimeImmutable('now', new \DateTimeZone('UTC'));
         }
+
+        unset(
+            $options['cname'],
+            $options['allowPost']
+        );
 
         return $options;
     }
@@ -485,7 +718,7 @@ class SigningHelper
                 $headerValue = str_replace(PHP_EOL, '', $headerValue);
 
                 // collapse multiple whitespace chars to a single space.
-                $headerValue = preg_replace('/\s+/', ' ', $headerValue);
+                $headerValue = preg_replace('/[\s]+/', ' ', $headerValue);
             }
 
             $out[$name] = implode(', ', $value);
@@ -497,16 +730,16 @@ class SigningHelper
     /**
      * Returns a resource formatted for use in a URI.
      *
-     * If the cname is other than the default, will omit the bucket name.
+     * If the bucketBoundHostname is other than the default, will omit the bucket name.
      *
-     * @param string $cname The cname provided by the user, or the default
+     * @param string $bucketBoundHostname The bucketBoundHostname provided by the user, or the default
      *     value.
      * @param string $resource The GCS resource path (i.e. /bucket/object).
      * @return string
      */
-    private function normalizeUriPath($cname, $resource)
+    private function normalizeUriPath($bucketBoundHostname, $resource, $withTrailingSlash = false)
     {
-        if ($cname !== self::DEFAULT_DOWNLOAD_HOST) {
+        if ($bucketBoundHostname !== self::DEFAULT_DOWNLOAD_HOST) {
             $resourceParts = explode('/', trim($resource, '/'));
             array_shift($resourceParts);
 
@@ -518,7 +751,30 @@ class SigningHelper
             }
         }
 
-        return $resource;
+        $resource = rtrim($resource, '/');
+
+        return $withTrailingSlash
+            ? $resource . '/'
+            : $resource;
+    }
+
+    /**
+     * Normalize the resource provided to the canonical request string.
+     *
+     * @param string $resource
+     * @param string $bucketBoundHostname
+     * @param boolean $virtualHostedStyle
+     * @return string
+     */
+    private function normalizeCanonicalRequestResource($resource, $bucketBoundHostname, $virtualHostedStyle = false)
+    {
+        if ($bucketBoundHostname === self::DEFAULT_DOWNLOAD_HOST && !$virtualHostedStyle) {
+            return $resource;
+        }
+
+        $pieces = explode('/', trim($resource, '/'));
+        array_shift($pieces);
+        return '/' . implode('/', $pieces);
     }
 
     /**
@@ -563,12 +819,14 @@ class SigningHelper
             $credentials = $rw->getCredentialsFetcher();
         }
 
+        //@codeCoverageIgnoreStart
         if (!($credentials instanceof SignBlobInterface)) {
             throw new \RuntimeException(sprintf(
                 'Credentials object is of type `%s` and is not valid for signing.',
                 get_class($credentials)
             ));
         }
+        //@codeCoverageIgnoreEnd
 
         unset(
             $options['keyFilePath'],
@@ -608,13 +866,20 @@ class SigningHelper
     }
 
     /**
-     * Create a query string from an array, encoding spaces as `%20` rather than `+`.
+     * Create a query string from an array.
+     *
+     * Note that this method does NOT urlencode keys or values.
      *
      * @param array $input
      * @return string
      */
     private function buildQueryString(array $input)
     {
-        return http_build_query($input, '', '&', PHP_QUERY_RFC3986);
+        $q = [];
+        foreach ($input as $key => $val) {
+            $q[] = $key . '=' . $val;
+        }
+
+        return implode('&', $q);
     }
 }

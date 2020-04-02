@@ -46,7 +46,7 @@ use Google\Protobuf\GPBEmpty;
 
 /**
  * Service Description: The API interface for managing autoscaling policies in the
- * Google Cloud Dataproc API.
+ * Cloud Dataproc API.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:

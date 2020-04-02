@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2019 Google LLC.
+// Copyright 2020 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -91,9 +91,9 @@ class JobControllerGrpcClient extends \Grpc\BaseStub {
     /**
      * Starts a job cancellation request. To access the job resource
      * after cancellation, call
-     * [regions/{region}/jobs.list](/dataproc/docs/reference/rest/v1/projects.regions.jobs/list)
+     * [regions/{region}/jobs.list](https://cloud.google.com/dataproc/docs/reference/rest/v1/projects.regions.jobs/list)
      * or
-     * [regions/{region}/jobs.get](/dataproc/docs/reference/rest/v1/projects.regions.jobs/get).
+     * [regions/{region}/jobs.get](https://cloud.google.com/dataproc/docs/reference/rest/v1/projects.regions.jobs/get).
      * @param \Google\Cloud\Dataproc\V1\CancelJobRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

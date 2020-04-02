@@ -25,10 +25,10 @@ class CustomRankingInfo extends \Google\Protobuf\Internal\Message
      */
     private $importance_level = 0;
     /**
-     * Required. Controls over how job documents get ranked on top of existing
-     * relevance score (determined by API algorithm). A combination of the
-     * ranking expression and relevance score is used to determine job's final
-     * ranking position.
+     * Required. Controls over how job documents get ranked on top of existing relevance
+     * score (determined by API algorithm). A combination of the ranking
+     * expression and relevance score is used to determine job's final ranking
+     * position.
      * The syntax for this expression is a subset of Google SQL syntax.
      * Supported operators are: +, -, *, /, where the left and right side of
      * the operator is either a numeric [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes] key,
@@ -58,10 +58,10 @@ class CustomRankingInfo extends \Google\Protobuf\Internal\Message
      *           ranking position.
      *           An error is thrown if not specified.
      *     @type string $ranking_expression
-     *           Required. Controls over how job documents get ranked on top of existing
-     *           relevance score (determined by API algorithm). A combination of the
-     *           ranking expression and relevance score is used to determine job's final
-     *           ranking position.
+     *           Required. Controls over how job documents get ranked on top of existing relevance
+     *           score (determined by API algorithm). A combination of the ranking
+     *           expression and relevance score is used to determine job's final ranking
+     *           position.
      *           The syntax for this expression is a subset of Google SQL syntax.
      *           Supported operators are: +, -, *, /, where the left and right side of
      *           the operator is either a numeric [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes] key,
@@ -114,10 +114,10 @@ class CustomRankingInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Controls over how job documents get ranked on top of existing
-     * relevance score (determined by API algorithm). A combination of the
-     * ranking expression and relevance score is used to determine job's final
-     * ranking position.
+     * Required. Controls over how job documents get ranked on top of existing relevance
+     * score (determined by API algorithm). A combination of the ranking
+     * expression and relevance score is used to determine job's final ranking
+     * position.
      * The syntax for this expression is a subset of Google SQL syntax.
      * Supported operators are: +, -, *, /, where the left and right side of
      * the operator is either a numeric [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes] key,
@@ -140,10 +140,10 @@ class CustomRankingInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Controls over how job documents get ranked on top of existing
-     * relevance score (determined by API algorithm). A combination of the
-     * ranking expression and relevance score is used to determine job's final
-     * ranking position.
+     * Required. Controls over how job documents get ranked on top of existing relevance
+     * score (determined by API algorithm). A combination of the ranking
+     * expression and relevance score is used to determine job's final ranking
+     * position.
      * The syntax for this expression is a subset of Google SQL syntax.
      * Supported operators are: +, -, *, /, where the left and right side of
      * the operator is either a numeric [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes] key,

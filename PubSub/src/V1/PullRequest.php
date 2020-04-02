@@ -16,27 +16,30 @@ use Google\Protobuf\Internal\GPBUtil;
 class PullRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The subscription from which messages should be pulled.
+     * Required. The subscription from which messages should be pulled.
      * Format is `projects/{project}/subscriptions/{sub}`.
      *
-     * Generated from protobuf field <code>string subscription = 1;</code>
+     * Generated from protobuf field <code>string subscription = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $subscription = '';
     /**
-     * If this field set to true, the system will respond immediately even if
-     * it there are no messages available to return in the `Pull` response.
-     * Otherwise, the system may wait (for a bounded amount of time) until at
-     * least one message is available, rather than returning no messages.
+     * Optional. If this field set to true, the system will respond immediately
+     * even if it there are no messages available to return in the `Pull`
+     * response. Otherwise, the system may wait (for a bounded amount of time)
+     * until at least one message is available, rather than returning no messages.
+     * Warning: setting this field to `true` is discouraged because it adversely
+     * impacts the performance of `Pull` operations. We recommend that users do
+     * not set this field.
      *
-     * Generated from protobuf field <code>bool return_immediately = 2;</code>
+     * Generated from protobuf field <code>bool return_immediately = 2 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $return_immediately = false;
     /**
-     * The maximum number of messages to return for this request. Must be a
-     * positive integer. The Pub/Sub system may return fewer than the number
+     * Required. The maximum number of messages to return for this request. Must
+     * be a positive integer. The Pub/Sub system may return fewer than the number
      * specified.
      *
-     * Generated from protobuf field <code>int32 max_messages = 3;</code>
+     * Generated from protobuf field <code>int32 max_messages = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $max_messages = 0;
 
@@ -47,16 +50,19 @@ class PullRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $subscription
-     *           The subscription from which messages should be pulled.
+     *           Required. The subscription from which messages should be pulled.
      *           Format is `projects/{project}/subscriptions/{sub}`.
      *     @type bool $return_immediately
-     *           If this field set to true, the system will respond immediately even if
-     *           it there are no messages available to return in the `Pull` response.
-     *           Otherwise, the system may wait (for a bounded amount of time) until at
-     *           least one message is available, rather than returning no messages.
+     *           Optional. If this field set to true, the system will respond immediately
+     *           even if it there are no messages available to return in the `Pull`
+     *           response. Otherwise, the system may wait (for a bounded amount of time)
+     *           until at least one message is available, rather than returning no messages.
+     *           Warning: setting this field to `true` is discouraged because it adversely
+     *           impacts the performance of `Pull` operations. We recommend that users do
+     *           not set this field.
      *     @type int $max_messages
-     *           The maximum number of messages to return for this request. Must be a
-     *           positive integer. The Pub/Sub system may return fewer than the number
+     *           Required. The maximum number of messages to return for this request. Must
+     *           be a positive integer. The Pub/Sub system may return fewer than the number
      *           specified.
      * }
      */
@@ -66,10 +72,10 @@ class PullRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The subscription from which messages should be pulled.
+     * Required. The subscription from which messages should be pulled.
      * Format is `projects/{project}/subscriptions/{sub}`.
      *
-     * Generated from protobuf field <code>string subscription = 1;</code>
+     * Generated from protobuf field <code>string subscription = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getSubscription()
@@ -78,10 +84,10 @@ class PullRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The subscription from which messages should be pulled.
+     * Required. The subscription from which messages should be pulled.
      * Format is `projects/{project}/subscriptions/{sub}`.
      *
-     * Generated from protobuf field <code>string subscription = 1;</code>
+     * Generated from protobuf field <code>string subscription = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -94,12 +100,15 @@ class PullRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If this field set to true, the system will respond immediately even if
-     * it there are no messages available to return in the `Pull` response.
-     * Otherwise, the system may wait (for a bounded amount of time) until at
-     * least one message is available, rather than returning no messages.
+     * Optional. If this field set to true, the system will respond immediately
+     * even if it there are no messages available to return in the `Pull`
+     * response. Otherwise, the system may wait (for a bounded amount of time)
+     * until at least one message is available, rather than returning no messages.
+     * Warning: setting this field to `true` is discouraged because it adversely
+     * impacts the performance of `Pull` operations. We recommend that users do
+     * not set this field.
      *
-     * Generated from protobuf field <code>bool return_immediately = 2;</code>
+     * Generated from protobuf field <code>bool return_immediately = 2 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getReturnImmediately()
@@ -108,12 +117,15 @@ class PullRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If this field set to true, the system will respond immediately even if
-     * it there are no messages available to return in the `Pull` response.
-     * Otherwise, the system may wait (for a bounded amount of time) until at
-     * least one message is available, rather than returning no messages.
+     * Optional. If this field set to true, the system will respond immediately
+     * even if it there are no messages available to return in the `Pull`
+     * response. Otherwise, the system may wait (for a bounded amount of time)
+     * until at least one message is available, rather than returning no messages.
+     * Warning: setting this field to `true` is discouraged because it adversely
+     * impacts the performance of `Pull` operations. We recommend that users do
+     * not set this field.
      *
-     * Generated from protobuf field <code>bool return_immediately = 2;</code>
+     * Generated from protobuf field <code>bool return_immediately = 2 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -126,11 +138,11 @@ class PullRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of messages to return for this request. Must be a
-     * positive integer. The Pub/Sub system may return fewer than the number
+     * Required. The maximum number of messages to return for this request. Must
+     * be a positive integer. The Pub/Sub system may return fewer than the number
      * specified.
      *
-     * Generated from protobuf field <code>int32 max_messages = 3;</code>
+     * Generated from protobuf field <code>int32 max_messages = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getMaxMessages()
@@ -139,11 +151,11 @@ class PullRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of messages to return for this request. Must be a
-     * positive integer. The Pub/Sub system may return fewer than the number
+     * Required. The maximum number of messages to return for this request. Must
+     * be a positive integer. The Pub/Sub system may return fewer than the number
      * specified.
      *
-     * Generated from protobuf field <code>int32 max_messages = 3;</code>
+     * Generated from protobuf field <code>int32 max_messages = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */

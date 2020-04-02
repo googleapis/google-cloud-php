@@ -16,18 +16,20 @@ use Google\Protobuf\Internal\GPBUtil;
 class LifecycleConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. The duration to keep the cluster alive while idling.
-     * Passing this threshold will cause the cluster to be
-     * deleted. Valid range: **[10m, 14d]**.
-     * Example: **"10m"**, the minimum value, to delete the
-     * cluster when it has had no jobs running for 10 minutes.
+     * Optional. The duration to keep the cluster alive while idling (when no jobs
+     * are running). Passing this threshold will cause the cluster to be
+     * deleted. Minimum value is 10 minutes; maximum value is 14 days (see JSON
+     * representation of
+     * [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json).
      *
      * Generated from protobuf field <code>.google.protobuf.Duration idle_delete_ttl = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $idle_delete_ttl = null;
     /**
      * Output only. The time when cluster became idle (most recent job finished)
-     * and became eligible for deletion due to idleness.
+     * and became eligible for deletion due to idleness (see JSON representation
+     * of
+     * [Timestamp](https://developers.google.com/protocol-buffers/docs/proto3#json)).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp idle_start_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -41,20 +43,24 @@ class LifecycleConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Protobuf\Duration $idle_delete_ttl
-     *           Optional. The duration to keep the cluster alive while idling.
-     *           Passing this threshold will cause the cluster to be
-     *           deleted. Valid range: **[10m, 14d]**.
-     *           Example: **"10m"**, the minimum value, to delete the
-     *           cluster when it has had no jobs running for 10 minutes.
+     *           Optional. The duration to keep the cluster alive while idling (when no jobs
+     *           are running). Passing this threshold will cause the cluster to be
+     *           deleted. Minimum value is 10 minutes; maximum value is 14 days (see JSON
+     *           representation of
+     *           [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json).
      *     @type \Google\Protobuf\Timestamp $auto_delete_time
-     *           Optional. The time when cluster will be auto-deleted.
+     *           Optional. The time when cluster will be auto-deleted. (see JSON representation of
+     *           [Timestamp](https://developers.google.com/protocol-buffers/docs/proto3#json)).
      *     @type \Google\Protobuf\Duration $auto_delete_ttl
      *           Optional. The lifetime duration of cluster. The cluster will be
-     *           auto-deleted at the end of this period. Valid range: **[10m, 14d]**.
-     *           Example: **"1d"**, to delete the cluster 1 day after its creation..
+     *           auto-deleted at the end of this period. Minimum value is 10 minutes;
+     *           maximum value is 14 days (see JSON representation of
+     *           [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json)).
      *     @type \Google\Protobuf\Timestamp $idle_start_time
      *           Output only. The time when cluster became idle (most recent job finished)
-     *           and became eligible for deletion due to idleness.
+     *           and became eligible for deletion due to idleness (see JSON representation
+     *           of
+     *           [Timestamp](https://developers.google.com/protocol-buffers/docs/proto3#json)).
      * }
      */
     public function __construct($data = NULL) {
@@ -63,11 +69,11 @@ class LifecycleConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The duration to keep the cluster alive while idling.
-     * Passing this threshold will cause the cluster to be
-     * deleted. Valid range: **[10m, 14d]**.
-     * Example: **"10m"**, the minimum value, to delete the
-     * cluster when it has had no jobs running for 10 minutes.
+     * Optional. The duration to keep the cluster alive while idling (when no jobs
+     * are running). Passing this threshold will cause the cluster to be
+     * deleted. Minimum value is 10 minutes; maximum value is 14 days (see JSON
+     * representation of
+     * [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json).
      *
      * Generated from protobuf field <code>.google.protobuf.Duration idle_delete_ttl = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Duration
@@ -78,11 +84,11 @@ class LifecycleConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The duration to keep the cluster alive while idling.
-     * Passing this threshold will cause the cluster to be
-     * deleted. Valid range: **[10m, 14d]**.
-     * Example: **"10m"**, the minimum value, to delete the
-     * cluster when it has had no jobs running for 10 minutes.
+     * Optional. The duration to keep the cluster alive while idling (when no jobs
+     * are running). Passing this threshold will cause the cluster to be
+     * deleted. Minimum value is 10 minutes; maximum value is 14 days (see JSON
+     * representation of
+     * [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json).
      *
      * Generated from protobuf field <code>.google.protobuf.Duration idle_delete_ttl = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Duration $var
@@ -97,9 +103,10 @@ class LifecycleConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The time when cluster will be auto-deleted.
+     * Optional. The time when cluster will be auto-deleted. (see JSON representation of
+     * [Timestamp](https://developers.google.com/protocol-buffers/docs/proto3#json)).
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp auto_delete_time = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp auto_delete_time = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getAutoDeleteTime()
@@ -108,9 +115,10 @@ class LifecycleConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The time when cluster will be auto-deleted.
+     * Optional. The time when cluster will be auto-deleted. (see JSON representation of
+     * [Timestamp](https://developers.google.com/protocol-buffers/docs/proto3#json)).
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp auto_delete_time = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp auto_delete_time = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -124,10 +132,11 @@ class LifecycleConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The lifetime duration of cluster. The cluster will be
-     * auto-deleted at the end of this period. Valid range: **[10m, 14d]**.
-     * Example: **"1d"**, to delete the cluster 1 day after its creation..
+     * auto-deleted at the end of this period. Minimum value is 10 minutes;
+     * maximum value is 14 days (see JSON representation of
+     * [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json)).
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration auto_delete_ttl = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration auto_delete_ttl = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Duration
      */
     public function getAutoDeleteTtl()
@@ -137,10 +146,11 @@ class LifecycleConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The lifetime duration of cluster. The cluster will be
-     * auto-deleted at the end of this period. Valid range: **[10m, 14d]**.
-     * Example: **"1d"**, to delete the cluster 1 day after its creation..
+     * auto-deleted at the end of this period. Minimum value is 10 minutes;
+     * maximum value is 14 days (see JSON representation of
+     * [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json)).
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration auto_delete_ttl = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration auto_delete_ttl = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Duration $var
      * @return $this
      */
@@ -154,7 +164,9 @@ class LifecycleConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The time when cluster became idle (most recent job finished)
-     * and became eligible for deletion due to idleness.
+     * and became eligible for deletion due to idleness (see JSON representation
+     * of
+     * [Timestamp](https://developers.google.com/protocol-buffers/docs/proto3#json)).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp idle_start_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp
@@ -166,7 +178,9 @@ class LifecycleConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The time when cluster became idle (most recent job finished)
-     * and became eligible for deletion due to idleness.
+     * and became eligible for deletion due to idleness (see JSON representation
+     * of
+     * [Timestamp](https://developers.google.com/protocol-buffers/docs/proto3#json)).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp idle_start_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var

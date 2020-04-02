@@ -21,28 +21,28 @@ use Google\Protobuf\Internal\GPBUtil;
 class SnapshotTableRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The unique name of the table to have the snapshot taken.
+     * Required. The unique name of the table to have the snapshot taken.
      * Values are of the form
      * `projects/{project}/instances/{instance}/tables/{table}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
-     * The name of the cluster where the snapshot will be created in.
+     * Required. The name of the cluster where the snapshot will be created in.
      * Values are of the form
      * `projects/{project}/instances/{instance}/clusters/{cluster}`.
      *
-     * Generated from protobuf field <code>string cluster = 2;</code>
+     * Generated from protobuf field <code>string cluster = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $cluster = '';
     /**
-     * The ID by which the new snapshot should be referred to within the parent
-     * cluster, e.g., `mysnapshot` of the form: `[_a-zA-Z0-9][-_.a-zA-Z0-9]*`
-     * rather than
+     * Required. The ID by which the new snapshot should be referred to within the
+     * parent cluster, e.g., `mysnapshot` of the form:
+     * `[_a-zA-Z0-9][-_.a-zA-Z0-9]*` rather than
      * `projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/mysnapshot`.
      *
-     * Generated from protobuf field <code>string snapshot_id = 3;</code>
+     * Generated from protobuf field <code>string snapshot_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $snapshot_id = '';
     /**
@@ -68,17 +68,17 @@ class SnapshotTableRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The unique name of the table to have the snapshot taken.
+     *           Required. The unique name of the table to have the snapshot taken.
      *           Values are of the form
      *           `projects/{project}/instances/{instance}/tables/{table}`.
      *     @type string $cluster
-     *           The name of the cluster where the snapshot will be created in.
+     *           Required. The name of the cluster where the snapshot will be created in.
      *           Values are of the form
      *           `projects/{project}/instances/{instance}/clusters/{cluster}`.
      *     @type string $snapshot_id
-     *           The ID by which the new snapshot should be referred to within the parent
-     *           cluster, e.g., `mysnapshot` of the form: `[_a-zA-Z0-9][-_.a-zA-Z0-9]*`
-     *           rather than
+     *           Required. The ID by which the new snapshot should be referred to within the
+     *           parent cluster, e.g., `mysnapshot` of the form:
+     *           `[_a-zA-Z0-9][-_.a-zA-Z0-9]*` rather than
      *           `projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/mysnapshot`.
      *     @type \Google\Protobuf\Duration $ttl
      *           The amount of time that the new snapshot can stay active after it is
@@ -95,11 +95,11 @@ class SnapshotTableRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unique name of the table to have the snapshot taken.
+     * Required. The unique name of the table to have the snapshot taken.
      * Values are of the form
      * `projects/{project}/instances/{instance}/tables/{table}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -108,11 +108,11 @@ class SnapshotTableRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unique name of the table to have the snapshot taken.
+     * Required. The unique name of the table to have the snapshot taken.
      * Values are of the form
      * `projects/{project}/instances/{instance}/tables/{table}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -125,11 +125,11 @@ class SnapshotTableRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the cluster where the snapshot will be created in.
+     * Required. The name of the cluster where the snapshot will be created in.
      * Values are of the form
      * `projects/{project}/instances/{instance}/clusters/{cluster}`.
      *
-     * Generated from protobuf field <code>string cluster = 2;</code>
+     * Generated from protobuf field <code>string cluster = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getCluster()
@@ -138,11 +138,11 @@ class SnapshotTableRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the cluster where the snapshot will be created in.
+     * Required. The name of the cluster where the snapshot will be created in.
      * Values are of the form
      * `projects/{project}/instances/{instance}/clusters/{cluster}`.
      *
-     * Generated from protobuf field <code>string cluster = 2;</code>
+     * Generated from protobuf field <code>string cluster = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -155,12 +155,12 @@ class SnapshotTableRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ID by which the new snapshot should be referred to within the parent
-     * cluster, e.g., `mysnapshot` of the form: `[_a-zA-Z0-9][-_.a-zA-Z0-9]*`
-     * rather than
+     * Required. The ID by which the new snapshot should be referred to within the
+     * parent cluster, e.g., `mysnapshot` of the form:
+     * `[_a-zA-Z0-9][-_.a-zA-Z0-9]*` rather than
      * `projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/mysnapshot`.
      *
-     * Generated from protobuf field <code>string snapshot_id = 3;</code>
+     * Generated from protobuf field <code>string snapshot_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getSnapshotId()
@@ -169,12 +169,12 @@ class SnapshotTableRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ID by which the new snapshot should be referred to within the parent
-     * cluster, e.g., `mysnapshot` of the form: `[_a-zA-Z0-9][-_.a-zA-Z0-9]*`
-     * rather than
+     * Required. The ID by which the new snapshot should be referred to within the
+     * parent cluster, e.g., `mysnapshot` of the form:
+     * `[_a-zA-Z0-9][-_.a-zA-Z0-9]*` rather than
      * `projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/mysnapshot`.
      *
-     * Generated from protobuf field <code>string snapshot_id = 3;</code>
+     * Generated from protobuf field <code>string snapshot_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

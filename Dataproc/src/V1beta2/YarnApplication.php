@@ -37,7 +37,7 @@ class YarnApplication extends \Google\Protobuf\Internal\Message
      */
     private $progress = 0.0;
     /**
-     * Optional. Output only. The HTTP URL of the ApplicationMaster, HistoryServer, or
+     * Output only. The HTTP URL of the ApplicationMaster, HistoryServer, or
      * TimelineServer that provides application-specific information. The URL uses
      * the internal hostname, and requires a proxy server for resolution and,
      * possibly, access.
@@ -59,7 +59,7 @@ class YarnApplication extends \Google\Protobuf\Internal\Message
      *     @type float $progress
      *           Output only. The numerical progress of the application, from 1 to 100.
      *     @type string $tracking_url
-     *           Optional. Output only. The HTTP URL of the ApplicationMaster, HistoryServer, or
+     *           Output only. The HTTP URL of the ApplicationMaster, HistoryServer, or
      *           TimelineServer that provides application-specific information. The URL uses
      *           the internal hostname, and requires a proxy server for resolution and,
      *           possibly, access.
@@ -149,7 +149,7 @@ class YarnApplication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Output only. The HTTP URL of the ApplicationMaster, HistoryServer, or
+     * Output only. The HTTP URL of the ApplicationMaster, HistoryServer, or
      * TimelineServer that provides application-specific information. The URL uses
      * the internal hostname, and requires a proxy server for resolution and,
      * possibly, access.
@@ -163,7 +163,7 @@ class YarnApplication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Output only. The HTTP URL of the ApplicationMaster, HistoryServer, or
+     * Output only. The HTTP URL of the ApplicationMaster, HistoryServer, or
      * TimelineServer that provides application-specific information. The URL uses
      * the internal hostname, and requires a proxy server for resolution and,
      * possibly, access.

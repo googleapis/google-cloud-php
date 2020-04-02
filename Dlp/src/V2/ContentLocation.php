@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Findings container location data.
+ * Precise location of the finding within a document, record, image, or metadata
+ * container.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.ContentLocation</code>
  */

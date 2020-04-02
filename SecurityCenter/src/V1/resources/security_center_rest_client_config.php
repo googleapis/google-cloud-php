@@ -3,30 +3,6 @@
 return [
     'interfaces' => [
         'google.cloud.securitycenter.v1.SecurityCenter' => [
-            'CreateSource' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{parent=organizations/*}/sources',
-                'body' => 'source',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'CreateFinding' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{parent=organizations/*/sources/*}/findings',
-                'body' => 'finding',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
             'GetIamPolicy' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{resource=organizations/*/sources/*}:getIamPolicy',
@@ -35,28 +11,6 @@ return [
                     'resource' => [
                         'getters' => [
                             'getResource',
-                        ],
-                    ],
-                ],
-            ],
-            'GetOrganizationSettings' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=organizations/*/organizationSettings}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'GetSource' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=organizations/*/sources/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
                         ],
                     ],
                 ],
@@ -85,6 +39,98 @@ return [
                     ],
                 ],
             ],
+            'TestIamPermissions' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{resource=organizations/*/sources/*}:testIamPermissions',
+                'body' => '*',
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateSource' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=organizations/*}/sources',
+                'body' => 'source',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateFinding' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=organizations/*/sources/*}/findings',
+                'body' => 'finding',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateNotificationConfig' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=organizations/*}/notificationConfigs',
+                'body' => 'notification_config',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteNotificationConfig' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=organizations/*/notificationConfigs/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetNotificationConfig' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=organizations/*/notificationConfigs/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetOrganizationSettings' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=organizations/*/organizationSettings}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetSource' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=organizations/*/sources/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListAssets' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=organizations/*}/assets',
@@ -99,6 +145,17 @@ return [
             'ListFindings' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=organizations/*/sources/*}/findings',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListNotificationConfigs' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=organizations/*}/notificationConfigs',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -154,18 +211,6 @@ return [
                     ],
                 ],
             ],
-            'TestIamPermissions' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{resource=organizations/*/sources/*}:testIamPermissions',
-                'body' => '*',
-                'placeholders' => [
-                    'resource' => [
-                        'getters' => [
-                            'getResource',
-                        ],
-                    ],
-                ],
-            ],
             'UpdateFinding' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{finding.name=organizations/*/sources/*/findings/*}',
@@ -174,6 +219,19 @@ return [
                     'finding.name' => [
                         'getters' => [
                             'getFinding',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateNotificationConfig' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{notification_config.name=organizations/*/notificationConfigs/*}',
+                'body' => 'notification_config',
+                'placeholders' => [
+                    'notification_config.name' => [
+                        'getters' => [
+                            'getNotificationConfig',
                             'getName',
                         ],
                     ],

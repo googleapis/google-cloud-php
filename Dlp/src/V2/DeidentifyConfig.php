@@ -15,6 +15,13 @@ use Google\Protobuf\Internal\GPBUtil;
  */
 class DeidentifyConfig extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * Mode for handling transformation errors. If left unspecified, the default
+     * mode is `TransformationErrorHandling.ThrowError`.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.TransformationErrorHandling transformation_error_handling = 3;</code>
+     */
+    private $transformation_error_handling = null;
     protected $transformation;
 
     /**
@@ -30,6 +37,9 @@ class DeidentifyConfig extends \Google\Protobuf\Internal\Message
      *           Treat the dataset as structured. Transformations can be applied to
      *           specific locations within structured datasets, such as transforming
      *           a column within a table.
+     *     @type \Google\Cloud\Dlp\V2\TransformationErrorHandling $transformation_error_handling
+     *           Mode for handling transformation errors. If left unspecified, the default
+     *           mode is `TransformationErrorHandling.ThrowError`.
      * }
      */
     public function __construct($data = NULL) {
@@ -91,6 +101,34 @@ class DeidentifyConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\RecordTransformations::class);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * Mode for handling transformation errors. If left unspecified, the default
+     * mode is `TransformationErrorHandling.ThrowError`.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.TransformationErrorHandling transformation_error_handling = 3;</code>
+     * @return \Google\Cloud\Dlp\V2\TransformationErrorHandling
+     */
+    public function getTransformationErrorHandling()
+    {
+        return $this->transformation_error_handling;
+    }
+
+    /**
+     * Mode for handling transformation errors. If left unspecified, the default
+     * mode is `TransformationErrorHandling.ThrowError`.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.TransformationErrorHandling transformation_error_handling = 3;</code>
+     * @param \Google\Cloud\Dlp\V2\TransformationErrorHandling $var
+     * @return $this
+     */
+    public function setTransformationErrorHandling($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\TransformationErrorHandling::class);
+        $this->transformation_error_handling = $var;
 
         return $this;
     }

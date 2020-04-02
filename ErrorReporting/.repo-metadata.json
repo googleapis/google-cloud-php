@@ -1,0 +1,5 @@
+{
+    "distribution_name": "google/cloud-error-reporting",
+    "release_level": "beta",
+    "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-error-reporting/latest"
+}

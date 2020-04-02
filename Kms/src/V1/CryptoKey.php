@@ -76,7 +76,7 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
     private $version_template = null;
     /**
      * Labels with user-defined metadata. For more information, see
-     * [Labeling Keys](/kms/docs/labeling-keys).
+     * [Labeling Keys](https://cloud.google.com/kms/docs/labeling-keys).
      *
      * Generated from protobuf field <code>map<string, string> labels = 10;</code>
      */
@@ -131,7 +131,7 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      *           auto-rotation are controlled by this template.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels with user-defined metadata. For more information, see
-     *           [Labeling Keys](/kms/docs/labeling-keys).
+     *           [Labeling Keys](https://cloud.google.com/kms/docs/labeling-keys).
      * }
      */
     public function __construct($data = NULL) {
@@ -375,7 +375,7 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
 
     /**
      * Labels with user-defined metadata. For more information, see
-     * [Labeling Keys](/kms/docs/labeling-keys).
+     * [Labeling Keys](https://cloud.google.com/kms/docs/labeling-keys).
      *
      * Generated from protobuf field <code>map<string, string> labels = 10;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -387,7 +387,7 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
 
     /**
      * Labels with user-defined metadata. For more information, see
-     * [Labeling Keys](/kms/docs/labeling-keys).
+     * [Labeling Keys](https://cloud.google.com/kms/docs/labeling-keys).
      *
      * Generated from protobuf field <code>map<string, string> labels = 10;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

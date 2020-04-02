@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateColumnSpecRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The column spec which replaces the resource on the server.
+     * Required. The column spec which replaces the resource on the server.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ColumnSpec column_spec = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ColumnSpec column_spec = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $column_spec = null;
     /**
@@ -35,7 +35,7 @@ class UpdateColumnSpecRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\AutoMl\V1beta1\ColumnSpec $column_spec
-     *           The column spec which replaces the resource on the server.
+     *           Required. The column spec which replaces the resource on the server.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           The update mask applies to the resource.
      * }
@@ -46,9 +46,9 @@ class UpdateColumnSpecRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The column spec which replaces the resource on the server.
+     * Required. The column spec which replaces the resource on the server.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ColumnSpec column_spec = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ColumnSpec column_spec = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\AutoMl\V1beta1\ColumnSpec
      */
     public function getColumnSpec()
@@ -57,9 +57,9 @@ class UpdateColumnSpecRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The column spec which replaces the resource on the server.
+     * Required. The column spec which replaces the resource on the server.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ColumnSpec column_spec = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ColumnSpec column_spec = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\AutoMl\V1beta1\ColumnSpec $var
      * @return $this
      */

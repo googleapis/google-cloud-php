@@ -29,6 +29,7 @@ use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
+use Google\Cloud\Spanner\Backup;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 
@@ -43,9 +44,12 @@ class InstanceTest extends TestCase
 
     const PROJECT_ID = 'test-project';
     const NAME = 'instance-name';
+    const DATABASE = 'database-name';
+    const BACKUP = 'my-backup';
 
     private $connection;
     private $instance;
+    private $lroConnection;
 
     public function setUp()
     {
@@ -71,7 +75,7 @@ class InstanceTest extends TestCase
 
     public function testInfo()
     {
-        $this->connection->getInstance()->shouldNotBeCalled();
+        $this->connection->getInstance(Argument::any())->shouldNotBeCalled();
 
         $this->instance->___setProperty('info', ['foo' => 'bar']);
         $this->assertEquals('bar', $this->instance->info()['foo']);
@@ -81,7 +85,10 @@ class InstanceTest extends TestCase
     {
         $instance = $this->getDefaultInstance();
 
-        $this->connection->getInstance(Argument::any())
+        $this->connection->getInstance(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('name', $this->instance->name())
+        ))
             ->shouldBeCalledTimes(1)
             ->willReturn($instance);
 
@@ -111,22 +118,46 @@ class InstanceTest extends TestCase
         $this->instance->___setProperty('connection', $this->connection->reveal());
 
         $info = $this->instance->info(['fieldMask' => $requestedFieldNames]);
-        
+
         $this->assertEquals($info, $this->instance->info());
     }
 
     public function testExists()
     {
-        $this->connection->getInstance(Argument::any())->shouldBeCalled()->willReturn([]);
+        $this->connection->getInstance(Argument::allOf(
+            Argument::withEntry('name', $this->instance->name()),
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('fieldMask', ['name'])
+        ))
+            ->shouldBeCalledTimes(1)
+            ->willReturn([]);
+
+        $this->connection->getInstance(Argument::allOf(
+            Argument::withEntry('name', $this->instance->name()),
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::not(Argument::withKey('fieldMask'))
+        ))
+            ->shouldBeCalledTimes(2)
+            ->willReturn([
+                'name' => $this->instance->name(),
+                'nodeCount' => 1,
+            ]);
 
         $this->instance->___setProperty('connection', $this->connection->reveal());
 
         $this->assertTrue($this->instance->exists());
+
+        $info = $this->instance->reload();
+        $this->assertTrue($this->instance->exists());
+        $this->assertEquals($info, $this->instance->info());
     }
 
     public function testExistsNotFound()
     {
-        $this->connection->getInstance(Argument::any())
+        $this->connection->getInstance(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('name', $this->instance->name())
+        ))
             ->shouldBeCalled()
             ->willThrow(new NotFoundException('foo', 404));
 
@@ -180,7 +211,10 @@ class InstanceTest extends TestCase
     {
         $instance = $this->getDefaultInstance();
 
-        $this->connection->getInstance(Argument::any())
+        $this->connection->getInstance(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('name', $this->instance->name())
+        ))
             ->shouldBeCalledTimes(1)
             ->willReturn($instance);
 
@@ -191,7 +225,10 @@ class InstanceTest extends TestCase
 
     public function testStateIsNull()
     {
-        $this->connection->getInstance(Argument::any())
+        $this->connection->getInstance(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('name', $this->instance->name())
+        ))
             ->shouldBeCalledTimes(1)
             ->willReturn([]);
 
@@ -291,6 +328,42 @@ class InstanceTest extends TestCase
         $this->assertInstanceOf(LongRunningOperation::class, $database);
     }
 
+    public function testCreateDatabaseFromBackupName()
+    {
+        $backupName = DatabaseAdminClient::backupName(self::PROJECT_ID, self::NAME, self::BACKUP);
+        $this->connection->restoreDatabase(Argument::allOf(
+            Argument::withEntry('databaseId', 'restore-database'),
+            Argument::withEntry('instance', $this->instance->name()),
+            Argument::withEntry('backup', $backupName)
+        ))
+            ->shouldBeCalled()
+            ->willReturn([
+                'name' => 'my-operation'
+            ]);
+        $this->instance->___setProperty('connection', $this->connection->reveal());
+        
+        $op = $this->instance->createDatabaseFromBackup('restore-database', $backupName);
+        $this->assertInstanceOf(LongRunningOperation::class, $op);
+    }
+
+    public function testCreateDatabaseFromBackupObject()
+    {
+        $backupObject = $this->instance->backup(self::BACKUP);
+        $this->connection->restoreDatabase(Argument::allOf(
+            Argument::withEntry('databaseId', 'restore-database'),
+            Argument::withEntry('instance', $this->instance->name()),
+            Argument::withEntry('backup', $backupObject->name())
+        ))
+            ->shouldBeCalled()
+            ->willReturn([
+                'name' => 'my-operation'
+            ]);
+        $this->instance->___setProperty('connection', $this->connection->reveal());
+        
+        $op = $this->instance->createDatabaseFromBackup('restore-database', $backupObject);
+        $this->assertInstanceOf(LongRunningOperation::class, $op);
+    }
+
     public function testDatabase()
     {
         $database = $this->instance->database('test-database');
@@ -305,10 +378,11 @@ class InstanceTest extends TestCase
             ['name' => DatabaseAdminClient::databaseName(self::PROJECT_ID, self::NAME, 'database2')]
         ];
 
-        $this->connection->listDatabases(Argument::any())
+        $this->connection->listDatabases(Argument::withEntry('instance', $this->instance->name()))
             ->shouldBeCalled()
             ->willReturn(['databases' => $databases]);
-        $this->connection->getDatabase()->shouldNotBeCalled();
+
+        $this->connection->getDatabase(Argument::any())->shouldNotBeCalled();
 
         $this->instance->___setProperty('connection', $this->connection->reveal());
 
@@ -335,7 +409,7 @@ class InstanceTest extends TestCase
         ];
 
         $iteration = 0;
-        $this->connection->listDatabases(Argument::any())
+        $this->connection->listDatabases(Argument::withEntry('instance', $this->instance->name()))
             ->shouldBeCalledTimes(2)
             ->willReturn(['databases' => [$databases[0]], 'nextPageToken' => 'foo'], ['databases' => [$databases[1]]]);
 
@@ -355,6 +429,90 @@ class InstanceTest extends TestCase
     public function testIam()
     {
         $this->assertInstanceOf(Iam::class, $this->instance->iam());
+    }
+
+    public function testBackup()
+    {
+        $this->assertInstanceOf(
+            Backup::class,
+            $this->instance->backup(
+                'backup-id'
+            )
+        );
+    }
+
+    public function testBackups()
+    {
+        $backups = [
+            [
+                'name' => DatabaseAdminClient::backupName(self::PROJECT_ID, self::NAME, 'backup1'),
+            ],
+            [
+                'name' => DatabaseAdminClient::backupName(self::PROJECT_ID, self::NAME, 'backup2'),
+            ]
+        ];
+
+        $this->connection->listBackups(Argument::withEntry('instance', $this->instance->name()))
+            ->shouldBeCalled()
+            ->willReturn(['backups' => $backups]);
+
+        $this->instance->___setProperty('connection', $this->connection->reveal());
+
+        $bkps = $this->instance->backups();
+
+        $this->assertInstanceOf(ItemIterator::class, $bkps);
+
+        $bkps = iterator_to_array($bkps);
+
+        $this->assertCount(2, $bkps);
+        $this->assertEquals('backup1', DatabaseAdminClient::parseName($bkps[0]->name())['backup']);
+        $this->assertEquals('backup2', DatabaseAdminClient::parseName($bkps[1]->name())['backup']);
+    }
+
+    public function testBackupOperations()
+    {
+        $operations = [
+            ['name' => 'operation1'],
+            ['name' => 'operation2']
+        ];
+
+        $this->connection->listBackupOperations(Argument::withEntry('instance', $this->instance->name()))
+            ->shouldBeCalled()
+            ->willReturn(['operations' => $operations]);
+        
+        $this->instance->___setProperty('connection', $this->connection->reveal());
+
+        $bkpOps = $this->instance->backupOperations();
+
+        $this->assertInstanceOf(ItemIterator::class, $bkpOps);
+
+        $bkpOps = iterator_to_array($bkpOps);
+        $this->assertCount(2, $bkpOps);
+        $this->assertEquals('operation1', $bkpOps[0]->name());
+        $this->assertEquals('operation2', $bkpOps[1]->name());
+    }
+
+    public function testListDatabaseOperations()
+    {
+        $operations = [
+            ['name' => 'operation1'],
+            ['name' => 'operation2']
+        ];
+        
+        $this->connection->listDatabaseOperations(Argument::withEntry('instance', $this->instance->name()))
+            ->shouldBeCalled()
+            ->willReturn(['operations' => $operations]);
+        
+        $this->instance->___setProperty('connection', $this->connection->reveal());
+        
+        $dbOps = $this->instance->databaseOperations();
+
+        $this->assertInstanceOf(ItemIterator::class, $dbOps);
+
+        $dbOps = iterator_to_array($dbOps);
+        $this->assertCount(2, $dbOps);
+        $this->assertEquals('operation1', $dbOps[0]->name());
+        $this->assertEquals('operation2', $dbOps[1]->name());
     }
 
     // ************** //

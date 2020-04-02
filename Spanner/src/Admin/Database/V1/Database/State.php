@@ -32,11 +32,24 @@ class State
      * Generated from protobuf enum <code>READY = 2;</code>
      */
     const READY = 2;
+    /**
+     * The database is fully created and ready for use, but is still
+     * being optimized for performance and cannot handle full load.
+     * In this state, the database still references the backup
+     * it was restore from, preventing the backup
+     * from being deleted. When optimizations are complete, the full performance
+     * of the database will be restored, and the database will transition to
+     * `READY` state.
+     *
+     * Generated from protobuf enum <code>READY_OPTIMIZING = 3;</code>
+     */
+    const READY_OPTIMIZING = 3;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
         self::CREATING => 'CREATING',
         self::READY => 'READY',
+        self::READY_OPTIMIZING => 'READY_OPTIMIZING',
     ];
 
     public static function name($value)

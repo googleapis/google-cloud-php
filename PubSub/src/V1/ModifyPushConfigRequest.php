@@ -16,20 +16,20 @@ use Google\Protobuf\Internal\GPBUtil;
 class ModifyPushConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The name of the subscription.
+     * Required. The name of the subscription.
      * Format is `projects/{project}/subscriptions/{sub}`.
      *
-     * Generated from protobuf field <code>string subscription = 1;</code>
+     * Generated from protobuf field <code>string subscription = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $subscription = '';
     /**
-     * The push configuration for future deliveries.
+     * Required. The push configuration for future deliveries.
      * An empty `pushConfig` indicates that the Pub/Sub system should
      * stop pushing messages from the given subscription and allow
      * messages to be pulled and acknowledged - effectively pausing
      * the subscription if `Pull` or `StreamingPull` is not called.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.PushConfig push_config = 2;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.PushConfig push_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $push_config = null;
 
@@ -40,10 +40,10 @@ class ModifyPushConfigRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $subscription
-     *           The name of the subscription.
+     *           Required. The name of the subscription.
      *           Format is `projects/{project}/subscriptions/{sub}`.
      *     @type \Google\Cloud\PubSub\V1\PushConfig $push_config
-     *           The push configuration for future deliveries.
+     *           Required. The push configuration for future deliveries.
      *           An empty `pushConfig` indicates that the Pub/Sub system should
      *           stop pushing messages from the given subscription and allow
      *           messages to be pulled and acknowledged - effectively pausing
@@ -56,10 +56,10 @@ class ModifyPushConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the subscription.
+     * Required. The name of the subscription.
      * Format is `projects/{project}/subscriptions/{sub}`.
      *
-     * Generated from protobuf field <code>string subscription = 1;</code>
+     * Generated from protobuf field <code>string subscription = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getSubscription()
@@ -68,10 +68,10 @@ class ModifyPushConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the subscription.
+     * Required. The name of the subscription.
      * Format is `projects/{project}/subscriptions/{sub}`.
      *
-     * Generated from protobuf field <code>string subscription = 1;</code>
+     * Generated from protobuf field <code>string subscription = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -84,13 +84,13 @@ class ModifyPushConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The push configuration for future deliveries.
+     * Required. The push configuration for future deliveries.
      * An empty `pushConfig` indicates that the Pub/Sub system should
      * stop pushing messages from the given subscription and allow
      * messages to be pulled and acknowledged - effectively pausing
      * the subscription if `Pull` or `StreamingPull` is not called.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.PushConfig push_config = 2;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.PushConfig push_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\PubSub\V1\PushConfig
      */
     public function getPushConfig()
@@ -99,13 +99,13 @@ class ModifyPushConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The push configuration for future deliveries.
+     * Required. The push configuration for future deliveries.
      * An empty `pushConfig` indicates that the Pub/Sub system should
      * stop pushing messages from the given subscription and allow
      * messages to be pulled and acknowledged - effectively pausing
      * the subscription if `Pull` or `StreamingPull` is not called.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.PushConfig push_config = 2;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.PushConfig push_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\PubSub\V1\PushConfig $var
      * @return $this
      */

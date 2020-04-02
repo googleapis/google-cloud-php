@@ -42,7 +42,7 @@ class DataTransferServiceSmokeTest extends GeneratedTest
         }
 
         $dataTransferServiceClient = new DataTransferServiceClient();
-        $formattedParent = $dataTransferServiceClient->locationName($projectId, 'us-central1');
+        $formattedParent = $dataTransferServiceClient->projectName($projectId);
         $dataTransferServiceClient->listDataSources($formattedParent);
     }
 }

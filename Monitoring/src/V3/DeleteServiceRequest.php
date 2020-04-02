@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeleteServiceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Resource name of the `Service` to delete.
-     * Of the form `projects/{project_id}/services/{service_id}`.
+     * Required. Resource name of the `Service` to delete. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -30,8 +30,8 @@ class DeleteServiceRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. Resource name of the `Service` to delete.
-     *           Of the form `projects/{project_id}/services/{service_id}`.
+     *           Required. Resource name of the `Service` to delete. The format is:
+     *               projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
      * }
      */
     public function __construct($data = NULL) {
@@ -40,8 +40,8 @@ class DeleteServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name of the `Service` to delete.
-     * Of the form `projects/{project_id}/services/{service_id}`.
+     * Required. Resource name of the `Service` to delete. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -52,8 +52,8 @@ class DeleteServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name of the `Service` to delete.
-     * Of the form `projects/{project_id}/services/{service_id}`.
+     * Required. Resource name of the `Service` to delete. The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

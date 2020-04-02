@@ -356,7 +356,11 @@ class ContextsGapicClient
      * ```
      *
      * @param string $parent       Required. The session to list all contexts from.
-     *                             Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
+     *                             Format: `projects/<Project ID>/agent/sessions/<Session ID>` or
+     *                             `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *                             ID>/sessions/<Session ID>`.
+     *                             If `Environment ID` is not specified, we assume default 'draft'
+     *                             environment. If `User ID` is not specified, we assume default '-' user.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -422,7 +426,11 @@ class ContextsGapicClient
      * ```
      *
      * @param string $name         Required. The name of the context. Format:
-     *                             `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`.
+     *                             `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`
+     *                             or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *                             ID>/sessions/<Session ID>/contexts/<Context ID>`.
+     *                             If `Environment ID` is not specified, we assume default 'draft'
+     *                             environment. If `User ID` is not specified, we assume default '-' user.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -476,7 +484,11 @@ class ContextsGapicClient
      * ```
      *
      * @param string  $parent       Required. The session to create a context for.
-     *                              Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
+     *                              Format: `projects/<Project ID>/agent/sessions/<Session ID>` or
+     *                              `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *                              ID>/sessions/<Session ID>`.
+     *                              If `Environment ID` is not specified, we assume default 'draft'
+     *                              environment. If `User ID` is not specified, we assume default '-' user.
      * @param Context $context      Required. The context to create.
      * @param array   $optionalArgs {
      *                              Optional.
@@ -584,7 +596,11 @@ class ContextsGapicClient
      * ```
      *
      * @param string $name         Required. The name of the context to delete. Format:
-     *                             `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`.
+     *                             `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`
+     *                             or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *                             ID>/sessions/<Session ID>/contexts/<Context ID>`.
+     *                             If `Environment ID` is not specified, we assume default 'draft'
+     *                             environment. If `User ID` is not specified, we assume default '-' user.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -633,7 +649,11 @@ class ContextsGapicClient
      * ```
      *
      * @param string $parent       Required. The name of the session to delete all contexts from. Format:
-     *                             `projects/<Project ID>/agent/sessions/<Session ID>`.
+     *                             `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project
+     *                             ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session
+     *                             ID>`.
+     *                             If `Environment ID` is not specified we assume default 'draft' environment.
+     *                             If `User ID` is not specified, we assume default '-' user.
      * @param array  $optionalArgs {
      *                             Optional.
      *

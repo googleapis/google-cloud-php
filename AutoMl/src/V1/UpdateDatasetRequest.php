@@ -9,23 +9,22 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for
- * [AutoMl.UpdateDataset][google.cloud.automl.v1.AutoMl.UpdateDataset]
+ * Request message for [AutoMl.UpdateDataset][google.cloud.automl.v1.AutoMl.UpdateDataset]
  *
  * Generated from protobuf message <code>google.cloud.automl.v1.UpdateDatasetRequest</code>
  */
 class UpdateDatasetRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The dataset which replaces the resource on the server.
+     * Required. The dataset which replaces the resource on the server.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1.Dataset dataset = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1.Dataset dataset = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $dataset = null;
     /**
      * Required. The update mask applies to the resource.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $update_mask = null;
 
@@ -36,7 +35,7 @@ class UpdateDatasetRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\AutoMl\V1\Dataset $dataset
-     *           The dataset which replaces the resource on the server.
+     *           Required. The dataset which replaces the resource on the server.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Required. The update mask applies to the resource.
      * }
@@ -47,9 +46,9 @@ class UpdateDatasetRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The dataset which replaces the resource on the server.
+     * Required. The dataset which replaces the resource on the server.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1.Dataset dataset = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1.Dataset dataset = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\AutoMl\V1\Dataset
      */
     public function getDataset()
@@ -58,9 +57,9 @@ class UpdateDatasetRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The dataset which replaces the resource on the server.
+     * Required. The dataset which replaces the resource on the server.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1.Dataset dataset = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1.Dataset dataset = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\AutoMl\V1\Dataset $var
      * @return $this
      */
@@ -75,7 +74,7 @@ class UpdateDatasetRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The update mask applies to the resource.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask
      */
     public function getUpdateMask()
@@ -86,7 +85,7 @@ class UpdateDatasetRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The update mask applies to the resource.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var
      * @return $this
      */

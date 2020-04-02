@@ -16,9 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateSessionEntityTypeRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The entity type to update. Format:
-     * `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
-     * Display Name>`.
+     * Required. The session entity type to update.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SessionEntityType session_entity_type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -37,9 +35,7 @@ class UpdateSessionEntityTypeRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Dialogflow\V2\SessionEntityType $session_entity_type
-     *           Required. The entity type to update. Format:
-     *           `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
-     *           Display Name>`.
+     *           Required. The session entity type to update.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Optional. The mask to control which fields get updated.
      * }
@@ -50,9 +46,7 @@ class UpdateSessionEntityTypeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The entity type to update. Format:
-     * `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
-     * Display Name>`.
+     * Required. The session entity type to update.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SessionEntityType session_entity_type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Dialogflow\V2\SessionEntityType
@@ -63,9 +57,7 @@ class UpdateSessionEntityTypeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The entity type to update. Format:
-     * `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
-     * Display Name>`.
+     * Required. The session entity type to update.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SessionEntityType session_entity_type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dialogflow\V2\SessionEntityType $var

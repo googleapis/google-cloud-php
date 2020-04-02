@@ -501,6 +501,30 @@ return [
                     ],
                 ],
             ],
+            'FinishDlpJob' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/dlpJobs/*}:finish',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'HybridInspectDlpJob' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/dlpJobs/*}:hybridInspect',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListJobTriggers' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{parent=projects/*}/jobTriggers',
@@ -549,6 +573,18 @@ return [
                         'uriTemplate' => '/v2/{name=projects/*/locations/*/jobTriggers/*}',
                     ],
                 ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'HybridInspectJobTrigger' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/jobTriggers/*}:hybridInspect',
+                'body' => '*',
                 'placeholders' => [
                     'name' => [
                         'getters' => [

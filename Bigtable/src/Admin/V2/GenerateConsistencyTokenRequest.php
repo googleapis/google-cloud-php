@@ -17,8 +17,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class GenerateConsistencyTokenRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The unique name of the Table for which to create a consistency token.
-     * Values are of the form
+     * Required. The unique name of the Table for which to create a consistency
+     * token. Values are of the form
      * `projects/{project}/instances/{instance}/tables/{table}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -32,8 +32,8 @@ class GenerateConsistencyTokenRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The unique name of the Table for which to create a consistency token.
-     *           Values are of the form
+     *           Required. The unique name of the Table for which to create a consistency
+     *           token. Values are of the form
      *           `projects/{project}/instances/{instance}/tables/{table}`.
      * }
      */
@@ -43,8 +43,8 @@ class GenerateConsistencyTokenRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique name of the Table for which to create a consistency token.
-     * Values are of the form
+     * Required. The unique name of the Table for which to create a consistency
+     * token. Values are of the form
      * `projects/{project}/instances/{instance}/tables/{table}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -56,8 +56,8 @@ class GenerateConsistencyTokenRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique name of the Table for which to create a consistency token.
-     * Values are of the form
+     * Required. The unique name of the Table for which to create a consistency
+     * token. Values are of the form
      * `projects/{project}/instances/{instance}/tables/{table}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

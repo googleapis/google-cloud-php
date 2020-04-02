@@ -14,31 +14,38 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import os
 import synthtool as s
 import synthtool.gcp as gcp
 import logging
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICGenerator()
-common = gcp.CommonTemplates()
+gapic = gcp.GAPICBazel()
 
-library = gapic.php_library(
-    service='secrets',
-    version='v1beta1',
-    config_path=f'/google/cloud/secrets/artman_secretmanager_v1beta1.yaml',
-    artman_output_name=f'google-cloud-secretmanager-v1beta1')
+for version in ['v1', 'v1beta1']:
+    kwargs = {}
+    if version is 'v1beta1':
+        kwargs = {
+           'bazel_target': '//google/cloud/secrets/v1beta1:google-cloud-secretmanager-v1beta1-php'
+        }
 
-# copy all src
-s.move(library / f'src/V1beta1')
+    library = gapic.php_library(
+        service='secretmanager' if version is 'v1' else 'secrets',
+        version=version,
+        **kwargs)
 
-# copy proto files to src also
-s.move(library / f'proto/src/Google/Cloud/SecretManager', f'src/')
-s.move(library / f'tests/')
+    # copy all src
+    s.move(library / f'src')
 
-# copy GPBMetadata file to metadata
-s.move(library / f'proto/src/GPBMetadata/Google/Cloud/Secrets', f'metadata/')
+    # copy proto files to src also
+    s.move(library / f'proto/src/Google/Cloud/SecretManager', f'src/')
+    s.move(library / f'tests/')
+
+    # copy GPBMetadata file to metadata
+    if version is 'v1beta1':
+        s.move(library / f'proto/src/GPBMetadata/Google/Cloud/Secrets', f'metadata/')
+    else:
+        s.move(library / f'proto/src/GPBMetadata/Google/Cloud/Secretmanager', f'metadata/')
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
@@ -58,6 +65,12 @@ s.replace(
     r"\$transportConfig, and any \$serviceAddress",
     r"$transportConfig, and any `$apiEndpoint`")
 
+# V1 is GA, so remove @experimental tags
+s.replace(
+    'src/V1/**/*Client.php',
+    r'^(\s+\*\n)?\s+\*\s@experimental\n',
+    '')
+
 # fix year
 s.replace(
     'src/**/**/*.php',
@@ -68,12 +81,6 @@ s.replace(
     r'Copyright \d{4}',
     r'Copyright 2020')
 
-# # Use new namespace in the doc sample. See
-# # https://github.com/googleapis/gapic-generator/issues/2141
-# s.replace(
-#     'src/V1/Gapic/SecretCenterGapicClient.php',
-#     r'Finding_State',
-#     r'Finding\\State')
 # Change the wording for the deprecation warning.
 s.replace(
     'src/*/*_*.php',
@@ -104,3 +111,10 @@ s.replace(
 )
 
 ### [END] protoc backwards compatibility fixes
+
+# fix relative cloud.google.com links
+s.replace(
+    "src/**/V*/**/*.php",
+    r"(.{0,})\]\((/.{0,})\)",
+    r"\1](https://cloud.google.com\2)"
+)

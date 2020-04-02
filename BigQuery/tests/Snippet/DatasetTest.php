@@ -19,6 +19,7 @@ namespace Google\Cloud\BigQuery\Tests\Snippet;
 
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\BigQuery\Dataset;
+use Google\Cloud\BigQuery\Routine;
 use Google\Cloud\BigQuery\Table;
 use Google\Cloud\BigQuery\ValueMapper;
 use Google\Cloud\Core\Iterator\ItemIterator;
@@ -209,5 +210,52 @@ class DatasetTest extends SnippetTestCase
 
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
         $this->assertEquals('my_model', trim($res->output()));
+    }
+
+    public function testRoutine()
+    {
+        $snippet = $this->snippetFromMethod(Dataset::class, 'routine');
+        $snippet->addLocal('dataset', $this->getDataset($this->connection));
+
+        $res = $snippet->invoke('routine');
+        $this->assertInstanceOf(Routine::class, $res->returnVal());
+        $this->assertEquals('my_routine', $res->output());
+    }
+
+    public function testRoutines()
+    {
+        $this->connection->listRoutines(Argument::any())
+            ->shouldBeCalledTimes(1)
+            ->willReturn([
+                'routines' => [
+                    [
+                        'routineReference' => [
+                            'routineId' => 'my_routine'
+                        ]
+                    ]
+                ]
+            ]);
+
+        $dataset = $this->getDataset($this->connection);
+        $snippet = $this->snippetFromMethod(Dataset::class, 'routines');
+        $snippet->addLocal('dataset', $dataset);
+        $res = $snippet->invoke('routines');
+
+        $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
+        $this->assertEquals('my_routine', trim($res->output()));
+    }
+
+    public function testCreateRoutine()
+    {
+        $this->connection->insertRoutine(Argument::any())
+            ->shouldBeCalledTimes(1)
+            ->willReturn([]);
+
+        $dataset = $this->getDataset($this->connection);
+        $snippet = $this->snippetFromMethod(Dataset::class, 'createRoutine');
+        $snippet->addLocal('dataset', $dataset);
+        $res = $snippet->invoke('routine');
+
+        $this->assertInstanceOf(Routine::class, $res->returnVal());
     }
 }

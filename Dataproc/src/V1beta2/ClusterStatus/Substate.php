@@ -30,7 +30,7 @@ class Substate
     const UNHEALTHY = 1;
     /**
      * The agent-reported status is out of date (may occur if
-     * Cloud Dataproc loses communication with Agent).
+     * Dataproc loses communication with Agent).
      * Applies to RUNNING state.
      *
      * Generated from protobuf enum <code>STALE_STATUS = 2;</code>

@@ -30,7 +30,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     private $cluster_name = '';
     /**
-     * Required. The cluster config. Note that Cloud Dataproc may set
+     * Required. The cluster config. Note that Dataproc may set
      * default values, and values may change when clusters are updated.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.ClusterConfig config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -61,7 +61,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     private $status_history;
     /**
-     * Output only. A cluster UUID (Unique Universal Identifier). Cloud Dataproc
+     * Output only. A cluster UUID (Unique Universal Identifier). Dataproc
      * generates this value when it creates the cluster.
      *
      * Generated from protobuf field <code>string cluster_uuid = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -88,7 +88,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           Required. The cluster name. Cluster names within a project must be
      *           unique. Names of deleted clusters can be reused.
      *     @type \Google\Cloud\Dataproc\V1beta2\ClusterConfig $config
-     *           Required. The cluster config. Note that Cloud Dataproc may set
+     *           Required. The cluster config. Note that Dataproc may set
      *           default values, and values may change when clusters are updated.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. The labels to associate with this cluster.
@@ -103,7 +103,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dataproc\V1beta2\ClusterStatus[]|\Google\Protobuf\Internal\RepeatedField $status_history
      *           Output only. The previous cluster status.
      *     @type string $cluster_uuid
-     *           Output only. A cluster UUID (Unique Universal Identifier). Cloud Dataproc
+     *           Output only. A cluster UUID (Unique Universal Identifier). Dataproc
      *           generates this value when it creates the cluster.
      *     @type \Google\Cloud\Dataproc\V1beta2\ClusterMetrics $metrics
      *           Output only. Contains cluster daemon metrics such as HDFS and YARN stats.
@@ -171,7 +171,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The cluster config. Note that Cloud Dataproc may set
+     * Required. The cluster config. Note that Dataproc may set
      * default values, and values may change when clusters are updated.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.ClusterConfig config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -183,7 +183,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The cluster config. Note that Cloud Dataproc may set
+     * Required. The cluster config. Note that Dataproc may set
      * default values, and values may change when clusters are updated.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.ClusterConfig config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -289,7 +289,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A cluster UUID (Unique Universal Identifier). Cloud Dataproc
+     * Output only. A cluster UUID (Unique Universal Identifier). Dataproc
      * generates this value when it creates the cluster.
      *
      * Generated from protobuf field <code>string cluster_uuid = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -301,7 +301,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A cluster UUID (Unique Universal Identifier). Cloud Dataproc
+     * Output only. A cluster UUID (Unique Universal Identifier). Dataproc
      * generates this value when it creates the cluster.
      *
      * Generated from protobuf field <code>string cluster_uuid = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>

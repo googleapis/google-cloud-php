@@ -187,6 +187,98 @@ return [
                     ],
                 ],
             ],
+            'CreateBackup' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/instances/*}/backups',
+                'body' => 'backup',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'GetBackup' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/instances/*/backups/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateBackup' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{backup.name=projects/*/instances/*/backups/*}',
+                'body' => 'backup',
+                'placeholders' => [
+                    'backup.name' => [
+                        'getters' => [
+                            'getBackup',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteBackup' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/instances/*/backups/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListBackups' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/instances/*}/backups',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'RestoreDatabase' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/instances/*}/databases:restore',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListDatabaseOperations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/instances/*}/databaseOperations',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListBackupOperations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/instances/*}/backupOperations',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListDatabases' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/instances/*}/databases',

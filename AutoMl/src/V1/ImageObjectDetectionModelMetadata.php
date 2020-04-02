@@ -24,6 +24,21 @@ class ImageObjectDetectionModelMetadata extends \Google\Protobuf\Internal\Messag
      * *   `cloud-low-latency-1` -  A model to be used via prediction
      *               calls to AutoML API. Expected to have low latency, but may
      *               have lower prediction quality than other models.
+     * *   `mobile-low-latency-1` - A model that, in addition to providing
+     *               prediction via AutoML API, can also be exported (see
+     *               [AutoMl.ExportModel][google.cloud.automl.v1.AutoMl.ExportModel]) and used on a mobile or edge device
+     *               with TensorFlow afterwards. Expected to have low latency, but
+     *               may have lower prediction quality than other models.
+     * *   `mobile-versatile-1` - A model that, in addition to providing
+     *               prediction via AutoML API, can also be exported (see
+     *               [AutoMl.ExportModel][google.cloud.automl.v1.AutoMl.ExportModel]) and used on a mobile or edge device
+     *               with TensorFlow afterwards.
+     * *   `mobile-high-accuracy-1` - A model that, in addition to providing
+     *               prediction via AutoML API, can also be exported (see
+     *               [AutoMl.ExportModel][google.cloud.automl.v1.AutoMl.ExportModel]) and used on a mobile or edge device
+     *               with TensorFlow afterwards.  Expected to have a higher
+     *               latency, but should also have a higher prediction quality
+     *               than other models.
      *
      * Generated from protobuf field <code>string model_type = 1;</code>
      */
@@ -94,6 +109,21 @@ class ImageObjectDetectionModelMetadata extends \Google\Protobuf\Internal\Messag
      *           *   `cloud-low-latency-1` -  A model to be used via prediction
      *                         calls to AutoML API. Expected to have low latency, but may
      *                         have lower prediction quality than other models.
+     *           *   `mobile-low-latency-1` - A model that, in addition to providing
+     *                         prediction via AutoML API, can also be exported (see
+     *                         [AutoMl.ExportModel][google.cloud.automl.v1.AutoMl.ExportModel]) and used on a mobile or edge device
+     *                         with TensorFlow afterwards. Expected to have low latency, but
+     *                         may have lower prediction quality than other models.
+     *           *   `mobile-versatile-1` - A model that, in addition to providing
+     *                         prediction via AutoML API, can also be exported (see
+     *                         [AutoMl.ExportModel][google.cloud.automl.v1.AutoMl.ExportModel]) and used on a mobile or edge device
+     *                         with TensorFlow afterwards.
+     *           *   `mobile-high-accuracy-1` - A model that, in addition to providing
+     *                         prediction via AutoML API, can also be exported (see
+     *                         [AutoMl.ExportModel][google.cloud.automl.v1.AutoMl.ExportModel]) and used on a mobile or edge device
+     *                         with TensorFlow afterwards.  Expected to have a higher
+     *                         latency, but should also have a higher prediction quality
+     *                         than other models.
      *     @type int|string $node_count
      *           Output only. The number of nodes this model is deployed on. A node is an
      *           abstraction of a machine resource, which can handle online prediction QPS
@@ -140,6 +170,21 @@ class ImageObjectDetectionModelMetadata extends \Google\Protobuf\Internal\Messag
      * *   `cloud-low-latency-1` -  A model to be used via prediction
      *               calls to AutoML API. Expected to have low latency, but may
      *               have lower prediction quality than other models.
+     * *   `mobile-low-latency-1` - A model that, in addition to providing
+     *               prediction via AutoML API, can also be exported (see
+     *               [AutoMl.ExportModel][google.cloud.automl.v1.AutoMl.ExportModel]) and used on a mobile or edge device
+     *               with TensorFlow afterwards. Expected to have low latency, but
+     *               may have lower prediction quality than other models.
+     * *   `mobile-versatile-1` - A model that, in addition to providing
+     *               prediction via AutoML API, can also be exported (see
+     *               [AutoMl.ExportModel][google.cloud.automl.v1.AutoMl.ExportModel]) and used on a mobile or edge device
+     *               with TensorFlow afterwards.
+     * *   `mobile-high-accuracy-1` - A model that, in addition to providing
+     *               prediction via AutoML API, can also be exported (see
+     *               [AutoMl.ExportModel][google.cloud.automl.v1.AutoMl.ExportModel]) and used on a mobile or edge device
+     *               with TensorFlow afterwards.  Expected to have a higher
+     *               latency, but should also have a higher prediction quality
+     *               than other models.
      *
      * Generated from protobuf field <code>string model_type = 1;</code>
      * @return string
@@ -158,6 +203,21 @@ class ImageObjectDetectionModelMetadata extends \Google\Protobuf\Internal\Messag
      * *   `cloud-low-latency-1` -  A model to be used via prediction
      *               calls to AutoML API. Expected to have low latency, but may
      *               have lower prediction quality than other models.
+     * *   `mobile-low-latency-1` - A model that, in addition to providing
+     *               prediction via AutoML API, can also be exported (see
+     *               [AutoMl.ExportModel][google.cloud.automl.v1.AutoMl.ExportModel]) and used on a mobile or edge device
+     *               with TensorFlow afterwards. Expected to have low latency, but
+     *               may have lower prediction quality than other models.
+     * *   `mobile-versatile-1` - A model that, in addition to providing
+     *               prediction via AutoML API, can also be exported (see
+     *               [AutoMl.ExportModel][google.cloud.automl.v1.AutoMl.ExportModel]) and used on a mobile or edge device
+     *               with TensorFlow afterwards.
+     * *   `mobile-high-accuracy-1` - A model that, in addition to providing
+     *               prediction via AutoML API, can also be exported (see
+     *               [AutoMl.ExportModel][google.cloud.automl.v1.AutoMl.ExportModel]) and used on a mobile or edge device
+     *               with TensorFlow afterwards.  Expected to have a higher
+     *               latency, but should also have a higher prediction quality
+     *               than other models.
      *
      * Generated from protobuf field <code>string model_type = 1;</code>
      * @param string $var

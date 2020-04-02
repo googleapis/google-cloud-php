@@ -653,23 +653,23 @@ class IntentsGapicClient
      * $intentsClient = new IntentsClient();
      * try {
      *     $intent = new Intent();
-     *     $languageCode = '';
-     *     $response = $intentsClient->updateIntent($intent, $languageCode);
+     *     $response = $intentsClient->updateIntent($intent);
      * } finally {
      *     $intentsClient->close();
      * }
      * ```
      *
      * @param Intent $intent       Required. The intent to update.
-     * @param string $languageCode Optional. The language of training phrases, parameters and rich messages
-     *                             defined in `intent`. If not specified, the agent's default language is
-     *                             used. [Many
-     *                             languages](https://cloud.google.com/dialogflow/docs/reference/language)
-     *                             are supported. Note: languages must be enabled in the agent before they can
-     *                             be used.
      * @param array  $optionalArgs {
      *                             Optional.
      *
+     *     @type string $languageCode
+     *          Optional. The language of training phrases, parameters and rich messages
+     *          defined in `intent`. If not specified, the agent's default language is
+     *          used. [Many
+     *          languages](https://cloud.google.com/dialogflow/docs/reference/language)
+     *          are supported. Note: languages must be enabled in the agent before they can
+     *          be used.
      *     @type FieldMask $updateMask
      *          Optional. The mask to control which fields get updated.
      *     @type int $intentView
@@ -687,11 +687,13 @@ class IntentsGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateIntent($intent, $languageCode, array $optionalArgs = [])
+    public function updateIntent($intent, array $optionalArgs = [])
     {
         $request = new UpdateIntentRequest();
         $request->setIntent($intent);
-        $request->setLanguageCode($languageCode);
+        if (isset($optionalArgs['languageCode'])) {
+            $request->setLanguageCode($optionalArgs['languageCode']);
+        }
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -774,8 +776,7 @@ class IntentsGapicClient
      * $intentsClient = new IntentsClient();
      * try {
      *     $formattedParent = $intentsClient->projectAgentName('[PROJECT]');
-     *     $languageCode = '';
-     *     $operationResponse = $intentsClient->batchUpdateIntents($formattedParent, $languageCode);
+     *     $operationResponse = $intentsClient->batchUpdateIntents($formattedParent);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -789,7 +790,7 @@ class IntentsGapicClient
      *     // Alternatively:
      *
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $intentsClient->batchUpdateIntents($formattedParent, $languageCode);
+     *     $operationResponse = $intentsClient->batchUpdateIntents($formattedParent);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $intentsClient->resumeOperation($operationName, 'batchUpdateIntents');
@@ -811,12 +812,6 @@ class IntentsGapicClient
      *
      * @param string $parent       Required. The name of the agent to update or create intents in.
      *                             Format: `projects/<Project ID>/agent`.
-     * @param string $languageCode Optional. The language of training phrases, parameters and rich messages
-     *                             defined in `intents`. If not specified, the agent's default language is
-     *                             used. [Many
-     *                             languages](https://cloud.google.com/dialogflow/docs/reference/language)
-     *                             are supported. Note: languages must be enabled in the agent before they can
-     *                             be used.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -826,6 +821,13 @@ class IntentsGapicClient
      *          type) or JSON object. Note: The URI must start with "gs://".
      *     @type IntentBatch $intentBatchInline
      *          The collection of intents to update or create.
+     *     @type string $languageCode
+     *          Optional. The language of training phrases, parameters and rich messages
+     *          defined in `intents`. If not specified, the agent's default language is
+     *          used. [Many
+     *          languages](https://cloud.google.com/dialogflow/docs/reference/language)
+     *          are supported. Note: languages must be enabled in the agent before they can
+     *          be used.
      *     @type FieldMask $updateMask
      *          Optional. The mask to control which fields get updated.
      *     @type int $intentView
@@ -843,16 +845,18 @@ class IntentsGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function batchUpdateIntents($parent, $languageCode, array $optionalArgs = [])
+    public function batchUpdateIntents($parent, array $optionalArgs = [])
     {
         $request = new BatchUpdateIntentsRequest();
         $request->setParent($parent);
-        $request->setLanguageCode($languageCode);
         if (isset($optionalArgs['intentBatchUri'])) {
             $request->setIntentBatchUri($optionalArgs['intentBatchUri']);
         }
         if (isset($optionalArgs['intentBatchInline'])) {
             $request->setIntentBatchInline($optionalArgs['intentBatchInline']);
+        }
+        if (isset($optionalArgs['languageCode'])) {
+            $request->setLanguageCode($optionalArgs['languageCode']);
         }
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);

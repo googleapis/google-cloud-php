@@ -19,14 +19,14 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
      * Required. Dataset name. Dataset must already exist. All imported
      * annotations and examples will be added.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
      * Required. The desired input location and its domain specific semantics,
      * if any.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.InputConfig input_config = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.InputConfig input_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $input_config = null;
 
@@ -53,7 +53,7 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
      * Required. Dataset name. Dataset must already exist. All imported
      * annotations and examples will be added.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -65,7 +65,7 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
      * Required. Dataset name. Dataset must already exist. All imported
      * annotations and examples will be added.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -81,7 +81,7 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
      * Required. The desired input location and its domain specific semantics,
      * if any.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.InputConfig input_config = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.InputConfig input_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\AutoMl\V1beta1\InputConfig
      */
     public function getInputConfig()
@@ -93,7 +93,7 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
      * Required. The desired input location and its domain specific semantics,
      * if any.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.InputConfig input_config = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.InputConfig input_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\AutoMl\V1beta1\InputConfig $var
      * @return $this
      */

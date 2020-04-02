@@ -21,11 +21,13 @@ use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iam\Iam;
+use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\LongRunning\LROTrait;
 use Google\Cloud\Core\Retry;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Database\V1\Database\State;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Connection\IamDatabase;
@@ -97,6 +99,9 @@ class Database
     use LROTrait;
     use TransactionConfigurationTrait;
 
+    const STATE_CREATING = State::CREATING;
+    const STATE_READY = State::READY;
+    const STATE_READY_OPTIMIZING = State::READY_OPTIMIZING;
     const MAX_RETRIES = 10;
 
     const TYPE_BOOL = TypeCode::BOOL;
@@ -167,6 +172,7 @@ class Database
      * @param Instance $instance The instance in which the database exists.
      * @param LongRunningConnectionInterface $lroConnection An implementation
      *        mapping to methods which handle LRO resolution in the service.
+     * @param array $lroCallables
      * @param string $projectId The project ID.
      * @param string $name The database name or ID.
      * @param SessionPoolInterface $sessionPool [optional] The session pool
@@ -199,6 +205,93 @@ class Database
         }
 
         $this->setLroProperties($lroConnection, $lroCallables, $this->name);
+    }
+
+    /**
+     * Return the database state.
+     *
+     * When databases are created or restored, they may take some time before
+     * they are ready for use. This method allows for checking whether a
+     * database is ready. Note that this value is cached within the class instance,
+     * so if you are polling it, first call {@see Google\Cloud\Spanner\Database::reload()}
+     * to refresh the cached value.
+     *
+     * Example:
+     * ```
+     * if ($database->state() === Database::STATE_READY) {
+     *     echo 'Database is ready!';
+     * }
+     * ```
+     *
+     * @param array $options [optional] Configuration options.
+     * @return int|null
+     */
+    public function state(array $options = [])
+    {
+        $info = $this->info($options);
+
+        return (isset($info['state']))
+            ? $info['state']
+            : null;
+    }
+    
+    /**
+     * List completed and pending backups belonging to this database.
+     *
+     * Example:
+     * ```
+     * $backups = $database->backups();
+     * ```
+     *
+     * @param array $options [optional] {
+     *     Configuration options.
+     *     @type string $filter The standard list filter.
+     *           **NOTE**: This method always sets the database filter as a name of this database.
+     *           User may provide additional filter expressions which would be appended in the form of
+     *           "(database:<databaseName>) AND (<additional filter expression from user>)"
+     *     @type int $pageSize Maximum number of results to return per request.
+     *     @type int $resultLimit Limit the number of results returned in total.
+     *           **Defaults to** `0` (return all results).
+     *     @type string $pageToken A previously-returned page token used to
+     *           resume the loading of results from a specific point.
+     * }
+     *
+     * @return ItemIterator<Backup>
+     */
+    public function backups(array $options = [])
+    {
+        $filter = "database:" . $this->name();
+        
+        if (isset($options['filter'])) {
+            $filter = sprintf('(%1$s) AND (%2$s)', $filter, $this->pluck('filter', $options));
+        }
+
+        return $this->instance->backups([
+            'filter' => $filter
+        ] + $options);
+    }
+
+    /**
+     * Create a backup for this database.
+     *
+     * Example:
+     * ```
+     * $operation = $database->createBackup('my-backup', new \DateTime('+7 hours'));
+     * ```
+     *
+     * @param string $name The backup name.
+     * @param \DateTimeInterface $expireTime ​The expiration time of the backup,
+     *        with microseconds granularity that must be at least 6 hours and
+     *        at most 366 days. Once the expireTime has passed, the backup is
+     *        eligible to be automatically deleted by Cloud Spanner.
+     * @param array $options [optional] Configuration options.
+     *
+     * @return LongRunningOperation<Backup>
+     */
+    public function createBackup($name, \DateTimeInterface $expireTime, array $options = [])
+    {
+        $backup = $this->instance->backup($name);
+        return $backup->create($this->name(), $expireTime, $options);
     }
 
     /**
@@ -321,6 +414,27 @@ class Database
         ]);
 
         return $this->resumeOperation($operation['name'], $operation);
+    }
+
+    /**
+     * Restores to this database from a backup.
+     *
+     * **NOTE**: A restore operation can only be made to a non-existing database.
+     *
+     * Example:
+     * ```
+     * $operation = $database->restore($backup);
+     * ```
+     *
+     * @param Backup|string $backup The backup to restore, given as a Backup instance or a string of the form
+     *        `projects/<project>/instances/<instance>/backups/<backup>`.
+     * @param array $options [optional] Configuration options.
+     *
+     * @return LongRunningOperation<Database>
+     */
+    public function restore($backup, array $options = [])
+    {
+        return $this->instance->createDatabaseFromBackup($this->name, $backup, $options);
     }
 
     /**
@@ -1343,6 +1457,19 @@ class Database
      *           **Defaults to** `SessionPoolInterface::CONTEXT_READ`.
      *     @type array $sessionOptions Session configuration and request options.
      *           Session labels may be applied using the `labels` key.
+     *     @type array $queryOptions Query optimizer configuration.
+     *     @type string $queryOptions.optimizerVersion An option to control the
+     *           selection of optimizer version. This parameter allows
+     *           individual queries to pick different query optimizer versions.
+     *           Specifying "latest" as a value instructs Cloud Spanner to use
+     *           the latest supported query optimizer version. If not specified,
+     *           Cloud Spanner uses optimizer version set at the client level
+     *           options or set by the `SPANNER_OPTIMIZER_VERSION` environment
+     *           variable. Any other positive integer (from the list of supported
+     *           optimizer versions) overrides the default optimizer version for
+     *           query execution. Executing a SQL statement with an invalid
+     *           optimizer version will fail with a syntax error
+     *           (`INVALID_ARGUMENT`) status.
      * }
      * @codingStandardsIgnoreEnd
      * @return Result

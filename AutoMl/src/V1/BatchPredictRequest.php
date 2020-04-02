@@ -9,50 +9,97 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for
- * [PredictionService.BatchPredict][google.cloud.automl.v1.PredictionService.BatchPredict].
+ * Request message for [PredictionService.BatchPredict][google.cloud.automl.v1.PredictionService.BatchPredict].
  *
  * Generated from protobuf message <code>google.cloud.automl.v1.BatchPredictRequest</code>
  */
 class BatchPredictRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Name of the model requested to serve the batch prediction.
+     * Required. Name of the model requested to serve the batch prediction.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
      * Required. The input configuration for batch prediction.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1.BatchPredictInputConfig input_config = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1.BatchPredictInputConfig input_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $input_config = null;
     /**
      * Required. The Configuration specifying where output predictions should
      * be written.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1.BatchPredictOutputConfig output_config = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1.BatchPredictOutputConfig output_config = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $output_config = null;
     /**
      * Additional domain-specific parameters for the predictions, any string must
      * be up to 25000 characters long.
-     * *  For Text Classification:
-     *    `score_threshold` - (float) A value from 0.0 to 1.0. When the model
-     *         makes predictions for a text snippet, it will only produce results
-     *         that have at least this confidence score. The default is 0.5.
-     * *  For Image Classification:
-     *    `score_threshold` - (float) A value from 0.0 to 1.0. When the model
-     *         makes predictions for an image, it will only produce results that
-     *         have at least this confidence score. The default is 0.5.
-     * *  For Image Object Detection:
-     *    `score_threshold` - (float) When Model detects objects on the image,
-     *        it will only produce bounding boxes which have at least this
-     *        confidence score. Value in 0 to 1 range, default is 0.5.
-     *    `max_bounding_box_count` - (int64) No more than this number of bounding
-     *        boxes will be produced per image. Default is 100, the
-     *        requested value may be limited by server.
+     * <h4>AutoML Natural Language Classification</h4>
+     * `score_threshold`
+     * : (float) A value from 0.0 to 1.0. When the model
+     *   makes predictions for a text snippet, it will only produce results
+     *   that have at least this confidence score. The default is 0.5.
+     * <h4>AutoML Vision Classification</h4>
+     * `score_threshold`
+     * : (float) A value from 0.0 to 1.0. When the model
+     *   makes predictions for an image, it will only produce results that
+     *   have at least this confidence score. The default is 0.5.
+     * <h4>AutoML Vision Object Detection</h4>
+     * `score_threshold`
+     * : (float) When Model detects objects on the image,
+     *   it will only produce bounding boxes which have at least this
+     *   confidence score. Value in 0 to 1 range, default is 0.5.
+     * `max_bounding_box_count`
+     * : (int64) The maximum number of bounding
+     *   boxes returned per image. The default is 100, the
+     *   number of bounding boxes returned might be limited by the server.
+     * <h4>AutoML Video Intelligence Classification</h4>
+     * `score_threshold`
+     * : (float) A value from 0.0 to 1.0. When the model
+     *   makes predictions for a video, it will only produce results that
+     *   have at least this confidence score. The default is 0.5.
+     * `segment_classification`
+     * : (boolean) Set to true to request
+     *   segment-level classification. AutoML Video Intelligence returns
+     *   labels and their confidence scores for the entire segment of the
+     *   video that user specified in the request configuration.
+     *   The default is true.
+     * `shot_classification`
+     * : (boolean) Set to true to request shot-level
+     *   classification. AutoML Video Intelligence determines the boundaries
+     *   for each camera shot in the entire segment of the video that user
+     *   specified in the request configuration. AutoML Video Intelligence
+     *   then returns labels and their confidence scores for each detected
+     *   shot, along with the start and end time of the shot.
+     *   The default is false.
+     *   WARNING: Model evaluation is not done for this classification type,
+     *   the quality of it depends on training data, but there are no metrics
+     *   provided to describe that quality.
+     * `1s_interval_classification`
+     * : (boolean) Set to true to request
+     *   classification for a video at one-second intervals. AutoML Video
+     *   Intelligence returns labels and their confidence scores for each
+     *   second of the entire segment of the video that user specified in the
+     *   request configuration. The default is false.
+     *   WARNING: Model evaluation is not done for this classification
+     *   type, the quality of it depends on training data, but there are no
+     *   metrics provided to describe that quality.
+     * <h4>AutoML Video Intelligence Object Tracking</h4>
+     * `score_threshold`
+     * : (float) When Model detects objects on video frames,
+     *   it will only produce bounding boxes which have at least this
+     *   confidence score. Value in 0 to 1 range, default is 0.5.
+     * `max_bounding_box_count`
+     * : (int64) The maximum number of bounding
+     *   boxes returned per image. The default is 100, the
+     *   number of bounding boxes returned might be limited by the server.
+     * `min_bounding_box_size`
+     * : (float) Only bounding boxes with shortest edge
+     *   at least that long as a relative value of video frame size are
+     *   returned. Value in 0 to 1 range. Default is 0.
      *
      * Generated from protobuf field <code>map<string, string> params = 5;</code>
      */
@@ -65,7 +112,7 @@ class BatchPredictRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Name of the model requested to serve the batch prediction.
+     *           Required. Name of the model requested to serve the batch prediction.
      *     @type \Google\Cloud\AutoMl\V1\BatchPredictInputConfig $input_config
      *           Required. The input configuration for batch prediction.
      *     @type \Google\Cloud\AutoMl\V1\BatchPredictOutputConfig $output_config
@@ -74,21 +121,69 @@ class BatchPredictRequest extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $params
      *           Additional domain-specific parameters for the predictions, any string must
      *           be up to 25000 characters long.
-     *           *  For Text Classification:
-     *              `score_threshold` - (float) A value from 0.0 to 1.0. When the model
-     *                   makes predictions for a text snippet, it will only produce results
-     *                   that have at least this confidence score. The default is 0.5.
-     *           *  For Image Classification:
-     *              `score_threshold` - (float) A value from 0.0 to 1.0. When the model
-     *                   makes predictions for an image, it will only produce results that
-     *                   have at least this confidence score. The default is 0.5.
-     *           *  For Image Object Detection:
-     *              `score_threshold` - (float) When Model detects objects on the image,
-     *                  it will only produce bounding boxes which have at least this
-     *                  confidence score. Value in 0 to 1 range, default is 0.5.
-     *              `max_bounding_box_count` - (int64) No more than this number of bounding
-     *                  boxes will be produced per image. Default is 100, the
-     *                  requested value may be limited by server.
+     *           <h4>AutoML Natural Language Classification</h4>
+     *           `score_threshold`
+     *           : (float) A value from 0.0 to 1.0. When the model
+     *             makes predictions for a text snippet, it will only produce results
+     *             that have at least this confidence score. The default is 0.5.
+     *           <h4>AutoML Vision Classification</h4>
+     *           `score_threshold`
+     *           : (float) A value from 0.0 to 1.0. When the model
+     *             makes predictions for an image, it will only produce results that
+     *             have at least this confidence score. The default is 0.5.
+     *           <h4>AutoML Vision Object Detection</h4>
+     *           `score_threshold`
+     *           : (float) When Model detects objects on the image,
+     *             it will only produce bounding boxes which have at least this
+     *             confidence score. Value in 0 to 1 range, default is 0.5.
+     *           `max_bounding_box_count`
+     *           : (int64) The maximum number of bounding
+     *             boxes returned per image. The default is 100, the
+     *             number of bounding boxes returned might be limited by the server.
+     *           <h4>AutoML Video Intelligence Classification</h4>
+     *           `score_threshold`
+     *           : (float) A value from 0.0 to 1.0. When the model
+     *             makes predictions for a video, it will only produce results that
+     *             have at least this confidence score. The default is 0.5.
+     *           `segment_classification`
+     *           : (boolean) Set to true to request
+     *             segment-level classification. AutoML Video Intelligence returns
+     *             labels and their confidence scores for the entire segment of the
+     *             video that user specified in the request configuration.
+     *             The default is true.
+     *           `shot_classification`
+     *           : (boolean) Set to true to request shot-level
+     *             classification. AutoML Video Intelligence determines the boundaries
+     *             for each camera shot in the entire segment of the video that user
+     *             specified in the request configuration. AutoML Video Intelligence
+     *             then returns labels and their confidence scores for each detected
+     *             shot, along with the start and end time of the shot.
+     *             The default is false.
+     *             WARNING: Model evaluation is not done for this classification type,
+     *             the quality of it depends on training data, but there are no metrics
+     *             provided to describe that quality.
+     *           `1s_interval_classification`
+     *           : (boolean) Set to true to request
+     *             classification for a video at one-second intervals. AutoML Video
+     *             Intelligence returns labels and their confidence scores for each
+     *             second of the entire segment of the video that user specified in the
+     *             request configuration. The default is false.
+     *             WARNING: Model evaluation is not done for this classification
+     *             type, the quality of it depends on training data, but there are no
+     *             metrics provided to describe that quality.
+     *           <h4>AutoML Video Intelligence Object Tracking</h4>
+     *           `score_threshold`
+     *           : (float) When Model detects objects on video frames,
+     *             it will only produce bounding boxes which have at least this
+     *             confidence score. Value in 0 to 1 range, default is 0.5.
+     *           `max_bounding_box_count`
+     *           : (int64) The maximum number of bounding
+     *             boxes returned per image. The default is 100, the
+     *             number of bounding boxes returned might be limited by the server.
+     *           `min_bounding_box_size`
+     *           : (float) Only bounding boxes with shortest edge
+     *             at least that long as a relative value of video frame size are
+     *             returned. Value in 0 to 1 range. Default is 0.
      * }
      */
     public function __construct($data = NULL) {
@@ -97,9 +192,9 @@ class BatchPredictRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the model requested to serve the batch prediction.
+     * Required. Name of the model requested to serve the batch prediction.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -108,9 +203,9 @@ class BatchPredictRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the model requested to serve the batch prediction.
+     * Required. Name of the model requested to serve the batch prediction.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -125,7 +220,7 @@ class BatchPredictRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The input configuration for batch prediction.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1.BatchPredictInputConfig input_config = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1.BatchPredictInputConfig input_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\AutoMl\V1\BatchPredictInputConfig
      */
     public function getInputConfig()
@@ -136,7 +231,7 @@ class BatchPredictRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The input configuration for batch prediction.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1.BatchPredictInputConfig input_config = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1.BatchPredictInputConfig input_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\AutoMl\V1\BatchPredictInputConfig $var
      * @return $this
      */
@@ -152,7 +247,7 @@ class BatchPredictRequest extends \Google\Protobuf\Internal\Message
      * Required. The Configuration specifying where output predictions should
      * be written.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1.BatchPredictOutputConfig output_config = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1.BatchPredictOutputConfig output_config = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\AutoMl\V1\BatchPredictOutputConfig
      */
     public function getOutputConfig()
@@ -164,7 +259,7 @@ class BatchPredictRequest extends \Google\Protobuf\Internal\Message
      * Required. The Configuration specifying where output predictions should
      * be written.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1.BatchPredictOutputConfig output_config = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1.BatchPredictOutputConfig output_config = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\AutoMl\V1\BatchPredictOutputConfig $var
      * @return $this
      */
@@ -179,21 +274,69 @@ class BatchPredictRequest extends \Google\Protobuf\Internal\Message
     /**
      * Additional domain-specific parameters for the predictions, any string must
      * be up to 25000 characters long.
-     * *  For Text Classification:
-     *    `score_threshold` - (float) A value from 0.0 to 1.0. When the model
-     *         makes predictions for a text snippet, it will only produce results
-     *         that have at least this confidence score. The default is 0.5.
-     * *  For Image Classification:
-     *    `score_threshold` - (float) A value from 0.0 to 1.0. When the model
-     *         makes predictions for an image, it will only produce results that
-     *         have at least this confidence score. The default is 0.5.
-     * *  For Image Object Detection:
-     *    `score_threshold` - (float) When Model detects objects on the image,
-     *        it will only produce bounding boxes which have at least this
-     *        confidence score. Value in 0 to 1 range, default is 0.5.
-     *    `max_bounding_box_count` - (int64) No more than this number of bounding
-     *        boxes will be produced per image. Default is 100, the
-     *        requested value may be limited by server.
+     * <h4>AutoML Natural Language Classification</h4>
+     * `score_threshold`
+     * : (float) A value from 0.0 to 1.0. When the model
+     *   makes predictions for a text snippet, it will only produce results
+     *   that have at least this confidence score. The default is 0.5.
+     * <h4>AutoML Vision Classification</h4>
+     * `score_threshold`
+     * : (float) A value from 0.0 to 1.0. When the model
+     *   makes predictions for an image, it will only produce results that
+     *   have at least this confidence score. The default is 0.5.
+     * <h4>AutoML Vision Object Detection</h4>
+     * `score_threshold`
+     * : (float) When Model detects objects on the image,
+     *   it will only produce bounding boxes which have at least this
+     *   confidence score. Value in 0 to 1 range, default is 0.5.
+     * `max_bounding_box_count`
+     * : (int64) The maximum number of bounding
+     *   boxes returned per image. The default is 100, the
+     *   number of bounding boxes returned might be limited by the server.
+     * <h4>AutoML Video Intelligence Classification</h4>
+     * `score_threshold`
+     * : (float) A value from 0.0 to 1.0. When the model
+     *   makes predictions for a video, it will only produce results that
+     *   have at least this confidence score. The default is 0.5.
+     * `segment_classification`
+     * : (boolean) Set to true to request
+     *   segment-level classification. AutoML Video Intelligence returns
+     *   labels and their confidence scores for the entire segment of the
+     *   video that user specified in the request configuration.
+     *   The default is true.
+     * `shot_classification`
+     * : (boolean) Set to true to request shot-level
+     *   classification. AutoML Video Intelligence determines the boundaries
+     *   for each camera shot in the entire segment of the video that user
+     *   specified in the request configuration. AutoML Video Intelligence
+     *   then returns labels and their confidence scores for each detected
+     *   shot, along with the start and end time of the shot.
+     *   The default is false.
+     *   WARNING: Model evaluation is not done for this classification type,
+     *   the quality of it depends on training data, but there are no metrics
+     *   provided to describe that quality.
+     * `1s_interval_classification`
+     * : (boolean) Set to true to request
+     *   classification for a video at one-second intervals. AutoML Video
+     *   Intelligence returns labels and their confidence scores for each
+     *   second of the entire segment of the video that user specified in the
+     *   request configuration. The default is false.
+     *   WARNING: Model evaluation is not done for this classification
+     *   type, the quality of it depends on training data, but there are no
+     *   metrics provided to describe that quality.
+     * <h4>AutoML Video Intelligence Object Tracking</h4>
+     * `score_threshold`
+     * : (float) When Model detects objects on video frames,
+     *   it will only produce bounding boxes which have at least this
+     *   confidence score. Value in 0 to 1 range, default is 0.5.
+     * `max_bounding_box_count`
+     * : (int64) The maximum number of bounding
+     *   boxes returned per image. The default is 100, the
+     *   number of bounding boxes returned might be limited by the server.
+     * `min_bounding_box_size`
+     * : (float) Only bounding boxes with shortest edge
+     *   at least that long as a relative value of video frame size are
+     *   returned. Value in 0 to 1 range. Default is 0.
      *
      * Generated from protobuf field <code>map<string, string> params = 5;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -206,21 +349,69 @@ class BatchPredictRequest extends \Google\Protobuf\Internal\Message
     /**
      * Additional domain-specific parameters for the predictions, any string must
      * be up to 25000 characters long.
-     * *  For Text Classification:
-     *    `score_threshold` - (float) A value from 0.0 to 1.0. When the model
-     *         makes predictions for a text snippet, it will only produce results
-     *         that have at least this confidence score. The default is 0.5.
-     * *  For Image Classification:
-     *    `score_threshold` - (float) A value from 0.0 to 1.0. When the model
-     *         makes predictions for an image, it will only produce results that
-     *         have at least this confidence score. The default is 0.5.
-     * *  For Image Object Detection:
-     *    `score_threshold` - (float) When Model detects objects on the image,
-     *        it will only produce bounding boxes which have at least this
-     *        confidence score. Value in 0 to 1 range, default is 0.5.
-     *    `max_bounding_box_count` - (int64) No more than this number of bounding
-     *        boxes will be produced per image. Default is 100, the
-     *        requested value may be limited by server.
+     * <h4>AutoML Natural Language Classification</h4>
+     * `score_threshold`
+     * : (float) A value from 0.0 to 1.0. When the model
+     *   makes predictions for a text snippet, it will only produce results
+     *   that have at least this confidence score. The default is 0.5.
+     * <h4>AutoML Vision Classification</h4>
+     * `score_threshold`
+     * : (float) A value from 0.0 to 1.0. When the model
+     *   makes predictions for an image, it will only produce results that
+     *   have at least this confidence score. The default is 0.5.
+     * <h4>AutoML Vision Object Detection</h4>
+     * `score_threshold`
+     * : (float) When Model detects objects on the image,
+     *   it will only produce bounding boxes which have at least this
+     *   confidence score. Value in 0 to 1 range, default is 0.5.
+     * `max_bounding_box_count`
+     * : (int64) The maximum number of bounding
+     *   boxes returned per image. The default is 100, the
+     *   number of bounding boxes returned might be limited by the server.
+     * <h4>AutoML Video Intelligence Classification</h4>
+     * `score_threshold`
+     * : (float) A value from 0.0 to 1.0. When the model
+     *   makes predictions for a video, it will only produce results that
+     *   have at least this confidence score. The default is 0.5.
+     * `segment_classification`
+     * : (boolean) Set to true to request
+     *   segment-level classification. AutoML Video Intelligence returns
+     *   labels and their confidence scores for the entire segment of the
+     *   video that user specified in the request configuration.
+     *   The default is true.
+     * `shot_classification`
+     * : (boolean) Set to true to request shot-level
+     *   classification. AutoML Video Intelligence determines the boundaries
+     *   for each camera shot in the entire segment of the video that user
+     *   specified in the request configuration. AutoML Video Intelligence
+     *   then returns labels and their confidence scores for each detected
+     *   shot, along with the start and end time of the shot.
+     *   The default is false.
+     *   WARNING: Model evaluation is not done for this classification type,
+     *   the quality of it depends on training data, but there are no metrics
+     *   provided to describe that quality.
+     * `1s_interval_classification`
+     * : (boolean) Set to true to request
+     *   classification for a video at one-second intervals. AutoML Video
+     *   Intelligence returns labels and their confidence scores for each
+     *   second of the entire segment of the video that user specified in the
+     *   request configuration. The default is false.
+     *   WARNING: Model evaluation is not done for this classification
+     *   type, the quality of it depends on training data, but there are no
+     *   metrics provided to describe that quality.
+     * <h4>AutoML Video Intelligence Object Tracking</h4>
+     * `score_threshold`
+     * : (float) When Model detects objects on video frames,
+     *   it will only produce bounding boxes which have at least this
+     *   confidence score. Value in 0 to 1 range, default is 0.5.
+     * `max_bounding_box_count`
+     * : (int64) The maximum number of bounding
+     *   boxes returned per image. The default is 100, the
+     *   number of bounding boxes returned might be limited by the server.
+     * `min_bounding_box_size`
+     * : (float) Only bounding boxes with shortest edge
+     *   at least that long as a relative value of video frame size are
+     *   returned. Value in 0 to 1 range. Default is 0.
      *
      * Generated from protobuf field <code>map<string, string> params = 5;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

@@ -4,9 +4,9 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-automl/v/stable)](https://packagist.org/packages/google/cloud-automl) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-automl.svg)](https://packagist.org/packages/google/cloud-automl)
 
-* [API documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/cloud-automl/latest/automl/readme)
+* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-automl/latest)
 
-**NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googlecloudplatform/google-cloud-php). Any
+**NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to
 that project.
 
@@ -31,7 +31,7 @@ please see our [gRPC installation guide](https://cloud.google.com/php/grpc).
 
 ### Authentication
 
-Please see our [Authentication guide](https://github.com/GoogleCloudPlatform/google-cloud-php/blob/master/AUTHENTICATION.md) for more information
+Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/master/AUTHENTICATION.md) for more information
 on authenticating your client. Once authenticated, you'll be ready to start making requests.
 
 ### Sample
@@ -56,7 +56,8 @@ $response = $autoMlClient->createDataset($formattedParent, $dataset);
 
 ### Version
 
-This component is considered beta. As such, it is still a work-in-progress and is more likely to get backwards-incompatible updates.
+This component is considered GA (generally available). As such, it will not introduce backwards-incompatible changes in
+any minor or patch releases. We will address issues and requests with the highest priority.
 
 ### Next Steps
 

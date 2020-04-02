@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2019 Google LLC.
+// Copyright 2019 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-//
 //
 namespace Google\Cloud\Firestore\V1;
 
@@ -67,20 +66,6 @@ class FirestoreGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.firestore.v1.Firestore/ListDocuments',
         $argument,
         ['\Google\Cloud\Firestore\V1\ListDocumentsResponse', 'decode'],
-        $metadata, $options);
-    }
-
-    /**
-     * Creates a new document.
-     * @param \Google\Cloud\Firestore\V1\CreateDocumentRequest $argument input argument
-     * @param array $metadata metadata
-     * @param array $options call options
-     */
-    public function CreateDocument(\Google\Cloud\Firestore\V1\CreateDocumentRequest $argument,
-      $metadata = [], $options = []) {
-        return $this->_simpleRequest('/google.firestore.v1.Firestore/CreateDocument',
-        $argument,
-        ['\Google\Cloud\Firestore\V1\Document', 'decode'],
         $metadata, $options);
     }
 
@@ -218,6 +203,20 @@ class FirestoreGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.firestore.v1.Firestore/ListCollectionIds',
         $argument,
         ['\Google\Cloud\Firestore\V1\ListCollectionIdsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Creates a new document.
+     * @param \Google\Cloud\Firestore\V1\CreateDocumentRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function CreateDocument(\Google\Cloud\Firestore\V1\CreateDocumentRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.firestore.v1.Firestore/CreateDocument',
+        $argument,
+        ['\Google\Cloud\Firestore\V1\Document', 'decode'],
         $metadata, $options);
     }
 

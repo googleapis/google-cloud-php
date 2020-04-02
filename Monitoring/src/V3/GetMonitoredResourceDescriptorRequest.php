@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetMonitoredResourceDescriptorRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The monitored resource descriptor to get.  The format is
-     * `"projects/{project_id_or_number}/monitoredResourceDescriptors/{resource_type}"`.
-     * The `{resource_type}` is a predefined type, such as
+     * Required. The monitored resource descriptor to get.  The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/monitoredResourceDescriptors/[RESOURCE_TYPE]
+     * The `[RESOURCE_TYPE]` is a predefined type, such as
      * `cloudsql_database`.
      *
      * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -32,9 +32,9 @@ class GetMonitoredResourceDescriptorRequest extends \Google\Protobuf\Internal\Me
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The monitored resource descriptor to get.  The format is
-     *           `"projects/{project_id_or_number}/monitoredResourceDescriptors/{resource_type}"`.
-     *           The `{resource_type}` is a predefined type, such as
+     *           Required. The monitored resource descriptor to get.  The format is:
+     *               projects/[PROJECT_ID_OR_NUMBER]/monitoredResourceDescriptors/[RESOURCE_TYPE]
+     *           The `[RESOURCE_TYPE]` is a predefined type, such as
      *           `cloudsql_database`.
      * }
      */
@@ -44,9 +44,9 @@ class GetMonitoredResourceDescriptorRequest extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * Required. The monitored resource descriptor to get.  The format is
-     * `"projects/{project_id_or_number}/monitoredResourceDescriptors/{resource_type}"`.
-     * The `{resource_type}` is a predefined type, such as
+     * Required. The monitored resource descriptor to get.  The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/monitoredResourceDescriptors/[RESOURCE_TYPE]
+     * The `[RESOURCE_TYPE]` is a predefined type, such as
      * `cloudsql_database`.
      *
      * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -58,9 +58,9 @@ class GetMonitoredResourceDescriptorRequest extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * Required. The monitored resource descriptor to get.  The format is
-     * `"projects/{project_id_or_number}/monitoredResourceDescriptors/{resource_type}"`.
-     * The `{resource_type}` is a predefined type, such as
+     * Required. The monitored resource descriptor to get.  The format is:
+     *     projects/[PROJECT_ID_OR_NUMBER]/monitoredResourceDescriptors/[RESOURCE_TYPE]
+     * The `[RESOURCE_TYPE]` is a predefined type, such as
      * `cloudsql_database`.
      *
      * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

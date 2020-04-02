@@ -1,0 +1,5 @@
+{
+    "distribution_name": "google/cloud-logging",
+    "release_level": "ga",
+    "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-logging/latest"
+}

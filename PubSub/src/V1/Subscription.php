@@ -16,23 +16,22 @@ use Google\Protobuf\Internal\GPBUtil;
 class Subscription extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The name of the subscription. It must have the format
+     * Required. The name of the subscription. It must have the format
      * `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must
      * start with a letter, and contain only letters (`[A-Za-z]`), numbers
      * (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`),
      * plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters
      * in length, and it must not start with `"goog"`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $name = '';
     /**
-     * The name of the topic from which this subscription is receiving messages.
-     * Format is `projects/{project}/topics/{topic}`.
-     * The value of this field will be `_deleted-topic_` if the topic has been
-     * deleted.
+     * Required. The name of the topic from which this subscription is receiving
+     * messages. Format is `projects/{project}/topics/{topic}`. The value of this
+     * field will be `_deleted-topic_` if the topic has been deleted.
      *
-     * Generated from protobuf field <code>string topic = 2;</code>
+     * Generated from protobuf field <code>string topic = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $topic = '';
     /**
@@ -119,6 +118,18 @@ class Subscription extends \Google\Protobuf\Internal\Message
      */
     private $expiration_policy = null;
     /**
+     * An expression written in the Cloud Pub/Sub filter language. If non-empty,
+     * then only `PubsubMessage`s whose `attributes` field matches the filter are
+     * delivered on this subscription. If empty, then no messages are filtered
+     * out.
+     * <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
+     * API might be changed in backward-incompatible ways and is not recommended
+     * for production use. It is not subject to any SLA or deprecation policy.
+     *
+     * Generated from protobuf field <code>string filter = 12;</code>
+     */
+    private $filter = '';
+    /**
      * A policy that specifies the conditions for dead lettering messages in
      * this subscription. If dead_letter_policy is not set, dead lettering
      * is disabled.
@@ -133,6 +144,20 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.pubsub.v1.DeadLetterPolicy dead_letter_policy = 13;</code>
      */
     private $dead_letter_policy = null;
+    /**
+     * A policy that specifies how Cloud Pub/Sub retries message delivery for this
+     * subscription.
+     * If not set, the default retry policy is applied. This generally implies
+     * that messages will be retried as soon as possible for healthy subscribers.
+     * RetryPolicy will be triggered on NACKs or acknowledgement deadline
+     * exceeded events for a given message.
+     * <b>EXPERIMENTAL:</b> This API might be changed in backward-incompatible
+     * ways and is not recommended for production use. It is not subject to any
+     * SLA or deprecation policy.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.RetryPolicy retry_policy = 14;</code>
+     */
+    private $retry_policy = null;
 
     /**
      * Constructor.
@@ -141,17 +166,16 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The name of the subscription. It must have the format
+     *           Required. The name of the subscription. It must have the format
      *           `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must
      *           start with a letter, and contain only letters (`[A-Za-z]`), numbers
      *           (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`),
      *           plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters
      *           in length, and it must not start with `"goog"`.
      *     @type string $topic
-     *           The name of the topic from which this subscription is receiving messages.
-     *           Format is `projects/{project}/topics/{topic}`.
-     *           The value of this field will be `_deleted-topic_` if the topic has been
-     *           deleted.
+     *           Required. The name of the topic from which this subscription is receiving
+     *           messages. Format is `projects/{project}/topics/{topic}`. The value of this
+     *           field will be `_deleted-topic_` if the topic has been deleted.
      *     @type \Google\Cloud\PubSub\V1\PushConfig $push_config
      *           If push delivery is used with this subscription, this field is
      *           used to configure it. An empty `pushConfig` signifies that the subscriber
@@ -207,6 +231,14 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *           operations on the subscription. If `expiration_policy` is not set, a
      *           *default policy* with `ttl` of 31 days will be used. The minimum allowed
      *           value for `expiration_policy.ttl` is 1 day.
+     *     @type string $filter
+     *           An expression written in the Cloud Pub/Sub filter language. If non-empty,
+     *           then only `PubsubMessage`s whose `attributes` field matches the filter are
+     *           delivered on this subscription. If empty, then no messages are filtered
+     *           out.
+     *           <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
+     *           API might be changed in backward-incompatible ways and is not recommended
+     *           for production use. It is not subject to any SLA or deprecation policy.
      *     @type \Google\Cloud\PubSub\V1\DeadLetterPolicy $dead_letter_policy
      *           A policy that specifies the conditions for dead lettering messages in
      *           this subscription. If dead_letter_policy is not set, dead lettering
@@ -218,6 +250,16 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *           <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
      *           API might be changed in backward-incompatible ways and is not recommended
      *           for production use. It is not subject to any SLA or deprecation policy.
+     *     @type \Google\Cloud\PubSub\V1\RetryPolicy $retry_policy
+     *           A policy that specifies how Cloud Pub/Sub retries message delivery for this
+     *           subscription.
+     *           If not set, the default retry policy is applied. This generally implies
+     *           that messages will be retried as soon as possible for healthy subscribers.
+     *           RetryPolicy will be triggered on NACKs or acknowledgement deadline
+     *           exceeded events for a given message.
+     *           <b>EXPERIMENTAL:</b> This API might be changed in backward-incompatible
+     *           ways and is not recommended for production use. It is not subject to any
+     *           SLA or deprecation policy.
      * }
      */
     public function __construct($data = NULL) {
@@ -226,14 +268,14 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the subscription. It must have the format
+     * Required. The name of the subscription. It must have the format
      * `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must
      * start with a letter, and contain only letters (`[A-Za-z]`), numbers
      * (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`),
      * plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters
      * in length, and it must not start with `"goog"`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getName()
@@ -242,14 +284,14 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the subscription. It must have the format
+     * Required. The name of the subscription. It must have the format
      * `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must
      * start with a letter, and contain only letters (`[A-Za-z]`), numbers
      * (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`),
      * plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters
      * in length, and it must not start with `"goog"`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -262,12 +304,11 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the topic from which this subscription is receiving messages.
-     * Format is `projects/{project}/topics/{topic}`.
-     * The value of this field will be `_deleted-topic_` if the topic has been
-     * deleted.
+     * Required. The name of the topic from which this subscription is receiving
+     * messages. Format is `projects/{project}/topics/{topic}`. The value of this
+     * field will be `_deleted-topic_` if the topic has been deleted.
      *
-     * Generated from protobuf field <code>string topic = 2;</code>
+     * Generated from protobuf field <code>string topic = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getTopic()
@@ -276,12 +317,11 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the topic from which this subscription is receiving messages.
-     * Format is `projects/{project}/topics/{topic}`.
-     * The value of this field will be `_deleted-topic_` if the topic has been
-     * deleted.
+     * Required. The name of the topic from which this subscription is receiving
+     * messages. Format is `projects/{project}/topics/{topic}`. The value of this
+     * field will be `_deleted-topic_` if the topic has been deleted.
      *
-     * Generated from protobuf field <code>string topic = 2;</code>
+     * Generated from protobuf field <code>string topic = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -558,6 +598,44 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * An expression written in the Cloud Pub/Sub filter language. If non-empty,
+     * then only `PubsubMessage`s whose `attributes` field matches the filter are
+     * delivered on this subscription. If empty, then no messages are filtered
+     * out.
+     * <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
+     * API might be changed in backward-incompatible ways and is not recommended
+     * for production use. It is not subject to any SLA or deprecation policy.
+     *
+     * Generated from protobuf field <code>string filter = 12;</code>
+     * @return string
+     */
+    public function getFilter()
+    {
+        return $this->filter;
+    }
+
+    /**
+     * An expression written in the Cloud Pub/Sub filter language. If non-empty,
+     * then only `PubsubMessage`s whose `attributes` field matches the filter are
+     * delivered on this subscription. If empty, then no messages are filtered
+     * out.
+     * <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
+     * API might be changed in backward-incompatible ways and is not recommended
+     * for production use. It is not subject to any SLA or deprecation policy.
+     *
+     * Generated from protobuf field <code>string filter = 12;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFilter($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->filter = $var;
+
+        return $this;
+    }
+
+    /**
      * A policy that specifies the conditions for dead lettering messages in
      * this subscription. If dead_letter_policy is not set, dead lettering
      * is disabled.
@@ -597,6 +675,48 @@ class Subscription extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\DeadLetterPolicy::class);
         $this->dead_letter_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * A policy that specifies how Cloud Pub/Sub retries message delivery for this
+     * subscription.
+     * If not set, the default retry policy is applied. This generally implies
+     * that messages will be retried as soon as possible for healthy subscribers.
+     * RetryPolicy will be triggered on NACKs or acknowledgement deadline
+     * exceeded events for a given message.
+     * <b>EXPERIMENTAL:</b> This API might be changed in backward-incompatible
+     * ways and is not recommended for production use. It is not subject to any
+     * SLA or deprecation policy.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.RetryPolicy retry_policy = 14;</code>
+     * @return \Google\Cloud\PubSub\V1\RetryPolicy
+     */
+    public function getRetryPolicy()
+    {
+        return $this->retry_policy;
+    }
+
+    /**
+     * A policy that specifies how Cloud Pub/Sub retries message delivery for this
+     * subscription.
+     * If not set, the default retry policy is applied. This generally implies
+     * that messages will be retried as soon as possible for healthy subscribers.
+     * RetryPolicy will be triggered on NACKs or acknowledgement deadline
+     * exceeded events for a given message.
+     * <b>EXPERIMENTAL:</b> This API might be changed in backward-incompatible
+     * ways and is not recommended for production use. It is not subject to any
+     * SLA or deprecation policy.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.RetryPolicy retry_policy = 14;</code>
+     * @param \Google\Cloud\PubSub\V1\RetryPolicy $var
+     * @return $this
+     */
+    public function setRetryPolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\RetryPolicy::class);
+        $this->retry_policy = $var;
 
         return $this;
     }

@@ -20,12 +20,6 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/cloud/iot/v1/device_manager.proto
  * and updates to that file get reflected here through a refresh process.
- *
- * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
- * even though we intend the surface to be stable, we may make backwards incompatible changes
- * if necessary.
- *
- * @experimental
  */
 
 namespace Google\Cloud\Iot\V1;
@@ -37,20 +31,6 @@ use Google\Cloud\Iot\V1\Gapic\DeviceManagerGapicClient;
  */
 class DeviceManagerClient extends DeviceManagerGapicClient
 {
-    protected function modifyClientOptions(array &$options)
-    {
-        if (isset($options['transport'])) {
-            if ($options['transport'] == 'grpc') {
-                throw new \InvalidArgumentException(
-                    'The "grpc" transport is not currently supported, ' .
-                    'please use the "rest" transport.'
-                );
-            }
-            // If transport is set to anything other than grpc, take no action
-            // and process as usual in setClientOptions
-        } else {
-            // If transport is not set, default to rest
-            $options['transport'] = 'rest';
-        }
-    }
+    // This class is intentionally empty, and is intended to hold manual
+    // additions to the generated {@see DeviceManagerGapicClient} class.
 }

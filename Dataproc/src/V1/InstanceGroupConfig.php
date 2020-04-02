@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Optional. The config settings for Compute Engine resources in
+ * The config settings for Compute Engine resources in
  * an instance group, such as a master or worker group.
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1.InstanceGroupConfig</code>
@@ -46,7 +46,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      * * `n1-standard-2`
      * **Auto Zone Exception**: If you are using the Dataproc
      * [Auto Zone
-     * Placement](/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement)
+     * Placement](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement)
      * feature, you must use the short name of the machine type
      * resource, for example, `n1-standard-2`.
      *
@@ -114,7 +114,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      *           * `n1-standard-2`
      *           **Auto Zone Exception**: If you are using the Dataproc
      *           [Auto Zone
-     *           Placement](/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement)
+     *           Placement](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement)
      *           feature, you must use the short name of the machine type
      *           resource, for example, `n1-standard-2`.
      *     @type \Google\Cloud\Dataproc\V1\DiskConfig $disk_config
@@ -234,7 +234,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      * * `n1-standard-2`
      * **Auto Zone Exception**: If you are using the Dataproc
      * [Auto Zone
-     * Placement](/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement)
+     * Placement](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement)
      * feature, you must use the short name of the machine type
      * resource, for example, `n1-standard-2`.
      *
@@ -254,7 +254,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      * * `n1-standard-2`
      * **Auto Zone Exception**: If you are using the Dataproc
      * [Auto Zone
-     * Placement](/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement)
+     * Placement](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement)
      * feature, you must use the short name of the machine type
      * resource, for example, `n1-standard-2`.
      *

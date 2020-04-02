@@ -267,4 +267,12 @@ class SpannerClientTest extends SnippetTestCase
         $res = $snippet->invoke('operation');
         $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal());
     }
+
+    public function testEmulator()
+    {
+        $snippet = $this->snippetFromClass(SpannerClient::class, 1);
+        $res = $snippet->invoke('spanner');
+        $this->assertInstanceOf(SpannerClient::class, $res->returnVal());
+        $this->assertEquals('localhost:9010', getenv('SPANNER_EMULATOR_HOST'));
+    }
 }

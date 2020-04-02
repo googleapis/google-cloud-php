@@ -297,4 +297,23 @@ class PathTraitTest extends TestCase
             [false, $base . 'a/b/c/d/e/f', $base .'a/b/c/d'],
         ];
     }
+
+    /**
+     * @dataProvider isRelative
+     */
+    public function testIsRelative($path, $expected = true)
+    {
+        $this->assertEquals($expected, $this->impl->call('isRelative', [$path]));
+    }
+
+    public function isRelative()
+    {
+        return [
+            ['foo/bar'],
+            ['foo'],
+            ['projects'],
+            ['projects/foo', false],
+            ['projects/foo/databases/(default)/bar', false]
+        ];
+    }
 }

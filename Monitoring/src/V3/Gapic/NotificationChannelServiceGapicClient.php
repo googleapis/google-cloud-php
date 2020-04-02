@@ -20,8 +20,6 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/monitoring/v3/notification_service.proto
  * and updates to that file get reflected here through a refresh process.
- *
- * @experimental
  */
 
 namespace Google\Cloud\Monitoring\V3\Gapic;
@@ -90,8 +88,6 @@ use Google\Protobuf\Timestamp;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parseName method to extract the individual identifiers contained within formatted names
  * that are returned by the API.
- *
- * @experimental
  */
 class NotificationChannelServiceGapicClient
 {
@@ -198,7 +194,6 @@ class NotificationChannelServiceGapicClient
      * @param string $notificationChannel
      *
      * @return string The formatted notification_channel resource.
-     * @experimental
      */
     public static function notificationChannelName($project, $notificationChannel)
     {
@@ -216,7 +211,6 @@ class NotificationChannelServiceGapicClient
      * @param string $channelDescriptor
      *
      * @return string The formatted notification_channel_descriptor resource.
-     * @experimental
      */
     public static function notificationChannelDescriptorName($project, $channelDescriptor)
     {
@@ -233,7 +227,6 @@ class NotificationChannelServiceGapicClient
      * @param string $project
      *
      * @return string The formatted project resource.
-     * @experimental
      */
     public static function projectName($project)
     {
@@ -261,7 +254,6 @@ class NotificationChannelServiceGapicClient
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
-     * @experimental
      */
     public static function parseName($formattedName, $template = null)
     {
@@ -338,7 +330,6 @@ class NotificationChannelServiceGapicClient
      * }
      *
      * @throws ValidationException
-     * @experimental
      */
     public function __construct(array $options = [])
     {
@@ -379,7 +370,7 @@ class NotificationChannelServiceGapicClient
      * @param string $name Required. The REST resource name of the parent from which to retrieve
      *                     the notification channel descriptors. The expected syntax is:
      *
-     *     projects/[PROJECT_ID]
+     *     projects/[PROJECT_ID_OR_NUMBER]
      *
      * Note that this names the parent container in which to look for the
      * descriptors; to retrieve a single descriptor by name, use the
@@ -407,7 +398,6 @@ class NotificationChannelServiceGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listNotificationChannelDescriptors($name, array $optionalArgs = [])
     {
@@ -450,10 +440,11 @@ class NotificationChannelServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The channel type for which to execute the request. The format is
-     *                             `projects/[PROJECT_ID]/notificationChannelDescriptors/{channel_type}`.
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $name Required. The channel type for which to execute the request. The format is:
+     *
+     *     projects/[PROJECT_ID_OR_NUMBER]/notificationChannelDescriptors/[CHANNEL_TYPE]
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -465,7 +456,6 @@ class NotificationChannelServiceGapicClient
      * @return \Google\Cloud\Monitoring\V3\NotificationChannelDescriptor
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getNotificationChannelDescriptor($name, array $optionalArgs = [])
     {
@@ -516,15 +506,18 @@ class NotificationChannelServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The project on which to execute the request. The format is
-     *                             `projects/[PROJECT_ID]`. That is, this names the container
-     *                             in which to look for the notification channels; it does not name a
-     *                             specific channel. To query a specific channel by REST resource name, use
-     *                             the
-     *                             [`GetNotificationChannel`][google.monitoring.v3.NotificationChannelService.GetNotificationChannel]
-     *                             operation.
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $name Required. The project on which to execute the request. The format is:
+     *
+     *     projects/[PROJECT_ID_OR_NUMBER]
+     *
+     * This names the container
+     * in which to look for the notification channels; it does not name a
+     * specific channel. To query a specific channel by REST resource name, use
+     * the
+     * [`GetNotificationChannel`][google.monitoring.v3.NotificationChannelService.GetNotificationChannel]
+     * operation.
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type string $filter
      *          If provided, this field specifies the criteria that must be met by
@@ -558,7 +551,6 @@ class NotificationChannelServiceGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listNotificationChannels($name, array $optionalArgs = [])
     {
@@ -610,10 +602,11 @@ class NotificationChannelServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The channel for which to execute the request. The format is
-     *                             `projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID]`.
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $name Required. The channel for which to execute the request. The format is:
+     *
+     *     projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID]
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -625,7 +618,6 @@ class NotificationChannelServiceGapicClient
      * @return \Google\Cloud\Monitoring\V3\NotificationChannel
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getNotificationChannel($name, array $optionalArgs = [])
     {
@@ -665,10 +657,10 @@ class NotificationChannelServiceGapicClient
      *
      * @param string $name Required. The project on which to execute the request. The format is:
      *
-     *     projects/[PROJECT_ID]
+     *     projects/[PROJECT_ID_OR_NUMBER]
      *
-     * Note that this names the container into which the channel will be
-     * written. This does not name the newly created channel. The resulting
+     * This names the container into which the channel will be
+     * written, this does not name the newly created channel. The resulting
      * channel's name will have a normalized version of this field as a prefix,
      * but will add `/notificationChannels/[CHANNEL_ID]` to identify the channel.
      * @param NotificationChannel $notificationChannel Required. The definition of the `NotificationChannel` to create.
@@ -685,7 +677,6 @@ class NotificationChannelServiceGapicClient
      * @return \Google\Cloud\Monitoring\V3\NotificationChannel
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function createNotificationChannel($name, $notificationChannel, array $optionalArgs = [])
     {
@@ -742,7 +733,6 @@ class NotificationChannelServiceGapicClient
      * @return \Google\Cloud\Monitoring\V3\NotificationChannel
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function updateNotificationChannel($notificationChannel, array $optionalArgs = [])
     {
@@ -781,10 +771,11 @@ class NotificationChannelServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The channel for which to execute the request. The format is
-     *                             `projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID]`.
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $name Required. The channel for which to execute the request. The format is:
+     *
+     *     projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID]
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type bool $force
      *          If true, the notification channel will be deleted regardless of its
@@ -799,7 +790,6 @@ class NotificationChannelServiceGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function deleteNotificationChannel($name, array $optionalArgs = [])
     {
@@ -851,7 +841,6 @@ class NotificationChannelServiceGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function sendNotificationChannelVerificationCode($name, array $optionalArgs = [])
     {
@@ -933,7 +922,6 @@ class NotificationChannelServiceGapicClient
      * @return \Google\Cloud\Monitoring\V3\GetNotificationChannelVerificationCodeResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getNotificationChannelVerificationCode($name, array $optionalArgs = [])
     {
@@ -996,7 +984,6 @@ class NotificationChannelServiceGapicClient
      * @return \Google\Cloud\Monitoring\V3\NotificationChannel
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function verifyNotificationChannel($name, $code, array $optionalArgs = [])
     {

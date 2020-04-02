@@ -20,8 +20,6 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/privacy/dlp/v2/dlp.proto
  * and updates to that file get reflected here through a refresh process.
- *
- * @experimental
  */
 
 namespace Google\Cloud\Dlp\V2\Gapic;
@@ -54,11 +52,16 @@ use Google\Cloud\Dlp\V2\DeleteJobTriggerRequest;
 use Google\Cloud\Dlp\V2\DeleteStoredInfoTypeRequest;
 use Google\Cloud\Dlp\V2\DlpJob;
 use Google\Cloud\Dlp\V2\DlpJobType;
+use Google\Cloud\Dlp\V2\FinishDlpJobRequest;
 use Google\Cloud\Dlp\V2\GetDeidentifyTemplateRequest;
 use Google\Cloud\Dlp\V2\GetDlpJobRequest;
 use Google\Cloud\Dlp\V2\GetInspectTemplateRequest;
 use Google\Cloud\Dlp\V2\GetJobTriggerRequest;
 use Google\Cloud\Dlp\V2\GetStoredInfoTypeRequest;
+use Google\Cloud\Dlp\V2\HybridContentItem;
+use Google\Cloud\Dlp\V2\HybridInspectDlpJobRequest;
+use Google\Cloud\Dlp\V2\HybridInspectJobTriggerRequest;
+use Google\Cloud\Dlp\V2\HybridInspectResponse;
 use Google\Cloud\Dlp\V2\InspectConfig;
 use Google\Cloud\Dlp\V2\InspectContentRequest;
 use Google\Cloud\Dlp\V2\InspectContentResponse;
@@ -120,8 +123,6 @@ use Google\Protobuf\GPBEmpty;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parseName method to extract the individual identifiers contained within formatted names
  * that are returned by the API.
- *
- * @experimental
  */
 class DlpServiceGapicClient
 {
@@ -302,7 +303,6 @@ class DlpServiceGapicClient
      * @param string $dlpJob
      *
      * @return string The formatted dlp_job resource.
-     * @experimental
      */
     public static function dlpJobName($project, $dlpJob)
     {
@@ -319,7 +319,6 @@ class DlpServiceGapicClient
      * @param string $organization
      *
      * @return string The formatted organization resource.
-     * @experimental
      */
     public static function organizationName($organization)
     {
@@ -336,7 +335,6 @@ class DlpServiceGapicClient
      * @param string $deidentifyTemplate
      *
      * @return string The formatted organization_deidentify_template resource.
-     * @experimental
      */
     public static function organizationDeidentifyTemplateName($organization, $deidentifyTemplate)
     {
@@ -354,7 +352,6 @@ class DlpServiceGapicClient
      * @param string $inspectTemplate
      *
      * @return string The formatted organization_inspect_template resource.
-     * @experimental
      */
     public static function organizationInspectTemplateName($organization, $inspectTemplate)
     {
@@ -372,7 +369,6 @@ class DlpServiceGapicClient
      * @param string $storedInfoType
      *
      * @return string The formatted organization_stored_info_type resource.
-     * @experimental
      */
     public static function organizationStoredInfoTypeName($organization, $storedInfoType)
     {
@@ -389,7 +385,6 @@ class DlpServiceGapicClient
      * @param string $project
      *
      * @return string The formatted project resource.
-     * @experimental
      */
     public static function projectName($project)
     {
@@ -406,7 +401,6 @@ class DlpServiceGapicClient
      * @param string $deidentifyTemplate
      *
      * @return string The formatted project_deidentify_template resource.
-     * @experimental
      */
     public static function projectDeidentifyTemplateName($project, $deidentifyTemplate)
     {
@@ -424,7 +418,6 @@ class DlpServiceGapicClient
      * @param string $inspectTemplate
      *
      * @return string The formatted project_inspect_template resource.
-     * @experimental
      */
     public static function projectInspectTemplateName($project, $inspectTemplate)
     {
@@ -442,7 +435,6 @@ class DlpServiceGapicClient
      * @param string $jobTrigger
      *
      * @return string The formatted project_job_trigger resource.
-     * @experimental
      */
     public static function projectJobTriggerName($project, $jobTrigger)
     {
@@ -460,7 +452,6 @@ class DlpServiceGapicClient
      * @param string $storedInfoType
      *
      * @return string The formatted project_stored_info_type resource.
-     * @experimental
      */
     public static function projectStoredInfoTypeName($project, $storedInfoType)
     {
@@ -496,7 +487,6 @@ class DlpServiceGapicClient
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
-     * @experimental
      */
     public static function parseName($formattedName, $template = null)
     {
@@ -573,7 +563,6 @@ class DlpServiceGapicClient
      * }
      *
      * @throws ValidationException
-     * @experimental
      */
     public function __construct(array $options = [])
     {
@@ -631,7 +620,6 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\InspectContentResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function inspectContent($parent, array $optionalArgs = [])
     {
@@ -712,7 +700,6 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\RedactImageResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function redactImage($parent, array $optionalArgs = [])
     {
@@ -809,7 +796,6 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\DeidentifyContentResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function deidentifyContent($parent, array $optionalArgs = [])
     {
@@ -911,7 +897,6 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\ReidentifyContentResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function reidentifyContent($parent, array $optionalArgs = [])
     {
@@ -989,7 +974,6 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\ListInfoTypesResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listInfoTypes(array $optionalArgs = [])
     {
@@ -1060,7 +1044,6 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\InspectTemplate
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function createInspectTemplate($parent, array $optionalArgs = [])
     {
@@ -1106,8 +1089,8 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of organization and inspectTemplate to be updated, for
-     *                             example `organizations/433245324/inspectTemplates/432452342` or
+     * @param string $name         Required. Resource name of organization and inspectTemplate to be updated,
+     *                             for example `organizations/433245324/inspectTemplates/432452342` or
      *                             projects/project-id/inspectTemplates/432452342.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -1126,7 +1109,6 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\InspectTemplate
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function updateInspectTemplate($name, array $optionalArgs = [])
     {
@@ -1172,8 +1154,8 @@ class DlpServiceGapicClient
      *                            Optional.
      *
      *     @type string $name
-     *          Required. Resource name of the organization and inspectTemplate to be read, for
-     *          example `organizations/433245324/inspectTemplates/432452342` or
+     *          Required. Resource name of the organization and inspectTemplate to be read,
+     *          for example `organizations/433245324/inspectTemplates/432452342` or
      *          projects/project-id/inspectTemplates/432452342.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1185,7 +1167,6 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\InspectTemplate
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getInspectTemplate(array $optionalArgs = [])
     {
@@ -1280,7 +1261,6 @@ class DlpServiceGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listInspectTemplates($parent, array $optionalArgs = [])
     {
@@ -1329,9 +1309,9 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the organization and inspectTemplate to be deleted, for
-     *                             example `organizations/433245324/inspectTemplates/432452342` or
-     *                             projects/project-id/inspectTemplates/432452342.
+     * @param string $name         Required. Resource name of the organization and inspectTemplate to be
+     *                             deleted, for example `organizations/433245324/inspectTemplates/432452342`
+     *                             or projects/project-id/inspectTemplates/432452342.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1343,7 +1323,6 @@ class DlpServiceGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function deleteInspectTemplate($name, array $optionalArgs = [])
     {
@@ -1407,7 +1386,6 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\DeidentifyTemplate
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function createDeidentifyTemplate($parent, array $optionalArgs = [])
     {
@@ -1454,8 +1432,9 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of organization and deidentify template to be updated, for
-     *                             example `organizations/433245324/deidentifyTemplates/432452342` or
+     * @param string $name         Required. Resource name of organization and deidentify template to be
+     *                             updated, for example
+     *                             `organizations/433245324/deidentifyTemplates/432452342` or
      *                             projects/project-id/deidentifyTemplates/432452342.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -1474,7 +1453,6 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\DeidentifyTemplate
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function updateDeidentifyTemplate($name, array $optionalArgs = [])
     {
@@ -1518,9 +1496,9 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the organization and deidentify template to be read, for
-     *                             example `organizations/433245324/deidentifyTemplates/432452342` or
-     *                             projects/project-id/deidentifyTemplates/432452342.
+     * @param string $name         Required. Resource name of the organization and deidentify template to be
+     *                             read, for example `organizations/433245324/deidentifyTemplates/432452342`
+     *                             or projects/project-id/deidentifyTemplates/432452342.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1534,7 +1512,6 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\DeidentifyTemplate
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getDeidentifyTemplate($name, array $optionalArgs = [])
     {
@@ -1628,7 +1605,6 @@ class DlpServiceGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listDeidentifyTemplates($parent, array $optionalArgs = [])
     {
@@ -1678,8 +1654,9 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the organization and deidentify template to be deleted,
-     *                             for example `organizations/433245324/deidentifyTemplates/432452342` or
+     * @param string $name         Required. Resource name of the organization and deidentify template to be
+     *                             deleted, for example
+     *                             `organizations/433245324/deidentifyTemplates/432452342` or
      *                             projects/project-id/deidentifyTemplates/432452342.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -1692,7 +1669,6 @@ class DlpServiceGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function deleteDeidentifyTemplate($name, array $optionalArgs = [])
     {
@@ -1762,7 +1738,6 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\DlpJob
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function createDlpJob($parent, array $optionalArgs = [])
     {
@@ -1899,7 +1874,6 @@ class DlpServiceGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listDlpJobs($parent, array $optionalArgs = [])
     {
@@ -1969,7 +1943,6 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\DlpJob
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getDlpJob($name, array $optionalArgs = [])
     {
@@ -2021,7 +1994,6 @@ class DlpServiceGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function deleteDlpJob($name, array $optionalArgs = [])
     {
@@ -2073,7 +2045,6 @@ class DlpServiceGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function cancelDlpJob($name, array $optionalArgs = [])
     {
@@ -2090,6 +2061,117 @@ class DlpServiceGapicClient
         return $this->startCall(
             'CancelDlpJob',
             GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Finish a running hybrid DlpJob. Triggers the finalization steps and running
+     * of any enabled actions that have not yet run.
+     * Early access feature is in a pre-release state and might change or have
+     * limited support. For more information, see
+     * https://cloud.google.com/products#product-launch-stages.
+     *
+     * Sample code:
+     * ```
+     * $dlpServiceClient = new DlpServiceClient();
+     * try {
+     *     $formattedName = $dlpServiceClient->dlpJobName('[PROJECT]', '[DLP_JOB]');
+     *     $dlpServiceClient->finishDlpJob($formattedName);
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the DlpJob resource to be cancelled.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function finishDlpJob($name, array $optionalArgs = [])
+    {
+        $request = new FinishDlpJobRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'FinishDlpJob',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Inspect hybrid content and store findings to a job.
+     * To review the findings inspect the job. Inspection will occur
+     * asynchronously.
+     * Early access feature is in a pre-release state and might change or have
+     * limited support. For more information, see
+     * https://cloud.google.com/products#product-launch-stages.
+     *
+     * Sample code:
+     * ```
+     * $dlpServiceClient = new DlpServiceClient();
+     * try {
+     *     $name = '';
+     *     $response = $dlpServiceClient->hybridInspectDlpJob($name);
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Resource name of the job to execute a hybrid inspect on, for
+     *                             example `projects/dlp-test-project/dlpJob/53234423`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type HybridContentItem $hybridItem
+     *          The item to inspect.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dlp\V2\HybridInspectResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function hybridInspectDlpJob($name, array $optionalArgs = [])
+    {
+        $request = new HybridInspectDlpJobRequest();
+        $request->setName($name);
+        if (isset($optionalArgs['hybridItem'])) {
+            $request->setHybridItem($optionalArgs['hybridItem']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'HybridInspectDlpJob',
+            HybridInspectResponse::class,
             $optionalArgs,
             $request
         )->wait();
@@ -2192,7 +2274,6 @@ class DlpServiceGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listJobTriggers($parent, array $optionalArgs = [])
     {
@@ -2259,7 +2340,6 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\JobTrigger
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getJobTrigger($name, array $optionalArgs = [])
     {
@@ -2309,7 +2389,6 @@ class DlpServiceGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function deleteJobTrigger($name, array $optionalArgs = [])
     {
@@ -2326,6 +2405,66 @@ class DlpServiceGapicClient
         return $this->startCall(
             'DeleteJobTrigger',
             GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Inspect hybrid content and store findings to a trigger. The inspection
+     * will be processed asynchronously. To review the findings monitor the
+     * jobs within the trigger.
+     * Early access feature is in a pre-release state and might change or have
+     * limited support. For more information, see
+     * https://cloud.google.com/products#product-launch-stages.
+     *
+     * Sample code:
+     * ```
+     * $dlpServiceClient = new DlpServiceClient();
+     * try {
+     *     $name = '';
+     *     $response = $dlpServiceClient->hybridInspectJobTrigger($name);
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Resource name of the trigger to execute a hybrid inspect on, for
+     *                             example `projects/dlp-test-project/jobTriggers/53234423`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type HybridContentItem $hybridItem
+     *          The item to inspect.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dlp\V2\HybridInspectResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function hybridInspectJobTrigger($name, array $optionalArgs = [])
+    {
+        $request = new HybridInspectJobTriggerRequest();
+        $request->setName($name);
+        if (isset($optionalArgs['hybridItem'])) {
+            $request->setHybridItem($optionalArgs['hybridItem']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'HybridInspectJobTrigger',
+            HybridInspectResponse::class,
             $optionalArgs,
             $request
         )->wait();
@@ -2365,7 +2504,6 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\JobTrigger
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function updateJobTrigger($name, array $optionalArgs = [])
     {
@@ -2433,7 +2571,6 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\JobTrigger
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function createJobTrigger($parent, array $optionalArgs = [])
     {
@@ -2505,7 +2642,6 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\StoredInfoType
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function createStoredInfoType($parent, array $optionalArgs = [])
     {
@@ -2553,8 +2689,8 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of organization and storedInfoType to be updated, for
-     *                             example `organizations/433245324/storedInfoTypes/432452342` or
+     * @param string $name         Required. Resource name of organization and storedInfoType to be updated,
+     *                             for example `organizations/433245324/storedInfoTypes/432452342` or
      *                             projects/project-id/storedInfoTypes/432452342.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -2575,7 +2711,6 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\StoredInfoType
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function updateStoredInfoType($name, array $optionalArgs = [])
     {
@@ -2619,8 +2754,8 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the organization and storedInfoType to be read, for
-     *                             example `organizations/433245324/storedInfoTypes/432452342` or
+     * @param string $name         Required. Resource name of the organization and storedInfoType to be read,
+     *                             for example `organizations/433245324/storedInfoTypes/432452342` or
      *                             projects/project-id/storedInfoTypes/432452342.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -2635,7 +2770,6 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\StoredInfoType
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getStoredInfoType($name, array $optionalArgs = [])
     {
@@ -2730,7 +2864,6 @@ class DlpServiceGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listStoredInfoTypes($parent, array $optionalArgs = [])
     {
@@ -2780,8 +2913,8 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the organization and storedInfoType to be deleted, for
-     *                             example `organizations/433245324/storedInfoTypes/432452342` or
+     * @param string $name         Required. Resource name of the organization and storedInfoType to be
+     *                             deleted, for example `organizations/433245324/storedInfoTypes/432452342` or
      *                             projects/project-id/storedInfoTypes/432452342.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -2794,7 +2927,6 @@ class DlpServiceGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function deleteStoredInfoType($name, array $optionalArgs = [])
     {

@@ -53,6 +53,16 @@ return [
                     'resourcesGetMethod' => 'getListFindingsResults',
                 ],
             ],
+            'ListNotificationConfigs' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getNotificationConfigs',
+                ],
+            ],
             'ListSources' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
