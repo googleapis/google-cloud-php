@@ -33,11 +33,20 @@ class AuthorizationType
      * Generated from protobuf enum <code>GOOGLE_PLUS_AUTHORIZATION_CODE = 2;</code>
      */
     const GOOGLE_PLUS_AUTHORIZATION_CODE = 2;
+    /**
+     * Use First Party Client OAuth. First Party Client OAuth doesn't require a
+     * refresh token to get an offline access token. Instead, it uses a
+     * client-signed JWT assertion to retrieve an access token.
+     *
+     * Generated from protobuf enum <code>FIRST_PARTY_OAUTH = 3;</code>
+     */
+    const FIRST_PARTY_OAUTH = 3;
 
     private static $valueToName = [
         self::AUTHORIZATION_TYPE_UNSPECIFIED => 'AUTHORIZATION_TYPE_UNSPECIFIED',
         self::AUTHORIZATION_CODE => 'AUTHORIZATION_CODE',
         self::GOOGLE_PLUS_AUTHORIZATION_CODE => 'GOOGLE_PLUS_AUTHORIZATION_CODE',
+        self::FIRST_PARTY_OAUTH => 'FIRST_PARTY_OAUTH',
     ];
 
     public static function name($value)
