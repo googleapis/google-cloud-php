@@ -54,7 +54,9 @@ trait OperationResponseTrait
 
         $metaType = $response['metadata']['typeUrl'];
         $metaResult = $this->deserializeMetadata($operation, $metaType, $serializer, $lroMappers);
-        
+        /** @see LongRunningOperation#reload() */
+        $metaResult += ['typeUrl' => $metaType];
+
         $error = $operation->getError();
         if (!is_null($error)) {
             $error = $serializer->encodeMessage($error);
@@ -135,12 +137,12 @@ trait OperationResponseTrait
             return $mapper['typeUrl'] === $type;
         });
         if (count($mappers) === 0) {
-            throw new \RuntimeException(sprintf('No mapper exists for operation response type %s.', $type));
+            throw new \RuntimeException(sprintf('No mapper exists for operation metadata type %s.', $type));
         }
 
         $mapper = current($mappers);
         $message = $mapper['message'];
-        
+
         $response = new $message();
         $anyResponse = $operation->getLastProtoResponse()->getMetadata();
         if (is_null($anyResponse)) {
