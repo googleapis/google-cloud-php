@@ -67,7 +67,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $publisherClient = new PublisherClient();
  * try {
- *     $formattedName = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
+ *     $formattedName = $publisherClient->projectTopicName('[PROJECT]', '[TOPIC]');
  *     $response = $publisherClient->createTopic($formattedName);
  * } finally {
  *     $publisherClient->close();
@@ -113,6 +113,7 @@ class PublisherGapicClient
         'https://www.googleapis.com/auth/pubsub',
     ];
     private static $projectNameTemplate;
+    private static $projectTopicNameTemplate;
     private static $topicNameTemplate;
     private static $pathTemplateMap;
 
@@ -144,6 +145,15 @@ class PublisherGapicClient
         return self::$projectNameTemplate;
     }
 
+    private static function getProjectTopicNameTemplate()
+    {
+        if (null == self::$projectTopicNameTemplate) {
+            self::$projectTopicNameTemplate = new PathTemplate('projects/{project}/topics/{topic}');
+        }
+
+        return self::$projectTopicNameTemplate;
+    }
+
     private static function getTopicNameTemplate()
     {
         if (null == self::$topicNameTemplate) {
@@ -158,6 +168,7 @@ class PublisherGapicClient
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'project' => self::getProjectNameTemplate(),
+                'projectTopic' => self::getProjectTopicNameTemplate(),
                 'topic' => self::getTopicNameTemplate(),
             ];
         }
@@ -183,15 +194,31 @@ class PublisherGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
+     * a project_topic resource.
+     *
+     * @param string $project
+     * @param string $topic
+     *
+     * @return string The formatted project_topic resource.
+     * @experimental
+     */
+    public static function projectTopicName($project, $topic)
+    {
+        return self::getProjectTopicNameTemplate()->render([
+            'project' => $project,
+            'topic' => $topic,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
      * a topic resource.
      *
      * @param string $project
      * @param string $topic
      *
      * @return string The formatted topic resource.
-     *
-     * @deprecated Multi-pattern resource names will have unified formatting functions.
-     *             This helper function will be deleted in the next major version.
+     * @experimental
      */
     public static function topicName($project, $topic)
     {
@@ -206,6 +233,7 @@ class PublisherGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - project: projects/{project}
+     * - projectTopic: projects/{project}/topics/{topic}
      * - topic: projects/{project}/topics/{topic}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
@@ -313,7 +341,7 @@ class PublisherGapicClient
      * ```
      * $publisherClient = new PublisherClient();
      * try {
-     *     $formattedName = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
+     *     $formattedName = $publisherClient->projectTopicName('[PROJECT]', '[TOPIC]');
      *     $response = $publisherClient->createTopic($formattedName);
      * } finally {
      *     $publisherClient->close();
@@ -448,7 +476,7 @@ class PublisherGapicClient
      * ```
      * $publisherClient = new PublisherClient();
      * try {
-     *     $formattedTopic = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
+     *     $formattedTopic = $publisherClient->projectTopicName('[PROJECT]', '[TOPIC]');
      *     $data = '';
      *     $messagesElement = new PubsubMessage();
      *     $messagesElement->setData($data);
@@ -505,7 +533,7 @@ class PublisherGapicClient
      * ```
      * $publisherClient = new PublisherClient();
      * try {
-     *     $formattedTopic = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
+     *     $formattedTopic = $publisherClient->projectTopicName('[PROJECT]', '[TOPIC]');
      *     $response = $publisherClient->getTopic($formattedTopic);
      * } finally {
      *     $publisherClient->close();
@@ -637,7 +665,7 @@ class PublisherGapicClient
      * ```
      * $publisherClient = new PublisherClient();
      * try {
-     *     $formattedTopic = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
+     *     $formattedTopic = $publisherClient->projectTopicName('[PROJECT]', '[TOPIC]');
      *     // Iterate over pages of elements
      *     $pagedResponse = $publisherClient->listTopicSubscriptions($formattedTopic);
      *     foreach ($pagedResponse->iteratePages() as $page) {
@@ -722,7 +750,7 @@ class PublisherGapicClient
      * ```
      * $publisherClient = new PublisherClient();
      * try {
-     *     $formattedTopic = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
+     *     $formattedTopic = $publisherClient->projectTopicName('[PROJECT]', '[TOPIC]');
      *     $publisherClient->deleteTopic($formattedTopic);
      * } finally {
      *     $publisherClient->close();
