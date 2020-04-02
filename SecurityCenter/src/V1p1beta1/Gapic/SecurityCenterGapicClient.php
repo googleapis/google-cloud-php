@@ -138,7 +138,10 @@ class SecurityCenterGapicClient
     private static $findingNameTemplate;
     private static $notificationConfigNameTemplate;
     private static $organizationNameTemplate;
+    private static $organizationAssetNameTemplate;
     private static $organizationSettingsNameTemplate;
+    private static $organizationSourceFindingNameTemplate;
+    private static $securityMarksNameTemplate;
     private static $sourceNameTemplate;
     private static $topicNameTemplate;
     private static $pathTemplateMap;
@@ -191,6 +194,15 @@ class SecurityCenterGapicClient
         return self::$organizationNameTemplate;
     }
 
+    private static function getOrganizationAssetNameTemplate()
+    {
+        if (null == self::$organizationAssetNameTemplate) {
+            self::$organizationAssetNameTemplate = new PathTemplate('organizations/{organization}/assets/{asset}/securityMarks');
+        }
+
+        return self::$organizationAssetNameTemplate;
+    }
+
     private static function getOrganizationSettingsNameTemplate()
     {
         if (null == self::$organizationSettingsNameTemplate) {
@@ -198,6 +210,24 @@ class SecurityCenterGapicClient
         }
 
         return self::$organizationSettingsNameTemplate;
+    }
+
+    private static function getOrganizationSourceFindingNameTemplate()
+    {
+        if (null == self::$organizationSourceFindingNameTemplate) {
+            self::$organizationSourceFindingNameTemplate = new PathTemplate('organizations/{organization}/sources/{source}/findings/{finding}/securityMarks');
+        }
+
+        return self::$organizationSourceFindingNameTemplate;
+    }
+
+    private static function getSecurityMarksNameTemplate()
+    {
+        if (null == self::$securityMarksNameTemplate) {
+            self::$securityMarksNameTemplate = new PathTemplate('organizations/{organization}/assets/{asset}/securityMarks');
+        }
+
+        return self::$securityMarksNameTemplate;
     }
 
     private static function getSourceNameTemplate()
@@ -225,7 +255,10 @@ class SecurityCenterGapicClient
                 'finding' => self::getFindingNameTemplate(),
                 'notificationConfig' => self::getNotificationConfigNameTemplate(),
                 'organization' => self::getOrganizationNameTemplate(),
+                'organizationAsset' => self::getOrganizationAssetNameTemplate(),
                 'organizationSettings' => self::getOrganizationSettingsNameTemplate(),
+                'organizationSourceFinding' => self::getOrganizationSourceFindingNameTemplate(),
+                'securityMarks' => self::getSecurityMarksNameTemplate(),
                 'source' => self::getSourceNameTemplate(),
                 'topic' => self::getTopicNameTemplate(),
             ];
@@ -290,6 +323,24 @@ class SecurityCenterGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
+     * a organization_asset resource.
+     *
+     * @param string $organization
+     * @param string $asset
+     *
+     * @return string The formatted organization_asset resource.
+     * @experimental
+     */
+    public static function organizationAssetName($organization, $asset)
+    {
+        return self::getOrganizationAssetNameTemplate()->render([
+            'organization' => $organization,
+            'asset' => $asset,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
      * a organization_settings resource.
      *
      * @param string $organization
@@ -301,6 +352,44 @@ class SecurityCenterGapicClient
     {
         return self::getOrganizationSettingsNameTemplate()->render([
             'organization' => $organization,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a organization_source_finding resource.
+     *
+     * @param string $organization
+     * @param string $source
+     * @param string $finding
+     *
+     * @return string The formatted organization_source_finding resource.
+     * @experimental
+     */
+    public static function organizationSourceFindingName($organization, $source, $finding)
+    {
+        return self::getOrganizationSourceFindingNameTemplate()->render([
+            'organization' => $organization,
+            'source' => $source,
+            'finding' => $finding,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a security_marks resource.
+     *
+     * @param string $organization
+     * @param string $asset
+     *
+     * @return string The formatted security_marks resource.
+     * @experimental
+     */
+    public static function securityMarksName($organization, $asset)
+    {
+        return self::getSecurityMarksNameTemplate()->render([
+            'organization' => $organization,
+            'asset' => $asset,
         ]);
     }
 
@@ -347,7 +436,10 @@ class SecurityCenterGapicClient
      * - finding: organizations/{organization}/sources/{source}/findings/{finding}
      * - notificationConfig: organizations/{organization}/notificationConfigs/{notification_config}
      * - organization: organizations/{organization}
+     * - organizationAsset: organizations/{organization}/assets/{asset}/securityMarks
      * - organizationSettings: organizations/{organization}/organizationSettings
+     * - organizationSourceFinding: organizations/{organization}/sources/{source}/findings/{finding}/securityMarks
+     * - securityMarks: organizations/{organization}/assets/{asset}/securityMarks
      * - source: organizations/{organization}/sources/{source}
      * - topic: projects/{project}/topics/{topic}.
      *
