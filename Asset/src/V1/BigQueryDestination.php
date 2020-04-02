@@ -19,7 +19,7 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
      * Required. The BigQuery dataset in format
      * "projects/projectId/datasets/datasetId", to which the snapshot result
      * should be exported. If this dataset does not exist, the export call returns
-     * an error.
+     * an INVALID_ARGUMENT error.
      *
      * Generated from protobuf field <code>string dataset = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -35,8 +35,8 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
     /**
      * If the destination table already exists and this flag is `TRUE`, the
      * table will be overwritten by the contents of assets snapshot. If the flag
-     * is not set and the destination table already exists, the export call
-     * returns an error.
+     * is `FALSE` or unset and the destination table already exists, the export
+     * call returns an INVALID_ARGUMEMT error.
      *
      * Generated from protobuf field <code>bool force = 3;</code>
      */
@@ -52,7 +52,7 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
      *           Required. The BigQuery dataset in format
      *           "projects/projectId/datasets/datasetId", to which the snapshot result
      *           should be exported. If this dataset does not exist, the export call returns
-     *           an error.
+     *           an INVALID_ARGUMENT error.
      *     @type string $table
      *           Required. The BigQuery table to which the snapshot result should be
      *           written. If this table does not exist, a new table with the given name
@@ -60,8 +60,8 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
      *     @type bool $force
      *           If the destination table already exists and this flag is `TRUE`, the
      *           table will be overwritten by the contents of assets snapshot. If the flag
-     *           is not set and the destination table already exists, the export call
-     *           returns an error.
+     *           is `FALSE` or unset and the destination table already exists, the export
+     *           call returns an INVALID_ARGUMEMT error.
      * }
      */
     public function __construct($data = NULL) {
@@ -73,7 +73,7 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
      * Required. The BigQuery dataset in format
      * "projects/projectId/datasets/datasetId", to which the snapshot result
      * should be exported. If this dataset does not exist, the export call returns
-     * an error.
+     * an INVALID_ARGUMENT error.
      *
      * Generated from protobuf field <code>string dataset = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -87,7 +87,7 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
      * Required. The BigQuery dataset in format
      * "projects/projectId/datasets/datasetId", to which the snapshot result
      * should be exported. If this dataset does not exist, the export call returns
-     * an error.
+     * an INVALID_ARGUMENT error.
      *
      * Generated from protobuf field <code>string dataset = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -134,8 +134,8 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
     /**
      * If the destination table already exists and this flag is `TRUE`, the
      * table will be overwritten by the contents of assets snapshot. If the flag
-     * is not set and the destination table already exists, the export call
-     * returns an error.
+     * is `FALSE` or unset and the destination table already exists, the export
+     * call returns an INVALID_ARGUMEMT error.
      *
      * Generated from protobuf field <code>bool force = 3;</code>
      * @return bool
@@ -148,8 +148,8 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
     /**
      * If the destination table already exists and this flag is `TRUE`, the
      * table will be overwritten by the contents of assets snapshot. If the flag
-     * is not set and the destination table already exists, the export call
-     * returns an error.
+     * is `FALSE` or unset and the destination table already exists, the export
+     * call returns an INVALID_ARGUMEMT error.
      *
      * Generated from protobuf field <code>bool force = 3;</code>
      * @param bool $var
