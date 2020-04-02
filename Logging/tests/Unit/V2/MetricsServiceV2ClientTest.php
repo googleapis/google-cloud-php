@@ -172,7 +172,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedMetricName = $client->metricName('[PROJECT]', '[METRIC]');
+        $formattedMetricName = $client->logMetricName('[PROJECT]', '[METRIC]');
 
         $response = $client->getLogMetric($formattedMetricName);
         $this->assertEquals($expectedResponse, $response);
@@ -212,7 +212,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedMetricName = $client->metricName('[PROJECT]', '[METRIC]');
+        $formattedMetricName = $client->logMetricName('[PROJECT]', '[METRIC]');
 
         try {
             $client->getLogMetric($formattedMetricName);
@@ -335,7 +335,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedMetricName = $client->metricName('[PROJECT]', '[METRIC]');
+        $formattedMetricName = $client->logMetricName('[PROJECT]', '[METRIC]');
         $metric = new LogMetric();
 
         $response = $client->updateLogMetric($formattedMetricName, $metric);
@@ -379,7 +379,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedMetricName = $client->metricName('[PROJECT]', '[METRIC]');
+        $formattedMetricName = $client->logMetricName('[PROJECT]', '[METRIC]');
         $metric = new LogMetric();
 
         try {
@@ -411,7 +411,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedMetricName = $client->metricName('[PROJECT]', '[METRIC]');
+        $formattedMetricName = $client->logMetricName('[PROJECT]', '[METRIC]');
 
         $client->deleteLogMetric($formattedMetricName);
         $actualRequests = $transport->popReceivedCalls();
@@ -450,7 +450,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedMetricName = $client->metricName('[PROJECT]', '[METRIC]');
+        $formattedMetricName = $client->logMetricName('[PROJECT]', '[METRIC]');
 
         try {
             $client->deleteLogMetric($formattedMetricName);

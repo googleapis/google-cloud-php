@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2019 Google LLC.
+// Copyright 2020 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-//
 //
 namespace Google\Cloud\Logging\V2;
 
@@ -31,6 +30,58 @@ class ConfigServiceV2GrpcClient extends \Grpc\BaseStub {
      */
     public function __construct($hostname, $opts, $channel = null) {
         parent::__construct($hostname, $opts, $channel);
+    }
+
+    /**
+     * Lists buckets (Beta).
+     * @param \Google\Cloud\Logging\V2\ListBucketsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function ListBuckets(\Google\Cloud\Logging\V2\ListBucketsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.logging.v2.ConfigServiceV2/ListBuckets',
+        $argument,
+        ['\Google\Cloud\Logging\V2\ListBucketsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Gets a bucket (Beta).
+     * @param \Google\Cloud\Logging\V2\GetBucketRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function GetBucket(\Google\Cloud\Logging\V2\GetBucketRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.logging.v2.ConfigServiceV2/GetBucket',
+        $argument,
+        ['\Google\Cloud\Logging\V2\LogBucket', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Updates a bucket. This method replaces the following fields in the
+     * existing bucket with values from the new bucket: `retention_period`
+     *
+     * If the retention period is decreased and the bucket is locked,
+     * FAILED_PRECONDITION will be returned.
+     *
+     * If the bucket has a LifecycleState of DELETE_REQUESTED, FAILED_PRECONDITION
+     * will be returned.
+     *
+     * A buckets region may not be modified after it is created.
+     * This method is in Beta.
+     * @param \Google\Cloud\Logging\V2\UpdateBucketRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function UpdateBucket(\Google\Cloud\Logging\V2\UpdateBucketRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.logging.v2.ConfigServiceV2/UpdateBucket',
+        $argument,
+        ['\Google\Cloud\Logging\V2\LogBucket', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -191,7 +242,7 @@ class ConfigServiceV2GrpcClient extends \Grpc\BaseStub {
      * the GCP organization.
      *
      * See [Enabling CMEK for Logs
-     * Router](/logging/docs/routing/managed-encryption) for more information.
+     * Router](https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.
      * @param \Google\Cloud\Logging\V2\GetCmekSettingsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -218,7 +269,7 @@ class ConfigServiceV2GrpcClient extends \Grpc\BaseStub {
      * 3) access to the key is disabled.
      *
      * See [Enabling CMEK for Logs
-     * Router](/logging/docs/routing/managed-encryption) for more information.
+     * Router](https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.
      * @param \Google\Cloud\Logging\V2\UpdateCmekSettingsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

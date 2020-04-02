@@ -28,8 +28,10 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Logging\V2\CmekSettings;
+use Google\Cloud\Logging\V2\ListBucketsResponse;
 use Google\Cloud\Logging\V2\ListExclusionsResponse;
 use Google\Cloud\Logging\V2\ListSinksResponse;
+use Google\Cloud\Logging\V2\LogBucket;
 use Google\Cloud\Logging\V2\LogExclusion;
 use Google\Cloud\Logging\V2\LogSink;
 use Google\Protobuf\Any;
@@ -72,6 +74,249 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         ];
 
         return new ConfigServiceV2Client($options);
+    }
+
+    /**
+     * @test
+     */
+    public function listBucketsTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $nextPageToken = '';
+        $bucketsElement = new LogBucket();
+        $buckets = [$bucketsElement];
+        $expectedResponse = new ListBucketsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setBuckets($buckets);
+        $transport->addResponse($expectedResponse);
+
+        // Mock request
+        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+
+        $response = $client->listBuckets($formattedParent);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getBuckets()[0], $resources[0]);
+
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.logging.v2.ConfigServiceV2/ListBuckets', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getParent();
+
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function listBucketsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        // Mock request
+        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+
+        try {
+            $client->listBuckets($formattedParent);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function getBucketTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $description = 'description-1724546052';
+        $retentionDays = 1544391896;
+        $expectedResponse = new LogBucket();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setRetentionDays($retentionDays);
+        $transport->addResponse($expectedResponse);
+
+        // Mock request
+        $name = 'name3373707';
+
+        $response = $client->getBucket($name);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.logging.v2.ConfigServiceV2/GetBucket', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getName();
+
+        $this->assertProtobufEquals($name, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function getBucketExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        // Mock request
+        $name = 'name3373707';
+
+        try {
+            $client->getBucket($name);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function updateBucketTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $description = 'description-1724546052';
+        $retentionDays = 1544391896;
+        $expectedResponse = new LogBucket();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setRetentionDays($retentionDays);
+        $transport->addResponse($expectedResponse);
+
+        // Mock request
+        $name = 'name3373707';
+        $bucket = new LogBucket();
+        $updateMask = new FieldMask();
+
+        $response = $client->updateBucket($name, $bucket, $updateMask);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.logging.v2.ConfigServiceV2/UpdateBucket', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getName();
+
+        $this->assertProtobufEquals($name, $actualValue);
+        $actualValue = $actualRequestObject->getBucket();
+
+        $this->assertProtobufEquals($bucket, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+
+        $this->assertProtobufEquals($updateMask, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function updateBucketExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        // Mock request
+        $name = 'name3373707';
+        $bucket = new LogBucket();
+        $updateMask = new FieldMask();
+
+        try {
+            $client->updateBucket($name, $bucket, $updateMask);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -182,9 +427,9 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedSinkName = $client->sinkName('[PROJECT]', '[SINK]');
+        $sinkName = 'sinkName-1391757129';
 
-        $response = $client->getSink($formattedSinkName);
+        $response = $client->getSink($sinkName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -194,7 +439,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getSinkName();
 
-        $this->assertProtobufEquals($formattedSinkName, $actualValue);
+        $this->assertProtobufEquals($sinkName, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -222,10 +467,10 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedSinkName = $client->sinkName('[PROJECT]', '[SINK]');
+        $sinkName = 'sinkName-1391757129';
 
         try {
-            $client->getSink($formattedSinkName);
+            $client->getSink($sinkName);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -357,10 +602,10 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedSinkName = $client->sinkName('[PROJECT]', '[SINK]');
+        $sinkName = 'sinkName-1391757129';
         $sink = new LogSink();
 
-        $response = $client->updateSink($formattedSinkName, $sink);
+        $response = $client->updateSink($sinkName, $sink);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -370,7 +615,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getSinkName();
 
-        $this->assertProtobufEquals($formattedSinkName, $actualValue);
+        $this->assertProtobufEquals($sinkName, $actualValue);
         $actualValue = $actualRequestObject->getSink();
 
         $this->assertProtobufEquals($sink, $actualValue);
@@ -401,11 +646,11 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedSinkName = $client->sinkName('[PROJECT]', '[SINK]');
+        $sinkName = 'sinkName-1391757129';
         $sink = new LogSink();
 
         try {
-            $client->updateSink($formattedSinkName, $sink);
+            $client->updateSink($sinkName, $sink);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -433,9 +678,9 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedSinkName = $client->sinkName('[PROJECT]', '[SINK]');
+        $sinkName = 'sinkName-1391757129';
 
-        $client->deleteSink($formattedSinkName);
+        $client->deleteSink($sinkName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -444,7 +689,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getSinkName();
 
-        $this->assertProtobufEquals($formattedSinkName, $actualValue);
+        $this->assertProtobufEquals($sinkName, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -472,10 +717,10 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedSinkName = $client->sinkName('[PROJECT]', '[SINK]');
+        $sinkName = 'sinkName-1391757129';
 
         try {
-            $client->deleteSink($formattedSinkName);
+            $client->deleteSink($sinkName);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -590,9 +835,9 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->exclusionName('[PROJECT]', '[EXCLUSION]');
+        $name = 'name3373707';
 
-        $response = $client->getExclusion($formattedName);
+        $response = $client->getExclusion($name);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -602,7 +847,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getName();
 
-        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertProtobufEquals($name, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -630,10 +875,10 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->exclusionName('[PROJECT]', '[EXCLUSION]');
+        $name = 'name3373707';
 
         try {
-            $client->getExclusion($formattedName);
+            $client->getExclusion($name);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -753,11 +998,11 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->exclusionName('[PROJECT]', '[EXCLUSION]');
+        $name = 'name3373707';
         $exclusion = new LogExclusion();
         $updateMask = new FieldMask();
 
-        $response = $client->updateExclusion($formattedName, $exclusion, $updateMask);
+        $response = $client->updateExclusion($name, $exclusion, $updateMask);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -767,7 +1012,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getName();
 
-        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertProtobufEquals($name, $actualValue);
         $actualValue = $actualRequestObject->getExclusion();
 
         $this->assertProtobufEquals($exclusion, $actualValue);
@@ -801,12 +1046,12 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->exclusionName('[PROJECT]', '[EXCLUSION]');
+        $name = 'name3373707';
         $exclusion = new LogExclusion();
         $updateMask = new FieldMask();
 
         try {
-            $client->updateExclusion($formattedName, $exclusion, $updateMask);
+            $client->updateExclusion($name, $exclusion, $updateMask);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -834,9 +1079,9 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->exclusionName('[PROJECT]', '[EXCLUSION]');
+        $name = 'name3373707';
 
-        $client->deleteExclusion($formattedName);
+        $client->deleteExclusion($name);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -845,7 +1090,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getName();
 
-        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertProtobufEquals($name, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -873,10 +1118,10 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->exclusionName('[PROJECT]', '[EXCLUSION]');
+        $name = 'name3373707';
 
         try {
-            $client->deleteExclusion($formattedName);
+            $client->deleteExclusion($name);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -900,22 +1145,29 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
 
         // Mock response
-        $name = 'name3373707';
+        $name2 = 'name2-1052831874';
         $kmsKeyName = 'kmsKeyName2094986649';
         $serviceAccountId = 'serviceAccountId-111486921';
         $expectedResponse = new CmekSettings();
-        $expectedResponse->setName($name);
+        $expectedResponse->setName($name2);
         $expectedResponse->setKmsKeyName($kmsKeyName);
         $expectedResponse->setServiceAccountId($serviceAccountId);
         $transport->addResponse($expectedResponse);
 
-        $response = $client->getCmekSettings();
+        // Mock request
+        $name = 'name3373707';
+
+        $response = $client->getCmekSettings($name);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/GetCmekSettings', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getName();
+
+        $this->assertProtobufEquals($name, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -942,8 +1194,11 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
 
+        // Mock request
+        $name = 'name3373707';
+
         try {
-            $client->getCmekSettings();
+            $client->getCmekSettings($name);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -967,22 +1222,33 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
 
         // Mock response
-        $name = 'name3373707';
+        $name2 = 'name2-1052831874';
         $kmsKeyName = 'kmsKeyName2094986649';
         $serviceAccountId = 'serviceAccountId-111486921';
         $expectedResponse = new CmekSettings();
-        $expectedResponse->setName($name);
+        $expectedResponse->setName($name2);
         $expectedResponse->setKmsKeyName($kmsKeyName);
         $expectedResponse->setServiceAccountId($serviceAccountId);
         $transport->addResponse($expectedResponse);
 
-        $response = $client->updateCmekSettings();
+        // Mock request
+        $name = 'name3373707';
+        $cmekSettings = new CmekSettings();
+
+        $response = $client->updateCmekSettings($name, $cmekSettings);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/UpdateCmekSettings', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getName();
+
+        $this->assertProtobufEquals($name, $actualValue);
+        $actualValue = $actualRequestObject->getCmekSettings();
+
+        $this->assertProtobufEquals($cmekSettings, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -1009,8 +1275,12 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
 
+        // Mock request
+        $name = 'name3373707';
+        $cmekSettings = new CmekSettings();
+
         try {
-            $client->updateCmekSettings();
+            $client->updateCmekSettings($name, $cmekSettings);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
