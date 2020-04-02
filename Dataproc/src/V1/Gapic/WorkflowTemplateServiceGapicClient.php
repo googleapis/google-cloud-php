@@ -58,7 +58,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $workflowTemplateServiceClient = new WorkflowTemplateServiceClient();
  * try {
- *     $formattedParent = $workflowTemplateServiceClient->regionName('[PROJECT]', '[REGION]');
+ *     $formattedParent = $workflowTemplateServiceClient->locationName('[PROJECT]', '[LOCATION]');
  *     $template = new WorkflowTemplate();
  *     $response = $workflowTemplateServiceClient->createWorkflowTemplate($formattedParent, $template);
  * } finally {
@@ -101,6 +101,9 @@ class WorkflowTemplateServiceGapicClient
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
+    private static $locationNameTemplate;
+    private static $projectLocationWorkflowTemplateNameTemplate;
+    private static $projectRegionWorkflowTemplateNameTemplate;
     private static $regionNameTemplate;
     private static $workflowTemplateNameTemplate;
     private static $pathTemplateMap;
@@ -126,6 +129,33 @@ class WorkflowTemplateServiceGapicClient
         ];
     }
 
+    private static function getLocationNameTemplate()
+    {
+        if (null == self::$locationNameTemplate) {
+            self::$locationNameTemplate = new PathTemplate('projects/{project}/locations/{location}');
+        }
+
+        return self::$locationNameTemplate;
+    }
+
+    private static function getProjectLocationWorkflowTemplateNameTemplate()
+    {
+        if (null == self::$projectLocationWorkflowTemplateNameTemplate) {
+            self::$projectLocationWorkflowTemplateNameTemplate = new PathTemplate('projects/{project}/locations/{location}/workflowTemplates/{workflow_template}');
+        }
+
+        return self::$projectLocationWorkflowTemplateNameTemplate;
+    }
+
+    private static function getProjectRegionWorkflowTemplateNameTemplate()
+    {
+        if (null == self::$projectRegionWorkflowTemplateNameTemplate) {
+            self::$projectRegionWorkflowTemplateNameTemplate = new PathTemplate('projects/{project}/regions/{region}/workflowTemplates/{workflow_template}');
+        }
+
+        return self::$projectRegionWorkflowTemplateNameTemplate;
+    }
+
     private static function getRegionNameTemplate()
     {
         if (null == self::$regionNameTemplate) {
@@ -148,12 +178,70 @@ class WorkflowTemplateServiceGapicClient
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
+                'location' => self::getLocationNameTemplate(),
+                'projectLocationWorkflowTemplate' => self::getProjectLocationWorkflowTemplateNameTemplate(),
+                'projectRegionWorkflowTemplate' => self::getProjectRegionWorkflowTemplateNameTemplate(),
                 'region' => self::getRegionNameTemplate(),
                 'workflowTemplate' => self::getWorkflowTemplateNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a location resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted location resource.
+     */
+    public static function locationName($project, $location)
+    {
+        return self::getLocationNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project_location_workflow_template resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $workflowTemplate
+     *
+     * @return string The formatted project_location_workflow_template resource.
+     */
+    public static function projectLocationWorkflowTemplateName($project, $location, $workflowTemplate)
+    {
+        return self::getProjectLocationWorkflowTemplateNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'workflow_template' => $workflowTemplate,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project_region_workflow_template resource.
+     *
+     * @param string $project
+     * @param string $region
+     * @param string $workflowTemplate
+     *
+     * @return string The formatted project_region_workflow_template resource.
+     */
+    public static function projectRegionWorkflowTemplateName($project, $region, $workflowTemplate)
+    {
+        return self::getProjectRegionWorkflowTemplateNameTemplate()->render([
+            'project' => $project,
+            'region' => $region,
+            'workflow_template' => $workflowTemplate,
+        ]);
     }
 
     /**
@@ -196,6 +284,9 @@ class WorkflowTemplateServiceGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - location: projects/{project}/locations/{location}
+     * - projectLocationWorkflowTemplate: projects/{project}/locations/{location}/workflowTemplates/{workflow_template}
+     * - projectRegionWorkflowTemplate: projects/{project}/regions/{region}/workflowTemplates/{workflow_template}
      * - region: projects/{project}/regions/{region}
      * - workflowTemplate: projects/{project}/regions/{region}/workflowTemplates/{workflow_template}.
      *
@@ -334,7 +425,7 @@ class WorkflowTemplateServiceGapicClient
      * ```
      * $workflowTemplateServiceClient = new WorkflowTemplateServiceClient();
      * try {
-     *     $formattedParent = $workflowTemplateServiceClient->regionName('[PROJECT]', '[REGION]');
+     *     $formattedParent = $workflowTemplateServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     $template = new WorkflowTemplate();
      *     $response = $workflowTemplateServiceClient->createWorkflowTemplate($formattedParent, $template);
      * } finally {
@@ -398,8 +489,8 @@ class WorkflowTemplateServiceGapicClient
      * ```
      * $workflowTemplateServiceClient = new WorkflowTemplateServiceClient();
      * try {
-     *     $formattedName = $workflowTemplateServiceClient->workflowTemplateName('[PROJECT]', '[REGION]', '[WORKFLOW_TEMPLATE]');
-     *     $response = $workflowTemplateServiceClient->getWorkflowTemplate($formattedName);
+     *     $name = '';
+     *     $response = $workflowTemplateServiceClient->getWorkflowTemplate($name);
      * } finally {
      *     $workflowTemplateServiceClient->close();
      * }
@@ -483,8 +574,8 @@ class WorkflowTemplateServiceGapicClient
      * ```
      * $workflowTemplateServiceClient = new WorkflowTemplateServiceClient();
      * try {
-     *     $formattedName = $workflowTemplateServiceClient->workflowTemplateName('[PROJECT]', '[REGION]', '[WORKFLOW_TEMPLATE]');
-     *     $operationResponse = $workflowTemplateServiceClient->instantiateWorkflowTemplate($formattedName);
+     *     $name = '';
+     *     $operationResponse = $workflowTemplateServiceClient->instantiateWorkflowTemplate($name);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -497,7 +588,7 @@ class WorkflowTemplateServiceGapicClient
      *     // Alternatively:
      *
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $workflowTemplateServiceClient->instantiateWorkflowTemplate($formattedName);
+     *     $operationResponse = $workflowTemplateServiceClient->instantiateWorkflowTemplate($name);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $workflowTemplateServiceClient->resumeOperation($operationName, 'instantiateWorkflowTemplate');
@@ -619,7 +710,7 @@ class WorkflowTemplateServiceGapicClient
      * ```
      * $workflowTemplateServiceClient = new WorkflowTemplateServiceClient();
      * try {
-     *     $formattedParent = $workflowTemplateServiceClient->regionName('[PROJECT]', '[REGION]');
+     *     $formattedParent = $workflowTemplateServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     $template = new WorkflowTemplate();
      *     $operationResponse = $workflowTemplateServiceClient->instantiateInlineWorkflowTemplate($formattedParent, $template);
      *     $operationResponse->pollUntilComplete();
@@ -771,7 +862,7 @@ class WorkflowTemplateServiceGapicClient
      * ```
      * $workflowTemplateServiceClient = new WorkflowTemplateServiceClient();
      * try {
-     *     $formattedParent = $workflowTemplateServiceClient->regionName('[PROJECT]', '[REGION]');
+     *     $formattedParent = $workflowTemplateServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
      *     $pagedResponse = $workflowTemplateServiceClient->listWorkflowTemplates($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
@@ -859,8 +950,8 @@ class WorkflowTemplateServiceGapicClient
      * ```
      * $workflowTemplateServiceClient = new WorkflowTemplateServiceClient();
      * try {
-     *     $formattedName = $workflowTemplateServiceClient->workflowTemplateName('[PROJECT]', '[REGION]', '[WORKFLOW_TEMPLATE]');
-     *     $workflowTemplateServiceClient->deleteWorkflowTemplate($formattedName);
+     *     $name = '';
+     *     $workflowTemplateServiceClient->deleteWorkflowTemplate($name);
      * } finally {
      *     $workflowTemplateServiceClient->close();
      * }

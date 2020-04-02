@@ -31,7 +31,7 @@ class CreateAutoscalingPolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * The autoscaling policy to create.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.AutoscalingPolicy policy = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.AutoscalingPolicy policy = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $policy = null;
 
@@ -102,7 +102,7 @@ class CreateAutoscalingPolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * The autoscaling policy to create.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.AutoscalingPolicy policy = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.AutoscalingPolicy policy = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Dataproc\V1\AutoscalingPolicy
      */
     public function getPolicy()
@@ -113,7 +113,7 @@ class CreateAutoscalingPolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * The autoscaling policy to create.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.AutoscalingPolicy policy = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.AutoscalingPolicy policy = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dataproc\V1\AutoscalingPolicy $var
      * @return $this
      */
