@@ -29,6 +29,7 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\Cloud\PubSub\V1\ListTopicSnapshotsResponse;
 use Google\Cloud\PubSub\V1\ListTopicSubscriptionsResponse;
 use Google\Cloud\PubSub\V1\ListTopicsResponse;
 use Google\Cloud\PubSub\V1\PublishResponse;
@@ -537,6 +538,85 @@ class PublisherClientTest extends GeneratedTest
 
         try {
             $client->listTopicSubscriptions($formattedTopic);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function listTopicSnapshotsTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $nextPageToken = '';
+        $snapshotsElement = 'snapshotsElement1339034092';
+        $snapshots = [$snapshotsElement];
+        $expectedResponse = new ListTopicSnapshotsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setSnapshots($snapshots);
+        $transport->addResponse($expectedResponse);
+
+        // Mock request
+        $formattedTopic = $client->projectTopicName('[PROJECT]', '[TOPIC]');
+
+        $response = $client->listTopicSnapshots($formattedTopic);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getSnapshots()[0], $resources[0]);
+
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.pubsub.v1.Publisher/ListTopicSnapshots', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getTopic();
+
+        $this->assertProtobufEquals($formattedTopic, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function listTopicSnapshotsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        // Mock request
+        $formattedTopic = $client->projectTopicName('[PROJECT]', '[TOPIC]');
+
+        try {
+            $client->listTopicSnapshots($formattedTopic);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

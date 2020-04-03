@@ -132,6 +132,17 @@ return [
                     ],
                 ],
             ],
+            'GetSnapshot' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{snapshot=projects/*/snapshots/*}',
+                'placeholders' => [
+                    'snapshot' => [
+                        'getters' => [
+                            'getSnapshot',
+                        ],
+                    ],
+                ],
+            ],
             'ModifyAckDeadline' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{subscription=projects/*/subscriptions/*}:modifyAckDeadline',
