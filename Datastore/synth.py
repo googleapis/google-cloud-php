@@ -14,21 +14,20 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import os
 import synthtool as s
 import synthtool.gcp as gcp
 import logging
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICGenerator()
+gapic = gcp.GAPICBazel()
 common = gcp.CommonTemplates()
 
 library = gapic.php_library(
     service='datastore',
     version='v1',
-    config_path='/google/datastore/artman_datastore.legacy.yaml',
-    artman_output_name='google-cloud-datastore-v1')
+    bazel_target=f'//google/datastore/v1:google-cloud-datastore-v1-php',
+)
 
 # copy all src including partial veneer classes
 s.move(library / 'src')

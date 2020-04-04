@@ -14,20 +14,20 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import os
 import synthtool as s
 import synthtool.gcp as gcp
 import logging
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICGenerator()
+gapic = gcp.GAPICBazel()
 common = gcp.CommonTemplates()
 
-v1_library = gapic._generate_code(
-    'texttospeech', 'v1', 'php',
-    config_path='artman_texttospeech_v1.yaml',
-    artman_output_name='google-cloud-texttospeech-v1')
+v1_library = gapic.php_library(
+    service='texttospeech',
+    version='v1',
+    bazel_target='//google/cloud/texttospeech/v1:google-cloud-texttospeech-v1-php',
+)
 
 s.copy(v1_library / f'src/')
 s.copy(v1_library / f'proto/src/GPBMetadata/Google/Cloud/Texttospeech', f'metadata')

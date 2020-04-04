@@ -14,14 +14,13 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import os
 import synthtool as s
 import synthtool.gcp as gcp
 import logging
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICGenerator()
+gapic = gcp.GAPICBazel()
 common = gcp.CommonTemplates()
 
 for version in ['V1', 'V1p1beta1']:
@@ -29,7 +28,8 @@ for version in ['V1', 'V1p1beta1']:
     library = gapic.php_library(
         service='securitycenter',
         version=lower_version,
-        artman_output_name=f'google-cloud-securitycenter-{lower_version}')
+        bazel_target=f'//google/cloud/securitycenter/{lower_version}:google-cloud-securitycenter-{lower_version}-php',
+    )
 
     # copy all src
     s.move(library / f'src/{version}')
@@ -39,7 +39,7 @@ for version in ['V1', 'V1p1beta1']:
     s.move(library / f'tests/')
 
     # copy GPBMetadata file to metadata
-    s.move(library / f'proto/src/GPBMetadata/Google/Cloud/SecurityCenter', f'metadata/')
+    s.move(library / f'proto/src/GPBMetadata/Google/Cloud/Securitycenter', f'metadata/')
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(

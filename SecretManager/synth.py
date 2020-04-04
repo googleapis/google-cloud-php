@@ -23,16 +23,17 @@ logging.basicConfig(level=logging.DEBUG)
 gapic = gcp.GAPICBazel()
 
 for version in ['v1', 'v1beta1']:
-    kwargs = {}
     if version is 'v1beta1':
-        kwargs = {
-           'bazel_target': '//google/cloud/secrets/v1beta1:google-cloud-secretmanager-v1beta1-php'
-        }
-
+        bazel_target = '//google/cloud/secrets/v1beta1:google-cloud-secretmanager-v1beta1-php'
+        service='secrets'
+    else:
+        bazel_target = '//google/cloud/secretmanager/v1:google-cloud-secretmanager-v1-php'
+        service='secretmanager'
     library = gapic.php_library(
-        service='secretmanager' if version is 'v1' else 'secrets',
+        service=service,
         version=version,
-        **kwargs)
+        bazel_target=bazel_target,
+    )
 
     # copy all src
     s.move(library / f'src')

@@ -14,29 +14,23 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import os
 import synthtool as s
 import synthtool.gcp as gcp
 import logging
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICGenerator()
+gapic = gcp.GAPICBazel()
 common = gcp.CommonTemplates()
 
-versions = []
-versions.append({'version': 'V1', 'config': '/google/firestore/artman_firestore_v1.yaml'})
-versions.append({'version': 'V1beta1', 'config': '/google/firestore/artman_firestore.yaml'})
-
-for v in versions:
-    ver = v['version']
+for ver in ['V1', 'V1beta1']:
     lower_version = ver.lower()
 
     library = gapic.php_library(
         service='firestore',
         version=lower_version,
-        config_path=v['config'],
-        artman_output_name=f'google-cloud-firestore-{lower_version}')
+        bazel_target=f'//google/firestore/{lower_version}:google-cloud-firestore-{lower_version}-php',
+    )
 
     # copy all src except partial veneer classes
     s.move(library / f'src/{ver}/Gapic')
@@ -53,8 +47,8 @@ for v in versions:
 admin_library = gapic.php_library(
     service='firestore-admin',
     version='v1',
-    config_path='/google/firestore/admin/artman_firestore_v1.yaml',
-    artman_output_name='google-cloud-firestore-admin-v1')
+    bazel_target=f'//google/firestore/admin/v1:google-cloud-firestore-admin-v1-php',
+)
 
 # copy all src
 s.move(admin_library / f'src', 'src/Admin')

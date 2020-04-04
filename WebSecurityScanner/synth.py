@@ -14,21 +14,20 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import os
 import synthtool as s
 import synthtool.gcp as gcp
 import logging
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICGenerator()
+gapic = gcp.GAPICBazel()
 common = gcp.CommonTemplates()
 
 library = gapic.php_library(
     service='websecurityscanner',
     version='v1beta',
-    config_path=f'/google/cloud/websecurityscanner/artman_websecurityscanner_v1beta.yaml',
-    artman_output_name=f'google-cloud-websecurityscanner-v1beta')
+    bazel_target=f'//google/cloud/websecurityscanner/v1beta:google-cloud-websecurityscanner-v1beta-php',
+)
 
 # copy all src
 s.move(library / f'src/V1beta')

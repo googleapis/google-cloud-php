@@ -14,21 +14,20 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import os
 import synthtool as s
 import synthtool.gcp as gcp
 import logging
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICGenerator()
+gapic = gcp.GAPICBazel()
 common = gcp.CommonTemplates()
 
 library = gapic.php_library(
     service='clouderrorreporting',
     version='v1beta1',
-    config_path='/google/devtools/clouderrorreporting/artman_errorreporting.yaml',
-    artman_output_name='google-cloud-error-reporting-v1beta1')
+    bazel_target='//google/devtools/clouderrorreporting/v1beta1:google-cloud-devtools-clouderrorreporting-v1beta1-php',
+)
 
 # copy all src including partial veneer classes
 s.move(library / 'src')

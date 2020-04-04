@@ -14,29 +14,23 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import os
 import synthtool as s
 import synthtool.gcp as gcp
 import logging
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICGenerator()
+gapic = gcp.GAPICBazel()
 common = gcp.CommonTemplates()
 
 for version in ['V1', 'V1beta2']:
     lower_version = version.lower()
 
-    if version == 'V1':
-        extension = '.legacy.yaml'
-    else:
-        extension = '.yaml'
-
     library = gapic.php_library(
         service='videointelligence',
         version=lower_version,
-        config_path=f'/google/cloud/videointelligence/artman_videointelligence_{lower_version}{extension}',
-        artman_output_name=f'google-cloud-video-intelligence-{lower_version}')
+        bazel_target=f'//google/cloud/videointelligence/{lower_version}:google-cloud-videointelligence-{lower_version}-php',
+    )
 
     # copy all src including partial veneer classes
     s.move(library / 'src')

@@ -14,20 +14,20 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import os
 import synthtool as s
 import synthtool.gcp as gcp
 import logging
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICGenerator()
+gapic = gcp.GAPICBazel()
 common = gcp.CommonTemplates()
 
 v1beta1_library = gapic.php_library(
     service='redis',
     version='v1beta1',
-    artman_output_name='google-cloud-redis-v1beta1')
+    bazel_target='//google/cloud/redis/v1beta1:google-cloud-redis-v1beta1-php',
+)
 
 # copy all src except partial veneer classes
 s.move(v1beta1_library / f'src/V1beta1/Gapic')
@@ -43,7 +43,8 @@ s.move(v1beta1_library / f'proto/src/GPBMetadata/Google/Cloud/Redis', f'metadata
 v1_library = gapic.php_library(
     service='redis',
     version='v1',
-    artman_output_name='google-cloud-redis-v1')
+    bazel_target='//google/cloud/redis/v1:google-cloud-redis-v1-php',
+)
 
 # copy all src except partial veneer classes
 s.move(v1_library / f'src/V1/Gapic')

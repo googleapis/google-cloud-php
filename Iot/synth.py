@@ -14,21 +14,20 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import os
 import synthtool as s
 import synthtool.gcp as gcp
 import logging
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICGenerator()
+gapic = gcp.GAPICBazel()
 common = gcp.CommonTemplates()
 
 library = gapic.php_library(
     service='iot',
     version='v1',
-    config_path='artman_cloudiot.yaml',
-    artman_output_name='google-cloud-iot-v1')
+    bazel_target='//google/cloud/iot/v1:google-cloud-iot-v1-php',
+)
 
 # copy all src including partial veneer classes
 s.move(library / f'src')

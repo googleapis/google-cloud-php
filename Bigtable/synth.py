@@ -14,28 +14,27 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import os
 import synthtool as s
 import synthtool.gcp as gcp
 import logging
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICGenerator()
+gapic = gcp.GAPICBazel()
 common = gcp.CommonTemplates()
 
 library = gapic.php_library(
     service='bigtable',
     version='v2',
-    config_path='/google/bigtable/artman_bigtable.yaml',
-    artman_output_name='google-cloud-bigtable-v2')
+    bazel_target=f'//google/bigtable/v2:google-cloud-bigtable-v2-php',
+)
 
 # copy all src except handwritten partial veneers
 s.move(library / f'src/V2/Gapic')
 s.move(library / f'src/V2/resources')
 
 # copy proto files to src also
-s.move(library / f'proto/src/Google/Cloud/BigTable', f'src/')
+s.move(library / f'proto/src/Google/Cloud/Bigtable', f'src/')
 s.move(library / f'tests/')
 
 # copy GPBMetadata file to metadata
@@ -45,8 +44,8 @@ s.move(library / f'proto/src/GPBMetadata/Google/Bigtable', f'metadata/')
 admin_library = gapic.php_library(
     service='bigtable-admin',
     version='v2',
-    config_path='/google/bigtable/admin/artman_bigtableadmin.yaml',
-    artman_output_name='google-cloud-bigtable-admin-v2')
+    bazel_target='//google/bigtable/admin/v2:google-cloud-bigtable-admin-v2-php'
+)
 
 # copy all src except handwritten partial veneers
 s.move(admin_library / f'src/V2/Gapic', 'src/Admin/V2/Gapic')

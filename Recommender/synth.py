@@ -14,21 +14,20 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import os
 import synthtool as s
 import synthtool.gcp as gcp
 import logging
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICGenerator()
+gapic = gcp.GAPICBazel()
 common = gcp.CommonTemplates()
 
 library = gapic.php_library(
     service='recommender',
     version='v1',
-    config_path=f'/google/cloud/recommender/v1/artman_recommender_v1.yaml',
-    artman_output_name=f'google-cloud-recommender-v1')
+    bazel_target='//google/cloud/recommender/v1:google-cloud-recommender-v1-php',
+)
 
 # copy all src
 s.move(library / f'src/V1')

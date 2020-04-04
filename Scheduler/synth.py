@@ -14,24 +14,23 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import os
 import synthtool as s
 import synthtool.gcp as gcp
 import logging
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICGenerator()
+gapic = gcp.GAPICBazel()
 common = gcp.CommonTemplates()
 
-for version in ['V1', 'V1Beta1']:
+for version in ['V1', 'V1beta1']:
     lower_version = version.lower()
 
     library = gapic.php_library(
         service='scheduler',
         version=lower_version,
-        config_path=f'/google/cloud/scheduler/artman_cloudscheduler_{lower_version}.yaml',
-        artman_output_name=f'google-cloud-cloudscheduler-{lower_version}')
+        bazel_target=f'//google/cloud/scheduler/{lower_version}:google-cloud-scheduler-{lower_version}-php',
+    )
 
     # copy all src
     s.move(library / f'src/{version}')

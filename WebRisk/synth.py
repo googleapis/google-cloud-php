@@ -14,20 +14,20 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import os
 import synthtool as s
 import synthtool.gcp as gcp
 import logging
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICGenerator()
+gapic = gcp.GAPICBazel()
 common = gcp.CommonTemplates()
 
 library = gapic.php_library(
     service='webrisk',
     version='v1beta1',
-    artman_output_name='google-cloud-webrisk-v1beta1')
+    bazel_target=f'//google/cloud/webrisk/v1beta1:google-cloud-webrisk-v1beta1-php',
+)
 
 # copy all src including partial veneer classes
 s.move(library / 'src')
@@ -37,7 +37,7 @@ s.move(library / 'proto/src/Google/Cloud/WebRisk', 'src/')
 s.move(library / 'tests/')
 
 # copy GPBMetadata file to metadata
-s.move(library / 'proto/src/GPBMetadata/Google/Cloud/WebRisk', 'metadata/')
+s.move(library / 'proto/src/GPBMetadata/Google/Cloud/Webrisk', 'metadata/')
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
