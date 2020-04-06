@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * An asset feed filter controls what updates are exported.
  * The asset feed must be created within a project, organization, or
  * folder. Supported destinations are:
- * Pub/Sub topics.
+ * Cloud Pub/Sub topics.
  *
  * Generated from protobuf message <code>google.cloud.asset.v1.Feed</code>
  */
@@ -47,10 +47,10 @@ class Feed extends \Google\Protobuf\Internal\Message
      * A list of types of the assets to receive updates. You must specify either
      * or both of asset_names and asset_types. Only asset updates matching
      * specified asset_names and asset_types are exported to the feed.
-     * For example: `"compute.googleapis.com/Disk"`
-     * See [this
-     * topic](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
-     * for a list of all supported asset types.
+     * For example:
+     * "compute.googleapis.com/Disk" See [Introduction to Cloud Asset
+     * Inventory](https://cloud.google.com/resource-manager/docs/cloud-asset-inventory/overview)
+     * for all supported asset types.
      *
      * Generated from protobuf field <code>repeated string asset_types = 3;</code>
      */
@@ -96,10 +96,10 @@ class Feed extends \Google\Protobuf\Internal\Message
      *           A list of types of the assets to receive updates. You must specify either
      *           or both of asset_names and asset_types. Only asset updates matching
      *           specified asset_names and asset_types are exported to the feed.
-     *           For example: `"compute.googleapis.com/Disk"`
-     *           See [this
-     *           topic](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
-     *           for a list of all supported asset types.
+     *           For example:
+     *           "compute.googleapis.com/Disk" See [Introduction to Cloud Asset
+     *           Inventory](https://cloud.google.com/resource-manager/docs/cloud-asset-inventory/overview)
+     *           for all supported asset types.
      *     @type int $content_type
      *           Asset content type. If not specified, no content but the asset name and
      *           type will be returned.
@@ -193,10 +193,10 @@ class Feed extends \Google\Protobuf\Internal\Message
      * A list of types of the assets to receive updates. You must specify either
      * or both of asset_names and asset_types. Only asset updates matching
      * specified asset_names and asset_types are exported to the feed.
-     * For example: `"compute.googleapis.com/Disk"`
-     * See [this
-     * topic](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
-     * for a list of all supported asset types.
+     * For example:
+     * "compute.googleapis.com/Disk" See [Introduction to Cloud Asset
+     * Inventory](https://cloud.google.com/resource-manager/docs/cloud-asset-inventory/overview)
+     * for all supported asset types.
      *
      * Generated from protobuf field <code>repeated string asset_types = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -210,10 +210,10 @@ class Feed extends \Google\Protobuf\Internal\Message
      * A list of types of the assets to receive updates. You must specify either
      * or both of asset_names and asset_types. Only asset updates matching
      * specified asset_names and asset_types are exported to the feed.
-     * For example: `"compute.googleapis.com/Disk"`
-     * See [this
-     * topic](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
-     * for a list of all supported asset types.
+     * For example:
+     * "compute.googleapis.com/Disk" See [Introduction to Cloud Asset
+     * Inventory](https://cloud.google.com/resource-manager/docs/cloud-asset-inventory/overview)
+     * for all supported asset types.
      *
      * Generated from protobuf field <code>repeated string asset_types = 3;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var

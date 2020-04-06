@@ -24,7 +24,7 @@ class FeedOutputConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Asset\V1\PubsubDestination $pubsub_destination
-     *           Destination on Pub/Sub.
+     *           Destination on Cloud Pubsub.
      * }
      */
     public function __construct($data = NULL) {
@@ -33,7 +33,7 @@ class FeedOutputConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Destination on Pub/Sub.
+     * Destination on Cloud Pubsub.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.PubsubDestination pubsub_destination = 1;</code>
      * @return \Google\Cloud\Asset\V1\PubsubDestination
@@ -44,7 +44,7 @@ class FeedOutputConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Destination on Pub/Sub.
+     * Destination on Cloud Pubsub.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.PubsubDestination pubsub_destination = 1;</code>
      * @param \Google\Cloud\Asset\V1\PubsubDestination $var

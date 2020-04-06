@@ -9,8 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * An asset in Google Cloud and its temporal metadata, including the time window
- * when it was observed and its status during that window.
+ * Temporal asset. In addition to the asset, the temporal asset includes the
+ * status of the asset and valid from and to time of it.
  *
  * Generated from protobuf message <code>google.cloud.asset.v1.TemporalAsset</code>
  */
@@ -23,13 +23,13 @@ class TemporalAsset extends \Google\Protobuf\Internal\Message
      */
     private $window = null;
     /**
-     * Whether the asset has been deleted or not.
+     * If the asset is deleted or not.
      *
      * Generated from protobuf field <code>bool deleted = 2;</code>
      */
     private $deleted = false;
     /**
-     * An asset in Google Cloud.
+     * Asset.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.Asset asset = 3;</code>
      */
@@ -44,9 +44,9 @@ class TemporalAsset extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Asset\V1\TimeWindow $window
      *           The time window when the asset data and state was observed.
      *     @type bool $deleted
-     *           Whether the asset has been deleted or not.
+     *           If the asset is deleted or not.
      *     @type \Google\Cloud\Asset\V1\Asset $asset
-     *           An asset in Google Cloud.
+     *           Asset.
      * }
      */
     public function __construct($data = NULL) {
@@ -81,7 +81,7 @@ class TemporalAsset extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the asset has been deleted or not.
+     * If the asset is deleted or not.
      *
      * Generated from protobuf field <code>bool deleted = 2;</code>
      * @return bool
@@ -92,7 +92,7 @@ class TemporalAsset extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the asset has been deleted or not.
+     * If the asset is deleted or not.
      *
      * Generated from protobuf field <code>bool deleted = 2;</code>
      * @param bool $var
@@ -107,7 +107,7 @@ class TemporalAsset extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An asset in Google Cloud.
+     * Asset.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.Asset asset = 3;</code>
      * @return \Google\Cloud\Asset\V1\Asset
@@ -118,7 +118,7 @@ class TemporalAsset extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An asset in Google Cloud.
+     * Asset.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.Asset asset = 3;</code>
      * @param \Google\Cloud\Asset\V1\Asset $var
