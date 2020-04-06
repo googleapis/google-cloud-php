@@ -14,14 +14,13 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import os
 import synthtool as s
 import synthtool.gcp as gcp
 import logging
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICGenerator()
+gapic = gcp.GAPICBazel()
 versions = ["V1beta1", "V1"]
 
 for version in versions:
@@ -29,8 +28,8 @@ for version in versions:
     library = gapic.php_library(
         service='automl',
         version=lower_version,
-        config_path=f'artman_automl_{lower_version}.yaml',
-        artman_output_name=f'google-cloud-automl-{lower_version}')
+        bazel_target=f'//google/cloud/automl/{lower_version}:google-cloud-automl-{lower_version}-php',
+    )
 
     # copy all src including partial veneer classes
     s.move(library / 'src')

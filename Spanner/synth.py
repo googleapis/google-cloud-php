@@ -14,7 +14,6 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import os
 import synthtool as s
 import synthtool.gcp as gcp
 import logging
@@ -22,14 +21,14 @@ import re
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICGenerator()
+gapic = gcp.GAPICBazel()
 common = gcp.CommonTemplates()
 
 library = gapic.php_library(
     service='spanner',
     version='v1',
-    config_path='/google/spanner/artman_spanner.yaml',
-    artman_output_name='google-cloud-spanner-v1')
+    bazel_target='//google/spanner/v1:google-cloud-spanner-v1-php',
+)
 
 # copy all src except handwritten partial veneers
 s.move(library / f'src/V1/Gapic')
@@ -46,8 +45,8 @@ s.move(library / f'proto/src/GPBMetadata/Google/Spanner', f'metadata/')
 admin_library = gapic.php_library(
     service='spanner-admin-database',
     version='v1',
-    config_path='/google/spanner/admin/database/artman_spanner_admin_database.yaml',
-    artman_output_name='google-cloud-spanner-admin-database-v1')
+    bazel_target='//google/spanner/admin/database/v1:google-cloud-admin-database-v1-php',
+)
 
 # copy all src except handwritten partial veneers
 s.move(admin_library / f'src/V1/Gapic', 'src/Admin/Database/V1/Gapic')
@@ -64,8 +63,8 @@ s.move(admin_library / f'proto/src/GPBMetadata/Google/Spanner', f'metadata/')
 admin_library = gapic.php_library(
     service='spanner-admin-instance',
     version='v1',
-    config_path='/google/spanner/admin/instance/artman_spanner_admin_instance.yaml',
-    artman_output_name='google-cloud-spanner-admin-instance-v1')
+    bazel_target='//google/spanner/admin/instance/v1:google-cloud-admin-instance-v1-php',
+)
 
 # copy all src except handwritten partial veneers
 s.move(admin_library / f'src/V1/Gapic', 'src/Admin/Instance/V1/Gapic')
@@ -110,11 +109,11 @@ s.replace(
 s.replace(
     'tests/Unit/Admin/Database/*/*.php',
     r'namespace Google\\Cloud\\Spanner\\Admin\\Database\\Tests\\Unit',
-    'namespace Google\\Cloud\\Spanner\\Tests\\Unit\\Admin\\Database')
+    r'namespace Google\\Cloud\\Spanner\\Tests\\Unit\\Admin\\Database')
 s.replace(
     'tests/Unit/Admin/Instance/*/*.php',
     r'namespace Google\\Cloud\\Spanner\\Admin\\Instance\\Tests\\Unit',
-    'namespace Google\\Cloud\\Spanner\\Tests\\Unit\\Admin\\Instance')
+    r'namespace Google\\Cloud\\Spanner\\Tests\\Unit\\Admin\\Instance')
 
 # fix test group
 s.replace(

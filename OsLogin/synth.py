@@ -14,25 +14,26 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import os
 import synthtool as s
 import synthtool.gcp as gcp
 import logging
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICGenerator()
+gapic = gcp.GAPICBazel()
 common = gcp.CommonTemplates()
 
 v1beta = gapic.php_library(
     service='oslogin',
     version='v1beta',
-    artman_output_name='google-cloud-os-login-v1beta')
+    bazel_target='//google/cloud/oslogin/v1beta:google-cloud-oslogin-v1beta-php'
+)
 
 v1 = gapic.php_library(
     service='oslogin',
     version='v1',
-    artman_output_name='google-cloud-os-login-v1')
+    bazel_target='//google/cloud/oslogin/v1:google-cloud-oslogin-v1-php'
+)
 
 # copy all src
 s.move(v1beta / f'src/V1beta')

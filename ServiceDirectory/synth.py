@@ -24,7 +24,9 @@ gapic = gcp.GAPICBazel()
 
 library = gapic.php_library(
     service="servicedirectory",
-    version="v1beta1")
+    version="v1beta1",
+    bazel_target='//google/cloud/servicedirectory/v1beta1:google-cloud-servicedirectory-v1beta1-php',
+)
 
 # copy all src
 s.move(library / f"src/V1beta1")

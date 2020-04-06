@@ -14,14 +14,13 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import os
 import synthtool as s
 import synthtool.gcp as gcp
 import logging
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICGenerator()
+gapic = gcp.GAPICBazel()
 
 for version in ['V1', 'V1beta1']:
     lower_version = version.lower()
@@ -29,9 +28,8 @@ for version in ['V1', 'V1beta1']:
     library = gapic.php_library(
         service='asset',
         version=lower_version,
-        config_path=f'artman_cloudasset_{lower_version}.yaml',
-        artman_output_name=f'google-cloud-asset-{lower_version}')
-
+        bazel_target=f'//google/cloud/asset/{lower_version}:google-cloud-asset-{lower_version}-php',
+    )
     # copy all src including partial veneer classes
     s.move(library / 'src')
 

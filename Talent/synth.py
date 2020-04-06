@@ -14,21 +14,20 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import os
 import synthtool as s
 import synthtool.gcp as gcp
 import logging
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICGenerator()
+gapic = gcp.GAPICBazel()
 common = gcp.CommonTemplates()
 
 library = gapic.php_library(
     service='talent',
     version='v4beta1',
-    config_path='/google/cloud/talent/artman_talent_v4beta1.yaml',
-    artman_output_name='google-cloud-talent-v4beta1')
+    bazel_target='//google/cloud/talent/v4beta1:google-cloud-talent-v4beta1-php'
+)
 
 # copy all src including partial veneer classes
 s.move(library / 'src')

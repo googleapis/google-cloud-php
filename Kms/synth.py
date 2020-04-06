@@ -14,7 +14,6 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import os
 import synthtool as s
 import synthtool.gcp as gcp
 import logging
@@ -23,14 +22,14 @@ AUTOSYNTH_MULTIPLE_COMMITS = True
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICGenerator()
+gapic = gcp.GAPICBazel()
 common = gcp.CommonTemplates()
 
 v1_library = gapic.php_library(
     service='kms',
     version='v1',
-    config_path='artman_cloudkms.yaml',
-    artman_output_name='google-cloud-kms-v1')
+    bazel_target='//google/cloud/kms/v1:google-cloud-kms-v1-php',
+)
 
 s.copy(v1_library / f'src/')
 s.copy(v1_library / f'proto/src/GPBMetadata/Google/Cloud/Kms', f'metadata')

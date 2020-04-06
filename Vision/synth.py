@@ -14,20 +14,20 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import os
 import synthtool as s
 import synthtool.gcp as gcp
 import logging
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICGenerator()
+gapic = gcp.GAPICBazel()
 common = gcp.CommonTemplates()
 
 v1_library = gapic.php_library(
     service='vision',
     version='v1',
-    artman_output_name='google-cloud-vision-v1')
+    bazel_target=f'//google/cloud/vision/v1:google-cloud-vision-v1-php',
+)
 
 # copy all src except partial veneer classes
 s.move(v1_library / f'src/V1/Gapic')

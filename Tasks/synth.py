@@ -14,22 +14,21 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import os
 import synthtool as s
 import synthtool.gcp as gcp
 import logging
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICGenerator()
+gapic = gcp.GAPICBazel()
 
 for version in ['V2', 'V2beta2', 'V2beta3']:
     lower_version = version.lower()
     library = gapic.php_library(
         service='tasks',
         version=lower_version,
-        config_path=f'artman_cloudtasks_{lower_version}.yaml',
-        artman_output_name=f'google-cloud-tasks-{lower_version}')
+        bazel_target=f'//google/cloud/tasks/{lower_version}:google-cloud-tasks-{lower_version}-php',
+    )
 
     # copy all src including partial veneer classes
     s.move(library / 'src')

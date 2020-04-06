@@ -14,21 +14,20 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import os
 import synthtool as s
 import synthtool.gcp as gcp
 import logging
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICGenerator()
+gapic = gcp.GAPICBazel()
 common = gcp.CommonTemplates()
 
 library = gapic.php_library(
     service='dialogflow',
     version='v2',
-    config_path='/google/cloud/dialogflow/v2/artman_dialogflow_v2.yaml',
-    artman_output_name='google-cloud-dialogflow-v2')
+    bazel_target='//google/cloud/dialogflow/v2:google-cloud-dialogflow-v2-php',
+)
 
 # copy all src including partial veneer classes
 s.move(library / 'src')
