@@ -2,9 +2,9 @@
 
 > Idiomatic PHP client for [Google Cloud Recommendation Engine](https://cloud.google.com/recommendations-ai).
 
-[![Latest Stable Version](https://poser.pugx.org/google/cloud-recommendation-engine/v/stable)](https://packagist.org/packages/google/cloud-recommendation-engine) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-recommendation-engine.svg)](https://packagist.org/packages/google/cloud-recommendation-engine)
+[![Latest Stable Version](https://poser.pugx.org/google/cloud-recommendations-ai/v/stable)](https://packagist.org/packages/google/cloud-recommendations-ai) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-recommendations-ai.svg)](https://packagist.org/packages/google/cloud-recommendations-ai)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-recommendation-engine/latest/recommendationengine/readme)
+* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-recommendations-ai/latest/recommendationengine/readme)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to
@@ -17,7 +17,7 @@ To begin, install the preferred dependency manager for PHP, [Composer](https://g
 Now to install just this component:
 
 ```sh
-$ composer require google/cloud-recommendation-engine
+$ composer require google/cloud-recommendations-ai
 ```
 
 Or to install the entire suite of components at once:
@@ -41,7 +41,13 @@ use Google\Cloud\RecommendationEngine\V1beta1\PredictionServiceClient;
 use Google\Cloud\RecommendationEngine\V1beta1\UserEvent;
 
 $client = new PredictionServiceClient();
-$formattedName = $predictionServiceClient->placementName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]', '[PLACEMENT]');
+$formattedName = $predictionServiceClient->placementName(
+    '[PROJECT]',
+    '[LOCATION]',
+    '[CATALOG]',
+    '[EVENT_STORE]',
+    '[PLACEMENT]'
+);
 $userEvent = new UserEvent();
 
 $predictions = $predictionServiceClient->predict($formattedName, $userEvent);

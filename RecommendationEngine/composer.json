@@ -1,5 +1,5 @@
 {
-    "name": "google/cloud-recommendation-engine",
+    "name": "google/cloud-recommendations-ai",
     "description": "Google Cloud Recommendation Engine Client for PHP",
     "license": "Apache-2.0",
     "minimum-stability": "stable",
