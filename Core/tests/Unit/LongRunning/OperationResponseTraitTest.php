@@ -27,7 +27,9 @@ use Prophecy\Argument;
 use Google\Cloud\Audit\RequestMetadata;
 use Google\Cloud\Audit\AuthorizationInfo;
 
-/** @group op-response */
+/** @group core
+  * @group core-longrunning
+  */
 class OperationResponseTraitTest extends TestCase
 {
     use OperationResponseTrait;
