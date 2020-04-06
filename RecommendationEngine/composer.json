@@ -16,7 +16,7 @@
     },
     "extra": {
         "component": {
-            "id": "cloud-recommendation-engine",
+            "id": "cloud-recommendations-ai",
             "path": "RecommendationEngine",
             "entry": null,
             "target": "googleapis/google-cloud-php-recommendations-ai.git"
