@@ -48,9 +48,23 @@ This client supports the following Google Cloud Platform services at a [General 
 
 This client supports the following Google Cloud Platform services at a [Beta](#versioning) quality level:
 
+<<<<<<< HEAD
 * [Dialogflow API](Dialogflow/README.md) (Beta)
 * [Google Cloud Natural Language](Language/README.md) (Beta)
 * [Google Cloud Talent Solution](Talent/README.md) (Beta)
+=======
+* [Cloud AutoML](#cloud-automl-beta) (Beta)
+* [Google Cloud Asset](#google-cloud-asset-beta) (Beta)
+* [Google Cloud Container](#google-cloud-container-beta) (Beta)
+* [Google Cloud Dataproc](#google-cloud-dataproc-beta) (Beta)
+* [Google Cloud Natural Language](#google-cloud-natural-language-beta) (Beta)
+* [Google Cloud OsLogin](#google-cloud-oslogin-beta) (Beta)
+* [Google Cloud Speech](#google-cloud-speech-beta) (Beta)
+* [Google Cloud Text-to-Speech](#google-cloud-text-to-speech-beta) (Beta)
+* [Google Cloud Vision](#google-cloud-vision-beta) (Beta)
+* [Google DLP](#google-dlp-beta) (Beta)
+* [Google Recommendation Engine](#google-recommendation-engine) (Beta)
+>>>>>>> d9bb79abab... feat: add recommendation engine client
 * [Google Service Directory](#google-service-directory-beta) (Beta)
 * [Google Cloud Web Risk](WebRisk/README.md) (Beta)
 * [Google Cloud Web Security Scanner](WebSecurityScanner/README.md) (Beta)
@@ -165,6 +179,1102 @@ This library follows [Semantic Versioning](http://semver.org/).
 Please note it is currently under active development. Any release versioned
 0.x.y is subject to backwards incompatible changes at any time.
 
+<<<<<<< HEAD
+=======
+```
+$ composer require google/cloud-logging
+```
+
+## Cloud AutoML (Beta)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/automl/v1beta1/automlclient)
+- [Official Documentation](https://cloud.google.com/automl/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\AutoMl\V1\AutoMlClient;
+use Google\Cloud\AutoMl\V1\TranslationDatasetMetadata;
+
+$autoMlClient = new AutoMlClient();
+$formattedParent = $autoMlClient->locationName('[PROJECT]', '[LOCATION]');
+$dataset = new Dataset([
+    'display_name' => '[DISPLAY_NAME]',
+    'translation_dataset_metadata' => new TranslationDatasetMetadata([
+        'source_language_code' => 'en',
+        'target_language_code' => 'es'
+    ])
+]);
+$response = $autoMlClient->createDataset($formattedParent, $dataset);
+```
+
+#### google/cloud-automl
+
+[Cloud AutoML](https://github.com/GoogleCloudPlatform/google-cloud-php-automl) can be installed separately by requiring the [`google/cloud-automl`](https://packagist.org/packages/google/cloud-automl) composer package:
+
+```
+$ composer require google/cloud-firestore
+```
+
+## Google Cloud Asset (Beta)
+
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/asset/assetclient)
+- [Official Documentation](https://cloud.google.com/resource-manager/docs/cai/)
+
+#### Preview
+
+```php
+require_once __DIR__ . '/vendor/autoload.php';
+
+use Google\Cloud\Asset\V1\AssetServiceClient;
+use Google\Cloud\Asset\V1\GcsDestination;
+use Google\Cloud\Asset\V1\OutputConfig;
+
+$objectPath = 'gs://your-bucket/cai-export';
+// Now you need to change this with your project number (numeric id)
+$project = 'example-project';
+
+$client = new AssetServiceClient();
+
+$gcsDestination = new GcsDestination(['uri' => $objectPath]);
+$outputConfig = new OutputConfig(['gcs_destination' => $gcsDestination]);
+
+$resp = $client->exportAssets("projects/$project", $outputConfig);
+
+$resp->pollUntilComplete();
+
+if ($resp->operationSucceeded()) {
+    echo "The result is dumped to $objectPath successfully." . PHP_EOL;
+} else {
+    $error = $resp->getError();
+    // handleError($error)
+}
+```
+
+#### google/cloud-asset
+
+[Cloud Asset Inventory](https://github.com/googleapis/google-cloud-php-asset) can be installed separately by requiring the [`google/cloud-asset`](https://packagist.org/packages/google/cloud-asset) composer package:
+
+```
+$ composer require google/cloud-asset
+```
+
+## Google Cloud Container (Beta)
+
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/container/readme)
+- [Official Documentation](https://cloud.google.com/kubernetes-engine/docs)
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Container\V1\ClusterManagerClient;
+
+$clusterManagerClient = new ClusterManagerClient();
+
+$projectId = '[MY-PROJECT-ID]';
+$zone = 'us-central1-a';
+
+try {
+    $clusters = $clusterManagerClient->listClusters($projectId, $zone);
+    foreach ($clusters->getClusters() as $cluster) {
+        print('Cluster: ' . $cluster->getName() . PHP_EOL);
+    }
+} finally {
+    $clusterManagerClient->close();
+}
+```
+
+#### google/cloud-container
+
+[Google Cloud Container](https://github.com/googleapis/google-cloud-php-container) can be installed separately by requiring the [`google/cloud-container`](https://packagist.org/packages/google/cloud-container) composer package:
+
+```
+$ composer require google/cloud-container
+```
+
+## Google Cloud Dataproc (Beta)
+
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/dataproc/readme)
+- [Official Documentation](https://cloud.google.com/dataproc/docs)
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Dataproc\V1\JobControllerClient;
+use Google\Cloud\Dataproc\V1\Job;
+use Google\Cloud\Dataproc\V1\HadoopJob;
+use Google\Cloud\Dataproc\V1\JobPlacement;
+
+$projectId = '[MY_PROJECT_ID]';
+$region = 'global';
+$clusterName = '[MY_CLUSTER]';
+
+$jobPlacement = new JobPlacement();
+$jobPlacement->setClusterName($clusterName);
+
+$hadoopJob = new HadoopJob();
+$hadoopJob->setMainJarFileUri('gs://my-bucket/my-hadoop-job.jar');
+
+$job = new Job();
+$job->setPlacement($jobPlacement);
+$job->setHadoopJob($hadoopJob);
+
+$jobControllerClient = new JobControllerClient();
+$submittedJob = $jobControllerClient->submitJob($projectId, $region, $job);
+```
+
+#### google/cloud-dataproc
+
+[Google Cloud Dataproc](https://github.com/googleapis/google-cloud-php-dataproc) can be installed separately by requiring the [`google/cloud-dataproc`](https://packagist.org/packages/google/cloud-dataproc) composer package:
+
+```
+$ composer require google/cloud-dataproc
+```
+
+## Google Cloud Natural Language (Beta)
+
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/language/languageclient)
+- [Official Documentation](https://cloud.google.com/natural-language/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Language\V1\AnnotateTextRequest\Features;
+use Google\Cloud\Language\V1\Document;
+use Google\Cloud\Language\V1\Document\Type;
+use Google\Cloud\Language\V1\Entity\Type as EntityType;
+use Google\Cloud\Language\V1\LanguageServiceClient;
+use Google\Cloud\Language\V1\PartOfSpeech\Tag;
+
+$client = new LanguageServiceClient([
+    'credentials' => '/Users/dsupplee/Downloads/gcloud.json'
+]);
+
+$document = new Document([
+    'content' => 'Greetings from Michigan!',
+    'type' => Type::PLAIN_TEXT
+]);
+$features = new Features([
+    'extract_document_sentiment' => true,
+    'extract_entities' => true,
+    'extract_syntax' => true
+]);
+
+// Annotate the document.
+$response = $client->annotateText($document, $features);
+
+// Check the sentiment.
+$sentimentScore = $response->getDocumentSentiment()
+    ->getScore();
+
+if ($sentimentScore > 0) {
+    echo 'This is a positive message.' . PHP_EOL;
+}
+
+// Detect entities.
+foreach ($response->getEntities() as $entity) {
+    printf(
+        '[%s] %s',
+        EntityType::name($entity->getType()),
+        $entity->getName()
+    );
+    echo PHP_EOL;
+}
+
+// Parse the syntax.
+foreach ($response->getTokens() as $token) {
+    $speechTag = Tag::name($token->getPartOfSpeech()->getTag());
+
+    printf(
+        '[%s] %s',
+        $speechTag,
+        $token->getText()->getContent()
+    );
+    echo PHP_EOL;
+}
+```
+
+#### google/cloud-language
+
+[Google Cloud Natural Language](https://github.com/googleapis/google-cloud-php-language) can be installed separately by requiring the [`google/cloud-language`](https://packagist.org/packages/google/cloud-language) composer package:
+
+```
+$ composer require google/cloud-language
+```
+
+## Google Cloud OsLogin (Beta)
+
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/oslogin/readme)
+- [Official Documentation](https://cloud.google.com/compute/docs/oslogin/rest/)
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\OsLogin\V1\OsLoginServiceClient;
+
+$osLoginServiceClient = new OsLoginServiceClient();
+$userId = '[MY_USER_ID]';
+$formattedName = $osLoginServiceClient->userName($userId);
+$loginProfile = $osLoginServiceClient->getLoginProfile($formattedName);
+```
+
+#### google/cloud-oslogin
+
+[Google Cloud OsLogin](https://github.com/googleapis/google-cloud-php-oslogin) can be installed separately by requiring the [`google/cloud-oslogin`](https://packagist.org/packages/google/cloud-oslogin) composer package:
+
+```
+$ composer require google/cloud-oslogin
+```
+
+## Google Cloud Speech (Beta)
+
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/speech/speechclient)
+- [Official Documentation](https://cloud.google.com/speech/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Speech\V1\RecognitionConfig\AudioEncoding;
+use Google\Cloud\Speech\V1\RecognitionConfig;
+use Google\Cloud\Speech\V1\StreamingRecognitionConfig;
+
+$recognitionConfig = new RecognitionConfig();
+$recognitionConfig->setEncoding(AudioEncoding::FLAC);
+$recognitionConfig->setSampleRateHertz(44100);
+$recognitionConfig->setLanguageCode('en-US');
+$config = new StreamingRecognitionConfig();
+$config->setConfig($recognitionConfig);
+
+$audioResource = fopen('path/to/audio.flac', 'r');
+
+$responses = $speechClient->recognizeAudioStream($config, $audioResource);
+
+foreach ($responses as $element) {
+    // doSomethingWith($element);
+}
+```
+
+#### google/cloud-speech
+
+[Google Cloud Speech](https://github.com/googleapis/google-cloud-php-speech) can be installed separately by requiring the [`google/cloud-speech`](https://packagist.org/packages/google/cloud-speech) composer package:
+
+```
+$ composer require google/cloud-speech
+```
+
+## Google Cloud Text-to-Speech (Beta)
+
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/text-to-speech/readme)
+- [Official Documentation](https://cloud.google.com/text-to-speech/docs/reference/rpc/)
+
+```php
+require __DIR__ . '/vendor/autoload.php';
+
+use Google\Cloud\TextToSpeech\V1\AudioConfig;
+use Google\Cloud\TextToSpeech\V1\AudioEncoding;
+use Google\Cloud\TextToSpeech\V1\SynthesisInput;
+use Google\Cloud\TextToSpeech\V1\TextToSpeechClient;
+use Google\Cloud\TextToSpeech\V1\VoiceSelectionParams;
+
+$textToSpeechClient = new TextToSpeechClient();
+
+$input = new SynthesisInput();
+$input->setText('Japan\'s national soccer team won against Colombia!');
+$voice = new VoiceSelectionParams();
+$voice->setLanguageCode('en-US');
+$audioConfig = new AudioConfig();
+$audioConfig->setAudioEncoding(AudioEncoding::MP3);
+
+$resp = $textToSpeechClient->synthesizeSpeech($input, $voice, $audioConfig);
+file_put_contents('test.mp3', $resp->getAudioContent());
+```
+
+#### google/cloud-text-to-speech
+
+[Google Cloud Text-to-Speech](https://github.com/googleapis/google-cloud-php-text-to-speech) can be installed separately by requiring the [`google/cloud-text-to-speech`](https://packagist.org/packages/google/cloud-text-to-speech) composer package:
+
+```
+$ composer require google/cloud-text-to-speech
+```
+
+## Google Cloud Vision (Beta)
+
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/vision/visionclient)
+- [Official Documentation](https://cloud.google.com/vision/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Vision\VisionClient;
+
+$vision = new VisionClient();
+
+// Annotate an image, detecting faces.
+$image = $vision->image(
+    fopen('/data/family_photo.jpg', 'r'),
+    ['faces']
+);
+
+$annotation = $vision->annotate($image);
+
+// Determine if the detected faces have headwear.
+foreach ($annotation->faces() as $key => $face) {
+    if ($face->hasHeadwear()) {
+        echo "Face $key has headwear.\n";
+    }
+}
+```
+
+#### google/cloud-vision
+
+[Google Cloud Vision](https://github.com/googleapis/google-cloud-php-vision) can be installed separately by requiring the [`google/cloud-vision`](https://packagist.org/packages/google/cloud-vision) composer package:
+
+```
+$ composer require google/cloud-vision
+```
+
+## Google DLP (Beta)
+
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/dlp/readme)
+- [Official Documentation](https://cloud.google.com/dlp/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Dlp\V2\DlpServiceClient;
+use Google\Cloud\Dlp\V2\ContentItem;
+use Google\Cloud\Dlp\V2\InfoType;
+use Google\Cloud\Dlp\V2\InspectConfig;
+
+$dlpServiceClient = new DlpServiceClient();
+$infoTypesElement = (new InfoType())
+    ->setName('EMAIL_ADDRESS');
+$inspectConfig = (new InspectConfig())
+    ->setInfoTypes([$infoTypesElement]);
+$item = (new ContentItem())
+    ->setValue('My email is example@example.com.');
+$formattedParent = $dlpServiceClient
+    ->projectName('[PROJECT_ID]');
+
+$response = $dlpServiceClient->inspectContent($formattedParent, [
+    'inspectConfig' => $inspectConfig,
+    'item' => $item
+]);
+
+$findings = $response->getResult()
+    ->getFindings();
+
+foreach ($findings as $finding) {
+    print $finding->getInfoType()
+        ->getName() . PHP_EOL;
+}
+```
+
+#### google/cloud-dlp
+
+[Google DLP](https://github.com/googleapis/google-cloud-php-dlp) can be installed separately by requiring the [`google/cloud-dlp`](https://packagist.org/packages/google/cloud-dlp) composer package:
+
+```
+$ composer require google/cloud-dlp
+```
+
+## Google Recommendation Engine (Beta)
+
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/recommendation-engine/readme)
+- [Official Documentation](https://cloud.google.com/recommendation-engine/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\RecommendationEngine\V1beta1\PredictionServiceClient;
+use Google\Cloud\RecommendationEngine\V1beta1\UserEvent;
+
+$client = new PredictionServiceClient();
+$formattedName = $predictionServiceClient->placementName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]', '[PLACEMENT]');
+$userEvent = new UserEvent();
+
+$predictions = $predictionServiceClient->predict($formattedName, $userEvent);
+```
+
+#### google/cloud-recommendation-engine
+
+[Google Recommendation Engine](https://github.com/googleapis/google-cloud-php-recommendation-engine) can be installed separately by requiring the [`google/cloud-recommendation-engine`](https://packagist.org/packages/google/cloud-recommendation-engine) composer package:
+
+```
+$ composer require google/cloud-recommendation-engine
+```
+
+## Google Service Directory (Beta)
+
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/servicedirectory/readme)
+- [Official Documentation](https://cloud.google.com/service-directory/)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\ServiceDirectory\V1beta1\RegistrationServiceClient;
+use Google\Cloud\ServiceDirectory\V1beta1\Service;
+
+$client = new RegistrationServiceClient();
+
+$projectId = '[YOUR_PROJECT_ID]';
+$location = 'us-central1';
+$serviceId = '[YOUR_SERVICE_ID]';
+$namespace = '[YOUR_NAMESPACE]';
+
+$service = $client->createService(
+    RegistrationServiceClient::namespaceName(
+        $projectId,
+        $location,
+        $namespace
+    ),
+    $serviceId,
+    new Service()
+);
+
+printf(
+    'Created service: %s' . PHP_EOL,
+    $service->getName()
+);
+```
+
+#### google/cloud-service-directory
+
+[Google Service Directory](https://github.com/googleapis/google-cloud-php-service-directory) can be installed separately by requiring the [`google/cloud-service-directory`](https://packagist.org/packages/google/cloud-service-directory) composer package:
+
+```
+$ composer require google/cloud-service-directory
+```
+
+## Google Stackdriver Error Reporting (Beta)
+
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/errorreporting/readme)
+- [Official Documentation](https://cloud.google.com/error-reporting/docs)
+
+#### Preview
+
+The Stackdriver Error Reporting client provides APIs allowing you to easily configure your application to send errors and exceptions automatically to Stackdriver, or to manually report and manage errors and statistics.
+
+##### Reporting errors from your application:
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\ErrorReporting\Bootstrap;
+use Google\Cloud\Logging\LoggingClient;
+use Google\Cloud\Core\Report\SimpleMetadataProvider;
+
+$projectId = '[PROJECT]';
+$service = '[SERVICE_NAME]';
+$version = '[APP_VERSION]';
+
+$logging = new LoggingClient();
+$metadata = new SimpleMetadataProvider([], $projectId, $service, $version);
+$psrLogger = $logging->psrLogger('error-log', [
+    'metadataProvider' => $metadata
+]);
+
+// Register the logger as a PHP exception and error handler.
+// This will begin logging application exceptions and errors to Stackdriver.
+Bootstrap::init($psrLogger);
+```
+
+##### Using the Error Reporting API:
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\ErrorReporting\V1beta1\ReportErrorsServiceClient;
+use Google\Cloud\ErrorReporting\V1beta1\ReportedErrorEvent;
+
+$reportErrorsServiceClient = new ReportErrorsServiceClient();
+$formattedProjectName = $reportErrorsServiceClient->projectName('[PROJECT]');
+$event = new ReportedErrorEvent();
+
+try {
+    $response = $reportErrorsServiceClient->reportErrorEvent($formattedProjectName, $event);
+} finally {
+    $reportErrorsServiceClient->close();
+}
+```
+
+#### google/cloud-error-reporting
+
+[Google Stackdriver Error Reporting](https://github.com/googleapis/google-cloud-php-errorreporting) can be installed separately by requiring the [`google/cloud-errorreporting`](https://packagist.org/packages/google/cloud-error-reporting) composer package:
+
+```
+$ composer require google/cloud-error-reporting
+```
+
+## Google Stackdriver Monitoring (Beta)
+
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/monitoring/readme)
+- [Official Documentation](https://cloud.google.com/monitoring/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Api\Metric;
+use Google\Api\MonitoredResource;
+use Google\Cloud\Monitoring\V3\MetricServiceClient;
+use Google\Cloud\Monitoring\V3\Point;
+use Google\Cloud\Monitoring\V3\TimeInterval;
+use Google\Cloud\Monitoring\V3\TimeSeries;
+use Google\Cloud\Monitoring\V3\TypedValue;
+use Google\Protobuf\Timestamp;
+
+$metricServiceClient = new MetricServiceClient();
+$formattedProjectName = $metricServiceClient->projectName($projectId);
+$labels = [
+    'instance_id' => $instanceId,
+    'zone' => $zone,
+];
+
+$m = new Metric();
+$m->setType('custom.googleapis.com/my_metric');
+
+$r = new MonitoredResource();
+$r->setType('gce_instance');
+$r->setLabels($labels);
+
+$value = new TypedValue();
+$value->setDoubleValue(3.14);
+
+$timestamp = new Timestamp();
+$timestamp->setSeconds(time());
+
+$interval = new TimeInterval();
+$interval->setStartTime($timestamp);
+$interval->setEndTime($timestamp);
+
+$point = new Point();
+$point->setValue($value);
+$point->setInterval($interval);
+$points = [$point];
+
+$timeSeries = new TimeSeries();
+$timeSeries->setMetric($m);
+$timeSeries->setResource($r);
+$timeSeries->setPoints($points);
+
+try {
+    $metricServiceClient->createTimeSeries($formattedProjectName, [$timeSeries]);
+    print('Successfully submitted a time series' . PHP_EOL);
+} finally {
+    $metricServiceClient->close();
+}
+```
+
+#### google/cloud-monitoring
+
+[Google Stackdriver Monitoring](https://github.com/googleapis/google-cloud-php-monitoring) can be installed separately by requiring the [`google/cloud-monitoring`](https://packagist.org/packages/google/cloud-monitoring) composer package:
+
+```
+$ composer require google/cloud-monitoring
+```
+
+## Dialogflow API (Alpha)
+
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/dialogflow/readme)
+- [Official Documentation](https://cloud.google.com/dialogflow-enterprise/docs/)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Dialogflow\V2\EntityTypesClient;
+
+$entityTypesClient = new EntityTypesClient();
+$projectId = '[MY_PROJECT_ID]';
+$entityTypeId = '[ENTITY_TYPE_ID]';
+$formattedEntityTypeName = $entityTypesClient->entityTypeName($projectId, $entityTypeId);
+
+$entityType = $entityTypesClient->getEntityType($formattedEntityTypeName);
+foreach ($entityType->getEntities() as $entity) {
+    print(PHP_EOL);
+    printf('Entity value: %s' . PHP_EOL, $entity->getValue());
+    print('Synonyms: ');
+    foreach ($entity->getSynonyms() as $synonym) {
+        print($synonym . "\t");
+    }
+    print(PHP_EOL);
+}
+```
+
+#### google/cloud-dialogflow
+
+[Dialogflow](https://github.com/googleapis/google-cloud-php-dialogflow) can be installed separately by requiring the [`google/cloud-dialogflow`](https://packagist.org/packages/google/cloud-dialogflow) composer package:
+
+```
+$ composer require google/cloud-dialogflow
+```
+
+## Google Cloud BigQuery Data Transfer (Alpha)
+
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/bigquerydatatransfer/readme)
+- [Official Documentation](https://cloud.google.com/bigquery/docs/transfer-service-overview)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\BigQuery\DataTransfer\V1\DataTransferServiceClient;
+
+$dataTransferServiceClient = new DataTransferServiceClient();
+$projectId = '[MY_PROJECT_ID]';
+$location = 'us-central1';
+$formattedLocation = $dataTransferServiceClient->locationName($projectId, $location);
+$dataSources = $dataTransferServiceClient->listDataSources($formattedLocation);
+```
+
+#### google/cloud-bigquerydatatransfer
+
+[Google Cloud BigQuery Data Transfer](https://github.com/googleapis/google-cloud-php-bigquerydatatransfer) can be installed separately by requiring the [`google/cloud-bigquerydatatransfer`](https://packagist.org/packages/google/cloud-bigquerydatatransfer) composer package:
+
+```
+$ composer require google/cloud-bigquerydatatransfer
+```
+
+## Google Cloud Billing (Alpha)
+
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/billing/readme)
+- [Official Documentation](https://cloud.google.com/billing/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Billing\V1\CloudBillingClient;
+
+$client = new CloudBillingClient();
+$accounts = $client->listBillingAccounts();
+
+foreach ($accounts as $account) {
+    print('Billing account: ' . $account->getName() . PHP_EOL);
+}
+```
+
+#### google/cloud-billing
+
+[Google Cloud Billing](https://github.com/googleapis/google-cloud-php-billing) can be installed separately by requiring the [`google/cloud-billing`](https://packagist.org/packages/google/cloud-billing) composer package:
+
+```
+$ composer require google/cloud-billing
+```
+
+## Google Cloud IoT (Alpha)
+
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/iot/readme)
+- [Official Documentation](https://cloud.google.com/iot/docs/)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Iot\V1\DeviceManagerClient;
+
+$deviceManager = new DeviceManagerClient();
+
+$projectId = '[MY_PROJECT_ID]';
+$location = 'us-central1';
+$registryId = '[MY_REGISTRY_ID]';
+$registryName = $deviceManager->registryName($projectId, $location, $registryId);
+$devices = $deviceManager->listDevices($registryName);
+foreach ($devices->iterateAllElements() as $device) {
+    printf('Device: %s : %s' . PHP_EOL,
+        $device->getNumId(),
+        $device->getId()
+    );
+}
+```
+
+#### google/cloud-iot
+
+[Google Cloud IoT](https://github.com/googleapis/google-cloud-php-iot) can be installed separately by requiring the [`google/cloud-iot`](https://packagist.org/packages/google/cloud-iot) composer package:
+
+```
+$ composer require google/cloud-iot
+```
+
+## Google Cloud Redis (Alpha)
+
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/redis/readme)
+- [Official Documentation](https://cloud.google.com/memorystore/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Redis\V1\CloudRedisClient;
+
+$client = new CloudRedisClient();
+
+$projectId = '[MY_PROJECT_ID]';
+$location = '-'; // The '-' wildcard refers to all regions available to the project for the listInstances method
+$formattedLocationName = $client->locationName($projectId, $location);
+$response = $client->listInstances($formattedLocationName);
+foreach ($response->iterateAllElements() as $instance) {
+    printf('Instance: %s : %s' . PHP_EOL,
+        $device->getDisplayName(),
+        $device->getName()
+    );
+}
+
+```
+
+#### google/cloud-redis
+
+[Google Cloud Redis](https://github.com/googleapis/google-cloud-php-redis) can be installed separately by requiring the [`google/cloud-redis`](https://packagist.org/packages/google/cloud-redis) composer package:
+
+```
+$ composer require google/cloud-redis
+```
+
+## Google Cloud Security Command Center (Alpha)
+
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/securitycenter/securitycenterclient)
+- [Official Documentation](https://cloud.google.com/security-command-center/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\SecurityCenter\V1\SecurityCenterClient;
+use Google\Cloud\SecurityCenter\V1\Source;
+
+$security = new SecurityCenterClient();
+$parent = SecurityCenterClient::organizationName('[YOUR ORGANIZATION]');
+$source = new Source([
+    'name' => SecurityCenterClient::sourceName('[YOUR ORGANIZATION]', '[YOUR SOURCE]'),
+    'displayName' => '[YOUR SOURCE]'
+]);
+
+$res = $security->createSource($parent, $source);
+```
+
+#### google/cloud-security-center
+
+[Google Cloud Security Command Center](https://github.com/googleapis/google-cloud-php-security-center) can be installed separately by requiring the [`google/cloud-security-center`](https://packagist.org/packages/google/cloud-security-center) composer package:
+
+```
+$ composer require google/cloud-security-center
+```
+
+## Google Cloud Talent Solution (Alpha)
+
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/speech/speechclient)
+- [Official Documentation](https://cloud.google.com/talent-solution/job-search/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Talent\V4beta1\Company;
+use Google\Cloud\Talent\V4beta1\CompanyServiceClient;
+
+$client = new CompanyServiceClient();
+$response = $client->createCompany(
+    CompanyServiceClient::projectName('MY_PROJECT_ID'),
+    new Company([
+        'display_name' => 'Google, LLC',
+        'external_id' => 1,
+        'headquarters_address' => '1600 Amphitheatre Parkway, Mountain View, CA'
+    ])
+);
+```
+
+#### google/cloud-talent
+
+[Google Cloud Talent Solution](https://github.com/googleapis/google-cloud-php-talent) can be installed separately by requiring the [`google/cloud-talent`](https://packagist.org/packages/google/cloud-talent) composer package:
+
+```
+$ composer require google/cloud-talent
+```
+
+## Google Stackdriver Debugger (Alpha)
+
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/debugger/debuggerclient)
+- [Official Documentation](https://cloud.google.com/debugger/docs)
+
+#### Preview
+
+```php
+use Google\Cloud\Debugger\DebuggerClient;
+
+$debugger = new DebuggerClient();
+$debuggee = $debugger->debugee();
+$debuggee->register();
+```
+
+#### google/cloud-debugger
+
+[Stackdriver Debugger](https://github.com/googleapis/google-cloud-php-debugger) can be installed separately by requiring the [`google/cloud-debugger`](https://packagist.org/packages/google/cloud-debugger) composer package:
+
+```
+$ composer require google/cloud-debugger
+```
+
+## Google Cloud Web Risk (Alpha)
+
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/webrisk/readme)
+- [Official Documentation](https://cloud.google.com/web-risk/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\WebRisk\V1beta1\ThreatType;
+use Google\Cloud\WebRisk\V1beta1\WebRiskServiceV1Beta1Client;
+
+$webrisk = new WebRiskServiceV1Beta1Client();
+
+$uri = 'http://testsafebrowsing.appspot.com/s/malware.html';
+$response = $webrisk->searchUris($uri, [
+    ThreatType::MALWARE,
+    ThreatType::SOCIAL_ENGINEERING
+]);
+
+$threats = $response->getThreat();
+if ($threats) {
+    echo $uri . ' has the following threats:' . PHP_EOL;
+    foreach ($threats->getThreatTypes() as $threat) {
+        echo ThreatType::name($threat) . PHP_EOL;
+    }
+}
+```
+
+#### google/cloud-web-risk
+
+[Google Cloud Web Risk](https://github.com/googleapis/google-cloud-php-web-risk) can be installed separately by requiring the [`google/cloud-web-risk`](https://packagist.org/packages/google/cloud-web-risk) composer package:
+
+```
+$ composer require google/cloud-web-risk
+```
+
+## Google Cloud Web Security Scanner (Alpha)
+
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/websecurityscanner/readme)
+- [Official Documentation](https://cloud.google.com/security-scanner/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\WebSecurityScanner\V1beta\ScanConfig;
+use Google\Cloud\WebSecurityScanner\V1beta\ScanConfig\UserAgent;
+use Google\Cloud\WebSecurityScanner\V1beta\ScanRun\ExecutionState;
+use Google\Cloud\WebSecurityScanner\V1beta\WebSecurityScannerClient;
+
+$client = new WebSecurityScannerClient();
+$scanConfig = $client->createScanConfig(
+    WebSecurityScannerClient::projectName('[MY_PROJECT_ID'),
+    new ScanConfig([
+        'display_name' => 'Test Scan',
+        'starting_urls' => ['https://[MY_APPLICATION_ID].appspot.com/'],
+        'user_agent' => UserAgent::CHROME_LINUX
+    ])
+);
+$scanRun = $client->startScanRun($scanConfig->getName());
+
+echo 'Scan execution state: ' . ExecutionState::name($scanRun->getExecutionState()) . PHP_EOL;
+```
+
+#### google/cloud-web-security-scanner
+
+[Google Cloud Web Risk](https://github.com/googleapis/google-cloud-php-web-security-scanner) can be installed separately by requiring the [`google/cloud-web-risk`](https://packagist.org/packages/google/cloud-web-security-scanner) composer package:
+
+```
+$ composer require google/cloud-web-security-scanner
+```
+
+## Google Stackdriver Trace (Alpha)
+
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/trace/traceclient)
+- [Official Documentation](https://cloud.google.com/trace/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Trace\TraceClient;
+
+$traceClient = new TraceClient();
+
+// Create a Trace
+$trace = $traceClient->trace();
+$span = $trace->span([
+    'name' => 'main'
+]);
+$span->setStart();
+$span->setEnd();
+
+$trace->setSpans([$span]);
+$traceClient->insert($trace);
+
+// List recent Traces
+foreach($traceClient->traces() as $trace) {
+    var_dump($trace->traceId());
+}
+```
+
+#### google/cloud-trace
+
+[Stackdriver Trace](https://github.com/googleapis/google-cloud-php-trace) can be installed separately by requiring the [`google/cloud-trace`](https://packagist.org/packages/google/cloud-trace) composer package:
+
+```
+$ composer require google/cloud-trace
+```
+
+## Recommender (Alpha)
+
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/recommender/readme)
+- [Official Documentation](https://cloud.google.com/recommender/docs/)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Recommender\V1\RecommenderClient;
+
+$client = new RecommenderClient();
+
+$recommendations = $client->listRecommendations(
+    RecommenderClient::recommenderName(
+        '[MY_PROJECT_ID]',
+        'us-central1',
+        'google.compute.instance.MachineTypeRecommender'
+    )
+);
+
+foreach ($recommendations as $recommendation) {
+    printf(
+        'Found recommendation: %s' . PHP_EOL,
+        $recommendation->getName()
+    );
+}
+```
+
+#### google/cloud-recommender
+
+[Recommender](https://github.com/googleapis/google-cloud-php-recommender) can be installed separately by requiring the [`google/cloud-recommender`](https://packagist.org/packages/google/cloud-recommender) composer package:
+
+```
+$ composer require google/cloud-recommender
+```
+
+## Secret Manager (Alpha)
+
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/secretmanager/readme)
+- [Official Documentation](https://cloud.google.com/secret-manager/docs/)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\SecretManager\V1beta1\Replication;
+use Google\Cloud\SecretManager\V1beta1\Replication\Automatic;
+use Google\Cloud\SecretManager\V1beta1\Secret;
+use Google\Cloud\SecretManager\V1beta1\SecretManagerServiceClient;
+
+$client = new SecretManagerServiceClient();
+
+$secret = $client->createSecret(
+    SecretManagerServiceClient::projectName('[MY_PROJECT_ID]'),
+    '[MY_SECRET_ID]',
+    [
+        'secret' => new Secret([
+            'replication' => new Replication([
+                'automatic' => new Automatic()
+            ])
+        ])
+    ]
+);
+
+printf(
+    'Created secret: %s' . PHP_EOL,
+    $secret->getName()
+);
+```
+
+#### google/cloud-secret-manager
+
+[Secret Manager](https://github.com/googleapis/google-cloud-php-secret-manager) can be installed separately by requiring the [`google/cloud-secret-manager`](https://packagist.org/packages/google/cloud-secret-manager) composer package:
+
+```
+$ composer require google/cloud-secret-manager
+```
+
+## Caching Access Tokens
+
+By default the library will use a simple in-memory caching implementation, however it is possible to override this behavior by passing a [PSR-6](http://www.php-fig.org/psr/psr-6/) caching implementation in to the desired client.
+
+The following example takes advantage of [Symfony's Cache Component](https://github.com/symfony/cache).
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Storage\StorageClient;
+use Symfony\Component\Cache\Adapter\ArrayAdapter;
+
+// Please take the proper precautions when storing your access tokens in a cache no matter the implementation.
+$cache = new ArrayAdapter();
+
+$storage = new StorageClient([
+    'authCache' => $cache
+]);
+```
+
+This library provides a PSR-6 implementation with the SystemV shared memory at `Google\Auth\Cache\SysVCacheItemPool`. This implementation is only available on *nix machines, but it's the one of the fastest implementations and you can share the cache among multiple processes. The following example shows how to use it.
+
+```php
+require __DIR__ . '/vendor/autoload.php';
+
+use Google\Cloud\Spanner\SpannerClient;
+use Google\Auth\Cache\SysVCacheItemPool;
+
+$cache = new SysVCacheItemPool();
+
+$spanner = new SpannerClient([
+    'authCache' => $cache
+]);
+```
+
+## Versioning
+
+This library follows [Semantic Versioning](http://semver.org/).
+
+Please note it is currently under active development. Any release versioned
+0.x.y is subject to backwards incompatible changes at any time.
+
+>>>>>>> d9bb79abab... feat: add recommendation engine client
 **GA**: Libraries defined at a GA quality level are stable, and will not
 introduce backwards-incompatible changes in any minor or patch releases. We will
 address issues and requests with the highest priority. Please note, for any

@@ -1,0 +1,39 @@
+{
+  "updateTime": "2020-03-27T20:42:04.756999Z",
+  "sources": [
+    {
+      "generator": {
+        "name": "artman",
+        "version": "1.1.1",
+        "dockerImage": "googleapis/artman@sha256:5ef340c8d9334719bc5c6981d95f4a5d2737b0a6a24f2b9a0d430e96fff85c5b"
+      }
+    },
+    {
+      "git": {
+        "name": "googleapis",
+        "remote": "https://github.com/googleapis/googleapis.git",
+        "sha": "48a166ce9f6e2a88b10947341b37336fe9dd3478",
+        "internalRef": "303302813"
+      }
+    },
+    {
+      "git": {
+        "name": "synthtool",
+        "remote": "https://github.com/googleapis/synthtool.git",
+        "sha": "e36822bfa0acb355502dab391b8ef9c4f30208d8"
+      }
+    }
+  ],
+  "destinations": [
+    {
+      "client": {
+        "source": "googleapis",
+        "apiName": "recommendationengine",
+        "apiVersion": "v1beta1",
+        "language": "php",
+        "generator": "gapic",
+        "config": "google/cloud/recommendationengine/v1beta1/artman_recommendationengine_v1beta1.yaml"
+      }
+    }
+  ]
+}
