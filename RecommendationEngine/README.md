@@ -53,4 +53,4 @@ This component is considered alpha. As such, it is still a work-in-progress and 
 
 ### Next Steps
 
-1. Understand the [official documentation](https://cloud.google.com/recommendation-engine/docs).
+1. Understand the [official documentation](https://cloud.google.com/recommendations-ai/docs).
