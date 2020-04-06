@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2020 Google LLC
+ * Copyright 2020 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,9 +27,10 @@ use Prophecy\Argument;
 use Google\Cloud\Audit\RequestMetadata;
 use Google\Cloud\Audit\AuthorizationInfo;
 
-/** @group core
-  * @group core-longrunning
-  */
+/**
+ * @group core
+ * @group core-longrunning
+ */
 class OperationResponseTraitTest extends TestCase
 {
     use OperationResponseTrait;
@@ -143,7 +144,7 @@ class OperationResponseTraitTest extends TestCase
 
         $connection = $this->prophesize(LongRunningConnectionInterface::class);
         $t = $this;
-        $connection->get(Argument::any())->will(function ($arg) use ($t, $operation) {
+        $connection->get(Argument::any())->will(function () use ($t, $operation) {
             return $t->operationToArray($operation, $t->serializer, $t->lroResponseMappers);
         });
         $callables = [
@@ -160,3 +161,80 @@ class OperationResponseTraitTest extends TestCase
         $this->assertEquals($expected, $got);
     }
 }
+
+//@codingStandardsIgnoreStart
+
+class Value
+{
+    public $value;
+
+    public function __construct($value = null)
+    {
+        $this->value = $value;
+    }
+
+    public function getValue()
+    {
+        return $this->value;
+    }
+}
+
+class Response
+{
+    public $metadataType;
+    public $metadata;
+    public $responseType;
+    public $response = null;
+    public $error = null;
+
+    public function __construct($metaType, $metadata, $respType = null, $response = null)
+    {
+        $this->metadataType = $metaType;
+        $this->metadata = $metadata->serializeToString();
+        $this->responseType = $respType;
+        if (isset($response)) {
+            $this->response = $response->serializeToString();
+        }
+    }
+
+    public function getResponse()
+    {
+        return new Value($this->response);
+    }
+
+    public function getMetadata()
+    {
+        return new Value($this->metadata);
+    }
+
+    public function getDone()
+    {
+        return (isset($this->response) or isset($this->error));
+    }
+
+    public function getError()
+    {
+        return $this->error;
+    }
+
+    public function serializeToJsonString()
+    {
+        $result = [
+            'done' => true,
+            'metadata' => [
+                'typeUrl' => $this->metadataType,
+                'value' => $this->metadata,
+            ],
+        ];
+        if (isset($this->response)) {
+            $result['response'] = [
+                'typeUrl' => $this->responseType,
+                'value' => $this->response,
+            ];
+        }
+
+        return json_encode($result);
+    }
+}
+
+//@codingStandardsIgnoreEnd
