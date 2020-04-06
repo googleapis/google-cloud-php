@@ -24,7 +24,7 @@
  * @experimental
  */
 
-namespace Google\Cloud\Recommendationengine\V1beta1\Gapic;
+namespace Google\Cloud\RecommendationEngine\V1beta1\Gapic;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
@@ -37,16 +37,16 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
-use Google\Cloud\Recommendationengine\V1beta1\CatalogItem;
-use Google\Cloud\Recommendationengine\V1beta1\CreateCatalogItemRequest;
-use Google\Cloud\Recommendationengine\V1beta1\DeleteCatalogItemRequest;
-use Google\Cloud\Recommendationengine\V1beta1\GetCatalogItemRequest;
-use Google\Cloud\Recommendationengine\V1beta1\ImportCatalogItemsRequest;
-use Google\Cloud\Recommendationengine\V1beta1\ImportErrorsConfig;
-use Google\Cloud\Recommendationengine\V1beta1\InputConfig;
-use Google\Cloud\Recommendationengine\V1beta1\ListCatalogItemsRequest;
-use Google\Cloud\Recommendationengine\V1beta1\ListCatalogItemsResponse;
-use Google\Cloud\Recommendationengine\V1beta1\UpdateCatalogItemRequest;
+use Google\Cloud\RecommendationEngine\V1beta1\CatalogItem;
+use Google\Cloud\RecommendationEngine\V1beta1\CreateCatalogItemRequest;
+use Google\Cloud\RecommendationEngine\V1beta1\DeleteCatalogItemRequest;
+use Google\Cloud\RecommendationEngine\V1beta1\GetCatalogItemRequest;
+use Google\Cloud\RecommendationEngine\V1beta1\ImportCatalogItemsRequest;
+use Google\Cloud\RecommendationEngine\V1beta1\ImportErrorsConfig;
+use Google\Cloud\RecommendationEngine\V1beta1\InputConfig;
+use Google\Cloud\RecommendationEngine\V1beta1\ListCatalogItemsRequest;
+use Google\Cloud\RecommendationEngine\V1beta1\ListCatalogItemsResponse;
+use Google\Cloud\RecommendationEngine\V1beta1\UpdateCatalogItemRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
@@ -369,7 +369,7 @@ class CatalogServiceGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\Recommendationengine\V1beta1\CatalogItem
+     * @return \Google\Cloud\RecommendationEngine\V1beta1\CatalogItem
      *
      * @throws ApiException if the remote call fails
      * @experimental
@@ -421,7 +421,7 @@ class CatalogServiceGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\Recommendationengine\V1beta1\CatalogItem
+     * @return \Google\Cloud\RecommendationEngine\V1beta1\CatalogItem
      *
      * @throws ApiException if the remote call fails
      * @experimental
@@ -565,7 +565,7 @@ class CatalogServiceGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\Recommendationengine\V1beta1\CatalogItem
+     * @return \Google\Cloud\RecommendationEngine\V1beta1\CatalogItem
      *
      * @throws ApiException if the remote call fails
      * @experimental

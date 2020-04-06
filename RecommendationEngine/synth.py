@@ -40,6 +40,13 @@ s.move(library / f'tests/')
 # copy GPBMetadata file to metadata
 s.move(library / f'proto/src/GPBMetadata/Google/Cloud/Recommendationengine', f'metadata/')
 
+# fix namespace casing
+s.replace(
+    "**/*.php",
+    r"(namespace|use) Google\\Cloud\\Recommendationengine",
+    r"\1 Google\\Cloud\\RecommendationEngine",
+)
+
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
     "**/Gapic/*GapicClient.php",

@@ -24,9 +24,9 @@
  * @experimental
  */
 
-namespace Google\Cloud\Recommendationengine\V1beta1;
+namespace Google\Cloud\RecommendationEngine\V1beta1;
 
-use Google\Cloud\Recommendationengine\V1beta1\Gapic\PredictionServiceGapicClient;
+use Google\Cloud\RecommendationEngine\V1beta1\Gapic\PredictionServiceGapicClient;
 
 /**
  * {@inheritdoc}

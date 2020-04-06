@@ -5,8 +5,8 @@ return [
         'google.cloud.recommendationengine.v1beta1.CatalogService' => [
             'ImportCatalogItems' => [
                 'longRunning' => [
-                    'operationReturnType' => '\Google\Cloud\Recommendationengine\V1beta1\ImportCatalogItemsResponse',
-                    'metadataReturnType' => '\Google\Cloud\Recommendationengine\V1beta1\ImportMetadata',
+                    'operationReturnType' => '\Google\Cloud\RecommendationEngine\V1beta1\ImportCatalogItemsResponse',
+                    'metadataReturnType' => '\Google\Cloud\RecommendationEngine\V1beta1\ImportMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',

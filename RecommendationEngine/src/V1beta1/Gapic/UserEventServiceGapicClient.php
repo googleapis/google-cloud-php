@@ -24,7 +24,7 @@
  * @experimental
  */
 
-namespace Google\Cloud\Recommendationengine\V1beta1\Gapic;
+namespace Google\Cloud\RecommendationEngine\V1beta1\Gapic;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
@@ -38,16 +38,16 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Api\HttpBody;
 use Google\Auth\FetchAuthTokenInterface;
-use Google\Cloud\Recommendationengine\V1beta1\CollectUserEventRequest;
-use Google\Cloud\Recommendationengine\V1beta1\ImportErrorsConfig;
-use Google\Cloud\Recommendationengine\V1beta1\ImportMetadata;
-use Google\Cloud\Recommendationengine\V1beta1\ImportUserEventsRequest;
-use Google\Cloud\Recommendationengine\V1beta1\InputConfig;
-use Google\Cloud\Recommendationengine\V1beta1\ListUserEventsRequest;
-use Google\Cloud\Recommendationengine\V1beta1\ListUserEventsResponse;
-use Google\Cloud\Recommendationengine\V1beta1\PurgeUserEventsRequest;
-use Google\Cloud\Recommendationengine\V1beta1\UserEvent;
-use Google\Cloud\Recommendationengine\V1beta1\WriteUserEventRequest;
+use Google\Cloud\RecommendationEngine\V1beta1\CollectUserEventRequest;
+use Google\Cloud\RecommendationEngine\V1beta1\ImportErrorsConfig;
+use Google\Cloud\RecommendationEngine\V1beta1\ImportMetadata;
+use Google\Cloud\RecommendationEngine\V1beta1\ImportUserEventsRequest;
+use Google\Cloud\RecommendationEngine\V1beta1\InputConfig;
+use Google\Cloud\RecommendationEngine\V1beta1\ListUserEventsRequest;
+use Google\Cloud\RecommendationEngine\V1beta1\ListUserEventsResponse;
+use Google\Cloud\RecommendationEngine\V1beta1\PurgeUserEventsRequest;
+use Google\Cloud\RecommendationEngine\V1beta1\UserEvent;
+use Google\Cloud\RecommendationEngine\V1beta1\WriteUserEventRequest;
 use Google\LongRunning\Operation;
 
 /**
@@ -336,7 +336,7 @@ class UserEventServiceGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\Recommendationengine\V1beta1\UserEvent
+     * @return \Google\Cloud\RecommendationEngine\V1beta1\UserEvent
      *
      * @throws ApiException if the remote call fails
      * @experimental

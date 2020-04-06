@@ -16,7 +16,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-namespace Google\Cloud\Recommendationengine\V1beta1;
+namespace Google\Cloud\RecommendationEngine\V1beta1;
 
 /**
  * Service for registering API keys for use with the `predict` method. If you
@@ -38,39 +38,39 @@ class PredictionApiKeyRegistryGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Register an API key for use with predict method.
-     * @param \Google\Cloud\Recommendationengine\V1beta1\CreatePredictionApiKeyRegistrationRequest $argument input argument
+     * @param \Google\Cloud\RecommendationEngine\V1beta1\CreatePredictionApiKeyRegistrationRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
      */
-    public function CreatePredictionApiKeyRegistration(\Google\Cloud\Recommendationengine\V1beta1\CreatePredictionApiKeyRegistrationRequest $argument,
+    public function CreatePredictionApiKeyRegistration(\Google\Cloud\RecommendationEngine\V1beta1\CreatePredictionApiKeyRegistrationRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.recommendationengine.v1beta1.PredictionApiKeyRegistry/CreatePredictionApiKeyRegistration',
         $argument,
-        ['\Google\Cloud\Recommendationengine\V1beta1\PredictionApiKeyRegistration', 'decode'],
+        ['\Google\Cloud\RecommendationEngine\V1beta1\PredictionApiKeyRegistration', 'decode'],
         $metadata, $options);
     }
 
     /**
      * List the registered apiKeys for use with predict method.
-     * @param \Google\Cloud\Recommendationengine\V1beta1\ListPredictionApiKeyRegistrationsRequest $argument input argument
+     * @param \Google\Cloud\RecommendationEngine\V1beta1\ListPredictionApiKeyRegistrationsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
      */
-    public function ListPredictionApiKeyRegistrations(\Google\Cloud\Recommendationengine\V1beta1\ListPredictionApiKeyRegistrationsRequest $argument,
+    public function ListPredictionApiKeyRegistrations(\Google\Cloud\RecommendationEngine\V1beta1\ListPredictionApiKeyRegistrationsRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.recommendationengine.v1beta1.PredictionApiKeyRegistry/ListPredictionApiKeyRegistrations',
         $argument,
-        ['\Google\Cloud\Recommendationengine\V1beta1\ListPredictionApiKeyRegistrationsResponse', 'decode'],
+        ['\Google\Cloud\RecommendationEngine\V1beta1\ListPredictionApiKeyRegistrationsResponse', 'decode'],
         $metadata, $options);
     }
 
     /**
      * Unregister an apiKey from using for predict method.
-     * @param \Google\Cloud\Recommendationengine\V1beta1\DeletePredictionApiKeyRegistrationRequest $argument input argument
+     * @param \Google\Cloud\RecommendationEngine\V1beta1\DeletePredictionApiKeyRegistrationRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
      */
-    public function DeletePredictionApiKeyRegistration(\Google\Cloud\Recommendationengine\V1beta1\DeletePredictionApiKeyRegistrationRequest $argument,
+    public function DeletePredictionApiKeyRegistration(\Google\Cloud\RecommendationEngine\V1beta1\DeletePredictionApiKeyRegistrationRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.recommendationengine.v1beta1.PredictionApiKeyRegistry/DeletePredictionApiKeyRegistration',
         $argument,

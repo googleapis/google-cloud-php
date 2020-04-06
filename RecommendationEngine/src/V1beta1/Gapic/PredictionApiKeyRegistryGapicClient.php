@@ -24,7 +24,7 @@
  * @experimental
  */
 
-namespace Google\Cloud\Recommendationengine\V1beta1\Gapic;
+namespace Google\Cloud\RecommendationEngine\V1beta1\Gapic;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
@@ -35,11 +35,11 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
-use Google\Cloud\Recommendationengine\V1beta1\CreatePredictionApiKeyRegistrationRequest;
-use Google\Cloud\Recommendationengine\V1beta1\DeletePredictionApiKeyRegistrationRequest;
-use Google\Cloud\Recommendationengine\V1beta1\ListPredictionApiKeyRegistrationsRequest;
-use Google\Cloud\Recommendationengine\V1beta1\ListPredictionApiKeyRegistrationsResponse;
-use Google\Cloud\Recommendationengine\V1beta1\PredictionApiKeyRegistration;
+use Google\Cloud\RecommendationEngine\V1beta1\CreatePredictionApiKeyRegistrationRequest;
+use Google\Cloud\RecommendationEngine\V1beta1\DeletePredictionApiKeyRegistrationRequest;
+use Google\Cloud\RecommendationEngine\V1beta1\ListPredictionApiKeyRegistrationsRequest;
+use Google\Cloud\RecommendationEngine\V1beta1\ListPredictionApiKeyRegistrationsResponse;
+use Google\Cloud\RecommendationEngine\V1beta1\PredictionApiKeyRegistration;
 use Google\Protobuf\GPBEmpty;
 
 /**
@@ -330,7 +330,7 @@ class PredictionApiKeyRegistryGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\Recommendationengine\V1beta1\PredictionApiKeyRegistration
+     * @return \Google\Cloud\RecommendationEngine\V1beta1\PredictionApiKeyRegistration
      *
      * @throws ApiException if the remote call fails
      * @experimental

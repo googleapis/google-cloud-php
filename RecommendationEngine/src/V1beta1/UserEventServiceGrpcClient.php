@@ -16,7 +16,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-namespace Google\Cloud\Recommendationengine\V1beta1;
+namespace Google\Cloud\RecommendationEngine\V1beta1;
 
 /**
  * Service for ingesting end user actions on the customer website.
@@ -34,15 +34,15 @@ class UserEventServiceGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Writes a single user event.
-     * @param \Google\Cloud\Recommendationengine\V1beta1\WriteUserEventRequest $argument input argument
+     * @param \Google\Cloud\RecommendationEngine\V1beta1\WriteUserEventRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
      */
-    public function WriteUserEvent(\Google\Cloud\Recommendationengine\V1beta1\WriteUserEventRequest $argument,
+    public function WriteUserEvent(\Google\Cloud\RecommendationEngine\V1beta1\WriteUserEventRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.recommendationengine.v1beta1.UserEventService/WriteUserEvent',
         $argument,
-        ['\Google\Cloud\Recommendationengine\V1beta1\UserEvent', 'decode'],
+        ['\Google\Cloud\RecommendationEngine\V1beta1\UserEvent', 'decode'],
         $metadata, $options);
     }
 
@@ -52,11 +52,11 @@ class UserEventServiceGrpcClient extends \Grpc\BaseStub {
      *
      * This method is used only by the Recommendations AI JavaScript pixel.
      * Users should not call this method directly.
-     * @param \Google\Cloud\Recommendationengine\V1beta1\CollectUserEventRequest $argument input argument
+     * @param \Google\Cloud\RecommendationEngine\V1beta1\CollectUserEventRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
      */
-    public function CollectUserEvent(\Google\Cloud\Recommendationengine\V1beta1\CollectUserEventRequest $argument,
+    public function CollectUserEvent(\Google\Cloud\RecommendationEngine\V1beta1\CollectUserEventRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.recommendationengine.v1beta1.UserEventService/CollectUserEvent',
         $argument,
@@ -66,15 +66,15 @@ class UserEventServiceGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Gets a list of user events within a time range, with potential filtering.
-     * @param \Google\Cloud\Recommendationengine\V1beta1\ListUserEventsRequest $argument input argument
+     * @param \Google\Cloud\RecommendationEngine\V1beta1\ListUserEventsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
      */
-    public function ListUserEvents(\Google\Cloud\Recommendationengine\V1beta1\ListUserEventsRequest $argument,
+    public function ListUserEvents(\Google\Cloud\RecommendationEngine\V1beta1\ListUserEventsRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.recommendationengine.v1beta1.UserEventService/ListUserEvents',
         $argument,
-        ['\Google\Cloud\Recommendationengine\V1beta1\ListUserEventsResponse', 'decode'],
+        ['\Google\Cloud\RecommendationEngine\V1beta1\ListUserEventsResponse', 'decode'],
         $metadata, $options);
     }
 
@@ -83,11 +83,11 @@ class UserEventServiceGrpcClient extends \Grpc\BaseStub {
      * Depending on the number of events specified by the filter, this operation
      * could take hours or days to complete. To test a filter, use the list
      * command first.
-     * @param \Google\Cloud\Recommendationengine\V1beta1\PurgeUserEventsRequest $argument input argument
+     * @param \Google\Cloud\RecommendationEngine\V1beta1\PurgeUserEventsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
      */
-    public function PurgeUserEvents(\Google\Cloud\Recommendationengine\V1beta1\PurgeUserEventsRequest $argument,
+    public function PurgeUserEvents(\Google\Cloud\RecommendationEngine\V1beta1\PurgeUserEventsRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.recommendationengine.v1beta1.UserEventService/PurgeUserEvents',
         $argument,
@@ -103,11 +103,11 @@ class UserEventServiceGrpcClient extends \Grpc\BaseStub {
      * Operation.response is of type ImportResponse. Note that it is
      * possible for a subset of the items to be successfully inserted.
      * Operation.metadata is of type ImportMetadata.
-     * @param \Google\Cloud\Recommendationengine\V1beta1\ImportUserEventsRequest $argument input argument
+     * @param \Google\Cloud\RecommendationEngine\V1beta1\ImportUserEventsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
      */
-    public function ImportUserEvents(\Google\Cloud\Recommendationengine\V1beta1\ImportUserEventsRequest $argument,
+    public function ImportUserEvents(\Google\Cloud\RecommendationEngine\V1beta1\ImportUserEventsRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.recommendationengine.v1beta1.UserEventService/ImportUserEvents',
         $argument,

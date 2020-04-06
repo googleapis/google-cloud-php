@@ -20,15 +20,15 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Recommendationengine\Tests\Unit\V1beta1;
+namespace Google\Cloud\RecommendationEngine\Tests\Unit\V1beta1;
 
-use Google\Cloud\Recommendationengine\V1beta1\PredictionApiKeyRegistryClient;
+use Google\Cloud\RecommendationEngine\V1beta1\PredictionApiKeyRegistryClient;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-use Google\Cloud\Recommendationengine\V1beta1\ListPredictionApiKeyRegistrationsResponse;
-use Google\Cloud\Recommendationengine\V1beta1\PredictionApiKeyRegistration;
+use Google\Cloud\RecommendationEngine\V1beta1\ListPredictionApiKeyRegistrationsResponse;
+use Google\Cloud\RecommendationEngine\V1beta1\PredictionApiKeyRegistration;
 use Google\Protobuf\Any;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;

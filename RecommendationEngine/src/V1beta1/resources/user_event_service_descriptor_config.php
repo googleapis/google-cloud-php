@@ -5,8 +5,8 @@ return [
         'google.cloud.recommendationengine.v1beta1.UserEventService' => [
             'PurgeUserEvents' => [
                 'longRunning' => [
-                    'operationReturnType' => '\Google\Cloud\Recommendationengine\V1beta1\PurgeUserEventsResponse',
-                    'metadataReturnType' => '\Google\Cloud\Recommendationengine\V1beta1\PurgeUserEventsMetadata',
+                    'operationReturnType' => '\Google\Cloud\RecommendationEngine\V1beta1\PurgeUserEventsResponse',
+                    'metadataReturnType' => '\Google\Cloud\RecommendationEngine\V1beta1\PurgeUserEventsMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
@@ -15,8 +15,8 @@ return [
             ],
             'ImportUserEvents' => [
                 'longRunning' => [
-                    'operationReturnType' => '\Google\Cloud\Recommendationengine\V1beta1\ImportUserEventsResponse',
-                    'metadataReturnType' => '\Google\Cloud\Recommendationengine\V1beta1\ImportMetadata',
+                    'operationReturnType' => '\Google\Cloud\RecommendationEngine\V1beta1\ImportUserEventsResponse',
+                    'metadataReturnType' => '\Google\Cloud\RecommendationEngine\V1beta1\ImportMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',

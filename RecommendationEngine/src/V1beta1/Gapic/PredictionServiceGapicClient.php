@@ -24,7 +24,7 @@
  * @experimental
  */
 
-namespace Google\Cloud\Recommendationengine\V1beta1\Gapic;
+namespace Google\Cloud\RecommendationEngine\V1beta1\Gapic;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
@@ -35,9 +35,9 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
-use Google\Cloud\Recommendationengine\V1beta1\PredictRequest;
-use Google\Cloud\Recommendationengine\V1beta1\PredictResponse;
-use Google\Cloud\Recommendationengine\V1beta1\UserEvent;
+use Google\Cloud\RecommendationEngine\V1beta1\PredictRequest;
+use Google\Cloud\RecommendationEngine\V1beta1\PredictResponse;
+use Google\Cloud\RecommendationEngine\V1beta1\UserEvent;
 
 /**
  * Service Description: Service for making recommendation prediction.

@@ -20,16 +20,16 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Recommendationengine\Tests\Unit\V1beta1;
+namespace Google\Cloud\RecommendationEngine\Tests\Unit\V1beta1;
 
-use Google\Cloud\Recommendationengine\V1beta1\PredictionServiceClient;
+use Google\Cloud\RecommendationEngine\V1beta1\PredictionServiceClient;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-use Google\Cloud\Recommendationengine\V1beta1\PredictResponse;
-use Google\Cloud\Recommendationengine\V1beta1\PredictResponse\PredictionResult;
-use Google\Cloud\Recommendationengine\V1beta1\UserEvent;
+use Google\Cloud\RecommendationEngine\V1beta1\PredictResponse;
+use Google\Cloud\RecommendationEngine\V1beta1\PredictResponse\PredictionResult;
+use Google\Cloud\RecommendationEngine\V1beta1\UserEvent;
 use Google\Protobuf\Any;
 use Google\Rpc\Code;
 use stdClass;

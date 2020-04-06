@@ -20,20 +20,20 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Recommendationengine\Tests\Unit\V1beta1;
+namespace Google\Cloud\RecommendationEngine\Tests\Unit\V1beta1;
 
-use Google\Cloud\Recommendationengine\V1beta1\UserEventServiceClient;
+use Google\Cloud\RecommendationEngine\V1beta1\UserEventServiceClient;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Api\HttpBody;
-use Google\Cloud\Recommendationengine\V1beta1\ImportUserEventsResponse;
-use Google\Cloud\Recommendationengine\V1beta1\InputConfig;
-use Google\Cloud\Recommendationengine\V1beta1\ListUserEventsResponse;
-use Google\Cloud\Recommendationengine\V1beta1\PurgeUserEventsResponse;
-use Google\Cloud\Recommendationengine\V1beta1\UserEvent;
+use Google\Cloud\RecommendationEngine\V1beta1\ImportUserEventsResponse;
+use Google\Cloud\RecommendationEngine\V1beta1\InputConfig;
+use Google\Cloud\RecommendationEngine\V1beta1\ListUserEventsResponse;
+use Google\Cloud\RecommendationEngine\V1beta1\PurgeUserEventsResponse;
+use Google\Cloud\RecommendationEngine\V1beta1\UserEvent;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;

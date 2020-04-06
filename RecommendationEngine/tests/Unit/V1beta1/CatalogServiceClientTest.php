@@ -20,18 +20,18 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Recommendationengine\Tests\Unit\V1beta1;
+namespace Google\Cloud\RecommendationEngine\Tests\Unit\V1beta1;
 
-use Google\Cloud\Recommendationengine\V1beta1\CatalogServiceClient;
+use Google\Cloud\RecommendationEngine\V1beta1\CatalogServiceClient;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-use Google\Cloud\Recommendationengine\V1beta1\CatalogItem;
-use Google\Cloud\Recommendationengine\V1beta1\ImportCatalogItemsResponse;
-use Google\Cloud\Recommendationengine\V1beta1\InputConfig;
-use Google\Cloud\Recommendationengine\V1beta1\ListCatalogItemsResponse;
+use Google\Cloud\RecommendationEngine\V1beta1\CatalogItem;
+use Google\Cloud\RecommendationEngine\V1beta1\ImportCatalogItemsResponse;
+use Google\Cloud\RecommendationEngine\V1beta1\InputConfig;
+use Google\Cloud\RecommendationEngine\V1beta1\ListCatalogItemsResponse;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;

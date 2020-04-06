@@ -16,7 +16,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-namespace Google\Cloud\Recommendationengine\V1beta1;
+namespace Google\Cloud\RecommendationEngine\V1beta1;
 
 /**
  * Service for making recommendation prediction.
@@ -37,15 +37,15 @@ class PredictionServiceGrpcClient extends \Grpc\BaseStub {
      * the API Key must be registered using the
      * [PredictionApiKeyRegistry][google.cloud.recommendationengine.v1beta1.PredictionApiKeyRegistry]
      * service. [Learn more](https://cloud.google.com/recommendations-ai/docs/setting-up#register-key).
-     * @param \Google\Cloud\Recommendationengine\V1beta1\PredictRequest $argument input argument
+     * @param \Google\Cloud\RecommendationEngine\V1beta1\PredictRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
      */
-    public function Predict(\Google\Cloud\Recommendationengine\V1beta1\PredictRequest $argument,
+    public function Predict(\Google\Cloud\RecommendationEngine\V1beta1\PredictRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.recommendationengine.v1beta1.PredictionService/Predict',
         $argument,
-        ['\Google\Cloud\Recommendationengine\V1beta1\PredictResponse', 'decode'],
+        ['\Google\Cloud\RecommendationEngine\V1beta1\PredictResponse', 'decode'],
         $metadata, $options);
     }
 
