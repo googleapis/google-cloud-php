@@ -1,6 +1,6 @@
 # Google Cloud Recommendation Engine for PHP
 
-> Idiomatic PHP client for [Google Cloud Recommendation Engine](https://cloud.google.com/recommendation-engine).
+> Idiomatic PHP client for [Google Cloud Recommendation Engine](https://cloud.google.com/recommendations-ai).
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-recommendation-engine/v/stable)](https://packagist.org/packages/google/cloud-recommendation-engine) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-recommendation-engine.svg)](https://packagist.org/packages/google/cloud-recommendation-engine)
 
