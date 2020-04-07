@@ -175,7 +175,7 @@ class CompanyServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $client->tenantName('[PROJECT]', '[TENANT]');
         $company = new Company();
 
         $response = $client->createCompany($formattedParent, $company);
@@ -219,7 +219,7 @@ class CompanyServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $client->tenantName('[PROJECT]', '[TENANT]');
         $company = new Company();
 
         try {
@@ -438,7 +438,7 @@ class CompanyServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $client->tenantName('[PROJECT]', '[TENANT]');
 
         $response = $client->listCompanies($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
@@ -481,7 +481,7 @@ class CompanyServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $client->tenantName('[PROJECT]', '[TENANT]');
 
         try {
             $client->listCompanies($formattedParent);

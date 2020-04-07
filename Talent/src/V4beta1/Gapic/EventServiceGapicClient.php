@@ -47,7 +47,7 @@ use Google\Cloud\Talent\V4beta1\CreateClientEventRequest;
  * ```
  * $eventServiceClient = new EventServiceClient();
  * try {
- *     $formattedParent = $eventServiceClient->projectName('[PROJECT]');
+ *     $formattedParent = $eventServiceClient->tenantName('[PROJECT]', '[TENANT]');
  *     $clientEvent = new ClientEvent();
  *     $response = $eventServiceClient->createClientEvent($formattedParent, $clientEvent);
  * } finally {
@@ -296,7 +296,7 @@ class EventServiceGapicClient
      * ```
      * $eventServiceClient = new EventServiceClient();
      * try {
-     *     $formattedParent = $eventServiceClient->projectName('[PROJECT]');
+     *     $formattedParent = $eventServiceClient->tenantName('[PROJECT]', '[TENANT]');
      *     $clientEvent = new ClientEvent();
      *     $response = $eventServiceClient->createClientEvent($formattedParent, $clientEvent);
      * } finally {
