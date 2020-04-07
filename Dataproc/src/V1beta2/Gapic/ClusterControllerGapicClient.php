@@ -664,7 +664,7 @@ class ClusterControllerGapicClient
     }
 
     /**
-     * Lists all regions/{region}/clusters in a project.
+     * Lists all regions/{region}/clusters in a project alphabetically.
      *
      * Sample code:
      * ```

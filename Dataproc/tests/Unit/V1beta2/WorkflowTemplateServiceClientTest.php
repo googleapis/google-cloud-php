@@ -94,7 +94,7 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $client->regionName('[PROJECT]', '[REGION]');
         $template = new WorkflowTemplate();
 
         $response = $client->createWorkflowTemplate($formattedParent, $template);
@@ -138,7 +138,7 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $client->regionName('[PROJECT]', '[REGION]');
         $template = new WorkflowTemplate();
 
         try {
@@ -407,7 +407,7 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
 
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $client->regionName('[PROJECT]', '[REGION]');
         $template = new WorkflowTemplate();
 
         $response = $client->instantiateInlineWorkflowTemplate($formattedParent, $template);
@@ -489,7 +489,7 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $client->regionName('[PROJECT]', '[REGION]');
         $template = new WorkflowTemplate();
 
         $response = $client->instantiateInlineWorkflowTemplate($formattedParent, $template);
@@ -614,7 +614,7 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $client->regionName('[PROJECT]', '[REGION]');
 
         $response = $client->listWorkflowTemplates($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
@@ -657,7 +657,7 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $client->regionName('[PROJECT]', '[REGION]');
 
         try {
             $client->listWorkflowTemplates($formattedParent);

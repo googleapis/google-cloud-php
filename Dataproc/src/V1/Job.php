@@ -94,6 +94,15 @@ class Job extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string job_uuid = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $job_uuid = '';
+    /**
+     * Output only. Indicates whether the job is completed. If the value is `false`,
+     * the job is still in progress. If `true`, the job is completed, and
+     * `status.state` field will indicate if it was successful, failed,
+     * or cancelled.
+     *
+     * Generated from protobuf field <code>bool done = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $done = false;
     protected $type_job;
 
     /**
@@ -157,6 +166,11 @@ class Job extends \Google\Protobuf\Internal\Message
      *           Output only. A UUID that uniquely identifies a job within the project
      *           over time. This is in contrast to a user-settable reference.job_id that
      *           may be reused over time.
+     *     @type bool $done
+     *           Output only. Indicates whether the job is completed. If the value is `false`,
+     *           the job is still in progress. If `true`, the job is completed, and
+     *           `status.state` field will indicate if it was successful, failed,
+     *           or cancelled.
      * }
      */
     public function __construct($data = NULL) {
@@ -666,6 +680,38 @@ class Job extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->job_uuid = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Indicates whether the job is completed. If the value is `false`,
+     * the job is still in progress. If `true`, the job is completed, and
+     * `status.state` field will indicate if it was successful, failed,
+     * or cancelled.
+     *
+     * Generated from protobuf field <code>bool done = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getDone()
+    {
+        return $this->done;
+    }
+
+    /**
+     * Output only. Indicates whether the job is completed. If the value is `false`,
+     * the job is still in progress. If `true`, the job is completed, and
+     * `status.state` field will indicate if it was successful, failed,
+     * or cancelled.
+     *
+     * Generated from protobuf field <code>bool done = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDone($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->done = $var;
 
         return $this;
     }

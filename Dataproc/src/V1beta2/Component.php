@@ -26,11 +26,23 @@ class Component
      */
     const ANACONDA = 5;
     /**
+     * Docker
+     *
+     * Generated from protobuf enum <code>DOCKER = 13;</code>
+     */
+    const DOCKER = 13;
+    /**
      * The Druid query engine.
      *
      * Generated from protobuf enum <code>DRUID = 9;</code>
      */
     const DRUID = 9;
+    /**
+     * Flink
+     *
+     * Generated from protobuf enum <code>FLINK = 14;</code>
+     */
+    const FLINK = 14;
     /**
      * The Hive Web HCatalog (the REST service for accessing HCatalog).
      *
@@ -56,6 +68,18 @@ class Component
      */
     const PRESTO = 6;
     /**
+     * The Ranger service.
+     *
+     * Generated from protobuf enum <code>RANGER = 12;</code>
+     */
+    const RANGER = 12;
+    /**
+     * The Solr service.
+     *
+     * Generated from protobuf enum <code>SOLR = 10;</code>
+     */
+    const SOLR = 10;
+    /**
      * The Zeppelin notebook.
      *
      * Generated from protobuf enum <code>ZEPPELIN = 4;</code>
@@ -71,11 +95,15 @@ class Component
     private static $valueToName = [
         self::COMPONENT_UNSPECIFIED => 'COMPONENT_UNSPECIFIED',
         self::ANACONDA => 'ANACONDA',
+        self::DOCKER => 'DOCKER',
         self::DRUID => 'DRUID',
+        self::FLINK => 'FLINK',
         self::HIVE_WEBHCAT => 'HIVE_WEBHCAT',
         self::JUPYTER => 'JUPYTER',
         self::KERBEROS => 'KERBEROS',
         self::PRESTO => 'PRESTO',
+        self::RANGER => 'RANGER',
+        self::SOLR => 'SOLR',
         self::ZEPPELIN => 'ZEPPELIN',
         self::ZOOKEEPER => 'ZOOKEEPER',
     ];

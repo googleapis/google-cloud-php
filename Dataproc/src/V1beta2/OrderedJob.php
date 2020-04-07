@@ -20,13 +20,13 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
      * within the template.
      * The step id is used as prefix for job id, as job
      * `goog-dataproc-workflow-step-id` label, and in
-     * [prerequisiteStepIds][google.cloud.dataproc.v1beta2.OrderedJob.prerequisite_step_ids]
-     * field from other steps.
+     * [prerequisiteStepIds][google.cloud.dataproc.v1beta2.OrderedJob.prerequisite_step_ids] field from other
+     * steps.
      * The id must contain only letters (a-z, A-Z), numbers (0-9),
      * underscores (_), and hyphens (-). Cannot begin or end with underscore
      * or hyphen. Must consist of between 3 and 50 characters.
      *
-     * Generated from protobuf field <code>string step_id = 1;</code>
+     * Generated from protobuf field <code>string step_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $step_id = '';
     /**
@@ -38,20 +38,20 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
      * the following regular expression: [\p{Ll}\p{Lo}\p{N}_-]{0,63}
      * No more than 32 labels can be associated with a given job.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 8;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $labels;
     /**
      * Optional. Job scheduling configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobScheduling scheduling = 9;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobScheduling scheduling = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $scheduling = null;
     /**
      * Optional. The optional list of prerequisite job step_ids.
      * If not specified, the job will start at the beginning of workflow.
      *
-     * Generated from protobuf field <code>repeated string prerequisite_step_ids = 10;</code>
+     * Generated from protobuf field <code>repeated string prerequisite_step_ids = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $prerequisite_step_ids;
     protected $job_type;
@@ -67,8 +67,8 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
      *           within the template.
      *           The step id is used as prefix for job id, as job
      *           `goog-dataproc-workflow-step-id` label, and in
-     *           [prerequisiteStepIds][google.cloud.dataproc.v1beta2.OrderedJob.prerequisite_step_ids]
-     *           field from other steps.
+     *           [prerequisiteStepIds][google.cloud.dataproc.v1beta2.OrderedJob.prerequisite_step_ids] field from other
+     *           steps.
      *           The id must contain only letters (a-z, A-Z), numbers (0-9),
      *           underscores (_), and hyphens (-). Cannot begin or end with underscore
      *           or hyphen. Must consist of between 3 and 50 characters.
@@ -77,7 +77,11 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dataproc\V1beta2\PySparkJob $pyspark_job
      *     @type \Google\Cloud\Dataproc\V1beta2\HiveJob $hive_job
      *     @type \Google\Cloud\Dataproc\V1beta2\PigJob $pig_job
+     *     @type \Google\Cloud\Dataproc\V1beta2\SparkRJob $spark_r_job
+     *           Spark R job
      *     @type \Google\Cloud\Dataproc\V1beta2\SparkSqlJob $spark_sql_job
+     *     @type \Google\Cloud\Dataproc\V1beta2\PrestoJob $presto_job
+     *           Presto job
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. The labels to associate with this job.
      *           Label keys must be between 1 and 63 characters long, and must conform to
@@ -103,13 +107,13 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
      * within the template.
      * The step id is used as prefix for job id, as job
      * `goog-dataproc-workflow-step-id` label, and in
-     * [prerequisiteStepIds][google.cloud.dataproc.v1beta2.OrderedJob.prerequisite_step_ids]
-     * field from other steps.
+     * [prerequisiteStepIds][google.cloud.dataproc.v1beta2.OrderedJob.prerequisite_step_ids] field from other
+     * steps.
      * The id must contain only letters (a-z, A-Z), numbers (0-9),
      * underscores (_), and hyphens (-). Cannot begin or end with underscore
      * or hyphen. Must consist of between 3 and 50 characters.
      *
-     * Generated from protobuf field <code>string step_id = 1;</code>
+     * Generated from protobuf field <code>string step_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getStepId()
@@ -122,13 +126,13 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
      * within the template.
      * The step id is used as prefix for job id, as job
      * `goog-dataproc-workflow-step-id` label, and in
-     * [prerequisiteStepIds][google.cloud.dataproc.v1beta2.OrderedJob.prerequisite_step_ids]
-     * field from other steps.
+     * [prerequisiteStepIds][google.cloud.dataproc.v1beta2.OrderedJob.prerequisite_step_ids] field from other
+     * steps.
      * The id must contain only letters (a-z, A-Z), numbers (0-9),
      * underscores (_), and hyphens (-). Cannot begin or end with underscore
      * or hyphen. Must consist of between 3 and 50 characters.
      *
-     * Generated from protobuf field <code>string step_id = 1;</code>
+     * Generated from protobuf field <code>string step_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -251,6 +255,32 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Spark R job
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.SparkRJob spark_r_job = 11;</code>
+     * @return \Google\Cloud\Dataproc\V1beta2\SparkRJob
+     */
+    public function getSparkRJob()
+    {
+        return $this->readOneof(11);
+    }
+
+    /**
+     * Spark R job
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.SparkRJob spark_r_job = 11;</code>
+     * @param \Google\Cloud\Dataproc\V1beta2\SparkRJob $var
+     * @return $this
+     */
+    public function setSparkRJob($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1beta2\SparkRJob::class);
+        $this->writeOneof(11, $var);
+
+        return $this;
+    }
+
+    /**
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.SparkSqlJob spark_sql_job = 7;</code>
      * @return \Google\Cloud\Dataproc\V1beta2\SparkSqlJob
      */
@@ -273,6 +303,32 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Presto job
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.PrestoJob presto_job = 12;</code>
+     * @return \Google\Cloud\Dataproc\V1beta2\PrestoJob
+     */
+    public function getPrestoJob()
+    {
+        return $this->readOneof(12);
+    }
+
+    /**
+     * Presto job
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.PrestoJob presto_job = 12;</code>
+     * @param \Google\Cloud\Dataproc\V1beta2\PrestoJob $var
+     * @return $this
+     */
+    public function setPrestoJob($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1beta2\PrestoJob::class);
+        $this->writeOneof(12, $var);
+
+        return $this;
+    }
+
+    /**
      * Optional. The labels to associate with this job.
      * Label keys must be between 1 and 63 characters long, and must conform to
      * the following regular expression:
@@ -281,7 +337,7 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
      * the following regular expression: [\p{Ll}\p{Lo}\p{N}_-]{0,63}
      * No more than 32 labels can be associated with a given job.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 8;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getLabels()
@@ -298,7 +354,7 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
      * the following regular expression: [\p{Ll}\p{Lo}\p{N}_-]{0,63}
      * No more than 32 labels can be associated with a given job.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 8;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -313,7 +369,7 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Job scheduling configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobScheduling scheduling = 9;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobScheduling scheduling = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataproc\V1beta2\JobScheduling
      */
     public function getScheduling()
@@ -324,7 +380,7 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Job scheduling configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobScheduling scheduling = 9;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobScheduling scheduling = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataproc\V1beta2\JobScheduling $var
      * @return $this
      */
@@ -340,7 +396,7 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
      * Optional. The optional list of prerequisite job step_ids.
      * If not specified, the job will start at the beginning of workflow.
      *
-     * Generated from protobuf field <code>repeated string prerequisite_step_ids = 10;</code>
+     * Generated from protobuf field <code>repeated string prerequisite_step_ids = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getPrerequisiteStepIds()
@@ -352,7 +408,7 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
      * Optional. The optional list of prerequisite job step_ids.
      * If not specified, the job will start at the beginning of workflow.
      *
-     * Generated from protobuf field <code>repeated string prerequisite_step_ids = 10;</code>
+     * Generated from protobuf field <code>repeated string prerequisite_step_ids = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

@@ -96,7 +96,7 @@ class ClusterControllerGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Lists all regions/{region}/clusters in a project.
+     * Lists all regions/{region}/clusters in a project alphabetically.
      * @param \Google\Cloud\Dataproc\V1\ListClustersRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

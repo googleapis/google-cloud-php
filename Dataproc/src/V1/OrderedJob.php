@@ -77,7 +77,11 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dataproc\V1\PySparkJob $pyspark_job
      *     @type \Google\Cloud\Dataproc\V1\HiveJob $hive_job
      *     @type \Google\Cloud\Dataproc\V1\PigJob $pig_job
+     *     @type \Google\Cloud\Dataproc\V1\SparkRJob $spark_r_job
+     *           Spark R job
      *     @type \Google\Cloud\Dataproc\V1\SparkSqlJob $spark_sql_job
+     *     @type \Google\Cloud\Dataproc\V1\PrestoJob $presto_job
+     *           Presto job
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. The labels to associate with this job.
      *           Label keys must be between 1 and 63 characters long, and must conform to
@@ -251,6 +255,32 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Spark R job
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.SparkRJob spark_r_job = 11;</code>
+     * @return \Google\Cloud\Dataproc\V1\SparkRJob
+     */
+    public function getSparkRJob()
+    {
+        return $this->readOneof(11);
+    }
+
+    /**
+     * Spark R job
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.SparkRJob spark_r_job = 11;</code>
+     * @param \Google\Cloud\Dataproc\V1\SparkRJob $var
+     * @return $this
+     */
+    public function setSparkRJob($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\SparkRJob::class);
+        $this->writeOneof(11, $var);
+
+        return $this;
+    }
+
+    /**
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.SparkSqlJob spark_sql_job = 7;</code>
      * @return \Google\Cloud\Dataproc\V1\SparkSqlJob
      */
@@ -268,6 +298,32 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\SparkSqlJob::class);
         $this->writeOneof(7, $var);
+
+        return $this;
+    }
+
+    /**
+     * Presto job
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.PrestoJob presto_job = 12;</code>
+     * @return \Google\Cloud\Dataproc\V1\PrestoJob
+     */
+    public function getPrestoJob()
+    {
+        return $this->readOneof(12);
+    }
+
+    /**
+     * Presto job
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.PrestoJob presto_job = 12;</code>
+     * @param \Google\Cloud\Dataproc\V1\PrestoJob $var
+     * @return $this
+     */
+    public function setPrestoJob($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\PrestoJob::class);
+        $this->writeOneof(12, $var);
 
         return $this;
     }

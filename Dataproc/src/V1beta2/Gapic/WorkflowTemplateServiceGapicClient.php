@@ -60,7 +60,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $workflowTemplateServiceClient = new WorkflowTemplateServiceClient();
  * try {
- *     $formattedParent = $workflowTemplateServiceClient->locationName('[PROJECT]', '[LOCATION]');
+ *     $formattedParent = $workflowTemplateServiceClient->regionName('[PROJECT]', '[REGION]');
  *     $template = new WorkflowTemplate();
  *     $response = $workflowTemplateServiceClient->createWorkflowTemplate($formattedParent, $template);
  * } finally {
@@ -438,7 +438,7 @@ class WorkflowTemplateServiceGapicClient
      * ```
      * $workflowTemplateServiceClient = new WorkflowTemplateServiceClient();
      * try {
-     *     $formattedParent = $workflowTemplateServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $formattedParent = $workflowTemplateServiceClient->regionName('[PROJECT]', '[REGION]');
      *     $template = new WorkflowTemplate();
      *     $response = $workflowTemplateServiceClient->createWorkflowTemplate($formattedParent, $template);
      * } finally {
@@ -705,8 +705,7 @@ class WorkflowTemplateServiceGapicClient
      * Instantiates a template and begins execution.
      *
      * This method is equivalent to executing the sequence
-     * [CreateWorkflowTemplate][google.cloud.dataproc.v1beta2.WorkflowTemplateService.CreateWorkflowTemplate],
-     * [InstantiateWorkflowTemplate][google.cloud.dataproc.v1beta2.WorkflowTemplateService.InstantiateWorkflowTemplate],
+     * [CreateWorkflowTemplate][google.cloud.dataproc.v1beta2.WorkflowTemplateService.CreateWorkflowTemplate], [InstantiateWorkflowTemplate][google.cloud.dataproc.v1beta2.WorkflowTemplateService.InstantiateWorkflowTemplate],
      * [DeleteWorkflowTemplate][google.cloud.dataproc.v1beta2.WorkflowTemplateService.DeleteWorkflowTemplate].
      *
      * The returned Operation can be used to track execution of
@@ -732,7 +731,7 @@ class WorkflowTemplateServiceGapicClient
      * ```
      * $workflowTemplateServiceClient = new WorkflowTemplateServiceClient();
      * try {
-     *     $formattedParent = $workflowTemplateServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $formattedParent = $workflowTemplateServiceClient->regionName('[PROJECT]', '[REGION]');
      *     $template = new WorkflowTemplate();
      *     $operationResponse = $workflowTemplateServiceClient->instantiateInlineWorkflowTemplate($formattedParent, $template);
      *     $operationResponse->pollUntilComplete();
@@ -891,7 +890,7 @@ class WorkflowTemplateServiceGapicClient
      * ```
      * $workflowTemplateServiceClient = new WorkflowTemplateServiceClient();
      * try {
-     *     $formattedParent = $workflowTemplateServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $formattedParent = $workflowTemplateServiceClient->regionName('[PROJECT]', '[REGION]');
      *     // Iterate over pages of elements
      *     $pagedResponse = $workflowTemplateServiceClient->listWorkflowTemplates($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
