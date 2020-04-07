@@ -89,7 +89,7 @@ class Condition extends \Google\Protobuf\Internal\Message
      *           A condition that checks that a time series continues to
      *           receive new data points.
      *     @type \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\TimeSeriesQueryLanguageCondition $condition_time_series_query_language
-     *           A condition that uses the time series query language format to define
+     *           A condition that uses the Monitoring Query Language to define
      *           alerts.
      *           If set, no other conditions can be present.
      * }
@@ -248,7 +248,7 @@ class Condition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A condition that uses the time series query language format to define
+     * A condition that uses the Monitoring Query Language to define
      * alerts.
      * If set, no other conditions can be present.
      *
@@ -261,7 +261,7 @@ class Condition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A condition that uses the time series query language format to define
+     * A condition that uses the Monitoring Query Language to define
      * alerts.
      * If set, no other conditions can be present.
      *
