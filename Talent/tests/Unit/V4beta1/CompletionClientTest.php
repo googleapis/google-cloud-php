@@ -83,7 +83,7 @@ class CompletionClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $client->tenantName('[PROJECT]', '[TENANT]');
         $query = 'query107944136';
         $pageSize = 883849137;
 
@@ -131,7 +131,7 @@ class CompletionClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $client->tenantName('[PROJECT]', '[TENANT]');
         $query = 'query107944136';
         $pageSize = 883849137;
 

@@ -476,7 +476,7 @@ class CompanyServiceGapicClient
      * ```
      * $companyServiceClient = new CompanyServiceClient();
      * try {
-     *     $formattedParent = $companyServiceClient->projectName('[PROJECT]');
+     *     $formattedParent = $companyServiceClient->tenantName('[PROJECT]', '[TENANT]');
      *     $company = new Company();
      *     $response = $companyServiceClient->createCompany($formattedParent, $company);
      * } finally {
@@ -651,7 +651,7 @@ class CompanyServiceGapicClient
      * ```
      * $companyServiceClient = new CompanyServiceClient();
      * try {
-     *     $formattedParent = $companyServiceClient->projectName('[PROJECT]');
+     *     $formattedParent = $companyServiceClient->tenantName('[PROJECT]', '[TENANT]');
      *     // Iterate over pages of elements
      *     $pagedResponse = $companyServiceClient->listCompanies($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {

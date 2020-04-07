@@ -659,7 +659,7 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedParent = $jobServiceClient->projectName('[PROJECT]');
+     *     $formattedParent = $jobServiceClient->tenantName('[PROJECT]', '[TENANT]');
      *     $job = new Job();
      *     $response = $jobServiceClient->createJob($formattedParent, $job);
      * } finally {
@@ -716,7 +716,7 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedParent = $jobServiceClient->projectName('[PROJECT]');
+     *     $formattedParent = $jobServiceClient->tenantName('[PROJECT]', '[TENANT]');
      *     $jobs = [];
      *     $operationResponse = $jobServiceClient->batchCreateJobs($formattedParent, $jobs);
      *     $operationResponse->pollUntilComplete();
@@ -923,7 +923,7 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedParent = $jobServiceClient->projectName('[PROJECT]');
+     *     $formattedParent = $jobServiceClient->tenantName('[PROJECT]', '[TENANT]');
      *     $jobs = [];
      *     $operationResponse = $jobServiceClient->batchUpdateJobs($formattedParent, $jobs);
      *     $operationResponse->pollUntilComplete();
@@ -1026,7 +1026,7 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedParent = $jobServiceClient->projectName('[PROJECT]');
+     *     $formattedParent = $jobServiceClient->tenantName('[PROJECT]', '[TENANT]');
      *     $filter = '';
      *     $jobServiceClient->batchDeleteJobs($formattedParent, $filter);
      * } finally {
@@ -1091,7 +1091,7 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedParent = $jobServiceClient->projectName('[PROJECT]');
+     *     $formattedParent = $jobServiceClient->tenantName('[PROJECT]', '[TENANT]');
      *     $filter = '';
      *     // Iterate over pages of elements
      *     $pagedResponse = $jobServiceClient->listJobs($formattedParent, $filter);
@@ -1207,7 +1207,7 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedParent = $jobServiceClient->projectName('[PROJECT]');
+     *     $formattedParent = $jobServiceClient->tenantName('[PROJECT]', '[TENANT]');
      *     $requestMetadata = new RequestMetadata();
      *     // Iterate over pages of elements
      *     $pagedResponse = $jobServiceClient->searchJobs($formattedParent, $requestMetadata);
@@ -1553,7 +1553,7 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedParent = $jobServiceClient->projectName('[PROJECT]');
+     *     $formattedParent = $jobServiceClient->tenantName('[PROJECT]', '[TENANT]');
      *     $requestMetadata = new RequestMetadata();
      *     // Iterate over pages of elements
      *     $pagedResponse = $jobServiceClient->searchJobsForAlert($formattedParent, $requestMetadata);

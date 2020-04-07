@@ -186,7 +186,7 @@ class JobServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $client->tenantName('[PROJECT]', '[TENANT]');
         $job = new Job();
 
         $response = $client->createJob($formattedParent, $job);
@@ -230,7 +230,7 @@ class JobServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $client->tenantName('[PROJECT]', '[TENANT]');
         $job = new Job();
 
         try {
@@ -282,7 +282,7 @@ class JobServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
 
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $client->tenantName('[PROJECT]', '[TENANT]');
         $jobs = [];
 
         $response = $client->batchCreateJobs($formattedParent, $jobs);
@@ -364,7 +364,7 @@ class JobServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $client->tenantName('[PROJECT]', '[TENANT]');
         $jobs = [];
 
         $response = $client->batchCreateJobs($formattedParent, $jobs);
@@ -617,7 +617,7 @@ class JobServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
 
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $client->tenantName('[PROJECT]', '[TENANT]');
         $jobs = [];
 
         $response = $client->batchUpdateJobs($formattedParent, $jobs);
@@ -699,7 +699,7 @@ class JobServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $client->tenantName('[PROJECT]', '[TENANT]');
         $jobs = [];
 
         $response = $client->batchUpdateJobs($formattedParent, $jobs);
@@ -742,7 +742,7 @@ class JobServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $client->tenantName('[PROJECT]', '[TENANT]');
         $filter = 'filter-1274492040';
 
         $client->batchDeleteJobs($formattedParent, $filter);
@@ -785,7 +785,7 @@ class JobServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $client->tenantName('[PROJECT]', '[TENANT]');
         $filter = 'filter-1274492040';
 
         try {
@@ -822,7 +822,7 @@ class JobServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $client->tenantName('[PROJECT]', '[TENANT]');
         $filter = 'filter-1274492040';
 
         $response = $client->listJobs($formattedParent, $filter);
@@ -869,7 +869,7 @@ class JobServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $client->tenantName('[PROJECT]', '[TENANT]');
         $filter = 'filter-1274492040';
 
         try {
@@ -912,7 +912,7 @@ class JobServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $client->tenantName('[PROJECT]', '[TENANT]');
         $requestMetadata = new RequestMetadata();
 
         $response = $client->searchJobs($formattedParent, $requestMetadata);
@@ -959,7 +959,7 @@ class JobServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $client->tenantName('[PROJECT]', '[TENANT]');
         $requestMetadata = new RequestMetadata();
 
         try {
@@ -1002,7 +1002,7 @@ class JobServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $client->tenantName('[PROJECT]', '[TENANT]');
         $requestMetadata = new RequestMetadata();
 
         $response = $client->searchJobsForAlert($formattedParent, $requestMetadata);
@@ -1049,7 +1049,7 @@ class JobServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $client->tenantName('[PROJECT]', '[TENANT]');
         $requestMetadata = new RequestMetadata();
 
         try {

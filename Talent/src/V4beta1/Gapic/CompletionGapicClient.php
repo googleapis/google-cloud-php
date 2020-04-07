@@ -49,7 +49,7 @@ use Google\Cloud\Talent\V4beta1\CompleteQueryResponse;
  * ```
  * $completionClient = new CompletionClient();
  * try {
- *     $formattedParent = $completionClient->projectName('[PROJECT]');
+ *     $formattedParent = $completionClient->tenantName('[PROJECT]', '[TENANT]');
  *     $query = '';
  *     $pageSize = 0;
  *     $response = $completionClient->completeQuery($formattedParent, $query, $pageSize);
@@ -418,7 +418,7 @@ class CompletionGapicClient
      * ```
      * $completionClient = new CompletionClient();
      * try {
-     *     $formattedParent = $completionClient->projectName('[PROJECT]');
+     *     $formattedParent = $completionClient->tenantName('[PROJECT]', '[TENANT]');
      *     $query = '';
      *     $pageSize = 0;
      *     $response = $completionClient->completeQuery($formattedParent, $query, $pageSize);

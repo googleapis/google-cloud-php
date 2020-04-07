@@ -89,7 +89,7 @@ class EventServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $client->tenantName('[PROJECT]', '[TENANT]');
         $clientEvent = new ClientEvent();
 
         $response = $client->createClientEvent($formattedParent, $clientEvent);
@@ -133,7 +133,7 @@ class EventServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $client->tenantName('[PROJECT]', '[TENANT]');
         $clientEvent = new ClientEvent();
 
         try {
