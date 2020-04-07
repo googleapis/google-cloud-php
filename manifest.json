@@ -1251,6 +1251,14 @@
             ]
         },
         {
+            "id": "cloud-recommendation-engine",
+            "name": "google/cloud-recommendation-engine",
+            "defaultService": "recommendationengine/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-recommender",
             "name": "google/cloud-recommender",
             "defaultService": "recommender/readme",
