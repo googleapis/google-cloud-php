@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * A mutation for a given row.
+ *
  * Generated from protobuf message <code>google.bigtable.v2.MutateRowsRequest.Entry</code>
  */
 class Entry extends \Google\Protobuf\Internal\Message
@@ -20,12 +22,12 @@ class Entry extends \Google\Protobuf\Internal\Message
      */
     private $row_key = '';
     /**
-     * Changes to be atomically applied to the specified row. Mutations are
+     * Required. Changes to be atomically applied to the specified row. Mutations are
      * applied in order, meaning that earlier mutations can be masked by
      * later ones.
      * You must specify at least one mutation.
      *
-     * Generated from protobuf field <code>repeated .google.bigtable.v2.Mutation mutations = 2;</code>
+     * Generated from protobuf field <code>repeated .google.bigtable.v2.Mutation mutations = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $mutations;
 
@@ -38,7 +40,7 @@ class Entry extends \Google\Protobuf\Internal\Message
      *     @type string $row_key
      *           The key of the row to which the `mutations` should be applied.
      *     @type \Google\Cloud\Bigtable\V2\Mutation[]|\Google\Protobuf\Internal\RepeatedField $mutations
-     *           Changes to be atomically applied to the specified row. Mutations are
+     *           Required. Changes to be atomically applied to the specified row. Mutations are
      *           applied in order, meaning that earlier mutations can be masked by
      *           later ones.
      *           You must specify at least one mutation.
@@ -76,12 +78,12 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Changes to be atomically applied to the specified row. Mutations are
+     * Required. Changes to be atomically applied to the specified row. Mutations are
      * applied in order, meaning that earlier mutations can be masked by
      * later ones.
      * You must specify at least one mutation.
      *
-     * Generated from protobuf field <code>repeated .google.bigtable.v2.Mutation mutations = 2;</code>
+     * Generated from protobuf field <code>repeated .google.bigtable.v2.Mutation mutations = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getMutations()
@@ -90,12 +92,12 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Changes to be atomically applied to the specified row. Mutations are
+     * Required. Changes to be atomically applied to the specified row. Mutations are
      * applied in order, meaning that earlier mutations can be masked by
      * later ones.
      * You must specify at least one mutation.
      *
-     * Generated from protobuf field <code>repeated .google.bigtable.v2.Mutation mutations = 2;</code>
+     * Generated from protobuf field <code>repeated .google.bigtable.v2.Mutation mutations = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Bigtable\V2\Mutation[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

@@ -16,11 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class MutateRowRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The unique name of the table to which the mutation should be applied.
+     * Required. The unique name of the table to which the mutation should be applied.
      * Values are of the form
      * `projects/<project>/instances/<instance>/tables/<table>`.
      *
-     * Generated from protobuf field <code>string table_name = 1;</code>
+     * Generated from protobuf field <code>string table_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $table_name = '';
     /**
@@ -31,17 +31,17 @@ class MutateRowRequest extends \Google\Protobuf\Internal\Message
      */
     private $app_profile_id = '';
     /**
-     * The key of the row to which the mutation should be applied.
+     * Required. The key of the row to which the mutation should be applied.
      *
-     * Generated from protobuf field <code>bytes row_key = 2;</code>
+     * Generated from protobuf field <code>bytes row_key = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $row_key = '';
     /**
-     * Changes to be atomically applied to the specified row. Entries are applied
+     * Required. Changes to be atomically applied to the specified row. Entries are applied
      * in order, meaning that earlier mutations can be masked by later ones.
      * Must contain at least one entry and at most 100000.
      *
-     * Generated from protobuf field <code>repeated .google.bigtable.v2.Mutation mutations = 3;</code>
+     * Generated from protobuf field <code>repeated .google.bigtable.v2.Mutation mutations = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $mutations;
 
@@ -52,16 +52,16 @@ class MutateRowRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $table_name
-     *           The unique name of the table to which the mutation should be applied.
+     *           Required. The unique name of the table to which the mutation should be applied.
      *           Values are of the form
      *           `projects/<project>/instances/<instance>/tables/<table>`.
      *     @type string $app_profile_id
      *           This value specifies routing for replication. If not specified, the
      *           "default" application profile will be used.
      *     @type string $row_key
-     *           The key of the row to which the mutation should be applied.
+     *           Required. The key of the row to which the mutation should be applied.
      *     @type \Google\Cloud\Bigtable\V2\Mutation[]|\Google\Protobuf\Internal\RepeatedField $mutations
-     *           Changes to be atomically applied to the specified row. Entries are applied
+     *           Required. Changes to be atomically applied to the specified row. Entries are applied
      *           in order, meaning that earlier mutations can be masked by later ones.
      *           Must contain at least one entry and at most 100000.
      * }
@@ -72,11 +72,11 @@ class MutateRowRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unique name of the table to which the mutation should be applied.
+     * Required. The unique name of the table to which the mutation should be applied.
      * Values are of the form
      * `projects/<project>/instances/<instance>/tables/<table>`.
      *
-     * Generated from protobuf field <code>string table_name = 1;</code>
+     * Generated from protobuf field <code>string table_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getTableName()
@@ -85,11 +85,11 @@ class MutateRowRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unique name of the table to which the mutation should be applied.
+     * Required. The unique name of the table to which the mutation should be applied.
      * Values are of the form
      * `projects/<project>/instances/<instance>/tables/<table>`.
      *
-     * Generated from protobuf field <code>string table_name = 1;</code>
+     * Generated from protobuf field <code>string table_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -130,9 +130,9 @@ class MutateRowRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The key of the row to which the mutation should be applied.
+     * Required. The key of the row to which the mutation should be applied.
      *
-     * Generated from protobuf field <code>bytes row_key = 2;</code>
+     * Generated from protobuf field <code>bytes row_key = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getRowKey()
@@ -141,9 +141,9 @@ class MutateRowRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The key of the row to which the mutation should be applied.
+     * Required. The key of the row to which the mutation should be applied.
      *
-     * Generated from protobuf field <code>bytes row_key = 2;</code>
+     * Generated from protobuf field <code>bytes row_key = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -156,11 +156,11 @@ class MutateRowRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Changes to be atomically applied to the specified row. Entries are applied
+     * Required. Changes to be atomically applied to the specified row. Entries are applied
      * in order, meaning that earlier mutations can be masked by later ones.
      * Must contain at least one entry and at most 100000.
      *
-     * Generated from protobuf field <code>repeated .google.bigtable.v2.Mutation mutations = 3;</code>
+     * Generated from protobuf field <code>repeated .google.bigtable.v2.Mutation mutations = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getMutations()
@@ -169,11 +169,11 @@ class MutateRowRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Changes to be atomically applied to the specified row. Entries are applied
+     * Required. Changes to be atomically applied to the specified row. Entries are applied
      * in order, meaning that earlier mutations can be masked by later ones.
      * Must contain at least one entry and at most 100000.
      *
-     * Generated from protobuf field <code>repeated .google.bigtable.v2.Mutation mutations = 3;</code>
+     * Generated from protobuf field <code>repeated .google.bigtable.v2.Mutation mutations = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Bigtable\V2\Mutation[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

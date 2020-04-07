@@ -16,12 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class ReadModifyWriteRowRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The unique name of the table to which the read/modify/write rules should be
+     * Required. The unique name of the table to which the read/modify/write rules should be
      * applied.
      * Values are of the form
      * `projects/<project>/instances/<instance>/tables/<table>`.
      *
-     * Generated from protobuf field <code>string table_name = 1;</code>
+     * Generated from protobuf field <code>string table_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $table_name = '';
     /**
@@ -32,17 +32,17 @@ class ReadModifyWriteRowRequest extends \Google\Protobuf\Internal\Message
      */
     private $app_profile_id = '';
     /**
-     * The key of the row to which the read/modify/write rules should be applied.
+     * Required. The key of the row to which the read/modify/write rules should be applied.
      *
-     * Generated from protobuf field <code>bytes row_key = 2;</code>
+     * Generated from protobuf field <code>bytes row_key = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $row_key = '';
     /**
-     * Rules specifying how the specified row's contents are to be transformed
+     * Required. Rules specifying how the specified row's contents are to be transformed
      * into writes. Entries are applied in order, meaning that earlier rules will
      * affect the results of later ones.
      *
-     * Generated from protobuf field <code>repeated .google.bigtable.v2.ReadModifyWriteRule rules = 3;</code>
+     * Generated from protobuf field <code>repeated .google.bigtable.v2.ReadModifyWriteRule rules = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $rules;
 
@@ -53,7 +53,7 @@ class ReadModifyWriteRowRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $table_name
-     *           The unique name of the table to which the read/modify/write rules should be
+     *           Required. The unique name of the table to which the read/modify/write rules should be
      *           applied.
      *           Values are of the form
      *           `projects/<project>/instances/<instance>/tables/<table>`.
@@ -61,9 +61,9 @@ class ReadModifyWriteRowRequest extends \Google\Protobuf\Internal\Message
      *           This value specifies routing for replication. If not specified, the
      *           "default" application profile will be used.
      *     @type string $row_key
-     *           The key of the row to which the read/modify/write rules should be applied.
+     *           Required. The key of the row to which the read/modify/write rules should be applied.
      *     @type \Google\Cloud\Bigtable\V2\ReadModifyWriteRule[]|\Google\Protobuf\Internal\RepeatedField $rules
-     *           Rules specifying how the specified row's contents are to be transformed
+     *           Required. Rules specifying how the specified row's contents are to be transformed
      *           into writes. Entries are applied in order, meaning that earlier rules will
      *           affect the results of later ones.
      * }
@@ -74,12 +74,12 @@ class ReadModifyWriteRowRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unique name of the table to which the read/modify/write rules should be
+     * Required. The unique name of the table to which the read/modify/write rules should be
      * applied.
      * Values are of the form
      * `projects/<project>/instances/<instance>/tables/<table>`.
      *
-     * Generated from protobuf field <code>string table_name = 1;</code>
+     * Generated from protobuf field <code>string table_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getTableName()
@@ -88,12 +88,12 @@ class ReadModifyWriteRowRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unique name of the table to which the read/modify/write rules should be
+     * Required. The unique name of the table to which the read/modify/write rules should be
      * applied.
      * Values are of the form
      * `projects/<project>/instances/<instance>/tables/<table>`.
      *
-     * Generated from protobuf field <code>string table_name = 1;</code>
+     * Generated from protobuf field <code>string table_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -134,9 +134,9 @@ class ReadModifyWriteRowRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The key of the row to which the read/modify/write rules should be applied.
+     * Required. The key of the row to which the read/modify/write rules should be applied.
      *
-     * Generated from protobuf field <code>bytes row_key = 2;</code>
+     * Generated from protobuf field <code>bytes row_key = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getRowKey()
@@ -145,9 +145,9 @@ class ReadModifyWriteRowRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The key of the row to which the read/modify/write rules should be applied.
+     * Required. The key of the row to which the read/modify/write rules should be applied.
      *
-     * Generated from protobuf field <code>bytes row_key = 2;</code>
+     * Generated from protobuf field <code>bytes row_key = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -160,11 +160,11 @@ class ReadModifyWriteRowRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Rules specifying how the specified row's contents are to be transformed
+     * Required. Rules specifying how the specified row's contents are to be transformed
      * into writes. Entries are applied in order, meaning that earlier rules will
      * affect the results of later ones.
      *
-     * Generated from protobuf field <code>repeated .google.bigtable.v2.ReadModifyWriteRule rules = 3;</code>
+     * Generated from protobuf field <code>repeated .google.bigtable.v2.ReadModifyWriteRule rules = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getRules()
@@ -173,11 +173,11 @@ class ReadModifyWriteRowRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Rules specifying how the specified row's contents are to be transformed
+     * Required. Rules specifying how the specified row's contents are to be transformed
      * into writes. Entries are applied in order, meaning that earlier rules will
      * affect the results of later ones.
      *
-     * Generated from protobuf field <code>repeated .google.bigtable.v2.ReadModifyWriteRule rules = 3;</code>
+     * Generated from protobuf field <code>repeated .google.bigtable.v2.ReadModifyWriteRule rules = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Bigtable\V2\ReadModifyWriteRule[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

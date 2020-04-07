@@ -212,8 +212,7 @@ class CellChunk extends \Google\Protobuf\Internal\Message
      */
     public function getFamilyNameValue()
     {
-        $wrapper = $this->getFamilyName();
-        return is_null($wrapper) ? null : $wrapper->getValue();
+        return $this->readWrapperValue("family_name");
     }
 
     /**
@@ -252,9 +251,8 @@ class CellChunk extends \Google\Protobuf\Internal\Message
      */
     public function setFamilyNameValue($var)
     {
-        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\StringValue(['value' => $var]);
-        return $this->setFamilyName($wrappedVar);
-    }
+        $this->writeWrapperValue("family_name", $var);
+        return $this;}
 
     /**
      * The column qualifier for this chunk of data.  If this message
@@ -285,8 +283,7 @@ class CellChunk extends \Google\Protobuf\Internal\Message
      */
     public function getQualifierValue()
     {
-        $wrapper = $this->getQualifier();
-        return is_null($wrapper) ? null : $wrapper->getValue();
+        return $this->readWrapperValue("qualifier");
     }
 
     /**
@@ -323,9 +320,8 @@ class CellChunk extends \Google\Protobuf\Internal\Message
      */
     public function setQualifierValue($var)
     {
-        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BytesValue(['value' => $var]);
-        return $this->setQualifier($wrappedVar);
-    }
+        $this->writeWrapperValue("qualifier", $var);
+        return $this;}
 
     /**
      * The cell's stored timestamp, which also uniquely identifies it
