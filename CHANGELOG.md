@@ -1,5 +1,585 @@
 # Changelog
 
+## 0.131.0
+
+<details><summary>google/cloud-asset 0.7.0</summary>
+
+
+
+### Features
+
+* update clients ([#2826](https://www.github.com/googleapis/google-cloud-php/issues/2826)) ([9f3ead8](https://www.github.com/googleapis/google-cloud-php/commit/9f3ead89b02506b84aa8b344eea8e9665b6f4b77))
+
+
+### Reverts
+
+* revert update clients pending upstream dependency fix ([#2847](https://www.github.com/googleapis/google-cloud-php/issues/2847)) ([0f13d83](https://www.github.com/googleapis/google-cloud-php/commit/0f13d83e40d6248bfd818c6447d93e920fa39c2d))
+
+
+### Miscellaneous Chores
+
+* Migrate all synth.py scripts from artman to bazel ([#2845](https://www.github.com/googleapis/google-cloud-php/issues/2845)) ([9cec90c](https://www.github.com/googleapis/google-cloud-php/commit/9cec90c4b4e2a7cba433b1f3a399479675cc8afa))
+* promote libraries and add repo-metadata ([#2812](https://www.github.com/googleapis/google-cloud-php/issues/2812)) ([2738e4b](https://www.github.com/googleapis/google-cloud-php/commit/2738e4bd3ea3002152a9fb8f74c743aeca6932b7))
+
+</details>
+
+<details><summary>google/cloud-automl 0.11.0</summary>
+
+
+
+### Features
+
+* extend GetModelEvaluation timeout ([#2850](https://www.github.com/googleapis/google-cloud-php/issues/2850)) ([51c7b37](https://www.github.com/googleapis/google-cloud-php/commit/51c7b3759b01cb614d1d74ff02e099573d4bda76))
+
+
+### Miscellaneous Chores
+
+* Migrate all synth.py scripts from artman to bazel ([#2845](https://www.github.com/googleapis/google-cloud-php/issues/2845)) ([9cec90c](https://www.github.com/googleapis/google-cloud-php/commit/9cec90c4b4e2a7cba433b1f3a399479675cc8afa))
+* promote libraries and add repo-metadata ([#2812](https://www.github.com/googleapis/google-cloud-php/issues/2812)) ([2738e4b](https://www.github.com/googleapis/google-cloud-php/commit/2738e4bd3ea3002152a9fb8f74c743aeca6932b7))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.15.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* promote libraries and add repo-metadata ([#2812](https://www.github.com/googleapis/google-cloud-php/issues/2812)) ([2738e4b](https://www.github.com/googleapis/google-cloud-php/commit/2738e4bd3ea3002152a9fb8f74c743aeca6932b7))
+
+</details>
+
+<details><summary>google/cloud-bigquerydatatransfer 0.18.0</summary>
+
+
+
+### Features
+
+* add first party oauth authorization type ([#2827](https://www.github.com/googleapis/google-cloud-php/issues/2827)) ([7d59381](https://www.github.com/googleapis/google-cloud-php/commit/7d593819f328c79324bfa957b858d59bf5dec75c))
+* add formatting methods ([#2805](https://www.github.com/googleapis/google-cloud-php/issues/2805)) ([c844cb0](https://www.github.com/googleapis/google-cloud-php/commit/c844cb0a6024a73693a8f683627d0c1999f9edcd))
+
+
+### Miscellaneous Chores
+
+* Migrate all synth.py scripts from artman to bazel ([#2845](https://www.github.com/googleapis/google-cloud-php/issues/2845)) ([9cec90c](https://www.github.com/googleapis/google-cloud-php/commit/9cec90c4b4e2a7cba433b1f3a399479675cc8afa))
+* promote libraries and add repo-metadata ([#2812](https://www.github.com/googleapis/google-cloud-php/issues/2812)) ([2738e4b](https://www.github.com/googleapis/google-cloud-php/commit/2738e4bd3ea3002152a9fb8f74c743aeca6932b7))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.3.1</summary>
+
+
+
+### Documentation
+
+* update generated proto documentation ([#2851](https://www.github.com/googleapis/google-cloud-php/issues/2851)) ([31e9e62](https://www.github.com/googleapis/google-cloud-php/commit/31e9e62d51365bcdd576ca9ef9a777fd82fcdf0e))
+
+
+### Miscellaneous Chores
+
+* Migrate all synth.py scripts from artman to bazel ([#2845](https://www.github.com/googleapis/google-cloud-php/issues/2845)) ([9cec90c](https://www.github.com/googleapis/google-cloud-php/commit/9cec90c4b4e2a7cba433b1f3a399479675cc8afa))
+* promote libraries and add repo-metadata ([#2812](https://www.github.com/googleapis/google-cloud-php/issues/2812)) ([2738e4b](https://www.github.com/googleapis/google-cloud-php/commit/2738e4bd3ea3002152a9fb8f74c743aeca6932b7))
+
+</details>
+
+<details><summary>google/cloud-billing 0.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate all synth.py scripts from artman to bazel ([#2845](https://www.github.com/googleapis/google-cloud-php/issues/2845)) ([9cec90c](https://www.github.com/googleapis/google-cloud-php/commit/9cec90c4b4e2a7cba433b1f3a399479675cc8afa))
+* promote libraries and add repo-metadata ([#2812](https://www.github.com/googleapis/google-cloud-php/issues/2812)) ([2738e4b](https://www.github.com/googleapis/google-cloud-php/commit/2738e4bd3ea3002152a9fb8f74c743aeca6932b7))
+
+</details>
+
+<details><summary>google/cloud-common-protos 0.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* promote libraries and add repo-metadata ([#2812](https://www.github.com/googleapis/google-cloud-php/issues/2812)) ([2738e4b](https://www.github.com/googleapis/google-cloud-php/commit/2738e4bd3ea3002152a9fb8f74c743aeca6932b7))
+
+</details>
+
+<details><summary>google/cloud-container 0.12.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate all synth.py scripts from artman to bazel ([#2845](https://www.github.com/googleapis/google-cloud-php/issues/2845)) ([9cec90c](https://www.github.com/googleapis/google-cloud-php/commit/9cec90c4b4e2a7cba433b1f3a399479675cc8afa))
+* promote libraries and add repo-metadata ([#2812](https://www.github.com/googleapis/google-cloud-php/issues/2812)) ([2738e4b](https://www.github.com/googleapis/google-cloud-php/commit/2738e4bd3ea3002152a9fb8f74c743aeca6932b7))
+
+</details>
+
+<details><summary>google/cloud-core 1.36.1</summary>
+
+
+
+### Reverts
+
+* undo removal of vision and speech veneer ([#2824](https://www.github.com/googleapis/google-cloud-php/issues/2824)) ([a6dfd9a](https://www.github.com/googleapis/google-cloud-php/commit/a6dfd9a76476ab266cad56fae1be36cfb62369ab))
+
+
+### Miscellaneous Chores
+
+* promote libraries and add repo-metadata ([#2812](https://www.github.com/googleapis/google-cloud-php/issues/2812)) ([2738e4b](https://www.github.com/googleapis/google-cloud-php/commit/2738e4bd3ea3002152a9fb8f74c743aeca6932b7))
+
+</details>
+
+<details><summary>google/cloud-dataproc 0.19.0</summary>
+
+
+
+### Features
+
+* add formatting methods ([#2828](https://www.github.com/googleapis/google-cloud-php/issues/2828)) ([bc77651](https://www.github.com/googleapis/google-cloud-php/commit/bc77651da864a6435245ccb808f8f9beb469b659))
+* introduces the ability to submit a job to a cluster ([#2852](https://www.github.com/googleapis/google-cloud-php/issues/2852)) ([4bb1c55](https://www.github.com/googleapis/google-cloud-php/commit/4bb1c55a0e8bd9c77bb6a0a799b74b1ebc62b23f))
+
+
+### Miscellaneous Chores
+
+* Migrate all synth.py scripts from artman to bazel ([#2845](https://www.github.com/googleapis/google-cloud-php/issues/2845)) ([9cec90c](https://www.github.com/googleapis/google-cloud-php/commit/9cec90c4b4e2a7cba433b1f3a399479675cc8afa))
+* promote libraries and add repo-metadata ([#2812](https://www.github.com/googleapis/google-cloud-php/issues/2812)) ([2738e4b](https://www.github.com/googleapis/google-cloud-php/commit/2738e4bd3ea3002152a9fb8f74c743aeca6932b7))
+
+</details>
+
+<details><summary>google/cloud-datastore 1.11.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate all synth.py scripts from artman to bazel ([#2845](https://www.github.com/googleapis/google-cloud-php/issues/2845)) ([9cec90c](https://www.github.com/googleapis/google-cloud-php/commit/9cec90c4b4e2a7cba433b1f3a399479675cc8afa))
+* promote libraries and add repo-metadata ([#2812](https://www.github.com/googleapis/google-cloud-php/issues/2812)) ([2738e4b](https://www.github.com/googleapis/google-cloud-php/commit/2738e4bd3ea3002152a9fb8f74c743aeca6932b7))
+
+</details>
+
+<details><summary>google/cloud-debugger 0.21.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate all synth.py scripts from artman to bazel ([#2845](https://www.github.com/googleapis/google-cloud-php/issues/2845)) ([9cec90c](https://www.github.com/googleapis/google-cloud-php/commit/9cec90c4b4e2a7cba433b1f3a399479675cc8afa))
+* promote libraries and add repo-metadata ([#2812](https://www.github.com/googleapis/google-cloud-php/issues/2812)) ([2738e4b](https://www.github.com/googleapis/google-cloud-php/commit/2738e4bd3ea3002152a9fb8f74c743aeca6932b7))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 0.14.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate all synth.py scripts from artman to bazel ([#2845](https://www.github.com/googleapis/google-cloud-php/issues/2845)) ([9cec90c](https://www.github.com/googleapis/google-cloud-php/commit/9cec90c4b4e2a7cba433b1f3a399479675cc8afa))
+* promote libraries and add repo-metadata ([#2812](https://www.github.com/googleapis/google-cloud-php/issues/2812)) ([2738e4b](https://www.github.com/googleapis/google-cloud-php/commit/2738e4bd3ea3002152a9fb8f74c743aeca6932b7))
+
+</details>
+
+<details><summary>google/cloud-dlp 0.26.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate all synth.py scripts from artman to bazel ([#2845](https://www.github.com/googleapis/google-cloud-php/issues/2845)) ([9cec90c](https://www.github.com/googleapis/google-cloud-php/commit/9cec90c4b4e2a7cba433b1f3a399479675cc8afa))
+* move dlp back to beta due to upstream issues ([#2848](https://www.github.com/googleapis/google-cloud-php/issues/2848)) ([aa71bf3](https://www.github.com/googleapis/google-cloud-php/commit/aa71bf35ff6609e636086711b5572b6ca15963e5))
+* promote libraries and add repo-metadata ([#2812](https://www.github.com/googleapis/google-cloud-php/issues/2812)) ([2738e4b](https://www.github.com/googleapis/google-cloud-php/commit/2738e4bd3ea3002152a9fb8f74c743aeca6932b7))
+
+</details>
+
+<details><summary>google/cloud-error-reporting 0.16.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate all synth.py scripts from artman to bazel ([#2845](https://www.github.com/googleapis/google-cloud-php/issues/2845)) ([9cec90c](https://www.github.com/googleapis/google-cloud-php/commit/9cec90c4b4e2a7cba433b1f3a399479675cc8afa))
+* promote libraries and add repo-metadata ([#2812](https://www.github.com/googleapis/google-cloud-php/issues/2812)) ([2738e4b](https://www.github.com/googleapis/google-cloud-php/commit/2738e4bd3ea3002152a9fb8f74c743aeca6932b7))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.12.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate all synth.py scripts from artman to bazel ([#2845](https://www.github.com/googleapis/google-cloud-php/issues/2845)) ([9cec90c](https://www.github.com/googleapis/google-cloud-php/commit/9cec90c4b4e2a7cba433b1f3a399479675cc8afa))
+* promote libraries and add repo-metadata ([#2812](https://www.github.com/googleapis/google-cloud-php/issues/2812)) ([2738e4b](https://www.github.com/googleapis/google-cloud-php/commit/2738e4bd3ea3002152a9fb8f74c743aeca6932b7))
+
+</details>
+
+<details><summary>google/cloud-iot 0.11.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate all synth.py scripts from artman to bazel ([#2845](https://www.github.com/googleapis/google-cloud-php/issues/2845)) ([9cec90c](https://www.github.com/googleapis/google-cloud-php/commit/9cec90c4b4e2a7cba433b1f3a399479675cc8afa))
+* promote libraries and add repo-metadata ([#2812](https://www.github.com/googleapis/google-cloud-php/issues/2812)) ([2738e4b](https://www.github.com/googleapis/google-cloud-php/commit/2738e4bd3ea3002152a9fb8f74c743aeca6932b7))
+* update synth script to include iot client ([#2821](https://www.github.com/googleapis/google-cloud-php/issues/2821)) ([4082f95](https://www.github.com/googleapis/google-cloud-php/commit/4082f95a84a185f9913ff9829ef1281657e2169c))
+
+
+### Documentation
+
+* fix copyright year ([#2831](https://www.github.com/googleapis/google-cloud-php/issues/2831)) ([b6b1b47](https://www.github.com/googleapis/google-cloud-php/commit/b6b1b47c4559b383653083b7d20610ea5b13358b))
+
+</details>
+
+<details><summary>google/cloud-kms 1.9.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* enable context-aware commits for one API ([#2786](https://www.github.com/googleapis/google-cloud-php/issues/2786)) ([3178283](https://www.github.com/googleapis/google-cloud-php/commit/3178283ebbcfa322b21324786da3eb67b3e89e56))
+* Migrate all synth.py scripts from artman to bazel ([#2845](https://www.github.com/googleapis/google-cloud-php/issues/2845)) ([9cec90c](https://www.github.com/googleapis/google-cloud-php/commit/9cec90c4b4e2a7cba433b1f3a399479675cc8afa))
+* promote libraries and add repo-metadata ([#2812](https://www.github.com/googleapis/google-cloud-php/issues/2812)) ([2738e4b](https://www.github.com/googleapis/google-cloud-php/commit/2738e4bd3ea3002152a9fb8f74c743aeca6932b7))
+
+</details>
+
+<details><summary>google/cloud-language 0.22.2</summary>
+
+
+
+### Documentation
+
+* update generated proto documentation ([#2854](https://www.github.com/googleapis/google-cloud-php/issues/2854)) ([b52886e](https://www.github.com/googleapis/google-cloud-php/commit/b52886ee91252333088f83364253a30c69e9da57))
+
+
+### Miscellaneous Chores
+
+* Migrate all synth.py scripts from artman to bazel ([#2845](https://www.github.com/googleapis/google-cloud-php/issues/2845)) ([9cec90c](https://www.github.com/googleapis/google-cloud-php/commit/9cec90c4b4e2a7cba433b1f3a399479675cc8afa))
+* promote libraries and add repo-metadata ([#2812](https://www.github.com/googleapis/google-cloud-php/issues/2812)) ([2738e4b](https://www.github.com/googleapis/google-cloud-php/commit/2738e4bd3ea3002152a9fb8f74c743aeca6932b7))
+
+</details>
+
+<details><summary>google/cloud-logging 1.20.0</summary>
+
+
+
+### Features
+
+* add new entry options ([#2823](https://www.github.com/googleapis/google-cloud-php/issues/2823)) ([16cf794](https://www.github.com/googleapis/google-cloud-php/commit/16cf794f8fce9b7427527814d0c6fe3c218e798c))
+
+
+### Miscellaneous Chores
+
+* Migrate all synth.py scripts from artman to bazel ([#2845](https://www.github.com/googleapis/google-cloud-php/issues/2845)) ([9cec90c](https://www.github.com/googleapis/google-cloud-php/commit/9cec90c4b4e2a7cba433b1f3a399479675cc8afa))
+* promote libraries and add repo-metadata ([#2812](https://www.github.com/googleapis/google-cloud-php/issues/2812)) ([2738e4b](https://www.github.com/googleapis/google-cloud-php/commit/2738e4bd3ea3002152a9fb8f74c743aeca6932b7))
+* replace deprecated constant reference ([#2822](https://www.github.com/googleapis/google-cloud-php/issues/2822)) ([029f2c3](https://www.github.com/googleapis/google-cloud-php/commit/029f2c3bf8732daef26745238ed087e59679474b))
+
+</details>
+
+<details><summary>google/cloud-monitoring 0.22.0</summary>
+
+
+
+### Features
+
+* extend ListTimeSeries timeout and update documentation ([#2855](https://www.github.com/googleapis/google-cloud-php/issues/2855)) ([bacf94f](https://www.github.com/googleapis/google-cloud-php/commit/bacf94f91f24c2d640407ca0b42b24ad1d3cb658))
+
+
+### Miscellaneous Chores
+
+* Migrate all synth.py scripts from artman to bazel ([#2845](https://www.github.com/googleapis/google-cloud-php/issues/2845)) ([9cec90c](https://www.github.com/googleapis/google-cloud-php/commit/9cec90c4b4e2a7cba433b1f3a399479675cc8afa))
+* promote libraries and add repo-metadata ([#2812](https://www.github.com/googleapis/google-cloud-php/issues/2812)) ([2738e4b](https://www.github.com/googleapis/google-cloud-php/commit/2738e4bd3ea3002152a9fb8f74c743aeca6932b7))
+
+</details>
+
+<details><summary>google/cloud-oslogin 0.12.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* remove readonly service scopes (#2856)
+
+### Features
+
+* remove readonly service scopes ([#2856](https://www.github.com/googleapis/google-cloud-php/issues/2856)) ([09ce6f5](https://www.github.com/googleapis/google-cloud-php/commit/09ce6f549814d3c7b3e98b2033830c01106b7c85))
+
+
+### Miscellaneous Chores
+
+* Migrate all synth.py scripts from artman to bazel ([#2845](https://www.github.com/googleapis/google-cloud-php/issues/2845)) ([9cec90c](https://www.github.com/googleapis/google-cloud-php/commit/9cec90c4b4e2a7cba433b1f3a399479675cc8afa))
+* promote libraries and add repo-metadata ([#2812](https://www.github.com/googleapis/google-cloud-php/issues/2812)) ([2738e4b](https://www.github.com/googleapis/google-cloud-php/commit/2738e4bd3ea3002152a9fb8f74c743aeca6932b7))
+* remove experimental flag ([#2817](https://www.github.com/googleapis/google-cloud-php/issues/2817)) ([f4ebd71](https://www.github.com/googleapis/google-cloud-php/commit/f4ebd71b2f09019e959ff0ba6379c51e6dd15b78))
+* update metadata ([#2844](https://www.github.com/googleapis/google-cloud-php/issues/2844)) ([0446917](https://www.github.com/googleapis/google-cloud-php/commit/04469179e7bfcb6f20077b14bee1e63f317fbd89))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.23.0</summary>
+
+
+
+### Features
+
+* add formatting method ([#2833](https://www.github.com/googleapis/google-cloud-php/issues/2833)) ([92c536f](https://www.github.com/googleapis/google-cloud-php/commit/92c536f672690838c79501fbcc151f846f9ad0ce))
+* add new snapshot methods ([#2857](https://www.github.com/googleapis/google-cloud-php/issues/2857)) ([016a217](https://www.github.com/googleapis/google-cloud-php/commit/016a21793fe15037e839c50684dba6cde4ddf6f8))
+
+
+### Miscellaneous Chores
+
+* Migrate all synth.py scripts from artman to bazel ([#2845](https://www.github.com/googleapis/google-cloud-php/issues/2845)) ([9cec90c](https://www.github.com/googleapis/google-cloud-php/commit/9cec90c4b4e2a7cba433b1f3a399479675cc8afa))
+* promote libraries and add repo-metadata ([#2812](https://www.github.com/googleapis/google-cloud-php/issues/2812)) ([2738e4b](https://www.github.com/googleapis/google-cloud-php/commit/2738e4bd3ea3002152a9fb8f74c743aeca6932b7))
+
+</details>
+
+<details><summary>google/cloud-recommendations-ai 0.1.0</summary>
+
+
+
+### Features
+
+* add recommendation engine client ([#2799](https://www.github.com/googleapis/google-cloud-php/issues/2799)) ([cad00b3](https://www.github.com/googleapis/google-cloud-php/commit/cad00b3fa2dc172b5d3cddfde7ba454a0c70610b))
+
+
+### Miscellaneous Chores
+
+* update default VERSION ([#2867](https://www.github.com/googleapis/google-cloud-php/issues/2867)) ([ceb1490](https://www.github.com/googleapis/google-cloud-php/commit/ceb14904a72c59bc6c2bd9cf91cee7f38cf108e8))
+
+</details>
+
+<details><summary>google/cloud-recommender 0.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate all synth.py scripts from artman to bazel ([#2845](https://www.github.com/googleapis/google-cloud-php/issues/2845)) ([9cec90c](https://www.github.com/googleapis/google-cloud-php/commit/9cec90c4b4e2a7cba433b1f3a399479675cc8afa))
+* promote libraries and add repo-metadata ([#2812](https://www.github.com/googleapis/google-cloud-php/issues/2812)) ([2738e4b](https://www.github.com/googleapis/google-cloud-php/commit/2738e4bd3ea3002152a9fb8f74c743aeca6932b7))
+
+</details>
+
+<details><summary>google/cloud-redis 0.12.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate all synth.py scripts from artman to bazel ([#2845](https://www.github.com/googleapis/google-cloud-php/issues/2845)) ([9cec90c](https://www.github.com/googleapis/google-cloud-php/commit/9cec90c4b4e2a7cba433b1f3a399479675cc8afa))
+* promote libraries and add repo-metadata ([#2812](https://www.github.com/googleapis/google-cloud-php/issues/2812)) ([2738e4b](https://www.github.com/googleapis/google-cloud-php/commit/2738e4bd3ea3002152a9fb8f74c743aeca6932b7))
+
+</details>
+
+<details><summary>google/cloud-scheduler 2.0.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* remove projectName helper and upate timeouts (#2858)
+
+### Features
+
+* remove projectName helper and upate timeouts ([#2858](https://www.github.com/googleapis/google-cloud-php/issues/2858)) ([d7bf9de](https://www.github.com/googleapis/google-cloud-php/commit/d7bf9deb5a462d0814d22f339a77dc612633b156))
+
+
+### Miscellaneous Chores
+
+* Migrate all synth.py scripts from artman to bazel ([#2845](https://www.github.com/googleapis/google-cloud-php/issues/2845)) ([9cec90c](https://www.github.com/googleapis/google-cloud-php/commit/9cec90c4b4e2a7cba433b1f3a399479675cc8afa))
+* promote libraries and add repo-metadata ([#2812](https://www.github.com/googleapis/google-cloud-php/issues/2812)) ([2738e4b](https://www.github.com/googleapis/google-cloud-php/commit/2738e4bd3ea3002152a9fb8f74c743aeca6932b7))
+
+</details>
+
+<details><summary>google/cloud-secret-manager 0.3.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate all synth.py scripts from artman to bazel ([#2845](https://www.github.com/googleapis/google-cloud-php/issues/2845)) ([9cec90c](https://www.github.com/googleapis/google-cloud-php/commit/9cec90c4b4e2a7cba433b1f3a399479675cc8afa))
+* promote libraries and add repo-metadata ([#2812](https://www.github.com/googleapis/google-cloud-php/issues/2812)) ([2738e4b](https://www.github.com/googleapis/google-cloud-php/commit/2738e4bd3ea3002152a9fb8f74c743aeca6932b7))
+
+
+### Documentation
+
+* update documentation ([#2818](https://www.github.com/googleapis/google-cloud-php/issues/2818)) ([e7cbdd7](https://www.github.com/googleapis/google-cloud-php/commit/e7cbdd7ce8cbd55a120e5779323ee7a1f043dbe7))
+
+</details>
+
+<details><summary>google/cloud-security-center 0.6.0</summary>
+
+
+
+### Features
+
+* add formatting methods ([#2834](https://www.github.com/googleapis/google-cloud-php/issues/2834)) ([0f4399e](https://www.github.com/googleapis/google-cloud-php/commit/0f4399e2ad34f307f75263dba7ba5a341d7cb6f4))
+
+
+### Miscellaneous Chores
+
+* Migrate all synth.py scripts from artman to bazel ([#2845](https://www.github.com/googleapis/google-cloud-php/issues/2845)) ([9cec90c](https://www.github.com/googleapis/google-cloud-php/commit/9cec90c4b4e2a7cba433b1f3a399479675cc8afa))
+* move security center to beta ([#2862](https://www.github.com/googleapis/google-cloud-php/issues/2862)) ([8a0bbc4](https://www.github.com/googleapis/google-cloud-php/commit/8a0bbc416325fb23aad69aa439df0a8b3f601795))
+* promote libraries and add repo-metadata ([#2812](https://www.github.com/googleapis/google-cloud-php/issues/2812)) ([2738e4b](https://www.github.com/googleapis/google-cloud-php/commit/2738e4bd3ea3002152a9fb8f74c743aeca6932b7))
+
+</details>
+
+<details><summary>google/cloud-service-directory 0.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate all synth.py scripts from artman to bazel ([#2845](https://www.github.com/googleapis/google-cloud-php/issues/2845)) ([9cec90c](https://www.github.com/googleapis/google-cloud-php/commit/9cec90c4b4e2a7cba433b1f3a399479675cc8afa))
+* promote libraries and add repo-metadata ([#2812](https://www.github.com/googleapis/google-cloud-php/issues/2812)) ([2738e4b](https://www.github.com/googleapis/google-cloud-php/commit/2738e4bd3ea3002152a9fb8f74c743aeca6932b7))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.27.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate all synth.py scripts from artman to bazel ([#2845](https://www.github.com/googleapis/google-cloud-php/issues/2845)) ([9cec90c](https://www.github.com/googleapis/google-cloud-php/commit/9cec90c4b4e2a7cba433b1f3a399479675cc8afa))
+* promote libraries and add repo-metadata ([#2812](https://www.github.com/googleapis/google-cloud-php/issues/2812)) ([2738e4b](https://www.github.com/googleapis/google-cloud-php/commit/2738e4bd3ea3002152a9fb8f74c743aeca6932b7))
+
+</details>
+
+<details><summary>google/cloud-speech 0.31.2</summary>
+
+
+
+### Reverts
+
+* undo removal of vision and speech veneer ([#2824](https://www.github.com/googleapis/google-cloud-php/issues/2824)) ([a6dfd9a](https://www.github.com/googleapis/google-cloud-php/commit/a6dfd9a76476ab266cad56fae1be36cfb62369ab))
+
+
+### Miscellaneous Chores
+
+* Migrate all synth.py scripts from artman to bazel ([#2845](https://www.github.com/googleapis/google-cloud-php/issues/2845)) ([9cec90c](https://www.github.com/googleapis/google-cloud-php/commit/9cec90c4b4e2a7cba433b1f3a399479675cc8afa))
+* promote libraries and add repo-metadata ([#2812](https://www.github.com/googleapis/google-cloud-php/issues/2812)) ([2738e4b](https://www.github.com/googleapis/google-cloud-php/commit/2738e4bd3ea3002152a9fb8f74c743aeca6932b7))
+* remove experimental flag ([#2819](https://www.github.com/googleapis/google-cloud-php/issues/2819)) ([f2e30bb](https://www.github.com/googleapis/google-cloud-php/commit/f2e30bb28f4b923e70a1bebf1fc18bba78493ecf))
+
+</details>
+
+<details><summary>google/cloud-storage 1.20.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* promote libraries and add repo-metadata ([#2812](https://www.github.com/googleapis/google-cloud-php/issues/2812)) ([2738e4b](https://www.github.com/googleapis/google-cloud-php/commit/2738e4bd3ea3002152a9fb8f74c743aeca6932b7))
+
+</details>
+
+<details><summary>google/cloud-talent 0.11.0</summary>
+
+
+
+### Features
+
+* add formatting methods ([#2835](https://www.github.com/googleapis/google-cloud-php/issues/2835)) ([9a7298f](https://www.github.com/googleapis/google-cloud-php/commit/9a7298f30ebc1f798d6856e04607d548b1770104))
+
+
+### Miscellaneous Chores
+
+* Migrate all synth.py scripts from artman to bazel ([#2845](https://www.github.com/googleapis/google-cloud-php/issues/2845)) ([9cec90c](https://www.github.com/googleapis/google-cloud-php/commit/9cec90c4b4e2a7cba433b1f3a399479675cc8afa))
+* promote libraries and add repo-metadata ([#2812](https://www.github.com/googleapis/google-cloud-php/issues/2812)) ([2738e4b](https://www.github.com/googleapis/google-cloud-php/commit/2738e4bd3ea3002152a9fb8f74c743aeca6932b7))
+* update docs to use new helper ([#2859](https://www.github.com/googleapis/google-cloud-php/issues/2859)) ([8943d9a](https://www.github.com/googleapis/google-cloud-php/commit/8943d9ab6d1f611198e1a341fca7a6d89a91b174))
+
+</details>
+
+<details><summary>google/cloud-tasks 1.6.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate all synth.py scripts from artman to bazel ([#2845](https://www.github.com/googleapis/google-cloud-php/issues/2845)) ([9cec90c](https://www.github.com/googleapis/google-cloud-php/commit/9cec90c4b4e2a7cba433b1f3a399479675cc8afa))
+* promote libraries and add repo-metadata ([#2812](https://www.github.com/googleapis/google-cloud-php/issues/2812)) ([2738e4b](https://www.github.com/googleapis/google-cloud-php/commit/2738e4bd3ea3002152a9fb8f74c743aeca6932b7))
+
+</details>
+
+<details><summary>google/cloud-text-to-speech 0.6.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate all synth.py scripts from artman to bazel ([#2845](https://www.github.com/googleapis/google-cloud-php/issues/2845)) ([9cec90c](https://www.github.com/googleapis/google-cloud-php/commit/9cec90c4b4e2a7cba433b1f3a399479675cc8afa))
+* promote libraries and add repo-metadata ([#2812](https://www.github.com/googleapis/google-cloud-php/issues/2812)) ([2738e4b](https://www.github.com/googleapis/google-cloud-php/commit/2738e4bd3ea3002152a9fb8f74c743aeca6932b7))
+
+</details>
+
+<details><summary>google/cloud-trace 0.18.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate all synth.py scripts from artman to bazel ([#2845](https://www.github.com/googleapis/google-cloud-php/issues/2845)) ([9cec90c](https://www.github.com/googleapis/google-cloud-php/commit/9cec90c4b4e2a7cba433b1f3a399479675cc8afa))
+* promote libraries and add repo-metadata ([#2812](https://www.github.com/googleapis/google-cloud-php/issues/2812)) ([2738e4b](https://www.github.com/googleapis/google-cloud-php/commit/2738e4bd3ea3002152a9fb8f74c743aeca6932b7))
+
+</details>
+
+<details><summary>google/cloud-translate 1.7.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate all synth.py scripts from artman to bazel ([#2845](https://www.github.com/googleapis/google-cloud-php/issues/2845)) ([9cec90c](https://www.github.com/googleapis/google-cloud-php/commit/9cec90c4b4e2a7cba433b1f3a399479675cc8afa))
+* promote libraries and add repo-metadata ([#2812](https://www.github.com/googleapis/google-cloud-php/issues/2812)) ([2738e4b](https://www.github.com/googleapis/google-cloud-php/commit/2738e4bd3ea3002152a9fb8f74c743aeca6932b7))
+
+</details>
+
+<details><summary>google/cloud-videointelligence 1.9.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate all synth.py scripts from artman to bazel ([#2845](https://www.github.com/googleapis/google-cloud-php/issues/2845)) ([9cec90c](https://www.github.com/googleapis/google-cloud-php/commit/9cec90c4b4e2a7cba433b1f3a399479675cc8afa))
+* promote libraries and add repo-metadata ([#2812](https://www.github.com/googleapis/google-cloud-php/issues/2812)) ([2738e4b](https://www.github.com/googleapis/google-cloud-php/commit/2738e4bd3ea3002152a9fb8f74c743aeca6932b7))
+
+</details>
+
+<details><summary>google/cloud-vision 0.25.2</summary>
+
+
+
+### Reverts
+
+* undo removal of vision and speech veneer ([#2824](https://www.github.com/googleapis/google-cloud-php/issues/2824)) ([a6dfd9a](https://www.github.com/googleapis/google-cloud-php/commit/a6dfd9a76476ab266cad56fae1be36cfb62369ab))
+
+
+### Miscellaneous Chores
+
+* Migrate all synth.py scripts from artman to bazel ([#2845](https://www.github.com/googleapis/google-cloud-php/issues/2845)) ([9cec90c](https://www.github.com/googleapis/google-cloud-php/commit/9cec90c4b4e2a7cba433b1f3a399479675cc8afa))
+* promote libraries and add repo-metadata ([#2812](https://www.github.com/googleapis/google-cloud-php/issues/2812)) ([2738e4b](https://www.github.com/googleapis/google-cloud-php/commit/2738e4bd3ea3002152a9fb8f74c743aeca6932b7))
+
+</details>
+
+<details><summary>google/cloud-web-risk 0.4.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate all synth.py scripts from artman to bazel ([#2845](https://www.github.com/googleapis/google-cloud-php/issues/2845)) ([9cec90c](https://www.github.com/googleapis/google-cloud-php/commit/9cec90c4b4e2a7cba433b1f3a399479675cc8afa))
+* promote libraries and add repo-metadata ([#2812](https://www.github.com/googleapis/google-cloud-php/issues/2812)) ([2738e4b](https://www.github.com/googleapis/google-cloud-php/commit/2738e4bd3ea3002152a9fb8f74c743aeca6932b7))
+* update metadata ([#2860](https://www.github.com/googleapis/google-cloud-php/issues/2860)) ([0418dc8](https://www.github.com/googleapis/google-cloud-php/commit/0418dc8bfed1f6c792a1070311ac16a2e9d1ec6c))
+
+</details>
+
+<details><summary>google/cloud-web-security-scanner 0.4.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate all synth.py scripts from artman to bazel ([#2845](https://www.github.com/googleapis/google-cloud-php/issues/2845)) ([9cec90c](https://www.github.com/googleapis/google-cloud-php/commit/9cec90c4b4e2a7cba433b1f3a399479675cc8afa))
+* promote libraries and add repo-metadata ([#2812](https://www.github.com/googleapis/google-cloud-php/issues/2812)) ([2738e4b](https://www.github.com/googleapis/google-cloud-php/commit/2738e4bd3ea3002152a9fb8f74c743aeca6932b7))
+
+</details>
+
 ## 0.130.0
 
 <details><summary>google/cloud-bigquery 1.15.0</summary>
