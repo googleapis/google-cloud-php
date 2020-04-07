@@ -20,6 +20,8 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/privacy/dlp/v2/dlp.proto
  * and updates to that file get reflected here through a refresh process.
+ *
+ * @experimental
  */
 
 namespace Google\Cloud\Dlp\V2\Gapic;
@@ -123,6 +125,8 @@ use Google\Protobuf\GPBEmpty;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parseName method to extract the individual identifiers contained within formatted names
  * that are returned by the API.
+ *
+ * @experimental
  */
 class DlpServiceGapicClient
 {
@@ -303,6 +307,7 @@ class DlpServiceGapicClient
      * @param string $dlpJob
      *
      * @return string The formatted dlp_job resource.
+     * @experimental
      */
     public static function dlpJobName($project, $dlpJob)
     {
@@ -319,6 +324,7 @@ class DlpServiceGapicClient
      * @param string $organization
      *
      * @return string The formatted organization resource.
+     * @experimental
      */
     public static function organizationName($organization)
     {
@@ -335,6 +341,7 @@ class DlpServiceGapicClient
      * @param string $deidentifyTemplate
      *
      * @return string The formatted organization_deidentify_template resource.
+     * @experimental
      */
     public static function organizationDeidentifyTemplateName($organization, $deidentifyTemplate)
     {
@@ -352,6 +359,7 @@ class DlpServiceGapicClient
      * @param string $inspectTemplate
      *
      * @return string The formatted organization_inspect_template resource.
+     * @experimental
      */
     public static function organizationInspectTemplateName($organization, $inspectTemplate)
     {
@@ -369,6 +377,7 @@ class DlpServiceGapicClient
      * @param string $storedInfoType
      *
      * @return string The formatted organization_stored_info_type resource.
+     * @experimental
      */
     public static function organizationStoredInfoTypeName($organization, $storedInfoType)
     {
@@ -385,6 +394,7 @@ class DlpServiceGapicClient
      * @param string $project
      *
      * @return string The formatted project resource.
+     * @experimental
      */
     public static function projectName($project)
     {
@@ -401,6 +411,7 @@ class DlpServiceGapicClient
      * @param string $deidentifyTemplate
      *
      * @return string The formatted project_deidentify_template resource.
+     * @experimental
      */
     public static function projectDeidentifyTemplateName($project, $deidentifyTemplate)
     {
@@ -418,6 +429,7 @@ class DlpServiceGapicClient
      * @param string $inspectTemplate
      *
      * @return string The formatted project_inspect_template resource.
+     * @experimental
      */
     public static function projectInspectTemplateName($project, $inspectTemplate)
     {
@@ -435,6 +447,7 @@ class DlpServiceGapicClient
      * @param string $jobTrigger
      *
      * @return string The formatted project_job_trigger resource.
+     * @experimental
      */
     public static function projectJobTriggerName($project, $jobTrigger)
     {
@@ -452,6 +465,7 @@ class DlpServiceGapicClient
      * @param string $storedInfoType
      *
      * @return string The formatted project_stored_info_type resource.
+     * @experimental
      */
     public static function projectStoredInfoTypeName($project, $storedInfoType)
     {
@@ -487,6 +501,7 @@ class DlpServiceGapicClient
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
+     * @experimental
      */
     public static function parseName($formattedName, $template = null)
     {
@@ -563,6 +578,7 @@ class DlpServiceGapicClient
      * }
      *
      * @throws ValidationException
+     * @experimental
      */
     public function __construct(array $options = [])
     {
@@ -620,6 +636,7 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\InspectContentResponse
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function inspectContent($parent, array $optionalArgs = [])
     {
@@ -700,6 +717,7 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\RedactImageResponse
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function redactImage($parent, array $optionalArgs = [])
     {
@@ -796,6 +814,7 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\DeidentifyContentResponse
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function deidentifyContent($parent, array $optionalArgs = [])
     {
@@ -897,6 +916,7 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\ReidentifyContentResponse
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function reidentifyContent($parent, array $optionalArgs = [])
     {
@@ -974,6 +994,7 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\ListInfoTypesResponse
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function listInfoTypes(array $optionalArgs = [])
     {
@@ -1044,6 +1065,7 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\InspectTemplate
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function createInspectTemplate($parent, array $optionalArgs = [])
     {
@@ -1109,6 +1131,7 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\InspectTemplate
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function updateInspectTemplate($name, array $optionalArgs = [])
     {
@@ -1167,6 +1190,7 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\InspectTemplate
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function getInspectTemplate(array $optionalArgs = [])
     {
@@ -1261,6 +1285,7 @@ class DlpServiceGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function listInspectTemplates($parent, array $optionalArgs = [])
     {
@@ -1323,6 +1348,7 @@ class DlpServiceGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function deleteInspectTemplate($name, array $optionalArgs = [])
     {
@@ -1386,6 +1412,7 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\DeidentifyTemplate
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function createDeidentifyTemplate($parent, array $optionalArgs = [])
     {
@@ -1453,6 +1480,7 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\DeidentifyTemplate
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function updateDeidentifyTemplate($name, array $optionalArgs = [])
     {
@@ -1512,6 +1540,7 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\DeidentifyTemplate
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function getDeidentifyTemplate($name, array $optionalArgs = [])
     {
@@ -1605,6 +1634,7 @@ class DlpServiceGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function listDeidentifyTemplates($parent, array $optionalArgs = [])
     {
@@ -1669,6 +1699,7 @@ class DlpServiceGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function deleteDeidentifyTemplate($name, array $optionalArgs = [])
     {
@@ -1738,6 +1769,7 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\DlpJob
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function createDlpJob($parent, array $optionalArgs = [])
     {
@@ -1874,6 +1906,7 @@ class DlpServiceGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function listDlpJobs($parent, array $optionalArgs = [])
     {
@@ -1943,6 +1976,7 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\DlpJob
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function getDlpJob($name, array $optionalArgs = [])
     {
@@ -1994,6 +2028,7 @@ class DlpServiceGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function deleteDlpJob($name, array $optionalArgs = [])
     {
@@ -2045,6 +2080,7 @@ class DlpServiceGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function cancelDlpJob($name, array $optionalArgs = [])
     {
@@ -2096,6 +2132,7 @@ class DlpServiceGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function finishDlpJob($name, array $optionalArgs = [])
     {
@@ -2153,6 +2190,7 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\HybridInspectResponse
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function hybridInspectDlpJob($name, array $optionalArgs = [])
     {
@@ -2274,6 +2312,7 @@ class DlpServiceGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function listJobTriggers($parent, array $optionalArgs = [])
     {
@@ -2340,6 +2379,7 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\JobTrigger
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function getJobTrigger($name, array $optionalArgs = [])
     {
@@ -2389,6 +2429,7 @@ class DlpServiceGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function deleteJobTrigger($name, array $optionalArgs = [])
     {
@@ -2446,6 +2487,7 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\HybridInspectResponse
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function hybridInspectJobTrigger($name, array $optionalArgs = [])
     {
@@ -2504,6 +2546,7 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\JobTrigger
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function updateJobTrigger($name, array $optionalArgs = [])
     {
@@ -2571,6 +2614,7 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\JobTrigger
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function createJobTrigger($parent, array $optionalArgs = [])
     {
@@ -2642,6 +2686,7 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\StoredInfoType
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function createStoredInfoType($parent, array $optionalArgs = [])
     {
@@ -2711,6 +2756,7 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\StoredInfoType
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function updateStoredInfoType($name, array $optionalArgs = [])
     {
@@ -2770,6 +2816,7 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\StoredInfoType
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function getStoredInfoType($name, array $optionalArgs = [])
     {
@@ -2864,6 +2911,7 @@ class DlpServiceGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function listStoredInfoTypes($parent, array $optionalArgs = [])
     {
@@ -2927,6 +2975,7 @@ class DlpServiceGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function deleteStoredInfoType($name, array $optionalArgs = [])
     {

@@ -1,5 +1,5 @@
 {
     "distribution_name": "google/cloud-dlp",
-    "release_level": "ga",
+    "release_level": "beta",
     "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-dlp/latest"
 }
