@@ -27,11 +27,11 @@ class Document extends \Google\Protobuf\Internal\Message
      * The language of the document (if not specified, the language is
      * automatically detected). Both ISO and BCP-47 language codes are
      * accepted.<br>
-     * [Language Support](https://cloud.google.com/natural-language/docs/languages)
-     * lists currently supported languages for each API method.
-     * If the language (either specified by the caller or automatically detected)
-     * is not supported by the called API method, an `INVALID_ARGUMENT` error
-     * is returned.
+     * [Language
+     * Support](https://cloud.google.com/natural-language/docs/languages) lists
+     * currently supported languages for each API method. If the language (either
+     * specified by the caller or automatically detected) is not supported by the
+     * called API method, an `INVALID_ARGUMENT` error is returned.
      *
      * Generated from protobuf field <code>string language = 4;</code>
      */
@@ -59,11 +59,11 @@ class Document extends \Google\Protobuf\Internal\Message
      *           The language of the document (if not specified, the language is
      *           automatically detected). Both ISO and BCP-47 language codes are
      *           accepted.<br>
-     *           [Language Support](https://cloud.google.com/natural-language/docs/languages)
-     *           lists currently supported languages for each API method.
-     *           If the language (either specified by the caller or automatically detected)
-     *           is not supported by the called API method, an `INVALID_ARGUMENT` error
-     *           is returned.
+     *           [Language
+     *           Support](https://cloud.google.com/natural-language/docs/languages) lists
+     *           currently supported languages for each API method. If the language (either
+     *           specified by the caller or automatically detected) is not supported by the
+     *           called API method, an `INVALID_ARGUMENT` error is returned.
      * }
      */
     public function __construct($data = NULL) {
@@ -163,11 +163,11 @@ class Document extends \Google\Protobuf\Internal\Message
      * The language of the document (if not specified, the language is
      * automatically detected). Both ISO and BCP-47 language codes are
      * accepted.<br>
-     * [Language Support](https://cloud.google.com/natural-language/docs/languages)
-     * lists currently supported languages for each API method.
-     * If the language (either specified by the caller or automatically detected)
-     * is not supported by the called API method, an `INVALID_ARGUMENT` error
-     * is returned.
+     * [Language
+     * Support](https://cloud.google.com/natural-language/docs/languages) lists
+     * currently supported languages for each API method. If the language (either
+     * specified by the caller or automatically detected) is not supported by the
+     * called API method, an `INVALID_ARGUMENT` error is returned.
      *
      * Generated from protobuf field <code>string language = 4;</code>
      * @return string
@@ -181,11 +181,11 @@ class Document extends \Google\Protobuf\Internal\Message
      * The language of the document (if not specified, the language is
      * automatically detected). Both ISO and BCP-47 language codes are
      * accepted.<br>
-     * [Language Support](https://cloud.google.com/natural-language/docs/languages)
-     * lists currently supported languages for each API method.
-     * If the language (either specified by the caller or automatically detected)
-     * is not supported by the called API method, an `INVALID_ARGUMENT` error
-     * is returned.
+     * [Language
+     * Support](https://cloud.google.com/natural-language/docs/languages) lists
+     * currently supported languages for each API method. If the language (either
+     * specified by the caller or automatically detected) is not supported by the
+     * called API method, an `INVALID_ARGUMENT` error is returned.
      *
      * Generated from protobuf field <code>string language = 4;</code>
      * @param string $var
