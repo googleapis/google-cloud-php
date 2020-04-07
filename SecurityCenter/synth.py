@@ -59,12 +59,6 @@ s.replace(
     r"\$transportConfig, and any \$serviceAddress",
     r"$transportConfig, and any `$apiEndpoint`")
 
-# V1 is GA, so remove @experimental tags
-s.replace(
-    'src/V1/**/*Client.php',
-    r'^(\s+\*\n)?\s+\*\s@experimental\n',
-    '')
-
 # fix year
 s.replace(
     'src/V1/**/*.php',

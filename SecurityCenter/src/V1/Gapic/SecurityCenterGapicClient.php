@@ -20,6 +20,8 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/cloud/securitycenter/v1/securitycenter_service.proto
  * and updates to that file get reflected here through a refresh process.
+ *
+ * @experimental
  */
 
 namespace Google\Cloud\SecurityCenter\V1\Gapic;
@@ -99,6 +101,8 @@ use Google\Protobuf\Timestamp;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parseName method to extract the individual identifiers contained within formatted names
  * that are returned by the API.
+ *
+ * @experimental
  */
 class SecurityCenterGapicClient
 {
@@ -313,6 +317,7 @@ class SecurityCenterGapicClient
      * @param string $finding
      *
      * @return string The formatted finding resource.
+     * @experimental
      */
     public static function findingName($organization, $source, $finding)
     {
@@ -353,6 +358,7 @@ class SecurityCenterGapicClient
      * @param string $notificationConfig
      *
      * @return string The formatted notification_config resource.
+     * @experimental
      */
     public static function notificationConfigName($organization, $notificationConfig)
     {
@@ -369,6 +375,7 @@ class SecurityCenterGapicClient
      * @param string $organization
      *
      * @return string The formatted organization resource.
+     * @experimental
      */
     public static function organizationName($organization)
     {
@@ -385,6 +392,7 @@ class SecurityCenterGapicClient
      * @param string $asset
      *
      * @return string The formatted organization_asset resource.
+     * @experimental
      */
     public static function organizationAssetName($organization, $asset)
     {
@@ -401,6 +409,7 @@ class SecurityCenterGapicClient
      * @param string $organization
      *
      * @return string The formatted organization_settings resource.
+     * @experimental
      */
     public static function organizationSettingsName($organization)
     {
@@ -418,6 +427,7 @@ class SecurityCenterGapicClient
      * @param string $finding
      *
      * @return string The formatted organization_source_finding resource.
+     * @experimental
      */
     public static function organizationSourceFindingName($organization, $source, $finding)
     {
@@ -436,6 +446,7 @@ class SecurityCenterGapicClient
      * @param string $asset
      *
      * @return string The formatted security_marks resource.
+     * @experimental
      */
     public static function securityMarksName($organization, $asset)
     {
@@ -453,6 +464,7 @@ class SecurityCenterGapicClient
      * @param string $source
      *
      * @return string The formatted source resource.
+     * @experimental
      */
     public static function sourceName($organization, $source)
     {
@@ -470,6 +482,7 @@ class SecurityCenterGapicClient
      * @param string $topic
      *
      * @return string The formatted topic resource.
+     * @experimental
      */
     public static function topicName($project, $topic)
     {
@@ -506,6 +519,7 @@ class SecurityCenterGapicClient
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
+     * @experimental
      */
     public static function parseName($formattedName, $template = null)
     {
@@ -533,6 +547,7 @@ class SecurityCenterGapicClient
      * Return an OperationsClient object with the same endpoint as $this.
      *
      * @return OperationsClient
+     * @experimental
      */
     public function getOperationsClient()
     {
@@ -550,6 +565,7 @@ class SecurityCenterGapicClient
      * @param string $methodName    The name of the method used to start the operation
      *
      * @return OperationResponse
+     * @experimental
      */
     public function resumeOperation($operationName, $methodName = null)
     {
@@ -615,6 +631,7 @@ class SecurityCenterGapicClient
      * }
      *
      * @throws ValidationException
+     * @experimental
      */
     public function __construct(array $options = [])
     {
@@ -655,6 +672,7 @@ class SecurityCenterGapicClient
      * @return \Google\Cloud\Iam\V1\Policy
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function getIamPolicy($resource, array $optionalArgs = [])
     {
@@ -842,6 +860,7 @@ class SecurityCenterGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function groupAssets($parent, $groupBy, array $optionalArgs = [])
     {
@@ -1035,6 +1054,7 @@ class SecurityCenterGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function groupFindings($parent, $groupBy, array $optionalArgs = [])
     {
@@ -1106,6 +1126,7 @@ class SecurityCenterGapicClient
      * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
     {
@@ -1160,6 +1181,7 @@ class SecurityCenterGapicClient
      * @return \Google\Cloud\SecurityCenter\V1\Source
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function createSource($parent, $source, array $optionalArgs = [])
     {
@@ -1219,6 +1241,7 @@ class SecurityCenterGapicClient
      * @return \Google\Cloud\SecurityCenter\V1\Finding
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function createFinding($parent, $findingId, $finding, array $optionalArgs = [])
     {
@@ -1280,6 +1303,7 @@ class SecurityCenterGapicClient
      * @return \Google\Cloud\SecurityCenter\V1\NotificationConfig
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function createNotificationConfig($parent, $configId, $notificationConfig, array $optionalArgs = [])
     {
@@ -1330,6 +1354,7 @@ class SecurityCenterGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function deleteNotificationConfig($name, array $optionalArgs = [])
     {
@@ -1380,6 +1405,7 @@ class SecurityCenterGapicClient
      * @return \Google\Cloud\SecurityCenter\V1\NotificationConfig
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function getNotificationConfig($name, array $optionalArgs = [])
     {
@@ -1430,6 +1456,7 @@ class SecurityCenterGapicClient
      * @return \Google\Cloud\SecurityCenter\V1\OrganizationSettings
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function getOrganizationSettings($name, array $optionalArgs = [])
     {
@@ -1480,6 +1507,7 @@ class SecurityCenterGapicClient
      * @return \Google\Cloud\SecurityCenter\V1\Source
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function getSource($name, array $optionalArgs = [])
     {
@@ -1666,6 +1694,7 @@ class SecurityCenterGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function listAssets($parent, array $optionalArgs = [])
     {
@@ -1868,6 +1897,7 @@ class SecurityCenterGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function listFindings($parent, array $optionalArgs = [])
     {
@@ -1963,6 +1993,7 @@ class SecurityCenterGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function listNotificationConfigs($parent, array $optionalArgs = [])
     {
@@ -2043,6 +2074,7 @@ class SecurityCenterGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function listSources($parent, array $optionalArgs = [])
     {
@@ -2132,6 +2164,7 @@ class SecurityCenterGapicClient
      * @return \Google\ApiCore\OperationResponse
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function runAssetDiscovery($parent, array $optionalArgs = [])
     {
@@ -2189,6 +2222,7 @@ class SecurityCenterGapicClient
      * @return \Google\Cloud\SecurityCenter\V1\Finding
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function setFindingState($name, $state, $startTime, array $optionalArgs = [])
     {
@@ -2246,6 +2280,7 @@ class SecurityCenterGapicClient
      * @return \Google\Cloud\Iam\V1\Policy
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function setIamPolicy($resource, $policy, array $optionalArgs = [])
     {
@@ -2310,6 +2345,7 @@ class SecurityCenterGapicClient
      * @return \Google\Cloud\SecurityCenter\V1\Finding
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function updateFinding($finding, array $optionalArgs = [])
     {
@@ -2366,6 +2402,7 @@ class SecurityCenterGapicClient
      * @return \Google\Cloud\SecurityCenter\V1\NotificationConfig
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function updateNotificationConfig($notificationConfig, array $optionalArgs = [])
     {
@@ -2422,6 +2459,7 @@ class SecurityCenterGapicClient
      * @return \Google\Cloud\SecurityCenter\V1\OrganizationSettings
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function updateOrganizationSettings($organizationSettings, array $optionalArgs = [])
     {
@@ -2478,6 +2516,7 @@ class SecurityCenterGapicClient
      * @return \Google\Cloud\SecurityCenter\V1\Source
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function updateSource($source, array $optionalArgs = [])
     {
@@ -2540,6 +2579,7 @@ class SecurityCenterGapicClient
      * @return \Google\Cloud\SecurityCenter\V1\SecurityMarks
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function updateSecurityMarks($securityMarks, array $optionalArgs = [])
     {
