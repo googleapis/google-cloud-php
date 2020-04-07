@@ -16,11 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class ReadRowsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The unique name of the table from which to read.
+     * Required. The unique name of the table from which to read.
      * Values are of the form
      * `projects/<project>/instances/<instance>/tables/<table>`.
      *
-     * Generated from protobuf field <code>string table_name = 1;</code>
+     * Generated from protobuf field <code>string table_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $table_name = '';
     /**
@@ -58,7 +58,7 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $table_name
-     *           The unique name of the table from which to read.
+     *           Required. The unique name of the table from which to read.
      *           Values are of the form
      *           `projects/<project>/instances/<instance>/tables/<table>`.
      *     @type string $app_profile_id
@@ -80,11 +80,11 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unique name of the table from which to read.
+     * Required. The unique name of the table from which to read.
      * Values are of the form
      * `projects/<project>/instances/<instance>/tables/<table>`.
      *
-     * Generated from protobuf field <code>string table_name = 1;</code>
+     * Generated from protobuf field <code>string table_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getTableName()
@@ -93,11 +93,11 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unique name of the table from which to read.
+     * Required. The unique name of the table from which to read.
      * Values are of the form
      * `projects/<project>/instances/<instance>/tables/<table>`.
      *
-     * Generated from protobuf field <code>string table_name = 1;</code>
+     * Generated from protobuf field <code>string table_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

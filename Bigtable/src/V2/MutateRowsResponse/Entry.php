@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * The result of applying a passed mutation in the original request.
+ *
  * Generated from protobuf message <code>google.bigtable.v2.MutateRowsResponse.Entry</code>
  */
 class Entry extends \Google\Protobuf\Internal\Message
