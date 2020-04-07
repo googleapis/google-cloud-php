@@ -51,10 +51,11 @@ This client supports the following Google Cloud Platform services at a [Beta](#v
 * [Dialogflow API](Dialogflow/README.md) (Beta)
 * [Google Cloud Natural Language](Language/README.md) (Beta)
 * [Google Cloud Talent Solution](Talent/README.md) (Beta)
-* [Google Service Directory](#google-service-directory-beta) (Beta)
+* [Google Service Directory](ServiceDirectory/README.md) (Beta)
 * [Google Cloud Web Risk](WebRisk/README.md) (Beta)
 * [Google Cloud Web Security Scanner](WebSecurityScanner/README.md) (Beta)
-* [Google Stackdriver Error Reporting](#google-stackdriver-error-reporting-beta) (Beta)
+* [Google Stackdriver Error Reporting](ErrorReporting/README.md) (Beta)
+* [Recommendations AI](RecommendationEngine/README.md) (Beta)
 
 If you need support for other Google APIs, please check out the [Google APIs Client Library for PHP](https://github.com/google/google-api-php-client).
 

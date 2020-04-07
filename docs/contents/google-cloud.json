@@ -29,6 +29,7 @@
         "cloud-monitoring",
         "cloud-oslogin",
         "cloud-pubsub",
+        "cloud-recommendations-ai",
         "cloud-recommender",
         "cloud-redis",
         "cloud-scheduler",
