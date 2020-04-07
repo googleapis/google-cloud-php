@@ -434,7 +434,7 @@ class AutoscalingPolicyServiceGapicClient
      * ```
      * $autoscalingPolicyServiceClient = new AutoscalingPolicyServiceClient();
      * try {
-     *     $formattedParent = $autoscalingPolicyServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $formattedParent = $autoscalingPolicyServiceClient->regionName('[PROJECT]', '[REGION]');
      *     $policy = new AutoscalingPolicy();
      *     $response = $autoscalingPolicyServiceClient->createAutoscalingPolicy($formattedParent, $policy);
      * } finally {
@@ -452,7 +452,7 @@ class AutoscalingPolicyServiceGapicClient
      * * For `projects.locations.autoscalingPolicies.create`, the resource name
      *   of the location has the following format:
      *   `projects/{project_id}/locations/{location}`
-     * @param AutoscalingPolicy $policy       The autoscaling policy to create.
+     * @param AutoscalingPolicy $policy       Required. The autoscaling policy to create.
      * @param array             $optionalArgs {
      *                                        Optional.
      *
@@ -553,7 +553,7 @@ class AutoscalingPolicyServiceGapicClient
      * ```
      * $autoscalingPolicyServiceClient = new AutoscalingPolicyServiceClient();
      * try {
-     *     $formattedParent = $autoscalingPolicyServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $formattedParent = $autoscalingPolicyServiceClient->regionName('[PROJECT]', '[REGION]');
      *     // Iterate over pages of elements
      *     $pagedResponse = $autoscalingPolicyServiceClient->listAutoscalingPolicies($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {

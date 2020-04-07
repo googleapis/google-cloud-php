@@ -164,7 +164,7 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $client->regionName('[PROJECT]', '[REGION]');
         $policy = new AutoscalingPolicy();
 
         $response = $client->createAutoscalingPolicy($formattedParent, $policy);
@@ -208,7 +208,7 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $client->regionName('[PROJECT]', '[REGION]');
         $policy = new AutoscalingPolicy();
 
         try {
@@ -320,7 +320,7 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $client->regionName('[PROJECT]', '[REGION]');
 
         $response = $client->listAutoscalingPolicies($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
@@ -363,7 +363,7 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $client->regionName('[PROJECT]', '[REGION]');
 
         try {
             $client->listAutoscalingPolicies($formattedParent);

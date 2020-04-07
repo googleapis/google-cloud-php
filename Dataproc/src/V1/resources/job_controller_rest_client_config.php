@@ -122,6 +122,23 @@ return [
                     ],
                 ],
             ],
+            'SubmitJobAsOperation' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/projects/{project_id}/regions/{region}/jobs:submitAsOperation',
+                'body' => '*',
+                'placeholders' => [
+                    'project_id' => [
+                        'getters' => [
+                            'getProjectId',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.longrunning.Operations' => [
             'ListOperations' => [

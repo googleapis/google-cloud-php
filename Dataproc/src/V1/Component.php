@@ -38,18 +38,32 @@ class Component
      */
     const JUPYTER = 1;
     /**
+     * The Presto query engine.
+     *
+     * Generated from protobuf enum <code>PRESTO = 6;</code>
+     */
+    const PRESTO = 6;
+    /**
      * The Zeppelin notebook.
      *
      * Generated from protobuf enum <code>ZEPPELIN = 4;</code>
      */
     const ZEPPELIN = 4;
+    /**
+     * The Zookeeper service.
+     *
+     * Generated from protobuf enum <code>ZOOKEEPER = 8;</code>
+     */
+    const ZOOKEEPER = 8;
 
     private static $valueToName = [
         self::COMPONENT_UNSPECIFIED => 'COMPONENT_UNSPECIFIED',
         self::ANACONDA => 'ANACONDA',
         self::HIVE_WEBHCAT => 'HIVE_WEBHCAT',
         self::JUPYTER => 'JUPYTER',
+        self::PRESTO => 'PRESTO',
         self::ZEPPELIN => 'ZEPPELIN',
+        self::ZOOKEEPER => 'ZOOKEEPER',
     ];
 
     public static function name($value)

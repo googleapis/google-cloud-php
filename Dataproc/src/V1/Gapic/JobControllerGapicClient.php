@@ -27,6 +27,8 @@ namespace Google\Cloud\Dataproc\V1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\LongRunning\OperationsClient;
+use Google\ApiCore\OperationResponse;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -40,6 +42,7 @@ use Google\Cloud\Dataproc\V1\ListJobsRequest\JobStateMatcher;
 use Google\Cloud\Dataproc\V1\ListJobsResponse;
 use Google\Cloud\Dataproc\V1\SubmitJobRequest;
 use Google\Cloud\Dataproc\V1\UpdateJobRequest;
+use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 
@@ -92,6 +95,8 @@ class JobControllerGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
+    private $operationsClient;
+
     private static function getClientDefaults()
     {
         return [
@@ -109,6 +114,39 @@ class JobControllerGapicClient
                 ],
             ],
         ];
+    }
+
+    /**
+     * Return an OperationsClient object with the same endpoint as $this.
+     *
+     * @return OperationsClient
+     */
+    public function getOperationsClient()
+    {
+        return $this->operationsClient;
+    }
+
+    /**
+     * Resume an existing long running operation that was previously started
+     * by a long running API method. If $methodName is not provided, or does
+     * not match a long running API method, then the operation can still be
+     * resumed, but the OperationResponse object will not deserialize the
+     * final response.
+     *
+     * @param string $operationName The name of the long running operation
+     * @param string $methodName    The name of the method used to start the operation
+     *
+     * @return OperationResponse
+     */
+    public function resumeOperation($operationName, $methodName = null)
+    {
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
+        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
+        $operation->reload();
+
+        return $operation;
     }
 
     /**
@@ -169,6 +207,7 @@ class JobControllerGapicClient
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
+        $this->operationsClient = $this->createOperationsClient($clientOptions);
     }
 
     /**
@@ -551,6 +590,98 @@ class JobControllerGapicClient
             GPBEmpty::class,
             $optionalArgs,
             $request
+        )->wait();
+    }
+
+    /**
+     * Submits job to a cluster.
+     *
+     * Sample code:
+     * ```
+     * $jobControllerClient = new JobControllerClient();
+     * try {
+     *     $projectId = '';
+     *     $region = '';
+     *     $job = new Job();
+     *     $operationResponse = $jobControllerClient->submitJobAsOperation($projectId, $region, $job);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $jobControllerClient->submitJobAsOperation($projectId, $region, $job);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $jobControllerClient->resumeOperation($operationName, 'submitJobAsOperation');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       $result = $newOperationResponse->getResult();
+     *       // doSomethingWith($result)
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $jobControllerClient->close();
+     * }
+     * ```
+     *
+     * @param string $projectId    Required. The ID of the Google Cloud Platform project that the job
+     *                             belongs to.
+     * @param string $region       Required. The Dataproc region in which to handle the request.
+     * @param Job    $job          Required. The job resource.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type string $requestId
+     *          Optional. A unique id used to identify the request. If the server
+     *          receives two [SubmitJobRequest][google.cloud.dataproc.v1.SubmitJobRequest] requests  with the same
+     *          id, then the second request will be ignored and the
+     *          first [Job][google.cloud.dataproc.v1.Job] created and stored in the backend
+     *          is returned.
+     *
+     *          It is recommended to always set this value to a
+     *          [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
+     *
+     *          The id must contain only letters (a-z, A-Z), numbers (0-9),
+     *          underscores (_), and hyphens (-). The maximum length is 40 characters.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function submitJobAsOperation($projectId, $region, $job, array $optionalArgs = [])
+    {
+        $request = new SubmitJobRequest();
+        $request->setProjectId($projectId);
+        $request->setRegion($region);
+        $request->setJob($job);
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        return $this->startOperationsCall(
+            'SubmitJobAsOperation',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
         )->wait();
     }
 }

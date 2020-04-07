@@ -31,9 +31,18 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      */
     private $instance_names;
     /**
-     * Optional. The Compute Engine image resource used for cluster
-     * instances. It can be specified or may be inferred from
-     * `SoftwareConfig.image_version`.
+     * Optional. The Compute Engine image resource used for cluster instances.
+     * The URI can represent an image or image family.
+     * Image examples:
+     * * `https://www.googleapis.com/compute/beta/projects/[project_id]/global/images/[image-id]`
+     * * `projects/[project_id]/global/images/[image-id]`
+     * * `image-id`
+     * Image family examples. Dataproc will use the most recent
+     * image from the family:
+     * * `https://www.googleapis.com/compute/beta/projects/[project_id]/global/images/family/[custom-image-family-name]`
+     * * `projects/[project_id]/global/images/family/[custom-image-family-name]`
+     * If the URI is unspecified, it will be inferred from
+     * `SoftwareConfig.image_version` or the system default.
      *
      * Generated from protobuf field <code>string image_uri = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -60,10 +69,10 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      */
     private $disk_config = null;
     /**
-     * Optional. Specifies that this instance group contains preemptible
+     * Output only. Specifies that this instance group contains preemptible
      * instances.
      *
-     * Generated from protobuf field <code>bool is_preemptible = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool is_preemptible = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $is_preemptible = false;
     /**
@@ -103,9 +112,18 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      *           Output only. The list of instance names. Dataproc derives the names
      *           from `cluster_name`, `num_instances`, and the instance group.
      *     @type string $image_uri
-     *           Optional. The Compute Engine image resource used for cluster
-     *           instances. It can be specified or may be inferred from
-     *           `SoftwareConfig.image_version`.
+     *           Optional. The Compute Engine image resource used for cluster instances.
+     *           The URI can represent an image or image family.
+     *           Image examples:
+     *           * `https://www.googleapis.com/compute/beta/projects/[project_id]/global/images/[image-id]`
+     *           * `projects/[project_id]/global/images/[image-id]`
+     *           * `image-id`
+     *           Image family examples. Dataproc will use the most recent
+     *           image from the family:
+     *           * `https://www.googleapis.com/compute/beta/projects/[project_id]/global/images/family/[custom-image-family-name]`
+     *           * `projects/[project_id]/global/images/family/[custom-image-family-name]`
+     *           If the URI is unspecified, it will be inferred from
+     *           `SoftwareConfig.image_version` or the system default.
      *     @type string $machine_type_uri
      *           Optional. The Compute Engine machine type used for cluster instances.
      *           A full URL, partial URI, or short name are valid. Examples:
@@ -120,7 +138,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dataproc\V1beta2\DiskConfig $disk_config
      *           Optional. Disk option config settings.
      *     @type bool $is_preemptible
-     *           Optional. Specifies that this instance group contains preemptible
+     *           Output only. Specifies that this instance group contains preemptible
      *           instances.
      *     @type \Google\Cloud\Dataproc\V1beta2\ManagedGroupConfig $managed_group_config
      *           Output only. The config for Compute Engine Instance Group
@@ -197,9 +215,18 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Compute Engine image resource used for cluster
-     * instances. It can be specified or may be inferred from
-     * `SoftwareConfig.image_version`.
+     * Optional. The Compute Engine image resource used for cluster instances.
+     * The URI can represent an image or image family.
+     * Image examples:
+     * * `https://www.googleapis.com/compute/beta/projects/[project_id]/global/images/[image-id]`
+     * * `projects/[project_id]/global/images/[image-id]`
+     * * `image-id`
+     * Image family examples. Dataproc will use the most recent
+     * image from the family:
+     * * `https://www.googleapis.com/compute/beta/projects/[project_id]/global/images/family/[custom-image-family-name]`
+     * * `projects/[project_id]/global/images/family/[custom-image-family-name]`
+     * If the URI is unspecified, it will be inferred from
+     * `SoftwareConfig.image_version` or the system default.
      *
      * Generated from protobuf field <code>string image_uri = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -210,9 +237,18 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Compute Engine image resource used for cluster
-     * instances. It can be specified or may be inferred from
-     * `SoftwareConfig.image_version`.
+     * Optional. The Compute Engine image resource used for cluster instances.
+     * The URI can represent an image or image family.
+     * Image examples:
+     * * `https://www.googleapis.com/compute/beta/projects/[project_id]/global/images/[image-id]`
+     * * `projects/[project_id]/global/images/[image-id]`
+     * * `image-id`
+     * Image family examples. Dataproc will use the most recent
+     * image from the family:
+     * * `https://www.googleapis.com/compute/beta/projects/[project_id]/global/images/family/[custom-image-family-name]`
+     * * `projects/[project_id]/global/images/family/[custom-image-family-name]`
+     * If the URI is unspecified, it will be inferred from
+     * `SoftwareConfig.image_version` or the system default.
      *
      * Generated from protobuf field <code>string image_uri = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -297,10 +333,10 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Specifies that this instance group contains preemptible
+     * Output only. Specifies that this instance group contains preemptible
      * instances.
      *
-     * Generated from protobuf field <code>bool is_preemptible = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool is_preemptible = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
      */
     public function getIsPreemptible()
@@ -309,10 +345,10 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Specifies that this instance group contains preemptible
+     * Output only. Specifies that this instance group contains preemptible
      * instances.
      *
-     * Generated from protobuf field <code>bool is_preemptible = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool is_preemptible = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var
      * @return $this
      */

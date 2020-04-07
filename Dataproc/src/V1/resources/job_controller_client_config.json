@@ -7,6 +7,7 @@
           "INTERNAL",
           "UNAVAILABLE"
         ],
+        "non_idempotent2": [],
         "non_idempotent": [
           "UNAVAILABLE"
         ]
@@ -51,6 +52,11 @@
         "DeleteJob": {
           "timeout_millis": 60000,
           "retry_codes_name": "non_idempotent",
+          "retry_params_name": "default"
+        },
+        "SubmitJobAsOperation": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "non_idempotent2",
           "retry_params_name": "default"
         }
       }

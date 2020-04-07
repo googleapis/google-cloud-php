@@ -49,6 +49,24 @@ class State
      * Generated from protobuf enum <code>UPDATING = 5;</code>
      */
     const UPDATING = 5;
+    /**
+     * The cluster is being stopped. It cannot be used.
+     *
+     * Generated from protobuf enum <code>STOPPING = 6;</code>
+     */
+    const STOPPING = 6;
+    /**
+     * The cluster is currently stopped. It is not ready for use.
+     *
+     * Generated from protobuf enum <code>STOPPED = 7;</code>
+     */
+    const STOPPED = 7;
+    /**
+     * The cluster is being started. It is not ready for use.
+     *
+     * Generated from protobuf enum <code>STARTING = 8;</code>
+     */
+    const STARTING = 8;
 
     private static $valueToName = [
         self::UNKNOWN => 'UNKNOWN',
@@ -57,6 +75,9 @@ class State
         self::ERROR => 'ERROR',
         self::DELETING => 'DELETING',
         self::UPDATING => 'UPDATING',
+        self::STOPPING => 'STOPPING',
+        self::STOPPED => 'STOPPED',
+        self::STARTING => 'STARTING',
     ];
 
     public static function name($value)

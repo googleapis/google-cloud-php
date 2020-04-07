@@ -47,6 +47,20 @@ class JobControllerGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Submits job to a cluster.
+     * @param \Google\Cloud\Dataproc\V1\SubmitJobRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function SubmitJobAsOperation(\Google\Cloud\Dataproc\V1\SubmitJobRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.dataproc.v1.JobController/SubmitJobAsOperation',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Gets the resource representation for a job in a project.
      * @param \Google\Cloud\Dataproc\V1\GetJobRequest $argument input argument
      * @param array $metadata metadata

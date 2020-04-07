@@ -68,11 +68,11 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     private $cluster_uuid = '';
     /**
-     * Contains cluster daemon metrics such as HDFS and YARN stats.
+     * Output only. Contains cluster daemon metrics such as HDFS and YARN stats.
      * **Beta Feature**: This report is available for testing purposes only. It
      * may be changed before final release.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterMetrics metrics = 9;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterMetrics metrics = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $metrics = null;
 
@@ -106,7 +106,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           Output only. A cluster UUID (Unique Universal Identifier). Dataproc
      *           generates this value when it creates the cluster.
      *     @type \Google\Cloud\Dataproc\V1\ClusterMetrics $metrics
-     *           Contains cluster daemon metrics such as HDFS and YARN stats.
+     *           Output only. Contains cluster daemon metrics such as HDFS and YARN stats.
      *           **Beta Feature**: This report is available for testing purposes only. It
      *           may be changed before final release.
      * }
@@ -317,11 +317,11 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Contains cluster daemon metrics such as HDFS and YARN stats.
+     * Output only. Contains cluster daemon metrics such as HDFS and YARN stats.
      * **Beta Feature**: This report is available for testing purposes only. It
      * may be changed before final release.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterMetrics metrics = 9;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterMetrics metrics = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Dataproc\V1\ClusterMetrics
      */
     public function getMetrics()
@@ -330,11 +330,11 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Contains cluster daemon metrics such as HDFS and YARN stats.
+     * Output only. Contains cluster daemon metrics such as HDFS and YARN stats.
      * **Beta Feature**: This report is available for testing purposes only. It
      * may be changed before final release.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterMetrics metrics = 9;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterMetrics metrics = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Dataproc\V1\ClusterMetrics $var
      * @return $this
      */
