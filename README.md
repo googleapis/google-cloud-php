@@ -30,7 +30,6 @@ This client supports the following Google Cloud Platform services at a [General 
 * [Google Cloud Pub/Sub](PubSub/README.md) (GA)
 * [Google Cloud Redis](Redis/README.md) (GA)
 * [Google Cloud Scheduler](Scheduler/README.md) (GA)
-* [Google Cloud Security Command Center](SecurityCenter/README.md) (GA)
 * [Google Cloud Speech](Speech/README.md) (GA)
 * [Google Cloud Storage](Storage/README.md) (GA)
 * [Google Cloud Tasks](Tasks/README.md) (GA)
@@ -49,6 +48,7 @@ This client supports the following Google Cloud Platform services at a [Beta](#v
 
 * [Dialogflow API](Dialogflow/README.md) (Beta)
 * [Google Cloud Natural Language](Language/README.md) (Beta)
+* [Google Cloud Security Command Center](SecurityCenter/README.md) (Beta)
 * [Google Cloud Talent Solution](Talent/README.md) (Beta)
 * [Google Cloud Web Risk](WebRisk/README.md) (Beta)
 * [Google Cloud Web Security Scanner](WebSecurityScanner/README.md) (Beta)
