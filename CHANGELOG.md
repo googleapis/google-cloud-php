@@ -2,19 +2,11 @@
 
 ## 0.131.0
 
-<details><summary>google/cloud-asset 0.7.0</summary>
+<details><summary>google/cloud-asset 1.0.0</summary>
 
+### General Availability Notice
 
-
-### Features
-
-* update clients ([#2826](https://www.github.com/googleapis/google-cloud-php/issues/2826)) ([9f3ead8](https://www.github.com/googleapis/google-cloud-php/commit/9f3ead89b02506b84aa8b344eea8e9665b6f4b77))
-
-
-### Reverts
-
-* revert update clients pending upstream dependency fix ([#2847](https://www.github.com/googleapis/google-cloud-php/issues/2847)) ([0f13d83](https://www.github.com/googleapis/google-cloud-php/commit/0f13d83e40d6248bfd818c6447d93e920fa39c2d))
-
+* We are happy to announce this component is now generally available. As such, it will not introduce backwards-incompatible changes in any minor or patch releases.
 
 ### Miscellaneous Chores
 
@@ -23,9 +15,11 @@
 
 </details>
 
-<details><summary>google/cloud-automl 0.11.0</summary>
+<details><summary>google/cloud-automl 1.0.0</summary>
 
+### General Availability Notice
 
+* We are happy to announce this component is now generally available. As such, it will not introduce backwards-incompatible changes in any minor or patch releases.
 
 ### Features
 
@@ -49,9 +43,11 @@
 
 </details>
 
-<details><summary>google/cloud-bigquerydatatransfer 0.18.0</summary>
+<details><summary>google/cloud-bigquerydatatransfer 1.0.0</summary>
 
+### General Availability Notice
 
+* We are happy to announce this component is now generally available. As such, it will not introduce backwards-incompatible changes in any minor or patch releases.
 
 ### Features
 
@@ -82,9 +78,11 @@
 
 </details>
 
-<details><summary>google/cloud-billing 0.1.1</summary>
+<details><summary>google/cloud-billing 1.0.0</summary>
 
+### General Availability Notice
 
+* We are happy to announce this component is now generally available. As such, it will not introduce backwards-incompatible changes in any minor or patch releases.
 
 ### Miscellaneous Chores
 
@@ -103,9 +101,11 @@
 
 </details>
 
-<details><summary>google/cloud-container 0.12.2</summary>
+<details><summary>google/cloud-container 1.0.0</summary>
 
+### General Availability Notice
 
+* We are happy to announce this component is now generally available. As such, it will not introduce backwards-incompatible changes in any minor or patch releases.
 
 ### Miscellaneous Chores
 
@@ -116,22 +116,17 @@
 
 <details><summary>google/cloud-core 1.36.1</summary>
 
-
-
-### Reverts
-
-* undo removal of vision and speech veneer ([#2824](https://www.github.com/googleapis/google-cloud-php/issues/2824)) ([a6dfd9a](https://www.github.com/googleapis/google-cloud-php/commit/a6dfd9a76476ab266cad56fae1be36cfb62369ab))
-
-
 ### Miscellaneous Chores
 
 * promote libraries and add repo-metadata ([#2812](https://www.github.com/googleapis/google-cloud-php/issues/2812)) ([2738e4b](https://www.github.com/googleapis/google-cloud-php/commit/2738e4bd3ea3002152a9fb8f74c743aeca6932b7))
 
 </details>
 
-<details><summary>google/cloud-dataproc 0.19.0</summary>
+<details><summary>google/cloud-dataproc 1.0.0</summary>
 
+### General Availability Notice
 
+* We are happy to announce this component is now generally available. As such, it will not introduce backwards-incompatible changes in any minor or patch releases.
 
 ### Features
 
@@ -157,9 +152,11 @@
 
 </details>
 
-<details><summary>google/cloud-debugger 0.21.3</summary>
+<details><summary>google/cloud-debugger 1.0.0</summary>
 
+### General Availability Notice
 
+* We are happy to announce this component is now generally available. As such, it will not introduce backwards-incompatible changes in any minor or patch releases.
 
 ### Miscellaneous Chores
 
@@ -213,9 +210,11 @@
 
 </details>
 
-<details><summary>google/cloud-iot 0.11.2</summary>
+<details><summary>google/cloud-iot 1.0.0</summary>
 
+### General Availability Notice
 
+* We are happy to announce this component is now generally available. As such, it will not introduce backwards-incompatible changes in any minor or patch releases.
 
 ### Miscellaneous Chores
 
@@ -275,9 +274,11 @@
 
 </details>
 
-<details><summary>google/cloud-monitoring 0.22.0</summary>
+<details><summary>google/cloud-monitoring 1.0.0</summary>
 
+### General Availability Notice
 
+* We are happy to announce this component is now generally available. As such, it will not introduce backwards-incompatible changes in any minor or patch releases.
 
 ### Features
 
@@ -291,9 +292,11 @@
 
 </details>
 
-<details><summary>google/cloud-oslogin 0.12.0</summary>
+<details><summary>google/cloud-oslogin 1.0.0</summary>
 
+### General Availability Notice
 
+* We are happy to announce this component is now generally available. As such, it will not introduce backwards-incompatible changes in any minor or patch releases.
 
 ### ⚠ BREAKING CHANGES
 
@@ -338,16 +341,13 @@
 
 * add recommendation engine client ([#2799](https://www.github.com/googleapis/google-cloud-php/issues/2799)) ([cad00b3](https://www.github.com/googleapis/google-cloud-php/commit/cad00b3fa2dc172b5d3cddfde7ba454a0c70610b))
 
-
-### Miscellaneous Chores
-
-* update default VERSION ([#2867](https://www.github.com/googleapis/google-cloud-php/issues/2867)) ([ceb1490](https://www.github.com/googleapis/google-cloud-php/commit/ceb14904a72c59bc6c2bd9cf91cee7f38cf108e8))
-
 </details>
 
-<details><summary>google/cloud-recommender 0.2.2</summary>
+<details><summary>google/cloud-recommender 1.0.0</summary>
 
+### General Availability Notice
 
+* We are happy to announce this component is now generally available. As such, it will not introduce backwards-incompatible changes in any minor or patch releases.
 
 ### Miscellaneous Chores
 
@@ -356,9 +356,11 @@
 
 </details>
 
-<details><summary>google/cloud-redis 0.12.4</summary>
+<details><summary>google/cloud-redis 1.0.0</summary>
 
+### General Availability Notice
 
+* We are happy to announce this component is now generally available. As such, it will not introduce backwards-incompatible changes in any minor or patch releases.
 
 ### Miscellaneous Chores
 
@@ -367,17 +369,16 @@
 
 </details>
 
-<details><summary>google/cloud-scheduler 2.0.0</summary>
-
+<details><summary>google/cloud-scheduler 1.3.0</summary>
 
 
 ### ⚠ BREAKING CHANGES
 
-* remove projectName helper and upate timeouts (#2858)
+* remove projectName helper from experimental V1beta1 client and update timeouts (#2858)
 
 ### Features
 
-* remove projectName helper and upate timeouts ([#2858](https://www.github.com/googleapis/google-cloud-php/issues/2858)) ([d7bf9de](https://www.github.com/googleapis/google-cloud-php/commit/d7bf9deb5a462d0814d22f339a77dc612633b156))
+* remove projectName helper from experimental V1beta1 client and update timeouts ([#2858](https://www.github.com/googleapis/google-cloud-php/issues/2858)) ([d7bf9de](https://www.github.com/googleapis/google-cloud-php/commit/d7bf9deb5a462d0814d22f339a77dc612633b156))
 
 
 ### Miscellaneous Chores
@@ -387,9 +388,11 @@
 
 </details>
 
-<details><summary>google/cloud-secret-manager 0.3.1</summary>
+<details><summary>google/cloud-secret-manager 1.0.0</summary>
 
+### General Availability Notice
 
+* We are happy to announce this component is now generally available. As such, it will not introduce backwards-incompatible changes in any minor or patch releases.
 
 ### Miscellaneous Chores
 
@@ -415,7 +418,6 @@
 ### Miscellaneous Chores
 
 * Migrate all synth.py scripts from artman to bazel ([#2845](https://www.github.com/googleapis/google-cloud-php/issues/2845)) ([9cec90c](https://www.github.com/googleapis/google-cloud-php/commit/9cec90c4b4e2a7cba433b1f3a399479675cc8afa))
-* move security center to beta ([#2862](https://www.github.com/googleapis/google-cloud-php/issues/2862)) ([8a0bbc4](https://www.github.com/googleapis/google-cloud-php/commit/8a0bbc416325fb23aad69aa439df0a8b3f601795))
 * promote libraries and add repo-metadata ([#2812](https://www.github.com/googleapis/google-cloud-php/issues/2812)) ([2738e4b](https://www.github.com/googleapis/google-cloud-php/commit/2738e4bd3ea3002152a9fb8f74c743aeca6932b7))
 
 </details>
@@ -442,20 +444,16 @@
 
 </details>
 
-<details><summary>google/cloud-speech 0.31.2</summary>
+<details><summary>google/cloud-speech 1.0.0</summary>
 
+### General Availability Notice
 
-
-### Reverts
-
-* undo removal of vision and speech veneer ([#2824](https://www.github.com/googleapis/google-cloud-php/issues/2824)) ([a6dfd9a](https://www.github.com/googleapis/google-cloud-php/commit/a6dfd9a76476ab266cad56fae1be36cfb62369ab))
-
+* We are happy to announce this component is now generally available. As such, it will not introduce backwards-incompatible changes in any minor or patch releases.
 
 ### Miscellaneous Chores
 
 * Migrate all synth.py scripts from artman to bazel ([#2845](https://www.github.com/googleapis/google-cloud-php/issues/2845)) ([9cec90c](https://www.github.com/googleapis/google-cloud-php/commit/9cec90c4b4e2a7cba433b1f3a399479675cc8afa))
 * promote libraries and add repo-metadata ([#2812](https://www.github.com/googleapis/google-cloud-php/issues/2812)) ([2738e4b](https://www.github.com/googleapis/google-cloud-php/commit/2738e4bd3ea3002152a9fb8f74c743aeca6932b7))
-* remove experimental flag ([#2819](https://www.github.com/googleapis/google-cloud-php/issues/2819)) ([f2e30bb](https://www.github.com/googleapis/google-cloud-php/commit/f2e30bb28f4b923e70a1bebf1fc18bba78493ecf))
 
 </details>
 
@@ -497,9 +495,11 @@
 
 </details>
 
-<details><summary>google/cloud-text-to-speech 0.6.2</summary>
+<details><summary>google/cloud-text-to-speech 1.0.0</summary>
 
+### General Availability Notice
 
+* We are happy to announce this component is now generally available. As such, it will not introduce backwards-incompatible changes in any minor or patch releases.
 
 ### Miscellaneous Chores
 
@@ -508,9 +508,11 @@
 
 </details>
 
-<details><summary>google/cloud-trace 0.18.1</summary>
+<details><summary>google/cloud-trace 1.0.0</summary>
 
+### General Availability Notice
 
+* We are happy to announce this component is now generally available. As such, it will not introduce backwards-incompatible changes in any minor or patch releases.
 
 ### Miscellaneous Chores
 
@@ -541,14 +543,11 @@
 
 </details>
 
-<details><summary>google/cloud-vision 0.25.2</summary>
+<details><summary>google/cloud-vision 1.0.0</summary>
 
+### General Availability Notice
 
-
-### Reverts
-
-* undo removal of vision and speech veneer ([#2824](https://www.github.com/googleapis/google-cloud-php/issues/2824)) ([a6dfd9a](https://www.github.com/googleapis/google-cloud-php/commit/a6dfd9a76476ab266cad56fae1be36cfb62369ab))
-
+* We are happy to announce this component is now generally available. As such, it will not introduce backwards-incompatible changes in any minor or patch releases.
 
 ### Miscellaneous Chores
 
