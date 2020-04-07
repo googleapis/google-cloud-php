@@ -26,7 +26,7 @@ common = gcp.CommonTemplates()
 library = gapic.php_library(
     service='dlp',
     version='v2',
-    bazel_target='//google/privacy/dlp/v2:google-cloud-privacy-dlp-v2-php',
+    bazel_target='//google/privacy/dlp/v2:google-cloud-privacy-dlp-v2-php'
 )
 
 # copy all src including partial veneer classes
@@ -56,12 +56,6 @@ s.replace(
     "**/Gapic/*GapicClient.php",
     r"\$transportConfig, and any \$serviceAddress",
     r"$transportConfig, and any `$apiEndpoint`")
-
-# V2 is GA, so remove @experimental tags
-s.replace(
-    'src/V2/**/*Client.php',
-    r'^(\s+\*\n)?\s+\*\s@experimental\n',
-    '')
 
 # fix year
 s.replace(
