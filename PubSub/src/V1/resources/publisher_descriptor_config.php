@@ -23,6 +23,16 @@ return [
                     'resourcesGetMethod' => 'getSubscriptions',
                 ],
             ],
+            'ListTopicSnapshots' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getSnapshots',
+                ],
+            ],
         ],
     ],
 ];

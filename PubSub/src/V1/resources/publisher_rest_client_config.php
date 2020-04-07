@@ -144,6 +144,17 @@ return [
                     ],
                 ],
             ],
+            'ListTopicSnapshots' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{topic=projects/*/topics/*}/snapshots',
+                'placeholders' => [
+                    'topic' => [
+                        'getters' => [
+                            'getTopic',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteTopic' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{topic=projects/*/topics/*}',
