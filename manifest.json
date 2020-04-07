@@ -1251,8 +1251,8 @@
             ]
         },
         {
-            "id": "cloud-recommendation-engine",
-            "name": "google/cloud-recommendation-engine",
+            "id": "cloud-recommendations-ai",
+            "name": "google/cloud-recommendations-ai",
             "defaultService": "recommendationengine/readme",
             "versions": [
                 "master"
