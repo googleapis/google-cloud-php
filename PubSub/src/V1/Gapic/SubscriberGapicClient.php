@@ -48,6 +48,7 @@ use Google\Cloud\PubSub\V1\DeadLetterPolicy;
 use Google\Cloud\PubSub\V1\DeleteSnapshotRequest;
 use Google\Cloud\PubSub\V1\DeleteSubscriptionRequest;
 use Google\Cloud\PubSub\V1\ExpirationPolicy;
+use Google\Cloud\PubSub\V1\GetSnapshotRequest;
 use Google\Cloud\PubSub\V1\GetSubscriptionRequest;
 use Google\Cloud\PubSub\V1\ListSnapshotsRequest;
 use Google\Cloud\PubSub\V1\ListSnapshotsResponse;
@@ -840,6 +841,61 @@ class SubscriberGapicClient
         return $this->startCall(
             'DeleteSubscription',
             GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Gets the configuration details of a snapshot. Snapshots are used in
+     * <a href="https://cloud.google.com/pubsub/docs/replay-overview">Seek</a>
+     * operations, which allow you to manage message acknowledgments in bulk. That
+     * is, you can set the acknowledgment state of messages in an existing
+     * subscription to the state captured by a snapshot.
+     *
+     * Sample code:
+     * ```
+     * $subscriberClient = new SubscriberClient();
+     * try {
+     *     $formattedSnapshot = $subscriberClient->snapshotName('[PROJECT]', '[SNAPSHOT]');
+     *     $response = $subscriberClient->getSnapshot($formattedSnapshot);
+     * } finally {
+     *     $subscriberClient->close();
+     * }
+     * ```
+     *
+     * @param string $snapshot     Required. The name of the snapshot to get.
+     *                             Format is `projects/{project}/snapshots/{snap}`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\PubSub\V1\Snapshot
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function getSnapshot($snapshot, array $optionalArgs = [])
+    {
+        $request = new GetSnapshotRequest();
+        $request->setSnapshot($snapshot);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'snapshot' => $request->getSnapshot(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'GetSnapshot',
+            Snapshot::class,
             $optionalArgs,
             $request
         )->wait();

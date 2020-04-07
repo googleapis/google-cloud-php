@@ -17,7 +17,7 @@ class PushConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * A URL locating the endpoint to which messages should be pushed.
-     * For example, a Webhook endpoint might use "https://example.com/push".
+     * For example, a Webhook endpoint might use `https://example.com/push`.
      *
      * Generated from protobuf field <code>string push_endpoint = 1;</code>
      */
@@ -53,7 +53,7 @@ class PushConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type string $push_endpoint
      *           A URL locating the endpoint to which messages should be pushed.
-     *           For example, a Webhook endpoint might use "https://example.com/push".
+     *           For example, a Webhook endpoint might use `https://example.com/push`.
      *     @type array|\Google\Protobuf\Internal\MapField $attributes
      *           Endpoint configuration attributes that can be used to control different
      *           aspects of the message delivery.
@@ -83,7 +83,7 @@ class PushConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * A URL locating the endpoint to which messages should be pushed.
-     * For example, a Webhook endpoint might use "https://example.com/push".
+     * For example, a Webhook endpoint might use `https://example.com/push`.
      *
      * Generated from protobuf field <code>string push_endpoint = 1;</code>
      * @return string
@@ -95,7 +95,7 @@ class PushConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * A URL locating the endpoint to which messages should be pushed.
-     * For example, a Webhook endpoint might use "https://example.com/push".
+     * For example, a Webhook endpoint might use `https://example.com/push`.
      *
      * Generated from protobuf field <code>string push_endpoint = 1;</code>
      * @param string $var
