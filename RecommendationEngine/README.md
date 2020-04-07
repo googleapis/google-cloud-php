@@ -1,6 +1,6 @@
-# Google Cloud Recommendation Engine for PHP
+# Google Cloud Recommendations AI for PHP
 
-> Idiomatic PHP client for [Google Cloud Recommendation Engine](https://cloud.google.com/recommendations-ai).
+> Idiomatic PHP client for [Google Cloud Recommendations AI](https://cloud.google.com/recommendations-ai).
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-recommendations-ai/v/stable)](https://packagist.org/packages/google/cloud-recommendations-ai) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-recommendations-ai.svg)](https://packagist.org/packages/google/cloud-recommendations-ai)
 
@@ -55,7 +55,7 @@ $predictions = $predictionServiceClient->predict($formattedName, $userEvent);
 
 ### Version
 
-This component is considered alpha. As such, it is still a work-in-progress and is more likely to get backwards-incompatible updates.
+This component is considered beta. As such, it should be expected to be mostly stable and we're working towards a release candidate. We will address issues and requests with a higher priority.
 
 ### Next Steps
 
