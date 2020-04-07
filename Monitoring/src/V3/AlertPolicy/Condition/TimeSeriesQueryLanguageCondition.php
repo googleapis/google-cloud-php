@@ -9,17 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A condition type that allows alert policies to be defined using the
- * time series query language.
+ * A condition type that allows alert policies to be defined using
+ * Monitoring Query Language.
  *
  * Generated from protobuf message <code>google.monitoring.v3.AlertPolicy.Condition.TimeSeriesQueryLanguageCondition</code>
  */
 class TimeSeriesQueryLanguageCondition extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A query in the time series query language format that generates time
-     * series indicating points in time that the condition should be
-     * considered active.
+     * Monitoring Query Language query that generates time series data and
+     * describes a condition for alerting on that data.
      *
      * Generated from protobuf field <code>string query = 1;</code>
      */
@@ -39,9 +38,8 @@ class TimeSeriesQueryLanguageCondition extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $query
-     *           A query in the time series query language format that generates time
-     *           series indicating points in time that the condition should be
-     *           considered active.
+     *           Monitoring Query Language query that generates time series data and
+     *           describes a condition for alerting on that data.
      *     @type string $summary
      *           A short explanation of what the query represents. For example:
      *             "Error ratio exceeds 15% for >5% of servers in >2 regions"
@@ -53,9 +51,8 @@ class TimeSeriesQueryLanguageCondition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A query in the time series query language format that generates time
-     * series indicating points in time that the condition should be
-     * considered active.
+     * Monitoring Query Language query that generates time series data and
+     * describes a condition for alerting on that data.
      *
      * Generated from protobuf field <code>string query = 1;</code>
      * @return string
@@ -66,9 +63,8 @@ class TimeSeriesQueryLanguageCondition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A query in the time series query language format that generates time
-     * series indicating points in time that the condition should be
-     * considered active.
+     * Monitoring Query Language query that generates time series data and
+     * describes a condition for alerting on that data.
      *
      * Generated from protobuf field <code>string query = 1;</code>
      * @param string $var
