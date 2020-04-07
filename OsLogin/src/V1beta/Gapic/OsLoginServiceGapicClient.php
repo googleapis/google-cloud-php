@@ -102,9 +102,7 @@ class OsLoginServiceGapicClient
      */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
-        'https://www.googleapis.com/auth/cloud-platform.read-only',
         'https://www.googleapis.com/auth/compute',
-        'https://www.googleapis.com/auth/compute.readonly',
     ];
     private static $fingerprintNameTemplate;
     private static $projectNameTemplate;
