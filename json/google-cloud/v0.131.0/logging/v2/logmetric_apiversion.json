@@ -1,0 +1,1 @@
+{"id":"logging\/v2\/logmetric_apiversion","type":"","title":"Google\\Cloud\\Logging\\V2\\LogMetric_ApiVersion","name":"LogMetric_ApiVersion","description":"<p>This class is deprecated. Use Google\\Cloud\\Logging\\V2\\LogMetric\\ApiVersion instead.<\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"securitycenter\/v1\/notificationconfig_streamingconfig","type":"","title":"Google\\Cloud\\SecurityCenter\\V1\\NotificationConfig_StreamingConfig","name":"NotificationConfig_StreamingConfig","description":"<p>This class is deprecated. Use Google\\Cloud\\SecurityCenter\\V1\\NotificationConfig\\StreamingConfig instead.<\/p>","examples":[],"resources":[],"methods":[]}
