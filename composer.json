@@ -92,7 +92,7 @@
         "google/cloud-monitoring": "0.21.0",
         "google/cloud-oslogin": "0.11.1",
         "google/cloud-pubsub": "1.22.0",
-        "google/cloud-recommendation-engine": "master",
+        "google/cloud-recommendations-ai": "master",
         "google/cloud-recommender": "0.2.1",
         "google/cloud-redis": "0.12.3",
         "google/cloud-scheduler": "1.2.1",
