@@ -41,8 +41,8 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      * * pig:    `pig.properties`
      * * spark:  `spark-defaults.conf`
      * * yarn:   `yarn-site.xml`
-     * For more information, see
-     * [Cluster properties](https://cloud.google.com/dataproc/docs/concepts/cluster-properties).
+     * For more information, see [Cluster
+     * properties](https://cloud.google.com/dataproc/docs/concepts/cluster-properties).
      *
      * Generated from protobuf field <code>map<string, string> properties = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -82,8 +82,8 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      *           * pig:    `pig.properties`
      *           * spark:  `spark-defaults.conf`
      *           * yarn:   `yarn-site.xml`
-     *           For more information, see
-     *           [Cluster properties](https://cloud.google.com/dataproc/docs/concepts/cluster-properties).
+     *           For more information, see [Cluster
+     *           properties](https://cloud.google.com/dataproc/docs/concepts/cluster-properties).
      *     @type int[]|\Google\Protobuf\Internal\RepeatedField $optional_components
      *           The set of optional components to activate on the cluster.
      * }
@@ -145,8 +145,8 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      * * pig:    `pig.properties`
      * * spark:  `spark-defaults.conf`
      * * yarn:   `yarn-site.xml`
-     * For more information, see
-     * [Cluster properties](https://cloud.google.com/dataproc/docs/concepts/cluster-properties).
+     * For more information, see [Cluster
+     * properties](https://cloud.google.com/dataproc/docs/concepts/cluster-properties).
      *
      * Generated from protobuf field <code>map<string, string> properties = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -170,8 +170,8 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      * * pig:    `pig.properties`
      * * spark:  `spark-defaults.conf`
      * * yarn:   `yarn-site.xml`
-     * For more information, see
-     * [Cluster properties](https://cloud.google.com/dataproc/docs/concepts/cluster-properties).
+     * For more information, see [Cluster
+     * properties](https://cloud.google.com/dataproc/docs/concepts/cluster-properties).
      *
      * Generated from protobuf field <code>map<string, string> properties = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

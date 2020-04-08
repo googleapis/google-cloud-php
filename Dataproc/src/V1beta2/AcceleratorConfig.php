@@ -10,7 +10,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Specifies the type and number of accelerator cards attached to the instances
- * of an instance group (see [GPUs on Compute Engine](https://cloud.google.com/compute/docs/gpus/)).
+ * of an instance group (see [GPUs on Compute
+ * Engine](https://cloud.google.com/compute/docs/gpus/)).
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1beta2.AcceleratorConfig</code>
  */

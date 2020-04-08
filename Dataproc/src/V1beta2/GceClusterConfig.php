@@ -35,7 +35,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * communications. Cannot be specified with subnetwork_uri. If neither
      * `network_uri` nor `subnetwork_uri` is specified, the "default" network of
      * the project is used, if it exists. Cannot be a "Custom Subnet Network" (see
-     * [Using Subnetworks](https://cloud.google.com/compute/docs/subnetworks) for more information).
+     * [Using Subnetworks](https://cloud.google.com/compute/docs/subnetworks) for
+     * more information).
      * A full URL, partial URI, or short name are valid. Examples:
      * * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/global/default`
      * * `projects/[project_id]/regions/global/default`
@@ -98,8 +99,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      */
     private $service_account_scopes;
     /**
-     * The Compute Engine tags to add to all instances (see
-     * [Tagging instances](https://cloud.google.com/compute/docs/label-or-tag-resources#tags)).
+     * The Compute Engine tags to add to all instances (see [Tagging
+     * instances](https://cloud.google.com/compute/docs/label-or-tag-resources#tags)).
      *
      * Generated from protobuf field <code>repeated string tags = 4;</code>
      */
@@ -140,7 +141,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      *           communications. Cannot be specified with subnetwork_uri. If neither
      *           `network_uri` nor `subnetwork_uri` is specified, the "default" network of
      *           the project is used, if it exists. Cannot be a "Custom Subnet Network" (see
-     *           [Using Subnetworks](https://cloud.google.com/compute/docs/subnetworks) for more information).
+     *           [Using Subnetworks](https://cloud.google.com/compute/docs/subnetworks) for
+     *           more information).
      *           A full URL, partial URI, or short name are valid. Examples:
      *           * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/global/default`
      *           * `projects/[project_id]/regions/global/default`
@@ -183,8 +185,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      *           * https://www.googleapis.com/auth/bigtable.data
      *           * https://www.googleapis.com/auth/devstorage.full_control
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $tags
-     *           The Compute Engine tags to add to all instances (see
-     *           [Tagging instances](https://cloud.google.com/compute/docs/label-or-tag-resources#tags)).
+     *           The Compute Engine tags to add to all instances (see [Tagging
+     *           instances](https://cloud.google.com/compute/docs/label-or-tag-resources#tags)).
      *     @type array|\Google\Protobuf\Internal\MapField $metadata
      *           The Compute Engine metadata entries to add to all instances (see
      *           [Project and instance
@@ -245,7 +247,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * communications. Cannot be specified with subnetwork_uri. If neither
      * `network_uri` nor `subnetwork_uri` is specified, the "default" network of
      * the project is used, if it exists. Cannot be a "Custom Subnet Network" (see
-     * [Using Subnetworks](https://cloud.google.com/compute/docs/subnetworks) for more information).
+     * [Using Subnetworks](https://cloud.google.com/compute/docs/subnetworks) for
+     * more information).
      * A full URL, partial URI, or short name are valid. Examples:
      * * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/global/default`
      * * `projects/[project_id]/regions/global/default`
@@ -264,7 +267,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * communications. Cannot be specified with subnetwork_uri. If neither
      * `network_uri` nor `subnetwork_uri` is specified, the "default" network of
      * the project is used, if it exists. Cannot be a "Custom Subnet Network" (see
-     * [Using Subnetworks](https://cloud.google.com/compute/docs/subnetworks) for more information).
+     * [Using Subnetworks](https://cloud.google.com/compute/docs/subnetworks) for
+     * more information).
      * A full URL, partial URI, or short name are valid. Examples:
      * * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/global/default`
      * * `projects/[project_id]/regions/global/default`
@@ -445,8 +449,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Compute Engine tags to add to all instances (see
-     * [Tagging instances](https://cloud.google.com/compute/docs/label-or-tag-resources#tags)).
+     * The Compute Engine tags to add to all instances (see [Tagging
+     * instances](https://cloud.google.com/compute/docs/label-or-tag-resources#tags)).
      *
      * Generated from protobuf field <code>repeated string tags = 4;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -457,8 +461,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Compute Engine tags to add to all instances (see
-     * [Tagging instances](https://cloud.google.com/compute/docs/label-or-tag-resources#tags)).
+     * The Compute Engine tags to add to all instances (see [Tagging
+     * instances](https://cloud.google.com/compute/docs/label-or-tag-resources#tags)).
      *
      * Generated from protobuf field <code>repeated string tags = 4;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
