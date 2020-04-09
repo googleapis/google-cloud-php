@@ -33,13 +33,11 @@ use Google\Cloud\Firestore\V1\BatchGetDocumentsResponse;
 use Google\Cloud\Firestore\V1\BeginTransactionResponse;
 use Google\Cloud\Firestore\V1\CommitResponse;
 use Google\Cloud\Firestore\V1\Document;
-use Google\Cloud\Firestore\V1\DocumentMask;
 use Google\Cloud\Firestore\V1\ListCollectionIdsResponse;
 use Google\Cloud\Firestore\V1\ListDocumentsResponse;
 use Google\Cloud\Firestore\V1\ListenRequest;
 use Google\Cloud\Firestore\V1\ListenResponse;
 use Google\Cloud\Firestore\V1\RunQueryResponse;
-use Google\Cloud\Firestore\V1\Write;
 use Google\Cloud\Firestore\V1\WriteRequest;
 use Google\Cloud\Firestore\V1\WriteResponse;
 use Google\Protobuf\Any;
@@ -100,9 +98,9 @@ class FirestoreClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->anyPathName('[PROJECT]', '[DATABASE]', '[DOCUMENT]', '[ANY_PATH]');
+        $name = 'name3373707';
 
-        $response = $client->getDocument($formattedName);
+        $response = $client->getDocument($name);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -112,7 +110,7 @@ class FirestoreClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getName();
 
-        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertProtobufEquals($name, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -140,10 +138,10 @@ class FirestoreClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->anyPathName('[PROJECT]', '[DATABASE]', '[DOCUMENT]', '[ANY_PATH]');
+        $name = 'name3373707';
 
         try {
-            $client->getDocument($formattedName);
+            $client->getDocument($name);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -176,10 +174,10 @@ class FirestoreClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = $client->anyPathName('[PROJECT]', '[DATABASE]', '[DOCUMENT]', '[ANY_PATH]');
+        $parent = 'parent-995424086';
         $collectionId = 'collectionId-821242276';
 
-        $response = $client->listDocuments($formattedParent, $collectionId);
+        $response = $client->listDocuments($parent, $collectionId);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -193,7 +191,7 @@ class FirestoreClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getParent();
 
-        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertProtobufEquals($parent, $actualValue);
         $actualValue = $actualRequestObject->getCollectionId();
 
         $this->assertProtobufEquals($collectionId, $actualValue);
@@ -223,11 +221,11 @@ class FirestoreClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = $client->anyPathName('[PROJECT]', '[DATABASE]', '[DOCUMENT]', '[ANY_PATH]');
+        $parent = 'parent-995424086';
         $collectionId = 'collectionId-821242276';
 
         try {
-            $client->listDocuments($formattedParent, $collectionId);
+            $client->listDocuments($parent, $collectionId);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -257,12 +255,11 @@ class FirestoreClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = $client->anyPathName('[PROJECT]', '[DATABASE]', '[DOCUMENT]', '[ANY_PATH]');
+        $parent = 'parent-995424086';
         $collectionId = 'collectionId-821242276';
-        $documentId = 'documentId506676927';
         $document = new Document();
 
-        $response = $client->createDocument($formattedParent, $collectionId, $documentId, $document);
+        $response = $client->createDocument($parent, $collectionId, $document);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -272,13 +269,10 @@ class FirestoreClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getParent();
 
-        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertProtobufEquals($parent, $actualValue);
         $actualValue = $actualRequestObject->getCollectionId();
 
         $this->assertProtobufEquals($collectionId, $actualValue);
-        $actualValue = $actualRequestObject->getDocumentId();
-
-        $this->assertProtobufEquals($documentId, $actualValue);
         $actualValue = $actualRequestObject->getDocument();
 
         $this->assertProtobufEquals($document, $actualValue);
@@ -309,13 +303,12 @@ class FirestoreClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = $client->anyPathName('[PROJECT]', '[DATABASE]', '[DOCUMENT]', '[ANY_PATH]');
+        $parent = 'parent-995424086';
         $collectionId = 'collectionId-821242276';
-        $documentId = 'documentId506676927';
         $document = new Document();
 
         try {
-            $client->createDocument($formattedParent, $collectionId, $documentId, $document);
+            $client->createDocument($parent, $collectionId, $document);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -346,9 +339,8 @@ class FirestoreClientTest extends GeneratedTest
 
         // Mock request
         $document = new Document();
-        $updateMask = new DocumentMask();
 
-        $response = $client->updateDocument($document, $updateMask);
+        $response = $client->updateDocument($document);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -359,9 +351,6 @@ class FirestoreClientTest extends GeneratedTest
         $actualValue = $actualRequestObject->getDocument();
 
         $this->assertProtobufEquals($document, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-
-        $this->assertProtobufEquals($updateMask, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -390,10 +379,9 @@ class FirestoreClientTest extends GeneratedTest
 
         // Mock request
         $document = new Document();
-        $updateMask = new DocumentMask();
 
         try {
-            $client->updateDocument($document, $updateMask);
+            $client->updateDocument($document);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -421,9 +409,9 @@ class FirestoreClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->anyPathName('[PROJECT]', '[DATABASE]', '[DOCUMENT]', '[ANY_PATH]');
+        $name = 'name3373707';
 
-        $client->deleteDocument($formattedName);
+        $client->deleteDocument($name);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -432,7 +420,7 @@ class FirestoreClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getName();
 
-        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertProtobufEquals($name, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -460,10 +448,10 @@ class FirestoreClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->anyPathName('[PROJECT]', '[DATABASE]', '[DOCUMENT]', '[ANY_PATH]');
+        $name = 'name3373707';
 
         try {
-            $client->deleteDocument($formattedName);
+            $client->deleteDocument($name);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -507,10 +495,9 @@ class FirestoreClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse3);
 
         // Mock request
-        $formattedDatabase = $client->databaseRootName('[PROJECT]', '[DATABASE]');
-        $documents = [];
+        $database = 'database1789464955';
 
-        $serverStream = $client->batchGetDocuments($formattedDatabase, $documents);
+        $serverStream = $client->batchGetDocuments($database);
         $this->assertInstanceOf(ServerStream::class, $serverStream);
 
         $responses = iterator_to_array($serverStream->readAll());
@@ -529,10 +516,7 @@ class FirestoreClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getDatabase();
 
-        $this->assertProtobufEquals($formattedDatabase, $actualValue);
-        $actualValue = $actualRequestObject->getDocuments();
-
-        $this->assertProtobufEquals($documents, $actualValue);
+        $this->assertProtobufEquals($database, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -561,10 +545,9 @@ class FirestoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
 
         // Mock request
-        $formattedDatabase = $client->databaseRootName('[PROJECT]', '[DATABASE]');
-        $documents = [];
+        $database = 'database1789464955';
 
-        $serverStream = $client->batchGetDocuments($formattedDatabase, $documents);
+        $serverStream = $client->batchGetDocuments($database);
         $results = $serverStream->readAll();
 
         try {
@@ -598,9 +581,9 @@ class FirestoreClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedDatabase = $client->databaseRootName('[PROJECT]', '[DATABASE]');
+        $database = 'database1789464955';
 
-        $response = $client->beginTransaction($formattedDatabase);
+        $response = $client->beginTransaction($database);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -610,7 +593,7 @@ class FirestoreClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getDatabase();
 
-        $this->assertProtobufEquals($formattedDatabase, $actualValue);
+        $this->assertProtobufEquals($database, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -638,10 +621,10 @@ class FirestoreClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedDatabase = $client->databaseRootName('[PROJECT]', '[DATABASE]');
+        $database = 'database1789464955';
 
         try {
-            $client->beginTransaction($formattedDatabase);
+            $client->beginTransaction($database);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -669,10 +652,9 @@ class FirestoreClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedDatabase = $client->databaseRootName('[PROJECT]', '[DATABASE]');
-        $writes = [];
+        $database = 'database1789464955';
 
-        $response = $client->commit($formattedDatabase, $writes);
+        $response = $client->commit($database);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -682,10 +664,7 @@ class FirestoreClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getDatabase();
 
-        $this->assertProtobufEquals($formattedDatabase, $actualValue);
-        $actualValue = $actualRequestObject->getWrites();
-
-        $this->assertProtobufEquals($writes, $actualValue);
+        $this->assertProtobufEquals($database, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -713,11 +692,10 @@ class FirestoreClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedDatabase = $client->databaseRootName('[PROJECT]', '[DATABASE]');
-        $writes = [];
+        $database = 'database1789464955';
 
         try {
-            $client->commit($formattedDatabase, $writes);
+            $client->commit($database);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -745,10 +723,10 @@ class FirestoreClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedDatabase = $client->databaseRootName('[PROJECT]', '[DATABASE]');
+        $database = 'database1789464955';
         $transaction = '-34';
 
-        $client->rollback($formattedDatabase, $transaction);
+        $client->rollback($database, $transaction);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -757,7 +735,7 @@ class FirestoreClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getDatabase();
 
-        $this->assertProtobufEquals($formattedDatabase, $actualValue);
+        $this->assertProtobufEquals($database, $actualValue);
         $actualValue = $actualRequestObject->getTransaction();
 
         $this->assertProtobufEquals($transaction, $actualValue);
@@ -788,11 +766,11 @@ class FirestoreClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedDatabase = $client->databaseRootName('[PROJECT]', '[DATABASE]');
+        $database = 'database1789464955';
         $transaction = '-34';
 
         try {
-            $client->rollback($formattedDatabase, $transaction);
+            $client->rollback($database, $transaction);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -836,9 +814,9 @@ class FirestoreClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse3);
 
         // Mock request
-        $formattedParent = $client->anyPathName('[PROJECT]', '[DATABASE]', '[DOCUMENT]', '[ANY_PATH]');
+        $parent = 'parent-995424086';
 
-        $serverStream = $client->runQuery($formattedParent);
+        $serverStream = $client->runQuery($parent);
         $this->assertInstanceOf(ServerStream::class, $serverStream);
 
         $responses = iterator_to_array($serverStream->readAll());
@@ -857,7 +835,7 @@ class FirestoreClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getParent();
 
-        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertProtobufEquals($parent, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -886,9 +864,9 @@ class FirestoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
 
         // Mock request
-        $formattedParent = $client->anyPathName('[PROJECT]', '[DATABASE]', '[DOCUMENT]', '[ANY_PATH]');
+        $parent = 'parent-995424086';
 
-        $serverStream = $client->runQuery($formattedParent);
+        $serverStream = $client->runQuery($parent);
         $results = $serverStream->readAll();
 
         try {
@@ -936,15 +914,15 @@ class FirestoreClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse3);
 
         // Mock request
-        $formattedDatabase = $client->databaseRootName('[PROJECT]', '[DATABASE]');
+        $database = 'database1789464955';
         $request = new WriteRequest();
-        $request->setDatabase($formattedDatabase);
-        $formattedDatabase2 = $client->databaseRootName('[PROJECT]', '[DATABASE]');
+        $request->setDatabase($database);
+        $database2 = 'database21688906350';
         $request2 = new WriteRequest();
-        $request2->setDatabase($formattedDatabase2);
-        $formattedDatabase3 = $client->databaseRootName('[PROJECT]', '[DATABASE]');
+        $request2->setDatabase($database2);
+        $database3 = 'database31688906351';
         $request3 = new WriteRequest();
-        $request3->setDatabase($formattedDatabase3);
+        $request3->setDatabase($database3);
 
         $bidi = $client->write();
         $this->assertInstanceOf(BidiStream::class, $bidi);
@@ -1044,15 +1022,15 @@ class FirestoreClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse3);
 
         // Mock request
-        $formattedDatabase = $client->databaseRootName('[PROJECT]', '[DATABASE]');
+        $database = 'database1789464955';
         $request = new ListenRequest();
-        $request->setDatabase($formattedDatabase);
-        $formattedDatabase2 = $client->databaseRootName('[PROJECT]', '[DATABASE]');
+        $request->setDatabase($database);
+        $database2 = 'database21688906350';
         $request2 = new ListenRequest();
-        $request2->setDatabase($formattedDatabase2);
-        $formattedDatabase3 = $client->databaseRootName('[PROJECT]', '[DATABASE]');
+        $request2->setDatabase($database2);
+        $database3 = 'database31688906351';
         $request3 = new ListenRequest();
-        $request3->setDatabase($formattedDatabase3);
+        $request3->setDatabase($database3);
 
         $bidi = $client->listen();
         $this->assertInstanceOf(BidiStream::class, $bidi);
@@ -1153,9 +1131,9 @@ class FirestoreClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = $client->anyPathName('[PROJECT]', '[DATABASE]', '[DOCUMENT]', '[ANY_PATH]');
+        $parent = 'parent-995424086';
 
-        $response = $client->listCollectionIds($formattedParent);
+        $response = $client->listCollectionIds($parent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1169,7 +1147,7 @@ class FirestoreClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getParent();
 
-        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertProtobufEquals($parent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1196,10 +1174,10 @@ class FirestoreClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = $client->anyPathName('[PROJECT]', '[DATABASE]', '[DOCUMENT]', '[ANY_PATH]');
+        $parent = 'parent-995424086';
 
         try {
-            $client->listCollectionIds($formattedParent);
+            $client->listCollectionIds($parent);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

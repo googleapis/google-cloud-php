@@ -29,6 +29,38 @@
         }
       },
       "methods": {
+        "DeleteDocument": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "idempotent",
+          "retry_params_name": "default"
+        },
+        "BatchGetDocuments": {
+          "timeout_millis": 60000
+        },
+        "BeginTransaction": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "idempotent",
+          "retry_params_name": "default"
+        },
+        "Rollback": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "idempotent",
+          "retry_params_name": "default"
+        },
+        "RunQuery": {
+          "timeout_millis": 60000
+        },
+        "Write": {
+          "timeout_millis": 60000
+        },
+        "Listen": {
+          "timeout_millis": 60000
+        },
+        "ListCollectionIds": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "idempotent",
+          "retry_params_name": "default"
+        },
         "GetDocument": {
           "timeout_millis": 60000,
           "retry_codes_name": "idempotent",
@@ -49,41 +81,9 @@
           "retry_codes_name": "non_idempotent",
           "retry_params_name": "default"
         },
-        "DeleteDocument": {
-          "timeout_millis": 60000,
-          "retry_codes_name": "idempotent",
-          "retry_params_name": "default"
-        },
-        "BatchGetDocuments": {
-          "timeout_millis": 300000
-        },
-        "BeginTransaction": {
-          "timeout_millis": 60000,
-          "retry_codes_name": "idempotent",
-          "retry_params_name": "default"
-        },
         "Commit": {
           "timeout_millis": 60000,
           "retry_codes_name": "non_idempotent",
-          "retry_params_name": "default"
-        },
-        "Rollback": {
-          "timeout_millis": 60000,
-          "retry_codes_name": "idempotent",
-          "retry_params_name": "default"
-        },
-        "RunQuery": {
-          "timeout_millis": 60000
-        },
-        "Write": {
-          "timeout_millis": 86400000
-        },
-        "Listen": {
-          "timeout_millis": 86400000
-        },
-        "ListCollectionIds": {
-          "timeout_millis": 60000,
-          "retry_codes_name": "idempotent",
           "retry_params_name": "default"
         }
       }
