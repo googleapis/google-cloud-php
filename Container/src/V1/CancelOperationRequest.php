@@ -40,7 +40,7 @@ class CancelOperationRequest extends \Google\Protobuf\Internal\Message
     private $operation_id = '';
     /**
      * The name (project, location, operation id) of the operation to cancel.
-     * Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;operations/&#42;'.
+     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;operations/&#42;`.
      *
      * Generated from protobuf field <code>string name = 4;</code>
      */
@@ -65,7 +65,7 @@ class CancelOperationRequest extends \Google\Protobuf\Internal\Message
      *           This field has been deprecated and replaced by the name field.
      *     @type string $name
      *           The name (project, location, operation id) of the operation to cancel.
-     *           Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;operations/&#42;'.
+     *           Specified in the format `projects/&#42;&#47;locations/&#42;&#47;operations/&#42;`.
      * }
      */
     public function __construct($data = NULL) {
@@ -163,7 +163,7 @@ class CancelOperationRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The name (project, location, operation id) of the operation to cancel.
-     * Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;operations/&#42;'.
+     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;operations/&#42;`.
      *
      * Generated from protobuf field <code>string name = 4;</code>
      * @return string
@@ -175,7 +175,7 @@ class CancelOperationRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The name (project, location, operation id) of the operation to cancel.
-     * Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;operations/&#42;'.
+     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;operations/&#42;`.
      *
      * Generated from protobuf field <code>string name = 4;</code>
      * @param string $var

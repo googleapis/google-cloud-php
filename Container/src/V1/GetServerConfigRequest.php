@@ -33,7 +33,7 @@ class GetServerConfigRequest extends \Google\Protobuf\Internal\Message
     private $zone = '';
     /**
      * The name (project and location) of the server config to get,
-     * specified in the format 'projects/&#42;&#47;locations/&#42;'.
+     * specified in the format `projects/&#42;&#47;locations/&#42;`.
      *
      * Generated from protobuf field <code>string name = 4;</code>
      */
@@ -55,7 +55,7 @@ class GetServerConfigRequest extends \Google\Protobuf\Internal\Message
      *           This field has been deprecated and replaced by the name field.
      *     @type string $name
      *           The name (project and location) of the server config to get,
-     *           specified in the format 'projects/&#42;&#47;locations/&#42;'.
+     *           specified in the format `projects/&#42;&#47;locations/&#42;`.
      * }
      */
     public function __construct($data = NULL) {
@@ -125,7 +125,7 @@ class GetServerConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The name (project and location) of the server config to get,
-     * specified in the format 'projects/&#42;&#47;locations/&#42;'.
+     * specified in the format `projects/&#42;&#47;locations/&#42;`.
      *
      * Generated from protobuf field <code>string name = 4;</code>
      * @return string
@@ -137,7 +137,7 @@ class GetServerConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The name (project and location) of the server config to get,
-     * specified in the format 'projects/&#42;&#47;locations/&#42;'.
+     * specified in the format `projects/&#42;&#47;locations/&#42;`.
      *
      * Generated from protobuf field <code>string name = 4;</code>
      * @param string $var

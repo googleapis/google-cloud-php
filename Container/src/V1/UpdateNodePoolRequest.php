@@ -69,7 +69,7 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     /**
      * The name (project, location, cluster, node pool) of the node pool to
      * update. Specified in the format
-     * 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;'.
+     * `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;`.
      *
      * Generated from protobuf field <code>string name = 8;</code>
      */
@@ -111,7 +111,7 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The name (project, location, cluster, node pool) of the node pool to
      *           update. Specified in the format
-     *           'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;'.
+     *           `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;`.
      * }
      */
     public function __construct($data = NULL) {
@@ -308,7 +308,7 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     /**
      * The name (project, location, cluster, node pool) of the node pool to
      * update. Specified in the format
-     * 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;'.
+     * `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;`.
      *
      * Generated from protobuf field <code>string name = 8;</code>
      * @return string
@@ -321,7 +321,7 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     /**
      * The name (project, location, cluster, node pool) of the node pool to
      * update. Specified in the format
-     * 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;'.
+     * `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;`.
      *
      * Generated from protobuf field <code>string name = 8;</code>
      * @param string $var

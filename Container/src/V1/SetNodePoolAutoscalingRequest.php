@@ -55,7 +55,7 @@ class SetNodePoolAutoscalingRequest extends \Google\Protobuf\Internal\Message
     /**
      * The name (project, location, cluster, node pool) of the node pool to set
      * autoscaler settings. Specified in the format
-     * 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;'.
+     * `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;`.
      *
      * Generated from protobuf field <code>string name = 6;</code>
      */
@@ -87,7 +87,7 @@ class SetNodePoolAutoscalingRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The name (project, location, cluster, node pool) of the node pool to set
      *           autoscaler settings. Specified in the format
-     *           'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;'.
+     *           `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;`.
      * }
      */
     public function __construct($data = NULL) {
@@ -242,7 +242,7 @@ class SetNodePoolAutoscalingRequest extends \Google\Protobuf\Internal\Message
     /**
      * The name (project, location, cluster, node pool) of the node pool to set
      * autoscaler settings. Specified in the format
-     * 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;'.
+     * `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;`.
      *
      * Generated from protobuf field <code>string name = 6;</code>
      * @return string
@@ -255,7 +255,7 @@ class SetNodePoolAutoscalingRequest extends \Google\Protobuf\Internal\Message
     /**
      * The name (project, location, cluster, node pool) of the node pool to set
      * autoscaler settings. Specified in the format
-     * 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;'.
+     * `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;`.
      *
      * Generated from protobuf field <code>string name = 6;</code>
      * @param string $var

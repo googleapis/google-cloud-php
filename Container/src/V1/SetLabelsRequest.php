@@ -60,7 +60,7 @@ class SetLabelsRequest extends \Google\Protobuf\Internal\Message
     private $label_fingerprint = '';
     /**
      * The name (project, location, cluster id) of the cluster to set labels.
-     * Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
+     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      *
      * Generated from protobuf field <code>string name = 7;</code>
      */
@@ -95,7 +95,7 @@ class SetLabelsRequest extends \Google\Protobuf\Internal\Message
      *           resource to get the latest fingerprint.
      *     @type string $name
      *           The name (project, location, cluster id) of the cluster to set labels.
-     *           Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
+     *           Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      * }
      */
     public function __construct($data = NULL) {
@@ -257,7 +257,7 @@ class SetLabelsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The name (project, location, cluster id) of the cluster to set labels.
-     * Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
+     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      *
      * Generated from protobuf field <code>string name = 7;</code>
      * @return string
@@ -269,7 +269,7 @@ class SetLabelsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The name (project, location, cluster id) of the cluster to set labels.
-     * Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
+     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      *
      * Generated from protobuf field <code>string name = 7;</code>
      * @param string $var

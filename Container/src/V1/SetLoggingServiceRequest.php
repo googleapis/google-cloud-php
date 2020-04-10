@@ -50,7 +50,7 @@ class SetLoggingServiceRequest extends \Google\Protobuf\Internal\Message
     private $logging_service = '';
     /**
      * The name (project, location, cluster) of the cluster to set logging.
-     * Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
+     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      *
      * Generated from protobuf field <code>string name = 5;</code>
      */
@@ -81,7 +81,7 @@ class SetLoggingServiceRequest extends \Google\Protobuf\Internal\Message
      *           * "none" - no metrics will be exported from the cluster
      *     @type string $name
      *           The name (project, location, cluster) of the cluster to set logging.
-     *           Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
+     *           Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      * }
      */
     public function __construct($data = NULL) {
@@ -213,7 +213,7 @@ class SetLoggingServiceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The name (project, location, cluster) of the cluster to set logging.
-     * Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
+     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      *
      * Generated from protobuf field <code>string name = 5;</code>
      * @return string
@@ -225,7 +225,7 @@ class SetLoggingServiceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The name (project, location, cluster) of the cluster to set logging.
-     * Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
+     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      *
      * Generated from protobuf field <code>string name = 5;</code>
      * @param string $var

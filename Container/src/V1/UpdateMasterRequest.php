@@ -54,7 +54,7 @@ class UpdateMasterRequest extends \Google\Protobuf\Internal\Message
     private $master_version = '';
     /**
      * The name (project, location, cluster) of the cluster to update.
-     * Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
+     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      *
      * Generated from protobuf field <code>string name = 7;</code>
      */
@@ -89,7 +89,7 @@ class UpdateMasterRequest extends \Google\Protobuf\Internal\Message
      *           - "-": picks the default Kubernetes version
      *     @type string $name
      *           The name (project, location, cluster) of the cluster to update.
-     *           Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
+     *           Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      * }
      */
     public function __construct($data = NULL) {
@@ -229,7 +229,7 @@ class UpdateMasterRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The name (project, location, cluster) of the cluster to update.
-     * Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
+     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      *
      * Generated from protobuf field <code>string name = 7;</code>
      * @return string
@@ -241,7 +241,7 @@ class UpdateMasterRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The name (project, location, cluster) of the cluster to update.
-     * Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
+     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      *
      * Generated from protobuf field <code>string name = 7;</code>
      * @param string $var

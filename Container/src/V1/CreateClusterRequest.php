@@ -41,7 +41,7 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
     private $cluster = null;
     /**
      * The parent (project and location) where the cluster will be created.
-     * Specified in the format 'projects/&#42;&#47;locations/&#42;'.
+     * Specified in the format `projects/&#42;&#47;locations/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 5;</code>
      */
@@ -67,7 +67,7 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
      *           resource](https://cloud.google.com/container-engine/reference/rest/v1/projects.zones.clusters)
      *     @type string $parent
      *           The parent (project and location) where the cluster will be created.
-     *           Specified in the format 'projects/&#42;&#47;locations/&#42;'.
+     *           Specified in the format `projects/&#42;&#47;locations/&#42;`.
      * }
      */
     public function __construct($data = NULL) {
@@ -167,7 +167,7 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The parent (project and location) where the cluster will be created.
-     * Specified in the format 'projects/&#42;&#47;locations/&#42;'.
+     * Specified in the format `projects/&#42;&#47;locations/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 5;</code>
      * @return string
@@ -179,7 +179,7 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The parent (project and location) where the cluster will be created.
-     * Specified in the format 'projects/&#42;&#47;locations/&#42;'.
+     * Specified in the format `projects/&#42;&#47;locations/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 5;</code>
      * @param string $var

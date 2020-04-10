@@ -47,7 +47,7 @@ class SetNetworkPolicyRequest extends \Google\Protobuf\Internal\Message
     private $network_policy = null;
     /**
      * The name (project, location, cluster id) of the cluster to set networking
-     * policy. Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
+     * policy. Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      *
      * Generated from protobuf field <code>string name = 6;</code>
      */
@@ -75,7 +75,7 @@ class SetNetworkPolicyRequest extends \Google\Protobuf\Internal\Message
      *           Required. Configuration options for the NetworkPolicy feature.
      *     @type string $name
      *           The name (project, location, cluster id) of the cluster to set networking
-     *           policy. Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
+     *           policy. Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      * }
      */
     public function __construct($data = NULL) {
@@ -201,7 +201,7 @@ class SetNetworkPolicyRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The name (project, location, cluster id) of the cluster to set networking
-     * policy. Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
+     * policy. Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      *
      * Generated from protobuf field <code>string name = 6;</code>
      * @return string
@@ -213,7 +213,7 @@ class SetNetworkPolicyRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The name (project, location, cluster id) of the cluster to set networking
-     * policy. Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
+     * policy. Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      *
      * Generated from protobuf field <code>string name = 6;</code>
      * @param string $var
