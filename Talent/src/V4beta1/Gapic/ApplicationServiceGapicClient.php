@@ -143,7 +143,7 @@ class ApplicationServiceGapicClient
     private static function getCompanyNameTemplate()
     {
         if (null == self::$companyNameTemplate) {
-            self::$companyNameTemplate = new PathTemplate('projects/{project}/companies/{company}');
+            self::$companyNameTemplate = new PathTemplate('projects/{project}/tenants/{tenant}/companies/{company}');
         }
 
         return self::$companyNameTemplate;
@@ -161,7 +161,7 @@ class ApplicationServiceGapicClient
     private static function getJobNameTemplate()
     {
         if (null == self::$jobNameTemplate) {
-            self::$jobNameTemplate = new PathTemplate('projects/{project}/jobs/{job}');
+            self::$jobNameTemplate = new PathTemplate('projects/{project}/tenants/{tenant}/jobs/{job}');
         }
 
         return self::$jobNameTemplate;
@@ -268,15 +268,17 @@ class ApplicationServiceGapicClient
      * a company resource.
      *
      * @param string $project
+     * @param string $tenant
      * @param string $company
      *
      * @return string The formatted company resource.
      * @experimental
      */
-    public static function companyName($project, $company)
+    public static function companyName($project, $tenant, $company)
     {
         return self::getCompanyNameTemplate()->render([
             'project' => $project,
+            'tenant' => $tenant,
             'company' => $company,
         ]);
     }
@@ -306,15 +308,17 @@ class ApplicationServiceGapicClient
      * a job resource.
      *
      * @param string $project
+     * @param string $tenant
      * @param string $job
      *
      * @return string The formatted job resource.
      * @experimental
      */
-    public static function jobName($project, $job)
+    public static function jobName($project, $tenant, $job)
     {
         return self::getJobNameTemplate()->render([
             'project' => $project,
+            'tenant' => $tenant,
             'job' => $job,
         ]);
     }
@@ -440,9 +444,9 @@ class ApplicationServiceGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - application: projects/{project}/tenants/{tenant}/profiles/{profile}/applications/{application}
-     * - company: projects/{project}/companies/{company}
+     * - company: projects/{project}/tenants/{tenant}/companies/{company}
      * - companyWithoutTenant: projects/{project}/companies/{company}
-     * - job: projects/{project}/jobs/{job}
+     * - job: projects/{project}/tenants/{tenant}/jobs/{job}
      * - jobWithoutTenant: projects/{project}/jobs/{job}
      * - profile: projects/{project}/tenants/{tenant}/profiles/{profile}
      * - projectCompany: projects/{project}/companies/{company}

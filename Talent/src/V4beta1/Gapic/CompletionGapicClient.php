@@ -126,7 +126,7 @@ class CompletionGapicClient
     private static function getCompanyNameTemplate()
     {
         if (null == self::$companyNameTemplate) {
-            self::$companyNameTemplate = new PathTemplate('projects/{project}/companies/{company}');
+            self::$companyNameTemplate = new PathTemplate('projects/{project}/tenants/{tenant}/companies/{company}');
         }
 
         return self::$companyNameTemplate;
@@ -198,15 +198,17 @@ class CompletionGapicClient
      * a company resource.
      *
      * @param string $project
+     * @param string $tenant
      * @param string $company
      *
      * @return string The formatted company resource.
      * @experimental
      */
-    public static function companyName($project, $company)
+    public static function companyName($project, $tenant, $company)
     {
         return self::getCompanyNameTemplate()->render([
             'project' => $project,
+            'tenant' => $tenant,
             'company' => $company,
         ]);
     }
@@ -307,7 +309,7 @@ class CompletionGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - company: projects/{project}/companies/{company}
+     * - company: projects/{project}/tenants/{tenant}/companies/{company}
      * - companyWithoutTenant: projects/{project}/companies/{company}
      * - project: projects/{project}
      * - projectCompany: projects/{project}/companies/{company}

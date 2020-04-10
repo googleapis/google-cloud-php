@@ -54,7 +54,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $companyServiceClient = new CompanyServiceClient();
  * try {
- *     $formattedName = $companyServiceClient->projectCompanyName('[PROJECT]', '[COMPANY]');
+ *     $formattedName = $companyServiceClient->projectTenantCompanyName('[PROJECT]', '[TENANT]', '[COMPANY]');
  *     $companyServiceClient->deleteCompany($formattedName);
  * } finally {
  *     $companyServiceClient->close();
@@ -129,7 +129,7 @@ class CompanyServiceGapicClient
     private static function getCompanyNameTemplate()
     {
         if (null == self::$companyNameTemplate) {
-            self::$companyNameTemplate = new PathTemplate('projects/{project}/companies/{company}');
+            self::$companyNameTemplate = new PathTemplate('projects/{project}/tenants/{tenant}/companies/{company}');
         }
 
         return self::$companyNameTemplate;
@@ -201,15 +201,17 @@ class CompanyServiceGapicClient
      * a company resource.
      *
      * @param string $project
+     * @param string $tenant
      * @param string $company
      *
      * @return string The formatted company resource.
      * @experimental
      */
-    public static function companyName($project, $company)
+    public static function companyName($project, $tenant, $company)
     {
         return self::getCompanyNameTemplate()->render([
             'project' => $project,
+            'tenant' => $tenant,
             'company' => $company,
         ]);
     }
@@ -310,7 +312,7 @@ class CompanyServiceGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - company: projects/{project}/companies/{company}
+     * - company: projects/{project}/tenants/{tenant}/companies/{company}
      * - companyWithoutTenant: projects/{project}/companies/{company}
      * - project: projects/{project}
      * - projectCompany: projects/{project}/companies/{company}
@@ -421,7 +423,7 @@ class CompanyServiceGapicClient
      * ```
      * $companyServiceClient = new CompanyServiceClient();
      * try {
-     *     $formattedName = $companyServiceClient->projectCompanyName('[PROJECT]', '[COMPANY]');
+     *     $formattedName = $companyServiceClient->projectTenantCompanyName('[PROJECT]', '[TENANT]', '[COMPANY]');
      *     $companyServiceClient->deleteCompany($formattedName);
      * } finally {
      *     $companyServiceClient->close();
@@ -533,7 +535,7 @@ class CompanyServiceGapicClient
      * ```
      * $companyServiceClient = new CompanyServiceClient();
      * try {
-     *     $formattedName = $companyServiceClient->projectCompanyName('[PROJECT]', '[COMPANY]');
+     *     $formattedName = $companyServiceClient->projectTenantCompanyName('[PROJECT]', '[TENANT]', '[COMPANY]');
      *     $response = $companyServiceClient->getCompany($formattedName);
      * } finally {
      *     $companyServiceClient->close();
