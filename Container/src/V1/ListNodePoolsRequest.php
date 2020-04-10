@@ -41,7 +41,7 @@ class ListNodePoolsRequest extends \Google\Protobuf\Internal\Message
     private $cluster_id = '';
     /**
      * The parent (project, location, cluster id) where the node pools will be
-     * listed. Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
+     * listed. Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 5;</code>
      */
@@ -67,7 +67,7 @@ class ListNodePoolsRequest extends \Google\Protobuf\Internal\Message
      *           This field has been deprecated and replaced by the parent field.
      *     @type string $parent
      *           The parent (project, location, cluster id) where the node pools will be
-     *           listed. Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
+     *           listed. Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      * }
      */
     public function __construct($data = NULL) {
@@ -167,7 +167,7 @@ class ListNodePoolsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The parent (project, location, cluster id) where the node pools will be
-     * listed. Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
+     * listed. Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 5;</code>
      * @return string
@@ -179,7 +179,7 @@ class ListNodePoolsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The parent (project, location, cluster id) where the node pools will be
-     * listed. Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
+     * listed. Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 5;</code>
      * @param string $var

@@ -48,7 +48,7 @@ class CreateNodePoolRequest extends \Google\Protobuf\Internal\Message
     /**
      * The parent (project, location, cluster id) where the node pool will be
      * created. Specified in the format
-     * 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
+     * `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 6;</code>
      */
@@ -77,7 +77,7 @@ class CreateNodePoolRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           The parent (project, location, cluster id) where the node pool will be
      *           created. Specified in the format
-     *           'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
+     *           `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      * }
      */
     public function __construct($data = NULL) {
@@ -204,7 +204,7 @@ class CreateNodePoolRequest extends \Google\Protobuf\Internal\Message
     /**
      * The parent (project, location, cluster id) where the node pool will be
      * created. Specified in the format
-     * 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
+     * `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 6;</code>
      * @return string
@@ -217,7 +217,7 @@ class CreateNodePoolRequest extends \Google\Protobuf\Internal\Message
     /**
      * The parent (project, location, cluster id) where the node pool will be
      * created. Specified in the format
-     * 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
+     * `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 6;</code>
      * @param string $var

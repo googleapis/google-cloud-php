@@ -34,7 +34,7 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
     private $zone = '';
     /**
      * The parent (project and location) where the clusters will be listed.
-     * Specified in the format 'projects/&#42;&#47;locations/&#42;'.
+     * Specified in the format `projects/&#42;&#47;locations/&#42;`.
      * Location "-" matches all zones and all regions.
      *
      * Generated from protobuf field <code>string parent = 4;</code>
@@ -58,7 +58,7 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
      *           This field has been deprecated and replaced by the parent field.
      *     @type string $parent
      *           The parent (project and location) where the clusters will be listed.
-     *           Specified in the format 'projects/&#42;&#47;locations/&#42;'.
+     *           Specified in the format `projects/&#42;&#47;locations/&#42;`.
      *           Location "-" matches all zones and all regions.
      * }
      */
@@ -131,7 +131,7 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The parent (project and location) where the clusters will be listed.
-     * Specified in the format 'projects/&#42;&#47;locations/&#42;'.
+     * Specified in the format `projects/&#42;&#47;locations/&#42;`.
      * Location "-" matches all zones and all regions.
      *
      * Generated from protobuf field <code>string parent = 4;</code>
@@ -144,7 +144,7 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The parent (project and location) where the clusters will be listed.
-     * Specified in the format 'projects/&#42;&#47;locations/&#42;'.
+     * Specified in the format `projects/&#42;&#47;locations/&#42;`.
      * Location "-" matches all zones and all regions.
      *
      * Generated from protobuf field <code>string parent = 4;</code>

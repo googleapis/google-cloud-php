@@ -41,7 +41,7 @@ class GetOperationRequest extends \Google\Protobuf\Internal\Message
     private $operation_id = '';
     /**
      * The name (project, location, operation id) of the operation to get.
-     * Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;operations/&#42;'.
+     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;operations/&#42;`.
      *
      * Generated from protobuf field <code>string name = 5;</code>
      */
@@ -67,7 +67,7 @@ class GetOperationRequest extends \Google\Protobuf\Internal\Message
      *           This field has been deprecated and replaced by the name field.
      *     @type string $name
      *           The name (project, location, operation id) of the operation to get.
-     *           Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;operations/&#42;'.
+     *           Specified in the format `projects/&#42;&#47;locations/&#42;&#47;operations/&#42;`.
      * }
      */
     public function __construct($data = NULL) {
@@ -167,7 +167,7 @@ class GetOperationRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The name (project, location, operation id) of the operation to get.
-     * Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;operations/&#42;'.
+     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;operations/&#42;`.
      *
      * Generated from protobuf field <code>string name = 5;</code>
      * @return string
@@ -179,7 +179,7 @@ class GetOperationRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The name (project, location, operation id) of the operation to get.
-     * Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;operations/&#42;'.
+     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;operations/&#42;`.
      *
      * Generated from protobuf field <code>string name = 5;</code>
      * @param string $var

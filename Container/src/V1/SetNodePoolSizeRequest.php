@@ -56,7 +56,7 @@ class SetNodePoolSizeRequest extends \Google\Protobuf\Internal\Message
     /**
      * The name (project, location, cluster, node pool id) of the node pool to set
      * size.
-     * Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;'.
+     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;`.
      *
      * Generated from protobuf field <code>string name = 7;</code>
      */
@@ -88,7 +88,7 @@ class SetNodePoolSizeRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The name (project, location, cluster, node pool id) of the node pool to set
      *           size.
-     *           Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;'.
+     *           Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;`.
      * }
      */
     public function __construct($data = NULL) {
@@ -243,7 +243,7 @@ class SetNodePoolSizeRequest extends \Google\Protobuf\Internal\Message
     /**
      * The name (project, location, cluster, node pool id) of the node pool to set
      * size.
-     * Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;'.
+     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;`.
      *
      * Generated from protobuf field <code>string name = 7;</code>
      * @return string
@@ -256,7 +256,7 @@ class SetNodePoolSizeRequest extends \Google\Protobuf\Internal\Message
     /**
      * The name (project, location, cluster, node pool id) of the node pool to set
      * size.
-     * Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;'.
+     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;`.
      *
      * Generated from protobuf field <code>string name = 7;</code>
      * @param string $var

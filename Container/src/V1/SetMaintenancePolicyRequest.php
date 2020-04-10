@@ -46,7 +46,7 @@ class SetMaintenancePolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * The name (project, location, cluster id) of the cluster to set maintenance
      * policy.
-     * Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
+     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      *
      * Generated from protobuf field <code>string name = 5;</code>
      */
@@ -73,7 +73,7 @@ class SetMaintenancePolicyRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The name (project, location, cluster id) of the cluster to set maintenance
      *           policy.
-     *           Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
+     *           Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      * }
      */
     public function __construct($data = NULL) {
@@ -196,7 +196,7 @@ class SetMaintenancePolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * The name (project, location, cluster id) of the cluster to set maintenance
      * policy.
-     * Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
+     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      *
      * Generated from protobuf field <code>string name = 5;</code>
      * @return string
@@ -209,7 +209,7 @@ class SetMaintenancePolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * The name (project, location, cluster id) of the cluster to set maintenance
      * policy.
-     * Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
+     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      *
      * Generated from protobuf field <code>string name = 5;</code>
      * @param string $var

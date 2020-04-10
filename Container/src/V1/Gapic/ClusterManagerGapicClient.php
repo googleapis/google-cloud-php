@@ -234,7 +234,7 @@ class ClusterManagerGapicClient
      *          This field has been deprecated and replaced by the parent field.
      *     @type string $parent
      *          The parent (project and location) where the clusters will be listed.
-     *          Specified in the format 'projects/&#42;/locations/*'.
+     *          Specified in the format `projects/&#42;/locations/*`.
      *          Location "-" matches all zones and all regions.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -305,7 +305,7 @@ class ClusterManagerGapicClient
      *          This field has been deprecated and replaced by the name field.
      *     @type string $name
      *          The name (project, location, cluster) of the cluster to retrieve.
-     *          Specified in the format 'projects/&#42;/locations/&#42;/clusters/*'.
+     *          Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -390,7 +390,7 @@ class ClusterManagerGapicClient
      *          This field has been deprecated and replaced by the parent field.
      *     @type string $parent
      *          The parent (project and location) where the cluster will be created.
-     *          Specified in the format 'projects/&#42;/locations/*'.
+     *          Specified in the format `projects/&#42;/locations/*`.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -463,7 +463,7 @@ class ClusterManagerGapicClient
      *          This field has been deprecated and replaced by the name field.
      *     @type string $name
      *          The name (project, location, cluster) of the cluster to update.
-     *          Specified in the format 'projects/&#42;/locations/&#42;/clusters/*'.
+     *          Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -555,7 +555,7 @@ class ClusterManagerGapicClient
      *     @type string $name
      *          The name (project, location, cluster, node pool) of the node pool to
      *          update. Specified in the format
-     *          'projects/&#42;/locations/&#42;/clusters/&#42;/nodePools/*'.
+     *          `projects/&#42;/locations/&#42;/clusters/&#42;/nodePools/*`.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -639,7 +639,7 @@ class ClusterManagerGapicClient
      *     @type string $name
      *          The name (project, location, cluster, node pool) of the node pool to set
      *          autoscaler settings. Specified in the format
-     *          'projects/&#42;/locations/&#42;/clusters/&#42;/nodePools/*'.
+     *          `projects/&#42;/locations/&#42;/clusters/&#42;/nodePools/*`.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -722,7 +722,7 @@ class ClusterManagerGapicClient
      *          This field has been deprecated and replaced by the name field.
      *     @type string $name
      *          The name (project, location, cluster) of the cluster to set logging.
-     *          Specified in the format 'projects/&#42;/locations/&#42;/clusters/*'.
+     *          Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -804,7 +804,7 @@ class ClusterManagerGapicClient
      *          This field has been deprecated and replaced by the name field.
      *     @type string $name
      *          The name (project, location, cluster) of the cluster to set monitoring.
-     *          Specified in the format 'projects/&#42;/locations/&#42;/clusters/*'.
+     *          Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -881,7 +881,7 @@ class ClusterManagerGapicClient
      *          This field has been deprecated and replaced by the name field.
      *     @type string $name
      *          The name (project, location, cluster) of the cluster to set addons.
-     *          Specified in the format 'projects/&#42;/locations/&#42;/clusters/*'.
+     *          Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -963,7 +963,7 @@ class ClusterManagerGapicClient
      *          This field has been deprecated and replaced by the name field.
      *     @type string $name
      *          The name (project, location, cluster) of the cluster to set locations.
-     *          Specified in the format 'projects/&#42;/locations/&#42;/clusters/*'.
+     *          Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1048,7 +1048,7 @@ class ClusterManagerGapicClient
      *          This field has been deprecated and replaced by the name field.
      *     @type string $name
      *          The name (project, location, cluster) of the cluster to update.
-     *          Specified in the format 'projects/&#42;/locations/&#42;/clusters/*'.
+     *          Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1129,7 +1129,7 @@ class ClusterManagerGapicClient
      *          This field has been deprecated and replaced by the name field.
      *     @type string $name
      *          The name (project, location, cluster) of the cluster to set auth.
-     *          Specified in the format 'projects/&#42;/locations/&#42;/clusters/*'.
+     *          Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1212,7 +1212,7 @@ class ClusterManagerGapicClient
      *          This field has been deprecated and replaced by the name field.
      *     @type string $name
      *          The name (project, location, cluster) of the cluster to delete.
-     *          Specified in the format 'projects/&#42;/locations/&#42;/clusters/*'.
+     *          Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1281,7 +1281,7 @@ class ClusterManagerGapicClient
      *          all zones. This field has been deprecated and replaced by the parent field.
      *     @type string $parent
      *          The parent (project and location) where the operations will be listed.
-     *          Specified in the format 'projects/&#42;/locations/*'.
+     *          Specified in the format `projects/&#42;/locations/*`.
      *          Location "-" matches all zones and all regions.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1352,7 +1352,7 @@ class ClusterManagerGapicClient
      *          This field has been deprecated and replaced by the name field.
      *     @type string $name
      *          The name (project, location, operation id) of the operation to get.
-     *          Specified in the format 'projects/&#42;/locations/&#42;/operations/*'.
+     *          Specified in the format `projects/&#42;/locations/&#42;/operations/*`.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1424,7 +1424,7 @@ class ClusterManagerGapicClient
      *          This field has been deprecated and replaced by the name field.
      *     @type string $name
      *          The name (project, location, operation id) of the operation to cancel.
-     *          Specified in the format 'projects/&#42;/locations/&#42;/operations/*'.
+     *          Specified in the format `projects/&#42;/locations/&#42;/operations/*`.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1491,7 +1491,7 @@ class ClusterManagerGapicClient
      *          This field has been deprecated and replaced by the name field.
      *     @type string $name
      *          The name (project and location) of the server config to get,
-     *          specified in the format 'projects/&#42;/locations/*'.
+     *          specified in the format `projects/&#42;/locations/*`.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1561,7 +1561,7 @@ class ClusterManagerGapicClient
      *          This field has been deprecated and replaced by the parent field.
      *     @type string $parent
      *          The parent (project, location, cluster id) where the node pools will be
-     *          listed. Specified in the format 'projects/&#42;/locations/&#42;/clusters/*'.
+     *          listed. Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1638,7 +1638,7 @@ class ClusterManagerGapicClient
      *     @type string $name
      *          The name (project, location, cluster, node pool id) of the node pool to
      *          get. Specified in the format
-     *          'projects/&#42;/locations/&#42;/clusters/&#42;/nodePools/*'.
+     *          `projects/&#42;/locations/&#42;/clusters/&#42;/nodePools/*`.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1717,7 +1717,7 @@ class ClusterManagerGapicClient
      *     @type string $parent
      *          The parent (project, location, cluster id) where the node pool will be
      *          created. Specified in the format
-     *          'projects/&#42;/locations/&#42;/clusters/*'.
+     *          `projects/&#42;/locations/&#42;/clusters/*`.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1795,7 +1795,7 @@ class ClusterManagerGapicClient
      *     @type string $name
      *          The name (project, location, cluster, node pool id) of the node pool to
      *          delete. Specified in the format
-     *          'projects/&#42;/locations/&#42;/clusters/&#42;/nodePools/*'.
+     *          `projects/&#42;/locations/&#42;/clusters/&#42;/nodePools/*`.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1876,7 +1876,7 @@ class ClusterManagerGapicClient
      *     @type string $name
      *          The name (project, location, cluster, node pool id) of the node poll to
      *          rollback upgrade.
-     *          Specified in the format 'projects/&#42;/locations/&#42;/clusters/&#42;/nodePools/*'.
+     *          Specified in the format `projects/&#42;/locations/&#42;/clusters/&#42;/nodePools/*`.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1958,7 +1958,7 @@ class ClusterManagerGapicClient
      *     @type string $name
      *          The name (project, location, cluster, node pool id) of the node pool to set
      *          management properties. Specified in the format
-     *          'projects/&#42;/locations/&#42;/clusters/&#42;/nodePools/*'.
+     *          `projects/&#42;/locations/&#42;/clusters/&#42;/nodePools/*`.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -2044,7 +2044,7 @@ class ClusterManagerGapicClient
      *          This field has been deprecated and replaced by the name field.
      *     @type string $name
      *          The name (project, location, cluster id) of the cluster to set labels.
-     *          Specified in the format 'projects/&#42;/locations/&#42;/clusters/*'.
+     *          Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -2121,7 +2121,7 @@ class ClusterManagerGapicClient
      *          This field has been deprecated and replaced by the name field.
      *     @type string $name
      *          The name (project, location, cluster id) of the cluster to set legacy abac.
-     *          Specified in the format 'projects/&#42;/locations/&#42;/clusters/*'.
+     *          Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -2195,7 +2195,7 @@ class ClusterManagerGapicClient
      *          This field has been deprecated and replaced by the name field.
      *     @type string $name
      *          The name (project, location, cluster id) of the cluster to start IP
-     *          rotation. Specified in the format 'projects/&#42;/locations/&#42;/clusters/*'.
+     *          rotation. Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
      *     @type bool $rotateCredentials
      *          Whether to rotate credentials during IP rotation.
      *     @type RetrySettings|array $retrySettings
@@ -2273,7 +2273,7 @@ class ClusterManagerGapicClient
      *          This field has been deprecated and replaced by the name field.
      *     @type string $name
      *          The name (project, location, cluster id) of the cluster to complete IP
-     *          rotation. Specified in the format 'projects/&#42;/locations/&#42;/clusters/*'.
+     *          rotation. Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -2352,7 +2352,7 @@ class ClusterManagerGapicClient
      *     @type string $name
      *          The name (project, location, cluster, node pool id) of the node pool to set
      *          size.
-     *          Specified in the format 'projects/&#42;/locations/&#42;/clusters/&#42;/nodePools/*'.
+     *          Specified in the format `projects/&#42;/locations/&#42;/clusters/&#42;/nodePools/*`.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -2431,7 +2431,7 @@ class ClusterManagerGapicClient
      *          This field has been deprecated and replaced by the name field.
      *     @type string $name
      *          The name (project, location, cluster id) of the cluster to set networking
-     *          policy. Specified in the format 'projects/&#42;/locations/&#42;/clusters/*'.
+     *          policy. Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -2506,7 +2506,7 @@ class ClusterManagerGapicClient
      *     @type string $name
      *          The name (project, location, cluster id) of the cluster to set maintenance
      *          policy.
-     *          Specified in the format 'projects/&#42;/locations/&#42;/clusters/*'.
+     *          Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -2577,7 +2577,7 @@ class ClusterManagerGapicClient
      *
      *     @type string $parent
      *          The parent project where subnetworks are usable.
-     *          Specified in the format 'projects/*'.
+     *          Specified in the format `projects/*`.
      *     @type string $filter
      *          Filtering currently only supports equality on the networkProjectId and must
      *          be in the form: "networkProjectId=[PROJECTID]", where `networkProjectId`

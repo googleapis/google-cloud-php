@@ -18,7 +18,7 @@ class ListUsableSubnetworksRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The parent project where subnetworks are usable.
-     * Specified in the format 'projects/&#42;'.
+     * Specified in the format `projects/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      */
@@ -57,7 +57,7 @@ class ListUsableSubnetworksRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           The parent project where subnetworks are usable.
-     *           Specified in the format 'projects/&#42;'.
+     *           Specified in the format `projects/&#42;`.
      *     @type string $filter
      *           Filtering currently only supports equality on the networkProjectId and must
      *           be in the form: "networkProjectId=[PROJECTID]", where `networkProjectId`
@@ -80,7 +80,7 @@ class ListUsableSubnetworksRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The parent project where subnetworks are usable.
-     * Specified in the format 'projects/&#42;'.
+     * Specified in the format `projects/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      * @return string
@@ -92,7 +92,7 @@ class ListUsableSubnetworksRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The parent project where subnetworks are usable.
-     * Specified in the format 'projects/&#42;'.
+     * Specified in the format `projects/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      * @param string $var

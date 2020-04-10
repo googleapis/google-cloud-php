@@ -48,7 +48,7 @@ class SetLegacyAbacRequest extends \Google\Protobuf\Internal\Message
     private $enabled = false;
     /**
      * The name (project, location, cluster id) of the cluster to set legacy abac.
-     * Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
+     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      *
      * Generated from protobuf field <code>string name = 6;</code>
      */
@@ -76,7 +76,7 @@ class SetLegacyAbacRequest extends \Google\Protobuf\Internal\Message
      *           Required. Whether ABAC authorization will be enabled in the cluster.
      *     @type string $name
      *           The name (project, location, cluster id) of the cluster to set legacy abac.
-     *           Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
+     *           Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      * }
      */
     public function __construct($data = NULL) {
@@ -202,7 +202,7 @@ class SetLegacyAbacRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The name (project, location, cluster id) of the cluster to set legacy abac.
-     * Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
+     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      *
      * Generated from protobuf field <code>string name = 6;</code>
      * @return string
@@ -214,7 +214,7 @@ class SetLegacyAbacRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The name (project, location, cluster id) of the cluster to set legacy abac.
-     * Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
+     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      *
      * Generated from protobuf field <code>string name = 6;</code>
      * @param string $var
