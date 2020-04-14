@@ -25,7 +25,8 @@ use UnexpectedValueException;
  * an `AudioEncoding` when you send  send `FLAC` or `WAV` audio, the
  * encoding configuration must match the encoding described in the audio
  * header; otherwise the request returns an
- * [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT] error code.
+ * [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT] error
+ * code.
  *
  * Protobuf type <code>google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding</code>
  */
@@ -100,8 +101,8 @@ class AudioEncoding
     const SPEEX_WITH_HEADER_BYTE = 7;
     /**
      * MP3 audio. Support all standard MP3 bitrates (which range from 32-320
-     * kbps). When using this encoding, `sample_rate_hertz` can be optionally
-     * unset if not known.
+     * kbps). When using this encoding, `sample_rate_hertz` has to match the
+     * sample rate of the file being used.
      *
      * Generated from protobuf enum <code>MP3 = 8;</code>
      */
