@@ -26,6 +26,7 @@ use Google\Cloud\Language\V1beta2\LanguageServiceClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\Cloud\Language\V1beta2\Document;
 use Google\Cloud\Language\V1beta2\Document\Type;
+use Google\Cloud\Language\V1beta2\EncodingType;
 
 /**
  * @group language
@@ -44,6 +45,7 @@ class LanguageServiceSmokeTest extends GeneratedTest
         $document = new Document();
         $document->setContent($content);
         $document->setType($type);
-        $languageServiceClient->analyzeSentiment($document);
+        $encodingType = EncodingType::NONE;
+        $languageServiceClient->analyzeSentiment($document, ['encodingType' => $encodingType]);
     }
 }
