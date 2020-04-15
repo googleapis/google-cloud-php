@@ -22,7 +22,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      * Values are of the form
      * `projects/<project>/instances/<instance>/databases/<database>`.
      *
-     * Generated from protobuf field <code>string database = 2;</code>
+     * Generated from protobuf field <code>string database = 2 [(.google.api.resource_reference) = {</code>
      */
     private $database = '';
     /**
@@ -148,7 +148,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      * Values are of the form
      * `projects/<project>/instances/<instance>/databases/<database>`.
      *
-     * Generated from protobuf field <code>string database = 2;</code>
+     * Generated from protobuf field <code>string database = 2 [(.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getDatabase()
@@ -163,7 +163,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      * Values are of the form
      * `projects/<project>/instances/<instance>/databases/<database>`.
      *
-     * Generated from protobuf field <code>string database = 2;</code>
+     * Generated from protobuf field <code>string database = 2 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
