@@ -31,7 +31,6 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Bigtable\Admin\V2\AppProfile;
 use Google\Cloud\Bigtable\Admin\V2\Cluster;
 use Google\Cloud\Bigtable\Admin\V2\Instance;
-use Google\Cloud\Bigtable\Admin\V2\Instance\Type;
 use Google\Cloud\Bigtable\Admin\V2\ListAppProfilesResponse;
 use Google\Cloud\Bigtable\Admin\V2\ListClustersResponse;
 use Google\Cloud\Bigtable\Admin\V2\ListInstancesResponse;
@@ -400,20 +399,17 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
 
         // Mock response
-        $name2 = 'name2-1052831874';
+        $name = 'name3373707';
         $displayName2 = 'displayName21615000987';
         $expectedResponse = new Instance();
-        $expectedResponse->setName($name2);
+        $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName2);
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->instanceName('[PROJECT]', '[INSTANCE]');
         $displayName = 'displayName1615086568';
-        $type = Type::TYPE_UNSPECIFIED;
-        $labels = [];
 
-        $response = $client->updateInstance($formattedName, $displayName, $type, $labels);
+        $response = $client->updateInstance($displayName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -421,18 +417,9 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableInstanceAdmin/UpdateInstance', $actualFuncCall);
 
-        $actualValue = $actualRequestObject->getName();
-
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $actualValue = $actualRequestObject->getDisplayName();
 
         $this->assertProtobufEquals($displayName, $actualValue);
-        $actualValue = $actualRequestObject->getType();
-
-        $this->assertProtobufEquals($type, $actualValue);
-        $actualValue = $actualRequestObject->getLabels();
-
-        $this->assertProtobufEquals($labels, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -460,13 +447,10 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->instanceName('[PROJECT]', '[INSTANCE]');
         $displayName = 'displayName1615086568';
-        $type = Type::TYPE_UNSPECIFIED;
-        $labels = [];
 
         try {
-            $client->updateInstance($formattedName, $displayName, $type, $labels);
+            $client->updateInstance($displayName);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1029,11 +1013,11 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $incompleteOperation->setName('operations/updateClusterTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
-        $name2 = 'name2-1052831874';
+        $name = 'name3373707';
         $location = 'location1901043637';
         $serveNodes2 = 1623486220;
         $expectedResponse = new Cluster();
-        $expectedResponse->setName($name2);
+        $expectedResponse->setName($name);
         $expectedResponse->setLocation($location);
         $expectedResponse->setServeNodes($serveNodes2);
         $anyResponse = new Any();
@@ -1045,10 +1029,9 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
 
         // Mock request
-        $formattedName = $client->clusterName('[PROJECT]', '[INSTANCE]', '[CLUSTER]');
         $serveNodes = 1288838783;
 
-        $response = $client->updateCluster($formattedName, $serveNodes);
+        $response = $client->updateCluster($serveNodes);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1059,9 +1042,6 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableInstanceAdmin/UpdateCluster', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $actualValue = $actualApiRequestObject->getServeNodes();
 
         $this->assertProtobufEquals($serveNodes, $actualValue);
@@ -1127,10 +1107,9 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->clusterName('[PROJECT]', '[INSTANCE]', '[CLUSTER]');
         $serveNodes = 1288838783;
 
-        $response = $client->updateCluster($formattedName, $serveNodes);
+        $response = $client->updateCluster($serveNodes);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
 
@@ -1635,9 +1614,8 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
 
         // Mock request
         $formattedName = $client->appProfileName('[PROJECT]', '[INSTANCE]', '[APP_PROFILE]');
-        $ignoreWarnings = true;
 
-        $client->deleteAppProfile($formattedName, $ignoreWarnings);
+        $client->deleteAppProfile($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -1647,9 +1625,6 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $actualValue = $actualRequestObject->getName();
 
         $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualRequestObject->getIgnoreWarnings();
-
-        $this->assertProtobufEquals($ignoreWarnings, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -1678,10 +1653,9 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
 
         // Mock request
         $formattedName = $client->appProfileName('[PROJECT]', '[INSTANCE]', '[APP_PROFILE]');
-        $ignoreWarnings = true;
 
         try {
-            $client->deleteAppProfile($formattedName, $ignoreWarnings);
+            $client->deleteAppProfile($formattedName);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1713,9 +1687,9 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedResource = $client->instanceName('[PROJECT]', '[INSTANCE]');
+        $resource = 'resource-341064690';
 
-        $response = $client->getIamPolicy($formattedResource);
+        $response = $client->getIamPolicy($resource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1725,7 +1699,7 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getResource();
 
-        $this->assertProtobufEquals($formattedResource, $actualValue);
+        $this->assertProtobufEquals($resource, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -1753,10 +1727,10 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedResource = $client->instanceName('[PROJECT]', '[INSTANCE]');
+        $resource = 'resource-341064690';
 
         try {
-            $client->getIamPolicy($formattedResource);
+            $client->getIamPolicy($resource);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1788,10 +1762,10 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedResource = $client->instanceName('[PROJECT]', '[INSTANCE]');
+        $resource = 'resource-341064690';
         $policy = new Policy();
 
-        $response = $client->setIamPolicy($formattedResource, $policy);
+        $response = $client->setIamPolicy($resource, $policy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1801,7 +1775,7 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getResource();
 
-        $this->assertProtobufEquals($formattedResource, $actualValue);
+        $this->assertProtobufEquals($resource, $actualValue);
         $actualValue = $actualRequestObject->getPolicy();
 
         $this->assertProtobufEquals($policy, $actualValue);
@@ -1832,11 +1806,11 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedResource = $client->instanceName('[PROJECT]', '[INSTANCE]');
+        $resource = 'resource-341064690';
         $policy = new Policy();
 
         try {
-            $client->setIamPolicy($formattedResource, $policy);
+            $client->setIamPolicy($resource, $policy);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1864,10 +1838,10 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedResource = $client->instanceName('[PROJECT]', '[INSTANCE]');
+        $resource = 'resource-341064690';
         $permissions = [];
 
-        $response = $client->testIamPermissions($formattedResource, $permissions);
+        $response = $client->testIamPermissions($resource, $permissions);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1877,7 +1851,7 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getResource();
 
-        $this->assertProtobufEquals($formattedResource, $actualValue);
+        $this->assertProtobufEquals($resource, $actualValue);
         $actualValue = $actualRequestObject->getPermissions();
 
         $this->assertProtobufEquals($permissions, $actualValue);
@@ -1908,11 +1882,11 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedResource = $client->instanceName('[PROJECT]', '[INSTANCE]');
+        $resource = 'resource-341064690';
         $permissions = [];
 
         try {
-            $client->testIamPermissions($formattedResource, $permissions);
+            $client->testIamPermissions($resource, $permissions);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

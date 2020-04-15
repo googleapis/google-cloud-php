@@ -576,8 +576,8 @@ class BigtableTableAdminGapicClient
      * try {
      *     $formattedParent = $bigtableTableAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     $tableId = '';
-     *     $sourceSnapshot = '';
-     *     $operationResponse = $bigtableTableAdminClient->createTableFromSnapshot($formattedParent, $tableId, $sourceSnapshot);
+     *     $formattedSourceSnapshot = $bigtableTableAdminClient->snapshotName('[PROJECT]', '[INSTANCE]', '[CLUSTER]', '[SNAPSHOT]');
+     *     $operationResponse = $bigtableTableAdminClient->createTableFromSnapshot($formattedParent, $tableId, $formattedSourceSnapshot);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -591,7 +591,7 @@ class BigtableTableAdminGapicClient
      *     // Alternatively:
      *
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $bigtableTableAdminClient->createTableFromSnapshot($formattedParent, $tableId, $sourceSnapshot);
+     *     $operationResponse = $bigtableTableAdminClient->createTableFromSnapshot($formattedParent, $tableId, $formattedSourceSnapshot);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $bigtableTableAdminClient->resumeOperation($operationName, 'createTableFromSnapshot');
@@ -695,15 +695,9 @@ class BigtableTableAdminGapicClient
      *          Only NAME_ONLY view (default) and REPLICATION_VIEW are supported.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\Table\View}
      *     @type int $pageSize
-     *          Maximum number of results per page.
-     *
-     *          A page_size of zero lets the server choose the number of items to return.
-     *          A page_size which is strictly positive will return at most that many items.
-     *          A negative page_size will cause an error.
-     *
-     *          Following the first request, subsequent paginated calls are not required
-     *          to pass a page_size. If a page_size is set in subsequent calls, it must
-     *          match the page_size given in the first request.
+     *          The maximum number of resources contained in the underlying API
+     *          response. The API may return fewer values in a page, even if
+     *          there are additional values to be retrieved.
      *     @type string $pageToken
      *          A page token is used to specify a page of values to be returned.
      *          If no page token is specified (the default), the first page
@@ -1104,8 +1098,8 @@ class BigtableTableAdminGapicClient
      * ```
      * $bigtableTableAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient();
      * try {
-     *     $formattedResource = $bigtableTableAdminClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
-     *     $response = $bigtableTableAdminClient->getIamPolicy($formattedResource);
+     *     $resource = '';
+     *     $response = $bigtableTableAdminClient->getIamPolicy($resource);
      * } finally {
      *     $bigtableTableAdminClient->close();
      * }
@@ -1162,9 +1156,9 @@ class BigtableTableAdminGapicClient
      * ```
      * $bigtableTableAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient();
      * try {
-     *     $formattedResource = $bigtableTableAdminClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+     *     $resource = '';
      *     $policy = new Google\Cloud\Iam\V1\Policy();
-     *     $response = $bigtableTableAdminClient->setIamPolicy($formattedResource, $policy);
+     *     $response = $bigtableTableAdminClient->setIamPolicy($resource, $policy);
      * } finally {
      *     $bigtableTableAdminClient->close();
      * }
@@ -1219,9 +1213,9 @@ class BigtableTableAdminGapicClient
      * ```
      * $bigtableTableAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient();
      * try {
-     *     $formattedResource = $bigtableTableAdminClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+     *     $resource = '';
      *     $permissions = [];
-     *     $response = $bigtableTableAdminClient->testIamPermissions($formattedResource, $permissions);
+     *     $response = $bigtableTableAdminClient->testIamPermissions($resource, $permissions);
      * } finally {
      *     $bigtableTableAdminClient->close();
      * }
@@ -1284,10 +1278,9 @@ class BigtableTableAdminGapicClient
      * $bigtableTableAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient();
      * try {
      *     $formattedName = $bigtableTableAdminClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
-     *     $cluster = '';
+     *     $formattedCluster = $bigtableTableAdminClient->clusterName('[PROJECT]', '[INSTANCE]', '[CLUSTER]');
      *     $snapshotId = '';
-     *     $description = '';
-     *     $operationResponse = $bigtableTableAdminClient->snapshotTable($formattedName, $cluster, $snapshotId, $description);
+     *     $operationResponse = $bigtableTableAdminClient->snapshotTable($formattedName, $formattedCluster, $snapshotId);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1301,7 +1294,7 @@ class BigtableTableAdminGapicClient
      *     // Alternatively:
      *
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $bigtableTableAdminClient->snapshotTable($formattedName, $cluster, $snapshotId, $description);
+     *     $operationResponse = $bigtableTableAdminClient->snapshotTable($formattedName, $formattedCluster, $snapshotId);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $bigtableTableAdminClient->resumeOperation($operationName, 'snapshotTable');
@@ -1331,7 +1324,6 @@ class BigtableTableAdminGapicClient
      *                             parent cluster, e.g., `mysnapshot` of the form:
      *                             `[_a-zA-Z0-9][-_.a-zA-Z0-9]*` rather than
      *                             `projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/mysnapshot`.
-     * @param string $description  Description of the snapshot.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1340,6 +1332,8 @@ class BigtableTableAdminGapicClient
      *          created. Once 'ttl' expires, the snapshot will get deleted. The maximum
      *          amount of time a snapshot can stay active is 7 days. If 'ttl' is not
      *          specified, the default value of 24 hours will be used.
+     *     @type string $description
+     *          Description of the snapshot.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1352,15 +1346,17 @@ class BigtableTableAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function snapshotTable($name, $cluster, $snapshotId, $description, array $optionalArgs = [])
+    public function snapshotTable($name, $cluster, $snapshotId, array $optionalArgs = [])
     {
         $request = new SnapshotTableRequest();
         $request->setName($name);
         $request->setCluster($cluster);
         $request->setSnapshotId($snapshotId);
-        $request->setDescription($description);
         if (isset($optionalArgs['ttl'])) {
             $request->setTtl($optionalArgs['ttl']);
+        }
+        if (isset($optionalArgs['description'])) {
+            $request->setDescription($optionalArgs['description']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor([
@@ -2001,8 +1997,7 @@ class BigtableTableAdminGapicClient
      * ```
      * $bigtableTableAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient();
      * try {
-     *     $parent = '';
-     *     $operationResponse = $bigtableTableAdminClient->restoreTable($parent);
+     *     $operationResponse = $bigtableTableAdminClient->restoreTable();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -2016,7 +2011,7 @@ class BigtableTableAdminGapicClient
      *     // Alternatively:
      *
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $bigtableTableAdminClient->restoreTable($parent);
+     *     $operationResponse = $bigtableTableAdminClient->restoreTable();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $bigtableTableAdminClient->resumeOperation($operationName, 'restoreTable');
@@ -2036,12 +2031,13 @@ class BigtableTableAdminGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The name of the instance in which to create the restored
-     *                             table. This instance must be the parent of the source backup. Values are
-     *                             of the form `projects/<project>/instances/<instance>`.
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param array $optionalArgs {
+     *                            Optional.
      *
+     *     @type string $parent
+     *          Required. The name of the instance in which to create the restored
+     *          table. This instance must be the parent of the source backup. Values are
+     *          of the form `projects/<project>/instances/<instance>`.
      *     @type string $tableId
      *          Required. The id of the table to create and restore to. This
      *          table must not already exist. The `table_id` appended to
@@ -2062,10 +2058,12 @@ class BigtableTableAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function restoreTable($parent, array $optionalArgs = [])
+    public function restoreTable(array $optionalArgs = [])
     {
         $request = new RestoreTableRequest();
-        $request->setParent($parent);
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+        }
         if (isset($optionalArgs['tableId'])) {
             $request->setTableId($optionalArgs['tableId']);
         }

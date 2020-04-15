@@ -696,41 +696,41 @@ class BigtableInstanceAdminGapicClient
      * ```
      * $bigtableInstanceAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient();
      * try {
-     *     $formattedName = $bigtableInstanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     $displayName = '';
-     *     $type = Google\Cloud\Bigtable\Admin\V2\Instance\Type::TYPE_UNSPECIFIED;
-     *     $labels = [];
-     *     $response = $bigtableInstanceAdminClient->updateInstance($formattedName, $displayName, $type, $labels);
+     *     $response = $bigtableInstanceAdminClient->updateInstance($displayName);
      * } finally {
      *     $bigtableInstanceAdminClient->close();
      * }
      * ```
      *
-     * @param string $name        The unique name of the instance. Values are of the form
-     *                            `projects/{project}/instances/[a-z][a-z0-9\\-]+[a-z0-9]`.
-     * @param string $displayName Required. The descriptive name for this instance as it appears in UIs.
-     *                            Can be changed at any time, but should be kept globally unique
-     *                            to avoid confusion.
-     * @param int    $type        The type of the instance. Defaults to `PRODUCTION`.
-     *                            For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\Instance\Type}
-     * @param array  $labels      Labels are a flexible and lightweight mechanism for organizing cloud
-     *                            resources into groups that reflect a customer's organizational needs and
-     *                            deployment strategies. They can be used to filter resources and aggregate
-     *                            metrics.
+     * @param string $displayName  Required. The descriptive name for this instance as it appears in UIs.
+     *                             Can be changed at any time, but should be kept globally unique
+     *                             to avoid confusion.
+     * @param array  $optionalArgs {
+     *                             Optional.
      *
-     * * Label keys must be between 1 and 63 characters long and must conform to
-     *   the regular expression: `[\p{Ll}\p{Lo}][\p{Ll}\p{Lo}\p{N}_-]{0,62}`.
-     * * Label values must be between 0 and 63 characters long and must conform to
-     *   the regular expression: `[\p{Ll}\p{Lo}\p{N}_-]{0,63}`.
-     * * No more than 64 labels can be associated with a given resource.
-     * * Keys and values must both be under 128 bytes.
-     * @param array $optionalArgs {
-     *                            Optional.
-     *
+     *     @type string $name
+     *          The unique name of the instance. Values are of the form
+     *          `projects/{project}/instances/[a-z][a-z0-9\\-]+[a-z0-9]`.
      *     @type int $state
      *          (`OutputOnly`)
      *          The current state of the instance.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\Instance\State}
+     *     @type int $type
+     *          The type of the instance. Defaults to `PRODUCTION`.
+     *          For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\Instance\Type}
+     *     @type array $labels
+     *          Labels are a flexible and lightweight mechanism for organizing cloud
+     *          resources into groups that reflect a customer's organizational needs and
+     *          deployment strategies. They can be used to filter resources and aggregate
+     *          metrics.
+     *
+     *          * Label keys must be between 1 and 63 characters long and must conform to
+     *            the regular expression: `[\p{Ll}\p{Lo}][\p{Ll}\p{Lo}\p{N}_-]{0,62}`.
+     *          * Label values must be between 0 and 63 characters long and must conform to
+     *            the regular expression: `[\p{Ll}\p{Lo}\p{N}_-]{0,63}`.
+     *          * No more than 64 labels can be associated with a given resource.
+     *          * Keys and values must both be under 128 bytes.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -743,15 +743,21 @@ class BigtableInstanceAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateInstance($name, $displayName, $type, $labels, array $optionalArgs = [])
+    public function updateInstance($displayName, array $optionalArgs = [])
     {
         $request = new Instance();
-        $request->setName($name);
         $request->setDisplayName($displayName);
-        $request->setType($type);
-        $request->setLabels($labels);
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+        }
         if (isset($optionalArgs['state'])) {
             $request->setState($optionalArgs['state']);
+        }
+        if (isset($optionalArgs['type'])) {
+            $request->setType($optionalArgs['type']);
+        }
+        if (isset($optionalArgs['labels'])) {
+            $request->setLabels($optionalArgs['labels']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor([
@@ -1106,9 +1112,8 @@ class BigtableInstanceAdminGapicClient
      * ```
      * $bigtableInstanceAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient();
      * try {
-     *     $formattedName = $bigtableInstanceAdminClient->clusterName('[PROJECT]', '[INSTANCE]', '[CLUSTER]');
      *     $serveNodes = 0;
-     *     $operationResponse = $bigtableInstanceAdminClient->updateCluster($formattedName, $serveNodes);
+     *     $operationResponse = $bigtableInstanceAdminClient->updateCluster($serveNodes);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1122,7 +1127,7 @@ class BigtableInstanceAdminGapicClient
      *     // Alternatively:
      *
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $bigtableInstanceAdminClient->updateCluster($formattedName, $serveNodes);
+     *     $operationResponse = $bigtableInstanceAdminClient->updateCluster($serveNodes);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $bigtableInstanceAdminClient->resumeOperation($operationName, 'updateCluster');
@@ -1142,13 +1147,14 @@ class BigtableInstanceAdminGapicClient
      * }
      * ```
      *
-     * @param string $name         The unique name of the cluster. Values are of the form
-     *                             `projects/{project}/instances/{instance}/clusters/[a-z][-a-z0-9]*`.
-     * @param int    $serveNodes   Required. The number of nodes allocated to this cluster. More nodes enable higher
-     *                             throughput and more consistent performance.
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param int   $serveNodes   Required. The number of nodes allocated to this cluster. More nodes enable
+     *                            higher throughput and more consistent performance.
+     * @param array $optionalArgs {
+     *                            Optional.
      *
+     *     @type string $name
+     *          The unique name of the cluster. Values are of the form
+     *          `projects/{project}/instances/{instance}/clusters/[a-z][-a-z0-9]*`.
      *     @type string $location
      *          (`CreationOnly`)
      *          The location where this cluster's nodes and storage reside. For best
@@ -1175,11 +1181,13 @@ class BigtableInstanceAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateCluster($name, $serveNodes, array $optionalArgs = [])
+    public function updateCluster($serveNodes, array $optionalArgs = [])
     {
         $request = new Cluster();
-        $request->setName($name);
         $request->setServeNodes($serveNodes);
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+        }
         if (isset($optionalArgs['location'])) {
             $request->setLocation($optionalArgs['location']);
         }
@@ -1409,15 +1417,9 @@ class BigtableInstanceAdminGapicClient
      *                             Optional.
      *
      *     @type int $pageSize
-     *          Maximum number of results per page.
-     *
-     *          A page_size of zero lets the server choose the number of items to return.
-     *          A page_size which is strictly positive will return at most that many items.
-     *          A negative page_size will cause an error.
-     *
-     *          Following the first request, subsequent paginated calls are not required
-     *          to pass a page_size. If a page_size is set in subsequent calls, it must
-     *          match the page_size given in the first request.
+     *          The maximum number of resources contained in the underlying API
+     *          response. The API may return fewer values in a page, even if
+     *          there are additional values to be retrieved.
      *     @type string $pageToken
      *          A page token is used to specify a page of values to be returned.
      *          If no page token is specified (the default), the first page
@@ -1556,19 +1558,19 @@ class BigtableInstanceAdminGapicClient
      * $bigtableInstanceAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient();
      * try {
      *     $formattedName = $bigtableInstanceAdminClient->appProfileName('[PROJECT]', '[INSTANCE]', '[APP_PROFILE]');
-     *     $ignoreWarnings = false;
-     *     $bigtableInstanceAdminClient->deleteAppProfile($formattedName, $ignoreWarnings);
+     *     $bigtableInstanceAdminClient->deleteAppProfile($formattedName);
      * } finally {
      *     $bigtableInstanceAdminClient->close();
      * }
      * ```
      *
-     * @param string $name           Required. The unique name of the app profile to be deleted. Values are of the form
-     *                               `projects/{project}/instances/{instance}/appProfiles/{app_profile}`.
-     * @param bool   $ignoreWarnings If true, ignore safety checks when deleting the app profile.
-     * @param array  $optionalArgs   {
-     *                               Optional.
+     * @param string $name         Required. The unique name of the app profile to be deleted. Values are of the form
+     *                             `projects/{project}/instances/{instance}/appProfiles/{app_profile}`.
+     * @param array  $optionalArgs {
+     *                             Optional.
      *
+     *     @type bool $ignoreWarnings
+     *          If true, ignore safety checks when deleting the app profile.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1579,11 +1581,13 @@ class BigtableInstanceAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteAppProfile($name, $ignoreWarnings, array $optionalArgs = [])
+    public function deleteAppProfile($name, array $optionalArgs = [])
     {
         $request = new DeleteAppProfileRequest();
         $request->setName($name);
-        $request->setIgnoreWarnings($ignoreWarnings);
+        if (isset($optionalArgs['ignoreWarnings'])) {
+            $request->setIgnoreWarnings($optionalArgs['ignoreWarnings']);
+        }
 
         $requestParams = new RequestParamsHeaderDescriptor([
           'name' => $request->getName(),
@@ -1608,8 +1612,8 @@ class BigtableInstanceAdminGapicClient
      * ```
      * $bigtableInstanceAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient();
      * try {
-     *     $formattedResource = $bigtableInstanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
-     *     $response = $bigtableInstanceAdminClient->getIamPolicy($formattedResource);
+     *     $resource = '';
+     *     $response = $bigtableInstanceAdminClient->getIamPolicy($resource);
      * } finally {
      *     $bigtableInstanceAdminClient->close();
      * }
@@ -1666,9 +1670,9 @@ class BigtableInstanceAdminGapicClient
      * ```
      * $bigtableInstanceAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient();
      * try {
-     *     $formattedResource = $bigtableInstanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
+     *     $resource = '';
      *     $policy = new Google\Cloud\Iam\V1\Policy();
-     *     $response = $bigtableInstanceAdminClient->setIamPolicy($formattedResource, $policy);
+     *     $response = $bigtableInstanceAdminClient->setIamPolicy($resource, $policy);
      * } finally {
      *     $bigtableInstanceAdminClient->close();
      * }
@@ -1723,9 +1727,9 @@ class BigtableInstanceAdminGapicClient
      * ```
      * $bigtableInstanceAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient();
      * try {
-     *     $formattedResource = $bigtableInstanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
+     *     $resource = '';
      *     $permissions = [];
-     *     $response = $bigtableInstanceAdminClient->testIamPermissions($formattedResource, $permissions);
+     *     $response = $bigtableInstanceAdminClient->testIamPermissions($resource, $permissions);
      * } finally {
      *     $bigtableInstanceAdminClient->close();
      * }

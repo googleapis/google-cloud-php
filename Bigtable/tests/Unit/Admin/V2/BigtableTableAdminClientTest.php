@@ -205,9 +205,9 @@ class BigtableTableAdminClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $client->instanceName('[PROJECT]', '[INSTANCE]');
         $tableId = 'tableId-895419604';
-        $sourceSnapshot = 'sourceSnapshot-947679896';
+        $formattedSourceSnapshot = $client->snapshotName('[PROJECT]', '[INSTANCE]', '[CLUSTER]', '[SNAPSHOT]');
 
-        $response = $client->createTableFromSnapshot($formattedParent, $tableId, $sourceSnapshot);
+        $response = $client->createTableFromSnapshot($formattedParent, $tableId, $formattedSourceSnapshot);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -226,7 +226,7 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $this->assertProtobufEquals($tableId, $actualValue);
         $actualValue = $actualApiRequestObject->getSourceSnapshot();
 
-        $this->assertProtobufEquals($sourceSnapshot, $actualValue);
+        $this->assertProtobufEquals($formattedSourceSnapshot, $actualValue);
 
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createTableFromSnapshotTest');
@@ -291,9 +291,9 @@ class BigtableTableAdminClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $client->instanceName('[PROJECT]', '[INSTANCE]');
         $tableId = 'tableId-895419604';
-        $sourceSnapshot = 'sourceSnapshot-947679896';
+        $formattedSourceSnapshot = $client->snapshotName('[PROJECT]', '[INSTANCE]', '[CLUSTER]', '[SNAPSHOT]');
 
-        $response = $client->createTableFromSnapshot($formattedParent, $tableId, $sourceSnapshot);
+        $response = $client->createTableFromSnapshot($formattedParent, $tableId, $formattedSourceSnapshot);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
 
@@ -858,9 +858,9 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedResource = $client->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+        $resource = 'resource-341064690';
 
-        $response = $client->getIamPolicy($formattedResource);
+        $response = $client->getIamPolicy($resource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -870,7 +870,7 @@ class BigtableTableAdminClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getResource();
 
-        $this->assertProtobufEquals($formattedResource, $actualValue);
+        $this->assertProtobufEquals($resource, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -898,10 +898,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedResource = $client->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+        $resource = 'resource-341064690';
 
         try {
-            $client->getIamPolicy($formattedResource);
+            $client->getIamPolicy($resource);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -933,10 +933,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedResource = $client->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+        $resource = 'resource-341064690';
         $policy = new Policy();
 
-        $response = $client->setIamPolicy($formattedResource, $policy);
+        $response = $client->setIamPolicy($resource, $policy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -946,7 +946,7 @@ class BigtableTableAdminClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getResource();
 
-        $this->assertProtobufEquals($formattedResource, $actualValue);
+        $this->assertProtobufEquals($resource, $actualValue);
         $actualValue = $actualRequestObject->getPolicy();
 
         $this->assertProtobufEquals($policy, $actualValue);
@@ -977,11 +977,11 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedResource = $client->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+        $resource = 'resource-341064690';
         $policy = new Policy();
 
         try {
-            $client->setIamPolicy($formattedResource, $policy);
+            $client->setIamPolicy($resource, $policy);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1009,10 +1009,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedResource = $client->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+        $resource = 'resource-341064690';
         $permissions = [];
 
-        $response = $client->testIamPermissions($formattedResource, $permissions);
+        $response = $client->testIamPermissions($resource, $permissions);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1022,7 +1022,7 @@ class BigtableTableAdminClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getResource();
 
-        $this->assertProtobufEquals($formattedResource, $actualValue);
+        $this->assertProtobufEquals($resource, $actualValue);
         $actualValue = $actualRequestObject->getPermissions();
 
         $this->assertProtobufEquals($permissions, $actualValue);
@@ -1053,11 +1053,11 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedResource = $client->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+        $resource = 'resource-341064690';
         $permissions = [];
 
         try {
-            $client->testIamPermissions($formattedResource, $permissions);
+            $client->testIamPermissions($resource, $permissions);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1097,11 +1097,11 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name2 = 'name2-1052831874';
         $dataSizeBytes = 2110122398;
-        $description2 = 'description2568623279';
+        $description = 'description-1724546052';
         $expectedResponse = new Snapshot();
         $expectedResponse->setName($name2);
         $expectedResponse->setDataSizeBytes($dataSizeBytes);
-        $expectedResponse->setDescription($description2);
+        $expectedResponse->setDescription($description);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1112,11 +1112,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
 
         // Mock request
         $formattedName = $client->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
-        $cluster = 'cluster872092154';
+        $formattedCluster = $client->clusterName('[PROJECT]', '[INSTANCE]', '[CLUSTER]');
         $snapshotId = 'snapshotId-168585866';
-        $description = 'description-1724546052';
 
-        $response = $client->snapshotTable($formattedName, $cluster, $snapshotId, $description);
+        $response = $client->snapshotTable($formattedName, $formattedCluster, $snapshotId);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1132,13 +1131,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $this->assertProtobufEquals($formattedName, $actualValue);
         $actualValue = $actualApiRequestObject->getCluster();
 
-        $this->assertProtobufEquals($cluster, $actualValue);
+        $this->assertProtobufEquals($formattedCluster, $actualValue);
         $actualValue = $actualApiRequestObject->getSnapshotId();
 
         $this->assertProtobufEquals($snapshotId, $actualValue);
-        $actualValue = $actualApiRequestObject->getDescription();
-
-        $this->assertProtobufEquals($description, $actualValue);
 
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/snapshotTableTest');
@@ -1202,11 +1198,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
 
         // Mock request
         $formattedName = $client->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
-        $cluster = 'cluster872092154';
+        $formattedCluster = $client->clusterName('[PROJECT]', '[INSTANCE]', '[CLUSTER]');
         $snapshotId = 'snapshotId-168585866';
-        $description = 'description-1724546052';
 
-        $response = $client->snapshotTable($formattedName, $cluster, $snapshotId, $description);
+        $response = $client->snapshotTable($formattedName, $formattedCluster, $snapshotId);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
 
@@ -1957,10 +1952,7 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
 
-        // Mock request
-        $parent = 'parent-995424086';
-
-        $response = $client->restoreTable($parent);
+        $response = $client->restoreTable();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1971,9 +1963,6 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/RestoreTable', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-
-        $this->assertProtobufEquals($parent, $actualValue);
 
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/restoreTableTest');
@@ -2035,10 +2024,7 @@ class BigtableTableAdminClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
 
-        // Mock request
-        $parent = 'parent-995424086';
-
-        $response = $client->restoreTable($parent);
+        $response = $client->restoreTable();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
 
