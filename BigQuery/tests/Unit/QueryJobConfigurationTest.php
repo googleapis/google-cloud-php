@@ -101,6 +101,14 @@ class QueryJobConfigurationTest extends TestCase
             'timePartitioning' => [
                 'type' => 'DAY'
             ],
+            'rangePartitioning' => [
+                'field' => 'foo',
+                'range' => [
+                    'start' => '1',
+                    'interval' => '1',
+                    'end' => '2'
+                ]
+            ],
             'useLegacySql' => true,
             'useQueryCache' => true,
             'userDefinedFunctionResources' => [
@@ -126,6 +134,7 @@ class QueryJobConfigurationTest extends TestCase
             ->schemaUpdateOptions($query['schemaUpdateOptions'])
             ->tableDefinitions($query['tableDefinitions'])
             ->timePartitioning($query['timePartitioning'])
+            ->rangePartitioning($query['rangePartitioning'])
             ->useLegacySql($query['useLegacySql'])
             ->useQueryCache($query['useQueryCache'])
             ->userDefinedFunctionResources($query['userDefinedFunctionResources'])

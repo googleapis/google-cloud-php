@@ -555,4 +555,68 @@ class LoadDataAndQueryTest extends BigQueryTestCase
         $this->assertTrue($insertResponse->isSuccessful());
         $this->assertEquals(count($rows), $actualRows);
     }
+
+    public function testLoadAndQueryDataWithIntegerRangePartitioning()
+    {
+        $partitioning = [
+            'field' => 'age',
+            'range' => [
+                'start' => '0',
+                'interval' => '100',
+                'end' => '1000'
+            ]
+        ];
+
+        $data = file_get_contents(__DIR__ . '/data/table-data.json');
+        $table = self::$dataset->table(uniqid(self::TESTING_PREFIX));
+        $loadJobConfig = $table->load($data)
+            ->autodetect(true)
+            ->rangePartitioning($partitioning)
+            ->sourceFormat('NEWLINE_DELIMITED_JSON');
+
+        $job = $table->startJob($loadJobConfig);
+        $backoff = new ExponentialBackoff(8);
+        $backoff->execute(function () use ($job) {
+            $job->reload();
+
+            if (!$job->isComplete()) {
+                throw new \Exception();
+            }
+        });
+
+        if (!$job->isComplete()) {
+            $this->fail('Job failed to complete within the allotted time.');
+        }
+
+        $expectedRows = count(file(__DIR__ . '/data/table-data.json'));
+        $actualRows = count(iterator_to_array($table->rows()));
+
+        $this->assertEquals($partitioning, $table->info()['rangePartitioning']);
+        $this->assertEquals($expectedRows, $actualRows);
+
+        $queryTable = self::$dataset->table(uniqid(self::TESTING_PREFIX));
+        $queryJobConfig = self::$client->query('SELECT * FROM ' . $table->identity()['tableId'])
+            ->defaultDataset(self::$dataset)
+            ->destinationTable($queryTable)
+            ->rangePartitioning($partitioning);
+
+        $job = $table->startJob($queryJobConfig);
+        $backoff = new ExponentialBackoff(8);
+        $backoff->execute(function () use ($job) {
+            $job->reload();
+
+            if (!$job->isComplete()) {
+                throw new \Exception();
+            }
+        });
+
+        if (!$job->isComplete()) {
+            $this->fail('Job failed to complete within the allotted time.');
+        }
+
+        $actualRows = count(iterator_to_array($table->rows()));
+
+        $this->assertEquals($partitioning, $queryTable->info()['rangePartitioning']);
+        $this->assertEquals($expectedRows, $actualRows);
+    }
 }
