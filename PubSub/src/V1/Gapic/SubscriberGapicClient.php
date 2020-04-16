@@ -524,9 +524,6 @@ class SubscriberGapicClient
      *          parent project (i.e.,
      *          service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com) must have
      *          permission to Acknowledge() messages on this subscription.
-     *          <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
-     *          API might be changed in backward-incompatible ways and is not recommended
-     *          for production use. It is not subject to any SLA or deprecation policy.
      *     @type RetryPolicy $retryPolicy
      *          A policy that specifies how Cloud Pub/Sub retries message delivery for this
      *          subscription.
@@ -1615,8 +1612,8 @@ class SubscriberGapicClient
      * Sets the access control policy on the specified resource. Replaces
      * any existing policy.
      *
-     * Can return Public Errors: NOT_FOUND, INVALID_ARGUMENT and
-     * PERMISSION_DENIED
+     * Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+     * errors.
      *
      * Sample code:
      * ```
@@ -1737,7 +1734,7 @@ class SubscriberGapicClient
     /**
      * Returns permissions that a caller has on the specified resource. If the
      * resource does not exist, this will return an empty set of
-     * permissions, not a NOT_FOUND error.
+     * permissions, not a `NOT_FOUND` error.
      *
      * Note: This operation is designed to be used for building
      * permission-aware UIs and command-line tools, not for authorization
