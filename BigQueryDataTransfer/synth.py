@@ -33,7 +33,10 @@ library = gapic.php_library(
 s.move(library / 'src')
 
 # copy proto files to src also
-s.move(library / 'proto/src/Google/Cloud/BigQuery/DataTransfer', 'src/')
+s.move(
+    library / 'proto/src/Google/Cloud/BigQuery/DataTransfer',
+    'src/',
+    excludes=[library / 'proto/src/Google/Cloud/BigQuery/DataTransfer/*/*_*.php'])
 s.move(library / 'tests/')
 
 # copy GPBMetadata file to metadata

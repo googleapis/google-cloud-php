@@ -35,7 +35,10 @@ s.move(library / f'src/V1/Gapic')
 s.move(library / f'src/V1/resources')
 
 # copy proto files to src also
-s.move(library / f'proto/src/Google/Cloud/Spanner', f'src/')
+s.move(
+    library / f'proto/src/Google/Cloud/Spanner',
+    f'src/',
+    excludes=[library / 'proto/src/Google/Cloud/Spanner/*/*_*.php'])
 s.move(library / f'tests/')
 
 # copy GPBMetadata file to metadata

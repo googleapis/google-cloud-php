@@ -32,7 +32,10 @@ library = gapic.php_library(
 s.move(library / f"src/V1")
 
 # copy proto files to src also
-s.move(library / f"proto/src/Google/Cloud/Billing", f"src/")
+s.move(
+    library / f"proto/src/Google/Cloud/Billing",
+    f"src/",
+    excludes=[library / 'proto/src/Google/Cloud/Billing/*/*_*.php'])
 s.move(library / f"tests/")
 
 # copy GPBMetadata file to metadata
@@ -102,4 +105,3 @@ s.replace(
 )
 
 ### [END] protoc backwards compatibility fixes
-

@@ -23,22 +23,25 @@ logging.basicConfig(level=logging.DEBUG)
 gapic = gcp.GAPICBazel()
 common = gcp.CommonTemplates()
 
-v1_library = gapic.php_library(
+library = gapic.php_library(
     service='vision',
     version='v1',
     bazel_target=f'//google/cloud/vision/v1:google-cloud-vision-v1-php',
 )
 
 # copy all src except partial veneer classes
-s.move(v1_library / f'src/V1/Gapic')
-s.move(v1_library / f'src/V1/resources')
+s.move(library / f'src/V1/Gapic')
+s.move(library / f'src/V1/resources')
 
 # copy proto files to src also
-s.move(v1_library / f'proto/src/Google/Cloud/Vision', f'src/')
-s.move(v1_library / f'tests/')
+s.move(
+    library / f'proto/src/Google/Cloud/Vision',
+    f'src/',
+    excludes=[library / 'proto/src/Google/Cloud/Vision/*/*_*.php'])
+s.move(library / f'tests/')
 
 # copy GPBMetadata file to metadata
-s.move(v1_library / f'proto/src/GPBMetadata/Google/Cloud/Vision', f'metadata/')
+s.move(library / f'proto/src/GPBMetadata/Google/Cloud/Vision', f'metadata/')
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(

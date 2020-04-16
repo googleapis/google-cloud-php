@@ -23,32 +23,28 @@ logging.basicConfig(level=logging.DEBUG)
 gapic = gcp.GAPICBazel()
 common = gcp.CommonTemplates()
 
-v1beta = gapic.php_library(
-    service='oslogin',
-    version='v1beta',
-    bazel_target='//google/cloud/oslogin/v1beta:google-cloud-oslogin-v1beta-php'
-)
+for ver in ['V1beta', 'V1']:
+    lower_version = ver.lower()
 
-v1 = gapic.php_library(
-    service='oslogin',
-    version='v1',
-    bazel_target='//google/cloud/oslogin/v1:google-cloud-oslogin-v1-php'
-)
+    library = gapic.php_library(
+        service='oslogin',
+        version=lower_version,
+        bazel_target=f'//google/cloud/oslogin/{lower_version}:google-cloud-oslogin-{lower_version}-php'
+    )
 
-# copy all src
-s.move(v1beta / f'src/V1beta')
-s.move(v1 / f'src/V1')
+    # copy all src
+    s.move(library / f'src/V1beta')
 
-# copy proto files to src also
-s.move(v1beta / f'proto/src/Google/Cloud/OsLogin', f'src/')
-s.move(v1 / f'proto/src/Google/Cloud/OsLogin', f'src/')
+    # copy proto files to src also
+    s.move(
+        library / f'proto/src/Google/Cloud/OsLogin',
+        f'src/',
+        excludes=[library / 'proto/src/Google/Cloud/OsLogin/*/*_*.php'])
 
-s.move(v1beta / f'tests/')
-s.move(v1 / f'tests/')
+    s.move(library / f'tests/')
 
-# copy GPBMetadata file to metadata
-s.move(v1beta / f'proto/src/GPBMetadata/Google/Cloud/Oslogin', f'metadata/')
-s.move(v1 / f'proto/src/GPBMetadata/Google/Cloud/Oslogin', f'metadata/')
+    # copy GPBMetadata file to metadata
+    s.move(library / f'proto/src/GPBMetadata/Google/Cloud/Oslogin', f'metadata/')
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(

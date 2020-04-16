@@ -33,7 +33,10 @@ v1_library = gapic.php_library(
 
 s.copy(v1_library / f'src/')
 s.copy(v1_library / f'proto/src/GPBMetadata/Google/Cloud/Kms', f'metadata')
-s.copy(v1_library / f'proto/src/Google/Cloud/Kms', f'src')
+s.copy(
+    v1_library / f'proto/src/Google/Cloud/Kms',
+    f'src/',
+    excludes=[library / 'proto/src/Google/Cloud/Kms/*/*_*.php'])
 s.copy(v1_library / f'tests')
 
 # document and utilize apiEndpoint instead of serviceAddress

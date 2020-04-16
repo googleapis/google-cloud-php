@@ -36,7 +36,10 @@ s.move(library / 'src')
 s.move(
     library / 'proto/src/Google/Cloud/Logging',
     'src/',
-    [library / 'proto/src/Google/Cloud/Logging/Type'])
+    excludes=[
+        library / 'proto/src/Google/Cloud/Logging/*/*_*.php',
+        library / 'proto/src/Google/Cloud/Logging/Type'
+    ])
 
 s.move(library / 'tests/')
 

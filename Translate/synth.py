@@ -23,21 +23,24 @@ logging.basicConfig(level=logging.DEBUG)
 gapic = gcp.GAPICBazel()
 common = gcp.CommonTemplates()
 
-v1_library = gapic.php_library(
+library = gapic.php_library(
     service='translate',
     version='v3',
     bazel_target='//google/cloud/translate/v3:google-cloud-translation-v3-php',
 )
 
 # copy all src except partial veneer classes
-s.move(v1_library / f'src/')
+s.move(library / f'src/')
 
 # copy proto files to src also
-s.move(v1_library / f'proto/src/Google/Cloud/Translate', f'src/')
-s.move(v1_library / f'tests/')
+s.move(
+    library / f'proto/src/Google/Cloud/Translate',
+    f'src/',
+    excludes=[library / 'proto/src/Google/Cloud/Translate/*/*_*.php'])
+s.move(library / f'tests/')
 
 # copy GPBMetadata file to metadata
-s.move(v1_library / f'proto/src/GPBMetadata/Google/Cloud/Translate', f'metadata/')
+s.move(library / f'proto/src/GPBMetadata/Google/Cloud/Translate', f'metadata/')
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(

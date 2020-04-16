@@ -35,7 +35,10 @@ for version in ['V1', 'V1beta2']:
     s.move(library / 'src')
 
     # copy proto files to src also
-    s.move(library / 'proto/src/Google/Cloud/Language', 'src/')
+    s.move(
+        library / 'proto/src/Google/Cloud/Language',
+        'src/',
+        excludes=[library / 'proto/src/Google/Cloud/Language/*/*_*.php'])
     s.move(library / 'tests/')
 
     # copy GPBMetadata file to metadata

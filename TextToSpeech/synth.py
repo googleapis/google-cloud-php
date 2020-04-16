@@ -23,16 +23,19 @@ logging.basicConfig(level=logging.DEBUG)
 gapic = gcp.GAPICBazel()
 common = gcp.CommonTemplates()
 
-v1_library = gapic.php_library(
+library = gapic.php_library(
     service='texttospeech',
     version='v1',
     bazel_target='//google/cloud/texttospeech/v1:google-cloud-texttospeech-v1-php',
 )
 
-s.copy(v1_library / f'src/')
-s.copy(v1_library / f'proto/src/GPBMetadata/Google/Cloud/Texttospeech', f'metadata')
-s.copy(v1_library / f'proto/src/Google/Cloud/TextToSpeech', f'src')
-s.copy(v1_library / f'tests')
+s.copy(library / f'src/')
+s.copy(library / f'proto/src/GPBMetadata/Google/Cloud/Texttospeech', f'metadata')
+s.copy(
+    library / f'proto/src/Google/Cloud/TextToSpeech',
+    f'src',
+    excludes=[library / 'proto/src/Google/Cloud/TextToSpeech/*/*_*.php'])
+s.copy(library / f'tests')
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(

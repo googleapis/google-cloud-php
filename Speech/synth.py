@@ -14,13 +14,14 @@
 
 """This script is used to synthesize generated parts of this library."""
 
+import os
 import synthtool as s
 import synthtool.gcp as gcp
 import logging
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICBazel()
+gapic = gcp.GAPICGenerator()
 common = gcp.CommonTemplates()
 
 for version in ['V1', 'V1p1beta1']:
@@ -29,15 +30,17 @@ for version in ['V1', 'V1p1beta1']:
     library = gapic.php_library(
         service='speech',
         version=lower_version,
-        bazel_target=f'//google/cloud/speech/{lower_version}:google-cloud-speech-{lower_version}-php',
-    )
+        artman_output_name=f'google-cloud-speech-{lower_version}')
 
     # copy all src except partial veneer classes
     s.move(library / f'src/{version}/Gapic')
     s.move(library / f'src/{version}/resources')
 
     # copy proto files to src also
-    s.move(library / f'proto/src/Google/Cloud/Speech', f'src/')
+    s.move(
+        library / f'proto/src/Google/Cloud/Speech',
+        f'src/',
+        excludes=[library / 'proto/src/Google/Cloud/Speech/*/*_*.php'])
     s.move(library / f'tests/')
 
     # copy GPBMetadata file to metadata

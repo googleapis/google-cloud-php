@@ -35,7 +35,10 @@ for version in versions:
     s.move(library / 'src')
 
     # copy proto files to src also
-    s.move(library / 'proto/src/Google/Cloud/AutoMl', 'src/')
+    s.move(
+        library / 'proto/src/Google/Cloud/AutoMl',
+        'src/',
+        excludes=[library / 'proto/src/Google/Cloud/AutoMl/*/*_*.php'])
     s.move(library / 'tests/')
 
     # copy GPBMetadata file to metadata

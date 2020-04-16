@@ -33,7 +33,10 @@ library = gapic.php_library(
 s.move(library / f'src')
 
 # copy proto files to src also
-s.move(library / f'proto/src/Google/Cloud/Iot', f'src/')
+s.move(
+    library / f'proto/src/Google/Cloud/Iot',
+    f'src/',
+    excludes=[library / 'proto/src/Google/Cloud/Iot/*/*_*.php'])
 s.move(library / f'tests/')
 
 # copy GPBMetadata file to metadata

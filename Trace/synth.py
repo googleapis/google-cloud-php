@@ -33,7 +33,10 @@ library = gapic.php_library(
 s.move(library / 'src')
 
 # copy proto files to src also
-s.move(library / 'proto/src/Google/Cloud/Trace', 'src/')
+s.move(
+    library / 'proto/src/Google/Cloud/Trace',
+    'src/',
+    excludes=[library / 'proto/src/Google/Cloud/Trace/*/*_*.php'])
 s.move(library / 'tests/')
 
 # copy GPBMetadata file to metadata

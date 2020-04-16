@@ -37,7 +37,10 @@ for ver in ['V1', 'V1beta1']:
     s.move(library / f'src/{ver}/resources')
 
     # copy proto files to src also
-    s.move(library / f'proto/src/Google/Cloud/Firestore', f'src/')
+    s.move(
+        library / f'proto/src/Google/Cloud/Firestore',
+        f'src/',
+        excludes=[library / 'proto/src/Google/Cloud/Firestore/*/*_*.php'])
     s.move(library / f'tests/')
 
     # copy GPBMetadata file to metadata
@@ -54,7 +57,10 @@ admin_library = gapic.php_library(
 s.move(admin_library / f'src', 'src/Admin')
 
 # copy proto files to src also
-s.move(admin_library / f'proto/src/Google/Cloud/Firestore', f'src/')
+s.move(
+    admin_library / f'proto/src/Google/Cloud/Firestore',
+    f'src/',
+    excludes=[library / 'proto/src/Google/Cloud/Firestore/*/*_*.php'])
 s.move(admin_library / f'tests/Unit', 'tests/Unit/Admin')
 
 # copy GPBMetadata file to metadata
