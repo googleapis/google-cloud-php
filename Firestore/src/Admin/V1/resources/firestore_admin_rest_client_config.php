@@ -3,6 +3,30 @@
 return [
     'interfaces' => [
         'google.firestore.admin.v1.FirestoreAdmin' => [
+            'DeleteIndex' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/databases/*/collectionGroups/*/indexes/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateField' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{field.name=projects/*/databases/*/collectionGroups/*/fields/*}',
+                'body' => 'field',
+                'placeholders' => [
+                    'field.name' => [
+                        'getters' => [
+                            'getField',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'CreateIndex' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/databases/*/collectionGroups/*}/indexes',
@@ -37,41 +61,6 @@ return [
                     ],
                 ],
             ],
-            'DeleteIndex' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1/{name=projects/*/databases/*/collectionGroups/*/indexes/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ImportDocuments' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/databases/*}:importDocuments',
-                'body' => '*',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ExportDocuments' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/databases/*}:exportDocuments',
-                'body' => '*',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'GetField' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/databases/*/collectionGroups/*/fields/*}',
@@ -94,14 +83,25 @@ return [
                     ],
                 ],
             ],
-            'UpdateField' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1/{field.name=projects/*/databases/*/collectionGroups/*/fields/*}',
-                'body' => 'field',
+            'ExportDocuments' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/databases/*}:exportDocuments',
+                'body' => '*',
                 'placeholders' => [
-                    'field.name' => [
+                    'name' => [
                         'getters' => [
-                            'getField',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ImportDocuments' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/databases/*}:importDocuments',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
                             'getName',
                         ],
                     ],

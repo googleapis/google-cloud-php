@@ -30,7 +30,6 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -91,17 +90,12 @@ use Google\Protobuf\Timestamp;
  * ```
  * $firestoreClient = new FirestoreClient();
  * try {
- *     $formattedName = $firestoreClient->anyPathName('[PROJECT]', '[DATABASE]', '[DOCUMENT]', '[ANY_PATH]');
- *     $response = $firestoreClient->getDocument($formattedName);
+ *     $name = '';
+ *     $firestoreClient->deleteDocument($name);
  * } finally {
  *     $firestoreClient->close();
  * }
  * ```
- *
- * Many parameters require resource names to be formatted in a particular way. To assist
- * with these names, this class includes a format method for each type of name, and additionally
- * a parseName method to extract the individual identifiers contained within formatted names
- * that are returned by the API.
  *
  * @experimental
  */
@@ -136,11 +130,6 @@ class FirestoreGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/datastore',
     ];
-    private static $anyPathNameTemplate;
-    private static $databaseRootNameTemplate;
-    private static $documentPathNameTemplate;
-    private static $documentRootNameTemplate;
-    private static $pathTemplateMap;
 
     private static function getClientDefaults()
     {
@@ -159,178 +148,6 @@ class FirestoreGapicClient
                 ],
             ],
         ];
-    }
-
-    private static function getAnyPathNameTemplate()
-    {
-        if (null == self::$anyPathNameTemplate) {
-            self::$anyPathNameTemplate = new PathTemplate('projects/{project}/databases/{database}/documents/{document}/{any_path=**}');
-        }
-
-        return self::$anyPathNameTemplate;
-    }
-
-    private static function getDatabaseRootNameTemplate()
-    {
-        if (null == self::$databaseRootNameTemplate) {
-            self::$databaseRootNameTemplate = new PathTemplate('projects/{project}/databases/{database}');
-        }
-
-        return self::$databaseRootNameTemplate;
-    }
-
-    private static function getDocumentPathNameTemplate()
-    {
-        if (null == self::$documentPathNameTemplate) {
-            self::$documentPathNameTemplate = new PathTemplate('projects/{project}/databases/{database}/documents/{document_path=**}');
-        }
-
-        return self::$documentPathNameTemplate;
-    }
-
-    private static function getDocumentRootNameTemplate()
-    {
-        if (null == self::$documentRootNameTemplate) {
-            self::$documentRootNameTemplate = new PathTemplate('projects/{project}/databases/{database}/documents');
-        }
-
-        return self::$documentRootNameTemplate;
-    }
-
-    private static function getPathTemplateMap()
-    {
-        if (null == self::$pathTemplateMap) {
-            self::$pathTemplateMap = [
-                'anyPath' => self::getAnyPathNameTemplate(),
-                'databaseRoot' => self::getDatabaseRootNameTemplate(),
-                'documentPath' => self::getDocumentPathNameTemplate(),
-                'documentRoot' => self::getDocumentRootNameTemplate(),
-            ];
-        }
-
-        return self::$pathTemplateMap;
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a any_path resource.
-     *
-     * @param string $project
-     * @param string $database
-     * @param string $document
-     * @param string $anyPath
-     *
-     * @return string The formatted any_path resource.
-     * @experimental
-     */
-    public static function anyPathName($project, $database, $document, $anyPath)
-    {
-        return self::getAnyPathNameTemplate()->render([
-            'project' => $project,
-            'database' => $database,
-            'document' => $document,
-            'any_path' => $anyPath,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a database_root resource.
-     *
-     * @param string $project
-     * @param string $database
-     *
-     * @return string The formatted database_root resource.
-     * @experimental
-     */
-    public static function databaseRootName($project, $database)
-    {
-        return self::getDatabaseRootNameTemplate()->render([
-            'project' => $project,
-            'database' => $database,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a document_path resource.
-     *
-     * @param string $project
-     * @param string $database
-     * @param string $documentPath
-     *
-     * @return string The formatted document_path resource.
-     * @experimental
-     */
-    public static function documentPathName($project, $database, $documentPath)
-    {
-        return self::getDocumentPathNameTemplate()->render([
-            'project' => $project,
-            'database' => $database,
-            'document_path' => $documentPath,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a document_root resource.
-     *
-     * @param string $project
-     * @param string $database
-     *
-     * @return string The formatted document_root resource.
-     * @experimental
-     */
-    public static function documentRootName($project, $database)
-    {
-        return self::getDocumentRootNameTemplate()->render([
-            'project' => $project,
-            'database' => $database,
-        ]);
-    }
-
-    /**
-     * Parses a formatted name string and returns an associative array of the components in the name.
-     * The following name formats are supported:
-     * Template: Pattern
-     * - anyPath: projects/{project}/databases/{database}/documents/{document}/{any_path=**}
-     * - databaseRoot: projects/{project}/databases/{database}
-     * - documentPath: projects/{project}/databases/{database}/documents/{document_path=**}
-     * - documentRoot: projects/{project}/databases/{database}/documents.
-     *
-     * The optional $template argument can be supplied to specify a particular pattern, and must
-     * match one of the templates listed above. If no $template argument is provided, or if the
-     * $template argument does not match one of the templates listed, then parseName will check
-     * each of the supported templates, and return the first match.
-     *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
-     *
-     * @return array An associative array from name component IDs to component values.
-     *
-     * @throws ValidationException If $formattedName could not be matched.
-     * @experimental
-     */
-    public static function parseName($formattedName, $template = null)
-    {
-        $templateMap = self::getPathTemplateMap();
-
-        if ($template) {
-            if (!isset($templateMap[$template])) {
-                throw new ValidationException("Template name $template does not exist");
-            }
-
-            return $templateMap[$template]->match($formattedName);
-        }
-
-        foreach ($templateMap as $templateName => $pathTemplate) {
-            try {
-                return $pathTemplate->match($formattedName);
-            } catch (ValidationException $ex) {
-                // Swallow the exception to continue trying other path templates
-            }
-        }
-        throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
     /**
@@ -395,14 +212,567 @@ class FirestoreGapicClient
     }
 
     /**
+     * Deletes a document.
+     *
+     * Sample code:
+     * ```
+     * $firestoreClient = new FirestoreClient();
+     * try {
+     *     $name = '';
+     *     $firestoreClient->deleteDocument($name);
+     * } finally {
+     *     $firestoreClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of the Document to delete. In the format:
+     *                             `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type Precondition $currentDocument
+     *          An optional precondition on the document.
+     *          The request will fail if this is set and not met by the target document.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function deleteDocument($name, array $optionalArgs = [])
+    {
+        $request = new DeleteDocumentRequest();
+        $request->setName($name);
+        if (isset($optionalArgs['currentDocument'])) {
+            $request->setCurrentDocument($optionalArgs['currentDocument']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteDocument',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Gets multiple documents.
+     *
+     * Documents returned by this method are not guaranteed to be returned in the
+     * same order that they were requested.
+     *
+     * Sample code:
+     * ```
+     * $firestoreClient = new FirestoreClient();
+     * try {
+     *     $database = '';
+     *     // Read all responses until the stream is complete
+     *     $stream = $firestoreClient->batchGetDocuments($database);
+     *     foreach ($stream->readAll() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $firestoreClient->close();
+     * }
+     * ```
+     *
+     * @param string $database     Required. The database name. In the format:
+     *                             `projects/{project_id}/databases/{database_id}`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type string[] $documents
+     *          The names of the documents to retrieve. In the format:
+     *          `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     *          The request will fail if any of the document is not a child resource of the
+     *          given `database`. Duplicate names will be elided.
+     *     @type DocumentMask $mask
+     *          The fields to return. If not set, returns all fields.
+     *
+     *          If a document has a field that is not present in this mask, that field will
+     *          not be returned in the response.
+     *     @type string $transaction
+     *          Reads documents in a transaction.
+     *     @type TransactionOptions $newTransaction
+     *          Starts a new transaction and reads the documents.
+     *          Defaults to a read-only transaction.
+     *          The new transaction ID will be returned as the first response in the
+     *          stream.
+     *     @type Timestamp $readTime
+     *          Reads documents as they were at the given time.
+     *          This may not be older than 60 seconds.
+     *     @type int $timeoutMillis
+     *          Timeout to use for this call.
+     * }
+     *
+     * @return \Google\ApiCore\ServerStream
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function batchGetDocuments($database, array $optionalArgs = [])
+    {
+        $request = new BatchGetDocumentsRequest();
+        $request->setDatabase($database);
+        if (isset($optionalArgs['documents'])) {
+            $request->setDocuments($optionalArgs['documents']);
+        }
+        if (isset($optionalArgs['mask'])) {
+            $request->setMask($optionalArgs['mask']);
+        }
+        if (isset($optionalArgs['transaction'])) {
+            $request->setTransaction($optionalArgs['transaction']);
+        }
+        if (isset($optionalArgs['newTransaction'])) {
+            $request->setNewTransaction($optionalArgs['newTransaction']);
+        }
+        if (isset($optionalArgs['readTime'])) {
+            $request->setReadTime($optionalArgs['readTime']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'database' => $request->getDatabase(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'BatchGetDocuments',
+            BatchGetDocumentsResponse::class,
+            $optionalArgs,
+            $request,
+            Call::SERVER_STREAMING_CALL
+        );
+    }
+
+    /**
+     * Starts a new transaction.
+     *
+     * Sample code:
+     * ```
+     * $firestoreClient = new FirestoreClient();
+     * try {
+     *     $database = '';
+     *     $response = $firestoreClient->beginTransaction($database);
+     * } finally {
+     *     $firestoreClient->close();
+     * }
+     * ```
+     *
+     * @param string $database     Required. The database name. In the format:
+     *                             `projects/{project_id}/databases/{database_id}`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type TransactionOptions $options
+     *          The options for the transaction.
+     *          Defaults to a read-write transaction.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Firestore\V1beta1\BeginTransactionResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function beginTransaction($database, array $optionalArgs = [])
+    {
+        $request = new BeginTransactionRequest();
+        $request->setDatabase($database);
+        if (isset($optionalArgs['options'])) {
+            $request->setOptions($optionalArgs['options']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'database' => $request->getDatabase(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'BeginTransaction',
+            BeginTransactionResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Rolls back a transaction.
+     *
+     * Sample code:
+     * ```
+     * $firestoreClient = new FirestoreClient();
+     * try {
+     *     $database = '';
+     *     $transaction = '';
+     *     $firestoreClient->rollback($database, $transaction);
+     * } finally {
+     *     $firestoreClient->close();
+     * }
+     * ```
+     *
+     * @param string $database     Required. The database name. In the format:
+     *                             `projects/{project_id}/databases/{database_id}`.
+     * @param string $transaction  Required. The transaction to roll back.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function rollback($database, $transaction, array $optionalArgs = [])
+    {
+        $request = new RollbackRequest();
+        $request->setDatabase($database);
+        $request->setTransaction($transaction);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'database' => $request->getDatabase(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'Rollback',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Runs a query.
+     *
+     * Sample code:
+     * ```
+     * $firestoreClient = new FirestoreClient();
+     * try {
+     *     $parent = '';
+     *     // Read all responses until the stream is complete
+     *     $stream = $firestoreClient->runQuery($parent);
+     *     foreach ($stream->readAll() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $firestoreClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The parent resource name. In the format:
+     *                             `projects/{project_id}/databases/{database_id}/documents` or
+     *                             `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     *                             For example:
+     *                             `projects/my-project/databases/my-database/documents` or
+     *                             `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type StructuredQuery $structuredQuery
+     *          A structured query.
+     *     @type string $transaction
+     *          Reads documents in a transaction.
+     *     @type TransactionOptions $newTransaction
+     *          Starts a new transaction and reads the documents.
+     *          Defaults to a read-only transaction.
+     *          The new transaction ID will be returned as the first response in the
+     *          stream.
+     *     @type Timestamp $readTime
+     *          Reads documents as they were at the given time.
+     *          This may not be older than 60 seconds.
+     *     @type int $timeoutMillis
+     *          Timeout to use for this call.
+     * }
+     *
+     * @return \Google\ApiCore\ServerStream
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function runQuery($parent, array $optionalArgs = [])
+    {
+        $request = new RunQueryRequest();
+        $request->setParent($parent);
+        if (isset($optionalArgs['structuredQuery'])) {
+            $request->setStructuredQuery($optionalArgs['structuredQuery']);
+        }
+        if (isset($optionalArgs['transaction'])) {
+            $request->setTransaction($optionalArgs['transaction']);
+        }
+        if (isset($optionalArgs['newTransaction'])) {
+            $request->setNewTransaction($optionalArgs['newTransaction']);
+        }
+        if (isset($optionalArgs['readTime'])) {
+            $request->setReadTime($optionalArgs['readTime']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'RunQuery',
+            RunQueryResponse::class,
+            $optionalArgs,
+            $request,
+            Call::SERVER_STREAMING_CALL
+        );
+    }
+
+    /**
+     * Streams batches of document updates and deletes, in order.
+     *
+     * Sample code:
+     * ```
+     * $firestoreClient = new FirestoreClient();
+     * try {
+     *     $database = '';
+     *     $request = new WriteRequest();
+     *     $request->setDatabase($database);
+     *     // Write all requests to the server, then read all responses until the
+     *     // stream is complete
+     *     $requests = [$request];
+     *     $stream = $firestoreClient->write();
+     *     $stream->writeAll($requests);
+     *     foreach ($stream->closeWriteAndReadAll() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Write requests individually, making read() calls if
+     *     // required. Call closeWrite() once writes are complete, and read the
+     *     // remaining responses from the server.
+     *     $requests = [$request];
+     *     $stream = $firestoreClient->write();
+     *     foreach ($requests as $request) {
+     *         $stream->write($request);
+     *         // if required, read a single response from the stream
+     *         $element = $stream->read();
+     *         // doSomethingWith($element)
+     *     }
+     *     $stream->closeWrite();
+     *     $element = $stream->read();
+     *     while (!is_null($element)) {
+     *         // doSomethingWith($element)
+     *         $element = $stream->read();
+     *     }
+     * } finally {
+     *     $firestoreClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type int $timeoutMillis
+     *          Timeout to use for this call.
+     * }
+     *
+     * @return \Google\ApiCore\BidiStream
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function write(array $optionalArgs = [])
+    {
+        return $this->startCall(
+            'Write',
+            WriteResponse::class,
+            $optionalArgs,
+            null,
+            Call::BIDI_STREAMING_CALL
+        );
+    }
+
+    /**
+     * Listens to changes.
+     *
+     * Sample code:
+     * ```
+     * $firestoreClient = new FirestoreClient();
+     * try {
+     *     $database = '';
+     *     $request = new ListenRequest();
+     *     $request->setDatabase($database);
+     *     // Write all requests to the server, then read all responses until the
+     *     // stream is complete
+     *     $requests = [$request];
+     *     $stream = $firestoreClient->listen();
+     *     $stream->writeAll($requests);
+     *     foreach ($stream->closeWriteAndReadAll() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Write requests individually, making read() calls if
+     *     // required. Call closeWrite() once writes are complete, and read the
+     *     // remaining responses from the server.
+     *     $requests = [$request];
+     *     $stream = $firestoreClient->listen();
+     *     foreach ($requests as $request) {
+     *         $stream->write($request);
+     *         // if required, read a single response from the stream
+     *         $element = $stream->read();
+     *         // doSomethingWith($element)
+     *     }
+     *     $stream->closeWrite();
+     *     $element = $stream->read();
+     *     while (!is_null($element)) {
+     *         // doSomethingWith($element)
+     *         $element = $stream->read();
+     *     }
+     * } finally {
+     *     $firestoreClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type int $timeoutMillis
+     *          Timeout to use for this call.
+     * }
+     *
+     * @return \Google\ApiCore\BidiStream
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function listen(array $optionalArgs = [])
+    {
+        return $this->startCall(
+            'Listen',
+            ListenResponse::class,
+            $optionalArgs,
+            null,
+            Call::BIDI_STREAMING_CALL
+        );
+    }
+
+    /**
+     * Lists all the collection IDs underneath a document.
+     *
+     * Sample code:
+     * ```
+     * $firestoreClient = new FirestoreClient();
+     * try {
+     *     $parent = '';
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $firestoreClient->listCollectionIds($parent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $firestoreClient->listCollectionIds($parent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $firestoreClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The parent document. In the format:
+     *                             `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     *                             For example:
+     *                             `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type int $pageSize
+     *          The maximum number of resources contained in the underlying API
+     *          response. The API may return fewer values in a page, even if
+     *          there are additional values to be retrieved.
+     *     @type string $pageToken
+     *          A page token is used to specify a page of values to be returned.
+     *          If no page token is specified (the default), the first page
+     *          of values will be returned. Any page token used here must have
+     *          been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function listCollectionIds($parent, array $optionalArgs = [])
+    {
+        $request = new ListCollectionIdsRequest();
+        $request->setParent($parent);
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->getPagedListResponse(
+            'ListCollectionIds',
+            $optionalArgs,
+            ListCollectionIdsResponse::class,
+            $request
+        );
+    }
+
+    /**
      * Gets a single document.
      *
      * Sample code:
      * ```
      * $firestoreClient = new FirestoreClient();
      * try {
-     *     $formattedName = $firestoreClient->anyPathName('[PROJECT]', '[DATABASE]', '[DOCUMENT]', '[ANY_PATH]');
-     *     $response = $firestoreClient->getDocument($formattedName);
+     *     $name = '';
+     *     $response = $firestoreClient->getDocument($name);
      * } finally {
      *     $firestoreClient->close();
      * }
@@ -471,10 +841,10 @@ class FirestoreGapicClient
      * ```
      * $firestoreClient = new FirestoreClient();
      * try {
-     *     $formattedParent = $firestoreClient->anyPathName('[PROJECT]', '[DATABASE]', '[DOCUMENT]', '[ANY_PATH]');
+     *     $parent = '';
      *     $collectionId = '';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $firestoreClient->listDocuments($formattedParent, $collectionId);
+     *     $pagedResponse = $firestoreClient->listDocuments($parent, $collectionId);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -485,7 +855,7 @@ class FirestoreGapicClient
      *     // Alternatively:
      *
      *     // Iterate through all elements
-     *     $pagedResponse = $firestoreClient->listDocuments($formattedParent, $collectionId);
+     *     $pagedResponse = $firestoreClient->listDocuments($parent, $collectionId);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -588,27 +958,27 @@ class FirestoreGapicClient
      * ```
      * $firestoreClient = new FirestoreClient();
      * try {
-     *     $formattedParent = $firestoreClient->anyPathName('[PROJECT]', '[DATABASE]', '[DOCUMENT]', '[ANY_PATH]');
+     *     $parent = '';
      *     $collectionId = '';
-     *     $documentId = '';
      *     $document = new Document();
-     *     $response = $firestoreClient->createDocument($formattedParent, $collectionId, $documentId, $document);
+     *     $response = $firestoreClient->createDocument($parent, $collectionId, $document);
      * } finally {
      *     $firestoreClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. The parent resource. For example:
-     *                             `projects/{project_id}/databases/{database_id}/documents` or
-     *                             `projects/{project_id}/databases/{database_id}/documents/chatrooms/{chatroom_id}`
-     * @param string $collectionId Required. The collection ID, relative to `parent`, to list. For example: `chatrooms`.
-     * @param string $documentId   The client-assigned document ID to use for this document.
-     *
-     * Optional. If not specified, an ID will be assigned by the service.
+     * @param string   $parent       Required. The parent resource. For example:
+     *                               `projects/{project_id}/databases/{database_id}/documents` or
+     *                               `projects/{project_id}/databases/{database_id}/documents/chatrooms/{chatroom_id}`
+     * @param string   $collectionId Required. The collection ID, relative to `parent`, to list. For example: `chatrooms`.
      * @param Document $document     Required. The document to create. `name` must not be set.
      * @param array    $optionalArgs {
      *                               Optional.
      *
+     *     @type string $documentId
+     *          The client-assigned document ID to use for this document.
+     *
+     *          Optional. If not specified, an ID will be assigned by the service.
      *     @type DocumentMask $mask
      *          The fields to return. If not set, returns all fields.
      *
@@ -626,13 +996,15 @@ class FirestoreGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createDocument($parent, $collectionId, $documentId, $document, array $optionalArgs = [])
+    public function createDocument($parent, $collectionId, $document, array $optionalArgs = [])
     {
         $request = new CreateDocumentRequest();
         $request->setParent($parent);
         $request->setCollectionId($collectionId);
-        $request->setDocumentId($documentId);
         $request->setDocument($document);
+        if (isset($optionalArgs['documentId'])) {
+            $request->setDocumentId($optionalArgs['documentId']);
+        }
         if (isset($optionalArgs['mask'])) {
             $request->setMask($optionalArgs['mask']);
         }
@@ -653,25 +1025,25 @@ class FirestoreGapicClient
      * $firestoreClient = new FirestoreClient();
      * try {
      *     $document = new Document();
-     *     $updateMask = new DocumentMask();
-     *     $response = $firestoreClient->updateDocument($document, $updateMask);
+     *     $response = $firestoreClient->updateDocument($document);
      * } finally {
      *     $firestoreClient->close();
      * }
      * ```
      *
-     * @param Document     $document   Required. The updated document.
-     *                                 Creates the document if it does not already exist.
-     * @param DocumentMask $updateMask The fields to update.
-     *                                 None of the field paths in the mask may contain a reserved name.
+     * @param Document $document     Required. The updated document.
+     *                               Creates the document if it does not already exist.
+     * @param array    $optionalArgs {
+     *                               Optional.
      *
-     * If the document exists on the server and has fields not referenced in the
-     * mask, they are left unchanged.
-     * Fields referenced in the mask, but not present in the input document, are
-     * deleted from the document on the server.
-     * @param array $optionalArgs {
-     *                            Optional.
+     *     @type DocumentMask $updateMask
+     *          The fields to update.
+     *          None of the field paths in the mask may contain a reserved name.
      *
+     *          If the document exists on the server and has fields not referenced in the
+     *          mask, they are left unchanged.
+     *          Fields referenced in the mask, but not present in the input document, are
+     *          deleted from the document on the server.
      *     @type DocumentMask $mask
      *          The fields to return. If not set, returns all fields.
      *
@@ -692,11 +1064,13 @@ class FirestoreGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateDocument($document, $updateMask, array $optionalArgs = [])
+    public function updateDocument($document, array $optionalArgs = [])
     {
         $request = new UpdateDocumentRequest();
         $request->setDocument($document);
-        $request->setUpdateMask($updateMask);
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
         if (isset($optionalArgs['mask'])) {
             $request->setMask($optionalArgs['mask']);
         }
@@ -720,158 +1094,14 @@ class FirestoreGapicClient
     }
 
     /**
-     * Deletes a document.
+     * Commits a transaction, while optionally updating documents.
      *
      * Sample code:
      * ```
      * $firestoreClient = new FirestoreClient();
      * try {
-     *     $formattedName = $firestoreClient->anyPathName('[PROJECT]', '[DATABASE]', '[DOCUMENT]', '[ANY_PATH]');
-     *     $firestoreClient->deleteDocument($formattedName);
-     * } finally {
-     *     $firestoreClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. The resource name of the Document to delete. In the format:
-     *                             `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type Precondition $currentDocument
-     *          An optional precondition on the document.
-     *          The request will fail if this is set and not met by the target document.
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function deleteDocument($name, array $optionalArgs = [])
-    {
-        $request = new DeleteDocumentRequest();
-        $request->setName($name);
-        if (isset($optionalArgs['currentDocument'])) {
-            $request->setCurrentDocument($optionalArgs['currentDocument']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteDocument',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Gets multiple documents.
-     *
-     * Documents returned by this method are not guaranteed to be returned in the
-     * same order that they were requested.
-     *
-     * Sample code:
-     * ```
-     * $firestoreClient = new FirestoreClient();
-     * try {
-     *     $formattedDatabase = $firestoreClient->databaseRootName('[PROJECT]', '[DATABASE]');
-     *     $documents = [];
-     *     // Read all responses until the stream is complete
-     *     $stream = $firestoreClient->batchGetDocuments($formattedDatabase, $documents);
-     *     foreach ($stream->readAll() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     * } finally {
-     *     $firestoreClient->close();
-     * }
-     * ```
-     *
-     * @param string   $database     Required. The database name. In the format:
-     *                               `projects/{project_id}/databases/{database_id}`.
-     * @param string[] $documents    The names of the documents to retrieve. In the format:
-     *                               `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
-     *                               The request will fail if any of the document is not a child resource of the
-     *                               given `database`. Duplicate names will be elided.
-     * @param array    $optionalArgs {
-     *                               Optional.
-     *
-     *     @type DocumentMask $mask
-     *          The fields to return. If not set, returns all fields.
-     *
-     *          If a document has a field that is not present in this mask, that field will
-     *          not be returned in the response.
-     *     @type string $transaction
-     *          Reads documents in a transaction.
-     *     @type TransactionOptions $newTransaction
-     *          Starts a new transaction and reads the documents.
-     *          Defaults to a read-only transaction.
-     *          The new transaction ID will be returned as the first response in the
-     *          stream.
-     *     @type Timestamp $readTime
-     *          Reads documents as they were at the given time.
-     *          This may not be older than 60 seconds.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call.
-     * }
-     *
-     * @return \Google\ApiCore\ServerStream
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function batchGetDocuments($database, $documents, array $optionalArgs = [])
-    {
-        $request = new BatchGetDocumentsRequest();
-        $request->setDatabase($database);
-        $request->setDocuments($documents);
-        if (isset($optionalArgs['mask'])) {
-            $request->setMask($optionalArgs['mask']);
-        }
-        if (isset($optionalArgs['transaction'])) {
-            $request->setTransaction($optionalArgs['transaction']);
-        }
-        if (isset($optionalArgs['newTransaction'])) {
-            $request->setNewTransaction($optionalArgs['newTransaction']);
-        }
-        if (isset($optionalArgs['readTime'])) {
-            $request->setReadTime($optionalArgs['readTime']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'database' => $request->getDatabase(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'BatchGetDocuments',
-            BatchGetDocumentsResponse::class,
-            $optionalArgs,
-            $request,
-            Call::SERVER_STREAMING_CALL
-        );
-    }
-
-    /**
-     * Starts a new transaction.
-     *
-     * Sample code:
-     * ```
-     * $firestoreClient = new FirestoreClient();
-     * try {
-     *     $formattedDatabase = $firestoreClient->databaseRootName('[PROJECT]', '[DATABASE]');
-     *     $response = $firestoreClient->beginTransaction($formattedDatabase);
+     *     $database = '';
+     *     $response = $firestoreClient->commit($database);
      * } finally {
      *     $firestoreClient->close();
      * }
@@ -882,67 +1112,10 @@ class FirestoreGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type TransactionOptions $options
-     *          The options for the transaction.
-     *          Defaults to a read-write transaction.
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
+     *     @type Write[] $writes
+     *          The writes to apply.
      *
-     * @return \Google\Cloud\Firestore\V1beta1\BeginTransactionResponse
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function beginTransaction($database, array $optionalArgs = [])
-    {
-        $request = new BeginTransactionRequest();
-        $request->setDatabase($database);
-        if (isset($optionalArgs['options'])) {
-            $request->setOptions($optionalArgs['options']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'database' => $request->getDatabase(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'BeginTransaction',
-            BeginTransactionResponse::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Commits a transaction, while optionally updating documents.
-     *
-     * Sample code:
-     * ```
-     * $firestoreClient = new FirestoreClient();
-     * try {
-     *     $formattedDatabase = $firestoreClient->databaseRootName('[PROJECT]', '[DATABASE]');
-     *     $writes = [];
-     *     $response = $firestoreClient->commit($formattedDatabase, $writes);
-     * } finally {
-     *     $firestoreClient->close();
-     * }
-     * ```
-     *
-     * @param string  $database Required. The database name. In the format:
-     *                          `projects/{project_id}/databases/{database_id}`.
-     * @param Write[] $writes   The writes to apply.
-     *
-     * Always executed atomically and in order.
-     * @param array $optionalArgs {
-     *                            Optional.
-     *
+     *          Always executed atomically and in order.
      *     @type string $transaction
      *          If set, applies all writes in this transaction, and commits it.
      *     @type RetrySettings|array $retrySettings
@@ -957,11 +1130,13 @@ class FirestoreGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function commit($database, $writes, array $optionalArgs = [])
+    public function commit($database, array $optionalArgs = [])
     {
         $request = new CommitRequest();
         $request->setDatabase($database);
-        $request->setWrites($writes);
+        if (isset($optionalArgs['writes'])) {
+            $request->setWrites($optionalArgs['writes']);
+        }
         if (isset($optionalArgs['transaction'])) {
             $request->setTransaction($optionalArgs['transaction']);
         }
@@ -979,355 +1154,5 @@ class FirestoreGapicClient
             $optionalArgs,
             $request
         )->wait();
-    }
-
-    /**
-     * Rolls back a transaction.
-     *
-     * Sample code:
-     * ```
-     * $firestoreClient = new FirestoreClient();
-     * try {
-     *     $formattedDatabase = $firestoreClient->databaseRootName('[PROJECT]', '[DATABASE]');
-     *     $transaction = '';
-     *     $firestoreClient->rollback($formattedDatabase, $transaction);
-     * } finally {
-     *     $firestoreClient->close();
-     * }
-     * ```
-     *
-     * @param string $database     Required. The database name. In the format:
-     *                             `projects/{project_id}/databases/{database_id}`.
-     * @param string $transaction  Required. The transaction to roll back.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function rollback($database, $transaction, array $optionalArgs = [])
-    {
-        $request = new RollbackRequest();
-        $request->setDatabase($database);
-        $request->setTransaction($transaction);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'database' => $request->getDatabase(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'Rollback',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Runs a query.
-     *
-     * Sample code:
-     * ```
-     * $firestoreClient = new FirestoreClient();
-     * try {
-     *     $formattedParent = $firestoreClient->anyPathName('[PROJECT]', '[DATABASE]', '[DOCUMENT]', '[ANY_PATH]');
-     *     // Read all responses until the stream is complete
-     *     $stream = $firestoreClient->runQuery($formattedParent);
-     *     foreach ($stream->readAll() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     * } finally {
-     *     $firestoreClient->close();
-     * }
-     * ```
-     *
-     * @param string $parent       Required. The parent resource name. In the format:
-     *                             `projects/{project_id}/databases/{database_id}/documents` or
-     *                             `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
-     *                             For example:
-     *                             `projects/my-project/databases/my-database/documents` or
-     *                             `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type StructuredQuery $structuredQuery
-     *          A structured query.
-     *     @type string $transaction
-     *          Reads documents in a transaction.
-     *     @type TransactionOptions $newTransaction
-     *          Starts a new transaction and reads the documents.
-     *          Defaults to a read-only transaction.
-     *          The new transaction ID will be returned as the first response in the
-     *          stream.
-     *     @type Timestamp $readTime
-     *          Reads documents as they were at the given time.
-     *          This may not be older than 60 seconds.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call.
-     * }
-     *
-     * @return \Google\ApiCore\ServerStream
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function runQuery($parent, array $optionalArgs = [])
-    {
-        $request = new RunQueryRequest();
-        $request->setParent($parent);
-        if (isset($optionalArgs['structuredQuery'])) {
-            $request->setStructuredQuery($optionalArgs['structuredQuery']);
-        }
-        if (isset($optionalArgs['transaction'])) {
-            $request->setTransaction($optionalArgs['transaction']);
-        }
-        if (isset($optionalArgs['newTransaction'])) {
-            $request->setNewTransaction($optionalArgs['newTransaction']);
-        }
-        if (isset($optionalArgs['readTime'])) {
-            $request->setReadTime($optionalArgs['readTime']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'parent' => $request->getParent(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'RunQuery',
-            RunQueryResponse::class,
-            $optionalArgs,
-            $request,
-            Call::SERVER_STREAMING_CALL
-        );
-    }
-
-    /**
-     * Streams batches of document updates and deletes, in order.
-     *
-     * Sample code:
-     * ```
-     * $firestoreClient = new FirestoreClient();
-     * try {
-     *     $formattedDatabase = $firestoreClient->databaseRootName('[PROJECT]', '[DATABASE]');
-     *     $request = new WriteRequest();
-     *     $request->setDatabase($formattedDatabase);
-     *     // Write all requests to the server, then read all responses until the
-     *     // stream is complete
-     *     $requests = [$request];
-     *     $stream = $firestoreClient->write();
-     *     $stream->writeAll($requests);
-     *     foreach ($stream->closeWriteAndReadAll() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     *
-     *
-     *     // Alternatively:
-     *
-     *     // Write requests individually, making read() calls if
-     *     // required. Call closeWrite() once writes are complete, and read the
-     *     // remaining responses from the server.
-     *     $requests = [$request];
-     *     $stream = $firestoreClient->write();
-     *     foreach ($requests as $request) {
-     *         $stream->write($request);
-     *         // if required, read a single response from the stream
-     *         $element = $stream->read();
-     *         // doSomethingWith($element)
-     *     }
-     *     $stream->closeWrite();
-     *     $element = $stream->read();
-     *     while (!is_null($element)) {
-     *         // doSomethingWith($element)
-     *         $element = $stream->read();
-     *     }
-     * } finally {
-     *     $firestoreClient->close();
-     * }
-     * ```
-     *
-     * @param array $optionalArgs {
-     *                            Optional.
-     *
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call.
-     * }
-     *
-     * @return \Google\ApiCore\BidiStream
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function write(array $optionalArgs = [])
-    {
-        return $this->startCall(
-            'Write',
-            WriteResponse::class,
-            $optionalArgs,
-            null,
-            Call::BIDI_STREAMING_CALL
-        );
-    }
-
-    /**
-     * Listens to changes.
-     *
-     * Sample code:
-     * ```
-     * $firestoreClient = new FirestoreClient();
-     * try {
-     *     $formattedDatabase = $firestoreClient->databaseRootName('[PROJECT]', '[DATABASE]');
-     *     $request = new ListenRequest();
-     *     $request->setDatabase($formattedDatabase);
-     *     // Write all requests to the server, then read all responses until the
-     *     // stream is complete
-     *     $requests = [$request];
-     *     $stream = $firestoreClient->listen();
-     *     $stream->writeAll($requests);
-     *     foreach ($stream->closeWriteAndReadAll() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     *
-     *
-     *     // Alternatively:
-     *
-     *     // Write requests individually, making read() calls if
-     *     // required. Call closeWrite() once writes are complete, and read the
-     *     // remaining responses from the server.
-     *     $requests = [$request];
-     *     $stream = $firestoreClient->listen();
-     *     foreach ($requests as $request) {
-     *         $stream->write($request);
-     *         // if required, read a single response from the stream
-     *         $element = $stream->read();
-     *         // doSomethingWith($element)
-     *     }
-     *     $stream->closeWrite();
-     *     $element = $stream->read();
-     *     while (!is_null($element)) {
-     *         // doSomethingWith($element)
-     *         $element = $stream->read();
-     *     }
-     * } finally {
-     *     $firestoreClient->close();
-     * }
-     * ```
-     *
-     * @param array $optionalArgs {
-     *                            Optional.
-     *
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call.
-     * }
-     *
-     * @return \Google\ApiCore\BidiStream
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function listen(array $optionalArgs = [])
-    {
-        return $this->startCall(
-            'Listen',
-            ListenResponse::class,
-            $optionalArgs,
-            null,
-            Call::BIDI_STREAMING_CALL
-        );
-    }
-
-    /**
-     * Lists all the collection IDs underneath a document.
-     *
-     * Sample code:
-     * ```
-     * $firestoreClient = new FirestoreClient();
-     * try {
-     *     $formattedParent = $firestoreClient->anyPathName('[PROJECT]', '[DATABASE]', '[DOCUMENT]', '[ANY_PATH]');
-     *     // Iterate over pages of elements
-     *     $pagedResponse = $firestoreClient->listCollectionIds($formattedParent);
-     *     foreach ($pagedResponse->iteratePages() as $page) {
-     *         foreach ($page as $element) {
-     *             // doSomethingWith($element);
-     *         }
-     *     }
-     *
-     *
-     *     // Alternatively:
-     *
-     *     // Iterate through all elements
-     *     $pagedResponse = $firestoreClient->listCollectionIds($formattedParent);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     * } finally {
-     *     $firestoreClient->close();
-     * }
-     * ```
-     *
-     * @param string $parent       Required. The parent document. In the format:
-     *                             `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
-     *                             For example:
-     *                             `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type int $pageSize
-     *          The maximum number of resources contained in the underlying API
-     *          response. The API may return fewer values in a page, even if
-     *          there are additional values to be retrieved.
-     *     @type string $pageToken
-     *          A page token is used to specify a page of values to be returned.
-     *          If no page token is specified (the default), the first page
-     *          of values will be returned. Any page token used here must have
-     *          been generated by a previous call to the API.
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\ApiCore\PagedListResponse
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function listCollectionIds($parent, array $optionalArgs = [])
-    {
-        $request = new ListCollectionIdsRequest();
-        $request->setParent($parent);
-        if (isset($optionalArgs['pageSize'])) {
-            $request->setPageSize($optionalArgs['pageSize']);
-        }
-        if (isset($optionalArgs['pageToken'])) {
-            $request->setPageToken($optionalArgs['pageToken']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'parent' => $request->getParent(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->getPagedListResponse(
-            'ListCollectionIds',
-            $optionalArgs,
-            ListCollectionIdsResponse::class,
-            $request
-        );
     }
 }

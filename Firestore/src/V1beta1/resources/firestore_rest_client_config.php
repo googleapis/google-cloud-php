@@ -3,6 +3,60 @@
 return [
     'interfaces' => [
         'google.firestore.v1beta1.Firestore' => [
+            'DeleteDocument' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1beta1/{name=projects/*/databases/*/documents/*/**}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'BeginTransaction' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta1/{database=projects/*/databases/*}/documents:beginTransaction',
+                'body' => '*',
+                'placeholders' => [
+                    'database' => [
+                        'getters' => [
+                            'getDatabase',
+                        ],
+                    ],
+                ],
+            ],
+            'Rollback' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta1/{database=projects/*/databases/*}/documents:rollback',
+                'body' => '*',
+                'placeholders' => [
+                    'database' => [
+                        'getters' => [
+                            'getDatabase',
+                        ],
+                    ],
+                ],
+            ],
+            'ListCollectionIds' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta1/{parent=projects/*/databases/*/documents}:listCollectionIds',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta1/{parent=projects/*/databases/*/documents/*/**}:listCollectionIds',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'GetDocument' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta1/{name=projects/*/databases/*/documents/*/**}',
@@ -60,29 +114,6 @@ return [
                     ],
                 ],
             ],
-            'DeleteDocument' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1beta1/{name=projects/*/databases/*/documents/*/**}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'BeginTransaction' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1beta1/{database=projects/*/databases/*}/documents:beginTransaction',
-                'body' => '*',
-                'placeholders' => [
-                    'database' => [
-                        'getters' => [
-                            'getDatabase',
-                        ],
-                    ],
-                ],
-            ],
             'Commit' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1beta1/{database=projects/*/databases/*}/documents:commit',
@@ -91,37 +122,6 @@ return [
                     'database' => [
                         'getters' => [
                             'getDatabase',
-                        ],
-                    ],
-                ],
-            ],
-            'Rollback' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1beta1/{database=projects/*/databases/*}/documents:rollback',
-                'body' => '*',
-                'placeholders' => [
-                    'database' => [
-                        'getters' => [
-                            'getDatabase',
-                        ],
-                    ],
-                ],
-            ],
-            'ListCollectionIds' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1beta1/{parent=projects/*/databases/*/documents}:listCollectionIds',
-                'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1beta1/{parent=projects/*/databases/*/documents/*/**}:listCollectionIds',
-                        'body' => '*',
-                    ],
-                ],
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
                         ],
                     ],
                 ],
