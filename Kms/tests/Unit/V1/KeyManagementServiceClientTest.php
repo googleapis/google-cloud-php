@@ -1335,10 +1335,10 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $name = 'name3373707';
+        $formattedName = $client->cryptoKeyPathName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY_PATH]');
         $plaintext = '-9';
 
-        $response = $client->encrypt($name, $plaintext);
+        $response = $client->encrypt($formattedName, $plaintext);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1348,7 +1348,7 @@ class KeyManagementServiceClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getName();
 
-        $this->assertProtobufEquals($name, $actualValue);
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $actualValue = $actualRequestObject->getPlaintext();
 
         $this->assertProtobufEquals($plaintext, $actualValue);
@@ -1379,11 +1379,11 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $name = 'name3373707';
+        $formattedName = $client->cryptoKeyPathName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY_PATH]');
         $plaintext = '-9';
 
         try {
-            $client->encrypt($name, $plaintext);
+            $client->encrypt($formattedName, $plaintext);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1954,10 +1954,10 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $resource = 'resource-341064690';
+        $formattedResource = $client->keyRingName('[PROJECT]', '[LOCATION]', '[KEY_RING]');
         $policy = new Policy();
 
-        $response = $client->setIamPolicy($resource, $policy);
+        $response = $client->setIamPolicy($formattedResource, $policy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1967,7 +1967,7 @@ class KeyManagementServiceClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getResource();
 
-        $this->assertProtobufEquals($resource, $actualValue);
+        $this->assertProtobufEquals($formattedResource, $actualValue);
         $actualValue = $actualRequestObject->getPolicy();
 
         $this->assertProtobufEquals($policy, $actualValue);
@@ -1998,11 +1998,11 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $resource = 'resource-341064690';
+        $formattedResource = $client->keyRingName('[PROJECT]', '[LOCATION]', '[KEY_RING]');
         $policy = new Policy();
 
         try {
-            $client->setIamPolicy($resource, $policy);
+            $client->setIamPolicy($formattedResource, $policy);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2034,9 +2034,9 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $resource = 'resource-341064690';
+        $formattedResource = $client->keyRingName('[PROJECT]', '[LOCATION]', '[KEY_RING]');
 
-        $response = $client->getIamPolicy($resource);
+        $response = $client->getIamPolicy($formattedResource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2046,7 +2046,7 @@ class KeyManagementServiceClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getResource();
 
-        $this->assertProtobufEquals($resource, $actualValue);
+        $this->assertProtobufEquals($formattedResource, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -2074,10 +2074,10 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $resource = 'resource-341064690';
+        $formattedResource = $client->keyRingName('[PROJECT]', '[LOCATION]', '[KEY_RING]');
 
         try {
-            $client->getIamPolicy($resource);
+            $client->getIamPolicy($formattedResource);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2105,10 +2105,10 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $resource = 'resource-341064690';
+        $formattedResource = $client->keyRingName('[PROJECT]', '[LOCATION]', '[KEY_RING]');
         $permissions = [];
 
-        $response = $client->testIamPermissions($resource, $permissions);
+        $response = $client->testIamPermissions($formattedResource, $permissions);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2118,7 +2118,7 @@ class KeyManagementServiceClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getResource();
 
-        $this->assertProtobufEquals($resource, $actualValue);
+        $this->assertProtobufEquals($formattedResource, $actualValue);
         $actualValue = $actualRequestObject->getPermissions();
 
         $this->assertProtobufEquals($permissions, $actualValue);
@@ -2149,11 +2149,11 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $resource = 'resource-341064690';
+        $formattedResource = $client->keyRingName('[PROJECT]', '[LOCATION]', '[KEY_RING]');
         $permissions = [];
 
         try {
-            $client->testIamPermissions($resource, $permissions);
+            $client->testIamPermissions($formattedResource, $permissions);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
