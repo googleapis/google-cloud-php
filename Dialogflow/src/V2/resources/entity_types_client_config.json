@@ -20,6 +20,21 @@
         }
       },
       "methods": {
+        "DeleteEntityType": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "idempotent",
+          "retry_params_name": "default"
+        },
+        "BatchDeleteEntityTypes": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "idempotent",
+          "retry_params_name": "default"
+        },
+        "BatchDeleteEntities": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "idempotent",
+          "retry_params_name": "default"
+        },
         "ListEntityTypes": {
           "timeout_millis": 60000,
           "retry_codes_name": "idempotent",
@@ -40,19 +55,9 @@
           "retry_codes_name": "non_idempotent",
           "retry_params_name": "default"
         },
-        "DeleteEntityType": {
-          "timeout_millis": 60000,
-          "retry_codes_name": "idempotent",
-          "retry_params_name": "default"
-        },
         "BatchUpdateEntityTypes": {
           "timeout_millis": 60000,
           "retry_codes_name": "non_idempotent",
-          "retry_params_name": "default"
-        },
-        "BatchDeleteEntityTypes": {
-          "timeout_millis": 60000,
-          "retry_codes_name": "idempotent",
           "retry_params_name": "default"
         },
         "BatchCreateEntities": {
@@ -63,11 +68,6 @@
         "BatchUpdateEntities": {
           "timeout_millis": 60000,
           "retry_codes_name": "non_idempotent",
-          "retry_params_name": "default"
-        },
-        "BatchDeleteEntities": {
-          "timeout_millis": 60000,
-          "retry_codes_name": "idempotent",
           "retry_params_name": "default"
         }
       }

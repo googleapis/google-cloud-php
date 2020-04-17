@@ -18,12 +18,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class Intent extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The unique identifier of this intent.
+     * Optional. The unique identifier of this intent.
      * Required for [Intents.UpdateIntent][google.cloud.dialogflow.v2.Intents.UpdateIntent] and [Intents.BatchUpdateIntents][google.cloud.dialogflow.v2.Intents.BatchUpdateIntents]
      * methods.
      * Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $name = '';
     /**
@@ -169,7 +169,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The unique identifier of this intent.
+     *           Optional. The unique identifier of this intent.
      *           Required for [Intents.UpdateIntent][google.cloud.dialogflow.v2.Intents.UpdateIntent] and [Intents.BatchUpdateIntents][google.cloud.dialogflow.v2.Intents.BatchUpdateIntents]
      *           methods.
      *           Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
@@ -248,12 +248,12 @@ class Intent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unique identifier of this intent.
+     * Optional. The unique identifier of this intent.
      * Required for [Intents.UpdateIntent][google.cloud.dialogflow.v2.Intents.UpdateIntent] and [Intents.BatchUpdateIntents][google.cloud.dialogflow.v2.Intents.BatchUpdateIntents]
      * methods.
      * Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getName()
@@ -262,12 +262,12 @@ class Intent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unique identifier of this intent.
+     * Optional. The unique identifier of this intent.
      * Required for [Intents.UpdateIntent][google.cloud.dialogflow.v2.Intents.UpdateIntent] and [Intents.BatchUpdateIntents][google.cloud.dialogflow.v2.Intents.BatchUpdateIntents]
      * methods.
      * Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

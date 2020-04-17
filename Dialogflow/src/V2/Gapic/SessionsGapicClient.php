@@ -57,9 +57,9 @@ use Google\Protobuf\FieldMask;
  * ```
  * $sessionsClient = new SessionsClient();
  * try {
- *     $formattedSession = $sessionsClient->sessionName('[PROJECT]', '[SESSION]');
+ *     $session = '';
  *     $queryInput = new QueryInput();
- *     $response = $sessionsClient->detectIntent($formattedSession, $queryInput);
+ *     $response = $sessionsClient->detectIntent($session, $queryInput);
  * } finally {
  *     $sessionsClient->close();
  * }
@@ -103,6 +103,8 @@ class SessionsGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/dialogflow',
     ];
+    private static $projectEnvironmentUserSessionNameTemplate;
+    private static $projectSessionNameTemplate;
     private static $sessionNameTemplate;
     private static $pathTemplateMap;
 
@@ -125,6 +127,24 @@ class SessionsGapicClient
         ];
     }
 
+    private static function getProjectEnvironmentUserSessionNameTemplate()
+    {
+        if (null == self::$projectEnvironmentUserSessionNameTemplate) {
+            self::$projectEnvironmentUserSessionNameTemplate = new PathTemplate('projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}');
+        }
+
+        return self::$projectEnvironmentUserSessionNameTemplate;
+    }
+
+    private static function getProjectSessionNameTemplate()
+    {
+        if (null == self::$projectSessionNameTemplate) {
+            self::$projectSessionNameTemplate = new PathTemplate('projects/{project}/agent/sessions/{session}');
+        }
+
+        return self::$projectSessionNameTemplate;
+    }
+
     private static function getSessionNameTemplate()
     {
         if (null == self::$sessionNameTemplate) {
@@ -138,11 +158,53 @@ class SessionsGapicClient
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
+                'projectEnvironmentUserSession' => self::getProjectEnvironmentUserSessionNameTemplate(),
+                'projectSession' => self::getProjectSessionNameTemplate(),
                 'session' => self::getSessionNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project_environment_user_session resource.
+     *
+     * @param string $project
+     * @param string $environment
+     * @param string $user
+     * @param string $session
+     *
+     * @return string The formatted project_environment_user_session resource.
+     * @experimental
+     */
+    public static function projectEnvironmentUserSessionName($project, $environment, $user, $session)
+    {
+        return self::getProjectEnvironmentUserSessionNameTemplate()->render([
+            'project' => $project,
+            'environment' => $environment,
+            'user' => $user,
+            'session' => $session,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project_session resource.
+     *
+     * @param string $project
+     * @param string $session
+     *
+     * @return string The formatted project_session resource.
+     * @experimental
+     */
+    public static function projectSessionName($project, $session)
+    {
+        return self::getProjectSessionNameTemplate()->render([
+            'project' => $project,
+            'session' => $session,
+        ]);
     }
 
     /**
@@ -167,6 +229,8 @@ class SessionsGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - projectEnvironmentUserSession: projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}
+     * - projectSession: projects/{project}/agent/sessions/{session}
      * - session: projects/{project}/agent/sessions/{session}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
@@ -275,9 +339,9 @@ class SessionsGapicClient
      * ```
      * $sessionsClient = new SessionsClient();
      * try {
-     *     $formattedSession = $sessionsClient->sessionName('[PROJECT]', '[SESSION]');
+     *     $session = '';
      *     $queryInput = new QueryInput();
-     *     $response = $sessionsClient->detectIntent($formattedSession, $queryInput);
+     *     $response = $sessionsClient->detectIntent($session, $queryInput);
      * } finally {
      *     $sessionsClient->close();
      * }

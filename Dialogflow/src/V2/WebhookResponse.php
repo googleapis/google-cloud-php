@@ -46,28 +46,16 @@ class WebhookResponse extends \Google\Protobuf\Internal\Message
      */
     private $source = '';
     /**
-     * Optional. This value is passed directly to `QueryResult.webhook_payload`.
-     * See the related `fulfillment_messages[i].payload field`, which may be used
-     * as an alternative to this field.
-     * This field can be used for Actions on Google responses.
-     * It should have a structure similar to the JSON message shown here. For more
-     * information, see
-     * [Actions on Google Webhook
-     * Format](https://developers.google.com/actions/dialogflow/webhook)
-     * <pre>{
-     *   "google": {
-     *     "expectUserResponse": true,
-     *     "richResponse": {
-     *       "items": [
-     *         {
-     *           "simpleResponse": {
-     *             "textToSpeech": "this is a simple response"
-     *           }
-     *         }
-     *       ]
-     *     }
-     *   }
-     * }</pre>
+     * Optional. This field can be used to pass custom data from your webhook to the API
+     * caller. Arbitrary JSON objects are supported.
+     * When provided, Dialogflow uses this field to populate
+     * `QueryResult.webhook_payload` sent to the API caller.
+     * This field is also used by the
+     * [Google Assistant
+     * integration](https://cloud.google.com/dialogflow/docs/integrations/aog)
+     * for rich response messages.
+     * See the format definition at [Google Assistant Dialogflow webhook
+     * format](https://developers.google.com/assistant/actions/build/json/dialogflow-webhook-json)
      *
      * Generated from protobuf field <code>.google.protobuf.Struct payload = 4;</code>
      */
@@ -114,28 +102,16 @@ class WebhookResponse extends \Google\Protobuf\Internal\Message
      *     @type string $source
      *           Optional. This value is passed directly to `QueryResult.webhook_source`.
      *     @type \Google\Protobuf\Struct $payload
-     *           Optional. This value is passed directly to `QueryResult.webhook_payload`.
-     *           See the related `fulfillment_messages[i].payload field`, which may be used
-     *           as an alternative to this field.
-     *           This field can be used for Actions on Google responses.
-     *           It should have a structure similar to the JSON message shown here. For more
-     *           information, see
-     *           [Actions on Google Webhook
-     *           Format](https://developers.google.com/actions/dialogflow/webhook)
-     *           <pre>{
-     *             "google": {
-     *               "expectUserResponse": true,
-     *               "richResponse": {
-     *                 "items": [
-     *                   {
-     *                     "simpleResponse": {
-     *                       "textToSpeech": "this is a simple response"
-     *                     }
-     *                   }
-     *                 ]
-     *               }
-     *             }
-     *           }</pre>
+     *           Optional. This field can be used to pass custom data from your webhook to the API
+     *           caller. Arbitrary JSON objects are supported.
+     *           When provided, Dialogflow uses this field to populate
+     *           `QueryResult.webhook_payload` sent to the API caller.
+     *           This field is also used by the
+     *           [Google Assistant
+     *           integration](https://cloud.google.com/dialogflow/docs/integrations/aog)
+     *           for rich response messages.
+     *           See the format definition at [Google Assistant Dialogflow webhook
+     *           format](https://developers.google.com/assistant/actions/build/json/dialogflow-webhook-json)
      *     @type \Google\Cloud\Dialogflow\V2\Context[]|\Google\Protobuf\Internal\RepeatedField $output_contexts
      *           Optional. The collection of output contexts. This value is passed directly
      *           to `QueryResult.output_contexts`.
@@ -240,28 +216,16 @@ class WebhookResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This value is passed directly to `QueryResult.webhook_payload`.
-     * See the related `fulfillment_messages[i].payload field`, which may be used
-     * as an alternative to this field.
-     * This field can be used for Actions on Google responses.
-     * It should have a structure similar to the JSON message shown here. For more
-     * information, see
-     * [Actions on Google Webhook
-     * Format](https://developers.google.com/actions/dialogflow/webhook)
-     * <pre>{
-     *   "google": {
-     *     "expectUserResponse": true,
-     *     "richResponse": {
-     *       "items": [
-     *         {
-     *           "simpleResponse": {
-     *             "textToSpeech": "this is a simple response"
-     *           }
-     *         }
-     *       ]
-     *     }
-     *   }
-     * }</pre>
+     * Optional. This field can be used to pass custom data from your webhook to the API
+     * caller. Arbitrary JSON objects are supported.
+     * When provided, Dialogflow uses this field to populate
+     * `QueryResult.webhook_payload` sent to the API caller.
+     * This field is also used by the
+     * [Google Assistant
+     * integration](https://cloud.google.com/dialogflow/docs/integrations/aog)
+     * for rich response messages.
+     * See the format definition at [Google Assistant Dialogflow webhook
+     * format](https://developers.google.com/assistant/actions/build/json/dialogflow-webhook-json)
      *
      * Generated from protobuf field <code>.google.protobuf.Struct payload = 4;</code>
      * @return \Google\Protobuf\Struct
@@ -272,28 +236,16 @@ class WebhookResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This value is passed directly to `QueryResult.webhook_payload`.
-     * See the related `fulfillment_messages[i].payload field`, which may be used
-     * as an alternative to this field.
-     * This field can be used for Actions on Google responses.
-     * It should have a structure similar to the JSON message shown here. For more
-     * information, see
-     * [Actions on Google Webhook
-     * Format](https://developers.google.com/actions/dialogflow/webhook)
-     * <pre>{
-     *   "google": {
-     *     "expectUserResponse": true,
-     *     "richResponse": {
-     *       "items": [
-     *         {
-     *           "simpleResponse": {
-     *             "textToSpeech": "this is a simple response"
-     *           }
-     *         }
-     *       ]
-     *     }
-     *   }
-     * }</pre>
+     * Optional. This field can be used to pass custom data from your webhook to the API
+     * caller. Arbitrary JSON objects are supported.
+     * When provided, Dialogflow uses this field to populate
+     * `QueryResult.webhook_payload` sent to the API caller.
+     * This field is also used by the
+     * [Google Assistant
+     * integration](https://cloud.google.com/dialogflow/docs/integrations/aog)
+     * for rich response messages.
+     * See the format definition at [Google Assistant Dialogflow webhook
+     * format](https://developers.google.com/assistant/actions/build/json/dialogflow-webhook-json)
      *
      * Generated from protobuf field <code>.google.protobuf.Struct payload = 4;</code>
      * @param \Google\Protobuf\Struct $var
