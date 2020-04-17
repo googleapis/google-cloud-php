@@ -137,9 +137,6 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * parent project (i.e.,
      * service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com) must have
      * permission to Acknowledge() messages on this subscription.
-     * <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
-     * API might be changed in backward-incompatible ways and is not recommended
-     * for production use. It is not subject to any SLA or deprecation policy.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.DeadLetterPolicy dead_letter_policy = 13;</code>
      */
@@ -247,9 +244,6 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *           parent project (i.e.,
      *           service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com) must have
      *           permission to Acknowledge() messages on this subscription.
-     *           <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
-     *           API might be changed in backward-incompatible ways and is not recommended
-     *           for production use. It is not subject to any SLA or deprecation policy.
      *     @type \Google\Cloud\PubSub\V1\RetryPolicy $retry_policy
      *           A policy that specifies how Cloud Pub/Sub retries message delivery for this
      *           subscription.
@@ -643,9 +637,6 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * parent project (i.e.,
      * service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com) must have
      * permission to Acknowledge() messages on this subscription.
-     * <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
-     * API might be changed in backward-incompatible ways and is not recommended
-     * for production use. It is not subject to any SLA or deprecation policy.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.DeadLetterPolicy dead_letter_policy = 13;</code>
      * @return \Google\Cloud\PubSub\V1\DeadLetterPolicy
@@ -663,9 +654,6 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * parent project (i.e.,
      * service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com) must have
      * permission to Acknowledge() messages on this subscription.
-     * <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
-     * API might be changed in backward-incompatible ways and is not recommended
-     * for production use. It is not subject to any SLA or deprecation policy.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.DeadLetterPolicy dead_letter_policy = 13;</code>
      * @param \Google\Cloud\PubSub\V1\DeadLetterPolicy $var
