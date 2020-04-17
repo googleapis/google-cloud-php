@@ -526,7 +526,7 @@ class LoadJobConfiguration implements JobConfigurationInterface
      * ```
      *
      * @param array $timePartitioning Time-based partitioning configuration.
-     * @return QueryJobConfiguration
+     * @return LoadJobConfiguration
      */
     public function timePartitioning(array $timePartitioning)
     {
@@ -553,7 +553,7 @@ class LoadJobConfiguration implements JobConfigurationInterface
      * ```
      *
      * @param array $rangePartitioning
-     * @return QueryJobConfiguration
+     * @return LoadJobConfiguration
      */
     public function rangePartitioning(array $rangePartitioning)
     {
