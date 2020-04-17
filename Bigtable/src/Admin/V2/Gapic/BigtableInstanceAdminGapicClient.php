@@ -1144,8 +1144,8 @@ class BigtableInstanceAdminGapicClient
      *
      * @param string $name         The unique name of the cluster. Values are of the form
      *                             `projects/{project}/instances/{instance}/clusters/[a-z][-a-z0-9]*`.
-     * @param int    $serveNodes   Required. The number of nodes allocated to this cluster. More nodes enable higher
-     *                             throughput and more consistent performance.
+     * @param int    $serveNodes   Required. The number of nodes allocated to this cluster. More nodes enable
+     *                             higher throughput and more consistent performance.
      * @param array  $optionalArgs {
      *                             Optional.
      *
