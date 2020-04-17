@@ -3,6 +3,28 @@
 return [
     'interfaces' => [
         'google.cloud.automl.v1.AutoMl' => [
+            'DeleteDataset' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/datasets/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteModel' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/models/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'CreateDataset' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/datasets',
@@ -11,19 +33,6 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'UpdateDataset' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1/{dataset.name=projects/*/locations/*/datasets/*}',
-                'body' => 'dataset',
-                'placeholders' => [
-                    'dataset.name' => [
-                        'getters' => [
-                            'getDataset',
-                            'getName',
                         ],
                     ],
                 ],
@@ -50,12 +59,14 @@ return [
                     ],
                 ],
             ],
-            'DeleteDataset' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/datasets/*}',
+            'UpdateDataset' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{dataset.name=projects/*/locations/*/datasets/*}',
+                'body' => 'dataset',
                 'placeholders' => [
-                    'name' => [
+                    'dataset.name' => [
                         'getters' => [
+                            'getDataset',
                             'getName',
                         ],
                     ],
@@ -119,19 +130,6 @@ return [
                     ],
                 ],
             ],
-            'UpdateModel' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1/{model.name=projects/*/locations/*/models/*}',
-                'body' => 'model',
-                'placeholders' => [
-                    'model.name' => [
-                        'getters' => [
-                            'getModel',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'ListModels' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/models',
@@ -143,12 +141,14 @@ return [
                     ],
                 ],
             ],
-            'DeleteModel' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/models/*}',
+            'UpdateModel' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{model.name=projects/*/locations/*/models/*}',
+                'body' => 'model',
                 'placeholders' => [
-                    'name' => [
+                    'model.name' => [
                         'getters' => [
+                            'getModel',
                             'getName',
                         ],
                     ],
