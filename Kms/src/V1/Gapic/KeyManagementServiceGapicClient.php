@@ -159,7 +159,6 @@ class KeyManagementServiceGapicClient
         'https://www.googleapis.com/auth/cloudkms',
     ];
     private static $cryptoKeyNameTemplate;
-    private static $cryptoKeyPathNameTemplate;
     private static $cryptoKeyVersionNameTemplate;
     private static $importJobNameTemplate;
     private static $keyRingNameTemplate;
@@ -192,15 +191,6 @@ class KeyManagementServiceGapicClient
         }
 
         return self::$cryptoKeyNameTemplate;
-    }
-
-    private static function getCryptoKeyPathNameTemplate()
-    {
-        if (null == self::$cryptoKeyPathNameTemplate) {
-            self::$cryptoKeyPathNameTemplate = new PathTemplate('projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key_path=**}');
-        }
-
-        return self::$cryptoKeyPathNameTemplate;
     }
 
     private static function getCryptoKeyVersionNameTemplate()
@@ -244,7 +234,6 @@ class KeyManagementServiceGapicClient
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'cryptoKey' => self::getCryptoKeyNameTemplate(),
-                'cryptoKeyPath' => self::getCryptoKeyPathNameTemplate(),
                 'cryptoKeyVersion' => self::getCryptoKeyVersionNameTemplate(),
                 'importJob' => self::getImportJobNameTemplate(),
                 'keyRing' => self::getKeyRingNameTemplate(),
@@ -273,27 +262,6 @@ class KeyManagementServiceGapicClient
             'location' => $location,
             'key_ring' => $keyRing,
             'crypto_key' => $cryptoKey,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a crypto_key_path resource.
-     *
-     * @param string $project
-     * @param string $location
-     * @param string $keyRing
-     * @param string $cryptoKeyPath
-     *
-     * @return string The formatted crypto_key_path resource.
-     */
-    public static function cryptoKeyPathName($project, $location, $keyRing, $cryptoKeyPath)
-    {
-        return self::getCryptoKeyPathNameTemplate()->render([
-            'project' => $project,
-            'location' => $location,
-            'key_ring' => $keyRing,
-            'crypto_key_path' => $cryptoKeyPath,
         ]);
     }
 
@@ -382,7 +350,6 @@ class KeyManagementServiceGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
-     * - cryptoKeyPath: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key_path=**}
      * - cryptoKeyVersion: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}
      * - importJob: projects/{project}/locations/{location}/keyRings/{key_ring}/importJobs/{import_job}
      * - keyRing: projects/{project}/locations/{location}/keyRings/{key_ring}
@@ -1543,9 +1510,9 @@ class KeyManagementServiceGapicClient
      * ```
      * $keyManagementServiceClient = new KeyManagementServiceClient();
      * try {
-     *     $formattedName = $keyManagementServiceClient->cryptoKeyPathName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY_PATH]');
+     *     $name = '';
      *     $plaintext = '';
-     *     $response = $keyManagementServiceClient->encrypt($formattedName, $plaintext);
+     *     $response = $keyManagementServiceClient->encrypt($name, $plaintext);
      * } finally {
      *     $keyManagementServiceClient->close();
      * }
@@ -2018,9 +1985,9 @@ class KeyManagementServiceGapicClient
      * ```
      * $keyManagementServiceClient = new KeyManagementServiceClient();
      * try {
-     *     $formattedResource = $keyManagementServiceClient->keyRingName('[PROJECT]', '[LOCATION]', '[KEY_RING]');
+     *     $resource = '';
      *     $policy = new Policy();
-     *     $response = $keyManagementServiceClient->setIamPolicy($formattedResource, $policy);
+     *     $response = $keyManagementServiceClient->setIamPolicy($resource, $policy);
      * } finally {
      *     $keyManagementServiceClient->close();
      * }
@@ -2077,8 +2044,8 @@ class KeyManagementServiceGapicClient
      * ```
      * $keyManagementServiceClient = new KeyManagementServiceClient();
      * try {
-     *     $formattedResource = $keyManagementServiceClient->keyRingName('[PROJECT]', '[LOCATION]', '[KEY_RING]');
-     *     $response = $keyManagementServiceClient->getIamPolicy($formattedResource);
+     *     $resource = '';
+     *     $response = $keyManagementServiceClient->getIamPolicy($resource);
      * } finally {
      *     $keyManagementServiceClient->close();
      * }
@@ -2141,9 +2108,9 @@ class KeyManagementServiceGapicClient
      * ```
      * $keyManagementServiceClient = new KeyManagementServiceClient();
      * try {
-     *     $formattedResource = $keyManagementServiceClient->keyRingName('[PROJECT]', '[LOCATION]', '[KEY_RING]');
+     *     $resource = '';
      *     $permissions = [];
-     *     $response = $keyManagementServiceClient->testIamPermissions($formattedResource, $permissions);
+     *     $response = $keyManagementServiceClient->testIamPermissions($resource, $permissions);
      * } finally {
      *     $keyManagementServiceClient->close();
      * }

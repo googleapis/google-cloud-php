@@ -23,6 +23,14 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool hsm_available = 1;</code>
      */
     private $hsm_available = false;
+    /**
+     * Indicates whether [CryptoKeys][google.cloud.kms.v1.CryptoKey] with
+     * [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level]
+     * [EXTERNAL][google.cloud.kms.v1.ProtectionLevel.EXTERNAL] can be created in this location.
+     *
+     * Generated from protobuf field <code>bool ekm_available = 2;</code>
+     */
+    private $ekm_available = false;
 
     /**
      * Constructor.
@@ -34,6 +42,10 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
      *           Indicates whether [CryptoKeys][google.cloud.kms.v1.CryptoKey] with
      *           [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level]
      *           [HSM][google.cloud.kms.v1.ProtectionLevel.HSM] can be created in this location.
+     *     @type bool $ekm_available
+     *           Indicates whether [CryptoKeys][google.cloud.kms.v1.CryptoKey] with
+     *           [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level]
+     *           [EXTERNAL][google.cloud.kms.v1.ProtectionLevel.EXTERNAL] can be created in this location.
      * }
      */
     public function __construct($data = NULL) {
@@ -67,6 +79,36 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->hsm_available = $var;
+
+        return $this;
+    }
+
+    /**
+     * Indicates whether [CryptoKeys][google.cloud.kms.v1.CryptoKey] with
+     * [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level]
+     * [EXTERNAL][google.cloud.kms.v1.ProtectionLevel.EXTERNAL] can be created in this location.
+     *
+     * Generated from protobuf field <code>bool ekm_available = 2;</code>
+     * @return bool
+     */
+    public function getEkmAvailable()
+    {
+        return $this->ekm_available;
+    }
+
+    /**
+     * Indicates whether [CryptoKeys][google.cloud.kms.v1.CryptoKey] with
+     * [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level]
+     * [EXTERNAL][google.cloud.kms.v1.ProtectionLevel.EXTERNAL] can be created in this location.
+     *
+     * Generated from protobuf field <code>bool ekm_available = 2;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEkmAvailable($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->ekm_available = $var;
 
         return $this;
     }

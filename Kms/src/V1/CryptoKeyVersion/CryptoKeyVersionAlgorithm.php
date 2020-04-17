@@ -133,6 +133,12 @@ class CryptoKeyVersionAlgorithm
      * Generated from protobuf enum <code>EC_SIGN_P384_SHA384 = 13;</code>
      */
     const EC_SIGN_P384_SHA384 = 13;
+    /**
+     * Algorithm representing symmetric encryption by an external key manager.
+     *
+     * Generated from protobuf enum <code>EXTERNAL_SYMMETRIC_ENCRYPTION = 18;</code>
+     */
+    const EXTERNAL_SYMMETRIC_ENCRYPTION = 18;
 
     private static $valueToName = [
         self::CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED => 'CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED',
@@ -151,6 +157,7 @@ class CryptoKeyVersionAlgorithm
         self::RSA_DECRYPT_OAEP_4096_SHA512 => 'RSA_DECRYPT_OAEP_4096_SHA512',
         self::EC_SIGN_P256_SHA256 => 'EC_SIGN_P256_SHA256',
         self::EC_SIGN_P384_SHA384 => 'EC_SIGN_P384_SHA384',
+        self::EXTERNAL_SYMMETRIC_ENCRYPTION => 'EXTERNAL_SYMMETRIC_ENCRYPTION',
     ];
 
     public static function name($value)
