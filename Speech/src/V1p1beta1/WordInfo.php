@@ -56,13 +56,13 @@ class WordInfo extends \Google\Protobuf\Internal\Message
      */
     private $confidence = 0.0;
     /**
-     * A distinct integer value is assigned for every speaker within
+     * Output only. A distinct integer value is assigned for every speaker within
      * the audio. This field specifies which one of those speakers was detected to
      * have spoken this word. Value ranges from '1' to diarization_speaker_count.
      * speaker_tag is set if enable_speaker_diarization = 'true' and only in the
      * top alternative.
      *
-     * Generated from protobuf field <code>int32 speaker_tag = 5;</code>
+     * Generated from protobuf field <code>int32 speaker_tag = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $speaker_tag = 0;
 
@@ -97,7 +97,7 @@ class WordInfo extends \Google\Protobuf\Internal\Message
      *           to be always provided.
      *           The default of 0.0 is a sentinel value indicating `confidence` was not set.
      *     @type int $speaker_tag
-     *           A distinct integer value is assigned for every speaker within
+     *           Output only. A distinct integer value is assigned for every speaker within
      *           the audio. This field specifies which one of those speakers was detected to
      *           have spoken this word. Value ranges from '1' to diarization_speaker_count.
      *           speaker_tag is set if enable_speaker_diarization = 'true' and only in the
@@ -246,13 +246,13 @@ class WordInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A distinct integer value is assigned for every speaker within
+     * Output only. A distinct integer value is assigned for every speaker within
      * the audio. This field specifies which one of those speakers was detected to
      * have spoken this word. Value ranges from '1' to diarization_speaker_count.
      * speaker_tag is set if enable_speaker_diarization = 'true' and only in the
      * top alternative.
      *
-     * Generated from protobuf field <code>int32 speaker_tag = 5;</code>
+     * Generated from protobuf field <code>int32 speaker_tag = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getSpeakerTag()
@@ -261,13 +261,13 @@ class WordInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A distinct integer value is assigned for every speaker within
+     * Output only. A distinct integer value is assigned for every speaker within
      * the audio. This field specifies which one of those speakers was detected to
      * have spoken this word. Value ranges from '1' to diarization_speaker_count.
      * speaker_tag is set if enable_speaker_diarization = 'true' and only in the
      * top alternative.
      *
-     * Generated from protobuf field <code>int32 speaker_tag = 5;</code>
+     * Generated from protobuf field <code>int32 speaker_tag = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */
