@@ -23,7 +23,7 @@ logging.basicConfig(level=logging.DEBUG)
 gapic = gcp.GAPICBazel()
 common = gcp.CommonTemplates()
 
-for ver in ['V1', 'V1beta1']:
+for ver in ['V1']:
     lower_version = ver.lower()
 
     library = gapic.php_library(
