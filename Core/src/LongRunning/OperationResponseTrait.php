@@ -47,10 +47,15 @@ trait OperationResponseTrait
         $response = $serializer->encodeMessage($response);
 
         $result = null;
-        if ($operation->isDone()) {
-            $type = $response['metadata']['typeUrl'];
+        if ($operation->isDone() && isset($response['response']['typeUrl'])) {
+            $type = $response['response']['typeUrl'];
             $result = $this->deserializeResult($operation, $type, $serializer, $lroMappers);
         }
+
+        $metaType = $response['metadata']['typeUrl'];
+        $metaResult = $this->deserializeMetadata($operation, $metaType, $serializer, $lroMappers);
+        /** @see LongRunningOperation#reload() */
+        $metaResult += ['typeUrl' => $metaType];
 
         $error = $operation->getError();
         if (!is_null($error)) {
@@ -58,6 +63,7 @@ trait OperationResponseTrait
         }
 
         $response['response'] = $result;
+        $response['metadata'] = $metaResult;
         $response['error'] = $error;
 
         return $response;
@@ -103,7 +109,42 @@ trait OperationResponseTrait
 
         $response = new $message();
         $anyResponse = $operation->getLastProtoResponse()->getResponse();
+        if (is_null($anyResponse)) {
+            return null;
+        }
 
+        $response->mergeFromString($anyResponse->getValue());
+
+        return $serializer->encodeMessage($response);
+    }
+
+    /**
+     * Convert an operation metadata to an array
+     *
+     * @param OperationResponse|GaxOperationResponse $operation The operation to
+     *        serialize.
+     * @param string $type The Operation type. The type should correspond to a
+     *        member of $mappers.typeUrl.
+     * @param Serializer|GaxSerializer $serializer The gRPC serializer to use
+     *        for the deserialization.
+     * @param array $mappers A list of mappers.
+     * @return array|null
+     */
+
+    private function deserializeMetadata($operation, $type, $serializer, array $mappers)
+    {
+        $mappers = array_filter($mappers, function ($mapper) use ($type) {
+            return $mapper['typeUrl'] === $type;
+        });
+        if (count($mappers) === 0) {
+            throw new \RuntimeException(sprintf('No mapper exists for operation metadata type %s.', $type));
+        }
+
+        $mapper = current($mappers);
+        $message = $mapper['message'];
+
+        $response = new $message();
+        $anyResponse = $operation->getLastProtoResponse()->getMetadata();
         if (is_null($anyResponse)) {
             return null;
         }
