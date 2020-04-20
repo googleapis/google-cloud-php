@@ -439,7 +439,7 @@ class Grpc implements ConnectionInterface
             $this->pluck('databaseId', $args),
             $this->addResourcePrefixHeader($args, $instanceName)
         ]);
-        
+
         return $this->operationToArray($res, $this->serializer, $this->lroResponseMappers);
     }
 
@@ -451,7 +451,7 @@ class Grpc implements ConnectionInterface
         $backup = $this->pluck('backup', $args);
         $backup['expireTime'] = $this->formatTimestampForApi($this->pluck('expireTime', $backup));
         $backupInfo = $this->serializer->decodeMessage(new Backup(), $backup);
-        
+
         $backupName = $backupInfo->getName();
         $updateMask = $this->serializer->decodeMessage(new FieldMask(), $this->pluck('updateMask', $args));
         return $this->send([$this->getDatabaseAdminClient(), 'updateBackup'], [
@@ -469,7 +469,7 @@ class Grpc implements ConnectionInterface
         $backup = $this->pluck('backup', $args);
         $backup['expireTime'] = $this->formatTimestampForApi($this->pluck('expireTime', $backup));
         $backupInfo = $this->serializer->decodeMessage(new Backup(), $backup);
-        
+
         $instanceName = $this->pluck('instance', $args);
         $res = $this->send([$this->getDatabaseAdminClient(), 'createBackup'], [
             $instanceName,
