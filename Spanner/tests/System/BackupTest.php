@@ -100,11 +100,6 @@ class BackupTest extends SpannerTestCase
         self::$hasSetUp = true;
     }
 
-    public static function tearDownAfterClass()
-    {
-        self::$deletionQueue->process();
-    }
-
     public function testListAllInstances()
     {
         $allInstances = self::$client->instances();
