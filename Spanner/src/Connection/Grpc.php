@@ -410,10 +410,14 @@ class Grpc implements ConnectionInterface
     public function listBackupOperations(array $args)
     {
         $instanceName = $this->pluck('instance', $args);
-        return $this->send([$this->getDatabaseAdminClient(), 'listBackupOperations'], [
+        $result = $this->send([$this->getDatabaseAdminClient(), 'listBackupOperations'], [
             $instanceName,
             $this->addResourcePrefixHeader($args, $instanceName)
         ]);
+        foreach ($result['operations'] as $index => $operation) {
+            $result['operations'][$index] = $this->deserializeOperationArray($operation);
+        }
+        return $result;
     }
 
     /**
@@ -422,10 +426,14 @@ class Grpc implements ConnectionInterface
     public function listDatabaseOperations(array $args)
     {
         $instanceName = $this->pluck('instance', $args);
-        return $this->send([$this->getDatabaseAdminClient(), 'listDatabaseOperations'], [
+        $result = $this->send([$this->getDatabaseAdminClient(), 'listDatabaseOperations'], [
             $instanceName,
             $this->addResourcePrefixHeader($args, $instanceName)
         ]);
+        foreach ($result['operations'] as $index => $operation) {
+            $result['operations'][$index] = $this->deserializeOperationArray($operation);
+        }
+        return $result;
     }
 
     /**
@@ -1290,5 +1298,43 @@ class Grpc implements ConnectionInterface
         $this->databaseAdminClient = $this->constructGapic(DatabaseAdminClient::class, $this->grpcConfig);
 
         return $this->databaseAdminClient;
+    }
+
+    private function deserializeOperationArray($operation)
+    {
+        $operation['metadata'] =
+            $this->deserializeMessageArray($operation['metadata']) +
+            ['typeUrl' => $operation['metadata']['typeUrl']];
+
+        if (isset($operation['response']) and isset($operation['response']['typeUrl'])) {
+            $operation['response'] = $this->deserializeMessageArray($operation['response']);
+        }
+
+        return $operation;
+    }
+
+    private function deserializeMessageArray($message)
+    {
+        $typeUrl = $message['typeUrl'];
+        $mapper = $this->getLroResponseMapper($typeUrl);
+        if (!isset($mapper)) {
+            return $message;
+        }
+
+        $className = $mapper['message'];
+        $response = new $className;
+        $response->mergeFromString($message['value']);
+        return $this->serializer->encodeMessage($response);
+    }
+
+    private function getLroResponseMapper($typeUrl)
+    {
+        foreach ($this->lroResponseMappers as $mapper) {
+            if ($mapper['typeUrl'] == $typeUrl) {
+                return $mapper;
+            }
+        }
+
+        return null;
     }
 }

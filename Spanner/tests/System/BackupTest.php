@@ -120,6 +120,14 @@ class BackupTest extends SpannerTestCase
         $op = $backup->create(self::$dbName1, $expireTime);
         self::$backupOperationName = $op->name();
 
+        $metadata = null;
+        foreach (self::$instance->backupOperations() as $listItem) {
+            if ($listItem->name() == $op->name()) {
+                $metadata = $listItem->info()['metadata'];
+                break;
+            }
+        }
+
         $op->pollUntilComplete();
 
         self::$deletionQueue->add(function () use ($backup) {
@@ -134,6 +142,11 @@ class BackupTest extends SpannerTestCase
         $this->assertTrue(is_string($backup->info()['createTime']));
         $this->assertEquals(Backup::STATE_READY, $backup->state());
         $this->assertTrue($backup->info()['sizeBytes'] > 0);
+
+        $this->assertNotNull($metadata);
+        $this->assertArrayHasKey('progress', $metadata);
+        $this->assertArrayHasKey('progressPercent', $metadata['progress']);
+        $this->assertArrayHasKey('startTime', $metadata['progress']);
     }
 
     public function testCreateBackupRequestFailed()
@@ -338,6 +351,7 @@ class BackupTest extends SpannerTestCase
         $this->assertContainsOnlyInstancesOf(LongRunningOperation::class, $backupOps);
         $this->assertTrue(in_array(self::$backupOperationName, $backupOpsNames));
     }
+
     public function testDeleteBackup()
     {
         $backupId = uniqid(self::BACKUP_PREFIX);
@@ -373,6 +387,15 @@ class BackupTest extends SpannerTestCase
             self::fullyQualifiedBackupName(self::$backupId1)
         );
         self::$restoreOperationName = $op->name();
+
+        $metadata = null;
+        foreach (self::$instance->databaseOperations() as $listItem) {
+            if (basename($listItem->info()['metadata']['name']) == $restoreDbName) {
+                $metadata = $listItem->info()['metadata'];
+                break;
+            }
+        }
+
         $op->pollUntilComplete();
         $restoredDb = $this::$instance->database($restoreDbName);
 
@@ -381,6 +404,11 @@ class BackupTest extends SpannerTestCase
         });
 
         $this->assertTrue($restoredDb->exists());
+
+        $this->assertNotNull($metadata);
+        $this->assertArrayHasKey('progress', $metadata);
+        $this->assertArrayHasKey('progressPercent', $metadata['progress']);
+        $this->assertArrayHasKey('startTime', $metadata['progress']);
     }
 
     public function testRestoreAppearsInListDatabaseOperations()
