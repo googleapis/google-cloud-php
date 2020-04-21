@@ -43,7 +43,7 @@ class BackupTest extends SpannerTestCase
     protected static $dbName2;
 
     protected static $project;
-    
+
     private static $hasSetUp = false;
 
     public static function setUpBeforeClass()
@@ -61,7 +61,7 @@ class BackupTest extends SpannerTestCase
         $op->pollUntilComplete();
 
         $db1 = self::getDatabaseInstance(self::$dbName1);
-        
+
         self::$deletionQueue->add(function () use ($db1) {
             $db1->drop();
         });
@@ -115,10 +115,18 @@ class BackupTest extends SpannerTestCase
         $expireTime = new \DateTime('+7 hours');
 
         $backup = self::$instance->backup(self::$backupId1);
-        
+
         self::$createTime1 = gmdate('"Y-m-d\TH:i:s\Z"');
         $op = $backup->create(self::$dbName1, $expireTime);
         self::$backupOperationName = $op->name();
+
+        $metadata = null;
+        foreach (self::$instance->backupOperations() as $listItem) {
+            if ($listItem->name() == $op->name()) {
+                $metadata = $listItem->info()['metadata'];
+                break;
+            }
+        }
 
         $op->pollUntilComplete();
 
@@ -134,13 +142,18 @@ class BackupTest extends SpannerTestCase
         $this->assertTrue(is_string($backup->info()['createTime']));
         $this->assertEquals(Backup::STATE_READY, $backup->state());
         $this->assertTrue($backup->info()['sizeBytes'] > 0);
+
+        $this->assertNotNull($metadata);
+        $this->assertArrayHasKey('progress', $metadata);
+        $this->assertArrayHasKey('progressPercent', $metadata['progress']);
+        $this->assertArrayHasKey('startTime', $metadata['progress']);
     }
 
     public function testCreateBackupRequestFailed()
     {
         $backupId = uniqid(self::BACKUP_PREFIX);
         $expireTime = new \DateTime('-2 hours');
-        
+
         $backup = self::$instance->backup($backupId);
 
         $e = null;
@@ -175,7 +188,7 @@ class BackupTest extends SpannerTestCase
     {
         $backup = self::$instance->backup(self::$backupId1);
         $backup->reload();
-        
+
         $this->assertEquals(self::$backupId1, DatabaseAdminClient::parseName($backup->info()['name'])['backup']);
         $this->assertEquals(self::$dbName1, DatabaseAdminClient::parseName($backup->info()['database'])['database']);
         $this->assertTrue(is_string($backup->info()['expireTime']));
@@ -183,13 +196,13 @@ class BackupTest extends SpannerTestCase
         $this->assertEquals(Backup::STATE_READY, $backup->state());
         $this->assertTrue($backup->info()['sizeBytes'] > 0);
     }
-        
+
     public function testUpdateExpirationTime()
     {
         $backup = self::$instance->backup(self::$backupId1);
 
         $currentExpireTime = $backup->info()['expireTime'];
-       
+
         $newExpireTime = new \DateTime('+10 days');
 
         $backup->updateExpireTime($newExpireTime);
@@ -211,7 +224,7 @@ class BackupTest extends SpannerTestCase
             $backup->updateExpireTime($newExpireTime);
         } catch (BadRequestException $e) {
         }
-        
+
         $this->assertInstanceOf(BadRequestException::class, $e);
         $backup->reload();
 
@@ -222,7 +235,7 @@ class BackupTest extends SpannerTestCase
     public function testListAllBackups()
     {
         $allBackups = iterator_to_array(self::$instance->backups(), false);
-        
+
         $backupNames = [];
         foreach ($allBackups as $b) {
             $backupNames[] = $b->name();
@@ -241,7 +254,7 @@ class BackupTest extends SpannerTestCase
     public function testListAllBackupsReady()
     {
         $backups = iterator_to_array(self::$instance->backups(['filter'=>'state:READY']));
-        
+
         $backupNames = [];
         foreach ($backups as $b) {
             $backupNames[] = $b->name();
@@ -254,9 +267,9 @@ class BackupTest extends SpannerTestCase
     {
         $database = self::$instance->database(self::$dbName1);
         $backups = iterator_to_array($database->backups());
-        
+
         $this->assertTrue(count($backups) > 0);
-        
+
         foreach ($backups as $b) {
             $this->assertEquals($database->name(), $b->info()['database']);
         }
@@ -265,9 +278,9 @@ class BackupTest extends SpannerTestCase
     public function testListAllBackupsCreatedAfterTimestamp()
     {
         $filter = sprintf("create_time >= %s", self::$createTime2);
-        
+
         $backups = iterator_to_array(self::$instance->backups(['filter'=>$filter]));
-        
+
         $backupNames = [];
         foreach ($backups as $b) {
             $backupNames[] = $b->name();
@@ -299,9 +312,9 @@ class BackupTest extends SpannerTestCase
         $filter = "size_bytes > " . $size;
 
         $backups = iterator_to_array(self::$instance->backups(['filter' => $filter]));
-        
+
         $backupNames = [];
-        
+
         foreach ($backups as $b) {
             $backupNames[] = $b->name();
         }
@@ -315,7 +328,7 @@ class BackupTest extends SpannerTestCase
         $backupsfirstPage = self::$instance->backups(['pageSize' => 1]);
         $page = $backupsfirstPage->iterateByPage()->current();
         $this->assertEquals(1, count($page));
-        
+
         $backupsSecondPage = self::$instance->backups(
             ['pageToken' => $backupsfirstPage->nextResultToken(), 'pageSize' => 1]
         );
@@ -329,7 +342,7 @@ class BackupTest extends SpannerTestCase
     public function testListAllBackupOperations()
     {
         $backupOps = iterator_to_array($this::$instance->backupOperations());
-        
+
         $backupOpsNames = array_map(function ($bOp) {
             return $bOp->name();
         }, $backupOps);
@@ -338,11 +351,12 @@ class BackupTest extends SpannerTestCase
         $this->assertContainsOnlyInstancesOf(LongRunningOperation::class, $backupOps);
         $this->assertTrue(in_array(self::$backupOperationName, $backupOpsNames));
     }
+
     public function testDeleteBackup()
     {
         $backupId = uniqid(self::BACKUP_PREFIX);
         $expireTime = new \DateTime('+7 hours');
-        
+
         $backup = self::$instance->backup($backupId);
 
         $op = $backup->create(self::$dbName1, $expireTime);
@@ -358,9 +372,9 @@ class BackupTest extends SpannerTestCase
     public function testDeleteNonExistantBackup()
     {
         $backup = self::$instance->backup("does_not_exis");
-        
+
         $this->assertFalse($backup->exists());
-        
+
         $backup->delete();
     }
 
@@ -373,14 +387,28 @@ class BackupTest extends SpannerTestCase
             self::fullyQualifiedBackupName(self::$backupId1)
         );
         self::$restoreOperationName = $op->name();
+
+        $metadata = null;
+        foreach (self::$instance->databaseOperations() as $listItem) {
+            if (basename($listItem->info()['metadata']['name']) == $restoreDbName) {
+                $metadata = $listItem->info()['metadata'];
+                break;
+            }
+        }
+
         $op->pollUntilComplete();
         $restoredDb = $this::$instance->database($restoreDbName);
-        
+
         self::$deletionQueue->add(function () use ($restoredDb) {
             $restoredDb->drop();
         });
 
         $this->assertTrue($restoredDb->exists());
+
+        $this->assertNotNull($metadata);
+        $this->assertArrayHasKey('progress', $metadata);
+        $this->assertArrayHasKey('progressPercent', $metadata['progress']);
+        $this->assertArrayHasKey('startTime', $metadata['progress']);
     }
 
     public function testRestoreAppearsInListDatabaseOperations()
@@ -394,14 +422,14 @@ class BackupTest extends SpannerTestCase
         $this->assertContainsOnlyInstancesOf(LongRunningOperation::class, $databaseOps);
         $this->assertTrue(in_array(self::$restoreOperationName, $databaseOpsNames));
     }
-    
+
     public function testRestoreBackupToAnExistingDatabase()
     {
         $existingDb = self::$instance->database(self::$dbName2);
         $this->assertTrue($existingDb->exists());
 
         $this->expectException(ConflictException::class);
-        
+
         $this::$instance->createDatabaseFromBackup(
             self::$dbName2,
             self::fullyQualifiedBackupName(self::$backupId1)
