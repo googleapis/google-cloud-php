@@ -19,7 +19,8 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     /**
      * Encoding of audio data sent in all `RecognitionAudio` messages.
      * This field is optional for `FLAC` and `WAV` audio files and required
-     * for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
+     * for all other audio formats. For details, see
+     * [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding encoding = 1;</code>
      */
@@ -31,7 +32,8 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * source to 16000 Hz. If that's not possible, use the native sample rate of
      * the audio source (instead of re-sampling).
      * This field is optional for FLAC and WAV audio files, but is
-     * required for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
+     * required for all other audio formats. For details, see
+     * [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
      *
      * Generated from protobuf field <code>int32 sample_rate_hertz = 2;</code>
      */
@@ -110,6 +112,16 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      */
     private $profanity_filter = false;
     /**
+     * Speech adaptation configuration improves the accuracy of speech
+     * recognition. When speech adaptation is set it supersedes the
+     * `speech_contexts` field. For more information, see the [speech
+     * adaptation](https://cloud.google.com/speech-to-text/docs/context-strength)
+     * documentation.
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.SpeechAdaptation adaptation = 20;</code>
+     */
+    private $adaptation = null;
+    /**
      * Array of [SpeechContext][google.cloud.speech.v1p1beta1.SpeechContext].
      * A means to provide context to assist the speech recognition. For more
      * information, see
@@ -141,9 +153,6 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * This feature is only available in select languages. Setting this for
      * requests in other languages has no effect at all.
      * The default 'false' value does not add punctuation to result hypotheses.
-     * Note: This is currently offered as an experimental service, complimentary
-     * to all users. In the future this may be exclusively available as a
-     * premium feature.
      *
      * Generated from protobuf field <code>bool enable_automatic_punctuation = 11;</code>
      */
@@ -243,7 +252,8 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *     @type int $encoding
      *           Encoding of audio data sent in all `RecognitionAudio` messages.
      *           This field is optional for `FLAC` and `WAV` audio files and required
-     *           for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
+     *           for all other audio formats. For details, see
+     *           [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
      *     @type int $sample_rate_hertz
      *           Sample rate in Hertz of the audio data sent in all
      *           `RecognitionAudio` messages. Valid values are: 8000-48000.
@@ -251,7 +261,8 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *           source to 16000 Hz. If that's not possible, use the native sample rate of
      *           the audio source (instead of re-sampling).
      *           This field is optional for FLAC and WAV audio files, but is
-     *           required for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
+     *           required for all other audio formats. For details, see
+     *           [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
      *     @type int $audio_channel_count
      *           The number of channels in the input audio data.
      *           ONLY set this for MULTI-CHANNEL recognition.
@@ -301,6 +312,12 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *           profanities, replacing all but the initial character in each filtered word
      *           with asterisks, e.g. "f***". If set to `false` or omitted, profanities
      *           won't be filtered out.
+     *     @type \Google\Cloud\Speech\V1p1beta1\SpeechAdaptation $adaptation
+     *           Speech adaptation configuration improves the accuracy of speech
+     *           recognition. When speech adaptation is set it supersedes the
+     *           `speech_contexts` field. For more information, see the [speech
+     *           adaptation](https://cloud.google.com/speech-to-text/docs/context-strength)
+     *           documentation.
      *     @type \Google\Cloud\Speech\V1p1beta1\SpeechContext[]|\Google\Protobuf\Internal\RepeatedField $speech_contexts
      *           Array of [SpeechContext][google.cloud.speech.v1p1beta1.SpeechContext].
      *           A means to provide context to assist the speech recognition. For more
@@ -321,9 +338,6 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *           This feature is only available in select languages. Setting this for
      *           requests in other languages has no effect at all.
      *           The default 'false' value does not add punctuation to result hypotheses.
-     *           Note: This is currently offered as an experimental service, complimentary
-     *           to all users. In the future this may be exclusively available as a
-     *           premium feature.
      *     @type bool $enable_speaker_diarization
      *           If 'true', enables speaker detection for each recognized word in
      *           the top alternative of the recognition result using a speaker_tag provided
@@ -395,7 +409,8 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     /**
      * Encoding of audio data sent in all `RecognitionAudio` messages.
      * This field is optional for `FLAC` and `WAV` audio files and required
-     * for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
+     * for all other audio formats. For details, see
+     * [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding encoding = 1;</code>
      * @return int
@@ -408,7 +423,8 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     /**
      * Encoding of audio data sent in all `RecognitionAudio` messages.
      * This field is optional for `FLAC` and `WAV` audio files and required
-     * for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
+     * for all other audio formats. For details, see
+     * [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding encoding = 1;</code>
      * @param int $var
@@ -429,7 +445,8 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * source to 16000 Hz. If that's not possible, use the native sample rate of
      * the audio source (instead of re-sampling).
      * This field is optional for FLAC and WAV audio files, but is
-     * required for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
+     * required for all other audio formats. For details, see
+     * [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
      *
      * Generated from protobuf field <code>int32 sample_rate_hertz = 2;</code>
      * @return int
@@ -446,7 +463,8 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * source to 16000 Hz. If that's not possible, use the native sample rate of
      * the audio source (instead of re-sampling).
      * This field is optional for FLAC and WAV audio files, but is
-     * required for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
+     * required for all other audio formats. For details, see
+     * [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
      *
      * Generated from protobuf field <code>int32 sample_rate_hertz = 2;</code>
      * @param int $var
@@ -691,6 +709,40 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Speech adaptation configuration improves the accuracy of speech
+     * recognition. When speech adaptation is set it supersedes the
+     * `speech_contexts` field. For more information, see the [speech
+     * adaptation](https://cloud.google.com/speech-to-text/docs/context-strength)
+     * documentation.
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.SpeechAdaptation adaptation = 20;</code>
+     * @return \Google\Cloud\Speech\V1p1beta1\SpeechAdaptation
+     */
+    public function getAdaptation()
+    {
+        return $this->adaptation;
+    }
+
+    /**
+     * Speech adaptation configuration improves the accuracy of speech
+     * recognition. When speech adaptation is set it supersedes the
+     * `speech_contexts` field. For more information, see the [speech
+     * adaptation](https://cloud.google.com/speech-to-text/docs/context-strength)
+     * documentation.
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.SpeechAdaptation adaptation = 20;</code>
+     * @param \Google\Cloud\Speech\V1p1beta1\SpeechAdaptation $var
+     * @return $this
+     */
+    public function setAdaptation($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Speech\V1p1beta1\SpeechAdaptation::class);
+        $this->adaptation = $var;
+
+        return $this;
+    }
+
+    /**
      * Array of [SpeechContext][google.cloud.speech.v1p1beta1.SpeechContext].
      * A means to provide context to assist the speech recognition. For more
      * information, see
@@ -791,9 +843,6 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * This feature is only available in select languages. Setting this for
      * requests in other languages has no effect at all.
      * The default 'false' value does not add punctuation to result hypotheses.
-     * Note: This is currently offered as an experimental service, complimentary
-     * to all users. In the future this may be exclusively available as a
-     * premium feature.
      *
      * Generated from protobuf field <code>bool enable_automatic_punctuation = 11;</code>
      * @return bool
@@ -808,9 +857,6 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * This feature is only available in select languages. Setting this for
      * requests in other languages has no effect at all.
      * The default 'false' value does not add punctuation to result hypotheses.
-     * Note: This is currently offered as an experimental service, complimentary
-     * to all users. In the future this may be exclusively available as a
-     * premium feature.
      *
      * Generated from protobuf field <code>bool enable_automatic_punctuation = 11;</code>
      * @param bool $var

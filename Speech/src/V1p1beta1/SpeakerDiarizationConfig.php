@@ -39,6 +39,12 @@ class SpeakerDiarizationConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 max_speaker_count = 3;</code>
      */
     private $max_speaker_count = 0;
+    /**
+     * Output only. Unused.
+     *
+     * Generated from protobuf field <code>int32 speaker_tag = 5 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $speaker_tag = 0;
 
     /**
      * Constructor.
@@ -58,6 +64,8 @@ class SpeakerDiarizationConfig extends \Google\Protobuf\Internal\Message
      *           Maximum number of speakers in the conversation. This range gives you more
      *           flexibility by allowing the system to automatically determine the correct
      *           number of speakers. If not set, the default value is 6.
+     *     @type int $speaker_tag
+     *           Output only. Unused.
      * }
      */
     public function __construct($data = NULL) {
@@ -151,6 +159,32 @@ class SpeakerDiarizationConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->max_speaker_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Unused.
+     *
+     * Generated from protobuf field <code>int32 speaker_tag = 5 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getSpeakerTag()
+    {
+        return $this->speaker_tag;
+    }
+
+    /**
+     * Output only. Unused.
+     *
+     * Generated from protobuf field <code>int32 speaker_tag = 5 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSpeakerTag($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->speaker_tag = $var;
 
         return $this;
     }
