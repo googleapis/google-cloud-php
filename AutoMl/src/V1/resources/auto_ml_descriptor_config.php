@@ -3,9 +3,9 @@
 return [
     'interfaces' => [
         'google.cloud.automl.v1.AutoMl' => [
-            'CreateDataset' => [
+            'DeleteDataset' => [
                 'longRunning' => [
-                    'operationReturnType' => '\Google\Cloud\AutoMl\V1\Dataset',
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
                     'metadataReturnType' => '\Google\Cloud\AutoMl\V1\OperationMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
@@ -13,9 +13,19 @@ return [
                     'totalPollTimeoutMillis' => '300000',
                 ],
             ],
-            'DeleteDataset' => [
+            'DeleteModel' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\AutoMl\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
+            'CreateDataset' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\AutoMl\V1\Dataset',
                     'metadataReturnType' => '\Google\Cloud\AutoMl\V1\OperationMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
@@ -30,7 +40,7 @@ return [
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
-                    'totalPollTimeoutMillis' => '3600000',
+                    'totalPollTimeoutMillis' => '300000',
                 ],
             ],
             'ExportData' => [
@@ -53,7 +63,7 @@ return [
                     'totalPollTimeoutMillis' => '300000',
                 ],
             ],
-            'DeleteModel' => [
+            'DeployModel' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
                     'metadataReturnType' => '\Google\Cloud\AutoMl\V1\OperationMetadata',
@@ -63,16 +73,6 @@ return [
                     'totalPollTimeoutMillis' => '300000',
                 ],
             ],
-            'DeployModel' => [
-                'longRunning' => [
-                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
-                    'metadataReturnType' => '\Google\Cloud\AutoMl\V1\OperationMetadata',
-                    'initialPollDelayMillis' => '500',
-                    'pollDelayMultiplier' => '1.5',
-                    'maxPollDelayMillis' => '5000',
-                    'totalPollTimeoutMillis' => '3600000',
-                ],
-            ],
             'UndeployModel' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
@@ -80,7 +80,7 @@ return [
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
-                    'totalPollTimeoutMillis' => '3600000',
+                    'totalPollTimeoutMillis' => '300000',
                 ],
             ],
             'ExportModel' => [

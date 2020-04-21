@@ -90,13 +90,11 @@ use Google\Protobuf\FieldMask;
  * ```
  * $autoMlClient = new Google\Cloud\AutoMl\V1\AutoMlClient();
  * try {
- *     $formattedParent = $autoMlClient->locationName('[PROJECT]', '[LOCATION]');
- *     $dataset = new Google\Cloud\AutoMl\V1\Dataset();
- *     $operationResponse = $autoMlClient->createDataset($formattedParent, $dataset);
+ *     $formattedName = $autoMlClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+ *     $operationResponse = $autoMlClient->deleteDataset($formattedName);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
- *         $result = $operationResponse->getResult();
- *         // doSomethingWith($result)
+ *         // operation succeeded and returns no value
  *     } else {
  *         $error = $operationResponse->getError();
  *         // handleError($error)
@@ -106,17 +104,16 @@ use Google\Protobuf\FieldMask;
  *     // Alternatively:
  *
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $autoMlClient->createDataset($formattedParent, $dataset);
+ *     $operationResponse = $autoMlClient->deleteDataset($formattedName);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
- *     $newOperationResponse = $autoMlClient->resumeOperation($operationName, 'createDataset');
+ *     $newOperationResponse = $autoMlClient->resumeOperation($operationName, 'deleteDataset');
  *     while (!$newOperationResponse->isDone()) {
  *         // ... do other work
  *         $newOperationResponse->reload();
  *     }
  *     if ($newOperationResponse->operationSucceeded()) {
- *       $result = $newOperationResponse->getResult();
- *       // doSomethingWith($result)
+ *       // operation succeeded and returns no value
  *     } else {
  *       $error = $newOperationResponse->getError();
  *       // handleError($error)
@@ -485,6 +482,164 @@ class AutoMlGapicClient
     }
 
     /**
+     * Deletes a dataset and all of its contents.
+     * Returns empty response in the
+     * [response][google.longrunning.Operation.response] field when it completes,
+     * and `delete_details` in the
+     * [metadata][google.longrunning.Operation.metadata] field.
+     *
+     * Sample code:
+     * ```
+     * $autoMlClient = new Google\Cloud\AutoMl\V1\AutoMlClient();
+     * try {
+     *     $formattedName = $autoMlClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+     *     $operationResponse = $autoMlClient->deleteDataset($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $autoMlClient->deleteDataset($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $autoMlClient->resumeOperation($operationName, 'deleteDataset');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       // operation succeeded and returns no value
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $autoMlClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of the dataset to delete.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteDataset($name, array $optionalArgs = [])
+    {
+        $request = new DeleteDatasetRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startOperationsCall(
+            'DeleteDataset',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Deletes a model.
+     * Returns `google.protobuf.Empty` in the
+     * [response][google.longrunning.Operation.response] field when it completes,
+     * and `delete_details` in the
+     * [metadata][google.longrunning.Operation.metadata] field.
+     *
+     * Sample code:
+     * ```
+     * $autoMlClient = new Google\Cloud\AutoMl\V1\AutoMlClient();
+     * try {
+     *     $formattedName = $autoMlClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+     *     $operationResponse = $autoMlClient->deleteModel($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $autoMlClient->deleteModel($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $autoMlClient->resumeOperation($operationName, 'deleteModel');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       // operation succeeded and returns no value
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $autoMlClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Resource name of the model being deleted.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteModel($name, array $optionalArgs = [])
+    {
+        $request = new DeleteModelRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startOperationsCall(
+            'DeleteModel',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
      * Creates a dataset.
      *
      * Sample code:
@@ -561,58 +716,6 @@ class AutoMlGapicClient
             $optionalArgs,
             $request,
             $this->getOperationsClient()
-        )->wait();
-    }
-
-    /**
-     * Updates a dataset.
-     *
-     * Sample code:
-     * ```
-     * $autoMlClient = new Google\Cloud\AutoMl\V1\AutoMlClient();
-     * try {
-     *     $dataset = new Google\Cloud\AutoMl\V1\Dataset();
-     *     $updateMask = new FieldMask();
-     *     $response = $autoMlClient->updateDataset($dataset, $updateMask);
-     * } finally {
-     *     $autoMlClient->close();
-     * }
-     * ```
-     *
-     * @param Dataset   $dataset      Required. The dataset which replaces the resource on the server.
-     * @param FieldMask $updateMask   Required. The update mask applies to the resource.
-     * @param array     $optionalArgs {
-     *                                Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\AutoMl\V1\Dataset
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function updateDataset($dataset, $updateMask, array $optionalArgs = [])
-    {
-        $request = new UpdateDatasetRequest();
-        $request->setDataset($dataset);
-        $request->setUpdateMask($updateMask);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'dataset.name' => $request->getDataset()->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'UpdateDataset',
-            Dataset::class,
-            $optionalArgs,
-            $request
         )->wait();
     }
 
@@ -756,52 +859,24 @@ class AutoMlGapicClient
     }
 
     /**
-     * Deletes a dataset and all of its contents.
-     * Returns empty response in the
-     * [response][google.longrunning.Operation.response] field when it completes,
-     * and `delete_details` in the
-     * [metadata][google.longrunning.Operation.metadata] field.
+     * Updates a dataset.
      *
      * Sample code:
      * ```
      * $autoMlClient = new Google\Cloud\AutoMl\V1\AutoMlClient();
      * try {
-     *     $formattedName = $autoMlClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
-     *     $operationResponse = $autoMlClient->deleteDataset($formattedName);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // operation succeeded and returns no value
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *
-     *
-     *     // Alternatively:
-     *
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $autoMlClient->deleteDataset($formattedName);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $autoMlClient->resumeOperation($operationName, 'deleteDataset');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *       // operation succeeded and returns no value
-     *     } else {
-     *       $error = $newOperationResponse->getError();
-     *       // handleError($error)
-     *     }
+     *     $dataset = new Google\Cloud\AutoMl\V1\Dataset();
+     *     $updateMask = new FieldMask();
+     *     $response = $autoMlClient->updateDataset($dataset, $updateMask);
      * } finally {
      *     $autoMlClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the dataset to delete.
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param Dataset   $dataset      Required. The dataset which replaces the resource on the server.
+     * @param FieldMask $updateMask   Required. The update mask applies to the resource.
+     * @param array     $optionalArgs {
+     *                                Optional.
      *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -810,27 +885,28 @@ class AutoMlGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\AutoMl\V1\Dataset
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteDataset($name, array $optionalArgs = [])
+    public function updateDataset($dataset, $updateMask, array $optionalArgs = [])
     {
-        $request = new DeleteDatasetRequest();
-        $request->setName($name);
+        $request = new UpdateDatasetRequest();
+        $request->setDataset($dataset);
+        $request->setUpdateMask($updateMask);
 
         $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
+          'dataset.name' => $request->getDataset()->getName(),
         ]);
         $optionalArgs['headers'] = isset($optionalArgs['headers'])
             ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
-        return $this->startOperationsCall(
-            'DeleteDataset',
+        return $this->startCall(
+            'UpdateDataset',
+            Dataset::class,
             $optionalArgs,
-            $request,
-            $this->getOperationsClient()
+            $request
         )->wait();
     }
 
@@ -1185,58 +1261,6 @@ class AutoMlGapicClient
     }
 
     /**
-     * Updates a model.
-     *
-     * Sample code:
-     * ```
-     * $autoMlClient = new Google\Cloud\AutoMl\V1\AutoMlClient();
-     * try {
-     *     $model = new Model();
-     *     $updateMask = new FieldMask();
-     *     $response = $autoMlClient->updateModel($model, $updateMask);
-     * } finally {
-     *     $autoMlClient->close();
-     * }
-     * ```
-     *
-     * @param Model     $model        Required. The model which replaces the resource on the server.
-     * @param FieldMask $updateMask   Required. The update mask applies to the resource.
-     * @param array     $optionalArgs {
-     *                                Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\AutoMl\V1\Model
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function updateModel($model, $updateMask, array $optionalArgs = [])
-    {
-        $request = new UpdateModelRequest();
-        $request->setModel($model);
-        $request->setUpdateMask($updateMask);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'model.name' => $request->getModel()->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'UpdateModel',
-            Model::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
      * Lists models.
      *
      * Sample code:
@@ -1329,52 +1353,24 @@ class AutoMlGapicClient
     }
 
     /**
-     * Deletes a model.
-     * Returns `google.protobuf.Empty` in the
-     * [response][google.longrunning.Operation.response] field when it completes,
-     * and `delete_details` in the
-     * [metadata][google.longrunning.Operation.metadata] field.
+     * Updates a model.
      *
      * Sample code:
      * ```
      * $autoMlClient = new Google\Cloud\AutoMl\V1\AutoMlClient();
      * try {
-     *     $formattedName = $autoMlClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-     *     $operationResponse = $autoMlClient->deleteModel($formattedName);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // operation succeeded and returns no value
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *
-     *
-     *     // Alternatively:
-     *
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $autoMlClient->deleteModel($formattedName);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $autoMlClient->resumeOperation($operationName, 'deleteModel');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *       // operation succeeded and returns no value
-     *     } else {
-     *       $error = $newOperationResponse->getError();
-     *       // handleError($error)
-     *     }
+     *     $model = new Model();
+     *     $updateMask = new FieldMask();
+     *     $response = $autoMlClient->updateModel($model, $updateMask);
      * } finally {
      *     $autoMlClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the model being deleted.
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param Model     $model        Required. The model which replaces the resource on the server.
+     * @param FieldMask $updateMask   Required. The update mask applies to the resource.
+     * @param array     $optionalArgs {
+     *                                Optional.
      *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1383,27 +1379,28 @@ class AutoMlGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\AutoMl\V1\Model
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteModel($name, array $optionalArgs = [])
+    public function updateModel($model, $updateMask, array $optionalArgs = [])
     {
-        $request = new DeleteModelRequest();
-        $request->setName($name);
+        $request = new UpdateModelRequest();
+        $request->setModel($model);
+        $request->setUpdateMask($updateMask);
 
         $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
+          'model.name' => $request->getModel()->getName(),
         ]);
         $optionalArgs['headers'] = isset($optionalArgs['headers'])
             ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
-        return $this->startOperationsCall(
-            'DeleteModel',
+        return $this->startCall(
+            'UpdateModel',
+            Model::class,
             $optionalArgs,
-            $request,
-            $this->getOperationsClient()
+            $request
         )->wait();
     }
 

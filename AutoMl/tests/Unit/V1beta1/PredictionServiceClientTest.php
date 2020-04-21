@@ -189,8 +189,9 @@ class PredictionServiceClientTest extends GeneratedTest
         $formattedName = $client->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
         $inputConfig = new BatchPredictInputConfig();
         $outputConfig = new BatchPredictOutputConfig();
+        $params = [];
 
-        $response = $client->batchPredict($formattedName, $inputConfig, $outputConfig);
+        $response = $client->batchPredict($formattedName, $inputConfig, $outputConfig, $params);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -210,6 +211,9 @@ class PredictionServiceClientTest extends GeneratedTest
         $actualValue = $actualApiRequestObject->getOutputConfig();
 
         $this->assertProtobufEquals($outputConfig, $actualValue);
+        $actualValue = $actualApiRequestObject->getParams();
+
+        $this->assertProtobufEquals($params, $actualValue);
 
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/batchPredictTest');
@@ -275,8 +279,9 @@ class PredictionServiceClientTest extends GeneratedTest
         $formattedName = $client->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
         $inputConfig = new BatchPredictInputConfig();
         $outputConfig = new BatchPredictOutputConfig();
+        $params = [];
 
-        $response = $client->batchPredict($formattedName, $inputConfig, $outputConfig);
+        $response = $client->batchPredict($formattedName, $inputConfig, $outputConfig, $params);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
 

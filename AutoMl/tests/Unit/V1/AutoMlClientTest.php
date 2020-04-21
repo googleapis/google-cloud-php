@@ -85,6 +85,286 @@ class AutoMlClientTest extends GeneratedTest
     /**
      * @test
      */
+    public function deleteDatasetTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteDatasetTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new GPBEmpty();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/deleteDatasetTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+
+        // Mock request
+        $formattedName = $client->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+
+        $response = $client->deleteDataset($formattedName);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.automl.v1.AutoMl/DeleteDataset', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+
+        $this->assertProtobufEquals($formattedName, $actualValue);
+
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteDatasetTest');
+
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function deleteDatasetExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteDatasetTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+
+        // Mock request
+        $formattedName = $client->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+
+        $response = $client->deleteDataset($formattedName);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteDatasetTest');
+
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function deleteModelTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteModelTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new GPBEmpty();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/deleteModelTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+
+        // Mock request
+        $formattedName = $client->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+
+        $response = $client->deleteModel($formattedName);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.automl.v1.AutoMl/DeleteModel', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+
+        $this->assertProtobufEquals($formattedName, $actualValue);
+
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteModelTest');
+
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function deleteModelExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteModelTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+
+        // Mock request
+        $formattedName = $client->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+
+        $response = $client->deleteModel($formattedName);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteModelTest');
+
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function createDatasetTest()
     {
         $operationsTransport = $this->createTransport();
@@ -235,92 +515,6 @@ class AutoMlClientTest extends GeneratedTest
         $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function updateDatasetTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        // Mock response
-        $name = 'name3373707';
-        $displayName = 'displayName1615086568';
-        $description = 'description-1724546052';
-        $exampleCount = 1517063674;
-        $etag = 'etag3123477';
-        $expectedResponse = new Dataset();
-        $expectedResponse->setName($name);
-        $expectedResponse->setDisplayName($displayName);
-        $expectedResponse->setDescription($description);
-        $expectedResponse->setExampleCount($exampleCount);
-        $expectedResponse->setEtag($etag);
-        $transport->addResponse($expectedResponse);
-
-        // Mock request
-        $dataset = new Dataset();
-        $updateMask = new FieldMask();
-
-        $response = $client->updateDataset($dataset, $updateMask);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.automl.v1.AutoMl/UpdateDataset', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getDataset();
-
-        $this->assertProtobufEquals($dataset, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-
-        $this->assertProtobufEquals($updateMask, $actualValue);
-
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function updateDatasetExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
-        // Mock request
-        $dataset = new Dataset();
-        $updateMask = new FieldMask();
-
-        try {
-            $client->updateDataset($dataset, $updateMask);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -486,102 +680,58 @@ class AutoMlClientTest extends GeneratedTest
     /**
      * @test
      */
-    public function deleteDatasetTest()
+    public function updateDatasetTest()
     {
-        $operationsTransport = $this->createTransport();
-        $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
-            'transport' => $operationsTransport,
-            'credentials' => $this->createCredentials(),
-        ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
-            'transport' => $transport,
-            'operationsClient' => $operationsClient,
-        ]);
+        $client = $this->createClient(['transport' => $transport]);
 
         $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
 
         // Mock response
-        $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/deleteDatasetTest');
-        $incompleteOperation->setDone(false);
-        $transport->addResponse($incompleteOperation);
-        $expectedResponse = new GPBEmpty();
-        $anyResponse = new Any();
-        $anyResponse->setValue($expectedResponse->serializeToString());
-        $completeOperation = new Operation();
-        $completeOperation->setName('operations/deleteDatasetTest');
-        $completeOperation->setDone(true);
-        $completeOperation->setResponse($anyResponse);
-        $operationsTransport->addResponse($completeOperation);
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $description = 'description-1724546052';
+        $exampleCount = 1517063674;
+        $etag = 'etag3123477';
+        $expectedResponse = new Dataset();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setExampleCount($exampleCount);
+        $expectedResponse->setEtag($etag);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $dataset = new Dataset();
+        $updateMask = new FieldMask();
 
-        $response = $client->deleteDataset($formattedName);
-        $this->assertFalse($response->isDone());
-        $this->assertNull($response->getResult());
-        $apiRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($apiRequests));
-        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
-        $this->assertSame(0, count($operationsRequestsEmpty));
+        $response = $client->updateDataset($dataset, $updateMask);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.automl.v1.AutoMl/UpdateDataset', $actualFuncCall);
 
-        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
-        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.automl.v1.AutoMl/DeleteDataset', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
+        $actualValue = $actualRequestObject->getDataset();
 
-        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertProtobufEquals($dataset, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
 
-        $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/deleteDatasetTest');
-
-        $response->pollUntilComplete([
-            'initialPollDelayMillis' => 1,
-        ]);
-        $this->assertTrue($response->isDone());
-        $this->assertEquals($expectedResponse, $response->getResult());
-        $apiRequestsEmpty = $transport->popReceivedCalls();
-        $this->assertSame(0, count($apiRequestsEmpty));
-        $operationsRequests = $operationsTransport->popReceivedCalls();
-        $this->assertSame(1, count($operationsRequests));
-
-        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
-        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
-        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
-        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertProtobufEquals($updateMask, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /**
      * @test
      */
-    public function deleteDatasetExceptionTest()
+    public function updateDatasetExceptionTest()
     {
-        $operationsTransport = $this->createTransport();
-        $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
-            'transport' => $operationsTransport,
-            'credentials' => $this->createCredentials(),
-        ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
-            'transport' => $transport,
-            'operationsClient' => $operationsClient,
-        ]);
+        $client = $this->createClient(['transport' => $transport]);
 
         $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
-
-        // Mock response
-        $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/deleteDatasetTest');
-        $incompleteOperation->setDone(false);
-        $transport->addResponse($incompleteOperation);
 
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
@@ -593,34 +743,24 @@ class AutoMlClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $operationsTransport->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
-
-        $response = $client->deleteDataset($formattedName);
-        $this->assertFalse($response->isDone());
-        $this->assertNull($response->getResult());
-
-        $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/deleteDatasetTest');
+        $dataset = new Dataset();
+        $updateMask = new FieldMask();
 
         try {
-            $response->pollUntilComplete([
-                'initialPollDelayMillis' => 1,
-            ]);
-            // If the pollUntilComplete() method call did not throw, fail the test
+            $client->updateDataset($dataset, $updateMask);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
-        // Call popReceivedCalls to ensure the stubs are exhausted
+        // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
-        $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /**
@@ -1225,90 +1365,6 @@ class AutoMlClientTest extends GeneratedTest
     /**
      * @test
      */
-    public function updateModelTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        // Mock response
-        $name = 'name3373707';
-        $displayName = 'displayName1615086568';
-        $datasetId = 'datasetId-2115646910';
-        $etag = 'etag3123477';
-        $expectedResponse = new Model();
-        $expectedResponse->setName($name);
-        $expectedResponse->setDisplayName($displayName);
-        $expectedResponse->setDatasetId($datasetId);
-        $expectedResponse->setEtag($etag);
-        $transport->addResponse($expectedResponse);
-
-        // Mock request
-        $model = new Model();
-        $updateMask = new FieldMask();
-
-        $response = $client->updateModel($model, $updateMask);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.automl.v1.AutoMl/UpdateModel', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getModel();
-
-        $this->assertProtobufEquals($model, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-
-        $this->assertProtobufEquals($updateMask, $actualValue);
-
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function updateModelExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
-        // Mock request
-        $model = new Model();
-        $updateMask = new FieldMask();
-
-        try {
-            $client->updateModel($model, $updateMask);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
     public function listModelsTest()
     {
         $transport = $this->createTransport();
@@ -1388,102 +1444,56 @@ class AutoMlClientTest extends GeneratedTest
     /**
      * @test
      */
-    public function deleteModelTest()
+    public function updateModelTest()
     {
-        $operationsTransport = $this->createTransport();
-        $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
-            'transport' => $operationsTransport,
-            'credentials' => $this->createCredentials(),
-        ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
-            'transport' => $transport,
-            'operationsClient' => $operationsClient,
-        ]);
+        $client = $this->createClient(['transport' => $transport]);
 
         $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
 
         // Mock response
-        $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/deleteModelTest');
-        $incompleteOperation->setDone(false);
-        $transport->addResponse($incompleteOperation);
-        $expectedResponse = new GPBEmpty();
-        $anyResponse = new Any();
-        $anyResponse->setValue($expectedResponse->serializeToString());
-        $completeOperation = new Operation();
-        $completeOperation->setName('operations/deleteModelTest');
-        $completeOperation->setDone(true);
-        $completeOperation->setResponse($anyResponse);
-        $operationsTransport->addResponse($completeOperation);
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $datasetId = 'datasetId-2115646910';
+        $etag = 'etag3123477';
+        $expectedResponse = new Model();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setDatasetId($datasetId);
+        $expectedResponse->setEtag($etag);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+        $model = new Model();
+        $updateMask = new FieldMask();
 
-        $response = $client->deleteModel($formattedName);
-        $this->assertFalse($response->isDone());
-        $this->assertNull($response->getResult());
-        $apiRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($apiRequests));
-        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
-        $this->assertSame(0, count($operationsRequestsEmpty));
+        $response = $client->updateModel($model, $updateMask);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.automl.v1.AutoMl/UpdateModel', $actualFuncCall);
 
-        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
-        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.automl.v1.AutoMl/DeleteModel', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
+        $actualValue = $actualRequestObject->getModel();
 
-        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertProtobufEquals($model, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
 
-        $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/deleteModelTest');
-
-        $response->pollUntilComplete([
-            'initialPollDelayMillis' => 1,
-        ]);
-        $this->assertTrue($response->isDone());
-        $this->assertEquals($expectedResponse, $response->getResult());
-        $apiRequestsEmpty = $transport->popReceivedCalls();
-        $this->assertSame(0, count($apiRequestsEmpty));
-        $operationsRequests = $operationsTransport->popReceivedCalls();
-        $this->assertSame(1, count($operationsRequests));
-
-        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
-        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
-        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
-        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertProtobufEquals($updateMask, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /**
      * @test
      */
-    public function deleteModelExceptionTest()
+    public function updateModelExceptionTest()
     {
-        $operationsTransport = $this->createTransport();
-        $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
-            'transport' => $operationsTransport,
-            'credentials' => $this->createCredentials(),
-        ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
-            'transport' => $transport,
-            'operationsClient' => $operationsClient,
-        ]);
+        $client = $this->createClient(['transport' => $transport]);
 
         $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
-
-        // Mock response
-        $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/deleteModelTest');
-        $incompleteOperation->setDone(false);
-        $transport->addResponse($incompleteOperation);
 
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
@@ -1495,34 +1505,24 @@ class AutoMlClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $operationsTransport->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-
-        $response = $client->deleteModel($formattedName);
-        $this->assertFalse($response->isDone());
-        $this->assertNull($response->getResult());
-
-        $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/deleteModelTest');
+        $model = new Model();
+        $updateMask = new FieldMask();
 
         try {
-            $response->pollUntilComplete([
-                'initialPollDelayMillis' => 1,
-            ]);
-            // If the pollUntilComplete() method call did not throw, fail the test
+            $client->updateModel($model, $updateMask);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
-        // Call popReceivedCalls to ensure the stubs are exhausted
+        // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
-        $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /**
