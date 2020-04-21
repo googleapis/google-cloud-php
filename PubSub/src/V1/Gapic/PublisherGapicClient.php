@@ -431,9 +431,9 @@ class PublisherGapicClient
      * @param Topic     $topic        Required. The updated topic object.
      * @param FieldMask $updateMask   Required. Indicates which fields in the provided topic to update. Must be
      *                                specified and non-empty. Note that if `update_mask` contains
-     *                                "message_storage_policy" then the new value will be determined based on the
-     *                                policy configured at the project or organization level. The
-     *                                `message_storage_policy` must not be set in the `topic` provided above.
+     *                                "message_storage_policy" but the `message_storage_policy` is not set in
+     *                                the `topic` provided above, then the updated value is determined by the
+     *                                policy configured at the project or organization level.
      * @param array     $optionalArgs {
      *                                Optional.
      *
@@ -884,8 +884,8 @@ class PublisherGapicClient
      * Sets the access control policy on the specified resource. Replaces
      * any existing policy.
      *
-     * Can return Public Errors: NOT_FOUND, INVALID_ARGUMENT and
-     * PERMISSION_DENIED
+     * Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+     * errors.
      *
      * Sample code:
      * ```
@@ -1006,7 +1006,7 @@ class PublisherGapicClient
     /**
      * Returns permissions that a caller has on the specified resource. If the
      * resource does not exist, this will return an empty set of
-     * permissions, not a NOT_FOUND error.
+     * permissions, not a `NOT_FOUND` error.
      *
      * Note: This operation is designed to be used for building
      * permission-aware UIs and command-line tools, not for authorization
