@@ -41,8 +41,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     private $state = 0;
     /**
-     * Required. The number of nodes allocated to this cluster. More nodes enable higher
-     * throughput and more consistent performance.
+     * Required. The number of nodes allocated to this cluster. More nodes enable
+     * higher throughput and more consistent performance.
      *
      * Generated from protobuf field <code>int32 serve_nodes = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -74,8 +74,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *     @type int $state
      *           The current state of the cluster.
      *     @type int $serve_nodes
-     *           Required. The number of nodes allocated to this cluster. More nodes enable higher
-     *           throughput and more consistent performance.
+     *           Required. The number of nodes allocated to this cluster. More nodes enable
+     *           higher throughput and more consistent performance.
      *     @type int $default_storage_type
      *           (`CreationOnly`)
      *           The type of storage used by this cluster to serve its
@@ -176,8 +176,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The number of nodes allocated to this cluster. More nodes enable higher
-     * throughput and more consistent performance.
+     * Required. The number of nodes allocated to this cluster. More nodes enable
+     * higher throughput and more consistent performance.
      *
      * Generated from protobuf field <code>int32 serve_nodes = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -188,8 +188,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The number of nodes allocated to this cluster. More nodes enable higher
-     * throughput and more consistent performance.
+     * Required. The number of nodes allocated to this cluster. More nodes enable
+     * higher throughput and more consistent performance.
      *
      * Generated from protobuf field <code>int32 serve_nodes = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
