@@ -110,6 +110,14 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string import_failure_reason = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $import_failure_reason = '';
+    /**
+     * ExternalProtectionLevelOptions stores a group of additional fields for
+     * configuring a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] that are specific to the
+     * [EXTERNAL][google.cloud.kms.v1.ProtectionLevel.EXTERNAL] protection level.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.ExternalProtectionLevelOptions external_protection_level_options = 17;</code>
+     */
+    private $external_protection_level_options = null;
 
     /**
      * Constructor.
@@ -157,6 +165,10 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      *           Output only. The root cause of an import failure. Only present if
      *           [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
      *           [IMPORT_FAILED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.IMPORT_FAILED].
+     *     @type \Google\Cloud\Kms\V1\ExternalProtectionLevelOptions $external_protection_level_options
+     *           ExternalProtectionLevelOptions stores a group of additional fields for
+     *           configuring a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] that are specific to the
+     *           [EXTERNAL][google.cloud.kms.v1.ProtectionLevel.EXTERNAL] protection level.
      * }
      */
     public function __construct($data = NULL) {
@@ -504,6 +516,36 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->import_failure_reason = $var;
+
+        return $this;
+    }
+
+    /**
+     * ExternalProtectionLevelOptions stores a group of additional fields for
+     * configuring a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] that are specific to the
+     * [EXTERNAL][google.cloud.kms.v1.ProtectionLevel.EXTERNAL] protection level.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.ExternalProtectionLevelOptions external_protection_level_options = 17;</code>
+     * @return \Google\Cloud\Kms\V1\ExternalProtectionLevelOptions
+     */
+    public function getExternalProtectionLevelOptions()
+    {
+        return $this->external_protection_level_options;
+    }
+
+    /**
+     * ExternalProtectionLevelOptions stores a group of additional fields for
+     * configuring a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] that are specific to the
+     * [EXTERNAL][google.cloud.kms.v1.ProtectionLevel.EXTERNAL] protection level.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.ExternalProtectionLevelOptions external_protection_level_options = 17;</code>
+     * @param \Google\Cloud\Kms\V1\ExternalProtectionLevelOptions $var
+     * @return $this
+     */
+    public function setExternalProtectionLevelOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Kms\V1\ExternalProtectionLevelOptions::class);
+        $this->external_protection_level_options = $var;
 
         return $this;
     }
