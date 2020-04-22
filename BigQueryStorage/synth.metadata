@@ -1,0 +1,24 @@
+{
+  "updateTime": "2020-04-16T20:25:15.104500Z",
+  "sources": [
+    {
+      "git": {
+        "name": "googleapis",
+        "remote": "https://github.com/googleapis/googleapis.git",
+        "sha": "6e0ac551e057e20a6c41ab0b21ffa9623e463326",
+        "internalRef": "306891012"
+      }
+    }
+  ],
+  "destinations": [
+    {
+      "client": {
+        "source": "googleapis",
+        "apiName": "bigquery-storage",
+        "apiVersion": "v1",
+        "language": "php",
+        "generator": "bazel"
+      }
+    }
+  ]
+}

@@ -318,6 +318,14 @@
             ]
         },
         {
+            "id": "cloud-bigquery-storage",
+            "name": "google/cloud-bigquery-storage",
+            "defaultService": "bigquerystorage/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-bigtable",
             "name": "google/cloud-bigtable",
             "defaultService": "bigtable/readme",
