@@ -26,6 +26,7 @@
         "cloud-kms",
         "cloud-language",
         "cloud-logging",
+        "cloud-memcache",
         "cloud-monitoring",
         "cloud-oslogin",
         "cloud-pubsub",

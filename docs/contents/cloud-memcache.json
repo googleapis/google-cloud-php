@@ -1,0 +1,14 @@
+{
+    "title": "Memcache",
+    "defaultService": "memcache\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "memcache\/readme"
+        }, {
+        	"title": "CloudMemcacheClient",
+        	"type": "memcache/v1beta2/cloudmemcacheclient"
+    	}
+    ],
+    "pattern": "memcache\/\\w{1,}"
+}
