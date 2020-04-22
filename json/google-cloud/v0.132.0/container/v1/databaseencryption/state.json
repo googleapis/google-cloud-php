@@ -1,0 +1,1 @@
+{"id":"container\/v1\/databaseencryption\/state","type":"","title":"Google\\Cloud\\Container\\V1\\DatabaseEncryption\\State","name":"State","description":"<p>State of etcd encryption.<\/p>\n<p>Protobuf type <code>google.container.v1.DatabaseEncryption.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

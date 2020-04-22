@@ -1,0 +1,1 @@
+{"id":"redis\/v1\/instance_tier","type":"","title":"Google\\Cloud\\Redis\\V1\\Instance_Tier","name":"Instance_Tier","description":"<p>This class is deprecated. Use Google\\Cloud\\Redis\\V1\\Instance\\Tier instead.<\/p>","examples":[],"resources":[],"methods":[]}

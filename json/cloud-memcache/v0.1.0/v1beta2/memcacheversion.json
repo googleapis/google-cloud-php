@@ -1,0 +1,1 @@
+{"id":"memcache\/v1beta2\/memcacheversion","type":"","title":"Google\\Cloud\\Memcache\\V1beta2\\MemcacheVersion","name":"MemcacheVersion","description":"<p>Memcached versions supported by our service.<\/p>\n<p>Protobuf type <code>google.cloud.memcache.v1beta2.MemcacheVersion<\/code><\/p>","examples":[],"resources":[],"methods":[]}
