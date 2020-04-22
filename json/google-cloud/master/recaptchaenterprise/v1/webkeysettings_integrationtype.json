@@ -1,0 +1,1 @@
+{"id":"recaptchaenterprise\/v1\/webkeysettings_integrationtype","type":"","title":"Google\\Cloud\\RecaptchaEnterprise\\V1\\WebKeySettings_IntegrationType","name":"WebKeySettings_IntegrationType","description":"<p>This class is deprecated. Use Google\\Cloud\\RecaptchaEnterprise\\V1\\WebKeySettings\\IntegrationType instead.<\/p>","examples":[],"resources":[],"methods":[]}

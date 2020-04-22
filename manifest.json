@@ -526,6 +526,14 @@
             ]
         },
         {
+            "id": "cloud-data-catalog",
+            "name": "google/cloud-data-catalog",
+            "defaultService": "datacatalog/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-dataproc",
             "name": "google/cloud-dataproc",
             "defaultService": "dataproc/readme",
@@ -1287,6 +1295,14 @@
                 "v0.3.0",
                 "v0.2.0",
                 "v0.1.0",
+                "master"
+            ]
+        },
+        {
+            "id": "cloud-recaptcha-enterprise",
+            "name": "google/cloud-recaptcha-enterprise",
+            "defaultService": "recaptchaenterprise/readme",
+            "versions": [
                 "master"
             ]
         },

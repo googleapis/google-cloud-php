@@ -1,0 +1,1 @@
+{"id":"datacatalog\/v1\/searchresulttype","type":"","title":"Google\\Cloud\\DataCatalog\\V1\\SearchResultType","name":"SearchResultType","description":"<p>The different types of resources that can be returned in search.<\/p>\n<p>Protobuf type <code>google.cloud.datacatalog.v1.SearchResultType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

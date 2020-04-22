@@ -1,0 +1,1 @@
+{"id":"datacatalog\/v1\/tagfield_enumvalue","type":"","title":"Google\\Cloud\\DataCatalog\\V1\\TagField_EnumValue","name":"TagField_EnumValue","description":"<p>This class is deprecated. Use Google\\Cloud\\DataCatalog\\V1\\TagField\\EnumValue instead.<\/p>","examples":[],"resources":[],"methods":[]}
