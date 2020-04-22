@@ -1,0 +1,1 @@
+{"id":"memcache\/v1beta2\/instance_instancemessage","type":"","title":"Google\\Cloud\\Memcache\\V1beta2\\Instance_InstanceMessage","name":"Instance_InstanceMessage","description":"<p>This class is deprecated. Use Google\\Cloud\\Memcache\\V1beta2\\Instance\\InstanceMessage instead.<\/p>","examples":[],"resources":[],"methods":[]}

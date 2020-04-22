@@ -318,6 +318,14 @@
             ]
         },
         {
+            "id": "cloud-bigquery-storage",
+            "name": "google/cloud-bigquery-storage",
+            "defaultService": "bigquerystorage/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-bigtable",
             "name": "google/cloud-bigtable",
             "defaultService": "bigtable/readme",
@@ -1093,6 +1101,14 @@
                 "v1.1.0",
                 "v1.0.0",
                 "v0.1.0",
+                "master"
+            ]
+        },
+        {
+            "id": "cloud-memcache",
+            "name": "google/cloud-memcache",
+            "defaultService": "memcache/readme",
+            "versions": [
                 "master"
             ]
         },
