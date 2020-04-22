@@ -11,6 +11,7 @@
         "cloud-automl",
         "cloud-bigquery",
         "cloud-bigquerydatatransfer",
+        "cloud-bigquery-storage",
         "cloud-bigtable",
         "cloud-billing",
         "cloud-container",
