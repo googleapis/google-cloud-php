@@ -1097,6 +1097,14 @@
             ]
         },
         {
+            "id": "cloud-memcache",
+            "name": "google/cloud-memcache",
+            "defaultService": "memcache/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-monitoring",
             "name": "google/cloud-monitoring",
             "defaultService": "monitoring/readme",

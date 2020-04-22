@@ -1,0 +1,24 @@
+{
+  "updateTime": "2020-04-22T17:07:18.105310Z",
+  "sources": [
+    {
+      "git": {
+        "name": "googleapis",
+        "remote": "https://github.com/googleapis/googleapis.git",
+        "sha": "b3bcfd059ec684445a38db693f6e36f14a1d2618",
+        "internalRef": "307838123"
+      }
+    }
+  ],
+  "destinations": [
+    {
+      "client": {
+        "source": "googleapis",
+        "apiName": "memcache",
+        "apiVersion": "v1beta2",
+        "language": "php",
+        "generator": "bazel"
+      }
+    }
+  ]
+}
