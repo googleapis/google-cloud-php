@@ -231,12 +231,6 @@ class ManageSubscriptionsTest extends PubSubTestCase
      */
     public function testDeadLetterPolicy($client)
     {
-        if ($client instanceof PubSubClientRest) {
-            $this->markTestSkipped(
-                'deadLetterPolicy not available in REST transport during experimental period.'
-            );
-        }
-
         $dlqTopic1 = $client->createTopic(uniqid(self::TESTING_PREFIX));
         $dlqTopic2 = $client->createTopic(uniqid(self::TESTING_PREFIX));
 
