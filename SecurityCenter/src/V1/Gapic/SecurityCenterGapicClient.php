@@ -139,9 +139,9 @@ class SecurityCenterGapicClient
     private static $findingSecurityMarksNameTemplate;
     private static $notificationConfigNameTemplate;
     private static $organizationNameTemplate;
-    private static $organizationAssetNameTemplate;
+    private static $organizationAssetSecurityMarksNameTemplate;
     private static $organizationSettingsNameTemplate;
-    private static $organizationSourceFindingNameTemplate;
+    private static $organizationSourceFindingSecurityMarksNameTemplate;
     private static $securityMarksNameTemplate;
     private static $sourceNameTemplate;
     private static $topicNameTemplate;
@@ -213,13 +213,13 @@ class SecurityCenterGapicClient
         return self::$organizationNameTemplate;
     }
 
-    private static function getOrganizationAssetNameTemplate()
+    private static function getOrganizationAssetSecurityMarksNameTemplate()
     {
-        if (null == self::$organizationAssetNameTemplate) {
-            self::$organizationAssetNameTemplate = new PathTemplate('organizations/{organization}/assets/{asset}/securityMarks');
+        if (null == self::$organizationAssetSecurityMarksNameTemplate) {
+            self::$organizationAssetSecurityMarksNameTemplate = new PathTemplate('organizations/{organization}/assets/{asset}/securityMarks');
         }
 
-        return self::$organizationAssetNameTemplate;
+        return self::$organizationAssetSecurityMarksNameTemplate;
     }
 
     private static function getOrganizationSettingsNameTemplate()
@@ -231,13 +231,13 @@ class SecurityCenterGapicClient
         return self::$organizationSettingsNameTemplate;
     }
 
-    private static function getOrganizationSourceFindingNameTemplate()
+    private static function getOrganizationSourceFindingSecurityMarksNameTemplate()
     {
-        if (null == self::$organizationSourceFindingNameTemplate) {
-            self::$organizationSourceFindingNameTemplate = new PathTemplate('organizations/{organization}/sources/{source}/findings/{finding}/securityMarks');
+        if (null == self::$organizationSourceFindingSecurityMarksNameTemplate) {
+            self::$organizationSourceFindingSecurityMarksNameTemplate = new PathTemplate('organizations/{organization}/sources/{source}/findings/{finding}/securityMarks');
         }
 
-        return self::$organizationSourceFindingNameTemplate;
+        return self::$organizationSourceFindingSecurityMarksNameTemplate;
     }
 
     private static function getSecurityMarksNameTemplate()
@@ -276,9 +276,9 @@ class SecurityCenterGapicClient
                 'findingSecurityMarks' => self::getFindingSecurityMarksNameTemplate(),
                 'notificationConfig' => self::getNotificationConfigNameTemplate(),
                 'organization' => self::getOrganizationNameTemplate(),
-                'organizationAsset' => self::getOrganizationAssetNameTemplate(),
+                'organizationAssetSecurityMarks' => self::getOrganizationAssetSecurityMarksNameTemplate(),
                 'organizationSettings' => self::getOrganizationSettingsNameTemplate(),
-                'organizationSourceFinding' => self::getOrganizationSourceFindingNameTemplate(),
+                'organizationSourceFindingSecurityMarks' => self::getOrganizationSourceFindingSecurityMarksNameTemplate(),
                 'securityMarks' => self::getSecurityMarksNameTemplate(),
                 'source' => self::getSourceNameTemplate(),
                 'topic' => self::getTopicNameTemplate(),
@@ -386,17 +386,17 @@ class SecurityCenterGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a organization_asset resource.
+     * a organization_asset_security_marks resource.
      *
      * @param string $organization
      * @param string $asset
      *
-     * @return string The formatted organization_asset resource.
+     * @return string The formatted organization_asset_security_marks resource.
      * @experimental
      */
-    public static function organizationAssetName($organization, $asset)
+    public static function organizationAssetSecurityMarksName($organization, $asset)
     {
-        return self::getOrganizationAssetNameTemplate()->render([
+        return self::getOrganizationAssetSecurityMarksNameTemplate()->render([
             'organization' => $organization,
             'asset' => $asset,
         ]);
@@ -420,18 +420,18 @@ class SecurityCenterGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a organization_source_finding resource.
+     * a organization_source_finding_security_marks resource.
      *
      * @param string $organization
      * @param string $source
      * @param string $finding
      *
-     * @return string The formatted organization_source_finding resource.
+     * @return string The formatted organization_source_finding_security_marks resource.
      * @experimental
      */
-    public static function organizationSourceFindingName($organization, $source, $finding)
+    public static function organizationSourceFindingSecurityMarksName($organization, $source, $finding)
     {
-        return self::getOrganizationSourceFindingNameTemplate()->render([
+        return self::getOrganizationSourceFindingSecurityMarksNameTemplate()->render([
             'organization' => $organization,
             'source' => $source,
             'finding' => $finding,
@@ -501,9 +501,9 @@ class SecurityCenterGapicClient
      * - findingSecurityMarks: organizations/{organization}/sources/{source}/findings/{finding}/securityMarks
      * - notificationConfig: organizations/{organization}/notificationConfigs/{notification_config}
      * - organization: organizations/{organization}
-     * - organizationAsset: organizations/{organization}/assets/{asset}/securityMarks
+     * - organizationAssetSecurityMarks: organizations/{organization}/assets/{asset}/securityMarks
      * - organizationSettings: organizations/{organization}/organizationSettings
-     * - organizationSourceFinding: organizations/{organization}/sources/{source}/findings/{finding}/securityMarks
+     * - organizationSourceFindingSecurityMarks: organizations/{organization}/sources/{source}/findings/{finding}/securityMarks
      * - securityMarks: organizations/{organization}/assets/{asset}/securityMarks
      * - source: organizations/{organization}/sources/{source}
      * - topic: projects/{project}/topics/{topic}.
