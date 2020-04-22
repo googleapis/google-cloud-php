@@ -1,0 +1,11 @@
+{
+    "title": "DataCatalog",
+    "defaultService": "datacatalog\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "datacatalog\/readme"
+        }
+    ],
+    "pattern": "datacatalog\/\\w{1,}"
+}
