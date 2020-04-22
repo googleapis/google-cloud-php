@@ -92,7 +92,7 @@ class JobServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->projectJobName('[PROJECT]', '[JOB]');
+        $formattedName = $client->projectTenantJobName('[PROJECT]', '[TENANT]', '[JOB]');
 
         $client->deleteJob($formattedName);
         $actualRequests = $transport->popReceivedCalls();
@@ -131,7 +131,7 @@ class JobServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->projectJobName('[PROJECT]', '[JOB]');
+        $formattedName = $client->projectTenantJobName('[PROJECT]', '[TENANT]', '[JOB]');
 
         try {
             $client->deleteJob($formattedName);
@@ -431,7 +431,7 @@ class JobServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->projectJobName('[PROJECT]', '[JOB]');
+        $formattedName = $client->projectTenantJobName('[PROJECT]', '[TENANT]', '[JOB]');
 
         $response = $client->getJob($formattedName);
         $this->assertEquals($expectedResponse, $response);
@@ -471,7 +471,7 @@ class JobServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->projectJobName('[PROJECT]', '[JOB]');
+        $formattedName = $client->projectTenantJobName('[PROJECT]', '[TENANT]', '[JOB]');
 
         try {
             $client->getJob($formattedName);

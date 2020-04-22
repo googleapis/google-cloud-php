@@ -85,7 +85,7 @@ class CompanyServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->projectCompanyName('[PROJECT]', '[COMPANY]');
+        $formattedName = $client->projectTenantCompanyName('[PROJECT]', '[TENANT]', '[COMPANY]');
 
         $client->deleteCompany($formattedName);
         $actualRequests = $transport->popReceivedCalls();
@@ -124,7 +124,7 @@ class CompanyServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->projectCompanyName('[PROJECT]', '[COMPANY]');
+        $formattedName = $client->projectTenantCompanyName('[PROJECT]', '[TENANT]', '[COMPANY]');
 
         try {
             $client->deleteCompany($formattedName);
@@ -271,7 +271,7 @@ class CompanyServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->projectCompanyName('[PROJECT]', '[COMPANY]');
+        $formattedName = $client->projectTenantCompanyName('[PROJECT]', '[TENANT]', '[COMPANY]');
 
         $response = $client->getCompany($formattedName);
         $this->assertEquals($expectedResponse, $response);
@@ -311,7 +311,7 @@ class CompanyServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->projectCompanyName('[PROJECT]', '[COMPANY]');
+        $formattedName = $client->projectTenantCompanyName('[PROJECT]', '[TENANT]', '[COMPANY]');
 
         try {
             $client->getCompany($formattedName);
