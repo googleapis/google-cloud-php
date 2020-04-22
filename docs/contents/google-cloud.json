@@ -29,6 +29,7 @@
         "cloud-monitoring",
         "cloud-oslogin",
         "cloud-pubsub",
+        "cloud-recaptcha-enterprise",
         "cloud-recommendations-ai",
         "cloud-recommender",
         "cloud-redis",

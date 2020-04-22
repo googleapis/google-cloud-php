@@ -1275,6 +1275,14 @@
             ]
         },
         {
+            "id": "cloud-recaptcha-enterprise",
+            "name": "google/cloud-recaptcha-enterprise",
+            "defaultService": "recaptchaenterprise/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-recommendations-ai",
             "name": "google/cloud-recommendations-ai",
             "defaultService": "recommendationengine/readme",

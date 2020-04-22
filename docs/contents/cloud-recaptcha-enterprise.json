@@ -1,0 +1,11 @@
+{
+    "title": "RecaptchaEnterprise",
+    "defaultService": "recaptchaenterprise\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "recaptchaenterprise\/readme"
+        }
+    ],
+    "pattern": "recaptchaenterprise\/\\w{1,}"
+}
