@@ -16,6 +16,7 @@
         "cloud-billing",
         "cloud-container",
         "cloud-core",
+        "cloud-data-catalog",
         "cloud-dataproc",
         "cloud-datastore",
         "cloud-debugger",

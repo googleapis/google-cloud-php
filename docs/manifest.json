@@ -526,6 +526,14 @@
             ]
         },
         {
+            "id": "cloud-data-catalog",
+            "name": "google/cloud-data-catalog",
+            "defaultService": "datacatalog/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-dataproc",
             "name": "google/cloud-dataproc",
             "defaultService": "dataproc/readme",

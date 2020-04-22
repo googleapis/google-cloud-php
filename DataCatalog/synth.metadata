@@ -1,0 +1,24 @@
+{
+  "updateTime": "2020-04-22T17:42:38.773981Z",
+  "sources": [
+    {
+      "git": {
+        "name": "googleapis",
+        "remote": "https://github.com/googleapis/googleapis.git",
+        "sha": "b3bcfd059ec684445a38db693f6e36f14a1d2618",
+        "internalRef": "307838123"
+      }
+    }
+  ],
+  "destinations": [
+    {
+      "client": {
+        "source": "googleapis",
+        "apiName": "datacatalog",
+        "apiVersion": "v1",
+        "language": "php",
+        "generator": "bazel"
+      }
+    }
+  ]
+}
