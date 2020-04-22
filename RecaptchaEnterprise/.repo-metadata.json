@@ -1,0 +1,5 @@
+{
+    "distribution_name": "google/cloud-recaptcha-enterprise",
+    "release_level": "beta",
+    "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-recaptcha-enterprise/latest"
+}
