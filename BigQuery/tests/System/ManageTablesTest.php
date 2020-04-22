@@ -92,6 +92,36 @@ class ManageTablesTest extends BigQueryTestCase
         $this->assertArrayNotHasKey('errorResult', $job->info()['status']);
     }
 
+    public function testCreatesTableWithRangePartitioning()
+    {
+        $id = uniqid(self::TESTING_PREFIX);
+        $options = [
+            'friendlyName' => 'Test',
+            'description' => 'Test',
+            'rangePartitioning' => [
+                'field' => 'myInt',
+                'range' => [
+                    'start' => '0',
+                    'end' => '1000',
+                    'interval' => '100'
+                ]
+            ],
+            'schema' => [
+                'fields' => [
+                    [
+                        'name' => 'myInt',
+                        'type' => 'INT64'
+                    ]
+                ]
+            ]
+        ];
+        $table = self::$dataset->createTable($id, $options);
+
+        $this->assertTrue(self::$dataset->table($id)->exists());
+        $this->assertEquals($id, $table->id());
+        $this->assertEquals($table->info()['rangePartitioning'], $options['rangePartitioning']);
+    }
+
     public function testExtractsTable()
     {
         $object = self::$bucket->object(

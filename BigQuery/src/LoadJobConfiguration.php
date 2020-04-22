@@ -516,6 +516,8 @@ class LoadJobConfiguration implements JobConfigurationInterface
     /**
      * Sets time-based partitioning for the destination table.
      *
+     * Only one of timePartitioning and rangePartitioning should be specified.
+     *
      * Example:
      * ```
      * $loadJobConfig->timePartitioning([
@@ -529,6 +531,33 @@ class LoadJobConfiguration implements JobConfigurationInterface
     public function timePartitioning(array $timePartitioning)
     {
         $this->config['configuration']['load']['timePartitioning'] = $timePartitioning;
+
+        return $this;
+    }
+
+    /**
+     * Sets range partitioning specification for the destination table.
+     *
+     * Only one of timePartitioning and rangePartitioning should be specified.
+     *
+     * Example:
+     * ```
+     * $loadJobConfig->rangePartitioning([
+     *     'field' => 'myInt',
+     *     'range' => [
+     *         'start' => '0',
+     *         'end' => '1000',
+     *         'interval' => '100'
+     *     ]
+     * ]);
+     * ```
+     *
+     * @param array $rangePartitioning
+     * @return LoadJobConfiguration
+     */
+    public function rangePartitioning(array $rangePartitioning)
+    {
+        $this->config['configuration']['load']['rangePartitioning'] = $rangePartitioning;
 
         return $this;
     }
@@ -574,7 +603,7 @@ class LoadJobConfiguration implements JobConfigurationInterface
     public function useAvroLogicalTypes($useAvroLogicalTypes)
     {
         $this->config['configuration']['load']['useAvroLogicalTypes'] = $useAvroLogicalTypes;
-        
+
         return $this;
     }
 }

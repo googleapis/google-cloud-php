@@ -384,6 +384,8 @@ class QueryJobConfiguration implements JobConfigurationInterface
     /**
      * Sets time-based partitioning for the destination table.
      *
+     * Only one of timePartitioning and rangePartitioning should be specified.
+     *
      * Example:
      * ```
      * $query->timePartitioning([
@@ -397,6 +399,33 @@ class QueryJobConfiguration implements JobConfigurationInterface
     public function timePartitioning(array $timePartitioning)
     {
         $this->config['configuration']['query']['timePartitioning'] = $timePartitioning;
+
+        return $this;
+    }
+
+    /**
+     * Sets range partitioning specification for the destination table.
+     *
+     * Only one of timePartitioning and rangePartitioning should be specified.
+     *
+     * Example:
+     * ```
+     * $query->rangePartitioning([
+     *     'field' => 'myInt',
+     *     'range' => [
+     *         'start' => '0',
+     *         'end' => '1000',
+     *         'interval' => '100'
+     *     ]
+     * ]);
+     * ```
+     *
+     * @param array $rangePartitioning
+     * @return QueryJobConfiguration
+     */
+    public function rangePartitioning(array $rangePartitioning)
+    {
+        $this->config['configuration']['query']['rangePartitioning'] = $rangePartitioning;
 
         return $this;
     }

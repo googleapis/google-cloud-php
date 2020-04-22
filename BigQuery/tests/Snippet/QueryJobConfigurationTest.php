@@ -157,6 +157,10 @@ class QueryJobConfigurationTest extends SnippetTestCase
                 ['type' => 'DAY']
             ],
             [
+                'rangePartitioning',
+                ['field' => 'myInt','range' => ['start' => '0','end' => '1000','interval' => '100']]
+            ],
+            [
                 'useLegacySql',
                 true
             ],

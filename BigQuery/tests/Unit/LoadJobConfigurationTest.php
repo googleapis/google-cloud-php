@@ -91,6 +91,14 @@ class LoadJobConfigurationTest extends TestCase
             'timePartitioning' => [
                 'type' => 'DAY'
             ],
+            'rangePartitioning' => [
+                'field' => 'foo',
+                'range' => [
+                    'start' => '1',
+                    'interval' => '1',
+                    'end' => '2'
+                ]
+            ],
             'writeDisposition' => 'WRITE_TRUNCATE',
             'useAvroLogicalTypes' => true
         ];
@@ -119,6 +127,7 @@ class LoadJobConfigurationTest extends TestCase
             ->sourceFormat($load['sourceFormat'])
             ->sourceUris($load['sourceUris'])
             ->timePartitioning($load['timePartitioning'])
+            ->rangePartitioning($load['rangePartitioning'])
             ->writeDisposition($load['writeDisposition'])
             ->useAvroLogicalTypes($load['useAvroLogicalTypes']);
 

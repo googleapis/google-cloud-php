@@ -192,6 +192,10 @@ class LoadJobConfigurationTest extends SnippetTestCase
                 ['type' => 'DAY']
             ],
             [
+                'rangePartitioning',
+                ['field' => 'myInt','range' => ['start' => '0','end' => '1000','interval' => '100']]
+            ],
+            [
                 'writeDisposition',
                 'WRITE_TRUNCATE'
             ],
