@@ -1,5 +1,272 @@
 # Changelog
 
+## 0.132.0
+
+<details><summary>google/cloud-automl 1.1.0</summary>
+
+
+
+### Features
+
+* update timeouts and retry, and documentation ([#2898](https://www.github.com/googleapis/google-cloud-php/issues/2898)) ([bcd4a20](https://www.github.com/googleapis/google-cloud-php/commit/bcd4a202f2bce169da47b239d8c00917b2148fa8))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.16.0</summary>
+
+
+
+### Features
+
+* add integer range partitioning ([#2893](https://www.github.com/googleapis/google-cloud-php/issues/2893)) ([0410bca](https://www.github.com/googleapis/google-cloud-php/commit/0410bca716eb6ca40ddf2c500791646f8e205634))
+
+</details>
+
+<details><summary>google/cloud-bigquerydatatransfer 1.0.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update metadata ([#2871](https://www.github.com/googleapis/google-cloud-php/issues/2871)) ([07fa89f](https://www.github.com/googleapis/google-cloud-php/commit/07fa89f4e1188a9aefd3da9f0d79697c24add2cf))
+
+</details>
+
+<details><summary>google/cloud-bigquery-storage 0.1.0</summary>
+
+
+
+### Features
+
+* introduce bigquery storage client ([#2916](https://www.github.com/googleapis/google-cloud-php/issues/2916)) ([c745b58](https://www.github.com/googleapis/google-cloud-php/commit/c745b58370beb1db7f7ae79c275bfb1102264d78))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.3.2</summary>
+
+
+
+### Documentation
+
+* update documentation ([#2899](https://www.github.com/googleapis/google-cloud-php/issues/2899)) ([314726a](https://www.github.com/googleapis/google-cloud-php/commit/314726a3c86aa612b0e00e22c08ddbf2c3a979f2))
+
+</details>
+
+<details><summary>google/cloud-container 1.0.1</summary>
+
+
+
+### Documentation
+
+* update documentation ([#2880](https://www.github.com/googleapis/google-cloud-php/issues/2880)) ([bc9fd10](https://www.github.com/googleapis/google-cloud-php/commit/bc9fd10867b411c50e0cb7b50c3efae1ed605139))
+
+
+### Miscellaneous Chores
+
+* update metadata ([#2872](https://www.github.com/googleapis/google-cloud-php/issues/2872)) ([887e183](https://www.github.com/googleapis/google-cloud-php/commit/887e1838814eb36fe3f2ce02972b1aaf8919a838))
+
+</details>
+
+<details><summary>google/cloud-core 1.36.2</summary>
+
+
+
+### Bug Fixes
+
+* encode LRO operation metadata properly ([#2536](https://www.github.com/googleapis/google-cloud-php/issues/2536)) ([466cbd9](https://www.github.com/googleapis/google-cloud-php/commit/466cbd91fb1ebe45305fbc955891f3421babd07c))
+
+</details>
+
+<details><summary>google/cloud-data-catalog 0.1.0</summary>
+
+
+
+### Features
+
+* introduce data catalog client ([#2917](https://www.github.com/googleapis/google-cloud-php/issues/2917)) ([108bc34](https://www.github.com/googleapis/google-cloud-php/commit/108bc34f81362d43c38d7aba4bde95f0cb9c8002))
+
+</details>
+
+<details><summary>google/cloud-dataproc 1.0.1</summary>
+
+
+
+### Documentation
+
+* update documentation ([#2873](https://www.github.com/googleapis/google-cloud-php/issues/2873)) ([b657d3c](https://www.github.com/googleapis/google-cloud-php/commit/b657d3c0c9acf7b5e7fbf98e8965aea0e5d82cb1))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.12.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* disable updating v1beta1 client ([#2906](https://www.github.com/googleapis/google-cloud-php/issues/2906)) ([8e0f4b0](https://www.github.com/googleapis/google-cloud-php/commit/8e0f4b02594349fcad6312a5c7aaed2a0767aa43))
+
+</details>
+
+<details><summary>google/cloud-kms 1.10.0</summary>
+
+
+
+### Features
+
+* add external protection level options ([#2902](https://www.github.com/googleapis/google-cloud-php/issues/2902)) ([9fc71e9](https://www.github.com/googleapis/google-cloud-php/commit/9fc71e9254ef9db349cdc7fca9d120b2139612e0))
+
+</details>
+
+<details><summary>google/cloud-language 0.22.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* update timeouts and system test ([#2885](https://www.github.com/googleapis/google-cloud-php/issues/2885)) ([903dc09](https://www.github.com/googleapis/google-cloud-php/commit/903dc0943ed91d111faab04c8f10b1bd732090a0))
+
+</details>
+
+<details><summary>google/cloud-memcache 0.1.0</summary>
+
+
+
+### Features
+
+* introduce memorystore for memcached client ([#2915](https://www.github.com/googleapis/google-cloud-php/issues/2915)) ([1f63e9d](https://www.github.com/googleapis/google-cloud-php/commit/1f63e9d955199ac994fc063db1135766ee992052))
+
+</details>
+
+<details><summary>google/cloud-monitoring 1.0.1</summary>
+
+
+
+### Documentation
+
+* update documentation ([#2888](https://www.github.com/googleapis/google-cloud-php/issues/2888)) ([03f6e4a](https://www.github.com/googleapis/google-cloud-php/commit/03f6e4a9c57789435db36da3c06ab3391a9bd5ab))
+
+
+### Miscellaneous Chores
+
+* update metadata ([#2881](https://www.github.com/googleapis/google-cloud-php/issues/2881)) ([d7fa241](https://www.github.com/googleapis/google-cloud-php/commit/d7fa24140c7e703cd1bfc9d1ad3d3ba2d7cc88f1))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.24.0</summary>
+
+
+
+### Features
+
+* make dead letter policies available to rest transport ([#2919](https://www.github.com/googleapis/google-cloud-php/issues/2919)) ([7227ba4](https://www.github.com/googleapis/google-cloud-php/commit/7227ba4bea6d2a84342254555d90af0203cb4411))
+
+
+### Documentation
+
+* update documentation ([#2903](https://www.github.com/googleapis/google-cloud-php/issues/2903)) ([65158a6](https://www.github.com/googleapis/google-cloud-php/commit/65158a6e6019b8581ea5987d26639eee4975994b))
+
+</details>
+
+<details><summary>google/cloud-recaptcha-enterprise 0.1.0</summary>
+
+
+
+### Features
+
+* introduce recaptcha enterprise client ([#2918](https://www.github.com/googleapis/google-cloud-php/issues/2918)) ([addba1e](https://www.github.com/googleapis/google-cloud-php/commit/addba1e645808fb83e0c53178c33ba01095fdf00))
+
+</details>
+
+<details><summary>google/cloud-security-center 0.7.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* update formatting method names (#2913)
+
+### Features
+
+* update formatting method names ([#2913](https://www.github.com/googleapis/google-cloud-php/issues/2913)) ([a9b11ee](https://www.github.com/googleapis/google-cloud-php/commit/a9b11eef4a8fd48c633775ff51b0ed4ed6ffcdce))
+
+
+### Documentation
+
+* update documentation ([#2874](https://www.github.com/googleapis/google-cloud-php/issues/2874)) ([dc66fb2](https://www.github.com/googleapis/google-cloud-php/commit/dc66fb2193ea4b198db45ffbdb4fe3ac491a89a3))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.28.0</summary>
+
+
+
+### Features
+
+* **spanner:** deserialize response & metadata in operation lists ([#2909](https://www.github.com/googleapis/google-cloud-php/issues/2909)) ([52965d6](https://www.github.com/googleapis/google-cloud-php/commit/52965d63c7470904293a72d3becd0f2f39b4ad07))
+* update backup and restore timeouts ([#2904](https://www.github.com/googleapis/google-cloud-php/issues/2904)) ([962da20](https://www.github.com/googleapis/google-cloud-php/commit/962da2061941e5720d57709f3bb2f77aec4ff366))
+* update require version for google/cloud-core ([#2908](https://www.github.com/googleapis/google-cloud-php/issues/2908)) ([fde0f01](https://www.github.com/googleapis/google-cloud-php/commit/fde0f01b3f5e83cd047e16482403a085252fa5f3))
+
+
+### Bug Fixes
+
+* update spanner lroResponseMappers to map types for `metadata` and `response` separately ([#2837](https://www.github.com/googleapis/google-cloud-php/issues/2837)) ([33755e7](https://www.github.com/googleapis/google-cloud-php/commit/33755e77a626c2c2b2e5840c4a6c79ec863ed43e))
+
+
+### Miscellaneous Chores
+
+* update documentation ([#2889](https://www.github.com/googleapis/google-cloud-php/issues/2889)) ([1607832](https://www.github.com/googleapis/google-cloud-php/commit/1607832ad54b5e9fa210afb61b7e4d7ecca2f6d4))
+
+</details>
+
+<details><summary>google/cloud-speech 1.1.0</summary>
+
+
+
+### Features
+
+* add custom classes, phrase sets, long running uri, adaptation configuration, speaker tags ([#2905](https://www.github.com/googleapis/google-cloud-php/issues/2905)) ([5bec6b7](https://www.github.com/googleapis/google-cloud-php/commit/5bec6b7faaf22273aa4fd6adbc40309839b6700e))
+
+</details>
+
+<details><summary>google/cloud-talent 0.12.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* update formatting method signatures to add tenant id (#2882)
+
+### Features
+
+* update formatting method signatures to add tenant id ([#2882](https://www.github.com/googleapis/google-cloud-php/issues/2882)) ([c31c63e](https://www.github.com/googleapis/google-cloud-php/commit/c31c63e4d6242c4ec39c6e82cfa492c4e9817134))
+
+</details>
+
+<details><summary>google/cloud-text-to-speech 1.0.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update metadata ([#2883](https://www.github.com/googleapis/google-cloud-php/issues/2883)) ([ab6effb](https://www.github.com/googleapis/google-cloud-php/commit/ab6effb12e1a41ebb7cd5398c31b9440ecda781b))
+
+</details>
+
+<details><summary>google/cloud-web-risk 0.5.0</summary>
+
+
+
+### Features
+
+* add webrisk v1 client ([#2920](https://www.github.com/googleapis/google-cloud-php/issues/2920)) ([38ca165](https://www.github.com/googleapis/google-cloud-php/commit/38ca165f79102a9f3cddb248a555d02117427c1e))
+
+
+### Miscellaneous Chores
+
+* update metadata ([#2876](https://www.github.com/googleapis/google-cloud-php/issues/2876)) ([6ba63e3](https://www.github.com/googleapis/google-cloud-php/commit/6ba63e39a516f59ab6867e9e4d5f31e7f24110a0))
+
+</details>
+
 ## 0.131.0
 
 <details><summary>google/cloud-asset 1.0.0</summary>
