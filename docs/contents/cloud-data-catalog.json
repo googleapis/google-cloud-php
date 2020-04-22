@@ -5,7 +5,10 @@
         {
             "title": "Overview",
             "type": "datacatalog\/readme"
-        }
+        }, {
+        	"title": "DataCatalogClient",
+        	"type": "datacatalog/v1/datacatalogclient"
+    	}
     ],
     "pattern": "datacatalog\/\\w{1,}"
 }
