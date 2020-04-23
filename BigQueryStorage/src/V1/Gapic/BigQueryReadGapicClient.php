@@ -247,15 +247,9 @@ class BigQueryReadGapicClient
             $request->setMaxStreamCount($optionalArgs['maxStreamCount']);
         }
 
-        $descriptorData = [];
-
-        if ($request->getReadSession()) {
-            $descriptorData['read_session.table'] = $request->getReadSession()
-                ->getTable();
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor($descriptorData);
-
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'read_session.table' => $request->getReadSession()->getTable(),
+        ]);
         $optionalArgs['headers'] = isset($optionalArgs['headers'])
             ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
