@@ -95,7 +95,7 @@
         "google/cloud-monitoring": "1.0.1",
         "google/cloud-oslogin": "1.0.0",
         "google/cloud-pubsub": "1.24.0",
-        "google/cloud-recaptcha-enterprise": "0.1.0",
+        "google/cloud-recaptcha-enterprise": "0.1.1",
         "google/cloud-recommendations-ai": "0.1.0",
         "google/cloud-recommender": "1.0.0",
         "google/cloud-redis": "1.0.0",
