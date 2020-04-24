@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.132.1",
                 "v0.132.0",
                 "v0.131.0",
                 "v0.130.0",
@@ -1319,6 +1320,7 @@
             "name": "google/cloud-recaptcha-enterprise",
             "defaultService": "recaptchaenterprise/readme",
             "versions": [
+                "v0.1.1",
                 "v0.1.0",
                 "master"
             ]
