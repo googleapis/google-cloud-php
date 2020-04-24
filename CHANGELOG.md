@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.132.1
+
+<details><summary>google/cloud-recaptcha-enterprise 0.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* add synth metadata file ([#2924](https://www.github.com/googleapis/google-cloud-php/issues/2924)) ([f55cf03](https://www.github.com/googleapis/google-cloud-php/commit/f55cf0319ced2b4d322c47f9ad9bdd7a254c1be1))
+
+</details>
+
 ## 0.132.0
 
 <details><summary>google/cloud-automl 1.1.0</summary>
