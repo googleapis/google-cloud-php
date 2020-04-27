@@ -362,10 +362,10 @@ class Query
                 ]
             ];
         } else {
-            $encodedValue = ($operator == FieldFilterOperator::IN
+            $encodedValue = $operator === FieldFilterOperator::IN
                 ? $this->valueMapper->encodeMultiValue((array)$value)
-                : $this->valueMapper->encodeValue($value)
-            );
+                : $this->valueMapper->encodeValue($value);
+
             $filter = [
                 'fieldFilter' => [
                     'field' => [
