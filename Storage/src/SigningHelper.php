@@ -432,6 +432,7 @@ class SigningHelper
         }
 
         $conditions = array_merge($conditions, [
+            ['bucket' => $bucket],
             ['key' => $object],
             ['x-goog-date' => $requestTimestamp],
             ['x-goog-credential' => $credential],
