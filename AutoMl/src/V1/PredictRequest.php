@@ -31,12 +31,12 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
     /**
      * Additional domain-specific parameters, any string must be up to 25000
      * characters long.
-     * <h4>AutoML Vision Classification</h4>
+     * AutoML Vision Classification
      * `score_threshold`
      * : (float) A value from 0.0 to 1.0. When the model
      *   makes predictions for an image, it will only produce results that have
      *   at least this confidence score. The default is 0.5.
-     * <h4>AutoML Vision Object Detection</h4>
+     * AutoML Vision Object Detection
      * `score_threshold`
      * : (float) When Model detects objects on the image,
      *   it will only produce bounding boxes which have at least this
@@ -45,7 +45,7 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      * : (int64) The maximum number of bounding
      *   boxes returned. The default is 100. The
      *   number of returned bounding boxes might be limited by the server.
-     * <h4>AutoML Tables</h4>
+     * AutoML Tables
      * `feature_importance`
      * : (boolean) Whether
      * [feature_importance][google.cloud.automl.v1.TablesModelColumnInfo.feature_importance]
@@ -71,12 +71,12 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $params
      *           Additional domain-specific parameters, any string must be up to 25000
      *           characters long.
-     *           <h4>AutoML Vision Classification</h4>
+     *           AutoML Vision Classification
      *           `score_threshold`
      *           : (float) A value from 0.0 to 1.0. When the model
      *             makes predictions for an image, it will only produce results that have
      *             at least this confidence score. The default is 0.5.
-     *           <h4>AutoML Vision Object Detection</h4>
+     *           AutoML Vision Object Detection
      *           `score_threshold`
      *           : (float) When Model detects objects on the image,
      *             it will only produce bounding boxes which have at least this
@@ -85,7 +85,7 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      *           : (int64) The maximum number of bounding
      *             boxes returned. The default is 100. The
      *             number of returned bounding boxes might be limited by the server.
-     *           <h4>AutoML Tables</h4>
+     *           AutoML Tables
      *           `feature_importance`
      *           : (boolean) Whether
      *           [feature_importance][google.cloud.automl.v1.TablesModelColumnInfo.feature_importance]
@@ -156,12 +156,12 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
     /**
      * Additional domain-specific parameters, any string must be up to 25000
      * characters long.
-     * <h4>AutoML Vision Classification</h4>
+     * AutoML Vision Classification
      * `score_threshold`
      * : (float) A value from 0.0 to 1.0. When the model
      *   makes predictions for an image, it will only produce results that have
      *   at least this confidence score. The default is 0.5.
-     * <h4>AutoML Vision Object Detection</h4>
+     * AutoML Vision Object Detection
      * `score_threshold`
      * : (float) When Model detects objects on the image,
      *   it will only produce bounding boxes which have at least this
@@ -170,7 +170,7 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      * : (int64) The maximum number of bounding
      *   boxes returned. The default is 100. The
      *   number of returned bounding boxes might be limited by the server.
-     * <h4>AutoML Tables</h4>
+     * AutoML Tables
      * `feature_importance`
      * : (boolean) Whether
      * [feature_importance][google.cloud.automl.v1.TablesModelColumnInfo.feature_importance]
@@ -189,12 +189,12 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
     /**
      * Additional domain-specific parameters, any string must be up to 25000
      * characters long.
-     * <h4>AutoML Vision Classification</h4>
+     * AutoML Vision Classification
      * `score_threshold`
      * : (float) A value from 0.0 to 1.0. When the model
      *   makes predictions for an image, it will only produce results that have
      *   at least this confidence score. The default is 0.5.
-     * <h4>AutoML Vision Object Detection</h4>
+     * AutoML Vision Object Detection
      * `score_threshold`
      * : (float) When Model detects objects on the image,
      *   it will only produce bounding boxes which have at least this
@@ -203,7 +203,7 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      * : (int64) The maximum number of bounding
      *   boxes returned. The default is 100. The
      *   number of returned bounding boxes might be limited by the server.
-     * <h4>AutoML Tables</h4>
+     * AutoML Tables
      * `feature_importance`
      * : (boolean) Whether
      * [feature_importance][google.cloud.automl.v1.TablesModelColumnInfo.feature_importance]

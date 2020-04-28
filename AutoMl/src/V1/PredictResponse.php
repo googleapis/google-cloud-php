@@ -37,10 +37,10 @@ class PredictResponse extends \Google\Protobuf\Internal\Message
     private $preprocessed_input = null;
     /**
      * Additional domain-specific prediction response metadata.
-     * <h4>AutoML Vision Object Detection</h4>
+     * AutoML Vision Object Detection
      * `max_bounding_box_count`
      * : (int64) The maximum number of bounding boxes to return per image.
-     * <h4>AutoML Natural Language Sentiment Analysis</h4>
+     * AutoML Natural Language Sentiment Analysis
      * `sentiment_score`
      * : (float, deprecated) A value between -1 and 1,
      *   -1 maps to least positive sentiment, while 1 maps to the most positive
@@ -75,10 +75,10 @@ class PredictResponse extends \Google\Protobuf\Internal\Message
      *           property.
      *     @type array|\Google\Protobuf\Internal\MapField $metadata
      *           Additional domain-specific prediction response metadata.
-     *           <h4>AutoML Vision Object Detection</h4>
+     *           AutoML Vision Object Detection
      *           `max_bounding_box_count`
      *           : (int64) The maximum number of bounding boxes to return per image.
-     *           <h4>AutoML Natural Language Sentiment Analysis</h4>
+     *           AutoML Natural Language Sentiment Analysis
      *           `sentiment_score`
      *           : (float, deprecated) A value between -1 and 1,
      *             -1 maps to least positive sentiment, while 1 maps to the most positive
@@ -165,10 +165,10 @@ class PredictResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Additional domain-specific prediction response metadata.
-     * <h4>AutoML Vision Object Detection</h4>
+     * AutoML Vision Object Detection
      * `max_bounding_box_count`
      * : (int64) The maximum number of bounding boxes to return per image.
-     * <h4>AutoML Natural Language Sentiment Analysis</h4>
+     * AutoML Natural Language Sentiment Analysis
      * `sentiment_score`
      * : (float, deprecated) A value between -1 and 1,
      *   -1 maps to least positive sentiment, while 1 maps to the most positive
@@ -189,10 +189,10 @@ class PredictResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Additional domain-specific prediction response metadata.
-     * <h4>AutoML Vision Object Detection</h4>
+     * AutoML Vision Object Detection
      * `max_bounding_box_count`
      * : (int64) The maximum number of bounding boxes to return per image.
-     * <h4>AutoML Natural Language Sentiment Analysis</h4>
+     * AutoML Natural Language Sentiment Analysis
      * `sentiment_score`
      * : (float, deprecated) A value between -1 and 1,
      *   -1 maps to least positive sentiment, while 1 maps to the most positive

@@ -19,10 +19,10 @@ class BatchPredictResult extends \Google\Protobuf\Internal\Message
 {
     /**
      * Additional domain-specific prediction response metadata.
-     * <h4>AutoML Vision Object Detection</h4>
+     * AutoML Vision Object Detection
      * `max_bounding_box_count`
      * : (int64) The maximum number of bounding boxes returned per image.
-     * <h4>AutoML Video Intelligence Object Tracking</h4>
+     * AutoML Video Intelligence Object Tracking
      * `max_bounding_box_count`
      * : (int64) The maximum number of bounding boxes returned per frame.
      *
@@ -38,10 +38,10 @@ class BatchPredictResult extends \Google\Protobuf\Internal\Message
      *
      *     @type array|\Google\Protobuf\Internal\MapField $metadata
      *           Additional domain-specific prediction response metadata.
-     *           <h4>AutoML Vision Object Detection</h4>
+     *           AutoML Vision Object Detection
      *           `max_bounding_box_count`
      *           : (int64) The maximum number of bounding boxes returned per image.
-     *           <h4>AutoML Video Intelligence Object Tracking</h4>
+     *           AutoML Video Intelligence Object Tracking
      *           `max_bounding_box_count`
      *           : (int64) The maximum number of bounding boxes returned per frame.
      * }
@@ -53,10 +53,10 @@ class BatchPredictResult extends \Google\Protobuf\Internal\Message
 
     /**
      * Additional domain-specific prediction response metadata.
-     * <h4>AutoML Vision Object Detection</h4>
+     * AutoML Vision Object Detection
      * `max_bounding_box_count`
      * : (int64) The maximum number of bounding boxes returned per image.
-     * <h4>AutoML Video Intelligence Object Tracking</h4>
+     * AutoML Video Intelligence Object Tracking
      * `max_bounding_box_count`
      * : (int64) The maximum number of bounding boxes returned per frame.
      *
@@ -70,10 +70,10 @@ class BatchPredictResult extends \Google\Protobuf\Internal\Message
 
     /**
      * Additional domain-specific prediction response metadata.
-     * <h4>AutoML Vision Object Detection</h4>
+     * AutoML Vision Object Detection
      * `max_bounding_box_count`
      * : (int64) The maximum number of bounding boxes returned per image.
-     * <h4>AutoML Video Intelligence Object Tracking</h4>
+     * AutoML Video Intelligence Object Tracking
      * `max_bounding_box_count`
      * : (int64) The maximum number of bounding boxes returned per frame.
      *
