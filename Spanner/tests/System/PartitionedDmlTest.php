@@ -29,6 +29,10 @@ class PartitionedDmlTest extends SpannerTestCase
 
     public function testPdml()
     {
+        if ((bool) getenv("SPANNER_EMULATOR_HOST")) {
+            $this->markTestSkipped();
+        }
+
         $db = self::$database;
 
         $db->updateDdl('CREATE TABLE ' . self::PDML_TABLE . '(

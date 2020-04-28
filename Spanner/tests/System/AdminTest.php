@@ -34,6 +34,10 @@ class AdminTest extends SpannerTestCase
      */
     public function testInstance()
     {
+        if ((bool) getenv("SPANNER_EMULATOR_HOST")) {
+            $this->markTestSkipped();
+        }
+
         $client = self::$client;
 
         $instances = $client->instances();

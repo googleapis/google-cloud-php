@@ -815,6 +815,10 @@ class WriteTest extends SpannerTestCase
      */
     public function testPdml()
     {
+        if ((bool) getenv("SPANNER_EMULATOR_HOST")) {
+            $this->markTestSkipped();
+        }
+
         $id = $this->randId();
         $randStr = base64_encode(random_bytes(500));
         $randStr2 = base64_encode(random_bytes(500));
