@@ -90,6 +90,31 @@ class QueryTest extends FirestoreTestCase
         $this->assertEquals($res->name(), $doc->name());
     }
 
+    public function testWhereInArray()
+    {
+        $name = $this->query->name();
+        $doc1 = $this->insertDoc([
+            'foos' => ['foo', 'bar'],
+        ]);
+        $doc2 = $this->insertDoc([
+            'foos' => ['foo'],
+        ]);
+
+        $docs = self::$client->collection($name)->where('foos', 'in', [['foo']])->documents()->rows();
+        $this->assertCount(1, $docs);
+        $this->assertEquals($doc2->name(), $docs[0]->name());
+
+        $docs = self::$client->collection($name)->where('foos', 'in', [['bar']])->documents()->rows();
+        $this->assertEmpty($docs);
+
+        $docs = self::$client->collection($name)->where('foos', 'in', [['foo', 'bar']])->documents()->rows();
+        $this->assertCount(1, $docs);
+        $this->assertEquals($doc1->name(), $docs[0]->name());
+
+        $docs = self::$client->collection($name)->where('foos', 'in', [['bar', 'foo']])->documents()->rows();
+        $this->assertEmpty($docs);
+    }
+
     public function testSnapshotCursors()
     {
         $collection = self::$client->collection(uniqid(self::COLLECTION_NAME));

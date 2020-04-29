@@ -362,13 +362,17 @@ class Query
                 ]
             ];
         } else {
+            $encodedValue = $operator === FieldFilterOperator::IN
+                ? $this->valueMapper->encodeMultiValue((array)$value)
+                : $this->valueMapper->encodeValue($value);
+
             $filter = [
                 'fieldFilter' => [
                     'field' => [
                         'fieldPath' => $escapedPathString,
                     ],
                     'op' => $operator,
-                    'value' => $this->valueMapper->encodeValue($value)
+                    'value' => $encodedValue
                 ]
             ];
         }

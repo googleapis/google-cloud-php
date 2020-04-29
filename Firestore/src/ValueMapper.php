@@ -334,4 +334,22 @@ class ValueMapper
 
         return ['mapValue' => ['fields' => $out]];
     }
+
+    /**
+     * Encode a list of Google Cloud PHP values as a Firestore value.
+     *
+     * The list is treated as an ArrayValue with one exception: indexed arrays are allowed as top level items.
+     * This is needed to properly encode values for "in" query filters.
+     *
+     * @param array $values
+     * @return array [Value](https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#value)
+     */
+    public function encodeMultiValue(array $values)
+    {
+        return [
+            'arrayValue' => [
+                'values' => array_map([$this, 'encodeValue'], $values),
+            ],
+        ];
+    }
 }

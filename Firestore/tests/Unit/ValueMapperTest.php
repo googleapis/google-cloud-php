@@ -363,4 +363,32 @@ class ValueMapperTest extends TestCase
             ['a']
         ]]);
     }
+
+    public function multiValues()
+    {
+        return [
+            [[]],
+            [['foo', 'bar']],
+            [[['foo'], ['bar', 'baz'], 'qux']],
+        ];
+    }
+
+    /**
+     * @dataProvider multiValues
+     * @param array $values
+     */
+    public function testEncodeValidMultiValues($values)
+    {
+        $encoded = $this->mapper->encodeMultiValue($values);
+        $decoded = $this->mapper->decodeValues(['key' => $encoded]);
+        $this->assertEquals($values, $decoded['key']);
+    }
+
+    /**
+     * @expectedException \RuntimeException
+     */
+    public function testEncodeInvalidMultiValue()
+    {
+        $this->mapper->encodeMultiValue([[['foo']]]);
+    }
 }
