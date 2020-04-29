@@ -417,7 +417,7 @@ class RestTest extends TestCase
                 true,
                 false
             ], [
-                ['validate' => 'md5', 'metadata' => ['md5' => 'foo']],
+                ['validate' => 'md5', 'metadata' => ['md5Hash' => 'foo']],
                 true,
                 true,
                 false
