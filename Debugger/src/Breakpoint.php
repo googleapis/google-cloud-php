@@ -476,7 +476,9 @@ class Breakpoint
             'stackFrames' => array_map(function ($sf) {
                 return $sf->info();
             }, $this->stackFrames),
-            'evaluatedExpressions' => $this->evaluatedExpressions
+            'evaluatedExpressions' => array_map(function ($exp) {
+                return $exp->info();
+            }, $this->evaluatedExpressions),
         ];
         if ($this->labels) {
             $info['labels'] = $this->labels;
