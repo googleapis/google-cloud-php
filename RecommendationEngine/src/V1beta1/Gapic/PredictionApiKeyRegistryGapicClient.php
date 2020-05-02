@@ -55,9 +55,8 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $predictionApiKeyRegistryClient = new PredictionApiKeyRegistryClient();
  * try {
- *     $formattedParent = $predictionApiKeyRegistryClient->eventStoreName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]');
- *     $predictionApiKeyRegistration = new PredictionApiKeyRegistration();
- *     $response = $predictionApiKeyRegistryClient->createPredictionApiKeyRegistration($formattedParent, $predictionApiKeyRegistration);
+ *     $formattedName = $predictionApiKeyRegistryClient->predictionApiKeyRegistrationName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]', '[PREDICTION_API_KEY_REGISTRATION]');
+ *     $predictionApiKeyRegistryClient->deletePredictionApiKeyRegistration($formattedName);
  * } finally {
  *     $predictionApiKeyRegistryClient->close();
  * }
@@ -303,6 +302,55 @@ class PredictionApiKeyRegistryGapicClient
     }
 
     /**
+     * Unregister an apiKey from using for predict method.
+     *
+     * Sample code:
+     * ```
+     * $predictionApiKeyRegistryClient = new PredictionApiKeyRegistryClient();
+     * try {
+     *     $formattedName = $predictionApiKeyRegistryClient->predictionApiKeyRegistrationName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]', '[PREDICTION_API_KEY_REGISTRATION]');
+     *     $predictionApiKeyRegistryClient->deletePredictionApiKeyRegistration($formattedName);
+     * } finally {
+     *     $predictionApiKeyRegistryClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The API key to unregister including full resource path.
+     *                             "projects/&#42;/locations/global/catalogs/default_catalog/eventStores/default_event_store/predictionApiKeyRegistrations/<YOUR_API_KEY>"
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function deletePredictionApiKeyRegistration($name, array $optionalArgs = [])
+    {
+        $request = new DeletePredictionApiKeyRegistrationRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeletePredictionApiKeyRegistration',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Register an API key for use with predict method.
      *
      * Sample code:
@@ -435,54 +483,5 @@ class PredictionApiKeyRegistryGapicClient
             ListPredictionApiKeyRegistrationsResponse::class,
             $request
         );
-    }
-
-    /**
-     * Unregister an apiKey from using for predict method.
-     *
-     * Sample code:
-     * ```
-     * $predictionApiKeyRegistryClient = new PredictionApiKeyRegistryClient();
-     * try {
-     *     $formattedName = $predictionApiKeyRegistryClient->predictionApiKeyRegistrationName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]', '[PREDICTION_API_KEY_REGISTRATION]');
-     *     $predictionApiKeyRegistryClient->deletePredictionApiKeyRegistration($formattedName);
-     * } finally {
-     *     $predictionApiKeyRegistryClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. The API key to unregister including full resource path.
-     *                             "projects/&#42;/locations/global/catalogs/default_catalog/eventStores/default_event_store/predictionApiKeyRegistrations/<YOUR_API_KEY>"
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function deletePredictionApiKeyRegistration($name, array $optionalArgs = [])
-    {
-        $request = new DeletePredictionApiKeyRegistrationRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeletePredictionApiKeyRegistration',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
     }
 }

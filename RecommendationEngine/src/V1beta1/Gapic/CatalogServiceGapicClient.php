@@ -60,9 +60,8 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $catalogServiceClient = new CatalogServiceClient();
  * try {
- *     $formattedParent = $catalogServiceClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
- *     $catalogItem = new CatalogItem();
- *     $response = $catalogServiceClient->createCatalogItem($formattedParent, $catalogItem);
+ *     $formattedName = $catalogServiceClient->catalogItemPathName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[CATALOG_ITEM_PATH]');
+ *     $catalogServiceClient->deleteCatalogItem($formattedName);
  * } finally {
  *     $catalogServiceClient->close();
  * }
@@ -342,6 +341,154 @@ class CatalogServiceGapicClient
     }
 
     /**
+     * Deletes a catalog item.
+     *
+     * Sample code:
+     * ```
+     * $catalogServiceClient = new CatalogServiceClient();
+     * try {
+     *     $formattedName = $catalogServiceClient->catalogItemPathName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[CATALOG_ITEM_PATH]');
+     *     $catalogServiceClient->deleteCatalogItem($formattedName);
+     * } finally {
+     *     $catalogServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Full resource name of catalog item, such as
+     *                             "projects/&#42;/locations/global/catalogs/default_catalog/catalogItems/some_catalog_item_id".
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function deleteCatalogItem($name, array $optionalArgs = [])
+    {
+        $request = new DeleteCatalogItemRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteCatalogItem',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Bulk import of multiple catalog items. Request processing may be
+     * synchronous. No partial updating supported. Non-existing items will be
+     * created.
+     *
+     * Operation.response is of type ImportResponse. Note that it is
+     * possible for a subset of the items to be successfully updated.
+     *
+     * Sample code:
+     * ```
+     * $catalogServiceClient = new CatalogServiceClient();
+     * try {
+     *     $formattedParent = $catalogServiceClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
+     *     $inputConfig = new InputConfig();
+     *     $operationResponse = $catalogServiceClient->importCatalogItems($formattedParent, $inputConfig);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $catalogServiceClient->importCatalogItems($formattedParent, $inputConfig);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $catalogServiceClient->resumeOperation($operationName, 'importCatalogItems');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       $result = $newOperationResponse->getResult();
+     *       // doSomethingWith($result)
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $catalogServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string      $parent       Required. "projects/1234/locations/global/catalogs/default_catalog"
+     * @param InputConfig $inputConfig  Required. The desired input location of the data.
+     * @param array       $optionalArgs {
+     *                                  Optional.
+     *
+     *     @type string $requestId
+     *          Optional. Unique identifier provided by client, within the ancestor
+     *          dataset scope. Ensures idempotency and used for request deduplication.
+     *          Server-generated if unspecified. Up to 128 characters long. This is
+     *          returned as google.longrunning.Operation.name in the response.
+     *     @type ImportErrorsConfig $errorsConfig
+     *          Optional. The desired location of errors incurred during the Import.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function importCatalogItems($parent, $inputConfig, array $optionalArgs = [])
+    {
+        $request = new ImportCatalogItemsRequest();
+        $request->setParent($parent);
+        $request->setInputConfig($inputConfig);
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+        if (isset($optionalArgs['errorsConfig'])) {
+            $request->setErrorsConfig($optionalArgs['errorsConfig']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startOperationsCall(
+            'ImportCatalogItems',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
      * Creates a catalog item.
      *
      * Sample code:
@@ -591,154 +738,6 @@ class CatalogServiceGapicClient
             CatalogItem::class,
             $optionalArgs,
             $request
-        )->wait();
-    }
-
-    /**
-     * Deletes a catalog item.
-     *
-     * Sample code:
-     * ```
-     * $catalogServiceClient = new CatalogServiceClient();
-     * try {
-     *     $formattedName = $catalogServiceClient->catalogItemPathName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[CATALOG_ITEM_PATH]');
-     *     $catalogServiceClient->deleteCatalogItem($formattedName);
-     * } finally {
-     *     $catalogServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. Full resource name of catalog item, such as
-     *                             "projects/&#42;/locations/global/catalogs/default_catalog/catalogItems/some_catalog_item_id".
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function deleteCatalogItem($name, array $optionalArgs = [])
-    {
-        $request = new DeleteCatalogItemRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteCatalogItem',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Bulk import of multiple catalog items. Request processing may be
-     * synchronous. No partial updating supported. Non-existing items will be
-     * created.
-     *
-     * Operation.response is of type ImportResponse. Note that it is
-     * possible for a subset of the items to be successfully updated.
-     *
-     * Sample code:
-     * ```
-     * $catalogServiceClient = new CatalogServiceClient();
-     * try {
-     *     $formattedParent = $catalogServiceClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-     *     $inputConfig = new InputConfig();
-     *     $operationResponse = $catalogServiceClient->importCatalogItems($formattedParent, $inputConfig);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         $result = $operationResponse->getResult();
-     *         // doSomethingWith($result)
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *
-     *
-     *     // Alternatively:
-     *
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $catalogServiceClient->importCatalogItems($formattedParent, $inputConfig);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $catalogServiceClient->resumeOperation($operationName, 'importCatalogItems');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *       $result = $newOperationResponse->getResult();
-     *       // doSomethingWith($result)
-     *     } else {
-     *       $error = $newOperationResponse->getError();
-     *       // handleError($error)
-     *     }
-     * } finally {
-     *     $catalogServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string      $parent       Required. "projects/1234/locations/global/catalogs/default_catalog"
-     * @param InputConfig $inputConfig  Required. The desired input location of the data.
-     * @param array       $optionalArgs {
-     *                                  Optional.
-     *
-     *     @type string $requestId
-     *          Optional. Unique identifier provided by client, within the ancestor
-     *          dataset scope. Ensures idempotency and used for request deduplication.
-     *          Server-generated if unspecified. Up to 128 characters long. This is
-     *          returned as google.longrunning.Operation.name in the response.
-     *     @type ImportErrorsConfig $errorsConfig
-     *          Optional. The desired location of errors incurred during the Import.
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\ApiCore\OperationResponse
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function importCatalogItems($parent, $inputConfig, array $optionalArgs = [])
-    {
-        $request = new ImportCatalogItemsRequest();
-        $request->setParent($parent);
-        $request->setInputConfig($inputConfig);
-        if (isset($optionalArgs['requestId'])) {
-            $request->setRequestId($optionalArgs['requestId']);
-        }
-        if (isset($optionalArgs['errorsConfig'])) {
-            $request->setErrorsConfig($optionalArgs['errorsConfig']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'parent' => $request->getParent(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startOperationsCall(
-            'ImportCatalogItems',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
         )->wait();
     }
 }
