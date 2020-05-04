@@ -20,17 +20,17 @@
         }
       },
       "methods": {
+        "DeletePredictionApiKeyRegistration": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "idempotent",
+          "retry_params_name": "default"
+        },
         "CreatePredictionApiKeyRegistration": {
           "timeout_millis": 60000,
           "retry_codes_name": "non_idempotent",
           "retry_params_name": "default"
         },
         "ListPredictionApiKeyRegistrations": {
-          "timeout_millis": 60000,
-          "retry_codes_name": "idempotent",
-          "retry_params_name": "default"
-        },
-        "DeletePredictionApiKeyRegistration": {
           "timeout_millis": 60000,
           "retry_codes_name": "idempotent",
           "retry_params_name": "default"

@@ -1,26 +1,32 @@
 {
-  "updateTime": "2020-04-06T19:09:24.585392Z",
   "sources": [
     {
       "generator": {
         "name": "artman",
-        "version": "1.2.0",
-        "dockerImage": "googleapis/artman@sha256:ef1a5b367dbe1e37cea1c7c814c801a638473e8dd66f87f4a2b8c2a146013673"
+        "version": "2.0.0",
+        "dockerImage": "googleapis/artman@sha256:b3b47805231a305d0f40c4bf069df20f6a2635574e6d4259fac651d3f9f6e098"
+      }
+    },
+    {
+      "git": {
+        "name": ".",
+        "remote": "https://github.com/googleapis/google-cloud-php.git",
+        "sha": "601ee7794cbb1f6227f4a17c54e031110e74356f"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "fdbc7b1f63969307c71143a0c24fdfd02e739df6",
-        "internalRef": "305086443"
+        "sha": "ee9e8e4e67f06aba881392a1a2956fbe7a42d216",
+        "internalRef": "309481123"
       }
     },
     {
       "git": {
         "name": "synthtool",
         "remote": "https://github.com/googleapis/synthtool.git",
-        "sha": "99820243d348191bc9c634f2b48ddf65096285ed"
+        "sha": "04cb397eb7590ea1e6c10a39fca3d8fe0fb3d256"
       }
     }
   ],
