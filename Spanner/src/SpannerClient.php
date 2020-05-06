@@ -132,8 +132,8 @@ class SpannerClient
      *           Console.
      *     @type float $requestTimeout Seconds to wait before timing out the
      *           request. **Defaults to** `0` with REST and `60` with gRPC.
-     *     @type int $retries Number of retries for a failed request.
-     *           **Defaults to** `3`.
+     *     @type int $retries Number of retries for a failed request. Used only
+     *           with default backoff strategy. **Defaults to** `3`.
      *     @type array $scopes Scopes to be used for the request.
      *     @type bool $returnInt64AsObject If true, 64 bit integers will be
      *           returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
@@ -153,6 +153,10 @@ class SpannerClient
      *           query execution. Executing a SQL statement with an invalid
      *           optimizer version will fail with a syntax error
      *           (`INVALID_ARGUMENT`) status.
+     *     @type bool $useDiscreteBackoffs `false`: use default backoff strategy
+     *           (retry every failed request up to `retries` times).
+     *           `true`: use discrete backoff settings based on called method name.
+     *           **Defaults to** `false`.
      * }
      * @throws GoogleException If the gRPC extension is not enabled.
      */
@@ -172,6 +176,15 @@ class SpannerClient
             'emulatorHost' => $emulatorHost,
             'queryOptions' => []
         ];
+
+        if (!empty($config['useDiscreteBackoffs'])) {
+            $config = array_merge_recursive($config, [
+                'retries' => 0,
+                'grpcOptions' => [
+                    'retrySettings' => [],
+                ],
+            ]);
+        }
 
         $this->connection = new Grpc($this->configureAuthentication($config));
         $this->returnInt64AsObject = $config['returnInt64AsObject'];
