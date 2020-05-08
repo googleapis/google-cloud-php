@@ -62,37 +62,8 @@ use Google\Protobuf\Timestamp;
  * ```
  * $assetServiceClient = new AssetServiceClient();
  * try {
- *     $parent = '';
- *     $outputConfig = new OutputConfig();
- *     $operationResponse = $assetServiceClient->exportAssets($parent, $outputConfig);
- *     $operationResponse->pollUntilComplete();
- *     if ($operationResponse->operationSucceeded()) {
- *         $result = $operationResponse->getResult();
- *         // doSomethingWith($result)
- *     } else {
- *         $error = $operationResponse->getError();
- *         // handleError($error)
- *     }
- *
- *
- *     // Alternatively:
- *
- *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $assetServiceClient->exportAssets($parent, $outputConfig);
- *     $operationName = $operationResponse->getName();
- *     // ... do other work
- *     $newOperationResponse = $assetServiceClient->resumeOperation($operationName, 'exportAssets');
- *     while (!$newOperationResponse->isDone()) {
- *         // ... do other work
- *         $newOperationResponse->reload();
- *     }
- *     if ($newOperationResponse->operationSucceeded()) {
- *       $result = $newOperationResponse->getResult();
- *       // doSomethingWith($result)
- *     } else {
- *       $error = $newOperationResponse->getError();
- *       // handleError($error)
- *     }
+ *     $name = '';
+ *     $assetServiceClient->deleteFeed($name);
  * } finally {
  *     $assetServiceClient->close();
  * }
@@ -134,7 +105,9 @@ class AssetServiceGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
     ];
     private static $feedNameTemplate;
-    private static $projectNameTemplate;
+    private static $folderFeedNameTemplate;
+    private static $organizationFeedNameTemplate;
+    private static $projectFeedNameTemplate;
     private static $pathTemplateMap;
 
     private $operationsClient;
@@ -167,13 +140,31 @@ class AssetServiceGapicClient
         return self::$feedNameTemplate;
     }
 
-    private static function getProjectNameTemplate()
+    private static function getFolderFeedNameTemplate()
     {
-        if (null == self::$projectNameTemplate) {
-            self::$projectNameTemplate = new PathTemplate('projects/{project}');
+        if (null == self::$folderFeedNameTemplate) {
+            self::$folderFeedNameTemplate = new PathTemplate('folders/{folder}/feeds/{feed}');
         }
 
-        return self::$projectNameTemplate;
+        return self::$folderFeedNameTemplate;
+    }
+
+    private static function getOrganizationFeedNameTemplate()
+    {
+        if (null == self::$organizationFeedNameTemplate) {
+            self::$organizationFeedNameTemplate = new PathTemplate('organizations/{organization}/feeds/{feed}');
+        }
+
+        return self::$organizationFeedNameTemplate;
+    }
+
+    private static function getProjectFeedNameTemplate()
+    {
+        if (null == self::$projectFeedNameTemplate) {
+            self::$projectFeedNameTemplate = new PathTemplate('projects/{project}/feeds/{feed}');
+        }
+
+        return self::$projectFeedNameTemplate;
     }
 
     private static function getPathTemplateMap()
@@ -181,7 +172,9 @@ class AssetServiceGapicClient
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'feed' => self::getFeedNameTemplate(),
-                'project' => self::getProjectNameTemplate(),
+                'folderFeed' => self::getFolderFeedNameTemplate(),
+                'organizationFeed' => self::getOrganizationFeedNameTemplate(),
+                'projectFeed' => self::getProjectFeedNameTemplate(),
             ];
         }
 
@@ -207,16 +200,52 @@ class AssetServiceGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a project resource.
+     * a folder_feed resource.
+     *
+     * @param string $folder
+     * @param string $feed
+     *
+     * @return string The formatted folder_feed resource.
+     */
+    public static function folderFeedName($folder, $feed)
+    {
+        return self::getFolderFeedNameTemplate()->render([
+            'folder' => $folder,
+            'feed' => $feed,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a organization_feed resource.
+     *
+     * @param string $organization
+     * @param string $feed
+     *
+     * @return string The formatted organization_feed resource.
+     */
+    public static function organizationFeedName($organization, $feed)
+    {
+        return self::getOrganizationFeedNameTemplate()->render([
+            'organization' => $organization,
+            'feed' => $feed,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project_feed resource.
      *
      * @param string $project
+     * @param string $feed
      *
-     * @return string The formatted project resource.
+     * @return string The formatted project_feed resource.
      */
-    public static function projectName($project)
+    public static function projectFeedName($project, $feed)
     {
-        return self::getProjectNameTemplate()->render([
+        return self::getProjectFeedNameTemplate()->render([
             'project' => $project,
+            'feed' => $feed,
         ]);
     }
 
@@ -225,7 +254,9 @@ class AssetServiceGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - feed: projects/{project}/feeds/{feed}
-     * - project: projects/{project}.
+     * - folderFeed: folders/{folder}/feeds/{feed}
+     * - organizationFeed: organizations/{organization}/feeds/{feed}
+     * - projectFeed: projects/{project}/feeds/{feed}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
@@ -356,6 +387,56 @@ class AssetServiceGapicClient
     }
 
     /**
+     * Deletes an asset feed.
+     *
+     * Sample code:
+     * ```
+     * $assetServiceClient = new AssetServiceClient();
+     * try {
+     *     $name = '';
+     *     $assetServiceClient->deleteFeed($name);
+     * } finally {
+     *     $assetServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the feed and it must be in the format of:
+     *                             projects/project_number/feeds/feed_id
+     *                             folders/folder_number/feeds/feed_id
+     *                             organizations/organization_number/feeds/feed_id
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteFeed($name, array $optionalArgs = [])
+    {
+        $request = new DeleteFeedRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteFeed',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Exports assets with time and resource types to a given Cloud Storage
      * location. The output format is newline-delimited JSON.
      * This API implements the [google.longrunning.Operation][google.longrunning.Operation] API allowing you
@@ -481,27 +562,17 @@ class AssetServiceGapicClient
      * $assetServiceClient = new AssetServiceClient();
      * try {
      *     $parent = '';
-     *     $contentType = ContentType::CONTENT_TYPE_UNSPECIFIED;
-     *     $readTimeWindow = new TimeWindow();
-     *     $response = $assetServiceClient->batchGetAssetsHistory($parent, $contentType, $readTimeWindow);
+     *     $response = $assetServiceClient->batchGetAssetsHistory($parent);
      * } finally {
      *     $assetServiceClient->close();
      * }
      * ```
      *
-     * @param string     $parent         Required. The relative name of the root asset. It can only be an
-     *                                   organization number (such as "organizations/123"), a project ID (such as
-     *                                   "projects/my-project-id")", or a project number (such as "projects/12345").
-     * @param int        $contentType    Optional. The content type.
-     *                                   For allowed values, use constants defined on {@see \Google\Cloud\Asset\V1\ContentType}
-     * @param TimeWindow $readTimeWindow Optional. The time window for the asset history. Both start_time and
-     *                                   end_time are optional and if set, it must be after the current time minus
-     *                                   35 days. If end_time is not set, it is default to current timestamp.
-     *                                   If start_time is not set, the snapshot of the assets at end_time will be
-     *                                   returned. The returned results contain all temporal assets whose time
-     *                                   window overlap with read_time_window.
-     * @param array      $optionalArgs   {
-     *                                   Optional.
+     * @param string $parent       Required. The relative name of the root asset. It can only be an
+     *                             organization number (such as "organizations/123"), a project ID (such as
+     *                             "projects/my-project-id")", or a project number (such as "projects/12345").
+     * @param array  $optionalArgs {
+     *                             Optional.
      *
      *     @type string[] $assetNames
      *          A list of the full names of the assets. For example:
@@ -514,6 +585,16 @@ class AssetServiceGapicClient
      *
      *          The request becomes a no-op if the asset name list is empty, and the max
      *          size of the asset name list is 100 in one request.
+     *     @type int $contentType
+     *          Optional. The content type.
+     *          For allowed values, use constants defined on {@see \Google\Cloud\Asset\V1\ContentType}
+     *     @type TimeWindow $readTimeWindow
+     *          Optional. The time window for the asset history. Both start_time and
+     *          end_time are optional and if set, it must be after the current time minus
+     *          35 days. If end_time is not set, it is default to current timestamp.
+     *          If start_time is not set, the snapshot of the assets at end_time will be
+     *          returned. The returned results contain all temporal assets whose time
+     *          window overlap with read_time_window.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -525,14 +606,18 @@ class AssetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function batchGetAssetsHistory($parent, $contentType, $readTimeWindow, array $optionalArgs = [])
+    public function batchGetAssetsHistory($parent, array $optionalArgs = [])
     {
         $request = new BatchGetAssetsHistoryRequest();
         $request->setParent($parent);
-        $request->setContentType($contentType);
-        $request->setReadTimeWindow($readTimeWindow);
         if (isset($optionalArgs['assetNames'])) {
             $request->setAssetNames($optionalArgs['assetNames']);
+        }
+        if (isset($optionalArgs['contentType'])) {
+            $request->setContentType($optionalArgs['contentType']);
+        }
+        if (isset($optionalArgs['readTimeWindow'])) {
+            $request->setReadTimeWindow($optionalArgs['readTimeWindow']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor([
@@ -622,8 +707,8 @@ class AssetServiceGapicClient
      * ```
      * $assetServiceClient = new AssetServiceClient();
      * try {
-     *     $formattedName = $assetServiceClient->feedName('[PROJECT]', '[FEED]');
-     *     $response = $assetServiceClient->getFeed($formattedName);
+     *     $name = '';
+     *     $response = $assetServiceClient->getFeed($name);
      * } finally {
      *     $assetServiceClient->close();
      * }
@@ -771,56 +856,6 @@ class AssetServiceGapicClient
         return $this->startCall(
             'UpdateFeed',
             Feed::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Deletes an asset feed.
-     *
-     * Sample code:
-     * ```
-     * $assetServiceClient = new AssetServiceClient();
-     * try {
-     *     $formattedName = $assetServiceClient->feedName('[PROJECT]', '[FEED]');
-     *     $assetServiceClient->deleteFeed($formattedName);
-     * } finally {
-     *     $assetServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. The name of the feed and it must be in the format of:
-     *                             projects/project_number/feeds/feed_id
-     *                             folders/folder_number/feeds/feed_id
-     *                             organizations/organization_number/feeds/feed_id
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function deleteFeed($name, array $optionalArgs = [])
-    {
-        $request = new DeleteFeedRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteFeed',
-            GPBEmpty::class,
             $optionalArgs,
             $request
         )->wait();
