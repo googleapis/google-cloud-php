@@ -42,7 +42,8 @@ class EntryGroup extends \Google\Protobuf\Internal\Message
      */
     private $description = '';
     /**
-     * Output only. Timestamps about this EntryGroup. Default value is empty timestamps.
+     * Output only. Timestamps about this EntryGroup. Default value is empty
+     * timestamps.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.SystemTimestamps data_catalog_timestamps = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -67,7 +68,8 @@ class EntryGroup extends \Google\Protobuf\Internal\Message
      *           paragraphs that describe entry group contents. Default value is an empty
      *           string.
      *     @type \Google\Cloud\DataCatalog\V1\SystemTimestamps $data_catalog_timestamps
-     *           Output only. Timestamps about this EntryGroup. Default value is empty timestamps.
+     *           Output only. Timestamps about this EntryGroup. Default value is empty
+     *           timestamps.
      * }
      */
     public function __construct($data = NULL) {
@@ -166,7 +168,8 @@ class EntryGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Timestamps about this EntryGroup. Default value is empty timestamps.
+     * Output only. Timestamps about this EntryGroup. Default value is empty
+     * timestamps.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.SystemTimestamps data_catalog_timestamps = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\DataCatalog\V1\SystemTimestamps
@@ -177,7 +180,8 @@ class EntryGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Timestamps about this EntryGroup. Default value is empty timestamps.
+     * Output only. Timestamps about this EntryGroup. Default value is empty
+     * timestamps.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.SystemTimestamps data_catalog_timestamps = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\DataCatalog\V1\SystemTimestamps $var

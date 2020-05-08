@@ -527,7 +527,8 @@ class DataCatalogGapicClient
      *                      `include_org_ids`, `include_project_ids` AND false
      *                      `include_gcp_public_datasets` is considered invalid. Data Catalog will
      *                      return an error in such a case.
-     * @param string $query Required. The query string in search query syntax. The query must be non-empty.
+     * @param string $query Required. The query string in search query syntax. The query must be
+     *                      non-empty.
      *
      * Query strings can be simple as "x" or more qualified as:
      *
@@ -881,8 +882,8 @@ class DataCatalogGapicClient
      * }
      * ```
      *
-     * @param string $parent Required. The name of the location that contains the entry groups, which can be
-     *                       provided in URL format. Example:
+     * @param string $parent Required. The name of the location that contains the entry groups, which
+     *                       can be provided in URL format. Example:
      *
      * * projects/{project_id}/locations/{location}
      * @param array $optionalArgs {
@@ -1763,7 +1764,8 @@ class DataCatalogGapicClient
      * @param string $name Required. The name of the tag template. Example:
      *
      * * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}/fields/{tag_template_field_id}
-     * @param string $newTagTemplateFieldId Required. The new ID of this tag template field. For example, `my_new_field`.
+     * @param string $newTagTemplateFieldId Required. The new ID of this tag template field. For example,
+     *                                      `my_new_field`.
      * @param array  $optionalArgs          {
      *                                      Optional.
      *
@@ -1880,8 +1882,8 @@ class DataCatalogGapicClient
      * }
      * ```
      *
-     * @param string $parent Required. The name of the resource to attach this tag to. Tags can be attached to
-     *                       Entries. Example:
+     * @param string $parent Required. The name of the resource to attach this tag to. Tags can be
+     *                       attached to Entries. Example:
      *
      * * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}
      *
@@ -2059,8 +2061,8 @@ class DataCatalogGapicClient
      * }
      * ```
      *
-     * @param string $parent Required. The name of the Data Catalog resource to list the tags of. The resource
-     *                       could be an [Entry][google.cloud.datacatalog.v1.Entry] or an
+     * @param string $parent Required. The name of the Data Catalog resource to list the tags of. The
+     *                       resource could be an [Entry][google.cloud.datacatalog.v1.Entry] or an
      *                       [EntryGroup][google.cloud.datacatalog.v1.EntryGroup].
      *
      * Examples:
