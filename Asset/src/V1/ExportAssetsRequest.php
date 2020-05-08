@@ -26,10 +26,10 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
     private $parent = '';
     /**
      * Timestamp to take an asset snapshot. This can only be set to a timestamp
-     * between 2018-10-02 UTC (inclusive) and the current time. If not specified,
-     * the current time will be used. Due to delays in resource data collection
-     * and indexing, there is a volatile window during which running the same
-     * query may get different results.
+     * between the current time and the current time minus 35 days (inclusive).
+     * If not specified, the current time will be used. Due to delays in resource
+     * data collection and indexing, there is a volatile window during which
+     * running the same query may get different results.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 2;</code>
      */
@@ -72,10 +72,10 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
      *           or a folder number (such as "folders/123").
      *     @type \Google\Protobuf\Timestamp $read_time
      *           Timestamp to take an asset snapshot. This can only be set to a timestamp
-     *           between 2018-10-02 UTC (inclusive) and the current time. If not specified,
-     *           the current time will be used. Due to delays in resource data collection
-     *           and indexing, there is a volatile window during which running the same
-     *           query may get different results.
+     *           between the current time and the current time minus 35 days (inclusive).
+     *           If not specified, the current time will be used. Due to delays in resource
+     *           data collection and indexing, there is a volatile window during which
+     *           running the same query may get different results.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $asset_types
      *           A list of asset types of which to take a snapshot for. For example:
      *           "compute.googleapis.com/Disk". If specified, only matching assets will be
@@ -129,10 +129,10 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Timestamp to take an asset snapshot. This can only be set to a timestamp
-     * between 2018-10-02 UTC (inclusive) and the current time. If not specified,
-     * the current time will be used. Due to delays in resource data collection
-     * and indexing, there is a volatile window during which running the same
-     * query may get different results.
+     * between the current time and the current time minus 35 days (inclusive).
+     * If not specified, the current time will be used. Due to delays in resource
+     * data collection and indexing, there is a volatile window during which
+     * running the same query may get different results.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 2;</code>
      * @return \Google\Protobuf\Timestamp
@@ -144,10 +144,10 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Timestamp to take an asset snapshot. This can only be set to a timestamp
-     * between 2018-10-02 UTC (inclusive) and the current time. If not specified,
-     * the current time will be used. Due to delays in resource data collection
-     * and indexing, there is a volatile window during which running the same
-     * query may get different results.
+     * between the current time and the current time minus 35 days (inclusive).
+     * If not specified, the current time will be used. Due to delays in resource
+     * data collection and indexing, there is a volatile window during which
+     * running the same query may get different results.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 2;</code>
      * @param \Google\Protobuf\Timestamp $var

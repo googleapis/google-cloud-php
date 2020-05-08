@@ -9,14 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A Cloud Pubsub destination.
+ * A Pub/Sub destination.
  *
  * Generated from protobuf message <code>google.cloud.asset.v1.PubsubDestination</code>
  */
 class PubsubDestination extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The name of the Cloud Pub/Sub topic to publish to.
+     * The name of the Pub/Sub topic to publish to.
      * For example: `projects/PROJECT_ID/topics/TOPIC_ID`.
      *
      * Generated from protobuf field <code>string topic = 1;</code>
@@ -30,7 +30,7 @@ class PubsubDestination extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $topic
-     *           The name of the Cloud Pub/Sub topic to publish to.
+     *           The name of the Pub/Sub topic to publish to.
      *           For example: `projects/PROJECT_ID/topics/TOPIC_ID`.
      * }
      */
@@ -40,7 +40,7 @@ class PubsubDestination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the Cloud Pub/Sub topic to publish to.
+     * The name of the Pub/Sub topic to publish to.
      * For example: `projects/PROJECT_ID/topics/TOPIC_ID`.
      *
      * Generated from protobuf field <code>string topic = 1;</code>
@@ -52,7 +52,7 @@ class PubsubDestination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the Cloud Pub/Sub topic to publish to.
+     * The name of the Pub/Sub topic to publish to.
      * For example: `projects/PROJECT_ID/topics/TOPIC_ID`.
      *
      * Generated from protobuf field <code>string topic = 1;</code>
