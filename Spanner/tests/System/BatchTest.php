@@ -64,10 +64,6 @@ class BatchTest extends SpannerTestCase
 
     public function testBatch()
     {
-        if ((bool) getenv("SPANNER_EMULATOR_HOST")) {
-            $this->markTestSkipped();
-        }
-
         $query = 'SELECT
                 id,
                 decade
