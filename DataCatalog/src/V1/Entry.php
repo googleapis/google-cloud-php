@@ -115,8 +115,8 @@ class Entry extends \Google\Protobuf\Internal\Message
      *           Currently, only FILESET enum value is allowed. All other entries created
      *           through Data Catalog must use `user_specified_type`.
      *     @type int $integrated_system
-     *           Output only. This field indicates the entry's source system that Data Catalog
-     *           integrates with, such as BigQuery or Pub/Sub.
+     *           Output only. This field indicates the entry's source system that Data
+     *           Catalog integrates with, such as BigQuery or Pub/Sub.
      *     @type string $user_specified_system
      *           This field indicates the entry's source system that Data Catalog does not
      *           integrate with. `user_specified_system` strings must begin with a letter
@@ -299,8 +299,8 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. This field indicates the entry's source system that Data Catalog
-     * integrates with, such as BigQuery or Pub/Sub.
+     * Output only. This field indicates the entry's source system that Data
+     * Catalog integrates with, such as BigQuery or Pub/Sub.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.IntegratedSystem integrated_system = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -311,8 +311,8 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. This field indicates the entry's source system that Data Catalog
-     * integrates with, such as BigQuery or Pub/Sub.
+     * Output only. This field indicates the entry's source system that Data
+     * Catalog integrates with, such as BigQuery or Pub/Sub.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.IntegratedSystem integrated_system = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
