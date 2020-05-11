@@ -9,7 +9,7 @@
 # explicitly taken by someone else.
 *                               @googleapis/yoshi-php
 
-/Bigtable       @GoogleCloudPlatform/bigtable-dpe @googleapis/yoshi-php
-/Datastore/     @GoogleCloudPlatform/firestore-dpe @googleapis/yoshi-php
-/Firestore/     @GoogleCloudPlatform/firestore-dpe @googleapis/yoshi-php
-/Storage/       @GoogleCloudPlatform/storage-dpe @googleapis/yoshi-php
+/Bigtable       @googleapis/bigtable-dpe @googleapis/yoshi-php
+/Datastore/     @googleapis/firestore-dpe @googleapis/yoshi-php
+/Firestore/     @googleapis/firestore-dpe @googleapis/yoshi-php
+/Storage/       @googleapis/storage-dpe @googleapis/yoshi-php
