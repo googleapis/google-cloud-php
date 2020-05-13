@@ -122,6 +122,10 @@ class SubscriptionTest extends TestCase
                 'messageRetentionDuration' => '1.1s',
                 'expirationPolicy' => [
                     'ttl' => '2.1s'
+                ],
+                'retryPolicy' => [
+                    'minimumBackoff' => '3.1s',
+                    'maximumBackoff' => '4.1s'
                 ]
             ])
         ))->shouldBeCalled()->willReturn([
@@ -132,6 +136,10 @@ class SubscriptionTest extends TestCase
             Argument::withEntry('messageRetentionDuration', '1.1s'),
             Argument::withEntry('expirationPolicy', [
                 'ttl' => '2.1s'
+            ]),
+            Argument::withEntry('retryPolicy', [
+                'minimumBackoff' => '3.1s',
+                'maximumBackoff' => '4.1s'
             ])
         ))->shouldBeCalled()->willReturn([
             'foo' => 'bar'
@@ -143,6 +151,10 @@ class SubscriptionTest extends TestCase
             'messageRetentionDuration' => new Duration(1, 1e+9),
             'expirationPolicy' => [
                 'ttl' => new Duration(2, 1e+9)
+            ],
+            'retryPolicy' => [
+                'minimumBackoff' => new Duration(3, 1e+9),
+                'maximumBackoff' => new Duration(4, 1e+9),
             ]
         ];
 

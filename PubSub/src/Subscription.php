@@ -272,6 +272,23 @@ class Subscription
      *           might use "https://example.com/push".
      *     @type bool $retainAckedMessages Indicates whether to retain
      *           acknowledged messages.
+     *     @type array $retryPolicy A policy that specifies how Cloud Pub/Sub
+     *           retries message delivery for this subscription. If not set, the
+     *           default retry policy is applied. This generally means that
+     *           messages will be retried as soon as possible for healthy
+     *           subscribers. Retry Policy will be triggered on NACKs or
+     *           acknowledgement deadline exceeded events for a given message.
+     *           Retry Policies are implemented on a best effort basis At times,
+     *           the delay between deliveries may not match the configuration.
+     *           That is, the delay can be more or less than the configured
+     *           backoff. **Please note** that this feature may not be
+     *           available using the REST transport.
+     *     @type Duration|string $retryPolicy.minimumBackoff The minimum delay
+     *           between consecutive deliveries of a given message. Value should
+     *           be between 0 and 600 seconds. Defaults to 10 seconds.
+     *     @type Duration|string $retryPolicy.maximumBackoff The maximum delay
+     *           between consecutive deliveries of a given message. Value should
+     *           be between 0 and 600 seconds. Defaults to 600 seconds.
      * }
      * @return array An array of subscription info
      * @throws \InvalidArgumentException
@@ -402,6 +419,23 @@ class Subscription
      *           might use "https://example.com/push".
      *     @type bool $retainAckedMessages Indicates whether to retain
      *           acknowledged messages.
+     *     @type array $retryPolicy A policy that specifies how Cloud Pub/Sub
+     *           retries message delivery for this subscription. If not set, the
+     *           default retry policy is applied. This generally means that
+     *           messages will be retried as soon as possible for healthy
+     *           subscribers. Retry Policy will be triggered on NACKs or
+     *           acknowledgement deadline exceeded events for a given message.
+     *           Retry Policies are implemented on a best effort basis At times,
+     *           the delay between deliveries may not match the configuration.
+     *           That is, the delay can be more or less than the configured
+     *           backoff. **Please note** that this feature may not be
+     *           available using the REST transport.
+     *     @type Duration|string $retryPolicy.minimumBackoff The minimum delay
+     *           between consecutive deliveries of a given message. Value should
+     *           be between 0 and 600 seconds. Defaults to 10 seconds.
+     *     @type Duration|string $retryPolicy.maximumBackoff The maximum delay
+     *           between consecutive deliveries of a given message. Value should
+     *           be between 0 and 600 seconds. Defaults to 600 seconds.
      * }
      * @param array $options [optional] {
      *     Configuration options.
@@ -420,7 +454,10 @@ class Subscription
         $updateMaskPaths = $this->pluck('updateMask', $options, false) ?: [];
         if (!$updateMaskPaths) {
             $excludes = ['name', 'topic'];
-            $iterator = new \RecursiveIteratorIterator(new \RecursiveArrayIterator($subscription));
+            $iterator = new \RecursiveIteratorIterator(
+                new \RecursiveArrayIterator($subscription),
+                \RecursiveIteratorIterator::CHILD_FIRST
+            );
             foreach ($iterator as $leafValue) {
                 $keys = [];
                 foreach (range(0, $iterator->getDepth()) as $depth) {
@@ -429,7 +466,13 @@ class Subscription
 
                 $path = implode('.', $keys);
                 if (!in_array($path, $excludes)) {
-                    $updateMaskPaths[] = $path;
+                    $hasPrefix = (bool) array_filter($updateMaskPaths, function ($maskPath) use ($path) {
+                        return strpos($maskPath, $path) === 0;
+                    });
+
+                    if (!$hasPrefix) {
+                        $updateMaskPaths[] = $path;
+                    }
                 }
             }
         }
@@ -890,6 +933,30 @@ class Subscription
         if (isset($options['expirationPolicy']['ttl']) && $options['expirationPolicy']['ttl'] instanceof Duration) {
             $duration = $options['expirationPolicy']['ttl']->get();
             $options['expirationPolicy']['ttl'] = sprintf(
+                '%s.%ss',
+                $duration['seconds'],
+                $this->convertNanoSecondsToFraction($duration['nanos'], false)
+            );
+        }
+
+        if (
+            isset($options['retryPolicy']['minimumBackoff']) &&
+            $options['retryPolicy']['minimumBackoff'] instanceof Duration
+        ) {
+            $duration = $options['retryPolicy']['minimumBackoff']->get();
+            $options['retryPolicy']['minimumBackoff'] = sprintf(
+                '%s.%ss',
+                $duration['seconds'],
+                $this->convertNanoSecondsToFraction($duration['nanos'], false)
+            );
+        }
+
+        if (
+            isset($options['retryPolicy']['maximumBackoff']) &&
+            $options['retryPolicy']['maximumBackoff'] instanceof Duration
+        ) {
+            $duration = $options['retryPolicy']['maximumBackoff']->get();
+            $options['retryPolicy']['maximumBackoff'] = sprintf(
                 '%s.%ss',
                 $duration['seconds'],
                 $this->convertNanoSecondsToFraction($duration['nanos'], false)
