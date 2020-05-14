@@ -19,7 +19,6 @@ namespace Google\Cloud\Spanner\Tests\System;
 
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
-use Google\Cloud\Spanner\Tests\EmulatorTestTrait;
 
 /**
  * @group spanner
@@ -27,8 +26,6 @@ use Google\Cloud\Spanner\Tests\EmulatorTestTrait;
  */
 class ReadTest extends SpannerTestCase
 {
-    use EmulatorTestTrait;
-
     private static $readTableName;
     private static $rangeTableName;
     private static $indexes = [];
@@ -475,7 +472,7 @@ class ReadTest extends SpannerTestCase
      */
     public function testReadFailsOnDeadlineExceeded()
     {
-        $this->checkAndSkipEmulatorTests();
+        $this->skipEmulatorTests();
         $db = self::$database;
         $keyset = new KeySet(['all' => true]);
 

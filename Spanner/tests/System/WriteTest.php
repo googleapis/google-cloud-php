@@ -22,7 +22,6 @@ use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Spanner\CommitTimestamp;
 use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\KeySet;
-use Google\Cloud\Spanner\Tests\EmulatorTestTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Rpc\Code;
 
@@ -32,7 +31,6 @@ use Google\Rpc\Code;
  */
 class WriteTest extends SpannerTestCase
 {
-    use EmulatorTestTrait;
     use TimeTrait;
 
     const TABLE_NAME = 'Writes';
@@ -817,7 +815,7 @@ class WriteTest extends SpannerTestCase
      */
     public function testPdml()
     {
-        $this->checkAndSkipEmulatorTests();
+        $this->skipEmulatorTests();
 
         $id = $this->randId();
         $randStr = base64_encode(random_bytes(500));

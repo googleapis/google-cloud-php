@@ -23,15 +23,12 @@ use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Backup;
 use Google\Cloud\Spanner\Date;
-use Google\Cloud\Spanner\Tests\EmulatorTestTrait;
 
 /**
  * @group spanner
  */
 class BackupTest extends SpannerTestCase
 {
-    use EmulatorTestTrait;
-
     const BACKUP_PREFIX = 'spanner_backup_';
 
     protected static $backupId1;
@@ -52,7 +49,7 @@ class BackupTest extends SpannerTestCase
     public static function setUpBeforeClass()
     {
         $self = new static;
-        $self->checkAndSkipEmulatorTests();
+        $self->skipEmulatorTests();
 
         parent::setUpBeforeClass();
         if (self::$hasSetUp) {
