@@ -23,12 +23,15 @@ use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Backup;
 use Google\Cloud\Spanner\Date;
+use Google\Cloud\Spanner\Tests\EmulatorTestTrait;
 
 /**
  * @group spanner
  */
 class BackupTest extends SpannerTestCase
 {
+    use EmulatorTestTrait;
+
     const BACKUP_PREFIX = 'spanner_backup_';
 
     protected static $backupId1;
@@ -48,9 +51,9 @@ class BackupTest extends SpannerTestCase
 
     public static function setUpBeforeClass()
     {
-        if ((bool) getenv("SPANNER_EMULATOR_HOST")) {
-            return;
-        }
+        $self = new static;
+        $self->checkAndSkipEmulatorTests();
+
         parent::setUpBeforeClass();
         if (self::$hasSetUp) {
             return;
@@ -105,9 +108,6 @@ class BackupTest extends SpannerTestCase
 
     public function testListAllInstances()
     {
-        if ((bool) getenv("SPANNER_EMULATOR_HOST")) {
-            $this->markTestSkipped();
-        }
         $allInstances = self::$client->instances();
 
         foreach ($allInstances as $i) {
@@ -118,9 +118,6 @@ class BackupTest extends SpannerTestCase
 
     public function testCreateBackup()
     {
-        if ((bool) getenv("SPANNER_EMULATOR_HOST")) {
-            $this->markTestSkipped();
-        }
         $expireTime = new \DateTime('+7 hours');
 
         $backup = self::$instance->backup(self::$backupId1);
@@ -160,9 +157,6 @@ class BackupTest extends SpannerTestCase
 
     public function testCreateBackupRequestFailed()
     {
-        if ((bool) getenv("SPANNER_EMULATOR_HOST")) {
-            $this->markTestSkipped();
-        }
         $backupId = uniqid(self::BACKUP_PREFIX);
         $expireTime = new \DateTime('-2 hours');
 
@@ -180,9 +174,6 @@ class BackupTest extends SpannerTestCase
 
     public function testCancelBackupOperation()
     {
-        if ((bool) getenv("SPANNER_EMULATOR_HOST")) {
-            $this->markTestSkipped();
-        }
         $expireTime = new \DateTime('+7 hours');
         $backup = self::$instance->backup(self::$backupId2);
 
@@ -201,9 +192,6 @@ class BackupTest extends SpannerTestCase
 
     public function testReloadBackup()
     {
-        if ((bool) getenv("SPANNER_EMULATOR_HOST")) {
-            $this->markTestSkipped();
-        }
         $backup = self::$instance->backup(self::$backupId1);
         $backup->reload();
 
@@ -217,9 +205,6 @@ class BackupTest extends SpannerTestCase
 
     public function testUpdateExpirationTime()
     {
-        if ((bool) getenv("SPANNER_EMULATOR_HOST")) {
-            $this->markTestSkipped();
-        }
         $backup = self::$instance->backup(self::$backupId1);
 
         $currentExpireTime = $backup->info()['expireTime'];
@@ -234,9 +219,6 @@ class BackupTest extends SpannerTestCase
 
     public function testUpdateExpirationTimeFailed()
     {
-        if ((bool) getenv("SPANNER_EMULATOR_HOST")) {
-            $this->markTestSkipped();
-        }
         $backup = self::$instance->backup(self::$backupId1);
 
         $currentExpireTime = $backup->info()['expireTime'];
@@ -258,9 +240,6 @@ class BackupTest extends SpannerTestCase
 
     public function testListAllBackups()
     {
-        if ((bool) getenv("SPANNER_EMULATOR_HOST")) {
-            $this->markTestSkipped();
-        }
         $allBackups = iterator_to_array(self::$instance->backups(), false);
 
         $backupNames = [];
@@ -273,9 +252,6 @@ class BackupTest extends SpannerTestCase
 
     public function testListAllBackupsContainsName()
     {
-        if ((bool) getenv("SPANNER_EMULATOR_HOST")) {
-            $this->markTestSkipped();
-        }
         $backups = iterator_to_array(self::$instance->backups(['filter' => 'name:' . self::$backupId1]));
         $this->assertTrue(count($backups) == 1);
         $this->assertEquals(self::$backupId1, DatabaseAdminClient::parseName($backups[0]->info()['name'])['backup']);
@@ -283,9 +259,6 @@ class BackupTest extends SpannerTestCase
 
     public function testListAllBackupsReady()
     {
-        if ((bool) getenv("SPANNER_EMULATOR_HOST")) {
-            $this->markTestSkipped();
-        }
         $backups = iterator_to_array(self::$instance->backups(['filter'=>'state:READY']));
 
         $backupNames = [];
@@ -298,9 +271,6 @@ class BackupTest extends SpannerTestCase
 
     public function testListAllBackupsOfDatabase()
     {
-        if ((bool) getenv("SPANNER_EMULATOR_HOST")) {
-            $this->markTestSkipped();
-        }
         $database = self::$instance->database(self::$dbName1);
         $backups = iterator_to_array($database->backups());
 
@@ -313,9 +283,6 @@ class BackupTest extends SpannerTestCase
 
     public function testListAllBackupsCreatedAfterTimestamp()
     {
-        if ((bool) getenv("SPANNER_EMULATOR_HOST")) {
-            $this->markTestSkipped();
-        }
         $filter = sprintf("create_time >= %s", self::$createTime2);
 
         $backups = iterator_to_array(self::$instance->backups(['filter'=>$filter]));
@@ -331,9 +298,6 @@ class BackupTest extends SpannerTestCase
 
     public function testListAllBackupsExpireBeforeTimestamp()
     {
-        if ((bool) getenv("SPANNER_EMULATOR_HOST")) {
-            $this->markTestSkipped();
-        }
         $filter = "expire_time < " . gmdate('"Y-m-d\TH:i:s\Z"', strtotime('+9 hours'));
 
         $backups = iterator_to_array(self::$instance->backups(['filter'=>$filter]));
@@ -349,9 +313,6 @@ class BackupTest extends SpannerTestCase
 
     public function testListAllBackupsWithSizeGreaterThanSomeBytes()
     {
-        if ((bool) getenv("SPANNER_EMULATOR_HOST")) {
-            $this->markTestSkipped();
-        }
         $backup = self::$instance->backup(self::$backupId1);
         $size = $backup->info()['sizeBytes'];
         $filter = "size_bytes > " . $size;
@@ -370,9 +331,6 @@ class BackupTest extends SpannerTestCase
 
     public function testPagination()
     {
-        if ((bool) getenv("SPANNER_EMULATOR_HOST")) {
-            $this->markTestSkipped();
-        }
         $backupsfirstPage = self::$instance->backups(['pageSize' => 1]);
         $page = $backupsfirstPage->iterateByPage()->current();
         $this->assertEquals(1, count($page));
@@ -389,9 +347,6 @@ class BackupTest extends SpannerTestCase
 
     public function testListAllBackupOperations()
     {
-        if ((bool) getenv("SPANNER_EMULATOR_HOST")) {
-            $this->markTestSkipped();
-        }
         $backupOps = iterator_to_array($this::$instance->backupOperations());
 
         $backupOpsNames = array_map(function ($bOp) {
@@ -405,9 +360,6 @@ class BackupTest extends SpannerTestCase
 
     public function testDeleteBackup()
     {
-        if ((bool) getenv("SPANNER_EMULATOR_HOST")) {
-            $this->markTestSkipped();
-        }
         $backupId = uniqid(self::BACKUP_PREFIX);
         $expireTime = new \DateTime('+7 hours');
 
@@ -425,9 +377,6 @@ class BackupTest extends SpannerTestCase
 
     public function testDeleteNonExistantBackup()
     {
-        if ((bool) getenv("SPANNER_EMULATOR_HOST")) {
-            $this->markTestSkipped();
-        }
         $backup = self::$instance->backup("does_not_exis");
 
         $this->assertFalse($backup->exists());
@@ -437,9 +386,6 @@ class BackupTest extends SpannerTestCase
 
     public function testRestoreToNewDatabase()
     {
-        if ((bool) getenv("SPANNER_EMULATOR_HOST")) {
-            $this->markTestSkipped();
-        }
         $restoreDbName = uniqid('restored_db_');
 
         $op = $this::$instance->createDatabaseFromBackup(
@@ -473,9 +419,6 @@ class BackupTest extends SpannerTestCase
 
     public function testRestoreAppearsInListDatabaseOperations()
     {
-        if ((bool) getenv("SPANNER_EMULATOR_HOST")) {
-            $this->markTestSkipped();
-        }
         $databaseOps = iterator_to_array($this::$instance->databaseOperations());
         $databaseOpsNames = array_map(function ($dOp) {
             return $dOp->name();
@@ -488,9 +431,6 @@ class BackupTest extends SpannerTestCase
 
     public function testRestoreBackupToAnExistingDatabase()
     {
-        if ((bool) getenv("SPANNER_EMULATOR_HOST")) {
-            $this->markTestSkipped();
-        }
         $existingDb = self::$instance->database(self::$dbName2);
         $this->assertTrue($existingDb->exists());
 

@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
+use Google\Cloud\Spanner\Tests\EmulatorTestTrait;
 use Google\Cloud\Spanner\Tests\System\SpannerTestCase;
 
 /**
@@ -25,13 +26,13 @@ use Google\Cloud\Spanner\Tests\System\SpannerTestCase;
  */
 class PartitionedDmlTest extends SpannerTestCase
 {
+    use EmulatorTestTrait;
+
     const PDML_TABLE = 'partitionedDml';
 
     public function testPdml()
     {
-        if ((bool) getenv("SPANNER_EMULATOR_HOST")) {
-            $this->markTestSkipped();
-        }
+        $this->checkAndSkipEmulatorTests();
 
         $db = self::$database;
 

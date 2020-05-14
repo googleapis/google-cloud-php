@@ -23,20 +23,21 @@ use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\InstanceConfiguration;
+use Google\Cloud\Spanner\Tests\EmulatorTestTrait;
 
 /**
  * @group spanner
  */
 class AdminTest extends SpannerTestCase
 {
+    use EmulatorTestTrait;
+
     /**
      * covers 121
      */
     public function testInstance()
     {
-        if ((bool) getenv("SPANNER_EMULATOR_HOST")) {
-            $this->markTestSkipped();
-        }
+        $this->checkAndSkipEmulatorTests();
 
         $client = self::$client;
 
