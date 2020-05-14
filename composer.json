@@ -124,6 +124,7 @@
         "psr-4": {
             "GPBMetadata\\Google\\": "CommonProtos/metadata",
             "GPBMetadata\\Google\\Bigtable\\": "Bigtable/metadata",
+            "GPBMetadata\\Google\\Identity\\": "Asset/external/metadata/Identity",
             "GPBMetadata\\Google\\Cloud\\Asset\\": "Asset/metadata",
             "GPBMetadata\\Google\\Cloud\\Automl\\": "AutoMl/metadata",
             "GPBMetadata\\Google\\Cloud\\Bigquery\\Datatransfer\\": "BigQueryDataTransfer/metadata",
@@ -136,6 +137,7 @@
             "GPBMetadata\\Google\\Cloud\\Kms\\": "Kms/metadata",
             "GPBMetadata\\Google\\Cloud\\Language\\": "Language/metadata",
             "GPBMetadata\\Google\\Cloud\\Memcache\\": "Memcache/metadata",
+            "GPBMetadata\\Google\\Cloud\\Orgpolicy\\": "Asset/external/metadata/Cloud/Orgpolicy",
             "GPBMetadata\\Google\\Cloud\\Oslogin\\": "OsLogin/metadata",
             "GPBMetadata\\Google\\Cloud\\Recaptchaenterprise\\": "RecaptchaEnterprise/metadata",
             "GPBMetadata\\Google\\Cloud\\Recommendationengine\\": "RecommendationEngine/metadata",
@@ -194,6 +196,7 @@
             "Google\\Cloud\\Memcache\\": "Memcache/src",
             "Google\\Cloud\\Monitoring\\": "Monitoring/src",
             "Google\\Cloud\\OsLogin\\": "OsLogin/src",
+            "Google\\Cloud\\OrgPolicy\\": "Asset/external/protos/Cloud/OrgPolicy",
             "Google\\Cloud\\PubSub\\": "PubSub/src",
             "Google\\Cloud\\RecaptchaEnterprise\\": "RecaptchaEnterprise/src",
             "Google\\Cloud\\RecommendationEngine\\": "RecommendationEngine/src",
@@ -214,7 +217,8 @@
             "Google\\Cloud\\VideoIntelligence\\": "VideoIntelligence/src",
             "Google\\Cloud\\Vision\\": "Vision/src",
             "Google\\Cloud\\WebRisk\\": "WebRisk/src",
-            "Google\\Cloud\\WebSecurityScanner\\": "WebSecurityScanner/src"
+            "Google\\Cloud\\WebSecurityScanner\\": "WebSecurityScanner/src",
+            "Google\\Identity\\": "Asset/external/protos/Identity"
         }
     },
     "autoload-dev": {

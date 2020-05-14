@@ -9,8 +9,11 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Cloud asset. This includes all Google Cloud Platform resources,
- * Cloud IAM policies, and other non-GCP assets.
+ * An asset in Google Cloud. An asset can be any resource in the Google Cloud
+ * [resource
+ * hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy),
+ * a resource outside the Google Cloud resource hierarchy (such as Google
+ * Kubernetes Engine clusters and objects), or a Cloud IAM policy.
  *
  * Generated from protobuf message <code>google.cloud.asset.v1.Asset</code>
  */
@@ -18,43 +21,65 @@ class Asset extends \Google\Protobuf\Internal\Message
 {
     /**
      * The full name of the asset. For example:
-     * `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
+     * "//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1"
      * See [Resource
-     * Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
+     * names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
      * for more information.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
     /**
-     * Type of the asset. Example: "compute.googleapis.com/Disk".
+     * The type of the asset. For example: "compute.googleapis.com/Disk"
+     * See [Supported asset
+     * types](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
+     * for more information.
      *
      * Generated from protobuf field <code>string asset_type = 2;</code>
      */
     private $asset_type = '';
     /**
-     * Representation of the resource.
+     * A representation of the resource.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.Resource resource = 3;</code>
      */
     private $resource = null;
     /**
-     * Representation of the actual Cloud IAM policy set on a cloud resource. For
-     * each resource, there must be at most one Cloud IAM policy set on it.
+     * A representation of the Cloud IAM policy set on a Google Cloud resource.
+     * There can be a maximum of one Cloud IAM policy set on any given resource.
+     * In addition, Cloud IAM policies inherit their granted access scope from any
+     * policies set on parent resources in the resource hierarchy. Therefore, the
+     * effectively policy is the union of both the policy set on this resource
+     * and each policy set on all of the resource's ancestry resource levels in
+     * the hierarchy. See
+     * [this topic](https://cloud.google.com/iam/docs/policies#inheritance) for
+     * more information.
      *
      * Generated from protobuf field <code>.google.iam.v1.Policy iam_policy = 4;</code>
      */
     private $iam_policy = null;
     /**
-     * Asset's ancestry path in Cloud Resource Manager (CRM) hierarchy,
-     * represented as a list of relative resource names. Ancestry path starts with
-     * the closest CRM ancestor and ends at root. If the asset is a CRM
-     * project/folder/organization, this starts from the asset itself.
-     * Example: ["projects/123456789", "folders/5432", "organizations/1234"]
+     * A representation of an [organization
+     * policy](https://cloud.google.com/resource-manager/docs/organization-policy/overview#organization_policy).
+     * There can be more than one organization policy with different constraints
+     * set on a given resource.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.orgpolicy.v1.Policy org_policy = 6;</code>
+     */
+    private $org_policy;
+    /**
+     * The ancestry path of an asset in Google Cloud [resource
+     * hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy),
+     * represented as a list of relative resource names. An ancestry path starts
+     * with the closest ancestor in the hierarchy and ends at root. If the asset
+     * is a project, folder, or organization, the ancestry path starts from the
+     * asset itself.
+     * For example: `["projects/123456789", "folders/5432", "organizations/1234"]`
      *
      * Generated from protobuf field <code>repeated string ancestors = 10;</code>
      */
     private $ancestors;
+    protected $access_context_policy;
 
     /**
      * Constructor.
@@ -64,23 +89,43 @@ class Asset extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The full name of the asset. For example:
-     *           `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
+     *           "//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1"
      *           See [Resource
-     *           Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
+     *           names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
      *           for more information.
      *     @type string $asset_type
-     *           Type of the asset. Example: "compute.googleapis.com/Disk".
+     *           The type of the asset. For example: "compute.googleapis.com/Disk"
+     *           See [Supported asset
+     *           types](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
+     *           for more information.
      *     @type \Google\Cloud\Asset\V1\Resource $resource
-     *           Representation of the resource.
+     *           A representation of the resource.
      *     @type \Google\Cloud\Iam\V1\Policy $iam_policy
-     *           Representation of the actual Cloud IAM policy set on a cloud resource. For
-     *           each resource, there must be at most one Cloud IAM policy set on it.
+     *           A representation of the Cloud IAM policy set on a Google Cloud resource.
+     *           There can be a maximum of one Cloud IAM policy set on any given resource.
+     *           In addition, Cloud IAM policies inherit their granted access scope from any
+     *           policies set on parent resources in the resource hierarchy. Therefore, the
+     *           effectively policy is the union of both the policy set on this resource
+     *           and each policy set on all of the resource's ancestry resource levels in
+     *           the hierarchy. See
+     *           [this topic](https://cloud.google.com/iam/docs/policies#inheritance) for
+     *           more information.
+     *     @type \Google\Cloud\OrgPolicy\V1\Policy[]|\Google\Protobuf\Internal\RepeatedField $org_policy
+     *           A representation of an [organization
+     *           policy](https://cloud.google.com/resource-manager/docs/organization-policy/overview#organization_policy).
+     *           There can be more than one organization policy with different constraints
+     *           set on a given resource.
+     *     @type \Google\Identity\AccessContextManager\V1\AccessPolicy $access_policy
+     *     @type \Google\Identity\AccessContextManager\V1\AccessLevel $access_level
+     *     @type \Google\Identity\AccessContextManager\V1\ServicePerimeter $service_perimeter
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $ancestors
-     *           Asset's ancestry path in Cloud Resource Manager (CRM) hierarchy,
-     *           represented as a list of relative resource names. Ancestry path starts with
-     *           the closest CRM ancestor and ends at root. If the asset is a CRM
-     *           project/folder/organization, this starts from the asset itself.
-     *           Example: ["projects/123456789", "folders/5432", "organizations/1234"]
+     *           The ancestry path of an asset in Google Cloud [resource
+     *           hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy),
+     *           represented as a list of relative resource names. An ancestry path starts
+     *           with the closest ancestor in the hierarchy and ends at root. If the asset
+     *           is a project, folder, or organization, the ancestry path starts from the
+     *           asset itself.
+     *           For example: `["projects/123456789", "folders/5432", "organizations/1234"]`
      * }
      */
     public function __construct($data = NULL) {
@@ -90,9 +135,9 @@ class Asset extends \Google\Protobuf\Internal\Message
 
     /**
      * The full name of the asset. For example:
-     * `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
+     * "//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1"
      * See [Resource
-     * Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
+     * names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
      * for more information.
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -105,9 +150,9 @@ class Asset extends \Google\Protobuf\Internal\Message
 
     /**
      * The full name of the asset. For example:
-     * `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
+     * "//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1"
      * See [Resource
-     * Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
+     * names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
      * for more information.
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -123,7 +168,10 @@ class Asset extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Type of the asset. Example: "compute.googleapis.com/Disk".
+     * The type of the asset. For example: "compute.googleapis.com/Disk"
+     * See [Supported asset
+     * types](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
+     * for more information.
      *
      * Generated from protobuf field <code>string asset_type = 2;</code>
      * @return string
@@ -134,7 +182,10 @@ class Asset extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Type of the asset. Example: "compute.googleapis.com/Disk".
+     * The type of the asset. For example: "compute.googleapis.com/Disk"
+     * See [Supported asset
+     * types](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
+     * for more information.
      *
      * Generated from protobuf field <code>string asset_type = 2;</code>
      * @param string $var
@@ -149,7 +200,7 @@ class Asset extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Representation of the resource.
+     * A representation of the resource.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.Resource resource = 3;</code>
      * @return \Google\Cloud\Asset\V1\Resource
@@ -160,7 +211,7 @@ class Asset extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Representation of the resource.
+     * A representation of the resource.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.Resource resource = 3;</code>
      * @param \Google\Cloud\Asset\V1\Resource $var
@@ -175,8 +226,15 @@ class Asset extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Representation of the actual Cloud IAM policy set on a cloud resource. For
-     * each resource, there must be at most one Cloud IAM policy set on it.
+     * A representation of the Cloud IAM policy set on a Google Cloud resource.
+     * There can be a maximum of one Cloud IAM policy set on any given resource.
+     * In addition, Cloud IAM policies inherit their granted access scope from any
+     * policies set on parent resources in the resource hierarchy. Therefore, the
+     * effectively policy is the union of both the policy set on this resource
+     * and each policy set on all of the resource's ancestry resource levels in
+     * the hierarchy. See
+     * [this topic](https://cloud.google.com/iam/docs/policies#inheritance) for
+     * more information.
      *
      * Generated from protobuf field <code>.google.iam.v1.Policy iam_policy = 4;</code>
      * @return \Google\Cloud\Iam\V1\Policy
@@ -187,8 +245,15 @@ class Asset extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Representation of the actual Cloud IAM policy set on a cloud resource. For
-     * each resource, there must be at most one Cloud IAM policy set on it.
+     * A representation of the Cloud IAM policy set on a Google Cloud resource.
+     * There can be a maximum of one Cloud IAM policy set on any given resource.
+     * In addition, Cloud IAM policies inherit their granted access scope from any
+     * policies set on parent resources in the resource hierarchy. Therefore, the
+     * effectively policy is the union of both the policy set on this resource
+     * and each policy set on all of the resource's ancestry resource levels in
+     * the hierarchy. See
+     * [this topic](https://cloud.google.com/iam/docs/policies#inheritance) for
+     * more information.
      *
      * Generated from protobuf field <code>.google.iam.v1.Policy iam_policy = 4;</code>
      * @param \Google\Cloud\Iam\V1\Policy $var
@@ -203,11 +268,111 @@ class Asset extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Asset's ancestry path in Cloud Resource Manager (CRM) hierarchy,
-     * represented as a list of relative resource names. Ancestry path starts with
-     * the closest CRM ancestor and ends at root. If the asset is a CRM
-     * project/folder/organization, this starts from the asset itself.
-     * Example: ["projects/123456789", "folders/5432", "organizations/1234"]
+     * A representation of an [organization
+     * policy](https://cloud.google.com/resource-manager/docs/organization-policy/overview#organization_policy).
+     * There can be more than one organization policy with different constraints
+     * set on a given resource.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.orgpolicy.v1.Policy org_policy = 6;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getOrgPolicy()
+    {
+        return $this->org_policy;
+    }
+
+    /**
+     * A representation of an [organization
+     * policy](https://cloud.google.com/resource-manager/docs/organization-policy/overview#organization_policy).
+     * There can be more than one organization policy with different constraints
+     * set on a given resource.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.orgpolicy.v1.Policy org_policy = 6;</code>
+     * @param \Google\Cloud\OrgPolicy\V1\Policy[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setOrgPolicy($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\OrgPolicy\V1\Policy::class);
+        $this->org_policy = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.identity.accesscontextmanager.v1.AccessPolicy access_policy = 7;</code>
+     * @return \Google\Identity\AccessContextManager\V1\AccessPolicy
+     */
+    public function getAccessPolicy()
+    {
+        return $this->readOneof(7);
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.identity.accesscontextmanager.v1.AccessPolicy access_policy = 7;</code>
+     * @param \Google\Identity\AccessContextManager\V1\AccessPolicy $var
+     * @return $this
+     */
+    public function setAccessPolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Identity\AccessContextManager\V1\AccessPolicy::class);
+        $this->writeOneof(7, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.identity.accesscontextmanager.v1.AccessLevel access_level = 8;</code>
+     * @return \Google\Identity\AccessContextManager\V1\AccessLevel
+     */
+    public function getAccessLevel()
+    {
+        return $this->readOneof(8);
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.identity.accesscontextmanager.v1.AccessLevel access_level = 8;</code>
+     * @param \Google\Identity\AccessContextManager\V1\AccessLevel $var
+     * @return $this
+     */
+    public function setAccessLevel($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Identity\AccessContextManager\V1\AccessLevel::class);
+        $this->writeOneof(8, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.identity.accesscontextmanager.v1.ServicePerimeter service_perimeter = 9;</code>
+     * @return \Google\Identity\AccessContextManager\V1\ServicePerimeter
+     */
+    public function getServicePerimeter()
+    {
+        return $this->readOneof(9);
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.identity.accesscontextmanager.v1.ServicePerimeter service_perimeter = 9;</code>
+     * @param \Google\Identity\AccessContextManager\V1\ServicePerimeter $var
+     * @return $this
+     */
+    public function setServicePerimeter($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Identity\AccessContextManager\V1\ServicePerimeter::class);
+        $this->writeOneof(9, $var);
+
+        return $this;
+    }
+
+    /**
+     * The ancestry path of an asset in Google Cloud [resource
+     * hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy),
+     * represented as a list of relative resource names. An ancestry path starts
+     * with the closest ancestor in the hierarchy and ends at root. If the asset
+     * is a project, folder, or organization, the ancestry path starts from the
+     * asset itself.
+     * For example: `["projects/123456789", "folders/5432", "organizations/1234"]`
      *
      * Generated from protobuf field <code>repeated string ancestors = 10;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -218,11 +383,13 @@ class Asset extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Asset's ancestry path in Cloud Resource Manager (CRM) hierarchy,
-     * represented as a list of relative resource names. Ancestry path starts with
-     * the closest CRM ancestor and ends at root. If the asset is a CRM
-     * project/folder/organization, this starts from the asset itself.
-     * Example: ["projects/123456789", "folders/5432", "organizations/1234"]
+     * The ancestry path of an asset in Google Cloud [resource
+     * hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy),
+     * represented as a list of relative resource names. An ancestry path starts
+     * with the closest ancestor in the hierarchy and ends at root. If the asset
+     * is a project, folder, or organization, the ancestry path starts from the
+     * asset itself.
+     * For example: `["projects/123456789", "folders/5432", "organizations/1234"]`
      *
      * Generated from protobuf field <code>repeated string ancestors = 10;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -234,6 +401,14 @@ class Asset extends \Google\Protobuf\Internal\Message
         $this->ancestors = $arr;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAccessContextPolicy()
+    {
+        return $this->whichOneof("access_context_policy");
     }
 
 }
