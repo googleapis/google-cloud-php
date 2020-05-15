@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class InspectContentRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The parent resource name, for example projects/my-project-id.
+     * The parent resource name, for example projects/my-project-id
+     * or projects/my-project-id/locations/{location_id}
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      */
@@ -45,10 +46,7 @@ class InspectContentRequest extends \Google\Protobuf\Internal\Message
      */
     private $inspect_template_name = '';
     /**
-     * The geographic location to process content inspection. Reserved for future
-     * extensions.
-     * When inspecting images location is restricted to 'global', 'us', 'asia',
-     * and 'europe'.
+     * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>string location_id = 5;</code>
      */
@@ -61,7 +59,8 @@ class InspectContentRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The parent resource name, for example projects/my-project-id.
+     *           The parent resource name, for example projects/my-project-id
+     *           or projects/my-project-id/locations/{location_id}
      *     @type \Google\Cloud\Dlp\V2\InspectConfig $inspect_config
      *           Configuration for the inspector. What specified here will override
      *           the template referenced by the inspect_template_name argument.
@@ -74,10 +73,7 @@ class InspectContentRequest extends \Google\Protobuf\Internal\Message
      *           template. Repeated fields are appended. Singular sub-messages and groups
      *           are recursively merged.
      *     @type string $location_id
-     *           The geographic location to process content inspection. Reserved for future
-     *           extensions.
-     *           When inspecting images location is restricted to 'global', 'us', 'asia',
-     *           and 'europe'.
+     *           Deprecated. This field has no effect.
      * }
      */
     public function __construct($data = NULL) {
@@ -86,7 +82,8 @@ class InspectContentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The parent resource name, for example projects/my-project-id.
+     * The parent resource name, for example projects/my-project-id
+     * or projects/my-project-id/locations/{location_id}
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -97,7 +94,8 @@ class InspectContentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The parent resource name, for example projects/my-project-id.
+     * The parent resource name, for example projects/my-project-id
+     * or projects/my-project-id/locations/{location_id}
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var
@@ -200,10 +198,7 @@ class InspectContentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The geographic location to process content inspection. Reserved for future
-     * extensions.
-     * When inspecting images location is restricted to 'global', 'us', 'asia',
-     * and 'europe'.
+     * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>string location_id = 5;</code>
      * @return string
@@ -214,10 +209,7 @@ class InspectContentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The geographic location to process content inspection. Reserved for future
-     * extensions.
-     * When inspecting images location is restricted to 'global', 'us', 'asia',
-     * and 'europe'.
+     * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>string location_id = 5;</code>
      * @param string $var
