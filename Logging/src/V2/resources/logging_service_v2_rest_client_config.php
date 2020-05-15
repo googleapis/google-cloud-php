@@ -3,6 +3,11 @@
 return [
     'interfaces' => [
         'google.logging.v2.LoggingServiceV2' => [
+            'WriteLogEntries' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/entries:write',
+                'body' => '*',
+            ],
             'DeleteLog' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v2/{log_name=projects/*/logs/*}',
@@ -31,11 +36,6 @@ return [
                         ],
                     ],
                 ],
-            ],
-            'WriteLogEntries' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2/entries:write',
-                'body' => '*',
             ],
             'ListLogEntries' => [
                 'method' => 'post',

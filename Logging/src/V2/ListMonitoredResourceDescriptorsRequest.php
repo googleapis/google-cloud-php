@@ -20,7 +20,7 @@ class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\
      * Non-positive values are ignored.  The presence of `nextPageToken` in the
      * response indicates that more results might be available.
      *
-     * Generated from protobuf field <code>int32 page_size = 1;</code>
+     * Generated from protobuf field <code>int32 page_size = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
     /**
@@ -29,7 +29,7 @@ class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\
      * `nextPageToken` from the previous response.  The values of other method
      * parameters should be identical to those in the previous call.
      *
-     * Generated from protobuf field <code>string page_token = 2;</code>
+     * Generated from protobuf field <code>string page_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_token = '';
 
@@ -60,7 +60,7 @@ class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\
      * Non-positive values are ignored.  The presence of `nextPageToken` in the
      * response indicates that more results might be available.
      *
-     * Generated from protobuf field <code>int32 page_size = 1;</code>
+     * Generated from protobuf field <code>int32 page_size = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getPageSize()
@@ -73,7 +73,7 @@ class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\
      * Non-positive values are ignored.  The presence of `nextPageToken` in the
      * response indicates that more results might be available.
      *
-     * Generated from protobuf field <code>int32 page_size = 1;</code>
+     * Generated from protobuf field <code>int32 page_size = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -91,7 +91,7 @@ class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\
      * `nextPageToken` from the previous response.  The values of other method
      * parameters should be identical to those in the previous call.
      *
-     * Generated from protobuf field <code>string page_token = 2;</code>
+     * Generated from protobuf field <code>string page_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPageToken()
@@ -105,7 +105,7 @@ class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\
      * `nextPageToken` from the previous response.  The values of other method
      * parameters should be identical to those in the previous call.
      *
-     * Generated from protobuf field <code>string page_token = 2;</code>
+     * Generated from protobuf field <code>string page_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * The parameters to
  * [UpdateCmekSettings][google.logging.v2.ConfigServiceV2.UpdateCmekSettings].
- * See [Enabling CMEK for Logs Router](/logging/docs/routing/managed-encryption)
+ * See [Enabling CMEK for Logs Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
  * for more information.
  *
  * Generated from protobuf message <code>google.logging.v2.UpdateCmekSettingsRequest</code>
@@ -29,15 +29,15 @@ class UpdateCmekSettingsRequest extends \Google\Protobuf\Internal\Message
      * organizations. Once configured, it applies to all projects and folders in
      * the GCP organization.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $name = '';
     /**
      * Required. The CMEK settings to update.
      * See [Enabling CMEK for Logs
-     * Router](/logging/docs/routing/managed-encryption) for more information.
+     * Router](https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.
      *
-     * Generated from protobuf field <code>.google.logging.v2.CmekSettings cmek_settings = 2;</code>
+     * Generated from protobuf field <code>.google.logging.v2.CmekSettings cmek_settings = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $cmek_settings = null;
     /**
@@ -47,7 +47,7 @@ class UpdateCmekSettingsRequest extends \Google\Protobuf\Internal\Message
      * See [FieldMask][google.protobuf.FieldMask] for more information.
      * Example: `"updateMask=kmsKeyName"`
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $update_mask = null;
 
@@ -70,7 +70,7 @@ class UpdateCmekSettingsRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Logging\V2\CmekSettings $cmek_settings
      *           Required. The CMEK settings to update.
      *           See [Enabling CMEK for Logs
-     *           Router](/logging/docs/routing/managed-encryption) for more information.
+     *           Router](https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Optional. Field mask identifying which fields from `cmek_settings` should
      *           be updated. A field will be overwritten if and only if it is in the update
@@ -95,7 +95,7 @@ class UpdateCmekSettingsRequest extends \Google\Protobuf\Internal\Message
      * organizations. Once configured, it applies to all projects and folders in
      * the GCP organization.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getName()
@@ -114,7 +114,7 @@ class UpdateCmekSettingsRequest extends \Google\Protobuf\Internal\Message
      * organizations. Once configured, it applies to all projects and folders in
      * the GCP organization.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -129,9 +129,9 @@ class UpdateCmekSettingsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The CMEK settings to update.
      * See [Enabling CMEK for Logs
-     * Router](/logging/docs/routing/managed-encryption) for more information.
+     * Router](https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.
      *
-     * Generated from protobuf field <code>.google.logging.v2.CmekSettings cmek_settings = 2;</code>
+     * Generated from protobuf field <code>.google.logging.v2.CmekSettings cmek_settings = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Logging\V2\CmekSettings
      */
     public function getCmekSettings()
@@ -142,9 +142,9 @@ class UpdateCmekSettingsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The CMEK settings to update.
      * See [Enabling CMEK for Logs
-     * Router](/logging/docs/routing/managed-encryption) for more information.
+     * Router](https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.
      *
-     * Generated from protobuf field <code>.google.logging.v2.CmekSettings cmek_settings = 2;</code>
+     * Generated from protobuf field <code>.google.logging.v2.CmekSettings cmek_settings = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Logging\V2\CmekSettings $var
      * @return $this
      */
@@ -163,7 +163,7 @@ class UpdateCmekSettingsRequest extends \Google\Protobuf\Internal\Message
      * See [FieldMask][google.protobuf.FieldMask] for more information.
      * Example: `"updateMask=kmsKeyName"`
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\FieldMask
      */
     public function getUpdateMask()
@@ -178,7 +178,7 @@ class UpdateCmekSettingsRequest extends \Google\Protobuf\Internal\Message
      * See [FieldMask][google.protobuf.FieldMask] for more information.
      * Example: `"updateMask=kmsKeyName"`
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\FieldMask $var
      * @return $this
      */
