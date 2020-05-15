@@ -7,7 +7,7 @@ namespace Google\Cloud\Dlp\V2\ByteContentItem;
 use UnexpectedValueException;
 
 /**
- * The type of data being sent to in data.
+ * The type of data being sent for inspection.
  *
  * Protobuf type <code>google.privacy.dlp.v2.ByteContentItem.BytesType</code>
  */
@@ -56,6 +56,18 @@ class BytesType
      */
     const TEXT_UTF8 = 5;
     /**
+     * docx, docm, dotx, dotm
+     *
+     * Generated from protobuf enum <code>WORD_DOCUMENT = 7;</code>
+     */
+    const WORD_DOCUMENT = 7;
+    /**
+     * pdf
+     *
+     * Generated from protobuf enum <code>PDF = 8;</code>
+     */
+    const PDF = 8;
+    /**
      * avro
      *
      * Generated from protobuf enum <code>AVRO = 11;</code>
@@ -70,6 +82,8 @@ class BytesType
         self::IMAGE_PNG => 'IMAGE_PNG',
         self::IMAGE_SVG => 'IMAGE_SVG',
         self::TEXT_UTF8 => 'TEXT_UTF8',
+        self::WORD_DOCUMENT => 'WORD_DOCUMENT',
+        self::PDF => 'PDF',
         self::AVRO => 'AVRO',
     ];
 
