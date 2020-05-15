@@ -34,6 +34,8 @@ class AdminTest extends SpannerTestCase
      */
     public function testInstance()
     {
+        $this->skipEmulatorTests();
+
         $client = self::$client;
 
         $instances = $client->instances();

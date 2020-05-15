@@ -472,6 +472,7 @@ class ReadTest extends SpannerTestCase
      */
     public function testReadFailsOnDeadlineExceeded()
     {
+        $this->skipEmulatorTests();
         $db = self::$database;
         $keyset = new KeySet(['all' => true]);
 

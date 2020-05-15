@@ -117,4 +117,11 @@ class SpannerTestCase extends SystemTestCase
 
         return self::$client->connect(self::INSTANCE_NAME, $dbName);
     }
+
+    public static function skipEmulatorTests()
+    {
+        if ((bool) getenv("SPANNER_EMULATOR_HOST")) {
+            self::markTestSkipped('This test is not supported by the emulator.');
+        }
+    }
 }
