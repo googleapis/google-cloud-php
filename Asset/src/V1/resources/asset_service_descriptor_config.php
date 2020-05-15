@@ -13,6 +13,26 @@ return [
                     'totalPollTimeoutMillis' => '300000',
                 ],
             ],
+            'SearchAllResources' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getResults',
+                ],
+            ],
+            'SearchAllIamPolicies' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getResults',
+                ],
+            ],
         ],
     ],
 ];

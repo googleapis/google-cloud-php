@@ -71,6 +71,13 @@ class Resource extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Struct data = 6;</code>
      */
     private $data = null;
+    /**
+     * The location of the resource in Google Cloud, such as its zone and region.
+     * For more information, see https://cloud.google.com/about/locations/.
+     *
+     * Generated from protobuf field <code>string location = 8;</code>
+     */
+    private $location = '';
 
     /**
      * Constructor.
@@ -110,6 +117,9 @@ class Resource extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Struct $data
      *           The content of the resource, in which some sensitive fields are removed
      *           and may not be present.
+     *     @type string $location
+     *           The location of the resource in Google Cloud, such as its zone and region.
+     *           For more information, see https://cloud.google.com/about/locations/.
      * }
      */
     public function __construct($data = NULL) {
@@ -309,6 +319,34 @@ class Resource extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
         $this->data = $var;
+
+        return $this;
+    }
+
+    /**
+     * The location of the resource in Google Cloud, such as its zone and region.
+     * For more information, see https://cloud.google.com/about/locations/.
+     *
+     * Generated from protobuf field <code>string location = 8;</code>
+     * @return string
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * The location of the resource in Google Cloud, such as its zone and region.
+     * For more information, see https://cloud.google.com/about/locations/.
+     *
+     * Generated from protobuf field <code>string location = 8;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLocation($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->location = $var;
 
         return $this;
     }
