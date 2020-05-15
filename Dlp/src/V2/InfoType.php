@@ -20,7 +20,7 @@ class InfoType extends \Google\Protobuf\Internal\Message
      * creating a CustomInfoType, or one of the names listed
      * at https://cloud.google.com/dlp/docs/infotypes-reference when specifying
      * a built-in type. InfoType names should conform to the pattern
-     * [a-zA-Z0-9_]{1,64}.
+     * `[a-zA-Z0-9_]{1,64}`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -37,7 +37,7 @@ class InfoType extends \Google\Protobuf\Internal\Message
      *           creating a CustomInfoType, or one of the names listed
      *           at https://cloud.google.com/dlp/docs/infotypes-reference when specifying
      *           a built-in type. InfoType names should conform to the pattern
-     *           [a-zA-Z0-9_]{1,64}.
+     *           `[a-zA-Z0-9_]{1,64}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -50,7 +50,7 @@ class InfoType extends \Google\Protobuf\Internal\Message
      * creating a CustomInfoType, or one of the names listed
      * at https://cloud.google.com/dlp/docs/infotypes-reference when specifying
      * a built-in type. InfoType names should conform to the pattern
-     * [a-zA-Z0-9_]{1,64}.
+     * `[a-zA-Z0-9_]{1,64}`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -65,7 +65,7 @@ class InfoType extends \Google\Protobuf\Internal\Message
      * creating a CustomInfoType, or one of the names listed
      * at https://cloud.google.com/dlp/docs/infotypes-reference when specifying
      * a built-in type. InfoType names should conform to the pattern
-     * [a-zA-Z0-9_]{1,64}.
+     * `[a-zA-Z0-9_]{1,64}`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
