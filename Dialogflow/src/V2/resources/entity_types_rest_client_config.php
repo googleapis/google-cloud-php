@@ -3,6 +3,41 @@
 return [
     'interfaces' => [
         'google.cloud.dialogflow.v2.EntityTypes' => [
+            'DeleteEntityType' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v2/{name=projects/*/agent/entityTypes/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchDeleteEntityTypes' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=projects/*/agent}/entityTypes:batchDelete',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchDeleteEntities' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=projects/*/agent/entityTypes/*}/entities:batchDelete',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListEntityTypes' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{parent=projects/*/agent}/entityTypes',
@@ -50,32 +85,9 @@ return [
                     ],
                 ],
             ],
-            'DeleteEntityType' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v2/{name=projects/*/agent/entityTypes/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'BatchUpdateEntityTypes' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{parent=projects/*/agent}/entityTypes:batchUpdate',
-                'body' => '*',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'BatchDeleteEntityTypes' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2/{parent=projects/*/agent}/entityTypes:batchDelete',
                 'body' => '*',
                 'placeholders' => [
                     'parent' => [
@@ -105,31 +117,6 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'BatchDeleteEntities' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2/{parent=projects/*/agent/entityTypes/*}/entities:batchDelete',
-                'body' => '*',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-        ],
-        'google.longrunning.Operations' => [
-            'GetOperation' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/{name=projects/*/operations/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
                         ],
                     ],
                 ],

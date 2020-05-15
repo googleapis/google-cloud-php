@@ -72,23 +72,8 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $contextsClient = new ContextsClient();
  * try {
- *     $formattedParent = $contextsClient->sessionName('[PROJECT]', '[SESSION]');
- *     // Iterate over pages of elements
- *     $pagedResponse = $contextsClient->listContexts($formattedParent);
- *     foreach ($pagedResponse->iteratePages() as $page) {
- *         foreach ($page as $element) {
- *             // doSomethingWith($element);
- *         }
- *     }
- *
- *
- *     // Alternatively:
- *
- *     // Iterate through all elements
- *     $pagedResponse = $contextsClient->listContexts($formattedParent);
- *     foreach ($pagedResponse->iterateAllElements() as $element) {
- *         // doSomethingWith($element);
- *     }
+ *     $name = '';
+ *     $contextsClient->deleteContext($name);
  * } finally {
  *     $contextsClient->close();
  * }
@@ -133,6 +118,10 @@ class ContextsGapicClient
         'https://www.googleapis.com/auth/dialogflow',
     ];
     private static $contextNameTemplate;
+    private static $projectEnvironmentUserSessionNameTemplate;
+    private static $projectEnvironmentUserSessionContextNameTemplate;
+    private static $projectSessionNameTemplate;
+    private static $projectSessionContextNameTemplate;
     private static $sessionNameTemplate;
     private static $pathTemplateMap;
 
@@ -164,6 +153,42 @@ class ContextsGapicClient
         return self::$contextNameTemplate;
     }
 
+    private static function getProjectEnvironmentUserSessionNameTemplate()
+    {
+        if (null == self::$projectEnvironmentUserSessionNameTemplate) {
+            self::$projectEnvironmentUserSessionNameTemplate = new PathTemplate('projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}');
+        }
+
+        return self::$projectEnvironmentUserSessionNameTemplate;
+    }
+
+    private static function getProjectEnvironmentUserSessionContextNameTemplate()
+    {
+        if (null == self::$projectEnvironmentUserSessionContextNameTemplate) {
+            self::$projectEnvironmentUserSessionContextNameTemplate = new PathTemplate('projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}/contexts/{context}');
+        }
+
+        return self::$projectEnvironmentUserSessionContextNameTemplate;
+    }
+
+    private static function getProjectSessionNameTemplate()
+    {
+        if (null == self::$projectSessionNameTemplate) {
+            self::$projectSessionNameTemplate = new PathTemplate('projects/{project}/agent/sessions/{session}');
+        }
+
+        return self::$projectSessionNameTemplate;
+    }
+
+    private static function getProjectSessionContextNameTemplate()
+    {
+        if (null == self::$projectSessionContextNameTemplate) {
+            self::$projectSessionContextNameTemplate = new PathTemplate('projects/{project}/agent/sessions/{session}/contexts/{context}');
+        }
+
+        return self::$projectSessionContextNameTemplate;
+    }
+
     private static function getSessionNameTemplate()
     {
         if (null == self::$sessionNameTemplate) {
@@ -178,6 +203,10 @@ class ContextsGapicClient
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'context' => self::getContextNameTemplate(),
+                'projectEnvironmentUserSession' => self::getProjectEnvironmentUserSessionNameTemplate(),
+                'projectEnvironmentUserSessionContext' => self::getProjectEnvironmentUserSessionContextNameTemplate(),
+                'projectSession' => self::getProjectSessionNameTemplate(),
+                'projectSessionContext' => self::getProjectSessionContextNameTemplate(),
                 'session' => self::getSessionNameTemplate(),
             ];
         }
@@ -207,6 +236,90 @@ class ContextsGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
+     * a project_environment_user_session resource.
+     *
+     * @param string $project
+     * @param string $environment
+     * @param string $user
+     * @param string $session
+     *
+     * @return string The formatted project_environment_user_session resource.
+     * @experimental
+     */
+    public static function projectEnvironmentUserSessionName($project, $environment, $user, $session)
+    {
+        return self::getProjectEnvironmentUserSessionNameTemplate()->render([
+            'project' => $project,
+            'environment' => $environment,
+            'user' => $user,
+            'session' => $session,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project_environment_user_session_context resource.
+     *
+     * @param string $project
+     * @param string $environment
+     * @param string $user
+     * @param string $session
+     * @param string $context
+     *
+     * @return string The formatted project_environment_user_session_context resource.
+     * @experimental
+     */
+    public static function projectEnvironmentUserSessionContextName($project, $environment, $user, $session, $context)
+    {
+        return self::getProjectEnvironmentUserSessionContextNameTemplate()->render([
+            'project' => $project,
+            'environment' => $environment,
+            'user' => $user,
+            'session' => $session,
+            'context' => $context,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project_session resource.
+     *
+     * @param string $project
+     * @param string $session
+     *
+     * @return string The formatted project_session resource.
+     * @experimental
+     */
+    public static function projectSessionName($project, $session)
+    {
+        return self::getProjectSessionNameTemplate()->render([
+            'project' => $project,
+            'session' => $session,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project_session_context resource.
+     *
+     * @param string $project
+     * @param string $session
+     * @param string $context
+     *
+     * @return string The formatted project_session_context resource.
+     * @experimental
+     */
+    public static function projectSessionContextName($project, $session, $context)
+    {
+        return self::getProjectSessionContextNameTemplate()->render([
+            'project' => $project,
+            'session' => $session,
+            'context' => $context,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
      * a session resource.
      *
      * @param string $project
@@ -228,6 +341,10 @@ class ContextsGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - context: projects/{project}/agent/sessions/{session}/contexts/{context}
+     * - projectEnvironmentUserSession: projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}
+     * - projectEnvironmentUserSessionContext: projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}/contexts/{context}
+     * - projectSession: projects/{project}/agent/sessions/{session}
+     * - projectSessionContext: projects/{project}/agent/sessions/{session}/contexts/{context}
      * - session: projects/{project}/agent/sessions/{session}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
@@ -327,15 +444,121 @@ class ContextsGapicClient
     }
 
     /**
+     * Deletes the specified context.
+     *
+     * Sample code:
+     * ```
+     * $contextsClient = new ContextsClient();
+     * try {
+     *     $name = '';
+     *     $contextsClient->deleteContext($name);
+     * } finally {
+     *     $contextsClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the context to delete. Format:
+     *                             `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`
+     *                             or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *                             ID>/sessions/<Session ID>/contexts/<Context ID>`.
+     *                             If `Environment ID` is not specified, we assume default 'draft'
+     *                             environment. If `User ID` is not specified, we assume default '-' user.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function deleteContext($name, array $optionalArgs = [])
+    {
+        $request = new DeleteContextRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteContext',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Deletes all active contexts in the specified session.
+     *
+     * Sample code:
+     * ```
+     * $contextsClient = new ContextsClient();
+     * try {
+     *     $parent = '';
+     *     $contextsClient->deleteAllContexts($parent);
+     * } finally {
+     *     $contextsClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The name of the session to delete all contexts from. Format:
+     *                             `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project
+     *                             ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session
+     *                             ID>`.
+     *                             If `Environment ID` is not specified we assume default 'draft' environment.
+     *                             If `User ID` is not specified, we assume default '-' user.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function deleteAllContexts($parent, array $optionalArgs = [])
+    {
+        $request = new DeleteAllContextsRequest();
+        $request->setParent($parent);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteAllContexts',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Returns the list of all contexts in the specified session.
      *
      * Sample code:
      * ```
      * $contextsClient = new ContextsClient();
      * try {
-     *     $formattedParent = $contextsClient->sessionName('[PROJECT]', '[SESSION]');
+     *     $parent = '';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $contextsClient->listContexts($formattedParent);
+     *     $pagedResponse = $contextsClient->listContexts($parent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -346,7 +569,7 @@ class ContextsGapicClient
      *     // Alternatively:
      *
      *     // Iterate through all elements
-     *     $pagedResponse = $contextsClient->listContexts($formattedParent);
+     *     $pagedResponse = $contextsClient->listContexts($parent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -418,8 +641,8 @@ class ContextsGapicClient
      * ```
      * $contextsClient = new ContextsClient();
      * try {
-     *     $formattedName = $contextsClient->contextName('[PROJECT]', '[SESSION]', '[CONTEXT]');
-     *     $response = $contextsClient->getContext($formattedName);
+     *     $name = '';
+     *     $response = $contextsClient->getContext($name);
      * } finally {
      *     $contextsClient->close();
      * }
@@ -475,9 +698,9 @@ class ContextsGapicClient
      * ```
      * $contextsClient = new ContextsClient();
      * try {
-     *     $formattedParent = $contextsClient->sessionName('[PROJECT]', '[SESSION]');
+     *     $parent = '';
      *     $context = new Context();
-     *     $response = $contextsClient->createContext($formattedParent, $context);
+     *     $response = $contextsClient->createContext($parent, $context);
      * } finally {
      *     $contextsClient->close();
      * }
@@ -576,112 +799,6 @@ class ContextsGapicClient
         return $this->startCall(
             'UpdateContext',
             Context::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Deletes the specified context.
-     *
-     * Sample code:
-     * ```
-     * $contextsClient = new ContextsClient();
-     * try {
-     *     $formattedName = $contextsClient->contextName('[PROJECT]', '[SESSION]', '[CONTEXT]');
-     *     $contextsClient->deleteContext($formattedName);
-     * } finally {
-     *     $contextsClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. The name of the context to delete. Format:
-     *                             `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`
-     *                             or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
-     *                             ID>/sessions/<Session ID>/contexts/<Context ID>`.
-     *                             If `Environment ID` is not specified, we assume default 'draft'
-     *                             environment. If `User ID` is not specified, we assume default '-' user.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function deleteContext($name, array $optionalArgs = [])
-    {
-        $request = new DeleteContextRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteContext',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Deletes all active contexts in the specified session.
-     *
-     * Sample code:
-     * ```
-     * $contextsClient = new ContextsClient();
-     * try {
-     *     $formattedParent = $contextsClient->sessionName('[PROJECT]', '[SESSION]');
-     *     $contextsClient->deleteAllContexts($formattedParent);
-     * } finally {
-     *     $contextsClient->close();
-     * }
-     * ```
-     *
-     * @param string $parent       Required. The name of the session to delete all contexts from. Format:
-     *                             `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project
-     *                             ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session
-     *                             ID>`.
-     *                             If `Environment ID` is not specified we assume default 'draft' environment.
-     *                             If `User ID` is not specified, we assume default '-' user.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function deleteAllContexts($parent, array $optionalArgs = [])
-    {
-        $request = new DeleteAllContextsRequest();
-        $request->setParent($parent);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'parent' => $request->getParent(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteAllContexts',
-            GPBEmpty::class,
             $optionalArgs,
             $request
         )->wait();

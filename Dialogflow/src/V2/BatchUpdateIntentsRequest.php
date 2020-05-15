@@ -9,8 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [Intents.BatchUpdateIntents][google.cloud.dialogflow.v2.Intents.BatchUpdateIntents].
- *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.BatchUpdateIntentsRequest</code>
  */
 class BatchUpdateIntentsRequest extends \Google\Protobuf\Internal\Message
@@ -23,12 +21,11 @@ class BatchUpdateIntentsRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Optional. The language of training phrases, parameters and rich messages
-     * defined in `intents`. If not specified, the agent's default language is
-     * used. [Many
-     * languages](https://cloud.google.com/dialogflow/docs/reference/language)
-     * are supported. Note: languages must be enabled in the agent before they can
-     * be used.
+     * Optional. The language used to access language-specific data.
+     * If not specified, the agent's default language is used.
+     * For more information, see
+     * [Multilingual intent and entity
+     * data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
      *
      * Generated from protobuf field <code>string language_code = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -63,12 +60,11 @@ class BatchUpdateIntentsRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dialogflow\V2\IntentBatch $intent_batch_inline
      *           The collection of intents to update or create.
      *     @type string $language_code
-     *           Optional. The language of training phrases, parameters and rich messages
-     *           defined in `intents`. If not specified, the agent's default language is
-     *           used. [Many
-     *           languages](https://cloud.google.com/dialogflow/docs/reference/language)
-     *           are supported. Note: languages must be enabled in the agent before they can
-     *           be used.
+     *           Optional. The language used to access language-specific data.
+     *           If not specified, the agent's default language is used.
+     *           For more information, see
+     *           [Multilingual intent and entity
+     *           data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Optional. The mask to control which fields get updated.
      *     @type int $intent_view
@@ -165,12 +161,11 @@ class BatchUpdateIntentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The language of training phrases, parameters and rich messages
-     * defined in `intents`. If not specified, the agent's default language is
-     * used. [Many
-     * languages](https://cloud.google.com/dialogflow/docs/reference/language)
-     * are supported. Note: languages must be enabled in the agent before they can
-     * be used.
+     * Optional. The language used to access language-specific data.
+     * If not specified, the agent's default language is used.
+     * For more information, see
+     * [Multilingual intent and entity
+     * data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
      *
      * Generated from protobuf field <code>string language_code = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -181,12 +176,11 @@ class BatchUpdateIntentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The language of training phrases, parameters and rich messages
-     * defined in `intents`. If not specified, the agent's default language is
-     * used. [Many
-     * languages](https://cloud.google.com/dialogflow/docs/reference/language)
-     * are supported. Note: languages must be enabled in the agent before they can
-     * be used.
+     * Optional. The language used to access language-specific data.
+     * If not specified, the agent's default language is used.
+     * For more information, see
+     * [Multilingual intent and entity
+     * data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
      *
      * Generated from protobuf field <code>string language_code = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

@@ -3,6 +3,23 @@
 return [
     'interfaces' => [
         'google.cloud.dialogflow.v2.SessionEntityTypes' => [
+            'DeleteSessionEntityType' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v2/{name=projects/*/agent/sessions/*/entityTypes/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{name=projects/*/agent/environments/*/users/*/sessions/*/entityTypes/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListSessionEntityTypes' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{parent=projects/*/agent/sessions/*}/entityTypes',
@@ -71,36 +88,6 @@ return [
                     'session_entity_type.name' => [
                         'getters' => [
                             'getSessionEntityType',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteSessionEntityType' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v2/{name=projects/*/agent/sessions/*/entityTypes/*}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'delete',
-                        'uriTemplate' => '/v2/{name=projects/*/agent/environments/*/users/*/sessions/*/entityTypes/*}',
-                    ],
-                ],
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-        ],
-        'google.longrunning.Operations' => [
-            'GetOperation' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/{name=projects/*/operations/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
                             'getName',
                         ],
                     ],

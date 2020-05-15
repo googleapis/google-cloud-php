@@ -23,7 +23,7 @@ class ListContextsRequest extends \Google\Protobuf\Internal\Message
      * If `Environment ID` is not specified, we assume default 'draft'
      * environment. If `User ID` is not specified, we assume default '-' user.
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -73,7 +73,7 @@ class ListContextsRequest extends \Google\Protobuf\Internal\Message
      * If `Environment ID` is not specified, we assume default 'draft'
      * environment. If `User ID` is not specified, we assume default '-' user.
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -89,7 +89,7 @@ class ListContextsRequest extends \Google\Protobuf\Internal\Message
      * If `Environment ID` is not specified, we assume default 'draft'
      * environment. If `User ID` is not specified, we assume default '-' user.
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

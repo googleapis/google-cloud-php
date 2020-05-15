@@ -27,17 +27,6 @@ return [
                     ],
                 ],
             ],
-            'GetAgent' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/{parent=projects/*}/agent',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
             'SearchAgents' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{parent=projects/*}/agent:search',
@@ -73,9 +62,9 @@ return [
                     ],
                 ],
             ],
-            'ImportAgent' => [
+            'RestoreAgent' => [
                 'method' => 'post',
-                'uriTemplate' => '/v2/{parent=projects/*}/agent:import',
+                'uriTemplate' => '/v2/{parent=projects/*}/agent:restore',
                 'body' => '*',
                 'placeholders' => [
                     'parent' => [
@@ -85,9 +74,20 @@ return [
                     ],
                 ],
             ],
-            'RestoreAgent' => [
+            'GetAgent' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=projects/*}/agent',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ImportAgent' => [
                 'method' => 'post',
-                'uriTemplate' => '/v2/{parent=projects/*}/agent:restore',
+                'uriTemplate' => '/v2/{parent=projects/*}/agent:import',
                 'body' => '*',
                 'placeholders' => [
                     'parent' => [
@@ -104,19 +104,6 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
-                        ],
-                    ],
-                ],
-            ],
-        ],
-        'google.longrunning.Operations' => [
-            'GetOperation' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/{name=projects/*/operations/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
                         ],
                     ],
                 ],
