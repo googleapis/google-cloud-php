@@ -264,6 +264,66 @@ class ManageSubscriptionsTest extends PubSubTestCase
         sleep(2);
         $msg = $sub->pull();
         $this->assertEquals(1, $msg[0]->deliveryAttempt());
+
+        $sub->update([], [
+            'updateMask' => ['deadLetterPolicy']
+        ]);
+
+        $this->assertArrayNotHasKey('deadLetterPolicy', $sub->info());
+    }
+
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testRetryPolicy($client)
+    {
+        if ($client instanceof PubSubClientRest) {
+            $this->markTestSkipped(
+                'deadLetterPolicy not available in REST transport during experimental period.'
+            );
+        }
+
+        $retryPolicyTopic = self::createTopic($client, uniqid(self::TESTING_PREFIX));
+        $sub = $retryPolicyTopic->subscribe(uniqid(self::TESTING_PREFIX), [
+            'retryPolicy' => [
+                'minimumBackoff' => new Duration(10),
+                'maximumBackoff' => new Duration(20)
+            ]
+        ]);
+        self::$deletionQueue->add($sub);
+
+        $this->assertEquals([
+            'seconds' => 10,
+            'nanos' => 0
+        ], $sub->info()['retryPolicy']['minimumBackoff']);
+
+        $this->assertEquals([
+            'seconds' => 20,
+            'nanos' => 0
+        ], $sub->info()['retryPolicy']['maximumBackoff']);
+
+        $sub->update([
+            'retryPolicy' => [
+                'minimumBackoff' => new Duration(20),
+                'maximumBackoff' => new Duration(30)
+            ]
+        ]);
+
+        $this->assertEquals([
+            'seconds' => 20,
+            'nanos' => 0
+        ], $sub->info()['retryPolicy']['minimumBackoff']);
+
+        $this->assertEquals([
+            'seconds' => 30,
+            'nanos' => 0
+        ], $sub->info()['retryPolicy']['maximumBackoff']);
+
+        $sub->update([], [
+            'updateMask' => ['retryPolicy']
+        ]);
+
+        $this->assertArrayNotHasKey('retryPolicy', $sub->info());
     }
 
     private function assertSubsFound($class, $expectedSubs)

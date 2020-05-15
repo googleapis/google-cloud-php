@@ -939,8 +939,7 @@ class Subscription
             );
         }
 
-        if (
-            isset($options['retryPolicy']['minimumBackoff']) &&
+        if (isset($options['retryPolicy']['minimumBackoff']) &&
             $options['retryPolicy']['minimumBackoff'] instanceof Duration
         ) {
             $duration = $options['retryPolicy']['minimumBackoff']->get();
@@ -951,8 +950,7 @@ class Subscription
             );
         }
 
-        if (
-            isset($options['retryPolicy']['maximumBackoff']) &&
+        if (isset($options['retryPolicy']['maximumBackoff']) &&
             $options['retryPolicy']['maximumBackoff'] instanceof Duration
         ) {
             $duration = $options['retryPolicy']['maximumBackoff']->get();
