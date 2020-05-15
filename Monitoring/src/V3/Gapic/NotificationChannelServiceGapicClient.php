@@ -62,23 +62,8 @@ use Google\Protobuf\Timestamp;
  * ```
  * $notificationChannelServiceClient = new Google\Cloud\Monitoring\V3\NotificationChannelServiceClient();
  * try {
- *     $formattedName = $notificationChannelServiceClient->projectName('[PROJECT]');
- *     // Iterate over pages of elements
- *     $pagedResponse = $notificationChannelServiceClient->listNotificationChannelDescriptors($formattedName);
- *     foreach ($pagedResponse->iteratePages() as $page) {
- *         foreach ($page as $element) {
- *             // doSomethingWith($element);
- *         }
- *     }
- *
- *
- *     // Alternatively:
- *
- *     // Iterate through all elements
- *     $pagedResponse = $notificationChannelServiceClient->listNotificationChannelDescriptors($formattedName);
- *     foreach ($pagedResponse->iterateAllElements() as $element) {
- *         // doSomethingWith($element);
- *     }
+ *     $name = '';
+ *     $notificationChannelServiceClient->deleteNotificationChannel($name);
  * } finally {
  *     $notificationChannelServiceClient->close();
  * }
@@ -122,9 +107,14 @@ class NotificationChannelServiceGapicClient
         'https://www.googleapis.com/auth/monitoring.read',
         'https://www.googleapis.com/auth/monitoring.write',
     ];
+    private static $folderChannelDescriptorNameTemplate;
+    private static $folderNotificationChannelNameTemplate;
     private static $notificationChannelNameTemplate;
     private static $notificationChannelDescriptorNameTemplate;
-    private static $projectNameTemplate;
+    private static $organizationChannelDescriptorNameTemplate;
+    private static $organizationNotificationChannelNameTemplate;
+    private static $projectChannelDescriptorNameTemplate;
+    private static $projectNotificationChannelNameTemplate;
     private static $pathTemplateMap;
 
     private static function getClientDefaults()
@@ -146,6 +136,24 @@ class NotificationChannelServiceGapicClient
         ];
     }
 
+    private static function getFolderChannelDescriptorNameTemplate()
+    {
+        if (null == self::$folderChannelDescriptorNameTemplate) {
+            self::$folderChannelDescriptorNameTemplate = new PathTemplate('folders/{folder}/notificationChannelDescriptors/{channel_descriptor}');
+        }
+
+        return self::$folderChannelDescriptorNameTemplate;
+    }
+
+    private static function getFolderNotificationChannelNameTemplate()
+    {
+        if (null == self::$folderNotificationChannelNameTemplate) {
+            self::$folderNotificationChannelNameTemplate = new PathTemplate('folders/{folder}/notificationChannels/{notification_channel}');
+        }
+
+        return self::$folderNotificationChannelNameTemplate;
+    }
+
     private static function getNotificationChannelNameTemplate()
     {
         if (null == self::$notificationChannelNameTemplate) {
@@ -164,26 +172,92 @@ class NotificationChannelServiceGapicClient
         return self::$notificationChannelDescriptorNameTemplate;
     }
 
-    private static function getProjectNameTemplate()
+    private static function getOrganizationChannelDescriptorNameTemplate()
     {
-        if (null == self::$projectNameTemplate) {
-            self::$projectNameTemplate = new PathTemplate('projects/{project}');
+        if (null == self::$organizationChannelDescriptorNameTemplate) {
+            self::$organizationChannelDescriptorNameTemplate = new PathTemplate('organizations/{organization}/notificationChannelDescriptors/{channel_descriptor}');
         }
 
-        return self::$projectNameTemplate;
+        return self::$organizationChannelDescriptorNameTemplate;
+    }
+
+    private static function getOrganizationNotificationChannelNameTemplate()
+    {
+        if (null == self::$organizationNotificationChannelNameTemplate) {
+            self::$organizationNotificationChannelNameTemplate = new PathTemplate('organizations/{organization}/notificationChannels/{notification_channel}');
+        }
+
+        return self::$organizationNotificationChannelNameTemplate;
+    }
+
+    private static function getProjectChannelDescriptorNameTemplate()
+    {
+        if (null == self::$projectChannelDescriptorNameTemplate) {
+            self::$projectChannelDescriptorNameTemplate = new PathTemplate('projects/{project}/notificationChannelDescriptors/{channel_descriptor}');
+        }
+
+        return self::$projectChannelDescriptorNameTemplate;
+    }
+
+    private static function getProjectNotificationChannelNameTemplate()
+    {
+        if (null == self::$projectNotificationChannelNameTemplate) {
+            self::$projectNotificationChannelNameTemplate = new PathTemplate('projects/{project}/notificationChannels/{notification_channel}');
+        }
+
+        return self::$projectNotificationChannelNameTemplate;
     }
 
     private static function getPathTemplateMap()
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
+                'folderChannelDescriptor' => self::getFolderChannelDescriptorNameTemplate(),
+                'folderNotificationChannel' => self::getFolderNotificationChannelNameTemplate(),
                 'notificationChannel' => self::getNotificationChannelNameTemplate(),
                 'notificationChannelDescriptor' => self::getNotificationChannelDescriptorNameTemplate(),
-                'project' => self::getProjectNameTemplate(),
+                'organizationChannelDescriptor' => self::getOrganizationChannelDescriptorNameTemplate(),
+                'organizationNotificationChannel' => self::getOrganizationNotificationChannelNameTemplate(),
+                'projectChannelDescriptor' => self::getProjectChannelDescriptorNameTemplate(),
+                'projectNotificationChannel' => self::getProjectNotificationChannelNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a folder_channel_descriptor resource.
+     *
+     * @param string $folder
+     * @param string $channelDescriptor
+     *
+     * @return string The formatted folder_channel_descriptor resource.
+     */
+    public static function folderChannelDescriptorName($folder, $channelDescriptor)
+    {
+        return self::getFolderChannelDescriptorNameTemplate()->render([
+            'folder' => $folder,
+            'channel_descriptor' => $channelDescriptor,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a folder_notification_channel resource.
+     *
+     * @param string $folder
+     * @param string $notificationChannel
+     *
+     * @return string The formatted folder_notification_channel resource.
+     */
+    public static function folderNotificationChannelName($folder, $notificationChannel)
+    {
+        return self::getFolderNotificationChannelNameTemplate()->render([
+            'folder' => $folder,
+            'notification_channel' => $notificationChannel,
+        ]);
     }
 
     /**
@@ -222,16 +296,69 @@ class NotificationChannelServiceGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a project resource.
+     * a organization_channel_descriptor resource.
+     *
+     * @param string $organization
+     * @param string $channelDescriptor
+     *
+     * @return string The formatted organization_channel_descriptor resource.
+     */
+    public static function organizationChannelDescriptorName($organization, $channelDescriptor)
+    {
+        return self::getOrganizationChannelDescriptorNameTemplate()->render([
+            'organization' => $organization,
+            'channel_descriptor' => $channelDescriptor,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a organization_notification_channel resource.
+     *
+     * @param string $organization
+     * @param string $notificationChannel
+     *
+     * @return string The formatted organization_notification_channel resource.
+     */
+    public static function organizationNotificationChannelName($organization, $notificationChannel)
+    {
+        return self::getOrganizationNotificationChannelNameTemplate()->render([
+            'organization' => $organization,
+            'notification_channel' => $notificationChannel,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project_channel_descriptor resource.
      *
      * @param string $project
+     * @param string $channelDescriptor
      *
-     * @return string The formatted project resource.
+     * @return string The formatted project_channel_descriptor resource.
      */
-    public static function projectName($project)
+    public static function projectChannelDescriptorName($project, $channelDescriptor)
     {
-        return self::getProjectNameTemplate()->render([
+        return self::getProjectChannelDescriptorNameTemplate()->render([
             'project' => $project,
+            'channel_descriptor' => $channelDescriptor,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project_notification_channel resource.
+     *
+     * @param string $project
+     * @param string $notificationChannel
+     *
+     * @return string The formatted project_notification_channel resource.
+     */
+    public static function projectNotificationChannelName($project, $notificationChannel)
+    {
+        return self::getProjectNotificationChannelNameTemplate()->render([
+            'project' => $project,
+            'notification_channel' => $notificationChannel,
         ]);
     }
 
@@ -239,9 +366,14 @@ class NotificationChannelServiceGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - folderChannelDescriptor: folders/{folder}/notificationChannelDescriptors/{channel_descriptor}
+     * - folderNotificationChannel: folders/{folder}/notificationChannels/{notification_channel}
      * - notificationChannel: projects/{project}/notificationChannels/{notification_channel}
      * - notificationChannelDescriptor: projects/{project}/notificationChannelDescriptors/{channel_descriptor}
-     * - project: projects/{project}.
+     * - organizationChannelDescriptor: organizations/{organization}/notificationChannelDescriptors/{channel_descriptor}
+     * - organizationNotificationChannel: organizations/{organization}/notificationChannels/{notification_channel}
+     * - projectChannelDescriptor: projects/{project}/notificationChannelDescriptors/{channel_descriptor}
+     * - projectNotificationChannel: projects/{project}/notificationChannels/{notification_channel}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
@@ -338,6 +470,207 @@ class NotificationChannelServiceGapicClient
     }
 
     /**
+     * Deletes a notification channel.
+     *
+     * Sample code:
+     * ```
+     * $notificationChannelServiceClient = new Google\Cloud\Monitoring\V3\NotificationChannelServiceClient();
+     * try {
+     *     $name = '';
+     *     $notificationChannelServiceClient->deleteNotificationChannel($name);
+     * } finally {
+     *     $notificationChannelServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name Required. The channel for which to execute the request. The format is:
+     *
+     *     projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID]
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type bool $force
+     *          If true, the notification channel will be deleted regardless of its
+     *          use in alert policies (the policies will be updated to remove the
+     *          channel). If false, channels that are still referenced by an existing
+     *          alerting policy will fail to be deleted in a delete operation.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteNotificationChannel($name, array $optionalArgs = [])
+    {
+        $request = new DeleteNotificationChannelRequest();
+        $request->setName($name);
+        if (isset($optionalArgs['force'])) {
+            $request->setForce($optionalArgs['force']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteNotificationChannel',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Requests a verification code for an already verified channel that can then
+     * be used in a call to VerifyNotificationChannel() on a different channel
+     * with an equivalent identity in the same or in a different project. This
+     * makes it possible to copy a channel between projects without requiring
+     * manual reverification of the channel. If the channel is not in the
+     * verified state, this method will fail (in other words, this may only be
+     * used if the SendNotificationChannelVerificationCode and
+     * VerifyNotificationChannel paths have already been used to put the given
+     * channel into the verified state).
+     *
+     * There is no guarantee that the verification codes returned by this method
+     * will be of a similar structure or form as the ones that are delivered
+     * to the channel via SendNotificationChannelVerificationCode; while
+     * VerifyNotificationChannel() will recognize both the codes delivered via
+     * SendNotificationChannelVerificationCode() and returned from
+     * GetNotificationChannelVerificationCode(), it is typically the case that
+     * the verification codes delivered via
+     * SendNotificationChannelVerificationCode() will be shorter and also
+     * have a shorter expiration (e.g. codes such as "G-123456") whereas
+     * GetVerificationCode() will typically return a much longer, websafe base
+     * 64 encoded string that has a longer expiration time.
+     *
+     * Sample code:
+     * ```
+     * $notificationChannelServiceClient = new Google\Cloud\Monitoring\V3\NotificationChannelServiceClient();
+     * try {
+     *     $name = '';
+     *     $response = $notificationChannelServiceClient->getNotificationChannelVerificationCode($name);
+     * } finally {
+     *     $notificationChannelServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The notification channel for which a verification code is to be generated
+     *                             and retrieved. This must name a channel that is already verified; if
+     *                             the specified channel is not verified, the request will fail.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type Timestamp $expireTime
+     *          The desired expiration time. If specified, the API will guarantee that
+     *          the returned code will not be valid after the specified timestamp;
+     *          however, the API cannot guarantee that the returned code will be
+     *          valid for at least as long as the requested time (the API puts an upper
+     *          bound on the amount of time for which a code may be valid). If omitted,
+     *          a default expiration will be used, which may be less than the max
+     *          permissible expiration (so specifying an expiration may extend the
+     *          code's lifetime over omitting an expiration, even though the API does
+     *          impose an upper limit on the maximum expiration that is permitted).
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Monitoring\V3\GetNotificationChannelVerificationCodeResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getNotificationChannelVerificationCode($name, array $optionalArgs = [])
+    {
+        $request = new GetNotificationChannelVerificationCodeRequest();
+        $request->setName($name);
+        if (isset($optionalArgs['expireTime'])) {
+            $request->setExpireTime($optionalArgs['expireTime']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'GetNotificationChannelVerificationCode',
+            GetNotificationChannelVerificationCodeResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Verifies a `NotificationChannel` by proving receipt of the code
+     * delivered to the channel as a result of calling
+     * `SendNotificationChannelVerificationCode`.
+     *
+     * Sample code:
+     * ```
+     * $notificationChannelServiceClient = new Google\Cloud\Monitoring\V3\NotificationChannelServiceClient();
+     * try {
+     *     $name = '';
+     *     $code = '';
+     *     $response = $notificationChannelServiceClient->verifyNotificationChannel($name, $code);
+     * } finally {
+     *     $notificationChannelServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The notification channel to verify.
+     * @param string $code         Required. The verification code that was delivered to the channel as
+     *                             a result of invoking the `SendNotificationChannelVerificationCode` API
+     *                             method or that was retrieved from a verified channel via
+     *                             `GetNotificationChannelVerificationCode`. For example, one might have
+     *                             "G-123456" or "TKNZGhhd2EyN3I1MnRnMjRv" (in general, one is only
+     *                             guaranteed that the code is valid UTF-8; one should not
+     *                             make any assumptions regarding the structure or format of the code).
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Monitoring\V3\NotificationChannel
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function verifyNotificationChannel($name, $code, array $optionalArgs = [])
+    {
+        $request = new VerifyNotificationChannelRequest();
+        $request->setName($name);
+        $request->setCode($code);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'VerifyNotificationChannel',
+            NotificationChannel::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Lists the descriptors for supported channel types. The use of descriptors
      * makes it possible for new channel types to be dynamically added.
      *
@@ -345,9 +678,9 @@ class NotificationChannelServiceGapicClient
      * ```
      * $notificationChannelServiceClient = new Google\Cloud\Monitoring\V3\NotificationChannelServiceClient();
      * try {
-     *     $formattedName = $notificationChannelServiceClient->projectName('[PROJECT]');
+     *     $name = '';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $notificationChannelServiceClient->listNotificationChannelDescriptors($formattedName);
+     *     $pagedResponse = $notificationChannelServiceClient->listNotificationChannelDescriptors($name);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -358,7 +691,7 @@ class NotificationChannelServiceGapicClient
      *     // Alternatively:
      *
      *     // Iterate through all elements
-     *     $pagedResponse = $notificationChannelServiceClient->listNotificationChannelDescriptors($formattedName);
+     *     $pagedResponse = $notificationChannelServiceClient->listNotificationChannelDescriptors($name);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -433,8 +766,8 @@ class NotificationChannelServiceGapicClient
      * ```
      * $notificationChannelServiceClient = new Google\Cloud\Monitoring\V3\NotificationChannelServiceClient();
      * try {
-     *     $formattedName = $notificationChannelServiceClient->notificationChannelDescriptorName('[PROJECT]', '[CHANNEL_DESCRIPTOR]');
-     *     $response = $notificationChannelServiceClient->getNotificationChannelDescriptor($formattedName);
+     *     $name = '';
+     *     $response = $notificationChannelServiceClient->getNotificationChannelDescriptor($name);
      * } finally {
      *     $notificationChannelServiceClient->close();
      * }
@@ -484,9 +817,9 @@ class NotificationChannelServiceGapicClient
      * ```
      * $notificationChannelServiceClient = new Google\Cloud\Monitoring\V3\NotificationChannelServiceClient();
      * try {
-     *     $formattedName = $notificationChannelServiceClient->projectName('[PROJECT]');
+     *     $name = '';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $notificationChannelServiceClient->listNotificationChannels($formattedName);
+     *     $pagedResponse = $notificationChannelServiceClient->listNotificationChannels($name);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -497,7 +830,7 @@ class NotificationChannelServiceGapicClient
      *     // Alternatively:
      *
      *     // Iterate through all elements
-     *     $pagedResponse = $notificationChannelServiceClient->listNotificationChannels($formattedName);
+     *     $pagedResponse = $notificationChannelServiceClient->listNotificationChannels($name);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -595,8 +928,8 @@ class NotificationChannelServiceGapicClient
      * ```
      * $notificationChannelServiceClient = new Google\Cloud\Monitoring\V3\NotificationChannelServiceClient();
      * try {
-     *     $formattedName = $notificationChannelServiceClient->notificationChannelName('[PROJECT]', '[NOTIFICATION_CHANNEL]');
-     *     $response = $notificationChannelServiceClient->getNotificationChannel($formattedName);
+     *     $name = '';
+     *     $response = $notificationChannelServiceClient->getNotificationChannel($name);
      * } finally {
      *     $notificationChannelServiceClient->close();
      * }
@@ -647,9 +980,9 @@ class NotificationChannelServiceGapicClient
      * ```
      * $notificationChannelServiceClient = new Google\Cloud\Monitoring\V3\NotificationChannelServiceClient();
      * try {
-     *     $formattedName = $notificationChannelServiceClient->projectName('[PROJECT]');
+     *     $name = '';
      *     $notificationChannel = new Google\Cloud\Monitoring\V3\NotificationChannel();
-     *     $response = $notificationChannelServiceClient->createNotificationChannel($formattedName, $notificationChannel);
+     *     $response = $notificationChannelServiceClient->createNotificationChannel($name, $notificationChannel);
      * } finally {
      *     $notificationChannelServiceClient->close();
      * }
@@ -758,63 +1091,6 @@ class NotificationChannelServiceGapicClient
     }
 
     /**
-     * Deletes a notification channel.
-     *
-     * Sample code:
-     * ```
-     * $notificationChannelServiceClient = new Google\Cloud\Monitoring\V3\NotificationChannelServiceClient();
-     * try {
-     *     $formattedName = $notificationChannelServiceClient->notificationChannelName('[PROJECT]', '[NOTIFICATION_CHANNEL]');
-     *     $notificationChannelServiceClient->deleteNotificationChannel($formattedName);
-     * } finally {
-     *     $notificationChannelServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $name Required. The channel for which to execute the request. The format is:
-     *
-     *     projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID]
-     * @param array $optionalArgs {
-     *                            Optional.
-     *
-     *     @type bool $force
-     *          If true, the notification channel will be deleted regardless of its
-     *          use in alert policies (the policies will be updated to remove the
-     *          channel). If false, channels that are still referenced by an existing
-     *          alerting policy will fail to be deleted in a delete operation.
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function deleteNotificationChannel($name, array $optionalArgs = [])
-    {
-        $request = new DeleteNotificationChannelRequest();
-        $request->setName($name);
-        if (isset($optionalArgs['force'])) {
-            $request->setForce($optionalArgs['force']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteNotificationChannel',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
      * Causes a verification code to be delivered to the channel. The code
      * can then be supplied in `VerifyNotificationChannel` to verify the channel.
      *
@@ -822,8 +1098,8 @@ class NotificationChannelServiceGapicClient
      * ```
      * $notificationChannelServiceClient = new Google\Cloud\Monitoring\V3\NotificationChannelServiceClient();
      * try {
-     *     $formattedName = $notificationChannelServiceClient->notificationChannelName('[PROJECT]', '[NOTIFICATION_CHANNEL]');
-     *     $notificationChannelServiceClient->sendNotificationChannelVerificationCode($formattedName);
+     *     $name = '';
+     *     $notificationChannelServiceClient->sendNotificationChannelVerificationCode($name);
      * } finally {
      *     $notificationChannelServiceClient->close();
      * }
@@ -857,150 +1133,6 @@ class NotificationChannelServiceGapicClient
         return $this->startCall(
             'SendNotificationChannelVerificationCode',
             GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Requests a verification code for an already verified channel that can then
-     * be used in a call to VerifyNotificationChannel() on a different channel
-     * with an equivalent identity in the same or in a different project. This
-     * makes it possible to copy a channel between projects without requiring
-     * manual reverification of the channel. If the channel is not in the
-     * verified state, this method will fail (in other words, this may only be
-     * used if the SendNotificationChannelVerificationCode and
-     * VerifyNotificationChannel paths have already been used to put the given
-     * channel into the verified state).
-     *
-     * There is no guarantee that the verification codes returned by this method
-     * will be of a similar structure or form as the ones that are delivered
-     * to the channel via SendNotificationChannelVerificationCode; while
-     * VerifyNotificationChannel() will recognize both the codes delivered via
-     * SendNotificationChannelVerificationCode() and returned from
-     * GetNotificationChannelVerificationCode(), it is typically the case that
-     * the verification codes delivered via
-     * SendNotificationChannelVerificationCode() will be shorter and also
-     * have a shorter expiration (e.g. codes such as "G-123456") whereas
-     * GetVerificationCode() will typically return a much longer, websafe base
-     * 64 encoded string that has a longer expiration time.
-     *
-     * Sample code:
-     * ```
-     * $notificationChannelServiceClient = new Google\Cloud\Monitoring\V3\NotificationChannelServiceClient();
-     * try {
-     *     $formattedName = $notificationChannelServiceClient->notificationChannelName('[PROJECT]', '[NOTIFICATION_CHANNEL]');
-     *     $response = $notificationChannelServiceClient->getNotificationChannelVerificationCode($formattedName);
-     * } finally {
-     *     $notificationChannelServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. The notification channel for which a verification code is to be generated
-     *                             and retrieved. This must name a channel that is already verified; if
-     *                             the specified channel is not verified, the request will fail.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type Timestamp $expireTime
-     *          The desired expiration time. If specified, the API will guarantee that
-     *          the returned code will not be valid after the specified timestamp;
-     *          however, the API cannot guarantee that the returned code will be
-     *          valid for at least as long as the requested time (the API puts an upper
-     *          bound on the amount of time for which a code may be valid). If omitted,
-     *          a default expiration will be used, which may be less than the max
-     *          permissible expiration (so specifying an expiration may extend the
-     *          code's lifetime over omitting an expiration, even though the API does
-     *          impose an upper limit on the maximum expiration that is permitted).
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\Monitoring\V3\GetNotificationChannelVerificationCodeResponse
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function getNotificationChannelVerificationCode($name, array $optionalArgs = [])
-    {
-        $request = new GetNotificationChannelVerificationCodeRequest();
-        $request->setName($name);
-        if (isset($optionalArgs['expireTime'])) {
-            $request->setExpireTime($optionalArgs['expireTime']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'GetNotificationChannelVerificationCode',
-            GetNotificationChannelVerificationCodeResponse::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Verifies a `NotificationChannel` by proving receipt of the code
-     * delivered to the channel as a result of calling
-     * `SendNotificationChannelVerificationCode`.
-     *
-     * Sample code:
-     * ```
-     * $notificationChannelServiceClient = new Google\Cloud\Monitoring\V3\NotificationChannelServiceClient();
-     * try {
-     *     $formattedName = $notificationChannelServiceClient->notificationChannelName('[PROJECT]', '[NOTIFICATION_CHANNEL]');
-     *     $code = '';
-     *     $response = $notificationChannelServiceClient->verifyNotificationChannel($formattedName, $code);
-     * } finally {
-     *     $notificationChannelServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. The notification channel to verify.
-     * @param string $code         Required. The verification code that was delivered to the channel as
-     *                             a result of invoking the `SendNotificationChannelVerificationCode` API
-     *                             method or that was retrieved from a verified channel via
-     *                             `GetNotificationChannelVerificationCode`. For example, one might have
-     *                             "G-123456" or "TKNZGhhd2EyN3I1MnRnMjRv" (in general, one is only
-     *                             guaranteed that the code is valid UTF-8; one should not
-     *                             make any assumptions regarding the structure or format of the code).
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\Monitoring\V3\NotificationChannel
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function verifyNotificationChannel($name, $code, array $optionalArgs = [])
-    {
-        $request = new VerifyNotificationChannelRequest();
-        $request->setName($name);
-        $request->setCode($code);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'VerifyNotificationChannel',
-            NotificationChannel::class,
             $optionalArgs,
             $request
         )->wait();

@@ -36,13 +36,8 @@ class MetricServiceSmokeTest extends GeneratedTest
      */
     public function listMonitoredResourceDescriptorsTest()
     {
-        $projectId = getenv('PROJECT_ID');
-        if (false === $projectId) {
-            $this->fail('Environment variable PROJECT_ID must be set for smoke test');
-        }
-
         $metricServiceClient = new MetricServiceClient();
-        $formattedName = $metricServiceClient->projectName($projectId);
-        $metricServiceClient->listMonitoredResourceDescriptors($formattedName);
+        $name = '';
+        $metricServiceClient->listMonitoredResourceDescriptors($name);
     }
 }
