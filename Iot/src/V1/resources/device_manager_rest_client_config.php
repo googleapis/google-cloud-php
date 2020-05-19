@@ -3,6 +3,66 @@
 return [
     'interfaces' => [
         'google.cloud.iot.v1.DeviceManager' => [
+            'DeleteDeviceRegistry' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/registries/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteDevice' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/registries/*/devices/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ModifyCloudToDeviceConfig' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/registries/*/devices/*}:modifyCloudToDeviceConfig',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/registries/*/groups/*/devices/*}:modifyCloudToDeviceConfig',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'SendCommandToDevice' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/registries/*/devices/*}:sendCommandToDevice',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/registries/*/groups/*/devices/*}:sendCommandToDevice',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'CreateDeviceRegistry' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/registries',
@@ -34,17 +94,6 @@ return [
                     'device_registry.name' => [
                         'getters' => [
                             'getDeviceRegistry',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteDeviceRegistry' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/registries/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
                             'getName',
                         ],
                     ],
@@ -110,17 +159,6 @@ return [
                     ],
                 ],
             ],
-            'DeleteDevice' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/registries/*/devices/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'ListDevices' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/registries/*}/devices',
@@ -134,25 +172,6 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'ModifyCloudToDeviceConfig' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/registries/*/devices/*}:modifyCloudToDeviceConfig',
-                'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/{name=projects/*/locations/*/registries/*/groups/*/devices/*}:modifyCloudToDeviceConfig',
-                        'body' => '*',
-                    ],
-                ],
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
                         ],
                     ],
                 ],
@@ -244,25 +263,6 @@ return [
                     'resource' => [
                         'getters' => [
                             'getResource',
-                        ],
-                    ],
-                ],
-            ],
-            'SendCommandToDevice' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/registries/*/devices/*}:sendCommandToDevice',
-                'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/{name=projects/*/locations/*/registries/*/groups/*/devices/*}:sendCommandToDevice',
-                        'body' => '*',
-                    ],
-                ],
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
                         ],
                     ],
                 ],
