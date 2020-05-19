@@ -48,7 +48,10 @@ use Google\Cloud\TextToSpeech\V1\VoiceSelectionParams;
  * ```
  * $textToSpeechClient = new TextToSpeechClient();
  * try {
- *     $response = $textToSpeechClient->listVoices();
+ *     $input = new SynthesisInput();
+ *     $voice = new VoiceSelectionParams();
+ *     $audioConfig = new AudioConfig();
+ *     $response = $textToSpeechClient->synthesizeSpeech($input, $voice, $audioConfig);
  * } finally {
  *     $textToSpeechClient->close();
  * }
@@ -165,6 +168,55 @@ class TextToSpeechGapicClient
     }
 
     /**
+     * Synthesizes speech synchronously: receive results after all text input
+     * has been processed.
+     *
+     * Sample code:
+     * ```
+     * $textToSpeechClient = new TextToSpeechClient();
+     * try {
+     *     $input = new SynthesisInput();
+     *     $voice = new VoiceSelectionParams();
+     *     $audioConfig = new AudioConfig();
+     *     $response = $textToSpeechClient->synthesizeSpeech($input, $voice, $audioConfig);
+     * } finally {
+     *     $textToSpeechClient->close();
+     * }
+     * ```
+     *
+     * @param SynthesisInput       $input        Required. The Synthesizer requires either plain text or SSML as input.
+     * @param VoiceSelectionParams $voice        Required. The desired voice of the synthesized audio.
+     * @param AudioConfig          $audioConfig  Required. The configuration of the synthesized audio.
+     * @param array                $optionalArgs {
+     *                                           Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\TextToSpeech\V1\SynthesizeSpeechResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function synthesizeSpeech($input, $voice, $audioConfig, array $optionalArgs = [])
+    {
+        $request = new SynthesizeSpeechRequest();
+        $request->setInput($input);
+        $request->setVoice($voice);
+        $request->setAudioConfig($audioConfig);
+
+        return $this->startCall(
+            'SynthesizeSpeech',
+            SynthesizeSpeechResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Returns a list of Voice supported for synthesis.
      *
      * Sample code:
@@ -210,55 +262,6 @@ class TextToSpeechGapicClient
         return $this->startCall(
             'ListVoices',
             ListVoicesResponse::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Synthesizes speech synchronously: receive results after all text input
-     * has been processed.
-     *
-     * Sample code:
-     * ```
-     * $textToSpeechClient = new TextToSpeechClient();
-     * try {
-     *     $input = new SynthesisInput();
-     *     $voice = new VoiceSelectionParams();
-     *     $audioConfig = new AudioConfig();
-     *     $response = $textToSpeechClient->synthesizeSpeech($input, $voice, $audioConfig);
-     * } finally {
-     *     $textToSpeechClient->close();
-     * }
-     * ```
-     *
-     * @param SynthesisInput       $input        Required. The Synthesizer requires either plain text or SSML as input.
-     * @param VoiceSelectionParams $voice        Required. The desired voice of the synthesized audio.
-     * @param AudioConfig          $audioConfig  Required. The configuration of the synthesized audio.
-     * @param array                $optionalArgs {
-     *                                           Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\TextToSpeech\V1\SynthesizeSpeechResponse
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function synthesizeSpeech($input, $voice, $audioConfig, array $optionalArgs = [])
-    {
-        $request = new SynthesizeSpeechRequest();
-        $request->setInput($input);
-        $request->setVoice($voice);
-        $request->setAudioConfig($audioConfig);
-
-        return $this->startCall(
-            'SynthesizeSpeech',
-            SynthesizeSpeechResponse::class,
             $optionalArgs,
             $request
         )->wait();
