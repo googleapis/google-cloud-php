@@ -58,23 +58,8 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $cloudSchedulerClient = new CloudSchedulerClient();
  * try {
- *     $formattedParent = $cloudSchedulerClient->locationName('[PROJECT]', '[LOCATION]');
- *     // Iterate over pages of elements
- *     $pagedResponse = $cloudSchedulerClient->listJobs($formattedParent);
- *     foreach ($pagedResponse->iteratePages() as $page) {
- *         foreach ($page as $element) {
- *             // doSomethingWith($element);
- *         }
- *     }
- *
- *
- *     // Alternatively:
- *
- *     // Iterate through all elements
- *     $pagedResponse = $cloudSchedulerClient->listJobs($formattedParent);
- *     foreach ($pagedResponse->iterateAllElements() as $element) {
- *         // doSomethingWith($element);
- *     }
+ *     $formattedName = $cloudSchedulerClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
+ *     $cloudSchedulerClient->deleteJob($formattedName);
  * } finally {
  *     $cloudSchedulerClient->close();
  * }
@@ -309,6 +294,168 @@ class CloudSchedulerGapicClient
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
+    }
+
+    /**
+     * Deletes a job.
+     *
+     * Sample code:
+     * ```
+     * $cloudSchedulerClient = new CloudSchedulerClient();
+     * try {
+     *     $formattedName = $cloudSchedulerClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
+     *     $cloudSchedulerClient->deleteJob($formattedName);
+     * } finally {
+     *     $cloudSchedulerClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The job name. For example:
+     *                             `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function deleteJob($name, array $optionalArgs = [])
+    {
+        $request = new DeleteJobRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteJob',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Pauses a job.
+     *
+     * If a job is paused then the system will stop executing the job
+     * until it is re-enabled via [ResumeJob][google.cloud.scheduler.v1beta1.CloudScheduler.ResumeJob]. The
+     * state of the job is stored in [state][google.cloud.scheduler.v1beta1.Job.state]; if paused it
+     * will be set to [Job.State.PAUSED][google.cloud.scheduler.v1beta1.Job.State.PAUSED]. A job must be in [Job.State.ENABLED][google.cloud.scheduler.v1beta1.Job.State.ENABLED]
+     * to be paused.
+     *
+     * Sample code:
+     * ```
+     * $cloudSchedulerClient = new CloudSchedulerClient();
+     * try {
+     *     $formattedName = $cloudSchedulerClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
+     *     $response = $cloudSchedulerClient->pauseJob($formattedName);
+     * } finally {
+     *     $cloudSchedulerClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The job name. For example:
+     *                             `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Scheduler\V1beta1\Job
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function pauseJob($name, array $optionalArgs = [])
+    {
+        $request = new PauseJobRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'PauseJob',
+            Job::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Resume a job.
+     *
+     * This method reenables a job after it has been [Job.State.PAUSED][google.cloud.scheduler.v1beta1.Job.State.PAUSED]. The
+     * state of a job is stored in [Job.state][google.cloud.scheduler.v1beta1.Job.state]; after calling this method it
+     * will be set to [Job.State.ENABLED][google.cloud.scheduler.v1beta1.Job.State.ENABLED]. A job must be in
+     * [Job.State.PAUSED][google.cloud.scheduler.v1beta1.Job.State.PAUSED] to be resumed.
+     *
+     * Sample code:
+     * ```
+     * $cloudSchedulerClient = new CloudSchedulerClient();
+     * try {
+     *     $formattedName = $cloudSchedulerClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
+     *     $response = $cloudSchedulerClient->resumeJob($formattedName);
+     * } finally {
+     *     $cloudSchedulerClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The job name. For example:
+     *                             `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Scheduler\V1beta1\Job
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function resumeJob($name, array $optionalArgs = [])
+    {
+        $request = new ResumeJobRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'ResumeJob',
+            Job::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -561,168 +708,6 @@ class CloudSchedulerGapicClient
 
         return $this->startCall(
             'UpdateJob',
-            Job::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Deletes a job.
-     *
-     * Sample code:
-     * ```
-     * $cloudSchedulerClient = new CloudSchedulerClient();
-     * try {
-     *     $formattedName = $cloudSchedulerClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-     *     $cloudSchedulerClient->deleteJob($formattedName);
-     * } finally {
-     *     $cloudSchedulerClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. The job name. For example:
-     *                             `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function deleteJob($name, array $optionalArgs = [])
-    {
-        $request = new DeleteJobRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteJob',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Pauses a job.
-     *
-     * If a job is paused then the system will stop executing the job
-     * until it is re-enabled via [ResumeJob][google.cloud.scheduler.v1beta1.CloudScheduler.ResumeJob]. The
-     * state of the job is stored in [state][google.cloud.scheduler.v1beta1.Job.state]; if paused it
-     * will be set to [Job.State.PAUSED][google.cloud.scheduler.v1beta1.Job.State.PAUSED]. A job must be in [Job.State.ENABLED][google.cloud.scheduler.v1beta1.Job.State.ENABLED]
-     * to be paused.
-     *
-     * Sample code:
-     * ```
-     * $cloudSchedulerClient = new CloudSchedulerClient();
-     * try {
-     *     $formattedName = $cloudSchedulerClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-     *     $response = $cloudSchedulerClient->pauseJob($formattedName);
-     * } finally {
-     *     $cloudSchedulerClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. The job name. For example:
-     *                             `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\Scheduler\V1beta1\Job
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function pauseJob($name, array $optionalArgs = [])
-    {
-        $request = new PauseJobRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'PauseJob',
-            Job::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Resume a job.
-     *
-     * This method reenables a job after it has been [Job.State.PAUSED][google.cloud.scheduler.v1beta1.Job.State.PAUSED]. The
-     * state of a job is stored in [Job.state][google.cloud.scheduler.v1beta1.Job.state]; after calling this method it
-     * will be set to [Job.State.ENABLED][google.cloud.scheduler.v1beta1.Job.State.ENABLED]. A job must be in
-     * [Job.State.PAUSED][google.cloud.scheduler.v1beta1.Job.State.PAUSED] to be resumed.
-     *
-     * Sample code:
-     * ```
-     * $cloudSchedulerClient = new CloudSchedulerClient();
-     * try {
-     *     $formattedName = $cloudSchedulerClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-     *     $response = $cloudSchedulerClient->resumeJob($formattedName);
-     * } finally {
-     *     $cloudSchedulerClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. The job name. For example:
-     *                             `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\Scheduler\V1beta1\Job
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function resumeJob($name, array $optionalArgs = [])
-    {
-        $request = new ResumeJobRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'ResumeJob',
             Job::class,
             $optionalArgs,
             $request
