@@ -75,17 +75,13 @@ class MultipartUploaderTest extends TestCase
             'http://www.example.com'
         );
 
-
-        $actual_promise = $uploader->uploadAsync();
-        $actual_promise->wait();
-        $this->assertInstanceOf(PromiseInterface::class, $actual_promise);
+        $actualPromise = $uploader->uploadAsync();
+        $actualPromise->wait();
+        $this->assertInstanceOf(PromiseInterface::class, $actualPromise);
         $this->assertEquals(
-            '{"canI":"kickIt"}',
-            (string) $actual_promise
-                ->wait()
-                ->getBody()
+            json_decode($successBody, true),
+            $actualPromise->wait()
         );
-        return false;
     }
     /**
      * @dataProvider streamSizes

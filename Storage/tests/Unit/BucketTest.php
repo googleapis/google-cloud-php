@@ -35,11 +35,11 @@ use Google\Cloud\Storage\Lifecycle;
 use Google\Cloud\Storage\Notification;
 use Google\Cloud\Storage\SigningHelper;
 use Google\Cloud\Storage\StorageObject;
-use PHPUnit\Framework\TestCase;
-use Prophecy\Argument;
 use GuzzleHttp\Promise;
 use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\Response;
+use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group storage
@@ -125,18 +125,27 @@ class BucketTest extends TestCase
 
     public function testUploadAsyncData()
     {
-        $actualRequest = null;
-        $response = new Response(200, ['Location' => 'http://www.mordor.com'], 'foo');
-
+        $name = 'Foo';
         $this->connection->insertObject(Argument::any())->willReturn($this->multipartUploader);
-        $this->multipartUploader->uploadAsync()->willReturn(Promise\promise_for($response));
+        $this->multipartUploader
+            ->uploadAsync()
+            ->willReturn(
+                Promise\promise_for([
+                    'name' => $name,
+                    'generation' => 'Bar'
+                ])
+            );
 
         $bucket = $this->getBucket();
-        $promise = $bucket->uploadAsync('some data to upload', ['name' => 'data.txt']);
+        $promise = $bucket->uploadAsync('some data to upload', ['name' => $name]);
 
         $this->assertInstanceOf(
             PromiseInterface::class,
             $promise
+        );
+        $this->assertInstanceOf(
+            StorageObject::class,
+            $promise->wait()
         );
     }
 

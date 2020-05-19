@@ -19,6 +19,7 @@ namespace Google\Cloud\Core\Upload;
 
 use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Core\Exception\ServiceException;
+use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\Request;
 
 /**
@@ -82,5 +83,22 @@ class StreamableUploader extends ResumableUploader
         $this->rangeStart += $writeSize;
 
         return json_decode($response->getBody(), true);
+    }
+
+    /**
+     * Currently only the MultiPartUploader supports async.
+     *
+     * Any calls to this will throw a generic Google Exception.
+     *
+     * @return PromiseInterface
+     * @throws GoogleException
+     * @experimental The experimental flag means that while we believe this method
+     *      or class is ready for use, it may change before release in backwards-
+     *      incompatible ways. Please use with caution, and test thoroughly when
+     *      upgrading.
+     */
+    public function uploadAsync()
+    {
+        throw new GoogleException('Currently only the MultiPartUploader supports async.');
     }
 }

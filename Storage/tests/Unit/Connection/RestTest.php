@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Storage\Tests\Unit\Connection;
 
-use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Core\RequestBuilder;
 use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Core\Upload\MultipartUploader;
@@ -205,59 +204,6 @@ class RestTest extends TestCase
     /**
      * @dataProvider insertObjectProvider
      */
-    public function testInsertObjectAsync(
-        array $options,
-        $expectedUploaderType,
-        $expectedContentType,
-        array $expectedMetadata,
-        array $metadataKeysWhichShouldNotBeSet = []
-    ) {
-        $actualRequest = null;
-        $response = new Response(200, ['Location' => 'http://www.mordor.com'], $this->successBody);
-
-        $this->requestWrapper->sendAsync(
-            Argument::type(RequestInterface::class),
-            Argument::type('array')
-        )->will(
-            function ($args) use (&$actualRequest, $response) {
-                return Promise\promise_for($response);
-            }
-        );
-
-        $rest = new Rest();
-        $rest->setRequestWrapper($this->requestWrapper->reveal());
-        $uploader = $rest->insertObject($options);
-
-        if ((isset($options['streamable']) && $options['streamable'] ) ||
-            (isset($options['resumable']) && $options['resumable'])
-        ) {
-            $this->expectException(\Google\Cloud\Core\Exception\GoogleException::class);
-            try {
-                $actual_promise = $uploader->uploadAsync();
-            } catch (Google\Cloud\Core\Exception\GoogleException $e) {
-                return true;
-            }
-            return false;
-        } else {
-            $actualPromise = $uploader->uploadAsync();
-
-            $actualResponse = $actualPromise->wait();
-            $actualResponseCode = (string) $actualResponse->getStatusCode();
-
-            $this->assertInstanceOf(PromiseInterface::class, $actualPromise);
-            $this->assertInstanceOf(Response::class, $actualPromise->wait());
-            $this->assertEquals(
-                200,
-                $actualResponseCode
-            );
-
-            $this->assertInstanceOf($expectedUploaderType, $uploader);
-        }
-    }
-
-    /**
-     * @dataProvider insertObjectProvider
-     */
     public function testInsertObject(
         array $options,
         $expectedUploaderType,
@@ -318,7 +264,6 @@ class RestTest extends TestCase
                 [
                     'data' => $tempFile,
                     'name' => 'file.txt',
-                    'resumable' => true,
                     'predefinedAcl' => 'private',
                     'metadata' => ['contentType' => 'text/plain'],
                     'validate' => 'md5'

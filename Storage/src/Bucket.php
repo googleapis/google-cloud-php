@@ -31,6 +31,7 @@ use Google\Cloud\PubSub\Topic;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\Connection\IamBucket;
 use Google\Cloud\Storage\SigningHelper;
+use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7;
 use Psr\Http\Message\StreamInterface;
 
@@ -304,42 +305,37 @@ class Bucket
     }
 
     /**
-     * Asynchronously upload an object as a string
+     * Asynchronously uploads an object.
      *
      * Example:
      * ```
-     * use GuzzleHttp\Promise;
-     *
-     * $promise = $object->uploadAsync('Lorem Ipsum', ['name' => 'keyToData']);
-     * $resp = $promise->wait();
-     * echo $resp->getResponseCode();
+     * $promise = $bucket->uploadAsync('Lorem Ipsum', ['name' => 'keyToData']);
+     * $object = $promise->wait();
      * ```
      *
      * ```
-     * // upload multiple objects to a bucket asynchronously.
-     * use GuzzleHttp\Promise;
-     *
+     * // Upload multiple objects to a bucket asynchronously.
      * $promises = [];
-     * $objects = ['key1'=>'Lorem', 'key2'=>'Ipsum', 'key3'=>'Gypsum']
+     * $objects = ['key1' => 'Lorem', 'key2' => 'Ipsum', 'key3' => 'Gypsum'];
      *
-     * foreach ($objects() as $k=>$v) {
-     *     $promises[] = $object->uploadAsync($v, ['name' => $k ])
-     *         ->then(function (StreamInterface $data) {
-     *             echo $data->getContents();
+     * foreach ($objects as $k => $v) {
+     *     $promises[] = $bucket->uploadAsync($v, ['name' => $k])
+     *         ->then(function (StorageObject $object) {
+     *             echo $object->name() . PHP_EOL;
+     *         }, function(\Exception $e) {
+     *             throw new Exception('An error has occurred in the matrix.', null, $e);
      *         });
      * }
      *
      * foreach ($promises as $promise) {
-     *     $res=$promise->wait();
-     *     if ($res->getResultCode() != 200) {
-     *          throw new Exception('An error has occurred in the matrix');
-     *     }
+     *     $promise->wait();
      * }
      * ```
      *
      * @see https://cloud.google.com/storage/docs/json_api/v1/objects/insert Objects insert API documentation.
      * @see https://cloud.google.com/storage/docs/encryption#customer-supplied Customer-supplied encryption keys.
      * @see https://github.com/google/php-crc32 crc32c PHP extension for hardware-accelerated validation hashes.
+     * @see https://github.com/guzzle/promises Learn more about Guzzle Promises
      *
      * @param string|resource|StreamInterface|null $data The data to be uploaded.
      * @param array $options [optional] {
@@ -347,8 +343,6 @@ class Bucket
      *
      *     @type string $name The name of the destination. Required when data is
      *           of type string or null.
-     *     @type bool $resumable Indicates whether or not the upload will be
-     *           performed in a resumable fashion.
      *     @type bool|string $validate Indicates whether or not validation will
      *           be applied using md5 or crc32c hashing functionality. If
      *           enabled, and the calculated hash does not match that of the
@@ -359,20 +353,7 @@ class Bucket
      *           force a hash method regardless of performance implications. In
      *           PHP versions earlier than 7.4, performance will be very
      *           adversely impacted by using crc32c unless you install the
-     *           `crc32c` PHP extension. **Defaults to** `true`.
-     *     @type int $chunkSize If provided the upload will be done in chunks.
-     *           The size must be in multiples of 262144 bytes. With chunking
-     *           you have increased reliability at the risk of higher overhead.
-     *           It is recommended to not use chunking.
-     *     @type callable $uploadProgressCallback If provided together with
-     *           $resumable == true the given callable function/method will be
-     *           called after each successfully uploaded chunk. The callable
-     *           function/method will receive the number of uploaded bytes
-     *           after each uploaded chunk as a parameter to this callable.
-     *           It's useful if you want to create a progress bar when using
-     *           resumable upload type together with $chunkSize parameter.
-     *           If $chunkSize is not set the callable function/method will be
-     *           called only once after the successful file upload.
+     *           `crc32c` PHP extension. **Defaults to** `true`.ß
      *     @type string $predefinedAcl Predefined ACL to apply to the object.
      *           Acceptable values include, `"authenticatedRead"`,
      *           `"bucketOwnerFullControl"`, `"bucketOwnerRead"`, `"private"`,
@@ -391,8 +372,12 @@ class Bucket
      *           for best performance it is recommended to pass in a cached
      *           version of the already calculated SHA.
      * }
-     * @return \PromiseInterface
+     * @return PromiseInterface<StorageObject>
      * @throws \InvalidArgumentException
+     * @experimental The experimental flag means that while we believe this method
+     *      or class is ready for use, it may change before release in backwards-
+     *      incompatible ways. Please use with caution, and test thoroughly when
+     *      upgrading.
      */
     public function uploadAsync($data, array $options = [])
     {
@@ -407,10 +392,24 @@ class Bucket
             $this->formatEncryptionHeaders($options) +
             $this->identity +
             [
-               'data' => $data
+               'data' => $data,
+               'resumable' => false
             ]
         )->uploadAsync();
-        return $promise;
+
+        return $promise->then(
+            function(array $response) use ($encryptionKey, $encryptionKeySHA256) {
+                return new StorageObject(
+                    $this->connection,
+                    $response['name'],
+                    $this->identity['bucket'],
+                    $response['generation'],
+                    $response,
+                    $encryptionKey,
+                    $encryptionKeySHA256
+                );
+            }
+        );
     }
 
     /**

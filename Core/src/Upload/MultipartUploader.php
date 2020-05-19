@@ -18,8 +18,11 @@
 namespace Google\Cloud\Core\Upload;
 
 use Google\Cloud\Core\JsonTrait;
+use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Request;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * Multipart upload implementation.
@@ -35,36 +38,9 @@ class MultipartUploader extends AbstractUploader
      */
     public function upload()
     {
-        $multipartStream = new Psr7\MultipartStream([
-            [
-                'name' => 'metadata',
-                'headers' => ['Content-Type' => 'application/json; charset=UTF-8'],
-                'contents' => $this->jsonEncode($this->metadata)
-            ],
-            [
-                'name' => 'data',
-                'headers' => ['Content-Type' => $this->contentType],
-                'contents' => $this->data
-            ]
-        ], 'boundary');
-
-        $headers = [
-            'Content-Type' => 'multipart/related; boundary=boundary',
-        ];
-
-        $size = $multipartStream->getSize();
-        if ($size !== null) {
-            $headers['Content-Length'] = $size;
-        }
-
         return $this->jsonDecode(
             $this->requestWrapper->send(
-                new Request(
-                    'POST',
-                    $this->uri,
-                    $headers,
-                    $multipartStream
-                ),
+                $this->prepareRequest(),
                 $this->requestOptions
             )->getBody(),
             true
@@ -72,11 +48,33 @@ class MultipartUploader extends AbstractUploader
     }
 
     /**
-     * Triggers the upload process.
+     * Triggers the upload process asynchronously.
      *
-     * @return PromiseInterface
+     * @return PromiseInterface<array>
+     * @experimental The experimental flag means that while we believe this method
+     *      or class is ready for use, it may change before release in backwards-
+     *      incompatible ways. Please use with caution, and test thoroughly when
+     *      upgrading.
      */
     public function uploadAsync()
+    {
+        return $this->requestWrapper->sendAsync(
+            $this->prepareRequest(),
+            $this->requestOptions
+        )->then(function(ResponseInterface $response) {
+            return $this->jsonDecode(
+                $response->getBody(),
+                true
+            );
+        });
+    }
+
+    /**
+     * Prepares a multipart upload request.
+     *
+     * @return RequestInterface
+     */
+    private function prepareRequest()
     {
         $multipartStream = new Psr7\MultipartStream([
             [
@@ -100,14 +98,11 @@ class MultipartUploader extends AbstractUploader
             $headers['Content-Length'] = $size;
         }
 
-        return $this->requestWrapper->sendAsync(
-            new Request(
-                'POST',
-                $this->uri,
-                $headers,
-                $multipartStream
-            ),
-            $this->requestOptions
+        return new Request(
+            'POST',
+            $this->uri,
+            $headers,
+            $multipartStream
         );
     }
 }
