@@ -25,28 +25,6 @@ return [
                     ],
                 ],
             ],
-            'GetLoginProfile' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=users/*}/loginProfile',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'GetSshPublicKey' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=users/*/sshPublicKeys/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'ImportSshPublicKey' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=users/*}:importSshPublicKey',
@@ -63,6 +41,28 @@ return [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{name=users/*/sshPublicKeys/*}',
                 'body' => 'ssh_public_key',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetLoginProfile' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=users/*}/loginProfile',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetSshPublicKey' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=users/*/sshPublicKeys/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
