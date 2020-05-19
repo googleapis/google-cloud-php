@@ -3,6 +3,17 @@
 return [
     'interfaces' => [
         'google.cloud.websecurityscanner.v1beta.WebSecurityScanner' => [
+            'DeleteScanConfig' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1beta/{name=projects/*/scanConfigs/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'CreateScanConfig' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1beta/{parent=projects/*}/scanConfigs',
@@ -11,17 +22,6 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteScanConfig' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1beta/{name=projects/*/scanConfigs/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
                         ],
                     ],
                 ],
