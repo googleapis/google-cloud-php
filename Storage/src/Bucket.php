@@ -307,6 +307,8 @@ class Bucket
     /**
      * Asynchronously uploads an object.
      *
+     * Please note this method does not support resumable or streaming uploads.
+     *
      * Example:
      * ```
      * $promise = $bucket->uploadAsync('Lorem Ipsum', ['name' => 'keyToData']);
