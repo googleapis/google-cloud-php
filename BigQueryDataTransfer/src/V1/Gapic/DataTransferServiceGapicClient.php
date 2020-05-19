@@ -75,8 +75,8 @@ use Google\Protobuf\Timestamp;
  * ```
  * $dataTransferServiceClient = new DataTransferServiceClient();
  * try {
- *     $formattedName = $dataTransferServiceClient->projectDataSourceName('[PROJECT]', '[DATA_SOURCE]');
- *     $response = $dataTransferServiceClient->getDataSource($formattedName);
+ *     $formattedName = $dataTransferServiceClient->projectTransferConfigName('[PROJECT]', '[TRANSFER_CONFIG]');
+ *     $dataTransferServiceClient->deleteTransferConfig($formattedName);
  * } finally {
  *     $dataTransferServiceClient->close();
  * }
@@ -715,6 +715,161 @@ class DataTransferServiceGapicClient
     }
 
     /**
+     * Deletes a data transfer configuration,
+     * including any associated transfer runs and logs.
+     *
+     * Sample code:
+     * ```
+     * $dataTransferServiceClient = new DataTransferServiceClient();
+     * try {
+     *     $formattedName = $dataTransferServiceClient->projectTransferConfigName('[PROJECT]', '[TRANSFER_CONFIG]');
+     *     $dataTransferServiceClient->deleteTransferConfig($formattedName);
+     * } finally {
+     *     $dataTransferServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The field will contain name of the resource requested, for example:
+     *                             `projects/{project_id}/transferConfigs/{config_id}` or
+     *                             `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteTransferConfig($name, array $optionalArgs = [])
+    {
+        $request = new DeleteTransferConfigRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteTransferConfig',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Deletes the specified transfer run.
+     *
+     * Sample code:
+     * ```
+     * $dataTransferServiceClient = new DataTransferServiceClient();
+     * try {
+     *     $formattedName = $dataTransferServiceClient->projectTransferConfigRunName('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
+     *     $dataTransferServiceClient->deleteTransferRun($formattedName);
+     * } finally {
+     *     $dataTransferServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The field will contain name of the resource requested, for example:
+     *                             `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or
+     *                             `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteTransferRun($name, array $optionalArgs = [])
+    {
+        $request = new DeleteTransferRunRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteTransferRun',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Returns true if valid credentials exist for the given data source and
+     * requesting user.
+     * Some data sources doesn't support service account, so we need to talk to
+     * them on behalf of the end user. This API just checks whether we have OAuth
+     * token for the particular user, which is a pre-requisite before user can
+     * create a transfer config.
+     *
+     * Sample code:
+     * ```
+     * $dataTransferServiceClient = new DataTransferServiceClient();
+     * try {
+     *     $formattedName = $dataTransferServiceClient->projectDataSourceName('[PROJECT]', '[DATA_SOURCE]');
+     *     $response = $dataTransferServiceClient->checkValidCreds($formattedName);
+     * } finally {
+     *     $dataTransferServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The data source in the form:
+     *                             `projects/{project_id}/dataSources/{data_source_id}` or
+     *                             `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\BigQuery\DataTransfer\V1\CheckValidCredsResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function checkValidCreds($name, array $optionalArgs = [])
+    {
+        $request = new CheckValidCredsRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'CheckValidCreds',
+            CheckValidCredsResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Retrieves a supported data source and returns its settings,
      * which can be used for UI rendering.
      *
@@ -1028,56 +1183,6 @@ class DataTransferServiceGapicClient
         return $this->startCall(
             'UpdateTransferConfig',
             TransferConfig::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Deletes a data transfer configuration,
-     * including any associated transfer runs and logs.
-     *
-     * Sample code:
-     * ```
-     * $dataTransferServiceClient = new DataTransferServiceClient();
-     * try {
-     *     $formattedName = $dataTransferServiceClient->projectTransferConfigName('[PROJECT]', '[TRANSFER_CONFIG]');
-     *     $dataTransferServiceClient->deleteTransferConfig($formattedName);
-     * } finally {
-     *     $dataTransferServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. The field will contain name of the resource requested, for example:
-     *                             `projects/{project_id}/transferConfigs/{config_id}` or
-     *                             `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function deleteTransferConfig($name, array $optionalArgs = [])
-    {
-        $request = new DeleteTransferConfigRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteTransferConfig',
-            GPBEmpty::class,
             $optionalArgs,
             $request
         )->wait();
@@ -1402,55 +1507,6 @@ class DataTransferServiceGapicClient
     }
 
     /**
-     * Deletes the specified transfer run.
-     *
-     * Sample code:
-     * ```
-     * $dataTransferServiceClient = new DataTransferServiceClient();
-     * try {
-     *     $formattedName = $dataTransferServiceClient->projectTransferConfigRunName('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
-     *     $dataTransferServiceClient->deleteTransferRun($formattedName);
-     * } finally {
-     *     $dataTransferServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. The field will contain name of the resource requested, for example:
-     *                             `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or
-     *                             `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function deleteTransferRun($name, array $optionalArgs = [])
-    {
-        $request = new DeleteTransferRunRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteTransferRun',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
      * Returns information about running and completed jobs.
      *
      * Sample code:
@@ -1630,61 +1686,5 @@ class DataTransferServiceGapicClient
             ListTransferLogsResponse::class,
             $request
         );
-    }
-
-    /**
-     * Returns true if valid credentials exist for the given data source and
-     * requesting user.
-     * Some data sources doesn't support service account, so we need to talk to
-     * them on behalf of the end user. This API just checks whether we have OAuth
-     * token for the particular user, which is a pre-requisite before user can
-     * create a transfer config.
-     *
-     * Sample code:
-     * ```
-     * $dataTransferServiceClient = new DataTransferServiceClient();
-     * try {
-     *     $formattedName = $dataTransferServiceClient->projectDataSourceName('[PROJECT]', '[DATA_SOURCE]');
-     *     $response = $dataTransferServiceClient->checkValidCreds($formattedName);
-     * } finally {
-     *     $dataTransferServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. The data source in the form:
-     *                             `projects/{project_id}/dataSources/{data_source_id}` or
-     *                             `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\BigQuery\DataTransfer\V1\CheckValidCredsResponse
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function checkValidCreds($name, array $optionalArgs = [])
-    {
-        $request = new CheckValidCredsRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'CheckValidCreds',
-            CheckValidCredsResponse::class,
-            $optionalArgs,
-            $request
-        )->wait();
     }
 }
