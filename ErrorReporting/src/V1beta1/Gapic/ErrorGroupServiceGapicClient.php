@@ -48,8 +48,8 @@ use Google\Cloud\ErrorReporting\V1beta1\UpdateGroupRequest;
  * ```
  * $errorGroupServiceClient = new ErrorGroupServiceClient();
  * try {
- *     $formattedGroupName = $errorGroupServiceClient->errorGroupName('[PROJECT]', '[GROUP]');
- *     $response = $errorGroupServiceClient->getGroup($formattedGroupName);
+ *     $group = new ErrorGroup();
+ *     $response = $errorGroupServiceClient->updateGroup($group);
  * } finally {
  *     $errorGroupServiceClient->close();
  * }
@@ -255,6 +255,57 @@ class ErrorGroupServiceGapicClient
     }
 
     /**
+     * Replace the data for the specified group.
+     * Fails if the group does not exist.
+     *
+     * Sample code:
+     * ```
+     * $errorGroupServiceClient = new ErrorGroupServiceClient();
+     * try {
+     *     $group = new ErrorGroup();
+     *     $response = $errorGroupServiceClient->updateGroup($group);
+     * } finally {
+     *     $errorGroupServiceClient->close();
+     * }
+     * ```
+     *
+     * @param ErrorGroup $group        Required. The group which replaces the resource on the server.
+     * @param array      $optionalArgs {
+     *                                 Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\ErrorReporting\V1beta1\ErrorGroup
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function updateGroup($group, array $optionalArgs = [])
+    {
+        $request = new UpdateGroupRequest();
+        $request->setGroup($group);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'group.name' => $request->getGroup()->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'UpdateGroup',
+            ErrorGroup::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Get the specified group.
      *
      * Sample code:
@@ -305,57 +356,6 @@ class ErrorGroupServiceGapicClient
 
         return $this->startCall(
             'GetGroup',
-            ErrorGroup::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Replace the data for the specified group.
-     * Fails if the group does not exist.
-     *
-     * Sample code:
-     * ```
-     * $errorGroupServiceClient = new ErrorGroupServiceClient();
-     * try {
-     *     $group = new ErrorGroup();
-     *     $response = $errorGroupServiceClient->updateGroup($group);
-     * } finally {
-     *     $errorGroupServiceClient->close();
-     * }
-     * ```
-     *
-     * @param ErrorGroup $group        Required. The group which replaces the resource on the server.
-     * @param array      $optionalArgs {
-     *                                 Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\ErrorReporting\V1beta1\ErrorGroup
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function updateGroup($group, array $optionalArgs = [])
-    {
-        $request = new UpdateGroupRequest();
-        $request->setGroup($group);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'group.name' => $request->getGroup()->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'UpdateGroup',
             ErrorGroup::class,
             $optionalArgs,
             $request
