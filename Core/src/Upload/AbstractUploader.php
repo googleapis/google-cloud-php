@@ -19,6 +19,7 @@ namespace Google\Cloud\Core\Upload;
 
 use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Core\UriTrait;
+use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7;
 use Psr\Http\Message\StreamInterface;
 
@@ -117,7 +118,7 @@ abstract class AbstractUploader
     abstract public function upload();
 
     /**
-     * @return Promise
+     * @return PromiseInterface
      */
     abstract public function uploadAsync();
 }
