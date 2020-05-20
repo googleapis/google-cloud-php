@@ -400,7 +400,7 @@ class Bucket
         )->uploadAsync();
 
         return $promise->then(
-            function(array $response) use ($encryptionKey, $encryptionKeySHA256) {
+            function (array $response) use ($encryptionKey, $encryptionKeySHA256) {
                 return new StorageObject(
                     $this->connection,
                     $response['name'],

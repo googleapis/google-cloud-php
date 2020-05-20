@@ -61,7 +61,7 @@ class MultipartUploader extends AbstractUploader
         return $this->requestWrapper->sendAsync(
             $this->prepareRequest(),
             $this->requestOptions
-        )->then(function(ResponseInterface $response) {
+        )->then(function (ResponseInterface $response) {
             return $this->jsonDecode(
                 $response->getBody(),
                 true
