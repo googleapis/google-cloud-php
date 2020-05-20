@@ -37,6 +37,7 @@ use Google\Cloud\Storage\Notification;
 use Google\Cloud\Storage\ObjectIterator;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Storage\StorageObject;
+use GuzzleHttp\Promise;
 use Prophecy\Argument;
 
 /**
@@ -233,6 +234,77 @@ class BucketTest extends SnippetTestCase
 
         $res = $snippet->invoke('object');
         $this->assertInstanceOf(StorageObject::class, $res->returnVal());
+    }
+
+    public function testUploadAsync()
+    {
+        $snippet = $this->snippetFromMethod(Bucket::class, 'uploadAsync');
+        $snippet->addLocal('bucket', $this->bucket);
+
+        $uploader = $this->prophesize(MultipartUploader::class);
+        $uploader->uploadAsync()
+            ->shouldBeCalled()
+            ->willReturn(Promise\promise_for([
+                'name' => 'Foo',
+                'generation' => 'Bar'
+            ]));
+
+        $this->connection->insertObject([
+                'bucket' => self::BUCKET,
+                'userProject' => null,
+                'data' => 'Lorem Ipsum',
+                'name' => 'keyToData',
+                'resumable' => false
+            ])
+            ->shouldBeCalled()
+            ->willReturn($uploader->reveal());
+
+        $this->bucket->___setProperty('connection', $this->connection->reveal());
+
+        $res = $snippet->invoke('object');
+        $this->assertInstanceOf(StorageObject::class, $res->returnVal());
+    }
+
+    public function testUploadAsyncWithMultipleObjects()
+    {
+        $snippet = $this->snippetFromMethod(Bucket::class, 'uploadAsync', 1);
+        $snippet->addLocal('bucket', $this->bucket);
+        $snippet->addUse(StorageObject::class);
+
+        $uploader = $this->prophesize(MultipartUploader::class);
+        $uploader->uploadAsync()
+            ->shouldBeCalledTimes(3)
+            ->willReturn(Promise\promise_for([
+                'name' => 'Foo',
+                'generation' => 'Bar'
+            ]));
+        $insertData = [
+            'bucket' => self::BUCKET,
+            'userProject' => null,
+            'resumable' => false
+        ];
+        $this->connection->insertObject(
+            $insertData + ['name' => 'key1', 'data' => 'Lorem']
+        )
+            ->shouldBeCalled()
+            ->willReturn($uploader->reveal());
+        $this->connection->insertObject(
+            $insertData + ['name' => 'key2', 'data' => 'Ipsum']
+        )
+            ->shouldBeCalled()
+            ->willReturn($uploader->reveal());
+        $this->connection->insertObject(
+            $insertData + ['name' => 'key3', 'data' => 'Gypsum']
+        )
+            ->shouldBeCalled()
+            ->willReturn($uploader->reveal());
+
+        $this->bucket->___setProperty('connection', $this->connection->reveal());
+
+        $res = $snippet->invoke();
+        $this->assertEquals('Foo', explode("\n", $res->output())[0]);
+        $this->assertEquals('Foo', explode("\n", $res->output())[1]);
+        $this->assertEquals('Foo', explode("\n", $res->output())[2]);
     }
 
     public function testGetResumableUploader()

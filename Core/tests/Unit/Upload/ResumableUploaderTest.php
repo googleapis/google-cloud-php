@@ -175,6 +175,21 @@ class ResumableUploaderTest extends TestCase
     /**
      * @expectedException Google\Cloud\Core\Exception\GoogleException
      */
+    public function testThrowsExceptionWhenAttemptsAsyncUpload()
+    {
+        $stream = $this->prophesize(StreamInterface::class);
+        $uploader = new ResumableUploader(
+            $this->requestWrapper->reveal(),
+            $stream->reveal(),
+            'http://www.example.com'
+        );
+
+        $uploader->uploadAsync();
+    }
+
+    /**
+     * @expectedException Google\Cloud\Core\Exception\GoogleException
+     */
     public function testThrowsExceptionWhenResumingNonSeekableStream()
     {
         $stream = $this->prophesize(StreamInterface::class);

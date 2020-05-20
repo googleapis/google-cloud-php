@@ -24,6 +24,7 @@ use GuzzleHttp\Psr7\BufferStream;
 use GuzzleHttp\Psr7\Response;
 use Prophecy\Argument;
 use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\StreamInterface;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -169,5 +170,20 @@ class StreamableUploaderTest extends TestCase
         );
         $this->stream->write('0123456789');
         $uploader->upload();
+    }
+
+    /**
+     * @expectedException Google\Cloud\Core\Exception\GoogleException
+     */
+    public function testThrowsExceptionWhenAttemptsAsyncUpload()
+    {
+        $stream = $this->prophesize(StreamInterface::class);
+        $uploader = new StreamableUploader(
+            $this->requestWrapper->reveal(),
+            $stream->reveal(),
+            'http://www.example.com'
+        );
+
+        $uploader->uploadAsync();
     }
 }
