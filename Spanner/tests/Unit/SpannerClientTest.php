@@ -34,6 +34,7 @@ use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\InstanceConfiguration;
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
+use Google\Cloud\Spanner\Numeric;
 use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
@@ -301,6 +302,12 @@ class SpannerClientTest extends TestCase
     {
         $ts = $this->client->timestamp(new \DateTime);
         $this->assertInstanceOf(Timestamp::class, $ts);
+    }
+
+    public function testNumeric()
+    {
+        $n = $this->client->numeric('12345.123456789');
+        $this->assertInstanceOf(Numeric::class, $n);
     }
 
     public function testInt64()
