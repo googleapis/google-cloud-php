@@ -64,10 +64,36 @@ use Google\LongRunning\Operation;
  * ```
  * $translationServiceClient = new TranslationServiceClient();
  * try {
- *     $contents = [];
- *     $targetLanguageCode = '';
- *     $formattedParent = $translationServiceClient->locationName('[PROJECT]', '[LOCATION]');
- *     $response = $translationServiceClient->translateText($contents, $targetLanguageCode, $formattedParent);
+ *     $formattedName = $translationServiceClient->glossaryName('[PROJECT]', '[LOCATION]', '[GLOSSARY]');
+ *     $operationResponse = $translationServiceClient->deleteGlossary($formattedName);
+ *     $operationResponse->pollUntilComplete();
+ *     if ($operationResponse->operationSucceeded()) {
+ *         $result = $operationResponse->getResult();
+ *         // doSomethingWith($result)
+ *     } else {
+ *         $error = $operationResponse->getError();
+ *         // handleError($error)
+ *     }
+ *
+ *
+ *     // Alternatively:
+ *
+ *     // start the operation, keep the operation name, and resume later
+ *     $operationResponse = $translationServiceClient->deleteGlossary($formattedName);
+ *     $operationName = $operationResponse->getName();
+ *     // ... do other work
+ *     $newOperationResponse = $translationServiceClient->resumeOperation($operationName, 'deleteGlossary');
+ *     while (!$newOperationResponse->isDone()) {
+ *         // ... do other work
+ *         $newOperationResponse->reload();
+ *     }
+ *     if ($newOperationResponse->operationSucceeded()) {
+ *       $result = $newOperationResponse->getResult();
+ *       // doSomethingWith($result)
+ *     } else {
+ *       $error = $newOperationResponse->getError();
+ *       // handleError($error)
+ *     }
  * } finally {
  *     $translationServiceClient->close();
  * }
@@ -341,6 +367,86 @@ class TranslationServiceGapicClient
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
         $this->operationsClient = $this->createOperationsClient($clientOptions);
+    }
+
+    /**
+     * Deletes a glossary, or cancels glossary construction
+     * if the glossary isn't created yet.
+     * Returns NOT_FOUND, if the glossary doesn't exist.
+     *
+     * Sample code:
+     * ```
+     * $translationServiceClient = new TranslationServiceClient();
+     * try {
+     *     $formattedName = $translationServiceClient->glossaryName('[PROJECT]', '[LOCATION]', '[GLOSSARY]');
+     *     $operationResponse = $translationServiceClient->deleteGlossary($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $translationServiceClient->deleteGlossary($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $translationServiceClient->resumeOperation($operationName, 'deleteGlossary');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       $result = $newOperationResponse->getResult();
+     *       // doSomethingWith($result)
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $translationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the glossary to delete.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function deleteGlossary($name, array $optionalArgs = [])
+    {
+        $request = new DeleteGlossaryRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startOperationsCall(
+            'DeleteGlossary',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
     }
 
     /**
@@ -1003,86 +1109,6 @@ class TranslationServiceGapicClient
             Glossary::class,
             $optionalArgs,
             $request
-        )->wait();
-    }
-
-    /**
-     * Deletes a glossary, or cancels glossary construction
-     * if the glossary isn't created yet.
-     * Returns NOT_FOUND, if the glossary doesn't exist.
-     *
-     * Sample code:
-     * ```
-     * $translationServiceClient = new TranslationServiceClient();
-     * try {
-     *     $formattedName = $translationServiceClient->glossaryName('[PROJECT]', '[LOCATION]', '[GLOSSARY]');
-     *     $operationResponse = $translationServiceClient->deleteGlossary($formattedName);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         $result = $operationResponse->getResult();
-     *         // doSomethingWith($result)
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *
-     *
-     *     // Alternatively:
-     *
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $translationServiceClient->deleteGlossary($formattedName);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $translationServiceClient->resumeOperation($operationName, 'deleteGlossary');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *       $result = $newOperationResponse->getResult();
-     *       // doSomethingWith($result)
-     *     } else {
-     *       $error = $newOperationResponse->getError();
-     *       // handleError($error)
-     *     }
-     * } finally {
-     *     $translationServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. The name of the glossary to delete.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\ApiCore\OperationResponse
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function deleteGlossary($name, array $optionalArgs = [])
-    {
-        $request = new DeleteGlossaryRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startOperationsCall(
-            'DeleteGlossary',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
         )->wait();
     }
 }

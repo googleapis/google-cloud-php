@@ -1,19 +1,25 @@
 {
-  "updateTime": "2019-10-03T16:02:56.263550Z",
   "sources": [
     {
-      "generator": {
-        "name": "artman",
-        "version": "0.37.1",
-        "dockerImage": "googleapis/artman@sha256:6068f67900a3f0bdece596b97bda8fc70406ca0e137a941f4c81d3217c994a80"
+      "git": {
+        "name": ".",
+        "remote": "https://github.com/googleapis/google-cloud-php.git",
+        "sha": "c325a0f82de2a38d7bc92c5cf9b5c39c336cd759"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "c372c656aef153931708c80ac1a8186060841cdf",
-        "internalRef": "272521892"
+        "sha": "5a90d467aa65e7f038f87585e8fbb45d74475e7c",
+        "internalRef": "312088359"
+      }
+    },
+    {
+      "git": {
+        "name": "synthtool",
+        "remote": "https://github.com/googleapis/synthtool.git",
+        "sha": "7136daa5687f2a5bdcbba2cb25457f56fdf85d59"
       }
     }
   ],
@@ -24,8 +30,7 @@
         "apiName": "translate",
         "apiVersion": "v3",
         "language": "php",
-        "generator": "gapic",
-        "config": "google/cloud/translate/artman_translate_v3.yaml"
+        "generator": "bazel"
       }
     }
   ]
