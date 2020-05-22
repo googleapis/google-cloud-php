@@ -61,9 +61,12 @@ use Google\Rpc\Status;
  * ```
  * $traceServiceClient = new TraceServiceClient();
  * try {
- *     $formattedName = $traceServiceClient->projectName('[PROJECT]');
- *     $spans = [];
- *     $traceServiceClient->batchWriteSpans($formattedName, $spans);
+ *     $formattedName = $traceServiceClient->spanName('[PROJECT]', '[TRACE]', '[SPAN]');
+ *     $spanId = '';
+ *     $displayName = new TruncatableString();
+ *     $startTime = new Timestamp();
+ *     $endTime = new Timestamp();
+ *     $response = $traceServiceClient->createSpan($formattedName, $spanId, $displayName, $startTime, $endTime);
  * } finally {
  *     $traceServiceClient->close();
  * }
@@ -300,60 +303,6 @@ class TraceServiceGapicClient
     }
 
     /**
-     * Sends new spans to new or existing traces. You cannot update
-     * existing spans.
-     *
-     * Sample code:
-     * ```
-     * $traceServiceClient = new TraceServiceClient();
-     * try {
-     *     $formattedName = $traceServiceClient->projectName('[PROJECT]');
-     *     $spans = [];
-     *     $traceServiceClient->batchWriteSpans($formattedName, $spans);
-     * } finally {
-     *     $traceServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. The name of the project where the spans belong. The format is
-     *                             `projects/[PROJECT_ID]`.
-     * @param Span[] $spans        Required. A list of new spans. The span names must not match existing
-     *                             spans, or the results are undefined.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function batchWriteSpans($name, $spans, array $optionalArgs = [])
-    {
-        $request = new BatchWriteSpansRequest();
-        $request->setName($name);
-        $request->setSpans($spans);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'BatchWriteSpans',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
      * Creates a new span.
      *
      * Sample code:
@@ -475,6 +424,60 @@ class TraceServiceGapicClient
         return $this->startCall(
             'CreateSpan',
             Span::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Sends new spans to new or existing traces. You cannot update
+     * existing spans.
+     *
+     * Sample code:
+     * ```
+     * $traceServiceClient = new TraceServiceClient();
+     * try {
+     *     $formattedName = $traceServiceClient->projectName('[PROJECT]');
+     *     $spans = [];
+     *     $traceServiceClient->batchWriteSpans($formattedName, $spans);
+     * } finally {
+     *     $traceServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the project where the spans belong. The format is
+     *                             `projects/[PROJECT_ID]`.
+     * @param Span[] $spans        Required. A list of new spans. The span names must not match existing
+     *                             spans, or the results are undefined.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function batchWriteSpans($name, $spans, array $optionalArgs = [])
+    {
+        $request = new BatchWriteSpansRequest();
+        $request->setName($name);
+        $request->setSpans($spans);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'BatchWriteSpans',
+            GPBEmpty::class,
             $optionalArgs,
             $request
         )->wait();
