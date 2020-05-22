@@ -78,9 +78,8 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $deviceManagerClient = new DeviceManagerClient();
  * try {
- *     $formattedParent = $deviceManagerClient->locationName('[PROJECT]', '[LOCATION]');
- *     $deviceRegistry = new DeviceRegistry();
- *     $response = $deviceManagerClient->createDeviceRegistry($formattedParent, $deviceRegistry);
+ *     $formattedName = $deviceManagerClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
+ *     $deviceManagerClient->deleteDeviceRegistry($formattedName);
  * } finally {
  *     $deviceManagerClient->close();
  * }
@@ -346,6 +345,243 @@ class DeviceManagerGapicClient
     }
 
     /**
+     * Deletes a device registry configuration.
+     *
+     * Sample code:
+     * ```
+     * $deviceManagerClient = new DeviceManagerClient();
+     * try {
+     *     $formattedName = $deviceManagerClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
+     *     $deviceManagerClient->deleteDeviceRegistry($formattedName);
+     * } finally {
+     *     $deviceManagerClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the device registry. For example,
+     *                             `projects/example-project/locations/us-central1/registries/my-registry`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteDeviceRegistry($name, array $optionalArgs = [])
+    {
+        $request = new DeleteDeviceRegistryRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteDeviceRegistry',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Deletes a device.
+     *
+     * Sample code:
+     * ```
+     * $deviceManagerClient = new DeviceManagerClient();
+     * try {
+     *     $formattedName = $deviceManagerClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
+     *     $deviceManagerClient->deleteDevice($formattedName);
+     * } finally {
+     *     $deviceManagerClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the device. For example,
+     *                             `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
+     *                             `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteDevice($name, array $optionalArgs = [])
+    {
+        $request = new DeleteDeviceRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteDevice',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Modifies the configuration for the device, which is eventually sent from
+     * the Cloud IoT Core servers. Returns the modified configuration version and
+     * its metadata.
+     *
+     * Sample code:
+     * ```
+     * $deviceManagerClient = new DeviceManagerClient();
+     * try {
+     *     $formattedName = $deviceManagerClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
+     *     $binaryData = '';
+     *     $response = $deviceManagerClient->modifyCloudToDeviceConfig($formattedName, $binaryData);
+     * } finally {
+     *     $deviceManagerClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the device. For example,
+     *                             `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
+     *                             `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     * @param string $binaryData   Required. The configuration data for the device.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type int $versionToUpdate
+     *          The version number to update. If this value is zero, it will not check the
+     *          version number of the server and will always update the current version;
+     *          otherwise, this update will fail if the version number found on the server
+     *          does not match this version number. This is used to support multiple
+     *          simultaneous updates without losing data.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iot\V1\DeviceConfig
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function modifyCloudToDeviceConfig($name, $binaryData, array $optionalArgs = [])
+    {
+        $request = new ModifyCloudToDeviceConfigRequest();
+        $request->setName($name);
+        $request->setBinaryData($binaryData);
+        if (isset($optionalArgs['versionToUpdate'])) {
+            $request->setVersionToUpdate($optionalArgs['versionToUpdate']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'ModifyCloudToDeviceConfig',
+            DeviceConfig::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Sends a command to the specified device. In order for a device to be able
+     * to receive commands, it must:
+     * 1) be connected to Cloud IoT Core using the MQTT protocol, and
+     * 2) be subscribed to the group of MQTT topics specified by
+     *    /devices/{device-id}/commands/#. This subscription will receive commands
+     *    at the top-level topic /devices/{device-id}/commands as well as commands
+     *    for subfolders, like /devices/{device-id}/commands/subfolder.
+     *    Note that subscribing to specific subfolders is not supported.
+     * If the command could not be delivered to the device, this method will
+     * return an error; in particular, if the device is not subscribed, this
+     * method will return FAILED_PRECONDITION. Otherwise, this method will
+     * return OK. If the subscription is QoS 1, at least once delivery will be
+     * guaranteed; for QoS 0, no acknowledgment will be expected from the device.
+     *
+     * Sample code:
+     * ```
+     * $deviceManagerClient = new DeviceManagerClient();
+     * try {
+     *     $formattedName = $deviceManagerClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
+     *     $binaryData = '';
+     *     $response = $deviceManagerClient->sendCommandToDevice($formattedName, $binaryData);
+     * } finally {
+     *     $deviceManagerClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the device. For example,
+     *                             `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
+     *                             `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     * @param string $binaryData   Required. The command data to send to the device.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type string $subfolder
+     *          Optional subfolder for the command. If empty, the command will be delivered
+     *          to the /devices/{device-id}/commands topic, otherwise it will be delivered
+     *          to the /devices/{device-id}/commands/{subfolder} topic. Multi-level
+     *          subfolders are allowed. This field must not have more than 256 characters,
+     *          and must not contain any MQTT wildcards ("+" or "#") or null characters.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iot\V1\SendCommandToDeviceResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function sendCommandToDevice($name, $binaryData, array $optionalArgs = [])
+    {
+        $request = new SendCommandToDeviceRequest();
+        $request->setName($name);
+        $request->setBinaryData($binaryData);
+        if (isset($optionalArgs['subfolder'])) {
+            $request->setSubfolder($optionalArgs['subfolder']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'SendCommandToDevice',
+            SendCommandToDeviceResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Creates a device registry that contains devices.
      *
      * Sample code:
@@ -503,54 +739,6 @@ class DeviceManagerGapicClient
         return $this->startCall(
             'UpdateDeviceRegistry',
             DeviceRegistry::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Deletes a device registry configuration.
-     *
-     * Sample code:
-     * ```
-     * $deviceManagerClient = new DeviceManagerClient();
-     * try {
-     *     $formattedName = $deviceManagerClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
-     *     $deviceManagerClient->deleteDeviceRegistry($formattedName);
-     * } finally {
-     *     $deviceManagerClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. The name of the device registry. For example,
-     *                             `projects/example-project/locations/us-central1/registries/my-registry`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function deleteDeviceRegistry($name, array $optionalArgs = [])
-    {
-        $request = new DeleteDeviceRegistryRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteDeviceRegistry',
-            GPBEmpty::class,
             $optionalArgs,
             $request
         )->wait();
@@ -808,55 +996,6 @@ class DeviceManagerGapicClient
     }
 
     /**
-     * Deletes a device.
-     *
-     * Sample code:
-     * ```
-     * $deviceManagerClient = new DeviceManagerClient();
-     * try {
-     *     $formattedName = $deviceManagerClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
-     *     $deviceManagerClient->deleteDevice($formattedName);
-     * } finally {
-     *     $deviceManagerClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. The name of the device. For example,
-     *                             `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
-     *                             `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function deleteDevice($name, array $optionalArgs = [])
-    {
-        $request = new DeleteDeviceRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteDevice',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
      * List devices in a device registry.
      *
      * Sample code:
@@ -958,71 +1097,6 @@ class DeviceManagerGapicClient
             ListDevicesResponse::class,
             $request
         );
-    }
-
-    /**
-     * Modifies the configuration for the device, which is eventually sent from
-     * the Cloud IoT Core servers. Returns the modified configuration version and
-     * its metadata.
-     *
-     * Sample code:
-     * ```
-     * $deviceManagerClient = new DeviceManagerClient();
-     * try {
-     *     $formattedName = $deviceManagerClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
-     *     $binaryData = '';
-     *     $response = $deviceManagerClient->modifyCloudToDeviceConfig($formattedName, $binaryData);
-     * } finally {
-     *     $deviceManagerClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. The name of the device. For example,
-     *                             `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
-     *                             `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
-     * @param string $binaryData   Required. The configuration data for the device.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type int $versionToUpdate
-     *          The version number to update. If this value is zero, it will not check the
-     *          version number of the server and will always update the current version;
-     *          otherwise, this update will fail if the version number found on the server
-     *          does not match this version number. This is used to support multiple
-     *          simultaneous updates without losing data.
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\Iot\V1\DeviceConfig
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function modifyCloudToDeviceConfig($name, $binaryData, array $optionalArgs = [])
-    {
-        $request = new ModifyCloudToDeviceConfigRequest();
-        $request->setName($name);
-        $request->setBinaryData($binaryData);
-        if (isset($optionalArgs['versionToUpdate'])) {
-            $request->setVersionToUpdate($optionalArgs['versionToUpdate']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'ModifyCloudToDeviceConfig',
-            DeviceConfig::class,
-            $optionalArgs,
-            $request
-        )->wait();
     }
 
     /**
@@ -1311,81 +1385,6 @@ class DeviceManagerGapicClient
         return $this->startCall(
             'TestIamPermissions',
             TestIamPermissionsResponse::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Sends a command to the specified device. In order for a device to be able
-     * to receive commands, it must:
-     * 1) be connected to Cloud IoT Core using the MQTT protocol, and
-     * 2) be subscribed to the group of MQTT topics specified by
-     *    /devices/{device-id}/commands/#. This subscription will receive commands
-     *    at the top-level topic /devices/{device-id}/commands as well as commands
-     *    for subfolders, like /devices/{device-id}/commands/subfolder.
-     *    Note that subscribing to specific subfolders is not supported.
-     * If the command could not be delivered to the device, this method will
-     * return an error; in particular, if the device is not subscribed, this
-     * method will return FAILED_PRECONDITION. Otherwise, this method will
-     * return OK. If the subscription is QoS 1, at least once delivery will be
-     * guaranteed; for QoS 0, no acknowledgment will be expected from the device.
-     *
-     * Sample code:
-     * ```
-     * $deviceManagerClient = new DeviceManagerClient();
-     * try {
-     *     $formattedName = $deviceManagerClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
-     *     $binaryData = '';
-     *     $response = $deviceManagerClient->sendCommandToDevice($formattedName, $binaryData);
-     * } finally {
-     *     $deviceManagerClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. The name of the device. For example,
-     *                             `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
-     *                             `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
-     * @param string $binaryData   Required. The command data to send to the device.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type string $subfolder
-     *          Optional subfolder for the command. If empty, the command will be delivered
-     *          to the /devices/{device-id}/commands topic, otherwise it will be delivered
-     *          to the /devices/{device-id}/commands/{subfolder} topic. Multi-level
-     *          subfolders are allowed. This field must not have more than 256 characters,
-     *          and must not contain any MQTT wildcards ("+" or "#") or null characters.
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\Iot\V1\SendCommandToDeviceResponse
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function sendCommandToDevice($name, $binaryData, array $optionalArgs = [])
-    {
-        $request = new SendCommandToDeviceRequest();
-        $request->setName($name);
-        $request->setBinaryData($binaryData);
-        if (isset($optionalArgs['subfolder'])) {
-            $request->setSubfolder($optionalArgs['subfolder']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'SendCommandToDevice',
-            SendCommandToDeviceResponse::class,
             $optionalArgs,
             $request
         )->wait();
