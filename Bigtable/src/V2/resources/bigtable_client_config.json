@@ -51,15 +51,15 @@
           "timeout_millis": 43200000
         },
         "SampleRowKeys": {
-          "timeout_millis": 20000
+          "timeout_millis": 60000
         },
         "MutateRow": {
-          "timeout_millis": 20000,
+          "timeout_millis": 60000,
           "retry_codes_name": "idempotent",
           "retry_params_name": "idempotent_params"
         },
         "MutateRows": {
-          "timeout_millis": 60000
+          "timeout_millis": 600000
         },
         "CheckAndMutateRow": {
           "timeout_millis": 20000,
