@@ -56,23 +56,8 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $cloudSchedulerClient = new CloudSchedulerClient();
  * try {
- *     $formattedParent = $cloudSchedulerClient->locationName('[PROJECT]', '[LOCATION]');
- *     // Iterate over pages of elements
- *     $pagedResponse = $cloudSchedulerClient->listJobs($formattedParent);
- *     foreach ($pagedResponse->iteratePages() as $page) {
- *         foreach ($page as $element) {
- *             // doSomethingWith($element);
- *         }
- *     }
- *
- *
- *     // Alternatively:
- *
- *     // Iterate through all elements
- *     $pagedResponse = $cloudSchedulerClient->listJobs($formattedParent);
- *     foreach ($pagedResponse->iterateAllElements() as $element) {
- *         // doSomethingWith($element);
- *     }
+ *     $formattedName = $cloudSchedulerClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
+ *     $cloudSchedulerClient->deleteJob($formattedName);
  * } finally {
  *     $cloudSchedulerClient->close();
  * }
@@ -330,6 +315,54 @@ class CloudSchedulerGapicClient
     }
 
     /**
+     * Deletes a job.
+     *
+     * Sample code:
+     * ```
+     * $cloudSchedulerClient = new CloudSchedulerClient();
+     * try {
+     *     $formattedName = $cloudSchedulerClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
+     *     $cloudSchedulerClient->deleteJob($formattedName);
+     * } finally {
+     *     $cloudSchedulerClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The job name. For example:
+     *                             `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteJob($name, array $optionalArgs = [])
+    {
+        $request = new DeleteJobRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteJob',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Lists jobs.
      *
      * Sample code:
@@ -574,54 +607,6 @@ class CloudSchedulerGapicClient
         return $this->startCall(
             'UpdateJob',
             Job::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Deletes a job.
-     *
-     * Sample code:
-     * ```
-     * $cloudSchedulerClient = new CloudSchedulerClient();
-     * try {
-     *     $formattedName = $cloudSchedulerClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-     *     $cloudSchedulerClient->deleteJob($formattedName);
-     * } finally {
-     *     $cloudSchedulerClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. The job name. For example:
-     *                             `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function deleteJob($name, array $optionalArgs = [])
-    {
-        $request = new DeleteJobRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteJob',
-            GPBEmpty::class,
             $optionalArgs,
             $request
         )->wait();
