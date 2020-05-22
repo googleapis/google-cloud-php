@@ -3,6 +3,75 @@
 return [
     'interfaces' => [
         'google.container.v1.ClusterManager' => [
+            'DeleteCluster' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}',
+                    ],
+                ],
+                'placeholders' => [
+                    'cluster_id' => [
+                        'getters' => [
+                            'getClusterId',
+                        ],
+                    ],
+                    'project_id' => [
+                        'getters' => [
+                            'getProjectId',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteNodePool' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*/nodePools/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/nodePools/{node_pool_id}',
+                    ],
+                ],
+                'placeholders' => [
+                    'node_pool_id' => [
+                        'getters' => [
+                            'getNodePoolId',
+                        ],
+                    ],
+                    'cluster_id' => [
+                        'getters' => [
+                            'getClusterId',
+                        ],
+                    ],
+                    'project_id' => [
+                        'getters' => [
+                            'getProjectId',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListClusters' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/clusters',
@@ -407,38 +476,6 @@ return [
                     ],
                 ],
             ],
-            'DeleteCluster' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'delete',
-                        'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}',
-                    ],
-                ],
-                'placeholders' => [
-                    'cluster_id' => [
-                        'getters' => [
-                            'getClusterId',
-                        ],
-                    ],
-                    'project_id' => [
-                        'getters' => [
-                            'getProjectId',
-                        ],
-                    ],
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'ListOperations' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/operations',
@@ -658,43 +695,6 @@ return [
                     'zone' => [
                         'getters' => [
                             'getZone',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteNodePool' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*/nodePools/*}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'delete',
-                        'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/nodePools/{node_pool_id}',
-                    ],
-                ],
-                'placeholders' => [
-                    'node_pool_id' => [
-                        'getters' => [
-                            'getNodePoolId',
-                        ],
-                    ],
-                    'cluster_id' => [
-                        'getters' => [
-                            'getClusterId',
-                        ],
-                    ],
-                    'project_id' => [
-                        'getters' => [
-                            'getProjectId',
-                        ],
-                    ],
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
-                    'name' => [
-                        'getters' => [
-                            'getName',
                         ],
                     ],
                 ],

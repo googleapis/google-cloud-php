@@ -90,7 +90,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
  * try {
- *     $response = $clusterManagerClient->listClusters();
+ *     $response = $clusterManagerClient->deleteCluster();
  * } finally {
  *     $clusterManagerClient->close();
  * }
@@ -204,6 +204,167 @@ class ClusterManagerGapicClient
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
+    }
+
+    /**
+     * Deletes the cluster, including the Kubernetes endpoint and all worker
+     * nodes.
+     *
+     * Firewalls and routes that were configured during cluster creation
+     * are also deleted.
+     *
+     * Other Google Compute Engine resources that might be in use by the cluster,
+     * such as load balancer resources, are not deleted if they weren't present
+     * when the cluster was initially created.
+     *
+     * Sample code:
+     * ```
+     * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
+     * try {
+     *     $response = $clusterManagerClient->deleteCluster();
+     * } finally {
+     *     $clusterManagerClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type string $projectId
+     *          Deprecated. The Google Developers Console [project ID or project
+     *          number](https://support.google.com/cloud/answer/6158840).
+     *          This field has been deprecated and replaced by the name field.
+     *     @type string $zone
+     *          Deprecated. The name of the Google Compute Engine
+     *          [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
+     *          resides.
+     *          This field has been deprecated and replaced by the name field.
+     *     @type string $clusterId
+     *          Deprecated. The name of the cluster to delete.
+     *          This field has been deprecated and replaced by the name field.
+     *     @type string $name
+     *          The name (project, location, cluster) of the cluster to delete.
+     *          Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Container\V1\Operation
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteCluster(array $optionalArgs = [])
+    {
+        $request = new DeleteClusterRequest();
+        if (isset($optionalArgs['projectId'])) {
+            $request->setProjectId($optionalArgs['projectId']);
+        }
+        if (isset($optionalArgs['zone'])) {
+            $request->setZone($optionalArgs['zone']);
+        }
+        if (isset($optionalArgs['clusterId'])) {
+            $request->setClusterId($optionalArgs['clusterId']);
+        }
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteCluster',
+            Operation::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Deletes a node pool from a cluster.
+     *
+     * Sample code:
+     * ```
+     * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
+     * try {
+     *     $response = $clusterManagerClient->deleteNodePool();
+     * } finally {
+     *     $clusterManagerClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type string $projectId
+     *          Deprecated. The Google Developers Console [project ID or project
+     *          number](https://developers.google.com/console/help/new/#projectnumber).
+     *          This field has been deprecated and replaced by the name field.
+     *     @type string $zone
+     *          Deprecated. The name of the Google Compute Engine
+     *          [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
+     *          resides.
+     *          This field has been deprecated and replaced by the name field.
+     *     @type string $clusterId
+     *          Deprecated. The name of the cluster.
+     *          This field has been deprecated and replaced by the name field.
+     *     @type string $nodePoolId
+     *          Deprecated. The name of the node pool to delete.
+     *          This field has been deprecated and replaced by the name field.
+     *     @type string $name
+     *          The name (project, location, cluster, node pool id) of the node pool to
+     *          delete. Specified in the format
+     *          `projects/&#42;/locations/&#42;/clusters/&#42;/nodePools/*`.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Container\V1\Operation
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteNodePool(array $optionalArgs = [])
+    {
+        $request = new DeleteNodePoolRequest();
+        if (isset($optionalArgs['projectId'])) {
+            $request->setProjectId($optionalArgs['projectId']);
+        }
+        if (isset($optionalArgs['zone'])) {
+            $request->setZone($optionalArgs['zone']);
+        }
+        if (isset($optionalArgs['clusterId'])) {
+            $request->setClusterId($optionalArgs['clusterId']);
+        }
+        if (isset($optionalArgs['nodePoolId'])) {
+            $request->setNodePoolId($optionalArgs['nodePoolId']);
+        }
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteNodePool',
+            Operation::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1175,87 +1336,6 @@ class ClusterManagerGapicClient
     }
 
     /**
-     * Deletes the cluster, including the Kubernetes endpoint and all worker
-     * nodes.
-     *
-     * Firewalls and routes that were configured during cluster creation
-     * are also deleted.
-     *
-     * Other Google Compute Engine resources that might be in use by the cluster,
-     * such as load balancer resources, are not deleted if they weren't present
-     * when the cluster was initially created.
-     *
-     * Sample code:
-     * ```
-     * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
-     * try {
-     *     $response = $clusterManagerClient->deleteCluster();
-     * } finally {
-     *     $clusterManagerClient->close();
-     * }
-     * ```
-     *
-     * @param array $optionalArgs {
-     *                            Optional.
-     *
-     *     @type string $projectId
-     *          Deprecated. The Google Developers Console [project ID or project
-     *          number](https://support.google.com/cloud/answer/6158840).
-     *          This field has been deprecated and replaced by the name field.
-     *     @type string $zone
-     *          Deprecated. The name of the Google Compute Engine
-     *          [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
-     *          resides.
-     *          This field has been deprecated and replaced by the name field.
-     *     @type string $clusterId
-     *          Deprecated. The name of the cluster to delete.
-     *          This field has been deprecated and replaced by the name field.
-     *     @type string $name
-     *          The name (project, location, cluster) of the cluster to delete.
-     *          Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\Container\V1\Operation
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function deleteCluster(array $optionalArgs = [])
-    {
-        $request = new DeleteClusterRequest();
-        if (isset($optionalArgs['projectId'])) {
-            $request->setProjectId($optionalArgs['projectId']);
-        }
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-        }
-        if (isset($optionalArgs['clusterId'])) {
-            $request->setClusterId($optionalArgs['clusterId']);
-        }
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteCluster',
-            Operation::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
      * Lists all operations in a project in a specific zone or all zones.
      *
      * Sample code:
@@ -1755,86 +1835,6 @@ class ClusterManagerGapicClient
 
         return $this->startCall(
             'CreateNodePool',
-            Operation::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Deletes a node pool from a cluster.
-     *
-     * Sample code:
-     * ```
-     * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
-     * try {
-     *     $response = $clusterManagerClient->deleteNodePool();
-     * } finally {
-     *     $clusterManagerClient->close();
-     * }
-     * ```
-     *
-     * @param array $optionalArgs {
-     *                            Optional.
-     *
-     *     @type string $projectId
-     *          Deprecated. The Google Developers Console [project ID or project
-     *          number](https://developers.google.com/console/help/new/#projectnumber).
-     *          This field has been deprecated and replaced by the name field.
-     *     @type string $zone
-     *          Deprecated. The name of the Google Compute Engine
-     *          [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
-     *          resides.
-     *          This field has been deprecated and replaced by the name field.
-     *     @type string $clusterId
-     *          Deprecated. The name of the cluster.
-     *          This field has been deprecated and replaced by the name field.
-     *     @type string $nodePoolId
-     *          Deprecated. The name of the node pool to delete.
-     *          This field has been deprecated and replaced by the name field.
-     *     @type string $name
-     *          The name (project, location, cluster, node pool id) of the node pool to
-     *          delete. Specified in the format
-     *          `projects/&#42;/locations/&#42;/clusters/&#42;/nodePools/*`.
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\Container\V1\Operation
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function deleteNodePool(array $optionalArgs = [])
-    {
-        $request = new DeleteNodePoolRequest();
-        if (isset($optionalArgs['projectId'])) {
-            $request->setProjectId($optionalArgs['projectId']);
-        }
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-        }
-        if (isset($optionalArgs['clusterId'])) {
-            $request->setClusterId($optionalArgs['clusterId']);
-        }
-        if (isset($optionalArgs['nodePoolId'])) {
-            $request->setNodePoolId($optionalArgs['nodePoolId']);
-        }
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteNodePool',
             Operation::class,
             $optionalArgs,
             $request
