@@ -57,22 +57,7 @@ use Google\Protobuf\Timestamp;
  * $errorStatsServiceClient = new ErrorStatsServiceClient();
  * try {
  *     $formattedProjectName = $errorStatsServiceClient->projectName('[PROJECT]');
- *     // Iterate over pages of elements
- *     $pagedResponse = $errorStatsServiceClient->listGroupStats($formattedProjectName);
- *     foreach ($pagedResponse->iteratePages() as $page) {
- *         foreach ($page as $element) {
- *             // doSomethingWith($element);
- *         }
- *     }
- *
- *
- *     // Alternatively:
- *
- *     // Iterate through all elements
- *     $pagedResponse = $errorStatsServiceClient->listGroupStats($formattedProjectName);
- *     foreach ($pagedResponse->iterateAllElements() as $element) {
- *         // doSomethingWith($element);
- *     }
+ *     $response = $errorStatsServiceClient->deleteEvents($formattedProjectName);
  * } finally {
  *     $errorStatsServiceClient->close();
  * }
@@ -273,6 +258,60 @@ class ErrorStatsServiceGapicClient
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
+    }
+
+    /**
+     * Deletes all error events of a given project.
+     *
+     * Sample code:
+     * ```
+     * $errorStatsServiceClient = new ErrorStatsServiceClient();
+     * try {
+     *     $formattedProjectName = $errorStatsServiceClient->projectName('[PROJECT]');
+     *     $response = $errorStatsServiceClient->deleteEvents($formattedProjectName);
+     * } finally {
+     *     $errorStatsServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $projectName  Required. The resource name of the Google Cloud Platform project. Written
+     *                             as `projects/` plus the
+     *                             [Google Cloud Platform project
+     *                             ID](https://support.google.com/cloud/answer/6158840).
+     *                             Example: `projects/my-project-123`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\ErrorReporting\V1beta1\DeleteEventsResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function deleteEvents($projectName, array $optionalArgs = [])
+    {
+        $request = new DeleteEventsRequest();
+        $request->setProjectName($projectName);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'project_name' => $request->getProjectName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteEvents',
+            DeleteEventsResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -509,59 +548,5 @@ class ErrorStatsServiceGapicClient
             ListEventsResponse::class,
             $request
         );
-    }
-
-    /**
-     * Deletes all error events of a given project.
-     *
-     * Sample code:
-     * ```
-     * $errorStatsServiceClient = new ErrorStatsServiceClient();
-     * try {
-     *     $formattedProjectName = $errorStatsServiceClient->projectName('[PROJECT]');
-     *     $response = $errorStatsServiceClient->deleteEvents($formattedProjectName);
-     * } finally {
-     *     $errorStatsServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $projectName  Required. The resource name of the Google Cloud Platform project. Written
-     *                             as `projects/` plus the
-     *                             [Google Cloud Platform project
-     *                             ID](https://support.google.com/cloud/answer/6158840).
-     *                             Example: `projects/my-project-123`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\ErrorReporting\V1beta1\DeleteEventsResponse
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function deleteEvents($projectName, array $optionalArgs = [])
-    {
-        $request = new DeleteEventsRequest();
-        $request->setProjectName($projectName);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'project_name' => $request->getProjectName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteEvents',
-            DeleteEventsResponse::class,
-            $optionalArgs,
-            $request
-        )->wait();
     }
 }
