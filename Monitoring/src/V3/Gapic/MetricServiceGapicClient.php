@@ -62,9 +62,9 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $metricServiceClient = new Google\Cloud\Monitoring\V3\MetricServiceClient();
  * try {
- *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
+ *     $name = '';
  *     // Iterate over pages of elements
- *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors($formattedName);
+ *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors($name);
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
  *             // doSomethingWith($element);
@@ -75,7 +75,7 @@ use Google\Protobuf\GPBEmpty;
  *     // Alternatively:
  *
  *     // Iterate through all elements
- *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors($formattedName);
+ *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors($name);
  *     foreach ($pagedResponse->iterateAllElements() as $element) {
  *         // doSomethingWith($element);
  *     }
@@ -122,9 +122,15 @@ class MetricServiceGapicClient
         'https://www.googleapis.com/auth/monitoring.read',
         'https://www.googleapis.com/auth/monitoring.write',
     ];
+    private static $folderMetricDescriptorNameTemplate;
+    private static $folderMonitoredResourceDescriptorNameTemplate;
     private static $metricDescriptorNameTemplate;
     private static $monitoredResourceDescriptorNameTemplate;
+    private static $organizationMetricDescriptorNameTemplate;
+    private static $organizationMonitoredResourceDescriptorNameTemplate;
     private static $projectNameTemplate;
+    private static $projectMetricDescriptorNameTemplate;
+    private static $projectMonitoredResourceDescriptorNameTemplate;
     private static $pathTemplateMap;
 
     private static function getClientDefaults()
@@ -146,6 +152,24 @@ class MetricServiceGapicClient
         ];
     }
 
+    private static function getFolderMetricDescriptorNameTemplate()
+    {
+        if (null == self::$folderMetricDescriptorNameTemplate) {
+            self::$folderMetricDescriptorNameTemplate = new PathTemplate('folders/{folder}/metricDescriptors/{metric_descriptor=**}');
+        }
+
+        return self::$folderMetricDescriptorNameTemplate;
+    }
+
+    private static function getFolderMonitoredResourceDescriptorNameTemplate()
+    {
+        if (null == self::$folderMonitoredResourceDescriptorNameTemplate) {
+            self::$folderMonitoredResourceDescriptorNameTemplate = new PathTemplate('folders/{folder}/monitoredResourceDescriptors/{monitored_resource_descriptor}');
+        }
+
+        return self::$folderMonitoredResourceDescriptorNameTemplate;
+    }
+
     private static function getMetricDescriptorNameTemplate()
     {
         if (null == self::$metricDescriptorNameTemplate) {
@@ -164,6 +188,24 @@ class MetricServiceGapicClient
         return self::$monitoredResourceDescriptorNameTemplate;
     }
 
+    private static function getOrganizationMetricDescriptorNameTemplate()
+    {
+        if (null == self::$organizationMetricDescriptorNameTemplate) {
+            self::$organizationMetricDescriptorNameTemplate = new PathTemplate('organizations/{organization}/metricDescriptors/{metric_descriptor=**}');
+        }
+
+        return self::$organizationMetricDescriptorNameTemplate;
+    }
+
+    private static function getOrganizationMonitoredResourceDescriptorNameTemplate()
+    {
+        if (null == self::$organizationMonitoredResourceDescriptorNameTemplate) {
+            self::$organizationMonitoredResourceDescriptorNameTemplate = new PathTemplate('organizations/{organization}/monitoredResourceDescriptors/{monitored_resource_descriptor}');
+        }
+
+        return self::$organizationMonitoredResourceDescriptorNameTemplate;
+    }
+
     private static function getProjectNameTemplate()
     {
         if (null == self::$projectNameTemplate) {
@@ -173,17 +215,75 @@ class MetricServiceGapicClient
         return self::$projectNameTemplate;
     }
 
+    private static function getProjectMetricDescriptorNameTemplate()
+    {
+        if (null == self::$projectMetricDescriptorNameTemplate) {
+            self::$projectMetricDescriptorNameTemplate = new PathTemplate('projects/{project}/metricDescriptors/{metric_descriptor=**}');
+        }
+
+        return self::$projectMetricDescriptorNameTemplate;
+    }
+
+    private static function getProjectMonitoredResourceDescriptorNameTemplate()
+    {
+        if (null == self::$projectMonitoredResourceDescriptorNameTemplate) {
+            self::$projectMonitoredResourceDescriptorNameTemplate = new PathTemplate('projects/{project}/monitoredResourceDescriptors/{monitored_resource_descriptor}');
+        }
+
+        return self::$projectMonitoredResourceDescriptorNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
+                'folderMetricDescriptor' => self::getFolderMetricDescriptorNameTemplate(),
+                'folderMonitoredResourceDescriptor' => self::getFolderMonitoredResourceDescriptorNameTemplate(),
                 'metricDescriptor' => self::getMetricDescriptorNameTemplate(),
                 'monitoredResourceDescriptor' => self::getMonitoredResourceDescriptorNameTemplate(),
+                'organizationMetricDescriptor' => self::getOrganizationMetricDescriptorNameTemplate(),
+                'organizationMonitoredResourceDescriptor' => self::getOrganizationMonitoredResourceDescriptorNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
+                'projectMetricDescriptor' => self::getProjectMetricDescriptorNameTemplate(),
+                'projectMonitoredResourceDescriptor' => self::getProjectMonitoredResourceDescriptorNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a folder_metric_descriptor resource.
+     *
+     * @param string $folder
+     * @param string $metricDescriptor
+     *
+     * @return string The formatted folder_metric_descriptor resource.
+     */
+    public static function folderMetricDescriptorName($folder, $metricDescriptor)
+    {
+        return self::getFolderMetricDescriptorNameTemplate()->render([
+            'folder' => $folder,
+            'metric_descriptor' => $metricDescriptor,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a folder_monitored_resource_descriptor resource.
+     *
+     * @param string $folder
+     * @param string $monitoredResourceDescriptor
+     *
+     * @return string The formatted folder_monitored_resource_descriptor resource.
+     */
+    public static function folderMonitoredResourceDescriptorName($folder, $monitoredResourceDescriptor)
+    {
+        return self::getFolderMonitoredResourceDescriptorNameTemplate()->render([
+            'folder' => $folder,
+            'monitored_resource_descriptor' => $monitoredResourceDescriptor,
+        ]);
     }
 
     /**
@@ -222,6 +322,40 @@ class MetricServiceGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
+     * a organization_metric_descriptor resource.
+     *
+     * @param string $organization
+     * @param string $metricDescriptor
+     *
+     * @return string The formatted organization_metric_descriptor resource.
+     */
+    public static function organizationMetricDescriptorName($organization, $metricDescriptor)
+    {
+        return self::getOrganizationMetricDescriptorNameTemplate()->render([
+            'organization' => $organization,
+            'metric_descriptor' => $metricDescriptor,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a organization_monitored_resource_descriptor resource.
+     *
+     * @param string $organization
+     * @param string $monitoredResourceDescriptor
+     *
+     * @return string The formatted organization_monitored_resource_descriptor resource.
+     */
+    public static function organizationMonitoredResourceDescriptorName($organization, $monitoredResourceDescriptor)
+    {
+        return self::getOrganizationMonitoredResourceDescriptorNameTemplate()->render([
+            'organization' => $organization,
+            'monitored_resource_descriptor' => $monitoredResourceDescriptor,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
      * a project resource.
      *
      * @param string $project
@@ -236,12 +370,52 @@ class MetricServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project_metric_descriptor resource.
+     *
+     * @param string $project
+     * @param string $metricDescriptor
+     *
+     * @return string The formatted project_metric_descriptor resource.
+     */
+    public static function projectMetricDescriptorName($project, $metricDescriptor)
+    {
+        return self::getProjectMetricDescriptorNameTemplate()->render([
+            'project' => $project,
+            'metric_descriptor' => $metricDescriptor,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project_monitored_resource_descriptor resource.
+     *
+     * @param string $project
+     * @param string $monitoredResourceDescriptor
+     *
+     * @return string The formatted project_monitored_resource_descriptor resource.
+     */
+    public static function projectMonitoredResourceDescriptorName($project, $monitoredResourceDescriptor)
+    {
+        return self::getProjectMonitoredResourceDescriptorNameTemplate()->render([
+            'project' => $project,
+            'monitored_resource_descriptor' => $monitoredResourceDescriptor,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - folderMetricDescriptor: folders/{folder}/metricDescriptors/{metric_descriptor=**}
+     * - folderMonitoredResourceDescriptor: folders/{folder}/monitoredResourceDescriptors/{monitored_resource_descriptor}
      * - metricDescriptor: projects/{project}/metricDescriptors/{metric_descriptor=**}
      * - monitoredResourceDescriptor: projects/{project}/monitoredResourceDescriptors/{monitored_resource_descriptor}
-     * - project: projects/{project}.
+     * - organizationMetricDescriptor: organizations/{organization}/metricDescriptors/{metric_descriptor=**}
+     * - organizationMonitoredResourceDescriptor: organizations/{organization}/monitoredResourceDescriptors/{monitored_resource_descriptor}
+     * - project: projects/{project}
+     * - projectMetricDescriptor: projects/{project}/metricDescriptors/{metric_descriptor=**}
+     * - projectMonitoredResourceDescriptor: projects/{project}/monitoredResourceDescriptors/{monitored_resource_descriptor}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
@@ -344,9 +518,9 @@ class MetricServiceGapicClient
      * ```
      * $metricServiceClient = new Google\Cloud\Monitoring\V3\MetricServiceClient();
      * try {
-     *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
+     *     $name = '';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors($formattedName);
+     *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors($name);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -357,7 +531,7 @@ class MetricServiceGapicClient
      *     // Alternatively:
      *
      *     // Iterate through all elements
-     *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors($formattedName);
+     *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors($name);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -435,8 +609,8 @@ class MetricServiceGapicClient
      * ```
      * $metricServiceClient = new Google\Cloud\Monitoring\V3\MetricServiceClient();
      * try {
-     *     $formattedName = $metricServiceClient->monitoredResourceDescriptorName('[PROJECT]', '[MONITORED_RESOURCE_DESCRIPTOR]');
-     *     $response = $metricServiceClient->getMonitoredResourceDescriptor($formattedName);
+     *     $name = '';
+     *     $response = $metricServiceClient->getMonitoredResourceDescriptor($name);
      * } finally {
      *     $metricServiceClient->close();
      * }
@@ -489,9 +663,9 @@ class MetricServiceGapicClient
      * ```
      * $metricServiceClient = new Google\Cloud\Monitoring\V3\MetricServiceClient();
      * try {
-     *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
+     *     $name = '';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $metricServiceClient->listMetricDescriptors($formattedName);
+     *     $pagedResponse = $metricServiceClient->listMetricDescriptors($name);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -502,7 +676,7 @@ class MetricServiceGapicClient
      *     // Alternatively:
      *
      *     // Iterate through all elements
-     *     $pagedResponse = $metricServiceClient->listMetricDescriptors($formattedName);
+     *     $pagedResponse = $metricServiceClient->listMetricDescriptors($name);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -582,8 +756,8 @@ class MetricServiceGapicClient
      * ```
      * $metricServiceClient = new Google\Cloud\Monitoring\V3\MetricServiceClient();
      * try {
-     *     $formattedName = $metricServiceClient->metricDescriptorName('[PROJECT]', '[METRIC_DESCRIPTOR]');
-     *     $response = $metricServiceClient->getMetricDescriptor($formattedName);
+     *     $name = '';
+     *     $response = $metricServiceClient->getMetricDescriptor($name);
      * } finally {
      *     $metricServiceClient->close();
      * }
@@ -638,9 +812,9 @@ class MetricServiceGapicClient
      * ```
      * $metricServiceClient = new Google\Cloud\Monitoring\V3\MetricServiceClient();
      * try {
-     *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
+     *     $name = '';
      *     $metricDescriptor = new Google\Cloud\Monitoring\V3\MetricDescriptor();
-     *     $response = $metricServiceClient->createMetricDescriptor($formattedName, $metricDescriptor);
+     *     $response = $metricServiceClient->createMetricDescriptor($name, $metricDescriptor);
      * } finally {
      *     $metricServiceClient->close();
      * }
@@ -695,8 +869,8 @@ class MetricServiceGapicClient
      * ```
      * $metricServiceClient = new Google\Cloud\Monitoring\V3\MetricServiceClient();
      * try {
-     *     $formattedName = $metricServiceClient->metricDescriptorName('[PROJECT]', '[METRIC_DESCRIPTOR]');
-     *     $metricServiceClient->deleteMetricDescriptor($formattedName);
+     *     $name = '';
+     *     $metricServiceClient->deleteMetricDescriptor($name);
      * } finally {
      *     $metricServiceClient->close();
      * }

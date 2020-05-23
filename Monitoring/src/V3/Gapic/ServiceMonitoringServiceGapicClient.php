@@ -63,9 +63,8 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
  * try {
- *     $formattedParent = $serviceMonitoringServiceClient->projectName('[PROJECT]');
- *     $service = new Service();
- *     $response = $serviceMonitoringServiceClient->createService($formattedParent, $service);
+ *     $name = '';
+ *     $serviceMonitoringServiceClient->deleteService($name);
  * } finally {
  *     $serviceMonitoringServiceClient->close();
  * }
@@ -109,7 +108,12 @@ class ServiceMonitoringServiceGapicClient
         'https://www.googleapis.com/auth/monitoring.read',
         'https://www.googleapis.com/auth/monitoring.write',
     ];
-    private static $projectNameTemplate;
+    private static $folderServiceNameTemplate;
+    private static $folderServiceServiceLevelObjectiveNameTemplate;
+    private static $organizationServiceNameTemplate;
+    private static $organizationServiceServiceLevelObjectiveNameTemplate;
+    private static $projectServiceNameTemplate;
+    private static $projectServiceServiceLevelObjectiveNameTemplate;
     private static $serviceNameTemplate;
     private static $serviceLevelObjectiveNameTemplate;
     private static $pathTemplateMap;
@@ -133,13 +137,58 @@ class ServiceMonitoringServiceGapicClient
         ];
     }
 
-    private static function getProjectNameTemplate()
+    private static function getFolderServiceNameTemplate()
     {
-        if (null == self::$projectNameTemplate) {
-            self::$projectNameTemplate = new PathTemplate('projects/{project}');
+        if (null == self::$folderServiceNameTemplate) {
+            self::$folderServiceNameTemplate = new PathTemplate('folders/{folder}/services/{service}');
         }
 
-        return self::$projectNameTemplate;
+        return self::$folderServiceNameTemplate;
+    }
+
+    private static function getFolderServiceServiceLevelObjectiveNameTemplate()
+    {
+        if (null == self::$folderServiceServiceLevelObjectiveNameTemplate) {
+            self::$folderServiceServiceLevelObjectiveNameTemplate = new PathTemplate('folders/{folder}/services/{service}/serviceLevelObjectives/{service_level_objective}');
+        }
+
+        return self::$folderServiceServiceLevelObjectiveNameTemplate;
+    }
+
+    private static function getOrganizationServiceNameTemplate()
+    {
+        if (null == self::$organizationServiceNameTemplate) {
+            self::$organizationServiceNameTemplate = new PathTemplate('organizations/{organization}/services/{service}');
+        }
+
+        return self::$organizationServiceNameTemplate;
+    }
+
+    private static function getOrganizationServiceServiceLevelObjectiveNameTemplate()
+    {
+        if (null == self::$organizationServiceServiceLevelObjectiveNameTemplate) {
+            self::$organizationServiceServiceLevelObjectiveNameTemplate = new PathTemplate('organizations/{organization}/services/{service}/serviceLevelObjectives/{service_level_objective}');
+        }
+
+        return self::$organizationServiceServiceLevelObjectiveNameTemplate;
+    }
+
+    private static function getProjectServiceNameTemplate()
+    {
+        if (null == self::$projectServiceNameTemplate) {
+            self::$projectServiceNameTemplate = new PathTemplate('projects/{project}/services/{service}');
+        }
+
+        return self::$projectServiceNameTemplate;
+    }
+
+    private static function getProjectServiceServiceLevelObjectiveNameTemplate()
+    {
+        if (null == self::$projectServiceServiceLevelObjectiveNameTemplate) {
+            self::$projectServiceServiceLevelObjectiveNameTemplate = new PathTemplate('projects/{project}/services/{service}/serviceLevelObjectives/{service_level_objective}');
+        }
+
+        return self::$projectServiceServiceLevelObjectiveNameTemplate;
     }
 
     private static function getServiceNameTemplate()
@@ -164,7 +213,12 @@ class ServiceMonitoringServiceGapicClient
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
-                'project' => self::getProjectNameTemplate(),
+                'folderService' => self::getFolderServiceNameTemplate(),
+                'folderServiceServiceLevelObjective' => self::getFolderServiceServiceLevelObjectiveNameTemplate(),
+                'organizationService' => self::getOrganizationServiceNameTemplate(),
+                'organizationServiceServiceLevelObjective' => self::getOrganizationServiceServiceLevelObjectiveNameTemplate(),
+                'projectService' => self::getProjectServiceNameTemplate(),
+                'projectServiceServiceLevelObjective' => self::getProjectServiceServiceLevelObjectiveNameTemplate(),
                 'service' => self::getServiceNameTemplate(),
                 'serviceLevelObjective' => self::getServiceLevelObjectiveNameTemplate(),
             ];
@@ -175,16 +229,109 @@ class ServiceMonitoringServiceGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a project resource.
+     * a folder_service resource.
+     *
+     * @param string $folder
+     * @param string $service
+     *
+     * @return string The formatted folder_service resource.
+     */
+    public static function folderServiceName($folder, $service)
+    {
+        return self::getFolderServiceNameTemplate()->render([
+            'folder' => $folder,
+            'service' => $service,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a folder_service_service_level_objective resource.
+     *
+     * @param string $folder
+     * @param string $service
+     * @param string $serviceLevelObjective
+     *
+     * @return string The formatted folder_service_service_level_objective resource.
+     */
+    public static function folderServiceServiceLevelObjectiveName($folder, $service, $serviceLevelObjective)
+    {
+        return self::getFolderServiceServiceLevelObjectiveNameTemplate()->render([
+            'folder' => $folder,
+            'service' => $service,
+            'service_level_objective' => $serviceLevelObjective,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a organization_service resource.
+     *
+     * @param string $organization
+     * @param string $service
+     *
+     * @return string The formatted organization_service resource.
+     */
+    public static function organizationServiceName($organization, $service)
+    {
+        return self::getOrganizationServiceNameTemplate()->render([
+            'organization' => $organization,
+            'service' => $service,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a organization_service_service_level_objective resource.
+     *
+     * @param string $organization
+     * @param string $service
+     * @param string $serviceLevelObjective
+     *
+     * @return string The formatted organization_service_service_level_objective resource.
+     */
+    public static function organizationServiceServiceLevelObjectiveName($organization, $service, $serviceLevelObjective)
+    {
+        return self::getOrganizationServiceServiceLevelObjectiveNameTemplate()->render([
+            'organization' => $organization,
+            'service' => $service,
+            'service_level_objective' => $serviceLevelObjective,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project_service resource.
      *
      * @param string $project
+     * @param string $service
      *
-     * @return string The formatted project resource.
+     * @return string The formatted project_service resource.
      */
-    public static function projectName($project)
+    public static function projectServiceName($project, $service)
     {
-        return self::getProjectNameTemplate()->render([
+        return self::getProjectServiceNameTemplate()->render([
             'project' => $project,
+            'service' => $service,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project_service_service_level_objective resource.
+     *
+     * @param string $project
+     * @param string $service
+     * @param string $serviceLevelObjective
+     *
+     * @return string The formatted project_service_service_level_objective resource.
+     */
+    public static function projectServiceServiceLevelObjectiveName($project, $service, $serviceLevelObjective)
+    {
+        return self::getProjectServiceServiceLevelObjectiveNameTemplate()->render([
+            'project' => $project,
+            'service' => $service,
+            'service_level_objective' => $serviceLevelObjective,
         ]);
     }
 
@@ -228,7 +375,12 @@ class ServiceMonitoringServiceGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - project: projects/{project}
+     * - folderService: folders/{folder}/services/{service}
+     * - folderServiceServiceLevelObjective: folders/{folder}/services/{service}/serviceLevelObjectives/{service_level_objective}
+     * - organizationService: organizations/{organization}/services/{service}
+     * - organizationServiceServiceLevelObjective: organizations/{organization}/services/{service}/serviceLevelObjectives/{service_level_objective}
+     * - projectService: projects/{project}/services/{service}
+     * - projectServiceServiceLevelObjective: projects/{project}/services/{service}/serviceLevelObjectives/{service_level_objective}
      * - service: projects/{project}/services/{service}
      * - serviceLevelObjective: projects/{project}/services/{service}/serviceLevelObjectives/{service_level_objective}.
      *
@@ -327,15 +479,113 @@ class ServiceMonitoringServiceGapicClient
     }
 
     /**
+     * Soft delete this `Service`.
+     *
+     * Sample code:
+     * ```
+     * $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
+     * try {
+     *     $name = '';
+     *     $serviceMonitoringServiceClient->deleteService($name);
+     * } finally {
+     *     $serviceMonitoringServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name Required. Resource name of the `Service` to delete. The format is:
+     *
+     *     projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteService($name, array $optionalArgs = [])
+    {
+        $request = new DeleteServiceRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteService',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Delete the given `ServiceLevelObjective`.
+     *
+     * Sample code:
+     * ```
+     * $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
+     * try {
+     *     $name = '';
+     *     $serviceMonitoringServiceClient->deleteServiceLevelObjective($name);
+     * } finally {
+     *     $serviceMonitoringServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name Required. Resource name of the `ServiceLevelObjective` to delete. The format is:
+     *
+     *     projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME]
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteServiceLevelObjective($name, array $optionalArgs = [])
+    {
+        $request = new DeleteServiceLevelObjectiveRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteServiceLevelObjective',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Create a `Service`.
      *
      * Sample code:
      * ```
      * $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
      * try {
-     *     $formattedParent = $serviceMonitoringServiceClient->projectName('[PROJECT]');
+     *     $parent = '';
      *     $service = new Service();
-     *     $response = $serviceMonitoringServiceClient->createService($formattedParent, $service);
+     *     $response = $serviceMonitoringServiceClient->createService($parent, $service);
      * } finally {
      *     $serviceMonitoringServiceClient->close();
      * }
@@ -393,8 +643,8 @@ class ServiceMonitoringServiceGapicClient
      * ```
      * $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
      * try {
-     *     $formattedName = $serviceMonitoringServiceClient->serviceName('[PROJECT]', '[SERVICE]');
-     *     $response = $serviceMonitoringServiceClient->getService($formattedName);
+     *     $name = '';
+     *     $response = $serviceMonitoringServiceClient->getService($name);
      * } finally {
      *     $serviceMonitoringServiceClient->close();
      * }
@@ -444,9 +694,9 @@ class ServiceMonitoringServiceGapicClient
      * ```
      * $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
      * try {
-     *     $formattedParent = $serviceMonitoringServiceClient->projectName('[PROJECT]');
+     *     $parent = '';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $serviceMonitoringServiceClient->listServices($formattedParent);
+     *     $pagedResponse = $serviceMonitoringServiceClient->listServices($parent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -457,7 +707,7 @@ class ServiceMonitoringServiceGapicClient
      *     // Alternatively:
      *
      *     // Iterate through all elements
-     *     $pagedResponse = $serviceMonitoringServiceClient->listServices($formattedParent);
+     *     $pagedResponse = $serviceMonitoringServiceClient->listServices($parent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -595,64 +845,15 @@ class ServiceMonitoringServiceGapicClient
     }
 
     /**
-     * Soft delete this `Service`.
-     *
-     * Sample code:
-     * ```
-     * $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
-     * try {
-     *     $formattedName = $serviceMonitoringServiceClient->serviceName('[PROJECT]', '[SERVICE]');
-     *     $serviceMonitoringServiceClient->deleteService($formattedName);
-     * } finally {
-     *     $serviceMonitoringServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $name Required. Resource name of the `Service` to delete. The format is:
-     *
-     *     projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
-     * @param array $optionalArgs {
-     *                            Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function deleteService($name, array $optionalArgs = [])
-    {
-        $request = new DeleteServiceRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteService',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
      * Create a `ServiceLevelObjective` for the given `Service`.
      *
      * Sample code:
      * ```
      * $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
      * try {
-     *     $formattedParent = $serviceMonitoringServiceClient->serviceName('[PROJECT]', '[SERVICE]');
+     *     $parent = '';
      *     $serviceLevelObjective = new ServiceLevelObjective();
-     *     $response = $serviceMonitoringServiceClient->createServiceLevelObjective($formattedParent, $serviceLevelObjective);
+     *     $response = $serviceMonitoringServiceClient->createServiceLevelObjective($parent, $serviceLevelObjective);
      * } finally {
      *     $serviceMonitoringServiceClient->close();
      * }
@@ -713,8 +914,8 @@ class ServiceMonitoringServiceGapicClient
      * ```
      * $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
      * try {
-     *     $formattedName = $serviceMonitoringServiceClient->serviceLevelObjectiveName('[PROJECT]', '[SERVICE]', '[SERVICE_LEVEL_OBJECTIVE]');
-     *     $response = $serviceMonitoringServiceClient->getServiceLevelObjective($formattedName);
+     *     $name = '';
+     *     $response = $serviceMonitoringServiceClient->getServiceLevelObjective($name);
      * } finally {
      *     $serviceMonitoringServiceClient->close();
      * }
@@ -773,9 +974,9 @@ class ServiceMonitoringServiceGapicClient
      * ```
      * $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
      * try {
-     *     $formattedParent = $serviceMonitoringServiceClient->serviceName('[PROJECT]', '[SERVICE]');
+     *     $parent = '';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $serviceMonitoringServiceClient->listServiceLevelObjectives($formattedParent);
+     *     $pagedResponse = $serviceMonitoringServiceClient->listServiceLevelObjectives($parent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -786,7 +987,7 @@ class ServiceMonitoringServiceGapicClient
      *     // Alternatively:
      *
      *     // Iterate through all elements
-     *     $pagedResponse = $serviceMonitoringServiceClient->listServiceLevelObjectives($formattedParent);
+     *     $pagedResponse = $serviceMonitoringServiceClient->listServiceLevelObjectives($parent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -913,55 +1114,6 @@ class ServiceMonitoringServiceGapicClient
         return $this->startCall(
             'UpdateServiceLevelObjective',
             ServiceLevelObjective::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Delete the given `ServiceLevelObjective`.
-     *
-     * Sample code:
-     * ```
-     * $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
-     * try {
-     *     $formattedName = $serviceMonitoringServiceClient->serviceLevelObjectiveName('[PROJECT]', '[SERVICE]', '[SERVICE_LEVEL_OBJECTIVE]');
-     *     $serviceMonitoringServiceClient->deleteServiceLevelObjective($formattedName);
-     * } finally {
-     *     $serviceMonitoringServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $name Required. Resource name of the `ServiceLevelObjective` to delete. The format is:
-     *
-     *     projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME]
-     * @param array $optionalArgs {
-     *                            Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function deleteServiceLevelObjective($name, array $optionalArgs = [])
-    {
-        $request = new DeleteServiceLevelObjectiveRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteServiceLevelObjective',
-            GPBEmpty::class,
             $optionalArgs,
             $request
         )->wait();

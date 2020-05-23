@@ -96,9 +96,9 @@ class MetricServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->projectName('[PROJECT]');
+        $name = 'name3373707';
 
-        $response = $client->listMonitoredResourceDescriptors($formattedName);
+        $response = $client->listMonitoredResourceDescriptors($name);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -112,7 +112,7 @@ class MetricServiceClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getName();
 
-        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertProtobufEquals($name, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -139,10 +139,10 @@ class MetricServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->projectName('[PROJECT]');
+        $name = 'name3373707';
 
         try {
-            $client->listMonitoredResourceDescriptors($formattedName);
+            $client->listMonitoredResourceDescriptors($name);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -178,9 +178,9 @@ class MetricServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->monitoredResourceDescriptorName('[PROJECT]', '[MONITORED_RESOURCE_DESCRIPTOR]');
+        $name = 'name3373707';
 
-        $response = $client->getMonitoredResourceDescriptor($formattedName);
+        $response = $client->getMonitoredResourceDescriptor($name);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -190,7 +190,7 @@ class MetricServiceClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getName();
 
-        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertProtobufEquals($name, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -218,10 +218,10 @@ class MetricServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->monitoredResourceDescriptorName('[PROJECT]', '[MONITORED_RESOURCE_DESCRIPTOR]');
+        $name = 'name3373707';
 
         try {
-            $client->getMonitoredResourceDescriptor($formattedName);
+            $client->getMonitoredResourceDescriptor($name);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -254,9 +254,9 @@ class MetricServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->projectName('[PROJECT]');
+        $name = 'name3373707';
 
-        $response = $client->listMetricDescriptors($formattedName);
+        $response = $client->listMetricDescriptors($name);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -270,7 +270,7 @@ class MetricServiceClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getName();
 
-        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertProtobufEquals($name, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -297,10 +297,10 @@ class MetricServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->projectName('[PROJECT]');
+        $name = 'name3373707';
 
         try {
-            $client->listMetricDescriptors($formattedName);
+            $client->listMetricDescriptors($name);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -338,9 +338,9 @@ class MetricServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->metricDescriptorName('[PROJECT]', '[METRIC_DESCRIPTOR]');
+        $name = 'name3373707';
 
-        $response = $client->getMetricDescriptor($formattedName);
+        $response = $client->getMetricDescriptor($name);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -350,7 +350,7 @@ class MetricServiceClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getName();
 
-        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertProtobufEquals($name, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -378,10 +378,10 @@ class MetricServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->metricDescriptorName('[PROJECT]', '[METRIC_DESCRIPTOR]');
+        $name = 'name3373707';
 
         try {
-            $client->getMetricDescriptor($formattedName);
+            $client->getMetricDescriptor($name);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -419,10 +419,10 @@ class MetricServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->projectName('[PROJECT]');
+        $name = 'name3373707';
         $metricDescriptor = new MetricDescriptor();
 
-        $response = $client->createMetricDescriptor($formattedName, $metricDescriptor);
+        $response = $client->createMetricDescriptor($name, $metricDescriptor);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -432,7 +432,7 @@ class MetricServiceClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getName();
 
-        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertProtobufEquals($name, $actualValue);
         $actualValue = $actualRequestObject->getMetricDescriptor();
 
         $this->assertProtobufEquals($metricDescriptor, $actualValue);
@@ -463,11 +463,11 @@ class MetricServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->projectName('[PROJECT]');
+        $name = 'name3373707';
         $metricDescriptor = new MetricDescriptor();
 
         try {
-            $client->createMetricDescriptor($formattedName, $metricDescriptor);
+            $client->createMetricDescriptor($name, $metricDescriptor);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -495,9 +495,9 @@ class MetricServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->metricDescriptorName('[PROJECT]', '[METRIC_DESCRIPTOR]');
+        $name = 'name3373707';
 
-        $client->deleteMetricDescriptor($formattedName);
+        $client->deleteMetricDescriptor($name);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -506,7 +506,7 @@ class MetricServiceClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getName();
 
-        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertProtobufEquals($name, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -534,10 +534,10 @@ class MetricServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->metricDescriptorName('[PROJECT]', '[METRIC_DESCRIPTOR]');
+        $name = 'name3373707';
 
         try {
-            $client->deleteMetricDescriptor($formattedName);
+            $client->deleteMetricDescriptor($name);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
