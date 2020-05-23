@@ -42,6 +42,9 @@ class DetectIntentResponse extends \Google\Protobuf\Internal\Message
      * multiple default text responses exist, they will be concatenated when
      * generating audio. If no default platform text responses exist, the
      * generated audio content will be empty.
+     * In some scenarios, multiple output audio fields may be present in the
+     * response structure. In these cases, only the top-most-level audio output
+     * has content.
      *
      * Generated from protobuf field <code>bytes output_audio = 4;</code>
      */
@@ -74,6 +77,9 @@ class DetectIntentResponse extends \Google\Protobuf\Internal\Message
      *           multiple default text responses exist, they will be concatenated when
      *           generating audio. If no default platform text responses exist, the
      *           generated audio content will be empty.
+     *           In some scenarios, multiple output audio fields may be present in the
+     *           response structure. In these cases, only the top-most-level audio output
+     *           has content.
      *     @type \Google\Cloud\Dialogflow\V2\OutputAudioConfig $output_audio_config
      *           The config used by the speech synthesizer to generate the output audio.
      * }
@@ -172,6 +178,9 @@ class DetectIntentResponse extends \Google\Protobuf\Internal\Message
      * multiple default text responses exist, they will be concatenated when
      * generating audio. If no default platform text responses exist, the
      * generated audio content will be empty.
+     * In some scenarios, multiple output audio fields may be present in the
+     * response structure. In these cases, only the top-most-level audio output
+     * has content.
      *
      * Generated from protobuf field <code>bytes output_audio = 4;</code>
      * @return string
@@ -188,6 +197,9 @@ class DetectIntentResponse extends \Google\Protobuf\Internal\Message
      * multiple default text responses exist, they will be concatenated when
      * generating audio. If no default platform text responses exist, the
      * generated audio content will be empty.
+     * In some scenarios, multiple output audio fields may be present in the
+     * response structure. In these cases, only the top-most-level audio output
+     * has content.
      *
      * Generated from protobuf field <code>bytes output_audio = 4;</code>
      * @param string $var
