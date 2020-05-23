@@ -35,8 +35,9 @@ class AssetServiceGrpcClient extends \Grpc\BaseStub {
     /**
      * Exports assets with time and resource types to a given Cloud Storage
      * location. The output format is newline-delimited JSON.
-     * This API implements the [google.longrunning.Operation][google.longrunning.Operation] API allowing you
-     * to keep track of the export.
+     * This API implements the
+     * [google.longrunning.Operation][google.longrunning.Operation] API allowing
+     * you to keep track of the export.
      * @param \Google\Cloud\Asset\V1\ExportAssetsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -137,6 +138,40 @@ class AssetServiceGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.cloud.asset.v1.AssetService/DeleteFeed',
         $argument,
         ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Searches all the resources within the given accessible scope (e.g., a
+     * project, a folder or an organization). Callers should have
+     * cloud.assets.SearchAllResources permission upon the requested scope,
+     * otherwise the request will be rejected.
+     * @param \Google\Cloud\Asset\V1\SearchAllResourcesRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function SearchAllResources(\Google\Cloud\Asset\V1\SearchAllResourcesRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.asset.v1.AssetService/SearchAllResources',
+        $argument,
+        ['\Google\Cloud\Asset\V1\SearchAllResourcesResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Searches all the IAM policies within the given accessible scope (e.g., a
+     * project, a folder or an organization). Callers should have
+     * cloud.assets.SearchAllIamPolicies permission upon the requested scope,
+     * otherwise the request will be rejected.
+     * @param \Google\Cloud\Asset\V1\SearchAllIamPoliciesRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function SearchAllIamPolicies(\Google\Cloud\Asset\V1\SearchAllIamPoliciesRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.asset.v1.AssetService/SearchAllIamPolicies',
+        $argument,
+        ['\Google\Cloud\Asset\V1\SearchAllIamPoliciesResponse', 'decode'],
         $metadata, $options);
     }
 
