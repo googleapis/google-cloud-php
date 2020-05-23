@@ -18,16 +18,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class DateShiftConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Range of shift in days. Actual shift will be selected at random within this
-     * range (inclusive ends). Negative means shift to earlier in time. Must not
-     * be more than 365250 days (1000 years) each direction.
+     * Required. Range of shift in days. Actual shift will be selected at random
+     * within this range (inclusive ends). Negative means shift to earlier in
+     * time. Must not be more than 365250 days (1000 years) each direction.
      * For example, 3 means shift date to at most 3 days into the future.
      *
      * Generated from protobuf field <code>int32 upper_bound_days = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $upper_bound_days = 0;
     /**
-     * Required. For example, -5 means shift date to at most 5 days back in the past.
+     * Required. For example, -5 means shift date to at most 5 days back in the
+     * past.
      *
      * Generated from protobuf field <code>int32 lower_bound_days = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -49,12 +50,13 @@ class DateShiftConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $upper_bound_days
-     *           Required. Range of shift in days. Actual shift will be selected at random within this
-     *           range (inclusive ends). Negative means shift to earlier in time. Must not
-     *           be more than 365250 days (1000 years) each direction.
+     *           Required. Range of shift in days. Actual shift will be selected at random
+     *           within this range (inclusive ends). Negative means shift to earlier in
+     *           time. Must not be more than 365250 days (1000 years) each direction.
      *           For example, 3 means shift date to at most 3 days into the future.
      *     @type int $lower_bound_days
-     *           Required. For example, -5 means shift date to at most 5 days back in the past.
+     *           Required. For example, -5 means shift date to at most 5 days back in the
+     *           past.
      *     @type \Google\Cloud\Dlp\V2\FieldId $context
      *           Points to the field that contains the context, for example, an entity id.
      *           If set, must also set cryptoKey. If set, shift will be consistent for the
@@ -71,9 +73,9 @@ class DateShiftConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Range of shift in days. Actual shift will be selected at random within this
-     * range (inclusive ends). Negative means shift to earlier in time. Must not
-     * be more than 365250 days (1000 years) each direction.
+     * Required. Range of shift in days. Actual shift will be selected at random
+     * within this range (inclusive ends). Negative means shift to earlier in
+     * time. Must not be more than 365250 days (1000 years) each direction.
      * For example, 3 means shift date to at most 3 days into the future.
      *
      * Generated from protobuf field <code>int32 upper_bound_days = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -85,9 +87,9 @@ class DateShiftConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Range of shift in days. Actual shift will be selected at random within this
-     * range (inclusive ends). Negative means shift to earlier in time. Must not
-     * be more than 365250 days (1000 years) each direction.
+     * Required. Range of shift in days. Actual shift will be selected at random
+     * within this range (inclusive ends). Negative means shift to earlier in
+     * time. Must not be more than 365250 days (1000 years) each direction.
      * For example, 3 means shift date to at most 3 days into the future.
      *
      * Generated from protobuf field <code>int32 upper_bound_days = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -103,7 +105,8 @@ class DateShiftConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. For example, -5 means shift date to at most 5 days back in the past.
+     * Required. For example, -5 means shift date to at most 5 days back in the
+     * past.
      *
      * Generated from protobuf field <code>int32 lower_bound_days = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -114,7 +117,8 @@ class DateShiftConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. For example, -5 means shift date to at most 5 days back in the past.
+     * Required. For example, -5 means shift date to at most 5 days back in the
+     * past.
      *
      * Generated from protobuf field <code>int32 lower_bound_days = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var

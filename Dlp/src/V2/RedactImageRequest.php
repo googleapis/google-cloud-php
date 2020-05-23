@@ -17,15 +17,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class RedactImageRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The parent resource name, for example projects/my-project-id.
+     * The parent resource name, for example projects/my-project-id
+     * or projects/my-project-id/locations/{location_id}.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * The geographic location to process the request. Reserved for future
-     * extensions.
-     * Location is restricted to 'global', 'us', 'asia', and 'europe'.
+     * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>string location_id = 8;</code>
      */
@@ -63,11 +62,10 @@ class RedactImageRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The parent resource name, for example projects/my-project-id.
+     *           The parent resource name, for example projects/my-project-id
+     *           or projects/my-project-id/locations/{location_id}.
      *     @type string $location_id
-     *           The geographic location to process the request. Reserved for future
-     *           extensions.
-     *           Location is restricted to 'global', 'us', 'asia', and 'europe'.
+     *           Deprecated. This field has no effect.
      *     @type \Google\Cloud\Dlp\V2\InspectConfig $inspect_config
      *           Configuration for the inspector.
      *     @type \Google\Cloud\Dlp\V2\RedactImageRequest\ImageRedactionConfig[]|\Google\Protobuf\Internal\RepeatedField $image_redaction_configs
@@ -85,7 +83,8 @@ class RedactImageRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The parent resource name, for example projects/my-project-id.
+     * The parent resource name, for example projects/my-project-id
+     * or projects/my-project-id/locations/{location_id}.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -96,7 +95,8 @@ class RedactImageRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The parent resource name, for example projects/my-project-id.
+     * The parent resource name, for example projects/my-project-id
+     * or projects/my-project-id/locations/{location_id}.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var
@@ -111,9 +111,7 @@ class RedactImageRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The geographic location to process the request. Reserved for future
-     * extensions.
-     * Location is restricted to 'global', 'us', 'asia', and 'europe'.
+     * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>string location_id = 8;</code>
      * @return string
@@ -124,9 +122,7 @@ class RedactImageRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The geographic location to process the request. Reserved for future
-     * extensions.
-     * Location is restricted to 'global', 'us', 'asia', and 'europe'.
+     * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>string location_id = 8;</code>
      * @param string $var
