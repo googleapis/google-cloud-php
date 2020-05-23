@@ -16,7 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class TableLocation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The zero-based index of the row where the finding is located.
+     * The zero-based index of the row where the finding is located. Only
+     * populated for resources that have a natural ordering, not BigQuery. In
+     * BigQuery, to identify the row a finding came from, populate
+     * BigQueryOptions.identifying_fields with your primary key column names and
+     * when you store the findings the value of those columns will be stored
+     * inside of Finding.
      *
      * Generated from protobuf field <code>int64 row_index = 1;</code>
      */
@@ -29,7 +34,12 @@ class TableLocation extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int|string $row_index
-     *           The zero-based index of the row where the finding is located.
+     *           The zero-based index of the row where the finding is located. Only
+     *           populated for resources that have a natural ordering, not BigQuery. In
+     *           BigQuery, to identify the row a finding came from, populate
+     *           BigQueryOptions.identifying_fields with your primary key column names and
+     *           when you store the findings the value of those columns will be stored
+     *           inside of Finding.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +48,12 @@ class TableLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The zero-based index of the row where the finding is located.
+     * The zero-based index of the row where the finding is located. Only
+     * populated for resources that have a natural ordering, not BigQuery. In
+     * BigQuery, to identify the row a finding came from, populate
+     * BigQueryOptions.identifying_fields with your primary key column names and
+     * when you store the findings the value of those columns will be stored
+     * inside of Finding.
      *
      * Generated from protobuf field <code>int64 row_index = 1;</code>
      * @return int|string
@@ -49,7 +64,12 @@ class TableLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The zero-based index of the row where the finding is located.
+     * The zero-based index of the row where the finding is located. Only
+     * populated for resources that have a natural ordering, not BigQuery. In
+     * BigQuery, to identify the row a finding came from, populate
+     * BigQueryOptions.identifying_fields with your primary key column names and
+     * when you store the findings the value of those columns will be stored
+     * inside of Finding.
      *
      * Generated from protobuf field <code>int64 row_index = 1;</code>
      * @param int|string $var

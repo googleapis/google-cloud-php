@@ -21,8 +21,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class KMapEstimationConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Fields considered to be quasi-identifiers. No two columns can
-     * have the same tag.
+     * Required. Fields considered to be quasi-identifiers. No two columns can have the
+     * same tag.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.PrivacyMetric.KMapEstimationConfig.TaggedField quasi_ids = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -51,8 +51,8 @@ class KMapEstimationConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Dlp\V2\PrivacyMetric\KMapEstimationConfig\TaggedField[]|\Google\Protobuf\Internal\RepeatedField $quasi_ids
-     *           Required. Fields considered to be quasi-identifiers. No two columns can
-     *           have the same tag.
+     *           Required. Fields considered to be quasi-identifiers. No two columns can have the
+     *           same tag.
      *     @type string $region_code
      *           ISO 3166-1 alpha-2 region code to use in the statistical modeling.
      *           Set if no column is tagged with a region-specific InfoType (like
@@ -69,8 +69,8 @@ class KMapEstimationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Fields considered to be quasi-identifiers. No two columns can
-     * have the same tag.
+     * Required. Fields considered to be quasi-identifiers. No two columns can have the
+     * same tag.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.PrivacyMetric.KMapEstimationConfig.TaggedField quasi_ids = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -81,8 +81,8 @@ class KMapEstimationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Fields considered to be quasi-identifiers. No two columns can
-     * have the same tag.
+     * Required. Fields considered to be quasi-identifiers. No two columns can have the
+     * same tag.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.PrivacyMetric.KMapEstimationConfig.TaggedField quasi_ids = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dlp\V2\PrivacyMetric\KMapEstimationConfig\TaggedField[]|\Google\Protobuf\Internal\RepeatedField $var

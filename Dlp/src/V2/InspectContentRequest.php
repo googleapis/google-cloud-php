@@ -47,6 +47,8 @@ class InspectContentRequest extends \Google\Protobuf\Internal\Message
     /**
      * The geographic location to process content inspection. Reserved for future
      * extensions.
+     * When inspecting images location is restricted to 'global', 'us', 'asia',
+     * and 'europe'.
      *
      * Generated from protobuf field <code>string location_id = 5;</code>
      */
@@ -74,6 +76,8 @@ class InspectContentRequest extends \Google\Protobuf\Internal\Message
      *     @type string $location_id
      *           The geographic location to process content inspection. Reserved for future
      *           extensions.
+     *           When inspecting images location is restricted to 'global', 'us', 'asia',
+     *           and 'europe'.
      * }
      */
     public function __construct($data = NULL) {
@@ -198,6 +202,8 @@ class InspectContentRequest extends \Google\Protobuf\Internal\Message
     /**
      * The geographic location to process content inspection. Reserved for future
      * extensions.
+     * When inspecting images location is restricted to 'global', 'us', 'asia',
+     * and 'europe'.
      *
      * Generated from protobuf field <code>string location_id = 5;</code>
      * @return string
@@ -210,6 +216,8 @@ class InspectContentRequest extends \Google\Protobuf\Internal\Message
     /**
      * The geographic location to process content inspection. Reserved for future
      * extensions.
+     * When inspecting images location is restricted to 'global', 'us', 'asia',
+     * and 'europe'.
      *
      * Generated from protobuf field <code>string location_id = 5;</code>
      * @param string $var

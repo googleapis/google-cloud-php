@@ -44,6 +44,9 @@ class CloudStorageOptions extends \Google\Protobuf\Internal\Message
      * If empty, all files are scanned and available data format processors
      * are applied. In addition, the binary content of the selected files
      * is always scanned as well.
+     * Images are scanned only as binary if the specified region
+     * does not support image inspection and no file_types were specified.
+     * Image inspection is restricted to 'global', 'us', 'asia', and 'europe'.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FileType file_types = 5;</code>
      */
@@ -83,6 +86,9 @@ class CloudStorageOptions extends \Google\Protobuf\Internal\Message
      *           If empty, all files are scanned and available data format processors
      *           are applied. In addition, the binary content of the selected files
      *           is always scanned as well.
+     *           Images are scanned only as binary if the specified region
+     *           does not support image inspection and no file_types were specified.
+     *           Image inspection is restricted to 'global', 'us', 'asia', and 'europe'.
      *     @type int $sample_method
      *     @type int $files_limit_percent
      *           Limits the number of files to scan to this percentage of the input FileSet.
@@ -188,6 +194,9 @@ class CloudStorageOptions extends \Google\Protobuf\Internal\Message
      * If empty, all files are scanned and available data format processors
      * are applied. In addition, the binary content of the selected files
      * is always scanned as well.
+     * Images are scanned only as binary if the specified region
+     * does not support image inspection and no file_types were specified.
+     * Image inspection is restricted to 'global', 'us', 'asia', and 'europe'.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FileType file_types = 5;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -202,6 +211,9 @@ class CloudStorageOptions extends \Google\Protobuf\Internal\Message
      * If empty, all files are scanned and available data format processors
      * are applied. In addition, the binary content of the selected files
      * is always scanned as well.
+     * Images are scanned only as binary if the specified region
+     * does not support image inspection and no file_types were specified.
+     * Image inspection is restricted to 'global', 'us', 'asia', and 'europe'.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FileType file_types = 5;</code>
      * @param int[]|\Google\Protobuf\Internal\RepeatedField $var

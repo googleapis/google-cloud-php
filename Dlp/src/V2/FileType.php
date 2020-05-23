@@ -40,10 +40,25 @@ class FileType
      * Included file extensions:
      *   bmp, gif, jpg, jpeg, jpe, png.
      * bytes_limit_per_file has no effect on image files.
+     * Image inspection is restricted to 'global', 'us', 'asia', and 'europe'.
      *
      * Generated from protobuf enum <code>IMAGE = 3;</code>
      */
     const IMAGE = 3;
+    /**
+     * Included file extensions:
+     *   docx, dotx, docm, dotm
+     *
+     * Generated from protobuf enum <code>WORD = 5;</code>
+     */
+    const WORD = 5;
+    /**
+     * Included file extensions:
+     *   pdf
+     *
+     * Generated from protobuf enum <code>PDF = 6;</code>
+     */
+    const PDF = 6;
     /**
      * Included file extensions:
      *   avro
@@ -57,6 +72,8 @@ class FileType
         self::BINARY_FILE => 'BINARY_FILE',
         self::TEXT_FILE => 'TEXT_FILE',
         self::IMAGE => 'IMAGE',
+        self::WORD => 'WORD',
+        self::PDF => 'PDF',
         self::AVRO => 'AVRO',
     ];
 
