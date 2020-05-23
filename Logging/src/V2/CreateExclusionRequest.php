@@ -30,7 +30,7 @@ class CreateExclusionRequest extends \Google\Protobuf\Internal\Message
      * Required. The new exclusion, whose `name` parameter is an exclusion name
      * that is not already used in the parent resource.
      *
-     * Generated from protobuf field <code>.google.logging.v2.LogExclusion exclusion = 2;</code>
+     * Generated from protobuf field <code>.google.logging.v2.LogExclusion exclusion = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $exclusion = null;
 
@@ -97,7 +97,7 @@ class CreateExclusionRequest extends \Google\Protobuf\Internal\Message
      * Required. The new exclusion, whose `name` parameter is an exclusion name
      * that is not already used in the parent resource.
      *
-     * Generated from protobuf field <code>.google.logging.v2.LogExclusion exclusion = 2;</code>
+     * Generated from protobuf field <code>.google.logging.v2.LogExclusion exclusion = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Logging\V2\LogExclusion
      */
     public function getExclusion()
@@ -109,7 +109,7 @@ class CreateExclusionRequest extends \Google\Protobuf\Internal\Message
      * Required. The new exclusion, whose `name` parameter is an exclusion name
      * that is not already used in the parent resource.
      *
-     * Generated from protobuf field <code>.google.logging.v2.LogExclusion exclusion = 2;</code>
+     * Generated from protobuf field <code>.google.logging.v2.LogExclusion exclusion = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Logging\V2\LogExclusion $var
      * @return $this
      */

@@ -21,9 +21,9 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      *     "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
      *     "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
      *     "folders/[FOLDER_ID]/logs/[LOG_ID]"
-     * A project number may optionally be used in place of PROJECT_ID. The project
-     * number is translated to its corresponding PROJECT_ID internally and the
-     * `log_name` field will contain PROJECT_ID in queries and exports.
+     * A project number may be used in place of PROJECT_ID. The project number is
+     * translated to its corresponding PROJECT_ID internally and the `log_name`
+     * field will contain PROJECT_ID in queries and exports.
      * `[LOG_ID]` must be URL-encoded within `log_name`. Example:
      * `"organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity"`.
      * `[LOG_ID]` must be less than 512 characters long and can only include the
@@ -35,7 +35,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * slash and filtering for a log name with a leading slash will never return
      * any results.
      *
-     * Generated from protobuf field <code>string log_name = 12;</code>
+     * Generated from protobuf field <code>string log_name = 12 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $log_name = '';
     /**
@@ -44,41 +44,39 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * the monitored resource designating the particular database that reported
      * the error.
      *
-     * Generated from protobuf field <code>.google.api.MonitoredResource resource = 8;</code>
+     * Generated from protobuf field <code>.google.api.MonitoredResource resource = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $resource = null;
     /**
-     * Optional. The time the event described by the log entry occurred.  This
-     * time is used to compute the log entry's age and to enforce the logs
-     * retention period. If this field is omitted in a new log entry, then Logging
-     * assigns it the current time.  Timestamps have nanosecond accuracy, but
-     * trailing zeros in the fractional seconds might be omitted when the
-     * timestamp is displayed.
+     * Optional. The time the event described by the log entry occurred. This time is used
+     * to compute the log entry's age and to enforce the logs retention period.
+     * If this field is omitted in a new log entry, then Logging assigns it the
+     * current time. Timestamps have nanosecond accuracy, but trailing zeros in
+     * the fractional seconds might be omitted when the timestamp is displayed.
      * Incoming log entries should have timestamps that are no more than the [logs
-     * retention period](/logging/quotas) in the past, and no more than 24 hours
+     * retention period](https://cloud.google.com/logging/quotas) in the past, and no more than 24 hours
      * in the future. Log entries outside those time boundaries will not be
      * available when calling `entries.list`, but those log entries can still be
-     * [exported with LogSinks](/logging/docs/api/tasks/exporting-logs).
+     * [exported with LogSinks](https://cloud.google.com/logging/docs/api/tasks/exporting-logs).
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp timestamp = 9;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp timestamp = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $timestamp = null;
     /**
      * Output only. The time the log entry was received by Logging.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp receive_timestamp = 24;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp receive_timestamp = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $receive_timestamp = null;
     /**
-     * Optional. The severity of the log entry. The default value is
-     * `LogSeverity.DEFAULT`.
+     * Optional. The severity of the log entry. The default value is `LogSeverity.DEFAULT`.
      *
-     * Generated from protobuf field <code>.google.logging.type.LogSeverity severity = 10;</code>
+     * Generated from protobuf field <code>.google.logging.type.LogSeverity severity = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $severity = 0;
     /**
-     * Optional. A unique identifier for the log entry. If you provide a value,
-     * then Logging considers other log entries in the same project, with the same
+     * Optional. A unique identifier for the log entry. If you provide a value, then
+     * Logging considers other log entries in the same project, with the same
      * `timestamp`, and with the same `insert_id` to be duplicates which are
      * removed in a single query result. However, there are no guarantees of
      * de-duplication in the export of logs.
@@ -87,59 +85,46 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * In queries, the `insert_id` is also used to order log entries that have
      * the same `log_name` and `timestamp` values.
      *
-     * Generated from protobuf field <code>string insert_id = 4;</code>
+     * Generated from protobuf field <code>string insert_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $insert_id = '';
     /**
-     * Optional. Information about the HTTP request associated with this log
-     * entry, if applicable.
+     * Optional. Information about the HTTP request associated with this log entry, if
+     * applicable.
      *
-     * Generated from protobuf field <code>.google.logging.type.HttpRequest http_request = 7;</code>
+     * Generated from protobuf field <code>.google.logging.type.HttpRequest http_request = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $http_request = null;
     /**
      * Optional. A set of user-defined (key, value) data that provides additional
      * information about the log entry.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 11;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $labels;
-    /**
-     * Deprecated. Output only. Additional metadata about the monitored resource.
-     * Only `k8s_container`, `k8s_pod`, and `k8s_node` MonitoredResources have
-     * this field populated for GKE versions older than 1.12.6. For GKE versions
-     * 1.12.6 and above, the `metadata` field has been deprecated. The Kubernetes
-     * pod labels that used to be in `metadata.userLabels` will now be present in
-     * the `labels` field with a key prefix of `k8s-pod/`. The Stackdriver system
-     * labels that were present in the `metadata.systemLabels` field will no
-     * longer be available in the LogEntry.
-     *
-     * Generated from protobuf field <code>.google.api.MonitoredResourceMetadata metadata = 25 [deprecated = true];</code>
-     */
-    private $metadata = null;
     /**
      * Optional. Information about an operation associated with the log entry, if
      * applicable.
      *
-     * Generated from protobuf field <code>.google.logging.v2.LogEntryOperation operation = 15;</code>
+     * Generated from protobuf field <code>.google.logging.v2.LogEntryOperation operation = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $operation = null;
     /**
-     * Optional. Resource name of the trace associated with the log entry, if any.
-     * If it contains a relative resource name, the name is assumed to be relative
-     * to `//tracing.googleapis.com`. Example:
+     * Optional. Resource name of the trace associated with the log entry, if any. If it
+     * contains a relative resource name, the name is assumed to be relative to
+     * `//tracing.googleapis.com`. Example:
      * `projects/my-projectid/traces/06796866738c859f2f19b7cfb3214824`
      *
-     * Generated from protobuf field <code>string trace = 22;</code>
+     * Generated from protobuf field <code>string trace = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $trace = '';
     /**
      * Optional. The span ID within the trace associated with the log entry.
      * For Trace spans, this is the same format that the Trace API v2 uses: a
      * 16-character hexadecimal encoding of an 8-byte array, such as
-     * <code>"000000000000004a"</code>.
+     * `000000000000004a`.
      *
-     * Generated from protobuf field <code>string span_id = 27;</code>
+     * Generated from protobuf field <code>string span_id = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $span_id = '';
     /**
@@ -150,14 +135,13 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * unknown at the time. A non-sampled `trace` value is still useful as a
      * request correlation identifier. The default is False.
      *
-     * Generated from protobuf field <code>bool trace_sampled = 30;</code>
+     * Generated from protobuf field <code>bool trace_sampled = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $trace_sampled = false;
     /**
-     * Optional. Source code location information associated with the log entry,
-     * if any.
+     * Optional. Source code location information associated with the log entry, if any.
      *
-     * Generated from protobuf field <code>.google.logging.v2.LogEntrySourceLocation source_location = 23;</code>
+     * Generated from protobuf field <code>.google.logging.v2.LogEntrySourceLocation source_location = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $source_location = null;
     protected $payload;
@@ -174,9 +158,9 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      *               "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
      *               "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
      *               "folders/[FOLDER_ID]/logs/[LOG_ID]"
-     *           A project number may optionally be used in place of PROJECT_ID. The project
-     *           number is translated to its corresponding PROJECT_ID internally and the
-     *           `log_name` field will contain PROJECT_ID in queries and exports.
+     *           A project number may be used in place of PROJECT_ID. The project number is
+     *           translated to its corresponding PROJECT_ID internally and the `log_name`
+     *           field will contain PROJECT_ID in queries and exports.
      *           `[LOG_ID]` must be URL-encoded within `log_name`. Example:
      *           `"organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity"`.
      *           `[LOG_ID]` must be less than 512 characters long and can only include the
@@ -205,25 +189,23 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      *           The log entry payload, represented as a structure that is
      *           expressed as a JSON object.
      *     @type \Google\Protobuf\Timestamp $timestamp
-     *           Optional. The time the event described by the log entry occurred.  This
-     *           time is used to compute the log entry's age and to enforce the logs
-     *           retention period. If this field is omitted in a new log entry, then Logging
-     *           assigns it the current time.  Timestamps have nanosecond accuracy, but
-     *           trailing zeros in the fractional seconds might be omitted when the
-     *           timestamp is displayed.
+     *           Optional. The time the event described by the log entry occurred. This time is used
+     *           to compute the log entry's age and to enforce the logs retention period.
+     *           If this field is omitted in a new log entry, then Logging assigns it the
+     *           current time. Timestamps have nanosecond accuracy, but trailing zeros in
+     *           the fractional seconds might be omitted when the timestamp is displayed.
      *           Incoming log entries should have timestamps that are no more than the [logs
-     *           retention period](/logging/quotas) in the past, and no more than 24 hours
+     *           retention period](https://cloud.google.com/logging/quotas) in the past, and no more than 24 hours
      *           in the future. Log entries outside those time boundaries will not be
      *           available when calling `entries.list`, but those log entries can still be
-     *           [exported with LogSinks](/logging/docs/api/tasks/exporting-logs).
+     *           [exported with LogSinks](https://cloud.google.com/logging/docs/api/tasks/exporting-logs).
      *     @type \Google\Protobuf\Timestamp $receive_timestamp
      *           Output only. The time the log entry was received by Logging.
      *     @type int $severity
-     *           Optional. The severity of the log entry. The default value is
-     *           `LogSeverity.DEFAULT`.
+     *           Optional. The severity of the log entry. The default value is `LogSeverity.DEFAULT`.
      *     @type string $insert_id
-     *           Optional. A unique identifier for the log entry. If you provide a value,
-     *           then Logging considers other log entries in the same project, with the same
+     *           Optional. A unique identifier for the log entry. If you provide a value, then
+     *           Logging considers other log entries in the same project, with the same
      *           `timestamp`, and with the same `insert_id` to be duplicates which are
      *           removed in a single query result. However, there are no guarantees of
      *           de-duplication in the export of logs.
@@ -232,33 +214,24 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      *           In queries, the `insert_id` is also used to order log entries that have
      *           the same `log_name` and `timestamp` values.
      *     @type \Google\Cloud\Logging\Type\HttpRequest $http_request
-     *           Optional. Information about the HTTP request associated with this log
-     *           entry, if applicable.
+     *           Optional. Information about the HTTP request associated with this log entry, if
+     *           applicable.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. A set of user-defined (key, value) data that provides additional
      *           information about the log entry.
-     *     @type \Google\Api\MonitoredResourceMetadata $metadata
-     *           Deprecated. Output only. Additional metadata about the monitored resource.
-     *           Only `k8s_container`, `k8s_pod`, and `k8s_node` MonitoredResources have
-     *           this field populated for GKE versions older than 1.12.6. For GKE versions
-     *           1.12.6 and above, the `metadata` field has been deprecated. The Kubernetes
-     *           pod labels that used to be in `metadata.userLabels` will now be present in
-     *           the `labels` field with a key prefix of `k8s-pod/`. The Stackdriver system
-     *           labels that were present in the `metadata.systemLabels` field will no
-     *           longer be available in the LogEntry.
      *     @type \Google\Cloud\Logging\V2\LogEntryOperation $operation
      *           Optional. Information about an operation associated with the log entry, if
      *           applicable.
      *     @type string $trace
-     *           Optional. Resource name of the trace associated with the log entry, if any.
-     *           If it contains a relative resource name, the name is assumed to be relative
-     *           to `//tracing.googleapis.com`. Example:
+     *           Optional. Resource name of the trace associated with the log entry, if any. If it
+     *           contains a relative resource name, the name is assumed to be relative to
+     *           `//tracing.googleapis.com`. Example:
      *           `projects/my-projectid/traces/06796866738c859f2f19b7cfb3214824`
      *     @type string $span_id
      *           Optional. The span ID within the trace associated with the log entry.
      *           For Trace spans, this is the same format that the Trace API v2 uses: a
      *           16-character hexadecimal encoding of an 8-byte array, such as
-     *           <code>"000000000000004a"</code>.
+     *           `000000000000004a`.
      *     @type bool $trace_sampled
      *           Optional. The sampling decision of the trace associated with the log entry.
      *           True means that the trace resource name in the `trace` field was sampled
@@ -267,8 +240,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      *           unknown at the time. A non-sampled `trace` value is still useful as a
      *           request correlation identifier. The default is False.
      *     @type \Google\Cloud\Logging\V2\LogEntrySourceLocation $source_location
-     *           Optional. Source code location information associated with the log entry,
-     *           if any.
+     *           Optional. Source code location information associated with the log entry, if any.
      * }
      */
     public function __construct($data = NULL) {
@@ -282,9 +254,9 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      *     "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
      *     "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
      *     "folders/[FOLDER_ID]/logs/[LOG_ID]"
-     * A project number may optionally be used in place of PROJECT_ID. The project
-     * number is translated to its corresponding PROJECT_ID internally and the
-     * `log_name` field will contain PROJECT_ID in queries and exports.
+     * A project number may be used in place of PROJECT_ID. The project number is
+     * translated to its corresponding PROJECT_ID internally and the `log_name`
+     * field will contain PROJECT_ID in queries and exports.
      * `[LOG_ID]` must be URL-encoded within `log_name`. Example:
      * `"organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity"`.
      * `[LOG_ID]` must be less than 512 characters long and can only include the
@@ -296,7 +268,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * slash and filtering for a log name with a leading slash will never return
      * any results.
      *
-     * Generated from protobuf field <code>string log_name = 12;</code>
+     * Generated from protobuf field <code>string log_name = 12 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getLogName()
@@ -310,9 +282,9 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      *     "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
      *     "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
      *     "folders/[FOLDER_ID]/logs/[LOG_ID]"
-     * A project number may optionally be used in place of PROJECT_ID. The project
-     * number is translated to its corresponding PROJECT_ID internally and the
-     * `log_name` field will contain PROJECT_ID in queries and exports.
+     * A project number may be used in place of PROJECT_ID. The project number is
+     * translated to its corresponding PROJECT_ID internally and the `log_name`
+     * field will contain PROJECT_ID in queries and exports.
      * `[LOG_ID]` must be URL-encoded within `log_name`. Example:
      * `"organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity"`.
      * `[LOG_ID]` must be less than 512 characters long and can only include the
@@ -324,7 +296,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * slash and filtering for a log name with a leading slash will never return
      * any results.
      *
-     * Generated from protobuf field <code>string log_name = 12;</code>
+     * Generated from protobuf field <code>string log_name = 12 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -342,7 +314,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * the monitored resource designating the particular database that reported
      * the error.
      *
-     * Generated from protobuf field <code>.google.api.MonitoredResource resource = 8;</code>
+     * Generated from protobuf field <code>.google.api.MonitoredResource resource = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Api\MonitoredResource
      */
     public function getResource()
@@ -356,7 +328,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * the monitored resource designating the particular database that reported
      * the error.
      *
-     * Generated from protobuf field <code>.google.api.MonitoredResource resource = 8;</code>
+     * Generated from protobuf field <code>.google.api.MonitoredResource resource = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Api\MonitoredResource $var
      * @return $this
      */
@@ -459,19 +431,18 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The time the event described by the log entry occurred.  This
-     * time is used to compute the log entry's age and to enforce the logs
-     * retention period. If this field is omitted in a new log entry, then Logging
-     * assigns it the current time.  Timestamps have nanosecond accuracy, but
-     * trailing zeros in the fractional seconds might be omitted when the
-     * timestamp is displayed.
+     * Optional. The time the event described by the log entry occurred. This time is used
+     * to compute the log entry's age and to enforce the logs retention period.
+     * If this field is omitted in a new log entry, then Logging assigns it the
+     * current time. Timestamps have nanosecond accuracy, but trailing zeros in
+     * the fractional seconds might be omitted when the timestamp is displayed.
      * Incoming log entries should have timestamps that are no more than the [logs
-     * retention period](/logging/quotas) in the past, and no more than 24 hours
+     * retention period](https://cloud.google.com/logging/quotas) in the past, and no more than 24 hours
      * in the future. Log entries outside those time boundaries will not be
      * available when calling `entries.list`, but those log entries can still be
-     * [exported with LogSinks](/logging/docs/api/tasks/exporting-logs).
+     * [exported with LogSinks](https://cloud.google.com/logging/docs/api/tasks/exporting-logs).
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp timestamp = 9;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp timestamp = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getTimestamp()
@@ -480,19 +451,18 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The time the event described by the log entry occurred.  This
-     * time is used to compute the log entry's age and to enforce the logs
-     * retention period. If this field is omitted in a new log entry, then Logging
-     * assigns it the current time.  Timestamps have nanosecond accuracy, but
-     * trailing zeros in the fractional seconds might be omitted when the
-     * timestamp is displayed.
+     * Optional. The time the event described by the log entry occurred. This time is used
+     * to compute the log entry's age and to enforce the logs retention period.
+     * If this field is omitted in a new log entry, then Logging assigns it the
+     * current time. Timestamps have nanosecond accuracy, but trailing zeros in
+     * the fractional seconds might be omitted when the timestamp is displayed.
      * Incoming log entries should have timestamps that are no more than the [logs
-     * retention period](/logging/quotas) in the past, and no more than 24 hours
+     * retention period](https://cloud.google.com/logging/quotas) in the past, and no more than 24 hours
      * in the future. Log entries outside those time boundaries will not be
      * available when calling `entries.list`, but those log entries can still be
-     * [exported with LogSinks](/logging/docs/api/tasks/exporting-logs).
+     * [exported with LogSinks](https://cloud.google.com/logging/docs/api/tasks/exporting-logs).
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp timestamp = 9;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp timestamp = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -507,7 +477,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The time the log entry was received by Logging.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp receive_timestamp = 24;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp receive_timestamp = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getReceiveTimestamp()
@@ -518,7 +488,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The time the log entry was received by Logging.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp receive_timestamp = 24;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp receive_timestamp = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -531,10 +501,9 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The severity of the log entry. The default value is
-     * `LogSeverity.DEFAULT`.
+     * Optional. The severity of the log entry. The default value is `LogSeverity.DEFAULT`.
      *
-     * Generated from protobuf field <code>.google.logging.type.LogSeverity severity = 10;</code>
+     * Generated from protobuf field <code>.google.logging.type.LogSeverity severity = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getSeverity()
@@ -543,10 +512,9 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The severity of the log entry. The default value is
-     * `LogSeverity.DEFAULT`.
+     * Optional. The severity of the log entry. The default value is `LogSeverity.DEFAULT`.
      *
-     * Generated from protobuf field <code>.google.logging.type.LogSeverity severity = 10;</code>
+     * Generated from protobuf field <code>.google.logging.type.LogSeverity severity = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -559,8 +527,8 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A unique identifier for the log entry. If you provide a value,
-     * then Logging considers other log entries in the same project, with the same
+     * Optional. A unique identifier for the log entry. If you provide a value, then
+     * Logging considers other log entries in the same project, with the same
      * `timestamp`, and with the same `insert_id` to be duplicates which are
      * removed in a single query result. However, there are no guarantees of
      * de-duplication in the export of logs.
@@ -569,7 +537,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * In queries, the `insert_id` is also used to order log entries that have
      * the same `log_name` and `timestamp` values.
      *
-     * Generated from protobuf field <code>string insert_id = 4;</code>
+     * Generated from protobuf field <code>string insert_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getInsertId()
@@ -578,8 +546,8 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A unique identifier for the log entry. If you provide a value,
-     * then Logging considers other log entries in the same project, with the same
+     * Optional. A unique identifier for the log entry. If you provide a value, then
+     * Logging considers other log entries in the same project, with the same
      * `timestamp`, and with the same `insert_id` to be duplicates which are
      * removed in a single query result. However, there are no guarantees of
      * de-duplication in the export of logs.
@@ -588,7 +556,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * In queries, the `insert_id` is also used to order log entries that have
      * the same `log_name` and `timestamp` values.
      *
-     * Generated from protobuf field <code>string insert_id = 4;</code>
+     * Generated from protobuf field <code>string insert_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -601,10 +569,10 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Information about the HTTP request associated with this log
-     * entry, if applicable.
+     * Optional. Information about the HTTP request associated with this log entry, if
+     * applicable.
      *
-     * Generated from protobuf field <code>.google.logging.type.HttpRequest http_request = 7;</code>
+     * Generated from protobuf field <code>.google.logging.type.HttpRequest http_request = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Logging\Type\HttpRequest
      */
     public function getHttpRequest()
@@ -613,10 +581,10 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Information about the HTTP request associated with this log
-     * entry, if applicable.
+     * Optional. Information about the HTTP request associated with this log entry, if
+     * applicable.
      *
-     * Generated from protobuf field <code>.google.logging.type.HttpRequest http_request = 7;</code>
+     * Generated from protobuf field <code>.google.logging.type.HttpRequest http_request = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Logging\Type\HttpRequest $var
      * @return $this
      */
@@ -632,7 +600,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * Optional. A set of user-defined (key, value) data that provides additional
      * information about the log entry.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 11;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getLabels()
@@ -644,7 +612,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * Optional. A set of user-defined (key, value) data that provides additional
      * information about the log entry.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 11;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -657,50 +625,10 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. Output only. Additional metadata about the monitored resource.
-     * Only `k8s_container`, `k8s_pod`, and `k8s_node` MonitoredResources have
-     * this field populated for GKE versions older than 1.12.6. For GKE versions
-     * 1.12.6 and above, the `metadata` field has been deprecated. The Kubernetes
-     * pod labels that used to be in `metadata.userLabels` will now be present in
-     * the `labels` field with a key prefix of `k8s-pod/`. The Stackdriver system
-     * labels that were present in the `metadata.systemLabels` field will no
-     * longer be available in the LogEntry.
-     *
-     * Generated from protobuf field <code>.google.api.MonitoredResourceMetadata metadata = 25 [deprecated = true];</code>
-     * @return \Google\Api\MonitoredResourceMetadata
-     */
-    public function getMetadata()
-    {
-        return $this->metadata;
-    }
-
-    /**
-     * Deprecated. Output only. Additional metadata about the monitored resource.
-     * Only `k8s_container`, `k8s_pod`, and `k8s_node` MonitoredResources have
-     * this field populated for GKE versions older than 1.12.6. For GKE versions
-     * 1.12.6 and above, the `metadata` field has been deprecated. The Kubernetes
-     * pod labels that used to be in `metadata.userLabels` will now be present in
-     * the `labels` field with a key prefix of `k8s-pod/`. The Stackdriver system
-     * labels that were present in the `metadata.systemLabels` field will no
-     * longer be available in the LogEntry.
-     *
-     * Generated from protobuf field <code>.google.api.MonitoredResourceMetadata metadata = 25 [deprecated = true];</code>
-     * @param \Google\Api\MonitoredResourceMetadata $var
-     * @return $this
-     */
-    public function setMetadata($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Api\MonitoredResourceMetadata::class);
-        $this->metadata = $var;
-
-        return $this;
-    }
-
-    /**
      * Optional. Information about an operation associated with the log entry, if
      * applicable.
      *
-     * Generated from protobuf field <code>.google.logging.v2.LogEntryOperation operation = 15;</code>
+     * Generated from protobuf field <code>.google.logging.v2.LogEntryOperation operation = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Logging\V2\LogEntryOperation
      */
     public function getOperation()
@@ -712,7 +640,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * Optional. Information about an operation associated with the log entry, if
      * applicable.
      *
-     * Generated from protobuf field <code>.google.logging.v2.LogEntryOperation operation = 15;</code>
+     * Generated from protobuf field <code>.google.logging.v2.LogEntryOperation operation = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Logging\V2\LogEntryOperation $var
      * @return $this
      */
@@ -725,12 +653,12 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Resource name of the trace associated with the log entry, if any.
-     * If it contains a relative resource name, the name is assumed to be relative
-     * to `//tracing.googleapis.com`. Example:
+     * Optional. Resource name of the trace associated with the log entry, if any. If it
+     * contains a relative resource name, the name is assumed to be relative to
+     * `//tracing.googleapis.com`. Example:
      * `projects/my-projectid/traces/06796866738c859f2f19b7cfb3214824`
      *
-     * Generated from protobuf field <code>string trace = 22;</code>
+     * Generated from protobuf field <code>string trace = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getTrace()
@@ -739,12 +667,12 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Resource name of the trace associated with the log entry, if any.
-     * If it contains a relative resource name, the name is assumed to be relative
-     * to `//tracing.googleapis.com`. Example:
+     * Optional. Resource name of the trace associated with the log entry, if any. If it
+     * contains a relative resource name, the name is assumed to be relative to
+     * `//tracing.googleapis.com`. Example:
      * `projects/my-projectid/traces/06796866738c859f2f19b7cfb3214824`
      *
-     * Generated from protobuf field <code>string trace = 22;</code>
+     * Generated from protobuf field <code>string trace = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -760,9 +688,9 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * Optional. The span ID within the trace associated with the log entry.
      * For Trace spans, this is the same format that the Trace API v2 uses: a
      * 16-character hexadecimal encoding of an 8-byte array, such as
-     * <code>"000000000000004a"</code>.
+     * `000000000000004a`.
      *
-     * Generated from protobuf field <code>string span_id = 27;</code>
+     * Generated from protobuf field <code>string span_id = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getSpanId()
@@ -774,9 +702,9 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * Optional. The span ID within the trace associated with the log entry.
      * For Trace spans, this is the same format that the Trace API v2 uses: a
      * 16-character hexadecimal encoding of an 8-byte array, such as
-     * <code>"000000000000004a"</code>.
+     * `000000000000004a`.
      *
-     * Generated from protobuf field <code>string span_id = 27;</code>
+     * Generated from protobuf field <code>string span_id = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -796,7 +724,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * unknown at the time. A non-sampled `trace` value is still useful as a
      * request correlation identifier. The default is False.
      *
-     * Generated from protobuf field <code>bool trace_sampled = 30;</code>
+     * Generated from protobuf field <code>bool trace_sampled = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getTraceSampled()
@@ -812,7 +740,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * unknown at the time. A non-sampled `trace` value is still useful as a
      * request correlation identifier. The default is False.
      *
-     * Generated from protobuf field <code>bool trace_sampled = 30;</code>
+     * Generated from protobuf field <code>bool trace_sampled = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -825,10 +753,9 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Source code location information associated with the log entry,
-     * if any.
+     * Optional. Source code location information associated with the log entry, if any.
      *
-     * Generated from protobuf field <code>.google.logging.v2.LogEntrySourceLocation source_location = 23;</code>
+     * Generated from protobuf field <code>.google.logging.v2.LogEntrySourceLocation source_location = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Logging\V2\LogEntrySourceLocation
      */
     public function getSourceLocation()
@@ -837,10 +764,9 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Source code location information associated with the log entry,
-     * if any.
+     * Optional. Source code location information associated with the log entry, if any.
      *
-     * Generated from protobuf field <code>.google.logging.v2.LogEntrySourceLocation source_location = 23;</code>
+     * Generated from protobuf field <code>.google.logging.v2.LogEntrySourceLocation source_location = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Logging\V2\LogEntrySourceLocation $var
      * @return $this
      */

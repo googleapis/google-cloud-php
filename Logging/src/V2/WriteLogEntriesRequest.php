@@ -25,12 +25,12 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * `[LOG_ID]` must be URL-encoded. For example:
      *     "projects/my-project-id/logs/syslog"
      *     "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity"
-     * The permission <code>logging.logEntries.create</code> is needed on each
-     * project, organization, billing account, or folder that is receiving
-     * new log entries, whether the resource is specified in
-     * <code>logName</code> or in an individual log entry.
+     * The permission `logging.logEntries.create` is needed on each project,
+     * organization, billing account, or folder that is receiving new log
+     * entries, whether the resource is specified in `logName` or in an
+     * individual log entry.
      *
-     * Generated from protobuf field <code>string log_name = 1 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string log_name = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     private $log_name = '';
     /**
@@ -41,7 +41,7 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      *         "zone": "us-central1-a", "instance_id": "00000000000000000000" }}
      * See [LogEntry][google.logging.v2.LogEntry].
      *
-     * Generated from protobuf field <code>.google.api.MonitoredResource resource = 2;</code>
+     * Generated from protobuf field <code>.google.api.MonitoredResource resource = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $resource = null;
     /**
@@ -50,7 +50,7 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * as a label in this parameter, then the log entry's label is not changed.
      * See [LogEntry][google.logging.v2.LogEntry].
      *
-     * Generated from protobuf field <code>map<string, string> labels = 3;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $labels;
     /**
@@ -66,12 +66,12 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * supply their own values, the entries earlier in the list will sort before
      * the entries later in the list. See the `entries.list` method.
      * Log entries with timestamps that are more than the
-     * [logs retention period](/logging/quota-policy) in the past or more than
+     * [logs retention period](https://cloud.google.com/logging/quota-policy) in the past or more than
      * 24 hours in the future will not be available when calling `entries.list`.
      * However, those log entries can still be
-     * [exported with LogSinks](/logging/docs/api/tasks/exporting-logs).
+     * [exported with LogSinks](https://cloud.google.com/logging/docs/api/tasks/exporting-logs).
      * To improve throughput and to avoid exceeding the
-     * [quota limit](/logging/quota-policy) for calls to `entries.write`,
+     * [quota limit](https://cloud.google.com/logging/quota-policy) for calls to `entries.write`,
      * you should try to include several log entries in this list,
      * rather than calling this method for each individual log entry.
      *
@@ -85,7 +85,7 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * with one of the failed entries and the response includes error details
      * keyed by the entries' zero-based index in the `entries.write` method.
      *
-     * Generated from protobuf field <code>bool partial_success = 5;</code>
+     * Generated from protobuf field <code>bool partial_success = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $partial_success = false;
     /**
@@ -93,7 +93,7 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * entries won't be persisted nor exported. Useful for checking whether the
      * logging API endpoints are working properly before sending valuable data.
      *
-     * Generated from protobuf field <code>bool dry_run = 6;</code>
+     * Generated from protobuf field <code>bool dry_run = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $dry_run = false;
 
@@ -113,10 +113,10 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      *           `[LOG_ID]` must be URL-encoded. For example:
      *               "projects/my-project-id/logs/syslog"
      *               "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity"
-     *           The permission <code>logging.logEntries.create</code> is needed on each
-     *           project, organization, billing account, or folder that is receiving
-     *           new log entries, whether the resource is specified in
-     *           <code>logName</code> or in an individual log entry.
+     *           The permission `logging.logEntries.create` is needed on each project,
+     *           organization, billing account, or folder that is receiving new log
+     *           entries, whether the resource is specified in `logName` or in an
+     *           individual log entry.
      *     @type \Google\Api\MonitoredResource $resource
      *           Optional. A default monitored resource object that is assigned to all log
      *           entries in `entries` that do not specify a value for `resource`. Example:
@@ -142,12 +142,12 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      *           supply their own values, the entries earlier in the list will sort before
      *           the entries later in the list. See the `entries.list` method.
      *           Log entries with timestamps that are more than the
-     *           [logs retention period](/logging/quota-policy) in the past or more than
+     *           [logs retention period](https://cloud.google.com/logging/quota-policy) in the past or more than
      *           24 hours in the future will not be available when calling `entries.list`.
      *           However, those log entries can still be
-     *           [exported with LogSinks](/logging/docs/api/tasks/exporting-logs).
+     *           [exported with LogSinks](https://cloud.google.com/logging/docs/api/tasks/exporting-logs).
      *           To improve throughput and to avoid exceeding the
-     *           [quota limit](/logging/quota-policy) for calls to `entries.write`,
+     *           [quota limit](https://cloud.google.com/logging/quota-policy) for calls to `entries.write`,
      *           you should try to include several log entries in this list,
      *           rather than calling this method for each individual log entry.
      *     @type bool $partial_success
@@ -177,12 +177,12 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * `[LOG_ID]` must be URL-encoded. For example:
      *     "projects/my-project-id/logs/syslog"
      *     "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity"
-     * The permission <code>logging.logEntries.create</code> is needed on each
-     * project, organization, billing account, or folder that is receiving
-     * new log entries, whether the resource is specified in
-     * <code>logName</code> or in an individual log entry.
+     * The permission `logging.logEntries.create` is needed on each project,
+     * organization, billing account, or folder that is receiving new log
+     * entries, whether the resource is specified in `logName` or in an
+     * individual log entry.
      *
-     * Generated from protobuf field <code>string log_name = 1 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string log_name = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getLogName()
@@ -200,12 +200,12 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * `[LOG_ID]` must be URL-encoded. For example:
      *     "projects/my-project-id/logs/syslog"
      *     "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity"
-     * The permission <code>logging.logEntries.create</code> is needed on each
-     * project, organization, billing account, or folder that is receiving
-     * new log entries, whether the resource is specified in
-     * <code>logName</code> or in an individual log entry.
+     * The permission `logging.logEntries.create` is needed on each project,
+     * organization, billing account, or folder that is receiving new log
+     * entries, whether the resource is specified in `logName` or in an
+     * individual log entry.
      *
-     * Generated from protobuf field <code>string log_name = 1 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string log_name = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -225,7 +225,7 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      *         "zone": "us-central1-a", "instance_id": "00000000000000000000" }}
      * See [LogEntry][google.logging.v2.LogEntry].
      *
-     * Generated from protobuf field <code>.google.api.MonitoredResource resource = 2;</code>
+     * Generated from protobuf field <code>.google.api.MonitoredResource resource = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Api\MonitoredResource
      */
     public function getResource()
@@ -241,7 +241,7 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      *         "zone": "us-central1-a", "instance_id": "00000000000000000000" }}
      * See [LogEntry][google.logging.v2.LogEntry].
      *
-     * Generated from protobuf field <code>.google.api.MonitoredResource resource = 2;</code>
+     * Generated from protobuf field <code>.google.api.MonitoredResource resource = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Api\MonitoredResource $var
      * @return $this
      */
@@ -259,7 +259,7 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * as a label in this parameter, then the log entry's label is not changed.
      * See [LogEntry][google.logging.v2.LogEntry].
      *
-     * Generated from protobuf field <code>map<string, string> labels = 3;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getLabels()
@@ -273,7 +273,7 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * as a label in this parameter, then the log entry's label is not changed.
      * See [LogEntry][google.logging.v2.LogEntry].
      *
-     * Generated from protobuf field <code>map<string, string> labels = 3;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -298,12 +298,12 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * supply their own values, the entries earlier in the list will sort before
      * the entries later in the list. See the `entries.list` method.
      * Log entries with timestamps that are more than the
-     * [logs retention period](/logging/quota-policy) in the past or more than
+     * [logs retention period](https://cloud.google.com/logging/quota-policy) in the past or more than
      * 24 hours in the future will not be available when calling `entries.list`.
      * However, those log entries can still be
-     * [exported with LogSinks](/logging/docs/api/tasks/exporting-logs).
+     * [exported with LogSinks](https://cloud.google.com/logging/docs/api/tasks/exporting-logs).
      * To improve throughput and to avoid exceeding the
-     * [quota limit](/logging/quota-policy) for calls to `entries.write`,
+     * [quota limit](https://cloud.google.com/logging/quota-policy) for calls to `entries.write`,
      * you should try to include several log entries in this list,
      * rather than calling this method for each individual log entry.
      *
@@ -328,12 +328,12 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * supply their own values, the entries earlier in the list will sort before
      * the entries later in the list. See the `entries.list` method.
      * Log entries with timestamps that are more than the
-     * [logs retention period](/logging/quota-policy) in the past or more than
+     * [logs retention period](https://cloud.google.com/logging/quota-policy) in the past or more than
      * 24 hours in the future will not be available when calling `entries.list`.
      * However, those log entries can still be
-     * [exported with LogSinks](/logging/docs/api/tasks/exporting-logs).
+     * [exported with LogSinks](https://cloud.google.com/logging/docs/api/tasks/exporting-logs).
      * To improve throughput and to avoid exceeding the
-     * [quota limit](/logging/quota-policy) for calls to `entries.write`,
+     * [quota limit](https://cloud.google.com/logging/quota-policy) for calls to `entries.write`,
      * you should try to include several log entries in this list,
      * rather than calling this method for each individual log entry.
      *
@@ -356,7 +356,7 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * with one of the failed entries and the response includes error details
      * keyed by the entries' zero-based index in the `entries.write` method.
      *
-     * Generated from protobuf field <code>bool partial_success = 5;</code>
+     * Generated from protobuf field <code>bool partial_success = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getPartialSuccess()
@@ -371,7 +371,7 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * with one of the failed entries and the response includes error details
      * keyed by the entries' zero-based index in the `entries.write` method.
      *
-     * Generated from protobuf field <code>bool partial_success = 5;</code>
+     * Generated from protobuf field <code>bool partial_success = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -388,7 +388,7 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * entries won't be persisted nor exported. Useful for checking whether the
      * logging API endpoints are working properly before sending valuable data.
      *
-     * Generated from protobuf field <code>bool dry_run = 6;</code>
+     * Generated from protobuf field <code>bool dry_run = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getDryRun()
@@ -401,7 +401,7 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * entries won't be persisted nor exported. Useful for checking whether the
      * logging API endpoints are working properly before sending valuable data.
      *
-     * Generated from protobuf field <code>bool dry_run = 6;</code>
+     * Generated from protobuf field <code>bool dry_run = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */

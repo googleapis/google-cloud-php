@@ -22,7 +22,7 @@ class ListLogsRequest extends \Google\Protobuf\Internal\Message
      *     "billingAccounts/[BILLING_ACCOUNT_ID]"
      *     "folders/[FOLDER_ID]"
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -30,7 +30,7 @@ class ListLogsRequest extends \Google\Protobuf\Internal\Message
      * Non-positive values are ignored.  The presence of `nextPageToken` in the
      * response indicates that more results might be available.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
     /**
@@ -39,7 +39,7 @@ class ListLogsRequest extends \Google\Protobuf\Internal\Message
      * `nextPageToken` from the previous response.  The values of other method
      * parameters should be identical to those in the previous call.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_token = '';
 
@@ -78,7 +78,7 @@ class ListLogsRequest extends \Google\Protobuf\Internal\Message
      *     "billingAccounts/[BILLING_ACCOUNT_ID]"
      *     "folders/[FOLDER_ID]"
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -93,7 +93,7 @@ class ListLogsRequest extends \Google\Protobuf\Internal\Message
      *     "billingAccounts/[BILLING_ACCOUNT_ID]"
      *     "folders/[FOLDER_ID]"
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -110,7 +110,7 @@ class ListLogsRequest extends \Google\Protobuf\Internal\Message
      * Non-positive values are ignored.  The presence of `nextPageToken` in the
      * response indicates that more results might be available.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getPageSize()
@@ -123,7 +123,7 @@ class ListLogsRequest extends \Google\Protobuf\Internal\Message
      * Non-positive values are ignored.  The presence of `nextPageToken` in the
      * response indicates that more results might be available.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -141,7 +141,7 @@ class ListLogsRequest extends \Google\Protobuf\Internal\Message
      * `nextPageToken` from the previous response.  The values of other method
      * parameters should be identical to those in the previous call.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPageToken()
@@ -155,7 +155,7 @@ class ListLogsRequest extends \Google\Protobuf\Internal\Message
      * `nextPageToken` from the previous response.  The values of other method
      * parameters should be identical to those in the previous call.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
