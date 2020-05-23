@@ -3,6 +3,29 @@
 return [
     'interfaces' => [
         'google.logging.v2.MetricsServiceV2' => [
+            'UpdateLogMetric' => [
+                'method' => 'put',
+                'uriTemplate' => '/v2/{metric_name=projects/*/metrics/*}',
+                'body' => 'metric',
+                'placeholders' => [
+                    'metric_name' => [
+                        'getters' => [
+                            'getMetricName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteLogMetric' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v2/{metric_name=projects/*/metrics/*}',
+                'placeholders' => [
+                    'metric_name' => [
+                        'getters' => [
+                            'getMetricName',
+                        ],
+                    ],
+                ],
+            ],
             'ListLogMetrics' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{parent=projects/*}/metrics',
@@ -33,29 +56,6 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'UpdateLogMetric' => [
-                'method' => 'put',
-                'uriTemplate' => '/v2/{metric_name=projects/*/metrics/*}',
-                'body' => 'metric',
-                'placeholders' => [
-                    'metric_name' => [
-                        'getters' => [
-                            'getMetricName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteLogMetric' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v2/{metric_name=projects/*/metrics/*}',
-                'placeholders' => [
-                    'metric_name' => [
-                        'getters' => [
-                            'getMetricName',
                         ],
                     ],
                 ],

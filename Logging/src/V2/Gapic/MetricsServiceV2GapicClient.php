@@ -53,23 +53,9 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $metricsServiceV2Client = new MetricsServiceV2Client();
  * try {
- *     $formattedParent = $metricsServiceV2Client->projectName('[PROJECT]');
- *     // Iterate over pages of elements
- *     $pagedResponse = $metricsServiceV2Client->listLogMetrics($formattedParent);
- *     foreach ($pagedResponse->iteratePages() as $page) {
- *         foreach ($page as $element) {
- *             // doSomethingWith($element);
- *         }
- *     }
- *
- *
- *     // Alternatively:
- *
- *     // Iterate through all elements
- *     $pagedResponse = $metricsServiceV2Client->listLogMetrics($formattedParent);
- *     foreach ($pagedResponse->iterateAllElements() as $element) {
- *         // doSomethingWith($element);
- *     }
+ *     $formattedMetricName = $metricsServiceV2Client->logMetricName('[PROJECT]', '[METRIC]');
+ *     $metric = new LogMetric();
+ *     $response = $metricsServiceV2Client->updateLogMetric($formattedMetricName, $metric);
  * } finally {
  *     $metricsServiceV2Client->close();
  * }
@@ -307,6 +293,115 @@ class MetricsServiceV2GapicClient
     }
 
     /**
+     * Creates or updates a logs-based metric.
+     *
+     * Sample code:
+     * ```
+     * $metricsServiceV2Client = new MetricsServiceV2Client();
+     * try {
+     *     $formattedMetricName = $metricsServiceV2Client->logMetricName('[PROJECT]', '[METRIC]');
+     *     $metric = new LogMetric();
+     *     $response = $metricsServiceV2Client->updateLogMetric($formattedMetricName, $metric);
+     * } finally {
+     *     $metricsServiceV2Client->close();
+     * }
+     * ```
+     *
+     * @param string $metricName Required. The resource name of the metric to update:
+     *
+     *     "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
+     *
+     * The updated metric must be provided in the request and it's
+     * `name` field must be the same as `[METRIC_ID]` If the metric
+     * does not exist in `[PROJECT_ID]`, then a new metric is created.
+     * @param LogMetric $metric       Required. The updated metric.
+     * @param array     $optionalArgs {
+     *                                Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Logging\V2\LogMetric
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function updateLogMetric($metricName, $metric, array $optionalArgs = [])
+    {
+        $request = new UpdateLogMetricRequest();
+        $request->setMetricName($metricName);
+        $request->setMetric($metric);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'metric_name' => $request->getMetricName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'UpdateLogMetric',
+            LogMetric::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Deletes a logs-based metric.
+     *
+     * Sample code:
+     * ```
+     * $metricsServiceV2Client = new MetricsServiceV2Client();
+     * try {
+     *     $formattedMetricName = $metricsServiceV2Client->logMetricName('[PROJECT]', '[METRIC]');
+     *     $metricsServiceV2Client->deleteLogMetric($formattedMetricName);
+     * } finally {
+     *     $metricsServiceV2Client->close();
+     * }
+     * ```
+     *
+     * @param string $metricName Required. The resource name of the metric to delete:
+     *
+     *     "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function deleteLogMetric($metricName, array $optionalArgs = [])
+    {
+        $request = new DeleteLogMetricRequest();
+        $request->setMetricName($metricName);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'metric_name' => $request->getMetricName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteLogMetric',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Lists logs-based metrics.
      *
      * Sample code:
@@ -493,115 +588,6 @@ class MetricsServiceV2GapicClient
         return $this->startCall(
             'CreateLogMetric',
             LogMetric::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Creates or updates a logs-based metric.
-     *
-     * Sample code:
-     * ```
-     * $metricsServiceV2Client = new MetricsServiceV2Client();
-     * try {
-     *     $formattedMetricName = $metricsServiceV2Client->logMetricName('[PROJECT]', '[METRIC]');
-     *     $metric = new LogMetric();
-     *     $response = $metricsServiceV2Client->updateLogMetric($formattedMetricName, $metric);
-     * } finally {
-     *     $metricsServiceV2Client->close();
-     * }
-     * ```
-     *
-     * @param string $metricName Required. The resource name of the metric to update:
-     *
-     *     "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
-     *
-     * The updated metric must be provided in the request and it's
-     * `name` field must be the same as `[METRIC_ID]` If the metric
-     * does not exist in `[PROJECT_ID]`, then a new metric is created.
-     * @param LogMetric $metric       Required. The updated metric.
-     * @param array     $optionalArgs {
-     *                                Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\Logging\V2\LogMetric
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function updateLogMetric($metricName, $metric, array $optionalArgs = [])
-    {
-        $request = new UpdateLogMetricRequest();
-        $request->setMetricName($metricName);
-        $request->setMetric($metric);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'metric_name' => $request->getMetricName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'UpdateLogMetric',
-            LogMetric::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Deletes a logs-based metric.
-     *
-     * Sample code:
-     * ```
-     * $metricsServiceV2Client = new MetricsServiceV2Client();
-     * try {
-     *     $formattedMetricName = $metricsServiceV2Client->logMetricName('[PROJECT]', '[METRIC]');
-     *     $metricsServiceV2Client->deleteLogMetric($formattedMetricName);
-     * } finally {
-     *     $metricsServiceV2Client->close();
-     * }
-     * ```
-     *
-     * @param string $metricName Required. The resource name of the metric to delete:
-     *
-     *     "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
-     * @param array $optionalArgs {
-     *                            Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function deleteLogMetric($metricName, array $optionalArgs = [])
-    {
-        $request = new DeleteLogMetricRequest();
-        $request->setMetricName($metricName);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'metric_name' => $request->getMetricName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteLogMetric',
-            GPBEmpty::class,
             $optionalArgs,
             $request
         )->wait();

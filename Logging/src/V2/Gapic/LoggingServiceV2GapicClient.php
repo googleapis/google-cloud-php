@@ -57,8 +57,8 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $loggingServiceV2Client = new LoggingServiceV2Client();
  * try {
- *     $entries = [];
- *     $response = $loggingServiceV2Client->writeLogEntries($entries);
+ *     $logName = '';
+ *     $loggingServiceV2Client->deleteLog($logName);
  * } finally {
  *     $loggingServiceV2Client->close();
  * }
@@ -500,134 +500,6 @@ class LoggingServiceV2GapicClient
     }
 
     /**
-     * Writes log entries to Logging. This API method is the
-     * only way to send log entries to Logging. This method
-     * is used, directly or indirectly, by the Logging agent
-     * (fluentd) and all logging libraries configured to use Logging.
-     * A single request may contain log entries for a maximum of 1000
-     * different resources (projects, organizations, billing accounts or
-     * folders).
-     *
-     * Sample code:
-     * ```
-     * $loggingServiceV2Client = new LoggingServiceV2Client();
-     * try {
-     *     $entries = [];
-     *     $response = $loggingServiceV2Client->writeLogEntries($entries);
-     * } finally {
-     *     $loggingServiceV2Client->close();
-     * }
-     * ```
-     *
-     * @param LogEntry[] $entries Required. The log entries to send to Logging. The order of log
-     *                            entries in this list does not matter. Values supplied in this method's
-     *                            `log_name`, `resource`, and `labels` fields are copied into those log
-     *                            entries in this list that do not include values for their corresponding
-     *                            fields. For more information, see the
-     *                            [LogEntry][google.logging.v2.LogEntry] type.
-     *
-     * If the `timestamp` or `insert_id` fields are missing in log entries, then
-     * this method supplies the current time or a unique identifier, respectively.
-     * The supplied values are chosen so that, among the log entries that did not
-     * supply their own values, the entries earlier in the list will sort before
-     * the entries later in the list. See the `entries.list` method.
-     *
-     * Log entries with timestamps that are more than the
-     * [logs retention period](https://cloud.google.com/logging/quota-policy) in the past or more than
-     * 24 hours in the future will not be available when calling `entries.list`.
-     * However, those log entries can still be
-     * [exported with LogSinks](https://cloud.google.com/logging/docs/api/tasks/exporting-logs).
-     *
-     * To improve throughput and to avoid exceeding the
-     * [quota limit](https://cloud.google.com/logging/quota-policy) for calls to `entries.write`,
-     * you should try to include several log entries in this list,
-     * rather than calling this method for each individual log entry.
-     * @param array $optionalArgs {
-     *                            Optional.
-     *
-     *     @type string $logName
-     *          Optional. A default log resource name that is assigned to all log entries
-     *          in `entries` that do not specify a value for `log_name`:
-     *
-     *              "projects/[PROJECT_ID]/logs/[LOG_ID]"
-     *              "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
-     *              "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
-     *              "folders/[FOLDER_ID]/logs/[LOG_ID]"
-     *
-     *          `[LOG_ID]` must be URL-encoded. For example:
-     *
-     *              "projects/my-project-id/logs/syslog"
-     *              "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity"
-     *
-     *          The permission `logging.logEntries.create` is needed on each project,
-     *          organization, billing account, or folder that is receiving new log
-     *          entries, whether the resource is specified in `logName` or in an
-     *          individual log entry.
-     *     @type MonitoredResource $resource
-     *          Optional. A default monitored resource object that is assigned to all log
-     *          entries in `entries` that do not specify a value for `resource`. Example:
-     *
-     *              { "type": "gce_instance",
-     *                "labels": {
-     *                  "zone": "us-central1-a", "instance_id": "00000000000000000000" }}
-     *
-     *          See [LogEntry][google.logging.v2.LogEntry].
-     *     @type array $labels
-     *          Optional. Default labels that are added to the `labels` field of all log
-     *          entries in `entries`. If a log entry already has a label with the same key
-     *          as a label in this parameter, then the log entry's label is not changed.
-     *          See [LogEntry][google.logging.v2.LogEntry].
-     *     @type bool $partialSuccess
-     *          Optional. Whether valid entries should be written even if some other
-     *          entries fail due to INVALID_ARGUMENT or PERMISSION_DENIED errors. If any
-     *          entry is not written, then the response status is the error associated
-     *          with one of the failed entries and the response includes error details
-     *          keyed by the entries' zero-based index in the `entries.write` method.
-     *     @type bool $dryRun
-     *          Optional. If true, the request should expect normal response, but the
-     *          entries won't be persisted nor exported. Useful for checking whether the
-     *          logging API endpoints are working properly before sending valuable data.
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\Logging\V2\WriteLogEntriesResponse
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function writeLogEntries($entries, array $optionalArgs = [])
-    {
-        $request = new WriteLogEntriesRequest();
-        $request->setEntries($entries);
-        if (isset($optionalArgs['logName'])) {
-            $request->setLogName($optionalArgs['logName']);
-        }
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-        }
-        if (isset($optionalArgs['labels'])) {
-            $request->setLabels($optionalArgs['labels']);
-        }
-        if (isset($optionalArgs['partialSuccess'])) {
-            $request->setPartialSuccess($optionalArgs['partialSuccess']);
-        }
-        if (isset($optionalArgs['dryRun'])) {
-            $request->setDryRun($optionalArgs['dryRun']);
-        }
-
-        return $this->startCall(
-            'WriteLogEntries',
-            WriteLogEntriesResponse::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
      * Deletes all the log entries in a log. The log reappears if it receives new
      * entries. Log entries written shortly before the delete operation might not
      * be deleted. Entries received after the delete operation with a timestamp
@@ -789,6 +661,134 @@ class LoggingServiceV2GapicClient
             ListLogEntriesResponse::class,
             $request
         );
+    }
+
+    /**
+     * Writes log entries to Logging. This API method is the
+     * only way to send log entries to Logging. This method
+     * is used, directly or indirectly, by the Logging agent
+     * (fluentd) and all logging libraries configured to use Logging.
+     * A single request may contain log entries for a maximum of 1000
+     * different resources (projects, organizations, billing accounts or
+     * folders).
+     *
+     * Sample code:
+     * ```
+     * $loggingServiceV2Client = new LoggingServiceV2Client();
+     * try {
+     *     $entries = [];
+     *     $response = $loggingServiceV2Client->writeLogEntries($entries);
+     * } finally {
+     *     $loggingServiceV2Client->close();
+     * }
+     * ```
+     *
+     * @param LogEntry[] $entries Required. The log entries to send to Logging. The order of log
+     *                            entries in this list does not matter. Values supplied in this method's
+     *                            `log_name`, `resource`, and `labels` fields are copied into those log
+     *                            entries in this list that do not include values for their corresponding
+     *                            fields. For more information, see the
+     *                            [LogEntry][google.logging.v2.LogEntry] type.
+     *
+     * If the `timestamp` or `insert_id` fields are missing in log entries, then
+     * this method supplies the current time or a unique identifier, respectively.
+     * The supplied values are chosen so that, among the log entries that did not
+     * supply their own values, the entries earlier in the list will sort before
+     * the entries later in the list. See the `entries.list` method.
+     *
+     * Log entries with timestamps that are more than the
+     * [logs retention period](https://cloud.google.com/logging/quota-policy) in the past or more than
+     * 24 hours in the future will not be available when calling `entries.list`.
+     * However, those log entries can still be
+     * [exported with LogSinks](https://cloud.google.com/logging/docs/api/tasks/exporting-logs).
+     *
+     * To improve throughput and to avoid exceeding the
+     * [quota limit](https://cloud.google.com/logging/quota-policy) for calls to `entries.write`,
+     * you should try to include several log entries in this list,
+     * rather than calling this method for each individual log entry.
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type string $logName
+     *          Optional. A default log resource name that is assigned to all log entries
+     *          in `entries` that do not specify a value for `log_name`:
+     *
+     *              "projects/[PROJECT_ID]/logs/[LOG_ID]"
+     *              "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
+     *              "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
+     *              "folders/[FOLDER_ID]/logs/[LOG_ID]"
+     *
+     *          `[LOG_ID]` must be URL-encoded. For example:
+     *
+     *              "projects/my-project-id/logs/syslog"
+     *              "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity"
+     *
+     *          The permission `logging.logEntries.create` is needed on each project,
+     *          organization, billing account, or folder that is receiving new log
+     *          entries, whether the resource is specified in `logName` or in an
+     *          individual log entry.
+     *     @type MonitoredResource $resource
+     *          Optional. A default monitored resource object that is assigned to all log
+     *          entries in `entries` that do not specify a value for `resource`. Example:
+     *
+     *              { "type": "gce_instance",
+     *                "labels": {
+     *                  "zone": "us-central1-a", "instance_id": "00000000000000000000" }}
+     *
+     *          See [LogEntry][google.logging.v2.LogEntry].
+     *     @type array $labels
+     *          Optional. Default labels that are added to the `labels` field of all log
+     *          entries in `entries`. If a log entry already has a label with the same key
+     *          as a label in this parameter, then the log entry's label is not changed.
+     *          See [LogEntry][google.logging.v2.LogEntry].
+     *     @type bool $partialSuccess
+     *          Optional. Whether valid entries should be written even if some other
+     *          entries fail due to INVALID_ARGUMENT or PERMISSION_DENIED errors. If any
+     *          entry is not written, then the response status is the error associated
+     *          with one of the failed entries and the response includes error details
+     *          keyed by the entries' zero-based index in the `entries.write` method.
+     *     @type bool $dryRun
+     *          Optional. If true, the request should expect normal response, but the
+     *          entries won't be persisted nor exported. Useful for checking whether the
+     *          logging API endpoints are working properly before sending valuable data.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Logging\V2\WriteLogEntriesResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function writeLogEntries($entries, array $optionalArgs = [])
+    {
+        $request = new WriteLogEntriesRequest();
+        $request->setEntries($entries);
+        if (isset($optionalArgs['logName'])) {
+            $request->setLogName($optionalArgs['logName']);
+        }
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+        }
+        if (isset($optionalArgs['labels'])) {
+            $request->setLabels($optionalArgs['labels']);
+        }
+        if (isset($optionalArgs['partialSuccess'])) {
+            $request->setPartialSuccess($optionalArgs['partialSuccess']);
+        }
+        if (isset($optionalArgs['dryRun'])) {
+            $request->setDryRun($optionalArgs['dryRun']);
+        }
+
+        return $this->startCall(
+            'WriteLogEntries',
+            WriteLogEntriesResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**

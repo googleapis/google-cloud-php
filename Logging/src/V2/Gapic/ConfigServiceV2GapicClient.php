@@ -69,23 +69,8 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $configServiceV2Client = new ConfigServiceV2Client();
  * try {
- *     $formattedParent = $configServiceV2Client->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
- *     // Iterate over pages of elements
- *     $pagedResponse = $configServiceV2Client->listBuckets($formattedParent);
- *     foreach ($pagedResponse->iteratePages() as $page) {
- *         foreach ($page as $element) {
- *             // doSomethingWith($element);
- *         }
- *     }
- *
- *
- *     // Alternatively:
- *
- *     // Iterate through all elements
- *     $pagedResponse = $configServiceV2Client->listBuckets($formattedParent);
- *     foreach ($pagedResponse->iterateAllElements() as $element) {
- *         // doSomethingWith($element);
- *     }
+ *     $sinkName = '';
+ *     $configServiceV2Client->deleteSink($sinkName);
  * } finally {
  *     $configServiceV2Client->close();
  * }
@@ -1097,6 +1082,217 @@ class ConfigServiceV2GapicClient
     }
 
     /**
+     * Deletes a sink. If the sink has a unique `writer_identity`, then that
+     * service account is also deleted.
+     *
+     * Sample code:
+     * ```
+     * $configServiceV2Client = new ConfigServiceV2Client();
+     * try {
+     *     $sinkName = '';
+     *     $configServiceV2Client->deleteSink($sinkName);
+     * } finally {
+     *     $configServiceV2Client->close();
+     * }
+     * ```
+     *
+     * @param string $sinkName Required. The full resource name of the sink to delete, including the parent
+     *                         resource and the sink identifier:
+     *
+     *     "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+     *
+     * Example: `"projects/my-project-id/sinks/my-sink-id"`.
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function deleteSink($sinkName, array $optionalArgs = [])
+    {
+        $request = new DeleteSinkRequest();
+        $request->setSinkName($sinkName);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'sink_name' => $request->getSinkName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteSink',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Updates a sink. This method replaces the following fields in the existing
+     * sink with values from the new sink: `destination`, and `filter`.
+     *
+     * The updated sink might also have a new `writer_identity`; see the
+     * `unique_writer_identity` field.
+     *
+     * Sample code:
+     * ```
+     * $configServiceV2Client = new ConfigServiceV2Client();
+     * try {
+     *     $sinkName = '';
+     *     $sink = new LogSink();
+     *     $response = $configServiceV2Client->updateSink($sinkName, $sink);
+     * } finally {
+     *     $configServiceV2Client->close();
+     * }
+     * ```
+     *
+     * @param string $sinkName Required. The full resource name of the sink to update, including the parent
+     *                         resource and the sink identifier:
+     *
+     *     "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+     *
+     * Example: `"projects/my-project-id/sinks/my-sink-id"`.
+     * @param LogSink $sink         Required. The updated sink, whose name is the same identifier that appears as part
+     *                              of `sink_name`.
+     * @param array   $optionalArgs {
+     *                              Optional.
+     *
+     *     @type bool $uniqueWriterIdentity
+     *          Optional. See [sinks.create][google.logging.v2.ConfigServiceV2.CreateSink]
+     *          for a description of this field. When updating a sink, the effect of this
+     *          field on the value of `writer_identity` in the updated sink depends on both
+     *          the old and new values of this field:
+     *
+     *          +   If the old and new values of this field are both false or both true,
+     *              then there is no change to the sink's `writer_identity`.
+     *          +   If the old value is false and the new value is true, then
+     *              `writer_identity` is changed to a unique service account.
+     *          +   It is an error if the old value is true and the new value is
+     *              set to false or defaulted to false.
+     *     @type FieldMask $updateMask
+     *          Optional. Field mask that specifies the fields in `sink` that need
+     *          an update. A sink field will be overwritten if, and only if, it is
+     *          in the update mask. `name` and output only fields cannot be updated.
+     *
+     *          An empty updateMask is temporarily treated as using the following mask
+     *          for backwards compatibility purposes:
+     *            destination,filter,includeChildren
+     *          At some point in the future, behavior will be removed and specifying an
+     *          empty updateMask will be an error.
+     *
+     *          For a detailed `FieldMask` definition, see
+     *          https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMask
+     *
+     *          Example: `updateMask=filter`.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Logging\V2\LogSink
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function updateSink($sinkName, $sink, array $optionalArgs = [])
+    {
+        $request = new UpdateSinkRequest();
+        $request->setSinkName($sinkName);
+        $request->setSink($sink);
+        if (isset($optionalArgs['uniqueWriterIdentity'])) {
+            $request->setUniqueWriterIdentity($optionalArgs['uniqueWriterIdentity']);
+        }
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'sink_name' => $request->getSinkName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'UpdateSink',
+            LogSink::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Deletes an exclusion.
+     *
+     * Sample code:
+     * ```
+     * $configServiceV2Client = new ConfigServiceV2Client();
+     * try {
+     *     $name = '';
+     *     $configServiceV2Client->deleteExclusion($name);
+     * } finally {
+     *     $configServiceV2Client->close();
+     * }
+     * ```
+     *
+     * @param string $name Required. The resource name of an existing exclusion to delete:
+     *
+     *     "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
+     *
+     * Example: `"projects/my-project-id/exclusions/my-exclusion-id"`.
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function deleteExclusion($name, array $optionalArgs = [])
+    {
+        $request = new DeleteExclusionRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteExclusion',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Lists buckets (Beta).
      *
      * Sample code:
@@ -1548,162 +1744,6 @@ class ConfigServiceV2GapicClient
     }
 
     /**
-     * Updates a sink. This method replaces the following fields in the existing
-     * sink with values from the new sink: `destination`, and `filter`.
-     *
-     * The updated sink might also have a new `writer_identity`; see the
-     * `unique_writer_identity` field.
-     *
-     * Sample code:
-     * ```
-     * $configServiceV2Client = new ConfigServiceV2Client();
-     * try {
-     *     $sinkName = '';
-     *     $sink = new LogSink();
-     *     $response = $configServiceV2Client->updateSink($sinkName, $sink);
-     * } finally {
-     *     $configServiceV2Client->close();
-     * }
-     * ```
-     *
-     * @param string $sinkName Required. The full resource name of the sink to update, including the parent
-     *                         resource and the sink identifier:
-     *
-     *     "projects/[PROJECT_ID]/sinks/[SINK_ID]"
-     *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
-     *     "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
-     *     "folders/[FOLDER_ID]/sinks/[SINK_ID]"
-     *
-     * Example: `"projects/my-project-id/sinks/my-sink-id"`.
-     * @param LogSink $sink         Required. The updated sink, whose name is the same identifier that appears as part
-     *                              of `sink_name`.
-     * @param array   $optionalArgs {
-     *                              Optional.
-     *
-     *     @type bool $uniqueWriterIdentity
-     *          Optional. See [sinks.create][google.logging.v2.ConfigServiceV2.CreateSink]
-     *          for a description of this field. When updating a sink, the effect of this
-     *          field on the value of `writer_identity` in the updated sink depends on both
-     *          the old and new values of this field:
-     *
-     *          +   If the old and new values of this field are both false or both true,
-     *              then there is no change to the sink's `writer_identity`.
-     *          +   If the old value is false and the new value is true, then
-     *              `writer_identity` is changed to a unique service account.
-     *          +   It is an error if the old value is true and the new value is
-     *              set to false or defaulted to false.
-     *     @type FieldMask $updateMask
-     *          Optional. Field mask that specifies the fields in `sink` that need
-     *          an update. A sink field will be overwritten if, and only if, it is
-     *          in the update mask. `name` and output only fields cannot be updated.
-     *
-     *          An empty updateMask is temporarily treated as using the following mask
-     *          for backwards compatibility purposes:
-     *            destination,filter,includeChildren
-     *          At some point in the future, behavior will be removed and specifying an
-     *          empty updateMask will be an error.
-     *
-     *          For a detailed `FieldMask` definition, see
-     *          https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMask
-     *
-     *          Example: `updateMask=filter`.
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\Logging\V2\LogSink
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function updateSink($sinkName, $sink, array $optionalArgs = [])
-    {
-        $request = new UpdateSinkRequest();
-        $request->setSinkName($sinkName);
-        $request->setSink($sink);
-        if (isset($optionalArgs['uniqueWriterIdentity'])) {
-            $request->setUniqueWriterIdentity($optionalArgs['uniqueWriterIdentity']);
-        }
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'sink_name' => $request->getSinkName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'UpdateSink',
-            LogSink::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Deletes a sink. If the sink has a unique `writer_identity`, then that
-     * service account is also deleted.
-     *
-     * Sample code:
-     * ```
-     * $configServiceV2Client = new ConfigServiceV2Client();
-     * try {
-     *     $sinkName = '';
-     *     $configServiceV2Client->deleteSink($sinkName);
-     * } finally {
-     *     $configServiceV2Client->close();
-     * }
-     * ```
-     *
-     * @param string $sinkName Required. The full resource name of the sink to delete, including the parent
-     *                         resource and the sink identifier:
-     *
-     *     "projects/[PROJECT_ID]/sinks/[SINK_ID]"
-     *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
-     *     "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
-     *     "folders/[FOLDER_ID]/sinks/[SINK_ID]"
-     *
-     * Example: `"projects/my-project-id/sinks/my-sink-id"`.
-     * @param array $optionalArgs {
-     *                            Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function deleteSink($sinkName, array $optionalArgs = [])
-    {
-        $request = new DeleteSinkRequest();
-        $request->setSinkName($sinkName);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'sink_name' => $request->getSinkName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteSink',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
      * Lists all the exclusions in a parent resource.
      *
      * Sample code:
@@ -1973,61 +2013,6 @@ class ConfigServiceV2GapicClient
         return $this->startCall(
             'UpdateExclusion',
             LogExclusion::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Deletes an exclusion.
-     *
-     * Sample code:
-     * ```
-     * $configServiceV2Client = new ConfigServiceV2Client();
-     * try {
-     *     $name = '';
-     *     $configServiceV2Client->deleteExclusion($name);
-     * } finally {
-     *     $configServiceV2Client->close();
-     * }
-     * ```
-     *
-     * @param string $name Required. The resource name of an existing exclusion to delete:
-     *
-     *     "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
-     *     "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
-     *     "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
-     *     "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
-     *
-     * Example: `"projects/my-project-id/exclusions/my-exclusion-id"`.
-     * @param array $optionalArgs {
-     *                            Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function deleteExclusion($name, array $optionalArgs = [])
-    {
-        $request = new DeleteExclusionRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteExclusion',
-            GPBEmpty::class,
             $optionalArgs,
             $request
         )->wait();
