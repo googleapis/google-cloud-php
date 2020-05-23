@@ -89,13 +89,24 @@ class BigQueryReadClientTest extends GeneratedTest
         $expectedResponse->setTable($table);
         $transport->addResponse($expectedResponse);
 
-        $response = $client->createReadSession();
+        // Mock request
+        $formattedParent = $client->projectName('[PROJECT]');
+        $readSession = new ReadSession();
+
+        $response = $client->createReadSession($formattedParent, $readSession);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.storage.v1.BigQueryRead/CreateReadSession', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getParent();
+
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getReadSession();
+
+        $this->assertProtobufEquals($readSession, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -122,8 +133,12 @@ class BigQueryReadClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
 
+        // Mock request
+        $formattedParent = $client->projectName('[PROJECT]');
+        $readSession = new ReadSession();
+
         try {
-            $client->createReadSession();
+            $client->createReadSession($formattedParent, $readSession);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -161,8 +176,9 @@ class BigQueryReadClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse3);
 
         // Mock request
+        $formattedReadStream = $client->readStreamName('[PROJECT]', '[LOCATION]', '[SESSION]', '[STREAM]');
 
-        $serverStream = $client->readRows();
+        $serverStream = $client->readRows($formattedReadStream);
         $this->assertInstanceOf(ServerStream::class, $serverStream);
 
         $responses = iterator_to_array($serverStream->readAll());
@@ -178,6 +194,10 @@ class BigQueryReadClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.storage.v1.BigQueryRead/ReadRows', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getReadStream();
+
+        $this->assertProtobufEquals($formattedReadStream, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -206,8 +226,9 @@ class BigQueryReadClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
 
         // Mock request
+        $formattedReadStream = $client->readStreamName('[PROJECT]', '[LOCATION]', '[SESSION]', '[STREAM]');
 
-        $serverStream = $client->readRows();
+        $serverStream = $client->readRows($formattedReadStream);
         $results = $serverStream->readAll();
 
         try {
@@ -238,13 +259,20 @@ class BigQueryReadClientTest extends GeneratedTest
         $expectedResponse = new SplitReadStreamResponse();
         $transport->addResponse($expectedResponse);
 
-        $response = $client->splitReadStream();
+        // Mock request
+        $formattedName = $client->readStreamName('[PROJECT]', '[LOCATION]', '[SESSION]', '[STREAM]');
+
+        $response = $client->splitReadStream($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.storage.v1.BigQueryRead/SplitReadStream', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getName();
+
+        $this->assertProtobufEquals($formattedName, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -271,8 +299,11 @@ class BigQueryReadClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
 
+        // Mock request
+        $formattedName = $client->readStreamName('[PROJECT]', '[LOCATION]', '[SESSION]', '[STREAM]');
+
         try {
-            $client->splitReadStream();
+            $client->splitReadStream($formattedName);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
