@@ -9,7 +9,11 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Corresponds to the `Response` field in the Dialogflow console.
+ * A rich response message.
+ * Corresponds to the intent `Response` field in the Dialogflow console.
+ * For more information, see
+ * [Rich response
+ * messages](https://cloud.google.com/dialogflow/docs/intents-rich-messages).
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.Intent.Message</code>
  */
@@ -38,9 +42,7 @@ class Message extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dialogflow\V2\Intent\Message\Card $card
      *           The card response.
      *     @type \Google\Protobuf\Struct $payload
-     *           Returns a response containing a custom, platform-specific payload.
-     *           See the Intent.Message.Platform type for a description of the
-     *           structure that may be required for your platform.
+     *           A custom platform-specific response.
      *     @type \Google\Cloud\Dialogflow\V2\Intent\Message\SimpleResponses $simple_responses
      *           The voice and text-only responses for Actions on Google.
      *     @type \Google\Cloud\Dialogflow\V2\Intent\Message\BasicCard $basic_card
@@ -173,9 +175,7 @@ class Message extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Returns a response containing a custom, platform-specific payload.
-     * See the Intent.Message.Platform type for a description of the
-     * structure that may be required for your platform.
+     * A custom platform-specific response.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct payload = 5;</code>
      * @return \Google\Protobuf\Struct
@@ -186,9 +186,7 @@ class Message extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Returns a response containing a custom, platform-specific payload.
-     * See the Intent.Message.Platform type for a description of the
-     * structure that may be required for your platform.
+     * A custom platform-specific response.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct payload = 5;</code>
      * @param \Google\Protobuf\Struct $var

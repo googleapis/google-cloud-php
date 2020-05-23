@@ -70,23 +70,8 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $sessionEntityTypesClient = new SessionEntityTypesClient();
  * try {
- *     $formattedParent = $sessionEntityTypesClient->sessionName('[PROJECT]', '[SESSION]');
- *     // Iterate over pages of elements
- *     $pagedResponse = $sessionEntityTypesClient->listSessionEntityTypes($formattedParent);
- *     foreach ($pagedResponse->iteratePages() as $page) {
- *         foreach ($page as $element) {
- *             // doSomethingWith($element);
- *         }
- *     }
- *
- *
- *     // Alternatively:
- *
- *     // Iterate through all elements
- *     $pagedResponse = $sessionEntityTypesClient->listSessionEntityTypes($formattedParent);
- *     foreach ($pagedResponse->iterateAllElements() as $element) {
- *         // doSomethingWith($element);
- *     }
+ *     $name = '';
+ *     $sessionEntityTypesClient->deleteSessionEntityType($name);
  * } finally {
  *     $sessionEntityTypesClient->close();
  * }
@@ -130,6 +115,10 @@ class SessionEntityTypesGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/dialogflow',
     ];
+    private static $projectEnvironmentUserSessionNameTemplate;
+    private static $projectEnvironmentUserSessionEntityTypeNameTemplate;
+    private static $projectSessionNameTemplate;
+    private static $projectSessionEntityTypeNameTemplate;
     private static $sessionNameTemplate;
     private static $sessionEntityTypeNameTemplate;
     private static $pathTemplateMap;
@@ -151,6 +140,42 @@ class SessionEntityTypesGapicClient
                 ],
             ],
         ];
+    }
+
+    private static function getProjectEnvironmentUserSessionNameTemplate()
+    {
+        if (null == self::$projectEnvironmentUserSessionNameTemplate) {
+            self::$projectEnvironmentUserSessionNameTemplate = new PathTemplate('projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}');
+        }
+
+        return self::$projectEnvironmentUserSessionNameTemplate;
+    }
+
+    private static function getProjectEnvironmentUserSessionEntityTypeNameTemplate()
+    {
+        if (null == self::$projectEnvironmentUserSessionEntityTypeNameTemplate) {
+            self::$projectEnvironmentUserSessionEntityTypeNameTemplate = new PathTemplate('projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}/entityTypes/{entity_type}');
+        }
+
+        return self::$projectEnvironmentUserSessionEntityTypeNameTemplate;
+    }
+
+    private static function getProjectSessionNameTemplate()
+    {
+        if (null == self::$projectSessionNameTemplate) {
+            self::$projectSessionNameTemplate = new PathTemplate('projects/{project}/agent/sessions/{session}');
+        }
+
+        return self::$projectSessionNameTemplate;
+    }
+
+    private static function getProjectSessionEntityTypeNameTemplate()
+    {
+        if (null == self::$projectSessionEntityTypeNameTemplate) {
+            self::$projectSessionEntityTypeNameTemplate = new PathTemplate('projects/{project}/agent/sessions/{session}/entityTypes/{entity_type}');
+        }
+
+        return self::$projectSessionEntityTypeNameTemplate;
     }
 
     private static function getSessionNameTemplate()
@@ -175,12 +200,100 @@ class SessionEntityTypesGapicClient
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
+                'projectEnvironmentUserSession' => self::getProjectEnvironmentUserSessionNameTemplate(),
+                'projectEnvironmentUserSessionEntityType' => self::getProjectEnvironmentUserSessionEntityTypeNameTemplate(),
+                'projectSession' => self::getProjectSessionNameTemplate(),
+                'projectSessionEntityType' => self::getProjectSessionEntityTypeNameTemplate(),
                 'session' => self::getSessionNameTemplate(),
                 'sessionEntityType' => self::getSessionEntityTypeNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project_environment_user_session resource.
+     *
+     * @param string $project
+     * @param string $environment
+     * @param string $user
+     * @param string $session
+     *
+     * @return string The formatted project_environment_user_session resource.
+     * @experimental
+     */
+    public static function projectEnvironmentUserSessionName($project, $environment, $user, $session)
+    {
+        return self::getProjectEnvironmentUserSessionNameTemplate()->render([
+            'project' => $project,
+            'environment' => $environment,
+            'user' => $user,
+            'session' => $session,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project_environment_user_session_entity_type resource.
+     *
+     * @param string $project
+     * @param string $environment
+     * @param string $user
+     * @param string $session
+     * @param string $entityType
+     *
+     * @return string The formatted project_environment_user_session_entity_type resource.
+     * @experimental
+     */
+    public static function projectEnvironmentUserSessionEntityTypeName($project, $environment, $user, $session, $entityType)
+    {
+        return self::getProjectEnvironmentUserSessionEntityTypeNameTemplate()->render([
+            'project' => $project,
+            'environment' => $environment,
+            'user' => $user,
+            'session' => $session,
+            'entity_type' => $entityType,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project_session resource.
+     *
+     * @param string $project
+     * @param string $session
+     *
+     * @return string The formatted project_session resource.
+     * @experimental
+     */
+    public static function projectSessionName($project, $session)
+    {
+        return self::getProjectSessionNameTemplate()->render([
+            'project' => $project,
+            'session' => $session,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project_session_entity_type resource.
+     *
+     * @param string $project
+     * @param string $session
+     * @param string $entityType
+     *
+     * @return string The formatted project_session_entity_type resource.
+     * @experimental
+     */
+    public static function projectSessionEntityTypeName($project, $session, $entityType)
+    {
+        return self::getProjectSessionEntityTypeNameTemplate()->render([
+            'project' => $project,
+            'session' => $session,
+            'entity_type' => $entityType,
+        ]);
     }
 
     /**
@@ -225,6 +338,10 @@ class SessionEntityTypesGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - projectEnvironmentUserSession: projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}
+     * - projectEnvironmentUserSessionEntityType: projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}/entityTypes/{entity_type}
+     * - projectSession: projects/{project}/agent/sessions/{session}
+     * - projectSessionEntityType: projects/{project}/agent/sessions/{session}/entityTypes/{entity_type}
      * - session: projects/{project}/agent/sessions/{session}
      * - sessionEntityType: projects/{project}/agent/sessions/{session}/entityTypes/{entity_type}.
      *
@@ -325,6 +442,64 @@ class SessionEntityTypesGapicClient
     }
 
     /**
+     * Deletes the specified session entity type.
+     *
+     * This method doesn't work with Google Assistant integration.
+     * Contact Dialogflow support if you need to use session entities
+     * with Google Assistant integration.
+     *
+     * Sample code:
+     * ```
+     * $sessionEntityTypesClient = new SessionEntityTypesClient();
+     * try {
+     *     $name = '';
+     *     $sessionEntityTypesClient->deleteSessionEntityType($name);
+     * } finally {
+     *     $sessionEntityTypesClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the entity type to delete. Format:
+     *                             `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
+     *                             Display Name>` or `projects/<Project ID>/agent/environments/<Environment
+     *                             ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display
+     *                             Name>`.
+     *                             If `Environment ID` is not specified, we assume default 'draft'
+     *                             environment. If `User ID` is not specified, we assume default '-' user.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function deleteSessionEntityType($name, array $optionalArgs = [])
+    {
+        $request = new DeleteSessionEntityTypeRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteSessionEntityType',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Returns the list of all session entity types in the specified session.
      *
      * This method doesn't work with Google Assistant integration.
@@ -335,9 +510,9 @@ class SessionEntityTypesGapicClient
      * ```
      * $sessionEntityTypesClient = new SessionEntityTypesClient();
      * try {
-     *     $formattedParent = $sessionEntityTypesClient->sessionName('[PROJECT]', '[SESSION]');
+     *     $parent = '';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $sessionEntityTypesClient->listSessionEntityTypes($formattedParent);
+     *     $pagedResponse = $sessionEntityTypesClient->listSessionEntityTypes($parent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -348,7 +523,7 @@ class SessionEntityTypesGapicClient
      *     // Alternatively:
      *
      *     // Iterate through all elements
-     *     $pagedResponse = $sessionEntityTypesClient->listSessionEntityTypes($formattedParent);
+     *     $pagedResponse = $sessionEntityTypesClient->listSessionEntityTypes($parent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -424,8 +599,8 @@ class SessionEntityTypesGapicClient
      * ```
      * $sessionEntityTypesClient = new SessionEntityTypesClient();
      * try {
-     *     $formattedName = $sessionEntityTypesClient->sessionEntityTypeName('[PROJECT]', '[SESSION]', '[ENTITY_TYPE]');
-     *     $response = $sessionEntityTypesClient->getSessionEntityType($formattedName);
+     *     $name = '';
+     *     $response = $sessionEntityTypesClient->getSessionEntityType($name);
      * } finally {
      *     $sessionEntityTypesClient->close();
      * }
@@ -487,9 +662,9 @@ class SessionEntityTypesGapicClient
      * ```
      * $sessionEntityTypesClient = new SessionEntityTypesClient();
      * try {
-     *     $formattedParent = $sessionEntityTypesClient->sessionName('[PROJECT]', '[SESSION]');
+     *     $parent = '';
      *     $sessionEntityType = new SessionEntityType();
-     *     $response = $sessionEntityTypesClient->createSessionEntityType($formattedParent, $sessionEntityType);
+     *     $response = $sessionEntityTypesClient->createSessionEntityType($parent, $sessionEntityType);
      * } finally {
      *     $sessionEntityTypesClient->close();
      * }
@@ -592,64 +767,6 @@ class SessionEntityTypesGapicClient
         return $this->startCall(
             'UpdateSessionEntityType',
             SessionEntityType::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Deletes the specified session entity type.
-     *
-     * This method doesn't work with Google Assistant integration.
-     * Contact Dialogflow support if you need to use session entities
-     * with Google Assistant integration.
-     *
-     * Sample code:
-     * ```
-     * $sessionEntityTypesClient = new SessionEntityTypesClient();
-     * try {
-     *     $formattedName = $sessionEntityTypesClient->sessionEntityTypeName('[PROJECT]', '[SESSION]', '[ENTITY_TYPE]');
-     *     $sessionEntityTypesClient->deleteSessionEntityType($formattedName);
-     * } finally {
-     *     $sessionEntityTypesClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. The name of the entity type to delete. Format:
-     *                             `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
-     *                             Display Name>` or `projects/<Project ID>/agent/environments/<Environment
-     *                             ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display
-     *                             Name>`.
-     *                             If `Environment ID` is not specified, we assume default 'draft'
-     *                             environment. If `User ID` is not specified, we assume default '-' user.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function deleteSessionEntityType($name, array $optionalArgs = [])
-    {
-        $request = new DeleteSessionEntityTypeRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteSessionEntityType',
-            GPBEmpty::class,
             $optionalArgs,
             $request
         )->wait();

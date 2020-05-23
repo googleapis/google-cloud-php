@@ -58,6 +58,18 @@ class QueryResult extends \Google\Protobuf\Internal\Message
     private $action = '';
     /**
      * The collection of extracted parameters.
+     * Depending on your protocol or client library language, this is a
+     * map, associative array, symbol table, dictionary, or JSON object
+     * composed of a collection of (MapKey, MapValue) pairs:
+     * -   MapKey type: string
+     * -   MapKey value: parameter name
+     * -   MapValue type:
+     *     -   If parameter's entity type is a composite entity: map
+     *     -   Else: string or number, depending on parameter value type
+     * -   MapValue value:
+     *     -   If parameter's entity type is a composite entity:
+     *         map from composite entity property names to property values
+     *     -   Else: parameter value
      *
      * Generated from protobuf field <code>.google.protobuf.Struct parameters = 4;</code>
      */
@@ -181,6 +193,18 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      *           The action name from the matched intent.
      *     @type \Google\Protobuf\Struct $parameters
      *           The collection of extracted parameters.
+     *           Depending on your protocol or client library language, this is a
+     *           map, associative array, symbol table, dictionary, or JSON object
+     *           composed of a collection of (MapKey, MapValue) pairs:
+     *           -   MapKey type: string
+     *           -   MapKey value: parameter name
+     *           -   MapValue type:
+     *               -   If parameter's entity type is a composite entity: map
+     *               -   Else: string or number, depending on parameter value type
+     *           -   MapValue value:
+     *               -   If parameter's entity type is a composite entity:
+     *                   map from composite entity property names to property values
+     *               -   Else: parameter value
      *     @type bool $all_required_params_present
      *           This field is set to:
      *           - `false` if the matched intent has required parameters and not all of
@@ -373,6 +397,18 @@ class QueryResult extends \Google\Protobuf\Internal\Message
 
     /**
      * The collection of extracted parameters.
+     * Depending on your protocol or client library language, this is a
+     * map, associative array, symbol table, dictionary, or JSON object
+     * composed of a collection of (MapKey, MapValue) pairs:
+     * -   MapKey type: string
+     * -   MapKey value: parameter name
+     * -   MapValue type:
+     *     -   If parameter's entity type is a composite entity: map
+     *     -   Else: string or number, depending on parameter value type
+     * -   MapValue value:
+     *     -   If parameter's entity type is a composite entity:
+     *         map from composite entity property names to property values
+     *     -   Else: parameter value
      *
      * Generated from protobuf field <code>.google.protobuf.Struct parameters = 4;</code>
      * @return \Google\Protobuf\Struct
@@ -384,6 +420,18 @@ class QueryResult extends \Google\Protobuf\Internal\Message
 
     /**
      * The collection of extracted parameters.
+     * Depending on your protocol or client library language, this is a
+     * map, associative array, symbol table, dictionary, or JSON object
+     * composed of a collection of (MapKey, MapValue) pairs:
+     * -   MapKey type: string
+     * -   MapKey value: parameter name
+     * -   MapValue type:
+     *     -   If parameter's entity type is a composite entity: map
+     *     -   Else: string or number, depending on parameter value type
+     * -   MapValue value:
+     *     -   If parameter's entity type is a composite entity:
+     *         map from composite entity property names to property values
+     *     -   Else: parameter value
      *
      * Generated from protobuf field <code>.google.protobuf.Struct parameters = 4;</code>
      * @param \Google\Protobuf\Struct $var

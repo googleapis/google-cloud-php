@@ -3,6 +3,29 @@
 return [
     'interfaces' => [
         'google.cloud.dialogflow.v2.Intents' => [
+            'DeleteIntent' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v2/{name=projects/*/agent/intents/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchDeleteIntents' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=projects/*/agent}/intents:batchDelete',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListIntents' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{parent=projects/*/agent}/intents',
@@ -50,17 +73,6 @@ return [
                     ],
                 ],
             ],
-            'DeleteIntent' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v2/{name=projects/*/agent/intents/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'BatchUpdateIntents' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{parent=projects/*/agent}/intents:batchUpdate',
@@ -69,31 +81,6 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'BatchDeleteIntents' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2/{parent=projects/*/agent}/intents:batchDelete',
-                'body' => '*',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-        ],
-        'google.longrunning.Operations' => [
-            'GetOperation' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/{name=projects/*/operations/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
                         ],
                     ],
                 ],

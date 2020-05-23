@@ -23,12 +23,11 @@ class GetIntentRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Optional. The language to retrieve training phrases, parameters and rich
-     * messages for. If not specified, the agent's default language is used.
-     * [Many
-     * languages](https://cloud.google.com/dialogflow/docs/reference/language)
-     * are supported. Note: languages must be enabled in the agent before they can
-     * be used.
+     * Optional. The language used to access language-specific data.
+     * If not specified, the agent's default language is used.
+     * For more information, see
+     * [Multilingual intent and entity
+     * data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
      *
      * Generated from protobuf field <code>string language_code = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -50,12 +49,11 @@ class GetIntentRequest extends \Google\Protobuf\Internal\Message
      *           Required. The name of the intent.
      *           Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      *     @type string $language_code
-     *           Optional. The language to retrieve training phrases, parameters and rich
-     *           messages for. If not specified, the agent's default language is used.
-     *           [Many
-     *           languages](https://cloud.google.com/dialogflow/docs/reference/language)
-     *           are supported. Note: languages must be enabled in the agent before they can
-     *           be used.
+     *           Optional. The language used to access language-specific data.
+     *           If not specified, the agent's default language is used.
+     *           For more information, see
+     *           [Multilingual intent and entity
+     *           data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
      *     @type int $intent_view
      *           Optional. The resource view to apply to the returned intent.
      * }
@@ -94,12 +92,11 @@ class GetIntentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The language to retrieve training phrases, parameters and rich
-     * messages for. If not specified, the agent's default language is used.
-     * [Many
-     * languages](https://cloud.google.com/dialogflow/docs/reference/language)
-     * are supported. Note: languages must be enabled in the agent before they can
-     * be used.
+     * Optional. The language used to access language-specific data.
+     * If not specified, the agent's default language is used.
+     * For more information, see
+     * [Multilingual intent and entity
+     * data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
      *
      * Generated from protobuf field <code>string language_code = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -110,12 +107,11 @@ class GetIntentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The language to retrieve training phrases, parameters and rich
-     * messages for. If not specified, the agent's default language is used.
-     * [Many
-     * languages](https://cloud.google.com/dialogflow/docs/reference/language)
-     * are supported. Note: languages must be enabled in the agent before they can
-     * be used.
+     * Optional. The language used to access language-specific data.
+     * If not specified, the agent's default language is used.
+     * For more information, see
+     * [Multilingual intent and entity
+     * data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
      *
      * Generated from protobuf field <code>string language_code = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

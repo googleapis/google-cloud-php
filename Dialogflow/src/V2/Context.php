@@ -35,7 +35,7 @@ class Context extends \Google\Protobuf\Internal\Message
     private $name = '';
     /**
      * Optional. The number of conversational query requests after which the
-     * context expires. If set to `0` (the default) the context expires
+     * context expires. The default is `0`. If set to `0`, the context expires
      * immediately. Contexts expire automatically after 20 minutes if there
      * are no matching queries.
      *
@@ -44,9 +44,18 @@ class Context extends \Google\Protobuf\Internal\Message
     private $lifespan_count = 0;
     /**
      * Optional. The collection of parameters associated with this context.
-     * Refer to [this
-     * doc](https://cloud.google.com/dialogflow/docs/intents-actions-parameters)
-     * for syntax.
+     * Depending on your protocol or client library language, this is a
+     * map, associative array, symbol table, dictionary, or JSON object
+     * composed of a collection of (MapKey, MapValue) pairs:
+     * -   MapKey type: string
+     * -   MapKey value: parameter name
+     * -   MapValue type:
+     *     -   If parameter's entity type is a composite entity: map
+     *     -   Else: string or number, depending on parameter value type
+     * -   MapValue value:
+     *     -   If parameter's entity type is a composite entity:
+     *         map from composite entity property names to property values
+     *     -   Else: parameter value
      *
      * Generated from protobuf field <code>.google.protobuf.Struct parameters = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -74,14 +83,23 @@ class Context extends \Google\Protobuf\Internal\Message
      *           * `*_dialog_params_size`
      *     @type int $lifespan_count
      *           Optional. The number of conversational query requests after which the
-     *           context expires. If set to `0` (the default) the context expires
+     *           context expires. The default is `0`. If set to `0`, the context expires
      *           immediately. Contexts expire automatically after 20 minutes if there
      *           are no matching queries.
      *     @type \Google\Protobuf\Struct $parameters
      *           Optional. The collection of parameters associated with this context.
-     *           Refer to [this
-     *           doc](https://cloud.google.com/dialogflow/docs/intents-actions-parameters)
-     *           for syntax.
+     *           Depending on your protocol or client library language, this is a
+     *           map, associative array, symbol table, dictionary, or JSON object
+     *           composed of a collection of (MapKey, MapValue) pairs:
+     *           -   MapKey type: string
+     *           -   MapKey value: parameter name
+     *           -   MapValue type:
+     *               -   If parameter's entity type is a composite entity: map
+     *               -   Else: string or number, depending on parameter value type
+     *           -   MapValue value:
+     *               -   If parameter's entity type is a composite entity:
+     *                   map from composite entity property names to property values
+     *               -   Else: parameter value
      * }
      */
     public function __construct($data = NULL) {
@@ -141,7 +159,7 @@ class Context extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The number of conversational query requests after which the
-     * context expires. If set to `0` (the default) the context expires
+     * context expires. The default is `0`. If set to `0`, the context expires
      * immediately. Contexts expire automatically after 20 minutes if there
      * are no matching queries.
      *
@@ -155,7 +173,7 @@ class Context extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The number of conversational query requests after which the
-     * context expires. If set to `0` (the default) the context expires
+     * context expires. The default is `0`. If set to `0`, the context expires
      * immediately. Contexts expire automatically after 20 minutes if there
      * are no matching queries.
      *
@@ -173,9 +191,18 @@ class Context extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The collection of parameters associated with this context.
-     * Refer to [this
-     * doc](https://cloud.google.com/dialogflow/docs/intents-actions-parameters)
-     * for syntax.
+     * Depending on your protocol or client library language, this is a
+     * map, associative array, symbol table, dictionary, or JSON object
+     * composed of a collection of (MapKey, MapValue) pairs:
+     * -   MapKey type: string
+     * -   MapKey value: parameter name
+     * -   MapValue type:
+     *     -   If parameter's entity type is a composite entity: map
+     *     -   Else: string or number, depending on parameter value type
+     * -   MapValue value:
+     *     -   If parameter's entity type is a composite entity:
+     *         map from composite entity property names to property values
+     *     -   Else: parameter value
      *
      * Generated from protobuf field <code>.google.protobuf.Struct parameters = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Struct
@@ -187,9 +214,18 @@ class Context extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The collection of parameters associated with this context.
-     * Refer to [this
-     * doc](https://cloud.google.com/dialogflow/docs/intents-actions-parameters)
-     * for syntax.
+     * Depending on your protocol or client library language, this is a
+     * map, associative array, symbol table, dictionary, or JSON object
+     * composed of a collection of (MapKey, MapValue) pairs:
+     * -   MapKey type: string
+     * -   MapKey value: parameter name
+     * -   MapValue type:
+     *     -   If parameter's entity type is a composite entity: map
+     *     -   Else: string or number, depending on parameter value type
+     * -   MapValue value:
+     *     -   If parameter's entity type is a composite entity:
+     *         map from composite entity property names to property values
+     *     -   Else: parameter value
      *
      * Generated from protobuf field <code>.google.protobuf.Struct parameters = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Struct $var

@@ -91,10 +91,10 @@ class SessionsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedSession = $client->sessionName('[PROJECT]', '[SESSION]');
+        $session = 'session1984987798';
         $queryInput = new QueryInput();
 
-        $response = $client->detectIntent($formattedSession, $queryInput);
+        $response = $client->detectIntent($session, $queryInput);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -104,7 +104,7 @@ class SessionsClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getSession();
 
-        $this->assertProtobufEquals($formattedSession, $actualValue);
+        $this->assertProtobufEquals($session, $actualValue);
         $actualValue = $actualRequestObject->getQueryInput();
 
         $this->assertProtobufEquals($queryInput, $actualValue);
@@ -135,11 +135,11 @@ class SessionsClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedSession = $client->sessionName('[PROJECT]', '[SESSION]');
+        $session = 'session1984987798';
         $queryInput = new QueryInput();
 
         try {
-            $client->detectIntent($formattedSession, $queryInput);
+            $client->detectIntent($session, $queryInput);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
