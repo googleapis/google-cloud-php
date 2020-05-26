@@ -53,8 +53,11 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      */
     private $session_entity_types;
     /**
-     * This field can be used to pass custom data into the webhook
-     * associated with the agent. Arbitrary JSON objects are supported.
+     * This field can be used to pass custom data to your webhook.
+     * Arbitrary JSON objects are supported.
+     * If supplied, the value is used to populate the
+     * `WebhookRequest.original_detect_intent_request.payload`
+     * field sent to your webhook.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct payload = 6;</code>
      */
@@ -91,8 +94,11 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      *           entity types with. The entity synonyms apply to all languages and persist
      *           for the session of this query.
      *     @type \Google\Protobuf\Struct $payload
-     *           This field can be used to pass custom data into the webhook
-     *           associated with the agent. Arbitrary JSON objects are supported.
+     *           This field can be used to pass custom data to your webhook.
+     *           Arbitrary JSON objects are supported.
+     *           If supplied, the value is used to populate the
+     *           `WebhookRequest.original_detect_intent_request.payload`
+     *           field sent to your webhook.
      *     @type \Google\Cloud\Dialogflow\V2\SentimentAnalysisRequestConfig $sentiment_analysis_request_config
      *           Configures the type of sentiment analysis to perform. If not
      *           provided, sentiment analysis is not performed.
@@ -248,8 +254,11 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This field can be used to pass custom data into the webhook
-     * associated with the agent. Arbitrary JSON objects are supported.
+     * This field can be used to pass custom data to your webhook.
+     * Arbitrary JSON objects are supported.
+     * If supplied, the value is used to populate the
+     * `WebhookRequest.original_detect_intent_request.payload`
+     * field sent to your webhook.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct payload = 6;</code>
      * @return \Google\Protobuf\Struct
@@ -260,8 +269,11 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This field can be used to pass custom data into the webhook
-     * associated with the agent. Arbitrary JSON objects are supported.
+     * This field can be used to pass custom data to your webhook.
+     * Arbitrary JSON objects are supported.
+     * If supplied, the value is used to populate the
+     * `WebhookRequest.original_detect_intent_request.payload`
+     * field sent to your webhook.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct payload = 6;</code>
      * @param \Google\Protobuf\Struct $var

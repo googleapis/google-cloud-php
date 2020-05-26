@@ -9,8 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * ============================================================================
- * Requests and responses for custom methods.
  * The request to detect user's intent.
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.DetectIntentRequest</code>

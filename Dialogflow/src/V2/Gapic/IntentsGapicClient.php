@@ -93,23 +93,8 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $intentsClient = new IntentsClient();
  * try {
- *     $formattedParent = $intentsClient->projectAgentName('[PROJECT]');
- *     // Iterate over pages of elements
- *     $pagedResponse = $intentsClient->listIntents($formattedParent);
- *     foreach ($pagedResponse->iteratePages() as $page) {
- *         foreach ($page as $element) {
- *             // doSomethingWith($element);
- *         }
- *     }
- *
- *
- *     // Alternatively:
- *
- *     // Iterate through all elements
- *     $pagedResponse = $intentsClient->listIntents($formattedParent);
- *     foreach ($pagedResponse->iterateAllElements() as $element) {
- *         // doSomethingWith($element);
- *     }
+ *     $formattedName = $intentsClient->intentName('[PROJECT]', '[INTENT]');
+ *     $intentsClient->deleteIntent($formattedName);
  * } finally {
  *     $intentsClient->close();
  * }
@@ -155,7 +140,6 @@ class IntentsGapicClient
     ];
     private static $agentNameTemplate;
     private static $intentNameTemplate;
-    private static $projectAgentNameTemplate;
     private static $pathTemplateMap;
 
     private $operationsClient;
@@ -182,7 +166,7 @@ class IntentsGapicClient
     private static function getAgentNameTemplate()
     {
         if (null == self::$agentNameTemplate) {
-            self::$agentNameTemplate = new PathTemplate('projects/{project}/agents/{agent}');
+            self::$agentNameTemplate = new PathTemplate('projects/{project}/agent');
         }
 
         return self::$agentNameTemplate;
@@ -197,22 +181,12 @@ class IntentsGapicClient
         return self::$intentNameTemplate;
     }
 
-    private static function getProjectAgentNameTemplate()
-    {
-        if (null == self::$projectAgentNameTemplate) {
-            self::$projectAgentNameTemplate = new PathTemplate('projects/{project}/agent');
-        }
-
-        return self::$projectAgentNameTemplate;
-    }
-
     private static function getPathTemplateMap()
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'agent' => self::getAgentNameTemplate(),
                 'intent' => self::getIntentNameTemplate(),
-                'projectAgent' => self::getProjectAgentNameTemplate(),
             ];
         }
 
@@ -224,16 +198,14 @@ class IntentsGapicClient
      * a agent resource.
      *
      * @param string $project
-     * @param string $agent
      *
      * @return string The formatted agent resource.
      * @experimental
      */
-    public static function agentName($project, $agent)
+    public static function agentName($project)
     {
         return self::getAgentNameTemplate()->render([
             'project' => $project,
-            'agent' => $agent,
         ]);
     }
 
@@ -256,28 +228,11 @@ class IntentsGapicClient
     }
 
     /**
-     * Formats a string containing the fully-qualified path to represent
-     * a project_agent resource.
-     *
-     * @param string $project
-     *
-     * @return string The formatted project_agent resource.
-     * @experimental
-     */
-    public static function projectAgentName($project)
-    {
-        return self::getProjectAgentNameTemplate()->render([
-            'project' => $project,
-        ]);
-    }
-
-    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - agent: projects/{project}/agents/{agent}
-     * - intent: projects/{project}/agent/intents/{intent}
-     * - projectAgent: projects/{project}/agent.
+     * - agent: projects/{project}/agent
+     * - intent: projects/{project}/agent/intents/{intent}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
@@ -412,13 +367,146 @@ class IntentsGapicClient
     }
 
     /**
+     * Deletes the specified intent and its direct or indirect followup intents.
+     *
+     * Sample code:
+     * ```
+     * $intentsClient = new IntentsClient();
+     * try {
+     *     $formattedName = $intentsClient->intentName('[PROJECT]', '[INTENT]');
+     *     $intentsClient->deleteIntent($formattedName);
+     * } finally {
+     *     $intentsClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the intent to delete. If this intent has direct or
+     *                             indirect followup intents, we also delete them.
+     *                             Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function deleteIntent($name, array $optionalArgs = [])
+    {
+        $request = new DeleteIntentRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteIntent',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Deletes intents in the specified agent.
+     *
+     * Operation <response: [google.protobuf.Empty][google.protobuf.Empty]>
+     *
+     * Sample code:
+     * ```
+     * $intentsClient = new IntentsClient();
+     * try {
+     *     $formattedParent = $intentsClient->agentName('[PROJECT]');
+     *     $intents = [];
+     *     $operationResponse = $intentsClient->batchDeleteIntents($formattedParent, $intents);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $intentsClient->batchDeleteIntents($formattedParent, $intents);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $intentsClient->resumeOperation($operationName, 'batchDeleteIntents');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       // operation succeeded and returns no value
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $intentsClient->close();
+     * }
+     * ```
+     *
+     * @param string   $parent       Required. The name of the agent to delete all entities types for. Format:
+     *                               `projects/<Project ID>/agent`.
+     * @param Intent[] $intents      Required. The collection of intents to delete. Only intent `name` must be
+     *                               filled in.
+     * @param array    $optionalArgs {
+     *                               Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function batchDeleteIntents($parent, $intents, array $optionalArgs = [])
+    {
+        $request = new BatchDeleteIntentsRequest();
+        $request->setParent($parent);
+        $request->setIntents($intents);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startOperationsCall(
+            'BatchDeleteIntents',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
      * Returns the list of all intents in the specified agent.
      *
      * Sample code:
      * ```
      * $intentsClient = new IntentsClient();
      * try {
-     *     $formattedParent = $intentsClient->projectAgentName('[PROJECT]');
+     *     $formattedParent = $intentsClient->agentName('[PROJECT]');
      *     // Iterate over pages of elements
      *     $pagedResponse = $intentsClient->listIntents($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
@@ -446,12 +534,11 @@ class IntentsGapicClient
      *                             Optional.
      *
      *     @type string $languageCode
-     *          Optional. The language to list training phrases, parameters and rich
-     *          messages for. If not specified, the agent's default language is used.
-     *          [Many
-     *          languages](https://cloud.google.com/dialogflow/docs/reference/language)
-     *          are supported. Note: languages must be enabled in the agent before they can
-     *          be used.
+     *          Optional. The language used to access language-specific data.
+     *          If not specified, the agent's default language is used.
+     *          For more information, see
+     *          [Multilingual intent and entity
+     *          data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
      *     @type int $intentView
      *          Optional. The resource view to apply to the returned intent.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Dialogflow\V2\IntentView}
@@ -528,12 +615,11 @@ class IntentsGapicClient
      *                             Optional.
      *
      *     @type string $languageCode
-     *          Optional. The language to retrieve training phrases, parameters and rich
-     *          messages for. If not specified, the agent's default language is used.
-     *          [Many
-     *          languages](https://cloud.google.com/dialogflow/docs/reference/language)
-     *          are supported. Note: languages must be enabled in the agent before they can
-     *          be used.
+     *          Optional. The language used to access language-specific data.
+     *          If not specified, the agent's default language is used.
+     *          For more information, see
+     *          [Multilingual intent and entity
+     *          data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
      *     @type int $intentView
      *          Optional. The resource view to apply to the returned intent.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Dialogflow\V2\IntentView}
@@ -582,7 +668,7 @@ class IntentsGapicClient
      * ```
      * $intentsClient = new IntentsClient();
      * try {
-     *     $formattedParent = $intentsClient->projectAgentName('[PROJECT]');
+     *     $formattedParent = $intentsClient->agentName('[PROJECT]');
      *     $intent = new Intent();
      *     $response = $intentsClient->createIntent($formattedParent, $intent);
      * } finally {
@@ -597,12 +683,11 @@ class IntentsGapicClient
      *                             Optional.
      *
      *     @type string $languageCode
-     *          Optional. The language of training phrases, parameters and rich messages
-     *          defined in `intent`. If not specified, the agent's default language is
-     *          used. [Many
-     *          languages](https://cloud.google.com/dialogflow/docs/reference/language)
-     *          are supported. Note: languages must be enabled in the agent before they can
-     *          be used.
+     *          Optional. The language used to access language-specific data.
+     *          If not specified, the agent's default language is used.
+     *          For more information, see
+     *          [Multilingual intent and entity
+     *          data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
      *     @type int $intentView
      *          Optional. The resource view to apply to the returned intent.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Dialogflow\V2\IntentView}
@@ -664,12 +749,11 @@ class IntentsGapicClient
      *                             Optional.
      *
      *     @type string $languageCode
-     *          Optional. The language of training phrases, parameters and rich messages
-     *          defined in `intent`. If not specified, the agent's default language is
-     *          used. [Many
-     *          languages](https://cloud.google.com/dialogflow/docs/reference/language)
-     *          are supported. Note: languages must be enabled in the agent before they can
-     *          be used.
+     *          Optional. The language used to access language-specific data.
+     *          If not specified, the agent's default language is used.
+     *          For more information, see
+     *          [Multilingual intent and entity
+     *          data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
      *     @type FieldMask $updateMask
      *          Optional. The mask to control which fields get updated.
      *     @type int $intentView
@@ -717,56 +801,6 @@ class IntentsGapicClient
     }
 
     /**
-     * Deletes the specified intent and its direct or indirect followup intents.
-     *
-     * Sample code:
-     * ```
-     * $intentsClient = new IntentsClient();
-     * try {
-     *     $formattedName = $intentsClient->intentName('[PROJECT]', '[INTENT]');
-     *     $intentsClient->deleteIntent($formattedName);
-     * } finally {
-     *     $intentsClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. The name of the intent to delete. If this intent has direct or
-     *                             indirect followup intents, we also delete them.
-     *                             Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function deleteIntent($name, array $optionalArgs = [])
-    {
-        $request = new DeleteIntentRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteIntent',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
      * Updates/Creates multiple intents in the specified agent.
      *
      * Operation <response: [BatchUpdateIntentsResponse][google.cloud.dialogflow.v2.BatchUpdateIntentsResponse]>
@@ -775,7 +809,7 @@ class IntentsGapicClient
      * ```
      * $intentsClient = new IntentsClient();
      * try {
-     *     $formattedParent = $intentsClient->projectAgentName('[PROJECT]');
+     *     $formattedParent = $intentsClient->agentName('[PROJECT]');
      *     $operationResponse = $intentsClient->batchUpdateIntents($formattedParent);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
@@ -822,12 +856,11 @@ class IntentsGapicClient
      *     @type IntentBatch $intentBatchInline
      *          The collection of intents to update or create.
      *     @type string $languageCode
-     *          Optional. The language of training phrases, parameters and rich messages
-     *          defined in `intents`. If not specified, the agent's default language is
-     *          used. [Many
-     *          languages](https://cloud.google.com/dialogflow/docs/reference/language)
-     *          are supported. Note: languages must be enabled in the agent before they can
-     *          be used.
+     *          Optional. The language used to access language-specific data.
+     *          If not specified, the agent's default language is used.
+     *          For more information, see
+     *          [Multilingual intent and entity
+     *          data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
      *     @type FieldMask $updateMask
      *          Optional. The mask to control which fields get updated.
      *     @type int $intentView
@@ -874,89 +907,6 @@ class IntentsGapicClient
 
         return $this->startOperationsCall(
             'BatchUpdateIntents',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
-        )->wait();
-    }
-
-    /**
-     * Deletes intents in the specified agent.
-     *
-     * Operation <response: [google.protobuf.Empty][google.protobuf.Empty]>
-     *
-     * Sample code:
-     * ```
-     * $intentsClient = new IntentsClient();
-     * try {
-     *     $formattedParent = $intentsClient->projectAgentName('[PROJECT]');
-     *     $intents = [];
-     *     $operationResponse = $intentsClient->batchDeleteIntents($formattedParent, $intents);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // operation succeeded and returns no value
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *
-     *
-     *     // Alternatively:
-     *
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $intentsClient->batchDeleteIntents($formattedParent, $intents);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $intentsClient->resumeOperation($operationName, 'batchDeleteIntents');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *       // operation succeeded and returns no value
-     *     } else {
-     *       $error = $newOperationResponse->getError();
-     *       // handleError($error)
-     *     }
-     * } finally {
-     *     $intentsClient->close();
-     * }
-     * ```
-     *
-     * @param string   $parent       Required. The name of the agent to delete all entities types for. Format:
-     *                               `projects/<Project ID>/agent`.
-     * @param Intent[] $intents      Required. The collection of intents to delete. Only intent `name` must be
-     *                               filled in.
-     * @param array    $optionalArgs {
-     *                               Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\ApiCore\OperationResponse
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function batchDeleteIntents($parent, $intents, array $optionalArgs = [])
-    {
-        $request = new BatchDeleteIntentsRequest();
-        $request->setParent($parent);
-        $request->setIntents($intents);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'parent' => $request->getParent(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startOperationsCall(
-            'BatchDeleteIntents',
             $optionalArgs,
             $request,
             $this->getOperationsClient()

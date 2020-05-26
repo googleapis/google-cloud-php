@@ -34,7 +34,8 @@ class OriginalDetectIntentRequest extends \Google\Protobuf\Internal\Message
      * Optional. This field is set to the value of the `QueryParameters.payload`
      * field passed in the request. Some integrations that query a Dialogflow
      * agent may provide additional information in the payload.
-     * In particular for the Telephony Gateway this field has the form:
+     * In particular, for the Dialogflow Phone Gateway integration, this field has
+     * the form:
      * <pre>{
      *  "telephony": {
      *    "caller_id": "+18558363987"
@@ -64,7 +65,8 @@ class OriginalDetectIntentRequest extends \Google\Protobuf\Internal\Message
      *           Optional. This field is set to the value of the `QueryParameters.payload`
      *           field passed in the request. Some integrations that query a Dialogflow
      *           agent may provide additional information in the payload.
-     *           In particular for the Telephony Gateway this field has the form:
+     *           In particular, for the Dialogflow Phone Gateway integration, this field has
+     *           the form:
      *           <pre>{
      *            "telephony": {
      *              "caller_id": "+18558363987"
@@ -140,7 +142,8 @@ class OriginalDetectIntentRequest extends \Google\Protobuf\Internal\Message
      * Optional. This field is set to the value of the `QueryParameters.payload`
      * field passed in the request. Some integrations that query a Dialogflow
      * agent may provide additional information in the payload.
-     * In particular for the Telephony Gateway this field has the form:
+     * In particular, for the Dialogflow Phone Gateway integration, this field has
+     * the form:
      * <pre>{
      *  "telephony": {
      *    "caller_id": "+18558363987"
@@ -162,7 +165,8 @@ class OriginalDetectIntentRequest extends \Google\Protobuf\Internal\Message
      * Optional. This field is set to the value of the `QueryParameters.payload`
      * field passed in the request. Some integrations that query a Dialogflow
      * agent may provide additional information in the payload.
-     * In particular for the Telephony Gateway this field has the form:
+     * In particular, for the Dialogflow Phone Gateway integration, this field has
+     * the form:
      * <pre>{
      *  "telephony": {
      *    "caller_id": "+18558363987"

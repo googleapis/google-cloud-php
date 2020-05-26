@@ -27,6 +27,18 @@ class EventInput extends \Google\Protobuf\Internal\Message
     private $name = '';
     /**
      * The collection of parameters associated with the event.
+     * Depending on your protocol or client library language, this is a
+     * map, associative array, symbol table, dictionary, or JSON object
+     * composed of a collection of (MapKey, MapValue) pairs:
+     * -   MapKey type: string
+     * -   MapKey value: parameter name
+     * -   MapValue type:
+     *     -   If parameter's entity type is a composite entity: map
+     *     -   Else: string or number, depending on parameter value type
+     * -   MapValue value:
+     *     -   If parameter's entity type is a composite entity:
+     *         map from composite entity property names to property values
+     *     -   Else: parameter value
      *
      * Generated from protobuf field <code>.google.protobuf.Struct parameters = 2;</code>
      */
@@ -51,6 +63,18 @@ class EventInput extends \Google\Protobuf\Internal\Message
      *           Required. The unique identifier of the event.
      *     @type \Google\Protobuf\Struct $parameters
      *           The collection of parameters associated with the event.
+     *           Depending on your protocol or client library language, this is a
+     *           map, associative array, symbol table, dictionary, or JSON object
+     *           composed of a collection of (MapKey, MapValue) pairs:
+     *           -   MapKey type: string
+     *           -   MapKey value: parameter name
+     *           -   MapValue type:
+     *               -   If parameter's entity type is a composite entity: map
+     *               -   Else: string or number, depending on parameter value type
+     *           -   MapValue value:
+     *               -   If parameter's entity type is a composite entity:
+     *                   map from composite entity property names to property values
+     *               -   Else: parameter value
      *     @type string $language_code
      *           Required. The language of this query. See [Language
      *           Support](https://cloud.google.com/dialogflow/docs/reference/language)
@@ -91,6 +115,18 @@ class EventInput extends \Google\Protobuf\Internal\Message
 
     /**
      * The collection of parameters associated with the event.
+     * Depending on your protocol or client library language, this is a
+     * map, associative array, symbol table, dictionary, or JSON object
+     * composed of a collection of (MapKey, MapValue) pairs:
+     * -   MapKey type: string
+     * -   MapKey value: parameter name
+     * -   MapValue type:
+     *     -   If parameter's entity type is a composite entity: map
+     *     -   Else: string or number, depending on parameter value type
+     * -   MapValue value:
+     *     -   If parameter's entity type is a composite entity:
+     *         map from composite entity property names to property values
+     *     -   Else: parameter value
      *
      * Generated from protobuf field <code>.google.protobuf.Struct parameters = 2;</code>
      * @return \Google\Protobuf\Struct
@@ -102,6 +138,18 @@ class EventInput extends \Google\Protobuf\Internal\Message
 
     /**
      * The collection of parameters associated with the event.
+     * Depending on your protocol or client library language, this is a
+     * map, associative array, symbol table, dictionary, or JSON object
+     * composed of a collection of (MapKey, MapValue) pairs:
+     * -   MapKey type: string
+     * -   MapKey value: parameter name
+     * -   MapValue type:
+     *     -   If parameter's entity type is a composite entity: map
+     *     -   Else: string or number, depending on parameter value type
+     * -   MapValue value:
+     *     -   If parameter's entity type is a composite entity:
+     *         map from composite entity property names to property values
+     *     -   Else: parameter value
      *
      * Generated from protobuf field <code>.google.protobuf.Struct parameters = 2;</code>
      * @param \Google\Protobuf\Struct $var

@@ -22,12 +22,11 @@ class UpdateEntityTypeRequest extends \Google\Protobuf\Internal\Message
      */
     private $entity_type = null;
     /**
-     * Optional. The language of entity synonyms defined in `entity_type`. If not
-     * specified, the agent's default language is used.
-     * [Many
-     * languages](https://cloud.google.com/dialogflow/docs/reference/language)
-     * are supported. Note: languages must be enabled in the agent before they can
-     * be used.
+     * Optional. The language used to access language-specific data.
+     * If not specified, the agent's default language is used.
+     * For more information, see
+     * [Multilingual intent and entity
+     * data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
      *
      * Generated from protobuf field <code>string language_code = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -48,12 +47,11 @@ class UpdateEntityTypeRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dialogflow\V2\EntityType $entity_type
      *           Required. The entity type to update.
      *     @type string $language_code
-     *           Optional. The language of entity synonyms defined in `entity_type`. If not
-     *           specified, the agent's default language is used.
-     *           [Many
-     *           languages](https://cloud.google.com/dialogflow/docs/reference/language)
-     *           are supported. Note: languages must be enabled in the agent before they can
-     *           be used.
+     *           Optional. The language used to access language-specific data.
+     *           If not specified, the agent's default language is used.
+     *           For more information, see
+     *           [Multilingual intent and entity
+     *           data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Optional. The mask to control which fields get updated.
      * }
@@ -90,12 +88,11 @@ class UpdateEntityTypeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The language of entity synonyms defined in `entity_type`. If not
-     * specified, the agent's default language is used.
-     * [Many
-     * languages](https://cloud.google.com/dialogflow/docs/reference/language)
-     * are supported. Note: languages must be enabled in the agent before they can
-     * be used.
+     * Optional. The language used to access language-specific data.
+     * If not specified, the agent's default language is used.
+     * For more information, see
+     * [Multilingual intent and entity
+     * data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
      *
      * Generated from protobuf field <code>string language_code = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -106,12 +103,11 @@ class UpdateEntityTypeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The language of entity synonyms defined in `entity_type`. If not
-     * specified, the agent's default language is used.
-     * [Many
-     * languages](https://cloud.google.com/dialogflow/docs/reference/language)
-     * are supported. Note: languages must be enabled in the agent before they can
-     * be used.
+     * Optional. The language used to access language-specific data.
+     * If not specified, the agent's default language is used.
+     * For more information, see
+     * [Multilingual intent and entity
+     * data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
      *
      * Generated from protobuf field <code>string language_code = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
