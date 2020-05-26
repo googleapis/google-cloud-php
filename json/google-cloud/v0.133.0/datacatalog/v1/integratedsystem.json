@@ -1,0 +1,1 @@
+{"id":"datacatalog\/v1\/integratedsystem","type":"","title":"Google\\Cloud\\DataCatalog\\V1\\IntegratedSystem","name":"IntegratedSystem","description":"<p>This enum describes all the possible systems that Data Catalog integrates\nwith.<\/p>\n<p>Protobuf type <code>google.cloud.datacatalog.v1.IntegratedSystem<\/code><\/p>","examples":[],"resources":[],"methods":[]}

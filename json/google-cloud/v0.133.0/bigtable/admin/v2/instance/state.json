@@ -1,0 +1,1 @@
+{"id":"bigtable\/admin\/v2\/instance\/state","type":"","title":"Google\\Cloud\\Bigtable\\Admin\\V2\\Instance\\State","name":"State","description":"<p>Possible states of an instance.<\/p>\n<p>Protobuf type <code>google.bigtable.admin.v2.Instance.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

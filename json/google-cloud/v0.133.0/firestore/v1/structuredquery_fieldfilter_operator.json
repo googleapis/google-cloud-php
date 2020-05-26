@@ -1,0 +1,1 @@
+{"id":"firestore\/v1\/structuredquery_fieldfilter_operator","type":"","title":"Google\\Cloud\\Firestore\\V1\\StructuredQuery_FieldFilter_Operator","name":"StructuredQuery_FieldFilter_Operator","description":"<p>This class is deprecated. Use Google\\Cloud\\Firestore\\V1\\StructuredQuery\\FieldFilter\\Operator instead.<\/p>","examples":[],"resources":[],"methods":[]}
