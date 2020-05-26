@@ -93,6 +93,9 @@ class GrpcTest extends TestCase
             ],
             'labels' => [
                 $value => $value,
+            ],
+            'httpRequest' => [
+                'latency' => ['seconds' => 1, 'nanos' => 0]
             ]
         ];
         $sinkData = [
@@ -106,6 +109,7 @@ class GrpcTest extends TestCase
             'description' => $value,
             'filter' => $value
         ];
+
         $serializer = new Serializer();
         $pbEntry = $serializer->decodeMessage(new LogEntry(), $entryData);
         $pbSink = $serializer->decodeMessage(new LogSink(), ['outputVersionFormat' => 1] + $sinkData);
@@ -131,6 +135,9 @@ class GrpcTest extends TestCase
                             ],
                             'labels' => [
                                 $value => $value
+                            ],
+                            'httpRequest' => [
+                                'latency' => '1.0s'
                             ]
                         ]
                     ]

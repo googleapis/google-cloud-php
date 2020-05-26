@@ -22,7 +22,6 @@ use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Logging\Logger;
 use Google\Cloud\Logging\LoggingClient;
-use Google\Cloud\Logging\Type\HttpRequest;
 use Google\Cloud\Logging\V2\ConfigServiceV2Client;
 use Google\Cloud\Logging\V2\LogEntry;
 use Google\Cloud\Logging\V2\LoggingServiceV2Client;
