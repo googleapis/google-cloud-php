@@ -30,6 +30,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -53,11 +54,18 @@ use Google\Cloud\BigQuery\Storage\V1\SplitReadStreamResponse;
  * ```
  * $bigQueryReadClient = new BigQueryReadClient();
  * try {
- *     $response = $bigQueryReadClient->createReadSession();
+ *     $formattedParent = $bigQueryReadClient->projectName('[PROJECT]');
+ *     $readSession = new ReadSession();
+ *     $response = $bigQueryReadClient->createReadSession($formattedParent, $readSession);
  * } finally {
  *     $bigQueryReadClient->close();
  * }
  * ```
+ *
+ * Many parameters require resource names to be formatted in a particular way. To assist
+ * with these names, this class includes a format method for each type of name, and additionally
+ * a parseName method to extract the individual identifiers contained within formatted names
+ * that are returned by the API.
  *
  * @experimental
  */
@@ -93,6 +101,11 @@ class BigQueryReadGapicClient
         'https://www.googleapis.com/auth/bigquery.readonly',
         'https://www.googleapis.com/auth/cloud-platform',
     ];
+    private static $projectNameTemplate;
+    private static $readSessionNameTemplate;
+    private static $readStreamNameTemplate;
+    private static $tableNameTemplate;
+    private static $pathTemplateMap;
 
     private static function getClientDefaults()
     {
@@ -111,6 +124,178 @@ class BigQueryReadGapicClient
                 ],
             ],
         ];
+    }
+
+    private static function getProjectNameTemplate()
+    {
+        if (null == self::$projectNameTemplate) {
+            self::$projectNameTemplate = new PathTemplate('projects/{project}');
+        }
+
+        return self::$projectNameTemplate;
+    }
+
+    private static function getReadSessionNameTemplate()
+    {
+        if (null == self::$readSessionNameTemplate) {
+            self::$readSessionNameTemplate = new PathTemplate('projects/{project}/locations/{location}/sessions/{session}');
+        }
+
+        return self::$readSessionNameTemplate;
+    }
+
+    private static function getReadStreamNameTemplate()
+    {
+        if (null == self::$readStreamNameTemplate) {
+            self::$readStreamNameTemplate = new PathTemplate('projects/{project}/locations/{location}/sessions/{session}/streams/{stream}');
+        }
+
+        return self::$readStreamNameTemplate;
+    }
+
+    private static function getTableNameTemplate()
+    {
+        if (null == self::$tableNameTemplate) {
+            self::$tableNameTemplate = new PathTemplate('projects/{project}/datasets/{dataset}/tables/{table}');
+        }
+
+        return self::$tableNameTemplate;
+    }
+
+    private static function getPathTemplateMap()
+    {
+        if (null == self::$pathTemplateMap) {
+            self::$pathTemplateMap = [
+                'project' => self::getProjectNameTemplate(),
+                'readSession' => self::getReadSessionNameTemplate(),
+                'readStream' => self::getReadStreamNameTemplate(),
+                'table' => self::getTableNameTemplate(),
+            ];
+        }
+
+        return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     * @experimental
+     */
+    public static function projectName($project)
+    {
+        return self::getProjectNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a read_session resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $session
+     *
+     * @return string The formatted read_session resource.
+     * @experimental
+     */
+    public static function readSessionName($project, $location, $session)
+    {
+        return self::getReadSessionNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'session' => $session,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a read_stream resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $session
+     * @param string $stream
+     *
+     * @return string The formatted read_stream resource.
+     * @experimental
+     */
+    public static function readStreamName($project, $location, $session, $stream)
+    {
+        return self::getReadStreamNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'session' => $session,
+            'stream' => $stream,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a table resource.
+     *
+     * @param string $project
+     * @param string $dataset
+     * @param string $table
+     *
+     * @return string The formatted table resource.
+     * @experimental
+     */
+    public static function tableName($project, $dataset, $table)
+    {
+        return self::getTableNameTemplate()->render([
+            'project' => $project,
+            'dataset' => $dataset,
+            'table' => $table,
+        ]);
+    }
+
+    /**
+     * Parses a formatted name string and returns an associative array of the components in the name.
+     * The following name formats are supported:
+     * Template: Pattern
+     * - project: projects/{project}
+     * - readSession: projects/{project}/locations/{location}/sessions/{session}
+     * - readStream: projects/{project}/locations/{location}/sessions/{session}/streams/{stream}
+     * - table: projects/{project}/datasets/{dataset}/tables/{table}.
+     *
+     * The optional $template argument can be supplied to specify a particular pattern, and must
+     * match one of the templates listed above. If no $template argument is provided, or if the
+     * $template argument does not match one of the templates listed, then parseName will check
+     * each of the supported templates, and return the first match.
+     *
+     * @param string $formattedName The formatted name string
+     * @param string $template      Optional name of template to match
+     *
+     * @return array An associative array from name component IDs to component values.
+     *
+     * @throws ValidationException If $formattedName could not be matched.
+     * @experimental
+     */
+    public static function parseName($formattedName, $template = null)
+    {
+        $templateMap = self::getPathTemplateMap();
+
+        if ($template) {
+            if (!isset($templateMap[$template])) {
+                throw new ValidationException("Template name $template does not exist");
+            }
+
+            return $templateMap[$template]->match($formattedName);
+        }
+
+        foreach ($templateMap as $templateName => $pathTemplate) {
+            try {
+                return $pathTemplate->match($formattedName);
+            } catch (ValidationException $ex) {
+                // Swallow the exception to continue trying other path templates
+            }
+        }
+        throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
     /**
@@ -199,20 +384,20 @@ class BigQueryReadGapicClient
      * ```
      * $bigQueryReadClient = new BigQueryReadClient();
      * try {
-     *     $response = $bigQueryReadClient->createReadSession();
+     *     $formattedParent = $bigQueryReadClient->projectName('[PROJECT]');
+     *     $readSession = new ReadSession();
+     *     $response = $bigQueryReadClient->createReadSession($formattedParent, $readSession);
      * } finally {
      *     $bigQueryReadClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
-     *                            Optional.
+     * @param string      $parent       Required. The request project that owns the session, in the form of
+     *                                  `projects/{project_id}`.
+     * @param ReadSession $readSession  Required. Session to be created.
+     * @param array       $optionalArgs {
+     *                                  Optional.
      *
-     *     @type string $parent
-     *          Required. The request project that owns the session, in the form of
-     *          `projects/{project_id}`.
-     *     @type ReadSession $readSession
-     *          Required. Session to be created.
      *     @type int $maxStreamCount
      *          Max initial number of streams. If unset or zero, the server will
      *          provide a value of streams so as to produce reasonable throughput. Must be
@@ -234,28 +419,18 @@ class BigQueryReadGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createReadSession(array $optionalArgs = [])
+    public function createReadSession($parent, $readSession, array $optionalArgs = [])
     {
         $request = new CreateReadSessionRequest();
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-        }
-        if (isset($optionalArgs['readSession'])) {
-            $request->setReadSession($optionalArgs['readSession']);
-        }
+        $request->setParent($parent);
+        $request->setReadSession($readSession);
         if (isset($optionalArgs['maxStreamCount'])) {
             $request->setMaxStreamCount($optionalArgs['maxStreamCount']);
         }
 
-        $descriptorData = [];
-
-        if ($request->getReadSession()) {
-            $descriptorData['read_session.table'] = $request->getReadSession()
-                ->getTable();
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor($descriptorData);
-
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'read_session.table' => $request->getReadSession()->getTable(),
+        ]);
         $optionalArgs['headers'] = isset($optionalArgs['headers'])
             ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
@@ -281,8 +456,9 @@ class BigQueryReadGapicClient
      * ```
      * $bigQueryReadClient = new BigQueryReadClient();
      * try {
+     *     $formattedReadStream = $bigQueryReadClient->readStreamName('[PROJECT]', '[LOCATION]', '[SESSION]', '[STREAM]');
      *     // Read all responses until the stream is complete
-     *     $stream = $bigQueryReadClient->readRows();
+     *     $stream = $bigQueryReadClient->readRows($formattedReadStream);
      *     foreach ($stream->readAll() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -291,11 +467,10 @@ class BigQueryReadGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
-     *                            Optional.
+     * @param string $readStream   Required. Stream to read rows from.
+     * @param array  $optionalArgs {
+     *                             Optional.
      *
-     *     @type string $readStream
-     *          Required. Stream to read rows from.
      *     @type int $offset
      *          The offset requested must be less than the last row read from Read.
      *          Requesting a larger offset is undefined. If not specified, start reading
@@ -309,12 +484,10 @@ class BigQueryReadGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function readRows(array $optionalArgs = [])
+    public function readRows($readStream, array $optionalArgs = [])
     {
         $request = new ReadRowsRequest();
-        if (isset($optionalArgs['readStream'])) {
-            $request->setReadStream($optionalArgs['readStream']);
-        }
+        $request->setReadStream($readStream);
         if (isset($optionalArgs['offset'])) {
             $request->setOffset($optionalArgs['offset']);
         }
@@ -353,17 +526,17 @@ class BigQueryReadGapicClient
      * ```
      * $bigQueryReadClient = new BigQueryReadClient();
      * try {
-     *     $response = $bigQueryReadClient->splitReadStream();
+     *     $formattedName = $bigQueryReadClient->readStreamName('[PROJECT]', '[LOCATION]', '[SESSION]', '[STREAM]');
+     *     $response = $bigQueryReadClient->splitReadStream($formattedName);
      * } finally {
      *     $bigQueryReadClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
-     *                            Optional.
+     * @param string $name         Required. Name of the stream to split.
+     * @param array  $optionalArgs {
+     *                             Optional.
      *
-     *     @type string $name
-     *          Required. Name of the stream to split.
      *     @type float $fraction
      *          A value in the range (0.0, 1.0) that specifies the fractional point at
      *          which the original stream should be split. The actual split point is
@@ -384,12 +557,10 @@ class BigQueryReadGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function splitReadStream(array $optionalArgs = [])
+    public function splitReadStream($name, array $optionalArgs = [])
     {
         $request = new SplitReadStreamRequest();
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-        }
+        $request->setName($name);
         if (isset($optionalArgs['fraction'])) {
             $request->setFraction($optionalArgs['fraction']);
         }
