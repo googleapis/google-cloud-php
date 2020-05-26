@@ -1,5 +1,378 @@
 # Changelog
 
+## 0.133.0
+
+<details><summary>google/cloud-asset 1.1.0</summary>
+
+
+
+### Features
+
+* introduce support for org/access context policies ([#2849](https://www.github.com/googleapis/google-cloud-php/issues/2849)) ([5714dd7](https://www.github.com/googleapis/google-cloud-php/commit/5714dd77ff6d9dc7cd578b40075619efcaf0bd24))
+
+</details>
+
+<details><summary>google/cloud-automl 1.1.1</summary>
+
+
+
+### Documentation
+
+* update documentation formatting ([#2931](https://www.github.com/googleapis/google-cloud-php/issues/2931)) ([5dca3ed](https://www.github.com/googleapis/google-cloud-php/commit/5dca3ed6c24a2a28ee3d71891595e43b2dee0e23))
+
+
+### Miscellaneous Chores
+
+* sample context aware commits for a broader base of services ([#2932](https://www.github.com/googleapis/google-cloud-php/issues/2932)) ([35c6057](https://www.github.com/googleapis/google-cloud-php/commit/35c6057ac2f4db2a69c932e3b7301a0600e3e150))
+
+</details>
+
+<details><summary>google/cloud-bigquerydatatransfer 1.0.2</summary>
+
+
+
+### Bug Fixes
+
+* update retry config, reorder methods ([#3039](https://www.github.com/googleapis/google-cloud-php/issues/3039)) ([fef66e8](https://www.github.com/googleapis/google-cloud-php/commit/fef66e879b8d1980c12958612a41f284097916f5))
+
+</details>
+
+<details><summary>google/cloud-bigquery-storage 0.2.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* update createReadSession, readRows, splitReadStream (#3056)
+
+### Features
+
+* update createReadSession, readRows, splitReadStream ([#3056](https://www.github.com/googleapis/google-cloud-php/issues/3056)) ([8b1244c](https://www.github.com/googleapis/google-cloud-php/commit/8b1244ce6a29a0962a84edd4d05a1e66c53e93f9))
+
+
+### Miscellaneous Chores
+
+* sample context aware commits for a broader base of services ([#2932](https://www.github.com/googleapis/google-cloud-php/issues/2932)) ([35c6057](https://www.github.com/googleapis/google-cloud-php/commit/35c6057ac2f4db2a69c932e3b7301a0600e3e150))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.4.0</summary>
+
+
+
+### Features
+
+* update timeouts ([#3052](https://www.github.com/googleapis/google-cloud-php/issues/3052)) ([503b9c8](https://www.github.com/googleapis/google-cloud-php/commit/503b9c833baca905e7271afb96628b035666d8f4))
+
+
+### Miscellaneous Chores
+
+* update metadata ([#2968](https://www.github.com/googleapis/google-cloud-php/issues/2968)) ([6359010](https://www.github.com/googleapis/google-cloud-php/commit/6359010db6edc9b5fcb64e4e3eade58af8507227))
+
+</details>
+
+<details><summary>google/cloud-container 1.0.2</summary>
+
+
+
+### Bug Fixes
+
+* update retry configuration, reorder methods ([#3040](https://www.github.com/googleapis/google-cloud-php/issues/3040)) ([d91787b](https://www.github.com/googleapis/google-cloud-php/commit/d91787b71fd73c216c1ea9f2ba3b2fa33dfcce34))
+
+</details>
+
+<details><summary>google/cloud-core 1.37.0</summary>
+
+
+
+### Features
+
+* async upload for storage buckets ([#2878](https://www.github.com/googleapis/google-cloud-php/issues/2878)) ([61ec33e](https://www.github.com/googleapis/google-cloud-php/commit/61ec33ee24669f7cb9cded37363dcdb418493fe5))
+
+</details>
+
+<details><summary>google/cloud-data-catalog 0.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* sample context aware commits for a broader base of services ([#2932](https://www.github.com/googleapis/google-cloud-php/issues/2932)) ([35c6057](https://www.github.com/googleapis/google-cloud-php/commit/35c6057ac2f4db2a69c932e3b7301a0600e3e150))
+
+
+### Documentation
+
+* update documentation formatting ([#3000](https://www.github.com/googleapis/google-cloud-php/issues/3000)) ([69e8e8c](https://www.github.com/googleapis/google-cloud-php/commit/69e8e8cdb644fca2f905b6157b2c06217f412fe9))
+
+</details>
+
+<details><summary>google/cloud-datastore 1.11.3</summary>
+
+
+
+### Documentation
+
+* update value documentation ([#2977](https://www.github.com/googleapis/google-cloud-php/issues/2977)) ([5760f40](https://www.github.com/googleapis/google-cloud-php/commit/5760f405f86d69277f78fe7fb5989016ace9c36f))
+
+</details>
+
+<details><summary>google/cloud-debugger 1.1.0</summary>
+
+
+
+### Features
+
+* update timeout config ([#3041](https://www.github.com/googleapis/google-cloud-php/issues/3041)) ([1f04f2e](https://www.github.com/googleapis/google-cloud-php/commit/1f04f2e385ed8000482c5e3ad904de95a53706bf))
+
+
+### Bug Fixes
+
+* correctly serialize evaluated expressions ([#2974](https://www.github.com/googleapis/google-cloud-php/issues/2974)) ([601ee77](https://www.github.com/googleapis/google-cloud-php/commit/601ee7794cbb1f6227f4a17c54e031110e74356f))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 0.15.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* add agent environment, change AgentsClient::exportAgent() (#3057)
+
+### Features
+
+* add agent environment, change AgentsClient::exportAgent() ([#3057](https://www.github.com/googleapis/google-cloud-php/issues/3057)) ([e568324](https://www.github.com/googleapis/google-cloud-php/commit/e568324016d9e01077dc447954907451157cd6c9))
+
+
+### Miscellaneous Chores
+
+* sample context aware commits for a broader base of services ([#2932](https://www.github.com/googleapis/google-cloud-php/issues/2932)) ([35c6057](https://www.github.com/googleapis/google-cloud-php/commit/35c6057ac2f4db2a69c932e3b7301a0600e3e150))
+
+</details>
+
+<details><summary>google/cloud-error-reporting 0.16.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* reorder methods ([#3042](https://www.github.com/googleapis/google-cloud-php/issues/3042)) ([d97d927](https://www.github.com/googleapis/google-cloud-php/commit/d97d927904acb2a333f803af10d3c212a10e86f3))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.13.0</summary>
+
+
+
+### Features
+
+* allow array-of-arrays value for "in" query filter ([#2927](https://www.github.com/googleapis/google-cloud-php/issues/2927)) ([e35c2fa](https://www.github.com/googleapis/google-cloud-php/commit/e35c2faf2b1ff90fbeda962b46ec024c1c2a95a6))
+
+</details>
+
+<details><summary>google/cloud-iot 1.1.0</summary>
+
+
+
+### Features
+
+* update retry and timeout config ([#3043](https://www.github.com/googleapis/google-cloud-php/issues/3043)) ([029556b](https://www.github.com/googleapis/google-cloud-php/commit/029556b0546f46227cd9e76edbdd6f02ab966cfc))
+
+</details>
+
+<details><summary>google/cloud-memcache 0.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* sample context aware commits for a broader base of services ([#2932](https://www.github.com/googleapis/google-cloud-php/issues/2932)) ([35c6057](https://www.github.com/googleapis/google-cloud-php/commit/35c6057ac2f4db2a69c932e3b7301a0600e3e150))
+
+</details>
+
+<details><summary>google/cloud-oslogin 1.0.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* reorder methods ([#3044](https://www.github.com/googleapis/google-cloud-php/issues/3044)) ([fce91ee](https://www.github.com/googleapis/google-cloud-php/commit/fce91ee67dd463963c1ef12c99a2a0990ac41592))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.24.1</summary>
+
+
+
+### Documentation
+
+* update received message documentation ([#3028](https://www.github.com/googleapis/google-cloud-php/issues/3028)) ([df19d02](https://www.github.com/googleapis/google-cloud-php/commit/df19d02b2c80af6265a7092b81458c1287e49ce6))
+
+</details>
+
+<details><summary>google/cloud-recaptcha-enterprise 0.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* add synth metadata file ([#2924](https://www.github.com/googleapis/google-cloud-php/issues/2924)) ([f55cf03](https://www.github.com/googleapis/google-cloud-php/commit/f55cf0319ced2b4d322c47f9ad9bdd7a254c1be1))
+
+</details>
+
+<details><summary>google/cloud-recommendations-ai 0.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* reorder methods and update samples ([#2976](https://www.github.com/googleapis/google-cloud-php/issues/2976)) ([bd57c5b](https://www.github.com/googleapis/google-cloud-php/commit/bd57c5b2e7542ac7fd73134fbd37417c91e7042b))
+
+</details>
+
+<details><summary>google/cloud-recommender 1.0.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* sample context aware commits for a broader base of services ([#2932](https://www.github.com/googleapis/google-cloud-php/issues/2932)) ([35c6057](https://www.github.com/googleapis/google-cloud-php/commit/35c6057ac2f4db2a69c932e3b7301a0600e3e150))
+
+</details>
+
+<details><summary>google/cloud-scheduler 1.3.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* reorder methods ([#3045](https://www.github.com/googleapis/google-cloud-php/issues/3045)) ([8f1082d](https://www.github.com/googleapis/google-cloud-php/commit/8f1082dd1cf903be4d1300b559fab7988611863c))
+
+</details>
+
+<details><summary>google/cloud-service-directory 0.1.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* sample context aware commits for a broader base of services ([#2932](https://www.github.com/googleapis/google-cloud-php/issues/2932)) ([35c6057](https://www.github.com/googleapis/google-cloud-php/commit/35c6057ac2f4db2a69c932e3b7301a0600e3e150))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.29.0</summary>
+
+
+
+### Features
+
+* update timeout configuration [#3029](https://www.github.com/googleapis/google-cloud-php/issues/3029) ([b7b24d9](https://www.github.com/googleapis/google-cloud-php/commit/b7b24d9259301b3730103de957477c31969bc58c))
+* **spanner:** Option to use GAPIC backoff strategy ([#2062](https://www.github.com/googleapis/google-cloud-php/issues/2062)) ([#2701](https://www.github.com/googleapis/google-cloud-php/issues/2701)) ([2067078](https://www.github.com/googleapis/google-cloud-php/commit/20670784debcb0e5490b1a97645de3c5aff8cfea))
+
+
+### Miscellaneous Chores
+
+* update timeouts ([#3053](https://www.github.com/googleapis/google-cloud-php/issues/3053)) ([fc7c09b](https://www.github.com/googleapis/google-cloud-php/commit/fc7c09b592898c5e8d666ae6227673c41367f33d))
+
+</details>
+
+<details><summary>google/cloud-speech 1.1.1</summary>
+
+
+
+### Bug Fixes
+
+* update retry code for recognize ([#3046](https://www.github.com/googleapis/google-cloud-php/issues/3046)) ([53ef1ae](https://www.github.com/googleapis/google-cloud-php/commit/53ef1aeb225b550d8c8f38b27cceda5ee6915c48))
+
+</details>
+
+<details><summary>google/cloud-storage 1.21.0</summary>
+
+
+
+### Features
+
+* async upload for storage buckets ([#2878](https://www.github.com/googleapis/google-cloud-php/issues/2878)) ([61ec33e](https://www.github.com/googleapis/google-cloud-php/commit/61ec33ee24669f7cb9cded37363dcdb418493fe5))
+
+
+### Bug Fixes
+
+* add bucket to v4 post policy conditions ([#2929](https://www.github.com/googleapis/google-cloud-php/issues/2929)) ([4ac9846](https://www.github.com/googleapis/google-cloud-php/commit/4ac9846a414839283d094fdd2eea098d826ec902))
+* fix check for user provided MD5 hash ([#2970](https://www.github.com/googleapis/google-cloud-php/issues/2970)) ([60db51f](https://www.github.com/googleapis/google-cloud-php/commit/60db51f45fd0b12399679400ed854352955a91fe))
+
+</details>
+
+<details><summary>google/cloud-talent 0.12.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* sample context aware commits for a broader base of services ([#2932](https://www.github.com/googleapis/google-cloud-php/issues/2932)) ([35c6057](https://www.github.com/googleapis/google-cloud-php/commit/35c6057ac2f4db2a69c932e3b7301a0600e3e150))
+
+</details>
+
+<details><summary>google/cloud-tasks 1.6.2</summary>
+
+
+
+### Bug Fixes
+
+* update retry codes ([#3047](https://www.github.com/googleapis/google-cloud-php/issues/3047)) ([4293079](https://www.github.com/googleapis/google-cloud-php/commit/4293079dd271047373af29c0007406dc3f9816af))
+
+</details>
+
+<details><summary>google/cloud-text-to-speech 1.0.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* reorder methods ([#3048](https://www.github.com/googleapis/google-cloud-php/issues/3048)) ([2a7c230](https://www.github.com/googleapis/google-cloud-php/commit/2a7c2307f237ece0a3b8e6e90a251e4772e78899))
+* sample context aware commits for a broader base of services ([#2932](https://www.github.com/googleapis/google-cloud-php/issues/2932)) ([35c6057](https://www.github.com/googleapis/google-cloud-php/commit/35c6057ac2f4db2a69c932e3b7301a0600e3e150))
+
+</details>
+
+<details><summary>google/cloud-trace 1.1.0</summary>
+
+
+
+### Features
+
+* update retry and timeout config ([#3049](https://www.github.com/googleapis/google-cloud-php/issues/3049)) ([6509ccc](https://www.github.com/googleapis/google-cloud-php/commit/6509cccef58e392b5d23317a07a61d6455e1c2ec))
+
+</details>
+
+<details><summary>google/cloud-translate 1.7.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* reorder methods ([#3050](https://www.github.com/googleapis/google-cloud-php/issues/3050)) ([393c0f6](https://www.github.com/googleapis/google-cloud-php/commit/393c0f67d49e0a163b87faa6af5fcc2f623f1b78))
+
+</details>
+
+<details><summary>google/cloud-vision 1.0.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* sample context aware commits for a broader base of services ([#2932](https://www.github.com/googleapis/google-cloud-php/issues/2932)) ([35c6057](https://www.github.com/googleapis/google-cloud-php/commit/35c6057ac2f4db2a69c932e3b7301a0600e3e150))
+
+</details>
+
+<details><summary>google/cloud-web-security-scanner 0.4.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* reorder methods ([#3051](https://www.github.com/googleapis/google-cloud-php/issues/3051)) ([175f98d](https://www.github.com/googleapis/google-cloud-php/commit/175f98d76e92323dd964ee53da95e1b9712ddf6e))
+
+</details>
+
 ## 0.132.0
 
 <details><summary>google/cloud-automl 1.1.0</summary>
