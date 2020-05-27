@@ -108,7 +108,7 @@ class PublisherGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Lists the names of the subscriptions on this topic.
+     * Lists the names of the attached subscriptions on this topic.
      * @param \Google\Cloud\PubSub\V1\ListTopicSubscriptionsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -155,6 +155,23 @@ class PublisherGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.pubsub.v1.Publisher/DeleteTopic',
         $argument,
         ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Detaches a subscription from this topic. All messages retained in the
+     * subscription are dropped. Subsequent `Pull` and `StreamingPull` requests
+     * will return FAILED_PRECONDITION. If the subscription is a push
+     * subscription, pushes to the endpoint will stop.
+     * @param \Google\Cloud\PubSub\V1\DetachSubscriptionRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function DetachSubscription(\Google\Cloud\PubSub\V1\DetachSubscriptionRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.pubsub.v1.Publisher/DetachSubscription',
+        $argument,
+        ['\Google\Cloud\PubSub\V1\DetachSubscriptionResponse', 'decode'],
         $metadata, $options);
     }
 
