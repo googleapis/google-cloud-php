@@ -885,12 +885,12 @@ class CacheSessionPool implements SessionPoolInterface
 
             $len = count($queue);
             for ($expiredPos = 0; $expiredPos < $len; $expiredPos++) {
-                if ($queue[$expiredPos]['expires'] <= $now) {
+                if ($queue[$expiredPos]['expires'] > $now) {
                     break;
                 }
             }
             for ($oldPos = $expiredPos; $oldPos < $len; $oldPos++) {
-                if ($queue[$oldPos]['expires'] <= $oldThreshold) {
+                if ($queue[$oldPos]['expires'] > $oldThreshold) {
                     break;
                 }
             }
@@ -898,7 +898,7 @@ class CacheSessionPool implements SessionPoolInterface
             if (isset($prevMaintainTime)) {
                 $freshThreshold = $prevMaintainTime + self::SESSION_EXPIRATION_SECONDS;
                 for (; $freshPos >= 0; $freshPos--) {
-                    if ($queue[$freshPos]['expires'] > $freshThreshold) {
+                    if ($queue[$freshPos]['expires'] <= $freshThreshold) {
                         break;
                     }
                 }
