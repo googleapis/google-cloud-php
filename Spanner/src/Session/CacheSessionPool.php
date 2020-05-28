@@ -884,12 +884,24 @@ class CacheSessionPool implements SessionPoolInterface
             $prevMaintainTime = isset($data['maintainTime']) ? $data['maintainTime'] : null;
 
             $len = count($queue);
-            for ($expiredPos = 0; $expiredPos < $len and $queue[$expiredPos]['expires'] <= $now; $expiredPos++);
-            for ($oldPos = $expiredPos; $oldPos < $len and $queue[$oldPos]['expires'] <= $oldThreshold; $oldPos++);
+            for ($expiredPos = 0; $expiredPos < $len; $expiredPos++) {
+                if ($queue[$expiredPos]['expires'] <= $now) {
+                    break;
+                }
+            }
+            for ($oldPos = $expiredPos; $oldPos < $len; $oldPos++) {
+                if ($queue[$oldPos]['expires'] <= $oldThreshold) {
+                    break;
+                }
+            }
             $freshPos = $len - 1;
             if (isset($prevMaintainTime)) {
                 $freshThreshold = $prevMaintainTime + self::SESSION_EXPIRATION_SECONDS;
-                for (; $freshPos >= 0 and $queue[$freshPos]['expires'] > $freshThreshold; $freshPos--);
+                for (; $freshPos >= 0; $freshPos--) {
+                    if ($queue[$freshPos]['expires'] > $freshThreshold) {
+                        break;
+                    }
+                }
             }
             $freshCount = $len - 1 - $freshPos;
             $oldQueue = array_splice($queue, $expiredPos, ($oldPos - $expiredPos));
@@ -955,7 +967,6 @@ class CacheSessionPool implements SessionPoolInterface
         try {
             $this->database->execute('SELECT 1', ['session' => $session])->rows()->current();
             return true;
-
         } catch (NotFoundException $e) {
             return false;
         }
