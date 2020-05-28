@@ -38,19 +38,21 @@ class CacheSessionPoolTest extends TestCase
 {
     use GrpcTestTrait;
 
-    const CACHE_KEY_TEMPLATE = 'cache-session-pool.%s.%s.%s';
+    const CACHE_KEY_TEMPLATE = CacheSessionPool::CACHE_KEY_TEMPLATE;
     const PROJECT_ID = 'project';
     const DATABASE_NAME = 'database';
     const INSTANCE_NAME = 'instance';
 
     private $time;
+    private $cacheKey;
 
     public function setUp()
     {
         $this->checkAndSkipGrpcTests();
         putenv('GOOGLE_CLOUD_SYSV_ID=U');
-        $this->time = time();
+        $this->time = 1000000000;//time();
         MockValues::initialize();
+        $this->cacheKey = sprintf(self::CACHE_KEY_TEMPLATE, self::PROJECT_ID, self::INSTANCE_NAME, self::DATABASE_NAME);
     }
 
     /**
@@ -374,6 +376,7 @@ class CacheSessionPoolTest extends TestCase
         )->get();
 
         $this->assertInstanceOf(Session::class, $actualSession);
+        $actualCacheData = array_intersect_key($actualCacheData, $expectedCacheData);
         $this->assertEquals($expectedCacheData, $actualCacheData);
     }
 
@@ -670,8 +673,8 @@ class CacheSessionPoolTest extends TestCase
 
     private function getDatabase($shouldCreateFails = false, $willDeleteSessions = false, $expectedCreateCalls = null)
     {
-        $database = $this->prophesize(Database::class);
-        $session = $this->prophesize(Session::class);
+        $database = $this->prophesize(DatabaseStub::class);
+        $session = $this->prophesize(SessionStub::class);
         $connection = $this->prophesize(Grpc::class);
         $promise = $this->prophesize(PromiseInterface::class);
 
@@ -705,6 +708,8 @@ class CacheSessionPoolTest extends TestCase
             ]);
         $database->name()
             ->willReturn(self::DATABASE_NAME);
+        $database->execute(Argument::exact('SELECT 1'), Argument::withKey('session'))
+            ->willReturn(new DumbObject);
 
         $createdSession = $this->prophesize(\Google\Cloud\Spanner\V1\Session::class);
         $createRes = function ($args, $mock, $method) use ($createdSession, $shouldCreateFails) {
@@ -748,6 +753,175 @@ class CacheSessionPoolTest extends TestCase
 
         return $cacheItemPool;
     }
+
+    private function queueItem($name, $age)
+    {
+        return [
+            'name' => basename($name),
+            'expires' => $this->time + 3600 - $age,
+        ];
+    }
+
+    private function queue(array $itemMap)
+    {
+        $result = [];
+        foreach ($itemMap as $name => $age) {
+            $result[] = $this->queueItem($name, $age);
+        }
+        return $result;
+    }
+
+    private function cacheData(array $itemMap, $maintainInterval = null)
+    {
+        $cacheData = [
+            'queue' => $this->queue($itemMap),
+            'inUse' => [],
+            'toCreate' => [],
+            'windowStart' => $this->time,
+            'maxInUseSessions' => 1,
+        ];
+        if (isset($maintainInterval)) {
+            $cacheData['maintainTime'] = $this->time - $maintainInterval;
+        }
+        return $cacheData;
+    }
+
+    public function testMaintainData()
+    {
+        $expectedData = $this->cacheData(['foo' => 3500], 300);
+        $expectedData['inUse'] = [2, 7, 1];
+        $expectedData['toCreate'] = [3, 1, 4];
+        $config = ['minSessions' => 4];
+        $cache = $this->getCacheItemPool($expectedData);
+        $pool = new CacheSessionPoolStub($cache, $config, $this->time);
+        $pool->setDatabase($this->getDatabase());
+        $pool->maintain();
+        $expectedData['maintainTime'] = $this->time;
+        $expectedData['queue'] = $this->queue(['foo' => 0]);
+        $gotData = $pool->cacheItemPool()->getItem($this->cacheKey)->get();
+        $this->assertEquals($expectedData, $gotData);
+    }
+
+    public function testMaintainEmptyData()
+    {
+        $cache = $this->getCacheItemPool([]);
+        $pool = new CacheSessionPoolStub($cache, [], $this->time);
+        $pool->setDatabase($this->getDatabase());
+        $pool->maintain();
+        $data = $pool->cacheItemPool()->getItem($this->cacheKey)->get();
+        $this->assertEmpty($data);
+    }
+
+    public function testMaintainException()
+    {
+        $expectedData = $this->cacheData(['dead' => 3700, 'old' => 3200, 'fresh' => 100, 'other' => 1500], 300);
+        $database = $this->prophesize(DatabaseStub::class);
+        $database->identity()->willReturn([
+            'projectId' => self::PROJECT_ID,
+            'database' => self::DATABASE_NAME,
+            'instance' => self::INSTANCE_NAME,
+        ]);
+        $expectedException = new \RuntimeException('maintenance test');
+        $database->session(Argument::any())->willThrow($expectedException);
+        $config = ['minSessions' => 4];
+
+        $cache = $this->getCacheItemPool($expectedData);
+        $pool = new CacheSessionPoolStub($cache, $config, $this->time);
+        $pool->setDatabase($database->reveal());
+        $caught = false;
+        try {
+            $pool->maintain();
+        } catch (\RuntimeException $e) {
+            $caught = ($e->getMessage() === $expectedException->getMessage());
+        }
+
+        if (!$caught) {
+            $this->fail('no exception caught');
+        }
+
+        $gotData = $pool->cacheItemPool()->getItem($this->cacheKey)->get();
+        $this->assertEquals($expectedData, $gotData);
+    }
+
+    /**
+     * @expectedException \LogicException
+     */
+    public function testMaintainNoDatabase()
+    {
+        $cache = $this->getCacheItemPool();
+        $pool = new CacheSessionPoolStub($cache, [], $this->time);
+        $pool->maintain();
+    }
+
+     /**
+     * @dataProvider maintainDataProvider
+     */
+    public function testMaintainQueue($maintainInterval, $initialItems, $expectedItems, $config = [], $data = [])
+    {
+        $cache = $this->getCacheItemPool($data + $this->cacheData($initialItems, $maintainInterval));
+        $config += ['minSessions' => count($initialItems)];
+        $pool = new CacheSessionPoolStub($cache, $config, $this->time);
+        $pool->setDatabase($this->getDatabase());
+        $pool->maintain();
+        $data = $pool->cacheItemPool()->getItem($this->cacheKey)->get();
+        $expectedQueue = $this->queue($expectedItems);
+        $this->assertEquals($expectedQueue, $data['queue']);
+    }
+
+    public function maintainDataProvider()
+    {
+        return [
+            //# 0: fresh, other; no maintain
+            [
+                null,
+                ['s1' => 2900, 's2' => 1000, 's3' => 2500, 's4' => 2000],
+                ['s1' => 2900, 's3' => 2500, 's4' => 2000, 's2' => 1000],
+            ],
+            //# 1: old(1), other; no maintain
+            [
+                null,
+                ['s1' => 3100, 's2' => 1000, 's3' => 2500, 's4' => 2000],
+                ['s3' => 2500, 's4' => 2000, 's2' => 1000, 's1' => 0],
+            ],
+            //# 2: old(2), other; no maintain
+            [
+                null,
+                ['s1' => 3100, 's2' => 1600, 's3' => 3200, 's4' => 2000],
+                ['s4' => 2000, 's2' => 1600, 's3' => 0, 's1' => 0],
+            ],
+            //# 3: fresh
+            [
+                1510,
+                ['s1' => 400, 's2' => 100, 's3' => 300, 's4' => 200],
+                ['s1' => 400, 's3' => 300, 's4' => 200, 's2' => 100],
+            ],
+            //# 4: fresh, other; distribute
+            [
+                1510,
+                ['s1' => 2900, 's2' => 1000, 's3' => 2500, 's4' => 2000],
+                ['s3' => 2500, 's4' => 2000, 's2' => 1000, 's1' => 0],
+            ],
+            //# 5: fresh, old, other
+            [
+                1510,
+                ['s1' => 3100, 's2' => 1000, 's3' => 2500, 's4' => 2000],
+                ['s3' => 2500, 's4' => 2000, 's2' => 1000, 's1' => 0],
+            ],
+            //# 6: old, other; distribute
+            [
+                1510,
+                ['s1' => 3100, 's2' => 1600, 's3' => 2500, 's4' => 2000],
+                ['s4' => 2000, 's2' => 1600, 's1' => 0, 's3' => 0],
+            ],
+            //# 7: old, other; excess; distribute
+            [
+                1510,
+                ['s1' => 3100, 's2' => 3200, 's3' => 2500, 's4' => 2000, 's5' => 1900],
+                ['s4' => 2000, 's5' => 1900, 's2' => 0, 's3' => 0, 's1' => 3100],
+                ['minSessions' => 4],
+            ],
+        ];
+    }
 }
 
 //@codingStandardsIgnoreStart
@@ -764,6 +938,37 @@ class CacheSessionPoolStub extends CacheSessionPool
     protected function time()
     {
         return $this->time ?: parent::time();
+    }
+}
+
+class DatabaseStub extends Database
+{
+    // prevent "get_class() expects parameter 1 to be object" warning when debugging
+    public function __debugInfo()
+    {
+        return [];
+    }
+}
+
+class SessionStub extends Session
+{
+    // prevent "get_class() expects parameter 1 to be object" warning when debugging
+    public function __debugInfo()
+    {
+        return [];
+    }
+}
+
+class DumbObject
+{
+    public function __get($name)
+    {
+        return $this;
+    }
+
+    public function __call($name, $args)
+    {
+        return $this;
     }
 }
 //@codingStandardsIgnoreEnd
