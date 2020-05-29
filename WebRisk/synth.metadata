@@ -1,12 +1,25 @@
 {
-  "updateTime": "2020-04-22T20:26:40.519418Z",
   "sources": [
+    {
+      "git": {
+        "name": ".",
+        "remote": "https://github.com/googleapis/google-cloud-php.git",
+        "sha": "85c3ed67060efa94d4e28a8eb6f75653ebdc8c14"
+      }
+    },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "1d520eaa7bbd8b40f53942ff03b5496fff887b53",
-        "internalRef": "307849529"
+        "sha": "c4e37010d74071851ff24121f522e802231ac86e",
+        "internalRef": "313460921"
+      }
+    },
+    {
+      "git": {
+        "name": "synthtool",
+        "remote": "https://github.com/googleapis/synthtool.git",
+        "sha": "4e1d2cb79b02d7496b1452f91c518630c207145e"
       }
     }
   ],
