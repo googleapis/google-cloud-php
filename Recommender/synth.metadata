@@ -1,19 +1,25 @@
 {
-  "updateTime": "2020-01-29T23:18:04.174825Z",
   "sources": [
     {
-      "generator": {
-        "name": "artman",
-        "version": "0.44.4",
-        "dockerImage": "googleapis/artman@sha256:19e945954fc960a4bdfee6cb34695898ab21a8cf0bac063ee39b91f00a1faec8"
+      "git": {
+        "name": ".",
+        "remote": "https://github.com/googleapis/google-cloud-php.git",
+        "sha": "85c3ed67060efa94d4e28a8eb6f75653ebdc8c14"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "341fd5690fae36f36cf626ef048fbcf4bbe7cee6",
-        "internalRef": "292221998"
+        "sha": "c4e37010d74071851ff24121f522e802231ac86e",
+        "internalRef": "313460921"
+      }
+    },
+    {
+      "git": {
+        "name": "synthtool",
+        "remote": "https://github.com/googleapis/synthtool.git",
+        "sha": "71b8a272549c06b5768d00fa48d3ae990e871bec"
       }
     }
   ],
@@ -24,8 +30,7 @@
         "apiName": "recommender",
         "apiVersion": "v1",
         "language": "php",
-        "generator": "gapic",
-        "config": "google/cloud/recommender/v1/artman_recommender_v1.yaml"
+        "generator": "bazel"
       }
     }
   ]
