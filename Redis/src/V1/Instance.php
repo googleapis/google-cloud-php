@@ -153,7 +153,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     private $memory_size_gb = 0;
     /**
      * Optional. The full name of the Google Compute Engine
-     * [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the
+     * [network](https://cloud.google.com/vpc/docs/vpc) to which the
      * instance is connected. If left unspecified, the `default` network
      * will be used.
      *
@@ -259,7 +259,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Required. Redis memory size in GiB.
      *     @type string $authorized_network
      *           Optional. The full name of the Google Compute Engine
-     *           [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the
+     *           [network](https://cloud.google.com/vpc/docs/vpc) to which the
      *           instance is connected. If left unspecified, the `default` network
      *           will be used.
      *     @type string $persistence_iam_identity
@@ -777,7 +777,7 @@ class Instance extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The full name of the Google Compute Engine
-     * [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the
+     * [network](https://cloud.google.com/vpc/docs/vpc) to which the
      * instance is connected. If left unspecified, the `default` network
      * will be used.
      *
@@ -791,7 +791,7 @@ class Instance extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The full name of the Google Compute Engine
-     * [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the
+     * [network](https://cloud.google.com/vpc/docs/vpc) to which the
      * instance is connected. If left unspecified, the `default` network
      * will be used.
      *
