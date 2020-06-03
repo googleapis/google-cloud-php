@@ -84,7 +84,7 @@ class StreamWrapperTest extends TestCase
      */
     public function testUnknownOpenMode()
     {
-        $fp = @fopen('gs://my_bucket/existing_file.txt', 'a');
+        $fp = @fopen('gs://my_bucket/existing_file.txt', 'x');
         $this->assertFalse($fp);
     }
 

@@ -44,15 +44,9 @@ class StreamWrapper
      * @var resource|null Must be public according to the PHP documentation.
      *
      * Contains array of context options in form ['protocol' => ['option' => value]].
-     * Recognized options are:
+     * Options used by StreamWrapper:
      *
-     * chunkSize (int)
-     * encryptionKey (string)
-     * encryptionKeySHA256 (string)
      * flush (bool) `true`: fflush() will flush output buffer; `false`: fflush() will do nothing
-     * metadata (array)
-     * predefinedAcl (string)
-     * validate (bool)
      */
     public $context;
 
