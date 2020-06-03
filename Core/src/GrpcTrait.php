@@ -19,6 +19,7 @@ namespace Google\Cloud\Core;
 
 use Google\ApiCore\CredentialsWrapper;
 use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Core\Duration;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Protobuf\NullValue;
@@ -267,6 +268,35 @@ trait GrpcTrait
         return [
             'seconds' => (int) $dt->format('U'),
             'nanos' => (int) $nanos
+        ];
+    }
+
+    /**
+     * Format a duration for the API.
+     *
+     * @param string|Duration $value
+     * @return array
+     */
+    private function formatDurationForApi($value)
+    {
+        if (is_string($value)) {
+            $d = explode('.', trim($value, 's'));
+            if (count($d) < 2) {
+                $seconds = $d[0];
+                $nanos = 0;
+            } else {
+                $seconds = (int) $d[0];
+                $nanos = $this->convertFractionToNanoSeconds($d[1]);
+            }
+        } elseif ($value instanceof Duration) {
+            $d = $value->get();
+            $seconds = $d['seconds'];
+            $nanos = $d['nanos'];
+        }
+
+        return [
+            'seconds' => $seconds,
+            'nanos' => $nanos
         ];
     }
 

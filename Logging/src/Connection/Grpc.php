@@ -101,6 +101,10 @@ class Grpc implements ConnectionInterface
             'json_payload' => function ($v) {
                 return $this->unpackStructFromApi($v);
             }
+        ], [], [], [
+            'google.protobuf.Duration' => function ($v) {
+                return $this->formatDurationForApi($v);
+            },
         ]);
 
         $config['serializer'] = $this->serializer;

@@ -18,15 +18,13 @@
 namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\ApiCore\CredentialsWrapper;
-use Google\Auth\Cache\MemoryCacheItemPool;
-use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Core\Duration;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
-use google\protobuf;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 
@@ -268,6 +266,36 @@ class GrpcTraitTest extends TestCase
                 '2017-04-06T20:52:45.989898989Z',
                 '1491511965',
                 '989898989'
+            ]
+        ];
+    }
+
+    /**
+     * @dataProvider durationProvider
+     */
+    public function testFormatsDuration($value, $expected)
+    {
+        $this->assertEquals($expected, $this->implementation->call('formatDurationForApi', [$value]));
+    }
+
+    public function durationProvider()
+    {
+        return [
+            [
+                '1.0s',
+                ['seconds' => 1, 'nanos' => 0]
+            ], [
+                '5.11111111s',
+                ['seconds' => 5, 'nanos' => 111111110]
+            ], [
+                new Duration(1, 0),
+                ['seconds' => 1, 'nanos' => 0]
+            ], [
+                new Duration(1, 1),
+                ['seconds' => 1, 'nanos' => 1]
+            ], [
+                new Duration(1, 1e+9),
+                ['seconds' => 1, 'nanos' => 1e+9]
             ]
         ];
     }
