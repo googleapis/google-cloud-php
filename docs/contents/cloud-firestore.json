@@ -49,15 +49,5 @@
             "title": "FirestoreAdminClient",
             "type": "firestore/admin/v1/firestoreadminclient"
         }]
-    }, {
-        "title": "v1beta1",
-        "type": "firestore/v1beta1/readme",
-        "patterns": [
-          "firestore/v1beta1/\\w{1,}"
-        ],
-        "nav": [{
-            "title": "FirestoreClient",
-            "type": "firestore/v1beta1/firestoreclient"
-        }]
     }]
 }
