@@ -16,9 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class GcsFilesetSpec extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Patterns to identify a set of files in Google Cloud Storage. See [Cloud
-     * Storage documentation](https://cloud.google.com/storage/docs/gsutil/addlhelp/WildcardNames) for
-     * more information. Note that bucket wildcards are currently not supported.
+     * Required. Patterns to identify a set of files in Google Cloud Storage.
+     * See [Cloud Storage
+     * documentation](https://cloud.google.com/storage/docs/gsutil/addlhelp/WildcardNames)
+     * for more information. Note that bucket wildcards are currently not
+     * supported.
      * Examples of valid file_patterns:
      *  * `gs://bucket_name/dir/&#42;`: matches all files within `bucket_name/dir`
      *                              directory.
@@ -57,9 +59,11 @@ class GcsFilesetSpec extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $file_patterns
-     *           Required. Patterns to identify a set of files in Google Cloud Storage. See [Cloud
-     *           Storage documentation](https://cloud.google.com/storage/docs/gsutil/addlhelp/WildcardNames) for
-     *           more information. Note that bucket wildcards are currently not supported.
+     *           Required. Patterns to identify a set of files in Google Cloud Storage.
+     *           See [Cloud Storage
+     *           documentation](https://cloud.google.com/storage/docs/gsutil/addlhelp/WildcardNames)
+     *           for more information. Note that bucket wildcards are currently not
+     *           supported.
      *           Examples of valid file_patterns:
      *            * `gs://bucket_name/dir/&#42;`: matches all files within `bucket_name/dir`
      *                                        directory.
@@ -90,9 +94,11 @@ class GcsFilesetSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Patterns to identify a set of files in Google Cloud Storage. See [Cloud
-     * Storage documentation](https://cloud.google.com/storage/docs/gsutil/addlhelp/WildcardNames) for
-     * more information. Note that bucket wildcards are currently not supported.
+     * Required. Patterns to identify a set of files in Google Cloud Storage.
+     * See [Cloud Storage
+     * documentation](https://cloud.google.com/storage/docs/gsutil/addlhelp/WildcardNames)
+     * for more information. Note that bucket wildcards are currently not
+     * supported.
      * Examples of valid file_patterns:
      *  * `gs://bucket_name/dir/&#42;`: matches all files within `bucket_name/dir`
      *                              directory.
@@ -122,9 +128,11 @@ class GcsFilesetSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Patterns to identify a set of files in Google Cloud Storage. See [Cloud
-     * Storage documentation](https://cloud.google.com/storage/docs/gsutil/addlhelp/WildcardNames) for
-     * more information. Note that bucket wildcards are currently not supported.
+     * Required. Patterns to identify a set of files in Google Cloud Storage.
+     * See [Cloud Storage
+     * documentation](https://cloud.google.com/storage/docs/gsutil/addlhelp/WildcardNames)
+     * for more information. Note that bucket wildcards are currently not
+     * supported.
      * Examples of valid file_patterns:
      *  * `gs://bucket_name/dir/&#42;`: matches all files within `bucket_name/dir`
      *                              directory.
