@@ -338,9 +338,9 @@ class StreamWrapper
             // generator containing only the directory listing.
             $this->directoryIterator = call_user_func(function () use ($iterator) {
                 $yielded = [];
+                $pathLen = strlen($this->makeDirectory($this->file));
                 foreach ($iterator as $object) {
-                    $name = $object->name();
-                    $name = substr($object->name(), strlen($this->makeDirectory($this->file)));
+                    $name = substr($object->name(), $pathLen);
                     $parts = explode('/', $name);
 
                     // since the service call returns nested results and we only
@@ -556,6 +556,10 @@ class StreamWrapper
      */
     private function makeDirectory($path)
     {
+        if ($path == '' or $path == '/') {
+            return '';
+        }
+
         if (substr($path, -1) == '/') {
             return $path;
         }

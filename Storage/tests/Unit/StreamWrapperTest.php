@@ -353,12 +353,39 @@ class StreamWrapperTest extends TestCase
     /**
      * @group storageDirectory
      */
+    public function testRootDirectoryListing()
+    {
+        $this->mockDirectoryListing('', ['dir/subdir/file', 'file1', 'file2', 'file2/'], false);
+        $fd = opendir('gs://my_bucket/');
+        $this->assertEquals('dir', readdir($fd));
+        $this->assertEquals('file1', readdir($fd));
+        $this->assertEquals('file2', readdir($fd));
+        rewinddir($fd);
+        $this->assertEquals('dir', readdir($fd));
+        closedir($fd);
+    }
+
+    /**
+     * @group storageDirectory
+     */
     public function testDirectoryListingViaScan()
     {
         $files = ['foo/file1.txt', 'foo/file2.txt', 'foo/file3.txt', 'foo/file4.txt'];
         $expected = ['file1.txt', 'file2.txt', 'file3.txt', 'file4.txt'];
         $this->mockDirectoryListing('foo', $files);
         $this->assertEquals($expected, scandir('gs://my_bucket/foo/'));
+    }
+
+    /**
+     * @group storageDirectory
+     */
+    public function testRootDirectoryListingViaScan()
+    {
+        $files = ['file1', 'file2', 'file2/', 'dir/subdir/file'];
+        $expected = ['dir', 'file1', 'file2'];
+        $this->mockDirectoryListing('', $files, false);
+        $this->assertEquals($expected, scandir('gs://my_bucket'));
+        $this->assertEquals($expected, scandir('gs://my_bucket/'));
     }
 
     public function testRenameFile()

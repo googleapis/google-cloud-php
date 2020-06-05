@@ -24,15 +24,33 @@ namespace Google\Cloud\Storage\Tests\System\StreamWrapper;
  */
 class DirectoryTest extends StreamWrapperTestCase
 {
+    private static $createObjects = [
+        'some_folder/1.txt',
+        'some_folder/2.txt',
+        'some_folder/3.txt',
+        'some_folder/nest/3.txt',
+        '4.txt',
+        'dir/',
+        'dir',
+    ];
+
     public static function setUpBeforeClass()
     {
         parent::setUpBeforeClass();
 
         // create file in folder
-        self::$bucket->upload('somedata', ['name' => 'some_folder/1.txt']);
-        self::$bucket->upload('somedata', ['name' => 'some_folder/2.txt']);
-        self::$bucket->upload('somedata', ['name' => 'some_folder/3.txt']);
-        self::$bucket->upload('somedata', ['name' => 'some_folder/nest/3.txt']);
+        foreach (self::$createObjects as $name) {
+            self::$bucket->upload('somedata', ['name' => $name]);
+        }
+    }
+
+    public static function tearDownAfterClass()
+    {
+        foreach (self::$createObjects as $name) {
+            self::$bucket->object($name)->delete();
+        }
+
+        parent::tearDownAfterClass();
     }
 
     public function testMkDir()
@@ -100,6 +118,26 @@ class DirectoryTest extends StreamWrapperTestCase
         closedir($fd);
     }
 
+    public function testListRootDirectory()
+    {
+        $expected = [
+            '4.txt',
+            'dir',
+            'some_folder',
+            self::$object->name(),
+        ];
+        sort($expected);
+
+        $dir = self::generateUrl('/');
+        $fd = opendir($dir);
+        $this->assertEquals($expected[0], readdir($fd));
+        $this->assertEquals($expected[1], readdir($fd));
+        $this->assertEquals($expected[2], readdir($fd));
+        rewinddir($fd);
+        $this->assertEquals($expected[0], readdir($fd));
+        closedir($fd);
+    }
+
     public function testScanDirectory()
     {
         $dir = self::generateUrl('some_folder');
@@ -111,5 +149,21 @@ class DirectoryTest extends StreamWrapperTestCase
         ];
         $this->assertEquals($expected, scandir($dir));
         $this->assertEquals(array_reverse($expected), scandir($dir, SCANDIR_SORT_DESCENDING));
+    }
+
+    public function testScanRootDirectory()
+    {
+        $dir0 = self::generateUrl('');
+        $dir1 = self::generateUrl('/');
+        $expected = [
+            '4.txt',
+            'dir',
+            'some_folder',
+            self::$object->name(),
+        ];
+        sort($expected);
+
+        $this->assertEquals($expected, scandir($dir0));
+        $this->assertEquals($expected, scandir($dir1));
     }
 }
