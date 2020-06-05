@@ -16,13 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetGroupRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The group resource name. Written as
-     * <code>projects/<var>projectID</var>/groups/<var>group_name</var></code>.
-     * Call
-     * <a href="/error-reporting/reference/rest/v1beta1/projects.groupStats/list">
-     * <code>groupStats.list</code></a> to return a list of groups belonging to
-     * this project.
-     * Example: <code>projects/my-project-123/groups/my-group</code>
+     * The group resource name. Written as
+     * `projects/{projectID}/groups/{group_name}`. Call
+     * [`groupStats.list`](https://cloud.google.com/error-reporting/reference/rest/v1beta1/projects.groupStats/list)
+     * to return a list of groups belonging to this project.
+     * Example: `projects/my-project-123/groups/my-group`
      *
      * Generated from protobuf field <code>string group_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -35,13 +33,11 @@ class GetGroupRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $group_name
-     *           Required. The group resource name. Written as
-     *           <code>projects/<var>projectID</var>/groups/<var>group_name</var></code>.
-     *           Call
-     *           <a href="/error-reporting/reference/rest/v1beta1/projects.groupStats/list">
-     *           <code>groupStats.list</code></a> to return a list of groups belonging to
-     *           this project.
-     *           Example: <code>projects/my-project-123/groups/my-group</code>
+     *           The group resource name. Written as
+     *           `projects/{projectID}/groups/{group_name}`. Call
+     *           [`groupStats.list`](https://cloud.google.com/error-reporting/reference/rest/v1beta1/projects.groupStats/list)
+     *           to return a list of groups belonging to this project.
+     *           Example: `projects/my-project-123/groups/my-group`
      * }
      */
     public function __construct($data = NULL) {
@@ -50,13 +46,11 @@ class GetGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The group resource name. Written as
-     * <code>projects/<var>projectID</var>/groups/<var>group_name</var></code>.
-     * Call
-     * <a href="/error-reporting/reference/rest/v1beta1/projects.groupStats/list">
-     * <code>groupStats.list</code></a> to return a list of groups belonging to
-     * this project.
-     * Example: <code>projects/my-project-123/groups/my-group</code>
+     * The group resource name. Written as
+     * `projects/{projectID}/groups/{group_name}`. Call
+     * [`groupStats.list`](https://cloud.google.com/error-reporting/reference/rest/v1beta1/projects.groupStats/list)
+     * to return a list of groups belonging to this project.
+     * Example: `projects/my-project-123/groups/my-group`
      *
      * Generated from protobuf field <code>string group_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -67,13 +61,11 @@ class GetGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The group resource name. Written as
-     * <code>projects/<var>projectID</var>/groups/<var>group_name</var></code>.
-     * Call
-     * <a href="/error-reporting/reference/rest/v1beta1/projects.groupStats/list">
-     * <code>groupStats.list</code></a> to return a list of groups belonging to
-     * this project.
-     * Example: <code>projects/my-project-123/groups/my-group</code>
+     * The group resource name. Written as
+     * `projects/{projectID}/groups/{group_name}`. Call
+     * [`groupStats.list`](https://cloud.google.com/error-reporting/reference/rest/v1beta1/projects.groupStats/list)
+     * to return a list of groups belonging to this project.
+     * Example: `projects/my-project-123/groups/my-group`
      *
      * Generated from protobuf field <code>string group_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

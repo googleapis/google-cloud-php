@@ -17,7 +17,7 @@ class TrackingIssue extends \Google\Protobuf\Internal\Message
 {
     /**
      * A URL pointing to a related entry in an issue tracking system.
-     * Example: https://github.com/user/project/issues/4
+     * Example: `https://github.com/user/project/issues/4`
      *
      * Generated from protobuf field <code>string url = 1;</code>
      */
@@ -31,7 +31,7 @@ class TrackingIssue extends \Google\Protobuf\Internal\Message
      *
      *     @type string $url
      *           A URL pointing to a related entry in an issue tracking system.
-     *           Example: https://github.com/user/project/issues/4
+     *           Example: `https://github.com/user/project/issues/4`
      * }
      */
     public function __construct($data = NULL) {
@@ -41,7 +41,7 @@ class TrackingIssue extends \Google\Protobuf\Internal\Message
 
     /**
      * A URL pointing to a related entry in an issue tracking system.
-     * Example: https://github.com/user/project/issues/4
+     * Example: `https://github.com/user/project/issues/4`
      *
      * Generated from protobuf field <code>string url = 1;</code>
      * @return string
@@ -53,7 +53,7 @@ class TrackingIssue extends \Google\Protobuf\Internal\Message
 
     /**
      * A URL pointing to a related entry in an issue tracking system.
-     * Example: https://github.com/user/project/issues/4
+     * Example: `https://github.com/user/project/issues/4`
      *
      * Generated from protobuf field <code>string url = 1;</code>
      * @param string $var
