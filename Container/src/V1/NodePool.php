@@ -34,7 +34,7 @@ class NodePool extends \Google\Protobuf\Internal\Message
     private $config = null;
     /**
      * The initial node count for the pool. You must ensure that your
-     * Compute Engine <a href="/compute/docs/resource-quotas">resource quota</a>
+     * Compute Engine [resource quota](https://cloud.google.com/compute/quotas)
      * is sufficient for this number of instances. You must also have available
      * firewall and routes quota.
      *
@@ -119,7 +119,7 @@ class NodePool extends \Google\Protobuf\Internal\Message
      *           The node configuration of the pool.
      *     @type int $initial_node_count
      *           The initial node count for the pool. You must ensure that your
-     *           Compute Engine <a href="/compute/docs/resource-quotas">resource quota</a>
+     *           Compute Engine [resource quota](https://cloud.google.com/compute/quotas)
      *           is sufficient for this number of instances. You must also have available
      *           firewall and routes quota.
      *     @type string $self_link
@@ -208,7 +208,7 @@ class NodePool extends \Google\Protobuf\Internal\Message
 
     /**
      * The initial node count for the pool. You must ensure that your
-     * Compute Engine <a href="/compute/docs/resource-quotas">resource quota</a>
+     * Compute Engine [resource quota](https://cloud.google.com/compute/quotas)
      * is sufficient for this number of instances. You must also have available
      * firewall and routes quota.
      *
@@ -222,7 +222,7 @@ class NodePool extends \Google\Protobuf\Internal\Message
 
     /**
      * The initial node count for the pool. You must ensure that your
-     * Compute Engine <a href="/compute/docs/resource-quotas">resource quota</a>
+     * Compute Engine [resource quota](https://cloud.google.com/compute/quotas)
      * is sufficient for this number of instances. You must also have available
      * firewall and routes quota.
      *
