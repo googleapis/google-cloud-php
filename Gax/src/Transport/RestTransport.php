@@ -115,7 +115,8 @@ class RestTransport implements TransportInterface
                 /** @var Message $return */
                 $return = new $decodeType;
                 $return->mergeFromJsonString(
-                    (string) $response->getBody()
+                    (string) $response->getBody(),
+                    true
                 );
 
                 if (isset($options['metadataCallback'])) {
