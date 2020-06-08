@@ -1,5 +1,423 @@
 # Changelog
 
+## 0.133.1
+
+<details><summary>google/cloud-automl 1.1.2</summary>
+
+
+
+### Performance Improvements
+
+* improve metadata performance cla: yes context: full ([#3067](https://www.github.com/googleapis/google-cloud-php/issues/3067)) ([bcc3041](https://www.github.com/googleapis/google-cloud-php/commit/bcc3041d2c19c5130c357e7a8f8e80090950307c))
+
+</details>
+
+<details><summary>google/cloud-bigquerydatatransfer 1.0.3</summary>
+
+
+
+### Performance Improvements
+
+* improve metadata performance ([#3068](https://www.github.com/googleapis/google-cloud-php/issues/3068)) ([a504ffc](https://www.github.com/googleapis/google-cloud-php/commit/a504ffc760d5b4cf6f3db012b6d778316faa23a8))
+
+</details>
+
+<details><summary>google/cloud-bigquery-storage 0.2.1</summary>
+
+
+
+### Performance Improvements
+
+* improve metadata performance ([#3069](https://www.github.com/googleapis/google-cloud-php/issues/3069)) ([3f8927c](https://www.github.com/googleapis/google-cloud-php/commit/3f8927c801a26626acbe3d3934f20a8401370c49))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.4.1</summary>
+
+
+
+### Performance Improvements
+
+* improve metadata performance ([#3070](https://www.github.com/googleapis/google-cloud-php/issues/3070)) ([9ff3783](https://www.github.com/googleapis/google-cloud-php/commit/9ff378396a9d873d5b6835f3ba7d8881e799f360))
+
+</details>
+
+<details><summary>google/cloud-billing 1.0.1</summary>
+
+
+
+### Performance Improvements
+
+* improve metadata performance ([#3071](https://www.github.com/googleapis/google-cloud-php/issues/3071)) ([d1bf2fb](https://www.github.com/googleapis/google-cloud-php/commit/d1bf2fb667c839ca5867d77187936dc64fe63cc6))
+
+</details>
+
+<details><summary>google/cloud-container 1.0.3</summary>
+
+
+
+### Performance Improvements
+
+* improve metadata performance ([#3072](https://www.github.com/googleapis/google-cloud-php/issues/3072)) ([6c2d5a6](https://www.github.com/googleapis/google-cloud-php/commit/6c2d5a64b8e79391f2821629d96deb09e8f11812))
+
+
+### Documentation
+
+* fix a broken link in the docs ([#3113](https://www.github.com/googleapis/google-cloud-php/issues/3113)) ([3257898](https://www.github.com/googleapis/google-cloud-php/commit/3257898859f1f7772a866bc6b7b7c61412b7fa32))
+* fix broken links in the reference documentation ([#3119](https://www.github.com/googleapis/google-cloud-php/issues/3119)) ([fd38a85](https://www.github.com/googleapis/google-cloud-php/commit/fd38a851efd409cfe62dc55534b1fc5bf821d81c))
+
+</details>
+
+<details><summary>google/cloud-core 1.37.1</summary>
+
+
+
+### Bug Fixes
+
+* support http request latency in grpc transport ([#3063](https://www.github.com/googleapis/google-cloud-php/issues/3063)) ([b4b6b23](https://www.github.com/googleapis/google-cloud-php/commit/b4b6b23e59406ac8d842f297f2251be010b21828))
+
+</details>
+
+<details><summary>google/cloud-data-catalog 0.1.2</summary>
+
+
+
+### Performance Improvements
+
+* improve metadata performance ([#3073](https://www.github.com/googleapis/google-cloud-php/issues/3073)) ([d558077](https://www.github.com/googleapis/google-cloud-php/commit/d55807784b4bf925b33abb915936bf215a837903))
+
+
+### Documentation
+
+* change relative URLs to absolute URLs to fix broken links ([#3114](https://www.github.com/googleapis/google-cloud-php/issues/3114)) ([088407c](https://www.github.com/googleapis/google-cloud-php/commit/088407c93fd68f5fd522233b57811262c3b0bfee))
+
+</details>
+
+<details><summary>google/cloud-dataproc 1.0.2</summary>
+
+
+
+### Bug Fixes
+
+* increase timeouts for ClusterControllerClient ([#3115](https://www.github.com/googleapis/google-cloud-php/issues/3115)) ([81d6af0](https://www.github.com/googleapis/google-cloud-php/commit/81d6af00cf366cd0b6691d8740e1b742cd99fd06))
+
+
+### Performance Improvements
+
+* improve metadata performance ([#3074](https://www.github.com/googleapis/google-cloud-php/issues/3074)) ([6780f43](https://www.github.com/googleapis/google-cloud-php/commit/6780f4305c7508671076eb787a265b2cc8487548))
+
+
+### Documentation
+
+* change relative URLs to absolute URLs to fix broken links ([#3110](https://www.github.com/googleapis/google-cloud-php/issues/3110)) ([e2a37c9](https://www.github.com/googleapis/google-cloud-php/commit/e2a37c90d30bb5bc02e5a783cd89b6ee11e1b84f))
+
+</details>
+
+<details><summary>google/cloud-datastore 1.11.4</summary>
+
+
+
+### Performance Improvements
+
+* improve metadata performance ([#3075](https://www.github.com/googleapis/google-cloud-php/issues/3075)) ([c31a3dd](https://www.github.com/googleapis/google-cloud-php/commit/c31a3dd9ee3c013f632562feba11c7178cced243))
+
+</details>
+
+<details><summary>google/cloud-debugger 1.1.1</summary>
+
+
+
+### Performance Improvements
+
+* improve metadata performance ([#3076](https://www.github.com/googleapis/google-cloud-php/issues/3076)) ([0d5d50d](https://www.github.com/googleapis/google-cloud-php/commit/0d5d50d646788111dd3959a4e67d0991f624f5ff))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 0.15.1</summary>
+
+
+
+### Performance Improvements
+
+* improve metadata performance ([#3077](https://www.github.com/googleapis/google-cloud-php/issues/3077)) ([b2fa8f1](https://www.github.com/googleapis/google-cloud-php/commit/b2fa8f1ce31682fdf6a427d4dcfc074bb2474d22))
+
+
+### Documentation
+
+* cleaned docs for the Agents service and resource ([#3116](https://www.github.com/googleapis/google-cloud-php/issues/3116)) ([349dc7a](https://www.github.com/googleapis/google-cloud-php/commit/349dc7a100d7d50bf8270ef0ec72b0a3cf469dde))
+
+</details>
+
+<details><summary>google/cloud-error-reporting 0.16.4</summary>
+
+
+
+### Performance Improvements
+
+* improve metadata performance ([#3078](https://www.github.com/googleapis/google-cloud-php/issues/3078)) ([a008197](https://www.github.com/googleapis/google-cloud-php/commit/a00819705de3c723ddf7c2aeccd3b3903297984b))
+
+
+### Documentation
+
+* fix several broken links in the docs ([#3117](https://www.github.com/googleapis/google-cloud-php/issues/3117)) ([d134bd3](https://www.github.com/googleapis/google-cloud-php/commit/d134bd36d25228a0da37960121df2651446e7c99))
+
+</details>
+
+<details><summary>google/cloud-iot 1.1.1</summary>
+
+
+
+### Performance Improvements
+
+* improve metadata performance ([#3079](https://www.github.com/googleapis/google-cloud-php/issues/3079)) ([6794dff](https://www.github.com/googleapis/google-cloud-php/commit/6794dff8a91cc1fc4e601d67424f0c9f11456ad5))
+
+</details>
+
+<details><summary>google/cloud-kms 1.10.1</summary>
+
+
+
+### Performance Improvements
+
+* improve metadata performance ([#3080](https://www.github.com/googleapis/google-cloud-php/issues/3080)) ([e9a00a2](https://www.github.com/googleapis/google-cloud-php/commit/e9a00a2f26859e5bceac1f0008ddbb1f92b69586))
+
+</details>
+
+<details><summary>google/cloud-language 0.22.4</summary>
+
+
+
+### Performance Improvements
+
+* improve metadata performance ([#3082](https://www.github.com/googleapis/google-cloud-php/issues/3082)) ([bd7e6e3](https://www.github.com/googleapis/google-cloud-php/commit/bd7e6e3ce6b27b803df37f9d0dd4ea81db4c7ccb))
+
+</details>
+
+<details><summary>google/cloud-logging 1.20.1</summary>
+
+
+
+### Bug Fixes
+
+* support http request latency in grpc transport ([#3063](https://www.github.com/googleapis/google-cloud-php/issues/3063)) ([b4b6b23](https://www.github.com/googleapis/google-cloud-php/commit/b4b6b23e59406ac8d842f297f2251be010b21828))
+
+</details>
+
+<details><summary>google/cloud-memcache 0.1.2</summary>
+
+
+
+### Performance Improvements
+
+* improve metadata performance ([#3083](https://www.github.com/googleapis/google-cloud-php/issues/3083)) ([22280df](https://www.github.com/googleapis/google-cloud-php/commit/22280df7ab9d1c920afea086623345f15996490a))
+
+</details>
+
+<details><summary>google/cloud-oslogin 1.0.2</summary>
+
+
+
+### Performance Improvements
+
+* improve metadata performance ([#3084](https://www.github.com/googleapis/google-cloud-php/issues/3084)) ([47649d7](https://www.github.com/googleapis/google-cloud-php/commit/47649d7a67b9f0fb07b6a3073655f214d6239ebf))
+
+</details>
+
+<details><summary>google/cloud-recaptcha-enterprise 0.1.2</summary>
+
+
+
+### Performance Improvements
+
+* improve metadata performance ([#3085](https://www.github.com/googleapis/google-cloud-php/issues/3085)) ([fa0d27b](https://www.github.com/googleapis/google-cloud-php/commit/fa0d27bd53dec0c5f30f5e7e37512bddb4877e94))
+
+</details>
+
+<details><summary>google/cloud-recommender 1.0.2</summary>
+
+
+
+### Performance Improvements
+
+* improve metadata performance ([#3086](https://www.github.com/googleapis/google-cloud-php/issues/3086)) ([2a35a1d](https://www.github.com/googleapis/google-cloud-php/commit/2a35a1d56c01ca95ae692877a56a205a2ee76121))
+
+</details>
+
+<details><summary>google/cloud-redis 1.0.1</summary>
+
+
+
+### Performance Improvements
+
+* improve metadata performance ([#3087](https://www.github.com/googleapis/google-cloud-php/issues/3087)) ([2337fc8](https://www.github.com/googleapis/google-cloud-php/commit/2337fc87494a405858e5d238f836fbc379cdecd4))
+
+
+### Documentation
+
+* change relative URLs to absolute URLs to fix broken links ([#3105](https://www.github.com/googleapis/google-cloud-php/issues/3105)) ([dc6b072](https://www.github.com/googleapis/google-cloud-php/commit/dc6b07298432530b47ea620fdd4b2eb581bd6989))
+
+</details>
+
+<details><summary>google/cloud-scheduler 1.3.2</summary>
+
+
+
+### Performance Improvements
+
+* improve metadata performance ([#3088](https://www.github.com/googleapis/google-cloud-php/issues/3088)) ([69c4b3f](https://www.github.com/googleapis/google-cloud-php/commit/69c4b3f76f944194d7310a9b36e4bb508cf3f839))
+
+</details>
+
+<details><summary>google/cloud-security-center 0.7.1</summary>
+
+
+
+### Performance Improvements
+
+* improve metadata performance ([#3089](https://www.github.com/googleapis/google-cloud-php/issues/3089)) ([26b6dc0](https://www.github.com/googleapis/google-cloud-php/commit/26b6dc072e392cd529faf0d15193401a44533cc2))
+
+</details>
+
+<details><summary>google/cloud-service-directory 0.1.3</summary>
+
+
+
+### Performance Improvements
+
+* improve metadata performance ([#3091](https://www.github.com/googleapis/google-cloud-php/issues/3091)) ([556b827](https://www.github.com/googleapis/google-cloud-php/commit/556b827cbcd9ba209a783f67e3f8d6dfc6457e9d))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.29.1</summary>
+
+
+
+### Performance Improvements
+
+* improve metadata performance ([#3092](https://www.github.com/googleapis/google-cloud-php/issues/3092)) ([6c230f0](https://www.github.com/googleapis/google-cloud-php/commit/6c230f011ca6201b92f8d6660666ef0192ce2902))
+
+</details>
+
+<details><summary>google/cloud-speech 1.1.2</summary>
+
+
+
+### Performance Improvements
+
+* improve metadata performance ([#3093](https://www.github.com/googleapis/google-cloud-php/issues/3093)) ([07c90dc](https://www.github.com/googleapis/google-cloud-php/commit/07c90dcedd02bea4bf2de2af76b9da91cf4caf83))
+
+</details>
+
+<details><summary>google/cloud-storage 1.21.1</summary>
+
+
+
+### Bug Fixes
+
+* correct object names for root level scandir, readdir ([#3112](https://www.github.com/googleapis/google-cloud-php/issues/3112)) ([d2b7bf7](https://www.github.com/googleapis/google-cloud-php/commit/d2b7bf743f438af9022ffa9788699a48e540d6ec))
+
+</details>
+
+<details><summary>google/cloud-talent 0.12.2</summary>
+
+
+
+### Performance Improvements
+
+* improve metadata performance ([#3094](https://www.github.com/googleapis/google-cloud-php/issues/3094)) ([489cc93](https://www.github.com/googleapis/google-cloud-php/commit/489cc93f52e48898599870c47f4add3ef7c574bd))
+
+
+### Documentation
+
+* remove a broken link from the documentation ([#3118](https://www.github.com/googleapis/google-cloud-php/issues/3118)) ([d042bb1](https://www.github.com/googleapis/google-cloud-php/commit/d042bb1c3df4363b23e6d59a210967e403c336d9))
+
+</details>
+
+<details><summary>google/cloud-tasks 1.6.3</summary>
+
+
+
+### Performance Improvements
+
+* improve metadata performance ([#3095](https://www.github.com/googleapis/google-cloud-php/issues/3095)) ([0300d4d](https://www.github.com/googleapis/google-cloud-php/commit/0300d4de57dd9581c23119b0531f1712acd3dd80))
+
+</details>
+
+<details><summary>google/cloud-text-to-speech 1.0.3</summary>
+
+
+
+### Performance Improvements
+
+* improve metadata performance ([#3096](https://www.github.com/googleapis/google-cloud-php/issues/3096)) ([906a047](https://www.github.com/googleapis/google-cloud-php/commit/906a04704c498adc0afd10d2c969b85ace7056d9))
+
+
+### Documentation
+
+* change relative URLs to absolute URLs to fix broken links ([#3106](https://www.github.com/googleapis/google-cloud-php/issues/3106)) ([1a1d126](https://www.github.com/googleapis/google-cloud-php/commit/1a1d126b70adfcd51420620711f4e80ab88ff18e))
+
+</details>
+
+<details><summary>google/cloud-trace 1.1.1</summary>
+
+
+
+### Performance Improvements
+
+* improve metadata performance ([#3097](https://www.github.com/googleapis/google-cloud-php/issues/3097)) ([e1c7122](https://www.github.com/googleapis/google-cloud-php/commit/e1c7122abb3e24be5580c56ec5cac12f765a8ebe))
+
+</details>
+
+<details><summary>google/cloud-translate 1.7.4</summary>
+
+
+
+### Performance Improvements
+
+* improve metadata performance ([#3098](https://www.github.com/googleapis/google-cloud-php/issues/3098)) ([60c6cc7](https://www.github.com/googleapis/google-cloud-php/commit/60c6cc755884919989f2247b238ffe70e7e7a148))
+
+</details>
+
+<details><summary>google/cloud-videointelligence 1.9.2</summary>
+
+
+
+### Performance Improvements
+
+* improve metadata performance ([#3099](https://www.github.com/googleapis/google-cloud-php/issues/3099)) ([319932e](https://www.github.com/googleapis/google-cloud-php/commit/319932e2d30b21b4ba22016d67c45fc89a04e5c6))
+
+</details>
+
+<details><summary>google/cloud-vision 1.0.2</summary>
+
+
+
+### Performance Improvements
+
+* improve metadata performance ([#3100](https://www.github.com/googleapis/google-cloud-php/issues/3100)) ([b44ef0d](https://www.github.com/googleapis/google-cloud-php/commit/b44ef0dfa4428d8659d0cf7035784f474cd11b8e))
+
+</details>
+
+<details><summary>google/cloud-web-risk 0.5.1</summary>
+
+
+
+### Performance Improvements
+
+* improve metadata performance ([#3101](https://www.github.com/googleapis/google-cloud-php/issues/3101)) ([b16b939](https://www.github.com/googleapis/google-cloud-php/commit/b16b939c2e54876890596bb5cd9d9428aaab9f72))
+
+</details>
+
+<details><summary>google/cloud-web-security-scanner 0.4.4</summary>
+
+
+
+### Performance Improvements
+
+* improve metadata performance ([#3102](https://www.github.com/googleapis/google-cloud-php/issues/3102)) ([a106291](https://www.github.com/googleapis/google-cloud-php/commit/a10629177f75e9c96a92273bd81b73f8e6307ee9))
+
+</details>
+
 ## 0.133.0
 
 <details><summary>google/cloud-asset 1.1.0</summary>
