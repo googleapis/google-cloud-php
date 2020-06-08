@@ -1,0 +1,1 @@
+{"id":"language\/v1\/partofspeech\/gender","type":"","title":"Google\\Cloud\\Language\\V1\\PartOfSpeech\\Gender","name":"Gender","description":"<p>Gender classes of nouns reflected in the behaviour of associated words.<\/p>\n<p>Protobuf type <code>google.cloud.language.v1.PartOfSpeech.Gender<\/code><\/p>","examples":[],"resources":[],"methods":[]}
