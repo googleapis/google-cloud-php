@@ -43,6 +43,8 @@ use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\PubSub\V1\DeleteTopicRequest;
+use Google\Cloud\PubSub\V1\DetachSubscriptionRequest;
+use Google\Cloud\PubSub\V1\DetachSubscriptionResponse;
 use Google\Cloud\PubSub\V1\GetTopicRequest;
 use Google\Cloud\PubSub\V1\ListTopicSnapshotsRequest;
 use Google\Cloud\PubSub\V1\ListTopicSnapshotsResponse;
@@ -661,7 +663,7 @@ class PublisherGapicClient
     }
 
     /**
-     * Lists the names of the subscriptions on this topic.
+     * Lists the names of the attached subscriptions on this topic.
      *
      * Sample code:
      * ```
@@ -1065,6 +1067,60 @@ class PublisherGapicClient
             $request,
             Call::UNARY_CALL,
             'google.iam.v1.IAMPolicy'
+        )->wait();
+    }
+
+    /**
+     * Detaches a subscription from this topic. All messages retained in the
+     * subscription are dropped. Subsequent `Pull` and `StreamingPull` requests
+     * will return FAILED_PRECONDITION. If the subscription is a push
+     * subscription, pushes to the endpoint will stop.
+     *
+     * Sample code:
+     * ```
+     * $publisherClient = new PublisherClient();
+     * try {
+     *     $formattedSubscription = $publisherClient->projectTopicName('[PROJECT]', '[TOPIC]');
+     *     $response = $publisherClient->detachSubscription($formattedSubscription);
+     * } finally {
+     *     $publisherClient->close();
+     * }
+     * ```
+     *
+     * @param string $subscription Required. The subscription to detach.
+     *                             Format is `projects/{project}/subscriptions/{subscription}`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\PubSub\V1\DetachSubscriptionResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function detachSubscription($subscription, array $optionalArgs = [])
+    {
+        $request = new DetachSubscriptionRequest();
+        $request->setSubscription($subscription);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'subscription' => $request->getSubscription(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DetachSubscription',
+            DetachSubscriptionResponse::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 }

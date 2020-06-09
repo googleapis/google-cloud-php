@@ -166,6 +166,17 @@ return [
                     ],
                 ],
             ],
+            'DetachSubscription' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{subscription=projects/*/subscriptions/*}:detach',
+                'placeholders' => [
+                    'subscription' => [
+                        'getters' => [
+                            'getSubscription',
+                        ],
+                    ],
+                ],
+            ],
         ],
     ],
 ];

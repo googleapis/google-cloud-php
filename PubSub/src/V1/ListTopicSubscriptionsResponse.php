@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListTopicSubscriptionsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The names of the subscriptions that match the request.
+     * The names of subscriptions attached to the topic specified in the request.
      *
      * Generated from protobuf field <code>repeated string subscriptions = 1 [(.google.api.resource_reference) = {</code>
      */
@@ -37,7 +37,7 @@ class ListTopicSubscriptionsResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $subscriptions
-     *           The names of the subscriptions that match the request.
+     *           The names of subscriptions attached to the topic specified in the request.
      *     @type string $next_page_token
      *           If not empty, indicates that there may be more subscriptions that match
      *           the request; this value should be passed in a new
@@ -50,7 +50,7 @@ class ListTopicSubscriptionsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The names of the subscriptions that match the request.
+     * The names of subscriptions attached to the topic specified in the request.
      *
      * Generated from protobuf field <code>repeated string subscriptions = 1 [(.google.api.resource_reference) = {</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -61,7 +61,7 @@ class ListTopicSubscriptionsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The names of the subscriptions that match the request.
+     * The names of subscriptions attached to the topic specified in the request.
      *
      * Generated from protobuf field <code>repeated string subscriptions = 1 [(.google.api.resource_reference) = {</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
