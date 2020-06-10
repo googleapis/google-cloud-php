@@ -946,7 +946,7 @@ class PublisherClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedSubscription = $client->projectTopicName('[PROJECT]', '[TOPIC]');
+        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
 
         $response = $client->detachSubscription($formattedSubscription);
         $this->assertEquals($expectedResponse, $response);
@@ -986,7 +986,7 @@ class PublisherClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedSubscription = $client->projectTopicName('[PROJECT]', '[TOPIC]');
+        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
 
         try {
             $client->detachSubscription($formattedSubscription);
