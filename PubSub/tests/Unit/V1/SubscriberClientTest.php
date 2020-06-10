@@ -99,6 +99,7 @@ class SubscriberClientTest extends GeneratedTest
         $retainAckedMessages = false;
         $enableMessageOrdering = true;
         $filter = 'filter-1274492040';
+        $detached = true;
         $expectedResponse = new Subscription();
         $expectedResponse->setName($name2);
         $expectedResponse->setTopic($topic2);
@@ -106,6 +107,7 @@ class SubscriberClientTest extends GeneratedTest
         $expectedResponse->setRetainAckedMessages($retainAckedMessages);
         $expectedResponse->setEnableMessageOrdering($enableMessageOrdering);
         $expectedResponse->setFilter($filter);
+        $expectedResponse->setDetached($detached);
         $transport->addResponse($expectedResponse);
 
         // Mock request
@@ -187,6 +189,7 @@ class SubscriberClientTest extends GeneratedTest
         $retainAckedMessages = false;
         $enableMessageOrdering = true;
         $filter = 'filter-1274492040';
+        $detached = true;
         $expectedResponse = new Subscription();
         $expectedResponse->setName($name);
         $expectedResponse->setTopic($topic);
@@ -194,6 +197,7 @@ class SubscriberClientTest extends GeneratedTest
         $expectedResponse->setRetainAckedMessages($retainAckedMessages);
         $expectedResponse->setEnableMessageOrdering($enableMessageOrdering);
         $expectedResponse->setFilter($filter);
+        $expectedResponse->setDetached($detached);
         $transport->addResponse($expectedResponse);
 
         // Mock request
@@ -270,6 +274,7 @@ class SubscriberClientTest extends GeneratedTest
         $retainAckedMessages = false;
         $enableMessageOrdering = true;
         $filter = 'filter-1274492040';
+        $detached = true;
         $expectedResponse = new Subscription();
         $expectedResponse->setName($name);
         $expectedResponse->setTopic($topic);
@@ -277,6 +282,7 @@ class SubscriberClientTest extends GeneratedTest
         $expectedResponse->setRetainAckedMessages($retainAckedMessages);
         $expectedResponse->setEnableMessageOrdering($enableMessageOrdering);
         $expectedResponse->setFilter($filter);
+        $expectedResponse->setDetached($detached);
         $transport->addResponse($expectedResponse);
 
         // Mock request

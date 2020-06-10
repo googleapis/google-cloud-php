@@ -149,6 +149,16 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.pubsub.v1.RetryPolicy retry_policy = 14;</code>
      */
     private $retry_policy = null;
+    /**
+     * Indicates whether the subscription is detached from its topic. Detached
+     * subscriptions don't receive messages from their topic and don't retain any
+     * backlog. `Pull` and `StreamingPull` requests will return
+     * FAILED_PRECONDITION. If the subscription is a push subscription, pushes to
+     * the endpoint will not be made.
+     *
+     * Generated from protobuf field <code>bool detached = 15;</code>
+     */
+    private $detached = false;
 
     /**
      * Constructor.
@@ -242,6 +252,12 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *           that messages will be retried as soon as possible for healthy subscribers.
      *           RetryPolicy will be triggered on NACKs or acknowledgement deadline
      *           exceeded events for a given message.
+     *     @type bool $detached
+     *           Indicates whether the subscription is detached from its topic. Detached
+     *           subscriptions don't receive messages from their topic and don't retain any
+     *           backlog. `Pull` and `StreamingPull` requests will return
+     *           FAILED_PRECONDITION. If the subscription is a push subscription, pushes to
+     *           the endpoint will not be made.
      * }
      */
     public function __construct($data = NULL) {
@@ -681,6 +697,40 @@ class Subscription extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\RetryPolicy::class);
         $this->retry_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Indicates whether the subscription is detached from its topic. Detached
+     * subscriptions don't receive messages from their topic and don't retain any
+     * backlog. `Pull` and `StreamingPull` requests will return
+     * FAILED_PRECONDITION. If the subscription is a push subscription, pushes to
+     * the endpoint will not be made.
+     *
+     * Generated from protobuf field <code>bool detached = 15;</code>
+     * @return bool
+     */
+    public function getDetached()
+    {
+        return $this->detached;
+    }
+
+    /**
+     * Indicates whether the subscription is detached from its topic. Detached
+     * subscriptions don't receive messages from their topic and don't retain any
+     * backlog. `Pull` and `StreamingPull` requests will return
+     * FAILED_PRECONDITION. If the subscription is a push subscription, pushes to
+     * the endpoint will not be made.
+     *
+     * Generated from protobuf field <code>bool detached = 15;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDetached($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->detached = $var;
 
         return $this;
     }
