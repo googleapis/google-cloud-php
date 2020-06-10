@@ -118,6 +118,7 @@ class PublisherGapicClient
     ];
     private static $projectNameTemplate;
     private static $projectTopicNameTemplate;
+    private static $subscriptionNameTemplate;
     private static $topicNameTemplate;
     private static $pathTemplateMap;
 
@@ -158,6 +159,15 @@ class PublisherGapicClient
         return self::$projectTopicNameTemplate;
     }
 
+    private static function getSubscriptionNameTemplate()
+    {
+        if (null == self::$subscriptionNameTemplate) {
+            self::$subscriptionNameTemplate = new PathTemplate('projects/{project}/subscriptions/{subscription}');
+        }
+
+        return self::$subscriptionNameTemplate;
+    }
+
     private static function getTopicNameTemplate()
     {
         if (null == self::$topicNameTemplate) {
@@ -173,6 +183,7 @@ class PublisherGapicClient
             self::$pathTemplateMap = [
                 'project' => self::getProjectNameTemplate(),
                 'projectTopic' => self::getProjectTopicNameTemplate(),
+                'subscription' => self::getSubscriptionNameTemplate(),
                 'topic' => self::getTopicNameTemplate(),
             ];
         }
@@ -216,6 +227,24 @@ class PublisherGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
+     * a subscription resource.
+     *
+     * @param string $project
+     * @param string $subscription
+     *
+     * @return string The formatted subscription resource.
+     * @experimental
+     */
+    public static function subscriptionName($project, $subscription)
+    {
+        return self::getSubscriptionNameTemplate()->render([
+            'project' => $project,
+            'subscription' => $subscription,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
      * a topic resource.
      *
      * @param string $project
@@ -238,6 +267,7 @@ class PublisherGapicClient
      * Template: Pattern
      * - project: projects/{project}
      * - projectTopic: projects/{project}/topics/{topic}
+     * - subscription: projects/{project}/subscriptions/{subscription}
      * - topic: projects/{project}/topics/{topic}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
@@ -1080,7 +1110,7 @@ class PublisherGapicClient
      * ```
      * $publisherClient = new PublisherClient();
      * try {
-     *     $formattedSubscription = $publisherClient->projectTopicName('[PROJECT]', '[TOPIC]');
+     *     $formattedSubscription = $publisherClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $response = $publisherClient->detachSubscription($formattedSubscription);
      * } finally {
      *     $publisherClient->close();

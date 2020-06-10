@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * A policy constraining the storage of messages published to the topic.
+ *
  * Generated from protobuf message <code>google.pubsub.v1.MessageStoragePolicy</code>
  */
 class MessageStoragePolicy extends \Google\Protobuf\Internal\Message
