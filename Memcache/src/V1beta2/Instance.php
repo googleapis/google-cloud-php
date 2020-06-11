@@ -42,7 +42,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     private $labels;
     /**
      * Optional. The full name of the Google Compute Engine
-     * [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the
+     * [network](https://cloud.google.com/vpc/docs/vpc) to which the
      * instance is connected. If left unspecified, the `default` network
      * will be used.
      *
@@ -157,7 +157,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           https://cloud.google.com/compute/docs/labeling-resources
      *     @type string $authorized_network
      *           Optional. The full name of the Google Compute Engine
-     *           [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the
+     *           [network](https://cloud.google.com/vpc/docs/vpc) to which the
      *           instance is connected. If left unspecified, the `default` network
      *           will be used.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $zones
@@ -301,7 +301,7 @@ class Instance extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The full name of the Google Compute Engine
-     * [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the
+     * [network](https://cloud.google.com/vpc/docs/vpc) to which the
      * instance is connected. If left unspecified, the `default` network
      * will be used.
      *
@@ -315,7 +315,7 @@ class Instance extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The full name of the Google Compute Engine
-     * [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the
+     * [network](https://cloud.google.com/vpc/docs/vpc) to which the
      * instance is connected. If left unspecified, the `default` network
      * will be used.
      *
