@@ -9,11 +9,11 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Cloud Security Command Center (Cloud SCC) finding.
+ * Security Command Center finding.
  * A finding is a record of assessment data (security, risk, health or privacy)
- * ingested into Cloud SCC for presentation, notification, analysis,
- * policy testing, and enforcement. For example, an XSS vulnerability in an
- * App Engine application is a finding.
+ * ingested into Security Command Center for presentation, notification,
+ * analysis, policy testing, and enforcement. For example, an XSS vulnerability
+ * in an App Engine application is a finding.
  *
  * Generated from protobuf message <code>google.cloud.securitycenter.v1p1beta1.Finding</code>
  */
@@ -39,12 +39,12 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * For findings on Google Cloud Platform (GCP) resources, the full resource
-     * name of the GCP resource this finding is for. See:
+     * For findings on Google Cloud resources, the full resource
+     * name of the Google Cloud resource this finding is for. See:
      * https://cloud.google.com/apis/design/resource_names#full_resource_name
-     * When the finding is for a non-GCP resource, the resourceName can be a
-     * customer or partner defined string.
-     * This field is immutable after creation time.
+     * When the finding is for a non-Google Cloud resource, the resourceName can
+     * be a customer or partner defined string. This field is immutable after
+     * creation time.
      *
      * Generated from protobuf field <code>string resource_name = 3;</code>
      */
@@ -64,9 +64,9 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     private $category = '';
     /**
-     * The URI that, if available, points to a web page outside of Cloud SCC
-     * where additional information about the finding can be found. This field is
-     * guaranteed to be either empty or a well formed URL.
+     * The URI that, if available, points to a web page outside of Security
+     * Command Center where additional information about the finding can be found.
+     * This field is guaranteed to be either empty or a well formed URL.
      *
      * Generated from protobuf field <code>string external_uri = 6;</code>
      */
@@ -97,7 +97,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     private $event_time = null;
     /**
-     * The time at which the finding was created in Cloud SCC.
+     * The time at which the finding was created in Security Command Center.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 10;</code>
      */
@@ -121,12 +121,12 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           For example:
      *           "organizations/{organization_id}/sources/{source_id}"
      *     @type string $resource_name
-     *           For findings on Google Cloud Platform (GCP) resources, the full resource
-     *           name of the GCP resource this finding is for. See:
+     *           For findings on Google Cloud resources, the full resource
+     *           name of the Google Cloud resource this finding is for. See:
      *           https://cloud.google.com/apis/design/resource_names#full_resource_name
-     *           When the finding is for a non-GCP resource, the resourceName can be a
-     *           customer or partner defined string.
-     *           This field is immutable after creation time.
+     *           When the finding is for a non-Google Cloud resource, the resourceName can
+     *           be a customer or partner defined string. This field is immutable after
+     *           creation time.
      *     @type int $state
      *           The state of the finding.
      *     @type string $category
@@ -134,9 +134,9 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           This field is immutable after creation time.
      *           Example: "XSS_FLASH_INJECTION"
      *     @type string $external_uri
-     *           The URI that, if available, points to a web page outside of Cloud SCC
-     *           where additional information about the finding can be found. This field is
-     *           guaranteed to be either empty or a well formed URL.
+     *           The URI that, if available, points to a web page outside of Security
+     *           Command Center where additional information about the finding can be found.
+     *           This field is guaranteed to be either empty or a well formed URL.
      *     @type array|\Google\Protobuf\Internal\MapField $source_properties
      *           Source specific properties. These properties are managed by the source
      *           that writes the finding. The key names in the source_properties map must be
@@ -151,7 +151,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           represents an open firewall it would capture the time the detector believes
      *           the firewall became open. The accuracy is determined by the detector.
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           The time at which the finding was created in Cloud SCC.
+     *           The time at which the finding was created in Security Command Center.
      * }
      */
     public function __construct($data = NULL) {
@@ -226,12 +226,12 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * For findings on Google Cloud Platform (GCP) resources, the full resource
-     * name of the GCP resource this finding is for. See:
+     * For findings on Google Cloud resources, the full resource
+     * name of the Google Cloud resource this finding is for. See:
      * https://cloud.google.com/apis/design/resource_names#full_resource_name
-     * When the finding is for a non-GCP resource, the resourceName can be a
-     * customer or partner defined string.
-     * This field is immutable after creation time.
+     * When the finding is for a non-Google Cloud resource, the resourceName can
+     * be a customer or partner defined string. This field is immutable after
+     * creation time.
      *
      * Generated from protobuf field <code>string resource_name = 3;</code>
      * @return string
@@ -242,12 +242,12 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * For findings on Google Cloud Platform (GCP) resources, the full resource
-     * name of the GCP resource this finding is for. See:
+     * For findings on Google Cloud resources, the full resource
+     * name of the Google Cloud resource this finding is for. See:
      * https://cloud.google.com/apis/design/resource_names#full_resource_name
-     * When the finding is for a non-GCP resource, the resourceName can be a
-     * customer or partner defined string.
-     * This field is immutable after creation time.
+     * When the finding is for a non-Google Cloud resource, the resourceName can
+     * be a customer or partner defined string. This field is immutable after
+     * creation time.
      *
      * Generated from protobuf field <code>string resource_name = 3;</code>
      * @param string $var
@@ -318,9 +318,9 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URI that, if available, points to a web page outside of Cloud SCC
-     * where additional information about the finding can be found. This field is
-     * guaranteed to be either empty or a well formed URL.
+     * The URI that, if available, points to a web page outside of Security
+     * Command Center where additional information about the finding can be found.
+     * This field is guaranteed to be either empty or a well formed URL.
      *
      * Generated from protobuf field <code>string external_uri = 6;</code>
      * @return string
@@ -331,9 +331,9 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URI that, if available, points to a web page outside of Cloud SCC
-     * where additional information about the finding can be found. This field is
-     * guaranteed to be either empty or a well formed URL.
+     * The URI that, if available, points to a web page outside of Security
+     * Command Center where additional information about the finding can be found.
+     * This field is guaranteed to be either empty or a well formed URL.
      *
      * Generated from protobuf field <code>string external_uri = 6;</code>
      * @param string $var
@@ -440,7 +440,7 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time at which the finding was created in Cloud SCC.
+     * The time at which the finding was created in Security Command Center.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 10;</code>
      * @return \Google\Protobuf\Timestamp
@@ -451,7 +451,7 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time at which the finding was created in Cloud SCC.
+     * The time at which the finding was created in Security Command Center.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 10;</code>
      * @param \Google\Protobuf\Timestamp $var

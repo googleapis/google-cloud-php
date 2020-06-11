@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Information related to the Google Cloud Platform (GCP) resource that is
+ * Information related to the Google Cloud resource that is
  * associated with this finding.
  *
  * Generated from protobuf message <code>google.cloud.securitycenter.v1.ListFindingsResponse.ListFindingsResult.Resource</code>

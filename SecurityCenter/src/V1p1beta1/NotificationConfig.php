@@ -9,9 +9,10 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Cloud Security Command Center (Cloud SCC) notification configs.
- * A notification config is a Cloud SCC resource that contains the configuration
- * to send notifications for create/update events of findings, assets and etc.
+ * Security Command Center notification configs.
+ * A notification config is a Security Command Center resource that contains the
+ * configuration to send notifications for create/update events of findings,
+ * assets and etc.
  *
  * Generated from protobuf message <code>google.cloud.securitycenter.v1p1beta1.NotificationConfig</code>
  */
@@ -39,7 +40,7 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
      */
     private $event_type = 0;
     /**
-     * The PubSub topic to send notifications to. Its format is
+     * The Pub/Sub topic to send notifications to. Its format is
      * "projects/[project_id]/topics/[topic]".
      *
      * Generated from protobuf field <code>string pubsub_topic = 4 [(.google.api.resource_reference) = {</code>
@@ -47,7 +48,7 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
     private $pubsub_topic = '';
     /**
      * Output only. The service account that needs "pubsub.topics.publish"
-     * permission to publish to the PubSub topic.
+     * permission to publish to the Pub/Sub topic.
      *
      * Generated from protobuf field <code>string service_account = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -70,11 +71,11 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
      *     @type int $event_type
      *           The type of events the config is for, e.g. FINDING.
      *     @type string $pubsub_topic
-     *           The PubSub topic to send notifications to. Its format is
+     *           The Pub/Sub topic to send notifications to. Its format is
      *           "projects/[project_id]/topics/[topic]".
      *     @type string $service_account
      *           Output only. The service account that needs "pubsub.topics.publish"
-     *           permission to publish to the PubSub topic.
+     *           permission to publish to the Pub/Sub topic.
      *     @type \Google\Cloud\SecurityCenter\V1p1beta1\NotificationConfig\StreamingConfig $streaming_config
      *           The config for triggering streaming-based notifications.
      * }
@@ -169,7 +170,7 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The PubSub topic to send notifications to. Its format is
+     * The Pub/Sub topic to send notifications to. Its format is
      * "projects/[project_id]/topics/[topic]".
      *
      * Generated from protobuf field <code>string pubsub_topic = 4 [(.google.api.resource_reference) = {</code>
@@ -181,7 +182,7 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The PubSub topic to send notifications to. Its format is
+     * The Pub/Sub topic to send notifications to. Its format is
      * "projects/[project_id]/topics/[topic]".
      *
      * Generated from protobuf field <code>string pubsub_topic = 4 [(.google.api.resource_reference) = {</code>
@@ -198,7 +199,7 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The service account that needs "pubsub.topics.publish"
-     * permission to publish to the PubSub topic.
+     * permission to publish to the Pub/Sub topic.
      *
      * Generated from protobuf field <code>string service_account = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -210,7 +211,7 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The service account that needs "pubsub.topics.publish"
-     * permission to publish to the PubSub topic.
+     * permission to publish to the Pub/Sub topic.
      *
      * Generated from protobuf field <code>string service_account = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
