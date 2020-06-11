@@ -9,8 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * User specified settings that are attached to the Cloud Security Command
- * Center (Cloud SCC) organization.
+ * User specified settings that are attached to the Security Command
+ * Center organization.
  *
  * Generated from protobuf message <code>google.cloud.securitycenter.v1.OrganizationSettings</code>
  */

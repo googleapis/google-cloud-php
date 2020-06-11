@@ -9,9 +9,10 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * IAM Policy information associated with the GCP resource described by the
- * Cloud SCC asset. This information is managed and defined by the GCP
- * resource and cannot be modified by the user.
+ * Cloud IAM Policy information associated with the Google Cloud resource
+ * described by the Security Command Center asset. This information is managed
+ * and defined by the Google Cloud resource and cannot be modified by the
+ * user.
  *
  * Generated from protobuf message <code>google.cloud.securitycenter.v1.Asset.IamPolicy</code>
  */
