@@ -92,9 +92,13 @@ class QueryResultsTest extends TestCase
 
     public function testGetsRowsWithToken()
     {
-        $this->connection->getQueryResults(Argument::any())
+        $this->connection->getQueryResults(Argument::allOf(
+            Argument::withEntry('projectId', $this->projectId),
+            Argument::withEntry('jobId', $this->jobId)
+        ))
             ->willReturn($this->queryData)
             ->shouldBeCalledTimes(1);
+
         $queryResults = $this->getQueryResults(
             $this->connection,
             $this->queryData + ['pageToken' => 'abcd']
@@ -132,10 +136,14 @@ class QueryResultsTest extends TestCase
     public function testWaitsUntilComplete()
     {
         $this->queryData['jobComplete'] = false;
-        $this->connection->getQueryResults(Argument::any())
+        $this->connection->getQueryResults(Argument::allOf(
+            Argument::withEntry('projectId', $this->projectId),
+            Argument::withEntry('jobId', $this->jobId)
+        ))
             ->willReturn([
                 'jobComplete' => true
             ])->shouldBeCalledTimes(1);
+
         $queryResults = $this->getQueryResults($this->connection, $this->queryData);
         $queryResults->waitUntilComplete();
     }
@@ -181,9 +189,13 @@ class QueryResultsTest extends TestCase
 
     public function testReloadsInfo()
     {
-        $this->connection->getQueryResults(Argument::any())
+        $this->connection->getQueryResults(Argument::allOf(
+            Argument::withEntry('projectId', $this->projectId),
+            Argument::withEntry('jobId', $this->jobId)
+        ))
             ->willReturn(['jobComplete' => true])
             ->shouldBeCalledTimes(1);
+
         $queryResults = $this->getQueryResults($this->connection, $this->queryData);
 
         $this->assertEquals(['jobComplete' => true], $queryResults->reload());

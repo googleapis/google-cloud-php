@@ -105,7 +105,11 @@ class BigQueryClientTest extends TestCase
                 'jobReference' => ['jobId' => self::JOB_ID]
             ])
             ->shouldBeCalledTimes(1);
-        $this->connection->getQueryResults(Argument::any())
+
+        $this->connection->getQueryResults(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('jobId', self::JOB_ID)
+        ))
             ->willReturn([
                 'jobReference' => [
                     'jobId' => self::JOB_ID
@@ -113,6 +117,7 @@ class BigQueryClientTest extends TestCase
                 'jobComplete' => true
             ])
             ->shouldBeCalledTimes(1);
+
         $client->___setProperty('connection', $this->connection->reveal());
         $queryResults = $client->runQuery($query);
 
@@ -146,7 +151,11 @@ class BigQueryClientTest extends TestCase
                 'jobComplete' => false
             ])
             ->shouldBeCalledTimes(1);
-        $this->connection->getQueryResults(Argument::any())
+
+        $this->connection->getQueryResults(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('jobId', self::JOB_ID)
+        ))
             ->willReturn([
                 'jobReference' => [
                     'jobId' => self::JOB_ID
@@ -292,7 +301,7 @@ class BigQueryClientTest extends TestCase
     public function testGetsDatasetsWithNoResults()
     {
         $client = $this->getClient();
-        $this->connection->listDatasets(Argument::any())
+        $this->connection->listDatasets(Argument::withEntry('projectId', self::PROJECT_ID))
             ->willReturn([])
             ->shouldBeCalledTimes(1);
 
@@ -305,7 +314,7 @@ class BigQueryClientTest extends TestCase
     public function testGetsDatasetsWithoutToken()
     {
         $client = $this->getClient();
-        $this->connection->listDatasets(Argument::any())
+        $this->connection->listDatasets(Argument::withEntry('projectId', self::PROJECT_ID))
             ->willReturn([
                 'datasets' => [
                     ['datasetReference' => ['datasetId' => self::DATASET_ID]]
@@ -322,17 +331,26 @@ class BigQueryClientTest extends TestCase
     public function testGetsDatasetsWithToken()
     {
         $client = $this->getClient();
-        $this->connection->listDatasets(Argument::any())
+        $this->connection->listDatasets(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::not(Argument::withKey('pageToken'))
+        ))
             ->willReturn([
                 'nextPageToken' => 'token',
                 'datasets' => [
                     ['datasetReference' => ['datasetId' => 'someOtherdatasetId']]
                 ]
-            ], [
+            ])->shouldBeCalledTimes(1);
+
+        $this->connection->listDatasets(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('pageToken', 'token')
+        ))
+            ->willReturn([
                 'datasets' => [
                     ['datasetReference' => ['datasetId' => self::DATASET_ID]]
                 ]
-            ])->shouldBeCalledTimes(2);
+            ])->shouldBeCalledTimes(1);
 
         $client->___setProperty('connection', $this->connection->reveal());
         $dataset = iterator_to_array($client->datasets());
@@ -343,13 +361,20 @@ class BigQueryClientTest extends TestCase
     public function testCreatesDataset()
     {
         $client = $this->getClient();
-        $this->connection->insertDataset(Argument::any())
+        $this->connection->insertDataset(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('datasetReference', [
+                'datasetId' => self::DATASET_ID,
+            ]),
+            Argument::withEntry('friendlyName', 'A dataset.')
+        ))
             ->willReturn([
                 'datasetReference' => [
                     'datasetId' => self::DATASET_ID
                 ]
             ])
             ->shouldBeCalledTimes(1);
+
         $client->___setProperty('connection', $this->connection->reveal());
 
         $dataset = $client->createDataset(self::DATASET_ID, [

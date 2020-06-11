@@ -49,7 +49,11 @@ class ModelTest extends TestCase
 
     public function testDoesExistTrue()
     {
-        $this->connection->getModel(Argument::any())
+        $this->connection->getModel(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('datasetId', self::DATASET_ID),
+            Argument::withEntry('modelId', self::MODEL_ID)
+        ))
             ->willReturn([])
             ->shouldBeCalledTimes(1);
 
@@ -59,7 +63,11 @@ class ModelTest extends TestCase
 
     public function testDoesExistFalse()
     {
-        $this->connection->getModel(Argument::any())
+        $this->connection->getModel(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('datasetId', self::DATASET_ID),
+            Argument::withEntry('modelId', self::MODEL_ID)
+        ))
             ->willThrow(new NotFoundException(null))
             ->shouldBeCalledTimes(1);
 
@@ -86,7 +94,11 @@ class ModelTest extends TestCase
     public function testGetsInfo()
     {
         $info = ['foo' => 'bar'];
-        $this->connection->getModel(Argument::any())
+        $this->connection->getModel(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('datasetId', self::DATASET_ID),
+            Argument::withEntry('modelId', self::MODEL_ID)
+        ))
             ->willReturn($info)
             ->shouldBeCalledTimes(1);
 
@@ -97,7 +109,11 @@ class ModelTest extends TestCase
     public function testReload()
     {
         $info = ['foo' => 'bar'];
-        $this->connection->getModel(Argument::any())
+        $this->connection->getModel(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('datasetId', self::DATASET_ID),
+            Argument::withEntry('modelId', self::MODEL_ID)
+        ))
             ->willReturn($info)
             ->shouldBeCalledTimes(1);
 
@@ -107,7 +123,12 @@ class ModelTest extends TestCase
 
     public function testDelete()
     {
-        $this->connection->deleteModel(Argument::any())
+        $this->connection->deleteModel(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('datasetId', self::DATASET_ID),
+            Argument::withEntry('modelId', self::MODEL_ID),
+            Argument::withEntry('retries', 0)
+        ))
             ->shouldBeCalledTimes(1);
 
         $this->model->___setProperty('connection', $this->connection->reveal());
@@ -118,7 +139,12 @@ class ModelTest extends TestCase
     {
         $data = ['friendlyName' => 'Updated Name'];
 
-        $this->connection->patchModel(Argument::any())
+        $this->connection->patchModel(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('datasetId', self::DATASET_ID),
+            Argument::withEntry('modelId', self::MODEL_ID),
+            Argument::withEntry('friendlyName', 'Updated Name')
+        ))
             ->willReturn($data)
             ->shouldBeCalledTimes(1);
 

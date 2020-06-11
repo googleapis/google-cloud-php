@@ -63,11 +63,16 @@ class DatasetTest extends TestCase
 
     public function testDoesExistTrue()
     {
-        $this->connection->getDataset(Argument::any())
+        $this->connection->getDataset(Argument::allOf(
+            Argument::withEntry('projectId', $this->projectId),
+            Argument::withEntry('datasetId', $this->datasetId),
+            Argument::withEntry('fields', 'datasetReference')
+        ))
             ->willReturn([
                 'datasetReference' => ['datasetId' => $this->datasetId]
             ])
             ->shouldBeCalledTimes(1);
+
         $dataset = $this->getDataset($this->connection);
 
         $this->assertTrue($dataset->exists());
@@ -75,9 +80,14 @@ class DatasetTest extends TestCase
 
     public function testDoesExistFalse()
     {
-        $this->connection->getDataset(Argument::any())
+        $this->connection->getDataset(Argument::allOf(
+            Argument::withEntry('projectId', $this->projectId),
+            Argument::withEntry('datasetId', $this->datasetId),
+            Argument::withEntry('fields', 'datasetReference')
+        ))
             ->willThrow(new NotFoundException(null))
             ->shouldBeCalledTimes(1);
+
         $dataset = $this->getDataset($this->connection);
 
         $this->assertFalse($dataset->exists());
@@ -85,8 +95,13 @@ class DatasetTest extends TestCase
 
     public function testDelete()
     {
-        $this->connection->deleteDataset(Argument::any())
+        $this->connection->deleteDataset(Argument::allOf(
+            Argument::withEntry('projectId', $this->projectId),
+            Argument::withEntry('datasetId', $this->datasetId),
+            Argument::withEntry('retries', 0)
+        ))
             ->shouldBeCalledTimes(1);
+
         $dataset = $this->getDataset($this->connection);
         $this->assertNull($dataset->delete());
     }
@@ -94,9 +109,14 @@ class DatasetTest extends TestCase
     public function testUpdatesData()
     {
         $updateData = ['friendlyName' => 'wow a name'];
-        $this->connection->patchDataset(Argument::any())
+        $this->connection->patchDataset(Argument::allOf(
+            Argument::withEntry('projectId', $this->projectId),
+            Argument::withEntry('datasetId', $this->datasetId),
+            Argument::withEntry('friendlyName', $updateData['friendlyName'])
+        ))
             ->willReturn($updateData)
             ->shouldBeCalledTimes(1);
+
         $dataset = $this->getDataset($this->connection, ['friendlyName' => 'another name']);
         $dataset->update($updateData);
 
@@ -152,7 +172,10 @@ class DatasetTest extends TestCase
 
     public function testGetsTablesWithNoResults()
     {
-        $this->connection->listTables(Argument::any())
+        $this->connection->listTables(Argument::allOf(
+            Argument::withEntry('projectId', $this->projectId),
+            Argument::withEntry('datasetId', $this->datasetId)
+        ))
             ->willReturn([])
             ->shouldBeCalledTimes(1);
 
@@ -164,7 +187,10 @@ class DatasetTest extends TestCase
 
     public function testGetsTablesWithoutToken()
     {
-        $this->connection->listTables(Argument::any())
+        $this->connection->listTables(Argument::allOf(
+            Argument::withEntry('projectId', $this->projectId),
+            Argument::withEntry('datasetId', $this->datasetId)
+        ))
             ->willReturn([
                 'tables' => [
                     ['tableReference' => ['tableId' => $this->tableId]]
@@ -180,17 +206,28 @@ class DatasetTest extends TestCase
 
     public function testGetsTablesWithToken()
     {
-        $this->connection->listTables(Argument::any())
+        $this->connection->listTables(Argument::allOf(
+            Argument::withEntry('projectId', $this->projectId),
+            Argument::withEntry('datasetId', $this->datasetId),
+            Argument::not(Argument::withKey('pageToken'))
+        ))
             ->willReturn([
                 'nextPageToken' => 'token',
                 'tables' => [
                     ['tableReference' => ['tableId' => 'someOthertableId']]
                 ]
-            ], [
+            ])->shouldBeCalledTimes(1);
+
+        $this->connection->listTables(Argument::allOf(
+            Argument::withEntry('projectId', $this->projectId),
+            Argument::withEntry('datasetId', $this->datasetId),
+            Argument::withEntry('pageToken', 'token')
+        ))
+            ->willReturn([
                 'tables' => [
                     ['tableReference' => ['tableId' => $this->tableId]]
                 ]
-            ])->shouldBeCalledTimes(2);
+            ])->shouldBeCalledTimes(1);
 
         $dataset = $this->getDataset($this->connection);
         $tables = iterator_to_array($dataset->tables());
@@ -200,13 +237,24 @@ class DatasetTest extends TestCase
 
     public function testCreatesTable()
     {
-        $this->connection->insertTable(Argument::any())
+        $this->connection->insertTable(Argument::allOf(
+            Argument::withEntry('projectId', $this->projectId),
+            Argument::withEntry('datasetId', $this->datasetId),
+            Argument::withEntry('tableReference', Argument::allOf(
+                Argument::withEntry('projectId', $this->projectId),
+                Argument::withEntry('datasetId', $this->datasetId),
+                Argument::withEntry('tableId', $this->tableId)
+            )),
+            Argument::withEntry('friendlyName', 'A table.'),
+            Argument::withEntry('retries', 0)
+        ))
             ->willReturn([
                 'tableReference' => [
                     'tableId' => $this->tableId
                 ]
             ])
             ->shouldBeCalledTimes(1);
+
         $dataset = $this->getDataset($this->connection);
 
         $table = $dataset->createTable($this->tableId, [
@@ -230,7 +278,10 @@ class DatasetTest extends TestCase
 
     public function testsGetsModelsWithoutToken()
     {
-        $this->connection->listModels(Argument::any())
+        $this->connection->listModels(Argument::allOf(
+            Argument::withEntry('projectId', $this->projectId),
+            Argument::withEntry('datasetId', $this->datasetId)
+        ))
             ->willReturn([
                 'models' => [
                     ['modelReference' => ['modelId' => $this->modelId]]
@@ -248,17 +299,28 @@ class DatasetTest extends TestCase
 
     public function testGetsModelsWithToken()
     {
-        $this->connection->listModels(Argument::any())
+        $this->connection->listModels(Argument::allOf(
+            Argument::withEntry('projectId', $this->projectId),
+            Argument::withEntry('datasetId', $this->datasetId),
+            Argument::not(Argument::withKey('pageToken'))
+        ))
             ->willReturn([
                 'nextPageToken' => 'token',
                 'models' => [
                     ['modelReference' => ['modelId' => $this->modelId]]
                 ]
-            ], [
+            ])->shouldBeCalledTimes(1);
+
+        $this->connection->listModels(Argument::allOf(
+            Argument::withEntry('projectId', $this->projectId),
+            Argument::withEntry('datasetId', $this->datasetId),
+            Argument::withEntry('pageToken', 'token')
+        ))
+            ->willReturn([
                 'models' => [
                     ['modelReference' => ['modelId' => 'testModelId2']]
                 ]
-            ])->shouldBeCalledTimes(2);
+            ])->shouldBeCalledTimes(1);
 
         $dataset = $this->getDataset($this->connection);
         $models = iterator_to_array($dataset->models());
@@ -286,7 +348,10 @@ class DatasetTest extends TestCase
      */
     public function testRoutines()
     {
-        $this->connection->listRoutines(Argument::any())
+        $this->connection->listRoutines(Argument::allOf(
+            Argument::withEntry('projectId', $this->projectId),
+            Argument::withEntry('datasetId', $this->datasetId)
+        ))
             ->willReturn([
                 'routines' => [
                     ['routineReference' => ['routineId' => $this->routineId]]
@@ -310,17 +375,28 @@ class DatasetTest extends TestCase
      */
     public function testRoutinesWithToken()
     {
-        $this->connection->listRoutines(Argument::any())
+        $this->connection->listRoutines(Argument::allOf(
+            Argument::withEntry('projectId', $this->projectId),
+            Argument::withEntry('datasetId', $this->datasetId),
+            Argument::not(Argument::withKey('pageToken'))
+        ))
             ->willReturn([
                 'nextPageToken' => 'token',
                 'routines' => [
                     ['routineReference' => ['routineId' => $this->routineId]]
                 ]
-            ], [
+            ])->shouldBeCalledTimes(1);
+
+        $this->connection->listRoutines(Argument::allOf(
+            Argument::withEntry('projectId', $this->projectId),
+            Argument::withEntry('datasetId', $this->datasetId),
+            Argument::withEntry('pageToken', 'token')
+        ))
+            ->willReturn([
                 'routines' => [
                     ['routineReference' => ['routineId' => 'testRoutineId2']]
                 ]
-            ])->shouldBeCalledTimes(2);
+            ])->shouldBeCalledTimes(1);
 
         $dataset = $this->getDataset($this->connection);
         $routines = iterator_to_array($dataset->routines());
@@ -380,9 +456,13 @@ class DatasetTest extends TestCase
     public function testGetsInfoWithReload()
     {
         $datasetInfo = ['friendlyName' => 'A dataset.'];
-        $this->connection->getDataset(Argument::any())
+        $this->connection->getDataset(Argument::allOf(
+            Argument::withEntry('projectId', $this->projectId),
+            Argument::withEntry('datasetId', $this->datasetId)
+        ))
             ->willReturn($datasetInfo)
             ->shouldBeCalledTimes(1);
+
         $dataset = $this->getDataset($this->connection);
 
         $this->assertEquals($datasetInfo, $dataset->info());
