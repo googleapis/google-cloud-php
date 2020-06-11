@@ -105,11 +105,16 @@ class TableTest extends TestCase
 
     public function testDoesExistTrue()
     {
-        $this->connection->getTable(Argument::any())
+        $this->connection->getTable(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('datasetId', self::DATASET_ID),
+            Argument::withEntry('tableId', self::TABLE_ID)
+        ))
             ->willReturn([
                 'tableReference' => ['tableId' => self::TABLE_ID]
             ])
             ->shouldBeCalledTimes(1);
+
         $table = $this->getTable($this->connection);
 
         $this->assertTrue($table->exists());
@@ -117,9 +122,14 @@ class TableTest extends TestCase
 
     public function testDoesExistFalse()
     {
-        $this->connection->getTable(Argument::any())
+        $this->connection->getTable(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('datasetId', self::DATASET_ID),
+            Argument::withEntry('tableId', self::TABLE_ID)
+        ))
             ->willThrow(new NotFoundException(null))
             ->shouldBeCalledTimes(1);
+
         $table = $this->getTable($this->connection);
 
         $this->assertFalse($table->exists());
@@ -127,8 +137,14 @@ class TableTest extends TestCase
 
     public function testDelete()
     {
-        $this->connection->deleteTable(Argument::any())
+        $this->connection->deleteTable(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('datasetId', self::DATASET_ID),
+            Argument::withEntry('tableId', self::TABLE_ID),
+            Argument::withEntry('retries', 0)
+        ))
             ->shouldBeCalledTimes(1);
+
         $table = $this->getTable($this->connection);
         $this->assertNull($table->delete());
     }
@@ -150,9 +166,15 @@ class TableTest extends TestCase
     public function testUpdatesDataWithEtag()
     {
         $updateData = ['friendlyName' => 'wow a name'];
-        $this->connection->patchTable(Argument::any())
+        $this->connection->patchTable(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('datasetId', self::DATASET_ID),
+            Argument::withEntry('tableId', self::TABLE_ID),
+            Argument::withEntry('friendlyName', $updateData['friendlyName'])
+        ))
             ->willReturn($updateData)
             ->shouldBeCalledTimes(1);
+
         $table = $this->getTable($this->connection, ['friendlyName' => 'another name']);
         $table->update($updateData);
 
@@ -161,10 +183,19 @@ class TableTest extends TestCase
 
     public function testGetsRowsWithNoResults()
     {
-        $this->connection->getTable(Argument::any())
+        $this->connection->getTable(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('datasetId', self::DATASET_ID),
+            Argument::withEntry('tableId', self::TABLE_ID)
+        ))
             ->willReturn($this->schemaData)
             ->shouldBeCalledTimes(1);
-        $this->connection->listTableData(Argument::any())
+
+        $this->connection->listTableData(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('datasetId', self::DATASET_ID),
+            Argument::withEntry('tableId', self::TABLE_ID)
+        ))
             ->willReturn([])
             ->shouldBeCalledTimes(1);
 
@@ -176,10 +207,19 @@ class TableTest extends TestCase
 
     public function testGetsRowsWithoutToken()
     {
-        $this->connection->getTable(Argument::any())
+        $this->connection->getTable(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('datasetId', self::DATASET_ID),
+            Argument::withEntry('tableId', self::TABLE_ID)
+        ))
             ->willReturn($this->schemaData)
             ->shouldBeCalledTimes(1);
-        $this->connection->listTableData(Argument::any())
+
+        $this->connection->listTableData(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('datasetId', self::DATASET_ID),
+            Argument::withEntry('tableId', self::TABLE_ID)
+        ))
             ->willReturn($this->rowData)
             ->shouldBeCalledTimes(1);
 
@@ -197,10 +237,19 @@ class TableTest extends TestCase
         $name = 'Mike';
         $secondRowData = $this->rowData;
         $secondRowData['rows'][0]['f'][0]['v'] = $name;
-        $this->connection->getTable(Argument::any())
+        $this->connection->getTable(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('datasetId', self::DATASET_ID),
+            Argument::withEntry('tableId', self::TABLE_ID)
+        ))
             ->willReturn($this->schemaData)
             ->shouldBeCalledTimes(1);
-        $this->connection->listTableData(Argument::any())
+
+        $this->connection->listTableData(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('datasetId', self::DATASET_ID),
+            Argument::withEntry('tableId', self::TABLE_ID)
+        ))
             ->willReturn(
                 $this->rowData + ['pageToken' => 'abc'],
                 $secondRowData
@@ -224,13 +273,18 @@ class TableTest extends TestCase
         $this->connection->$expectedMethod($expectedData)
             ->willReturn($returnedData)
             ->shouldBeCalledTimes(1);
-        $this->connection->getJob(Argument::any())
+
+        $this->connection->getJob(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('jobId', self::JOB_ID)
+        ))
             ->willReturn([
                 'status' => [
                     'state' => 'DONE'
                 ]
             ])
             ->shouldBeCalledTimes(1);
+
         $table = $this->getTable($this->connection);
         $job = $table->runJob($jobConfig->reveal());
 
@@ -249,8 +303,10 @@ class TableTest extends TestCase
         $this->connection->$expectedMethod($expectedData)
             ->willReturn($returnedData)
             ->shouldBeCalledTimes(1);
+
         $this->connection->getJob(Argument::any())
             ->shouldNotBeCalled();
+
         $table = $this->getTable($this->connection);
         $job = $table->startJob($jobConfig->reveal());
 
@@ -561,8 +617,17 @@ class TableTest extends TestCase
         $options = [
             'autoCreate' => true
         ];
-        $this->connection->insertAllTableData(Argument::any())
+        $this->connection->insertAllTableData(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('datasetId', self::DATASET_ID),
+            Argument::withEntry('tableId', self::TABLE_ID),
+            Argument::withKey('rows'),
+            Argument::that(function ($arg) {
+                return !isset($arg['tableMetadata']['schema']);
+            })
+        ))
             ->willThrow(new NotFoundException(null));
+
         $table = $this->getTable($this->connection);
         $table->insertRows([
             [
@@ -584,10 +649,29 @@ class TableTest extends TestCase
                 'schema' => []
             ]
         ];
-        $this->connection->insertAllTableData(Argument::any())
-            ->willThrow(new NotFoundException(null));
-        $this->connection->insertTable(Argument::any())
-            ->willThrow(new \Exception());
+        $this->connection->insertAllTableData(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('datasetId', self::DATASET_ID),
+            Argument::withEntry('tableId', self::TABLE_ID),
+            Argument::withKey('rows')
+        ))
+            ->willThrow(new NotFoundException(null))
+            ->shouldBeCalledTimes(1);
+
+        $this->connection->insertTable(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('datasetId', self::DATASET_ID),
+            Argument::withEntry('tableReference', [
+                'projectId' => self::PROJECT_ID,
+                'datasetId' => self::DATASET_ID,
+                'tableId' => self::TABLE_ID,
+            ]),
+            Argument::withEntry('schema', $options['tableMetadata']['schema']),
+            Argument::withEntry('retries', 0)
+        ))
+            ->willThrow(new \Exception())
+            ->shouldBeCalledTimes(1);
+
         $table = $this->getTable($this->connection);
         $table->insertRows([
             [
@@ -610,10 +694,29 @@ class TableTest extends TestCase
                 'schema' => []
             ]
         ];
-        $this->connection->insertAllTableData(Argument::any())
-            ->willThrow(new NotFoundException(null));
-        $this->connection->insertTable(Argument::any())
-            ->willThrow(new ConflictException(null));
+        $this->connection->insertAllTableData(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('datasetId', self::DATASET_ID),
+            Argument::withEntry('tableId', self::TABLE_ID),
+            Argument::withKey('rows')
+        ))
+            ->willThrow(new NotFoundException(null))
+            ->shouldBeCalledTimes(Table::MAX_RETRIES + 2);
+
+        $this->connection->insertTable(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('datasetId', self::DATASET_ID),
+            Argument::withEntry('tableReference', [
+                'projectId' => self::PROJECT_ID,
+                'datasetId' => self::DATASET_ID,
+                'tableId' => self::TABLE_ID,
+            ]),
+            Argument::withEntry('schema', $options['tableMetadata']['schema']),
+            Argument::withEntry('retries', 0)
+        ))
+            ->willThrow(new ConflictException(null))
+            ->shouldBeCalledTimes(Table::MAX_RETRIES + 1);
+
         $table = $this->getTable($this->connection);
         $table->insertRows([
             [
@@ -656,9 +759,14 @@ class TableTest extends TestCase
     public function testGetsInfoWithReload()
     {
         $tableInfo = ['tableReference' => ['tableId' => self::TABLE_ID]];
-        $this->connection->getTable(Argument::any())
+        $this->connection->getTable(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('datasetId', self::DATASET_ID),
+            Argument::withEntry('tableId', self::TABLE_ID)
+        ))
             ->willReturn($tableInfo)
             ->shouldBeCalledTimes(1);
+
         $table = $this->getTable($this->connection);
 
         $this->assertEquals($tableInfo, $table->info());

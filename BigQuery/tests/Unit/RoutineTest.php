@@ -109,9 +109,14 @@ class RoutineTest extends TestCase
     public function testUpdate()
     {
         $updateData = ['description' => 'wow a name'];
-        $this->connection->getRoutine(Argument::any())
+        $this->connection->getRoutine(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('datasetId', self::DATASET_ID),
+            Argument::withEntry('routineId', self::ROUTINE_ID)
+        ))
             ->willReturn(['description' => 'old and busted name'])
             ->shouldBeCalledTimes(1);
+
         $this->connection->updateRoutine($this->identity + $updateData + ['retries' => 0])
             ->willReturn($updateData)
             ->shouldBeCalledTimes(1);
@@ -125,9 +130,14 @@ class RoutineTest extends TestCase
     public function testUpdateWithEtag()
     {
         $updateData = ['description' => 'wow a name', 'etag' => 'foo'];
-        $this->connection->getRoutine(Argument::any())
+        $this->connection->getRoutine(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('datasetId', self::DATASET_ID),
+            Argument::withEntry('routineId', self::ROUTINE_ID)
+        ))
             ->willReturn(['description' => 'old and busted name'])
             ->shouldBeCalledTimes(1);
+
         $this->connection->updateRoutine(Argument::that(function ($args) {
             return $args['restOptions']['headers']['If-Match'] === 'foo';
         }))->willReturn($updateData)->shouldBeCalledTimes(1);
@@ -176,9 +186,14 @@ class RoutineTest extends TestCase
         $expected['arguments'][0]['name'] = $new['arguments'][0]['name'];
         $expected['arguments'][1]['dataType']['typeKind'] = $new['arguments'][1]['dataType']['typeKind'];
 
-        $this->connection->getRoutine(Argument::any())
+        $this->connection->getRoutine(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('datasetId', self::DATASET_ID),
+            Argument::withEntry('routineId', self::ROUTINE_ID)
+        ))
             ->willReturn($old)
             ->shouldBeCalledTimes(1);
+
         $this->connection->updateRoutine($this->identity + $expected + ['retries' => 0])
             ->shouldBeCalledTimes(1)
             ->willReturn($expected);

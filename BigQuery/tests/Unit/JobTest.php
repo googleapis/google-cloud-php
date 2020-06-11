@@ -49,11 +49,15 @@ class JobTest extends TestCase
 
     public function testDoesExistTrue()
     {
-        $this->connection->getJob(Argument::any())
+        $this->connection->getJob(Argument::allOf(
+            Argument::withEntry('projectId', $this->projectId),
+            Argument::withEntry('jobId', $this->jobId)
+        ))
             ->willReturn([
                 'jobReference' => ['jobId' => $this->jobId]
             ])
             ->shouldBeCalledTimes(1);
+
         $job = $this->getJob($this->connection);
 
         $this->assertTrue($job->exists());
@@ -61,9 +65,13 @@ class JobTest extends TestCase
 
     public function testDoesExistFalse()
     {
-        $this->connection->getJob(Argument::any())
+        $this->connection->getJob(Argument::allOf(
+            Argument::withEntry('projectId', $this->projectId),
+            Argument::withEntry('jobId', $this->jobId)
+        ))
             ->willThrow(new NotFoundException(null))
             ->shouldBeCalledTimes(1);
+
         $job = $this->getJob($this->connection);
 
         $this->assertFalse($job->exists());
@@ -71,16 +79,23 @@ class JobTest extends TestCase
 
     public function testCancel()
     {
-        $this->connection->cancelJob(Argument::any())
+        $this->connection->cancelJob(Argument::allOf(
+            Argument::withEntry('projectId', $this->projectId),
+            Argument::withEntry('jobId', $this->jobId)
+        ))
             ->willReturn([])
             ->shouldBeCalledTimes(1);
+
         $job = $this->getJob($this->connection);
         $this->assertNull($job->cancel());
     }
 
     public function testGetsQueryResults()
     {
-        $this->connection->getQueryResults(Argument::any())
+        $this->connection->getQueryResults(Argument::allOf(
+            Argument::withEntry('projectId', $this->projectId),
+            Argument::withEntry('jobId', $this->jobId)
+        ))
             ->willReturn([
                 'jobReference' => [
                     'jobId' => $this->jobId
@@ -88,6 +103,7 @@ class JobTest extends TestCase
                 'jobComplete' => true
             ])
             ->shouldBeCalledTimes(1);
+
         $job = $this->getJob($this->connection);
 
         $this->assertInstanceOf(QueryResults::class, $job->queryResults());
@@ -96,12 +112,16 @@ class JobTest extends TestCase
     public function testWaitsUntilComplete()
     {
         $this->jobInfo['status']['state'] = 'RUNNING';
-        $this->connection->getJob(Argument::any())
+        $this->connection->getJob(Argument::allOf(
+            Argument::withEntry('projectId', $this->projectId),
+            Argument::withEntry('jobId', $this->jobId)
+        ))
             ->willReturn([
                 'status' => [
                     'state' => 'DONE'
                 ]
             ])->shouldBeCalledTimes(1);
+
         $job = $this->getJob($this->connection, $this->jobInfo);
         $job->waitUntilComplete();
     }
@@ -131,9 +151,13 @@ class JobTest extends TestCase
 
     public function testGetsInfoWithRealod()
     {
-        $this->connection->getJob(Argument::any())
+        $this->connection->getJob(Argument::allOf(
+            Argument::withEntry('projectId', $this->projectId),
+            Argument::withEntry('jobId', $this->jobId)
+        ))
             ->willReturn($this->jobInfo)
             ->shouldBeCalledTimes(1);
+
         $job = $this->getJob($this->connection);
 
         $this->assertEquals($this->jobInfo, $job->info());
