@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Cloud SCC's Notification
+ * Security Command Center's Notification
  *
  * Generated from protobuf message <code>google.cloud.securitycenter.v1p1beta1.NotificationMessage</code>
  */
@@ -21,6 +21,12 @@ class NotificationMessage extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string notification_config_name = 1;</code>
      */
     private $notification_config_name = '';
+    /**
+     * The Cloud resource tied to the notification.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1p1beta1.Resource resource = 3;</code>
+     */
+    private $resource = null;
     protected $event;
 
     /**
@@ -34,6 +40,8 @@ class NotificationMessage extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\SecurityCenter\V1p1beta1\Finding $finding
      *           If it's a Finding based notification config, this field will be
      *           populated.
+     *     @type \Google\Cloud\SecurityCenter\V1p1beta1\Resource $resource
+     *           The Cloud resource tied to the notification.
      * }
      */
     public function __construct($data = NULL) {
@@ -91,6 +99,32 @@ class NotificationMessage extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1p1beta1\Finding::class);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * The Cloud resource tied to the notification.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1p1beta1.Resource resource = 3;</code>
+     * @return \Google\Cloud\SecurityCenter\V1p1beta1\Resource
+     */
+    public function getResource()
+    {
+        return $this->resource;
+    }
+
+    /**
+     * The Cloud resource tied to the notification.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1p1beta1.Resource resource = 3;</code>
+     * @param \Google\Cloud\SecurityCenter\V1p1beta1\Resource $var
+     * @return $this
+     */
+    public function setResource($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1p1beta1\Resource::class);
+        $this->resource = $var;
 
         return $this;
     }

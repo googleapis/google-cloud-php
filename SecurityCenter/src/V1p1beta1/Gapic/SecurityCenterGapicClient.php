@@ -1100,15 +1100,15 @@ class SecurityCenterGapicClient
      *
      *            Usage: This should be milliseconds since epoch or an RFC3339 string.
      *            Examples:
-     *              "update_time = \"2019-06-10T16:07:18-07:00\""
-     *              "update_time = 1560208038000"
+     *              `update_time = "2019-06-10T16:07:18-07:00"`
+     *              `update_time = 1560208038000`
      *
      *          * create_time: `=`, `>`, `<`, `>=`, `<=`
      *
      *            Usage: This should be milliseconds since epoch or an RFC3339 string.
      *            Examples:
-     *              "create_time = \"2019-06-10T16:07:18-07:00\""
-     *              "create_time = 1560208038000"
+     *              `create_time = "2019-06-10T16:07:18-07:00"`
+     *              `create_time = 1560208038000`
      *
      *          * iam_policy.policy_blob: `=`, `:`
      *          * resource_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
@@ -1123,6 +1123,12 @@ class SecurityCenterGapicClient
      *          * security_center_properties.resource_owners: `=`, `:`
      *
      *          For example, `resource_properties.size = 100` is a valid filter string.
+     *
+     *          Use a partial match on the empty string to filter based on a property
+     *          existing: `resource_properties.my_property : ""`
+     *
+     *          Use a negated partial match on the empty string to filter based on a
+     *          property not existing: `-resource_properties.my_property : ""`
      *     @type Duration $compareDuration
      *          When compare_duration is set, the GroupResult's "state_change" property is
      *          updated to indicate whether the asset was added, removed, or remained
@@ -1156,10 +1162,6 @@ class SecurityCenterGapicClient
      *          to assets existing at the supplied time and their values are those at that
      *          specific time. Absence of this field will default to the API's version of
      *          NOW.
-     *     @type string $having
-     *          Filter that specifies what fields to further filter on *after* the query
-     *          filter has been executed. Currently only `state_change` is supported and
-     *          requires compare_duration to be specified.
      *     @type string $pageToken
      *          A page token is used to specify a page of values to be returned.
      *          If no page token is specified (the default), the first page
@@ -1194,9 +1196,6 @@ class SecurityCenterGapicClient
         }
         if (isset($optionalArgs['readTime'])) {
             $request->setReadTime($optionalArgs['readTime']);
-        }
-        if (isset($optionalArgs['having'])) {
-            $request->setHaving($optionalArgs['having']);
         }
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
@@ -1312,13 +1311,19 @@ class SecurityCenterGapicClient
      *
      *            Usage: This should be milliseconds since epoch or an RFC3339 string.
      *            Examples:
-     *              "event_time = \"2019-06-10T16:07:18-07:00\""
-     *              "event_time = 1560208038000"
+     *              `event_time = "2019-06-10T16:07:18-07:00"`
+     *              `event_time = 1560208038000`
      *
      *          * security_marks.marks: `=`, `:`
      *          * source_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
      *
      *          For example, `source_properties.size = 100` is a valid filter string.
+     *
+     *          Use a partial match on the empty string to filter based on a property
+     *          existing: `source_properties.my_property : ""`
+     *
+     *          Use a negated partial match on the empty string to filter based on a
+     *          property not existing: `-source_properties.my_property : ""`
      *     @type Timestamp $readTime
      *          Time used as a reference point when filtering findings. The filter is
      *          limited to findings existing at the supplied time and their values are
@@ -1338,12 +1343,18 @@ class SecurityCenterGapicClient
      *
      *          Possible "state_change" values when compare_duration is specified:
      *
-     *          * "CHANGED":   indicates that the finding was present at the start of
-     *                           compare_duration, but changed its state at read_time.
-     *          * "UNCHANGED": indicates that the finding was present at the start of
-     *                           compare_duration and did not change state at read_time.
-     *          * "ADDED":     indicates that the finding was not present at the start
-     *                           of compare_duration, but was present at read_time.
+     *          * "CHANGED":   indicates that the finding was present and matched the given
+     *                           filter at the start of compare_duration, but changed its
+     *                           state at read_time.
+     *          * "UNCHANGED": indicates that the finding was present and matched the given
+     *                           filter at the start of compare_duration and did not change
+     *                           state at read_time.
+     *          * "ADDED":     indicates that the finding did not match the given filter or
+     *                           was not present at the start of compare_duration, but was
+     *                           present at read_time.
+     *          * "REMOVED":   indicates that the finding was present and matched the
+     *                           filter at the start of compare_duration, but did not match
+     *                           the filter at read_time.
      *
      *          If compare_duration is not specified, then the only possible state_change
      *          is "UNUSED",  which will be the state_change set for all findings present
@@ -1351,10 +1362,6 @@ class SecurityCenterGapicClient
      *
      *          If this field is set then `state_change` must be a specified field in
      *          `group_by`.
-     *     @type string $having
-     *          Filter that specifies what fields to further filter on *after* the query
-     *          filter has been executed. Currently only `finding.state` and `state_change`
-     *          are supported and requires compare_duration to be specified.
      *     @type string $pageToken
      *          A page token is used to specify a page of values to be returned.
      *          If no page token is specified (the default), the first page
@@ -1389,9 +1396,6 @@ class SecurityCenterGapicClient
         }
         if (isset($optionalArgs['compareDuration'])) {
             $request->setCompareDuration($optionalArgs['compareDuration']);
-        }
-        if (isset($optionalArgs['having'])) {
-            $request->setHaving($optionalArgs['having']);
         }
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
@@ -1483,15 +1487,15 @@ class SecurityCenterGapicClient
      *
      *            Usage: This should be milliseconds since epoch or an RFC3339 string.
      *            Examples:
-     *              "update_time = \"2019-06-10T16:07:18-07:00\""
-     *              "update_time = 1560208038000"
+     *              `update_time = "2019-06-10T16:07:18-07:00"`
+     *              `update_time = 1560208038000`
      *
      *          * create_time: `=`, `>`, `<`, `>=`, `<=`
      *
      *            Usage: This should be milliseconds since epoch or an RFC3339 string.
      *            Examples:
-     *              "create_time = \"2019-06-10T16:07:18-07:00\""
-     *              "create_time = 1560208038000"
+     *              `create_time = "2019-06-10T16:07:18-07:00"`
+     *              `create_time = 1560208038000`
      *
      *          * iam_policy.policy_blob: `=`, `:`
      *          * resource_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
@@ -1506,6 +1510,12 @@ class SecurityCenterGapicClient
      *          * security_center_properties.resource_owners: `=`, `:`
      *
      *          For example, `resource_properties.size = 100` is a valid filter string.
+     *
+     *          Use a partial match on the empty string to filter based on a property
+     *          existing: `resource_properties.my_property : ""`
+     *
+     *          Use a negated partial match on the empty string to filter based on a
+     *          property not existing: `-resource_properties.my_property : ""`
      *     @type string $orderBy
      *          Expression that defines what fields and order to use for sorting. The
      *          string value should follow SQL syntax: comma separated list of fields. For
@@ -1558,10 +1568,6 @@ class SecurityCenterGapicClient
      *          If compare_duration is not specified, then the only possible state_change
      *          is "UNUSED",  which will be the state_change set for all assets present at
      *          read_time.
-     *     @type string $having
-     *          Filter that specifies what fields to further filter on *after* the query
-     *          filter has been executed. Currently only `state_change` is supported and
-     *          requires compare_duration to be specified.
      *     @type FieldMask $fieldMask
      *          Optional.
      *          A field mask to specify the ListAssetsResult fields to be listed in the
@@ -1603,9 +1609,6 @@ class SecurityCenterGapicClient
         }
         if (isset($optionalArgs['compareDuration'])) {
             $request->setCompareDuration($optionalArgs['compareDuration']);
-        }
-        if (isset($optionalArgs['having'])) {
-            $request->setHaving($optionalArgs['having']);
         }
         if (isset($optionalArgs['fieldMask'])) {
             $request->setFieldMask($optionalArgs['fieldMask']);
@@ -1708,13 +1711,19 @@ class SecurityCenterGapicClient
      *
      *            Usage: This should be milliseconds since epoch or an RFC3339 string.
      *            Examples:
-     *              "event_time = \"2019-06-10T16:07:18-07:00\""
-     *              "event_time = 1560208038000"
+     *              `event_time = "2019-06-10T16:07:18-07:00"`
+     *              `event_time = 1560208038000`
      *
      *          security_marks.marks: `=`, `:`
      *          source_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
      *
      *          For example, `source_properties.size = 100` is a valid filter string.
+     *
+     *          Use a partial match on the empty string to filter based on a property
+     *          existing: `source_properties.my_property : ""`
+     *
+     *          Use a negated partial match on the empty string to filter based on a
+     *          property not existing: `-source_properties.my_property : ""`
      *     @type string $orderBy
      *          Expression that defines what fields and order to use for sorting. The
      *          string value should follow SQL syntax: comma separated list of fields. For
@@ -1754,20 +1763,22 @@ class SecurityCenterGapicClient
      *
      *          Possible "state_change" values when compare_duration is specified:
      *
-     *          * "CHANGED":   indicates that the finding was present at the start of
-     *                           compare_duration, but changed its state at read_time.
-     *          * "UNCHANGED": indicates that the finding was present at the start of
-     *                           compare_duration and did not change state at read_time.
-     *          * "ADDED":     indicates that the finding was not present at the start
-     *                           of compare_duration, but was present at read_time.
+     *          * "CHANGED":   indicates that the finding was present and matched the given
+     *                           filter at the start of compare_duration, but changed its
+     *                           state at read_time.
+     *          * "UNCHANGED": indicates that the finding was present and matched the given
+     *                           filter at the start of compare_duration and did not change
+     *                           state at read_time.
+     *          * "ADDED":     indicates that the finding did not match the given filter or
+     *                           was not present at the start of compare_duration, but was
+     *                           present at read_time.
+     *          * "REMOVED":   indicates that the finding was present and matched the
+     *                           filter at the start of compare_duration, but did not match
+     *                           the filter at read_time.
      *
      *          If compare_duration is not specified, then the only possible state_change
      *          is "UNUSED", which will be the state_change set for all findings present at
      *          read_time.
-     *     @type string $having
-     *          Filter that specifies what fields to further filter on *after* the query
-     *          filter has been executed. Currently only `finding.state` and `state_change`
-     *          are supported and requires compare_duration to be specified.
      *     @type FieldMask $fieldMask
      *          Optional.
      *          A field mask to specify the Finding fields to be listed in the response.
@@ -1808,9 +1819,6 @@ class SecurityCenterGapicClient
         }
         if (isset($optionalArgs['compareDuration'])) {
             $request->setCompareDuration($optionalArgs['compareDuration']);
-        }
-        if (isset($optionalArgs['having'])) {
-            $request->setHaving($optionalArgs['having']);
         }
         if (isset($optionalArgs['fieldMask'])) {
             $request->setFieldMask($optionalArgs['fieldMask']);

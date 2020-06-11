@@ -52,11 +52,15 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
      * event_time: `=`, `>`, `<`, `>=`, `<=`
      *   Usage: This should be milliseconds since epoch or an RFC3339 string.
      *   Examples:
-     *     "event_time = \"2019-06-10T16:07:18-07:00\""
-     *     "event_time = 1560208038000"
+     *     `event_time = "2019-06-10T16:07:18-07:00"`
+     *     `event_time = 1560208038000`
      * security_marks.marks: `=`, `:`
      * source_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
      * For example, `source_properties.size = 100` is a valid filter string.
+     * Use a partial match on the empty string to filter based on a property
+     * existing: `source_properties.my_property : ""`
+     * Use a negated partial match on the empty string to filter based on a
+     * property not existing: `-source_properties.my_property : ""`
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      */
@@ -104,12 +108,18 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
      * two times don't affect the result. For example, the results aren't affected
      * if the finding is made inactive and then active again.
      * Possible "state_change" values when compare_duration is specified:
-     * * "CHANGED":   indicates that the finding was present at the start of
-     *                  compare_duration, but changed its state at read_time.
-     * * "UNCHANGED": indicates that the finding was present at the start of
-     *                  compare_duration and did not change state at read_time.
-     * * "ADDED":     indicates that the finding was not present at the start
-     *                  of compare_duration, but was present at read_time.
+     * * "CHANGED":   indicates that the finding was present and matched the given
+     *                  filter at the start of compare_duration, but changed its
+     *                  state at read_time.
+     * * "UNCHANGED": indicates that the finding was present and matched the given
+     *                  filter at the start of compare_duration and did not change
+     *                  state at read_time.
+     * * "ADDED":     indicates that the finding did not match the given filter or
+     *                  was not present at the start of compare_duration, but was
+     *                  present at read_time.
+     * * "REMOVED":   indicates that the finding was present and matched the
+     *                  filter at the start of compare_duration, but did not match
+     *                  the filter at read_time.
      * If compare_duration is not specified, then the only possible state_change
      * is "UNUSED", which will be the state_change set for all findings present at
      * read_time.
@@ -117,14 +127,6 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Duration compare_duration = 5;</code>
      */
     private $compare_duration = null;
-    /**
-     * Filter that specifies what fields to further filter on *after* the query
-     * filter has been executed. Currently only `finding.state` and `state_change`
-     * are supported and requires compare_duration to be specified.
-     *
-     * Generated from protobuf field <code>string having = 6;</code>
-     */
-    private $having = '';
     /**
      * Optional.
      * A field mask to specify the Finding fields to be listed in the response.
@@ -188,11 +190,15 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
      *           event_time: `=`, `>`, `<`, `>=`, `<=`
      *             Usage: This should be milliseconds since epoch or an RFC3339 string.
      *             Examples:
-     *               "event_time = \"2019-06-10T16:07:18-07:00\""
-     *               "event_time = 1560208038000"
+     *               `event_time = "2019-06-10T16:07:18-07:00"`
+     *               `event_time = 1560208038000`
      *           security_marks.marks: `=`, `:`
      *           source_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
      *           For example, `source_properties.size = 100` is a valid filter string.
+     *           Use a partial match on the empty string to filter based on a property
+     *           existing: `source_properties.my_property : ""`
+     *           Use a negated partial match on the empty string to filter based on a
+     *           property not existing: `-source_properties.my_property : ""`
      *     @type string $order_by
      *           Expression that defines what fields and order to use for sorting. The
      *           string value should follow SQL syntax: comma separated list of fields. For
@@ -228,19 +234,21 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
      *           two times don't affect the result. For example, the results aren't affected
      *           if the finding is made inactive and then active again.
      *           Possible "state_change" values when compare_duration is specified:
-     *           * "CHANGED":   indicates that the finding was present at the start of
-     *                            compare_duration, but changed its state at read_time.
-     *           * "UNCHANGED": indicates that the finding was present at the start of
-     *                            compare_duration and did not change state at read_time.
-     *           * "ADDED":     indicates that the finding was not present at the start
-     *                            of compare_duration, but was present at read_time.
+     *           * "CHANGED":   indicates that the finding was present and matched the given
+     *                            filter at the start of compare_duration, but changed its
+     *                            state at read_time.
+     *           * "UNCHANGED": indicates that the finding was present and matched the given
+     *                            filter at the start of compare_duration and did not change
+     *                            state at read_time.
+     *           * "ADDED":     indicates that the finding did not match the given filter or
+     *                            was not present at the start of compare_duration, but was
+     *                            present at read_time.
+     *           * "REMOVED":   indicates that the finding was present and matched the
+     *                            filter at the start of compare_duration, but did not match
+     *                            the filter at read_time.
      *           If compare_duration is not specified, then the only possible state_change
      *           is "UNUSED", which will be the state_change set for all findings present at
      *           read_time.
-     *     @type string $having
-     *           Filter that specifies what fields to further filter on *after* the query
-     *           filter has been executed. Currently only `finding.state` and `state_change`
-     *           are supported and requires compare_duration to be specified.
      *     @type \Google\Protobuf\FieldMask $field_mask
      *           Optional.
      *           A field mask to specify the Finding fields to be listed in the response.
@@ -319,11 +327,15 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
      * event_time: `=`, `>`, `<`, `>=`, `<=`
      *   Usage: This should be milliseconds since epoch or an RFC3339 string.
      *   Examples:
-     *     "event_time = \"2019-06-10T16:07:18-07:00\""
-     *     "event_time = 1560208038000"
+     *     `event_time = "2019-06-10T16:07:18-07:00"`
+     *     `event_time = 1560208038000`
      * security_marks.marks: `=`, `:`
      * source_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
      * For example, `source_properties.size = 100` is a valid filter string.
+     * Use a partial match on the empty string to filter based on a property
+     * existing: `source_properties.my_property : ""`
+     * Use a negated partial match on the empty string to filter based on a
+     * property not existing: `-source_properties.my_property : ""`
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      * @return string
@@ -361,11 +373,15 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
      * event_time: `=`, `>`, `<`, `>=`, `<=`
      *   Usage: This should be milliseconds since epoch or an RFC3339 string.
      *   Examples:
-     *     "event_time = \"2019-06-10T16:07:18-07:00\""
-     *     "event_time = 1560208038000"
+     *     `event_time = "2019-06-10T16:07:18-07:00"`
+     *     `event_time = 1560208038000`
      * security_marks.marks: `=`, `:`
      * source_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
      * For example, `source_properties.size = 100` is a valid filter string.
+     * Use a partial match on the empty string to filter based on a property
+     * existing: `source_properties.my_property : ""`
+     * Use a negated partial match on the empty string to filter based on a
+     * property not existing: `-source_properties.my_property : ""`
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      * @param string $var
@@ -481,12 +497,18 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
      * two times don't affect the result. For example, the results aren't affected
      * if the finding is made inactive and then active again.
      * Possible "state_change" values when compare_duration is specified:
-     * * "CHANGED":   indicates that the finding was present at the start of
-     *                  compare_duration, but changed its state at read_time.
-     * * "UNCHANGED": indicates that the finding was present at the start of
-     *                  compare_duration and did not change state at read_time.
-     * * "ADDED":     indicates that the finding was not present at the start
-     *                  of compare_duration, but was present at read_time.
+     * * "CHANGED":   indicates that the finding was present and matched the given
+     *                  filter at the start of compare_duration, but changed its
+     *                  state at read_time.
+     * * "UNCHANGED": indicates that the finding was present and matched the given
+     *                  filter at the start of compare_duration and did not change
+     *                  state at read_time.
+     * * "ADDED":     indicates that the finding did not match the given filter or
+     *                  was not present at the start of compare_duration, but was
+     *                  present at read_time.
+     * * "REMOVED":   indicates that the finding was present and matched the
+     *                  filter at the start of compare_duration, but did not match
+     *                  the filter at read_time.
      * If compare_duration is not specified, then the only possible state_change
      * is "UNUSED", which will be the state_change set for all findings present at
      * read_time.
@@ -511,12 +533,18 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
      * two times don't affect the result. For example, the results aren't affected
      * if the finding is made inactive and then active again.
      * Possible "state_change" values when compare_duration is specified:
-     * * "CHANGED":   indicates that the finding was present at the start of
-     *                  compare_duration, but changed its state at read_time.
-     * * "UNCHANGED": indicates that the finding was present at the start of
-     *                  compare_duration and did not change state at read_time.
-     * * "ADDED":     indicates that the finding was not present at the start
-     *                  of compare_duration, but was present at read_time.
+     * * "CHANGED":   indicates that the finding was present and matched the given
+     *                  filter at the start of compare_duration, but changed its
+     *                  state at read_time.
+     * * "UNCHANGED": indicates that the finding was present and matched the given
+     *                  filter at the start of compare_duration and did not change
+     *                  state at read_time.
+     * * "ADDED":     indicates that the finding did not match the given filter or
+     *                  was not present at the start of compare_duration, but was
+     *                  present at read_time.
+     * * "REMOVED":   indicates that the finding was present and matched the
+     *                  filter at the start of compare_duration, but did not match
+     *                  the filter at read_time.
      * If compare_duration is not specified, then the only possible state_change
      * is "UNUSED", which will be the state_change set for all findings present at
      * read_time.
@@ -529,36 +557,6 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
         $this->compare_duration = $var;
-
-        return $this;
-    }
-
-    /**
-     * Filter that specifies what fields to further filter on *after* the query
-     * filter has been executed. Currently only `finding.state` and `state_change`
-     * are supported and requires compare_duration to be specified.
-     *
-     * Generated from protobuf field <code>string having = 6;</code>
-     * @return string
-     */
-    public function getHaving()
-    {
-        return $this->having;
-    }
-
-    /**
-     * Filter that specifies what fields to further filter on *after* the query
-     * filter has been executed. Currently only `finding.state` and `state_change`
-     * are supported and requires compare_duration to be specified.
-     *
-     * Generated from protobuf field <code>string having = 6;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setHaving($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->having = $var;
 
         return $this;
     }

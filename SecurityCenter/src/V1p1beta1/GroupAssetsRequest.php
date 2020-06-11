@@ -47,13 +47,13 @@ class GroupAssetsRequest extends \Google\Protobuf\Internal\Message
      * * update_time: `=`, `>`, `<`, `>=`, `<=`
      *   Usage: This should be milliseconds since epoch or an RFC3339 string.
      *   Examples:
-     *     "update_time = \"2019-06-10T16:07:18-07:00\""
-     *     "update_time = 1560208038000"
+     *     `update_time = "2019-06-10T16:07:18-07:00"`
+     *     `update_time = 1560208038000`
      * * create_time: `=`, `>`, `<`, `>=`, `<=`
      *   Usage: This should be milliseconds since epoch or an RFC3339 string.
      *   Examples:
-     *     "create_time = \"2019-06-10T16:07:18-07:00\""
-     *     "create_time = 1560208038000"
+     *     `create_time = "2019-06-10T16:07:18-07:00"`
+     *     `create_time = 1560208038000`
      * * iam_policy.policy_blob: `=`, `:`
      * * resource_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
      * * security_marks.marks: `=`, `:`
@@ -66,6 +66,10 @@ class GroupAssetsRequest extends \Google\Protobuf\Internal\Message
      * * security_center_properties.resource_project_display_name: `=`, `:`
      * * security_center_properties.resource_owners: `=`, `:`
      * For example, `resource_properties.size = 100` is a valid filter string.
+     * Use a partial match on the empty string to filter based on a property
+     * existing: `resource_properties.my_property : ""`
+     * Use a negated partial match on the empty string to filter based on a
+     * property not existing: `-resource_properties.my_property : ""`
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      */
@@ -126,14 +130,6 @@ class GroupAssetsRequest extends \Google\Protobuf\Internal\Message
      */
     private $read_time = null;
     /**
-     * Filter that specifies what fields to further filter on *after* the query
-     * filter has been executed. Currently only `state_change` is supported and
-     * requires compare_duration to be specified.
-     *
-     * Generated from protobuf field <code>string having = 6;</code>
-     */
-    private $having = '';
-    /**
      * The value returned by the last `GroupAssetsResponse`; indicates
      * that this is a continuation of a prior `GroupAssets` call, and that the
      * system should return the next page of data.
@@ -183,13 +179,13 @@ class GroupAssetsRequest extends \Google\Protobuf\Internal\Message
      *           * update_time: `=`, `>`, `<`, `>=`, `<=`
      *             Usage: This should be milliseconds since epoch or an RFC3339 string.
      *             Examples:
-     *               "update_time = \"2019-06-10T16:07:18-07:00\""
-     *               "update_time = 1560208038000"
+     *               `update_time = "2019-06-10T16:07:18-07:00"`
+     *               `update_time = 1560208038000`
      *           * create_time: `=`, `>`, `<`, `>=`, `<=`
      *             Usage: This should be milliseconds since epoch or an RFC3339 string.
      *             Examples:
-     *               "create_time = \"2019-06-10T16:07:18-07:00\""
-     *               "create_time = 1560208038000"
+     *               `create_time = "2019-06-10T16:07:18-07:00"`
+     *               `create_time = 1560208038000`
      *           * iam_policy.policy_blob: `=`, `:`
      *           * resource_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
      *           * security_marks.marks: `=`, `:`
@@ -202,6 +198,10 @@ class GroupAssetsRequest extends \Google\Protobuf\Internal\Message
      *           * security_center_properties.resource_project_display_name: `=`, `:`
      *           * security_center_properties.resource_owners: `=`, `:`
      *           For example, `resource_properties.size = 100` is a valid filter string.
+     *           Use a partial match on the empty string to filter based on a property
+     *           existing: `resource_properties.my_property : ""`
+     *           Use a negated partial match on the empty string to filter based on a
+     *           property not existing: `-resource_properties.my_property : ""`
      *     @type string $group_by
      *           Required. Expression that defines what assets fields to use for grouping.
      *           The string value should follow SQL syntax: comma separated list of fields.
@@ -245,10 +245,6 @@ class GroupAssetsRequest extends \Google\Protobuf\Internal\Message
      *           to assets existing at the supplied time and their values are those at that
      *           specific time. Absence of this field will default to the API's version of
      *           NOW.
-     *     @type string $having
-     *           Filter that specifies what fields to further filter on *after* the query
-     *           filter has been executed. Currently only `state_change` is supported and
-     *           requires compare_duration to be specified.
      *     @type string $page_token
      *           The value returned by the last `GroupAssetsResponse`; indicates
      *           that this is a continuation of a prior `GroupAssets` call, and that the
@@ -316,13 +312,13 @@ class GroupAssetsRequest extends \Google\Protobuf\Internal\Message
      * * update_time: `=`, `>`, `<`, `>=`, `<=`
      *   Usage: This should be milliseconds since epoch or an RFC3339 string.
      *   Examples:
-     *     "update_time = \"2019-06-10T16:07:18-07:00\""
-     *     "update_time = 1560208038000"
+     *     `update_time = "2019-06-10T16:07:18-07:00"`
+     *     `update_time = 1560208038000`
      * * create_time: `=`, `>`, `<`, `>=`, `<=`
      *   Usage: This should be milliseconds since epoch or an RFC3339 string.
      *   Examples:
-     *     "create_time = \"2019-06-10T16:07:18-07:00\""
-     *     "create_time = 1560208038000"
+     *     `create_time = "2019-06-10T16:07:18-07:00"`
+     *     `create_time = 1560208038000`
      * * iam_policy.policy_blob: `=`, `:`
      * * resource_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
      * * security_marks.marks: `=`, `:`
@@ -335,6 +331,10 @@ class GroupAssetsRequest extends \Google\Protobuf\Internal\Message
      * * security_center_properties.resource_project_display_name: `=`, `:`
      * * security_center_properties.resource_owners: `=`, `:`
      * For example, `resource_properties.size = 100` is a valid filter string.
+     * Use a partial match on the empty string to filter based on a property
+     * existing: `resource_properties.my_property : ""`
+     * Use a negated partial match on the empty string to filter based on a
+     * property not existing: `-resource_properties.my_property : ""`
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      * @return string
@@ -369,13 +369,13 @@ class GroupAssetsRequest extends \Google\Protobuf\Internal\Message
      * * update_time: `=`, `>`, `<`, `>=`, `<=`
      *   Usage: This should be milliseconds since epoch or an RFC3339 string.
      *   Examples:
-     *     "update_time = \"2019-06-10T16:07:18-07:00\""
-     *     "update_time = 1560208038000"
+     *     `update_time = "2019-06-10T16:07:18-07:00"`
+     *     `update_time = 1560208038000`
      * * create_time: `=`, `>`, `<`, `>=`, `<=`
      *   Usage: This should be milliseconds since epoch or an RFC3339 string.
      *   Examples:
-     *     "create_time = \"2019-06-10T16:07:18-07:00\""
-     *     "create_time = 1560208038000"
+     *     `create_time = "2019-06-10T16:07:18-07:00"`
+     *     `create_time = 1560208038000`
      * * iam_policy.policy_blob: `=`, `:`
      * * resource_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
      * * security_marks.marks: `=`, `:`
@@ -388,6 +388,10 @@ class GroupAssetsRequest extends \Google\Protobuf\Internal\Message
      * * security_center_properties.resource_project_display_name: `=`, `:`
      * * security_center_properties.resource_owners: `=`, `:`
      * For example, `resource_properties.size = 100` is a valid filter string.
+     * Use a partial match on the empty string to filter based on a property
+     * existing: `resource_properties.my_property : ""`
+     * Use a negated partial match on the empty string to filter based on a
+     * property not existing: `-resource_properties.my_property : ""`
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      * @param string $var
@@ -549,36 +553,6 @@ class GroupAssetsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->read_time = $var;
-
-        return $this;
-    }
-
-    /**
-     * Filter that specifies what fields to further filter on *after* the query
-     * filter has been executed. Currently only `state_change` is supported and
-     * requires compare_duration to be specified.
-     *
-     * Generated from protobuf field <code>string having = 6;</code>
-     * @return string
-     */
-    public function getHaving()
-    {
-        return $this->having;
-    }
-
-    /**
-     * Filter that specifies what fields to further filter on *after* the query
-     * filter has been executed. Currently only `state_change` is supported and
-     * requires compare_duration to be specified.
-     *
-     * Generated from protobuf field <code>string having = 6;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setHaving($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->having = $var;
 
         return $this;
     }

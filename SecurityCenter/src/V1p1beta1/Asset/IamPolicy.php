@@ -9,9 +9,10 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * IAM Policy information associated with the GCP resource described by the
- * Cloud SCC asset. This information is managed and defined by the GCP
- * resource and cannot be modified by the user.
+ * Cloud IAM Policy information associated with the Google Cloud resource
+ * described by the Security Command Center asset. This information is managed
+ * and defined by the Google Cloud resource and cannot be modified by the
+ * user.
  *
  * Generated from protobuf message <code>google.cloud.securitycenter.v1p1beta1.Asset.IamPolicy</code>
  */
@@ -19,7 +20,7 @@ class IamPolicy extends \Google\Protobuf\Internal\Message
 {
     /**
      * The JSON representation of the Policy associated with the asset.
-     * See https://cloud.google.com/iam/reference/rest/v1/Policy for
+     * See https://cloud.google.com/iam/docs/reference/rest/v1/Policy for
      * format details.
      *
      * Generated from protobuf field <code>string policy_blob = 1;</code>
@@ -34,7 +35,7 @@ class IamPolicy extends \Google\Protobuf\Internal\Message
      *
      *     @type string $policy_blob
      *           The JSON representation of the Policy associated with the asset.
-     *           See https://cloud.google.com/iam/reference/rest/v1/Policy for
+     *           See https://cloud.google.com/iam/docs/reference/rest/v1/Policy for
      *           format details.
      * }
      */
@@ -45,7 +46,7 @@ class IamPolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * The JSON representation of the Policy associated with the asset.
-     * See https://cloud.google.com/iam/reference/rest/v1/Policy for
+     * See https://cloud.google.com/iam/docs/reference/rest/v1/Policy for
      * format details.
      *
      * Generated from protobuf field <code>string policy_blob = 1;</code>
@@ -58,7 +59,7 @@ class IamPolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * The JSON representation of the Policy associated with the asset.
-     * See https://cloud.google.com/iam/reference/rest/v1/Policy for
+     * See https://cloud.google.com/iam/docs/reference/rest/v1/Policy for
      * format details.
      *
      * Generated from protobuf field <code>string policy_blob = 1;</code>

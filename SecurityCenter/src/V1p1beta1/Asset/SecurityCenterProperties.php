@@ -9,15 +9,15 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Cloud SCC managed properties. These properties are managed by Cloud SCC and
- * cannot be modified by the user.
+ * Security Command Center managed properties. These properties are managed by
+ * Security Command Center and cannot be modified by the user.
  *
  * Generated from protobuf message <code>google.cloud.securitycenter.v1p1beta1.Asset.SecurityCenterProperties</code>
  */
 class SecurityCenterProperties extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The full resource name of the GCP resource this asset
+     * The full resource name of the Google Cloud resource this asset
      * represents. This field is immutable after create time. See:
      * https://cloud.google.com/apis/design/resource_names#full_resource_name
      *
@@ -25,10 +25,10 @@ class SecurityCenterProperties extends \Google\Protobuf\Internal\Message
      */
     private $resource_name = '';
     /**
-     * The type of the GCP resource. Examples include: APPLICATION,
+     * The type of the Google Cloud resource. Examples include: APPLICATION,
      * PROJECT, and ORGANIZATION. This is a case insensitive field defined by
-     * Cloud SCC and/or the producer of the resource and is immutable
-     * after create time.
+     * Security Command Center and/or the producer of the resource and is
+     * immutable after create time.
      *
      * Generated from protobuf field <code>string resource_type = 2;</code>
      */
@@ -79,14 +79,14 @@ class SecurityCenterProperties extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $resource_name
-     *           The full resource name of the GCP resource this asset
+     *           The full resource name of the Google Cloud resource this asset
      *           represents. This field is immutable after create time. See:
      *           https://cloud.google.com/apis/design/resource_names#full_resource_name
      *     @type string $resource_type
-     *           The type of the GCP resource. Examples include: APPLICATION,
+     *           The type of the Google Cloud resource. Examples include: APPLICATION,
      *           PROJECT, and ORGANIZATION. This is a case insensitive field defined by
-     *           Cloud SCC and/or the producer of the resource and is immutable
-     *           after create time.
+     *           Security Command Center and/or the producer of the resource and is
+     *           immutable after create time.
      *     @type string $resource_parent
      *           The full resource name of the immediate parent of the resource. See:
      *           https://cloud.google.com/apis/design/resource_names#full_resource_name
@@ -109,7 +109,7 @@ class SecurityCenterProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The full resource name of the GCP resource this asset
+     * The full resource name of the Google Cloud resource this asset
      * represents. This field is immutable after create time. See:
      * https://cloud.google.com/apis/design/resource_names#full_resource_name
      *
@@ -122,7 +122,7 @@ class SecurityCenterProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The full resource name of the GCP resource this asset
+     * The full resource name of the Google Cloud resource this asset
      * represents. This field is immutable after create time. See:
      * https://cloud.google.com/apis/design/resource_names#full_resource_name
      *
@@ -139,10 +139,10 @@ class SecurityCenterProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The type of the GCP resource. Examples include: APPLICATION,
+     * The type of the Google Cloud resource. Examples include: APPLICATION,
      * PROJECT, and ORGANIZATION. This is a case insensitive field defined by
-     * Cloud SCC and/or the producer of the resource and is immutable
-     * after create time.
+     * Security Command Center and/or the producer of the resource and is
+     * immutable after create time.
      *
      * Generated from protobuf field <code>string resource_type = 2;</code>
      * @return string
@@ -153,10 +153,10 @@ class SecurityCenterProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The type of the GCP resource. Examples include: APPLICATION,
+     * The type of the Google Cloud resource. Examples include: APPLICATION,
      * PROJECT, and ORGANIZATION. This is a case insensitive field defined by
-     * Cloud SCC and/or the producer of the resource and is immutable
-     * after create time.
+     * Security Command Center and/or the producer of the resource and is
+     * immutable after create time.
      *
      * Generated from protobuf field <code>string resource_type = 2;</code>
      * @param string $var

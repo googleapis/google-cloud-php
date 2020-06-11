@@ -9,9 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * User specified security marks that are attached to the parent Cloud Security
- * Command Center (Cloud SCC) resource. Security marks are scoped within a Cloud
- * SCC organization -- they can be modified and viewed by all users who have
+ * User specified security marks that are attached to the parent Security
+ * Command Center resource. Security marks are scoped within a Security Command
+ * Center organization -- they can be modified and viewed by all users who have
  * proper permissions on the organization.
  *
  * Generated from protobuf message <code>google.cloud.securitycenter.v1p1beta1.SecurityMarks</code>
