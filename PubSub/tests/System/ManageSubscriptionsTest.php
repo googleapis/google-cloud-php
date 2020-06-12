@@ -277,31 +277,27 @@ class ManageSubscriptionsTest extends PubSubTestCase
      */
     public function testRetryPolicy($client)
     {
-        if ($client instanceof PubSubClientRest) {
-            $this->markTestSkipped(
-                'deadLetterPolicy not available in REST transport during experimental period.'
-            );
-        }
-
         $retryPolicyTopic = self::createTopic($client, uniqid(self::TESTING_PREFIX));
         $sub = $retryPolicyTopic->subscribe(uniqid(self::TESTING_PREFIX), [
             'retryPolicy' => [
-                'minimumBackoff' => new Duration(10),
+                'minimumBackoff' => new Duration(15),
                 'maximumBackoff' => new Duration(20)
             ]
         ]);
         self::$deletionQueue->add($sub);
 
-        $this->assertEquals([
-            'seconds' => 10,
-            'nanos' => 0
-        ], $sub->info()['retryPolicy']['minimumBackoff']);
+        // check initial values
+        $this->assertEquals(
+            $this->getDuration($client, 15),
+            $sub->info()['retryPolicy']['minimumBackoff']
+        );
 
-        $this->assertEquals([
-            'seconds' => 20,
-            'nanos' => 0
-        ], $sub->info()['retryPolicy']['maximumBackoff']);
+        $this->assertEquals(
+            $this->getDuration($client, 20),
+            $sub->info()['retryPolicy']['maximumBackoff']
+        );
 
+        // update to different values
         $sub->update([
             'retryPolicy' => [
                 'minimumBackoff' => new Duration(20),
@@ -309,21 +305,49 @@ class ManageSubscriptionsTest extends PubSubTestCase
             ]
         ]);
 
-        $this->assertEquals([
-            'seconds' => 20,
-            'nanos' => 0
-        ], $sub->info()['retryPolicy']['minimumBackoff']);
+        $this->assertEquals(
+            $this->getDuration($client, 20),
+            $sub->info()['retryPolicy']['minimumBackoff']
+        );
 
-        $this->assertEquals([
-            'seconds' => 30,
-            'nanos' => 0
-        ], $sub->info()['retryPolicy']['maximumBackoff']);
+        $this->assertEquals(
+            $this->getDuration($client, 30),
+            $sub->info()['retryPolicy']['maximumBackoff']
+        );
 
+        // reset to default
+        $sub->update([
+            'retryPolicy' => []
+        ]);
+
+        $this->assertEquals(
+            $this->getDuration($client, 10),
+            $sub->info()['retryPolicy']['minimumBackoff']
+        );
+
+        $this->assertEquals(
+            $this->getDuration($client, 600),
+            $sub->info()['retryPolicy']['maximumBackoff']
+        );
+
+        // remove entirely
         $sub->update([], [
             'updateMask' => ['retryPolicy']
         ]);
 
         $this->assertArrayNotHasKey('retryPolicy', $sub->info());
+    }
+
+    private function getDuration($client, $seconds)
+    {
+        if ($client instanceof PubSubClientRest) {
+            return sprintf('%ds', $seconds);
+        }
+
+        return [
+            'seconds' => $seconds,
+            'nanos' => 0
+        ];
     }
 
     private function assertSubsFound($class, $expectedSubs)

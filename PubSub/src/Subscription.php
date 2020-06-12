@@ -281,8 +281,7 @@ class Subscription
      *           Retry Policies are implemented on a best effort basis At times,
      *           the delay between deliveries may not match the configuration.
      *           That is, the delay can be more or less than the configured
-     *           backoff. **Please note** that this feature may not be
-     *           available using the REST transport.
+     *           backoff.
      *     @type Duration|string $retryPolicy.minimumBackoff The minimum delay
      *           between consecutive deliveries of a given message. Value should
      *           be between 0 and 600 seconds. Defaults to 10 seconds.
@@ -428,8 +427,7 @@ class Subscription
      *           Retry Policies are implemented on a best effort basis At times,
      *           the delay between deliveries may not match the configuration.
      *           That is, the delay can be more or less than the configured
-     *           backoff. **Please note** that this feature may not be
-     *           available using the REST transport.
+     *           backoff.
      *     @type Duration|string $retryPolicy.minimumBackoff The minimum delay
      *           between consecutive deliveries of a given message. Value should
      *           be between 0 and 600 seconds. Defaults to 10 seconds.
