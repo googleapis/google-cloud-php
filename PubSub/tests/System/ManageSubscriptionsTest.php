@@ -19,6 +19,7 @@ namespace Google\Cloud\PubSub\Tests\System;
 
 use Google\Cloud\Core\Duration;
 use Google\Cloud\Core\ExponentialBackoff;
+use Google\Cloud\PubSub\MessageBuilder;
 use Google\Cloud\PubSub\Snapshot;
 
 /**
@@ -264,6 +265,38 @@ class ManageSubscriptionsTest extends PubSubTestCase
         sleep(2);
         $msg = $sub->pull();
         $this->assertEquals(1, $msg[0]->deliveryAttempt());
+    }
+
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testFiltering($client)
+    {
+        list ($topic, $sub) = self::topicAndSubscription($client, [], [
+            'filter' => 'attributes.event_type="1"'
+        ]);
+
+        $messageBuilder = new MessageBuilder();
+
+        $topic->publish($messageBuilder->setAttributes([
+            'event_type' => '1',
+            'identifier' => 'foo'
+        ])->build());
+
+        $topic->publish($messageBuilder->setAttributes([
+            'event_type' => '1',
+            'identifier' => 'bar'
+        ])->build());
+
+        $topic->publish($messageBuilder->setAttributes([
+            'identifier' => 'baz'
+        ])->build());
+
+        sleep(2);
+        $messages = $sub->pull();
+        $this->assertCount(2, $messages);
+        $this->assertTrue(in_array($messages[0]->attribute('identifier'), ['foo', 'bar']));
+        $this->assertTrue(in_array($messages[1]->attribute('identifier'), ['foo', 'bar']));
     }
 
     private function assertSubsFound($class, $expectedSubs)
