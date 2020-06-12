@@ -30,6 +30,7 @@ use Google\Cloud\PubSub\V1\MessageStoragePolicy;
 use Google\Cloud\PubSub\V1\PublisherClient;
 use Google\Cloud\PubSub\V1\PubsubMessage;
 use Google\Cloud\PubSub\V1\PushConfig;
+use Google\Cloud\PubSub\V1\RetryPolicy;
 use Google\Cloud\PubSub\V1\SubscriberClient;
 use Google\Cloud\PubSub\V1\Subscription;
 use Google\Cloud\PubSub\V1\Topic;
@@ -233,6 +234,13 @@ class Grpc implements ConnectionInterface
         if (isset($args['messageRetentionDuration'])) {
             $args['messageRetentionDuration'] = new Duration(
                 $this->transformDuration($args['messageRetentionDuration'])
+            );
+        }
+
+        if (isset($args['retryPolicy'])) {
+            $args['retryPolicy'] = $this->serializer->decodeMessage(
+                new RetryPolicy,
+                $args['retryPolicy']
             );
         }
 

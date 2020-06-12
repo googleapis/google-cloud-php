@@ -150,6 +150,13 @@ class Rest implements ConnectionInterface
      */
     public function createSubscription(array $args)
     {
+        // patch to properly serialize request json.
+        if (isset($args['retryPolicy'])) {
+            $args['retryPolicy'] = empty($args['retryPolicy'])
+                ? (object) []
+                : $args['retryPolicy'];
+        }
+
         return $this->send('subscriptions', 'create', $args);
     }
 
@@ -158,6 +165,13 @@ class Rest implements ConnectionInterface
      */
     public function updateSubscription(array $args)
     {
+        // patch to properly serialize request json.
+        if (isset($args['subscription']['retryPolicy'])) {
+            $args['subscription']['retryPolicy'] = empty($args['subscription']['retryPolicy'])
+                ? (object) []
+                : $args['subscription']['retryPolicy'];
+        }
+
         return $this->send('subscriptions', 'patch', $args);
     }
 
