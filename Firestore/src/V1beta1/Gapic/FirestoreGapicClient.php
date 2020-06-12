@@ -103,6 +103,9 @@ use Google\Protobuf\Timestamp;
  * a parseName method to extract the individual identifiers contained within formatted names
  * that are returned by the API.
  *
+ * @deprecated This version is deprecated and will be removed in a future
+ *     release. Please use {@see Google\Cloud\Firestore\V1\FirestoreClient}
+ *     instead.
  * @experimental
  */
 class FirestoreGapicClient
