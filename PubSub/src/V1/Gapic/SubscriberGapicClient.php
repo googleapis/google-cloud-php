@@ -508,7 +508,8 @@ class SubscriberGapicClient
      *          *default policy* with `ttl` of 31 days will be used. The minimum allowed
      *          value for `expiration_policy.ttl` is 1 day.
      *     @type string $filter
-     *          An expression written in the Cloud Pub/Sub filter language. If non-empty,
+     *          An expression written in the Pub/Sub [filter
+     *          language](https://cloud.google.com/pubsub/docs/filtering). If non-empty,
      *          then only `PubsubMessage`s whose `attributes` field matches the filter are
      *          delivered on this subscription. If empty, then no messages are filtered
      *          out.
