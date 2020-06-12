@@ -248,7 +248,8 @@ class Subscription
      *           [filter language](https://cloud.google.com/pubsub/docs/filtering).
      *           If non-empty, then only messages whose `attributes` field
      *           matches the filter are delivered on this subscription. If
-     *           empty, then no messages are filtered out.
+     *           empty, then no messages are filtered out. Filtering can only be
+     *           configured at subscription creation.
      *     @type Duration|string $messageRetentionDuration How long to retain
      *           unacknowledged messages in the subscription's backlog, from the
      *           moment a message is published. If `$retainAckedMessages` is
@@ -379,11 +380,6 @@ class Subscription
      *           `ttl` is not set, the associated resource never expires. If a
      *           string is provided, it should be as a duration in seconds with
      *           up to nine fractional digits, terminated by 's', e.g "3.5s".
-     *     @type string $filter An expression written in the Pub/Sub
-     *           [filter language](https://cloud.google.com/pubsub/docs/filtering).
-     *           If non-empty, then only messages whose `attributes` field
-     *           matches the filter are delivered on this subscription. If
-     *           empty, then no messages are filtered out.
      *     @type Duration|string $messageRetentionDuration How long to retain
      *           unacknowledged messages in the subscription's backlog, from the
      *           moment a message is published. If `$retainAckedMessages` is
