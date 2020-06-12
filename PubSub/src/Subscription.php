@@ -913,7 +913,7 @@ class Subscription
      * $subscription->detach();
      * ```
      *
-     * @param array $options configuration options
+     * @param array $options [optional] Configuration options.
      * @return array
      */
     public function detach(array $options = [])

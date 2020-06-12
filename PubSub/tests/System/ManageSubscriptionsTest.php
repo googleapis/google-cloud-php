@@ -389,9 +389,12 @@ class ManageSubscriptionsTest extends PubSubTestCase
     public function testDetach($client)
     {
         list ($topic, $sub) = self::topicAndSubscription($client);
-        $this->assertFalse($sub->reload()['detached']);
+        $this->assertFalse($sub->detached());
+
         $sub->detach();
-        $this->assertTrue($sub->reload()['detached']);
+
+        $sub->reload();
+        $this->assertTrue($sub->detached());
     }
 
     private function assertSubsFound($class, $expectedSubs)

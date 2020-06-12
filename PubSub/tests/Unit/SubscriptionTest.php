@@ -63,7 +63,8 @@ class SubscriptionTest extends TestCase
     public function testDetached()
     {
         $this->connection->getSubscription(Argument::withEntry(
-            'subscription', self::SUBSCRIPTION
+            'subscription',
+            self::SUBSCRIPTION
         ))->willReturn([
             'detached' => true
         ]);
@@ -556,7 +557,8 @@ class SubscriptionTest extends TestCase
     public function testDetach()
     {
         $this->connection->detachSubscription(Argument::withEntry(
-            'subscription', self::SUBSCRIPTION
+            'subscription',
+            self::SUBSCRIPTION
         ))->shouldBeCalled()->willReturn([]);
 
         $this->subscription->___setProperty('connection', $this->connection->reveal());
