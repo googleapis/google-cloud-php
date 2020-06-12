@@ -31,7 +31,8 @@ class PubsubMessage extends \Google\Protobuf\Internal\Message
     private $data = '';
     /**
      * Attributes for this message. If this field is empty, the message must
-     * contain non-empty data.
+     * contain non-empty data. This can be used to filter messages on the
+     * subscription.
      *
      * Generated from protobuf field <code>map<string, string> attributes = 2;</code>
      */
@@ -79,7 +80,8 @@ class PubsubMessage extends \Google\Protobuf\Internal\Message
      *           at least one attribute.
      *     @type array|\Google\Protobuf\Internal\MapField $attributes
      *           Attributes for this message. If this field is empty, the message must
-     *           contain non-empty data.
+     *           contain non-empty data. This can be used to filter messages on the
+     *           subscription.
      *     @type string $message_id
      *           ID of this message, assigned by the server when the message is published.
      *           Guaranteed to be unique within the topic. This value may be read by a
@@ -136,7 +138,8 @@ class PubsubMessage extends \Google\Protobuf\Internal\Message
 
     /**
      * Attributes for this message. If this field is empty, the message must
-     * contain non-empty data.
+     * contain non-empty data. This can be used to filter messages on the
+     * subscription.
      *
      * Generated from protobuf field <code>map<string, string> attributes = 2;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -148,7 +151,8 @@ class PubsubMessage extends \Google\Protobuf\Internal\Message
 
     /**
      * Attributes for this message. If this field is empty, the message must
-     * contain non-empty data.
+     * contain non-empty data. This can be used to filter messages on the
+     * subscription.
      *
      * Generated from protobuf field <code>map<string, string> attributes = 2;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
