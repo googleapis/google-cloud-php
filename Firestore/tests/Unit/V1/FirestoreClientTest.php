@@ -30,6 +30,7 @@ use Google\ApiCore\ServerStream;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Firestore\V1\BatchGetDocumentsResponse;
+use Google\Cloud\Firestore\V1\BatchWriteResponse;
 use Google\Cloud\Firestore\V1\BeginTransactionResponse;
 use Google\Cloud\Firestore\V1\CommitResponse;
 use Google\Cloud\Firestore\V1\Document;
@@ -38,6 +39,7 @@ use Google\Cloud\Firestore\V1\ListCollectionIdsResponse;
 use Google\Cloud\Firestore\V1\ListDocumentsResponse;
 use Google\Cloud\Firestore\V1\ListenRequest;
 use Google\Cloud\Firestore\V1\ListenResponse;
+use Google\Cloud\Firestore\V1\PartitionQueryResponse;
 use Google\Cloud\Firestore\V1\RunQueryResponse;
 use Google\Cloud\Firestore\V1\Write;
 use Google\Cloud\Firestore\V1\WriteRequest;
@@ -1200,6 +1202,130 @@ class FirestoreClientTest extends GeneratedTest
 
         try {
             $client->listCollectionIds($formattedParent);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function partitionQueryTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $nextPageToken = 'nextPageToken-1530815211';
+        $expectedResponse = new PartitionQueryResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $transport->addResponse($expectedResponse);
+
+        $response = $client->partitionQuery();
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.firestore.v1.Firestore/PartitionQuery', $actualFuncCall);
+
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function partitionQueryExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        try {
+            $client->partitionQuery();
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function batchWriteTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $expectedResponse = new BatchWriteResponse();
+        $transport->addResponse($expectedResponse);
+
+        $response = $client->batchWrite();
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.firestore.v1.Firestore/BatchWrite', $actualFuncCall);
+
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function batchWriteExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        try {
+            $client->batchWrite();
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

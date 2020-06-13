@@ -20,13 +20,13 @@ class Operator
      */
     const OPERATOR_UNSPECIFIED = 0;
     /**
-     * Test if a field is equal to NaN.
+     * The given `field` is equal to `NaN`.
      *
      * Generated from protobuf enum <code>IS_NAN = 2;</code>
      */
     const IS_NAN = 2;
     /**
-     * Test if an expression evaluates to Null.
+     * The given `field` is equal to `NULL`.
      *
      * Generated from protobuf enum <code>IS_NULL = 3;</code>
      */

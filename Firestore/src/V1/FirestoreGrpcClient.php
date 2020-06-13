@@ -171,6 +171,22 @@ class FirestoreGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Partitions a query by returning partition cursors that can be used to run
+     * the query in parallel. The returned partition cursors are split points that
+     * can be used by RunQuery as starting/end points for the query results.
+     * @param \Google\Cloud\Firestore\V1\PartitionQueryRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function PartitionQuery(\Google\Cloud\Firestore\V1\PartitionQueryRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.firestore.v1.Firestore/PartitionQuery',
+        $argument,
+        ['\Google\Cloud\Firestore\V1\PartitionQueryResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Streams batches of document updates and deletes, in order.
      * @param array $metadata metadata
      * @param array $options call options
@@ -203,6 +219,28 @@ class FirestoreGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.firestore.v1.Firestore/ListCollectionIds',
         $argument,
         ['\Google\Cloud\Firestore\V1\ListCollectionIdsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Applies a batch of write operations.
+     *
+     * The BatchWrite method does not apply the write operations atomically
+     * and can apply them out of order. Method does not allow more than one write
+     * per document. Each write succeeds or fails independently. See the
+     * [BatchWriteResponse][google.firestore.v1.BatchWriteResponse] for the success status of each write.
+     *
+     * If you require an atomically applied set of writes, use
+     * [Commit][google.firestore.v1.Firestore.Commit] instead.
+     * @param \Google\Cloud\Firestore\V1\BatchWriteRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function BatchWrite(\Google\Cloud\Firestore\V1\BatchWriteRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.firestore.v1.Firestore/BatchWrite',
+        $argument,
+        ['\Google\Cloud\Firestore\V1\BatchWriteResponse', 'decode'],
         $metadata, $options);
     }
 

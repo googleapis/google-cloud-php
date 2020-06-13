@@ -38,6 +38,8 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Firestore\V1\BatchGetDocumentsRequest;
 use Google\Cloud\Firestore\V1\BatchGetDocumentsResponse;
+use Google\Cloud\Firestore\V1\BatchWriteRequest;
+use Google\Cloud\Firestore\V1\BatchWriteResponse;
 use Google\Cloud\Firestore\V1\BeginTransactionRequest;
 use Google\Cloud\Firestore\V1\BeginTransactionResponse;
 use Google\Cloud\Firestore\V1\CommitRequest;
@@ -53,6 +55,8 @@ use Google\Cloud\Firestore\V1\ListDocumentsRequest;
 use Google\Cloud\Firestore\V1\ListDocumentsResponse;
 use Google\Cloud\Firestore\V1\ListenRequest;
 use Google\Cloud\Firestore\V1\ListenResponse;
+use Google\Cloud\Firestore\V1\PartitionQueryRequest;
+use Google\Cloud\Firestore\V1\PartitionQueryResponse;
 use Google\Cloud\Firestore\V1\Precondition;
 use Google\Cloud\Firestore\V1\RollbackRequest;
 use Google\Cloud\Firestore\V1\RunQueryRequest;
@@ -414,7 +418,7 @@ class FirestoreGapicClient
      *          Reads the document in a transaction.
      *     @type Timestamp $readTime
      *          Reads the version of the document at the given time.
-     *          This may not be older than 60 seconds.
+     *          This may not be older than 270 seconds.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -517,7 +521,7 @@ class FirestoreGapicClient
      *          Reads documents in a transaction.
      *     @type Timestamp $readTime
      *          Reads documents as they were at the given time.
-     *          This may not be older than 60 seconds.
+     *          This may not be older than 270 seconds.
      *     @type bool $showMissing
      *          If the list should show missing documents. A missing document is a
      *          document that does not exist but has sub-documents. These documents will
@@ -811,7 +815,7 @@ class FirestoreGapicClient
      *          stream.
      *     @type Timestamp $readTime
      *          Reads documents as they were at the given time.
-     *          This may not be older than 60 seconds.
+     *          This may not be older than 270 seconds.
      *     @type int $timeoutMillis
      *          Timeout to use for this call.
      * }
@@ -1063,7 +1067,7 @@ class FirestoreGapicClient
      *          stream.
      *     @type Timestamp $readTime
      *          Reads documents as they were at the given time.
-     *          This may not be older than 60 seconds.
+     *          This may not be older than 270 seconds.
      *     @type int $timeoutMillis
      *          Timeout to use for this call.
      * }
@@ -1321,5 +1325,184 @@ class FirestoreGapicClient
             ListCollectionIdsResponse::class,
             $request
         );
+    }
+
+    /**
+     * Partitions a query by returning partition cursors that can be used to run
+     * the query in parallel. The returned partition cursors are split points that
+     * can be used by RunQuery as starting/end points for the query results.
+     *
+     * Sample code:
+     * ```
+     * $firestoreClient = new FirestoreClient();
+     * try {
+     *     $response = $firestoreClient->partitionQuery();
+     * } finally {
+     *     $firestoreClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type string $parent
+     *          Required. The parent resource name. In the format:
+     *          `projects/{project_id}/databases/{database_id}/documents`.
+     *          Document resource names are not supported; only database resource names
+     *          can be specified.
+     *     @type StructuredQuery $structuredQuery
+     *          A structured query.
+     *          Filters, order bys, limits, offsets, and start/end cursors are not
+     *          supported.
+     *     @type int $partitionCount
+     *          The desired maximum number of partition points.
+     *          The partitions may be returned across multiple pages of results.
+     *          The number must be strictly positive. The actual number of partitions
+     *          returned may be fewer.
+     *
+     *          For example, this may be set to one fewer than the number of parallel
+     *          queries to be run, or in running a data pipeline job, one fewer than the
+     *          number of workers or compute instances available.
+     *     @type string $pageToken
+     *          The `next_page_token` value returned from a previous call to
+     *          PartitionQuery that may be used to get an additional set of results.
+     *          There are no ordering guarantees between sets of results. Thus, using
+     *          multiple sets of results will require merging the different result sets.
+     *
+     *          For example, two subsequent calls using a page_token may return:
+     *
+     *           * cursor B, cursor M, cursor Q
+     *           * cursor A, cursor U, cursor W
+     *
+     *          To obtain a complete result set ordered with respect to the results of the
+     *          query supplied to PartitionQuery, the results sets should be merged:
+     *          cursor A, cursor B, cursor M, cursor Q, cursor U, cursor W
+     *     @type int $pageSize
+     *          The maximum number of partitions to return in this call, subject to
+     *          `partition_count`.
+     *
+     *          For example, if `partition_count` = 10 and `page_size` = 8, the first call
+     *          to PartitionQuery will return up to 8 partitions and a `next_page_token`
+     *          if more results exist. A second call to PartitionQuery will return up to
+     *          2 partitions, to complete the total of 10 specified in `partition_count`.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Firestore\V1\PartitionQueryResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function partitionQuery(array $optionalArgs = [])
+    {
+        $request = new PartitionQueryRequest();
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+        }
+        if (isset($optionalArgs['structuredQuery'])) {
+            $request->setStructuredQuery($optionalArgs['structuredQuery']);
+        }
+        if (isset($optionalArgs['partitionCount'])) {
+            $request->setPartitionCount($optionalArgs['partitionCount']);
+        }
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'PartitionQuery',
+            PartitionQueryResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Applies a batch of write operations.
+     *
+     * The BatchWrite method does not apply the write operations atomically
+     * and can apply them out of order. Method does not allow more than one write
+     * per document. Each write succeeds or fails independently. See the
+     * [BatchWriteResponse][google.firestore.v1.BatchWriteResponse] for the success status of each write.
+     *
+     * If you require an atomically applied set of writes, use
+     * [Commit][google.firestore.v1.Firestore.Commit] instead.
+     *
+     * Sample code:
+     * ```
+     * $firestoreClient = new FirestoreClient();
+     * try {
+     *     $response = $firestoreClient->batchWrite();
+     * } finally {
+     *     $firestoreClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type string $database
+     *          Required. The database name. In the format:
+     *          `projects/{project_id}/databases/{database_id}`.
+     *     @type Write[] $writes
+     *          The writes to apply.
+     *
+     *          Method does not apply writes atomically and does not guarantee ordering.
+     *          Each write succeeds or fails independently. You cannot write to the same
+     *          document more than once per request.
+     *     @type array $labels
+     *          Labels associated with this batch write.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Firestore\V1\BatchWriteResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function batchWrite(array $optionalArgs = [])
+    {
+        $request = new BatchWriteRequest();
+        if (isset($optionalArgs['database'])) {
+            $request->setDatabase($optionalArgs['database']);
+        }
+        if (isset($optionalArgs['writes'])) {
+            $request->setWrites($optionalArgs['writes']);
+        }
+        if (isset($optionalArgs['labels'])) {
+            $request->setLabels($optionalArgs['labels']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'database' => $request->getDatabase(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'BatchWrite',
+            BatchWriteResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 }

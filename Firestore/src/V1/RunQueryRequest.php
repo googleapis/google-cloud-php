@@ -53,7 +53,7 @@ class RunQueryRequest extends \Google\Protobuf\Internal\Message
      *           stream.
      *     @type \Google\Protobuf\Timestamp $read_time
      *           Reads documents as they were at the given time.
-     *           This may not be older than 60 seconds.
+     *           This may not be older than 270 seconds.
      * }
      */
     public function __construct($data = NULL) {
@@ -183,7 +183,7 @@ class RunQueryRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Reads documents as they were at the given time.
-     * This may not be older than 60 seconds.
+     * This may not be older than 270 seconds.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 7;</code>
      * @return \Google\Protobuf\Timestamp
@@ -195,7 +195,7 @@ class RunQueryRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Reads documents as they were at the given time.
-     * This may not be older than 60 seconds.
+     * This may not be older than 270 seconds.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 7;</code>
      * @param \Google\Protobuf\Timestamp $var
