@@ -60,8 +60,37 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $catalogServiceClient = new CatalogServiceClient();
  * try {
- *     $formattedName = $catalogServiceClient->catalogItemPathName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[CATALOG_ITEM_PATH]');
- *     $catalogServiceClient->deleteCatalogItem($formattedName);
+ *     $formattedParent = $catalogServiceClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
+ *     $inputConfig = new InputConfig();
+ *     $operationResponse = $catalogServiceClient->importCatalogItems($formattedParent, $inputConfig);
+ *     $operationResponse->pollUntilComplete();
+ *     if ($operationResponse->operationSucceeded()) {
+ *         $result = $operationResponse->getResult();
+ *         // doSomethingWith($result)
+ *     } else {
+ *         $error = $operationResponse->getError();
+ *         // handleError($error)
+ *     }
+ *
+ *
+ *     // Alternatively:
+ *
+ *     // start the operation, keep the operation name, and resume later
+ *     $operationResponse = $catalogServiceClient->importCatalogItems($formattedParent, $inputConfig);
+ *     $operationName = $operationResponse->getName();
+ *     // ... do other work
+ *     $newOperationResponse = $catalogServiceClient->resumeOperation($operationName, 'importCatalogItems');
+ *     while (!$newOperationResponse->isDone()) {
+ *         // ... do other work
+ *         $newOperationResponse->reload();
+ *     }
+ *     if ($newOperationResponse->operationSucceeded()) {
+ *       $result = $newOperationResponse->getResult();
+ *       // doSomethingWith($result)
+ *     } else {
+ *       $error = $newOperationResponse->getError();
+ *       // handleError($error)
+ *     }
  * } finally {
  *     $catalogServiceClient->close();
  * }
@@ -338,55 +367,6 @@ class CatalogServiceGapicClient
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
         $this->operationsClient = $this->createOperationsClient($clientOptions);
-    }
-
-    /**
-     * Deletes a catalog item.
-     *
-     * Sample code:
-     * ```
-     * $catalogServiceClient = new CatalogServiceClient();
-     * try {
-     *     $formattedName = $catalogServiceClient->catalogItemPathName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[CATALOG_ITEM_PATH]');
-     *     $catalogServiceClient->deleteCatalogItem($formattedName);
-     * } finally {
-     *     $catalogServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. Full resource name of catalog item, such as
-     *                             "projects/&#42;/locations/global/catalogs/default_catalog/catalogItems/some_catalog_item_id".
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function deleteCatalogItem($name, array $optionalArgs = [])
-    {
-        $request = new DeleteCatalogItemRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteCatalogItem',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
     }
 
     /**
@@ -736,6 +716,55 @@ class CatalogServiceGapicClient
         return $this->startCall(
             'UpdateCatalogItem',
             CatalogItem::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Deletes a catalog item.
+     *
+     * Sample code:
+     * ```
+     * $catalogServiceClient = new CatalogServiceClient();
+     * try {
+     *     $formattedName = $catalogServiceClient->catalogItemPathName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[CATALOG_ITEM_PATH]');
+     *     $catalogServiceClient->deleteCatalogItem($formattedName);
+     * } finally {
+     *     $catalogServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Full resource name of catalog item, such as
+     *                             "projects/&#42;/locations/global/catalogs/default_catalog/catalogItems/some_catalog_item_id".
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function deleteCatalogItem($name, array $optionalArgs = [])
+    {
+        $request = new DeleteCatalogItemRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteCatalogItem',
+            GPBEmpty::class,
             $optionalArgs,
             $request
         )->wait();

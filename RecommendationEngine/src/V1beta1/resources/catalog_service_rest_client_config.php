@@ -3,17 +3,6 @@
 return [
     'interfaces' => [
         'google.cloud.recommendationengine.v1beta1.CatalogService' => [
-            'DeleteCatalogItem' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/catalogs/*/catalogItems/**}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'ImportCatalogItems' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*/catalogs/*}/catalogItems:import',
@@ -64,6 +53,17 @@ return [
                 'method' => 'patch',
                 'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/catalogs/*/catalogItems/**}',
                 'body' => 'catalog_item',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteCatalogItem' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/catalogs/*/catalogItems/**}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
