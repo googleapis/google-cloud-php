@@ -126,6 +126,37 @@ return [
                     ],
                 ],
             ],
+            'PartitionQuery' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/databases/*/documents}:partitionQuery',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*/databases/*/documents/*/**}:partitionQuery',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchWrite' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{database=projects/*/databases/*}/documents:batchWrite',
+                'body' => '*',
+                'placeholders' => [
+                    'database' => [
+                        'getters' => [
+                            'getDatabase',
+                        ],
+                    ],
+                ],
+            ],
         ],
     ],
 ];
