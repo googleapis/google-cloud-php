@@ -815,8 +815,6 @@ class WriteTest extends SpannerTestCase
      */
     public function testPdml()
     {
-        $this->skipEmulatorTests();
-
         $id = $this->randId();
         $randStr = base64_encode(random_bytes(500));
         $randStr2 = base64_encode(random_bytes(500));
