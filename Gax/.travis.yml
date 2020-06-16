@@ -37,7 +37,7 @@ stages:
 
 install:
   - travis_retry pecl install grpc
-  - if [[ $PROTOBUF_C_EXT =~ ^true ]]; then travis_retry pecl install protobuf-3.7.1; fi
+  - if [[ $PROTOBUF_C_EXT =~ ^true ]]; then travis_retry pecl install protobuf-3.12.2; fi
   - travis_retry composer install
 script:
   - vendor/bin/phpunit --coverage-clover=coverage.xml
