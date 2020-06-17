@@ -79,14 +79,11 @@
     <div class="quote-box--supplementary">
       <h4>Example: Retrieve a bucket from Cloud Storage</h4>
       <div hljs hljs-language="php5" no-escape>
-use Google\Cloud\Core\ServiceBuilder;
+use Google\Cloud\Storage\StorageClient;
 
-$gcloud = new ServiceBuilder([
+$storage = new StorageClient([
     'keyFilePath' => '/path/to/key/file.json',
-    'projectId' => 'myProject'
-]);
-
-$storage = $gcloud->storage();
+])
 
 $bucket = $storage->bucket('myBucket');</div>
     </div>
