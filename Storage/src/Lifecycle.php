@@ -84,6 +84,13 @@ class Lifecycle implements \ArrayAccess, \IteratorAggregate
      *           date part (for instance, "2013-01-15"). This condition is
      *           satisfied when an object is created before midnight of the
      *           specified date in UTC.
+     *     @type int $daysSinceNoncurrentTime Number of days elapsed since the
+     *           noncurrent timestamp of an object. The condition is satisfied
+     *           if the days elapsed is at least this number. This condition is
+     *           relevant only for versioned objects. The value of the field
+     *           must be a nonnegative integer. If it's zero, the object version
+     *           will become eligible for Lifecycle action as soon as it becomes
+     *           noncurrent.
      *     @type bool $isLive Relevant only for versioned objects. If the value
      *           is `true`, this condition matches live objects; if the value is
      *           `false`, it matches archived objects.
@@ -92,6 +99,10 @@ class Lifecycle implements \ArrayAccess, \IteratorAggregate
      *           include `"MULTI_REGIONAL"`, `"REGIONAL"`, `"NEARLINE"`,
      *           `"ARCHIVE"`, `"COLDLINE"`, `"STANDARD"`, and
      *           `"DURABLE_REDUCED_AVAILABILITY"`.
+     *     @type string $noncurrentTimeBefore A timestamp in RFC 3339 format.
+     *           This condition is satisfied when the noncurrent time on an
+     *           object is before this timestamp. This condition is relevant
+     *           only for versioned objects.
      *     @type int $numNewerVersions Relevant only for versioned objects. If
      *           the value is N, this condition is satisfied when there are at
      *           least N versions (including the live version) newer than this
@@ -134,13 +145,25 @@ class Lifecycle implements \ArrayAccess, \IteratorAggregate
      *           date part (for instance, "2013-01-15"). This condition is
      *           satisfied when an object is created before midnight of the
      *           specified date in UTC.
+     *     @type int $daysSinceNoncurrentTime Number of days elapsed since the
+     *           noncurrent timestamp of an object. The condition is satisfied
+     *           if the days elapsed is at least this number. This condition is
+     *           relevant only for versioned objects. The value of the field
+     *           must be a nonnegative integer. If it's zero, the object version
+     *           will become eligible for Lifecycle action as soon as it becomes
+     *           noncurrent.
      *     @type bool $isLive Relevant only for versioned objects. If the value
      *           is `true`, this condition matches live objects; if the value is
      *           `false`, it matches archived objects.
      *     @type string[] $matchesStorageClass Objects having any of the storage
      *           classes specified by this condition will be matched. Values
      *           include `"MULTI_REGIONAL"`, `"REGIONAL"`, `"NEARLINE"`,
-     *           `"COLDLINE"`, `"STANDARD"`, and `"DURABLE_REDUCED_AVAILABILITY"`.
+     *           `"ARCHIVE"`, `"COLDLINE"`, `"STANDARD"`, and
+     *           `"DURABLE_REDUCED_AVAILABILITY"`.
+     *     @type string $noncurrentTimeBefore A timestamp in RFC 3339 format.
+     *           This condition is satisfied when the noncurrent time on an
+     *           object is before this timestamp. This condition is relevant
+     *           only for versioned objects.
      *     @type int $numNewerVersions Relevant only for versioned objects. If
      *           the value is N, this condition is satisfied when there are at
      *           least N versions (including the live version) newer than this

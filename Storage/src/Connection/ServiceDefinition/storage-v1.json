@@ -1,11 +1,11 @@
 {
   "kind": "discovery#restDescription",
-  "etag": "\"F5McR9eEaw0XRpaO3M9gbIugkbs/bQWWH-5yykbmINHZHPMOypW2I3M\"",
+  "etag": "\"u9GIe6H63LSGq-9_t39K2Zx_EAc/SMGMLKKvE-TZrla7d9TA_SDVTI0\"",
   "discoveryVersion": "v1",
   "id": "storage:v1",
   "name": "storage",
   "version": "v1",
-  "revision": "20191011",
+  "revision": "20200430",
   "title": "Cloud Storage JSON API",
   "description": "Stores and retrieves potentially large, immutable data objects.",
   "ownerDomain": "google.com",
@@ -19,9 +19,9 @@
    "labs"
   ],
   "protocol": "rest",
-  "baseUrl": "https://www.googleapis.com/storage/v1/",
+  "baseUrl": "https://storage.googleapis.com/storage/v1/",
   "basePath": "/storage/v1/",
-  "rootUrl": "https://www.googleapis.com/",
+  "rootUrl": "https://storage.googleapis.com/",
   "servicePath": "storage/v1/",
   "batchPath": "batch/storage/v1",
   "parameters": {
@@ -184,7 +184,7 @@
       "properties": {
        "bucketPolicyOnly": {
         "type": "object",
-        "description": "The bucket's Bucket Policy Only configuration.",
+        "description": "The bucket's uniform bucket-level access configuration. The feature was formerly known as Bucket Policy Only. For backward compatibility, this field will be populated with identical information as the uniformBucketLevelAccess field. We recommend using the uniformBucketLevelAccess field to enable and disable the feature.",
         "properties": {
          "enabled": {
           "type": "boolean",
@@ -269,6 +269,21 @@
              "description": "A date in RFC 3339 format with only the date part (for instance, \"2013-01-15\"). This condition is satisfied when an object is created before midnight of the specified date in UTC.",
              "format": "date"
             },
+            "customTimeBefore": {
+             "type": "string",
+             "description": "A timestamp in RFC 3339 format. This condition is satisfied when the custom time on an object is before this timestamp.",
+             "format": "date-time"
+            },
+            "daysSinceCustomTime": {
+             "type": "integer",
+             "description": "Number of days elapsed since the user-specified timestamp set on an object. The condition is satisfied if the days elapsed is at least this number. If no custom timestamp is specified on an object, the condition does not apply.",
+             "format": "int32"
+            },
+            "daysSinceNoncurrentTime": {
+             "type": "integer",
+             "description": "Number of days elapsed since the noncurrent timestamp of an object. The condition is satisfied if the days elapsed is at least this number. This condition is relevant only for versioned objects. The value of the field must be a nonnegative integer. If it's zero, the object version will become eligible for Lifecycle action as soon as it becomes noncurrent.",
+             "format": "int32"
+            },
             "isLive": {
              "type": "boolean",
              "description": "Relevant only for versioned objects. If the value is true, this condition matches live objects; if the value is false, it matches archived objects."
@@ -279,10 +294,15 @@
             },
             "matchesStorageClass": {
              "type": "array",
-             "description": "Objects having any of the storage classes specified by this condition will be matched. Values include MULTI_REGIONAL, REGIONAL, NEARLINE, COLDLINE, STANDARD, and DURABLE_REDUCED_AVAILABILITY.",
+             "description": "Objects having any of the storage classes specified by this condition will be matched. Values include MULTI_REGIONAL, REGIONAL, NEARLINE, COLDLINE, ARCHIVE, STANDARD, and DURABLE_REDUCED_AVAILABILITY.",
              "items": {
               "type": "string"
              }
+            },
+            "noncurrentTimeBefore": {
+             "type": "string",
+             "description": "A timestamp in RFC 3339 format. This condition is satisfied when the noncurrent time on an object is before this timestamp. This condition is relevant only for versioned objects.",
+             "format": "date-time"
             },
             "numNewerVersions": {
              "type": "integer",
@@ -377,7 +397,7 @@
      },
      "storageClass": {
       "type": "string",
-      "description": "The bucket's default storage class, used whenever no storageClass is specified for a newly-created object. This defines how objects in the bucket are stored and determines the SLA and the cost of storage. Values include MULTI_REGIONAL, REGIONAL, STANDARD, NEARLINE, COLDLINE, and DURABLE_REDUCED_AVAILABILITY. If this value is not specified when the bucket is created, it will default to STANDARD. For more information, see storage classes."
+      "description": "The bucket's default storage class, used whenever no storageClass is specified for a newly-created object. This defines how objects in the bucket are stored and determines the SLA and the cost of storage. Values include MULTI_REGIONAL, REGIONAL, STANDARD, NEARLINE, COLDLINE, ARCHIVE, and DURABLE_REDUCED_AVAILABILITY. If this value is not specified when the bucket is created, it will default to STANDARD. For more information, see storage classes."
      },
      "timeCreated": {
       "type": "string",
@@ -412,6 +432,17 @@
         "description": "If the requested object path is missing, and any mainPageSuffix object is missing, if applicable, the service will return the named object from this bucket as the content for a 404 Not Found result."
        }
       }
+     },
+     "zoneAffinity": {
+      "type": "array",
+      "description": "The zone or zones from which the bucket is intended to use zonal quota. Requests for data from outside the specified affinities are still allowed but won't be able to use zonal quota. The zone or zones need to be within the bucket location otherwise the requests will fail with a 400 Bad Request response.",
+      "items": {
+       "type": "string"
+      }
+     },
+     "zoneSeparation": {
+      "type": "boolean",
+      "description": "If set, objects placed in this bucket are required to be separated by disaster domain."
      }
     }
    },
@@ -882,6 +913,11 @@
      "crc32c": {
       "type": "string",
       "description": "CRC32c checksum, as described in RFC 4960, Appendix B; encoded using base64 in big-endian byte order. For more information about using the CRC32c checksum, see Hashes and ETags: Best Practices."
+     },
+     "customTime": {
+      "type": "string",
+      "description": "A timestamp in RFC 3339 format specified by the user for an object.",
+      "format": "date-time"
      },
      "customerEncryption": {
       "type": "object",
@@ -3012,6 +3048,11 @@
         "required": true,
         "location": "path"
        },
+       "destinationKmsKeyName": {
+        "type": "string",
+        "description": "Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any.",
+        "location": "query"
+       },
        "destinationObject": {
         "type": "string",
         "description": "Name of the new object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any.",
@@ -3499,6 +3540,11 @@
         "description": "Returns results in a directory-like mode. items will contain only objects whose names, aside from the prefix, do not contain delimiter. Objects whose names, aside from the prefix, contain delimiter will have their name, truncated after the delimiter, returned in prefixes. Duplicate prefixes are omitted.",
         "location": "query"
        },
+       "endOffset": {
+        "type": "string",
+        "description": "Filter results to objects whose names are lexicographically before endOffset. If startOffset is also set, the objects listed will have names between startOffset (inclusive) and endOffset (exclusive).",
+        "location": "query"
+       },
        "includeTrailingDelimiter": {
         "type": "boolean",
         "description": "If true, objects that end in exactly one instance of delimiter will have their metadata included in items in addition to prefixes.",
@@ -3538,6 +3584,11 @@
        "provisionalUserProject": {
         "type": "string",
         "description": "The project to be billed for this request if the target bucket is requester-pays bucket.",
+        "location": "query"
+       },
+       "startOffset": {
+        "type": "string",
+        "description": "Filter results to objects whose names are lexicographically equal to or after startOffset. If endOffset is also set, the objects listed will have names between startOffset (inclusive) and endOffset (exclusive).",
         "location": "query"
        },
        "userProject": {
@@ -4071,6 +4122,11 @@
         "description": "Returns results in a directory-like mode. items will contain only objects whose names, aside from the prefix, do not contain delimiter. Objects whose names, aside from the prefix, contain delimiter will have their name, truncated after the delimiter, returned in prefixes. Duplicate prefixes are omitted.",
         "location": "query"
        },
+       "endOffset": {
+        "type": "string",
+        "description": "Filter results to objects whose names are lexicographically before endOffset. If startOffset is also set, the objects listed will have names between startOffset (inclusive) and endOffset (exclusive).",
+        "location": "query"
+       },
        "includeTrailingDelimiter": {
         "type": "boolean",
         "description": "If true, objects that end in exactly one instance of delimiter will have their metadata included in items in addition to prefixes.",
@@ -4110,6 +4166,11 @@
        "provisionalUserProject": {
         "type": "string",
         "description": "The project to be billed for this request if the target bucket is requester-pays bucket.",
+        "location": "query"
+       },
+       "startOffset": {
+        "type": "string",
+        "description": "Filter results to objects whose names are lexicographically equal to or after startOffset. If endOffset is also set, the objects listed will have names between startOffset (inclusive) and endOffset (exclusive).",
         "location": "query"
        },
        "userProject": {
