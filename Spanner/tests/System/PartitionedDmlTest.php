@@ -29,8 +29,6 @@ class PartitionedDmlTest extends SpannerTestCase
 
     public function testPdml()
     {
-        $this->skipEmulatorTests();
-
         $db = self::$database;
 
         $db->updateDdl('CREATE TABLE ' . self::PDML_TABLE . '(
