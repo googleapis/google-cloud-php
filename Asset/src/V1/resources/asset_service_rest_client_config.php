@@ -84,6 +84,28 @@ return [
                     ],
                 ],
             ],
+            'SearchAllResources' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{scope=*/*}:searchAllResources',
+                'placeholders' => [
+                    'scope' => [
+                        'getters' => [
+                            'getScope',
+                        ],
+                    ],
+                ],
+            ],
+            'SearchAllIamPolicies' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{scope=*/*}:searchAllIamPolicies',
+                'placeholders' => [
+                    'scope' => [
+                        'getters' => [
+                            'getScope',
+                        ],
+                    ],
+                ],
+            ],
         ],
     ],
 ];

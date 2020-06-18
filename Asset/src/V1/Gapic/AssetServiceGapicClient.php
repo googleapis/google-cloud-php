@@ -46,6 +46,10 @@ use Google\Cloud\Asset\V1\GetFeedRequest;
 use Google\Cloud\Asset\V1\ListFeedsRequest;
 use Google\Cloud\Asset\V1\ListFeedsResponse;
 use Google\Cloud\Asset\V1\OutputConfig;
+use Google\Cloud\Asset\V1\SearchAllIamPoliciesRequest;
+use Google\Cloud\Asset\V1\SearchAllIamPoliciesResponse;
+use Google\Cloud\Asset\V1\SearchAllResourcesRequest;
+use Google\Cloud\Asset\V1\SearchAllResourcesResponse;
 use Google\Cloud\Asset\V1\TimeWindow;
 use Google\Cloud\Asset\V1\UpdateFeedRequest;
 use Google\LongRunning\Operation;
@@ -439,8 +443,9 @@ class AssetServiceGapicClient
     /**
      * Exports assets with time and resource types to a given Cloud Storage
      * location. The output format is newline-delimited JSON.
-     * This API implements the [google.longrunning.Operation][google.longrunning.Operation] API allowing you
-     * to keep track of the export.
+     * This API implements the
+     * [google.longrunning.Operation][google.longrunning.Operation] API allowing
+     * you to keep track of the export.
      *
      * Sample code:
      * ```
@@ -659,9 +664,8 @@ class AssetServiceGapicClient
      *                             "projects/12345").
      * @param string $feedId       Required. This is the client-assigned asset feed identifier and it needs to
      *                             be unique under a specific parent project/folder/organization.
-     * @param Feed   $feed         Required. The feed details. The field `name` must be empty and it will be generated
-     *                             in the format of:
-     *                             projects/project_number/feeds/feed_id
+     * @param Feed   $feed         Required. The feed details. The field `name` must be empty and it will be
+     *                             generated in the format of: projects/project_number/feeds/feed_id
      *                             folders/folder_number/feeds/feed_id
      *                             organizations/organization_number/feeds/feed_id
      * @param array  $optionalArgs {
@@ -818,8 +822,8 @@ class AssetServiceGapicClient
      * }
      * ```
      *
-     * @param Feed      $feed         Required. The new values of feed details. It must match an existing feed and the
-     *                                field `name` must be in the format of:
+     * @param Feed      $feed         Required. The new values of feed details. It must match an existing feed
+     *                                and the field `name` must be in the format of:
      *                                projects/project_number/feeds/feed_id or
      *                                folders/folder_number/feeds/feed_id or
      *                                organizations/organization_number/feeds/feed_id.
@@ -859,5 +863,263 @@ class AssetServiceGapicClient
             $optionalArgs,
             $request
         )->wait();
+    }
+
+    /**
+     * Searches all the resources within the given accessible scope (e.g., a
+     * project, a folder or an organization). Callers should have
+     * cloud.assets.SearchAllResources permission upon the requested scope,
+     * otherwise the request will be rejected.
+     *
+     * Sample code:
+     * ```
+     * $assetServiceClient = new AssetServiceClient();
+     * try {
+     *     $scope = '';
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $assetServiceClient->searchAllResources($scope);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $assetServiceClient->searchAllResources($scope);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $assetServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $scope Required. A scope can be a project, a folder or an organization. The search
+     *                      is limited to the resources within the `scope`.
+     *
+     * The allowed values are:
+     *
+     * * projects/{PROJECT_ID}
+     * * projects/{PROJECT_NUMBER}
+     * * folders/{FOLDER_NUMBER}
+     * * organizations/{ORGANIZATION_NUMBER}
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type string $query
+     *          Optional. The query statement. An empty query can be specified to search
+     *          all the resources of certain `asset_types` within the given `scope`.
+     *
+     *          Examples:
+     *
+     *          * `name : "Important"` to find Cloud resources whose name contains
+     *            "Important" as a word.
+     *          * `displayName : "Impor*"` to find Cloud resources whose display name
+     *            contains "Impor" as a word prefix.
+     *          * `description : "*por*"` to find Cloud resources whose description
+     *            contains "por" as a substring.
+     *          * `location : "us-west*"` to find Cloud resources whose location is
+     *            prefixed with "us-west".
+     *          * `labels : "prod"` to find Cloud resources whose labels contain "prod" as
+     *            a key or value.
+     *          * `labels.env : "prod"` to find Cloud resources which have a label "env"
+     *            and its value is "prod".
+     *          * `labels.env : *` to find Cloud resources which have a label "env".
+     *          * `"Important"` to find Cloud resources which contain "Important" as a word
+     *            in any of the searchable fields.
+     *          * `"Impor*"` to find Cloud resources which contain "Impor" as a word prefix
+     *            in any of the searchable fields.
+     *          * `"*por*"` to find Cloud resources which contain "por" as a substring in
+     *            any of the searchable fields.
+     *          * `("Important" AND location : ("us-west1" OR "global"))` to find Cloud
+     *            resources which contain "Important" as a word in any of the searchable
+     *            fields and are also located in the "us-west1" region or the "global"
+     *            location.
+     *
+     *          See [how to construct a
+     *          query](https://cloud.google.com/asset-inventory/docs/searching-resources#how_to_construct_a_query)
+     *          for more details.
+     *     @type string[] $assetTypes
+     *          Optional. A list of asset types that this request searches for. If empty,
+     *          it will search all the [searchable asset
+     *          types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types).
+     *     @type int $pageSize
+     *          The maximum number of resources contained in the underlying API
+     *          response. The API may return fewer values in a page, even if
+     *          there are additional values to be retrieved.
+     *     @type string $pageToken
+     *          A page token is used to specify a page of values to be returned.
+     *          If no page token is specified (the default), the first page
+     *          of values will be returned. Any page token used here must have
+     *          been generated by a previous call to the API.
+     *     @type string $orderBy
+     *          Optional. A comma separated list of fields specifying the sorting order of
+     *          the results. The default order is ascending. Add " DESC" after the field
+     *          name to indicate descending order. Redundant space characters are ignored.
+     *          Example: "location DESC, name". See [supported resource metadata
+     *          fields](https://cloud.google.com/asset-inventory/docs/searching-resources#query_on_resource_metadata_fields)
+     *          for more details.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function searchAllResources($scope, array $optionalArgs = [])
+    {
+        $request = new SearchAllResourcesRequest();
+        $request->setScope($scope);
+        if (isset($optionalArgs['query'])) {
+            $request->setQuery($optionalArgs['query']);
+        }
+        if (isset($optionalArgs['assetTypes'])) {
+            $request->setAssetTypes($optionalArgs['assetTypes']);
+        }
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'scope' => $request->getScope(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->getPagedListResponse(
+            'SearchAllResources',
+            $optionalArgs,
+            SearchAllResourcesResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Searches all the IAM policies within the given accessible scope (e.g., a
+     * project, a folder or an organization). Callers should have
+     * cloud.assets.SearchAllIamPolicies permission upon the requested scope,
+     * otherwise the request will be rejected.
+     *
+     * Sample code:
+     * ```
+     * $assetServiceClient = new AssetServiceClient();
+     * try {
+     *     $scope = '';
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $assetServiceClient->searchAllIamPolicies($scope);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $assetServiceClient->searchAllIamPolicies($scope);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $assetServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $scope Required. A scope can be a project, a folder or an organization. The search
+     *                      is limited to the IAM policies within the `scope`.
+     *
+     * The allowed values are:
+     *
+     * * projects/{PROJECT_ID}
+     * * projects/{PROJECT_NUMBER}
+     * * folders/{FOLDER_NUMBER}
+     * * organizations/{ORGANIZATION_NUMBER}
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type string $query
+     *          Optional. The query statement. An empty query can be specified to search
+     *          all the IAM policies within the given `scope`.
+     *
+     *          Examples:
+     *
+     *          * `policy : "amy&#64;gmail.com"` to find Cloud IAM policy bindings that
+     *            specify user "amy&#64;gmail.com".
+     *          * `policy : "roles/compute.admin"` to find Cloud IAM policy bindings that
+     *            specify the Compute Admin role.
+     *          * `policy.role.permissions : "storage.buckets.update"` to find Cloud IAM
+     *            policy bindings that specify a role containing "storage.buckets.update"
+     *            permission.
+     *          * `resource : "organizations/123"` to find Cloud IAM policy bindings that
+     *            are set on "organizations/123".
+     *          * `(resource : ("organizations/123" OR "folders/1234") AND policy : "amy")`
+     *            to find Cloud IAM policy bindings that are set on "organizations/123" or
+     *            "folders/1234", and also specify user "amy".
+     *
+     *          See [how to construct a
+     *          query](https://cloud.google.com/asset-inventory/docs/searching-iam-policies#how_to_construct_a_query)
+     *          for more details.
+     *     @type int $pageSize
+     *          The maximum number of resources contained in the underlying API
+     *          response. The API may return fewer values in a page, even if
+     *          there are additional values to be retrieved.
+     *     @type string $pageToken
+     *          A page token is used to specify a page of values to be returned.
+     *          If no page token is specified (the default), the first page
+     *          of values will be returned. Any page token used here must have
+     *          been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function searchAllIamPolicies($scope, array $optionalArgs = [])
+    {
+        $request = new SearchAllIamPoliciesRequest();
+        $request->setScope($scope);
+        if (isset($optionalArgs['query'])) {
+            $request->setQuery($optionalArgs['query']);
+        }
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'scope' => $request->getScope(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->getPagedListResponse(
+            'SearchAllIamPolicies',
+            $optionalArgs,
+            SearchAllIamPoliciesResponse::class,
+            $request
+        );
     }
 }
