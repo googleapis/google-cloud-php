@@ -482,6 +482,17 @@ class Grpc implements ConnectionInterface
     /**
      * @param array $args
      */
+    public function detachSubscription(array $args)
+    {
+        return $this->send([$this->publisherClient, 'detachSubscription'], [
+            $this->pluck('subscription', $args),
+            $args
+        ]);
+    }
+
+    /**
+     * @param array $args
+     */
     public function testSubscriptionIamPermissions(array $args)
     {
         return $this->send([$this->subscriberClient, 'testIamPermissions'], [

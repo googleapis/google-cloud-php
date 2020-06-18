@@ -290,4 +290,12 @@ class Rest implements ConnectionInterface
     {
         return $this->send('subscriptions', 'testIamPermissions', $args);
     }
+
+    /**
+     * @param array $args
+     */
+    public function detachSubscription(array $args)
+    {
+        return $this->send('subscriptions', 'detach', $args);
+    }
 }

@@ -152,4 +152,9 @@ interface ConnectionInterface
      * @param array $args
      */
     public function testSubscriptionIamPermissions(array $args);
+
+    /**
+     * @param array $args
+     */
+    public function detachSubscription(array $args);
 }
