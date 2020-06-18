@@ -414,6 +414,117 @@ class OsLoginServiceGapicClient
     }
 
     /**
+     * Retrieves the profile information used for logging in to a virtual machine
+     * on Google Compute Engine.
+     *
+     * Sample code:
+     * ```
+     * $osLoginServiceClient = new OsLoginServiceClient();
+     * try {
+     *     $formattedName = $osLoginServiceClient->userName('[USER]');
+     *     $response = $osLoginServiceClient->getLoginProfile($formattedName);
+     * } finally {
+     *     $osLoginServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The unique ID for the user in format `users/{user}`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type string $projectId
+     *          The project ID of the Google Cloud Platform project.
+     *     @type string $systemId
+     *          A system ID for filtering the results of the request.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\OsLogin\V1\LoginProfile
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getLoginProfile($name, array $optionalArgs = [])
+    {
+        $request = new GetLoginProfileRequest();
+        $request->setName($name);
+        if (isset($optionalArgs['projectId'])) {
+            $request->setProjectId($optionalArgs['projectId']);
+        }
+        if (isset($optionalArgs['systemId'])) {
+            $request->setSystemId($optionalArgs['systemId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'GetLoginProfile',
+            LoginProfile::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Retrieves an SSH public key.
+     *
+     * Sample code:
+     * ```
+     * $osLoginServiceClient = new OsLoginServiceClient();
+     * try {
+     *     $formattedName = $osLoginServiceClient->sshPublicKeyName('[USER]', '[FINGERPRINT]');
+     *     $response = $osLoginServiceClient->getSshPublicKey($formattedName);
+     * } finally {
+     *     $osLoginServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The fingerprint of the public key to retrieve. Public keys are identified
+     *                             by their SHA-256 fingerprint. The fingerprint of the public key is in
+     *                             format `users/{user}/sshPublicKeys/{fingerprint}`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\OsLogin\Common\SshPublicKey
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getSshPublicKey($name, array $optionalArgs = [])
+    {
+        $request = new GetSshPublicKeyRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'GetSshPublicKey',
+            SshPublicKey::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Adds an SSH public key and returns the profile information. Default POSIX
      * account information is set when no username and UID exist as part of the
      * login profile.
@@ -528,117 +639,6 @@ class OsLoginServiceGapicClient
 
         return $this->startCall(
             'UpdateSshPublicKey',
-            SshPublicKey::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Retrieves the profile information used for logging in to a virtual machine
-     * on Google Compute Engine.
-     *
-     * Sample code:
-     * ```
-     * $osLoginServiceClient = new OsLoginServiceClient();
-     * try {
-     *     $formattedName = $osLoginServiceClient->userName('[USER]');
-     *     $response = $osLoginServiceClient->getLoginProfile($formattedName);
-     * } finally {
-     *     $osLoginServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. The unique ID for the user in format `users/{user}`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type string $projectId
-     *          The project ID of the Google Cloud Platform project.
-     *     @type string $systemId
-     *          A system ID for filtering the results of the request.
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\OsLogin\V1\LoginProfile
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function getLoginProfile($name, array $optionalArgs = [])
-    {
-        $request = new GetLoginProfileRequest();
-        $request->setName($name);
-        if (isset($optionalArgs['projectId'])) {
-            $request->setProjectId($optionalArgs['projectId']);
-        }
-        if (isset($optionalArgs['systemId'])) {
-            $request->setSystemId($optionalArgs['systemId']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'GetLoginProfile',
-            LoginProfile::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Retrieves an SSH public key.
-     *
-     * Sample code:
-     * ```
-     * $osLoginServiceClient = new OsLoginServiceClient();
-     * try {
-     *     $formattedName = $osLoginServiceClient->sshPublicKeyName('[USER]', '[FINGERPRINT]');
-     *     $response = $osLoginServiceClient->getSshPublicKey($formattedName);
-     * } finally {
-     *     $osLoginServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. The fingerprint of the public key to retrieve. Public keys are identified
-     *                             by their SHA-256 fingerprint. The fingerprint of the public key is in
-     *                             format `users/{user}/sshPublicKeys/{fingerprint}`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\OsLogin\Common\SshPublicKey
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function getSshPublicKey($name, array $optionalArgs = [])
-    {
-        $request = new GetSshPublicKeyRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'GetSshPublicKey',
             SshPublicKey::class,
             $optionalArgs,
             $request
