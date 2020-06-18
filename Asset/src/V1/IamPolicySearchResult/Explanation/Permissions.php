@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class Permissions extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A list of permissions. A sample permission string: "compute.disk.get".
+     * A list of permissions. A sample permission string: `compute.disk.get`.
      *
      * Generated from protobuf field <code>repeated string permissions = 1;</code>
      */
@@ -29,7 +29,7 @@ class Permissions extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $permissions
-     *           A list of permissions. A sample permission string: "compute.disk.get".
+     *           A list of permissions. A sample permission string: `compute.disk.get`.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +38,7 @@ class Permissions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of permissions. A sample permission string: "compute.disk.get".
+     * A list of permissions. A sample permission string: `compute.disk.get`.
      *
      * Generated from protobuf field <code>repeated string permissions = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -49,7 +49,7 @@ class Permissions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of permissions. A sample permission string: "compute.disk.get".
+     * A list of permissions. A sample permission string: `compute.disk.get`.
      *
      * Generated from protobuf field <code>repeated string permissions = 1;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var

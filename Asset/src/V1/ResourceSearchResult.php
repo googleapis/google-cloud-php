@@ -17,7 +17,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
 {
     /**
      * The full resource name of this resource. Example:
-     * "//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1".
+     * `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
      * See [Cloud Asset Inventory Resource Name
      * Format](https://cloud.google.com/asset-inventory/docs/resource-name-format)
      * for more information.
@@ -29,7 +29,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * The type of this resource. Example: "compute.googleapis.com/Disk".
+     * The type of this resource. Example: `compute.googleapis.com/Disk`.
      * To search against the `asset_type`:
      * * specify the `asset_type` field in your search request.
      *
@@ -65,8 +65,8 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      */
     private $description = '';
     /**
-     * Location can be "global", regional like "us-east1", or zonal like
-     * "us-west1-b".
+     * Location can be `global`, regional like `us-east1`, or zonal like
+     * `us-west1-b`.
      * To search against the `location`:
      * * use a field query. Example: `location : "us-west*"`
      * * use a free text query. Example: `"us-west*"`
@@ -102,11 +102,11 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
     private $network_tags;
     /**
      * The additional attributes of this resource. The attributes may vary from
-     * one resource type to another. Examples: "projectId" for Project,
-     * "dnsName" for DNS ManagedZone.
+     * one resource type to another. Examples: `projectId` for Project,
+     * `dnsName` for DNS ManagedZone.
      * To search against the `additional_attributes`:
      * * use a free text query to match the attributes values. Example: to search
-     *   additional_attributes = { dnsName: "foobar" }, you can issue a query
+     *   `additional_attributes = { dnsName: "foobar" }`, you can issue a query
      *   `"foobar"`.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct additional_attributes = 9;</code>
@@ -121,7 +121,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The full resource name of this resource. Example:
-     *           "//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1".
+     *           `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
      *           See [Cloud Asset Inventory Resource Name
      *           Format](https://cloud.google.com/asset-inventory/docs/resource-name-format)
      *           for more information.
@@ -129,7 +129,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *           * use a field query. Example: `name : "instance1"`
      *           * use a free text query. Example: `"instance1"`
      *     @type string $asset_type
-     *           The type of this resource. Example: "compute.googleapis.com/Disk".
+     *           The type of this resource. Example: `compute.googleapis.com/Disk`.
      *           To search against the `asset_type`:
      *           * specify the `asset_type` field in your search request.
      *     @type string $project
@@ -149,8 +149,8 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *           * use a field query. Example: `description : "*important instance*"`
      *           * use a free text query. Example: `"*important instance*"`
      *     @type string $location
-     *           Location can be "global", regional like "us-east1", or zonal like
-     *           "us-west1-b".
+     *           Location can be `global`, regional like `us-east1`, or zonal like
+     *           `us-west1-b`.
      *           To search against the `location`:
      *           * use a field query. Example: `location : "us-west*"`
      *           * use a free text query. Example: `"us-west*"`
@@ -174,11 +174,11 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *           * use a free text query. Example: `"internal"`
      *     @type \Google\Protobuf\Struct $additional_attributes
      *           The additional attributes of this resource. The attributes may vary from
-     *           one resource type to another. Examples: "projectId" for Project,
-     *           "dnsName" for DNS ManagedZone.
+     *           one resource type to another. Examples: `projectId` for Project,
+     *           `dnsName` for DNS ManagedZone.
      *           To search against the `additional_attributes`:
      *           * use a free text query to match the attributes values. Example: to search
-     *             additional_attributes = { dnsName: "foobar" }, you can issue a query
+     *             `additional_attributes = { dnsName: "foobar" }`, you can issue a query
      *             `"foobar"`.
      * }
      */
@@ -189,7 +189,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
 
     /**
      * The full resource name of this resource. Example:
-     * "//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1".
+     * `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
      * See [Cloud Asset Inventory Resource Name
      * Format](https://cloud.google.com/asset-inventory/docs/resource-name-format)
      * for more information.
@@ -207,7 +207,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
 
     /**
      * The full resource name of this resource. Example:
-     * "//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1".
+     * `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
      * See [Cloud Asset Inventory Resource Name
      * Format](https://cloud.google.com/asset-inventory/docs/resource-name-format)
      * for more information.
@@ -228,7 +228,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The type of this resource. Example: "compute.googleapis.com/Disk".
+     * The type of this resource. Example: `compute.googleapis.com/Disk`.
      * To search against the `asset_type`:
      * * specify the `asset_type` field in your search request.
      *
@@ -241,7 +241,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The type of this resource. Example: "compute.googleapis.com/Disk".
+     * The type of this resource. Example: `compute.googleapis.com/Disk`.
      * To search against the `asset_type`:
      * * specify the `asset_type` field in your search request.
      *
@@ -356,8 +356,8 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Location can be "global", regional like "us-east1", or zonal like
-     * "us-west1-b".
+     * Location can be `global`, regional like `us-east1`, or zonal like
+     * `us-west1-b`.
      * To search against the `location`:
      * * use a field query. Example: `location : "us-west*"`
      * * use a free text query. Example: `"us-west*"`
@@ -371,8 +371,8 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Location can be "global", regional like "us-east1", or zonal like
-     * "us-west1-b".
+     * Location can be `global`, regional like `us-east1`, or zonal like
+     * `us-west1-b`.
      * To search against the `location`:
      * * use a field query. Example: `location : "us-west*"`
      * * use a free text query. Example: `"us-west*"`
@@ -471,11 +471,11 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
 
     /**
      * The additional attributes of this resource. The attributes may vary from
-     * one resource type to another. Examples: "projectId" for Project,
-     * "dnsName" for DNS ManagedZone.
+     * one resource type to another. Examples: `projectId` for Project,
+     * `dnsName` for DNS ManagedZone.
      * To search against the `additional_attributes`:
      * * use a free text query to match the attributes values. Example: to search
-     *   additional_attributes = { dnsName: "foobar" }, you can issue a query
+     *   `additional_attributes = { dnsName: "foobar" }`, you can issue a query
      *   `"foobar"`.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct additional_attributes = 9;</code>
@@ -488,11 +488,11 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
 
     /**
      * The additional attributes of this resource. The attributes may vary from
-     * one resource type to another. Examples: "projectId" for Project,
-     * "dnsName" for DNS ManagedZone.
+     * one resource type to another. Examples: `projectId` for Project,
+     * `dnsName` for DNS ManagedZone.
      * To search against the `additional_attributes`:
      * * use a free text query to match the attributes values. Example: to search
-     *   additional_attributes = { dnsName: "foobar" }, you can issue a query
+     *   `additional_attributes = { dnsName: "foobar" }`, you can issue a query
      *   `"foobar"`.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct additional_attributes = 9;</code>
