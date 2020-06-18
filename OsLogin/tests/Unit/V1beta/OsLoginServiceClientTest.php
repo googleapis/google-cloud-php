@@ -86,7 +86,7 @@ class OsLoginServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->projectName('[USER]', '[PROJECT]');
+        $formattedName = $client->posixAccountName('[USER]', '[PROJECT]');
 
         $client->deletePosixAccount($formattedName);
         $actualRequests = $transport->popReceivedCalls();
@@ -125,7 +125,7 @@ class OsLoginServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->projectName('[USER]', '[PROJECT]');
+        $formattedName = $client->posixAccountName('[USER]', '[PROJECT]');
 
         try {
             $client->deletePosixAccount($formattedName);
@@ -156,7 +156,7 @@ class OsLoginServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->fingerprintName('[USER]', '[FINGERPRINT]');
+        $formattedName = $client->sshPublicKeyName('[USER]', '[FINGERPRINT]');
 
         $client->deleteSshPublicKey($formattedName);
         $actualRequests = $transport->popReceivedCalls();
@@ -195,7 +195,7 @@ class OsLoginServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->fingerprintName('[USER]', '[FINGERPRINT]');
+        $formattedName = $client->sshPublicKeyName('[USER]', '[FINGERPRINT]');
 
         try {
             $client->deleteSshPublicKey($formattedName);
@@ -307,7 +307,7 @@ class OsLoginServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->fingerprintName('[USER]', '[FINGERPRINT]');
+        $formattedName = $client->sshPublicKeyName('[USER]', '[FINGERPRINT]');
 
         $response = $client->getSshPublicKey($formattedName);
         $this->assertEquals($expectedResponse, $response);
@@ -347,7 +347,7 @@ class OsLoginServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->fingerprintName('[USER]', '[FINGERPRINT]');
+        $formattedName = $client->sshPublicKeyName('[USER]', '[FINGERPRINT]');
 
         try {
             $client->getSshPublicKey($formattedName);
@@ -378,10 +378,9 @@ class OsLoginServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = $client->userName('[USER]');
         $sshPublicKey = new SshPublicKey();
 
-        $response = $client->importSshPublicKey($formattedParent, $sshPublicKey);
+        $response = $client->importSshPublicKey($sshPublicKey);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -389,9 +388,6 @@ class OsLoginServiceClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.oslogin.v1beta.OsLoginService/ImportSshPublicKey', $actualFuncCall);
 
-        $actualValue = $actualRequestObject->getParent();
-
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getSshPublicKey();
 
         $this->assertProtobufEquals($sshPublicKey, $actualValue);
@@ -422,11 +418,10 @@ class OsLoginServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = $client->userName('[USER]');
         $sshPublicKey = new SshPublicKey();
 
         try {
-            $client->importSshPublicKey($formattedParent, $sshPublicKey);
+            $client->importSshPublicKey($sshPublicKey);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -462,7 +457,7 @@ class OsLoginServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->fingerprintName('[USER]', '[FINGERPRINT]');
+        $formattedName = $client->sshPublicKeyName('[USER]', '[FINGERPRINT]');
         $sshPublicKey = new SshPublicKey();
 
         $response = $client->updateSshPublicKey($formattedName, $sshPublicKey);
@@ -506,7 +501,7 @@ class OsLoginServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->fingerprintName('[USER]', '[FINGERPRINT]');
+        $formattedName = $client->sshPublicKeyName('[USER]', '[FINGERPRINT]');
         $sshPublicKey = new SshPublicKey();
 
         try {
