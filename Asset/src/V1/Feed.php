@@ -33,8 +33,8 @@ class Feed extends \Google\Protobuf\Internal\Message
     /**
      * A list of the full names of the assets to receive updates. You must specify
      * either or both of asset_names and asset_types. Only asset updates matching
-     * specified asset_names and asset_types are exported to the feed. For
-     * example:
+     * specified asset_names or asset_types are exported to the feed.
+     * Example:
      * `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
      * See [Resource
      * Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
@@ -46,8 +46,8 @@ class Feed extends \Google\Protobuf\Internal\Message
     /**
      * A list of types of the assets to receive updates. You must specify either
      * or both of asset_names and asset_types. Only asset updates matching
-     * specified asset_names and asset_types are exported to the feed.
-     * For example: `"compute.googleapis.com/Disk"`
+     * specified asset_names or asset_types are exported to the feed.
+     * Example: `"compute.googleapis.com/Disk"`
      * See [this
      * topic](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
      * for a list of all supported asset types.
@@ -69,6 +69,19 @@ class Feed extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.asset.v1.FeedOutputConfig feed_output_config = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $feed_output_config = null;
+    /**
+     * A condition which determines whether an asset update should be published.
+     * If specified, an asset will be returned only when the expression evaluates
+     * to true.
+     * When set, `expression` field in the `Expr` must be a valid [CEL expression]
+     * (https://github.com/google/cel-spec) on a TemporalAsset with name
+     * `temporal_asset`. Example: a Feed with expression ("temporal_asset.deleted
+     * == true") will only publish Asset deletions. Other fields in `Expr` are
+     * optional.
+     *
+     * Generated from protobuf field <code>.google.type.Expr condition = 6;</code>
+     */
+    private $condition = null;
 
     /**
      * Constructor.
@@ -86,8 +99,8 @@ class Feed extends \Google\Protobuf\Internal\Message
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $asset_names
      *           A list of the full names of the assets to receive updates. You must specify
      *           either or both of asset_names and asset_types. Only asset updates matching
-     *           specified asset_names and asset_types are exported to the feed. For
-     *           example:
+     *           specified asset_names or asset_types are exported to the feed.
+     *           Example:
      *           `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
      *           See [Resource
      *           Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
@@ -95,8 +108,8 @@ class Feed extends \Google\Protobuf\Internal\Message
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $asset_types
      *           A list of types of the assets to receive updates. You must specify either
      *           or both of asset_names and asset_types. Only asset updates matching
-     *           specified asset_names and asset_types are exported to the feed.
-     *           For example: `"compute.googleapis.com/Disk"`
+     *           specified asset_names or asset_types are exported to the feed.
+     *           Example: `"compute.googleapis.com/Disk"`
      *           See [this
      *           topic](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
      *           for a list of all supported asset types.
@@ -106,6 +119,15 @@ class Feed extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Asset\V1\FeedOutputConfig $feed_output_config
      *           Required. Feed output configuration defining where the asset updates are
      *           published to.
+     *     @type \Google\Type\Expr $condition
+     *           A condition which determines whether an asset update should be published.
+     *           If specified, an asset will be returned only when the expression evaluates
+     *           to true.
+     *           When set, `expression` field in the `Expr` must be a valid [CEL expression]
+     *           (https://github.com/google/cel-spec) on a TemporalAsset with name
+     *           `temporal_asset`. Example: a Feed with expression ("temporal_asset.deleted
+     *           == true") will only publish Asset deletions. Other fields in `Expr` are
+     *           optional.
      * }
      */
     public function __construct($data = NULL) {
@@ -152,8 +174,8 @@ class Feed extends \Google\Protobuf\Internal\Message
     /**
      * A list of the full names of the assets to receive updates. You must specify
      * either or both of asset_names and asset_types. Only asset updates matching
-     * specified asset_names and asset_types are exported to the feed. For
-     * example:
+     * specified asset_names or asset_types are exported to the feed.
+     * Example:
      * `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
      * See [Resource
      * Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
@@ -170,8 +192,8 @@ class Feed extends \Google\Protobuf\Internal\Message
     /**
      * A list of the full names of the assets to receive updates. You must specify
      * either or both of asset_names and asset_types. Only asset updates matching
-     * specified asset_names and asset_types are exported to the feed. For
-     * example:
+     * specified asset_names or asset_types are exported to the feed.
+     * Example:
      * `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
      * See [Resource
      * Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
@@ -192,8 +214,8 @@ class Feed extends \Google\Protobuf\Internal\Message
     /**
      * A list of types of the assets to receive updates. You must specify either
      * or both of asset_names and asset_types. Only asset updates matching
-     * specified asset_names and asset_types are exported to the feed.
-     * For example: `"compute.googleapis.com/Disk"`
+     * specified asset_names or asset_types are exported to the feed.
+     * Example: `"compute.googleapis.com/Disk"`
      * See [this
      * topic](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
      * for a list of all supported asset types.
@@ -209,8 +231,8 @@ class Feed extends \Google\Protobuf\Internal\Message
     /**
      * A list of types of the assets to receive updates. You must specify either
      * or both of asset_names and asset_types. Only asset updates matching
-     * specified asset_names and asset_types are exported to the feed.
-     * For example: `"compute.googleapis.com/Disk"`
+     * specified asset_names or asset_types are exported to the feed.
+     * Example: `"compute.googleapis.com/Disk"`
      * See [this
      * topic](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
      * for a list of all supported asset types.
@@ -279,6 +301,46 @@ class Feed extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Asset\V1\FeedOutputConfig::class);
         $this->feed_output_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * A condition which determines whether an asset update should be published.
+     * If specified, an asset will be returned only when the expression evaluates
+     * to true.
+     * When set, `expression` field in the `Expr` must be a valid [CEL expression]
+     * (https://github.com/google/cel-spec) on a TemporalAsset with name
+     * `temporal_asset`. Example: a Feed with expression ("temporal_asset.deleted
+     * == true") will only publish Asset deletions. Other fields in `Expr` are
+     * optional.
+     *
+     * Generated from protobuf field <code>.google.type.Expr condition = 6;</code>
+     * @return \Google\Type\Expr
+     */
+    public function getCondition()
+    {
+        return $this->condition;
+    }
+
+    /**
+     * A condition which determines whether an asset update should be published.
+     * If specified, an asset will be returned only when the expression evaluates
+     * to true.
+     * When set, `expression` field in the `Expr` must be a valid [CEL expression]
+     * (https://github.com/google/cel-spec) on a TemporalAsset with name
+     * `temporal_asset`. Example: a Feed with expression ("temporal_asset.deleted
+     * == true") will only publish Asset deletions. Other fields in `Expr` are
+     * optional.
+     *
+     * Generated from protobuf field <code>.google.type.Expr condition = 6;</code>
+     * @param \Google\Type\Expr $var
+     * @return $this
+     */
+    public function setCondition($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Type\Expr::class);
+        $this->condition = $var;
 
         return $this;
     }

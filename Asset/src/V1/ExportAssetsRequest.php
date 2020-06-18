@@ -35,7 +35,7 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
      */
     private $read_time = null;
     /**
-     * A list of asset types of which to take a snapshot for. For example:
+     * A list of asset types of which to take a snapshot for. Example:
      * "compute.googleapis.com/Disk". If specified, only matching assets will be
      * returned. See [Introduction to Cloud Asset
      * Inventory](https://cloud.google.com/asset-inventory/docs/overview)
@@ -53,7 +53,7 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
     private $content_type = 0;
     /**
      * Required. Output configuration indicating where the results will be output
-     * to. All results will be in newline delimited JSON format.
+     * to.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.OutputConfig output_config = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -77,7 +77,7 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
      *           data collection and indexing, there is a volatile window during which
      *           running the same query may get different results.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $asset_types
-     *           A list of asset types of which to take a snapshot for. For example:
+     *           A list of asset types of which to take a snapshot for. Example:
      *           "compute.googleapis.com/Disk". If specified, only matching assets will be
      *           returned. See [Introduction to Cloud Asset
      *           Inventory](https://cloud.google.com/asset-inventory/docs/overview)
@@ -87,7 +87,7 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
      *           returned.
      *     @type \Google\Cloud\Asset\V1\OutputConfig $output_config
      *           Required. Output configuration indicating where the results will be output
-     *           to. All results will be in newline delimited JSON format.
+     *           to.
      * }
      */
     public function __construct($data = NULL) {
@@ -162,7 +162,7 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of asset types of which to take a snapshot for. For example:
+     * A list of asset types of which to take a snapshot for. Example:
      * "compute.googleapis.com/Disk". If specified, only matching assets will be
      * returned. See [Introduction to Cloud Asset
      * Inventory](https://cloud.google.com/asset-inventory/docs/overview)
@@ -177,7 +177,7 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of asset types of which to take a snapshot for. For example:
+     * A list of asset types of which to take a snapshot for. Example:
      * "compute.googleapis.com/Disk". If specified, only matching assets will be
      * returned. See [Introduction to Cloud Asset
      * Inventory](https://cloud.google.com/asset-inventory/docs/overview)
@@ -225,7 +225,7 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Output configuration indicating where the results will be output
-     * to. All results will be in newline delimited JSON format.
+     * to.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.OutputConfig output_config = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Asset\V1\OutputConfig
@@ -237,7 +237,7 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Output configuration indicating where the results will be output
-     * to. All results will be in newline delimited JSON format.
+     * to.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.OutputConfig output_config = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Asset\V1\OutputConfig $var

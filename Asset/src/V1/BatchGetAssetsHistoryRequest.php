@@ -24,13 +24,10 @@ class BatchGetAssetsHistoryRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * A list of the full names of the assets. For example:
+     * A list of the full names of the assets.
+     * See: https://cloud.google.com/asset-inventory/docs/resource-name-format
+     * Example:
      * `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
-     * See [Resource
-     * Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
-     * and [Resource Name
-     * Format](https://cloud.google.com/asset-inventory/docs/resource-name-format)
-     * for more info.
      * The request becomes a no-op if the asset name list is empty, and the max
      * size of the asset name list is 100 in one request.
      *
@@ -66,13 +63,10 @@ class BatchGetAssetsHistoryRequest extends \Google\Protobuf\Internal\Message
      *           organization number (such as "organizations/123"), a project ID (such as
      *           "projects/my-project-id")", or a project number (such as "projects/12345").
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $asset_names
-     *           A list of the full names of the assets. For example:
+     *           A list of the full names of the assets.
+     *           See: https://cloud.google.com/asset-inventory/docs/resource-name-format
+     *           Example:
      *           `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
-     *           See [Resource
-     *           Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
-     *           and [Resource Name
-     *           Format](https://cloud.google.com/asset-inventory/docs/resource-name-format)
-     *           for more info.
      *           The request becomes a no-op if the asset name list is empty, and the max
      *           size of the asset name list is 100 in one request.
      *     @type int $content_type
@@ -122,13 +116,10 @@ class BatchGetAssetsHistoryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of the full names of the assets. For example:
+     * A list of the full names of the assets.
+     * See: https://cloud.google.com/asset-inventory/docs/resource-name-format
+     * Example:
      * `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
-     * See [Resource
-     * Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
-     * and [Resource Name
-     * Format](https://cloud.google.com/asset-inventory/docs/resource-name-format)
-     * for more info.
      * The request becomes a no-op if the asset name list is empty, and the max
      * size of the asset name list is 100 in one request.
      *
@@ -141,13 +132,10 @@ class BatchGetAssetsHistoryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of the full names of the assets. For example:
+     * A list of the full names of the assets.
+     * See: https://cloud.google.com/asset-inventory/docs/resource-name-format
+     * Example:
      * `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
-     * See [Resource
-     * Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
-     * and [Resource Name
-     * Format](https://cloud.google.com/asset-inventory/docs/resource-name-format)
-     * for more info.
      * The request becomes a no-op if the asset name list is empty, and the max
      * size of the asset name list is 100 in one request.
      *

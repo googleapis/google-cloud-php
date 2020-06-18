@@ -442,10 +442,16 @@ class AssetServiceGapicClient
 
     /**
      * Exports assets with time and resource types to a given Cloud Storage
-     * location. The output format is newline-delimited JSON.
-     * This API implements the
-     * [google.longrunning.Operation][google.longrunning.Operation] API allowing
-     * you to keep track of the export.
+     * location/BigQuery table. For Cloud Storage location destinations, the
+     * output format is newline-delimited JSON. Each line represents a
+     * [google.cloud.asset.v1.Asset][google.cloud.asset.v1.Asset] in the JSON
+     * format; for BigQuery table destinations, the output table stores the fields
+     * in asset proto as columns. This API implements the
+     * [google.longrunning.Operation][google.longrunning.Operation] API , which
+     * allows you to keep track of the export. We recommend intervals of at least
+     * 2 seconds with exponential retry to poll the export operation result. For
+     * regular-size resource parent, the export operation usually finishes within
+     * 5 minutes.
      *
      * Sample code:
      * ```
@@ -492,7 +498,7 @@ class AssetServiceGapicClient
      *                                   "projects/my-project-id"), or a project number (such as "projects/12345"),
      *                                   or a folder number (such as "folders/123").
      * @param OutputConfig $outputConfig Required. Output configuration indicating where the results will be output
-     *                                   to. All results will be in newline delimited JSON format.
+     *                                   to.
      * @param array        $optionalArgs {
      *                                   Optional.
      *
@@ -503,7 +509,7 @@ class AssetServiceGapicClient
      *          data collection and indexing, there is a volatile window during which
      *          running the same query may get different results.
      *     @type string[] $assetTypes
-     *          A list of asset types of which to take a snapshot for. For example:
+     *          A list of asset types of which to take a snapshot for. Example:
      *          "compute.googleapis.com/Disk". If specified, only matching assets will be
      *          returned. See [Introduction to Cloud Asset
      *          Inventory](https://cloud.google.com/asset-inventory/docs/overview)
@@ -555,10 +561,10 @@ class AssetServiceGapicClient
 
     /**
      * Batch gets the update history of assets that overlap a time window.
-     * For RESOURCE content, this API outputs history with asset in both
-     * non-delete or deleted status.
      * For IAM_POLICY content, this API outputs history when the asset and its
      * attached IAM POLICY both exist. This can create gaps in the output history.
+     * Otherwise, this API outputs history with asset in both non-delete or
+     * deleted status.
      * If a specified asset does not exist, this API returns an INVALID_ARGUMENT
      * error.
      *
@@ -580,13 +586,11 @@ class AssetServiceGapicClient
      *                             Optional.
      *
      *     @type string[] $assetNames
-     *          A list of the full names of the assets. For example:
+     *          A list of the full names of the assets.
+     *          See: https://cloud.google.com/asset-inventory/docs/resource-name-format
+     *          Example:
+     *
      *          `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
-     *          See [Resource
-     *          Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
-     *          and [Resource Name
-     *          Format](https://cloud.google.com/asset-inventory/docs/resource-name-format)
-     *          for more info.
      *
      *          The request becomes a no-op if the asset name list is empty, and the max
      *          size of the asset name list is 100 in one request.

@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A BigQuery destination.
+ * A BigQuery destination for exporting assets to.
  *
  * Generated from protobuf message <code>google.cloud.asset.v1.BigQueryDestination</code>
  */
