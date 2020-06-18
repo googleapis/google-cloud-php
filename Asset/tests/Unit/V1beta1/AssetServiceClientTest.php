@@ -29,10 +29,8 @@ use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Asset\V1beta1\BatchGetAssetsHistoryResponse;
-use Google\Cloud\Asset\V1beta1\ContentType;
 use Google\Cloud\Asset\V1beta1\ExportAssetsResponse;
 use Google\Cloud\Asset\V1beta1\OutputConfig;
-use Google\Cloud\Asset\V1beta1\TimeWindow;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -110,10 +108,10 @@ class AssetServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
 
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $parent = 'parent-995424086';
         $outputConfig = new OutputConfig();
 
-        $response = $client->exportAssets($formattedParent, $outputConfig);
+        $response = $client->exportAssets($parent, $outputConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -126,7 +124,7 @@ class AssetServiceClientTest extends GeneratedTest
         $this->assertSame('/google.cloud.asset.v1beta1.AssetService/ExportAssets', $actualApiFuncCall);
         $actualValue = $actualApiRequestObject->getParent();
 
-        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertProtobufEquals($parent, $actualValue);
         $actualValue = $actualApiRequestObject->getOutputConfig();
 
         $this->assertProtobufEquals($outputConfig, $actualValue);
@@ -192,10 +190,10 @@ class AssetServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $parent = 'parent-995424086';
         $outputConfig = new OutputConfig();
 
-        $response = $client->exportAssets($formattedParent, $outputConfig);
+        $response = $client->exportAssets($parent, $outputConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
 
@@ -235,11 +233,9 @@ class AssetServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
-        $contentType = ContentType::CONTENT_TYPE_UNSPECIFIED;
-        $readTimeWindow = new TimeWindow();
+        $parent = 'parent-995424086';
 
-        $response = $client->batchGetAssetsHistory($formattedParent, $contentType, $readTimeWindow);
+        $response = $client->batchGetAssetsHistory($parent);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -249,13 +245,7 @@ class AssetServiceClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getParent();
 
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getContentType();
-
-        $this->assertProtobufEquals($contentType, $actualValue);
-        $actualValue = $actualRequestObject->getReadTimeWindow();
-
-        $this->assertProtobufEquals($readTimeWindow, $actualValue);
+        $this->assertProtobufEquals($parent, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -283,12 +273,10 @@ class AssetServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
-        $contentType = ContentType::CONTENT_TYPE_UNSPECIFIED;
-        $readTimeWindow = new TimeWindow();
+        $parent = 'parent-995424086';
 
         try {
-            $client->batchGetAssetsHistory($formattedParent, $contentType, $readTimeWindow);
+            $client->batchGetAssetsHistory($parent);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
