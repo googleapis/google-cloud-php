@@ -3,17 +3,6 @@
 return [
     'interfaces' => [
         'google.cloud.scheduler.v1.CloudScheduler' => [
-            'DeleteJob' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/jobs/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'ListJobs' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/jobs',
@@ -56,6 +45,17 @@ return [
                     'job.name' => [
                         'getters' => [
                             'getJob',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteJob' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/jobs/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
                             'getName',
                         ],
                     ],
