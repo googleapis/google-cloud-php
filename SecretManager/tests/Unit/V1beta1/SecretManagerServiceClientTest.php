@@ -177,8 +177,9 @@ class SecretManagerServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $client->projectName('[PROJECT]');
         $secretId = 'secretId-739547894';
+        $secret = new Secret();
 
-        $response = $client->createSecret($formattedParent, $secretId);
+        $response = $client->createSecret($formattedParent, $secretId, $secret);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -192,6 +193,9 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $actualValue = $actualRequestObject->getSecretId();
 
         $this->assertProtobufEquals($secretId, $actualValue);
+        $actualValue = $actualRequestObject->getSecret();
+
+        $this->assertProtobufEquals($secret, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -221,9 +225,10 @@ class SecretManagerServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $client->projectName('[PROJECT]');
         $secretId = 'secretId-739547894';
+        $secret = new Secret();
 
         try {
-            $client->createSecret($formattedParent, $secretId);
+            $client->createSecret($formattedParent, $secretId, $secret);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
