@@ -109,6 +109,15 @@ class Queue extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.StackdriverLoggingConfig stackdriver_logging_config = 10;</code>
      */
     private $stackdriver_logging_config = null;
+    /**
+     * Immutable. The type of a queue (push or pull).
+     * `Queue.type` is an immutable property of the queue that is set at the queue
+     * creation time. When left unspecified, the default value of `PUSH` is
+     * selected.
+     *
+     * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.Queue.Type type = 11 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    private $type = 0;
     protected $queue_type;
 
     /**
@@ -189,6 +198,11 @@ class Queue extends \Google\Protobuf\Internal\Message
      *           Configuration options for writing logs to
      *           [Stackdriver Logging](https://cloud.google.com/logging/docs/). If this
      *           field is unset, then no logs are written.
+     *     @type int $type
+     *           Immutable. The type of a queue (push or pull).
+     *           `Queue.type` is an immutable property of the queue that is set at the queue
+     *           creation time. When left unspecified, the default value of `PUSH` is
+     *           selected.
      * }
      */
     public function __construct($data = NULL) {
@@ -490,6 +504,38 @@ class Queue extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Tasks\V2beta3\StackdriverLoggingConfig::class);
         $this->stackdriver_logging_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Immutable. The type of a queue (push or pull).
+     * `Queue.type` is an immutable property of the queue that is set at the queue
+     * creation time. When left unspecified, the default value of `PUSH` is
+     * selected.
+     *
+     * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.Queue.Type type = 11 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return int
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Immutable. The type of a queue (push or pull).
+     * `Queue.type` is an immutable property of the queue that is set at the queue
+     * creation time. When left unspecified, the default value of `PUSH` is
+     * selected.
+     *
+     * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.Queue.Type type = 11 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Tasks\V2beta3\Queue_Type::class);
+        $this->type = $var;
 
         return $this;
     }
