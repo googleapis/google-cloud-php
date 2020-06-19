@@ -3,30 +3,6 @@
 return [
     'interfaces' => [
         'google.cloud.vision.v1.ImageAnnotator' => [
-            'BatchAnnotateImages' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/images:annotate',
-                'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/{parent=projects/*/locations/*}/images:annotate',
-                        'body' => '*',
-                    ],
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/{parent=projects/*}/images:annotate',
-                        'body' => '*',
-                    ],
-                ],
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
             'BatchAnnotateFiles' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/files:annotate',
@@ -88,6 +64,30 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{parent=projects/*}/files:asyncBatchAnnotate',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchAnnotateImages' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/images:annotate',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*/locations/*}/images:annotate',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*}/images:annotate',
                         'body' => '*',
                     ],
                 ],
