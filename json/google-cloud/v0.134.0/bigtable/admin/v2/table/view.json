@@ -1,0 +1,1 @@
+{"id":"bigtable\/admin\/v2\/table\/view","type":"","title":"Google\\Cloud\\Bigtable\\Admin\\V2\\Table\\View","name":"View","description":"<p>Defines a view over a table's fields.<\/p>\n<p>Protobuf type <code>google.bigtable.admin.v2.Table.View<\/code><\/p>","examples":[],"resources":[],"methods":[]}
