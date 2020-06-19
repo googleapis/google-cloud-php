@@ -70,8 +70,9 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $webSecurityScannerClient = new WebSecurityScannerClient();
  * try {
- *     $formattedName = $webSecurityScannerClient->scanConfigName('[PROJECT]', '[SCAN_CONFIG]');
- *     $webSecurityScannerClient->deleteScanConfig($formattedName);
+ *     $formattedParent = $webSecurityScannerClient->projectName('[PROJECT]');
+ *     $scanConfig = new ScanConfig();
+ *     $response = $webSecurityScannerClient->createScanConfig($formattedParent, $scanConfig);
  * } finally {
  *     $webSecurityScannerClient->close();
  * }
@@ -371,55 +372,6 @@ class WebSecurityScannerGapicClient
     }
 
     /**
-     * Deletes an existing ScanConfig and its child resources.
-     *
-     * Sample code:
-     * ```
-     * $webSecurityScannerClient = new WebSecurityScannerClient();
-     * try {
-     *     $formattedName = $webSecurityScannerClient->scanConfigName('[PROJECT]', '[SCAN_CONFIG]');
-     *     $webSecurityScannerClient->deleteScanConfig($formattedName);
-     * } finally {
-     *     $webSecurityScannerClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. The resource name of the ScanConfig to be deleted. The name follows the
-     *                             format of 'projects/{projectId}/scanConfigs/{scanConfigId}'.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function deleteScanConfig($name, array $optionalArgs = [])
-    {
-        $request = new DeleteScanConfigRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteScanConfig',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
      * Creates a new ScanConfig.
      *
      * Sample code:
@@ -468,6 +420,55 @@ class WebSecurityScannerGapicClient
         return $this->startCall(
             'CreateScanConfig',
             ScanConfig::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Deletes an existing ScanConfig and its child resources.
+     *
+     * Sample code:
+     * ```
+     * $webSecurityScannerClient = new WebSecurityScannerClient();
+     * try {
+     *     $formattedName = $webSecurityScannerClient->scanConfigName('[PROJECT]', '[SCAN_CONFIG]');
+     *     $webSecurityScannerClient->deleteScanConfig($formattedName);
+     * } finally {
+     *     $webSecurityScannerClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of the ScanConfig to be deleted. The name follows the
+     *                             format of 'projects/{projectId}/scanConfigs/{scanConfigId}'.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function deleteScanConfig($name, array $optionalArgs = [])
+    {
+        $request = new DeleteScanConfigRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteScanConfig',
+            GPBEmpty::class,
             $optionalArgs,
             $request
         )->wait();
