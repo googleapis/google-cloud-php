@@ -3,17 +3,6 @@
 return [
     'interfaces' => [
         'google.cloud.talent.v4beta1.ProfileService' => [
-            'DeleteProfile' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v4beta1/{name=projects/*/tenants/*/profiles/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'SearchProfiles' => [
                 'method' => 'post',
                 'uriTemplate' => '/v4beta1/{parent=projects/*/tenants/*}:search',
@@ -68,6 +57,17 @@ return [
                     'profile.name' => [
                         'getters' => [
                             'getProfile',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteProfile' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v4beta1/{name=projects/*/tenants/*/profiles/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
                             'getName',
                         ],
                     ],
