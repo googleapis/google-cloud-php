@@ -92,8 +92,36 @@ use Google\Protobuf\GPBEmpty;
  * $productSearchClient = new ProductSearchClient();
  * try {
  *     $formattedParent = $productSearchClient->locationName('[PROJECT]', '[LOCATION]');
- *     $productSet = new ProductSet();
- *     $response = $productSearchClient->createProductSet($formattedParent, $productSet);
+ *     $inputConfig = new ImportProductSetsInputConfig();
+ *     $operationResponse = $productSearchClient->importProductSets($formattedParent, $inputConfig);
+ *     $operationResponse->pollUntilComplete();
+ *     if ($operationResponse->operationSucceeded()) {
+ *         $result = $operationResponse->getResult();
+ *         // doSomethingWith($result)
+ *     } else {
+ *         $error = $operationResponse->getError();
+ *         // handleError($error)
+ *     }
+ *
+ *
+ *     // Alternatively:
+ *
+ *     // start the operation, keep the operation name, and resume later
+ *     $operationResponse = $productSearchClient->importProductSets($formattedParent, $inputConfig);
+ *     $operationName = $operationResponse->getName();
+ *     // ... do other work
+ *     $newOperationResponse = $productSearchClient->resumeOperation($operationName, 'importProductSets');
+ *     while (!$newOperationResponse->isDone()) {
+ *         // ... do other work
+ *         $newOperationResponse->reload();
+ *     }
+ *     if ($newOperationResponse->operationSucceeded()) {
+ *       $result = $newOperationResponse->getResult();
+ *       // doSomethingWith($result)
+ *     } else {
+ *       $error = $newOperationResponse->getError();
+ *       // handleError($error)
+ *     }
  * } finally {
  *     $productSearchClient->close();
  * }
@@ -423,6 +451,215 @@ class ProductSearchGapicClient
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
         $this->operationsClient = $this->createOperationsClient($clientOptions);
+    }
+
+    /**
+     * Asynchronous API that imports a list of reference images to specified
+     * product sets based on a list of image information.
+     *
+     * The [google.longrunning.Operation][google.longrunning.Operation] API can be used to keep track of the
+     * progress and results of the request.
+     * `Operation.metadata` contains `BatchOperationMetadata`. (progress)
+     * `Operation.response` contains `ImportProductSetsResponse`. (results)
+     *
+     * The input source of this method is a csv file on Google Cloud Storage.
+     * For the format of the csv file please see
+     * [ImportProductSetsGcsSource.csv_file_uri][google.cloud.vision.v1.ImportProductSetsGcsSource.csv_file_uri].
+     *
+     * Sample code:
+     * ```
+     * $productSearchClient = new ProductSearchClient();
+     * try {
+     *     $formattedParent = $productSearchClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $inputConfig = new ImportProductSetsInputConfig();
+     *     $operationResponse = $productSearchClient->importProductSets($formattedParent, $inputConfig);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $productSearchClient->importProductSets($formattedParent, $inputConfig);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $productSearchClient->resumeOperation($operationName, 'importProductSets');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       $result = $newOperationResponse->getResult();
+     *       // doSomethingWith($result)
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $productSearchClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent Required. The project in which the ProductSets should be imported.
+     *
+     * Format is `projects/PROJECT_ID/locations/LOC_ID`.
+     * @param ImportProductSetsInputConfig $inputConfig  Required. The input content for the list of requests.
+     * @param array                        $optionalArgs {
+     *                                                   Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function importProductSets($parent, $inputConfig, array $optionalArgs = [])
+    {
+        $request = new ImportProductSetsRequest();
+        $request->setParent($parent);
+        $request->setInputConfig($inputConfig);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startOperationsCall(
+            'ImportProductSets',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Asynchronous API to delete all Products in a ProductSet or all Products
+     * that are in no ProductSet.
+     *
+     * If a Product is a member of the specified ProductSet in addition to other
+     * ProductSets, the Product will still be deleted.
+     *
+     * It is recommended to not delete the specified ProductSet until after this
+     * operation has completed. It is also recommended to not add any of the
+     * Products involved in the batch delete to a new ProductSet while this
+     * operation is running because those Products may still end up deleted.
+     *
+     * It's not possible to undo the PurgeProducts operation. Therefore, it is
+     * recommended to keep the csv files used in ImportProductSets (if that was
+     * how you originally built the Product Set) before starting PurgeProducts, in
+     * case you need to re-import the data after deletion.
+     *
+     * If the plan is to purge all of the Products from a ProductSet and then
+     * re-use the empty ProductSet to re-import new Products into the empty
+     * ProductSet, you must wait until the PurgeProducts operation has finished
+     * for that ProductSet.
+     *
+     * The [google.longrunning.Operation][google.longrunning.Operation] API can be used to keep track of the
+     * progress and results of the request.
+     * `Operation.metadata` contains `BatchOperationMetadata`. (progress)
+     *
+     * Sample code:
+     * ```
+     * $productSearchClient = new ProductSearchClient();
+     * try {
+     *     $formattedParent = $productSearchClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $operationResponse = $productSearchClient->purgeProducts($formattedParent);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $productSearchClient->purgeProducts($formattedParent);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $productSearchClient->resumeOperation($operationName, 'purgeProducts');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       // operation succeeded and returns no value
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $productSearchClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent Required. The project and location in which the Products should be deleted.
+     *
+     * Format is `projects/PROJECT_ID/locations/LOC_ID`.
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type ProductSetPurgeConfig $productSetPurgeConfig
+     *          Specify which ProductSet contains the Products to be deleted.
+     *     @type bool $deleteOrphanProducts
+     *          If delete_orphan_products is true, all Products that are not in any
+     *          ProductSet will be deleted.
+     *     @type bool $force
+     *          The default value is false. Override this value to true to actually perform
+     *          the purge.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function purgeProducts($parent, array $optionalArgs = [])
+    {
+        $request = new PurgeProductsRequest();
+        $request->setParent($parent);
+        if (isset($optionalArgs['productSetPurgeConfig'])) {
+            $request->setProductSetPurgeConfig($optionalArgs['productSetPurgeConfig']);
+        }
+        if (isset($optionalArgs['deleteOrphanProducts'])) {
+            $request->setDeleteOrphanProducts($optionalArgs['deleteOrphanProducts']);
+        }
+        if (isset($optionalArgs['force'])) {
+            $request->setForce($optionalArgs['force']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startOperationsCall(
+            'PurgeProducts',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
     }
 
     /**
@@ -1579,214 +1816,5 @@ class ProductSearchGapicClient
             ListProductsInProductSetResponse::class,
             $request
         );
-    }
-
-    /**
-     * Asynchronous API that imports a list of reference images to specified
-     * product sets based on a list of image information.
-     *
-     * The [google.longrunning.Operation][google.longrunning.Operation] API can be used to keep track of the
-     * progress and results of the request.
-     * `Operation.metadata` contains `BatchOperationMetadata`. (progress)
-     * `Operation.response` contains `ImportProductSetsResponse`. (results)
-     *
-     * The input source of this method is a csv file on Google Cloud Storage.
-     * For the format of the csv file please see
-     * [ImportProductSetsGcsSource.csv_file_uri][google.cloud.vision.v1.ImportProductSetsGcsSource.csv_file_uri].
-     *
-     * Sample code:
-     * ```
-     * $productSearchClient = new ProductSearchClient();
-     * try {
-     *     $formattedParent = $productSearchClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $inputConfig = new ImportProductSetsInputConfig();
-     *     $operationResponse = $productSearchClient->importProductSets($formattedParent, $inputConfig);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         $result = $operationResponse->getResult();
-     *         // doSomethingWith($result)
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *
-     *
-     *     // Alternatively:
-     *
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $productSearchClient->importProductSets($formattedParent, $inputConfig);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $productSearchClient->resumeOperation($operationName, 'importProductSets');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *       $result = $newOperationResponse->getResult();
-     *       // doSomethingWith($result)
-     *     } else {
-     *       $error = $newOperationResponse->getError();
-     *       // handleError($error)
-     *     }
-     * } finally {
-     *     $productSearchClient->close();
-     * }
-     * ```
-     *
-     * @param string $parent Required. The project in which the ProductSets should be imported.
-     *
-     * Format is `projects/PROJECT_ID/locations/LOC_ID`.
-     * @param ImportProductSetsInputConfig $inputConfig  Required. The input content for the list of requests.
-     * @param array                        $optionalArgs {
-     *                                                   Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\ApiCore\OperationResponse
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function importProductSets($parent, $inputConfig, array $optionalArgs = [])
-    {
-        $request = new ImportProductSetsRequest();
-        $request->setParent($parent);
-        $request->setInputConfig($inputConfig);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'parent' => $request->getParent(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startOperationsCall(
-            'ImportProductSets',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
-        )->wait();
-    }
-
-    /**
-     * Asynchronous API to delete all Products in a ProductSet or all Products
-     * that are in no ProductSet.
-     *
-     * If a Product is a member of the specified ProductSet in addition to other
-     * ProductSets, the Product will still be deleted.
-     *
-     * It is recommended to not delete the specified ProductSet until after this
-     * operation has completed. It is also recommended to not add any of the
-     * Products involved in the batch delete to a new ProductSet while this
-     * operation is running because those Products may still end up deleted.
-     *
-     * It's not possible to undo the PurgeProducts operation. Therefore, it is
-     * recommended to keep the csv files used in ImportProductSets (if that was
-     * how you originally built the Product Set) before starting PurgeProducts, in
-     * case you need to re-import the data after deletion.
-     *
-     * If the plan is to purge all of the Products from a ProductSet and then
-     * re-use the empty ProductSet to re-import new Products into the empty
-     * ProductSet, you must wait until the PurgeProducts operation has finished
-     * for that ProductSet.
-     *
-     * The [google.longrunning.Operation][google.longrunning.Operation] API can be used to keep track of the
-     * progress and results of the request.
-     * `Operation.metadata` contains `BatchOperationMetadata`. (progress)
-     *
-     * Sample code:
-     * ```
-     * $productSearchClient = new ProductSearchClient();
-     * try {
-     *     $formattedParent = $productSearchClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $operationResponse = $productSearchClient->purgeProducts($formattedParent);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // operation succeeded and returns no value
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *
-     *
-     *     // Alternatively:
-     *
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $productSearchClient->purgeProducts($formattedParent);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $productSearchClient->resumeOperation($operationName, 'purgeProducts');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *       // operation succeeded and returns no value
-     *     } else {
-     *       $error = $newOperationResponse->getError();
-     *       // handleError($error)
-     *     }
-     * } finally {
-     *     $productSearchClient->close();
-     * }
-     * ```
-     *
-     * @param string $parent Required. The project and location in which the Products should be deleted.
-     *
-     * Format is `projects/PROJECT_ID/locations/LOC_ID`.
-     * @param array $optionalArgs {
-     *                            Optional.
-     *
-     *     @type ProductSetPurgeConfig $productSetPurgeConfig
-     *          Specify which ProductSet contains the Products to be deleted.
-     *     @type bool $deleteOrphanProducts
-     *          If delete_orphan_products is true, all Products that are not in any
-     *          ProductSet will be deleted.
-     *     @type bool $force
-     *          The default value is false. Override this value to true to actually perform
-     *          the purge.
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\ApiCore\OperationResponse
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function purgeProducts($parent, array $optionalArgs = [])
-    {
-        $request = new PurgeProductsRequest();
-        $request->setParent($parent);
-        if (isset($optionalArgs['productSetPurgeConfig'])) {
-            $request->setProductSetPurgeConfig($optionalArgs['productSetPurgeConfig']);
-        }
-        if (isset($optionalArgs['deleteOrphanProducts'])) {
-            $request->setDeleteOrphanProducts($optionalArgs['deleteOrphanProducts']);
-        }
-        if (isset($optionalArgs['force'])) {
-            $request->setForce($optionalArgs['force']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'parent' => $request->getParent(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startOperationsCall(
-            'PurgeProducts',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
-        )->wait();
     }
 }
