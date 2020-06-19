@@ -55,9 +55,9 @@ use Google\Protobuf\Timestamp;
  * ```
  * $assetServiceClient = new AssetServiceClient();
  * try {
- *     $formattedParent = $assetServiceClient->projectName('[PROJECT]');
+ *     $parent = '';
  *     $outputConfig = new OutputConfig();
- *     $operationResponse = $assetServiceClient->exportAssets($formattedParent, $outputConfig);
+ *     $operationResponse = $assetServiceClient->exportAssets($parent, $outputConfig);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -71,7 +71,7 @@ use Google\Protobuf\Timestamp;
  *     // Alternatively:
  *
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $assetServiceClient->exportAssets($formattedParent, $outputConfig);
+ *     $operationResponse = $assetServiceClient->exportAssets($parent, $outputConfig);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $assetServiceClient->resumeOperation($operationName, 'exportAssets');
@@ -90,11 +90,6 @@ use Google\Protobuf\Timestamp;
  *     $assetServiceClient->close();
  * }
  * ```
- *
- * Many parameters require resource names to be formatted in a particular way. To assist
- * with these names, this class includes a format method for each type of name, and additionally
- * a parseName method to extract the individual identifiers contained within formatted names
- * that are returned by the API.
  *
  * @experimental
  */
@@ -337,9 +332,9 @@ class AssetServiceGapicClient
      * ```
      * $assetServiceClient = new AssetServiceClient();
      * try {
-     *     $formattedParent = $assetServiceClient->projectName('[PROJECT]');
+     *     $parent = '';
      *     $outputConfig = new OutputConfig();
-     *     $operationResponse = $assetServiceClient->exportAssets($formattedParent, $outputConfig);
+     *     $operationResponse = $assetServiceClient->exportAssets($parent, $outputConfig);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -353,7 +348,7 @@ class AssetServiceGapicClient
      *     // Alternatively:
      *
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $assetServiceClient->exportAssets($formattedParent, $outputConfig);
+     *     $operationResponse = $assetServiceClient->exportAssets($parent, $outputConfig);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $assetServiceClient->resumeOperation($operationName, 'exportAssets');
@@ -453,28 +448,18 @@ class AssetServiceGapicClient
      * ```
      * $assetServiceClient = new AssetServiceClient();
      * try {
-     *     $formattedParent = $assetServiceClient->projectName('[PROJECT]');
-     *     $contentType = ContentType::CONTENT_TYPE_UNSPECIFIED;
-     *     $readTimeWindow = new TimeWindow();
-     *     $response = $assetServiceClient->batchGetAssetsHistory($formattedParent, $contentType, $readTimeWindow);
+     *     $parent = '';
+     *     $response = $assetServiceClient->batchGetAssetsHistory($parent);
      * } finally {
      *     $assetServiceClient->close();
      * }
      * ```
      *
-     * @param string     $parent         Required. The relative name of the root asset. It can only be an
-     *                                   organization number (such as "organizations/123"), a project ID (such as
-     *                                   "projects/my-project-id")", or a project number (such as "projects/12345").
-     * @param int        $contentType    Optional. The content type.
-     *                                   For allowed values, use constants defined on {@see \Google\Cloud\Asset\V1beta1\ContentType}
-     * @param TimeWindow $readTimeWindow Optional. The time window for the asset history. Both start_time and
-     *                                   end_time are optional and if set, it must be after 2018-10-02 UTC. If
-     *                                   end_time is not set, it is default to current timestamp. If start_time is
-     *                                   not set, the snapshot of the assets at end_time will be returned. The
-     *                                   returned results contain all temporal assets whose time window overlap with
-     *                                   read_time_window.
-     * @param array      $optionalArgs   {
-     *                                   Optional.
+     * @param string $parent       Required. The relative name of the root asset. It can only be an
+     *                             organization number (such as "organizations/123"), a project ID (such as
+     *                             "projects/my-project-id")", or a project number (such as "projects/12345").
+     * @param array  $optionalArgs {
+     *                             Optional.
      *
      *     @type string[] $assetNames
      *          A list of the full names of the assets. For example:
@@ -485,6 +470,16 @@ class AssetServiceGapicClient
      *
      *          The request becomes a no-op if the asset name list is empty, and the max
      *          size of the asset name list is 100 in one request.
+     *     @type int $contentType
+     *          Optional. The content type.
+     *          For allowed values, use constants defined on {@see \Google\Cloud\Asset\V1beta1\ContentType}
+     *     @type TimeWindow $readTimeWindow
+     *          Optional. The time window for the asset history. Both start_time and
+     *          end_time are optional and if set, it must be after 2018-10-02 UTC. If
+     *          end_time is not set, it is default to current timestamp. If start_time is
+     *          not set, the snapshot of the assets at end_time will be returned. The
+     *          returned results contain all temporal assets whose time window overlap with
+     *          read_time_window.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -497,14 +492,18 @@ class AssetServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function batchGetAssetsHistory($parent, $contentType, $readTimeWindow, array $optionalArgs = [])
+    public function batchGetAssetsHistory($parent, array $optionalArgs = [])
     {
         $request = new BatchGetAssetsHistoryRequest();
         $request->setParent($parent);
-        $request->setContentType($contentType);
-        $request->setReadTimeWindow($readTimeWindow);
         if (isset($optionalArgs['assetNames'])) {
             $request->setAssetNames($optionalArgs['assetNames']);
+        }
+        if (isset($optionalArgs['contentType'])) {
+            $request->setContentType($optionalArgs['contentType']);
+        }
+        if (isset($optionalArgs['readTimeWindow'])) {
+            $request->setReadTimeWindow($optionalArgs['readTimeWindow']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor([

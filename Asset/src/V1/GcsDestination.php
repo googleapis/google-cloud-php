@@ -25,15 +25,15 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
      *
      *     @type string $uri
      *           The uri of the Cloud Storage object. It's the same uri that is used by
-     *           gsutil. For example: "gs://bucket_name/object_name". See [Viewing and
+     *           gsutil. Example: "gs://bucket_name/object_name". See [Viewing and
      *           Editing Object
      *           Metadata](https://cloud.google.com/storage/docs/viewing-editing-metadata)
      *           for more information.
      *     @type string $uri_prefix
-     *           The uri prefix of all generated Cloud Storage objects. For example:
+     *           The uri prefix of all generated Cloud Storage objects. Example:
      *           "gs://bucket_name/object_name_prefix". Each object uri is in format:
      *           "gs://bucket_name/object_name_prefix/<asset type>/<shard number> and only
-     *           contains assets for that type. <shard number> starts from 0. For example:
+     *           contains assets for that type. <shard number> starts from 0. Example:
      *           "gs://bucket_name/object_name_prefix/compute.googleapis.com/Disk/0" is
      *           the first shard of output objects containing all
      *           compute.googleapis.com/Disk assets. An INVALID_ARGUMENT error will be
@@ -48,7 +48,7 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
 
     /**
      * The uri of the Cloud Storage object. It's the same uri that is used by
-     * gsutil. For example: "gs://bucket_name/object_name". See [Viewing and
+     * gsutil. Example: "gs://bucket_name/object_name". See [Viewing and
      * Editing Object
      * Metadata](https://cloud.google.com/storage/docs/viewing-editing-metadata)
      * for more information.
@@ -63,7 +63,7 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
 
     /**
      * The uri of the Cloud Storage object. It's the same uri that is used by
-     * gsutil. For example: "gs://bucket_name/object_name". See [Viewing and
+     * gsutil. Example: "gs://bucket_name/object_name". See [Viewing and
      * Editing Object
      * Metadata](https://cloud.google.com/storage/docs/viewing-editing-metadata)
      * for more information.
@@ -81,10 +81,10 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The uri prefix of all generated Cloud Storage objects. For example:
+     * The uri prefix of all generated Cloud Storage objects. Example:
      * "gs://bucket_name/object_name_prefix". Each object uri is in format:
      * "gs://bucket_name/object_name_prefix/<asset type>/<shard number> and only
-     * contains assets for that type. <shard number> starts from 0. For example:
+     * contains assets for that type. <shard number> starts from 0. Example:
      * "gs://bucket_name/object_name_prefix/compute.googleapis.com/Disk/0" is
      * the first shard of output objects containing all
      * compute.googleapis.com/Disk assets. An INVALID_ARGUMENT error will be
@@ -100,10 +100,10 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The uri prefix of all generated Cloud Storage objects. For example:
+     * The uri prefix of all generated Cloud Storage objects. Example:
      * "gs://bucket_name/object_name_prefix". Each object uri is in format:
      * "gs://bucket_name/object_name_prefix/<asset type>/<shard number> and only
-     * contains assets for that type. <shard number> starts from 0. For example:
+     * contains assets for that type. <shard number> starts from 0. Example:
      * "gs://bucket_name/object_name_prefix/compute.googleapis.com/Disk/0" is
      * the first shard of output objects containing all
      * compute.googleapis.com/Disk assets. An INVALID_ARGUMENT error will be

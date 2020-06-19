@@ -13,15 +13,25 @@ use Google\Protobuf\Internal\GPBUtil;
  * [resource
  * hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy),
  * a resource outside the Google Cloud resource hierarchy (such as Google
- * Kubernetes Engine clusters and objects), or a Cloud IAM policy.
+ * Kubernetes Engine clusters and objects), or a policy (e.g. Cloud IAM policy).
+ * See [Supported asset
+ * types](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
+ * for more information.
  *
  * Generated from protobuf message <code>google.cloud.asset.v1.Asset</code>
  */
 class Asset extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The full name of the asset. For example:
-     * "//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1"
+     * The last update timestamp of an asset. update_time is updated when
+     * create/update/delete operation is performed.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 11;</code>
+     */
+    private $update_time = null;
+    /**
+     * The full name of the asset. Example:
+     * `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`
      * See [Resource
      * names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
      * for more information.
@@ -30,7 +40,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * The type of the asset. For example: "compute.googleapis.com/Disk"
+     * The type of the asset. Example: `compute.googleapis.com/Disk`
      * See [Supported asset
      * types](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
      * for more information.
@@ -74,7 +84,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      * with the closest ancestor in the hierarchy and ends at root. If the asset
      * is a project, folder, or organization, the ancestry path starts from the
      * asset itself.
-     * For example: `["projects/123456789", "folders/5432", "organizations/1234"]`
+     * Example: `["projects/123456789", "folders/5432", "organizations/1234"]`
      *
      * Generated from protobuf field <code>repeated string ancestors = 10;</code>
      */
@@ -87,14 +97,17 @@ class Asset extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Protobuf\Timestamp $update_time
+     *           The last update timestamp of an asset. update_time is updated when
+     *           create/update/delete operation is performed.
      *     @type string $name
-     *           The full name of the asset. For example:
-     *           "//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1"
+     *           The full name of the asset. Example:
+     *           `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`
      *           See [Resource
      *           names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
      *           for more information.
      *     @type string $asset_type
-     *           The type of the asset. For example: "compute.googleapis.com/Disk"
+     *           The type of the asset. Example: `compute.googleapis.com/Disk`
      *           See [Supported asset
      *           types](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
      *           for more information.
@@ -116,8 +129,14 @@ class Asset extends \Google\Protobuf\Internal\Message
      *           There can be more than one organization policy with different constraints
      *           set on a given resource.
      *     @type \Google\Identity\AccessContextManager\V1\AccessPolicy $access_policy
+     *           Please also refer to the [access policy user
+     *           guide](https://cloud.google.com/access-context-manager/docs/overview#access-policies).
      *     @type \Google\Identity\AccessContextManager\V1\AccessLevel $access_level
+     *           Please also refer to the [access level user
+     *           guide](https://cloud.google.com/access-context-manager/docs/overview#access-levels).
      *     @type \Google\Identity\AccessContextManager\V1\ServicePerimeter $service_perimeter
+     *           Please also refer to the [service perimeter user
+     *           guide](https://cloud.google.com/vpc-service-controls/docs/overview).
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $ancestors
      *           The ancestry path of an asset in Google Cloud [resource
      *           hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy),
@@ -125,7 +144,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      *           with the closest ancestor in the hierarchy and ends at root. If the asset
      *           is a project, folder, or organization, the ancestry path starts from the
      *           asset itself.
-     *           For example: `["projects/123456789", "folders/5432", "organizations/1234"]`
+     *           Example: `["projects/123456789", "folders/5432", "organizations/1234"]`
      * }
      */
     public function __construct($data = NULL) {
@@ -134,8 +153,36 @@ class Asset extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The full name of the asset. For example:
-     * "//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1"
+     * The last update timestamp of an asset. update_time is updated when
+     * create/update/delete operation is performed.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 11;</code>
+     * @return \Google\Protobuf\Timestamp
+     */
+    public function getUpdateTime()
+    {
+        return $this->update_time;
+    }
+
+    /**
+     * The last update timestamp of an asset. update_time is updated when
+     * create/update/delete operation is performed.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 11;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setUpdateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->update_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * The full name of the asset. Example:
+     * `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`
      * See [Resource
      * names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
      * for more information.
@@ -149,8 +196,8 @@ class Asset extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The full name of the asset. For example:
-     * "//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1"
+     * The full name of the asset. Example:
+     * `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`
      * See [Resource
      * names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
      * for more information.
@@ -168,7 +215,7 @@ class Asset extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The type of the asset. For example: "compute.googleapis.com/Disk"
+     * The type of the asset. Example: `compute.googleapis.com/Disk`
      * See [Supported asset
      * types](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
      * for more information.
@@ -182,7 +229,7 @@ class Asset extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The type of the asset. For example: "compute.googleapis.com/Disk"
+     * The type of the asset. Example: `compute.googleapis.com/Disk`
      * See [Supported asset
      * types](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
      * for more information.
@@ -300,6 +347,9 @@ class Asset extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Please also refer to the [access policy user
+     * guide](https://cloud.google.com/access-context-manager/docs/overview#access-policies).
+     *
      * Generated from protobuf field <code>.google.identity.accesscontextmanager.v1.AccessPolicy access_policy = 7;</code>
      * @return \Google\Identity\AccessContextManager\V1\AccessPolicy
      */
@@ -309,6 +359,9 @@ class Asset extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Please also refer to the [access policy user
+     * guide](https://cloud.google.com/access-context-manager/docs/overview#access-policies).
+     *
      * Generated from protobuf field <code>.google.identity.accesscontextmanager.v1.AccessPolicy access_policy = 7;</code>
      * @param \Google\Identity\AccessContextManager\V1\AccessPolicy $var
      * @return $this
@@ -322,6 +375,9 @@ class Asset extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Please also refer to the [access level user
+     * guide](https://cloud.google.com/access-context-manager/docs/overview#access-levels).
+     *
      * Generated from protobuf field <code>.google.identity.accesscontextmanager.v1.AccessLevel access_level = 8;</code>
      * @return \Google\Identity\AccessContextManager\V1\AccessLevel
      */
@@ -331,6 +387,9 @@ class Asset extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Please also refer to the [access level user
+     * guide](https://cloud.google.com/access-context-manager/docs/overview#access-levels).
+     *
      * Generated from protobuf field <code>.google.identity.accesscontextmanager.v1.AccessLevel access_level = 8;</code>
      * @param \Google\Identity\AccessContextManager\V1\AccessLevel $var
      * @return $this
@@ -344,6 +403,9 @@ class Asset extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Please also refer to the [service perimeter user
+     * guide](https://cloud.google.com/vpc-service-controls/docs/overview).
+     *
      * Generated from protobuf field <code>.google.identity.accesscontextmanager.v1.ServicePerimeter service_perimeter = 9;</code>
      * @return \Google\Identity\AccessContextManager\V1\ServicePerimeter
      */
@@ -353,6 +415,9 @@ class Asset extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Please also refer to the [service perimeter user
+     * guide](https://cloud.google.com/vpc-service-controls/docs/overview).
+     *
      * Generated from protobuf field <code>.google.identity.accesscontextmanager.v1.ServicePerimeter service_perimeter = 9;</code>
      * @param \Google\Identity\AccessContextManager\V1\ServicePerimeter $var
      * @return $this
@@ -372,7 +437,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      * with the closest ancestor in the hierarchy and ends at root. If the asset
      * is a project, folder, or organization, the ancestry path starts from the
      * asset itself.
-     * For example: `["projects/123456789", "folders/5432", "organizations/1234"]`
+     * Example: `["projects/123456789", "folders/5432", "organizations/1234"]`
      *
      * Generated from protobuf field <code>repeated string ancestors = 10;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -389,7 +454,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      * with the closest ancestor in the hierarchy and ends at root. If the asset
      * is a project, folder, or organization, the ancestry path starts from the
      * asset itself.
-     * For example: `["projects/123456789", "folders/5432", "organizations/1234"]`
+     * Example: `["projects/123456789", "folders/5432", "organizations/1234"]`
      *
      * Generated from protobuf field <code>repeated string ancestors = 10;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var

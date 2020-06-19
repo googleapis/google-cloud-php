@@ -17,7 +17,7 @@ class PubsubDestination extends \Google\Protobuf\Internal\Message
 {
     /**
      * The name of the Pub/Sub topic to publish to.
-     * For example: `projects/PROJECT_ID/topics/TOPIC_ID`.
+     * Example: `projects/PROJECT_ID/topics/TOPIC_ID`.
      *
      * Generated from protobuf field <code>string topic = 1;</code>
      */
@@ -31,7 +31,7 @@ class PubsubDestination extends \Google\Protobuf\Internal\Message
      *
      *     @type string $topic
      *           The name of the Pub/Sub topic to publish to.
-     *           For example: `projects/PROJECT_ID/topics/TOPIC_ID`.
+     *           Example: `projects/PROJECT_ID/topics/TOPIC_ID`.
      * }
      */
     public function __construct($data = NULL) {
@@ -41,7 +41,7 @@ class PubsubDestination extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the Pub/Sub topic to publish to.
-     * For example: `projects/PROJECT_ID/topics/TOPIC_ID`.
+     * Example: `projects/PROJECT_ID/topics/TOPIC_ID`.
      *
      * Generated from protobuf field <code>string topic = 1;</code>
      * @return string
@@ -53,7 +53,7 @@ class PubsubDestination extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the Pub/Sub topic to publish to.
-     * For example: `projects/PROJECT_ID/topics/TOPIC_ID`.
+     * Example: `projects/PROJECT_ID/topics/TOPIC_ID`.
      *
      * Generated from protobuf field <code>string topic = 1;</code>
      * @param string $var

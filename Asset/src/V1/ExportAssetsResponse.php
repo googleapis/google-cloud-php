@@ -10,8 +10,10 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * The export asset response. This message is returned by the
- * [google.longrunning.Operations.GetOperation][google.longrunning.Operations.GetOperation] method in the returned
- * [google.longrunning.Operation.response][google.longrunning.Operation.response] field.
+ * [google.longrunning.Operations.GetOperation][google.longrunning.Operations.GetOperation]
+ * method in the returned
+ * [google.longrunning.Operation.response][google.longrunning.Operation.response]
+ * field.
  *
  * Generated from protobuf message <code>google.cloud.asset.v1.ExportAssetsResponse</code>
  */
@@ -25,7 +27,6 @@ class ExportAssetsResponse extends \Google\Protobuf\Internal\Message
     private $read_time = null;
     /**
      * Output configuration indicating where the results were output to.
-     * All results are in JSON format.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.OutputConfig output_config = 2;</code>
      */
@@ -41,7 +42,6 @@ class ExportAssetsResponse extends \Google\Protobuf\Internal\Message
      *           Time the snapshot was taken.
      *     @type \Google\Cloud\Asset\V1\OutputConfig $output_config
      *           Output configuration indicating where the results were output to.
-     *           All results are in JSON format.
      * }
      */
     public function __construct($data = NULL) {
@@ -77,7 +77,6 @@ class ExportAssetsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Output configuration indicating where the results were output to.
-     * All results are in JSON format.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.OutputConfig output_config = 2;</code>
      * @return \Google\Cloud\Asset\V1\OutputConfig
@@ -89,7 +88,6 @@ class ExportAssetsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Output configuration indicating where the results were output to.
-     * All results are in JSON format.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.OutputConfig output_config = 2;</code>
      * @param \Google\Cloud\Asset\V1\OutputConfig $var
