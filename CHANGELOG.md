@@ -1,5 +1,272 @@
 # Changelog
 
+## 0.134.0
+
+<details><summary>google/cloud-asset 1.2.0</summary>
+
+
+
+### Features
+
+* add searchAllResources and searchAllIamPolicies RPCs ([#3154](https://www.github.com/googleapis/google-cloud-php/issues/3154)) ([3fce3c8](https://www.github.com/googleapis/google-cloud-php/commit/3fce3c8b95bba2eb0199e1ee2d3a569ae6e203b9))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.4.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update metadata ([#3130](https://www.github.com/googleapis/google-cloud-php/issues/3130)) ([3dabea4](https://www.github.com/googleapis/google-cloud-php/commit/3dabea4aae8c32cecd2d6e10c0e256df071114fe))
+
+</details>
+
+<details><summary>google/cloud-dataproc 1.1.0</summary>
+
+
+
+### Features
+
+* update retry and timeout config ([#3123](https://www.github.com/googleapis/google-cloud-php/issues/3123)) ([6537af6](https://www.github.com/googleapis/google-cloud-php/commit/6537af607956584d2164ceb03eb2e273818419a2))
+
+</details>
+
+<details><summary>google/cloud-datastore 1.11.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* update metadata ([#3138](https://www.github.com/googleapis/google-cloud-php/issues/3138)) ([d99038f](https://www.github.com/googleapis/google-cloud-php/commit/d99038f43ce2e76a189362d54a10771752dfffe1))
+
+</details>
+
+<details><summary>google/cloud-debugger 1.1.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update metadata ([#3131](https://www.github.com/googleapis/google-cloud-php/issues/3131)) ([d0aa60d](https://www.github.com/googleapis/google-cloud-php/commit/d0aa60d5f1c22bfaf10b3cc257277404a5a43a18))
+
+</details>
+
+<details><summary>google/cloud-error-reporting 0.16.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* update metadata ([#3139](https://www.github.com/googleapis/google-cloud-php/issues/3139)) ([5b797b3](https://www.github.com/googleapis/google-cloud-php/commit/5b797b3c2f362d286ea31fe24fb25e6fc7901489))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.14.0</summary>
+
+
+
+### Features
+
+* add batchWrite and partitionQuery RPCs to generated client ([#3140](https://www.github.com/googleapis/google-cloud-php/issues/3140)) ([1ce8e54](https://www.github.com/googleapis/google-cloud-php/commit/1ce8e54902bbb0a080f284dc9d942d69e6f7eeda))
+* deprecate v1beta1 client ([#3107](https://www.github.com/googleapis/google-cloud-php/issues/3107)) ([3ba23e7](https://www.github.com/googleapis/google-cloud-php/commit/3ba23e7483d8fa855fb7847b6dce1b2e1143d42d))
+
+</details>
+
+<details><summary>google/cloud-memcache 0.2.0</summary>
+
+
+
+### Features
+
+* update retry and timeout configuration ([#3147](https://www.github.com/googleapis/google-cloud-php/issues/3147)) ([fbaa866](https://www.github.com/googleapis/google-cloud-php/commit/fbaa86644d729fb7921b2776794d3526b1134849))
+
+
+### Documentation
+
+* update links to vpc documentation ([#3127](https://www.github.com/googleapis/google-cloud-php/issues/3127)) ([3a70639](https://www.github.com/googleapis/google-cloud-php/commit/3a70639a4fdd717819eac431b3596d80c7bacd1a))
+
+</details>
+
+<details><summary>google/cloud-oslogin 1.1.0</summary>
+
+
+
+### Features
+
+* update retry and timeout configuration ([#3156](https://www.github.com/googleapis/google-cloud-php/issues/3156)) ([8b913e1](https://www.github.com/googleapis/google-cloud-php/commit/8b913e162c70ac23889b9f4f76ef626716ba1e9a))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.25.0</summary>
+
+
+
+### Features
+
+* add detached flag to subscription message ([#3124](https://www.github.com/googleapis/google-cloud-php/issues/3124)) ([0611e75](https://www.github.com/googleapis/google-cloud-php/commit/0611e75f2f5132616de7572dd126e7f2892955e1))
+* add detachSubscription rpc ([#3066](https://www.github.com/googleapis/google-cloud-php/issues/3066)) ([318eeb5](https://www.github.com/googleapis/google-cloud-php/commit/318eeb51393b8e6484de67fb19a2681fb97d9f07))
+* add retry policy ([#3031](https://www.github.com/googleapis/google-cloud-php/issues/3031)) ([44cd24e](https://www.github.com/googleapis/google-cloud-php/commit/44cd24ee4677d93d81a6c8c7337a5135ef157a4d))
+* add support for subscription filtering ([#3136](https://www.github.com/googleapis/google-cloud-php/issues/3136)) ([0833223](https://www.github.com/googleapis/google-cloud-php/commit/0833223acaa4dbe62475a3dfc58cdabcf933c053))
+
+
+### Documentation
+
+* add a link to filter language public documentation ([#3132](https://www.github.com/googleapis/google-cloud-php/issues/3132)) ([dcadf68](https://www.github.com/googleapis/google-cloud-php/commit/dcadf68249b2314722e1c9f9e6cfc1c1d4b41baa))
+
+</details>
+
+<details><summary>google/cloud-recaptcha-enterprise 0.2.0</summary>
+
+
+
+### Features
+
+* update retries and timeouts ([#3133](https://www.github.com/googleapis/google-cloud-php/issues/3133)) ([749b7b3](https://www.github.com/googleapis/google-cloud-php/commit/749b7b390418bb4ba08d41424870c9c98a718ae2))
+
+</details>
+
+<details><summary>google/cloud-recommendations-ai 0.1.2</summary>
+
+
+
+### Documentation
+
+* update sample ([#3141](https://www.github.com/googleapis/google-cloud-php/issues/3141)) ([3556270](https://www.github.com/googleapis/google-cloud-php/commit/35562706be3181cc5c13b5b794688e5abbd6551c))
+
+</details>
+
+<details><summary>google/cloud-recommender 1.0.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* update retry and timeout config ([#3142](https://www.github.com/googleapis/google-cloud-php/issues/3142)) ([39a78b4](https://www.github.com/googleapis/google-cloud-php/commit/39a78b4395a4c648f1d8ea806fd99b2fb15dbac0))
+
+</details>
+
+<details><summary>google/cloud-redis 1.0.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* reorder methods ([#3148](https://www.github.com/googleapis/google-cloud-php/issues/3148)) ([fa39362](https://www.github.com/googleapis/google-cloud-php/commit/fa393627345cc9266ba178251e4d41241b67d10d))
+* reorder methods ([#3150](https://www.github.com/googleapis/google-cloud-php/issues/3150)) ([676a35a](https://www.github.com/googleapis/google-cloud-php/commit/676a35a6a5724c17f7e055cafa9229d4ec5b21e6))
+
+</details>
+
+<details><summary>google/cloud-scheduler 1.4.0</summary>
+
+
+
+### Features
+
+* update retry and timeout configuration ([#3157](https://www.github.com/googleapis/google-cloud-php/issues/3157)) ([35c9b79](https://www.github.com/googleapis/google-cloud-php/commit/35c9b795fb4ab66ac1bf3a11f6b59890dcd6a7d6))
+
+
+### Miscellaneous Chores
+
+* reorder methods ([#3151](https://www.github.com/googleapis/google-cloud-php/issues/3151)) ([022047c](https://www.github.com/googleapis/google-cloud-php/commit/022047c714ccc693f1c2e3210b7c832b23b375d4))
+
+</details>
+
+<details><summary>google/cloud-security-center 0.8.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* (v1p1beta1) add resource field, remove asset having field (#3128)
+
+### Features
+
+* (v1p1beta1) add resource field, remove asset having field ([#3128](https://www.github.com/googleapis/google-cloud-php/issues/3128)) ([9c1b3b2](https://www.github.com/googleapis/google-cloud-php/commit/9c1b3b27d162f1602d74f31fc1a5a0f37ebeab0a))
+
+
+### Documentation
+
+* specify allowed fields for UpdateNotificationConfig ([#3152](https://www.github.com/googleapis/google-cloud-php/issues/3152)) ([7a3377e](https://www.github.com/googleapis/google-cloud-php/commit/7a3377e8a705803f0bd9104c784cf69c18a8701b))
+
+
+### Miscellaneous Chores
+
+* update metadata ([#3134](https://www.github.com/googleapis/google-cloud-php/issues/3134)) ([d8ce1aa](https://www.github.com/googleapis/google-cloud-php/commit/d8ce1aa62684417bb06fe90622ff72708ef7f85b))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.29.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update metadata ([#3143](https://www.github.com/googleapis/google-cloud-php/issues/3143)) ([3941ca0](https://www.github.com/googleapis/google-cloud-php/commit/3941ca06f21a2dd175e72ae675c23a36e345a6a2))
+
+</details>
+
+<details><summary>google/cloud-speech 1.2.0</summary>
+
+
+
+### Features
+
+* update retry and timeout configuration ([#3159](https://www.github.com/googleapis/google-cloud-php/issues/3159)) ([eb7b426](https://www.github.com/googleapis/google-cloud-php/commit/eb7b426155bdc9804b10260e89eda37ad39f7fcb))
+
+</details>
+
+<details><summary>google/cloud-talent 0.13.0</summary>
+
+
+
+### Features
+
+* update retry and timeout configuration and documentation ([#3161](https://www.github.com/googleapis/google-cloud-php/issues/3161)) ([501c50d](https://www.github.com/googleapis/google-cloud-php/commit/501c50db9230e545aa51cbfc50227738100191fa))
+
+</details>
+
+<details><summary>google/cloud-tasks 1.7.0</summary>
+
+
+
+### Features
+
+* introduce field Queue.type ([#3162](https://www.github.com/googleapis/google-cloud-php/issues/3162)) ([a0cf4b7](https://www.github.com/googleapis/google-cloud-php/commit/a0cf4b762f04f547f38d86042c3bd93cd87c062b))
+* update retry and timeout configuration ([#3160](https://www.github.com/googleapis/google-cloud-php/issues/3160)) ([6a4720a](https://www.github.com/googleapis/google-cloud-php/commit/6a4720a3277e99135fce89a6c65a348f4d0eb855))
+
+</details>
+
+<details><summary>google/cloud-text-to-speech 1.1.0</summary>
+
+
+
+### Features
+
+* update retry and timeout configuration ([#3163](https://www.github.com/googleapis/google-cloud-php/issues/3163)) ([2f50d0f](https://www.github.com/googleapis/google-cloud-php/commit/2f50d0f193ca76813fdf87462db68428469bef02))
+
+</details>
+
+<details><summary>google/cloud-trace 1.1.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update metadata ([#3144](https://www.github.com/googleapis/google-cloud-php/issues/3144)) ([6ada9eb](https://www.github.com/googleapis/google-cloud-php/commit/6ada9eb089101da1a919386a93f566419e4e434f))
+
+</details>
+
+<details><summary>google/cloud-vision 1.1.0</summary>
+
+
+
+### Features
+
+* update retry and timeout configuration ([#3164](https://www.github.com/googleapis/google-cloud-php/issues/3164)) ([8891f39](https://www.github.com/googleapis/google-cloud-php/commit/8891f391c8a2a936fa1aaf11e5c925ab220d639f))
+
+</details>
+
 ## 0.133.1
 
 <details><summary>google/cloud-automl 1.1.2</summary>
