@@ -54,8 +54,9 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $companyServiceClient = new CompanyServiceClient();
  * try {
- *     $formattedName = $companyServiceClient->projectTenantCompanyName('[PROJECT]', '[TENANT]', '[COMPANY]');
- *     $companyServiceClient->deleteCompany($formattedName);
+ *     $formattedParent = $companyServiceClient->tenantName('[PROJECT]', '[TENANT]');
+ *     $company = new Company();
+ *     $response = $companyServiceClient->createCompany($formattedParent, $company);
  * } finally {
  *     $companyServiceClient->close();
  * }
@@ -416,62 +417,6 @@ class CompanyServiceGapicClient
     }
 
     /**
-     * Deletes specified company.
-     * Prerequisite: The company has no jobs associated with it.
-     *
-     * Sample code:
-     * ```
-     * $companyServiceClient = new CompanyServiceClient();
-     * try {
-     *     $formattedName = $companyServiceClient->projectTenantCompanyName('[PROJECT]', '[TENANT]', '[COMPANY]');
-     *     $companyServiceClient->deleteCompany($formattedName);
-     * } finally {
-     *     $companyServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $name Required. The resource name of the company to be deleted.
-     *
-     * The format is
-     * "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}", for
-     * example, "projects/foo/tenants/bar/companies/baz".
-     *
-     * If tenant id is unspecified, the default tenant is used, for
-     * example, "projects/foo/companies/bar".
-     * @param array $optionalArgs {
-     *                            Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function deleteCompany($name, array $optionalArgs = [])
-    {
-        $request = new DeleteCompanyRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteCompany',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
      * Creates a new company entity.
      *
      * Sample code:
@@ -641,6 +586,62 @@ class CompanyServiceGapicClient
         return $this->startCall(
             'UpdateCompany',
             Company::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Deletes specified company.
+     * Prerequisite: The company has no jobs associated with it.
+     *
+     * Sample code:
+     * ```
+     * $companyServiceClient = new CompanyServiceClient();
+     * try {
+     *     $formattedName = $companyServiceClient->projectTenantCompanyName('[PROJECT]', '[TENANT]', '[COMPANY]');
+     *     $companyServiceClient->deleteCompany($formattedName);
+     * } finally {
+     *     $companyServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name Required. The resource name of the company to be deleted.
+     *
+     * The format is
+     * "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}", for
+     * example, "projects/foo/tenants/bar/companies/baz".
+     *
+     * If tenant id is unspecified, the default tenant is used, for
+     * example, "projects/foo/companies/bar".
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function deleteCompany($name, array $optionalArgs = [])
+    {
+        $request = new DeleteCompanyRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteCompany',
+            GPBEmpty::class,
             $optionalArgs,
             $request
         )->wait();

@@ -70,8 +70,9 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $jobServiceClient = new JobServiceClient();
  * try {
- *     $formattedName = $jobServiceClient->projectTenantJobName('[PROJECT]', '[TENANT]', '[JOB]');
- *     $jobServiceClient->deleteJob($formattedName);
+ *     $formattedParent = $jobServiceClient->tenantName('[PROJECT]', '[TENANT]');
+ *     $job = new Job();
+ *     $response = $jobServiceClient->createJob($formattedParent, $job);
  * } finally {
  *     $jobServiceClient->close();
  * }
@@ -596,64 +597,6 @@ class JobServiceGapicClient
     }
 
     /**
-     * Deletes the specified job.
-     *
-     * Typically, the job becomes unsearchable within 10 seconds, but it may take
-     * up to 5 minutes.
-     *
-     * Sample code:
-     * ```
-     * $jobServiceClient = new JobServiceClient();
-     * try {
-     *     $formattedName = $jobServiceClient->projectTenantJobName('[PROJECT]', '[TENANT]', '[JOB]');
-     *     $jobServiceClient->deleteJob($formattedName);
-     * } finally {
-     *     $jobServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $name Required. The resource name of the job to be deleted.
-     *
-     * The format is
-     * "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}". For
-     * example, "projects/foo/tenants/bar/jobs/baz".
-     *
-     * If tenant id is unspecified, the default tenant is used. For
-     * example, "projects/foo/jobs/bar".
-     * @param array $optionalArgs {
-     *                            Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function deleteJob($name, array $optionalArgs = [])
-    {
-        $request = new DeleteJobRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteJob',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
      * Creates a new job.
      *
      * Typically, the job becomes searchable within 10 seconds, but it may take
@@ -1020,6 +963,64 @@ class JobServiceGapicClient
             $optionalArgs,
             $request,
             $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Deletes the specified job.
+     *
+     * Typically, the job becomes unsearchable within 10 seconds, but it may take
+     * up to 5 minutes.
+     *
+     * Sample code:
+     * ```
+     * $jobServiceClient = new JobServiceClient();
+     * try {
+     *     $formattedName = $jobServiceClient->projectTenantJobName('[PROJECT]', '[TENANT]', '[JOB]');
+     *     $jobServiceClient->deleteJob($formattedName);
+     * } finally {
+     *     $jobServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name Required. The resource name of the job to be deleted.
+     *
+     * The format is
+     * "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}". For
+     * example, "projects/foo/tenants/bar/jobs/baz".
+     *
+     * If tenant id is unspecified, the default tenant is used. For
+     * example, "projects/foo/jobs/bar".
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function deleteJob($name, array $optionalArgs = [])
+    {
+        $request = new DeleteJobRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteJob',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
