@@ -1,5 +1,37 @@
 # Changelog
 
+## 0.135.0
+
+<details><summary>google/cloud-asset 1.2.1</summary>
+
+
+
+### Bug Fixes
+
+* address issues in asset client ([#3170](https://www.github.com/googleapis/google-cloud-php/issues/3170)) ([8ae6eee](https://www.github.com/googleapis/google-cloud-php/commit/8ae6eee716cfe56d9bcdb6be3c99d9cc92758c0d))
+
+</details>
+
+<details><summary>google/cloud-web-risk 0.6.0</summary>
+
+
+
+### Features
+
+* update retry and timeout configuration ([#3167](https://www.github.com/googleapis/google-cloud-php/issues/3167)) ([9e01b0f](https://www.github.com/googleapis/google-cloud-php/commit/9e01b0fbe7d681be3d7342cb4e0b3df814de3169))
+
+</details>
+
+<details><summary>google/cloud-web-security-scanner 0.5.0</summary>
+
+
+
+### Features
+
+* update retry and timeout configuration ([#3168](https://www.github.com/googleapis/google-cloud-php/issues/3168)) ([d73b3f4](https://www.github.com/googleapis/google-cloud-php/commit/d73b3f4e6c8170ac8fd54fe4d4962941e15e262b))
+
+</details>
+
 ## 0.134.0
 
 <details><summary>google/cloud-asset 1.2.0</summary>

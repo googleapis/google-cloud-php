@@ -69,7 +69,7 @@
         "swaggest/json-schema": "^0.12.0"
     },
     "replace": {
-        "google/cloud-asset": "1.2.0",
+        "google/cloud-asset": "1.2.1",
         "google/cloud-automl": "1.1.2",
         "google/cloud-bigquery": "1.16.0",
         "google/cloud-bigquerydatatransfer": "1.0.3",
@@ -113,8 +113,8 @@
         "google/cloud-translate": "1.7.4",
         "google/cloud-videointelligence": "1.9.2",
         "google/cloud-vision": "1.1.0",
-        "google/cloud-web-risk": "0.5.1",
-        "google/cloud-web-security-scanner": "0.4.4"
+        "google/cloud-web-risk": "0.6.0",
+        "google/cloud-web-security-scanner": "0.5.0"
     },
     "suggest": {
         "opis/closure": "May be used to serialize closures to process jobs in the batch daemon. Please require version ^3.",
