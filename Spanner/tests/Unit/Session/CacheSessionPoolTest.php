@@ -50,7 +50,7 @@ class CacheSessionPoolTest extends TestCase
     {
         $this->checkAndSkipGrpcTests();
         putenv('GOOGLE_CLOUD_SYSV_ID=U');
-        $this->time = 1000000000;//time();
+        $this->time = time();
         MockValues::initialize();
         $this->cacheKey = sprintf(self::CACHE_KEY_TEMPLATE, self::PROJECT_ID, self::INSTANCE_NAME, self::DATABASE_NAME);
     }
