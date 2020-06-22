@@ -113,6 +113,7 @@ class AssetServiceGapicClient
     private static $organizationFeedNameTemplate;
     private static $projectFeedNameTemplate;
     private static $pathTemplateMap;
+    private static $projectNameTemplate;
 
     private $operationsClient;
 
