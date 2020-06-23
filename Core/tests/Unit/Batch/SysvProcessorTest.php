@@ -170,6 +170,8 @@ class SysvProcessorTest extends TestCase
      * Test that submit() method does not stall.
      *
      * @depends testQueueOverflowDirect
+     * @expectedException \RuntimeException
+     * @expectedExceptionMessageRegExp /Failed to submit the filename/
      */
     public function testQueueOverflowFile()
     {
@@ -182,9 +184,6 @@ class SysvProcessorTest extends TestCase
         do {
             $result = @$this->send('12345678');
         } while ($result);
-
-        $this->expectException(\RuntimeException::class);
-        $this->expectExceptionMessageRegExp('/Failed to submit the filename/');
 
         $gotAlarm = false;
         pcntl_signal(SIGALRM, function ($n, $i) use (&$gotAlarm) {
