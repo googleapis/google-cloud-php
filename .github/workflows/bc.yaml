@@ -1,0 +1,26 @@
+name: Scan for Backwards-Incompatible Changes
+
+on:
+    pull_request:
+
+jobs:
+    scan:
+        name: Scan for Backwards-Incompatible Changes
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - name: Fetch master
+              run: git fetch origin master
+            - name: Setup PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                php-version: '7.4'
+                ini-values: memory_limit=2048M
+            - name: Install Dependencies
+              uses: nick-invision/retry@v1
+              with:
+                timeout_minutes: 10
+                max_attempts: 3
+                command: composer update
+            - name: Run Scanner
+              run: dev/google-cloud comparator
