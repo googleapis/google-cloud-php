@@ -32,6 +32,8 @@ class SysvProcessorTest extends TestCase
     use SysvTrait;
 
     private $submitter;
+    private $processor;
+    private $queue;
 
     public function setUp()
     {
@@ -42,11 +44,51 @@ class SysvProcessorTest extends TestCase
             );
         }
         $this->processor = new SysvProcessor();
+        $this->queue = msg_get_queue($this->getSysvKey(1));
+        $this->clearQueue();
     }
 
     public function tearDown()
     {
+        $this->clearQueue();
         putenv('GOOGLE_CLOUD_SYSV_ID');
+    }
+
+    private function clearQueue()
+    {
+        while ($this->receive($type, $message, $code)) {
+            if ($type == self::$typeFile) {
+                @unlink(unserialize($message));
+            }
+        }
+    }
+
+    private function queueSize()
+    {
+        return msg_stat_queue($this->queue)['msg_qbytes'];
+    }
+
+    private function send($message, $type = null)
+    {
+        if (!$type) {
+            $type = self::$typeDirect;
+        }
+        $serialize = $type == self::$typeDirect;
+        return @msg_send($this->queue, $type, $message, $serialize, false);
+    }
+
+    private function receive(&$type, &$message, &$errorcode, $unserialize = false)
+    {
+        return @msg_receive(
+            $this->queue,
+            0,
+            $type,
+            8192,
+            $message,
+            $unserialize,
+            MSG_IPC_NOWAIT,
+            $errorcode
+        );
     }
 
     /**
@@ -55,17 +97,7 @@ class SysvProcessorTest extends TestCase
     public function testSubmit($item, $exptectedType)
     {
         $this->processor->submit($item, 1);
-        $q = msg_get_queue($this->getSysvKey(1));
-        $result = msg_receive(
-            $q,
-            0,
-            $type,
-            8192,
-            $message,
-            true,
-            MSG_IPC_NOWAIT,
-            $errorcode
-        );
+        $result = $this->receive($type, $message, $errorCode, true);
         $this->assertTrue($result);
         $this->assertEquals($exptectedType, $type);
         if ($type === self::$typeDirect) {
@@ -85,5 +117,89 @@ class SysvProcessorTest extends TestCase
             ['item', self::$typeDirect],
             [str_repeat('x', 8193), self::$typeFile]
         ];
+    }
+
+    /**
+     * Message queue has no room for a "direct" message, but has enough room for a file path.
+     * Test that submit() method does not stall.
+     */
+    public function testQueueOverflowDirect()
+    {
+        $queueSize = $this->queueSize();
+        $item = str_repeat('a', 8160);
+        while ($queueSize >= 9000) {
+            $this->send($item);
+            $queueSize -= 8192;
+        }
+        if ($queueSize > 1000) {
+            $this->send(str_repeat('b', $queueSize - 1000));
+        }
+
+        $gotAlarm = false;
+        pcntl_signal(SIGALRM, function ($n, $i) use (&$gotAlarm) {
+            $gotAlarm = true;
+        });
+        try {
+            pcntl_alarm(2);
+            $this->processor->submit($item, 1);
+        } finally {
+            pcntl_signal_dispatch();
+            pcntl_signal(SIGALRM, SIG_IGN);
+            if (!$gotAlarm) {
+                sleep(3);
+            }
+        }
+
+        $this->assertFalse($gotAlarm);
+        $gotTypeFile = false;
+        while ($this->receive($type, $message, $code)) {
+            if ($type == self::$typeFile) {
+                $gotTypeFile = true;
+                $fileName = unserialize($message);
+                $this->assertFileExists($fileName);
+                $fileContent = unserialize(file_get_contents($fileName));
+                @unlink($fileName);
+                $this->assertEquals($item, $fileContent);
+            }
+        }
+        $this->assertTrue($gotTypeFile);
+    }
+
+    /**
+     * Message queue has no room even for a file path.
+     * Test that submit() method does not stall.
+     *
+     * @depends testQueueOverflowDirect
+     */
+    public function testQueueOverflowFile()
+    {
+        $queueSize = $this->queueSize();
+        $item = str_repeat('a', 8160);
+        while ($queueSize >= 8192) {
+            $this->send($item);
+            $queueSize -= 8192;
+        }
+        do {
+            $result = @$this->send('12345678');
+        } while ($result);
+
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessageRegExp('/Failed to submit the filename/');
+
+        $gotAlarm = false;
+        pcntl_signal(SIGALRM, function ($n, $i) use (&$gotAlarm) {
+            $gotAlarm = true;
+        });
+        try {
+            pcntl_alarm(2);
+            $this->processor->submit($item, 1);
+        } finally {
+            pcntl_signal_dispatch();
+            pcntl_signal(SIGALRM, SIG_IGN);
+            if (!$gotAlarm) {
+                sleep(3);
+            }
+        }
+        $this->assertFalse($gotAlarm);
     }
 }
