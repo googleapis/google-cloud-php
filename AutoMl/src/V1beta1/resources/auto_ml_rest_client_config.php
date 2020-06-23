@@ -3,87 +3,6 @@
 return [
     'interfaces' => [
         'google.cloud.automl.v1beta1.AutoMl' => [
-            'DeleteDataset' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/datasets/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ImportData' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/datasets/*}:importData',
-                'body' => '*',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ExportData' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/datasets/*}:exportData',
-                'body' => '*',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteModel' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/models/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ExportModel' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/models/*}:export',
-                'body' => '*',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ExportEvaluatedExamples' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/models/*}:exportEvaluatedExamples',
-                'body' => '*',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ListModelEvaluations' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*/models/*}/modelEvaluations',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
             'CreateDataset' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*}/datasets',
@@ -126,6 +45,41 @@ return [
                     'dataset.name' => [
                         'getters' => [
                             'getDataset',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteDataset' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/datasets/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ImportData' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/datasets/*}:importData',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ExportData' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/datasets/*}:exportData',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
                             'getName',
                         ],
                     ],
@@ -246,6 +200,17 @@ return [
                     ],
                 ],
             ],
+            'DeleteModel' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/models/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeployModel' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/models/*}:deploy',
@@ -270,6 +235,30 @@ return [
                     ],
                 ],
             ],
+            'ExportModel' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/models/*}:export',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ExportEvaluatedExamples' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/models/*}:exportEvaluatedExamples',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetModelEvaluation' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/models/*/modelEvaluations/*}',
@@ -277,6 +266,17 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListModelEvaluations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*/models/*}/modelEvaluations',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],
