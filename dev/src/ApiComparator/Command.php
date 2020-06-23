@@ -26,6 +26,7 @@ use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\NodeTraverser;
 use PhpParser\NodeVisitor\NameResolver;
 use PhpParser\NodeVisitorAbstract;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -39,7 +40,9 @@ class Command extends GoogleCloudCommand
     protected function configure()
     {
         $this->setName('comparator')
-            ->setDescription('Test the current git ref against master for backwards-compatibility breaks.');
+            ->setDescription('Test the current git ref against master for backwards-compatibility breaks.')
+            ->addArgument('head', InputArgument::REQUIRED, "The git HEAD ref")
+            ->addArgument('base', InputArgument::REQUIRED, "The base ref");
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -50,7 +53,7 @@ class Command extends GoogleCloudCommand
         $commit = $repo->getHeadCommit();
         $rev = $commit->getRevision();
 
-        $diff = $repo->getDiff('master..' . $rev);
+        $diff = $repo->getDiff($input->getArgument('base') . '..' . $input->getArgument('head'));
         $files = array_filter($diff->getFiles(), function ($file) {
             return $file->getOldName() === $file->getNewName() && strpos($file->getNewName(), '.php') !== false;
         });
