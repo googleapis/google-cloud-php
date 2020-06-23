@@ -3,17 +3,6 @@
 return [
     'interfaces' => [
         'google.cloud.translation.v3.TranslationService' => [
-            'DeleteGlossary' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v3/{name=projects/*/locations/*/glossaries/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'TranslateText' => [
                 'method' => 'post',
                 'uriTemplate' => '/v3/{parent=projects/*/locations/*}:translateText',
@@ -106,6 +95,17 @@ return [
             ],
             'GetGlossary' => [
                 'method' => 'get',
+                'uriTemplate' => '/v3/{name=projects/*/locations/*/glossaries/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteGlossary' => [
+                'method' => 'delete',
                 'uriTemplate' => '/v3/{name=projects/*/locations/*/glossaries/*}',
                 'placeholders' => [
                     'name' => [

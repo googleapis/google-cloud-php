@@ -3,16 +3,6 @@
 return [
     'interfaces' => [
         'google.cloud.translation.v3.TranslationService' => [
-            'DeleteGlossary' => [
-                'longRunning' => [
-                    'operationReturnType' => '\Google\Cloud\Translate\V3\DeleteGlossaryResponse',
-                    'metadataReturnType' => '\Google\Cloud\Translate\V3\DeleteGlossaryMetadata',
-                    'initialPollDelayMillis' => '500',
-                    'pollDelayMultiplier' => '1.5',
-                    'maxPollDelayMillis' => '5000',
-                    'totalPollTimeoutMillis' => '300000',
-                ],
-            ],
             'BatchTranslateText' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Translate\V3\BatchTranslateResponse',
@@ -27,6 +17,16 @@ return [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Translate\V3\Glossary',
                     'metadataReturnType' => '\Google\Cloud\Translate\V3\CreateGlossaryMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
+            'DeleteGlossary' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Translate\V3\DeleteGlossaryResponse',
+                    'metadataReturnType' => '\Google\Cloud\Translate\V3\DeleteGlossaryMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
