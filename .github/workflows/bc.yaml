@@ -23,4 +23,4 @@ jobs:
                 max_attempts: 3
                 command: composer update
             - name: Run Scanner
-              run: dev/google-cloud comparator $GITHUB_REF master
+              run: dev/google-cloud comparator $GITHUB_SHA origin/master

@@ -55,7 +55,7 @@ class Command extends GoogleCloudCommand
 
         $diff = $repo->getDiff($input->getArgument('base') . '..' . $input->getArgument('head'));
         $files = array_filter($diff->getFiles(), function ($file) {
-            return $file->getOldName() === $file->getNewName() && strpos($file->getNewName(), '.php') !== false;
+            return $file->getOldName() && $file->getNewName() && strpos($file->getNewName(), '.php') !== false;
         });
 
         if (empty($files)) {
