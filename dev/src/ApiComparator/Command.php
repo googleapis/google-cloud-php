@@ -111,17 +111,8 @@ class Command extends GoogleCloudCommand
 
     private function getClassMethods(array $nodes)
     {
+        $methodFindingTraverser = new MethodFindingTraverser();
         $traverser = new NodeTraverser;
-        $methodFindingTraverser = new class extends NodeVisitorAbstract {
-            public $methods = [];
-
-            function enterNode(Node $node) {
-                if ($node instanceof ClassMethod) {
-                    $this->methods[] = $node;
-                    return NodeTraverser::DONT_TRAVERSE_CHILDREN;
-                }
-            }
-        };
         $traverser->addVisitor($methodFindingTraverser);
         $traverser->addVisitor(new NameResolver());
 
