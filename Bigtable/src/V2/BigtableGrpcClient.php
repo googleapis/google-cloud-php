@@ -41,6 +41,7 @@ class BigtableGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Bigtable\V2\ReadRowsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Bigtable\V2\ReadRowsResponse
      */
     public function ReadRows(\Google\Cloud\Bigtable\V2\ReadRowsRequest $argument,
       $metadata = [], $options = []) {
@@ -58,6 +59,7 @@ class BigtableGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Bigtable\V2\SampleRowKeysRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Bigtable\V2\SampleRowKeysResponse
      */
     public function SampleRowKeys(\Google\Cloud\Bigtable\V2\SampleRowKeysRequest $argument,
       $metadata = [], $options = []) {
@@ -73,6 +75,7 @@ class BigtableGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Bigtable\V2\MutateRowRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Bigtable\V2\MutateRowResponse
      */
     public function MutateRow(\Google\Cloud\Bigtable\V2\MutateRowRequest $argument,
       $metadata = [], $options = []) {
@@ -89,6 +92,7 @@ class BigtableGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Bigtable\V2\MutateRowsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Bigtable\V2\MutateRowsResponse
      */
     public function MutateRows(\Google\Cloud\Bigtable\V2\MutateRowsRequest $argument,
       $metadata = [], $options = []) {
@@ -103,6 +107,7 @@ class BigtableGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Bigtable\V2\CheckAndMutateRowRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Bigtable\V2\CheckAndMutateRowResponse
      */
     public function CheckAndMutateRow(\Google\Cloud\Bigtable\V2\CheckAndMutateRowRequest $argument,
       $metadata = [], $options = []) {
@@ -121,6 +126,7 @@ class BigtableGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Bigtable\V2\ReadModifyWriteRowRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Bigtable\V2\ReadModifyWriteRowResponse
      */
     public function ReadModifyWriteRow(\Google\Cloud\Bigtable\V2\ReadModifyWriteRowRequest $argument,
       $metadata = [], $options = []) {
