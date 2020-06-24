@@ -42,6 +42,7 @@ class RecommenderGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Recommender\V1\ListRecommendationsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Recommender\V1\ListRecommendationsResponse
      */
     public function ListRecommendations(\Google\Cloud\Recommender\V1\ListRecommendationsRequest $argument,
       $metadata = [], $options = []) {
@@ -57,6 +58,7 @@ class RecommenderGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Recommender\V1\GetRecommendationRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Recommender\V1\Recommendation
      */
     public function GetRecommendation(\Google\Cloud\Recommender\V1\GetRecommendationRequest $argument,
       $metadata = [], $options = []) {
@@ -80,6 +82,7 @@ class RecommenderGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Recommender\V1\MarkRecommendationClaimedRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Recommender\V1\Recommendation
      */
     public function MarkRecommendationClaimed(\Google\Cloud\Recommender\V1\MarkRecommendationClaimedRequest $argument,
       $metadata = [], $options = []) {
@@ -103,6 +106,7 @@ class RecommenderGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Recommender\V1\MarkRecommendationSucceededRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Recommender\V1\Recommendation
      */
     public function MarkRecommendationSucceeded(\Google\Cloud\Recommender\V1\MarkRecommendationSucceededRequest $argument,
       $metadata = [], $options = []) {
@@ -126,6 +130,7 @@ class RecommenderGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Recommender\V1\MarkRecommendationFailedRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Recommender\V1\Recommendation
      */
     public function MarkRecommendationFailed(\Google\Cloud\Recommender\V1\MarkRecommendationFailedRequest $argument,
       $metadata = [], $options = []) {
