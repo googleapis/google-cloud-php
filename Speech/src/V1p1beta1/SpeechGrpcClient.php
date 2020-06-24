@@ -38,6 +38,7 @@ class SpeechGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Speech\V1p1beta1\RecognizeRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Speech\V1p1beta1\RecognizeResponse
      */
     public function Recognize(\Google\Cloud\Speech\V1p1beta1\RecognizeRequest $argument,
       $metadata = [], $options = []) {
@@ -57,6 +58,7 @@ class SpeechGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Speech\V1p1beta1\LongRunningRecognizeRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\LongRunning\Operation
      */
     public function LongRunningRecognize(\Google\Cloud\Speech\V1p1beta1\LongRunningRecognizeRequest $argument,
       $metadata = [], $options = []) {
@@ -71,6 +73,7 @@ class SpeechGrpcClient extends \Grpc\BaseStub {
      * sending audio. This method is only available via the gRPC API (not REST).
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Speech\V1p1beta1\StreamingRecognizeResponse
      */
     public function StreamingRecognize($metadata = [], $options = []) {
         return $this->_bidiRequest('/google.cloud.speech.v1p1beta1.Speech/StreamingRecognize',
