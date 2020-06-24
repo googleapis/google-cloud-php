@@ -38,7 +38,7 @@ class SysvProcessorTest extends TestCase
     public function setUp()
     {
         putenv('GOOGLE_CLOUD_SYSV_ID=U');
-        if (! $this->isSysvIPCLOaded()) {
+        if (! $this->isSysvIPCLoaded()) {
             $this->markTestSkipped(
                 'Skipping because SystemV IPC extensions are not loaded'
             );
@@ -50,7 +50,9 @@ class SysvProcessorTest extends TestCase
 
     public function tearDown()
     {
-        $this->clearQueue();
+        if ($this->isSysvIPCLoaded()) {
+            $this->clearQueue();
+        }
         putenv('GOOGLE_CLOUD_SYSV_ID');
     }
 
