@@ -37,6 +37,7 @@ class JobControllerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dataproc\V1beta2\SubmitJobRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Dataproc\V1beta2\Job
      */
     public function SubmitJob(\Google\Cloud\Dataproc\V1beta2\SubmitJobRequest $argument,
       $metadata = [], $options = []) {
@@ -51,6 +52,7 @@ class JobControllerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dataproc\V1beta2\SubmitJobRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\LongRunning\Operation
      */
     public function SubmitJobAsOperation(\Google\Cloud\Dataproc\V1beta2\SubmitJobRequest $argument,
       $metadata = [], $options = []) {
@@ -65,6 +67,7 @@ class JobControllerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dataproc\V1beta2\GetJobRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Dataproc\V1beta2\Job
      */
     public function GetJob(\Google\Cloud\Dataproc\V1beta2\GetJobRequest $argument,
       $metadata = [], $options = []) {
@@ -79,6 +82,7 @@ class JobControllerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dataproc\V1beta2\ListJobsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Dataproc\V1beta2\ListJobsResponse
      */
     public function ListJobs(\Google\Cloud\Dataproc\V1beta2\ListJobsRequest $argument,
       $metadata = [], $options = []) {
@@ -93,6 +97,7 @@ class JobControllerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dataproc\V1beta2\UpdateJobRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Dataproc\V1beta2\Job
      */
     public function UpdateJob(\Google\Cloud\Dataproc\V1beta2\UpdateJobRequest $argument,
       $metadata = [], $options = []) {
@@ -111,6 +116,7 @@ class JobControllerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dataproc\V1beta2\CancelJobRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Dataproc\V1beta2\Job
      */
     public function CancelJob(\Google\Cloud\Dataproc\V1beta2\CancelJobRequest $argument,
       $metadata = [], $options = []) {
@@ -126,6 +132,7 @@ class JobControllerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dataproc\V1beta2\DeleteJobRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Protobuf\GPBEmpty
      */
     public function DeleteJob(\Google\Cloud\Dataproc\V1beta2\DeleteJobRequest $argument,
       $metadata = [], $options = []) {
