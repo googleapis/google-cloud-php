@@ -49,6 +49,7 @@ class Debugger2GrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Debugger\V2\SetBreakpointRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Debugger\V2\SetBreakpointResponse
      */
     public function SetBreakpoint(\Google\Cloud\Debugger\V2\SetBreakpointRequest $argument,
       $metadata = [], $options = []) {
@@ -63,6 +64,7 @@ class Debugger2GrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Debugger\V2\GetBreakpointRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Debugger\V2\GetBreakpointResponse
      */
     public function GetBreakpoint(\Google\Cloud\Debugger\V2\GetBreakpointRequest $argument,
       $metadata = [], $options = []) {
@@ -77,6 +79,7 @@ class Debugger2GrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Debugger\V2\DeleteBreakpointRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Protobuf\GPBEmpty
      */
     public function DeleteBreakpoint(\Google\Cloud\Debugger\V2\DeleteBreakpointRequest $argument,
       $metadata = [], $options = []) {
@@ -91,6 +94,7 @@ class Debugger2GrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Debugger\V2\ListBreakpointsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Debugger\V2\ListBreakpointsResponse
      */
     public function ListBreakpoints(\Google\Cloud\Debugger\V2\ListBreakpointsRequest $argument,
       $metadata = [], $options = []) {
@@ -105,6 +109,7 @@ class Debugger2GrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Debugger\V2\ListDebuggeesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Debugger\V2\ListDebuggeesResponse
      */
     public function ListDebuggees(\Google\Cloud\Debugger\V2\ListDebuggeesRequest $argument,
       $metadata = [], $options = []) {
