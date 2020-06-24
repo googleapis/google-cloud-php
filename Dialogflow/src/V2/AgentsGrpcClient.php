@@ -37,6 +37,7 @@ class AgentsGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dialogflow\V2\GetAgentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Dialogflow\V2\Agent
      */
     public function GetAgent(\Google\Cloud\Dialogflow\V2\GetAgentRequest $argument,
       $metadata = [], $options = []) {
@@ -51,6 +52,7 @@ class AgentsGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dialogflow\V2\SetAgentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Dialogflow\V2\Agent
      */
     public function SetAgent(\Google\Cloud\Dialogflow\V2\SetAgentRequest $argument,
       $metadata = [], $options = []) {
@@ -65,6 +67,7 @@ class AgentsGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dialogflow\V2\DeleteAgentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Protobuf\GPBEmpty
      */
     public function DeleteAgent(\Google\Cloud\Dialogflow\V2\DeleteAgentRequest $argument,
       $metadata = [], $options = []) {
@@ -85,6 +88,7 @@ class AgentsGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dialogflow\V2\SearchAgentsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Dialogflow\V2\SearchAgentsResponse
      */
     public function SearchAgents(\Google\Cloud\Dialogflow\V2\SearchAgentsRequest $argument,
       $metadata = [], $options = []) {
@@ -101,6 +105,7 @@ class AgentsGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dialogflow\V2\TrainAgentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\LongRunning\Operation
      */
     public function TrainAgent(\Google\Cloud\Dialogflow\V2\TrainAgentRequest $argument,
       $metadata = [], $options = []) {
@@ -117,6 +122,7 @@ class AgentsGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dialogflow\V2\ExportAgentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\LongRunning\Operation
      */
     public function ExportAgent(\Google\Cloud\Dialogflow\V2\ExportAgentRequest $argument,
       $metadata = [], $options = []) {
@@ -143,6 +149,7 @@ class AgentsGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dialogflow\V2\ImportAgentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\LongRunning\Operation
      */
     public function ImportAgent(\Google\Cloud\Dialogflow\V2\ImportAgentRequest $argument,
       $metadata = [], $options = []) {
@@ -168,6 +175,7 @@ class AgentsGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dialogflow\V2\RestoreAgentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\LongRunning\Operation
      */
     public function RestoreAgent(\Google\Cloud\Dialogflow\V2\RestoreAgentRequest $argument,
       $metadata = [], $options = []) {
@@ -183,6 +191,7 @@ class AgentsGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dialogflow\V2\GetValidationResultRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Dialogflow\V2\ValidationResult
      */
     public function GetValidationResult(\Google\Cloud\Dialogflow\V2\GetValidationResultRequest $argument,
       $metadata = [], $options = []) {
