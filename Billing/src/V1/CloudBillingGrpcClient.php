@@ -40,6 +40,7 @@ class CloudBillingGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Billing\V1\GetBillingAccountRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Billing\V1\BillingAccount
      */
     public function GetBillingAccount(\Google\Cloud\Billing\V1\GetBillingAccountRequest $argument,
       $metadata = [], $options = []) {
@@ -56,6 +57,7 @@ class CloudBillingGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Billing\V1\ListBillingAccountsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Billing\V1\ListBillingAccountsResponse
      */
     public function ListBillingAccounts(\Google\Cloud\Billing\V1\ListBillingAccountsRequest $argument,
       $metadata = [], $options = []) {
@@ -75,6 +77,7 @@ class CloudBillingGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Billing\V1\UpdateBillingAccountRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Billing\V1\BillingAccount
      */
     public function UpdateBillingAccount(\Google\Cloud\Billing\V1\UpdateBillingAccountRequest $argument,
       $metadata = [], $options = []) {
@@ -98,6 +101,7 @@ class CloudBillingGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Billing\V1\CreateBillingAccountRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Billing\V1\BillingAccount
      */
     public function CreateBillingAccount(\Google\Cloud\Billing\V1\CreateBillingAccountRequest $argument,
       $metadata = [], $options = []) {
@@ -115,6 +119,7 @@ class CloudBillingGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Billing\V1\ListProjectBillingInfoRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Billing\V1\ListProjectBillingInfoResponse
      */
     public function ListProjectBillingInfo(\Google\Cloud\Billing\V1\ListProjectBillingInfoRequest $argument,
       $metadata = [], $options = []) {
@@ -132,6 +137,7 @@ class CloudBillingGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Billing\V1\GetProjectBillingInfoRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Billing\V1\ProjectBillingInfo
      */
     public function GetProjectBillingInfo(\Google\Cloud\Billing\V1\GetProjectBillingInfoRequest $argument,
       $metadata = [], $options = []) {
@@ -176,6 +182,7 @@ class CloudBillingGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Billing\V1\UpdateProjectBillingInfoRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Billing\V1\ProjectBillingInfo
      */
     public function UpdateProjectBillingInfo(\Google\Cloud\Billing\V1\UpdateProjectBillingInfoRequest $argument,
       $metadata = [], $options = []) {
@@ -193,6 +200,7 @@ class CloudBillingGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iam\V1\GetIamPolicyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Iam\V1\Policy
      */
     public function GetIamPolicy(\Google\Cloud\Iam\V1\GetIamPolicyRequest $argument,
       $metadata = [], $options = []) {
@@ -211,6 +219,7 @@ class CloudBillingGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iam\V1\SetIamPolicyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Iam\V1\Policy
      */
     public function SetIamPolicy(\Google\Cloud\Iam\V1\SetIamPolicyRequest $argument,
       $metadata = [], $options = []) {
@@ -227,6 +236,7 @@ class CloudBillingGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iam\V1\TestIamPermissionsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
      */
     public function TestIamPermissions(\Google\Cloud\Iam\V1\TestIamPermissionsRequest $argument,
       $metadata = [], $options = []) {
