@@ -40,6 +40,7 @@ class WebSecurityScannerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\WebSecurityScanner\V1beta\CreateScanConfigRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\WebSecurityScanner\V1beta\ScanConfig
      */
     public function CreateScanConfig(\Google\Cloud\WebSecurityScanner\V1beta\CreateScanConfigRequest $argument,
       $metadata = [], $options = []) {
@@ -54,6 +55,7 @@ class WebSecurityScannerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\WebSecurityScanner\V1beta\DeleteScanConfigRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Protobuf\GPBEmpty
      */
     public function DeleteScanConfig(\Google\Cloud\WebSecurityScanner\V1beta\DeleteScanConfigRequest $argument,
       $metadata = [], $options = []) {
@@ -68,6 +70,7 @@ class WebSecurityScannerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\WebSecurityScanner\V1beta\GetScanConfigRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\WebSecurityScanner\V1beta\ScanConfig
      */
     public function GetScanConfig(\Google\Cloud\WebSecurityScanner\V1beta\GetScanConfigRequest $argument,
       $metadata = [], $options = []) {
@@ -82,6 +85,7 @@ class WebSecurityScannerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\WebSecurityScanner\V1beta\ListScanConfigsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\WebSecurityScanner\V1beta\ListScanConfigsResponse
      */
     public function ListScanConfigs(\Google\Cloud\WebSecurityScanner\V1beta\ListScanConfigsRequest $argument,
       $metadata = [], $options = []) {
@@ -96,6 +100,7 @@ class WebSecurityScannerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\WebSecurityScanner\V1beta\UpdateScanConfigRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\WebSecurityScanner\V1beta\ScanConfig
      */
     public function UpdateScanConfig(\Google\Cloud\WebSecurityScanner\V1beta\UpdateScanConfigRequest $argument,
       $metadata = [], $options = []) {
@@ -110,6 +115,7 @@ class WebSecurityScannerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\WebSecurityScanner\V1beta\StartScanRunRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\WebSecurityScanner\V1beta\ScanRun
      */
     public function StartScanRun(\Google\Cloud\WebSecurityScanner\V1beta\StartScanRunRequest $argument,
       $metadata = [], $options = []) {
@@ -124,6 +130,7 @@ class WebSecurityScannerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\WebSecurityScanner\V1beta\GetScanRunRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\WebSecurityScanner\V1beta\ScanRun
      */
     public function GetScanRun(\Google\Cloud\WebSecurityScanner\V1beta\GetScanRunRequest $argument,
       $metadata = [], $options = []) {
@@ -139,6 +146,7 @@ class WebSecurityScannerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\WebSecurityScanner\V1beta\ListScanRunsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\WebSecurityScanner\V1beta\ListScanRunsResponse
      */
     public function ListScanRuns(\Google\Cloud\WebSecurityScanner\V1beta\ListScanRunsRequest $argument,
       $metadata = [], $options = []) {
@@ -153,6 +161,7 @@ class WebSecurityScannerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\WebSecurityScanner\V1beta\StopScanRunRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\WebSecurityScanner\V1beta\ScanRun
      */
     public function StopScanRun(\Google\Cloud\WebSecurityScanner\V1beta\StopScanRunRequest $argument,
       $metadata = [], $options = []) {
@@ -167,6 +176,7 @@ class WebSecurityScannerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\WebSecurityScanner\V1beta\ListCrawledUrlsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\WebSecurityScanner\V1beta\ListCrawledUrlsResponse
      */
     public function ListCrawledUrls(\Google\Cloud\WebSecurityScanner\V1beta\ListCrawledUrlsRequest $argument,
       $metadata = [], $options = []) {
@@ -181,6 +191,7 @@ class WebSecurityScannerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\WebSecurityScanner\V1beta\GetFindingRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\WebSecurityScanner\V1beta\Finding
      */
     public function GetFinding(\Google\Cloud\WebSecurityScanner\V1beta\GetFindingRequest $argument,
       $metadata = [], $options = []) {
@@ -195,6 +206,7 @@ class WebSecurityScannerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\WebSecurityScanner\V1beta\ListFindingsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\WebSecurityScanner\V1beta\ListFindingsResponse
      */
     public function ListFindings(\Google\Cloud\WebSecurityScanner\V1beta\ListFindingsRequest $argument,
       $metadata = [], $options = []) {
@@ -209,6 +221,7 @@ class WebSecurityScannerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\WebSecurityScanner\V1beta\ListFindingTypeStatsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\WebSecurityScanner\V1beta\ListFindingTypeStatsResponse
      */
     public function ListFindingTypeStats(\Google\Cloud\WebSecurityScanner\V1beta\ListFindingTypeStatsRequest $argument,
       $metadata = [], $options = []) {
