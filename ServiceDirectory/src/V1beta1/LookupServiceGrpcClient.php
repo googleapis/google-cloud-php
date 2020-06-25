@@ -39,6 +39,7 @@ class LookupServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\ServiceDirectory\V1beta1\ResolveServiceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\ServiceDirectory\V1beta1\ResolveServiceResponse
      */
     public function ResolveService(\Google\Cloud\ServiceDirectory\V1beta1\ResolveServiceRequest $argument,
       $metadata = [], $options = []) {
