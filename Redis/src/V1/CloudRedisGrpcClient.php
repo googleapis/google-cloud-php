@@ -59,6 +59,7 @@ class CloudRedisGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Redis\V1\ListInstancesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Redis\V1\ListInstancesResponse
      */
     public function ListInstances(\Google\Cloud\Redis\V1\ListInstancesRequest $argument,
       $metadata = [], $options = []) {
@@ -73,6 +74,7 @@ class CloudRedisGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Redis\V1\GetInstanceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Redis\V1\Instance
      */
     public function GetInstance(\Google\Cloud\Redis\V1\GetInstanceRequest $argument,
       $metadata = [], $options = []) {
@@ -98,6 +100,7 @@ class CloudRedisGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Redis\V1\CreateInstanceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\LongRunning\Operation
      */
     public function CreateInstance(\Google\Cloud\Redis\V1\CreateInstanceRequest $argument,
       $metadata = [], $options = []) {
@@ -116,6 +119,7 @@ class CloudRedisGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Redis\V1\UpdateInstanceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\LongRunning\Operation
      */
     public function UpdateInstance(\Google\Cloud\Redis\V1\UpdateInstanceRequest $argument,
       $metadata = [], $options = []) {
@@ -137,6 +141,7 @@ class CloudRedisGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Redis\V1\ImportInstanceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\LongRunning\Operation
      */
     public function ImportInstance(\Google\Cloud\Redis\V1\ImportInstanceRequest $argument,
       $metadata = [], $options = []) {
@@ -156,6 +161,7 @@ class CloudRedisGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Redis\V1\ExportInstanceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\LongRunning\Operation
      */
     public function ExportInstance(\Google\Cloud\Redis\V1\ExportInstanceRequest $argument,
       $metadata = [], $options = []) {
@@ -171,6 +177,7 @@ class CloudRedisGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Redis\V1\FailoverInstanceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\LongRunning\Operation
      */
     public function FailoverInstance(\Google\Cloud\Redis\V1\FailoverInstanceRequest $argument,
       $metadata = [], $options = []) {
@@ -186,6 +193,7 @@ class CloudRedisGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Redis\V1\DeleteInstanceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\LongRunning\Operation
      */
     public function DeleteInstance(\Google\Cloud\Redis\V1\DeleteInstanceRequest $argument,
       $metadata = [], $options = []) {
