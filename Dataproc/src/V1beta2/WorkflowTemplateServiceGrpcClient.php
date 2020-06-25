@@ -38,6 +38,7 @@ class WorkflowTemplateServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dataproc\V1beta2\CreateWorkflowTemplateRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Dataproc\V1beta2\WorkflowTemplate
      */
     public function CreateWorkflowTemplate(\Google\Cloud\Dataproc\V1beta2\CreateWorkflowTemplateRequest $argument,
       $metadata = [], $options = []) {
@@ -55,6 +56,7 @@ class WorkflowTemplateServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dataproc\V1beta2\GetWorkflowTemplateRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Dataproc\V1beta2\WorkflowTemplate
      */
     public function GetWorkflowTemplate(\Google\Cloud\Dataproc\V1beta2\GetWorkflowTemplateRequest $argument,
       $metadata = [], $options = []) {
@@ -88,6 +90,7 @@ class WorkflowTemplateServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dataproc\V1beta2\InstantiateWorkflowTemplateRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\LongRunning\Operation
      */
     public function InstantiateWorkflowTemplate(\Google\Cloud\Dataproc\V1beta2\InstantiateWorkflowTemplateRequest $argument,
       $metadata = [], $options = []) {
@@ -125,6 +128,7 @@ class WorkflowTemplateServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dataproc\V1beta2\InstantiateInlineWorkflowTemplateRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\LongRunning\Operation
      */
     public function InstantiateInlineWorkflowTemplate(\Google\Cloud\Dataproc\V1beta2\InstantiateInlineWorkflowTemplateRequest $argument,
       $metadata = [], $options = []) {
@@ -140,6 +144,7 @@ class WorkflowTemplateServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dataproc\V1beta2\UpdateWorkflowTemplateRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Dataproc\V1beta2\WorkflowTemplate
      */
     public function UpdateWorkflowTemplate(\Google\Cloud\Dataproc\V1beta2\UpdateWorkflowTemplateRequest $argument,
       $metadata = [], $options = []) {
@@ -154,6 +159,7 @@ class WorkflowTemplateServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dataproc\V1beta2\ListWorkflowTemplatesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Dataproc\V1beta2\ListWorkflowTemplatesResponse
      */
     public function ListWorkflowTemplates(\Google\Cloud\Dataproc\V1beta2\ListWorkflowTemplatesRequest $argument,
       $metadata = [], $options = []) {
@@ -168,6 +174,7 @@ class WorkflowTemplateServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dataproc\V1beta2\DeleteWorkflowTemplateRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Protobuf\GPBEmpty
      */
     public function DeleteWorkflowTemplate(\Google\Cloud\Dataproc\V1beta2\DeleteWorkflowTemplateRequest $argument,
       $metadata = [], $options = []) {

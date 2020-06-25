@@ -38,6 +38,7 @@ class AutoscalingPolicyServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dataproc\V1beta2\CreateAutoscalingPolicyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Dataproc\V1beta2\AutoscalingPolicy
      */
     public function CreateAutoscalingPolicy(\Google\Cloud\Dataproc\V1beta2\CreateAutoscalingPolicyRequest $argument,
       $metadata = [], $options = []) {
@@ -55,6 +56,7 @@ class AutoscalingPolicyServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dataproc\V1beta2\UpdateAutoscalingPolicyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Dataproc\V1beta2\AutoscalingPolicy
      */
     public function UpdateAutoscalingPolicy(\Google\Cloud\Dataproc\V1beta2\UpdateAutoscalingPolicyRequest $argument,
       $metadata = [], $options = []) {
@@ -69,6 +71,7 @@ class AutoscalingPolicyServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dataproc\V1beta2\GetAutoscalingPolicyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Dataproc\V1beta2\AutoscalingPolicy
      */
     public function GetAutoscalingPolicy(\Google\Cloud\Dataproc\V1beta2\GetAutoscalingPolicyRequest $argument,
       $metadata = [], $options = []) {
@@ -83,6 +86,7 @@ class AutoscalingPolicyServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dataproc\V1beta2\ListAutoscalingPoliciesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Dataproc\V1beta2\ListAutoscalingPoliciesResponse
      */
     public function ListAutoscalingPolicies(\Google\Cloud\Dataproc\V1beta2\ListAutoscalingPoliciesRequest $argument,
       $metadata = [], $options = []) {
@@ -98,6 +102,7 @@ class AutoscalingPolicyServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dataproc\V1beta2\DeleteAutoscalingPolicyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Protobuf\GPBEmpty
      */
     public function DeleteAutoscalingPolicy(\Google\Cloud\Dataproc\V1beta2\DeleteAutoscalingPolicyRequest $argument,
       $metadata = [], $options = []) {
