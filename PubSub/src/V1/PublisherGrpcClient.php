@@ -40,6 +40,7 @@ class PublisherGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\PubSub\V1\Topic $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\PubSub\V1\Topic
      */
     public function CreateTopic(\Google\Cloud\PubSub\V1\Topic $argument,
       $metadata = [], $options = []) {
@@ -55,6 +56,7 @@ class PublisherGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\PubSub\V1\UpdateTopicRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\PubSub\V1\Topic
      */
     public function UpdateTopic(\Google\Cloud\PubSub\V1\UpdateTopicRequest $argument,
       $metadata = [], $options = []) {
@@ -70,6 +72,7 @@ class PublisherGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\PubSub\V1\PublishRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\PubSub\V1\PublishResponse
      */
     public function Publish(\Google\Cloud\PubSub\V1\PublishRequest $argument,
       $metadata = [], $options = []) {
@@ -84,6 +87,7 @@ class PublisherGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\PubSub\V1\GetTopicRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\PubSub\V1\Topic
      */
     public function GetTopic(\Google\Cloud\PubSub\V1\GetTopicRequest $argument,
       $metadata = [], $options = []) {
@@ -98,6 +102,7 @@ class PublisherGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\PubSub\V1\ListTopicsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\PubSub\V1\ListTopicsResponse
      */
     public function ListTopics(\Google\Cloud\PubSub\V1\ListTopicsRequest $argument,
       $metadata = [], $options = []) {
@@ -112,6 +117,7 @@ class PublisherGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\PubSub\V1\ListTopicSubscriptionsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\PubSub\V1\ListTopicSubscriptionsResponse
      */
     public function ListTopicSubscriptions(\Google\Cloud\PubSub\V1\ListTopicSubscriptionsRequest $argument,
       $metadata = [], $options = []) {
@@ -131,6 +137,7 @@ class PublisherGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\PubSub\V1\ListTopicSnapshotsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\PubSub\V1\ListTopicSnapshotsResponse
      */
     public function ListTopicSnapshots(\Google\Cloud\PubSub\V1\ListTopicSnapshotsRequest $argument,
       $metadata = [], $options = []) {
@@ -149,6 +156,7 @@ class PublisherGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\PubSub\V1\DeleteTopicRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Protobuf\GPBEmpty
      */
     public function DeleteTopic(\Google\Cloud\PubSub\V1\DeleteTopicRequest $argument,
       $metadata = [], $options = []) {
@@ -166,6 +174,7 @@ class PublisherGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\PubSub\V1\DetachSubscriptionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\PubSub\V1\DetachSubscriptionResponse
      */
     public function DetachSubscription(\Google\Cloud\PubSub\V1\DetachSubscriptionRequest $argument,
       $metadata = [], $options = []) {

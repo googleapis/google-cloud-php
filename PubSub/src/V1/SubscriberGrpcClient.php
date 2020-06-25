@@ -51,6 +51,7 @@ class SubscriberGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\PubSub\V1\Subscription $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\PubSub\V1\Subscription
      */
     public function CreateSubscription(\Google\Cloud\PubSub\V1\Subscription $argument,
       $metadata = [], $options = []) {
@@ -65,6 +66,7 @@ class SubscriberGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\PubSub\V1\GetSubscriptionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\PubSub\V1\Subscription
      */
     public function GetSubscription(\Google\Cloud\PubSub\V1\GetSubscriptionRequest $argument,
       $metadata = [], $options = []) {
@@ -80,6 +82,7 @@ class SubscriberGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\PubSub\V1\UpdateSubscriptionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\PubSub\V1\Subscription
      */
     public function UpdateSubscription(\Google\Cloud\PubSub\V1\UpdateSubscriptionRequest $argument,
       $metadata = [], $options = []) {
@@ -94,6 +97,7 @@ class SubscriberGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\PubSub\V1\ListSubscriptionsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\PubSub\V1\ListSubscriptionsResponse
      */
     public function ListSubscriptions(\Google\Cloud\PubSub\V1\ListSubscriptionsRequest $argument,
       $metadata = [], $options = []) {
@@ -112,6 +116,7 @@ class SubscriberGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\PubSub\V1\DeleteSubscriptionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Protobuf\GPBEmpty
      */
     public function DeleteSubscription(\Google\Cloud\PubSub\V1\DeleteSubscriptionRequest $argument,
       $metadata = [], $options = []) {
@@ -130,6 +135,7 @@ class SubscriberGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\PubSub\V1\ModifyAckDeadlineRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Protobuf\GPBEmpty
      */
     public function ModifyAckDeadline(\Google\Cloud\PubSub\V1\ModifyAckDeadlineRequest $argument,
       $metadata = [], $options = []) {
@@ -150,6 +156,7 @@ class SubscriberGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\PubSub\V1\AcknowledgeRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Protobuf\GPBEmpty
      */
     public function Acknowledge(\Google\Cloud\PubSub\V1\AcknowledgeRequest $argument,
       $metadata = [], $options = []) {
@@ -166,6 +173,7 @@ class SubscriberGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\PubSub\V1\PullRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\PubSub\V1\PullResponse
      */
     public function Pull(\Google\Cloud\PubSub\V1\PullRequest $argument,
       $metadata = [], $options = []) {
@@ -185,6 +193,7 @@ class SubscriberGrpcClient extends \Grpc\BaseStub {
      * underlying RPC channel.
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\PubSub\V1\StreamingPullResponse
      */
     public function StreamingPull($metadata = [], $options = []) {
         return $this->_bidiRequest('/google.pubsub.v1.Subscriber/StreamingPull',
@@ -202,6 +211,7 @@ class SubscriberGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\PubSub\V1\ModifyPushConfigRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Protobuf\GPBEmpty
      */
     public function ModifyPushConfig(\Google\Cloud\PubSub\V1\ModifyPushConfigRequest $argument,
       $metadata = [], $options = []) {
@@ -220,6 +230,7 @@ class SubscriberGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\PubSub\V1\GetSnapshotRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\PubSub\V1\Snapshot
      */
     public function GetSnapshot(\Google\Cloud\PubSub\V1\GetSnapshotRequest $argument,
       $metadata = [], $options = []) {
@@ -239,6 +250,7 @@ class SubscriberGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\PubSub\V1\ListSnapshotsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\PubSub\V1\ListSnapshotsResponse
      */
     public function ListSnapshots(\Google\Cloud\PubSub\V1\ListSnapshotsRequest $argument,
       $metadata = [], $options = []) {
@@ -270,6 +282,7 @@ class SubscriberGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\PubSub\V1\CreateSnapshotRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\PubSub\V1\Snapshot
      */
     public function CreateSnapshot(\Google\Cloud\PubSub\V1\CreateSnapshotRequest $argument,
       $metadata = [], $options = []) {
@@ -289,6 +302,7 @@ class SubscriberGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\PubSub\V1\UpdateSnapshotRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\PubSub\V1\Snapshot
      */
     public function UpdateSnapshot(\Google\Cloud\PubSub\V1\UpdateSnapshotRequest $argument,
       $metadata = [], $options = []) {
@@ -312,6 +326,7 @@ class SubscriberGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\PubSub\V1\DeleteSnapshotRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Protobuf\GPBEmpty
      */
     public function DeleteSnapshot(\Google\Cloud\PubSub\V1\DeleteSnapshotRequest $argument,
       $metadata = [], $options = []) {
@@ -333,6 +348,7 @@ class SubscriberGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\PubSub\V1\SeekRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\PubSub\V1\SeekResponse
      */
     public function Seek(\Google\Cloud\PubSub\V1\SeekRequest $argument,
       $metadata = [], $options = []) {
