@@ -38,6 +38,7 @@ class ErrorGroupServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\ErrorReporting\V1beta1\GetGroupRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\ErrorReporting\V1beta1\ErrorGroup
      */
     public function GetGroup(\Google\Cloud\ErrorReporting\V1beta1\GetGroupRequest $argument,
       $metadata = [], $options = []) {
@@ -53,6 +54,7 @@ class ErrorGroupServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\ErrorReporting\V1beta1\UpdateGroupRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\ErrorReporting\V1beta1\ErrorGroup
      */
     public function UpdateGroup(\Google\Cloud\ErrorReporting\V1beta1\UpdateGroupRequest $argument,
       $metadata = [], $options = []) {
