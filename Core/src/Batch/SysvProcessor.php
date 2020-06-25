@@ -75,9 +75,7 @@ class SysvProcessor implements ProcessItemInterface
             );
             if ($result === false) {
                 @unlink($tempFile);
-                throw new \RuntimeException(
-                    "Failed to submit the filename: $tempFile"
-                );
+                throw new QueueOverflowException();
             }
         }
     }

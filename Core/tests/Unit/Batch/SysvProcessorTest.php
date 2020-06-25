@@ -135,8 +135,7 @@ class SysvProcessorTest extends TestCase
      * Test that submit() method does not stall.
      *
      * @depends testQueueOverflowDirect
-     * @expectedException \RuntimeException
-     * @expectedExceptionMessageRegExp /Failed to submit the filename/
+     * @expectedException \Google\Cloud\Core\Batch\QueueOverflowException
      */
     public function testQueueOverflowFile()
     {
