@@ -38,6 +38,7 @@ class ApplicationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Talent\V4beta1\CreateApplicationRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Talent\V4beta1\Application
      */
     public function CreateApplication(\Google\Cloud\Talent\V4beta1\CreateApplicationRequest $argument,
       $metadata = [], $options = []) {
@@ -52,6 +53,7 @@ class ApplicationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Talent\V4beta1\GetApplicationRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Talent\V4beta1\Application
      */
     public function GetApplication(\Google\Cloud\Talent\V4beta1\GetApplicationRequest $argument,
       $metadata = [], $options = []) {
@@ -66,6 +68,7 @@ class ApplicationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Talent\V4beta1\UpdateApplicationRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Talent\V4beta1\Application
      */
     public function UpdateApplication(\Google\Cloud\Talent\V4beta1\UpdateApplicationRequest $argument,
       $metadata = [], $options = []) {
@@ -80,6 +83,7 @@ class ApplicationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Talent\V4beta1\DeleteApplicationRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Protobuf\GPBEmpty
      */
     public function DeleteApplication(\Google\Cloud\Talent\V4beta1\DeleteApplicationRequest $argument,
       $metadata = [], $options = []) {
@@ -94,6 +98,7 @@ class ApplicationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Talent\V4beta1\ListApplicationsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Talent\V4beta1\ListApplicationsResponse
      */
     public function ListApplications(\Google\Cloud\Talent\V4beta1\ListApplicationsRequest $argument,
       $metadata = [], $options = []) {

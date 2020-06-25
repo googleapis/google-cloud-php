@@ -37,6 +37,7 @@ class CompanyServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Talent\V4beta1\CreateCompanyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Talent\V4beta1\Company
      */
     public function CreateCompany(\Google\Cloud\Talent\V4beta1\CreateCompanyRequest $argument,
       $metadata = [], $options = []) {
@@ -51,6 +52,7 @@ class CompanyServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Talent\V4beta1\GetCompanyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Talent\V4beta1\Company
      */
     public function GetCompany(\Google\Cloud\Talent\V4beta1\GetCompanyRequest $argument,
       $metadata = [], $options = []) {
@@ -65,6 +67,7 @@ class CompanyServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Talent\V4beta1\UpdateCompanyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Talent\V4beta1\Company
      */
     public function UpdateCompany(\Google\Cloud\Talent\V4beta1\UpdateCompanyRequest $argument,
       $metadata = [], $options = []) {
@@ -80,6 +83,7 @@ class CompanyServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Talent\V4beta1\DeleteCompanyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Protobuf\GPBEmpty
      */
     public function DeleteCompany(\Google\Cloud\Talent\V4beta1\DeleteCompanyRequest $argument,
       $metadata = [], $options = []) {
@@ -94,6 +98,7 @@ class CompanyServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Talent\V4beta1\ListCompaniesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Talent\V4beta1\ListCompaniesResponse
      */
     public function ListCompanies(\Google\Cloud\Talent\V4beta1\ListCompaniesRequest $argument,
       $metadata = [], $options = []) {
