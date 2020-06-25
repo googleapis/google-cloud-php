@@ -43,6 +43,7 @@ class WebRiskServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\WebRisk\V1\ComputeThreatListDiffRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\WebRisk\V1\ComputeThreatListDiffResponse
      */
     public function ComputeThreatListDiff(\Google\Cloud\WebRisk\V1\ComputeThreatListDiffRequest $argument,
       $metadata = [], $options = []) {
@@ -61,6 +62,7 @@ class WebRiskServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\WebRisk\V1\SearchUrisRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\WebRisk\V1\SearchUrisResponse
      */
     public function SearchUris(\Google\Cloud\WebRisk\V1\SearchUrisRequest $argument,
       $metadata = [], $options = []) {
@@ -79,6 +81,7 @@ class WebRiskServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\WebRisk\V1\SearchHashesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\WebRisk\V1\SearchHashesResponse
      */
     public function SearchHashes(\Google\Cloud\WebRisk\V1\SearchHashesRequest $argument,
       $metadata = [], $options = []) {
@@ -98,6 +101,7 @@ class WebRiskServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\WebRisk\V1\CreateSubmissionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\WebRisk\V1\Submission
      */
     public function CreateSubmission(\Google\Cloud\WebRisk\V1\CreateSubmissionRequest $argument,
       $metadata = [], $options = []) {
