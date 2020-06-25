@@ -54,6 +54,7 @@ class ContextsGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dialogflow\V2\ListContextsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Dialogflow\V2\ListContextsResponse
      */
     public function ListContexts(\Google\Cloud\Dialogflow\V2\ListContextsRequest $argument,
       $metadata = [], $options = []) {
@@ -68,6 +69,7 @@ class ContextsGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dialogflow\V2\GetContextRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Dialogflow\V2\Context
      */
     public function GetContext(\Google\Cloud\Dialogflow\V2\GetContextRequest $argument,
       $metadata = [], $options = []) {
@@ -84,6 +86,7 @@ class ContextsGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dialogflow\V2\CreateContextRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Dialogflow\V2\Context
      */
     public function CreateContext(\Google\Cloud\Dialogflow\V2\CreateContextRequest $argument,
       $metadata = [], $options = []) {
@@ -98,6 +101,7 @@ class ContextsGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dialogflow\V2\UpdateContextRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Dialogflow\V2\Context
      */
     public function UpdateContext(\Google\Cloud\Dialogflow\V2\UpdateContextRequest $argument,
       $metadata = [], $options = []) {
@@ -112,6 +116,7 @@ class ContextsGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dialogflow\V2\DeleteContextRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Protobuf\GPBEmpty
      */
     public function DeleteContext(\Google\Cloud\Dialogflow\V2\DeleteContextRequest $argument,
       $metadata = [], $options = []) {
@@ -126,6 +131,7 @@ class ContextsGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dialogflow\V2\DeleteAllContextsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Protobuf\GPBEmpty
      */
     public function DeleteAllContexts(\Google\Cloud\Dialogflow\V2\DeleteAllContextsRequest $argument,
       $metadata = [], $options = []) {
