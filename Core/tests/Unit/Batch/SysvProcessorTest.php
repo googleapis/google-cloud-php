@@ -56,43 +56,6 @@ class SysvProcessorTest extends TestCase
         putenv('GOOGLE_CLOUD_SYSV_ID');
     }
 
-    private function clearQueue()
-    {
-        while ($this->receive($type, $message, $code)) {
-            if ($type == self::$typeFile) {
-                @unlink(unserialize($message));
-            }
-        }
-    }
-
-    private function queueSize()
-    {
-        return msg_stat_queue($this->queue)['msg_qbytes'];
-    }
-
-    private function send($message, $type = null)
-    {
-        if (!$type) {
-            $type = self::$typeDirect;
-        }
-        $serialize = $type == self::$typeDirect;
-        return @msg_send($this->queue, $type, $message, $serialize, false);
-    }
-
-    private function receive(&$type, &$message, &$errorcode, $unserialize = false)
-    {
-        return @msg_receive(
-            $this->queue,
-            0,
-            $type,
-            8192,
-            $message,
-            $unserialize,
-            MSG_IPC_NOWAIT,
-            $errorcode
-        );
-    }
-
     /**
      * @dataProvider items
      */
@@ -202,5 +165,42 @@ class SysvProcessorTest extends TestCase
             }
         }
         $this->assertFalse($gotAlarm);
+    }
+
+    private function clearQueue()
+    {
+        while ($this->receive($type, $message, $code)) {
+            if ($type == self::$typeFile) {
+                @unlink(unserialize($message));
+            }
+        }
+    }
+
+    private function queueSize()
+    {
+        return msg_stat_queue($this->queue)['msg_qbytes'];
+    }
+
+    private function send($message, $type = null)
+    {
+        if (!$type) {
+            $type = self::$typeDirect;
+        }
+        $serialize = $type == self::$typeDirect;
+        return @msg_send($this->queue, $type, $message, $serialize, false);
+    }
+
+    private function receive(&$type, &$message, &$errorcode, $unserialize = false)
+    {
+        return @msg_receive(
+            $this->queue,
+            0,
+            $type,
+            8192,
+            $message,
+            $unserialize,
+            MSG_IPC_NOWAIT,
+            $errorcode
+        );
     }
 }
