@@ -41,6 +41,7 @@ class OsLoginServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\OsLogin\V1\DeletePosixAccountRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Protobuf\GPBEmpty
      */
     public function DeletePosixAccount(\Google\Cloud\OsLogin\V1\DeletePosixAccountRequest $argument,
       $metadata = [], $options = []) {
@@ -55,6 +56,7 @@ class OsLoginServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\OsLogin\V1\DeleteSshPublicKeyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Protobuf\GPBEmpty
      */
     public function DeleteSshPublicKey(\Google\Cloud\OsLogin\V1\DeleteSshPublicKeyRequest $argument,
       $metadata = [], $options = []) {
@@ -70,6 +72,7 @@ class OsLoginServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\OsLogin\V1\GetLoginProfileRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\OsLogin\V1\LoginProfile
      */
     public function GetLoginProfile(\Google\Cloud\OsLogin\V1\GetLoginProfileRequest $argument,
       $metadata = [], $options = []) {
@@ -84,6 +87,7 @@ class OsLoginServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\OsLogin\V1\GetSshPublicKeyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\OsLogin\Common\SshPublicKey
      */
     public function GetSshPublicKey(\Google\Cloud\OsLogin\V1\GetSshPublicKeyRequest $argument,
       $metadata = [], $options = []) {
@@ -100,6 +104,7 @@ class OsLoginServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\OsLogin\V1\ImportSshPublicKeyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\OsLogin\V1\ImportSshPublicKeyResponse
      */
     public function ImportSshPublicKey(\Google\Cloud\OsLogin\V1\ImportSshPublicKeyRequest $argument,
       $metadata = [], $options = []) {
@@ -115,6 +120,7 @@ class OsLoginServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\OsLogin\V1\UpdateSshPublicKeyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\OsLogin\Common\SshPublicKey
      */
     public function UpdateSshPublicKey(\Google\Cloud\OsLogin\V1\UpdateSshPublicKeyRequest $argument,
       $metadata = [], $options = []) {
