@@ -39,6 +39,7 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Container\V1\ListClustersRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Container\V1\ListClustersResponse
      */
     public function ListClusters(\Google\Cloud\Container\V1\ListClustersRequest $argument,
       $metadata = [], $options = []) {
@@ -53,6 +54,7 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Container\V1\GetClusterRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Container\V1\Cluster
      */
     public function GetCluster(\Google\Cloud\Container\V1\GetClusterRequest $argument,
       $metadata = [], $options = []) {
@@ -79,6 +81,7 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Container\V1\CreateClusterRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Container\V1\Operation
      */
     public function CreateCluster(\Google\Cloud\Container\V1\CreateClusterRequest $argument,
       $metadata = [], $options = []) {
@@ -93,6 +96,7 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Container\V1\UpdateClusterRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Container\V1\Operation
      */
     public function UpdateCluster(\Google\Cloud\Container\V1\UpdateClusterRequest $argument,
       $metadata = [], $options = []) {
@@ -107,6 +111,7 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Container\V1\UpdateNodePoolRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Container\V1\Operation
      */
     public function UpdateNodePool(\Google\Cloud\Container\V1\UpdateNodePoolRequest $argument,
       $metadata = [], $options = []) {
@@ -121,6 +126,7 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Container\V1\SetNodePoolAutoscalingRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Container\V1\Operation
      */
     public function SetNodePoolAutoscaling(\Google\Cloud\Container\V1\SetNodePoolAutoscalingRequest $argument,
       $metadata = [], $options = []) {
@@ -135,6 +141,7 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Container\V1\SetLoggingServiceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Container\V1\Operation
      */
     public function SetLoggingService(\Google\Cloud\Container\V1\SetLoggingServiceRequest $argument,
       $metadata = [], $options = []) {
@@ -149,6 +156,7 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Container\V1\SetMonitoringServiceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Container\V1\Operation
      */
     public function SetMonitoringService(\Google\Cloud\Container\V1\SetMonitoringServiceRequest $argument,
       $metadata = [], $options = []) {
@@ -163,6 +171,7 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Container\V1\SetAddonsConfigRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Container\V1\Operation
      */
     public function SetAddonsConfig(\Google\Cloud\Container\V1\SetAddonsConfigRequest $argument,
       $metadata = [], $options = []) {
@@ -177,6 +186,7 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Container\V1\SetLocationsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Container\V1\Operation
      */
     public function SetLocations(\Google\Cloud\Container\V1\SetLocationsRequest $argument,
       $metadata = [], $options = []) {
@@ -191,6 +201,7 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Container\V1\UpdateMasterRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Container\V1\Operation
      */
     public function UpdateMaster(\Google\Cloud\Container\V1\UpdateMasterRequest $argument,
       $metadata = [], $options = []) {
@@ -207,6 +218,7 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Container\V1\SetMasterAuthRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Container\V1\Operation
      */
     public function SetMasterAuth(\Google\Cloud\Container\V1\SetMasterAuthRequest $argument,
       $metadata = [], $options = []) {
@@ -229,6 +241,7 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Container\V1\DeleteClusterRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Container\V1\Operation
      */
     public function DeleteCluster(\Google\Cloud\Container\V1\DeleteClusterRequest $argument,
       $metadata = [], $options = []) {
@@ -243,6 +256,7 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Container\V1\ListOperationsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Container\V1\ListOperationsResponse
      */
     public function ListOperations(\Google\Cloud\Container\V1\ListOperationsRequest $argument,
       $metadata = [], $options = []) {
@@ -257,6 +271,7 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Container\V1\GetOperationRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Container\V1\Operation
      */
     public function GetOperation(\Google\Cloud\Container\V1\GetOperationRequest $argument,
       $metadata = [], $options = []) {
@@ -271,6 +286,7 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Container\V1\CancelOperationRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Protobuf\GPBEmpty
      */
     public function CancelOperation(\Google\Cloud\Container\V1\CancelOperationRequest $argument,
       $metadata = [], $options = []) {
@@ -285,6 +301,7 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Container\V1\GetServerConfigRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Container\V1\ServerConfig
      */
     public function GetServerConfig(\Google\Cloud\Container\V1\GetServerConfigRequest $argument,
       $metadata = [], $options = []) {
@@ -299,6 +316,7 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Container\V1\ListNodePoolsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Container\V1\ListNodePoolsResponse
      */
     public function ListNodePools(\Google\Cloud\Container\V1\ListNodePoolsRequest $argument,
       $metadata = [], $options = []) {
@@ -313,6 +331,7 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Container\V1\GetNodePoolRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Container\V1\NodePool
      */
     public function GetNodePool(\Google\Cloud\Container\V1\GetNodePoolRequest $argument,
       $metadata = [], $options = []) {
@@ -327,6 +346,7 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Container\V1\CreateNodePoolRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Container\V1\Operation
      */
     public function CreateNodePool(\Google\Cloud\Container\V1\CreateNodePoolRequest $argument,
       $metadata = [], $options = []) {
@@ -341,6 +361,7 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Container\V1\DeleteNodePoolRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Container\V1\Operation
      */
     public function DeleteNodePool(\Google\Cloud\Container\V1\DeleteNodePoolRequest $argument,
       $metadata = [], $options = []) {
@@ -356,6 +377,7 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Container\V1\RollbackNodePoolUpgradeRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Container\V1\Operation
      */
     public function RollbackNodePoolUpgrade(\Google\Cloud\Container\V1\RollbackNodePoolUpgradeRequest $argument,
       $metadata = [], $options = []) {
@@ -370,6 +392,7 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Container\V1\SetNodePoolManagementRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Container\V1\Operation
      */
     public function SetNodePoolManagement(\Google\Cloud\Container\V1\SetNodePoolManagementRequest $argument,
       $metadata = [], $options = []) {
@@ -384,6 +407,7 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Container\V1\SetLabelsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Container\V1\Operation
      */
     public function SetLabels(\Google\Cloud\Container\V1\SetLabelsRequest $argument,
       $metadata = [], $options = []) {
@@ -398,6 +422,7 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Container\V1\SetLegacyAbacRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Container\V1\Operation
      */
     public function SetLegacyAbac(\Google\Cloud\Container\V1\SetLegacyAbacRequest $argument,
       $metadata = [], $options = []) {
@@ -412,6 +437,7 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Container\V1\StartIPRotationRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Container\V1\Operation
      */
     public function StartIPRotation(\Google\Cloud\Container\V1\StartIPRotationRequest $argument,
       $metadata = [], $options = []) {
@@ -426,6 +452,7 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Container\V1\CompleteIPRotationRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Container\V1\Operation
      */
     public function CompleteIPRotation(\Google\Cloud\Container\V1\CompleteIPRotationRequest $argument,
       $metadata = [], $options = []) {
@@ -440,6 +467,7 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Container\V1\SetNodePoolSizeRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Container\V1\Operation
      */
     public function SetNodePoolSize(\Google\Cloud\Container\V1\SetNodePoolSizeRequest $argument,
       $metadata = [], $options = []) {
@@ -454,6 +482,7 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Container\V1\SetNetworkPolicyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Container\V1\Operation
      */
     public function SetNetworkPolicy(\Google\Cloud\Container\V1\SetNetworkPolicyRequest $argument,
       $metadata = [], $options = []) {
@@ -468,6 +497,7 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Container\V1\SetMaintenancePolicyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Container\V1\Operation
      */
     public function SetMaintenancePolicy(\Google\Cloud\Container\V1\SetMaintenancePolicyRequest $argument,
       $metadata = [], $options = []) {
@@ -482,6 +512,7 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Container\V1\ListUsableSubnetworksRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Container\V1\ListUsableSubnetworksResponse
      */
     public function ListUsableSubnetworks(\Google\Cloud\Container\V1\ListUsableSubnetworksRequest $argument,
       $metadata = [], $options = []) {
