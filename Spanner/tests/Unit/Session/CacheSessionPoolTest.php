@@ -788,14 +788,15 @@ class CacheSessionPoolTest extends TestCase
 
     public function testMaintainData()
     {
-        $expectedData = $this->cacheData(['foo' => 3500], 300);
-        $expectedData['inUse'] = [2, 7, 1];
-        $expectedData['toCreate'] = [3, 1, 4];
+        $initialData = $this->cacheData(['foo' => 3500], 300);
+        $initialData['inUse'] = [2, 7, 1];
+        $initialData['toCreate'] = [3, 1, 4];
         $config = ['minSessions' => 4];
-        $cache = $this->getCacheItemPool($expectedData);
+        $cache = $this->getCacheItemPool($initialData);
         $pool = new CacheSessionPoolStub($cache, $config, $this->time);
         $pool->setDatabase($this->getDatabase());
         $pool->maintain();
+        $expectedData = $initialData;
         $expectedData['maintainTime'] = $this->time;
         $expectedData['queue'] = $this->queue(['foo' => 0]);
         $gotData = $pool->cacheItemPool()->getItem($this->cacheKey)->get();
@@ -814,25 +815,25 @@ class CacheSessionPoolTest extends TestCase
 
     public function testMaintainException()
     {
-        $expectedData = $this->cacheData(['dead' => 3700, 'old' => 3200, 'fresh' => 100, 'other' => 1500], 300);
+        $data = $this->cacheData(['dead' => 3700, 'old' => 3200, 'fresh' => 100, 'other' => 1500], 300);
         $database = $this->prophesize(DatabaseStub::class);
         $database->identity()->willReturn([
             'projectId' => self::PROJECT_ID,
             'database' => self::DATABASE_NAME,
             'instance' => self::INSTANCE_NAME,
         ]);
-        $expectedException = new \RuntimeException('maintenance test');
-        $database->session(Argument::any())->willThrow($expectedException);
+        $exception = new \RuntimeException('maintenance test');
+        $database->session(Argument::any())->willThrow($exception);
         $config = ['minSessions' => 4];
 
-        $cache = $this->getCacheItemPool($expectedData);
+        $cache = $this->getCacheItemPool($data);
         $pool = new CacheSessionPoolStub($cache, $config, $this->time);
         $pool->setDatabase($database->reveal());
         $caught = false;
         try {
             $pool->maintain();
         } catch (\RuntimeException $e) {
-            $caught = ($e->getMessage() === $expectedException->getMessage());
+            $caught = ($e->getMessage() === $exception->getMessage());
         }
 
         if (!$caught) {
@@ -840,7 +841,7 @@ class CacheSessionPoolTest extends TestCase
         }
 
         $gotData = $pool->cacheItemPool()->getItem($this->cacheKey)->get();
-        $this->assertEquals($expectedData, $gotData);
+        $this->assertEquals($data, $gotData);
     }
 
     /**

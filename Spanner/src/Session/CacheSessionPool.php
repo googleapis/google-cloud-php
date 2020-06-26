@@ -887,19 +887,19 @@ class CacheSessionPool implements SessionPoolInterface
             $prevMaintainTime = isset($cachedData['maintainTime']) ? $cachedData['maintainTime'] : null;
 
             $len = count($sessions);
-            // find sessions that already expired
+            // Find sessions that already expired.
             for ($expiredPos = 0; $expiredPos < $len; $expiredPos++) {
                 if ($sessions[$expiredPos]['expires'] > $now) {
                     break;
                 }
             }
-            // find sessions that will expire in next 10 minutes ("old" sessions)
+            // Find sessions that will expire in next 10 minutes ("old" sessions).
             for ($soonToExpirePos = $expiredPos; $soonToExpirePos < $len; $soonToExpirePos++) {
                 if ($sessions[$soonToExpirePos]['expires'] > $soonToExpireThreshold) {
                     break;
                 }
             }
-            // find sessions that were refreshed after the previous maintenance ("fresh" sessions)
+            // Find sessions that were refreshed after the previous maintenance ("fresh" sessions).
             $freshPos = $len - 1;
             if (isset($prevMaintainTime)) {
                 $freshThreshold = $prevMaintainTime + self::SESSION_EXPIRATION_SECONDS;
@@ -911,20 +911,20 @@ class CacheSessionPool implements SessionPoolInterface
             }
             $freshSessionsCount = $len - 1 - $freshPos;
             $soonToExpireSessions = array_splice($sessions, $expiredPos, ($soonToExpirePos - $expiredPos));
-            // drop expired sessions
+            // Drop expired sessions.
             array_splice($sessions, 0, $expiredPos);
-            // sessions created at peak load and (probably) not needed anymore
+            // Sessions created at peak load and (probably) not needed anymore.
             $extraSessions = [];
 
             $totalSessionsCount = count($cachedData['inUse']) + count($sessions) + count($soonToExpireSessions);
             $maintainedSessionsCount = $this->config['minSessions'];
             $extraSessionsCount = ($totalSessionsCount - $maintainedSessionsCount);
             if ($extraSessionsCount > 0) {
-                // treat some "old" sessions as extra sessions (do not refresh them)
+                // Treat some "old" sessions as extra sessions (do not refresh them).
                 $extraSessions = array_splice($soonToExpireSessions, -$extraSessionsCount);
             }
 
-            // refresh remaining "old" sessions and move them to the end of the queue
+            // Refresh remaining "old" sessions and move them to the end of the queue.
             foreach ($soonToExpireSessions as $item) {
                 $session = $this->database->session($item['name']);
                 if ($this->refreshSession($session)) {
@@ -948,14 +948,12 @@ class CacheSessionPool implements SessionPoolInterface
                 $maxLifetime = self::SESSION_EXPIRATION_SECONDS - 600;
                 $totalSessionsCount = min($totalSessionsCount, $maintainedSessionsCount);
                 $meanRefreshCount = (int)($totalSessionsCount * $maintainInterval / $maxLifetime);
-                if ($meanRefreshCount > $maintainedSessionsCount) {
-                    $meanRefreshCount = $maintainedSessionsCount;
-                }
-                // there may be sessions already refreshed since previous maintenance,
-                // so we can save some refresh requests
+                $meanRefreshCount = min($meanRefreshCount, $maintainedSessionsCount);
+                // There may be sessions already refreshed since previous maintenance,
+                // so we can save some refresh requests.
                 $refreshCount = $meanRefreshCount - $freshSessionsCount;
                 if ($refreshCount > 0) {
-                    // refresh some "oldest" sessions and move them to the end of the queue
+                    // Refresh some "oldest" sessions and move them to the end of the queue.
                     $refreshCount = min($refreshCount, count($sessions));
                     for ($pos = 0; $pos < $refreshCount; $pos++) {
                         $item = $sessions[$pos];
@@ -972,7 +970,7 @@ class CacheSessionPool implements SessionPoolInterface
             }
 
             $cachedData['maintainTime'] = $this->time();
-            // put extra sessions to the end of the queue, so they won't be acquired until really needed
+            // Put extra sessions to the end of the queue, so they won't be acquired until really needed.
             $cachedData['queue'] = array_merge($sessions, $extraSessions);
             $this->cacheItemPool->save($cacheItem->set($cachedData));
         });
@@ -980,7 +978,7 @@ class CacheSessionPool implements SessionPoolInterface
 
     /**
      * @param Session $session
-     * @return bool true: session was refreshed, false: session does not exist
+     * @return bool `true`: session was refreshed, `false`: session does not exist
      */
     private function refreshSession($session)
     {
