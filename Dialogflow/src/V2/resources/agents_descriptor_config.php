@@ -23,7 +23,7 @@ return [
                     'totalPollTimeoutMillis' => '300000',
                 ],
             ],
-            'RestoreAgent' => [
+            'ImportAgent' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
                     'metadataReturnType' => '\Google\Protobuf\Struct',
@@ -33,7 +33,7 @@ return [
                     'totalPollTimeoutMillis' => '300000',
                 ],
             ],
-            'ImportAgent' => [
+            'RestoreAgent' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
                     'metadataReturnType' => '\Google\Protobuf\Struct',
