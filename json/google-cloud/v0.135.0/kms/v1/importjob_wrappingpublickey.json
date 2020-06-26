@@ -1,0 +1,1 @@
+{"id":"kms\/v1\/importjob_wrappingpublickey","type":"","title":"Google\\Cloud\\Kms\\V1\\ImportJob_WrappingPublicKey","name":"ImportJob_WrappingPublicKey","description":"<p>This class is deprecated. Use Google\\Cloud\\Kms\\V1\\ImportJob\\WrappingPublicKey instead.<\/p>","examples":[],"resources":[],"methods":[]}

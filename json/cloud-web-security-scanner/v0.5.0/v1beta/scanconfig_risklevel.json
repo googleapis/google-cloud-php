@@ -1,0 +1,1 @@
+{"id":"websecurityscanner\/v1beta\/scanconfig_risklevel","type":"","title":"Google\\Cloud\\WebSecurityScanner\\V1beta\\ScanConfig_RiskLevel","name":"ScanConfig_RiskLevel","description":"<p>This class is deprecated. Use Google\\Cloud\\WebSecurityScanner\\V1beta\\ScanConfig\\RiskLevel instead.<\/p>","examples":[],"resources":[],"methods":[]}
