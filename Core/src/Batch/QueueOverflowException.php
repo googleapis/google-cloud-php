@@ -18,8 +18,9 @@
 namespace Google\Cloud\Core\Batch;
 
 /**
- * Exception thrown in `SysvProcessor#submit()` method when it cannot add an item to the message queue.
- * Possible causes are:
+ * Exception thrown in {@see Google\Cloud\Core\Batch\SysvProcessor::submit()}
+ * method when it cannot add an item to the message queue.
+ * Possible causes include:
  *
  * - batch daemon is not running
  * - no job registered for this queue
@@ -29,6 +30,6 @@ class QueueOverflowException extends \RuntimeException
 {
     public function __construct()
     {
-        parent::__construct('Item queue overflow, probably batch daemon is not running');
+        parent::__construct('Item queue overflow. Check that the batch daemon is running.');
     }
 }
