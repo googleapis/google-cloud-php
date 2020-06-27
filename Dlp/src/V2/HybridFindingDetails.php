@@ -54,12 +54,13 @@ class HybridFindingDetails extends \Google\Protobuf\Internal\Message
      * The labels associated with `Finding`'s produced by hybrid
      * inspection.
      * Label keys must be between 1 and 63 characters long and must conform
-     * to the following regular expression: \[a-z\](\[-a-z0-9\]*\[a-z0-9\])?.
+     * to the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?`.
      * Label values must be between 0 and 63 characters long and must conform
-     * to the regular expression (\[a-z\](\[-a-z0-9\]*\[a-z0-9\])?)?.
+     * to the regular expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`.
      * No more than 10 labels can be associated with a given finding.
-     * Example: <code>"environment" : "production"</code>
-     * Example: <code>"pipeline" : "etl"</code>
+     * Examples:
+     * * `"environment" : "production"`
+     * * `"pipeline" : "etl"`
      *
      * Generated from protobuf field <code>map<string, string> labels = 5;</code>
      */
@@ -94,12 +95,13 @@ class HybridFindingDetails extends \Google\Protobuf\Internal\Message
      *           The labels associated with `Finding`'s produced by hybrid
      *           inspection.
      *           Label keys must be between 1 and 63 characters long and must conform
-     *           to the following regular expression: \[a-z\](\[-a-z0-9\]*\[a-z0-9\])?.
+     *           to the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?`.
      *           Label values must be between 0 and 63 characters long and must conform
-     *           to the regular expression (\[a-z\](\[-a-z0-9\]*\[a-z0-9\])?)?.
+     *           to the regular expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`.
      *           No more than 10 labels can be associated with a given finding.
-     *           Example: <code>"environment" : "production"</code>
-     *           Example: <code>"pipeline" : "etl"</code>
+     *           Examples:
+     *           * `"environment" : "production"`
+     *           * `"pipeline" : "etl"`
      * }
      */
     public function __construct($data = NULL) {
@@ -235,12 +237,13 @@ class HybridFindingDetails extends \Google\Protobuf\Internal\Message
      * The labels associated with `Finding`'s produced by hybrid
      * inspection.
      * Label keys must be between 1 and 63 characters long and must conform
-     * to the following regular expression: \[a-z\](\[-a-z0-9\]*\[a-z0-9\])?.
+     * to the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?`.
      * Label values must be between 0 and 63 characters long and must conform
-     * to the regular expression (\[a-z\](\[-a-z0-9\]*\[a-z0-9\])?)?.
+     * to the regular expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`.
      * No more than 10 labels can be associated with a given finding.
-     * Example: <code>"environment" : "production"</code>
-     * Example: <code>"pipeline" : "etl"</code>
+     * Examples:
+     * * `"environment" : "production"`
+     * * `"pipeline" : "etl"`
      *
      * Generated from protobuf field <code>map<string, string> labels = 5;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -256,12 +259,13 @@ class HybridFindingDetails extends \Google\Protobuf\Internal\Message
      * The labels associated with `Finding`'s produced by hybrid
      * inspection.
      * Label keys must be between 1 and 63 characters long and must conform
-     * to the following regular expression: \[a-z\](\[-a-z0-9\]*\[a-z0-9\])?.
+     * to the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?`.
      * Label values must be between 0 and 63 characters long and must conform
-     * to the regular expression (\[a-z\](\[-a-z0-9\]*\[a-z0-9\])?)?.
+     * to the regular expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`.
      * No more than 10 labels can be associated with a given finding.
-     * Example: <code>"environment" : "production"</code>
-     * Example: <code>"pipeline" : "etl"</code>
+     * Examples:
+     * * `"environment" : "production"`
+     * * `"pipeline" : "etl"`
      *
      * Generated from protobuf field <code>map<string, string> labels = 5;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
