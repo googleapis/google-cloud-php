@@ -1091,6 +1091,8 @@ class DlpServiceGapicClient
      *     @type string $locationId
      *          The geographic location to process content inspection. Reserved for future
      *          extensions.
+     *          When inspecting images location is restricted to 'global', 'us', 'asia',
+     *          and 'europe'.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1165,6 +1167,7 @@ class DlpServiceGapicClient
      *     @type string $locationId
      *          The geographic location to process the request. Reserved for future
      *          extensions.
+     *          Location is restricted to 'global', 'us', 'asia', and 'europe'.
      *     @type InspectConfig $inspectConfig
      *          Configuration for the inspector.
      *     @type ImageRedactionConfig[] $imageRedactionConfigs
@@ -1580,8 +1583,8 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of organization and inspectTemplate to be updated,
-     *                             for example `organizations/433245324/inspectTemplates/432452342` or
+     * @param string $name         Required. Resource name of organization and inspectTemplate to be updated, for
+     *                             example `organizations/433245324/inspectTemplates/432452342` or
      *                             projects/project-id/inspectTemplates/432452342.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -1643,8 +1646,8 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the organization and inspectTemplate to be read,
-     *                             for example `organizations/433245324/inspectTemplates/432452342` or
+     * @param string $name         Required. Resource name of the organization and inspectTemplate to be read, for
+     *                             example `organizations/433245324/inspectTemplates/432452342` or
      *                             projects/project-id/inspectTemplates/432452342.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -1801,9 +1804,9 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the organization and inspectTemplate to be
-     *                             deleted, for example `organizations/433245324/inspectTemplates/432452342`
-     *                             or projects/project-id/inspectTemplates/432452342.
+     * @param string $name         Required. Resource name of the organization and inspectTemplate to be deleted, for
+     *                             example `organizations/433245324/inspectTemplates/432452342` or
+     *                             projects/project-id/inspectTemplates/432452342.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1924,9 +1927,8 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of organization and deidentify template to be
-     *                             updated, for example
-     *                             `organizations/433245324/deidentifyTemplates/432452342` or
+     * @param string $name         Required. Resource name of organization and deidentify template to be updated, for
+     *                             example `organizations/433245324/deidentifyTemplates/432452342` or
      *                             projects/project-id/deidentifyTemplates/432452342.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -1989,9 +1991,9 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the organization and deidentify template to be
-     *                             read, for example `organizations/433245324/deidentifyTemplates/432452342`
-     *                             or projects/project-id/deidentifyTemplates/432452342.
+     * @param string $name         Required. Resource name of the organization and deidentify template to be read, for
+     *                             example `organizations/433245324/deidentifyTemplates/432452342` or
+     *                             projects/project-id/deidentifyTemplates/432452342.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -2149,9 +2151,8 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the organization and deidentify template to be
-     *                             deleted, for example
-     *                             `organizations/433245324/deidentifyTemplates/432452342` or
+     * @param string $name         Required. Resource name of the organization and deidentify template to be deleted,
+     *                             for example `organizations/433245324/deidentifyTemplates/432452342` or
      *                             projects/project-id/deidentifyTemplates/432452342.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -2638,8 +2639,8 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the job to execute a hybrid inspect on, for
-     *                             example `projects/dlp-test-project/dlpJob/53234423`.
+     * @param string $name         Required. Resource name of the job to execute a hybrid inspect on, for example
+     *                             `projects/dlp-test-project/dlpJob/53234423`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -2935,8 +2936,8 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the trigger to execute a hybrid inspect on, for
-     *                             example `projects/dlp-test-project/jobTriggers/53234423`.
+     * @param string $name         Required. Resource name of the trigger to execute a hybrid inspect on, for example
+     *                             `projects/dlp-test-project/jobTriggers/53234423`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -3195,8 +3196,8 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of organization and storedInfoType to be updated,
-     *                             for example `organizations/433245324/storedInfoTypes/432452342` or
+     * @param string $name         Required. Resource name of organization and storedInfoType to be updated, for
+     *                             example `organizations/433245324/storedInfoTypes/432452342` or
      *                             projects/project-id/storedInfoTypes/432452342.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -3261,8 +3262,8 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the organization and storedInfoType to be read,
-     *                             for example `organizations/433245324/storedInfoTypes/432452342` or
+     * @param string $name         Required. Resource name of the organization and storedInfoType to be read, for
+     *                             example `organizations/433245324/storedInfoTypes/432452342` or
      *                             projects/project-id/storedInfoTypes/432452342.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -3422,8 +3423,8 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the organization and storedInfoType to be
-     *                             deleted, for example `organizations/433245324/storedInfoTypes/432452342` or
+     * @param string $name         Required. Resource name of the organization and storedInfoType to be deleted, for
+     *                             example `organizations/433245324/storedInfoTypes/432452342` or
      *                             projects/project-id/storedInfoTypes/432452342.
      * @param array  $optionalArgs {
      *                             Optional.
