@@ -17,8 +17,8 @@ class Finding extends \Google\Protobuf\Internal\Message
 {
     /**
      * Resource name in format
-     * projects/{project}/locations/{location}/findings/{finding} Populated only
-     * when viewing persisted findings.
+     * projects/{project}/locations/{location}/findings/{finding}
+     * Populated only when viewing persisted findings.
      *
      * Generated from protobuf field <code>string name = 14;</code>
      */
@@ -113,8 +113,8 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Resource name in format
-     *           projects/{project}/locations/{location}/findings/{finding} Populated only
-     *           when viewing persisted findings.
+     *           projects/{project}/locations/{location}/findings/{finding}
+     *           Populated only when viewing persisted findings.
      *     @type string $quote
      *           The content that was found. Even if the content is not textual, it
      *           may be converted to a textual representation here.
@@ -161,8 +161,8 @@ class Finding extends \Google\Protobuf\Internal\Message
 
     /**
      * Resource name in format
-     * projects/{project}/locations/{location}/findings/{finding} Populated only
-     * when viewing persisted findings.
+     * projects/{project}/locations/{location}/findings/{finding}
+     * Populated only when viewing persisted findings.
      *
      * Generated from protobuf field <code>string name = 14;</code>
      * @return string
@@ -174,8 +174,8 @@ class Finding extends \Google\Protobuf\Internal\Message
 
     /**
      * Resource name in format
-     * projects/{project}/locations/{location}/findings/{finding} Populated only
-     * when viewing persisted findings.
+     * projects/{project}/locations/{location}/findings/{finding}
+     * Populated only when viewing persisted findings.
      *
      * Generated from protobuf field <code>string name = 14;</code>
      * @param string $var

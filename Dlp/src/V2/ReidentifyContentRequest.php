@@ -69,8 +69,7 @@ class ReidentifyContentRequest extends \Google\Protobuf\Internal\Message
      */
     private $reidentify_template_name = '';
     /**
-     * The geographic location to process content reidentification.  Reserved for
-     * future extensions.
+     * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>string location_id = 7;</code>
      */
@@ -112,8 +111,7 @@ class ReidentifyContentRequest extends \Google\Protobuf\Internal\Message
      *           template. Repeated fields are appended. Singular sub-messages and groups
      *           are recursively merged.
      *     @type string $location_id
-     *           The geographic location to process content reidentification.  Reserved for
-     *           future extensions.
+     *           Deprecated. This field has no effect.
      * }
      */
     public function __construct($data = NULL) {
@@ -312,8 +310,7 @@ class ReidentifyContentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The geographic location to process content reidentification.  Reserved for
-     * future extensions.
+     * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>string location_id = 7;</code>
      * @return string
@@ -324,8 +321,7 @@ class ReidentifyContentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The geographic location to process content reidentification.  Reserved for
-     * future extensions.
+     * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>string location_id = 7;</code>
      * @param string $var

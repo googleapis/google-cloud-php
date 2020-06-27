@@ -1076,7 +1076,8 @@ class DlpServiceGapicClient
      *                            Optional.
      *
      *     @type string $parent
-     *          The parent resource name, for example projects/my-project-id.
+     *          The parent resource name, for example projects/my-project-id
+     *          or projects/my-project-id/locations/{location_id}
      *     @type InspectConfig $inspectConfig
      *          Configuration for the inspector. What specified here will override
      *          the template referenced by the inspect_template_name argument.
@@ -1089,10 +1090,7 @@ class DlpServiceGapicClient
      *          template. Repeated fields are appended. Singular sub-messages and groups
      *          are recursively merged.
      *     @type string $locationId
-     *          The geographic location to process content inspection. Reserved for future
-     *          extensions.
-     *          When inspecting images location is restricted to 'global', 'us', 'asia',
-     *          and 'europe'.
+     *          Deprecated. This field has no effect.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1163,11 +1161,10 @@ class DlpServiceGapicClient
      *                            Optional.
      *
      *     @type string $parent
-     *          The parent resource name, for example projects/my-project-id.
+     *          The parent resource name, for example projects/my-project-id
+     *          or projects/my-project-id/locations/{location_id}.
      *     @type string $locationId
-     *          The geographic location to process the request. Reserved for future
-     *          extensions.
-     *          Location is restricted to 'global', 'us', 'asia', and 'europe'.
+     *          Deprecated. This field has no effect.
      *     @type InspectConfig $inspectConfig
      *          Configuration for the inspector.
      *     @type ImageRedactionConfig[] $imageRedactionConfigs
@@ -1250,7 +1247,8 @@ class DlpServiceGapicClient
      *                            Optional.
      *
      *     @type string $parent
-     *          The parent resource name, for example projects/my-project-id.
+     *          The parent resource name, for example projects/my-project-id
+     *          or projects/my-project-id/locations/{location_id}.
      *     @type DeidentifyConfig $deidentifyConfig
      *          Configuration for the de-identification of the content item.
      *          Items specified here will override the template referenced by the
@@ -1274,8 +1272,7 @@ class DlpServiceGapicClient
      *          template. Repeated fields are appended. Singular sub-messages and groups
      *          are recursively merged.
      *     @type string $locationId
-     *          The geographic location to process de-identification. Reserved for future
-     *          extensions.
+     *          Deprecated. This field has no effect.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1378,8 +1375,7 @@ class DlpServiceGapicClient
      *          template. Repeated fields are appended. Singular sub-messages and groups
      *          are recursively merged.
      *     @type string $locationId
-     *          The geographic location to process content reidentification.  Reserved for
-     *          future extensions.
+     *          Deprecated. This field has no effect.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1448,6 +1444,8 @@ class DlpServiceGapicClient
      * @param array $optionalArgs {
      *                            Optional.
      *
+     *     @type string $parent
+     *          The parent resource name, for example locations/{location_id}
      *     @type string $languageCode
      *          BCP-47 language code for localized infoType friendly
      *          names. If omitted, or if localized strings are not available,
@@ -1456,8 +1454,7 @@ class DlpServiceGapicClient
      *          filter to only return infoTypes supported by certain parts of the
      *          API. Defaults to supported_by=INSPECT.
      *     @type string $locationId
-     *          The geographic location to list info types. Reserved for future
-     *          extensions.
+     *          Deprecated. This field has no effect.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1473,6 +1470,9 @@ class DlpServiceGapicClient
     public function listInfoTypes(array $optionalArgs = [])
     {
         $request = new ListInfoTypesRequest();
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+        }
         if (isset($optionalArgs['languageCode'])) {
             $request->setLanguageCode($optionalArgs['languageCode']);
         }
@@ -1484,7 +1484,7 @@ class DlpServiceGapicClient
         }
 
         $requestParams = new RequestParamsHeaderDescriptor([
-          'location_id' => $request->getLocationId(),
+          'parent' => $request->getParent(),
         ]);
         $optionalArgs['headers'] = isset($optionalArgs['headers'])
             ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
@@ -1516,7 +1516,7 @@ class DlpServiceGapicClient
      * ```
      *
      * @param string          $parent          Required. The parent resource name, for example projects/my-project-id or
-     *                                         organizations/my-org-id.
+     *                                         organizations/my-org-id or projects/my-project-id/locations/{location-id}.
      * @param InspectTemplate $inspectTemplate Required. The InspectTemplate to create.
      * @param array           $optionalArgs    {
      *                                         Optional.
@@ -1527,8 +1527,7 @@ class DlpServiceGapicClient
      *          expression: `[a-zA-Z\\d-_]+`. The maximum length is 100
      *          characters. Can be empty to allow the system to generate one.
      *     @type string $locationId
-     *          The geographic location to store the inspection template. Reserved for
-     *          future extensions.
+     *          Deprecated. This field has no effect.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1583,8 +1582,8 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of organization and inspectTemplate to be updated, for
-     *                             example `organizations/433245324/inspectTemplates/432452342` or
+     * @param string $name         Required. Resource name of organization and inspectTemplate to be updated,
+     *                             for example `organizations/433245324/inspectTemplates/432452342` or
      *                             projects/project-id/inspectTemplates/432452342.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -1646,8 +1645,8 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the organization and inspectTemplate to be read, for
-     *                             example `organizations/433245324/inspectTemplates/432452342` or
+     * @param string $name         Required. Resource name of the organization and inspectTemplate to be read,
+     *                             for example `organizations/433245324/inspectTemplates/432452342` or
      *                             projects/project-id/inspectTemplates/432452342.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -1715,7 +1714,7 @@ class DlpServiceGapicClient
      * ```
      *
      * @param string $parent       Required. The parent resource name, for example projects/my-project-id or
-     *                             organizations/my-org-id.
+     *                             organizations/my-org-id or projects/my-project-id/locations/{location_id}.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1743,8 +1742,7 @@ class DlpServiceGapicClient
      *          - `name`: corresponds to template's name.
      *          - `display_name`: corresponds to template's display name.
      *     @type string $locationId
-     *          The geographic location where inspection templates will be retrieved from.
-     *          Use `-` for all locations. Reserved for future extensions.
+     *          Deprecated. This field has no effect.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1804,9 +1802,9 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the organization and inspectTemplate to be deleted, for
-     *                             example `organizations/433245324/inspectTemplates/432452342` or
-     *                             projects/project-id/inspectTemplates/432452342.
+     * @param string $name         Required. Resource name of the organization and inspectTemplate to be
+     *                             deleted, for example `organizations/433245324/inspectTemplates/432452342`
+     *                             or projects/project-id/inspectTemplates/432452342.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1859,7 +1857,7 @@ class DlpServiceGapicClient
      * ```
      *
      * @param string             $parent             Required. The parent resource name, for example projects/my-project-id or
-     *                                               organizations/my-org-id.
+     *                                               organizations/my-org-id or projects/my-project-id/locations/{location_id}.
      * @param DeidentifyTemplate $deidentifyTemplate Required. The DeidentifyTemplate to create.
      * @param array              $optionalArgs       {
      *                                               Optional.
@@ -1870,8 +1868,7 @@ class DlpServiceGapicClient
      *          expression: `[a-zA-Z\\d-_]+`. The maximum length is 100
      *          characters. Can be empty to allow the system to generate one.
      *     @type string $locationId
-     *          The geographic location to store the deidentification template. Reserved
-     *          for future extensions.
+     *          Deprecated. This field has no effect.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1927,8 +1924,9 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of organization and deidentify template to be updated, for
-     *                             example `organizations/433245324/deidentifyTemplates/432452342` or
+     * @param string $name         Required. Resource name of organization and deidentify template to be
+     *                             updated, for example
+     *                             `organizations/433245324/deidentifyTemplates/432452342` or
      *                             projects/project-id/deidentifyTemplates/432452342.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -1991,9 +1989,9 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the organization and deidentify template to be read, for
-     *                             example `organizations/433245324/deidentifyTemplates/432452342` or
-     *                             projects/project-id/deidentifyTemplates/432452342.
+     * @param string $name         Required. Resource name of the organization and deidentify template to be
+     *                             read, for example `organizations/433245324/deidentifyTemplates/432452342`
+     *                             or projects/project-id/deidentifyTemplates/432452342.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -2061,7 +2059,7 @@ class DlpServiceGapicClient
      * ```
      *
      * @param string $parent       Required. The parent resource name, for example projects/my-project-id or
-     *                             organizations/my-org-id.
+     *                             organizations/my-org-id or projects/my-project-id/locations/{location_id}.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -2089,8 +2087,7 @@ class DlpServiceGapicClient
      *          - `name`: corresponds to template's name.
      *          - `display_name`: corresponds to template's display name.
      *     @type string $locationId
-     *          The geographic location where deidentifications templates will be retrieved
-     *          from. Use `-` for all locations. Reserved for future extensions.
+     *          Deprecated. This field has no effect.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -2151,8 +2148,9 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the organization and deidentify template to be deleted,
-     *                             for example `organizations/433245324/deidentifyTemplates/432452342` or
+     * @param string $name         Required. Resource name of the organization and deidentify template to be
+     *                             deleted, for example
+     *                             `organizations/433245324/deidentifyTemplates/432452342` or
      *                             projects/project-id/deidentifyTemplates/432452342.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -2207,7 +2205,8 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent resource name, for example projects/my-project-id.
+     * @param string $parent       Required. The parent resource name, for example projects/my-project-id
+     *                             or projects/my-project-id/locations/{location_id}.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -2223,8 +2222,7 @@ class DlpServiceGapicClient
      *          expression: `[a-zA-Z\\d-_]+`. The maximum length is 100
      *          characters. Can be empty to allow the system to generate one.
      *     @type string $locationId
-     *          The geographic location to store and process the job. Reserved for
-     *          future extensions.
+     *          Deprecated. This field has no effect.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -2300,7 +2298,8 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent resource name, for example projects/my-project-id.
+     * @param string $parent       Required. The parent resource name, for example projects/my-project-id
+     *                             or projects/my-project-id/locations/{location_id}.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -2360,8 +2359,7 @@ class DlpServiceGapicClient
      *          - `name`: corresponds to job's name.
      *          - `state`: corresponds to `state`
      *     @type string $locationId
-     *          The geographic location where jobs will be retrieved from.
-     *          Use `-` for all locations. Reserved for future extensions.
+     *          Deprecated. This field has no effect.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -2639,8 +2637,8 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the job to execute a hybrid inspect on, for example
-     *                             `projects/dlp-test-project/dlpJob/53234423`.
+     * @param string $name         Required. Resource name of the job to execute a hybrid inspect on, for
+     *                             example `projects/dlp-test-project/dlpJob/53234423`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -2711,7 +2709,8 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent resource name, for example `projects/my-project-id`.
+     * @param string $parent       Required. The parent resource name, for example `projects/my-project-id`
+     *                             or projects/my-project-id/locations/{location_id}.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -2766,8 +2765,7 @@ class DlpServiceGapicClient
      *
      *          The length of this field should be no more than 500 characters.
      *     @type string $locationId
-     *          The geographic location where job triggers will be retrieved from.
-     *          Use `-` for all locations. Reserved for future extensions.
+     *          Deprecated. This field has no effect.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -2936,8 +2934,8 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the trigger to execute a hybrid inspect on, for example
-     *                             `projects/dlp-test-project/jobTriggers/53234423`.
+     * @param string $name         Required. Resource name of the trigger to execute a hybrid inspect on, for
+     *                             example `projects/dlp-test-project/jobTriggers/53234423`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -3057,7 +3055,8 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string     $parent       Required. The parent resource name, for example projects/my-project-id.
+     * @param string     $parent       Required. The parent resource name, for example projects/my-project-id
+     *                                 or projects/my-project-id/locations/{location_id}.
      * @param JobTrigger $jobTrigger   Required. The JobTrigger to create.
      * @param array      $optionalArgs {
      *                                 Optional.
@@ -3068,8 +3067,7 @@ class DlpServiceGapicClient
      *          expression: `[a-zA-Z\\d-_]+`. The maximum length is 100
      *          characters. Can be empty to allow the system to generate one.
      *     @type string $locationId
-     *          The geographic location to store the job trigger. Reserved for
-     *          future extensions.
+     *          Deprecated. This field has no effect.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -3127,7 +3125,7 @@ class DlpServiceGapicClient
      * ```
      *
      * @param string               $parent       Required. The parent resource name, for example projects/my-project-id or
-     *                                           organizations/my-org-id.
+     *                                           organizations/my-org-id or projects/my-project-id/locations/{location_id}
      * @param StoredInfoTypeConfig $config       Required. Configuration of the storedInfoType to create.
      * @param array                $optionalArgs {
      *                                           Optional.
@@ -3138,8 +3136,7 @@ class DlpServiceGapicClient
      *          expression: `[a-zA-Z\\d-_]+`. The maximum length is 100
      *          characters. Can be empty to allow the system to generate one.
      *     @type string $locationId
-     *          The geographic location to store the stored infoType. Reserved for
-     *          future extensions.
+     *          Deprecated. This field has no effect.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -3262,8 +3259,8 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the organization and storedInfoType to be read, for
-     *                             example `organizations/433245324/storedInfoTypes/432452342` or
+     * @param string $name         Required. Resource name of the organization and storedInfoType to be read,
+     *                             for example `organizations/433245324/storedInfoTypes/432452342` or
      *                             projects/project-id/storedInfoTypes/432452342.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -3332,7 +3329,7 @@ class DlpServiceGapicClient
      * ```
      *
      * @param string $parent       Required. The parent resource name, for example projects/my-project-id or
-     *                             organizations/my-org-id.
+     *                             organizations/my-org-id or projects/my-project-id/locations/{location_id}.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -3361,8 +3358,7 @@ class DlpServiceGapicClient
      *          - `name`: corresponds to resource name.
      *          - `display_name`: corresponds to info type's display name.
      *     @type string $locationId
-     *          The geographic location where stored infoTypes will be retrieved from.
-     *          Use `-` for all locations. Reserved for future extensions.
+     *          Deprecated. This field has no effect.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -3423,8 +3419,8 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the organization and storedInfoType to be deleted, for
-     *                             example `organizations/433245324/storedInfoTypes/432452342` or
+     * @param string $name         Required. Resource name of the organization and storedInfoType to be
+     *                             deleted, for example `organizations/433245324/storedInfoTypes/432452342` or
      *                             projects/project-id/storedInfoTypes/432452342.
      * @param array  $optionalArgs {
      *                             Optional.
