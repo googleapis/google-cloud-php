@@ -24,8 +24,8 @@ namespace Google\Cloud\Storage\Tests\System\StreamWrapper;
  */
 class ImageTest extends StreamWrapperTestCase
 {
-    const TEST_IMAGE_WITH_EXIF = 'https://storage.googleapis.com/chingor-php-gcs.appspot.com/Friday-2.jpg';
-    const TEST_IMAGE = 'https://storage.googleapis.com/chingor-php-gcs.appspot.com/featured_google.jpg';
+    const TEST_IMAGE_WITH_EXIF = 'https://storage.googleapis.com/cloud-php-testdata/fujifilm-dx10.jpg';
+    const TEST_IMAGE = 'https://storage.googleapis.com/cloud-php-testdata/screenshot.png';
 
     public static function setUpBeforeClass()
     {
@@ -72,8 +72,8 @@ class ImageTest extends StreamWrapperTestCase
     public function imageProvider()
     {
         return [
-            ['plain.jpg', 1956, 960],
-            ['exif.jpg', 3960, 2640],
+            ['plain.jpg', 1027, 823],
+            ['exif.jpg', 1024, 768],
         ];
     }
 }
