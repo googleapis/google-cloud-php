@@ -20,7 +20,6 @@ namespace Google\Cloud\Storage\Tests\System;
 use GuzzleHttp\Client;
 use Google\Cloud\Storage\Acl;
 use Google\Cloud\Storage\Bucket;
-use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Storage\StorageObject;
 use GuzzleHttp\Exception\ClientException;
