@@ -585,7 +585,8 @@ class CacheSessionPool implements SessionPoolInterface
             'inUse' => [],
             'toCreate' => [],
             'windowStart' => $this->time(),
-            'maxInUseSessions' => 0
+            'maxInUseSessions' => 0,
+            'maintainTime' => $this->time(),
         ];
     }
 
@@ -849,6 +850,143 @@ class CacheSessionPool implements SessionPoolInterface
                 $data['queue'],
                 (int) -$deletionCount
             );
+        }
+    }
+
+    /**
+     * Maintain queued sessions for selected database and keep them alive.
+     *
+     * This method drops expired sessions and refreshes "old" ones (expiring in next 10 minutes).
+     * It can also refresh some non-"old" sessions to distribute refresh calls more or less
+     * evenly between maintenance calls.
+     * Only up to `minSessions` sessions are maintained, all excess ones are left to expire.
+     */
+    public function maintain()
+    {
+        if (!isset($this->database)) {
+            throw new \LogicException('Cannot maintain session pool: database not set.');
+        }
+
+        $this->config['lock']->synchronize(function () {
+            $cacheItem = $this->cacheItemPool->getItem($this->cacheKey);
+            $cachedData = $cacheItem->get();
+            if (!$cachedData) {
+                return;
+            }
+
+            $sessions = $cachedData['queue'];
+            // Sort sessions by expiration time, "oldest" first.
+            // acquire() method picks sessions from the beginning of the queue,
+            // so make sure that "oldest" ones will be picked first.
+            usort($sessions, function ($a, $b) {
+                return ($a['expires'] - $b['expires']);
+            });
+
+            $now = $this->time();
+            $soonToExpireThreshold = $now + 600;
+            $prevMaintainTime = isset($cachedData['maintainTime']) ? $cachedData['maintainTime'] : null;
+
+            $len = count($sessions);
+            // Find sessions that already expired.
+            for ($expiredPos = 0; $expiredPos < $len; $expiredPos++) {
+                if ($sessions[$expiredPos]['expires'] > $now) {
+                    break;
+                }
+            }
+            // Find sessions that will expire in next 10 minutes ("old" sessions).
+            for ($soonToExpirePos = $expiredPos; $soonToExpirePos < $len; $soonToExpirePos++) {
+                if ($sessions[$soonToExpirePos]['expires'] > $soonToExpireThreshold) {
+                    break;
+                }
+            }
+            // Find sessions that were refreshed after the previous maintenance ("fresh" sessions).
+            $freshPos = $len - 1;
+            if (isset($prevMaintainTime)) {
+                $freshThreshold = $prevMaintainTime + self::SESSION_EXPIRATION_SECONDS;
+                for (; $freshPos >= 0; $freshPos--) {
+                    if ($sessions[$freshPos]['expires'] <= $freshThreshold) {
+                        break;
+                    }
+                }
+            }
+            $freshSessionsCount = $len - 1 - $freshPos;
+            $soonToExpireSessions = array_splice($sessions, $expiredPos, ($soonToExpirePos - $expiredPos));
+            // Drop expired sessions.
+            array_splice($sessions, 0, $expiredPos);
+            // Sessions created at peak load and (probably) not needed anymore.
+            $extraSessions = [];
+
+            $totalSessionsCount = count($cachedData['inUse']) + count($sessions) + count($soonToExpireSessions);
+            $maintainedSessionsCount = $this->config['minSessions'];
+            $extraSessionsCount = ($totalSessionsCount - $maintainedSessionsCount);
+            if ($extraSessionsCount > 0) {
+                // Treat some "old" sessions as extra sessions (do not refresh them).
+                $extraSessions = array_splice($soonToExpireSessions, -$extraSessionsCount);
+            }
+
+            // Refresh remaining "old" sessions and move them to the end of the queue.
+            foreach ($soonToExpireSessions as $item) {
+                $session = $this->database->session($item['name']);
+                if ($this->refreshSession($session)) {
+                    $sessions[] = [
+                        'name' => $item['name'],
+                        'expires' => $session->expiration(),
+                    ];
+                    $freshSessionsCount++;
+                } else {
+                    $totalSessionsCount--;
+                }
+            }
+
+            if (isset($prevMaintainTime)) {
+                // Try to distribute refresh requests evenly between maintenance calls to smooth request peaks.
+                // To be safe each session must be refreshed at least once per 50 minutes, it will be
+                // (total sessions * maintenance interval / 50 minutes) sessions refreshed between maintenance calls.
+                // No need to be precise here, it's just an optimization.
+
+                $maintainInterval = $now - $prevMaintainTime;
+                $maxLifetime = self::SESSION_EXPIRATION_SECONDS - 600;
+                $totalSessionsCount = min($totalSessionsCount, $maintainedSessionsCount);
+                $meanRefreshCount = (int)($totalSessionsCount * $maintainInterval / $maxLifetime);
+                $meanRefreshCount = min($meanRefreshCount, $maintainedSessionsCount);
+                // There may be sessions already refreshed since previous maintenance,
+                // so we can save some refresh requests.
+                $refreshCount = $meanRefreshCount - $freshSessionsCount;
+                if ($refreshCount > 0) {
+                    // Refresh some "oldest" sessions and move them to the end of the queue.
+                    $refreshCount = min($refreshCount, count($sessions));
+                    for ($pos = 0; $pos < $refreshCount; $pos++) {
+                        $item = $sessions[$pos];
+                        $session = $this->database->session($item['name']);
+                        if ($this->refreshSession($session)) {
+                            $sessions[] = [
+                                'name' => $item['name'],
+                                'expires' => $session->expiration(),
+                            ];
+                        }
+                    }
+                    array_splice($sessions, 0, $refreshCount);
+                }
+            }
+
+            $cachedData['maintainTime'] = $this->time();
+            // Put extra sessions to the end of the queue, so they won't be acquired until really needed.
+            $cachedData['queue'] = array_merge($sessions, $extraSessions);
+            $this->cacheItemPool->save($cacheItem->set($cachedData));
+        });
+    }
+
+    /**
+     * @param Session $session
+     * @return bool `true`: session was refreshed, `false`: session does not exist
+     */
+    private function refreshSession($session)
+    {
+        try {
+            $this->database->execute('SELECT 1', ['session' => $session])->rows()->current();
+            return true;
+        } catch (NotFoundException $e) {
+            return false;
         }
     }
 }
