@@ -273,6 +273,7 @@ class ValueMapper
 
             case self::TYPE_NUMERIC:
                 $value = new Numeric($value);
+                break;
 
             case self::TYPE_FLOAT64:
                 // NaN, Infinite and -Infinite are possible FLOAT64 values,
