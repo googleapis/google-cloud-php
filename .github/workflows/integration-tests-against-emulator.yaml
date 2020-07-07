@@ -2,7 +2,11 @@ on:
   push:
     branches:
       - master
+    paths:
+      - 'Spanner/**'
   pull_request:
+    paths:
+      - 'Spanner/**'
 name: integration-tests-against-emulator
 jobs:
   php-test:
