@@ -50,4 +50,4 @@ jobs:
           Spanner/vendor/bin/phpunit -c Spanner/phpunit-system.xml.dist
         env:
           SPANNER_EMULATOR_HOST: localhost:9010
-          GCLOUD_PROJECT: emulator-project
+          GCLOUD_PROJECT: emulator-test-project
