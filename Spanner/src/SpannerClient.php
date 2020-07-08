@@ -162,7 +162,6 @@ class SpannerClient
      */
     public function __construct(array $config = [])
     {
-        # TEST GITHUB ACTION
         $emulatorHost = getenv('SPANNER_EMULATOR_HOST');
 
         $this->requireGrpc();
