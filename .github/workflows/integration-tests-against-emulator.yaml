@@ -45,7 +45,6 @@ jobs:
         run: |
           composer update --prefer-dist --no-interaction --no-suggest -d Spanner/
 
-
       - name: Run system tests
         run: |
           Spanner/vendor/bin/phpunit -c Spanner/phpunit-system.xml.dist
