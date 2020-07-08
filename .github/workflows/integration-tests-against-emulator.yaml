@@ -30,7 +30,7 @@ jobs:
       - run: gcloud info
       - run: gcloud config configurations create emulator
       - run: gcloud config set auth/disable_credentials true
-      - run: gcloud config set project emulator-test-project
+      - run: gcloud config set project emulator-project
       - run: gcloud config set api_endpoint_overrides/spanner http://localhost:9020/
       - run: gcloud spanner instances create google-cloud-php-system-tests --config=emulator-config --description="Test Instance" --nodes=1
 
@@ -50,4 +50,3 @@ jobs:
           Spanner/vendor/bin/phpunit -c Spanner/phpunit-system.xml.dist
         env:
           SPANNER_EMULATOR_HOST: localhost:9010
-          GCLOUD_PROJECT: emulator-test-project
