@@ -220,7 +220,7 @@ class RequestWrapper
      *           **Defaults to** `3`.
      *     @type callable $restRetryFunction Sets the conditions for whether or
      *           not a request should attempt to retry. Function signature should
-     *           match: `function (\Exception $ex) : bool`.
+     *           match: `function (\Exception $ex, [$retry_attempt]) : bool`.
      *     @type callable $restDelayFunction Executes a delay, defaults to
      *           utilizing `usleep`. Function signature should match:
      *           `function (int $delay) : void`.
@@ -251,7 +251,7 @@ class RequestWrapper
                 $this->applyHeaders($request),
                 $this->getRequestOptions($options)
             )->then(null, function (\Exception $ex) use ($fn, $retryAttempt, $retryOptions) {
-                $shouldRetry = $retryOptions['retryFunction']($ex);
+                $shouldRetry = $retryOptions['retryFunction']($ex, $retry_attempt);
 
                 if ($shouldRetry === false || $retryAttempt >= $retryOptions['retries']) {
                     throw $this->convertToGoogleException($ex);
