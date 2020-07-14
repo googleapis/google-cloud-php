@@ -7,7 +7,7 @@ on:
   pull_request:
     paths:
       - 'Spanner/**'
-name: integration-tests-against-emulator
+name: Run Spanner integration tests against service emulator
 jobs:
   php-test:
     runs-on: ubuntu-latest
