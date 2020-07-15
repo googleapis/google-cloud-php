@@ -90,8 +90,9 @@ use Google\Protobuf\Timestamp;
  * ```
  * $securityCenterClient = new SecurityCenterClient();
  * try {
- *     $resource = '';
- *     $response = $securityCenterClient->getIamPolicy($resource);
+ *     $formattedParent = $securityCenterClient->organizationName('[ORGANIZATION]');
+ *     $source = new Source();
+ *     $response = $securityCenterClient->createSource($formattedParent, $source);
  * } finally {
  *     $securityCenterClient->close();
  * }
@@ -641,6 +642,233 @@ class SecurityCenterGapicClient
     }
 
     /**
+     * Creates a source.
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $formattedParent = $securityCenterClient->organizationName('[ORGANIZATION]');
+     *     $source = new Source();
+     *     $response = $securityCenterClient->createSource($formattedParent, $source);
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. Resource name of the new source's parent. Its format should be
+     *                             "organizations/[organization_id]".
+     * @param Source $source       Required. The Source being created, only the display_name and description
+     *                             will be used. All other fields will be ignored.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\Source
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function createSource($parent, $source, array $optionalArgs = [])
+    {
+        $request = new CreateSourceRequest();
+        $request->setParent($parent);
+        $request->setSource($source);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'CreateSource',
+            Source::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Creates a finding. The corresponding source must exist for finding creation
+     * to succeed.
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $formattedParent = $securityCenterClient->sourceName('[ORGANIZATION]', '[SOURCE]');
+     *     $findingId = '';
+     *     $finding = new Finding();
+     *     $response = $securityCenterClient->createFinding($formattedParent, $findingId, $finding);
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param string  $parent       Required. Resource name of the new finding's parent. Its format should be
+     *                              "organizations/[organization_id]/sources/[source_id]".
+     * @param string  $findingId    Required. Unique identifier provided by the client within the parent scope.
+     *                              It must be alphanumeric and less than or equal to 32 characters and
+     *                              greater than 0 characters in length.
+     * @param Finding $finding      Required. The Finding being created. The name and security_marks will be
+     *                              ignored as they are both output only fields on this resource.
+     * @param array   $optionalArgs {
+     *                              Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\Finding
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function createFinding($parent, $findingId, $finding, array $optionalArgs = [])
+    {
+        $request = new CreateFindingRequest();
+        $request->setParent($parent);
+        $request->setFindingId($findingId);
+        $request->setFinding($finding);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'CreateFinding',
+            Finding::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Creates a notification config.
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $formattedParent = $securityCenterClient->organizationName('[ORGANIZATION]');
+     *     $configId = '';
+     *     $notificationConfig = new NotificationConfig();
+     *     $response = $securityCenterClient->createNotificationConfig($formattedParent, $configId, $notificationConfig);
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param string             $parent             Required. Resource name of the new notification config's parent. Its format
+     *                                               is "organizations/[organization_id]".
+     * @param string             $configId           Required.
+     *                                               Unique identifier provided by the client within the parent scope.
+     *                                               It must be between 1 and 128 characters, and contains alphanumeric
+     *                                               characters, underscores or hyphens only.
+     * @param NotificationConfig $notificationConfig Required. The notification config being created. The name and the service
+     *                                               account will be ignored as they are both output only fields on this
+     *                                               resource.
+     * @param array              $optionalArgs       {
+     *                                               Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\NotificationConfig
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function createNotificationConfig($parent, $configId, $notificationConfig, array $optionalArgs = [])
+    {
+        $request = new CreateNotificationConfigRequest();
+        $request->setParent($parent);
+        $request->setConfigId($configId);
+        $request->setNotificationConfig($notificationConfig);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'CreateNotificationConfig',
+            NotificationConfig::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Deletes a notification config.
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $formattedName = $securityCenterClient->notificationConfigName('[ORGANIZATION]', '[NOTIFICATION_CONFIG]');
+     *     $securityCenterClient->deleteNotificationConfig($formattedName);
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Name of the notification config to delete. Its format is
+     *                             "organizations/[organization_id]/notificationConfigs/[config_id]".
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function deleteNotificationConfig($name, array $optionalArgs = [])
+    {
+        $request = new DeleteNotificationConfigRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteNotificationConfig',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Gets the access control policy on the specified Source.
      *
      * Sample code:
@@ -692,6 +920,159 @@ class SecurityCenterGapicClient
         return $this->startCall(
             'GetIamPolicy',
             Policy::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Gets a notification config.
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $formattedName = $securityCenterClient->notificationConfigName('[ORGANIZATION]', '[NOTIFICATION_CONFIG]');
+     *     $response = $securityCenterClient->getNotificationConfig($formattedName);
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Name of the notification config to get. Its format is
+     *                             "organizations/[organization_id]/notificationConfigs/[config_id]".
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\NotificationConfig
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function getNotificationConfig($name, array $optionalArgs = [])
+    {
+        $request = new GetNotificationConfigRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'GetNotificationConfig',
+            NotificationConfig::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Gets the settings for an organization.
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $formattedName = $securityCenterClient->organizationSettingsName('[ORGANIZATION]');
+     *     $response = $securityCenterClient->getOrganizationSettings($formattedName);
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Name of the organization to get organization settings for. Its
+     *                             format is "organizations/[organization_id]/organizationSettings".
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\OrganizationSettings
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function getOrganizationSettings($name, array $optionalArgs = [])
+    {
+        $request = new GetOrganizationSettingsRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'GetOrganizationSettings',
+            OrganizationSettings::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Gets a source.
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $formattedName = $securityCenterClient->sourceName('[ORGANIZATION]', '[SOURCE]');
+     *     $response = $securityCenterClient->getSource($formattedName);
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Relative resource name of the source. Its format is
+     *                             "organizations/[organization_id]/source/[source_id]".
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\Source
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function getSource($name, array $optionalArgs = [])
+    {
+        $request = new GetSourceRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'GetSource',
+            Source::class,
             $optionalArgs,
             $request
         )->wait();
@@ -1102,443 +1483,6 @@ class SecurityCenterGapicClient
             GroupFindingsResponse::class,
             $request
         );
-    }
-
-    /**
-     * Returns the permissions that a caller has on the specified source.
-     *
-     * Sample code:
-     * ```
-     * $securityCenterClient = new SecurityCenterClient();
-     * try {
-     *     $resource = '';
-     *     $permissions = [];
-     *     $response = $securityCenterClient->testIamPermissions($resource, $permissions);
-     * } finally {
-     *     $securityCenterClient->close();
-     * }
-     * ```
-     *
-     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
-     *                               See the operation documentation for the appropriate value for this field.
-     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
-     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *                               information see
-     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
-     * @param array    $optionalArgs {
-     *                               Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
-    {
-        $request = new TestIamPermissionsRequest();
-        $request->setResource($resource);
-        $request->setPermissions($permissions);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'resource' => $request->getResource(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'TestIamPermissions',
-            TestIamPermissionsResponse::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Creates a source.
-     *
-     * Sample code:
-     * ```
-     * $securityCenterClient = new SecurityCenterClient();
-     * try {
-     *     $formattedParent = $securityCenterClient->organizationName('[ORGANIZATION]');
-     *     $source = new Source();
-     *     $response = $securityCenterClient->createSource($formattedParent, $source);
-     * } finally {
-     *     $securityCenterClient->close();
-     * }
-     * ```
-     *
-     * @param string $parent       Required. Resource name of the new source's parent. Its format should be
-     *                             "organizations/[organization_id]".
-     * @param Source $source       Required. The Source being created, only the display_name and description
-     *                             will be used. All other fields will be ignored.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\SecurityCenter\V1\Source
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function createSource($parent, $source, array $optionalArgs = [])
-    {
-        $request = new CreateSourceRequest();
-        $request->setParent($parent);
-        $request->setSource($source);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'parent' => $request->getParent(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'CreateSource',
-            Source::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Creates a finding. The corresponding source must exist for finding creation
-     * to succeed.
-     *
-     * Sample code:
-     * ```
-     * $securityCenterClient = new SecurityCenterClient();
-     * try {
-     *     $formattedParent = $securityCenterClient->sourceName('[ORGANIZATION]', '[SOURCE]');
-     *     $findingId = '';
-     *     $finding = new Finding();
-     *     $response = $securityCenterClient->createFinding($formattedParent, $findingId, $finding);
-     * } finally {
-     *     $securityCenterClient->close();
-     * }
-     * ```
-     *
-     * @param string  $parent       Required. Resource name of the new finding's parent. Its format should be
-     *                              "organizations/[organization_id]/sources/[source_id]".
-     * @param string  $findingId    Required. Unique identifier provided by the client within the parent scope.
-     *                              It must be alphanumeric and less than or equal to 32 characters and
-     *                              greater than 0 characters in length.
-     * @param Finding $finding      Required. The Finding being created. The name and security_marks will be
-     *                              ignored as they are both output only fields on this resource.
-     * @param array   $optionalArgs {
-     *                              Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\SecurityCenter\V1\Finding
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function createFinding($parent, $findingId, $finding, array $optionalArgs = [])
-    {
-        $request = new CreateFindingRequest();
-        $request->setParent($parent);
-        $request->setFindingId($findingId);
-        $request->setFinding($finding);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'parent' => $request->getParent(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'CreateFinding',
-            Finding::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Creates a notification config.
-     *
-     * Sample code:
-     * ```
-     * $securityCenterClient = new SecurityCenterClient();
-     * try {
-     *     $formattedParent = $securityCenterClient->organizationName('[ORGANIZATION]');
-     *     $configId = '';
-     *     $notificationConfig = new NotificationConfig();
-     *     $response = $securityCenterClient->createNotificationConfig($formattedParent, $configId, $notificationConfig);
-     * } finally {
-     *     $securityCenterClient->close();
-     * }
-     * ```
-     *
-     * @param string             $parent             Required. Resource name of the new notification config's parent. Its format
-     *                                               is "organizations/[organization_id]".
-     * @param string             $configId           Required.
-     *                                               Unique identifier provided by the client within the parent scope.
-     *                                               It must be between 1 and 128 characters, and contains alphanumeric
-     *                                               characters, underscores or hyphens only.
-     * @param NotificationConfig $notificationConfig Required. The notification config being created. The name and the service
-     *                                               account will be ignored as they are both output only fields on this
-     *                                               resource.
-     * @param array              $optionalArgs       {
-     *                                               Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\SecurityCenter\V1\NotificationConfig
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function createNotificationConfig($parent, $configId, $notificationConfig, array $optionalArgs = [])
-    {
-        $request = new CreateNotificationConfigRequest();
-        $request->setParent($parent);
-        $request->setConfigId($configId);
-        $request->setNotificationConfig($notificationConfig);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'parent' => $request->getParent(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'CreateNotificationConfig',
-            NotificationConfig::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Deletes a notification config.
-     *
-     * Sample code:
-     * ```
-     * $securityCenterClient = new SecurityCenterClient();
-     * try {
-     *     $formattedName = $securityCenterClient->notificationConfigName('[ORGANIZATION]', '[NOTIFICATION_CONFIG]');
-     *     $securityCenterClient->deleteNotificationConfig($formattedName);
-     * } finally {
-     *     $securityCenterClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. Name of the notification config to delete. Its format is
-     *                             "organizations/[organization_id]/notificationConfigs/[config_id]".
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function deleteNotificationConfig($name, array $optionalArgs = [])
-    {
-        $request = new DeleteNotificationConfigRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteNotificationConfig',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Gets a notification config.
-     *
-     * Sample code:
-     * ```
-     * $securityCenterClient = new SecurityCenterClient();
-     * try {
-     *     $formattedName = $securityCenterClient->notificationConfigName('[ORGANIZATION]', '[NOTIFICATION_CONFIG]');
-     *     $response = $securityCenterClient->getNotificationConfig($formattedName);
-     * } finally {
-     *     $securityCenterClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. Name of the notification config to get. Its format is
-     *                             "organizations/[organization_id]/notificationConfigs/[config_id]".
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\SecurityCenter\V1\NotificationConfig
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function getNotificationConfig($name, array $optionalArgs = [])
-    {
-        $request = new GetNotificationConfigRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'GetNotificationConfig',
-            NotificationConfig::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Gets the settings for an organization.
-     *
-     * Sample code:
-     * ```
-     * $securityCenterClient = new SecurityCenterClient();
-     * try {
-     *     $formattedName = $securityCenterClient->organizationSettingsName('[ORGANIZATION]');
-     *     $response = $securityCenterClient->getOrganizationSettings($formattedName);
-     * } finally {
-     *     $securityCenterClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. Name of the organization to get organization settings for. Its
-     *                             format is "organizations/[organization_id]/organizationSettings".
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\SecurityCenter\V1\OrganizationSettings
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function getOrganizationSettings($name, array $optionalArgs = [])
-    {
-        $request = new GetOrganizationSettingsRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'GetOrganizationSettings',
-            OrganizationSettings::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Gets a source.
-     *
-     * Sample code:
-     * ```
-     * $securityCenterClient = new SecurityCenterClient();
-     * try {
-     *     $formattedName = $securityCenterClient->sourceName('[ORGANIZATION]', '[SOURCE]');
-     *     $response = $securityCenterClient->getSource($formattedName);
-     * } finally {
-     *     $securityCenterClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. Relative resource name of the source. Its format is
-     *                             "organizations/[organization_id]/source/[source_id]".
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\SecurityCenter\V1\Source
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function getSource($name, array $optionalArgs = [])
-    {
-        $request = new GetSourceRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'GetSource',
-            Source::class,
-            $optionalArgs,
-            $request
-        )->wait();
     }
 
     /**
@@ -2322,6 +2266,63 @@ class SecurityCenterGapicClient
         return $this->startCall(
             'SetIamPolicy',
             Policy::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Returns the permissions that a caller has on the specified source.
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $resource = '';
+     *     $permissions = [];
+     *     $response = $securityCenterClient->testIamPermissions($resource, $permissions);
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
+     *                               See the operation documentation for the appropriate value for this field.
+     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
+     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *                               information see
+     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * @param array    $optionalArgs {
+     *                               Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
+    {
+        $request = new TestIamPermissionsRequest();
+        $request->setResource($resource);
+        $request->setPermissions($permissions);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'resource' => $request->getResource(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'TestIamPermissions',
+            TestIamPermissionsResponse::class,
             $optionalArgs,
             $request
         )->wait();
