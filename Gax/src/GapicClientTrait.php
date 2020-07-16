@@ -428,8 +428,8 @@ trait GapicClientTrait
      *     @type array $headers [optional] key-value array containing headers
      *     @type int $timeoutMillis [optional] the timeout in milliseconds for the call
      *     @type array $transportOptions [optional] transport-specific call options
-     *     @type RetrySettings $retrySettings [optional] A retry settings override
-     *           For the call.
+     *     @type RetrySettings|array $retrySettings [optional] A retry settings
+     *           override for the call.
      * }
      * @param Message $request
      * @param int $callType
@@ -508,8 +508,8 @@ trait GapicClientTrait
      * @param array $optionalArgs {
      *     Optional arguments
      *
-     *     @type RetrySettings $retrySettings [optional] A retry settings override
-     *           For the call.
+     *     @type RetrySettings|array $retrySettings [optional] A retry settings
+     *           override for the call.
      * }
      *
      * @return array
@@ -519,9 +519,13 @@ trait GapicClientTrait
         $retrySettings = $this->retrySettings[$methodName];
         // Allow for retry settings to be changed at call time
         if (isset($optionalArgs['retrySettings'])) {
-            $retrySettings = $retrySettings->with(
-                $optionalArgs['retrySettings']
-            );
+            if ($optionalArgs['retrySettings'] instanceof RetrySettings) {
+                $retrySettings = $optionalArgs['retrySettings'];
+            } else {
+                $retrySettings = $retrySettings->with(
+                    $optionalArgs['retrySettings']
+                );
+            }
         }
         return [
             'retrySettings' => $retrySettings,

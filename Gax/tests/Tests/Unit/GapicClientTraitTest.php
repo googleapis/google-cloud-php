@@ -116,6 +116,39 @@ class GapicClientTraitTest extends TestCase
         ]);
     }
 
+    public function testConfigureCallConstructionOptionsAcceptsRetryObjectOrArray()
+    {
+        $defaultRetrySettings = RetrySettings::constructDefault();
+        $client = new GapicClientTraitStub();
+        $client->set('retrySettings', ['method' => $defaultRetrySettings]);
+        $expectedOptions = [
+            'retrySettings' => $defaultRetrySettings
+                ->with(['rpcTimeoutMultiplier' => 5])
+        ];
+        $actualOptionsWithObject = $client->call(
+            'configureCallConstructionOptions',
+            [
+                'method',
+                [
+                    'retrySettings' => $defaultRetrySettings
+                        ->with(['rpcTimeoutMultiplier' => 5])
+                ]
+            ]
+        );
+        $actualOptionsWithArray = $client->call(
+            'configureCallConstructionOptions',
+            [
+                'method',
+                [
+                    'retrySettings' => ['rpcTimeoutMultiplier' => 5]
+                ]
+            ]
+        );
+
+        $this->assertEquals($expectedOptions, $actualOptionsWithObject);
+        $this->assertEquals($expectedOptions, $actualOptionsWithArray);
+    }
+
     public function testStartOperationsCall()
     {
         $header = AgentHeader::buildAgentHeader([]);
