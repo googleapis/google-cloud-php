@@ -1,5 +1,418 @@
 # Changelog
 
+## 0.136.0
+
+<details><summary>google/cloud-bigquerydatatransfer 1.1.0</summary>
+
+
+
+### Features
+
+* update retry and timeout configuration ([#3230](https://www.github.com/googleapis/google-cloud-php/issues/3230)) ([79724e8](https://www.github.com/googleapis/google-cloud-php/commit/79724e8b2d9685599821a4b1bce7ca1915527b09))
+
+
+### Documentation
+
+* add grpc client return types ([#3177](https://www.github.com/googleapis/google-cloud-php/issues/3177)) ([d875bd4](https://www.github.com/googleapis/google-cloud-php/commit/d875bd4eac9203077b2e7a9f169010a52a17fa94))
+
+</details>
+
+<details><summary>google/cloud-bigquery-storage 0.2.2</summary>
+
+
+
+### Documentation
+
+* add grpc client return types ([#3178](https://www.github.com/googleapis/google-cloud-php/issues/3178)) ([c0cbdd9](https://www.github.com/googleapis/google-cloud-php/commit/c0cbdd9a748c2231cdd072eefca1f4536429cfe3))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.4.3</summary>
+
+
+
+### Documentation
+
+* add grpc client return types ([#3179](https://www.github.com/googleapis/google-cloud-php/issues/3179)) ([89dc0fa](https://www.github.com/googleapis/google-cloud-php/commit/89dc0fa545e860822f721506d48829b812c9f40a))
+
+</details>
+
+<details><summary>google/cloud-billing 1.1.0</summary>
+
+
+
+### Features
+
+* update retry and timeout configuration ([#3219](https://www.github.com/googleapis/google-cloud-php/issues/3219)) ([a666e10](https://www.github.com/googleapis/google-cloud-php/commit/a666e10030cdc09520bcbca3886297a4b308c1c1))
+
+
+### Documentation
+
+* add grpc client return types ([#3180](https://www.github.com/googleapis/google-cloud-php/issues/3180)) ([e9c966b](https://www.github.com/googleapis/google-cloud-php/commit/e9c966be9c3e9a10d0c80627a4f38038fb1ed3af))
+
+</details>
+
+<details><summary>google/cloud-container 1.1.0</summary>
+
+
+
+### Features
+
+* update retry and timeout configuration ([#3181](https://www.github.com/googleapis/google-cloud-php/issues/3181)) ([63ec629](https://www.github.com/googleapis/google-cloud-php/commit/63ec629fab1a9f261be0ba0a6b4e45bfd394e91c))
+
+</details>
+
+<details><summary>google/cloud-core 1.38.0</summary>
+
+
+
+### Features
+
+* Add support for Guzzle 7.x ([#3217](https://www.github.com/googleapis/google-cloud-php/issues/3217)) ([f540479](https://www.github.com/googleapis/google-cloud-php/commit/f5404798a242f03fedd06d77aaa5fb7673260594))
+* Surface $retry_attempts to retryFunction for observation ([#3233](https://www.github.com/googleapis/google-cloud-php/issues/3233)) ([302189d](https://www.github.com/googleapis/google-cloud-php/commit/302189db1b97cf6ceda19d916fce0241b1b6545a))
+
+
+### Bug Fixes
+
+* use correct variable name for retry attempt argument ([#3238](https://www.github.com/googleapis/google-cloud-php/issues/3238)) ([ab36d9e](https://www.github.com/googleapis/google-cloud-php/commit/ab36d9e6d048474cfe96f41b34cfc4b8e3608aff))
+
+</details>
+
+<details><summary>google/cloud-data-catalog 0.2.0</summary>
+
+
+
+### Features
+
+* update retry and timeout configuration ([#3213](https://www.github.com/googleapis/google-cloud-php/issues/3213)) ([d77f86a](https://www.github.com/googleapis/google-cloud-php/commit/d77f86ac98dde08b9903bb7a103ca20eb85f2aac))
+
+
+### Documentation
+
+* add grpc client return types ([#3182](https://www.github.com/googleapis/google-cloud-php/issues/3182)) ([e16c1d7](https://www.github.com/googleapis/google-cloud-php/commit/e16c1d713310c0337b0db9f549144dd9170b914f))
+
+</details>
+
+<details><summary>google/cloud-dataproc 1.1.1</summary>
+
+
+
+### Documentation
+
+* add grpc client return types ([#3183](https://www.github.com/googleapis/google-cloud-php/issues/3183)) ([62c1e6a](https://www.github.com/googleapis/google-cloud-php/commit/62c1e6a2598852e752aec8924d4e1c19568aba37))
+
+</details>
+
+<details><summary>google/cloud-datastore 1.11.6</summary>
+
+
+
+### Documentation
+
+* add grpc client return types ([#3184](https://www.github.com/googleapis/google-cloud-php/issues/3184)) ([70be3c6](https://www.github.com/googleapis/google-cloud-php/commit/70be3c620ae9c9159d00f9cb90e4d46536c30bb6))
+
+</details>
+
+<details><summary>google/cloud-debugger 1.2.0</summary>
+
+
+
+### Features
+
+* update retry and timeout configuration ([#3240](https://www.github.com/googleapis/google-cloud-php/issues/3240)) ([6c2d29d](https://www.github.com/googleapis/google-cloud-php/commit/6c2d29d1cd692d0b383d200e9d3619202402fede))
+
+
+### Documentation
+
+* add grpc client return types ([#3185](https://www.github.com/googleapis/google-cloud-php/issues/3185)) ([0e56d50](https://www.github.com/googleapis/google-cloud-php/commit/0e56d5019623c60e5c40ea21b6984587966423f2))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 0.16.0</summary>
+
+
+
+### Features
+
+* update retry and timeout configuration ([#3186](https://www.github.com/googleapis/google-cloud-php/issues/3186)) ([8c14718](https://www.github.com/googleapis/google-cloud-php/commit/8c14718c24df09bf2919792cf164ed81fadb30c8))
+
+</details>
+
+<details><summary>google/cloud-error-reporting 0.17.0</summary>
+
+
+
+### Features
+
+* update retry and timeout configuration ([#3241](https://www.github.com/googleapis/google-cloud-php/issues/3241)) ([eaff6ba](https://www.github.com/googleapis/google-cloud-php/commit/eaff6ba9ff26f05ce9e1955c46cf7e3b8dd09065))
+
+
+### Documentation
+
+* add grpc client return types ([#3187](https://www.github.com/googleapis/google-cloud-php/issues/3187)) ([bc6e122](https://www.github.com/googleapis/google-cloud-php/commit/bc6e122ec7c013d24b20a7aa32d316be3b0af6f4))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.14.1</summary>
+
+
+
+### Bug Fixes
+
+* exclude generated client from debug dump ([#3237](https://www.github.com/googleapis/google-cloud-php/issues/3237)) ([3633110](https://www.github.com/googleapis/google-cloud-php/commit/3633110df92aaea4411847cbd4e11248b1d8a3ed))
+
+</details>
+
+<details><summary>google/cloud-iot 1.1.2</summary>
+
+
+
+### Documentation
+
+* add grpc client return types ([#3188](https://www.github.com/googleapis/google-cloud-php/issues/3188)) ([48c9931](https://www.github.com/googleapis/google-cloud-php/commit/48c9931ba0fa5be50ed3ec1f7fcd508564019d65))
+
+</details>
+
+<details><summary>google/cloud-kms 1.10.2</summary>
+
+
+
+### Documentation
+
+* add grpc client return types ([#3189](https://www.github.com/googleapis/google-cloud-php/issues/3189)) ([45e7408](https://www.github.com/googleapis/google-cloud-php/commit/45e740820e67e15b96731a4f8a5103479bdae5d9))
+
+</details>
+
+<details><summary>google/cloud-language 0.22.5</summary>
+
+
+
+### Documentation
+
+* add grpc client return types ([#3190](https://www.github.com/googleapis/google-cloud-php/issues/3190)) ([22705df](https://www.github.com/googleapis/google-cloud-php/commit/22705dfb924fa40a30b55363a8bcbe698b66466a))
+
+</details>
+
+<details><summary>google/cloud-memcache 0.2.1</summary>
+
+
+
+### Documentation
+
+* add grpc client return types ([#3191](https://www.github.com/googleapis/google-cloud-php/issues/3191)) ([cc4c63b](https://www.github.com/googleapis/google-cloud-php/commit/cc4c63b7cabcfd308e436d3c8927d27dc4c80362))
+
+</details>
+
+<details><summary>google/cloud-oslogin 1.1.1</summary>
+
+
+
+### Documentation
+
+* add grpc client return types ([#3192](https://www.github.com/googleapis/google-cloud-php/issues/3192)) ([016091d](https://www.github.com/googleapis/google-cloud-php/commit/016091db8e972e21c81621ab25b0b4a770975f62))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.26.0</summary>
+
+
+
+### Features
+
+* add new arguments to StreamingPullRequest ([#3193](https://www.github.com/googleapis/google-cloud-php/issues/3193)) ([b2c6851](https://www.github.com/googleapis/google-cloud-php/commit/b2c6851fbd2df6e2dba7e859f2fd0ac004e866e5))
+
+</details>
+
+<details><summary>google/cloud-recaptcha-enterprise 0.2.1</summary>
+
+
+
+### Documentation
+
+* add grpc client return types ([#3194](https://www.github.com/googleapis/google-cloud-php/issues/3194)) ([f174d4c](https://www.github.com/googleapis/google-cloud-php/commit/f174d4ca4b2ef6398d668590f0df0792ef0173a6))
+
+</details>
+
+<details><summary>google/cloud-recommender 1.0.4</summary>
+
+
+
+### Documentation
+
+* add grpc client return types ([#3195](https://www.github.com/googleapis/google-cloud-php/issues/3195)) ([596f77e](https://www.github.com/googleapis/google-cloud-php/commit/596f77ea8dc5849f0e1536ee8766303156afc418))
+
+</details>
+
+<details><summary>google/cloud-redis 1.0.3</summary>
+
+
+
+### Documentation
+
+* add grpc client return types ([#3196](https://www.github.com/googleapis/google-cloud-php/issues/3196)) ([5011a0f](https://www.github.com/googleapis/google-cloud-php/commit/5011a0fd288dcaef5d8b28187f917c1d9cebca0d))
+
+</details>
+
+<details><summary>google/cloud-scheduler 1.4.1</summary>
+
+
+
+### Documentation
+
+* add grpc client return types ([#3197](https://www.github.com/googleapis/google-cloud-php/issues/3197)) ([126aa1a](https://www.github.com/googleapis/google-cloud-php/commit/126aa1afd48980d603cb10e4698fa5f34feb9142))
+
+</details>
+
+<details><summary>google/cloud-security-center 0.8.1</summary>
+
+
+
+### Documentation
+
+* add grpc client return types ([#3198](https://www.github.com/googleapis/google-cloud-php/issues/3198)) ([1fc2003](https://www.github.com/googleapis/google-cloud-php/commit/1fc2003e4ac4df0ef2e846537c98fb6a7d3cf7dd))
+
+</details>
+
+<details><summary>google/cloud-service-directory 0.1.4</summary>
+
+
+
+### Documentation
+
+* add grpc client return types ([#3199](https://www.github.com/googleapis/google-cloud-php/issues/3199)) ([bde5a90](https://www.github.com/googleapis/google-cloud-php/commit/bde5a90897efa866e42f836d45bac4832ea97bfd))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.30.0</summary>
+
+
+
+### Features
+
+* add maintain() method for CacheSessionPool ([#3090](https://www.github.com/googleapis/google-cloud-php/issues/3090)) ([a4f9147](https://www.github.com/googleapis/google-cloud-php/commit/a4f91470c503a7dbe26a412bf6da85ddb4db0aba))
+
+
+### Documentation
+
+* add grpc client return types ([#3200](https://www.github.com/googleapis/google-cloud-php/issues/3200)) ([e9acc67](https://www.github.com/googleapis/google-cloud-php/commit/e9acc6752dde6c9dc2e06d5b8710a1d744331cf9))
+
+</details>
+
+<details><summary>google/cloud-speech 1.2.1</summary>
+
+
+
+### Documentation
+
+* add grpc client return types ([#3201](https://www.github.com/googleapis/google-cloud-php/issues/3201)) ([2feb399](https://www.github.com/googleapis/google-cloud-php/commit/2feb3996d147077d551c4821195cd24f8dbe2806))
+
+</details>
+
+<details><summary>google/cloud-storage 1.22.0</summary>
+
+
+
+### Features
+
+* add support for apiEndpoint config ([#3218](https://www.github.com/googleapis/google-cloud-php/issues/3218)) ([9b1bcd2](https://www.github.com/googleapis/google-cloud-php/commit/9b1bcd22cf24b839c761cff9bbcf6fbd0cd5cd61))
+
+</details>
+
+<details><summary>google/cloud-talent 0.13.1</summary>
+
+
+
+### Documentation
+
+* add grpc client return types ([#3202](https://www.github.com/googleapis/google-cloud-php/issues/3202)) ([ac98379](https://www.github.com/googleapis/google-cloud-php/commit/ac9837906fb5b936b2736030b45aa0eb24548fbb))
+
+</details>
+
+<details><summary>google/cloud-tasks 1.7.1</summary>
+
+
+
+### Documentation
+
+* add grpc client return types ([#3203](https://www.github.com/googleapis/google-cloud-php/issues/3203)) ([2138bc8](https://www.github.com/googleapis/google-cloud-php/commit/2138bc8f66f1dc0b0afe20c75e1fd1f7682ca990))
+
+</details>
+
+<details><summary>google/cloud-text-to-speech 1.1.1</summary>
+
+
+
+### Documentation
+
+* add grpc client return types ([#3204](https://www.github.com/googleapis/google-cloud-php/issues/3204)) ([05837b5](https://www.github.com/googleapis/google-cloud-php/commit/05837b5b4676533789df6a7fafbac81372f83398))
+
+</details>
+
+<details><summary>google/cloud-trace 1.1.3</summary>
+
+
+
+### Documentation
+
+* add grpc client return types ([#3205](https://www.github.com/googleapis/google-cloud-php/issues/3205)) ([41f1360](https://www.github.com/googleapis/google-cloud-php/commit/41f1360312be85273cdd2bfcf80aff9a860760b4))
+
+</details>
+
+<details><summary>google/cloud-translate 1.8.0</summary>
+
+
+
+### Features
+
+* update retry and timeout configuration ([#3174](https://www.github.com/googleapis/google-cloud-php/issues/3174)) ([506b9c2](https://www.github.com/googleapis/google-cloud-php/commit/506b9c2177640b7483b615360d38069946223edc))
+
+
+### Documentation
+
+* add grpc client return types ([#3206](https://www.github.com/googleapis/google-cloud-php/issues/3206)) ([ebc83ba](https://www.github.com/googleapis/google-cloud-php/commit/ebc83ba5ff3467b21c12f432bb903a4334d87cee))
+
+</details>
+
+<details><summary>google/cloud-videointelligence 1.9.3</summary>
+
+
+
+### Documentation
+
+* add grpc client return types ([#3208](https://www.github.com/googleapis/google-cloud-php/issues/3208)) ([04b118c](https://www.github.com/googleapis/google-cloud-php/commit/04b118c34136c5ef2ef767f904f98286321da9d5))
+
+</details>
+
+<details><summary>google/cloud-vision 1.1.1</summary>
+
+
+
+### Documentation
+
+* add grpc client return types ([#3209](https://www.github.com/googleapis/google-cloud-php/issues/3209)) ([dc01a2d](https://www.github.com/googleapis/google-cloud-php/commit/dc01a2d384ff8057d533dff971e26390552acfa5))
+
+</details>
+
+<details><summary>google/cloud-web-risk 0.6.1</summary>
+
+
+
+### Documentation
+
+* add grpc client return types ([#3210](https://www.github.com/googleapis/google-cloud-php/issues/3210)) ([6e97973](https://www.github.com/googleapis/google-cloud-php/commit/6e97973633c4a80171ade869acb4dbd7c4a426fc))
+
+</details>
+
+<details><summary>google/cloud-web-security-scanner 0.5.1</summary>
+
+
+
+### Documentation
+
+* add grpc client return types ([#3211](https://www.github.com/googleapis/google-cloud-php/issues/3211)) ([1636ded](https://www.github.com/googleapis/google-cloud-php/commit/1636deddd9b8cc4fff493d4f186adf05f0ea045e))
+
+</details>
+
 ## 0.135.0
 
 <details><summary>google/cloud-asset 1.2.1</summary>
