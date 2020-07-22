@@ -1,0 +1,1 @@
+{"id":"asset\/external\/protos\/cloud\/orgpolicy\/v1\/policy_booleanpolicy","type":"","title":"Google\\Cloud\\OrgPolicy\\V1\\Policy_BooleanPolicy","name":"Policy_BooleanPolicy","description":"<p>This class is deprecated. Use Google\\Cloud\\OrgPolicy\\V1\\Policy\\BooleanPolicy instead.<\/p>","examples":[],"resources":[],"methods":[]}
