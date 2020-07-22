@@ -48,6 +48,7 @@ use Google\Cloud\Redis\V1\ListInstancesRequest;
 use Google\Cloud\Redis\V1\ListInstancesResponse;
 use Google\Cloud\Redis\V1\OutputConfig;
 use Google\Cloud\Redis\V1\UpdateInstanceRequest;
+use Google\Cloud\Redis\V1\UpgradeInstanceRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
@@ -1063,6 +1064,89 @@ class CloudRedisGapicClient
             Instance::class,
             $optionalArgs,
             $request
+        )->wait();
+    }
+
+    /**
+     * Upgrades Redis instance to the newer Redis version specified in the
+     * request.
+     *
+     * Sample code:
+     * ```
+     * $cloudRedisClient = new Google\Cloud\Redis\V1\CloudRedisClient();
+     * try {
+     *     $formattedName = $cloudRedisClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+     *     $redisVersion = '';
+     *     $operationResponse = $cloudRedisClient->upgradeInstance($formattedName, $redisVersion);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $cloudRedisClient->upgradeInstance($formattedName, $redisVersion);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $cloudRedisClient->resumeOperation($operationName, 'upgradeInstance');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       $result = $newOperationResponse->getResult();
+     *       // doSomethingWith($result)
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $cloudRedisClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Redis instance resource name using the form:
+     *                             `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+     *                             where `location_id` refers to a GCP region.
+     * @param string $redisVersion Required. Specifies the target version of Redis software to upgrade to.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function upgradeInstance($name, $redisVersion, array $optionalArgs = [])
+    {
+        $request = new UpgradeInstanceRequest();
+        $request->setName($name);
+        $request->setRedisVersion($redisVersion);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startOperationsCall(
+            'UpgradeInstance',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
         )->wait();
     }
 }

@@ -171,9 +171,8 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     private $persistence_iam_identity = '';
     /**
-     * Optional. The connect mode of Redis instance.
-     * If not provided, default one will be used.
-     * Current default: DIRECT_PEERING.
+     * Optional. The network connect mode of the Redis instance.
+     * If not provided, the connect mode defaults to DIRECT_PEERING.
      *
      * Generated from protobuf field <code>.google.cloud.redis.v1.Instance.ConnectMode connect_mode = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -269,9 +268,8 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           for a given instance so should be checked before each import/export
      *           operation.
      *     @type int $connect_mode
-     *           Optional. The connect mode of Redis instance.
-     *           If not provided, default one will be used.
-     *           Current default: DIRECT_PEERING.
+     *           Optional. The network connect mode of the Redis instance.
+     *           If not provided, the connect mode defaults to DIRECT_PEERING.
      * }
      */
     public function __construct($data = NULL) {
@@ -842,9 +840,8 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The connect mode of Redis instance.
-     * If not provided, default one will be used.
-     * Current default: DIRECT_PEERING.
+     * Optional. The network connect mode of the Redis instance.
+     * If not provided, the connect mode defaults to DIRECT_PEERING.
      *
      * Generated from protobuf field <code>.google.cloud.redis.v1.Instance.ConnectMode connect_mode = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -855,9 +852,8 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The connect mode of Redis instance.
-     * If not provided, default one will be used.
-     * Current default: DIRECT_PEERING.
+     * Optional. The network connect mode of the Redis instance.
+     * If not provided, the connect mode defaults to DIRECT_PEERING.
      *
      * Generated from protobuf field <code>.google.cloud.redis.v1.Instance.ConnectMode connect_mode = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

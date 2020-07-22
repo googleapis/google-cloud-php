@@ -130,6 +130,22 @@ class CloudRedisGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Upgrades Redis instance to the newer Redis version specified in the
+     * request.
+     * @param \Google\Cloud\Redis\V1\UpgradeInstanceRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Google\LongRunning\Operation
+     */
+    public function UpgradeInstance(\Google\Cloud\Redis\V1\UpgradeInstanceRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.redis.v1.CloudRedis/UpgradeInstance',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Import a Redis RDB snapshot file from Cloud Storage into a Redis instance.
      *
      * Redis may stop serving during this operation. Instance state will be
