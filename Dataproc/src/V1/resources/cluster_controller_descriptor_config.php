@@ -35,8 +35,8 @@ return [
             ],
             'DiagnoseCluster' => [
                 'longRunning' => [
-                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
-                    'metadataReturnType' => '\Google\Cloud\Dataproc\V1\DiagnoseClusterResults',
+                    'operationReturnType' => '\Google\Cloud\Dataproc\V1\DiagnoseClusterResults',
+                    'metadataReturnType' => '\Google\Cloud\Dataproc\V1\ClusterOperationMetadata',
                     'initialPollDelayMillis' => '1000',
                     'pollDelayMultiplier' => '2.0',
                     'maxPollDelayMillis' => '10000',
