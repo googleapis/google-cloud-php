@@ -58,9 +58,34 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $workflowTemplateServiceClient = new WorkflowTemplateServiceClient();
  * try {
- *     $formattedParent = $workflowTemplateServiceClient->regionName('[PROJECT]', '[REGION]');
- *     $template = new WorkflowTemplate();
- *     $response = $workflowTemplateServiceClient->createWorkflowTemplate($formattedParent, $template);
+ *     $name = '';
+ *     $operationResponse = $workflowTemplateServiceClient->instantiateWorkflowTemplate($name);
+ *     $operationResponse->pollUntilComplete();
+ *     if ($operationResponse->operationSucceeded()) {
+ *         // operation succeeded and returns no value
+ *     } else {
+ *         $error = $operationResponse->getError();
+ *         // handleError($error)
+ *     }
+ *
+ *
+ *     // Alternatively:
+ *
+ *     // start the operation, keep the operation name, and resume later
+ *     $operationResponse = $workflowTemplateServiceClient->instantiateWorkflowTemplate($name);
+ *     $operationName = $operationResponse->getName();
+ *     // ... do other work
+ *     $newOperationResponse = $workflowTemplateServiceClient->resumeOperation($operationName, 'instantiateWorkflowTemplate');
+ *     while (!$newOperationResponse->isDone()) {
+ *         // ... do other work
+ *         $newOperationResponse->reload();
+ *     }
+ *     if ($newOperationResponse->operationSucceeded()) {
+ *       // operation succeeded and returns no value
+ *     } else {
+ *       $error = $newOperationResponse->getError();
+ *       // handleError($error)
+ *     }
  * } finally {
  *     $workflowTemplateServiceClient->close();
  * }
@@ -419,136 +444,6 @@ class WorkflowTemplateServiceGapicClient
     }
 
     /**
-     * Creates new workflow template.
-     *
-     * Sample code:
-     * ```
-     * $workflowTemplateServiceClient = new WorkflowTemplateServiceClient();
-     * try {
-     *     $formattedParent = $workflowTemplateServiceClient->regionName('[PROJECT]', '[REGION]');
-     *     $template = new WorkflowTemplate();
-     *     $response = $workflowTemplateServiceClient->createWorkflowTemplate($formattedParent, $template);
-     * } finally {
-     *     $workflowTemplateServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $parent Required. The resource name of the region or location, as described
-     *                       in https://cloud.google.com/apis/design/resource_names.
-     *
-     * * For `projects.regions.workflowTemplates,create`, the resource name of the
-     *   region has the following format:
-     *   `projects/{project_id}/regions/{region}`
-     *
-     * * For `projects.locations.workflowTemplates.create`, the resource name of
-     *   the location has the following format:
-     *   `projects/{project_id}/locations/{location}`
-     * @param WorkflowTemplate $template     Required. The Dataproc workflow template to create.
-     * @param array            $optionalArgs {
-     *                                       Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\Dataproc\V1\WorkflowTemplate
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function createWorkflowTemplate($parent, $template, array $optionalArgs = [])
-    {
-        $request = new CreateWorkflowTemplateRequest();
-        $request->setParent($parent);
-        $request->setTemplate($template);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'parent' => $request->getParent(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'CreateWorkflowTemplate',
-            WorkflowTemplate::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Retrieves the latest workflow template.
-     *
-     * Can retrieve previously instantiated template by specifying optional
-     * version parameter.
-     *
-     * Sample code:
-     * ```
-     * $workflowTemplateServiceClient = new WorkflowTemplateServiceClient();
-     * try {
-     *     $name = '';
-     *     $response = $workflowTemplateServiceClient->getWorkflowTemplate($name);
-     * } finally {
-     *     $workflowTemplateServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $name Required. The resource name of the workflow template, as described
-     *                     in https://cloud.google.com/apis/design/resource_names.
-     *
-     * * For `projects.regions.workflowTemplates.get`, the resource name of the
-     *   template has the following format:
-     *   `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
-     *
-     * * For `projects.locations.workflowTemplates.get`, the resource name of the
-     *   template has the following format:
-     *   `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
-     * @param array $optionalArgs {
-     *                            Optional.
-     *
-     *     @type int $version
-     *          Optional. The version of workflow template to retrieve. Only previously
-     *          instantiated versions can be retrieved.
-     *
-     *          If unspecified, retrieves the current version.
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\Dataproc\V1\WorkflowTemplate
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function getWorkflowTemplate($name, array $optionalArgs = [])
-    {
-        $request = new GetWorkflowTemplateRequest();
-        $request->setName($name);
-        if (isset($optionalArgs['version'])) {
-            $request->setVersion($optionalArgs['version']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'GetWorkflowTemplate',
-            WorkflowTemplate::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
      * Instantiates a template and begins execution.
      *
      * The returned Operation can be used to track execution of
@@ -800,6 +695,136 @@ class WorkflowTemplateServiceGapicClient
             $optionalArgs,
             $request,
             $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Creates new workflow template.
+     *
+     * Sample code:
+     * ```
+     * $workflowTemplateServiceClient = new WorkflowTemplateServiceClient();
+     * try {
+     *     $formattedParent = $workflowTemplateServiceClient->regionName('[PROJECT]', '[REGION]');
+     *     $template = new WorkflowTemplate();
+     *     $response = $workflowTemplateServiceClient->createWorkflowTemplate($formattedParent, $template);
+     * } finally {
+     *     $workflowTemplateServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent Required. The resource name of the region or location, as described
+     *                       in https://cloud.google.com/apis/design/resource_names.
+     *
+     * * For `projects.regions.workflowTemplates,create`, the resource name of the
+     *   region has the following format:
+     *   `projects/{project_id}/regions/{region}`
+     *
+     * * For `projects.locations.workflowTemplates.create`, the resource name of
+     *   the location has the following format:
+     *   `projects/{project_id}/locations/{location}`
+     * @param WorkflowTemplate $template     Required. The Dataproc workflow template to create.
+     * @param array            $optionalArgs {
+     *                                       Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dataproc\V1\WorkflowTemplate
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createWorkflowTemplate($parent, $template, array $optionalArgs = [])
+    {
+        $request = new CreateWorkflowTemplateRequest();
+        $request->setParent($parent);
+        $request->setTemplate($template);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'CreateWorkflowTemplate',
+            WorkflowTemplate::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Retrieves the latest workflow template.
+     *
+     * Can retrieve previously instantiated template by specifying optional
+     * version parameter.
+     *
+     * Sample code:
+     * ```
+     * $workflowTemplateServiceClient = new WorkflowTemplateServiceClient();
+     * try {
+     *     $name = '';
+     *     $response = $workflowTemplateServiceClient->getWorkflowTemplate($name);
+     * } finally {
+     *     $workflowTemplateServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name Required. The resource name of the workflow template, as described
+     *                     in https://cloud.google.com/apis/design/resource_names.
+     *
+     * * For `projects.regions.workflowTemplates.get`, the resource name of the
+     *   template has the following format:
+     *   `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
+     *
+     * * For `projects.locations.workflowTemplates.get`, the resource name of the
+     *   template has the following format:
+     *   `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type int $version
+     *          Optional. The version of workflow template to retrieve. Only previously
+     *          instantiated versions can be retrieved.
+     *
+     *          If unspecified, retrieves the current version.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dataproc\V1\WorkflowTemplate
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getWorkflowTemplate($name, array $optionalArgs = [])
+    {
+        $request = new GetWorkflowTemplateRequest();
+        $request->setName($name);
+        if (isset($optionalArgs['version'])) {
+            $request->setVersion($optionalArgs['version']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'GetWorkflowTemplate',
+            WorkflowTemplate::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
