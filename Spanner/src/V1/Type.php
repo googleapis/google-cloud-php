@@ -19,7 +19,7 @@ class Type extends \Google\Protobuf\Internal\Message
     /**
      * Required. The [TypeCode][google.spanner.v1.TypeCode] for this type.
      *
-     * Generated from protobuf field <code>.google.spanner.v1.TypeCode code = 1;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.TypeCode code = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $code = 0;
     /**
@@ -61,7 +61,7 @@ class Type extends \Google\Protobuf\Internal\Message
     /**
      * Required. The [TypeCode][google.spanner.v1.TypeCode] for this type.
      *
-     * Generated from protobuf field <code>.google.spanner.v1.TypeCode code = 1;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.TypeCode code = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getCode()
@@ -72,7 +72,7 @@ class Type extends \Google\Protobuf\Internal\Message
     /**
      * Required. The [TypeCode][google.spanner.v1.TypeCode] for this type.
      *
-     * Generated from protobuf field <code>.google.spanner.v1.TypeCode code = 1;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.TypeCode code = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */
