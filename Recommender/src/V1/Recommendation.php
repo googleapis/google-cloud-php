@@ -83,6 +83,12 @@ class Recommendation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string etag = 11;</code>
      */
     private $etag = '';
+    /**
+     * Insights that led to this recommendation.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.recommender.v1.Recommendation.InsightReference associated_insights = 14;</code>
+     */
+    private $associated_insights;
 
     /**
      * Constructor.
@@ -121,6 +127,8 @@ class Recommendation extends \Google\Protobuf\Internal\Message
      *     @type string $etag
      *           Fingerprint of the Recommendation. Provides optimistic locking when
      *           updating states.
+     *     @type \Google\Cloud\Recommender\V1\Recommendation\InsightReference[]|\Google\Protobuf\Internal\RepeatedField $associated_insights
+     *           Insights that led to this recommendation.
      * }
      */
     public function __construct($data = NULL) {
@@ -384,6 +392,32 @@ class Recommendation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->etag = $var;
+
+        return $this;
+    }
+
+    /**
+     * Insights that led to this recommendation.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.recommender.v1.Recommendation.InsightReference associated_insights = 14;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAssociatedInsights()
+    {
+        return $this->associated_insights;
+    }
+
+    /**
+     * Insights that led to this recommendation.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.recommender.v1.Recommendation.InsightReference associated_insights = 14;</code>
+     * @param \Google\Cloud\Recommender\V1\Recommendation\InsightReference[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAssociatedInsights($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Recommender\V1\Recommendation\InsightReference::class);
+        $this->associated_insights = $arr;
 
         return $this;
     }
