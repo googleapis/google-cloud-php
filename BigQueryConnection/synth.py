@@ -33,11 +33,18 @@ library = gapic.php_library(
 s.move(library / 'src')
 
 # copy proto files to src also
-s.move(library / 'proto/src/Google/Cloud/BigQuery/Connection', 'src/')
+s.move(library / 'proto/src/Google/Cloud/Bigquery/Connection', 'src/')
 s.move(library / 'tests/')
 
 # copy GPBMetadata file to metadata
-s.move(library / 'proto/src/GPBMetadata/Google/Cloud/BigQuery/Connection', 'metadata/')
+s.move(library / 'proto/src/GPBMetadata/Google/Cloud/Bigquery/Connection', 'metadata/')
+
+# fix namespace casing
+s.replace(
+    "**/*.php",
+    r"(namespace|use) Google\\Cloud\\Bigquery",
+    r"\1 Google\\Cloud\\BigQuery",
+)
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
