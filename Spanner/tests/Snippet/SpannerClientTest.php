@@ -255,6 +255,7 @@ class SpannerClientTest extends SnippetTestCase
             [Int64::class, 'int64'],
             [Duration::class, 'duration'],
             [CommitTimestamp::class, 'commitTimestamp'],
+            [Numeric::class, 'numeric'],
         ];
     }
 
