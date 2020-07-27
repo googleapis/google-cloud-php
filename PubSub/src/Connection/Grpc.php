@@ -492,6 +492,17 @@ class Grpc implements ConnectionInterface
     }
 
     /**
+     * @param array $optionalArgs
+     * @return \Google\ApiCore\BidiStream
+     * @throws \Google\ApiCore\ApiException
+     * @experimental
+     */
+    public function streamingPull(array $optionalArgs = [])
+    {
+        return $this->subscriberClient->streamingPull($optionalArgs);
+    }
+
+    /**
      * @param array $message
      * @return PubsubMessage
      */

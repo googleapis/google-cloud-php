@@ -918,6 +918,15 @@ class Subscription
     }
 
     /**
+     * @return StreamingPull
+     * @experimental
+     */
+    public function streamingPull()
+    {
+        return new StreamingPull($this->connection, $this->name);
+    }
+
+    /**
      * Format Duration objects for the API.
      *
      * @param array $options
