@@ -26,24 +26,13 @@ use Google\Cloud\Core\Testing\GrpcTestTrait;
  */
 class NumericTest extends SnippetTestCase
 {
-    use GrpcTestTrait;
-
-    const SECONDS = 1;
-    const NANOS = 2;
-
-    private $numeric;
-
-    public function setUp()
-    {
-        $this->checkAndSkipGrpcTests();
-
-        $this->numeric = new Numeric(self::SECONDS, self::NANOS);
-    }
-
     public function testClass()
     {
+        $expected = new Numeric('99999999999999999999999999999999999999.999999999');
         $snippet = $this->snippetFromClass(Numeric::class);
         $res = $snippet->invoke('numeric');
+
         $this->assertInstanceOf(Numeric::class, $res->returnVal());
+        $this->assertEquals($expected, $res->returnVal());
     }
 }
