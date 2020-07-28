@@ -46,40 +46,4 @@ class NumericTest extends SnippetTestCase
         $res = $snippet->invoke('numeric');
         $this->assertInstanceOf(Numeric::class, $res->returnVal());
     }
-
-    public function testClassCast()
-    {
-        $snippet = $this->snippetFromClass(Numeric::class, 1);
-        $snippet->addLocal('numeric', $this->numeric);
-
-        $res = $snippet->invoke();
-        $this->assertEquals($this->numeric->formatAsString(), $res->output());
-    }
-
-    public function testGet()
-    {
-        $snippet = $this->snippetFromMethod(Numeric::class, 'get');
-        $snippet->addLocal('numeric', $this->numeric);
-
-        $res = $snippet->invoke('res');
-        $this->assertEquals($this->numeric->get(), $res->returnVal());
-    }
-
-    public function testType()
-    {
-        $snippet = $this->snippetFromMethod(Numeric::class, 'type');
-        $snippet->addLocal('numeric', $this->numeric);
-
-        $res = $snippet->invoke();
-        $this->assertEquals(Numeric::TYPE, $res->output());
-    }
-
-    public function testFormatAsString()
-    {
-        $snippet = $this->snippetFromMethod(Numeric::class, 'formatAsString');
-        $snippet->addLocal('numeric', $this->numeric);
-
-        $res = $snippet->invoke();
-        $this->assertEquals($this->numeric->formatAsString(), $res->output());
-    }
 }
