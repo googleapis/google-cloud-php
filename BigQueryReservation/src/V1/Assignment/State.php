@@ -63,5 +63,5 @@ class State
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(State::class, \Google\Cloud\Bigquery\Reservation\V1\Assignment_State::class);
+class_alias(State::class, \Google\Cloud\BigQuery\Reservation\V1\Assignment_State::class);
 

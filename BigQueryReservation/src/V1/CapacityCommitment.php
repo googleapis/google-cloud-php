@@ -174,7 +174,7 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
      */
     public function setPlan($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Bigquery\Reservation\V1\CapacityCommitment_CommitmentPlan::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment_CommitmentPlan::class);
         $this->plan = $var;
 
         return $this;
@@ -200,7 +200,7 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
      */
     public function setState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Bigquery\Reservation\V1\CapacityCommitment_State::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment_State::class);
         $this->state = $var;
 
         return $this;
@@ -284,7 +284,7 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
      */
     public function setRenewalPlan($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Bigquery\Reservation\V1\CapacityCommitment_CommitmentPlan::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment_CommitmentPlan::class);
         $this->renewal_plan = $var;
 
         return $this;

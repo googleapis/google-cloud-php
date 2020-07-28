@@ -46,7 +46,7 @@ class CreateConnectionRequest extends \Google\Protobuf\Internal\Message
      *           Must be in the format `projects/{project_id}/locations/{location_id}`
      *     @type string $connection_id
      *           Optional. Connection id that should be assigned to the created connection.
-     *     @type \Google\Cloud\Bigquery\Connection\V1\Connection $connection
+     *     @type \Google\Cloud\BigQuery\Connection\V1\Connection $connection
      *           Required. Connection to create.
      * }
      */
@@ -113,7 +113,7 @@ class CreateConnectionRequest extends \Google\Protobuf\Internal\Message
      * Required. Connection to create.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.connection.v1.Connection connection = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Bigquery\Connection\V1\Connection
+     * @return \Google\Cloud\BigQuery\Connection\V1\Connection
      */
     public function getConnection()
     {
@@ -124,12 +124,12 @@ class CreateConnectionRequest extends \Google\Protobuf\Internal\Message
      * Required. Connection to create.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.connection.v1.Connection connection = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\Bigquery\Connection\V1\Connection $var
+     * @param \Google\Cloud\BigQuery\Connection\V1\Connection $var
      * @return $this
      */
     public function setConnection($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Bigquery\Connection\V1\Connection::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Connection\V1\Connection::class);
         $this->connection = $var;
 
         return $this;

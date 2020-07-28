@@ -48,7 +48,7 @@ class CreateReservationRequest extends \Google\Protobuf\Internal\Message
      *     @type string $reservation_id
      *           The reservation ID. This field must only contain lower case alphanumeric
      *           characters or dash. Max length is 64 characters.
-     *     @type \Google\Cloud\Bigquery\Reservation\V1\Reservation $reservation
+     *     @type \Google\Cloud\BigQuery\Reservation\V1\Reservation $reservation
      *           Definition of the new reservation to create.
      * }
      */
@@ -117,7 +117,7 @@ class CreateReservationRequest extends \Google\Protobuf\Internal\Message
      * Definition of the new reservation to create.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Reservation reservation = 3;</code>
-     * @return \Google\Cloud\Bigquery\Reservation\V1\Reservation
+     * @return \Google\Cloud\BigQuery\Reservation\V1\Reservation
      */
     public function getReservation()
     {
@@ -128,12 +128,12 @@ class CreateReservationRequest extends \Google\Protobuf\Internal\Message
      * Definition of the new reservation to create.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Reservation reservation = 3;</code>
-     * @param \Google\Cloud\Bigquery\Reservation\V1\Reservation $var
+     * @param \Google\Cloud\BigQuery\Reservation\V1\Reservation $var
      * @return $this
      */
     public function setReservation($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Bigquery\Reservation\V1\Reservation::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Reservation\V1\Reservation::class);
         $this->reservation = $var;
 
         return $this;

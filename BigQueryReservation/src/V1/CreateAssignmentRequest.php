@@ -40,7 +40,7 @@ class CreateAssignmentRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The parent resource name of the assignment
      *           E.g. `projects/myproject/locations/US/reservations/team1-prod`
-     *     @type \Google\Cloud\Bigquery\Reservation\V1\Assignment $assignment
+     *     @type \Google\Cloud\BigQuery\Reservation\V1\Assignment $assignment
      *           Assignment resource to create.
      * }
      */
@@ -81,7 +81,7 @@ class CreateAssignmentRequest extends \Google\Protobuf\Internal\Message
      * Assignment resource to create.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Assignment assignment = 2;</code>
-     * @return \Google\Cloud\Bigquery\Reservation\V1\Assignment
+     * @return \Google\Cloud\BigQuery\Reservation\V1\Assignment
      */
     public function getAssignment()
     {
@@ -92,12 +92,12 @@ class CreateAssignmentRequest extends \Google\Protobuf\Internal\Message
      * Assignment resource to create.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Assignment assignment = 2;</code>
-     * @param \Google\Cloud\Bigquery\Reservation\V1\Assignment $var
+     * @param \Google\Cloud\BigQuery\Reservation\V1\Assignment $var
      * @return $this
      */
     public function setAssignment($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Bigquery\Reservation\V1\Assignment::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Reservation\V1\Assignment::class);
         $this->assignment = $var;
 
         return $this;

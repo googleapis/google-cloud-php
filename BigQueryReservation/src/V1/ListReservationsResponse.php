@@ -35,7 +35,7 @@ class ListReservationsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Bigquery\Reservation\V1\Reservation[]|\Google\Protobuf\Internal\RepeatedField $reservations
+     *     @type \Google\Cloud\BigQuery\Reservation\V1\Reservation[]|\Google\Protobuf\Internal\RepeatedField $reservations
      *           List of reservations visible to the user.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no
@@ -62,12 +62,12 @@ class ListReservationsResponse extends \Google\Protobuf\Internal\Message
      * List of reservations visible to the user.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.reservation.v1.Reservation reservations = 1;</code>
-     * @param \Google\Cloud\Bigquery\Reservation\V1\Reservation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BigQuery\Reservation\V1\Reservation[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setReservations($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Bigquery\Reservation\V1\Reservation::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\BigQuery\Reservation\V1\Reservation::class);
         $this->reservations = $arr;
 
         return $this;

@@ -48,46 +48,46 @@ class ReservationServiceGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Creates a new reservation resource.
-     * @param \Google\Cloud\Bigquery\Reservation\V1\CreateReservationRequest $argument input argument
+     * @param \Google\Cloud\BigQuery\Reservation\V1\CreateReservationRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Bigquery\Reservation\V1\Reservation
+     * @return \Google\Cloud\BigQuery\Reservation\V1\Reservation
      */
-    public function CreateReservation(\Google\Cloud\Bigquery\Reservation\V1\CreateReservationRequest $argument,
+    public function CreateReservation(\Google\Cloud\BigQuery\Reservation\V1\CreateReservationRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.bigquery.reservation.v1.ReservationService/CreateReservation',
         $argument,
-        ['\Google\Cloud\Bigquery\Reservation\V1\Reservation', 'decode'],
+        ['\Google\Cloud\BigQuery\Reservation\V1\Reservation', 'decode'],
         $metadata, $options);
     }
 
     /**
      * Lists all the reservations for the project in the specified location.
-     * @param \Google\Cloud\Bigquery\Reservation\V1\ListReservationsRequest $argument input argument
+     * @param \Google\Cloud\BigQuery\Reservation\V1\ListReservationsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Bigquery\Reservation\V1\ListReservationsResponse
+     * @return \Google\Cloud\BigQuery\Reservation\V1\ListReservationsResponse
      */
-    public function ListReservations(\Google\Cloud\Bigquery\Reservation\V1\ListReservationsRequest $argument,
+    public function ListReservations(\Google\Cloud\BigQuery\Reservation\V1\ListReservationsRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.bigquery.reservation.v1.ReservationService/ListReservations',
         $argument,
-        ['\Google\Cloud\Bigquery\Reservation\V1\ListReservationsResponse', 'decode'],
+        ['\Google\Cloud\BigQuery\Reservation\V1\ListReservationsResponse', 'decode'],
         $metadata, $options);
     }
 
     /**
      * Returns information about the reservation.
-     * @param \Google\Cloud\Bigquery\Reservation\V1\GetReservationRequest $argument input argument
+     * @param \Google\Cloud\BigQuery\Reservation\V1\GetReservationRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Bigquery\Reservation\V1\Reservation
+     * @return \Google\Cloud\BigQuery\Reservation\V1\Reservation
      */
-    public function GetReservation(\Google\Cloud\Bigquery\Reservation\V1\GetReservationRequest $argument,
+    public function GetReservation(\Google\Cloud\BigQuery\Reservation\V1\GetReservationRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.bigquery.reservation.v1.ReservationService/GetReservation',
         $argument,
-        ['\Google\Cloud\Bigquery\Reservation\V1\Reservation', 'decode'],
+        ['\Google\Cloud\BigQuery\Reservation\V1\Reservation', 'decode'],
         $metadata, $options);
     }
 
@@ -95,12 +95,12 @@ class ReservationServiceGrpcClient extends \Grpc\BaseStub {
      * Deletes a reservation.
      * Returns `google.rpc.Code.FAILED_PRECONDITION` when reservation has
      * assignments.
-     * @param \Google\Cloud\Bigquery\Reservation\V1\DeleteReservationRequest $argument input argument
+     * @param \Google\Cloud\BigQuery\Reservation\V1\DeleteReservationRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
      * @return \Google\Protobuf\GPBEmpty
      */
-    public function DeleteReservation(\Google\Cloud\Bigquery\Reservation\V1\DeleteReservationRequest $argument,
+    public function DeleteReservation(\Google\Cloud\BigQuery\Reservation\V1\DeleteReservationRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.bigquery.reservation.v1.ReservationService/DeleteReservation',
         $argument,
@@ -110,61 +110,61 @@ class ReservationServiceGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Updates an existing reservation resource.
-     * @param \Google\Cloud\Bigquery\Reservation\V1\UpdateReservationRequest $argument input argument
+     * @param \Google\Cloud\BigQuery\Reservation\V1\UpdateReservationRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Bigquery\Reservation\V1\Reservation
+     * @return \Google\Cloud\BigQuery\Reservation\V1\Reservation
      */
-    public function UpdateReservation(\Google\Cloud\Bigquery\Reservation\V1\UpdateReservationRequest $argument,
+    public function UpdateReservation(\Google\Cloud\BigQuery\Reservation\V1\UpdateReservationRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.bigquery.reservation.v1.ReservationService/UpdateReservation',
         $argument,
-        ['\Google\Cloud\Bigquery\Reservation\V1\Reservation', 'decode'],
+        ['\Google\Cloud\BigQuery\Reservation\V1\Reservation', 'decode'],
         $metadata, $options);
     }
 
     /**
      * Creates a new capacity commitment resource.
-     * @param \Google\Cloud\Bigquery\Reservation\V1\CreateCapacityCommitmentRequest $argument input argument
+     * @param \Google\Cloud\BigQuery\Reservation\V1\CreateCapacityCommitmentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Bigquery\Reservation\V1\CapacityCommitment
+     * @return \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment
      */
-    public function CreateCapacityCommitment(\Google\Cloud\Bigquery\Reservation\V1\CreateCapacityCommitmentRequest $argument,
+    public function CreateCapacityCommitment(\Google\Cloud\BigQuery\Reservation\V1\CreateCapacityCommitmentRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.bigquery.reservation.v1.ReservationService/CreateCapacityCommitment',
         $argument,
-        ['\Google\Cloud\Bigquery\Reservation\V1\CapacityCommitment', 'decode'],
+        ['\Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment', 'decode'],
         $metadata, $options);
     }
 
     /**
      * Lists all the capacity commitments for the admin project.
-     * @param \Google\Cloud\Bigquery\Reservation\V1\ListCapacityCommitmentsRequest $argument input argument
+     * @param \Google\Cloud\BigQuery\Reservation\V1\ListCapacityCommitmentsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Bigquery\Reservation\V1\ListCapacityCommitmentsResponse
+     * @return \Google\Cloud\BigQuery\Reservation\V1\ListCapacityCommitmentsResponse
      */
-    public function ListCapacityCommitments(\Google\Cloud\Bigquery\Reservation\V1\ListCapacityCommitmentsRequest $argument,
+    public function ListCapacityCommitments(\Google\Cloud\BigQuery\Reservation\V1\ListCapacityCommitmentsRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.bigquery.reservation.v1.ReservationService/ListCapacityCommitments',
         $argument,
-        ['\Google\Cloud\Bigquery\Reservation\V1\ListCapacityCommitmentsResponse', 'decode'],
+        ['\Google\Cloud\BigQuery\Reservation\V1\ListCapacityCommitmentsResponse', 'decode'],
         $metadata, $options);
     }
 
     /**
      * Returns information about the capacity commitment.
-     * @param \Google\Cloud\Bigquery\Reservation\V1\GetCapacityCommitmentRequest $argument input argument
+     * @param \Google\Cloud\BigQuery\Reservation\V1\GetCapacityCommitmentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Bigquery\Reservation\V1\CapacityCommitment
+     * @return \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment
      */
-    public function GetCapacityCommitment(\Google\Cloud\Bigquery\Reservation\V1\GetCapacityCommitmentRequest $argument,
+    public function GetCapacityCommitment(\Google\Cloud\BigQuery\Reservation\V1\GetCapacityCommitmentRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.bigquery.reservation.v1.ReservationService/GetCapacityCommitment',
         $argument,
-        ['\Google\Cloud\Bigquery\Reservation\V1\CapacityCommitment', 'decode'],
+        ['\Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment', 'decode'],
         $metadata, $options);
     }
 
@@ -172,12 +172,12 @@ class ReservationServiceGrpcClient extends \Grpc\BaseStub {
      * Deletes a capacity commitment. Attempting to delete capacity commitment
      * before its commitment_end_time will fail with the error code
      * `google.rpc.Code.FAILED_PRECONDITION`.
-     * @param \Google\Cloud\Bigquery\Reservation\V1\DeleteCapacityCommitmentRequest $argument input argument
+     * @param \Google\Cloud\BigQuery\Reservation\V1\DeleteCapacityCommitmentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
      * @return \Google\Protobuf\GPBEmpty
      */
-    public function DeleteCapacityCommitment(\Google\Cloud\Bigquery\Reservation\V1\DeleteCapacityCommitmentRequest $argument,
+    public function DeleteCapacityCommitment(\Google\Cloud\BigQuery\Reservation\V1\DeleteCapacityCommitmentRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.bigquery.reservation.v1.ReservationService/DeleteCapacityCommitment',
         $argument,
@@ -193,16 +193,16 @@ class ReservationServiceGrpcClient extends \Grpc\BaseStub {
      * Plan can only be changed to a plan of a longer commitment period.
      * Attempting to change to a plan with shorter commitment period will fail
      * with the error code `google.rpc.Code.FAILED_PRECONDITION`.
-     * @param \Google\Cloud\Bigquery\Reservation\V1\UpdateCapacityCommitmentRequest $argument input argument
+     * @param \Google\Cloud\BigQuery\Reservation\V1\UpdateCapacityCommitmentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Bigquery\Reservation\V1\CapacityCommitment
+     * @return \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment
      */
-    public function UpdateCapacityCommitment(\Google\Cloud\Bigquery\Reservation\V1\UpdateCapacityCommitmentRequest $argument,
+    public function UpdateCapacityCommitment(\Google\Cloud\BigQuery\Reservation\V1\UpdateCapacityCommitmentRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.bigquery.reservation.v1.ReservationService/UpdateCapacityCommitment',
         $argument,
-        ['\Google\Cloud\Bigquery\Reservation\V1\CapacityCommitment', 'decode'],
+        ['\Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment', 'decode'],
         $metadata, $options);
     }
 
@@ -215,16 +215,16 @@ class ReservationServiceGrpcClient extends \Grpc\BaseStub {
      * For example, in order to downgrade from 10000 slots to 8000, you might
      * split a 10000 capacity commitment into commitments of 2000 and 8000. Then,
      * you would change the plan of the first one to `FLEX` and then delete it.
-     * @param \Google\Cloud\Bigquery\Reservation\V1\SplitCapacityCommitmentRequest $argument input argument
+     * @param \Google\Cloud\BigQuery\Reservation\V1\SplitCapacityCommitmentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Bigquery\Reservation\V1\SplitCapacityCommitmentResponse
+     * @return \Google\Cloud\BigQuery\Reservation\V1\SplitCapacityCommitmentResponse
      */
-    public function SplitCapacityCommitment(\Google\Cloud\Bigquery\Reservation\V1\SplitCapacityCommitmentRequest $argument,
+    public function SplitCapacityCommitment(\Google\Cloud\BigQuery\Reservation\V1\SplitCapacityCommitmentRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.bigquery.reservation.v1.ReservationService/SplitCapacityCommitment',
         $argument,
-        ['\Google\Cloud\Bigquery\Reservation\V1\SplitCapacityCommitmentResponse', 'decode'],
+        ['\Google\Cloud\BigQuery\Reservation\V1\SplitCapacityCommitmentResponse', 'decode'],
         $metadata, $options);
     }
 
@@ -236,16 +236,16 @@ class ReservationServiceGrpcClient extends \Grpc\BaseStub {
      *
      * Attempting to merge capacity commitments of different plan will fail
      * with the error code `google.rpc.Code.FAILED_PRECONDITION`.
-     * @param \Google\Cloud\Bigquery\Reservation\V1\MergeCapacityCommitmentsRequest $argument input argument
+     * @param \Google\Cloud\BigQuery\Reservation\V1\MergeCapacityCommitmentsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Bigquery\Reservation\V1\CapacityCommitment
+     * @return \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment
      */
-    public function MergeCapacityCommitments(\Google\Cloud\Bigquery\Reservation\V1\MergeCapacityCommitmentsRequest $argument,
+    public function MergeCapacityCommitments(\Google\Cloud\BigQuery\Reservation\V1\MergeCapacityCommitmentsRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.bigquery.reservation.v1.ReservationService/MergeCapacityCommitments',
         $argument,
-        ['\Google\Cloud\Bigquery\Reservation\V1\CapacityCommitment', 'decode'],
+        ['\Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment', 'decode'],
         $metadata, $options);
     }
 
@@ -280,16 +280,16 @@ class ReservationServiceGrpcClient extends \Grpc\BaseStub {
      *
      * Returns `google.rpc.Code.INVALID_ARGUMENT` when location of the assignment
      * does not match location of the reservation.
-     * @param \Google\Cloud\Bigquery\Reservation\V1\CreateAssignmentRequest $argument input argument
+     * @param \Google\Cloud\BigQuery\Reservation\V1\CreateAssignmentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Bigquery\Reservation\V1\Assignment
+     * @return \Google\Cloud\BigQuery\Reservation\V1\Assignment
      */
-    public function CreateAssignment(\Google\Cloud\Bigquery\Reservation\V1\CreateAssignmentRequest $argument,
+    public function CreateAssignment(\Google\Cloud\BigQuery\Reservation\V1\CreateAssignmentRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.bigquery.reservation.v1.ReservationService/CreateAssignment',
         $argument,
-        ['\Google\Cloud\Bigquery\Reservation\V1\Assignment', 'decode'],
+        ['\Google\Cloud\BigQuery\Reservation\V1\Assignment', 'decode'],
         $metadata, $options);
     }
 
@@ -315,16 +315,16 @@ class ReservationServiceGrpcClient extends \Grpc\BaseStub {
      * specified project and location will be listed.
      *
      * **Note** "-" cannot be used for projects nor locations.
-     * @param \Google\Cloud\Bigquery\Reservation\V1\ListAssignmentsRequest $argument input argument
+     * @param \Google\Cloud\BigQuery\Reservation\V1\ListAssignmentsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Bigquery\Reservation\V1\ListAssignmentsResponse
+     * @return \Google\Cloud\BigQuery\Reservation\V1\ListAssignmentsResponse
      */
-    public function ListAssignments(\Google\Cloud\Bigquery\Reservation\V1\ListAssignmentsRequest $argument,
+    public function ListAssignments(\Google\Cloud\BigQuery\Reservation\V1\ListAssignmentsRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.bigquery.reservation.v1.ReservationService/ListAssignments',
         $argument,
-        ['\Google\Cloud\Bigquery\Reservation\V1\ListAssignmentsResponse', 'decode'],
+        ['\Google\Cloud\BigQuery\Reservation\V1\ListAssignmentsResponse', 'decode'],
         $metadata, $options);
     }
 
@@ -344,12 +344,12 @@ class ReservationServiceGrpcClient extends \Grpc\BaseStub {
      * affect the other assignment `<project1, res1>`. After said deletion,
      * queries from `project1` will still use `res1` while queries from
      * `project2` will switch to use on-demand mode.
-     * @param \Google\Cloud\Bigquery\Reservation\V1\DeleteAssignmentRequest $argument input argument
+     * @param \Google\Cloud\BigQuery\Reservation\V1\DeleteAssignmentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
      * @return \Google\Protobuf\GPBEmpty
      */
-    public function DeleteAssignment(\Google\Cloud\Bigquery\Reservation\V1\DeleteAssignmentRequest $argument,
+    public function DeleteAssignment(\Google\Cloud\BigQuery\Reservation\V1\DeleteAssignmentRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.bigquery.reservation.v1.ReservationService/DeleteAssignment',
         $argument,
@@ -381,16 +381,16 @@ class ReservationServiceGrpcClient extends \Grpc\BaseStub {
      *
      * **Note** "-" cannot be used for projects
      * nor locations.
-     * @param \Google\Cloud\Bigquery\Reservation\V1\SearchAssignmentsRequest $argument input argument
+     * @param \Google\Cloud\BigQuery\Reservation\V1\SearchAssignmentsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Bigquery\Reservation\V1\SearchAssignmentsResponse
+     * @return \Google\Cloud\BigQuery\Reservation\V1\SearchAssignmentsResponse
      */
-    public function SearchAssignments(\Google\Cloud\Bigquery\Reservation\V1\SearchAssignmentsRequest $argument,
+    public function SearchAssignments(\Google\Cloud\BigQuery\Reservation\V1\SearchAssignmentsRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.bigquery.reservation.v1.ReservationService/SearchAssignments',
         $argument,
-        ['\Google\Cloud\Bigquery\Reservation\V1\SearchAssignmentsResponse', 'decode'],
+        ['\Google\Cloud\BigQuery\Reservation\V1\SearchAssignmentsResponse', 'decode'],
         $metadata, $options);
     }
 
@@ -400,31 +400,31 @@ class ReservationServiceGrpcClient extends \Grpc\BaseStub {
      * This differs from removing an existing assignment and recreating a new one
      * by providing a transactional change that ensures an assignee always has an
      * associated reservation.
-     * @param \Google\Cloud\Bigquery\Reservation\V1\MoveAssignmentRequest $argument input argument
+     * @param \Google\Cloud\BigQuery\Reservation\V1\MoveAssignmentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Bigquery\Reservation\V1\Assignment
+     * @return \Google\Cloud\BigQuery\Reservation\V1\Assignment
      */
-    public function MoveAssignment(\Google\Cloud\Bigquery\Reservation\V1\MoveAssignmentRequest $argument,
+    public function MoveAssignment(\Google\Cloud\BigQuery\Reservation\V1\MoveAssignmentRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.bigquery.reservation.v1.ReservationService/MoveAssignment',
         $argument,
-        ['\Google\Cloud\Bigquery\Reservation\V1\Assignment', 'decode'],
+        ['\Google\Cloud\BigQuery\Reservation\V1\Assignment', 'decode'],
         $metadata, $options);
     }
 
     /**
      * Retrieves a BI reservation.
-     * @param \Google\Cloud\Bigquery\Reservation\V1\GetBiReservationRequest $argument input argument
+     * @param \Google\Cloud\BigQuery\Reservation\V1\GetBiReservationRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Bigquery\Reservation\V1\BiReservation
+     * @return \Google\Cloud\BigQuery\Reservation\V1\BiReservation
      */
-    public function GetBiReservation(\Google\Cloud\Bigquery\Reservation\V1\GetBiReservationRequest $argument,
+    public function GetBiReservation(\Google\Cloud\BigQuery\Reservation\V1\GetBiReservationRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.bigquery.reservation.v1.ReservationService/GetBiReservation',
         $argument,
-        ['\Google\Cloud\Bigquery\Reservation\V1\BiReservation', 'decode'],
+        ['\Google\Cloud\BigQuery\Reservation\V1\BiReservation', 'decode'],
         $metadata, $options);
     }
 
@@ -437,16 +437,16 @@ class ReservationServiceGrpcClient extends \Grpc\BaseStub {
      * In order to reserve BI capacity it needs to be updated to an amount
      * greater than 0. In order to release BI capacity reservation size
      * must be set to 0.
-     * @param \Google\Cloud\Bigquery\Reservation\V1\UpdateBiReservationRequest $argument input argument
+     * @param \Google\Cloud\BigQuery\Reservation\V1\UpdateBiReservationRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Bigquery\Reservation\V1\BiReservation
+     * @return \Google\Cloud\BigQuery\Reservation\V1\BiReservation
      */
-    public function UpdateBiReservation(\Google\Cloud\Bigquery\Reservation\V1\UpdateBiReservationRequest $argument,
+    public function UpdateBiReservation(\Google\Cloud\BigQuery\Reservation\V1\UpdateBiReservationRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.bigquery.reservation.v1.ReservationService/UpdateBiReservation',
         $argument,
-        ['\Google\Cloud\Bigquery\Reservation\V1\BiReservation', 'decode'],
+        ['\Google\Cloud\BigQuery\Reservation\V1\BiReservation', 'decode'],
         $metadata, $options);
     }
 

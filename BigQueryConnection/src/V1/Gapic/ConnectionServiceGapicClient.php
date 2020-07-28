@@ -330,7 +330,7 @@ class ConnectionServiceGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\Bigquery\Connection\V1\Connection
+     * @return \Google\Cloud\BigQuery\Connection\V1\Connection
      *
      * @throws ApiException if the remote call fails
      * @experimental
@@ -385,7 +385,7 @@ class ConnectionServiceGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\Bigquery\Connection\V1\Connection
+     * @return \Google\Cloud\BigQuery\Connection\V1\Connection
      *
      * @throws ApiException if the remote call fails
      * @experimental
@@ -520,7 +520,7 @@ class ConnectionServiceGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\Bigquery\Connection\V1\Connection
+     * @return \Google\Cloud\BigQuery\Connection\V1\Connection
      *
      * @throws ApiException if the remote call fails
      * @experimental

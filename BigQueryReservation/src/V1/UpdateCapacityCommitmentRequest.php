@@ -34,7 +34,7 @@ class UpdateCapacityCommitmentRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Bigquery\Reservation\V1\CapacityCommitment $capacity_commitment
+     *     @type \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment $capacity_commitment
      *           Content of the capacity commitment to update.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Standard field mask for the set of fields to be updated.
@@ -49,7 +49,7 @@ class UpdateCapacityCommitmentRequest extends \Google\Protobuf\Internal\Message
      * Content of the capacity commitment to update.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.CapacityCommitment capacity_commitment = 1;</code>
-     * @return \Google\Cloud\Bigquery\Reservation\V1\CapacityCommitment
+     * @return \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment
      */
     public function getCapacityCommitment()
     {
@@ -60,12 +60,12 @@ class UpdateCapacityCommitmentRequest extends \Google\Protobuf\Internal\Message
      * Content of the capacity commitment to update.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.CapacityCommitment capacity_commitment = 1;</code>
-     * @param \Google\Cloud\Bigquery\Reservation\V1\CapacityCommitment $var
+     * @param \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment $var
      * @return $this
      */
     public function setCapacityCommitment($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Bigquery\Reservation\V1\CapacityCommitment::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment::class);
         $this->capacity_commitment = $var;
 
         return $this;

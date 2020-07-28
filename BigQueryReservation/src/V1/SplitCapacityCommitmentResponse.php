@@ -34,9 +34,9 @@ class SplitCapacityCommitmentResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Bigquery\Reservation\V1\CapacityCommitment $first
+     *     @type \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment $first
      *           First capacity commitment, result of a split.
-     *     @type \Google\Cloud\Bigquery\Reservation\V1\CapacityCommitment $second
+     *     @type \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment $second
      *           Second capacity commitment, result of a split.
      * }
      */
@@ -49,7 +49,7 @@ class SplitCapacityCommitmentResponse extends \Google\Protobuf\Internal\Message
      * First capacity commitment, result of a split.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.CapacityCommitment first = 1;</code>
-     * @return \Google\Cloud\Bigquery\Reservation\V1\CapacityCommitment
+     * @return \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment
      */
     public function getFirst()
     {
@@ -60,12 +60,12 @@ class SplitCapacityCommitmentResponse extends \Google\Protobuf\Internal\Message
      * First capacity commitment, result of a split.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.CapacityCommitment first = 1;</code>
-     * @param \Google\Cloud\Bigquery\Reservation\V1\CapacityCommitment $var
+     * @param \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment $var
      * @return $this
      */
     public function setFirst($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Bigquery\Reservation\V1\CapacityCommitment::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment::class);
         $this->first = $var;
 
         return $this;
@@ -75,7 +75,7 @@ class SplitCapacityCommitmentResponse extends \Google\Protobuf\Internal\Message
      * Second capacity commitment, result of a split.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.CapacityCommitment second = 2;</code>
-     * @return \Google\Cloud\Bigquery\Reservation\V1\CapacityCommitment
+     * @return \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment
      */
     public function getSecond()
     {
@@ -86,12 +86,12 @@ class SplitCapacityCommitmentResponse extends \Google\Protobuf\Internal\Message
      * Second capacity commitment, result of a split.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.CapacityCommitment second = 2;</code>
-     * @param \Google\Cloud\Bigquery\Reservation\V1\CapacityCommitment $var
+     * @param \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment $var
      * @return $this
      */
     public function setSecond($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Bigquery\Reservation\V1\CapacityCommitment::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment::class);
         $this->second = $var;
 
         return $this;

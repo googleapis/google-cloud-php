@@ -33,18 +33,11 @@ library = gapic.php_library(
 s.move(library / 'src')
 
 # copy proto files to src also
-s.move(library / 'proto/src/Google/Cloud/Bigquery/Connection', 'src/')
+s.move(library / 'proto/src/Google/Cloud/BigQuery/Connection', 'src/')
 s.move(library / 'tests/')
 
 # copy GPBMetadata file to metadata
 s.move(library / 'proto/src/GPBMetadata/Google/Cloud/Bigquery/Connection', 'metadata/')
-
-# fix namespace casing
-s.replace(
-    "**/*.php",
-    r"(namespace|use) Google\\Cloud\\Bigquery",
-    r"\1 Google\\Cloud\\BigQuery",
-)
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
@@ -63,6 +56,18 @@ s.replace(
     "**/Gapic/*GapicClient.php",
     r"\$transportConfig, and any \$serviceAddress",
     r"$transportConfig, and any `$apiEndpoint`")
+
+# prevent null reference error when descriptor uses optional field.
+s.replace(
+    "**/Gapic/*GapicClient.php",
+    r"\$requestParams = new RequestParamsHeaderDescriptor\(\[\n\s{0,}'(\S{0,})\' => ((\$request->\S{0,}\(\))->\S{0,}\(\)),\n\s{0,}\]\)\;",
+    r"""$requestParams = new RequestParamsHeaderDescriptor([]);
+        if (!is_null(\3)) {
+            $requestParams = new RequestParamsHeaderDescriptor([
+                '\1' => \2,
+            ]);
+        }"""
+)
 
 # fix year
 s.replace(

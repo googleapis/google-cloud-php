@@ -455,7 +455,7 @@ class ReservationServiceGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\Bigquery\Reservation\V1\Reservation
+     * @return \Google\Cloud\BigQuery\Reservation\V1\Reservation
      *
      * @throws ApiException if the remote call fails
      * @experimental
@@ -593,7 +593,7 @@ class ReservationServiceGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\Bigquery\Reservation\V1\Reservation
+     * @return \Google\Cloud\BigQuery\Reservation\V1\Reservation
      *
      * @throws ApiException if the remote call fails
      * @experimental
@@ -696,7 +696,7 @@ class ReservationServiceGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\Bigquery\Reservation\V1\Reservation
+     * @return \Google\Cloud\BigQuery\Reservation\V1\Reservation
      *
      * @throws ApiException if the remote call fails
      * @experimental
@@ -711,9 +711,12 @@ class ReservationServiceGapicClient
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'reservation.name' => $request->getReservation()->getName(),
-        ]);
+        $requestParams = new RequestParamsHeaderDescriptor([]);
+        if (!is_null($request->getReservation())) {
+            $requestParams = new RequestParamsHeaderDescriptor([
+                'reservation.name' => $request->getReservation()->getName(),
+            ]);
+        }
         $optionalArgs['headers'] = isset($optionalArgs['headers'])
             ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
@@ -757,7 +760,7 @@ class ReservationServiceGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\Bigquery\Reservation\V1\CapacityCommitment
+     * @return \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment
      *
      * @throws ApiException if the remote call fails
      * @experimental
@@ -895,7 +898,7 @@ class ReservationServiceGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\Bigquery\Reservation\V1\CapacityCommitment
+     * @return \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment
      *
      * @throws ApiException if the remote call fails
      * @experimental
@@ -1004,7 +1007,7 @@ class ReservationServiceGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\Bigquery\Reservation\V1\CapacityCommitment
+     * @return \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment
      *
      * @throws ApiException if the remote call fails
      * @experimental
@@ -1019,9 +1022,12 @@ class ReservationServiceGapicClient
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'capacity_commitment.name' => $request->getCapacityCommitment()->getName(),
-        ]);
+        $requestParams = new RequestParamsHeaderDescriptor([]);
+        if (!is_null($request->getCapacityCommitment())) {
+            $requestParams = new RequestParamsHeaderDescriptor([
+                'capacity_commitment.name' => $request->getCapacityCommitment()->getName(),
+            ]);
+        }
         $optionalArgs['headers'] = isset($optionalArgs['headers'])
             ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
@@ -1069,7 +1075,7 @@ class ReservationServiceGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\Bigquery\Reservation\V1\SplitCapacityCommitmentResponse
+     * @return \Google\Cloud\BigQuery\Reservation\V1\SplitCapacityCommitmentResponse
      *
      * @throws ApiException if the remote call fails
      * @experimental
@@ -1135,7 +1141,7 @@ class ReservationServiceGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\Bigquery\Reservation\V1\CapacityCommitment
+     * @return \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment
      *
      * @throws ApiException if the remote call fails
      * @experimental
@@ -1222,7 +1228,7 @@ class ReservationServiceGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\Bigquery\Reservation\V1\Assignment
+     * @return \Google\Cloud\BigQuery\Reservation\V1\Assignment
      *
      * @throws ApiException if the remote call fails
      * @experimental
@@ -1568,7 +1574,7 @@ class ReservationServiceGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\Bigquery\Reservation\V1\Assignment
+     * @return \Google\Cloud\BigQuery\Reservation\V1\Assignment
      *
      * @throws ApiException if the remote call fails
      * @experimental
@@ -1622,7 +1628,7 @@ class ReservationServiceGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\Bigquery\Reservation\V1\BiReservation
+     * @return \Google\Cloud\BigQuery\Reservation\V1\BiReservation
      *
      * @throws ApiException if the remote call fails
      * @experimental
@@ -1681,7 +1687,7 @@ class ReservationServiceGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\Bigquery\Reservation\V1\BiReservation
+     * @return \Google\Cloud\BigQuery\Reservation\V1\BiReservation
      *
      * @throws ApiException if the remote call fails
      * @experimental
@@ -1696,9 +1702,12 @@ class ReservationServiceGapicClient
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'bi_reservation.name' => $request->getBiReservation()->getName(),
-        ]);
+        $requestParams = new RequestParamsHeaderDescriptor([]);
+        if (!is_null($request->getBiReservation())) {
+            $requestParams = new RequestParamsHeaderDescriptor([
+                'bi_reservation.name' => $request->getBiReservation()->getName(),
+            ]);
+        }
         $optionalArgs['headers'] = isset($optionalArgs['headers'])
             ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();

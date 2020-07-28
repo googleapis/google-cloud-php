@@ -45,7 +45,7 @@ class CreateCapacityCommitmentRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. Resource name of the parent reservation. E.g.,
      *              `projects/myproject/locations/US`
-     *     @type \Google\Cloud\Bigquery\Reservation\V1\CapacityCommitment $capacity_commitment
+     *     @type \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment $capacity_commitment
      *           Content of the capacity commitment to create.
      *     @type bool $enforce_single_admin_project_per_org
      *           If true, fail the request if another project in the organization has a
@@ -89,7 +89,7 @@ class CreateCapacityCommitmentRequest extends \Google\Protobuf\Internal\Message
      * Content of the capacity commitment to create.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.CapacityCommitment capacity_commitment = 2;</code>
-     * @return \Google\Cloud\Bigquery\Reservation\V1\CapacityCommitment
+     * @return \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment
      */
     public function getCapacityCommitment()
     {
@@ -100,12 +100,12 @@ class CreateCapacityCommitmentRequest extends \Google\Protobuf\Internal\Message
      * Content of the capacity commitment to create.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.CapacityCommitment capacity_commitment = 2;</code>
-     * @param \Google\Cloud\Bigquery\Reservation\V1\CapacityCommitment $var
+     * @param \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment $var
      * @return $this
      */
     public function setCapacityCommitment($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Bigquery\Reservation\V1\CapacityCommitment::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment::class);
         $this->capacity_commitment = $var;
 
         return $this;

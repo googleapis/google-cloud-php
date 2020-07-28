@@ -68,7 +68,7 @@ class Connection extends \Google\Protobuf\Internal\Message
      *           User provided display name for the connection.
      *     @type string $description
      *           User provided description.
-     *     @type \Google\Cloud\Bigquery\Connection\V1\CloudSqlProperties $cloud_sql
+     *     @type \Google\Cloud\BigQuery\Connection\V1\CloudSqlProperties $cloud_sql
      *           Cloud SQL properties.
      *     @type int|string $creation_time
      *           Output only. The creation timestamp of the connection.
@@ -167,7 +167,7 @@ class Connection extends \Google\Protobuf\Internal\Message
      * Cloud SQL properties.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.connection.v1.CloudSqlProperties cloud_sql = 4;</code>
-     * @return \Google\Cloud\Bigquery\Connection\V1\CloudSqlProperties
+     * @return \Google\Cloud\BigQuery\Connection\V1\CloudSqlProperties
      */
     public function getCloudSql()
     {
@@ -178,12 +178,12 @@ class Connection extends \Google\Protobuf\Internal\Message
      * Cloud SQL properties.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.connection.v1.CloudSqlProperties cloud_sql = 4;</code>
-     * @param \Google\Cloud\Bigquery\Connection\V1\CloudSqlProperties $var
+     * @param \Google\Cloud\BigQuery\Connection\V1\CloudSqlProperties $var
      * @return $this
      */
     public function setCloudSql($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Bigquery\Connection\V1\CloudSqlProperties::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Connection\V1\CloudSqlProperties::class);
         $this->writeOneof(4, $var);
 
         return $this;

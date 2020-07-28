@@ -6,11 +6,11 @@ namespace Google\Cloud\BigQuery\Connection\V1;
 
 if (false) {
     /**
-     * This class is deprecated. Use Google\Cloud\Bigquery\Connection\V1\CloudSqlProperties\DatabaseType instead.
+     * This class is deprecated. Use Google\Cloud\BigQuery\Connection\V1\CloudSqlProperties\DatabaseType instead.
      * @deprecated
      */
     class CloudSqlProperties_DatabaseType {}
 }
 class_exists(CloudSqlProperties\DatabaseType::class);
-@trigger_error('Google\Cloud\Bigquery\Connection\V1\CloudSqlProperties_DatabaseType is deprecated and will be removed in a future release. Use Google\Cloud\Bigquery\Connection\V1\CloudSqlProperties\DatabaseType instead', E_USER_DEPRECATED);
+@trigger_error('Google\Cloud\BigQuery\Connection\V1\CloudSqlProperties_DatabaseType is deprecated and will be removed in a future release. Use Google\Cloud\BigQuery\Connection\V1\CloudSqlProperties\DatabaseType instead', E_USER_DEPRECATED);
 

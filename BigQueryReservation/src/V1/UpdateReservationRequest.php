@@ -34,7 +34,7 @@ class UpdateReservationRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Bigquery\Reservation\V1\Reservation $reservation
+     *     @type \Google\Cloud\BigQuery\Reservation\V1\Reservation $reservation
      *           Content of the reservation to update.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Standard field mask for the set of fields to be updated.
@@ -49,7 +49,7 @@ class UpdateReservationRequest extends \Google\Protobuf\Internal\Message
      * Content of the reservation to update.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Reservation reservation = 1;</code>
-     * @return \Google\Cloud\Bigquery\Reservation\V1\Reservation
+     * @return \Google\Cloud\BigQuery\Reservation\V1\Reservation
      */
     public function getReservation()
     {
@@ -60,12 +60,12 @@ class UpdateReservationRequest extends \Google\Protobuf\Internal\Message
      * Content of the reservation to update.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Reservation reservation = 1;</code>
-     * @param \Google\Cloud\Bigquery\Reservation\V1\Reservation $var
+     * @param \Google\Cloud\BigQuery\Reservation\V1\Reservation $var
      * @return $this
      */
     public function setReservation($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Bigquery\Reservation\V1\Reservation::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Reservation\V1\Reservation::class);
         $this->reservation = $var;
 
         return $this;

@@ -6,11 +6,11 @@ namespace Google\Cloud\BigQuery\Reservation\V1;
 
 if (false) {
     /**
-     * This class is deprecated. Use Google\Cloud\Bigquery\Reservation\V1\Assignment\State instead.
+     * This class is deprecated. Use Google\Cloud\BigQuery\Reservation\V1\Assignment\State instead.
      * @deprecated
      */
     class Assignment_State {}
 }
 class_exists(Assignment\State::class);
-@trigger_error('Google\Cloud\Bigquery\Reservation\V1\Assignment_State is deprecated and will be removed in a future release. Use Google\Cloud\Bigquery\Reservation\V1\Assignment\State instead', E_USER_DEPRECATED);
+@trigger_error('Google\Cloud\BigQuery\Reservation\V1\Assignment_State is deprecated and will be removed in a future release. Use Google\Cloud\BigQuery\Reservation\V1\Assignment\State instead', E_USER_DEPRECATED);
 

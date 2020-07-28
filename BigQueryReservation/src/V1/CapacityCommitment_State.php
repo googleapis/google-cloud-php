@@ -6,11 +6,11 @@ namespace Google\Cloud\BigQuery\Reservation\V1;
 
 if (false) {
     /**
-     * This class is deprecated. Use Google\Cloud\Bigquery\Reservation\V1\CapacityCommitment\State instead.
+     * This class is deprecated. Use Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment\State instead.
      * @deprecated
      */
     class CapacityCommitment_State {}
 }
 class_exists(CapacityCommitment\State::class);
-@trigger_error('Google\Cloud\Bigquery\Reservation\V1\CapacityCommitment_State is deprecated and will be removed in a future release. Use Google\Cloud\Bigquery\Reservation\V1\CapacityCommitment\State instead', E_USER_DEPRECATED);
+@trigger_error('Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment_State is deprecated and will be removed in a future release. Use Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment\State instead', E_USER_DEPRECATED);
 

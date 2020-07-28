@@ -44,7 +44,7 @@ class UpdateConnectionRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. Name of the connection to update, for example:
      *           `projects/{project_id}/locations/{location_id}/connections/{connection_id}`
-     *     @type \Google\Cloud\Bigquery\Connection\V1\Connection $connection
+     *     @type \Google\Cloud\BigQuery\Connection\V1\Connection $connection
      *           Required. Connection containing the updated fields.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Required. Update mask for the connection fields to be updated.
@@ -87,7 +87,7 @@ class UpdateConnectionRequest extends \Google\Protobuf\Internal\Message
      * Required. Connection containing the updated fields.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.connection.v1.Connection connection = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Bigquery\Connection\V1\Connection
+     * @return \Google\Cloud\BigQuery\Connection\V1\Connection
      */
     public function getConnection()
     {
@@ -98,12 +98,12 @@ class UpdateConnectionRequest extends \Google\Protobuf\Internal\Message
      * Required. Connection containing the updated fields.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.connection.v1.Connection connection = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\Bigquery\Connection\V1\Connection $var
+     * @param \Google\Cloud\BigQuery\Connection\V1\Connection $var
      * @return $this
      */
     public function setConnection($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Bigquery\Connection\V1\Connection::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Connection\V1\Connection::class);
         $this->connection = $var;
 
         return $this;

@@ -34,73 +34,73 @@ class ConnectionServiceGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Creates a new connection.
-     * @param \Google\Cloud\Bigquery\Connection\V1\CreateConnectionRequest $argument input argument
+     * @param \Google\Cloud\BigQuery\Connection\V1\CreateConnectionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Bigquery\Connection\V1\Connection
+     * @return \Google\Cloud\BigQuery\Connection\V1\Connection
      */
-    public function CreateConnection(\Google\Cloud\Bigquery\Connection\V1\CreateConnectionRequest $argument,
+    public function CreateConnection(\Google\Cloud\BigQuery\Connection\V1\CreateConnectionRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.bigquery.connection.v1.ConnectionService/CreateConnection',
         $argument,
-        ['\Google\Cloud\Bigquery\Connection\V1\Connection', 'decode'],
+        ['\Google\Cloud\BigQuery\Connection\V1\Connection', 'decode'],
         $metadata, $options);
     }
 
     /**
      * Returns specified connection.
-     * @param \Google\Cloud\Bigquery\Connection\V1\GetConnectionRequest $argument input argument
+     * @param \Google\Cloud\BigQuery\Connection\V1\GetConnectionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Bigquery\Connection\V1\Connection
+     * @return \Google\Cloud\BigQuery\Connection\V1\Connection
      */
-    public function GetConnection(\Google\Cloud\Bigquery\Connection\V1\GetConnectionRequest $argument,
+    public function GetConnection(\Google\Cloud\BigQuery\Connection\V1\GetConnectionRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.bigquery.connection.v1.ConnectionService/GetConnection',
         $argument,
-        ['\Google\Cloud\Bigquery\Connection\V1\Connection', 'decode'],
+        ['\Google\Cloud\BigQuery\Connection\V1\Connection', 'decode'],
         $metadata, $options);
     }
 
     /**
      * Returns a list of connections in the given project.
-     * @param \Google\Cloud\Bigquery\Connection\V1\ListConnectionsRequest $argument input argument
+     * @param \Google\Cloud\BigQuery\Connection\V1\ListConnectionsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Bigquery\Connection\V1\ListConnectionsResponse
+     * @return \Google\Cloud\BigQuery\Connection\V1\ListConnectionsResponse
      */
-    public function ListConnections(\Google\Cloud\Bigquery\Connection\V1\ListConnectionsRequest $argument,
+    public function ListConnections(\Google\Cloud\BigQuery\Connection\V1\ListConnectionsRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.bigquery.connection.v1.ConnectionService/ListConnections',
         $argument,
-        ['\Google\Cloud\Bigquery\Connection\V1\ListConnectionsResponse', 'decode'],
+        ['\Google\Cloud\BigQuery\Connection\V1\ListConnectionsResponse', 'decode'],
         $metadata, $options);
     }
 
     /**
      * Updates the specified connection. For security reasons, also resets
      * credential if connection properties are in the update field mask.
-     * @param \Google\Cloud\Bigquery\Connection\V1\UpdateConnectionRequest $argument input argument
+     * @param \Google\Cloud\BigQuery\Connection\V1\UpdateConnectionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Bigquery\Connection\V1\Connection
+     * @return \Google\Cloud\BigQuery\Connection\V1\Connection
      */
-    public function UpdateConnection(\Google\Cloud\Bigquery\Connection\V1\UpdateConnectionRequest $argument,
+    public function UpdateConnection(\Google\Cloud\BigQuery\Connection\V1\UpdateConnectionRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.bigquery.connection.v1.ConnectionService/UpdateConnection',
         $argument,
-        ['\Google\Cloud\Bigquery\Connection\V1\Connection', 'decode'],
+        ['\Google\Cloud\BigQuery\Connection\V1\Connection', 'decode'],
         $metadata, $options);
     }
 
     /**
      * Deletes connection and associated credential.
-     * @param \Google\Cloud\Bigquery\Connection\V1\DeleteConnectionRequest $argument input argument
+     * @param \Google\Cloud\BigQuery\Connection\V1\DeleteConnectionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
      * @return \Google\Protobuf\GPBEmpty
      */
-    public function DeleteConnection(\Google\Cloud\Bigquery\Connection\V1\DeleteConnectionRequest $argument,
+    public function DeleteConnection(\Google\Cloud\BigQuery\Connection\V1\DeleteConnectionRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.bigquery.connection.v1.ConnectionService/DeleteConnection',
         $argument,

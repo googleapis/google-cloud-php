@@ -61,5 +61,5 @@ class JobType
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(JobType::class, \Google\Cloud\Bigquery\Reservation\V1\Assignment_JobType::class);
+class_alias(JobType::class, \Google\Cloud\BigQuery\Reservation\V1\Assignment_JobType::class);
 

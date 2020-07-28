@@ -52,7 +52,7 @@ class CloudSqlProperties extends \Google\Protobuf\Internal\Message
      *           Database name.
      *     @type int $type
      *           Type of the Cloud SQL database.
-     *     @type \Google\Cloud\Bigquery\Connection\V1\CloudSqlCredential $credential
+     *     @type \Google\Cloud\BigQuery\Connection\V1\CloudSqlCredential $credential
      *           Input only. Cloud SQL credential.
      * }
      */
@@ -133,7 +133,7 @@ class CloudSqlProperties extends \Google\Protobuf\Internal\Message
      */
     public function setType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Bigquery\Connection\V1\CloudSqlProperties_DatabaseType::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\Connection\V1\CloudSqlProperties_DatabaseType::class);
         $this->type = $var;
 
         return $this;
@@ -143,7 +143,7 @@ class CloudSqlProperties extends \Google\Protobuf\Internal\Message
      * Input only. Cloud SQL credential.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.connection.v1.CloudSqlCredential credential = 4 [(.google.api.field_behavior) = INPUT_ONLY];</code>
-     * @return \Google\Cloud\Bigquery\Connection\V1\CloudSqlCredential
+     * @return \Google\Cloud\BigQuery\Connection\V1\CloudSqlCredential
      */
     public function getCredential()
     {
@@ -154,12 +154,12 @@ class CloudSqlProperties extends \Google\Protobuf\Internal\Message
      * Input only. Cloud SQL credential.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.connection.v1.CloudSqlCredential credential = 4 [(.google.api.field_behavior) = INPUT_ONLY];</code>
-     * @param \Google\Cloud\Bigquery\Connection\V1\CloudSqlCredential $var
+     * @param \Google\Cloud\BigQuery\Connection\V1\CloudSqlCredential $var
      * @return $this
      */
     public function setCredential($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Bigquery\Connection\V1\CloudSqlCredential::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Connection\V1\CloudSqlCredential::class);
         $this->credential = $var;
 
         return $this;
