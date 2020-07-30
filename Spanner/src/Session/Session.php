@@ -103,7 +103,9 @@ class Session
         try {
             $this->connection->getSession($options + [
                 'name' => $this->name(),
-                'database' => $this->database
+                'database' => SpannerClient::databaseName(
+                     $this->projectId, $this->instance, $this->database,
+                 )
             ]);
 
             return true;
@@ -122,7 +124,9 @@ class Session
     {
         $this->connection->deleteSession($options + [
             'name' => $this->name(),
-            'database' => $this->database
+            'database' => SpannerClient::databaseName(
+                 $this->projectId, $this->instance, $this->database,
+             )
         ]);
     }
 
