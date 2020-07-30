@@ -21,7 +21,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class Span extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The resource name of the span in the following format:
+     * Required. The resource name of the span in the following format:
      *     projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/[SPAN_ID]
      * [TRACE_ID] is a unique identifier for a trace within a project;
      * it is a 32-character hexadecimal encoding of a 16-byte array.
@@ -32,7 +32,7 @@ class Span extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * The [SPAN_ID] portion of the span's resource name.
+     * Required. The [SPAN_ID] portion of the span's resource name.
      *
      * Generated from protobuf field <code>string span_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -45,7 +45,7 @@ class Span extends \Google\Protobuf\Internal\Message
      */
     private $parent_span_id = '';
     /**
-     * A description of the span's operation (up to 128 bytes).
+     * Required. A description of the span's operation (up to 128 bytes).
      * Stackdriver Trace displays the description in the
      * Google Cloud Platform Console.
      * For example, the display name can be a qualified method name or a file name
@@ -57,7 +57,7 @@ class Span extends \Google\Protobuf\Internal\Message
      */
     private $display_name = null;
     /**
-     * The start time of the span. On the client side, this is the time kept by
+     * Required. The start time of the span. On the client side, this is the time kept by
      * the local machine where the span execution starts. On the server side, this
      * is the time when the server's application handler starts running.
      *
@@ -65,7 +65,7 @@ class Span extends \Google\Protobuf\Internal\Message
      */
     private $start_time = null;
     /**
-     * The end time of the span. On the client side, this is the time kept by
+     * Required. The end time of the span. On the client side, this is the time kept by
      * the local machine where the span execution ends. On the server side, this
      * is the time when the server application handler stops running.
      *
@@ -120,6 +120,14 @@ class Span extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int32Value child_span_count = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $child_span_count = null;
+    /**
+     * Optional. Distinguishes between spans generated in a particular context. For example,
+     * two spans with the same name may be distinguished using `CLIENT` (caller)
+     * and `SERVER` (callee) to identify an RPC call.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.Span.SpanKind span_kind = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $span_kind = 0;
 
     /**
      * Constructor.
@@ -128,19 +136,19 @@ class Span extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The resource name of the span in the following format:
+     *           Required. The resource name of the span in the following format:
      *               projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/[SPAN_ID]
      *           [TRACE_ID] is a unique identifier for a trace within a project;
      *           it is a 32-character hexadecimal encoding of a 16-byte array.
      *           [SPAN_ID] is a unique identifier for a span within a trace; it
      *           is a 16-character hexadecimal encoding of an 8-byte array.
      *     @type string $span_id
-     *           The [SPAN_ID] portion of the span's resource name.
+     *           Required. The [SPAN_ID] portion of the span's resource name.
      *     @type string $parent_span_id
      *           The [SPAN_ID] of this span's parent span. If this is a root span,
      *           then this field must be empty.
      *     @type \Google\Cloud\Trace\V2\TruncatableString $display_name
-     *           A description of the span's operation (up to 128 bytes).
+     *           Required. A description of the span's operation (up to 128 bytes).
      *           Stackdriver Trace displays the description in the
      *           Google Cloud Platform Console.
      *           For example, the display name can be a qualified method name or a file name
@@ -148,11 +156,11 @@ class Span extends \Google\Protobuf\Internal\Message
      *           the same display name within an application and at the same call point.
      *           This makes it easier to correlate spans in different traces.
      *     @type \Google\Protobuf\Timestamp $start_time
-     *           The start time of the span. On the client side, this is the time kept by
+     *           Required. The start time of the span. On the client side, this is the time kept by
      *           the local machine where the span execution starts. On the server side, this
      *           is the time when the server's application handler starts running.
      *     @type \Google\Protobuf\Timestamp $end_time
-     *           The end time of the span. On the client side, this is the time kept by
+     *           Required. The end time of the span. On the client side, this is the time kept by
      *           the local machine where the span execution ends. On the server side, this
      *           is the time when the server application handler stops running.
      *     @type \Google\Cloud\Trace\V2\Span\Attributes $attributes
@@ -175,6 +183,10 @@ class Span extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Int32Value $child_span_count
      *           Optional. The number of child spans that were generated while this span
      *           was active. If set, allows implementation to detect missing child spans.
+     *     @type int $span_kind
+     *           Optional. Distinguishes between spans generated in a particular context. For example,
+     *           two spans with the same name may be distinguished using `CLIENT` (caller)
+     *           and `SERVER` (callee) to identify an RPC call.
      * }
      */
     public function __construct($data = NULL) {
@@ -183,7 +195,7 @@ class Span extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the span in the following format:
+     * Required. The resource name of the span in the following format:
      *     projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/[SPAN_ID]
      * [TRACE_ID] is a unique identifier for a trace within a project;
      * it is a 32-character hexadecimal encoding of a 16-byte array.
@@ -199,7 +211,7 @@ class Span extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the span in the following format:
+     * Required. The resource name of the span in the following format:
      *     projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/[SPAN_ID]
      * [TRACE_ID] is a unique identifier for a trace within a project;
      * it is a 32-character hexadecimal encoding of a 16-byte array.
@@ -219,7 +231,7 @@ class Span extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The [SPAN_ID] portion of the span's resource name.
+     * Required. The [SPAN_ID] portion of the span's resource name.
      *
      * Generated from protobuf field <code>string span_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -230,7 +242,7 @@ class Span extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The [SPAN_ID] portion of the span's resource name.
+     * Required. The [SPAN_ID] portion of the span's resource name.
      *
      * Generated from protobuf field <code>string span_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -273,7 +285,7 @@ class Span extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A description of the span's operation (up to 128 bytes).
+     * Required. A description of the span's operation (up to 128 bytes).
      * Stackdriver Trace displays the description in the
      * Google Cloud Platform Console.
      * For example, the display name can be a qualified method name or a file name
@@ -290,7 +302,7 @@ class Span extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A description of the span's operation (up to 128 bytes).
+     * Required. A description of the span's operation (up to 128 bytes).
      * Stackdriver Trace displays the description in the
      * Google Cloud Platform Console.
      * For example, the display name can be a qualified method name or a file name
@@ -311,7 +323,7 @@ class Span extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The start time of the span. On the client side, this is the time kept by
+     * Required. The start time of the span. On the client side, this is the time kept by
      * the local machine where the span execution starts. On the server side, this
      * is the time when the server's application handler starts running.
      *
@@ -324,7 +336,7 @@ class Span extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The start time of the span. On the client side, this is the time kept by
+     * Required. The start time of the span. On the client side, this is the time kept by
      * the local machine where the span execution starts. On the server side, this
      * is the time when the server's application handler starts running.
      *
@@ -341,7 +353,7 @@ class Span extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The end time of the span. On the client side, this is the time kept by
+     * Required. The end time of the span. On the client side, this is the time kept by
      * the local machine where the span execution ends. On the server side, this
      * is the time when the server application handler stops running.
      *
@@ -354,7 +366,7 @@ class Span extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The end time of the span. On the client side, this is the time kept by
+     * Required. The end time of the span. On the client side, this is the time kept by
      * the local machine where the span execution ends. On the server side, this
      * is the time when the server application handler stops running.
      *
@@ -625,6 +637,36 @@ class Span extends \Google\Protobuf\Internal\Message
     {
         $this->writeWrapperValue("child_span_count", $var);
         return $this;}
+
+    /**
+     * Optional. Distinguishes between spans generated in a particular context. For example,
+     * two spans with the same name may be distinguished using `CLIENT` (caller)
+     * and `SERVER` (callee) to identify an RPC call.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.Span.SpanKind span_kind = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getSpanKind()
+    {
+        return $this->span_kind;
+    }
+
+    /**
+     * Optional. Distinguishes between spans generated in a particular context. For example,
+     * two spans with the same name may be distinguished using `CLIENT` (caller)
+     * and `SERVER` (callee) to identify an RPC call.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.Span.SpanKind span_kind = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSpanKind($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Trace\V2\Span_SpanKind::class);
+        $this->span_kind = $var;
+
+        return $this;
+    }
 
 }
 
