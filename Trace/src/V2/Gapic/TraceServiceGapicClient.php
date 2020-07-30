@@ -39,6 +39,7 @@ use Google\Cloud\Trace\V2\BatchWriteSpansRequest;
 use Google\Cloud\Trace\V2\Span;
 use Google\Cloud\Trace\V2\Span\Attributes;
 use Google\Cloud\Trace\V2\Span\Links;
+use Google\Cloud\Trace\V2\Span\SpanKind;
 use Google\Cloud\Trace\V2\Span\TimeEvents;
 use Google\Cloud\Trace\V2\StackTrace;
 use Google\Cloud\Trace\V2\TruncatableString;
@@ -320,7 +321,7 @@ class TraceServiceGapicClient
      * }
      * ```
      *
-     * @param string $name The resource name of the span in the following format:
+     * @param string $name Required. The resource name of the span in the following format:
      *
      *     projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/[SPAN_ID]
      *
@@ -329,18 +330,18 @@ class TraceServiceGapicClient
      *
      * [SPAN_ID] is a unique identifier for a span within a trace; it
      * is a 16-character hexadecimal encoding of an 8-byte array.
-     * @param string            $spanId       The [SPAN_ID] portion of the span's resource name.
-     * @param TruncatableString $displayName  A description of the span's operation (up to 128 bytes).
+     * @param string            $spanId       Required. The [SPAN_ID] portion of the span's resource name.
+     * @param TruncatableString $displayName  Required. A description of the span's operation (up to 128 bytes).
      *                                        Stackdriver Trace displays the description in the
      *                                        Google Cloud Platform Console.
      *                                        For example, the display name can be a qualified method name or a file name
      *                                        and a line number where the operation is called. A best practice is to use
      *                                        the same display name within an application and at the same call point.
      *                                        This makes it easier to correlate spans in different traces.
-     * @param Timestamp         $startTime    The start time of the span. On the client side, this is the time kept by
+     * @param Timestamp         $startTime    Required. The start time of the span. On the client side, this is the time kept by
      *                                        the local machine where the span execution starts. On the server side, this
      *                                        is the time when the server's application handler starts running.
-     * @param Timestamp         $endTime      The end time of the span. On the client side, this is the time kept by
+     * @param Timestamp         $endTime      Required. The end time of the span. On the client side, this is the time kept by
      *                                        the local machine where the span execution ends. On the server side, this
      *                                        is the time when the server application handler stops running.
      * @param array             $optionalArgs {
@@ -369,6 +370,11 @@ class TraceServiceGapicClient
      *     @type Int32Value $childSpanCount
      *          Optional. The number of child spans that were generated while this span
      *          was active. If set, allows implementation to detect missing child spans.
+     *     @type int $spanKind
+     *          Optional. Distinguishes between spans generated in a particular context. For example,
+     *          two spans with the same name may be distinguished using `CLIENT` (caller)
+     *          and `SERVER` (callee) to identify an RPC call.
+     *          For allowed values, use constants defined on {@see \Google\Cloud\Trace\V2\Span\SpanKind}
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -412,6 +418,9 @@ class TraceServiceGapicClient
         }
         if (isset($optionalArgs['childSpanCount'])) {
             $request->setChildSpanCount($optionalArgs['childSpanCount']);
+        }
+        if (isset($optionalArgs['spanKind'])) {
+            $request->setSpanKind($optionalArgs['spanKind']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor([
