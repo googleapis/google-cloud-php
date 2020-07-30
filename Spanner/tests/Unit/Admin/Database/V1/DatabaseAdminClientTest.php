@@ -84,85 +84,6 @@ class DatabaseAdminClientTest extends GeneratedTest
     /**
      * @test
      */
-    public function listDatabasesTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        // Mock response
-        $nextPageToken = '';
-        $databasesElement = new Database();
-        $databases = [$databasesElement];
-        $expectedResponse = new ListDatabasesResponse();
-        $expectedResponse->setNextPageToken($nextPageToken);
-        $expectedResponse->setDatabases($databases);
-        $transport->addResponse($expectedResponse);
-
-        // Mock request
-        $formattedParent = $client->instanceName('[PROJECT]', '[INSTANCE]');
-
-        $response = $client->listDatabases($formattedParent);
-        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
-        $resources = iterator_to_array($response->iterateAllElements());
-        $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getDatabases()[0], $resources[0]);
-
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/ListDatabases', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getParent();
-
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function listDatabasesExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
-        // Mock request
-        $formattedParent = $client->instanceName('[PROJECT]', '[INSTANCE]');
-
-        try {
-            $client->listDatabases($formattedParent);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
     public function createDatabaseTest()
     {
         $operationsTransport = $this->createTransport();
@@ -310,79 +231,6 @@ class DatabaseAdminClientTest extends GeneratedTest
     /**
      * @test
      */
-    public function getDatabaseTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        // Mock response
-        $name2 = 'name2-1052831874';
-        $expectedResponse = new Database();
-        $expectedResponse->setName($name2);
-        $transport->addResponse($expectedResponse);
-
-        // Mock request
-        $formattedName = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
-
-        $response = $client->getDatabase($formattedName);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/GetDatabase', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getName();
-
-        $this->assertProtobufEquals($formattedName, $actualValue);
-
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function getDatabaseExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
-        // Mock request
-        $formattedName = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
-
-        try {
-            $client->getDatabase($formattedName);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
     public function updateDatabaseDdlTest()
     {
         $operationsTransport = $this->createTransport();
@@ -523,6 +371,461 @@ class DatabaseAdminClientTest extends GeneratedTest
         $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function createBackupTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createBackupTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $database = 'database1789464955';
+        $name = 'name3373707';
+        $sizeBytes = 1796325715;
+        $expectedResponse = new Backup();
+        $expectedResponse->setDatabase($database);
+        $expectedResponse->setName($name);
+        $expectedResponse->setSizeBytes($sizeBytes);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/createBackupTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+
+        // Mock request
+        $formattedParent = $client->instanceName('[PROJECT]', '[INSTANCE]');
+        $backupId = 'backupId1355353272';
+        $backup = new Backup();
+
+        $response = $client->createBackup($formattedParent, $backupId, $backup);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/CreateBackup', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getBackupId();
+
+        $this->assertProtobufEquals($backupId, $actualValue);
+        $actualValue = $actualApiRequestObject->getBackup();
+
+        $this->assertProtobufEquals($backup, $actualValue);
+
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createBackupTest');
+
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function createBackupExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createBackupTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+
+        // Mock request
+        $formattedParent = $client->instanceName('[PROJECT]', '[INSTANCE]');
+        $backupId = 'backupId1355353272';
+        $backup = new Backup();
+
+        $response = $client->createBackup($formattedParent, $backupId, $backup);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createBackupTest');
+
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function restoreDatabaseTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/restoreDatabaseTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $expectedResponse = new Database();
+        $expectedResponse->setName($name);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/restoreDatabaseTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+
+        // Mock request
+        $formattedParent = $client->instanceName('[PROJECT]', '[INSTANCE]');
+        $databaseId = 'databaseId816491103';
+
+        $response = $client->restoreDatabase($formattedParent, $databaseId);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/RestoreDatabase', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getDatabaseId();
+
+        $this->assertProtobufEquals($databaseId, $actualValue);
+
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/restoreDatabaseTest');
+
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function restoreDatabaseExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/restoreDatabaseTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+
+        // Mock request
+        $formattedParent = $client->instanceName('[PROJECT]', '[INSTANCE]');
+        $databaseId = 'databaseId816491103';
+
+        $response = $client->restoreDatabase($formattedParent, $databaseId);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/restoreDatabaseTest');
+
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function listDatabasesTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $nextPageToken = '';
+        $databasesElement = new Database();
+        $databases = [$databasesElement];
+        $expectedResponse = new ListDatabasesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setDatabases($databases);
+        $transport->addResponse($expectedResponse);
+
+        // Mock request
+        $formattedParent = $client->instanceName('[PROJECT]', '[INSTANCE]');
+
+        $response = $client->listDatabases($formattedParent);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getDatabases()[0], $resources[0]);
+
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/ListDatabases', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getParent();
+
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function listDatabasesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        // Mock request
+        $formattedParent = $client->instanceName('[PROJECT]', '[INSTANCE]');
+
+        try {
+            $client->listDatabases($formattedParent);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function getDatabaseTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $expectedResponse = new Database();
+        $expectedResponse->setName($name2);
+        $transport->addResponse($expectedResponse);
+
+        // Mock request
+        $formattedName = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+
+        $response = $client->getDatabase($formattedName);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/GetDatabase', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getName();
+
+        $this->assertProtobufEquals($formattedName, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function getDatabaseExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        // Mock request
+        $formattedName = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+
+        try {
+            $client->getDatabase($formattedName);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -900,162 +1203,6 @@ class DatabaseAdminClientTest extends GeneratedTest
     /**
      * @test
      */
-    public function createBackupTest()
-    {
-        $operationsTransport = $this->createTransport();
-        $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
-            'transport' => $operationsTransport,
-            'credentials' => $this->createCredentials(),
-        ]);
-        $transport = $this->createTransport();
-        $client = $this->createClient([
-            'transport' => $transport,
-            'operationsClient' => $operationsClient,
-        ]);
-
-        $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
-
-        // Mock response
-        $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/createBackupTest');
-        $incompleteOperation->setDone(false);
-        $transport->addResponse($incompleteOperation);
-        $database = 'database1789464955';
-        $name = 'name3373707';
-        $sizeBytes = 1796325715;
-        $expectedResponse = new Backup();
-        $expectedResponse->setDatabase($database);
-        $expectedResponse->setName($name);
-        $expectedResponse->setSizeBytes($sizeBytes);
-        $anyResponse = new Any();
-        $anyResponse->setValue($expectedResponse->serializeToString());
-        $completeOperation = new Operation();
-        $completeOperation->setName('operations/createBackupTest');
-        $completeOperation->setDone(true);
-        $completeOperation->setResponse($anyResponse);
-        $operationsTransport->addResponse($completeOperation);
-
-        // Mock request
-        $formattedParent = $client->instanceName('[PROJECT]', '[INSTANCE]');
-        $backupId = 'backupId1355353272';
-        $backup = new Backup();
-
-        $response = $client->createBackup($formattedParent, $backupId, $backup);
-        $this->assertFalse($response->isDone());
-        $this->assertNull($response->getResult());
-        $apiRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($apiRequests));
-        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
-        $this->assertSame(0, count($operationsRequestsEmpty));
-
-        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
-        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/CreateBackup', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getBackupId();
-
-        $this->assertProtobufEquals($backupId, $actualValue);
-        $actualValue = $actualApiRequestObject->getBackup();
-
-        $this->assertProtobufEquals($backup, $actualValue);
-
-        $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/createBackupTest');
-
-        $response->pollUntilComplete([
-            'initialPollDelayMillis' => 1,
-        ]);
-        $this->assertTrue($response->isDone());
-        $this->assertEquals($expectedResponse, $response->getResult());
-        $apiRequestsEmpty = $transport->popReceivedCalls();
-        $this->assertSame(0, count($apiRequestsEmpty));
-        $operationsRequests = $operationsTransport->popReceivedCalls();
-        $this->assertSame(1, count($operationsRequests));
-
-        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
-        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
-        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
-        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
-
-        $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function createBackupExceptionTest()
-    {
-        $operationsTransport = $this->createTransport();
-        $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
-            'transport' => $operationsTransport,
-            'credentials' => $this->createCredentials(),
-        ]);
-        $transport = $this->createTransport();
-        $client = $this->createClient([
-            'transport' => $transport,
-            'operationsClient' => $operationsClient,
-        ]);
-
-        $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
-
-        // Mock response
-        $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/createBackupTest');
-        $incompleteOperation->setDone(false);
-        $transport->addResponse($incompleteOperation);
-
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $operationsTransport->addResponse(null, $status);
-
-        // Mock request
-        $formattedParent = $client->instanceName('[PROJECT]', '[INSTANCE]');
-        $backupId = 'backupId1355353272';
-        $backup = new Backup();
-
-        $response = $client->createBackup($formattedParent, $backupId, $backup);
-        $this->assertFalse($response->isDone());
-        $this->assertNull($response->getResult());
-
-        $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/createBackupTest');
-
-        try {
-            $response->pollUntilComplete([
-                'initialPollDelayMillis' => 1,
-            ]);
-            // If the pollUntilComplete() method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
-        // Call popReceivedCalls to ensure the stubs are exhausted
-        $transport->popReceivedCalls();
-        $operationsTransport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
     public function getBackupTest()
     {
         $transport = $this->createTransport();
@@ -1359,153 +1506,6 @@ class DatabaseAdminClientTest extends GeneratedTest
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function restoreDatabaseTest()
-    {
-        $operationsTransport = $this->createTransport();
-        $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
-            'transport' => $operationsTransport,
-            'credentials' => $this->createCredentials(),
-        ]);
-        $transport = $this->createTransport();
-        $client = $this->createClient([
-            'transport' => $transport,
-            'operationsClient' => $operationsClient,
-        ]);
-
-        $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
-
-        // Mock response
-        $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/restoreDatabaseTest');
-        $incompleteOperation->setDone(false);
-        $transport->addResponse($incompleteOperation);
-        $name = 'name3373707';
-        $expectedResponse = new Database();
-        $expectedResponse->setName($name);
-        $anyResponse = new Any();
-        $anyResponse->setValue($expectedResponse->serializeToString());
-        $completeOperation = new Operation();
-        $completeOperation->setName('operations/restoreDatabaseTest');
-        $completeOperation->setDone(true);
-        $completeOperation->setResponse($anyResponse);
-        $operationsTransport->addResponse($completeOperation);
-
-        // Mock request
-        $formattedParent = $client->instanceName('[PROJECT]', '[INSTANCE]');
-        $databaseId = 'databaseId816491103';
-
-        $response = $client->restoreDatabase($formattedParent, $databaseId);
-        $this->assertFalse($response->isDone());
-        $this->assertNull($response->getResult());
-        $apiRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($apiRequests));
-        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
-        $this->assertSame(0, count($operationsRequestsEmpty));
-
-        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
-        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/RestoreDatabase', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getDatabaseId();
-
-        $this->assertProtobufEquals($databaseId, $actualValue);
-
-        $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/restoreDatabaseTest');
-
-        $response->pollUntilComplete([
-            'initialPollDelayMillis' => 1,
-        ]);
-        $this->assertTrue($response->isDone());
-        $this->assertEquals($expectedResponse, $response->getResult());
-        $apiRequestsEmpty = $transport->popReceivedCalls();
-        $this->assertSame(0, count($apiRequestsEmpty));
-        $operationsRequests = $operationsTransport->popReceivedCalls();
-        $this->assertSame(1, count($operationsRequests));
-
-        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
-        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
-        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
-        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
-
-        $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function restoreDatabaseExceptionTest()
-    {
-        $operationsTransport = $this->createTransport();
-        $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
-            'transport' => $operationsTransport,
-            'credentials' => $this->createCredentials(),
-        ]);
-        $transport = $this->createTransport();
-        $client = $this->createClient([
-            'transport' => $transport,
-            'operationsClient' => $operationsClient,
-        ]);
-
-        $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
-
-        // Mock response
-        $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/restoreDatabaseTest');
-        $incompleteOperation->setDone(false);
-        $transport->addResponse($incompleteOperation);
-
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $operationsTransport->addResponse(null, $status);
-
-        // Mock request
-        $formattedParent = $client->instanceName('[PROJECT]', '[INSTANCE]');
-        $databaseId = 'databaseId816491103';
-
-        $response = $client->restoreDatabase($formattedParent, $databaseId);
-        $this->assertFalse($response->isDone());
-        $this->assertNull($response->getResult());
-
-        $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/restoreDatabaseTest');
-
-        try {
-            $response->pollUntilComplete([
-                'initialPollDelayMillis' => 1,
-            ]);
-            // If the pollUntilComplete() method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
-        // Call popReceivedCalls to ensure the stubs are exhausted
-        $transport->popReceivedCalls();
-        $operationsTransport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /**
