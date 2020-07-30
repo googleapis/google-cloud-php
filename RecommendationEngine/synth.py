@@ -21,14 +21,13 @@ import logging
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICGenerator()
+gapic = gcp.GAPICBazel()
 common = gcp.CommonTemplates()
 
 library = gapic.php_library(
     service='recommendationengine',
     version='v1beta1',
-    config_path=f'/google/cloud/recommendationengine/v1beta1/artman_recommendationengine_v1beta1.yaml',
-    artman_output_name=f'google-cloud-recommendationengine-v1beta1')
+    bazel_target=f'//google/cloud/recommendationengine/v1beta1:google-cloud-recommendationengine-v1beta1-php')
 
 # copy all src
 s.move(library / f'src/V1beta1')
