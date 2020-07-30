@@ -2,14 +2,6 @@ language: php
 
 jobs:
   include:
-    - stage: "Push Docs"
-      php: 7.2
-      install:
-      - travis_retry composer install
-      script:
-      - ./dev/sh/build-docs
-      - ./dev/sh/push-docs $TRAVIS_BRANCH
-
     - stage: "Split Components"
       php: 7.2
       install:
@@ -19,7 +11,5 @@ jobs:
       - ./dev/google-cloud split $TRAVIS_TAG
 
 stages:
-  - name: "Push Docs"
-    if: ((type != pull_request) AND (branch = master)) OR (tag IS present)
   - name: "Split Components"
     if: (tag IS present)

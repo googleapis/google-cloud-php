@@ -1,0 +1,52 @@
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'Spanner/**'
+  pull_request:
+    paths:
+      - 'Spanner/**'
+name: Run Spanner integration tests against service emulator
+jobs:
+  php-test:
+    runs-on: ubuntu-latest
+
+    services:
+      emulator:
+        image: gcr.io/cloud-spanner-emulator/emulator:0.8.0
+        ports:
+          - 9010:9010
+          - 9020:9020
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Create Spanner instance
+        uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        with:
+          version: '290.0.1'
+      - run: gcloud info
+      - run: gcloud config configurations create emulator
+      - run: gcloud config set auth/disable_credentials true
+      - run: gcloud config set project emulator-project
+      - run: gcloud config set api_endpoint_overrides/spanner http://localhost:9020/
+      - run: gcloud spanner instances create google-cloud-php-system-tests --config=emulator-config --description="Test Instance" --nodes=1
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v1
+        with:
+          php-version: '7.4'
+          tools: pecl
+          extensions: bcmath, grpc
+
+      - name: Install dependencies
+        run: |
+          composer update --prefer-dist --no-interaction --no-suggest -d Spanner/
+
+      - name: Run system tests
+        run: |
+          Spanner/vendor/bin/phpunit -c Spanner/phpunit-system.xml.dist
+        env:
+          SPANNER_EMULATOR_HOST: localhost:9010

@@ -3,17 +3,6 @@
 return [
     'interfaces' => [
         'google.cloud.talent.v4beta1.ApplicationService' => [
-            'DeleteApplication' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v4beta1/{name=projects/*/tenants/*/profiles/*/applications/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'CreateApplication' => [
                 'method' => 'post',
                 'uriTemplate' => '/v4beta1/{parent=projects/*/tenants/*/profiles/*}/applications',
@@ -45,6 +34,17 @@ return [
                     'application.name' => [
                         'getters' => [
                             'getApplication',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteApplication' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v4beta1/{name=projects/*/tenants/*/profiles/*/applications/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
                             'getName',
                         ],
                     ],

@@ -82,6 +82,34 @@ class StreamingPullRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string client_id = 6;</code>
      */
     private $client_id = '';
+    /**
+     * Flow control settings for the maximum number of outstanding messages. When
+     * there are `max_outstanding_messages` or more currently sent to the
+     * streaming pull client that have not yet been acked or nacked, the server
+     * stops sending more messages. The sending of messages resumes once the
+     * number of outstanding messages is less than this value. If the value is
+     * <= 0, there is no limit to the number of outstanding messages. This
+     * property can only be set on the initial StreamingPullRequest. If it is set
+     * on a subsequent request, the stream will be aborted with status
+     * `INVALID_ARGUMENT`.
+     *
+     * Generated from protobuf field <code>int64 max_outstanding_messages = 7;</code>
+     */
+    private $max_outstanding_messages = 0;
+    /**
+     * Flow control settings for the maximum number of outstanding bytes. When
+     * there are `max_outstanding_bytes` or more worth of messages currently sent
+     * to the streaming pull client that have not yet been acked or nacked, the
+     * server will stop sending more messages. The sending of messages resumes
+     * once the number of outstanding bytes is less than this value. If the value
+     * is <= 0, there is no limit to the number of outstanding bytes. This
+     * property can only be set on the initial StreamingPullRequest. If it is set
+     * on a subsequent request, the stream will be aborted with status
+     * `INVALID_ARGUMENT`.
+     *
+     * Generated from protobuf field <code>int64 max_outstanding_bytes = 8;</code>
+     */
+    private $max_outstanding_bytes = 0;
 
     /**
      * Constructor.
@@ -130,6 +158,26 @@ class StreamingPullRequest extends \Google\Protobuf\Internal\Message
      *           to the same value so that state associated with the old stream can be
      *           transferred to the new stream. The same client_id should not be used for
      *           different client instances.
+     *     @type int|string $max_outstanding_messages
+     *           Flow control settings for the maximum number of outstanding messages. When
+     *           there are `max_outstanding_messages` or more currently sent to the
+     *           streaming pull client that have not yet been acked or nacked, the server
+     *           stops sending more messages. The sending of messages resumes once the
+     *           number of outstanding messages is less than this value. If the value is
+     *           <= 0, there is no limit to the number of outstanding messages. This
+     *           property can only be set on the initial StreamingPullRequest. If it is set
+     *           on a subsequent request, the stream will be aborted with status
+     *           `INVALID_ARGUMENT`.
+     *     @type int|string $max_outstanding_bytes
+     *           Flow control settings for the maximum number of outstanding bytes. When
+     *           there are `max_outstanding_bytes` or more worth of messages currently sent
+     *           to the streaming pull client that have not yet been acked or nacked, the
+     *           server will stop sending more messages. The sending of messages resumes
+     *           once the number of outstanding bytes is less than this value. If the value
+     *           is <= 0, there is no limit to the number of outstanding bytes. This
+     *           property can only be set on the initial StreamingPullRequest. If it is set
+     *           on a subsequent request, the stream will be aborted with status
+     *           `INVALID_ARGUMENT`.
      * }
      */
     public function __construct($data = NULL) {
@@ -347,6 +395,90 @@ class StreamingPullRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->client_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Flow control settings for the maximum number of outstanding messages. When
+     * there are `max_outstanding_messages` or more currently sent to the
+     * streaming pull client that have not yet been acked or nacked, the server
+     * stops sending more messages. The sending of messages resumes once the
+     * number of outstanding messages is less than this value. If the value is
+     * <= 0, there is no limit to the number of outstanding messages. This
+     * property can only be set on the initial StreamingPullRequest. If it is set
+     * on a subsequent request, the stream will be aborted with status
+     * `INVALID_ARGUMENT`.
+     *
+     * Generated from protobuf field <code>int64 max_outstanding_messages = 7;</code>
+     * @return int|string
+     */
+    public function getMaxOutstandingMessages()
+    {
+        return $this->max_outstanding_messages;
+    }
+
+    /**
+     * Flow control settings for the maximum number of outstanding messages. When
+     * there are `max_outstanding_messages` or more currently sent to the
+     * streaming pull client that have not yet been acked or nacked, the server
+     * stops sending more messages. The sending of messages resumes once the
+     * number of outstanding messages is less than this value. If the value is
+     * <= 0, there is no limit to the number of outstanding messages. This
+     * property can only be set on the initial StreamingPullRequest. If it is set
+     * on a subsequent request, the stream will be aborted with status
+     * `INVALID_ARGUMENT`.
+     *
+     * Generated from protobuf field <code>int64 max_outstanding_messages = 7;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setMaxOutstandingMessages($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->max_outstanding_messages = $var;
+
+        return $this;
+    }
+
+    /**
+     * Flow control settings for the maximum number of outstanding bytes. When
+     * there are `max_outstanding_bytes` or more worth of messages currently sent
+     * to the streaming pull client that have not yet been acked or nacked, the
+     * server will stop sending more messages. The sending of messages resumes
+     * once the number of outstanding bytes is less than this value. If the value
+     * is <= 0, there is no limit to the number of outstanding bytes. This
+     * property can only be set on the initial StreamingPullRequest. If it is set
+     * on a subsequent request, the stream will be aborted with status
+     * `INVALID_ARGUMENT`.
+     *
+     * Generated from protobuf field <code>int64 max_outstanding_bytes = 8;</code>
+     * @return int|string
+     */
+    public function getMaxOutstandingBytes()
+    {
+        return $this->max_outstanding_bytes;
+    }
+
+    /**
+     * Flow control settings for the maximum number of outstanding bytes. When
+     * there are `max_outstanding_bytes` or more worth of messages currently sent
+     * to the streaming pull client that have not yet been acked or nacked, the
+     * server will stop sending more messages. The sending of messages resumes
+     * once the number of outstanding bytes is less than this value. If the value
+     * is <= 0, there is no limit to the number of outstanding bytes. This
+     * property can only be set on the initial StreamingPullRequest. If it is set
+     * on a subsequent request, the stream will be aborted with status
+     * `INVALID_ARGUMENT`.
+     *
+     * Generated from protobuf field <code>int64 max_outstanding_bytes = 8;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setMaxOutstandingBytes($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->max_outstanding_bytes = $var;
 
         return $this;
     }

@@ -43,6 +43,7 @@ class DatastoreGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Datastore\V1\LookupRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Datastore\V1\LookupResponse
      */
     public function Lookup(\Google\Cloud\Datastore\V1\LookupRequest $argument,
       $metadata = [], $options = []) {
@@ -57,6 +58,7 @@ class DatastoreGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Datastore\V1\RunQueryRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Datastore\V1\RunQueryResponse
      */
     public function RunQuery(\Google\Cloud\Datastore\V1\RunQueryRequest $argument,
       $metadata = [], $options = []) {
@@ -71,6 +73,7 @@ class DatastoreGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Datastore\V1\BeginTransactionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Datastore\V1\BeginTransactionResponse
      */
     public function BeginTransaction(\Google\Cloud\Datastore\V1\BeginTransactionRequest $argument,
       $metadata = [], $options = []) {
@@ -86,6 +89,7 @@ class DatastoreGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Datastore\V1\CommitRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Datastore\V1\CommitResponse
      */
     public function Commit(\Google\Cloud\Datastore\V1\CommitRequest $argument,
       $metadata = [], $options = []) {
@@ -100,6 +104,7 @@ class DatastoreGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Datastore\V1\RollbackRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Datastore\V1\RollbackResponse
      */
     public function Rollback(\Google\Cloud\Datastore\V1\RollbackRequest $argument,
       $metadata = [], $options = []) {
@@ -115,6 +120,7 @@ class DatastoreGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Datastore\V1\AllocateIdsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Datastore\V1\AllocateIdsResponse
      */
     public function AllocateIds(\Google\Cloud\Datastore\V1\AllocateIdsRequest $argument,
       $metadata = [], $options = []) {
@@ -130,6 +136,7 @@ class DatastoreGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Datastore\V1\ReserveIdsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Datastore\V1\ReserveIdsResponse
      */
     public function ReserveIds(\Google\Cloud\Datastore\V1\ReserveIdsRequest $argument,
       $metadata = [], $options = []) {

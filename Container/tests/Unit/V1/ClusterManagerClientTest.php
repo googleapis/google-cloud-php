@@ -88,164 +88,6 @@ class ClusterManagerClientTest extends GeneratedTest
     /**
      * @test
      */
-    public function deleteClusterTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        // Mock response
-        $name = 'name3373707';
-        $zone = 'zone3744684';
-        $detail = 'detail-1335224239';
-        $statusMessage = 'statusMessage-239442758';
-        $selfLink = 'selfLink-1691268851';
-        $targetLink = 'targetLink-2084812312';
-        $location = 'location1901043637';
-        $startTime = 'startTime-1573145462';
-        $endTime = 'endTime1725551537';
-        $expectedResponse = new Operation();
-        $expectedResponse->setName($name);
-        $expectedResponse->setZone($zone);
-        $expectedResponse->setDetail($detail);
-        $expectedResponse->setStatusMessage($statusMessage);
-        $expectedResponse->setSelfLink($selfLink);
-        $expectedResponse->setTargetLink($targetLink);
-        $expectedResponse->setLocation($location);
-        $expectedResponse->setStartTime($startTime);
-        $expectedResponse->setEndTime($endTime);
-        $transport->addResponse($expectedResponse);
-
-        $response = $client->deleteCluster();
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.container.v1.ClusterManager/DeleteCluster', $actualFuncCall);
-
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function deleteClusterExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
-        try {
-            $client->deleteCluster();
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function deleteNodePoolTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        // Mock response
-        $name = 'name3373707';
-        $zone = 'zone3744684';
-        $detail = 'detail-1335224239';
-        $statusMessage = 'statusMessage-239442758';
-        $selfLink = 'selfLink-1691268851';
-        $targetLink = 'targetLink-2084812312';
-        $location = 'location1901043637';
-        $startTime = 'startTime-1573145462';
-        $endTime = 'endTime1725551537';
-        $expectedResponse = new Operation();
-        $expectedResponse->setName($name);
-        $expectedResponse->setZone($zone);
-        $expectedResponse->setDetail($detail);
-        $expectedResponse->setStatusMessage($statusMessage);
-        $expectedResponse->setSelfLink($selfLink);
-        $expectedResponse->setTargetLink($targetLink);
-        $expectedResponse->setLocation($location);
-        $expectedResponse->setStartTime($startTime);
-        $expectedResponse->setEndTime($endTime);
-        $transport->addResponse($expectedResponse);
-
-        $response = $client->deleteNodePool();
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.container.v1.ClusterManager/DeleteNodePool', $actualFuncCall);
-
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function deleteNodePoolExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
-        try {
-            $client->deleteNodePool();
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
     public function listClustersTest()
     {
         $transport = $this->createTransport();
@@ -1318,6 +1160,85 @@ class ClusterManagerClientTest extends GeneratedTest
     /**
      * @test
      */
+    public function deleteClusterTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $name = 'name3373707';
+        $zone = 'zone3744684';
+        $detail = 'detail-1335224239';
+        $statusMessage = 'statusMessage-239442758';
+        $selfLink = 'selfLink-1691268851';
+        $targetLink = 'targetLink-2084812312';
+        $location = 'location1901043637';
+        $startTime = 'startTime-1573145462';
+        $endTime = 'endTime1725551537';
+        $expectedResponse = new Operation();
+        $expectedResponse->setName($name);
+        $expectedResponse->setZone($zone);
+        $expectedResponse->setDetail($detail);
+        $expectedResponse->setStatusMessage($statusMessage);
+        $expectedResponse->setSelfLink($selfLink);
+        $expectedResponse->setTargetLink($targetLink);
+        $expectedResponse->setLocation($location);
+        $expectedResponse->setStartTime($startTime);
+        $expectedResponse->setEndTime($endTime);
+        $transport->addResponse($expectedResponse);
+
+        $response = $client->deleteCluster();
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.container.v1.ClusterManager/DeleteCluster', $actualFuncCall);
+
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function deleteClusterExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        try {
+            $client->deleteCluster();
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function listOperationsTest()
     {
         $transport = $this->createTransport();
@@ -1791,6 +1712,85 @@ class ClusterManagerClientTest extends GeneratedTest
 
         try {
             $client->createNodePool($nodePool);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function deleteNodePoolTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $name = 'name3373707';
+        $zone = 'zone3744684';
+        $detail = 'detail-1335224239';
+        $statusMessage = 'statusMessage-239442758';
+        $selfLink = 'selfLink-1691268851';
+        $targetLink = 'targetLink-2084812312';
+        $location = 'location1901043637';
+        $startTime = 'startTime-1573145462';
+        $endTime = 'endTime1725551537';
+        $expectedResponse = new Operation();
+        $expectedResponse->setName($name);
+        $expectedResponse->setZone($zone);
+        $expectedResponse->setDetail($detail);
+        $expectedResponse->setStatusMessage($statusMessage);
+        $expectedResponse->setSelfLink($selfLink);
+        $expectedResponse->setTargetLink($targetLink);
+        $expectedResponse->setLocation($location);
+        $expectedResponse->setStartTime($startTime);
+        $expectedResponse->setEndTime($endTime);
+        $transport->addResponse($expectedResponse);
+
+        $response = $client->deleteNodePool();
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.container.v1.ClusterManager/DeleteNodePool', $actualFuncCall);
+
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function deleteNodePoolExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        try {
+            $client->deleteNodePool();
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

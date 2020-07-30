@@ -73,9 +73,10 @@ return [
             ],
         ],
         'google.spanner.admin.database.v1.DatabaseAdmin' => [
-            'ListDatabases' => [
-                'method' => 'get',
+            'CreateDatabase' => [
+                'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/instances/*}/databases',
+                'body' => '*',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -84,10 +85,45 @@ return [
                     ],
                 ],
             ],
-            'CreateDatabase' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{parent=projects/*/instances/*}/databases',
+            'UpdateDatabaseDdl' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{database=projects/*/instances/*/databases/*}/ddl',
                 'body' => '*',
+                'placeholders' => [
+                    'database' => [
+                        'getters' => [
+                            'getDatabase',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateBackup' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/instances/*}/backups',
+                'body' => 'backup',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'RestoreDatabase' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/instances/*}/databases:restore',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListDatabases' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/instances/*}/databases',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -103,18 +139,6 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'UpdateDatabaseDdl' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1/{database=projects/*/instances/*/databases/*}/ddl',
-                'body' => '*',
-                'placeholders' => [
-                    'database' => [
-                        'getters' => [
-                            'getDatabase',
                         ],
                     ],
                 ],
@@ -198,18 +222,6 @@ return [
                     ],
                 ],
             ],
-            'CreateBackup' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{parent=projects/*/instances/*}/backups',
-                'body' => 'backup',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
             'GetBackup' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/instances/*/backups/*}',
@@ -248,18 +260,6 @@ return [
             'ListBackups' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/instances/*}/backups',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'RestoreDatabase' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{parent=projects/*/instances/*}/databases:restore',
-                'body' => '*',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [

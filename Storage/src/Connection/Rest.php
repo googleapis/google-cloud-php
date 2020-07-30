@@ -43,14 +43,36 @@ class Rest implements ConnectionInterface
     use RestTrait;
     use UriTrait;
 
+    /**
+     * @deprecated
+     */
     const BASE_URI = 'https://storage.googleapis.com/storage/v1/';
+
+    const DEFAULT_API_ENDPOINT = 'https://storage.googleapis.com';
+
+    /**
+     * @deprecated
+     */
     const UPLOAD_URI = 'https://storage.googleapis.com/upload/storage/v1/b/{bucket}/o{?query*}';
+
+    const UPLOAD_PATH = 'upload/storage/v1/b/{bucket}/o{?query*}';
+
+    /**
+     * @deprecated
+     */
     const DOWNLOAD_URI = 'https://storage.googleapis.com/storage/v1/b/{bucket}/o/{object}{?query*}';
+
+    const DOWNLOAD_PATH = 'storage/v1/b/{bucket}/o/{object}{?query*}';
 
     /**
      * @var string
      */
     private $projectId;
+
+    /**
+     * @var string
+     */
+    private $apiEndpoint;
 
     /**
      * @param array $config
@@ -59,13 +81,16 @@ class Rest implements ConnectionInterface
     {
         $config += [
             'serviceDefinitionPath' => __DIR__ . '/ServiceDefinition/storage-v1.json',
-            'componentVersion' => StorageClient::VERSION
+            'componentVersion' => StorageClient::VERSION,
+            'apiEndpoint' => self::DEFAULT_API_ENDPOINT
         ];
+
+        $this->apiEndpoint = $this->getApiEndpoint(self::DEFAULT_API_ENDPOINT, $config);
 
         $this->setRequestWrapper(new RequestWrapper($config));
         $this->setRequestBuilder(new RequestBuilder(
             $config['serviceDefinitionPath'],
-            self::BASE_URI
+            $this->apiEndpoint
         ));
 
         $this->projectId = $this->pluck('projectId', $config, false);
@@ -276,7 +301,7 @@ class Rest implements ConnectionInterface
         return new $uploaderClass(
             $this->requestWrapper,
             $args['data'],
-            $this->expandUri(self::UPLOAD_URI, $uriParams),
+            $this->expandUri($this->apiEndpoint . self::UPLOAD_PATH, $uriParams),
             $args['uploaderOptions']
         );
     }
@@ -469,7 +494,7 @@ class Rest implements ConnectionInterface
             'restDelayFunction' => null
         ]);
 
-        $uri = $this->expandUri(self::DOWNLOAD_URI, [
+        $uri = $this->expandUri($this->apiEndpoint . self::DOWNLOAD_PATH, [
             'bucket' => $args['bucket'],
             'object' => $args['object'],
             'query' => [

@@ -249,4 +249,19 @@ class Grpc implements ConnectionInterface
 
         return $args;
     }
+
+    /**
+     * @access private
+     * @codeCoverageIgnore
+     * @return array
+     */
+    public function __debugInfo()
+    {
+        return [
+            'serializer' => get_class($this->serializer),
+            'firestore' => get_class($this->firestore),
+            'resourcePrefixHeader' => $this->resourcePrefixHeader,
+            'isUsingEmulator' => $this->isUsingEmulator
+        ];
+    }
 }

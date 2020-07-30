@@ -90,21 +90,36 @@ use Google\Protobuf\GPBEmpty;
  * $instanceAdminClient = new InstanceAdminClient();
  * try {
  *     $formattedParent = $instanceAdminClient->projectName('[PROJECT]');
- *     // Iterate over pages of elements
- *     $pagedResponse = $instanceAdminClient->listInstanceConfigs($formattedParent);
- *     foreach ($pagedResponse->iteratePages() as $page) {
- *         foreach ($page as $element) {
- *             // doSomethingWith($element);
- *         }
+ *     $instanceId = '';
+ *     $instance = new Instance();
+ *     $operationResponse = $instanceAdminClient->createInstance($formattedParent, $instanceId, $instance);
+ *     $operationResponse->pollUntilComplete();
+ *     if ($operationResponse->operationSucceeded()) {
+ *         $result = $operationResponse->getResult();
+ *         // doSomethingWith($result)
+ *     } else {
+ *         $error = $operationResponse->getError();
+ *         // handleError($error)
  *     }
  *
  *
  *     // Alternatively:
  *
- *     // Iterate through all elements
- *     $pagedResponse = $instanceAdminClient->listInstanceConfigs($formattedParent);
- *     foreach ($pagedResponse->iterateAllElements() as $element) {
- *         // doSomethingWith($element);
+ *     // start the operation, keep the operation name, and resume later
+ *     $operationResponse = $instanceAdminClient->createInstance($formattedParent, $instanceId, $instance);
+ *     $operationName = $operationResponse->getName();
+ *     // ... do other work
+ *     $newOperationResponse = $instanceAdminClient->resumeOperation($operationName, 'createInstance');
+ *     while (!$newOperationResponse->isDone()) {
+ *         // ... do other work
+ *         $newOperationResponse->reload();
+ *     }
+ *     if ($newOperationResponse->operationSucceeded()) {
+ *       $result = $newOperationResponse->getResult();
+ *       // doSomethingWith($result)
+ *     } else {
+ *       $error = $newOperationResponse->getError();
+ *       // handleError($error)
  *     }
  * } finally {
  *     $instanceAdminClient->close();
@@ -408,6 +423,251 @@ class InstanceAdminGapicClient
     }
 
     /**
+     * Creates an instance and begins preparing it to begin serving. The
+     * returned [long-running operation][google.longrunning.Operation]
+     * can be used to track the progress of preparing the new
+     * instance. The instance name is assigned by the caller. If the
+     * named instance already exists, `CreateInstance` returns
+     * `ALREADY_EXISTS`.
+     *
+     * Immediately upon completion of this request:
+     *
+     *   * The instance is readable via the API, with all requested attributes
+     *     but no allocated resources. Its state is `CREATING`.
+     *
+     * Until completion of the returned operation:
+     *
+     *   * Cancelling the operation renders the instance immediately unreadable
+     *     via the API.
+     *   * The instance can be deleted.
+     *   * All other attempts to modify the instance are rejected.
+     *
+     * Upon completion of the returned operation:
+     *
+     *   * Billing for all successfully-allocated resources begins (some types
+     *     may have lower than the requested levels).
+     *   * Databases can be created in the instance.
+     *   * The instance's allocated resource levels are readable via the API.
+     *   * The instance's state becomes `READY`.
+     *
+     * The returned [long-running operation][google.longrunning.Operation] will
+     * have a name of the format `<instance_name>/operations/<operation_id>` and
+     * can be used to track creation of the instance.  The
+     * [metadata][google.longrunning.Operation.metadata] field type is
+     * [CreateInstanceMetadata][google.spanner.admin.instance.v1.CreateInstanceMetadata].
+     * The [response][google.longrunning.Operation.response] field type is
+     * [Instance][google.spanner.admin.instance.v1.Instance], if successful.
+     *
+     * Sample code:
+     * ```
+     * $instanceAdminClient = new InstanceAdminClient();
+     * try {
+     *     $formattedParent = $instanceAdminClient->projectName('[PROJECT]');
+     *     $instanceId = '';
+     *     $instance = new Instance();
+     *     $operationResponse = $instanceAdminClient->createInstance($formattedParent, $instanceId, $instance);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $instanceAdminClient->createInstance($formattedParent, $instanceId, $instance);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $instanceAdminClient->resumeOperation($operationName, 'createInstance');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       $result = $newOperationResponse->getResult();
+     *       // doSomethingWith($result)
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $instanceAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string   $parent       Required. The name of the project in which to create the instance. Values
+     *                               are of the form `projects/<project>`.
+     * @param string   $instanceId   Required. The ID of the instance to create.  Valid identifiers are of the
+     *                               form `[a-z][-a-z0-9]*[a-z0-9]` and must be between 2 and 64 characters in
+     *                               length.
+     * @param Instance $instance     Required. The instance to create.  The name may be omitted, but if
+     *                               specified must be `<parent>/instances/<instance_id>`.
+     * @param array    $optionalArgs {
+     *                               Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function createInstance($parent, $instanceId, $instance, array $optionalArgs = [])
+    {
+        $request = new CreateInstanceRequest();
+        $request->setParent($parent);
+        $request->setInstanceId($instanceId);
+        $request->setInstance($instance);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startOperationsCall(
+            'CreateInstance',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Updates an instance, and begins allocating or releasing resources
+     * as requested. The returned [long-running
+     * operation][google.longrunning.Operation] can be used to track the
+     * progress of updating the instance. If the named instance does not
+     * exist, returns `NOT_FOUND`.
+     *
+     * Immediately upon completion of this request:
+     *
+     *   * For resource types for which a decrease in the instance's allocation
+     *     has been requested, billing is based on the newly-requested level.
+     *
+     * Until completion of the returned operation:
+     *
+     *   * Cancelling the operation sets its metadata's
+     *     [cancel_time][google.spanner.admin.instance.v1.UpdateInstanceMetadata.cancel_time], and begins
+     *     restoring resources to their pre-request values. The operation
+     *     is guaranteed to succeed at undoing all resource changes,
+     *     after which point it terminates with a `CANCELLED` status.
+     *   * All other attempts to modify the instance are rejected.
+     *   * Reading the instance via the API continues to give the pre-request
+     *     resource levels.
+     *
+     * Upon completion of the returned operation:
+     *
+     *   * Billing begins for all successfully-allocated resources (some types
+     *     may have lower than the requested levels).
+     *   * All newly-reserved resources are available for serving the instance's
+     *     tables.
+     *   * The instance's new resource levels are readable via the API.
+     *
+     * The returned [long-running operation][google.longrunning.Operation] will
+     * have a name of the format `<instance_name>/operations/<operation_id>` and
+     * can be used to track the instance modification.  The
+     * [metadata][google.longrunning.Operation.metadata] field type is
+     * [UpdateInstanceMetadata][google.spanner.admin.instance.v1.UpdateInstanceMetadata].
+     * The [response][google.longrunning.Operation.response] field type is
+     * [Instance][google.spanner.admin.instance.v1.Instance], if successful.
+     *
+     * Authorization requires `spanner.instances.update` permission on
+     * resource [name][google.spanner.admin.instance.v1.Instance.name].
+     *
+     * Sample code:
+     * ```
+     * $instanceAdminClient = new InstanceAdminClient();
+     * try {
+     *     $instance = new Instance();
+     *     $fieldMask = new FieldMask();
+     *     $operationResponse = $instanceAdminClient->updateInstance($instance, $fieldMask);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $instanceAdminClient->updateInstance($instance, $fieldMask);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $instanceAdminClient->resumeOperation($operationName, 'updateInstance');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       $result = $newOperationResponse->getResult();
+     *       // doSomethingWith($result)
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $instanceAdminClient->close();
+     * }
+     * ```
+     *
+     * @param Instance  $instance     Required. The instance to update, which must always include the instance
+     *                                name.  Otherwise, only fields mentioned in [field_mask][google.spanner.admin.instance.v1.UpdateInstanceRequest.field_mask] need be included.
+     * @param FieldMask $fieldMask    Required. A mask specifying which fields in [Instance][google.spanner.admin.instance.v1.Instance] should be updated.
+     *                                The field mask must always be specified; this prevents any future fields in
+     *                                [Instance][google.spanner.admin.instance.v1.Instance] from being erased accidentally by clients that do not know
+     *                                about them.
+     * @param array     $optionalArgs {
+     *                                Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function updateInstance($instance, $fieldMask, array $optionalArgs = [])
+    {
+        $request = new UpdateInstanceRequest();
+        $request->setInstance($instance);
+        $request->setFieldMask($fieldMask);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'instance.name' => $request->getInstance()->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startOperationsCall(
+            'UpdateInstance',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
      * Lists the supported instance configurations for a given project.
      *
      * Sample code:
@@ -699,251 +959,6 @@ class InstanceAdminGapicClient
             Instance::class,
             $optionalArgs,
             $request
-        )->wait();
-    }
-
-    /**
-     * Creates an instance and begins preparing it to begin serving. The
-     * returned [long-running operation][google.longrunning.Operation]
-     * can be used to track the progress of preparing the new
-     * instance. The instance name is assigned by the caller. If the
-     * named instance already exists, `CreateInstance` returns
-     * `ALREADY_EXISTS`.
-     *
-     * Immediately upon completion of this request:
-     *
-     *   * The instance is readable via the API, with all requested attributes
-     *     but no allocated resources. Its state is `CREATING`.
-     *
-     * Until completion of the returned operation:
-     *
-     *   * Cancelling the operation renders the instance immediately unreadable
-     *     via the API.
-     *   * The instance can be deleted.
-     *   * All other attempts to modify the instance are rejected.
-     *
-     * Upon completion of the returned operation:
-     *
-     *   * Billing for all successfully-allocated resources begins (some types
-     *     may have lower than the requested levels).
-     *   * Databases can be created in the instance.
-     *   * The instance's allocated resource levels are readable via the API.
-     *   * The instance's state becomes `READY`.
-     *
-     * The returned [long-running operation][google.longrunning.Operation] will
-     * have a name of the format `<instance_name>/operations/<operation_id>` and
-     * can be used to track creation of the instance.  The
-     * [metadata][google.longrunning.Operation.metadata] field type is
-     * [CreateInstanceMetadata][google.spanner.admin.instance.v1.CreateInstanceMetadata].
-     * The [response][google.longrunning.Operation.response] field type is
-     * [Instance][google.spanner.admin.instance.v1.Instance], if successful.
-     *
-     * Sample code:
-     * ```
-     * $instanceAdminClient = new InstanceAdminClient();
-     * try {
-     *     $formattedParent = $instanceAdminClient->projectName('[PROJECT]');
-     *     $instanceId = '';
-     *     $instance = new Instance();
-     *     $operationResponse = $instanceAdminClient->createInstance($formattedParent, $instanceId, $instance);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         $result = $operationResponse->getResult();
-     *         // doSomethingWith($result)
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *
-     *
-     *     // Alternatively:
-     *
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instanceAdminClient->createInstance($formattedParent, $instanceId, $instance);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $instanceAdminClient->resumeOperation($operationName, 'createInstance');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *       $result = $newOperationResponse->getResult();
-     *       // doSomethingWith($result)
-     *     } else {
-     *       $error = $newOperationResponse->getError();
-     *       // handleError($error)
-     *     }
-     * } finally {
-     *     $instanceAdminClient->close();
-     * }
-     * ```
-     *
-     * @param string   $parent       Required. The name of the project in which to create the instance. Values
-     *                               are of the form `projects/<project>`.
-     * @param string   $instanceId   Required. The ID of the instance to create.  Valid identifiers are of the
-     *                               form `[a-z][-a-z0-9]*[a-z0-9]` and must be between 2 and 64 characters in
-     *                               length.
-     * @param Instance $instance     Required. The instance to create.  The name may be omitted, but if
-     *                               specified must be `<parent>/instances/<instance_id>`.
-     * @param array    $optionalArgs {
-     *                               Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\ApiCore\OperationResponse
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function createInstance($parent, $instanceId, $instance, array $optionalArgs = [])
-    {
-        $request = new CreateInstanceRequest();
-        $request->setParent($parent);
-        $request->setInstanceId($instanceId);
-        $request->setInstance($instance);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'parent' => $request->getParent(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startOperationsCall(
-            'CreateInstance',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
-        )->wait();
-    }
-
-    /**
-     * Updates an instance, and begins allocating or releasing resources
-     * as requested. The returned [long-running
-     * operation][google.longrunning.Operation] can be used to track the
-     * progress of updating the instance. If the named instance does not
-     * exist, returns `NOT_FOUND`.
-     *
-     * Immediately upon completion of this request:
-     *
-     *   * For resource types for which a decrease in the instance's allocation
-     *     has been requested, billing is based on the newly-requested level.
-     *
-     * Until completion of the returned operation:
-     *
-     *   * Cancelling the operation sets its metadata's
-     *     [cancel_time][google.spanner.admin.instance.v1.UpdateInstanceMetadata.cancel_time], and begins
-     *     restoring resources to their pre-request values. The operation
-     *     is guaranteed to succeed at undoing all resource changes,
-     *     after which point it terminates with a `CANCELLED` status.
-     *   * All other attempts to modify the instance are rejected.
-     *   * Reading the instance via the API continues to give the pre-request
-     *     resource levels.
-     *
-     * Upon completion of the returned operation:
-     *
-     *   * Billing begins for all successfully-allocated resources (some types
-     *     may have lower than the requested levels).
-     *   * All newly-reserved resources are available for serving the instance's
-     *     tables.
-     *   * The instance's new resource levels are readable via the API.
-     *
-     * The returned [long-running operation][google.longrunning.Operation] will
-     * have a name of the format `<instance_name>/operations/<operation_id>` and
-     * can be used to track the instance modification.  The
-     * [metadata][google.longrunning.Operation.metadata] field type is
-     * [UpdateInstanceMetadata][google.spanner.admin.instance.v1.UpdateInstanceMetadata].
-     * The [response][google.longrunning.Operation.response] field type is
-     * [Instance][google.spanner.admin.instance.v1.Instance], if successful.
-     *
-     * Authorization requires `spanner.instances.update` permission on
-     * resource [name][google.spanner.admin.instance.v1.Instance.name].
-     *
-     * Sample code:
-     * ```
-     * $instanceAdminClient = new InstanceAdminClient();
-     * try {
-     *     $instance = new Instance();
-     *     $fieldMask = new FieldMask();
-     *     $operationResponse = $instanceAdminClient->updateInstance($instance, $fieldMask);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         $result = $operationResponse->getResult();
-     *         // doSomethingWith($result)
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *
-     *
-     *     // Alternatively:
-     *
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instanceAdminClient->updateInstance($instance, $fieldMask);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $instanceAdminClient->resumeOperation($operationName, 'updateInstance');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *       $result = $newOperationResponse->getResult();
-     *       // doSomethingWith($result)
-     *     } else {
-     *       $error = $newOperationResponse->getError();
-     *       // handleError($error)
-     *     }
-     * } finally {
-     *     $instanceAdminClient->close();
-     * }
-     * ```
-     *
-     * @param Instance  $instance     Required. The instance to update, which must always include the instance
-     *                                name.  Otherwise, only fields mentioned in [field_mask][google.spanner.admin.instance.v1.UpdateInstanceRequest.field_mask] need be included.
-     * @param FieldMask $fieldMask    Required. A mask specifying which fields in [Instance][google.spanner.admin.instance.v1.Instance] should be updated.
-     *                                The field mask must always be specified; this prevents any future fields in
-     *                                [Instance][google.spanner.admin.instance.v1.Instance] from being erased accidentally by clients that do not know
-     *                                about them.
-     * @param array     $optionalArgs {
-     *                                Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\ApiCore\OperationResponse
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function updateInstance($instance, $fieldMask, array $optionalArgs = [])
-    {
-        $request = new UpdateInstanceRequest();
-        $request->setInstance($instance);
-        $request->setFieldMask($fieldMask);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'instance.name' => $request->getInstance()->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startOperationsCall(
-            'UpdateInstance',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
         )->wait();
     }
 

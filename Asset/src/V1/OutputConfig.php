@@ -27,9 +27,7 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
      *           Destination on Cloud Storage.
      *     @type \Google\Cloud\Asset\V1\BigQueryDestination $bigquery_destination
      *           Destination on BigQuery. The output table stores the fields in asset
-     *           proto as columns in BigQuery. The resource/iam_policy field is converted
-     *           to a record with each field to a column, except metadata to a single JSON
-     *           string.
+     *           proto as columns in BigQuery.
      * }
      */
     public function __construct($data = NULL) {
@@ -65,9 +63,7 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Destination on BigQuery. The output table stores the fields in asset
-     * proto as columns in BigQuery. The resource/iam_policy field is converted
-     * to a record with each field to a column, except metadata to a single JSON
-     * string.
+     * proto as columns in BigQuery.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.BigQueryDestination bigquery_destination = 2;</code>
      * @return \Google\Cloud\Asset\V1\BigQueryDestination
@@ -79,9 +75,7 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Destination on BigQuery. The output table stores the fields in asset
-     * proto as columns in BigQuery. The resource/iam_policy field is converted
-     * to a record with each field to a column, except metadata to a single JSON
-     * string.
+     * proto as columns in BigQuery.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.BigQueryDestination bigquery_destination = 2;</code>
      * @param \Google\Cloud\Asset\V1\BigQueryDestination $var

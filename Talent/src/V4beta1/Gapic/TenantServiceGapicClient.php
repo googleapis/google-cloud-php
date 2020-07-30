@@ -54,8 +54,9 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $tenantServiceClient = new TenantServiceClient();
  * try {
- *     $formattedName = $tenantServiceClient->tenantName('[PROJECT]', '[TENANT]');
- *     $tenantServiceClient->deleteTenant($formattedName);
+ *     $formattedParent = $tenantServiceClient->projectName('[PROJECT]');
+ *     $tenant = new Tenant();
+ *     $response = $tenantServiceClient->createTenant($formattedParent, $tenant);
  * } finally {
  *     $tenantServiceClient->close();
  * }
@@ -290,57 +291,6 @@ class TenantServiceGapicClient
     }
 
     /**
-     * Deletes specified tenant.
-     *
-     * Sample code:
-     * ```
-     * $tenantServiceClient = new TenantServiceClient();
-     * try {
-     *     $formattedName = $tenantServiceClient->tenantName('[PROJECT]', '[TENANT]');
-     *     $tenantServiceClient->deleteTenant($formattedName);
-     * } finally {
-     *     $tenantServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $name Required. The resource name of the tenant to be deleted.
-     *
-     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/foo/tenants/bar".
-     * @param array $optionalArgs {
-     *                            Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function deleteTenant($name, array $optionalArgs = [])
-    {
-        $request = new DeleteTenantRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteTenant',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
      * Creates a new tenant entity.
      *
      * Sample code:
@@ -505,6 +455,57 @@ class TenantServiceGapicClient
         return $this->startCall(
             'UpdateTenant',
             Tenant::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Deletes specified tenant.
+     *
+     * Sample code:
+     * ```
+     * $tenantServiceClient = new TenantServiceClient();
+     * try {
+     *     $formattedName = $tenantServiceClient->tenantName('[PROJECT]', '[TENANT]');
+     *     $tenantServiceClient->deleteTenant($formattedName);
+     * } finally {
+     *     $tenantServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name Required. The resource name of the tenant to be deleted.
+     *
+     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
+     * "projects/foo/tenants/bar".
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function deleteTenant($name, array $optionalArgs = [])
+    {
+        $request = new DeleteTenantRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteTenant',
+            GPBEmpty::class,
             $optionalArgs,
             $request
         )->wait();

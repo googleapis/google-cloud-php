@@ -48,6 +48,7 @@ class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Kms\V1\ListKeyRingsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Kms\V1\ListKeyRingsResponse
      */
     public function ListKeyRings(\Google\Cloud\Kms\V1\ListKeyRingsRequest $argument,
       $metadata = [], $options = []) {
@@ -62,6 +63,7 @@ class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Kms\V1\ListCryptoKeysRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Kms\V1\ListCryptoKeysResponse
      */
     public function ListCryptoKeys(\Google\Cloud\Kms\V1\ListCryptoKeysRequest $argument,
       $metadata = [], $options = []) {
@@ -76,6 +78,7 @@ class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Kms\V1\ListCryptoKeyVersionsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Kms\V1\ListCryptoKeyVersionsResponse
      */
     public function ListCryptoKeyVersions(\Google\Cloud\Kms\V1\ListCryptoKeyVersionsRequest $argument,
       $metadata = [], $options = []) {
@@ -90,6 +93,7 @@ class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Kms\V1\ListImportJobsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Kms\V1\ListImportJobsResponse
      */
     public function ListImportJobs(\Google\Cloud\Kms\V1\ListImportJobsRequest $argument,
       $metadata = [], $options = []) {
@@ -104,6 +108,7 @@ class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Kms\V1\GetKeyRingRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Kms\V1\KeyRing
      */
     public function GetKeyRing(\Google\Cloud\Kms\V1\GetKeyRingRequest $argument,
       $metadata = [], $options = []) {
@@ -119,6 +124,7 @@ class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Kms\V1\GetCryptoKeyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Kms\V1\CryptoKey
      */
     public function GetCryptoKey(\Google\Cloud\Kms\V1\GetCryptoKeyRequest $argument,
       $metadata = [], $options = []) {
@@ -133,6 +139,7 @@ class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Kms\V1\GetCryptoKeyVersionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Kms\V1\CryptoKeyVersion
      */
     public function GetCryptoKeyVersion(\Google\Cloud\Kms\V1\GetCryptoKeyVersionRequest $argument,
       $metadata = [], $options = []) {
@@ -150,6 +157,7 @@ class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Kms\V1\GetPublicKeyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Kms\V1\PublicKey
      */
     public function GetPublicKey(\Google\Cloud\Kms\V1\GetPublicKeyRequest $argument,
       $metadata = [], $options = []) {
@@ -164,6 +172,7 @@ class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Kms\V1\GetImportJobRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Kms\V1\ImportJob
      */
     public function GetImportJob(\Google\Cloud\Kms\V1\GetImportJobRequest $argument,
       $metadata = [], $options = []) {
@@ -178,6 +187,7 @@ class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Kms\V1\CreateKeyRingRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Kms\V1\KeyRing
      */
     public function CreateKeyRing(\Google\Cloud\Kms\V1\CreateKeyRingRequest $argument,
       $metadata = [], $options = []) {
@@ -196,6 +206,7 @@ class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Kms\V1\CreateCryptoKeyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Kms\V1\CryptoKey
      */
     public function CreateCryptoKey(\Google\Cloud\Kms\V1\CreateCryptoKeyRequest $argument,
       $metadata = [], $options = []) {
@@ -214,6 +225,7 @@ class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Kms\V1\CreateCryptoKeyVersionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Kms\V1\CryptoKeyVersion
      */
     public function CreateCryptoKeyVersion(\Google\Cloud\Kms\V1\CreateCryptoKeyVersionRequest $argument,
       $metadata = [], $options = []) {
@@ -232,6 +244,7 @@ class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Kms\V1\ImportCryptoKeyVersionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Kms\V1\CryptoKeyVersion
      */
     public function ImportCryptoKeyVersion(\Google\Cloud\Kms\V1\ImportCryptoKeyVersionRequest $argument,
       $metadata = [], $options = []) {
@@ -248,6 +261,7 @@ class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Kms\V1\CreateImportJobRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Kms\V1\ImportJob
      */
     public function CreateImportJob(\Google\Cloud\Kms\V1\CreateImportJobRequest $argument,
       $metadata = [], $options = []) {
@@ -262,6 +276,7 @@ class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Kms\V1\UpdateCryptoKeyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Kms\V1\CryptoKey
      */
     public function UpdateCryptoKey(\Google\Cloud\Kms\V1\UpdateCryptoKeyRequest $argument,
       $metadata = [], $options = []) {
@@ -282,6 +297,7 @@ class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Kms\V1\UpdateCryptoKeyVersionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Kms\V1\CryptoKeyVersion
      */
     public function UpdateCryptoKeyVersion(\Google\Cloud\Kms\V1\UpdateCryptoKeyVersionRequest $argument,
       $metadata = [], $options = []) {
@@ -298,6 +314,7 @@ class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Kms\V1\EncryptRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Kms\V1\EncryptResponse
      */
     public function Encrypt(\Google\Cloud\Kms\V1\EncryptRequest $argument,
       $metadata = [], $options = []) {
@@ -313,6 +330,7 @@ class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Kms\V1\DecryptRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Kms\V1\DecryptResponse
      */
     public function Decrypt(\Google\Cloud\Kms\V1\DecryptRequest $argument,
       $metadata = [], $options = []) {
@@ -329,6 +347,7 @@ class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Kms\V1\AsymmetricSignRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Kms\V1\AsymmetricSignResponse
      */
     public function AsymmetricSign(\Google\Cloud\Kms\V1\AsymmetricSignRequest $argument,
       $metadata = [], $options = []) {
@@ -345,6 +364,7 @@ class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Kms\V1\AsymmetricDecryptRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Kms\V1\AsymmetricDecryptResponse
      */
     public function AsymmetricDecrypt(\Google\Cloud\Kms\V1\AsymmetricDecryptRequest $argument,
       $metadata = [], $options = []) {
@@ -361,6 +381,7 @@ class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Kms\V1\UpdateCryptoKeyPrimaryVersionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Kms\V1\CryptoKey
      */
     public function UpdateCryptoKeyPrimaryVersion(\Google\Cloud\Kms\V1\UpdateCryptoKeyPrimaryVersionRequest $argument,
       $metadata = [], $options = []) {
@@ -386,6 +407,7 @@ class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Kms\V1\DestroyCryptoKeyVersionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Kms\V1\CryptoKeyVersion
      */
     public function DestroyCryptoKeyVersion(\Google\Cloud\Kms\V1\DestroyCryptoKeyVersionRequest $argument,
       $metadata = [], $options = []) {
@@ -406,6 +428,7 @@ class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Kms\V1\RestoreCryptoKeyVersionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Kms\V1\CryptoKeyVersion
      */
     public function RestoreCryptoKeyVersion(\Google\Cloud\Kms\V1\RestoreCryptoKeyVersionRequest $argument,
       $metadata = [], $options = []) {

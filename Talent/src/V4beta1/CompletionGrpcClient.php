@@ -38,6 +38,7 @@ class CompletionGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Talent\V4beta1\CompleteQueryRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Talent\V4beta1\CompleteQueryResponse
      */
     public function CompleteQuery(\Google\Cloud\Talent\V4beta1\CompleteQueryRequest $argument,
       $metadata = [], $options = []) {

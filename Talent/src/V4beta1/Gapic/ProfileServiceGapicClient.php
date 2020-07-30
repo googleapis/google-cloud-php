@@ -60,8 +60,24 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $profileServiceClient = new ProfileServiceClient();
  * try {
- *     $formattedName = $profileServiceClient->profileName('[PROJECT]', '[TENANT]', '[PROFILE]');
- *     $profileServiceClient->deleteProfile($formattedName);
+ *     $formattedParent = $profileServiceClient->tenantName('[PROJECT]', '[TENANT]');
+ *     $requestMetadata = new RequestMetadata();
+ *     // Iterate over pages of elements
+ *     $pagedResponse = $profileServiceClient->searchProfiles($formattedParent, $requestMetadata);
+ *     foreach ($pagedResponse->iteratePages() as $page) {
+ *         foreach ($page as $element) {
+ *             // doSomethingWith($element);
+ *         }
+ *     }
+ *
+ *
+ *     // Alternatively:
+ *
+ *     // Iterate through all elements
+ *     $pagedResponse = $profileServiceClient->searchProfiles($formattedParent, $requestMetadata);
+ *     foreach ($pagedResponse->iterateAllElements() as $element) {
+ *         // doSomethingWith($element);
+ *     }
  * } finally {
  *     $profileServiceClient->close();
  * }
@@ -297,60 +313,6 @@ class ProfileServiceGapicClient
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
-    }
-
-    /**
-     * Deletes the specified profile.
-     * Prerequisite: The profile has no associated applications or assignments
-     * associated.
-     *
-     * Sample code:
-     * ```
-     * $profileServiceClient = new ProfileServiceClient();
-     * try {
-     *     $formattedName = $profileServiceClient->profileName('[PROJECT]', '[TENANT]', '[PROFILE]');
-     *     $profileServiceClient->deleteProfile($formattedName);
-     * } finally {
-     *     $profileServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $name Required. Resource name of the profile to be deleted.
-     *
-     * The format is
-     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}". For
-     * example, "projects/foo/tenants/bar/profiles/baz".
-     * @param array $optionalArgs {
-     *                            Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function deleteProfile($name, array $optionalArgs = [])
-    {
-        $request = new DeleteProfileRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteProfile',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
     }
 
     /**
@@ -896,6 +858,60 @@ class ProfileServiceGapicClient
         return $this->startCall(
             'UpdateProfile',
             Profile::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Deletes the specified profile.
+     * Prerequisite: The profile has no associated applications or assignments
+     * associated.
+     *
+     * Sample code:
+     * ```
+     * $profileServiceClient = new ProfileServiceClient();
+     * try {
+     *     $formattedName = $profileServiceClient->profileName('[PROJECT]', '[TENANT]', '[PROFILE]');
+     *     $profileServiceClient->deleteProfile($formattedName);
+     * } finally {
+     *     $profileServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name Required. Resource name of the profile to be deleted.
+     *
+     * The format is
+     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}". For
+     * example, "projects/foo/tenants/bar/profiles/baz".
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function deleteProfile($name, array $optionalArgs = [])
+    {
+        $request = new DeleteProfileRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteProfile',
+            GPBEmpty::class,
             $optionalArgs,
             $request
         )->wait();

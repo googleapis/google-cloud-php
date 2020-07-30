@@ -34,12 +34,12 @@ class PublisherGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Creates the given topic with the given name. See the
-     * <a href="https://cloud.google.com/pubsub/docs/admin#resource_names">
-     * resource name rules</a>.
+     * Creates the given topic with the given name. See the [resource name rules](
+     * https://cloud.google.com/pubsub/docs/admin#resource_names).
      * @param \Google\Cloud\PubSub\V1\Topic $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\PubSub\V1\Topic
      */
     public function CreateTopic(\Google\Cloud\PubSub\V1\Topic $argument,
       $metadata = [], $options = []) {
@@ -55,6 +55,7 @@ class PublisherGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\PubSub\V1\UpdateTopicRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\PubSub\V1\Topic
      */
     public function UpdateTopic(\Google\Cloud\PubSub\V1\UpdateTopicRequest $argument,
       $metadata = [], $options = []) {
@@ -70,6 +71,7 @@ class PublisherGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\PubSub\V1\PublishRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\PubSub\V1\PublishResponse
      */
     public function Publish(\Google\Cloud\PubSub\V1\PublishRequest $argument,
       $metadata = [], $options = []) {
@@ -84,6 +86,7 @@ class PublisherGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\PubSub\V1\GetTopicRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\PubSub\V1\Topic
      */
     public function GetTopic(\Google\Cloud\PubSub\V1\GetTopicRequest $argument,
       $metadata = [], $options = []) {
@@ -98,6 +101,7 @@ class PublisherGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\PubSub\V1\ListTopicsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\PubSub\V1\ListTopicsResponse
      */
     public function ListTopics(\Google\Cloud\PubSub\V1\ListTopicsRequest $argument,
       $metadata = [], $options = []) {
@@ -112,6 +116,7 @@ class PublisherGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\PubSub\V1\ListTopicSubscriptionsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\PubSub\V1\ListTopicSubscriptionsResponse
      */
     public function ListTopicSubscriptions(\Google\Cloud\PubSub\V1\ListTopicSubscriptionsRequest $argument,
       $metadata = [], $options = []) {
@@ -123,14 +128,14 @@ class PublisherGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Lists the names of the snapshots on this topic. Snapshots are used in
-     * <a href="https://cloud.google.com/pubsub/docs/replay-overview">Seek</a>
-     * operations, which allow
-     * you to manage message acknowledgments in bulk. That is, you can set the
-     * acknowledgment state of messages in an existing subscription to the state
-     * captured by a snapshot.
+     * [Seek](https://cloud.google.com/pubsub/docs/replay-overview) operations,
+     * which allow you to manage message acknowledgments in bulk. That is, you can
+     * set the acknowledgment state of messages in an existing subscription to the
+     * state captured by a snapshot.
      * @param \Google\Cloud\PubSub\V1\ListTopicSnapshotsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\PubSub\V1\ListTopicSnapshotsResponse
      */
     public function ListTopicSnapshots(\Google\Cloud\PubSub\V1\ListTopicSnapshotsRequest $argument,
       $metadata = [], $options = []) {
@@ -149,6 +154,7 @@ class PublisherGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\PubSub\V1\DeleteTopicRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Protobuf\GPBEmpty
      */
     public function DeleteTopic(\Google\Cloud\PubSub\V1\DeleteTopicRequest $argument,
       $metadata = [], $options = []) {
@@ -166,6 +172,7 @@ class PublisherGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\PubSub\V1\DetachSubscriptionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\PubSub\V1\DetachSubscriptionResponse
      */
     public function DetachSubscription(\Google\Cloud\PubSub\V1\DetachSubscriptionRequest $argument,
       $metadata = [], $options = []) {

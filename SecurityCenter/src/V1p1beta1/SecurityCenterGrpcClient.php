@@ -37,6 +37,7 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\SecurityCenter\V1p1beta1\CreateSourceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\SecurityCenter\V1p1beta1\Source
      */
     public function CreateSource(\Google\Cloud\SecurityCenter\V1p1beta1\CreateSourceRequest $argument,
       $metadata = [], $options = []) {
@@ -53,6 +54,7 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\SecurityCenter\V1p1beta1\CreateFindingRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\SecurityCenter\V1p1beta1\Finding
      */
     public function CreateFinding(\Google\Cloud\SecurityCenter\V1p1beta1\CreateFindingRequest $argument,
       $metadata = [], $options = []) {
@@ -67,6 +69,7 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\SecurityCenter\V1p1beta1\CreateNotificationConfigRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\SecurityCenter\V1p1beta1\NotificationConfig
      */
     public function CreateNotificationConfig(\Google\Cloud\SecurityCenter\V1p1beta1\CreateNotificationConfigRequest $argument,
       $metadata = [], $options = []) {
@@ -81,6 +84,7 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\SecurityCenter\V1p1beta1\DeleteNotificationConfigRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Protobuf\GPBEmpty
      */
     public function DeleteNotificationConfig(\Google\Cloud\SecurityCenter\V1p1beta1\DeleteNotificationConfigRequest $argument,
       $metadata = [], $options = []) {
@@ -95,6 +99,7 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iam\V1\GetIamPolicyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Iam\V1\Policy
      */
     public function GetIamPolicy(\Google\Cloud\Iam\V1\GetIamPolicyRequest $argument,
       $metadata = [], $options = []) {
@@ -109,6 +114,7 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\SecurityCenter\V1p1beta1\GetNotificationConfigRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\SecurityCenter\V1p1beta1\NotificationConfig
      */
     public function GetNotificationConfig(\Google\Cloud\SecurityCenter\V1p1beta1\GetNotificationConfigRequest $argument,
       $metadata = [], $options = []) {
@@ -123,6 +129,7 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\SecurityCenter\V1p1beta1\GetOrganizationSettingsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\SecurityCenter\V1p1beta1\OrganizationSettings
      */
     public function GetOrganizationSettings(\Google\Cloud\SecurityCenter\V1p1beta1\GetOrganizationSettingsRequest $argument,
       $metadata = [], $options = []) {
@@ -137,6 +144,7 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\SecurityCenter\V1p1beta1\GetSourceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\SecurityCenter\V1p1beta1\Source
      */
     public function GetSource(\Google\Cloud\SecurityCenter\V1p1beta1\GetSourceRequest $argument,
       $metadata = [], $options = []) {
@@ -152,6 +160,7 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\SecurityCenter\V1p1beta1\GroupAssetsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\SecurityCenter\V1p1beta1\GroupAssetsResponse
      */
     public function GroupAssets(\Google\Cloud\SecurityCenter\V1p1beta1\GroupAssetsRequest $argument,
       $metadata = [], $options = []) {
@@ -170,6 +179,7 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\SecurityCenter\V1p1beta1\GroupFindingsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\SecurityCenter\V1p1beta1\GroupFindingsResponse
      */
     public function GroupFindings(\Google\Cloud\SecurityCenter\V1p1beta1\GroupFindingsRequest $argument,
       $metadata = [], $options = []) {
@@ -184,6 +194,7 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\SecurityCenter\V1p1beta1\ListAssetsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\SecurityCenter\V1p1beta1\ListAssetsResponse
      */
     public function ListAssets(\Google\Cloud\SecurityCenter\V1p1beta1\ListAssetsRequest $argument,
       $metadata = [], $options = []) {
@@ -201,6 +212,7 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\SecurityCenter\V1p1beta1\ListFindingsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\SecurityCenter\V1p1beta1\ListFindingsResponse
      */
     public function ListFindings(\Google\Cloud\SecurityCenter\V1p1beta1\ListFindingsRequest $argument,
       $metadata = [], $options = []) {
@@ -215,6 +227,7 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\SecurityCenter\V1p1beta1\ListNotificationConfigsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\SecurityCenter\V1p1beta1\ListNotificationConfigsResponse
      */
     public function ListNotificationConfigs(\Google\Cloud\SecurityCenter\V1p1beta1\ListNotificationConfigsRequest $argument,
       $metadata = [], $options = []) {
@@ -229,6 +242,7 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\SecurityCenter\V1p1beta1\ListSourcesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\SecurityCenter\V1p1beta1\ListSourcesResponse
      */
     public function ListSources(\Google\Cloud\SecurityCenter\V1p1beta1\ListSourcesRequest $argument,
       $metadata = [], $options = []) {
@@ -248,6 +262,7 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\SecurityCenter\V1p1beta1\RunAssetDiscoveryRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\LongRunning\Operation
      */
     public function RunAssetDiscovery(\Google\Cloud\SecurityCenter\V1p1beta1\RunAssetDiscoveryRequest $argument,
       $metadata = [], $options = []) {
@@ -263,6 +278,7 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\SecurityCenter\V1p1beta1\SetFindingStateRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\SecurityCenter\V1p1beta1\Finding
      */
     public function SetFindingState(\Google\Cloud\SecurityCenter\V1p1beta1\SetFindingStateRequest $argument,
       $metadata = [], $options = []) {
@@ -277,6 +293,7 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iam\V1\SetIamPolicyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Iam\V1\Policy
      */
     public function SetIamPolicy(\Google\Cloud\Iam\V1\SetIamPolicyRequest $argument,
       $metadata = [], $options = []) {
@@ -291,6 +308,7 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iam\V1\TestIamPermissionsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
      */
     public function TestIamPermissions(\Google\Cloud\Iam\V1\TestIamPermissionsRequest $argument,
       $metadata = [], $options = []) {
@@ -306,6 +324,7 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\SecurityCenter\V1p1beta1\UpdateFindingRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\SecurityCenter\V1p1beta1\Finding
      */
     public function UpdateFinding(\Google\Cloud\SecurityCenter\V1p1beta1\UpdateFindingRequest $argument,
       $metadata = [], $options = []) {
@@ -321,6 +340,7 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\SecurityCenter\V1p1beta1\UpdateNotificationConfigRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\SecurityCenter\V1p1beta1\NotificationConfig
      */
     public function UpdateNotificationConfig(\Google\Cloud\SecurityCenter\V1p1beta1\UpdateNotificationConfigRequest $argument,
       $metadata = [], $options = []) {
@@ -335,6 +355,7 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\SecurityCenter\V1p1beta1\UpdateOrganizationSettingsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\SecurityCenter\V1p1beta1\OrganizationSettings
      */
     public function UpdateOrganizationSettings(\Google\Cloud\SecurityCenter\V1p1beta1\UpdateOrganizationSettingsRequest $argument,
       $metadata = [], $options = []) {
@@ -349,6 +370,7 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\SecurityCenter\V1p1beta1\UpdateSourceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\SecurityCenter\V1p1beta1\Source
      */
     public function UpdateSource(\Google\Cloud\SecurityCenter\V1p1beta1\UpdateSourceRequest $argument,
       $metadata = [], $options = []) {
@@ -363,6 +385,7 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\SecurityCenter\V1p1beta1\UpdateSecurityMarksRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\SecurityCenter\V1p1beta1\SecurityMarks
      */
     public function UpdateSecurityMarks(\Google\Cloud\SecurityCenter\V1p1beta1\UpdateSecurityMarksRequest $argument,
       $metadata = [], $options = []) {

@@ -51,6 +51,7 @@ class RegistrationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\ServiceDirectory\V1beta1\CreateNamespaceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\ServiceDirectory\V1beta1\PBNamespace
      */
     public function CreateNamespace(\Google\Cloud\ServiceDirectory\V1beta1\CreateNamespaceRequest $argument,
       $metadata = [], $options = []) {
@@ -65,6 +66,7 @@ class RegistrationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\ServiceDirectory\V1beta1\ListNamespacesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\ServiceDirectory\V1beta1\ListNamespacesResponse
      */
     public function ListNamespaces(\Google\Cloud\ServiceDirectory\V1beta1\ListNamespacesRequest $argument,
       $metadata = [], $options = []) {
@@ -79,6 +81,7 @@ class RegistrationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\ServiceDirectory\V1beta1\GetNamespaceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\ServiceDirectory\V1beta1\PBNamespace
      */
     public function GetNamespace(\Google\Cloud\ServiceDirectory\V1beta1\GetNamespaceRequest $argument,
       $metadata = [], $options = []) {
@@ -93,6 +96,7 @@ class RegistrationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\ServiceDirectory\V1beta1\UpdateNamespaceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\ServiceDirectory\V1beta1\PBNamespace
      */
     public function UpdateNamespace(\Google\Cloud\ServiceDirectory\V1beta1\UpdateNamespaceRequest $argument,
       $metadata = [], $options = []) {
@@ -108,6 +112,7 @@ class RegistrationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\ServiceDirectory\V1beta1\DeleteNamespaceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Protobuf\GPBEmpty
      */
     public function DeleteNamespace(\Google\Cloud\ServiceDirectory\V1beta1\DeleteNamespaceRequest $argument,
       $metadata = [], $options = []) {
@@ -122,6 +127,7 @@ class RegistrationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\ServiceDirectory\V1beta1\CreateServiceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\ServiceDirectory\V1beta1\Service
      */
     public function CreateService(\Google\Cloud\ServiceDirectory\V1beta1\CreateServiceRequest $argument,
       $metadata = [], $options = []) {
@@ -136,6 +142,7 @@ class RegistrationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\ServiceDirectory\V1beta1\ListServicesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\ServiceDirectory\V1beta1\ListServicesResponse
      */
     public function ListServices(\Google\Cloud\ServiceDirectory\V1beta1\ListServicesRequest $argument,
       $metadata = [], $options = []) {
@@ -150,6 +157,7 @@ class RegistrationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\ServiceDirectory\V1beta1\GetServiceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\ServiceDirectory\V1beta1\Service
      */
     public function GetService(\Google\Cloud\ServiceDirectory\V1beta1\GetServiceRequest $argument,
       $metadata = [], $options = []) {
@@ -164,6 +172,7 @@ class RegistrationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\ServiceDirectory\V1beta1\UpdateServiceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\ServiceDirectory\V1beta1\Service
      */
     public function UpdateService(\Google\Cloud\ServiceDirectory\V1beta1\UpdateServiceRequest $argument,
       $metadata = [], $options = []) {
@@ -179,6 +188,7 @@ class RegistrationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\ServiceDirectory\V1beta1\DeleteServiceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Protobuf\GPBEmpty
      */
     public function DeleteService(\Google\Cloud\ServiceDirectory\V1beta1\DeleteServiceRequest $argument,
       $metadata = [], $options = []) {
@@ -193,6 +203,7 @@ class RegistrationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\ServiceDirectory\V1beta1\CreateEndpointRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\ServiceDirectory\V1beta1\Endpoint
      */
     public function CreateEndpoint(\Google\Cloud\ServiceDirectory\V1beta1\CreateEndpointRequest $argument,
       $metadata = [], $options = []) {
@@ -207,6 +218,7 @@ class RegistrationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\ServiceDirectory\V1beta1\ListEndpointsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\ServiceDirectory\V1beta1\ListEndpointsResponse
      */
     public function ListEndpoints(\Google\Cloud\ServiceDirectory\V1beta1\ListEndpointsRequest $argument,
       $metadata = [], $options = []) {
@@ -221,6 +233,7 @@ class RegistrationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\ServiceDirectory\V1beta1\GetEndpointRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\ServiceDirectory\V1beta1\Endpoint
      */
     public function GetEndpoint(\Google\Cloud\ServiceDirectory\V1beta1\GetEndpointRequest $argument,
       $metadata = [], $options = []) {
@@ -235,6 +248,7 @@ class RegistrationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\ServiceDirectory\V1beta1\UpdateEndpointRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\ServiceDirectory\V1beta1\Endpoint
      */
     public function UpdateEndpoint(\Google\Cloud\ServiceDirectory\V1beta1\UpdateEndpointRequest $argument,
       $metadata = [], $options = []) {
@@ -249,6 +263,7 @@ class RegistrationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\ServiceDirectory\V1beta1\DeleteEndpointRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Protobuf\GPBEmpty
      */
     public function DeleteEndpoint(\Google\Cloud\ServiceDirectory\V1beta1\DeleteEndpointRequest $argument,
       $metadata = [], $options = []) {
@@ -263,6 +278,7 @@ class RegistrationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iam\V1\GetIamPolicyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Iam\V1\Policy
      */
     public function GetIamPolicy(\Google\Cloud\Iam\V1\GetIamPolicyRequest $argument,
       $metadata = [], $options = []) {
@@ -277,6 +293,7 @@ class RegistrationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iam\V1\SetIamPolicyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Iam\V1\Policy
      */
     public function SetIamPolicy(\Google\Cloud\Iam\V1\SetIamPolicyRequest $argument,
       $metadata = [], $options = []) {
@@ -291,6 +308,7 @@ class RegistrationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iam\V1\TestIamPermissionsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
      */
     public function TestIamPermissions(\Google\Cloud\Iam\V1\TestIamPermissionsRequest $argument,
       $metadata = [], $options = []) {

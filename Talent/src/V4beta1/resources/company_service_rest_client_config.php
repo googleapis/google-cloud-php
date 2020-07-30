@@ -3,23 +3,6 @@
 return [
     'interfaces' => [
         'google.cloud.talent.v4beta1.CompanyService' => [
-            'DeleteCompany' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v4beta1/{name=projects/*/tenants/*/companies/*}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'delete',
-                        'uriTemplate' => '/v4beta1/{name=projects/*/companies/*}',
-                    ],
-                ],
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'CreateCompany' => [
                 'method' => 'post',
                 'uriTemplate' => '/v4beta1/{parent=projects/*/tenants/*}/companies',
@@ -71,6 +54,23 @@ return [
                     'company.name' => [
                         'getters' => [
                             'getCompany',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteCompany' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v4beta1/{name=projects/*/tenants/*/companies/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v4beta1/{name=projects/*/companies/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
                             'getName',
                         ],
                     ],

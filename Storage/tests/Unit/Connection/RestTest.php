@@ -19,6 +19,7 @@ namespace Google\Cloud\Storage\Tests\Unit\Connection;
 
 use Google\Cloud\Core\RequestBuilder;
 use Google\Cloud\Core\RequestWrapper;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Upload\MultipartUploader;
 use Google\Cloud\Core\Upload\ResumableUploader;
 use Google\Cloud\Core\Upload\StreamableUploader;
@@ -54,6 +55,23 @@ class RestTest extends TestCase
     {
         $this->requestWrapper = $this->prophesize(RequestWrapper::class);
         $this->successBody = '{"canI":"kickIt"}';
+    }
+
+    public function testApiEndpoint()
+    {
+        $endpoint = 'https://foobar.com/';
+        $rest = TestHelpers::stub(Rest::class, [
+            [
+                'apiEndpoint' => $endpoint
+            ]
+        ], ['requestBuilder']);
+
+        $rb = $rest->___getProperty('requestBuilder');
+        $r = new \ReflectionObject($rb);
+        $p = $r->getProperty('baseUri');
+        $p->setAccessible(true);
+
+        $this->assertEquals($endpoint . 'storage/v1/', $p->getValue($rb));
     }
 
     /**
@@ -138,7 +156,18 @@ class RestTest extends TestCase
         $this->assertNull($rest->projectId());
     }
 
-    public function testDownloadObject()
+    public function apiEndpointProvider()
+    {
+        return [
+            [null],
+            ['https://foobar.com']
+        ];
+    }
+
+    /**
+     * @dataProvider apiEndpointProvider
+     */
+    public function testDownloadObject($apiEndpoint)
     {
         $actualRequest = null;
         $response = new Response(200, [], $this->successBody);
@@ -153,14 +182,16 @@ class RestTest extends TestCase
             }
         );
 
-        $rest = new Rest();
+        $rest = $apiEndpoint ? new Rest(['apiEndpoint' => $apiEndpoint]) : new Rest();
         $rest->setRequestWrapper($this->requestWrapper->reveal());
 
         $actualBody = $rest->downloadObject(self::$downloadOptions);
         $actualUri = (string) $actualRequest->getUri();
 
-        $expectedUri = 'https://storage.googleapis.com/storage/v1/b/bigbucket/o/myfile.txt?' .
-            'generation=100&alt=media&userProject=myProject';
+        $expectedUri = sprintf(
+            '%s/storage/v1/b/bigbucket/o/myfile.txt?generation=100&alt=media&userProject=myProject',
+            $apiEndpoint ?: Rest::DEFAULT_API_ENDPOINT
+        );
 
         $this->assertEquals($this->successBody, $actualBody);
         $this->assertEquals(
@@ -169,7 +200,10 @@ class RestTest extends TestCase
         );
     }
 
-    public function testDownloadObjectAsync()
+    /**
+     * @dataProvider apiEndpointProvider
+     */
+    public function testDownloadObjectAsync($apiEndpoint)
     {
         $actualRequest = null;
         $response = new Response(200, [], $this->successBody);
@@ -184,14 +218,16 @@ class RestTest extends TestCase
             }
         );
 
-        $rest = new Rest();
+        $rest = $apiEndpoint ? new Rest(['apiEndpoint' => $apiEndpoint]) : new Rest();
         $rest->setRequestWrapper($this->requestWrapper->reveal());
 
         $actualPromise = $rest->downloadObjectAsync(self::$downloadOptions);
         $actualUri = (string) $actualRequest->getUri();
 
-        $expectedUri = 'https://storage.googleapis.com/storage/v1/b/bigbucket/o/myfile.txt?' .
-            'generation=100&alt=media&userProject=myProject';
+        $expectedUri = sprintf(
+            '%s/storage/v1/b/bigbucket/o/myfile.txt?generation=100&alt=media&userProject=myProject',
+            $apiEndpoint ?: Rest::DEFAULT_API_ENDPOINT
+        );
 
         $this->assertInstanceOf(PromiseInterface::class, $actualPromise);
         $this->assertInstanceOf(StreamInterface::class, $actualPromise->wait());

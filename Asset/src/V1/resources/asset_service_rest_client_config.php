@@ -3,6 +3,17 @@
 return [
     'interfaces' => [
         'google.cloud.asset.v1.AssetService' => [
+            'DeleteFeed' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=*/*/feeds/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ExportAssets' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=*/*}:exportAssets',
@@ -73,13 +84,24 @@ return [
                     ],
                 ],
             ],
-            'DeleteFeed' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1/{name=*/*/feeds/*}',
+            'SearchAllResources' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{scope=*/*}:searchAllResources',
                 'placeholders' => [
-                    'name' => [
+                    'scope' => [
                         'getters' => [
-                            'getName',
+                            'getScope',
+                        ],
+                    ],
+                ],
+            ],
+            'SearchAllIamPolicies' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{scope=*/*}:searchAllIamPolicies',
+                'placeholders' => [
+                    'scope' => [
+                        'getters' => [
+                            'getScope',
                         ],
                     ],
                 ],

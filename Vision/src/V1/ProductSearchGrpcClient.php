@@ -56,6 +56,7 @@ class ProductSearchGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Vision\V1\CreateProductSetRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Vision\V1\ProductSet
      */
     public function CreateProductSet(\Google\Cloud\Vision\V1\CreateProductSetRequest $argument,
       $metadata = [], $options = []) {
@@ -75,6 +76,7 @@ class ProductSearchGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Vision\V1\ListProductSetsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Vision\V1\ListProductSetsResponse
      */
     public function ListProductSets(\Google\Cloud\Vision\V1\ListProductSetsRequest $argument,
       $metadata = [], $options = []) {
@@ -93,6 +95,7 @@ class ProductSearchGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Vision\V1\GetProductSetRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Vision\V1\ProductSet
      */
     public function GetProductSet(\Google\Cloud\Vision\V1\GetProductSetRequest $argument,
       $metadata = [], $options = []) {
@@ -114,6 +117,7 @@ class ProductSearchGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Vision\V1\UpdateProductSetRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Vision\V1\ProductSet
      */
     public function UpdateProductSet(\Google\Cloud\Vision\V1\UpdateProductSetRequest $argument,
       $metadata = [], $options = []) {
@@ -131,6 +135,7 @@ class ProductSearchGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Vision\V1\DeleteProductSetRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Protobuf\GPBEmpty
      */
     public function DeleteProductSet(\Google\Cloud\Vision\V1\DeleteProductSetRequest $argument,
       $metadata = [], $options = []) {
@@ -152,6 +157,7 @@ class ProductSearchGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Vision\V1\CreateProductRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Vision\V1\Product
      */
     public function CreateProduct(\Google\Cloud\Vision\V1\CreateProductRequest $argument,
       $metadata = [], $options = []) {
@@ -170,6 +176,7 @@ class ProductSearchGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Vision\V1\ListProductsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Vision\V1\ListProductsResponse
      */
     public function ListProducts(\Google\Cloud\Vision\V1\ListProductsRequest $argument,
       $metadata = [], $options = []) {
@@ -188,6 +195,7 @@ class ProductSearchGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Vision\V1\GetProductRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Vision\V1\Product
      */
     public function GetProduct(\Google\Cloud\Vision\V1\GetProductRequest $argument,
       $metadata = [], $options = []) {
@@ -216,6 +224,7 @@ class ProductSearchGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Vision\V1\UpdateProductRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Vision\V1\Product
      */
     public function UpdateProduct(\Google\Cloud\Vision\V1\UpdateProductRequest $argument,
       $metadata = [], $options = []) {
@@ -234,6 +243,7 @@ class ProductSearchGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Vision\V1\DeleteProductRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Protobuf\GPBEmpty
      */
     public function DeleteProduct(\Google\Cloud\Vision\V1\DeleteProductRequest $argument,
       $metadata = [], $options = []) {
@@ -266,6 +276,7 @@ class ProductSearchGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Vision\V1\CreateReferenceImageRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Vision\V1\ReferenceImage
      */
     public function CreateReferenceImage(\Google\Cloud\Vision\V1\CreateReferenceImageRequest $argument,
       $metadata = [], $options = []) {
@@ -286,6 +297,7 @@ class ProductSearchGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Vision\V1\DeleteReferenceImageRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Protobuf\GPBEmpty
      */
     public function DeleteReferenceImage(\Google\Cloud\Vision\V1\DeleteReferenceImageRequest $argument,
       $metadata = [], $options = []) {
@@ -306,6 +318,7 @@ class ProductSearchGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Vision\V1\ListReferenceImagesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Vision\V1\ListReferenceImagesResponse
      */
     public function ListReferenceImages(\Google\Cloud\Vision\V1\ListReferenceImagesRequest $argument,
       $metadata = [], $options = []) {
@@ -324,6 +337,7 @@ class ProductSearchGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Vision\V1\GetReferenceImageRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Vision\V1\ReferenceImage
      */
     public function GetReferenceImage(\Google\Cloud\Vision\V1\GetReferenceImageRequest $argument,
       $metadata = [], $options = []) {
@@ -345,6 +359,7 @@ class ProductSearchGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Vision\V1\AddProductToProductSetRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Protobuf\GPBEmpty
      */
     public function AddProductToProductSet(\Google\Cloud\Vision\V1\AddProductToProductSetRequest $argument,
       $metadata = [], $options = []) {
@@ -359,6 +374,7 @@ class ProductSearchGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Vision\V1\RemoveProductFromProductSetRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Protobuf\GPBEmpty
      */
     public function RemoveProductFromProductSet(\Google\Cloud\Vision\V1\RemoveProductFromProductSetRequest $argument,
       $metadata = [], $options = []) {
@@ -379,6 +395,7 @@ class ProductSearchGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Vision\V1\ListProductsInProductSetRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Vision\V1\ListProductsInProductSetResponse
      */
     public function ListProductsInProductSet(\Google\Cloud\Vision\V1\ListProductsInProductSetRequest $argument,
       $metadata = [], $options = []) {
@@ -403,6 +420,7 @@ class ProductSearchGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Vision\V1\ImportProductSetsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\LongRunning\Operation
      */
     public function ImportProductSets(\Google\Cloud\Vision\V1\ImportProductSetsRequest $argument,
       $metadata = [], $options = []) {
@@ -440,6 +458,7 @@ class ProductSearchGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Vision\V1\PurgeProductsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\LongRunning\Operation
      */
     public function PurgeProducts(\Google\Cloud\Vision\V1\PurgeProductsRequest $argument,
       $metadata = [], $options = []) {

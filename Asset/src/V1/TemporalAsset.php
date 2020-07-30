@@ -34,6 +34,19 @@ class TemporalAsset extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.asset.v1.Asset asset = 3;</code>
      */
     private $asset = null;
+    /**
+     * State of prior_asset.
+     *
+     * Generated from protobuf field <code>.google.cloud.asset.v1.TemporalAsset.PriorAssetState prior_asset_state = 4;</code>
+     */
+    private $prior_asset_state = 0;
+    /**
+     * Prior copy of the asset. Populated if prior_asset_state is PRESENT.
+     * Currently this is only set for responses in Real-Time Feed.
+     *
+     * Generated from protobuf field <code>.google.cloud.asset.v1.Asset prior_asset = 5;</code>
+     */
+    private $prior_asset = null;
 
     /**
      * Constructor.
@@ -47,6 +60,11 @@ class TemporalAsset extends \Google\Protobuf\Internal\Message
      *           Whether the asset has been deleted or not.
      *     @type \Google\Cloud\Asset\V1\Asset $asset
      *           An asset in Google Cloud.
+     *     @type int $prior_asset_state
+     *           State of prior_asset.
+     *     @type \Google\Cloud\Asset\V1\Asset $prior_asset
+     *           Prior copy of the asset. Populated if prior_asset_state is PRESENT.
+     *           Currently this is only set for responses in Real-Time Feed.
      * }
      */
     public function __construct($data = NULL) {
@@ -128,6 +146,60 @@ class TemporalAsset extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Asset\V1\Asset::class);
         $this->asset = $var;
+
+        return $this;
+    }
+
+    /**
+     * State of prior_asset.
+     *
+     * Generated from protobuf field <code>.google.cloud.asset.v1.TemporalAsset.PriorAssetState prior_asset_state = 4;</code>
+     * @return int
+     */
+    public function getPriorAssetState()
+    {
+        return $this->prior_asset_state;
+    }
+
+    /**
+     * State of prior_asset.
+     *
+     * Generated from protobuf field <code>.google.cloud.asset.v1.TemporalAsset.PriorAssetState prior_asset_state = 4;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPriorAssetState($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Asset\V1\TemporalAsset_PriorAssetState::class);
+        $this->prior_asset_state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Prior copy of the asset. Populated if prior_asset_state is PRESENT.
+     * Currently this is only set for responses in Real-Time Feed.
+     *
+     * Generated from protobuf field <code>.google.cloud.asset.v1.Asset prior_asset = 5;</code>
+     * @return \Google\Cloud\Asset\V1\Asset
+     */
+    public function getPriorAsset()
+    {
+        return $this->prior_asset;
+    }
+
+    /**
+     * Prior copy of the asset. Populated if prior_asset_state is PRESENT.
+     * Currently this is only set for responses in Real-Time Feed.
+     *
+     * Generated from protobuf field <code>.google.cloud.asset.v1.Asset prior_asset = 5;</code>
+     * @param \Google\Cloud\Asset\V1\Asset $var
+     * @return $this
+     */
+    public function setPriorAsset($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Asset\V1\Asset::class);
+        $this->prior_asset = $var;
 
         return $this;
     }

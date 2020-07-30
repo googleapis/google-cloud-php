@@ -40,6 +40,7 @@ class JobServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Talent\V4beta1\CreateJobRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Talent\V4beta1\Job
      */
     public function CreateJob(\Google\Cloud\Talent\V4beta1\CreateJobRequest $argument,
       $metadata = [], $options = []) {
@@ -54,6 +55,7 @@ class JobServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Talent\V4beta1\BatchCreateJobsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\LongRunning\Operation
      */
     public function BatchCreateJobs(\Google\Cloud\Talent\V4beta1\BatchCreateJobsRequest $argument,
       $metadata = [], $options = []) {
@@ -69,6 +71,7 @@ class JobServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Talent\V4beta1\GetJobRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Talent\V4beta1\Job
      */
     public function GetJob(\Google\Cloud\Talent\V4beta1\GetJobRequest $argument,
       $metadata = [], $options = []) {
@@ -86,6 +89,7 @@ class JobServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Talent\V4beta1\UpdateJobRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Talent\V4beta1\Job
      */
     public function UpdateJob(\Google\Cloud\Talent\V4beta1\UpdateJobRequest $argument,
       $metadata = [], $options = []) {
@@ -100,6 +104,7 @@ class JobServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Talent\V4beta1\BatchUpdateJobsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\LongRunning\Operation
      */
     public function BatchUpdateJobs(\Google\Cloud\Talent\V4beta1\BatchUpdateJobsRequest $argument,
       $metadata = [], $options = []) {
@@ -117,6 +122,7 @@ class JobServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Talent\V4beta1\DeleteJobRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Protobuf\GPBEmpty
      */
     public function DeleteJob(\Google\Cloud\Talent\V4beta1\DeleteJobRequest $argument,
       $metadata = [], $options = []) {
@@ -131,6 +137,7 @@ class JobServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Talent\V4beta1\BatchDeleteJobsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Protobuf\GPBEmpty
      */
     public function BatchDeleteJobs(\Google\Cloud\Talent\V4beta1\BatchDeleteJobsRequest $argument,
       $metadata = [], $options = []) {
@@ -145,6 +152,7 @@ class JobServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Talent\V4beta1\ListJobsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Talent\V4beta1\ListJobsResponse
      */
     public function ListJobs(\Google\Cloud\Talent\V4beta1\ListJobsRequest $argument,
       $metadata = [], $options = []) {
@@ -163,6 +171,7 @@ class JobServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Talent\V4beta1\SearchJobsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Talent\V4beta1\SearchJobsResponse
      */
     public function SearchJobs(\Google\Cloud\Talent\V4beta1\SearchJobsRequest $argument,
       $metadata = [], $options = []) {
@@ -186,6 +195,7 @@ class JobServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Talent\V4beta1\SearchJobsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Talent\V4beta1\SearchJobsResponse
      */
     public function SearchJobsForAlert(\Google\Cloud\Talent\V4beta1\SearchJobsRequest $argument,
       $metadata = [], $options = []) {

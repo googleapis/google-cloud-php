@@ -52,6 +52,7 @@ class CloudMemcacheGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Memcache\V1beta2\ListInstancesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Memcache\V1beta2\ListInstancesResponse
      */
     public function ListInstances(\Google\Cloud\Memcache\V1beta2\ListInstancesRequest $argument,
       $metadata = [], $options = []) {
@@ -66,6 +67,7 @@ class CloudMemcacheGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Memcache\V1beta2\GetInstanceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Memcache\V1beta2\Instance
      */
     public function GetInstance(\Google\Cloud\Memcache\V1beta2\GetInstanceRequest $argument,
       $metadata = [], $options = []) {
@@ -80,6 +82,7 @@ class CloudMemcacheGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Memcache\V1beta2\CreateInstanceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\LongRunning\Operation
      */
     public function CreateInstance(\Google\Cloud\Memcache\V1beta2\CreateInstanceRequest $argument,
       $metadata = [], $options = []) {
@@ -94,6 +97,7 @@ class CloudMemcacheGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Memcache\V1beta2\UpdateInstanceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\LongRunning\Operation
      */
     public function UpdateInstance(\Google\Cloud\Memcache\V1beta2\UpdateInstanceRequest $argument,
       $metadata = [], $options = []) {
@@ -110,6 +114,7 @@ class CloudMemcacheGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Memcache\V1beta2\UpdateParametersRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\LongRunning\Operation
      */
     public function UpdateParameters(\Google\Cloud\Memcache\V1beta2\UpdateParametersRequest $argument,
       $metadata = [], $options = []) {
@@ -124,6 +129,7 @@ class CloudMemcacheGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Memcache\V1beta2\DeleteInstanceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\LongRunning\Operation
      */
     public function DeleteInstance(\Google\Cloud\Memcache\V1beta2\DeleteInstanceRequest $argument,
       $metadata = [], $options = []) {
@@ -139,6 +145,7 @@ class CloudMemcacheGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Memcache\V1beta2\ApplyParametersRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\LongRunning\Operation
      */
     public function ApplyParameters(\Google\Cloud\Memcache\V1beta2\ApplyParametersRequest $argument,
       $metadata = [], $options = []) {

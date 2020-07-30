@@ -43,6 +43,7 @@ class SessionsGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dialogflow\V2\DetectIntentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Dialogflow\V2\DetectIntentResponse
      */
     public function DetectIntent(\Google\Cloud\Dialogflow\V2\DetectIntentRequest $argument,
       $metadata = [], $options = []) {
@@ -58,6 +59,7 @@ class SessionsGrpcClient extends \Grpc\BaseStub {
      * available via the gRPC API (not REST).
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Dialogflow\V2\StreamingDetectIntentResponse
      */
     public function StreamingDetectIntent($metadata = [], $options = []) {
         return $this->_bidiRequest('/google.cloud.dialogflow.v2.Sessions/StreamingDetectIntent',

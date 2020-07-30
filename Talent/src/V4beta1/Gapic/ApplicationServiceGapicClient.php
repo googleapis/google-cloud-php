@@ -55,8 +55,9 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $applicationServiceClient = new ApplicationServiceClient();
  * try {
- *     $formattedName = $applicationServiceClient->applicationName('[PROJECT]', '[TENANT]', '[PROFILE]', '[APPLICATION]');
- *     $applicationServiceClient->deleteApplication($formattedName);
+ *     $formattedParent = $applicationServiceClient->profileName('[PROJECT]', '[TENANT]', '[PROFILE]');
+ *     $application = new Application();
+ *     $response = $applicationServiceClient->createApplication($formattedParent, $application);
  * } finally {
  *     $applicationServiceClient->close();
  * }
@@ -551,58 +552,6 @@ class ApplicationServiceGapicClient
     }
 
     /**
-     * Deletes specified application.
-     *
-     * Sample code:
-     * ```
-     * $applicationServiceClient = new ApplicationServiceClient();
-     * try {
-     *     $formattedName = $applicationServiceClient->applicationName('[PROJECT]', '[TENANT]', '[PROFILE]', '[APPLICATION]');
-     *     $applicationServiceClient->deleteApplication($formattedName);
-     * } finally {
-     *     $applicationServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $name Required. The resource name of the application to be deleted.
-     *
-     * The format is
-     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}/applications/{application_id}".
-     * For example, "projects/foo/tenants/bar/profiles/baz/applications/qux".
-     * @param array $optionalArgs {
-     *                            Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function deleteApplication($name, array $optionalArgs = [])
-    {
-        $request = new DeleteApplicationRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteApplication',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
      * Creates a new application entity.
      *
      * Sample code:
@@ -769,6 +718,58 @@ class ApplicationServiceGapicClient
         return $this->startCall(
             'UpdateApplication',
             Application::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Deletes specified application.
+     *
+     * Sample code:
+     * ```
+     * $applicationServiceClient = new ApplicationServiceClient();
+     * try {
+     *     $formattedName = $applicationServiceClient->applicationName('[PROJECT]', '[TENANT]', '[PROFILE]', '[APPLICATION]');
+     *     $applicationServiceClient->deleteApplication($formattedName);
+     * } finally {
+     *     $applicationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name Required. The resource name of the application to be deleted.
+     *
+     * The format is
+     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}/applications/{application_id}".
+     * For example, "projects/foo/tenants/bar/profiles/baz/applications/qux".
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function deleteApplication($name, array $optionalArgs = [])
+    {
+        $request = new DeleteApplicationRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteApplication',
+            GPBEmpty::class,
             $optionalArgs,
             $request
         )->wait();

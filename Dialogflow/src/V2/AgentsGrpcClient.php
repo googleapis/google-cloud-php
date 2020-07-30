@@ -37,6 +37,7 @@ class AgentsGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dialogflow\V2\GetAgentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Dialogflow\V2\Agent
      */
     public function GetAgent(\Google\Cloud\Dialogflow\V2\GetAgentRequest $argument,
       $metadata = [], $options = []) {
@@ -51,6 +52,7 @@ class AgentsGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dialogflow\V2\SetAgentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Dialogflow\V2\Agent
      */
     public function SetAgent(\Google\Cloud\Dialogflow\V2\SetAgentRequest $argument,
       $metadata = [], $options = []) {
@@ -65,6 +67,7 @@ class AgentsGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dialogflow\V2\DeleteAgentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Protobuf\GPBEmpty
      */
     public function DeleteAgent(\Google\Cloud\Dialogflow\V2\DeleteAgentRequest $argument,
       $metadata = [], $options = []) {
@@ -85,6 +88,7 @@ class AgentsGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dialogflow\V2\SearchAgentsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Dialogflow\V2\SearchAgentsResponse
      */
     public function SearchAgents(\Google\Cloud\Dialogflow\V2\SearchAgentsRequest $argument,
       $metadata = [], $options = []) {
@@ -101,6 +105,7 @@ class AgentsGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dialogflow\V2\TrainAgentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\LongRunning\Operation
      */
     public function TrainAgent(\Google\Cloud\Dialogflow\V2\TrainAgentRequest $argument,
       $metadata = [], $options = []) {
@@ -117,6 +122,7 @@ class AgentsGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dialogflow\V2\ExportAgentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\LongRunning\Operation
      */
     public function ExportAgent(\Google\Cloud\Dialogflow\V2\ExportAgentRequest $argument,
       $metadata = [], $options = []) {
@@ -131,12 +137,19 @@ class AgentsGrpcClient extends \Grpc\BaseStub {
      *
      * Uploads new intents and entity types without deleting the existing ones.
      * Intents and entity types with the same name are replaced with the new
-     * versions from ImportAgentRequest.
+     * versions from [ImportAgentRequest][google.cloud.dialogflow.v2.ImportAgentRequest]. After the import, the imported draft
+     * agent will be trained automatically (unless disabled in agent settings).
+     * However, once the import is done, training may not be completed yet. Please
+     * call [TrainAgent][google.cloud.dialogflow.v2.Agents.TrainAgent] and wait for the operation it returns in order to train
+     * explicitly.
      *
      * Operation <response: [google.protobuf.Empty][google.protobuf.Empty]>
+     * An operation which tracks when importing is complete. It only tracks
+     * when the draft agent is updated not when it is done training.
      * @param \Google\Cloud\Dialogflow\V2\ImportAgentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\LongRunning\Operation
      */
     public function ImportAgent(\Google\Cloud\Dialogflow\V2\ImportAgentRequest $argument,
       $metadata = [], $options = []) {
@@ -150,12 +163,19 @@ class AgentsGrpcClient extends \Grpc\BaseStub {
      * Restores the specified agent from a ZIP file.
      *
      * Replaces the current agent version with a new one. All the intents and
-     * entity types in the older version are deleted.
+     * entity types in the older version are deleted. After the restore, the
+     * restored draft agent will be trained automatically (unless disabled in
+     * agent settings). However, once the restore is done, training may not be
+     * completed yet. Please call [TrainAgent][google.cloud.dialogflow.v2.Agents.TrainAgent] and wait for the operation it
+     * returns in order to train explicitly.
      *
      * Operation <response: [google.protobuf.Empty][google.protobuf.Empty]>
+     * An operation which tracks when restoring is complete. It only tracks
+     * when the draft agent is updated not when it is done training.
      * @param \Google\Cloud\Dialogflow\V2\RestoreAgentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\LongRunning\Operation
      */
     public function RestoreAgent(\Google\Cloud\Dialogflow\V2\RestoreAgentRequest $argument,
       $metadata = [], $options = []) {
@@ -171,6 +191,7 @@ class AgentsGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dialogflow\V2\GetValidationResultRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Dialogflow\V2\ValidationResult
      */
     public function GetValidationResult(\Google\Cloud\Dialogflow\V2\GetValidationResultRequest $argument,
       $metadata = [], $options = []) {

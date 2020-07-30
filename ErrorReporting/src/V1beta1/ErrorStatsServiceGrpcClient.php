@@ -39,6 +39,7 @@ class ErrorStatsServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\ErrorReporting\V1beta1\ListGroupStatsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\ErrorReporting\V1beta1\ListGroupStatsResponse
      */
     public function ListGroupStats(\Google\Cloud\ErrorReporting\V1beta1\ListGroupStatsRequest $argument,
       $metadata = [], $options = []) {
@@ -53,6 +54,7 @@ class ErrorStatsServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\ErrorReporting\V1beta1\ListEventsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\ErrorReporting\V1beta1\ListEventsResponse
      */
     public function ListEvents(\Google\Cloud\ErrorReporting\V1beta1\ListEventsRequest $argument,
       $metadata = [], $options = []) {
@@ -67,6 +69,7 @@ class ErrorStatsServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\ErrorReporting\V1beta1\DeleteEventsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\ErrorReporting\V1beta1\DeleteEventsResponse
      */
     public function DeleteEvents(\Google\Cloud\ErrorReporting\V1beta1\DeleteEventsRequest $argument,
       $metadata = [], $options = []) {

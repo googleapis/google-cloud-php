@@ -61,7 +61,7 @@ use Google\LongRunning\Operation;
  * $imageAnnotatorClient = new ImageAnnotatorClient();
  * try {
  *     $requests = [];
- *     $response = $imageAnnotatorClient->batchAnnotateImages($requests);
+ *     $response = $imageAnnotatorClient->batchAnnotateFiles($requests);
  * } finally {
  *     $imageAnnotatorClient->close();
  * }
@@ -212,71 +212,6 @@ class ImageAnnotatorGapicClient
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
         $this->operationsClient = $this->createOperationsClient($clientOptions);
-    }
-
-    /**
-     * Run image detection and annotation for a batch of images.
-     *
-     * Sample code:
-     * ```
-     * $imageAnnotatorClient = new ImageAnnotatorClient();
-     * try {
-     *     $requests = [];
-     *     $response = $imageAnnotatorClient->batchAnnotateImages($requests);
-     * } finally {
-     *     $imageAnnotatorClient->close();
-     * }
-     * ```
-     *
-     * @param AnnotateImageRequest[] $requests     Required. Individual image annotation requests for this batch.
-     * @param array                  $optionalArgs {
-     *                                             Optional.
-     *
-     *     @type string $parent
-     *          Optional. Target project and location to make a call.
-     *
-     *          Format: `projects/{project-id}/locations/{location-id}`.
-     *
-     *          If no parent is specified, a region will be chosen automatically.
-     *
-     *          Supported location-ids:
-     *              `us`: USA country only,
-     *              `asia`: East asia areas, like Japan, Taiwan,
-     *              `eu`: The European Union.
-     *
-     *          Example: `projects/project-A/locations/eu`.
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\Vision\V1\BatchAnnotateImagesResponse
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function batchAnnotateImages($requests, array $optionalArgs = [])
-    {
-        $request = new BatchAnnotateImagesRequest();
-        $request->setRequests($requests);
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'parent' => $request->getParent(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'BatchAnnotateImages',
-            BatchAnnotateImagesResponse::class,
-            $optionalArgs,
-            $request
-        )->wait();
     }
 
     /**
@@ -550,6 +485,71 @@ class ImageAnnotatorGapicClient
             $optionalArgs,
             $request,
             $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Run image detection and annotation for a batch of images.
+     *
+     * Sample code:
+     * ```
+     * $imageAnnotatorClient = new ImageAnnotatorClient();
+     * try {
+     *     $requests = [];
+     *     $response = $imageAnnotatorClient->batchAnnotateImages($requests);
+     * } finally {
+     *     $imageAnnotatorClient->close();
+     * }
+     * ```
+     *
+     * @param AnnotateImageRequest[] $requests     Required. Individual image annotation requests for this batch.
+     * @param array                  $optionalArgs {
+     *                                             Optional.
+     *
+     *     @type string $parent
+     *          Optional. Target project and location to make a call.
+     *
+     *          Format: `projects/{project-id}/locations/{location-id}`.
+     *
+     *          If no parent is specified, a region will be chosen automatically.
+     *
+     *          Supported location-ids:
+     *              `us`: USA country only,
+     *              `asia`: East asia areas, like Japan, Taiwan,
+     *              `eu`: The European Union.
+     *
+     *          Example: `projects/project-A/locations/eu`.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Vision\V1\BatchAnnotateImagesResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function batchAnnotateImages($requests, array $optionalArgs = [])
+    {
+        $request = new BatchAnnotateImagesRequest();
+        $request->setRequests($requests);
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'BatchAnnotateImages',
+            BatchAnnotateImagesResponse::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 }

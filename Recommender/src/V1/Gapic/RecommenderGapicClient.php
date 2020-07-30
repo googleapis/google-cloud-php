@@ -33,19 +33,24 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Recommender\V1\GetInsightRequest;
 use Google\Cloud\Recommender\V1\GetRecommendationRequest;
+use Google\Cloud\Recommender\V1\Insight;
+use Google\Cloud\Recommender\V1\ListInsightsRequest;
+use Google\Cloud\Recommender\V1\ListInsightsResponse;
 use Google\Cloud\Recommender\V1\ListRecommendationsRequest;
 use Google\Cloud\Recommender\V1\ListRecommendationsResponse;
+use Google\Cloud\Recommender\V1\MarkInsightAcceptedRequest;
 use Google\Cloud\Recommender\V1\MarkRecommendationClaimedRequest;
 use Google\Cloud\Recommender\V1\MarkRecommendationFailedRequest;
 use Google\Cloud\Recommender\V1\MarkRecommendationSucceededRequest;
 use Google\Cloud\Recommender\V1\Recommendation;
 
 /**
- * Service Description: Provides recommendations for cloud customers for various categories like
- * performance optimization, cost savings, reliability, feature discovery, etc.
- * These recommendations are generated automatically based on analysis of user
- * resources, configuration and monitoring metrics.
+ * Service Description: Provides insights and recommendations for cloud customers for various
+ * categories like performance optimization, cost savings, reliability, feature
+ * discovery, etc. Insights and recommendations are generated automatically
+ * based on analysis of user resources, configuration and monitoring metrics.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -53,9 +58,9 @@ use Google\Cloud\Recommender\V1\Recommendation;
  * ```
  * $recommenderClient = new RecommenderClient();
  * try {
- *     $formattedParent = $recommenderClient->recommenderName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]');
+ *     $formattedParent = $recommenderClient->insightTypeName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]');
  *     // Iterate over pages of elements
- *     $pagedResponse = $recommenderClient->listRecommendations($formattedParent);
+ *     $pagedResponse = $recommenderClient->listInsights($formattedParent);
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
  *             // doSomethingWith($element);
@@ -66,7 +71,7 @@ use Google\Cloud\Recommender\V1\Recommendation;
  *     // Alternatively:
  *
  *     // Iterate through all elements
- *     $pagedResponse = $recommenderClient->listRecommendations($formattedParent);
+ *     $pagedResponse = $recommenderClient->listInsights($formattedParent);
  *     foreach ($pagedResponse->iterateAllElements() as $element) {
  *         // doSomethingWith($element);
  *     }
@@ -110,6 +115,8 @@ class RecommenderGapicClient
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
+    private static $insightNameTemplate;
+    private static $insightTypeNameTemplate;
     private static $recommendationNameTemplate;
     private static $recommenderNameTemplate;
     private static $pathTemplateMap;
@@ -131,6 +138,24 @@ class RecommenderGapicClient
                 ],
             ],
         ];
+    }
+
+    private static function getInsightNameTemplate()
+    {
+        if (null == self::$insightNameTemplate) {
+            self::$insightNameTemplate = new PathTemplate('projects/{project}/locations/{location}/insightTypes/{insight_type}/insights/{insight}');
+        }
+
+        return self::$insightNameTemplate;
+    }
+
+    private static function getInsightTypeNameTemplate()
+    {
+        if (null == self::$insightTypeNameTemplate) {
+            self::$insightTypeNameTemplate = new PathTemplate('projects/{project}/locations/{location}/insightTypes/{insight_type}');
+        }
+
+        return self::$insightTypeNameTemplate;
     }
 
     private static function getRecommendationNameTemplate()
@@ -155,12 +180,54 @@ class RecommenderGapicClient
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
+                'insight' => self::getInsightNameTemplate(),
+                'insightType' => self::getInsightTypeNameTemplate(),
                 'recommendation' => self::getRecommendationNameTemplate(),
                 'recommender' => self::getRecommenderNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a insight resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $insightType
+     * @param string $insight
+     *
+     * @return string The formatted insight resource.
+     */
+    public static function insightName($project, $location, $insightType, $insight)
+    {
+        return self::getInsightNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'insight_type' => $insightType,
+            'insight' => $insight,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a insight_type resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $insightType
+     *
+     * @return string The formatted insight_type resource.
+     */
+    public static function insightTypeName($project, $location, $insightType)
+    {
+        return self::getInsightTypeNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'insight_type' => $insightType,
+        ]);
     }
 
     /**
@@ -207,6 +274,8 @@ class RecommenderGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - insight: projects/{project}/locations/{location}/insightTypes/{insight_type}/insights/{insight}
+     * - insightType: projects/{project}/locations/{location}/insightTypes/{insight_type}
      * - recommendation: projects/{project}/locations/{location}/recommenders/{recommender}/recommendations/{recommendation}
      * - recommender: projects/{project}/locations/{location}/recommenders/{recommender}.
      *
@@ -302,6 +371,213 @@ class RecommenderGapicClient
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
+    }
+
+    /**
+     * Lists insights for a Cloud project. Requires the recommender.*.list IAM
+     * permission for the specified insight type.
+     *
+     * Sample code:
+     * ```
+     * $recommenderClient = new RecommenderClient();
+     * try {
+     *     $formattedParent = $recommenderClient->insightTypeName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $recommenderClient->listInsights($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $recommenderClient->listInsights($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $recommenderClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent Required. The container resource on which to execute the request.
+     *                       Acceptable formats:
+     *
+     * 1.
+     * "projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]",
+     *
+     * LOCATION here refers to GCP Locations:
+     * https://cloud.google.com/about/locations/
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type int $pageSize
+     *          The maximum number of resources contained in the underlying API
+     *          response. The API may return fewer values in a page, even if
+     *          there are additional values to be retrieved.
+     *     @type string $pageToken
+     *          A page token is used to specify a page of values to be returned.
+     *          If no page token is specified (the default), the first page
+     *          of values will be returned. Any page token used here must have
+     *          been generated by a previous call to the API.
+     *     @type string $filter
+     *          Optional. Filter expression to restrict the insights returned. Supported
+     *          filter fields: state
+     *          Eg: `state:"DISMISSED" or state:"ACTIVE"
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listInsights($parent, array $optionalArgs = [])
+    {
+        $request = new ListInsightsRequest();
+        $request->setParent($parent);
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->getPagedListResponse(
+            'ListInsights',
+            $optionalArgs,
+            ListInsightsResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Gets the requested insight. Requires the recommender.*.get IAM permission
+     * for the specified insight type.
+     *
+     * Sample code:
+     * ```
+     * $recommenderClient = new RecommenderClient();
+     * try {
+     *     $formattedName = $recommenderClient->insightName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]', '[INSIGHT]');
+     *     $response = $recommenderClient->getInsight($formattedName);
+     * } finally {
+     *     $recommenderClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Name of the insight.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Recommender\V1\Insight
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getInsight($name, array $optionalArgs = [])
+    {
+        $request = new GetInsightRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'GetInsight',
+            Insight::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Marks the Insight State as Accepted. Users can use this method to
+     * indicate to the Recommender API that they have applied some action based
+     * on the insight. This stops the insight content from being updated.
+     *
+     * MarkInsightAccepted can be applied to insights in ACTIVE state. Requires
+     * the recommender.*.update IAM permission for the specified insight.
+     *
+     * Sample code:
+     * ```
+     * $recommenderClient = new RecommenderClient();
+     * try {
+     *     $formattedName = $recommenderClient->insightName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]', '[INSIGHT]');
+     *     $etag = '';
+     *     $response = $recommenderClient->markInsightAccepted($formattedName, $etag);
+     * } finally {
+     *     $recommenderClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Name of the insight.
+     * @param string $etag         Required. Fingerprint of the Insight. Provides optimistic locking.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type array $stateMetadata
+     *          Optional. State properties user wish to include with this state.  Full replace of the
+     *          current state_metadata.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Recommender\V1\Insight
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function markInsightAccepted($name, $etag, array $optionalArgs = [])
+    {
+        $request = new MarkInsightAcceptedRequest();
+        $request->setName($name);
+        $request->setEtag($etag);
+        if (isset($optionalArgs['stateMetadata'])) {
+            $request->setStateMetadata($optionalArgs['stateMetadata']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'MarkInsightAccepted',
+            Insight::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -449,10 +725,10 @@ class RecommenderGapicClient
     }
 
     /**
-     * Mark the Recommendation State as Claimed. Users can use this method to
+     * Marks the Recommendation State as Claimed. Users can use this method to
      * indicate to the Recommender API that they are starting to apply the
      * recommendation themselves. This stops the recommendation content from being
-     * updated.
+     * updated. Associated insights are frozen and placed in the ACCEPTED state.
      *
      * MarkRecommendationClaimed can be applied to recommendations in CLAIMED,
      * SUCCEEDED, FAILED, or ACTIVE state.
@@ -518,10 +794,11 @@ class RecommenderGapicClient
     }
 
     /**
-     * Mark the Recommendation State as Succeeded. Users can use this method to
+     * Marks the Recommendation State as Succeeded. Users can use this method to
      * indicate to the Recommender API that they have applied the recommendation
      * themselves, and the operation was successful. This stops the recommendation
-     * content from being updated.
+     * content from being updated. Associated insights are frozen and placed in
+     * the ACCEPTED state.
      *
      * MarkRecommendationSucceeded can be applied to recommendations in ACTIVE,
      * CLAIMED, SUCCEEDED, or FAILED state.
@@ -587,10 +864,11 @@ class RecommenderGapicClient
     }
 
     /**
-     * Mark the Recommendation State as Failed. Users can use this method to
+     * Marks the Recommendation State as Failed. Users can use this method to
      * indicate to the Recommender API that they have applied the recommendation
      * themselves, and the operation failed. This stops the recommendation content
-     * from being updated.
+     * from being updated. Associated insights are frozen and placed in the
+     * ACCEPTED state.
      *
      * MarkRecommendationFailed can be applied to recommendations in ACTIVE,
      * CLAIMED, SUCCEEDED, or FAILED state.

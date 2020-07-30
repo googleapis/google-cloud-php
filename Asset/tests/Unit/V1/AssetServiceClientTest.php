@@ -22,18 +22,22 @@
 
 namespace Google\Cloud\Asset\Tests\Unit\V1;
 
-use Google\Cloud\Asset\V1\AssetServiceClient;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\Asset\V1\AssetServiceClient;
 use Google\Cloud\Asset\V1\BatchGetAssetsHistoryResponse;
 use Google\Cloud\Asset\V1\ContentType;
 use Google\Cloud\Asset\V1\ExportAssetsResponse;
 use Google\Cloud\Asset\V1\Feed;
+use Google\Cloud\Asset\V1\IamPolicySearchResult;
 use Google\Cloud\Asset\V1\ListFeedsResponse;
 use Google\Cloud\Asset\V1\OutputConfig;
+use Google\Cloud\Asset\V1\ResourceSearchResult;
+use Google\Cloud\Asset\V1\SearchAllIamPoliciesResponse;
+use Google\Cloud\Asset\V1\SearchAllResourcesResponse;
 use Google\Cloud\Asset\V1\TimeWindow;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
@@ -77,6 +81,76 @@ class AssetServiceClientTest extends GeneratedTest
         ];
 
         return new AssetServiceClient($options);
+    }
+
+    /**
+     * @test
+     */
+    public function deleteFeedTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+
+        // Mock request
+        $name = 'name3373707';
+
+        $client->deleteFeed($name);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.asset.v1.AssetService/DeleteFeed', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getName();
+
+        $this->assertProtobufEquals($name, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function deleteFeedExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        // Mock request
+        $name = 'name3373707';
+
+        try {
+            $client->deleteFeed($name);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -254,12 +328,6 @@ class AssetServiceClientTest extends GeneratedTest
         $actualValue = $actualRequestObject->getParent();
 
         $this->assertProtobufEquals($parent, $actualValue);
-        $actualValue = $actualRequestObject->getContentType();
-
-        $this->assertProtobufEquals($contentType, $actualValue);
-        $actualValue = $actualRequestObject->getReadTimeWindow();
-
-        $this->assertProtobufEquals($readTimeWindow, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -405,9 +473,9 @@ class AssetServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->feedName('[PROJECT]', '[FEED]');
+        $name = 'name3373707';
 
-        $response = $client->getFeed($formattedName);
+        $response = $client->getFeed($name);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -417,7 +485,7 @@ class AssetServiceClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getName();
 
-        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertProtobufEquals($name, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -445,10 +513,10 @@ class AssetServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->feedName('[PROJECT]', '[FEED]');
+        $name = 'name3373707';
 
         try {
-            $client->getFeed($formattedName);
+            $client->getFeed($name);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -613,7 +681,7 @@ class AssetServiceClientTest extends GeneratedTest
     /**
      * @test
      */
-    public function deleteFeedTest()
+    public function searchAllResourcesTest()
     {
         $transport = $this->createTransport();
         $client = $this->createClient(['transport' => $transport]);
@@ -621,30 +689,39 @@ class AssetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
 
         // Mock response
-        $expectedResponse = new GPBEmpty();
+        $nextPageToken = '';
+        $resultsElement = new ResourceSearchResult();
+        $results = [$resultsElement];
+        $expectedResponse = new SearchAllResourcesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setResults($results);
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->feedName('[PROJECT]', '[FEED]');
+        $scope = 'scope109264468';
 
-        $client->deleteFeed($formattedName);
+        $response = $client->searchAllResources($scope);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getResults()[0], $resources[0]);
+
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.asset.v1.AssetService/DeleteFeed', $actualFuncCall);
+        $this->assertSame('/google.cloud.asset.v1.AssetService/SearchAllResources', $actualFuncCall);
 
-        $actualValue = $actualRequestObject->getName();
+        $actualValue = $actualRequestObject->getScope();
 
-        $this->assertProtobufEquals($formattedName, $actualValue);
-
+        $this->assertProtobufEquals($scope, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
     /**
      * @test
      */
-    public function deleteFeedExceptionTest()
+    public function searchAllResourcesExceptionTest()
     {
         $transport = $this->createTransport();
         $client = $this->createClient(['transport' => $transport]);
@@ -664,10 +741,89 @@ class AssetServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->feedName('[PROJECT]', '[FEED]');
+        $scope = 'scope109264468';
 
         try {
-            $client->deleteFeed($formattedName);
+            $client->searchAllResources($scope);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function searchAllIamPoliciesTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $nextPageToken = '';
+        $resultsElement = new IamPolicySearchResult();
+        $results = [$resultsElement];
+        $expectedResponse = new SearchAllIamPoliciesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setResults($results);
+        $transport->addResponse($expectedResponse);
+
+        // Mock request
+        $scope = 'scope109264468';
+
+        $response = $client->searchAllIamPolicies($scope);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getResults()[0], $resources[0]);
+
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.asset.v1.AssetService/SearchAllIamPolicies', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getScope();
+
+        $this->assertProtobufEquals($scope, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function searchAllIamPoliciesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        // Mock request
+        $scope = 'scope109264468';
+
+        try {
+            $client->searchAllIamPolicies($scope);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

@@ -16,15 +16,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class Resource extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The API version. For example: "v1"
+     * The API version. Example: `v1`
      *
      * Generated from protobuf field <code>string version = 1;</code>
      */
     private $version = '';
     /**
      * The URL of the discovery document containing the resource's JSON schema.
-     * For example:
-     * "https://www.googleapis.com/discovery/v1/apis/compute/v1/rest"
+     * Example:
+     * `https://www.googleapis.com/discovery/v1/apis/compute/v1/rest`
      * This value is unspecified for resources that do not have an API based on a
      * discovery document, such as Cloud Bigtable.
      *
@@ -32,8 +32,8 @@ class Resource extends \Google\Protobuf\Internal\Message
      */
     private $discovery_document_uri = '';
     /**
-     * The JSON schema name listed in the discovery document. For example:
-     * "Project"
+     * The JSON schema name listed in the discovery document. Example:
+     * `Project`
      * This value is unspecified for resources that do not have an API based on a
      * discovery document, such as Cloud Bigtable.
      *
@@ -42,8 +42,8 @@ class Resource extends \Google\Protobuf\Internal\Message
     private $discovery_name = '';
     /**
      * The REST URL for accessing the resource. An HTTP `GET` request using this
-     * URL returns the resource itself. For example:
-     * "https://cloudresourcemanager.googleapis.com/v1/projects/my-project-123"
+     * URL returns the resource itself. Example:
+     * `https://cloudresourcemanager.googleapis.com/v1/projects/my-project-123`
      * This value is unspecified for resources without a REST API.
      *
      * Generated from protobuf field <code>string resource_url = 4;</code>
@@ -57,8 +57,8 @@ class Resource extends \Google\Protobuf\Internal\Message
      * For Google Cloud assets, this value is the parent resource defined in the
      * [Cloud IAM policy
      * hierarchy](https://cloud.google.com/iam/docs/overview#policy_hierarchy).
-     * For example:
-     * "//cloudresourcemanager.googleapis.com/projects/my_project_123"
+     * Example:
+     * `//cloudresourcemanager.googleapis.com/projects/my_project_123`
      * For third-party assets, this field may be set differently.
      *
      * Generated from protobuf field <code>string parent = 5;</code>
@@ -71,6 +71,13 @@ class Resource extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Struct data = 6;</code>
      */
     private $data = null;
+    /**
+     * The location of the resource in Google Cloud, such as its zone and region.
+     * For more information, see https://cloud.google.com/about/locations/.
+     *
+     * Generated from protobuf field <code>string location = 8;</code>
+     */
+    private $location = '';
 
     /**
      * Constructor.
@@ -79,22 +86,22 @@ class Resource extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $version
-     *           The API version. For example: "v1"
+     *           The API version. Example: `v1`
      *     @type string $discovery_document_uri
      *           The URL of the discovery document containing the resource's JSON schema.
-     *           For example:
-     *           "https://www.googleapis.com/discovery/v1/apis/compute/v1/rest"
+     *           Example:
+     *           `https://www.googleapis.com/discovery/v1/apis/compute/v1/rest`
      *           This value is unspecified for resources that do not have an API based on a
      *           discovery document, such as Cloud Bigtable.
      *     @type string $discovery_name
-     *           The JSON schema name listed in the discovery document. For example:
-     *           "Project"
+     *           The JSON schema name listed in the discovery document. Example:
+     *           `Project`
      *           This value is unspecified for resources that do not have an API based on a
      *           discovery document, such as Cloud Bigtable.
      *     @type string $resource_url
      *           The REST URL for accessing the resource. An HTTP `GET` request using this
-     *           URL returns the resource itself. For example:
-     *           "https://cloudresourcemanager.googleapis.com/v1/projects/my-project-123"
+     *           URL returns the resource itself. Example:
+     *           `https://cloudresourcemanager.googleapis.com/v1/projects/my-project-123`
      *           This value is unspecified for resources without a REST API.
      *     @type string $parent
      *           The full name of the immediate parent of this resource. See
@@ -104,12 +111,15 @@ class Resource extends \Google\Protobuf\Internal\Message
      *           For Google Cloud assets, this value is the parent resource defined in the
      *           [Cloud IAM policy
      *           hierarchy](https://cloud.google.com/iam/docs/overview#policy_hierarchy).
-     *           For example:
-     *           "//cloudresourcemanager.googleapis.com/projects/my_project_123"
+     *           Example:
+     *           `//cloudresourcemanager.googleapis.com/projects/my_project_123`
      *           For third-party assets, this field may be set differently.
      *     @type \Google\Protobuf\Struct $data
      *           The content of the resource, in which some sensitive fields are removed
      *           and may not be present.
+     *     @type string $location
+     *           The location of the resource in Google Cloud, such as its zone and region.
+     *           For more information, see https://cloud.google.com/about/locations/.
      * }
      */
     public function __construct($data = NULL) {
@@ -118,7 +128,7 @@ class Resource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The API version. For example: "v1"
+     * The API version. Example: `v1`
      *
      * Generated from protobuf field <code>string version = 1;</code>
      * @return string
@@ -129,7 +139,7 @@ class Resource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The API version. For example: "v1"
+     * The API version. Example: `v1`
      *
      * Generated from protobuf field <code>string version = 1;</code>
      * @param string $var
@@ -145,8 +155,8 @@ class Resource extends \Google\Protobuf\Internal\Message
 
     /**
      * The URL of the discovery document containing the resource's JSON schema.
-     * For example:
-     * "https://www.googleapis.com/discovery/v1/apis/compute/v1/rest"
+     * Example:
+     * `https://www.googleapis.com/discovery/v1/apis/compute/v1/rest`
      * This value is unspecified for resources that do not have an API based on a
      * discovery document, such as Cloud Bigtable.
      *
@@ -160,8 +170,8 @@ class Resource extends \Google\Protobuf\Internal\Message
 
     /**
      * The URL of the discovery document containing the resource's JSON schema.
-     * For example:
-     * "https://www.googleapis.com/discovery/v1/apis/compute/v1/rest"
+     * Example:
+     * `https://www.googleapis.com/discovery/v1/apis/compute/v1/rest`
      * This value is unspecified for resources that do not have an API based on a
      * discovery document, such as Cloud Bigtable.
      *
@@ -178,8 +188,8 @@ class Resource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The JSON schema name listed in the discovery document. For example:
-     * "Project"
+     * The JSON schema name listed in the discovery document. Example:
+     * `Project`
      * This value is unspecified for resources that do not have an API based on a
      * discovery document, such as Cloud Bigtable.
      *
@@ -192,8 +202,8 @@ class Resource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The JSON schema name listed in the discovery document. For example:
-     * "Project"
+     * The JSON schema name listed in the discovery document. Example:
+     * `Project`
      * This value is unspecified for resources that do not have an API based on a
      * discovery document, such as Cloud Bigtable.
      *
@@ -211,8 +221,8 @@ class Resource extends \Google\Protobuf\Internal\Message
 
     /**
      * The REST URL for accessing the resource. An HTTP `GET` request using this
-     * URL returns the resource itself. For example:
-     * "https://cloudresourcemanager.googleapis.com/v1/projects/my-project-123"
+     * URL returns the resource itself. Example:
+     * `https://cloudresourcemanager.googleapis.com/v1/projects/my-project-123`
      * This value is unspecified for resources without a REST API.
      *
      * Generated from protobuf field <code>string resource_url = 4;</code>
@@ -225,8 +235,8 @@ class Resource extends \Google\Protobuf\Internal\Message
 
     /**
      * The REST URL for accessing the resource. An HTTP `GET` request using this
-     * URL returns the resource itself. For example:
-     * "https://cloudresourcemanager.googleapis.com/v1/projects/my-project-123"
+     * URL returns the resource itself. Example:
+     * `https://cloudresourcemanager.googleapis.com/v1/projects/my-project-123`
      * This value is unspecified for resources without a REST API.
      *
      * Generated from protobuf field <code>string resource_url = 4;</code>
@@ -249,8 +259,8 @@ class Resource extends \Google\Protobuf\Internal\Message
      * For Google Cloud assets, this value is the parent resource defined in the
      * [Cloud IAM policy
      * hierarchy](https://cloud.google.com/iam/docs/overview#policy_hierarchy).
-     * For example:
-     * "//cloudresourcemanager.googleapis.com/projects/my_project_123"
+     * Example:
+     * `//cloudresourcemanager.googleapis.com/projects/my_project_123`
      * For third-party assets, this field may be set differently.
      *
      * Generated from protobuf field <code>string parent = 5;</code>
@@ -269,8 +279,8 @@ class Resource extends \Google\Protobuf\Internal\Message
      * For Google Cloud assets, this value is the parent resource defined in the
      * [Cloud IAM policy
      * hierarchy](https://cloud.google.com/iam/docs/overview#policy_hierarchy).
-     * For example:
-     * "//cloudresourcemanager.googleapis.com/projects/my_project_123"
+     * Example:
+     * `//cloudresourcemanager.googleapis.com/projects/my_project_123`
      * For third-party assets, this field may be set differently.
      *
      * Generated from protobuf field <code>string parent = 5;</code>
@@ -309,6 +319,34 @@ class Resource extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
         $this->data = $var;
+
+        return $this;
+    }
+
+    /**
+     * The location of the resource in Google Cloud, such as its zone and region.
+     * For more information, see https://cloud.google.com/about/locations/.
+     *
+     * Generated from protobuf field <code>string location = 8;</code>
+     * @return string
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * The location of the resource in Google Cloud, such as its zone and region.
+     * For more information, see https://cloud.google.com/about/locations/.
+     *
+     * Generated from protobuf field <code>string location = 8;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLocation($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->location = $var;
 
         return $this;
     }

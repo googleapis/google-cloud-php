@@ -39,6 +39,7 @@ class LanguageServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Language\V1\AnalyzeSentimentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Language\V1\AnalyzeSentimentResponse
      */
     public function AnalyzeSentiment(\Google\Cloud\Language\V1\AnalyzeSentimentRequest $argument,
       $metadata = [], $options = []) {
@@ -55,6 +56,7 @@ class LanguageServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Language\V1\AnalyzeEntitiesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Language\V1\AnalyzeEntitiesResponse
      */
     public function AnalyzeEntities(\Google\Cloud\Language\V1\AnalyzeEntitiesRequest $argument,
       $metadata = [], $options = []) {
@@ -70,6 +72,7 @@ class LanguageServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Language\V1\AnalyzeEntitySentimentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Language\V1\AnalyzeEntitySentimentResponse
      */
     public function AnalyzeEntitySentiment(\Google\Cloud\Language\V1\AnalyzeEntitySentimentRequest $argument,
       $metadata = [], $options = []) {
@@ -86,6 +89,7 @@ class LanguageServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Language\V1\AnalyzeSyntaxRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Language\V1\AnalyzeSyntaxResponse
      */
     public function AnalyzeSyntax(\Google\Cloud\Language\V1\AnalyzeSyntaxRequest $argument,
       $metadata = [], $options = []) {
@@ -100,6 +104,7 @@ class LanguageServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Language\V1\ClassifyTextRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Language\V1\ClassifyTextResponse
      */
     public function ClassifyText(\Google\Cloud\Language\V1\ClassifyTextRequest $argument,
       $metadata = [], $options = []) {
@@ -115,6 +120,7 @@ class LanguageServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Language\V1\AnnotateTextRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Language\V1\AnnotateTextResponse
      */
     public function AnnotateText(\Google\Cloud\Language\V1\AnnotateTextRequest $argument,
       $metadata = [], $options = []) {
