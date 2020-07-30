@@ -89,6 +89,19 @@ class TypeCode
      * Generated from protobuf enum <code>STRUCT = 9;</code>
      */
     const STRUCT = 9;
+    /**
+     * Encoded as `string`, in decimal format or scientific notation format.
+     * <br>Decimal format:
+     * <br>`[+-]Digits[.[Digits]]` or
+     * <br>`[+-][Digits].Digits`
+     * Scientific notation:
+     * <br>`[+-]Digits[.[Digits]][ExponentIndicator[+-]Digits]` or
+     * <br>`[+-][Digits].Digits[ExponentIndicator[+-]Digits]`
+     * <br>(ExponentIndicator is `"e"` or `"E"`)
+     *
+     * Generated from protobuf enum <code>NUMERIC = 10;</code>
+     */
+    const NUMERIC = 10;
 
     private static $valueToName = [
         self::TYPE_CODE_UNSPECIFIED => 'TYPE_CODE_UNSPECIFIED',
@@ -101,6 +114,7 @@ class TypeCode
         self::BYTES => 'BYTES',
         self::PBARRAY => 'PBARRAY',
         self::STRUCT => 'STRUCT',
+        self::NUMERIC => 'NUMERIC',
     ];
 
     public static function name($value)

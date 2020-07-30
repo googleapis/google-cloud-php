@@ -73,6 +73,31 @@ return [
             ],
         ],
         'google.spanner.admin.instance.v1.InstanceAdmin' => [
+            'CreateInstance' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*}/instances',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateInstance' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{instance.name=projects/*/instances/*}',
+                'body' => '*',
+                'placeholders' => [
+                    'instance.name' => [
+                        'getters' => [
+                            'getInstance',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListInstanceConfigs' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*}/instanceConfigs',
@@ -112,31 +137,6 @@ return [
                 'placeholders' => [
                     'name' => [
                         'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'CreateInstance' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{parent=projects/*}/instances',
-                'body' => '*',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'UpdateInstance' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1/{instance.name=projects/*/instances/*}',
-                'body' => '*',
-                'placeholders' => [
-                    'instance.name' => [
-                        'getters' => [
-                            'getInstance',
                             'getName',
                         ],
                     ],
