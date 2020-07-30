@@ -462,6 +462,13 @@ class GrpcTest extends TestCase
         ];
     }
 
+    public function testDetachSubscription()
+    {
+        $this->sendAndAssert('detachSubscription', [
+            'subscription' => $this->subscriptionName
+        ], [$this->subscriptionName, []]);
+    }
+
     private function sendAndAssert($method, array $args, array $expectedArgs, Grpc $connection = null)
     {
         $connection = $connection ?: new Grpc([

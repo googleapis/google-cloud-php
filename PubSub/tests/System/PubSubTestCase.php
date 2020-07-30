@@ -49,11 +49,11 @@ class PubSubTestCase extends SystemTestCase
         $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
         self::$restClient = new PubSubClientRest([
             'keyFilePath' => $keyFilePath,
-            'transport' => 'rest'
+            'transport' => 'rest',
         ]);
         self::$grpcClient = new PubSubClientGrpc([
             'keyFilePath' => $keyFilePath,
-            'transport' => 'grpc'
+            'transport' => 'grpc',
         ]);
         self::$hasSetUp = true;
     }

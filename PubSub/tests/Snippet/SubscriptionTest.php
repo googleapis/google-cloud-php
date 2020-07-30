@@ -119,6 +119,34 @@ class SubscriptionTest extends SnippetTestCase
         $this->assertEquals(self::SUBSCRIPTION, $res->output());
     }
 
+    public function testDetached()
+    {
+        $snippet = $this->snippetFromMethod(Subscription::class, 'detached');
+        $snippet->addLocal('subscription', $this->subscription);
+
+        $this->connection->getSubscription(Argument::any())->willReturn([
+            'detached' => true
+        ]);
+
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
+
+        $res = $snippet->invoke();
+        $this->assertEquals('The subscription is detached', $res->output());
+    }
+
+    public function testDetach()
+    {
+        $snippet = $this->snippetFromMethod(Subscription::class, 'detach');
+        $snippet->addLocal('subscription', $this->subscription);
+
+        $this->connection->detachSubscription(Argument::any())
+            ->shouldBeCalled();
+
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
+
+        $snippet->invoke();
+    }
+
     public function testCreate()
     {
         $snippet = $this->snippetFromMethod(Subscription::class, 'create');

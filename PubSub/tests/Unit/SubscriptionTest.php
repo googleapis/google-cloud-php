@@ -60,6 +60,20 @@ class SubscriptionTest extends TestCase
         $this->assertEquals($this->subscription->name(), self::SUBSCRIPTION);
     }
 
+    public function testDetached()
+    {
+        $this->connection->getSubscription(Argument::withEntry(
+            'subscription',
+            self::SUBSCRIPTION
+        ))->willReturn([
+            'detached' => true
+        ]);
+
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
+
+        $this->assertTrue($this->subscription->detached());
+    }
+
     public function testCreate()
     {
         $this->connection->createSubscription(Argument::withEntry('foo', 'bar'))
@@ -538,5 +552,17 @@ class SubscriptionTest extends TestCase
     public function testIam()
     {
         $this->assertInstanceOf(Iam::class, $this->subscription->iam());
+    }
+
+    public function testDetach()
+    {
+        $this->connection->detachSubscription(Argument::withEntry(
+            'subscription',
+            self::SUBSCRIPTION
+        ))->shouldBeCalled()->willReturn([]);
+
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
+
+        $this->assertEquals([], $this->subscription->detach());
     }
 }

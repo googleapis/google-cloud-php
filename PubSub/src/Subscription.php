@@ -180,6 +180,31 @@ class Subscription
     }
 
     /**
+     * Indicates whether the subscription is detached from its topic.
+     *
+     * Detached subscriptions don't receive messages from their topic and don't
+     * retain any backlog. `Pull` and `StreamingPull` requests will return
+     * FAILED_PRECONDITION. If the subscription is a push subscription, pushes
+     * to the endpoint will not be made.
+     *
+     * Example:
+     * ```
+     * $detached = $subscription->detached();
+     * if ($detached) {
+     *     echo "The subscription is detached";
+     * }
+     * ```
+     *
+     * @param array $options [optional] Configuration options.
+     * @return bool
+     */
+    public function detached(array $options = [])
+    {
+        $info = $this->info($options) + ['detached' => false];
+        return $info['detached'];
+    }
+
+    /**
      * Execute a service request creating the subscription.
      *
      * The suggested way of creating a subscription is by calling through
@@ -839,14 +864,15 @@ class Subscription
      * ```
      *
      * @param Timestamp $timestamp The time to seek to.
+     * @param array $options [optional] Configuration options.
      * @return void
      */
-    public function seekToTime(Timestamp $timestamp)
+    public function seekToTime(Timestamp $timestamp, array $options = [])
     {
         return $this->connection->seek([
             'subscription' => $this->name,
             'time' => $timestamp->formatAsString()
-        ]);
+        ] + $options);
     }
 
     /**
@@ -864,14 +890,37 @@ class Subscription
      * ```
      *
      * @param Snapshot $snapshot The snapshot to seek to.
+     * @param array $options [optional] Configuration options.
      * @return void
      */
-    public function seekToSnapshot(Snapshot $snapshot)
+    public function seekToSnapshot(Snapshot $snapshot, array $options = [])
     {
         return $this->connection->seek([
             'subscription' => $this->name,
             'snapshot' => $snapshot->name()
-        ]);
+        ] + $options);
+    }
+
+    /**
+     * Detach the subscription from its topic.
+     *
+     * All messages retained in the subscription are dropped. Subsequent `Pull`
+     * requests will return FAILED_PRECONDITION. If the subscription is a push
+     * subscription, pushes to the endpoint will stop.
+     *
+     * Example:
+     * ```
+     * $subscription->detach();
+     * ```
+     *
+     * @param array $options [optional] Configuration options.
+     * @return array
+     */
+    public function detach(array $options = [])
+    {
+        return $this->connection->detachSubscription([
+            'subscription' => $this->name
+        ] + $options);
     }
 
     /**

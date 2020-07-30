@@ -383,6 +383,20 @@ class ManageSubscriptionsTest extends PubSubTestCase
         $this->assertTrue(in_array($messages[1]->attribute('identifier'), ['foo', 'bar']));
     }
 
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testDetach($client)
+    {
+        list ($topic, $sub) = self::topicAndSubscription($client);
+        $this->assertFalse($sub->detached());
+
+        $sub->detach();
+
+        $sub->reload();
+        $this->assertTrue($sub->detached());
+    }
+
     private function assertSubsFound($class, $expectedSubs)
     {
         $backoff = new ExponentialBackoff(8);

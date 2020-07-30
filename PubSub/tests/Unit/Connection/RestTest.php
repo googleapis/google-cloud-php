@@ -119,6 +119,7 @@ class RestTest extends TestCase
             ['getSubscriptionIamPolicy'],
             ['setSubscriptionIamPolicy'],
             ['testSubscriptionIamPermissions'],
+            ['detachSubscription']
         ];
     }
 }
