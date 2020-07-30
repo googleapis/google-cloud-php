@@ -68,10 +68,8 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * Indicates whether to retain acknowledged messages. If true, then
      * messages are not expunged from the subscription's backlog, even if they are
      * acknowledged, until they fall out of the `message_retention_duration`
-     * window. This must be true if you would like to
-     * <a
-     * href="https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time">
-     * Seek to a timestamp</a>.
+     * window. This must be true if you would like to [Seek to a timestamp]
+     * (https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time).
      *
      * Generated from protobuf field <code>bool retain_acked_messages = 7;</code>
      */
@@ -99,9 +97,6 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * will be delivered to the subscribers in the order in which they
      * are received by the Pub/Sub system. Otherwise, they may be delivered in
      * any order.
-     * <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
-     * API might be changed in backward-incompatible ways and is not recommended
-     * for production use. It is not subject to any SLA or deprecation policy.
      *
      * Generated from protobuf field <code>bool enable_message_ordering = 10;</code>
      */
@@ -204,10 +199,8 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *           Indicates whether to retain acknowledged messages. If true, then
      *           messages are not expunged from the subscription's backlog, even if they are
      *           acknowledged, until they fall out of the `message_retention_duration`
-     *           window. This must be true if you would like to
-     *           <a
-     *           href="https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time">
-     *           Seek to a timestamp</a>.
+     *           window. This must be true if you would like to [Seek to a timestamp]
+     *           (https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time).
      *     @type \Google\Protobuf\Duration $message_retention_duration
      *           How long to retain unacknowledged messages in the subscription's backlog,
      *           from the moment a message is published.
@@ -223,9 +216,6 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *           will be delivered to the subscribers in the order in which they
      *           are received by the Pub/Sub system. Otherwise, they may be delivered in
      *           any order.
-     *           <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
-     *           API might be changed in backward-incompatible ways and is not recommended
-     *           for production use. It is not subject to any SLA or deprecation policy.
      *     @type \Google\Cloud\PubSub\V1\ExpirationPolicy $expiration_policy
      *           A policy that specifies the conditions for this subscription's expiration.
      *           A subscription is considered active as long as any connected subscriber is
@@ -425,10 +415,8 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * Indicates whether to retain acknowledged messages. If true, then
      * messages are not expunged from the subscription's backlog, even if they are
      * acknowledged, until they fall out of the `message_retention_duration`
-     * window. This must be true if you would like to
-     * <a
-     * href="https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time">
-     * Seek to a timestamp</a>.
+     * window. This must be true if you would like to [Seek to a timestamp]
+     * (https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time).
      *
      * Generated from protobuf field <code>bool retain_acked_messages = 7;</code>
      * @return bool
@@ -442,10 +430,8 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * Indicates whether to retain acknowledged messages. If true, then
      * messages are not expunged from the subscription's backlog, even if they are
      * acknowledged, until they fall out of the `message_retention_duration`
-     * window. This must be true if you would like to
-     * <a
-     * href="https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time">
-     * Seek to a timestamp</a>.
+     * window. This must be true if you would like to [Seek to a timestamp]
+     * (https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time).
      *
      * Generated from protobuf field <code>bool retain_acked_messages = 7;</code>
      * @param bool $var
@@ -528,9 +514,6 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * will be delivered to the subscribers in the order in which they
      * are received by the Pub/Sub system. Otherwise, they may be delivered in
      * any order.
-     * <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
-     * API might be changed in backward-incompatible ways and is not recommended
-     * for production use. It is not subject to any SLA or deprecation policy.
      *
      * Generated from protobuf field <code>bool enable_message_ordering = 10;</code>
      * @return bool
@@ -545,9 +528,6 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * will be delivered to the subscribers in the order in which they
      * are received by the Pub/Sub system. Otherwise, they may be delivered in
      * any order.
-     * <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
-     * API might be changed in backward-incompatible ways and is not recommended
-     * for production use. It is not subject to any SLA or deprecation policy.
      *
      * Generated from protobuf field <code>bool enable_message_ordering = 10;</code>
      * @param bool $var
