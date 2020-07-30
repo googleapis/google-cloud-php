@@ -12,11 +12,11 @@ use Google\Protobuf\Internal\GPBUtil;
  * A message that is published by publishers and consumed by subscribers. The
  * message must contain either a non-empty data field or at least one attribute.
  * Note that client libraries represent this object differently
- * depending on the language. See the corresponding
- * <a href="https://cloud.google.com/pubsub/docs/reference/libraries">client
- * library documentation</a> for more information. See
- * <a href="https://cloud.google.com/pubsub/quotas">Quotas and limits</a>
- * for more information about message limits.
+ * depending on the language. See the corresponding [client library
+ * documentation](https://cloud.google.com/pubsub/docs/reference/libraries) for
+ * more information. See [quotas and limits]
+ * (https://cloud.google.com/pubsub/quotas) for more information about message
+ * limits.
  *
  * Generated from protobuf message <code>google.pubsub.v1.PubsubMessage</code>
  */
@@ -61,9 +61,6 @@ class PubsubMessage extends \Google\Protobuf\Internal\Message
      * delivered to subscribers in the order in which they are received by the
      * Pub/Sub system. All `PubsubMessage`s published in a given `PublishRequest`
      * must specify the same `ordering_key` value.
-     * <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
-     * API might be changed in backward-incompatible ways and is not recommended
-     * for production use. It is not subject to any SLA or deprecation policy.
      *
      * Generated from protobuf field <code>string ordering_key = 5;</code>
      */
@@ -98,9 +95,6 @@ class PubsubMessage extends \Google\Protobuf\Internal\Message
      *           delivered to subscribers in the order in which they are received by the
      *           Pub/Sub system. All `PubsubMessage`s published in a given `PublishRequest`
      *           must specify the same `ordering_key` value.
-     *           <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
-     *           API might be changed in backward-incompatible ways and is not recommended
-     *           for production use. It is not subject to any SLA or deprecation policy.
      * }
      */
     public function __construct($data = NULL) {
@@ -235,9 +229,6 @@ class PubsubMessage extends \Google\Protobuf\Internal\Message
      * delivered to subscribers in the order in which they are received by the
      * Pub/Sub system. All `PubsubMessage`s published in a given `PublishRequest`
      * must specify the same `ordering_key` value.
-     * <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
-     * API might be changed in backward-incompatible ways and is not recommended
-     * for production use. It is not subject to any SLA or deprecation policy.
      *
      * Generated from protobuf field <code>string ordering_key = 5;</code>
      * @return string
@@ -254,9 +245,6 @@ class PubsubMessage extends \Google\Protobuf\Internal\Message
      * delivered to subscribers in the order in which they are received by the
      * Pub/Sub system. All `PubsubMessage`s published in a given `PublishRequest`
      * must specify the same `ordering_key` value.
-     * <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
-     * API might be changed in backward-incompatible ways and is not recommended
-     * for production use. It is not subject to any SLA or deprecation policy.
      *
      * Generated from protobuf field <code>string ordering_key = 5;</code>
      * @param string $var

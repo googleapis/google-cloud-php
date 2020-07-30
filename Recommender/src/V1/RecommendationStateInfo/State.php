@@ -7,7 +7,7 @@ namespace Google\Cloud\Recommender\V1\RecommendationStateInfo;
 use UnexpectedValueException;
 
 /**
- * Represents Recommendation State
+ * Represents Recommendation State.
  *
  * Protobuf type <code>google.cloud.recommender.v1.RecommendationStateInfo.State</code>
  */

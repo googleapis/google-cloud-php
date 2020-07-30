@@ -27,8 +27,8 @@ class Topic extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and
-     * managing labels</a>.
+     * See [Creating and managing labels]
+     * (https://cloud.google.com/pubsub/docs/labels).
      *
      * Generated from protobuf field <code>map<string, string> labels = 2;</code>
      */
@@ -64,8 +64,8 @@ class Topic extends \Google\Protobuf\Internal\Message
      *           signs (`%`). It must be between 3 and 255 characters in length, and it
      *           must not start with `"goog"`.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and
-     *           managing labels</a>.
+     *           See [Creating and managing labels]
+     *           (https://cloud.google.com/pubsub/docs/labels).
      *     @type \Google\Cloud\PubSub\V1\MessageStoragePolicy $message_storage_policy
      *           Policy constraining the set of Google Cloud Platform regions where messages
      *           published to the topic may be stored. If not present, then no constraints
@@ -118,8 +118,8 @@ class Topic extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and
-     * managing labels</a>.
+     * See [Creating and managing labels]
+     * (https://cloud.google.com/pubsub/docs/labels).
      *
      * Generated from protobuf field <code>map<string, string> labels = 2;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -130,8 +130,8 @@ class Topic extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and
-     * managing labels</a>.
+     * See [Creating and managing labels]
+     * (https://cloud.google.com/pubsub/docs/labels).
      *
      * Generated from protobuf field <code>map<string, string> labels = 2;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
