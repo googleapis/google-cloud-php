@@ -19,10 +19,9 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * The set of attributes. Each attribute's key can be up to 128 bytes
      * long. The value can be a string up to 256 bytes, a signed 64-bit integer,
      * or the Boolean values `true` and `false`. For example:
-     *     "/instance_id": "my-instance"
-     *     "/http/user_agent": ""
-     *     "/http/request_bytes": 300
-     *     "abc.com/myattribute": true
+     *     "/instance_id": { "string_value": { "value": "my-instance" } }
+     *     "/http/request_bytes": { "int_value": 300 }
+     *     "abc.com/myattribute": { "bool_value": false }
      *
      * Generated from protobuf field <code>map<string, .google.devtools.cloudtrace.v2.AttributeValue> attribute_map = 1;</code>
      */
@@ -46,10 +45,9 @@ class Attributes extends \Google\Protobuf\Internal\Message
      *           The set of attributes. Each attribute's key can be up to 128 bytes
      *           long. The value can be a string up to 256 bytes, a signed 64-bit integer,
      *           or the Boolean values `true` and `false`. For example:
-     *               "/instance_id": "my-instance"
-     *               "/http/user_agent": ""
-     *               "/http/request_bytes": 300
-     *               "abc.com/myattribute": true
+     *               "/instance_id": { "string_value": { "value": "my-instance" } }
+     *               "/http/request_bytes": { "int_value": 300 }
+     *               "abc.com/myattribute": { "bool_value": false }
      *     @type int $dropped_attributes_count
      *           The number of attributes that were discarded. Attributes can be discarded
      *           because their keys are too long or because there are too many attributes.
@@ -65,10 +63,9 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * The set of attributes. Each attribute's key can be up to 128 bytes
      * long. The value can be a string up to 256 bytes, a signed 64-bit integer,
      * or the Boolean values `true` and `false`. For example:
-     *     "/instance_id": "my-instance"
-     *     "/http/user_agent": ""
-     *     "/http/request_bytes": 300
-     *     "abc.com/myattribute": true
+     *     "/instance_id": { "string_value": { "value": "my-instance" } }
+     *     "/http/request_bytes": { "int_value": 300 }
+     *     "abc.com/myattribute": { "bool_value": false }
      *
      * Generated from protobuf field <code>map<string, .google.devtools.cloudtrace.v2.AttributeValue> attribute_map = 1;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -82,10 +79,9 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * The set of attributes. Each attribute's key can be up to 128 bytes
      * long. The value can be a string up to 256 bytes, a signed 64-bit integer,
      * or the Boolean values `true` and `false`. For example:
-     *     "/instance_id": "my-instance"
-     *     "/http/user_agent": ""
-     *     "/http/request_bytes": 300
-     *     "abc.com/myattribute": true
+     *     "/instance_id": { "string_value": { "value": "my-instance" } }
+     *     "/http/request_bytes": { "int_value": 300 }
+     *     "abc.com/myattribute": { "bool_value": false }
      *
      * Generated from protobuf field <code>map<string, .google.devtools.cloudtrace.v2.AttributeValue> attribute_map = 1;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
