@@ -16,8 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * understand. You design and build a Dialogflow agent to handle the types of
  * conversations required for your system.
  * For more information about agents, see the
- * [Agents
- * documentation](https://cloud.google.com/dialogflow/docs/agents-overview).
+ * [Agent guide](https://cloud.google.com/dialogflow/docs/agents-overview).
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.Agent</code>
  */
