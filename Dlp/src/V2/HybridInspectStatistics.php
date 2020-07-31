@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Statistics related to processing hybrid inspect requests.s
+ * Statistics related to processing hybrid inspect requests.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.HybridInspectStatistics</code>
  */

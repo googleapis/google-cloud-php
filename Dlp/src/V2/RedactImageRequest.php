@@ -25,6 +25,7 @@ class RedactImageRequest extends \Google\Protobuf\Internal\Message
     /**
      * The geographic location to process the request. Reserved for future
      * extensions.
+     * Location is restricted to 'global', 'us', 'asia', and 'europe'.
      *
      * Generated from protobuf field <code>string location_id = 8;</code>
      */
@@ -66,6 +67,7 @@ class RedactImageRequest extends \Google\Protobuf\Internal\Message
      *     @type string $location_id
      *           The geographic location to process the request. Reserved for future
      *           extensions.
+     *           Location is restricted to 'global', 'us', 'asia', and 'europe'.
      *     @type \Google\Cloud\Dlp\V2\InspectConfig $inspect_config
      *           Configuration for the inspector.
      *     @type \Google\Cloud\Dlp\V2\RedactImageRequest\ImageRedactionConfig[]|\Google\Protobuf\Internal\RepeatedField $image_redaction_configs
@@ -111,6 +113,7 @@ class RedactImageRequest extends \Google\Protobuf\Internal\Message
     /**
      * The geographic location to process the request. Reserved for future
      * extensions.
+     * Location is restricted to 'global', 'us', 'asia', and 'europe'.
      *
      * Generated from protobuf field <code>string location_id = 8;</code>
      * @return string
@@ -123,6 +126,7 @@ class RedactImageRequest extends \Google\Protobuf\Internal\Message
     /**
      * The geographic location to process the request. Reserved for future
      * extensions.
+     * Location is restricted to 'global', 'us', 'asia', and 'europe'.
      *
      * Generated from protobuf field <code>string location_id = 8;</code>
      * @param string $var

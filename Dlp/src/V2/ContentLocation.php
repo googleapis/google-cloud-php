@@ -68,6 +68,8 @@ class ContentLocation extends \Google\Protobuf\Internal\Message
      *           Location within an image's pixels.
      *     @type \Google\Cloud\Dlp\V2\DocumentLocation $document_location
      *           Location data for document files.
+     *     @type \Google\Cloud\Dlp\V2\MetadataLocation $metadata_location
+     *           Location within the metadata for inspected content.
      *     @type \Google\Protobuf\Timestamp $container_timestamp
      *           Findings container modification timestamp, if applicable.
      *           For Google Cloud Storage contains last file modification timestamp.
@@ -197,6 +199,32 @@ class ContentLocation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\DocumentLocation::class);
         $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * Location within the metadata for inspected content.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.MetadataLocation metadata_location = 8;</code>
+     * @return \Google\Cloud\Dlp\V2\MetadataLocation
+     */
+    public function getMetadataLocation()
+    {
+        return $this->readOneof(8);
+    }
+
+    /**
+     * Location within the metadata for inspected content.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.MetadataLocation metadata_location = 8;</code>
+     * @param \Google\Cloud\Dlp\V2\MetadataLocation $var
+     * @return $this
+     */
+    public function setMetadataLocation($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\MetadataLocation::class);
+        $this->writeOneof(8, $var);
 
         return $this;
     }
