@@ -29,10 +29,9 @@ class Bucket extends \Google\Protobuf\Internal\Message
      */
     private $max = null;
     /**
-     * Replacement value for this bucket. If not provided
-     * the default behavior will be to hyphenate the min-max range.
+     * Required. Replacement value for this bucket.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.Value replacement_value = 3;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.Value replacement_value = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $replacement_value = null;
 
@@ -48,8 +47,7 @@ class Bucket extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dlp\V2\Value $max
      *           Upper bound of the range, exclusive; type must match min.
      *     @type \Google\Cloud\Dlp\V2\Value $replacement_value
-     *           Replacement value for this bucket. If not provided
-     *           the default behavior will be to hyphenate the min-max range.
+     *           Required. Replacement value for this bucket.
      * }
      */
     public function __construct($data = NULL) {
@@ -112,10 +110,9 @@ class Bucket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Replacement value for this bucket. If not provided
-     * the default behavior will be to hyphenate the min-max range.
+     * Required. Replacement value for this bucket.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.Value replacement_value = 3;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.Value replacement_value = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Dlp\V2\Value
      */
     public function getReplacementValue()
@@ -124,10 +121,9 @@ class Bucket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Replacement value for this bucket. If not provided
-     * the default behavior will be to hyphenate the min-max range.
+     * Required. Replacement value for this bucket.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.Value replacement_value = 3;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.Value replacement_value = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dlp\V2\Value $var
      * @return $this
      */

@@ -16,8 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent resource name, for example `projects/my-project-id`
-     * or projects/my-project-id/locations/{location_id}.
+     * Required. Parent resource name.
+     * - Format:projects/[PROJECT-ID]
+     * - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -91,8 +92,9 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent resource name, for example `projects/my-project-id`
-     *           or projects/my-project-id/locations/{location_id}.
+     *           Required. Parent resource name.
+     *           - Format:projects/[PROJECT-ID]
+     *           - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *     @type string $page_token
      *           Page token to continue retrieval. Comes from previous call
      *           to ListJobTriggers. `order_by` field must not
@@ -142,8 +144,9 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource name, for example `projects/my-project-id`
-     * or projects/my-project-id/locations/{location_id}.
+     * Required. Parent resource name.
+     * - Format:projects/[PROJECT-ID]
+     * - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -154,8 +157,9 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource name, for example `projects/my-project-id`
-     * or projects/my-project-id/locations/{location_id}.
+     * Required. Parent resource name.
+     * - Format:projects/[PROJECT-ID]
+     * - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

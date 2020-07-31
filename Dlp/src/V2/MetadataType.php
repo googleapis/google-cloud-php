@@ -20,7 +20,7 @@ class MetadataType
      */
     const METADATATYPE_UNSPECIFIED = 0;
     /**
-     * General file metadata provided by GCS.
+     * General file metadata provided by Cloud Storage.
      *
      * Generated from protobuf enum <code>STORAGE_METADATA = 2;</code>
      */

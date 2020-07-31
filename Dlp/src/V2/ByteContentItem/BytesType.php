@@ -73,6 +73,18 @@ class BytesType
      * Generated from protobuf enum <code>AVRO = 11;</code>
      */
     const AVRO = 11;
+    /**
+     * csv
+     *
+     * Generated from protobuf enum <code>CSV = 12;</code>
+     */
+    const CSV = 12;
+    /**
+     * tsv
+     *
+     * Generated from protobuf enum <code>TSV = 13;</code>
+     */
+    const TSV = 13;
 
     private static $valueToName = [
         self::BYTES_TYPE_UNSPECIFIED => 'BYTES_TYPE_UNSPECIFIED',
@@ -85,6 +97,8 @@ class BytesType
         self::WORD_DOCUMENT => 'WORD_DOCUMENT',
         self::PDF => 'PDF',
         self::AVRO => 'AVRO',
+        self::CSV => 'CSV',
+        self::TSV => 'TSV',
     ];
 
     public static function name($value)

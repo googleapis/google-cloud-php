@@ -16,8 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeidentifyContentRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The parent resource name, for example projects/my-project-id
-     * or projects/my-project-id/locations/{location_id}.
+     * Parent resource name.
+     * - Format:projects/[PROJECT-ID]
+     * - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      */
@@ -78,8 +79,9 @@ class DeidentifyContentRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The parent resource name, for example projects/my-project-id
-     *           or projects/my-project-id/locations/{location_id}.
+     *           Parent resource name.
+     *           - Format:projects/[PROJECT-ID]
+     *           - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *     @type \Google\Cloud\Dlp\V2\DeidentifyConfig $deidentify_config
      *           Configuration for the de-identification of the content item.
      *           Items specified here will override the template referenced by the
@@ -112,8 +114,9 @@ class DeidentifyContentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The parent resource name, for example projects/my-project-id
-     * or projects/my-project-id/locations/{location_id}.
+     * Parent resource name.
+     * - Format:projects/[PROJECT-ID]
+     * - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -124,8 +127,9 @@ class DeidentifyContentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The parent resource name, for example projects/my-project-id
-     * or projects/my-project-id/locations/{location_id}.
+     * Parent resource name.
+     * - Format:projects/[PROJECT-ID]
+     * - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var
