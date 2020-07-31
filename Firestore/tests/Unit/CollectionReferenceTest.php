@@ -35,8 +35,8 @@ class CollectionReferenceTest extends TestCase
 {
     const PROJECT = 'example_project';
     const DATABASE = '(default)';
-    const COLLECTION_PARENT = 'projects/example_project/databases/(default)/documents/a';
-    const NAME = 'projects/example_project/databases/(default)/documents/a/b';
+    const COLLECTION_PARENT = 'projects/example_project/databases/(default)/documents/a/doc';
+    const NAME = 'projects/example_project/databases/(default)/documents/a/doc/b';
 
     private $connection;
     private $collection;
@@ -58,7 +58,7 @@ class CollectionReferenceTest extends TestCase
 
     public function testPath()
     {
-        $this->assertEquals('a/b', $this->collection->path());
+        $this->assertEquals('a/doc/b', $this->collection->path());
     }
 
     public function testId()
@@ -173,5 +173,29 @@ class CollectionReferenceTest extends TestCase
         }
 
         return $res;
+    }
+
+    /**
+     * @group firestore-parent
+     */
+    public function testParent()
+    {
+        $parent = $this->collection->parent();
+        $this->assertInstanceOf(DocumentReference::class, $parent);
+        $this->assertEquals(self::COLLECTION_PARENT, $parent->name());
+    }
+
+    /**
+     * @group firestore-parent
+     */
+    public function testParentForRootCollection()
+    {
+        $collectionName = 'projects/example_project/databases/(default)/documents/foo';
+        $collection = TestHelpers::stub(CollectionReference::class, [
+            $this->connection->reveal(),
+            new ValueMapper($this->connection->reveal(), false),
+            $collectionName
+        ]);
+        $this->assertNull($collection->parent());
     }
 }

@@ -277,6 +277,22 @@ class CollectionReference extends Query
     }
 
     /**
+     * Get parent document reference for a subcollection.
+     * Return NULL if it is a root collection.
+     *
+     * @return DocumentReference|null
+     */
+    public function parent()
+    {
+        $parentPath = $this->parentPath($this->name);
+        if ($this->isDocument($parentPath)) {
+            return $this->documentFactory($parentPath);
+        } else {
+            return null;
+        }
+    }
+
+    /**
      * Create a document instance with the given document name.
      *
      * @param string $name The document name.
