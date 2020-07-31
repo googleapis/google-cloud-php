@@ -17,7 +17,7 @@ class CreateInspectTemplateRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The parent resource name, for example projects/my-project-id or
-     * organizations/my-org-id.
+     * organizations/my-org-id or projects/my-project-id/locations/{location-id}.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -38,8 +38,7 @@ class CreateInspectTemplateRequest extends \Google\Protobuf\Internal\Message
      */
     private $template_id = '';
     /**
-     * The geographic location to store the inspection template. Reserved for
-     * future extensions.
+     * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>string location_id = 4;</code>
      */
@@ -53,7 +52,7 @@ class CreateInspectTemplateRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The parent resource name, for example projects/my-project-id or
-     *           organizations/my-org-id.
+     *           organizations/my-org-id or projects/my-project-id/locations/{location-id}.
      *     @type \Google\Cloud\Dlp\V2\InspectTemplate $inspect_template
      *           Required. The InspectTemplate to create.
      *     @type string $template_id
@@ -62,8 +61,7 @@ class CreateInspectTemplateRequest extends \Google\Protobuf\Internal\Message
      *           expression: `[a-zA-Z\\d-_]+`. The maximum length is 100
      *           characters. Can be empty to allow the system to generate one.
      *     @type string $location_id
-     *           The geographic location to store the inspection template. Reserved for
-     *           future extensions.
+     *           Deprecated. This field has no effect.
      * }
      */
     public function __construct($data = NULL) {
@@ -73,7 +71,7 @@ class CreateInspectTemplateRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent resource name, for example projects/my-project-id or
-     * organizations/my-org-id.
+     * organizations/my-org-id or projects/my-project-id/locations/{location-id}.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -85,7 +83,7 @@ class CreateInspectTemplateRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent resource name, for example projects/my-project-id or
-     * organizations/my-org-id.
+     * organizations/my-org-id or projects/my-project-id/locations/{location-id}.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -158,8 +156,7 @@ class CreateInspectTemplateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The geographic location to store the inspection template. Reserved for
-     * future extensions.
+     * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>string location_id = 4;</code>
      * @return string
@@ -170,8 +167,7 @@ class CreateInspectTemplateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The geographic location to store the inspection template. Reserved for
-     * future extensions.
+     * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>string location_id = 4;</code>
      * @param string $var
