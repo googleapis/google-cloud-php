@@ -2186,6 +2186,434 @@ class DlpServiceGapicClient
     }
 
     /**
+     * Creates a job trigger to run DLP actions such as scanning storage for
+     * sensitive information on a set schedule.
+     * See https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
+     *
+     * Sample code:
+     * ```
+     * $dlpServiceClient = new DlpServiceClient();
+     * try {
+     *     $formattedParent = $dlpServiceClient->projectName('[PROJECT]');
+     *     $jobTrigger = new JobTrigger();
+     *     $response = $dlpServiceClient->createJobTrigger($formattedParent, $jobTrigger);
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string     $parent       Required. The parent resource name, for example projects/my-project-id
+     *                                 or projects/my-project-id/locations/{location_id}.
+     * @param JobTrigger $jobTrigger   Required. The JobTrigger to create.
+     * @param array      $optionalArgs {
+     *                                 Optional.
+     *
+     *     @type string $triggerId
+     *          The trigger id can contain uppercase and lowercase letters,
+     *          numbers, and hyphens; that is, it must match the regular
+     *          expression: `[a-zA-Z\\d-_]+`. The maximum length is 100
+     *          characters. Can be empty to allow the system to generate one.
+     *     @type string $locationId
+     *          Deprecated. This field has no effect.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dlp\V2\JobTrigger
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function createJobTrigger($parent, $jobTrigger, array $optionalArgs = [])
+    {
+        $request = new CreateJobTriggerRequest();
+        $request->setParent($parent);
+        $request->setJobTrigger($jobTrigger);
+        if (isset($optionalArgs['triggerId'])) {
+            $request->setTriggerId($optionalArgs['triggerId']);
+        }
+        if (isset($optionalArgs['locationId'])) {
+            $request->setLocationId($optionalArgs['locationId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'CreateJobTrigger',
+            JobTrigger::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Updates a job trigger.
+     * See https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
+     *
+     * Sample code:
+     * ```
+     * $dlpServiceClient = new DlpServiceClient();
+     * try {
+     *     $formattedName = $dlpServiceClient->projectJobTriggerName('[PROJECT]', '[JOB_TRIGGER]');
+     *     $response = $dlpServiceClient->updateJobTrigger($formattedName);
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Resource name of the project and the triggeredJob, for example
+     *                             `projects/dlp-test-project/jobTriggers/53234423`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type JobTrigger $jobTrigger
+     *          New JobTrigger value.
+     *     @type FieldMask $updateMask
+     *          Mask to control which fields get updated.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dlp\V2\JobTrigger
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function updateJobTrigger($name, array $optionalArgs = [])
+    {
+        $request = new UpdateJobTriggerRequest();
+        $request->setName($name);
+        if (isset($optionalArgs['jobTrigger'])) {
+            $request->setJobTrigger($optionalArgs['jobTrigger']);
+        }
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'UpdateJobTrigger',
+            JobTrigger::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Inspect hybrid content and store findings to a trigger. The inspection
+     * will be processed asynchronously. To review the findings monitor the
+     * jobs within the trigger.
+     * Early access feature is in a pre-release state and might change or have
+     * limited support. For more information, see
+     * https://cloud.google.com/products#product-launch-stages.
+     *
+     * Sample code:
+     * ```
+     * $dlpServiceClient = new DlpServiceClient();
+     * try {
+     *     $formattedName = $dlpServiceClient->projectJobTriggerName('[PROJECT]', '[JOB_TRIGGER]');
+     *     $response = $dlpServiceClient->hybridInspectJobTrigger($formattedName);
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Resource name of the trigger to execute a hybrid inspect on, for
+     *                             example `projects/dlp-test-project/jobTriggers/53234423`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type HybridContentItem $hybridItem
+     *          The item to inspect.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dlp\V2\HybridInspectResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function hybridInspectJobTrigger($name, array $optionalArgs = [])
+    {
+        $request = new HybridInspectJobTriggerRequest();
+        $request->setName($name);
+        if (isset($optionalArgs['hybridItem'])) {
+            $request->setHybridItem($optionalArgs['hybridItem']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'HybridInspectJobTrigger',
+            HybridInspectResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Gets a job trigger.
+     * See https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
+     *
+     * Sample code:
+     * ```
+     * $dlpServiceClient = new DlpServiceClient();
+     * try {
+     *     $formattedName = $dlpServiceClient->projectJobTriggerName('[PROJECT]', '[JOB_TRIGGER]');
+     *     $response = $dlpServiceClient->getJobTrigger($formattedName);
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Resource name of the project and the triggeredJob, for example
+     *                             `projects/dlp-test-project/jobTriggers/53234423`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dlp\V2\JobTrigger
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function getJobTrigger($name, array $optionalArgs = [])
+    {
+        $request = new GetJobTriggerRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'GetJobTrigger',
+            JobTrigger::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Lists job triggers.
+     * See https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
+     *
+     * Sample code:
+     * ```
+     * $dlpServiceClient = new DlpServiceClient();
+     * try {
+     *     $formattedParent = $dlpServiceClient->projectName('[PROJECT]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $dlpServiceClient->listJobTriggers($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $dlpServiceClient->listJobTriggers($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The parent resource name, for example `projects/my-project-id`
+     *                             or projects/my-project-id/locations/{location_id}.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type string $pageToken
+     *          A page token is used to specify a page of values to be returned.
+     *          If no page token is specified (the default), the first page
+     *          of values will be returned. Any page token used here must have
+     *          been generated by a previous call to the API.
+     *     @type int $pageSize
+     *          The maximum number of resources contained in the underlying API
+     *          response. The API may return fewer values in a page, even if
+     *          there are additional values to be retrieved.
+     *     @type string $orderBy
+     *          Comma separated list of triggeredJob fields to order by,
+     *          followed by `asc` or `desc` postfix. This list is case-insensitive,
+     *          default sorting order is ascending, redundant space characters are
+     *          insignificant.
+     *
+     *          Example: `name asc,update_time, create_time desc`
+     *
+     *          Supported fields are:
+     *
+     *          - `create_time`: corresponds to time the JobTrigger was created.
+     *          - `update_time`: corresponds to time the JobTrigger was last updated.
+     *          - `last_run_time`: corresponds to the last time the JobTrigger ran.
+     *          - `name`: corresponds to JobTrigger's name.
+     *          - `display_name`: corresponds to JobTrigger's display name.
+     *          - `status`: corresponds to JobTrigger's status.
+     *     @type string $filter
+     *          Allows filtering.
+     *
+     *          Supported syntax:
+     *
+     *          * Filter expressions are made up of one or more restrictions.
+     *          * Restrictions can be combined by `AND` or `OR` logical operators. A
+     *          sequence of restrictions implicitly uses `AND`.
+     *          * A restriction has the form of `{field} {operator} {value}`.
+     *          * Supported fields/values for inspect jobs:
+     *              - `status` - HEALTHY|PAUSED|CANCELLED
+     *              - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY
+     *              - 'last_run_time` - RFC 3339 formatted timestamp, surrounded by
+     *              quotation marks. Nanoseconds are ignored.
+     *              - 'error_count' - Number of errors that have occurred while running.
+     *          * The operator must be `=` or `!=` for status and inspected_storage.
+     *
+     *          Examples:
+     *
+     *          * inspected_storage = cloud_storage AND status = HEALTHY
+     *          * inspected_storage = cloud_storage OR inspected_storage = bigquery
+     *          * inspected_storage = cloud_storage AND (state = PAUSED OR state = HEALTHY)
+     *          * last_run_time > \"2017-12-12T00:00:00+00:00\"
+     *
+     *          The length of this field should be no more than 500 characters.
+     *     @type string $locationId
+     *          Deprecated. This field has no effect.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function listJobTriggers($parent, array $optionalArgs = [])
+    {
+        $request = new ListJobTriggersRequest();
+        $request->setParent($parent);
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
+        }
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+        if (isset($optionalArgs['locationId'])) {
+            $request->setLocationId($optionalArgs['locationId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->getPagedListResponse(
+            'ListJobTriggers',
+            $optionalArgs,
+            ListJobTriggersResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Deletes a job trigger.
+     * See https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
+     *
+     * Sample code:
+     * ```
+     * $dlpServiceClient = new DlpServiceClient();
+     * try {
+     *     $formattedName = $dlpServiceClient->projectJobTriggerName('[PROJECT]', '[JOB_TRIGGER]');
+     *     $dlpServiceClient->deleteJobTrigger($formattedName);
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Resource name of the project and the triggeredJob, for example
+     *                             `projects/dlp-test-project/jobTriggers/53234423`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function deleteJobTrigger($name, array $optionalArgs = [])
+    {
+        $request = new DeleteJobTriggerRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteJobTrigger',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Creates a new job to inspect storage or calculate risk metrics.
      * See https://cloud.google.com/dlp/docs/inspecting-storage and
      * https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.
@@ -2567,547 +2995,6 @@ class DlpServiceGapicClient
     }
 
     /**
-     * Finish a running hybrid DlpJob. Triggers the finalization steps and running
-     * of any enabled actions that have not yet run.
-     * Early access feature is in a pre-release state and might change or have
-     * limited support. For more information, see
-     * https://cloud.google.com/products#product-launch-stages.
-     *
-     * Sample code:
-     * ```
-     * $dlpServiceClient = new DlpServiceClient();
-     * try {
-     *     $name = '';
-     *     $dlpServiceClient->finishDlpJob($name);
-     * } finally {
-     *     $dlpServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. The name of the DlpJob resource to be cancelled.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function finishDlpJob($name, array $optionalArgs = [])
-    {
-        $request = new FinishDlpJobRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'FinishDlpJob',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Inspect hybrid content and store findings to a job.
-     * To review the findings inspect the job. Inspection will occur
-     * asynchronously.
-     * Early access feature is in a pre-release state and might change or have
-     * limited support. For more information, see
-     * https://cloud.google.com/products#product-launch-stages.
-     *
-     * Sample code:
-     * ```
-     * $dlpServiceClient = new DlpServiceClient();
-     * try {
-     *     $name = '';
-     *     $response = $dlpServiceClient->hybridInspectDlpJob($name);
-     * } finally {
-     *     $dlpServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. Resource name of the job to execute a hybrid inspect on, for
-     *                             example `projects/dlp-test-project/dlpJob/53234423`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type HybridContentItem $hybridItem
-     *          The item to inspect.
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\Dlp\V2\HybridInspectResponse
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function hybridInspectDlpJob($name, array $optionalArgs = [])
-    {
-        $request = new HybridInspectDlpJobRequest();
-        $request->setName($name);
-        if (isset($optionalArgs['hybridItem'])) {
-            $request->setHybridItem($optionalArgs['hybridItem']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'HybridInspectDlpJob',
-            HybridInspectResponse::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Lists job triggers.
-     * See https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
-     *
-     * Sample code:
-     * ```
-     * $dlpServiceClient = new DlpServiceClient();
-     * try {
-     *     $formattedParent = $dlpServiceClient->projectName('[PROJECT]');
-     *     // Iterate over pages of elements
-     *     $pagedResponse = $dlpServiceClient->listJobTriggers($formattedParent);
-     *     foreach ($pagedResponse->iteratePages() as $page) {
-     *         foreach ($page as $element) {
-     *             // doSomethingWith($element);
-     *         }
-     *     }
-     *
-     *
-     *     // Alternatively:
-     *
-     *     // Iterate through all elements
-     *     $pagedResponse = $dlpServiceClient->listJobTriggers($formattedParent);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     * } finally {
-     *     $dlpServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $parent       Required. The parent resource name, for example `projects/my-project-id`
-     *                             or projects/my-project-id/locations/{location_id}.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type string $pageToken
-     *          A page token is used to specify a page of values to be returned.
-     *          If no page token is specified (the default), the first page
-     *          of values will be returned. Any page token used here must have
-     *          been generated by a previous call to the API.
-     *     @type int $pageSize
-     *          The maximum number of resources contained in the underlying API
-     *          response. The API may return fewer values in a page, even if
-     *          there are additional values to be retrieved.
-     *     @type string $orderBy
-     *          Comma separated list of triggeredJob fields to order by,
-     *          followed by `asc` or `desc` postfix. This list is case-insensitive,
-     *          default sorting order is ascending, redundant space characters are
-     *          insignificant.
-     *
-     *          Example: `name asc,update_time, create_time desc`
-     *
-     *          Supported fields are:
-     *
-     *          - `create_time`: corresponds to time the JobTrigger was created.
-     *          - `update_time`: corresponds to time the JobTrigger was last updated.
-     *          - `last_run_time`: corresponds to the last time the JobTrigger ran.
-     *          - `name`: corresponds to JobTrigger's name.
-     *          - `display_name`: corresponds to JobTrigger's display name.
-     *          - `status`: corresponds to JobTrigger's status.
-     *     @type string $filter
-     *          Allows filtering.
-     *
-     *          Supported syntax:
-     *
-     *          * Filter expressions are made up of one or more restrictions.
-     *          * Restrictions can be combined by `AND` or `OR` logical operators. A
-     *          sequence of restrictions implicitly uses `AND`.
-     *          * A restriction has the form of `{field} {operator} {value}`.
-     *          * Supported fields/values for inspect jobs:
-     *              - `status` - HEALTHY|PAUSED|CANCELLED
-     *              - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY
-     *              - 'last_run_time` - RFC 3339 formatted timestamp, surrounded by
-     *              quotation marks. Nanoseconds are ignored.
-     *              - 'error_count' - Number of errors that have occurred while running.
-     *          * The operator must be `=` or `!=` for status and inspected_storage.
-     *
-     *          Examples:
-     *
-     *          * inspected_storage = cloud_storage AND status = HEALTHY
-     *          * inspected_storage = cloud_storage OR inspected_storage = bigquery
-     *          * inspected_storage = cloud_storage AND (state = PAUSED OR state = HEALTHY)
-     *          * last_run_time > \"2017-12-12T00:00:00+00:00\"
-     *
-     *          The length of this field should be no more than 500 characters.
-     *     @type string $locationId
-     *          Deprecated. This field has no effect.
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\ApiCore\PagedListResponse
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function listJobTriggers($parent, array $optionalArgs = [])
-    {
-        $request = new ListJobTriggersRequest();
-        $request->setParent($parent);
-        if (isset($optionalArgs['pageToken'])) {
-            $request->setPageToken($optionalArgs['pageToken']);
-        }
-        if (isset($optionalArgs['pageSize'])) {
-            $request->setPageSize($optionalArgs['pageSize']);
-        }
-        if (isset($optionalArgs['orderBy'])) {
-            $request->setOrderBy($optionalArgs['orderBy']);
-        }
-        if (isset($optionalArgs['filter'])) {
-            $request->setFilter($optionalArgs['filter']);
-        }
-        if (isset($optionalArgs['locationId'])) {
-            $request->setLocationId($optionalArgs['locationId']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'parent' => $request->getParent(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->getPagedListResponse(
-            'ListJobTriggers',
-            $optionalArgs,
-            ListJobTriggersResponse::class,
-            $request
-        );
-    }
-
-    /**
-     * Gets a job trigger.
-     * See https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
-     *
-     * Sample code:
-     * ```
-     * $dlpServiceClient = new DlpServiceClient();
-     * try {
-     *     $formattedName = $dlpServiceClient->projectJobTriggerName('[PROJECT]', '[JOB_TRIGGER]');
-     *     $response = $dlpServiceClient->getJobTrigger($formattedName);
-     * } finally {
-     *     $dlpServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. Resource name of the project and the triggeredJob, for example
-     *                             `projects/dlp-test-project/jobTriggers/53234423`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\Dlp\V2\JobTrigger
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function getJobTrigger($name, array $optionalArgs = [])
-    {
-        $request = new GetJobTriggerRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'GetJobTrigger',
-            JobTrigger::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Deletes a job trigger.
-     * See https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
-     *
-     * Sample code:
-     * ```
-     * $dlpServiceClient = new DlpServiceClient();
-     * try {
-     *     $formattedName = $dlpServiceClient->projectJobTriggerName('[PROJECT]', '[JOB_TRIGGER]');
-     *     $dlpServiceClient->deleteJobTrigger($formattedName);
-     * } finally {
-     *     $dlpServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. Resource name of the project and the triggeredJob, for example
-     *                             `projects/dlp-test-project/jobTriggers/53234423`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function deleteJobTrigger($name, array $optionalArgs = [])
-    {
-        $request = new DeleteJobTriggerRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteJobTrigger',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Inspect hybrid content and store findings to a trigger. The inspection
-     * will be processed asynchronously. To review the findings monitor the
-     * jobs within the trigger.
-     * Early access feature is in a pre-release state and might change or have
-     * limited support. For more information, see
-     * https://cloud.google.com/products#product-launch-stages.
-     *
-     * Sample code:
-     * ```
-     * $dlpServiceClient = new DlpServiceClient();
-     * try {
-     *     $formattedName = $dlpServiceClient->projectJobTriggerName('[PROJECT]', '[JOB_TRIGGER]');
-     *     $response = $dlpServiceClient->hybridInspectJobTrigger($formattedName);
-     * } finally {
-     *     $dlpServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. Resource name of the trigger to execute a hybrid inspect on, for
-     *                             example `projects/dlp-test-project/jobTriggers/53234423`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type HybridContentItem $hybridItem
-     *          The item to inspect.
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\Dlp\V2\HybridInspectResponse
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function hybridInspectJobTrigger($name, array $optionalArgs = [])
-    {
-        $request = new HybridInspectJobTriggerRequest();
-        $request->setName($name);
-        if (isset($optionalArgs['hybridItem'])) {
-            $request->setHybridItem($optionalArgs['hybridItem']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'HybridInspectJobTrigger',
-            HybridInspectResponse::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Updates a job trigger.
-     * See https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
-     *
-     * Sample code:
-     * ```
-     * $dlpServiceClient = new DlpServiceClient();
-     * try {
-     *     $formattedName = $dlpServiceClient->projectJobTriggerName('[PROJECT]', '[JOB_TRIGGER]');
-     *     $response = $dlpServiceClient->updateJobTrigger($formattedName);
-     * } finally {
-     *     $dlpServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. Resource name of the project and the triggeredJob, for example
-     *                             `projects/dlp-test-project/jobTriggers/53234423`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type JobTrigger $jobTrigger
-     *          New JobTrigger value.
-     *     @type FieldMask $updateMask
-     *          Mask to control which fields get updated.
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\Dlp\V2\JobTrigger
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function updateJobTrigger($name, array $optionalArgs = [])
-    {
-        $request = new UpdateJobTriggerRequest();
-        $request->setName($name);
-        if (isset($optionalArgs['jobTrigger'])) {
-            $request->setJobTrigger($optionalArgs['jobTrigger']);
-        }
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'UpdateJobTrigger',
-            JobTrigger::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Creates a job trigger to run DLP actions such as scanning storage for
-     * sensitive information on a set schedule.
-     * See https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
-     *
-     * Sample code:
-     * ```
-     * $dlpServiceClient = new DlpServiceClient();
-     * try {
-     *     $formattedParent = $dlpServiceClient->projectName('[PROJECT]');
-     *     $jobTrigger = new JobTrigger();
-     *     $response = $dlpServiceClient->createJobTrigger($formattedParent, $jobTrigger);
-     * } finally {
-     *     $dlpServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string     $parent       Required. The parent resource name, for example projects/my-project-id
-     *                                 or projects/my-project-id/locations/{location_id}.
-     * @param JobTrigger $jobTrigger   Required. The JobTrigger to create.
-     * @param array      $optionalArgs {
-     *                                 Optional.
-     *
-     *     @type string $triggerId
-     *          The trigger id can contain uppercase and lowercase letters,
-     *          numbers, and hyphens; that is, it must match the regular
-     *          expression: `[a-zA-Z\\d-_]+`. The maximum length is 100
-     *          characters. Can be empty to allow the system to generate one.
-     *     @type string $locationId
-     *          Deprecated. This field has no effect.
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\Dlp\V2\JobTrigger
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function createJobTrigger($parent, $jobTrigger, array $optionalArgs = [])
-    {
-        $request = new CreateJobTriggerRequest();
-        $request->setParent($parent);
-        $request->setJobTrigger($jobTrigger);
-        if (isset($optionalArgs['triggerId'])) {
-            $request->setTriggerId($optionalArgs['triggerId']);
-        }
-        if (isset($optionalArgs['locationId'])) {
-            $request->setLocationId($optionalArgs['locationId']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'parent' => $request->getParent(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'CreateJobTrigger',
-            JobTrigger::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
      * Creates a pre-built stored infoType to be used for inspection.
      * See https://cloud.google.com/dlp/docs/creating-stored-infotypes to
      * learn more.
@@ -3449,6 +3336,119 @@ class DlpServiceGapicClient
 
         return $this->startCall(
             'DeleteStoredInfoType',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Inspect hybrid content and store findings to a job.
+     * To review the findings inspect the job. Inspection will occur
+     * asynchronously.
+     * Early access feature is in a pre-release state and might change or have
+     * limited support. For more information, see
+     * https://cloud.google.com/products#product-launch-stages.
+     *
+     * Sample code:
+     * ```
+     * $dlpServiceClient = new DlpServiceClient();
+     * try {
+     *     $name = '';
+     *     $response = $dlpServiceClient->hybridInspectDlpJob($name);
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Resource name of the job to execute a hybrid inspect on, for
+     *                             example `projects/dlp-test-project/dlpJob/53234423`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type HybridContentItem $hybridItem
+     *          The item to inspect.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dlp\V2\HybridInspectResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function hybridInspectDlpJob($name, array $optionalArgs = [])
+    {
+        $request = new HybridInspectDlpJobRequest();
+        $request->setName($name);
+        if (isset($optionalArgs['hybridItem'])) {
+            $request->setHybridItem($optionalArgs['hybridItem']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'HybridInspectDlpJob',
+            HybridInspectResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Finish a running hybrid DlpJob. Triggers the finalization steps and running
+     * of any enabled actions that have not yet run.
+     * Early access feature is in a pre-release state and might change or have
+     * limited support. For more information, see
+     * https://cloud.google.com/products#product-launch-stages.
+     *
+     * Sample code:
+     * ```
+     * $dlpServiceClient = new DlpServiceClient();
+     * try {
+     *     $name = '';
+     *     $dlpServiceClient->finishDlpJob($name);
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the DlpJob resource to be cancelled.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function finishDlpJob($name, array $optionalArgs = [])
+    {
+        $request = new FinishDlpJobRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'FinishDlpJob',
             GPBEmpty::class,
             $optionalArgs,
             $request
