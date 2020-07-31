@@ -92,8 +92,23 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $entityTypesClient = new EntityTypesClient();
  * try {
- *     $formattedName = $entityTypesClient->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
- *     $entityTypesClient->deleteEntityType($formattedName);
+ *     $formattedParent = $entityTypesClient->agentName('[PROJECT]');
+ *     // Iterate over pages of elements
+ *     $pagedResponse = $entityTypesClient->listEntityTypes($formattedParent);
+ *     foreach ($pagedResponse->iteratePages() as $page) {
+ *         foreach ($page as $element) {
+ *             // doSomethingWith($element);
+ *         }
+ *     }
+ *
+ *
+ *     // Alternatively:
+ *
+ *     // Iterate through all elements
+ *     $pagedResponse = $entityTypesClient->listEntityTypes($formattedParent);
+ *     foreach ($pagedResponse->iterateAllElements() as $element) {
+ *         // doSomethingWith($element);
+ *     }
  * } finally {
  *     $entityTypesClient->close();
  * }
@@ -363,232 +378,6 @@ class EntityTypesGapicClient
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
         $this->operationsClient = $this->createOperationsClient($clientOptions);
-    }
-
-    /**
-     * Deletes the specified entity type.
-     *
-     * Sample code:
-     * ```
-     * $entityTypesClient = new EntityTypesClient();
-     * try {
-     *     $formattedName = $entityTypesClient->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
-     *     $entityTypesClient->deleteEntityType($formattedName);
-     * } finally {
-     *     $entityTypesClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. The name of the entity type to delete.
-     *                             Format: `projects/<Project ID>/agent/entityTypes/<EntityType ID>`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function deleteEntityType($name, array $optionalArgs = [])
-    {
-        $request = new DeleteEntityTypeRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteEntityType',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Deletes entity types in the specified agent.
-     *
-     * Operation <response: [google.protobuf.Empty][google.protobuf.Empty]>
-     *
-     * Sample code:
-     * ```
-     * $entityTypesClient = new EntityTypesClient();
-     * try {
-     *     $formattedParent = $entityTypesClient->agentName('[PROJECT]');
-     *     $entityTypeNames = [];
-     *     $operationResponse = $entityTypesClient->batchDeleteEntityTypes($formattedParent, $entityTypeNames);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // operation succeeded and returns no value
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *
-     *
-     *     // Alternatively:
-     *
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $entityTypesClient->batchDeleteEntityTypes($formattedParent, $entityTypeNames);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $entityTypesClient->resumeOperation($operationName, 'batchDeleteEntityTypes');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *       // operation succeeded and returns no value
-     *     } else {
-     *       $error = $newOperationResponse->getError();
-     *       // handleError($error)
-     *     }
-     * } finally {
-     *     $entityTypesClient->close();
-     * }
-     * ```
-     *
-     * @param string   $parent          Required. The name of the agent to delete all entities types for. Format:
-     *                                  `projects/<Project ID>/agent`.
-     * @param string[] $entityTypeNames Required. The names entity types to delete. All names must point to the
-     *                                  same agent as `parent`.
-     * @param array    $optionalArgs    {
-     *                                  Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\ApiCore\OperationResponse
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function batchDeleteEntityTypes($parent, $entityTypeNames, array $optionalArgs = [])
-    {
-        $request = new BatchDeleteEntityTypesRequest();
-        $request->setParent($parent);
-        $request->setEntityTypeNames($entityTypeNames);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'parent' => $request->getParent(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startOperationsCall(
-            'BatchDeleteEntityTypes',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
-        )->wait();
-    }
-
-    /**
-     * Deletes entities in the specified entity type.
-     *
-     *
-     * Operation <response: [google.protobuf.Empty][google.protobuf.Empty]>
-     *
-     * Sample code:
-     * ```
-     * $entityTypesClient = new EntityTypesClient();
-     * try {
-     *     $formattedParent = $entityTypesClient->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
-     *     $entityValues = [];
-     *     $operationResponse = $entityTypesClient->batchDeleteEntities($formattedParent, $entityValues);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // operation succeeded and returns no value
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *
-     *
-     *     // Alternatively:
-     *
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $entityTypesClient->batchDeleteEntities($formattedParent, $entityValues);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $entityTypesClient->resumeOperation($operationName, 'batchDeleteEntities');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *       // operation succeeded and returns no value
-     *     } else {
-     *       $error = $newOperationResponse->getError();
-     *       // handleError($error)
-     *     }
-     * } finally {
-     *     $entityTypesClient->close();
-     * }
-     * ```
-     *
-     * @param string   $parent       Required. The name of the entity type to delete entries for. Format:
-     *                               `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
-     * @param string[] $entityValues Required. The reference `values` of the entities to delete. Note that
-     *                               these are not fully-qualified names, i.e. they don't start with
-     *                               `projects/<Project ID>`.
-     * @param array    $optionalArgs {
-     *                               Optional.
-     *
-     *     @type string $languageCode
-     *          Optional. The language used to access language-specific data.
-     *          If not specified, the agent's default language is used.
-     *          For more information, see
-     *          [Multilingual intent and entity
-     *          data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\ApiCore\OperationResponse
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function batchDeleteEntities($parent, $entityValues, array $optionalArgs = [])
-    {
-        $request = new BatchDeleteEntitiesRequest();
-        $request->setParent($parent);
-        $request->setEntityValues($entityValues);
-        if (isset($optionalArgs['languageCode'])) {
-            $request->setLanguageCode($optionalArgs['languageCode']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'parent' => $request->getParent(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startOperationsCall(
-            'BatchDeleteEntities',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
-        )->wait();
     }
 
     /**
@@ -869,6 +658,55 @@ class EntityTypesGapicClient
     }
 
     /**
+     * Deletes the specified entity type.
+     *
+     * Sample code:
+     * ```
+     * $entityTypesClient = new EntityTypesClient();
+     * try {
+     *     $formattedName = $entityTypesClient->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
+     *     $entityTypesClient->deleteEntityType($formattedName);
+     * } finally {
+     *     $entityTypesClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the entity type to delete.
+     *                             Format: `projects/<Project ID>/agent/entityTypes/<EntityType ID>`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function deleteEntityType($name, array $optionalArgs = [])
+    {
+        $request = new DeleteEntityTypeRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteEntityType',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Updates/Creates multiple entity types in the specified agent.
      *
      * Operation <response: [BatchUpdateEntityTypesResponse][google.cloud.dialogflow.v2.BatchUpdateEntityTypesResponse]>
@@ -970,6 +808,89 @@ class EntityTypesGapicClient
 
         return $this->startOperationsCall(
             'BatchUpdateEntityTypes',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Deletes entity types in the specified agent.
+     *
+     * Operation <response: [google.protobuf.Empty][google.protobuf.Empty]>
+     *
+     * Sample code:
+     * ```
+     * $entityTypesClient = new EntityTypesClient();
+     * try {
+     *     $formattedParent = $entityTypesClient->agentName('[PROJECT]');
+     *     $entityTypeNames = [];
+     *     $operationResponse = $entityTypesClient->batchDeleteEntityTypes($formattedParent, $entityTypeNames);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $entityTypesClient->batchDeleteEntityTypes($formattedParent, $entityTypeNames);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $entityTypesClient->resumeOperation($operationName, 'batchDeleteEntityTypes');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       // operation succeeded and returns no value
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $entityTypesClient->close();
+     * }
+     * ```
+     *
+     * @param string   $parent          Required. The name of the agent to delete all entities types for. Format:
+     *                                  `projects/<Project ID>/agent`.
+     * @param string[] $entityTypeNames Required. The names entity types to delete. All names must point to the
+     *                                  same agent as `parent`.
+     * @param array    $optionalArgs    {
+     *                                  Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function batchDeleteEntityTypes($parent, $entityTypeNames, array $optionalArgs = [])
+    {
+        $request = new BatchDeleteEntityTypesRequest();
+        $request->setParent($parent);
+        $request->setEntityTypeNames($entityTypeNames);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startOperationsCall(
+            'BatchDeleteEntityTypes',
             $optionalArgs,
             $request,
             $this->getOperationsClient()
@@ -1160,6 +1081,100 @@ class EntityTypesGapicClient
 
         return $this->startOperationsCall(
             'BatchUpdateEntities',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Deletes entities in the specified entity type.
+     *
+     *
+     * Operation <response: [google.protobuf.Empty][google.protobuf.Empty]>
+     *
+     * Sample code:
+     * ```
+     * $entityTypesClient = new EntityTypesClient();
+     * try {
+     *     $formattedParent = $entityTypesClient->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
+     *     $entityValues = [];
+     *     $operationResponse = $entityTypesClient->batchDeleteEntities($formattedParent, $entityValues);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $entityTypesClient->batchDeleteEntities($formattedParent, $entityValues);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $entityTypesClient->resumeOperation($operationName, 'batchDeleteEntities');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       // operation succeeded and returns no value
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $entityTypesClient->close();
+     * }
+     * ```
+     *
+     * @param string   $parent       Required. The name of the entity type to delete entries for. Format:
+     *                               `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+     * @param string[] $entityValues Required. The reference `values` of the entities to delete. Note that
+     *                               these are not fully-qualified names, i.e. they don't start with
+     *                               `projects/<Project ID>`.
+     * @param array    $optionalArgs {
+     *                               Optional.
+     *
+     *     @type string $languageCode
+     *          Optional. The language used to access language-specific data.
+     *          If not specified, the agent's default language is used.
+     *          For more information, see
+     *          [Multilingual intent and entity
+     *          data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function batchDeleteEntities($parent, $entityValues, array $optionalArgs = [])
+    {
+        $request = new BatchDeleteEntitiesRequest();
+        $request->setParent($parent);
+        $request->setEntityValues($entityValues);
+        if (isset($optionalArgs['languageCode'])) {
+            $request->setLanguageCode($optionalArgs['languageCode']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startOperationsCall(
+            'BatchDeleteEntities',
             $optionalArgs,
             $request,
             $this->getOperationsClient()
