@@ -14,7 +14,7 @@ use UnexpectedValueException;
 class Component
 {
     /**
-     * Unspecified component.
+     * Unspecified component. Specifying this will cause Cluster creation to fail.
      *
      * Generated from protobuf enum <code>COMPONENT_UNSPECIFIED = 0;</code>
      */

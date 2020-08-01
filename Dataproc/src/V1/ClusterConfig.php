@@ -30,6 +30,20 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      */
     private $config_bucket = '';
     /**
+     * Optional. A Cloud Storage bucket used to store ephemeral cluster and jobs data,
+     * such as Spark and MapReduce history files.
+     * If you do not specify a temp bucket,
+     * Dataproc will determine a Cloud Storage location (US,
+     * ASIA, or EU) for your cluster's temp bucket according to the
+     * Compute Engine zone where your cluster is deployed, and then create
+     * and manage this project-level, per-location bucket. The default bucket has
+     * a TTL of 90 days, but you can use any TTL (or none) if you specify a
+     * bucket.
+     *
+     * Generated from protobuf field <code>string temp_bucket = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $temp_bucket = '';
+    /**
      * Optional. The shared Compute Engine config settings for
      * all instances in a cluster.
      *
@@ -105,6 +119,12 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.LifecycleConfig lifecycle_config = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $lifecycle_config = null;
+    /**
+     * Optional. Port/endpoint configuration for this cluster
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.EndpointConfig endpoint_config = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $endpoint_config = null;
 
     /**
      * Constructor.
@@ -122,6 +142,16 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      *           and manage this project-level, per-location bucket (see
      *           [Dataproc staging
      *           bucket](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/staging-bucket)).
+     *     @type string $temp_bucket
+     *           Optional. A Cloud Storage bucket used to store ephemeral cluster and jobs data,
+     *           such as Spark and MapReduce history files.
+     *           If you do not specify a temp bucket,
+     *           Dataproc will determine a Cloud Storage location (US,
+     *           ASIA, or EU) for your cluster's temp bucket according to the
+     *           Compute Engine zone where your cluster is deployed, and then create
+     *           and manage this project-level, per-location bucket. The default bucket has
+     *           a TTL of 90 days, but you can use any TTL (or none) if you specify a
+     *           bucket.
      *     @type \Google\Cloud\Dataproc\V1\GceClusterConfig $gce_cluster_config
      *           Optional. The shared Compute Engine config settings for
      *           all instances in a cluster.
@@ -158,6 +188,8 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      *           Optional. Security settings for the cluster.
      *     @type \Google\Cloud\Dataproc\V1\LifecycleConfig $lifecycle_config
      *           Optional. Lifecycle setting for the cluster.
+     *     @type \Google\Cloud\Dataproc\V1\EndpointConfig $endpoint_config
+     *           Optional. Port/endpoint configuration for this cluster
      * }
      */
     public function __construct($data = NULL) {
@@ -203,6 +235,48 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->config_bucket = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A Cloud Storage bucket used to store ephemeral cluster and jobs data,
+     * such as Spark and MapReduce history files.
+     * If you do not specify a temp bucket,
+     * Dataproc will determine a Cloud Storage location (US,
+     * ASIA, or EU) for your cluster's temp bucket according to the
+     * Compute Engine zone where your cluster is deployed, and then create
+     * and manage this project-level, per-location bucket. The default bucket has
+     * a TTL of 90 days, but you can use any TTL (or none) if you specify a
+     * bucket.
+     *
+     * Generated from protobuf field <code>string temp_bucket = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getTempBucket()
+    {
+        return $this->temp_bucket;
+    }
+
+    /**
+     * Optional. A Cloud Storage bucket used to store ephemeral cluster and jobs data,
+     * such as Spark and MapReduce history files.
+     * If you do not specify a temp bucket,
+     * Dataproc will determine a Cloud Storage location (US,
+     * ASIA, or EU) for your cluster's temp bucket according to the
+     * Compute Engine zone where your cluster is deployed, and then create
+     * and manage this project-level, per-location bucket. The default bucket has
+     * a TTL of 90 days, but you can use any TTL (or none) if you specify a
+     * bucket.
+     *
+     * Generated from protobuf field <code>string temp_bucket = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTempBucket($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->temp_bucket = $var;
 
         return $this;
     }
@@ -495,6 +569,32 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\LifecycleConfig::class);
         $this->lifecycle_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Port/endpoint configuration for this cluster
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.EndpointConfig endpoint_config = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataproc\V1\EndpointConfig
+     */
+    public function getEndpointConfig()
+    {
+        return $this->endpoint_config;
+    }
+
+    /**
+     * Optional. Port/endpoint configuration for this cluster
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.EndpointConfig endpoint_config = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataproc\V1\EndpointConfig $var
+     * @return $this
+     */
+    public function setEndpointConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\EndpointConfig::class);
+        $this->endpoint_config = $var;
 
         return $this;
     }

@@ -32,15 +32,15 @@ class SparkJob extends \Google\Protobuf\Internal\Message
      */
     private $jar_file_uris;
     /**
-     * Optional. HCFS URIs of files to be copied to the working directory of
-     * Spark drivers and distributed tasks. Useful for naively parallel tasks.
+     * Optional. HCFS URIs of files to be placed in the working directory of
+     * each executor. Useful for naively parallel tasks.
      *
      * Generated from protobuf field <code>repeated string file_uris = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $file_uris;
     /**
-     * Optional. HCFS URIs of archives to be extracted in the working directory
-     * of Spark drivers and tasks. Supported file types:
+     * Optional. HCFS URIs of archives to be extracted into the working directory
+     * of each executor. Supported file types:
      * .jar, .tar, .tar.gz, .tgz, and .zip.
      *
      * Generated from protobuf field <code>repeated string archive_uris = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -82,11 +82,11 @@ class SparkJob extends \Google\Protobuf\Internal\Message
      *           Optional. HCFS URIs of jar files to add to the CLASSPATHs of the
      *           Spark driver and tasks.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $file_uris
-     *           Optional. HCFS URIs of files to be copied to the working directory of
-     *           Spark drivers and distributed tasks. Useful for naively parallel tasks.
+     *           Optional. HCFS URIs of files to be placed in the working directory of
+     *           each executor. Useful for naively parallel tasks.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $archive_uris
-     *           Optional. HCFS URIs of archives to be extracted in the working directory
-     *           of Spark drivers and tasks. Supported file types:
+     *           Optional. HCFS URIs of archives to be extracted into the working directory
+     *           of each executor. Supported file types:
      *           .jar, .tar, .tar.gz, .tgz, and .zip.
      *     @type array|\Google\Protobuf\Internal\MapField $properties
      *           Optional. A mapping of property names to values, used to configure Spark.
@@ -215,8 +215,8 @@ class SparkJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. HCFS URIs of files to be copied to the working directory of
-     * Spark drivers and distributed tasks. Useful for naively parallel tasks.
+     * Optional. HCFS URIs of files to be placed in the working directory of
+     * each executor. Useful for naively parallel tasks.
      *
      * Generated from protobuf field <code>repeated string file_uris = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -227,8 +227,8 @@ class SparkJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. HCFS URIs of files to be copied to the working directory of
-     * Spark drivers and distributed tasks. Useful for naively parallel tasks.
+     * Optional. HCFS URIs of files to be placed in the working directory of
+     * each executor. Useful for naively parallel tasks.
      *
      * Generated from protobuf field <code>repeated string file_uris = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -243,8 +243,8 @@ class SparkJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. HCFS URIs of archives to be extracted in the working directory
-     * of Spark drivers and tasks. Supported file types:
+     * Optional. HCFS URIs of archives to be extracted into the working directory
+     * of each executor. Supported file types:
      * .jar, .tar, .tar.gz, .tgz, and .zip.
      *
      * Generated from protobuf field <code>repeated string archive_uris = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -256,8 +256,8 @@ class SparkJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. HCFS URIs of archives to be extracted in the working directory
-     * of Spark drivers and tasks. Supported file types:
+     * Optional. HCFS URIs of archives to be extracted into the working directory
+     * of each executor. Supported file types:
      * .jar, .tar, .tar.gz, .tgz, and .zip.
      *
      * Generated from protobuf field <code>repeated string archive_uris = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
