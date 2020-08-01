@@ -3,42 +3,6 @@
 return [
     'interfaces' => [
         'google.cloud.dataproc.v1.WorkflowTemplateService' => [
-            'CreateWorkflowTemplate' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/workflowTemplates',
-                'body' => 'template',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/{parent=projects/*/regions/*}/workflowTemplates',
-                        'body' => 'template',
-                    ],
-                ],
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'GetWorkflowTemplate' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/workflowTemplates/*}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1/{name=projects/*/regions/*/workflowTemplates/*}',
-                    ],
-                ],
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'InstantiateWorkflowTemplate' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/workflowTemplates/*}:instantiate',
@@ -73,6 +37,42 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateWorkflowTemplate' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/workflowTemplates',
+                'body' => 'template',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*/regions/*}/workflowTemplates',
+                        'body' => 'template',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'GetWorkflowTemplate' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/workflowTemplates/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/regions/*/workflowTemplates/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],

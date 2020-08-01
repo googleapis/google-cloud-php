@@ -52,8 +52,9 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $autoscalingPolicyServiceClient = new AutoscalingPolicyServiceClient();
  * try {
+ *     $formattedParent = $autoscalingPolicyServiceClient->regionName('[PROJECT]', '[REGION]');
  *     $policy = new AutoscalingPolicy();
- *     $response = $autoscalingPolicyServiceClient->updateAutoscalingPolicy($policy);
+ *     $response = $autoscalingPolicyServiceClient->createAutoscalingPolicy($formattedParent, $policy);
  * } finally {
  *     $autoscalingPolicyServiceClient->close();
  * }
@@ -376,58 +377,6 @@ class AutoscalingPolicyServiceGapicClient
     }
 
     /**
-     * Updates (replaces) autoscaling policy.
-     *
-     * Disabled check for update_mask, because all updates will be full
-     * replacements.
-     *
-     * Sample code:
-     * ```
-     * $autoscalingPolicyServiceClient = new AutoscalingPolicyServiceClient();
-     * try {
-     *     $policy = new AutoscalingPolicy();
-     *     $response = $autoscalingPolicyServiceClient->updateAutoscalingPolicy($policy);
-     * } finally {
-     *     $autoscalingPolicyServiceClient->close();
-     * }
-     * ```
-     *
-     * @param AutoscalingPolicy $policy       Required. The updated autoscaling policy.
-     * @param array             $optionalArgs {
-     *                                        Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\Dataproc\V1\AutoscalingPolicy
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function updateAutoscalingPolicy($policy, array $optionalArgs = [])
-    {
-        $request = new UpdateAutoscalingPolicyRequest();
-        $request->setPolicy($policy);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'policy.name' => $request->getPolicy()->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'UpdateAutoscalingPolicy',
-            AutoscalingPolicy::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
      * Creates new autoscaling policy.
      *
      * Sample code:
@@ -482,6 +431,58 @@ class AutoscalingPolicyServiceGapicClient
 
         return $this->startCall(
             'CreateAutoscalingPolicy',
+            AutoscalingPolicy::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Updates (replaces) autoscaling policy.
+     *
+     * Disabled check for update_mask, because all updates will be full
+     * replacements.
+     *
+     * Sample code:
+     * ```
+     * $autoscalingPolicyServiceClient = new AutoscalingPolicyServiceClient();
+     * try {
+     *     $policy = new AutoscalingPolicy();
+     *     $response = $autoscalingPolicyServiceClient->updateAutoscalingPolicy($policy);
+     * } finally {
+     *     $autoscalingPolicyServiceClient->close();
+     * }
+     * ```
+     *
+     * @param AutoscalingPolicy $policy       Required. The updated autoscaling policy.
+     * @param array             $optionalArgs {
+     *                                        Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dataproc\V1\AutoscalingPolicy
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateAutoscalingPolicy($policy, array $optionalArgs = [])
+    {
+        $request = new UpdateAutoscalingPolicyRequest();
+        $request->setPolicy($policy);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'policy.name' => $request->getPolicy()->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'UpdateAutoscalingPolicy',
             AutoscalingPolicy::class,
             $optionalArgs,
             $request

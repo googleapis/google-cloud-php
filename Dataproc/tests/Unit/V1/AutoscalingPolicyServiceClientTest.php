@@ -73,81 +73,6 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
     /**
      * @test
      */
-    public function updateAutoscalingPolicyTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        // Mock response
-        $id = 'id3355';
-        $name = 'name3373707';
-        $expectedResponse = new AutoscalingPolicy();
-        $expectedResponse->setId($id);
-        $expectedResponse->setName($name);
-        $transport->addResponse($expectedResponse);
-
-        // Mock request
-        $policy = new AutoscalingPolicy();
-
-        $response = $client->updateAutoscalingPolicy($policy);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.dataproc.v1.AutoscalingPolicyService/UpdateAutoscalingPolicy', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getPolicy();
-
-        $this->assertProtobufEquals($policy, $actualValue);
-
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function updateAutoscalingPolicyExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
-        // Mock request
-        $policy = new AutoscalingPolicy();
-
-        try {
-            $client->updateAutoscalingPolicy($policy);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
     public function createAutoscalingPolicyTest()
     {
         $transport = $this->createTransport();
@@ -213,6 +138,81 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
 
         try {
             $client->createAutoscalingPolicy($formattedParent, $policy);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function updateAutoscalingPolicyTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $id = 'id3355';
+        $name = 'name3373707';
+        $expectedResponse = new AutoscalingPolicy();
+        $expectedResponse->setId($id);
+        $expectedResponse->setName($name);
+        $transport->addResponse($expectedResponse);
+
+        // Mock request
+        $policy = new AutoscalingPolicy();
+
+        $response = $client->updateAutoscalingPolicy($policy);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dataproc.v1.AutoscalingPolicyService/UpdateAutoscalingPolicy', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getPolicy();
+
+        $this->assertProtobufEquals($policy, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function updateAutoscalingPolicyExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        // Mock request
+        $policy = new AutoscalingPolicy();
+
+        try {
+            $client->updateAutoscalingPolicy($policy);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
