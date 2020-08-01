@@ -3,54 +3,6 @@
 return [
     'interfaces' => [
         'google.cloud.securitycenter.v1.SecurityCenter' => [
-            'GetIamPolicy' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{resource=organizations/*/sources/*}:getIamPolicy',
-                'body' => '*',
-                'placeholders' => [
-                    'resource' => [
-                        'getters' => [
-                            'getResource',
-                        ],
-                    ],
-                ],
-            ],
-            'GroupAssets' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{parent=organizations/*}/assets:group',
-                'body' => '*',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'GroupFindings' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{parent=organizations/*/sources/*}/findings:group',
-                'body' => '*',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'TestIamPermissions' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{resource=organizations/*/sources/*}:testIamPermissions',
-                'body' => '*',
-                'placeholders' => [
-                    'resource' => [
-                        'getters' => [
-                            'getResource',
-                        ],
-                    ],
-                ],
-            ],
             'CreateSource' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=organizations/*}/sources',
@@ -98,6 +50,18 @@ return [
                     ],
                 ],
             ],
+            'GetIamPolicy' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{resource=organizations/*/sources/*}:getIamPolicy',
+                'body' => '*',
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
             'GetNotificationConfig' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=organizations/*/notificationConfigs/*}',
@@ -127,6 +91,30 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GroupAssets' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=organizations/*}/assets:group',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'GroupFindings' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=organizations/*/sources/*}/findings:group',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],
@@ -202,6 +190,18 @@ return [
             'SetIamPolicy' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{resource=organizations/*/sources/*}:setIamPolicy',
+                'body' => '*',
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'TestIamPermissions' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{resource=organizations/*/sources/*}:testIamPermissions',
                 'body' => '*',
                 'placeholders' => [
                     'resource' => [
