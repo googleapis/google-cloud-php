@@ -20,6 +20,23 @@ return [
                     ],
                 ],
             ],
+            'SubmitJobAsOperation' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta2/projects/{project_id}/regions/{region}/jobs:submitAsOperation',
+                'body' => '*',
+                'placeholders' => [
+                    'project_id' => [
+                        'getters' => [
+                            'getProjectId',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
             'GetJob' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta2/projects/{project_id}/regions/{region}/jobs/{job_id}',
@@ -113,23 +130,6 @@ return [
                     'job_id' => [
                         'getters' => [
                             'getJobId',
-                        ],
-                    ],
-                    'region' => [
-                        'getters' => [
-                            'getRegion',
-                        ],
-                    ],
-                ],
-            ],
-            'SubmitJobAsOperation' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1beta2/projects/{project_id}/regions/{region}/jobs:submitAsOperation',
-                'body' => '*',
-                'placeholders' => [
-                    'project_id' => [
-                        'getters' => [
-                            'getProjectId',
                         ],
                     ],
                     'region' => [

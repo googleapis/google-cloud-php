@@ -63,6 +63,28 @@ return [
                     ],
                 ],
             ],
+            'DiagnoseCluster' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta2/projects/{project_id}/regions/{region}/clusters/{cluster_name}:diagnose',
+                'body' => '*',
+                'placeholders' => [
+                    'cluster_name' => [
+                        'getters' => [
+                            'getClusterName',
+                        ],
+                    ],
+                    'project_id' => [
+                        'getters' => [
+                            'getProjectId',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
             'GetCluster' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta2/projects/{project_id}/regions/{region}/clusters/{cluster_name}',
@@ -88,28 +110,6 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta2/projects/{project_id}/regions/{region}/clusters',
                 'placeholders' => [
-                    'project_id' => [
-                        'getters' => [
-                            'getProjectId',
-                        ],
-                    ],
-                    'region' => [
-                        'getters' => [
-                            'getRegion',
-                        ],
-                    ],
-                ],
-            ],
-            'DiagnoseCluster' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1beta2/projects/{project_id}/regions/{region}/clusters/{cluster_name}:diagnose',
-                'body' => '*',
-                'placeholders' => [
-                    'cluster_name' => [
-                        'getters' => [
-                            'getClusterName',
-                        ],
-                    ],
                     'project_id' => [
                         'getters' => [
                             'getProjectId',
