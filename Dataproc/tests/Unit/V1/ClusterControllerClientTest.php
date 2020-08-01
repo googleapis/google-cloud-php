@@ -29,6 +29,7 @@ use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Dataproc\V1\Cluster;
+use Google\Cloud\Dataproc\V1\DiagnoseClusterResults;
 use Google\Cloud\Dataproc\V1\ListClustersResponse;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
@@ -571,7 +572,9 @@ class ClusterControllerClientTest extends GeneratedTest
         $incompleteOperation->setName('operations/diagnoseClusterTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
-        $expectedResponse = new GPBEmpty();
+        $outputUri = 'outputUri-1273518802';
+        $expectedResponse = new DiagnoseClusterResults();
+        $expectedResponse->setOutputUri($outputUri);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

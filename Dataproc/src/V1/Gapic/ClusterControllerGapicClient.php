@@ -614,7 +614,8 @@ class ClusterControllerGapicClient
      *     $operationResponse = $clusterControllerClient->diagnoseCluster($projectId, $region, $clusterName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
-     *         // operation succeeded and returns no value
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -633,7 +634,8 @@ class ClusterControllerGapicClient
      *         $newOperationResponse->reload();
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
-     *       // operation succeeded and returns no value
+     *       $result = $newOperationResponse->getResult();
+     *       // doSomethingWith($result)
      *     } else {
      *       $error = $newOperationResponse->getError();
      *       // handleError($error)
