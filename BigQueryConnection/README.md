@@ -37,11 +37,30 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\BigQuery\Connection\V1\ConnectionServiceClient;
+use Google\Cloud\BigQuery\Connection\V1\Connection;
+
+$projectId = '[PROJECT_ID]';
+$locationId = '[LOCATION_ID]';
+$connectionId = '[CONNECTION_ID]';
+
+$client = new ConnectionServiceClient();
+
+$parent = $client->locationName($projectId, $locationId);
+$connection = new Connection([
+    'name' => $client->connectionName($projectId, $locationId, $connectionId),
+]);
+
+$connection = $client->createConnection($parent, $connection);
 ```
 
 ### Version
 
-This component is considered alpha. As such, it is still a work-in-progress and is more likely to get backwards-incompatible updates.
+This component is considered beta. As such, it should be expected to be mostly
+stable and we're working towards a release candidate. We will address issues
+and requests with a higher priority.
 
 ### Next Steps
 

@@ -37,11 +37,27 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\BigQuery\Reservation\V1\ReservationServiceClient;
+
+$projectId = '[PROJECT_ID]';
+$locationId = '[LOCATION_ID]';
+$reservationId = '[RESERVATION_ID]';
+
+$client = new ReservationServiceClient();
+$parent = $client->locationName($projectId, $locationId);
+
+$reservation = $client->createReservation($parent, [
+    'reservationId' => $reservationId
+])
 ```
 
 ### Version
 
-This component is considered alpha. As such, it is still a work-in-progress and is more likely to get backwards-incompatible updates.
+This component is considered beta. As such, it should be expected to be mostly
+stable and we're working towards a release candidate. We will address issues
+and requests with a higher priority.
 
 ### Next Steps
 
