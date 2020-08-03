@@ -42,8 +42,8 @@ class NumericTest extends TestCase
         [
             ['arpha'],
             ['+9'], // doesn't support + sign
-            ['999999999999999999999999999999999999999.999999999'], // to many digits
-            ['0.9999999999'], // to many digits of scale
+            ['999999999999999999999999999999999999999.999999999'], // too many digits
+            ['0.9999999999'], // too many digits of scale
             ['0.123.123'],
             ['...']
         ];
