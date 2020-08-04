@@ -301,7 +301,7 @@ class SpannerClient
                     return $this->instanceConfiguration($config['name'], $config);
                 },
                 [$this->connection, 'listInstanceConfigs'],
-                ['projectId' => InstanceAdminClient::projectName($this->projectId)] + $options,
+                ['projectName' => InstanceAdminClient::projectName($this->projectId)] + $options,
                 [
                     'itemsKey' => 'instanceConfigs',
                     'resultLimit' => $resultLimit
@@ -431,7 +431,7 @@ class SpannerClient
                     return $this->instance($name, $instance);
                 },
                 [$this->connection, 'listInstances'],
-                ['projectId' => InstanceAdminClient::projectName($this->projectId)] + $options,
+                ['projectName' => InstanceAdminClient::projectName($this->projectId)] + $options,
                 [
                     'itemsKey' => 'instances',
                     'resultLimit' => $resultLimit

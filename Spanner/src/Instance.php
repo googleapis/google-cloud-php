@@ -221,7 +221,9 @@ class Instance
             if ($this->info) {
                 $this->connection->getInstance([
                     'name' => $this->name,
-                    'projectId' => $this->projectId,
+                    'projectName' => InstanceAdminClient::projectName(
+                        $this->projectId
+                    ),
                     'fieldMask' => ['name'],
                 ] + $options);
             } else {
@@ -259,7 +261,7 @@ class Instance
     {
         $this->info = $this->connection->getInstance($options + [
             'name' => $this->name,
-            'projectId' => $this->projectId
+            'projectName' => InstanceAdminClient::projectName($this->projectId),
         ]);
 
         return $this->info;
@@ -303,7 +305,7 @@ class Instance
         $operation = $this->connection->createInstance([
             'instanceId' => $instanceId,
             'name' => $this->name,
-            'projectId' => InstanceAdminClient::projectName($this->projectId),
+            'projectName' => InstanceAdminClient::projectName($this->projectId),
             'config' => $config->name()
         ] + $options);
 

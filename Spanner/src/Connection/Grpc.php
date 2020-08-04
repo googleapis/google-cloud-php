@@ -245,10 +245,10 @@ class Grpc implements ConnectionInterface
      */
     public function listInstanceConfigs(array $args)
     {
-        $projectId = $this->pluck('projectId', $args);
+        $projectName = $this->pluck('projectName', $args);
         return $this->send([$this->getInstanceAdminClient(), 'listInstanceConfigs'], [
-            $projectId,
-            $this->addResourcePrefixHeader($args, $projectId)
+            $projectName,
+            $this->addResourcePrefixHeader($args, $projectName)
         ]);
     }
 
@@ -257,10 +257,10 @@ class Grpc implements ConnectionInterface
      */
     public function getInstanceConfig(array $args)
     {
-        $projectId = $this->pluck('projectId', $args);
+        $projectName = $this->pluck('projectName', $args);
         return $this->send([$this->getInstanceAdminClient(), 'getInstanceConfig'], [
             $this->pluck('name', $args),
-            $this->addResourcePrefixHeader($args, $projectId)
+            $this->addResourcePrefixHeader($args, $projectName)
         ]);
     }
 
@@ -269,10 +269,10 @@ class Grpc implements ConnectionInterface
      */
     public function listInstances(array $args)
     {
-        $projectId = $this->pluck('projectId', $args);
+        $projectName = $this->pluck('projectName', $args);
         return $this->send([$this->getInstanceAdminClient(), 'listInstances'], [
-            $projectId,
-            $this->addResourcePrefixHeader($args, $projectId)
+            $projectName,
+            $this->addResourcePrefixHeader($args, $projectName)
         ]);
     }
 
@@ -281,7 +281,7 @@ class Grpc implements ConnectionInterface
      */
     public function getInstance(array $args)
     {
-        $projectId = $this->pluck('projectId', $args);
+        $projectName = $this->pluck('projectName', $args);
 
         if (isset($args['fieldMask'])) {
             $mask = [];
@@ -298,7 +298,7 @@ class Grpc implements ConnectionInterface
 
         return $this->send([$this->getInstanceAdminClient(), 'getInstance'], [
             $this->pluck('name', $args),
-            $this->addResourcePrefixHeader($args, $projectId)
+            $this->addResourcePrefixHeader($args, $projectName)
         ]);
     }
 
@@ -311,7 +311,7 @@ class Grpc implements ConnectionInterface
 
         $instance = $this->instanceObject($args, true);
         $res = $this->send([$this->getInstanceAdminClient(), 'createInstance'], [
-            $this->pluck('projectId', $args),
+            $this->pluck('projectName', $args),
             $this->pluck('instanceId', $args),
             $instance,
             $this->addResourcePrefixHeader($args, $instanceName)
@@ -658,13 +658,13 @@ class Grpc implements ConnectionInterface
      */
     public function createSessionAsync(array $args)
     {
-        $database = $this->pluck('database', $args);
-        $opts = $this->addResourcePrefixHeader([], $database);
+        $databaseName = $this->pluck('database', $args);
+        $opts = $this->addResourcePrefixHeader([], $databaseName);
         $opts['credentialsWrapper'] = $this->credentialsWrapper;
         $transport = $this->spannerClient->getTransport();
 
         $request = new CreateSessionRequest([
-            'database' => $database
+            'database' => $databaseName
         ]);
 
         $session = $this->pluck('session', $args, false);
