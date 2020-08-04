@@ -62,7 +62,9 @@ class Session
     ) {
         $this->connection = $connection;
         $this->databaseName = SpannerClient::databaseName(
-            $projectId, $instance, $database
+            $projectId,
+            $instance,
+            $database
         );
         $this->name = SpannerClient::sessionName(
             $projectId,

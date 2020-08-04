@@ -472,7 +472,9 @@ class TransactionalReadMethodsTest extends SnippetTestCase
         $this->session->info()->willReturn($sessData + [
             'name' => self::SESSION,
             'databaseName' => SpannerGapicClient::databaseName(
-                self::PROJECT, self::INSTANCE, self::DATABASE
+                self::PROJECT,
+                self::INSTANCE,
+                self::DATABASE
             )
         ]);
 
