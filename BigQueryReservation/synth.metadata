@@ -1,0 +1,29 @@
+{
+  "sources": [
+    {
+      "git": {
+        "name": ".",
+        "remote": "git@github.com:jdpedrie/google-cloud-php",
+        "sha": "0af094344759725d668a5dee773e8ef75ceb5194"
+      }
+    },
+    {
+      "git": {
+        "name": "synthtool",
+        "remote": "https://github.com/googleapis/synthtool.git",
+        "sha": "5506723fef367557d83cf072d0c18020c049fcb8"
+      }
+    }
+  ],
+  "destinations": [
+    {
+      "client": {
+        "source": "googleapis",
+        "apiName": "bigquery-reservation",
+        "apiVersion": "v1",
+        "language": "php",
+        "generator": "bazel"
+      }
+    }
+  ]
+}
