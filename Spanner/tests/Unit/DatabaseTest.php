@@ -474,7 +474,7 @@ class DatabaseTest extends TestCase
                     self::INSTANCE,
                     self::DATABASE
                 )
-            )
+            ),
             Argument::withEntry('name', $this->session->name())
         ))
             ->shouldBeCalled();
