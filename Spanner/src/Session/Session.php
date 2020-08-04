@@ -34,17 +34,7 @@ class Session
     /**
      * @var string
      */
-    private $projectId;
-
-    /**
-     * @var string
-     */
-    private $instance;
-
-    /**
-     * @var string
-     */
-    private $database;
+    private $databaseName;
 
     /**
      * @var string
@@ -71,23 +61,26 @@ class Session
         $name
     ) {
         $this->connection = $connection;
-        $this->projectId = $projectId;
-        $this->instance = $instance;
-        $this->database = $database;
-        $this->name = $name;
+        $this->databaseName = SpannerClient::databaseName(
+            $projectId, $instance, $database
+        );
+        $this->name = SpannerClient::sessionName(
+            $projectId,
+            $instance,
+            $database,
+            $name
+        );
     }
 
     /**
      * Return info on the session.
      *
-     * @return array An array containing the `projectId`, `instance`, `database` and session `name` keys.
+     * @return array An array containing the `databaseName` and session `name` keys.
      */
     public function info()
     {
         return [
-            'projectId' => $this->projectId,
-            'instance' => $this->instance,
-            'database' => $this->database,
+            'databaseName' => $this->databaseName,
             'name' => $this->name
         ];
     }
@@ -103,9 +96,7 @@ class Session
         try {
             $this->connection->getSession($options + [
                 'name' => $this->name(),
-                'database' => SpannerClient::databaseName(
-                     $this->projectId, $this->instance, $this->database,
-                 )
+                'database' => $this->databaseName
             ]);
 
             return true;
@@ -124,9 +115,7 @@ class Session
     {
         $this->connection->deleteSession($options + [
             'name' => $this->name(),
-            'database' => SpannerClient::databaseName(
-                 $this->projectId, $this->instance, $this->database,
-             )
+            'database' => $this->databaseName
         ]);
     }
 
@@ -137,12 +126,7 @@ class Session
      */
     public function name()
     {
-        return SpannerClient::sessionName(
-            $this->projectId,
-            $this->instance,
-            $this->database,
-            $this->name
-        );
+        return $this->name;
     }
 
     /**
@@ -178,9 +162,7 @@ class Session
     {
         return [
             'connection' => get_class($this->connection),
-            'projectId' => $this->projectId,
-            'instance' => $this->instance,
-            'database' => $this->database,
+            'databaseName' => $this->databaseName,
             'name' => $this->name,
         ];
     }
