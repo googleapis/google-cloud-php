@@ -1,5 +1,157 @@
 # Changelog
 
+## 0.137.0
+
+<details><summary>google/cloud-bigquery-connection 0.1.0</summary>
+
+
+
+### Features
+
+* introduce BigQuery connection and reservation clients ([#3251](https://www.github.com/googleapis/google-cloud-php/issues/3251)) ([45d9a57](https://www.github.com/googleapis/google-cloud-php/commit/45d9a57732d5a0d83ddb00b6e07e2cb7dc9ba1f7))
+
+</details>
+
+<details><summary>google/cloud-bigquery-reservation 0.1.0</summary>
+
+
+
+### Features
+
+* introduce BigQuery connection and reservation clients ([#3251](https://www.github.com/googleapis/google-cloud-php/issues/3251)) ([45d9a57](https://www.github.com/googleapis/google-cloud-php/commit/45d9a57732d5a0d83ddb00b6e07e2cb7dc9ba1f7))
+
+</details>
+
+<details><summary>google/cloud-bigquery-storage 0.3.0</summary>
+
+
+
+### Features
+
+* update retry and timeout configuration ([#3270](https://www.github.com/googleapis/google-cloud-php/issues/3270)) ([f8f395d](https://www.github.com/googleapis/google-cloud-php/commit/f8f395de31e8b7b79ef355ce34e094f582242a46))
+
+</details>
+
+<details><summary>google/cloud-iot 1.2.0</summary>
+
+
+
+### Features
+
+* update retry and timeout configuration ([#3272](https://www.github.com/googleapis/google-cloud-php/issues/3272)) ([ef55f68](https://www.github.com/googleapis/google-cloud-php/commit/ef55f685fa462cd92fb9b021f1cda960691f5acd))
+
+</details>
+
+<details><summary>google/cloud-language 0.23.0</summary>
+
+
+
+### Features
+
+* update retry and timeout configuration ([#3266](https://www.github.com/googleapis/google-cloud-php/issues/3266)) ([2a3328e](https://www.github.com/googleapis/google-cloud-php/commit/2a3328ea259f891634d2e59b07b7db89bcad16fe))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.27.0</summary>
+
+
+
+### Features
+
+* add client support for detach subscription ([#3125](https://www.github.com/googleapis/google-cloud-php/issues/3125)) ([b37d1ce](https://www.github.com/googleapis/google-cloud-php/commit/b37d1ceb7de49ae9f18a5719f10e3c0f7f8a314d))
+
+
+### Documentation
+
+* remove experimental warning for ordering keys properties ([#3259](https://www.github.com/googleapis/google-cloud-php/issues/3259)) ([d332b0b](https://www.github.com/googleapis/google-cloud-php/commit/d332b0bdc41b00d8c36b1a9ed4903a0d1959bd30))
+
+</details>
+
+<details><summary>google/cloud-recommendations-ai 0.2.0</summary>
+
+
+
+### Features
+
+* update retry and timeout configuration ([#3273](https://www.github.com/googleapis/google-cloud-php/issues/3273)) ([ced09d1](https://www.github.com/googleapis/google-cloud-php/commit/ced09d17d031fbdc5ed779216494dd380b28cc10))
+
+
+### Miscellaneous Chores
+
+* migrate to bazel ([#3247](https://www.github.com/googleapis/google-cloud-php/issues/3247)) ([823f5ea](https://www.github.com/googleapis/google-cloud-php/commit/823f5ea92074472efbd5fb69c2797f1b401b4b18))
+
+</details>
+
+<details><summary>google/cloud-recommender 1.1.0</summary>
+
+
+
+### Features
+
+* adds methods for interacting with insights ([#3223](https://www.github.com/googleapis/google-cloud-php/issues/3223)) ([10e82fb](https://www.github.com/googleapis/google-cloud-php/commit/10e82fbfe7aeb9345060000645a55965005b2ae2))
+
+</details>
+
+<details><summary>google/cloud-redis 1.1.0</summary>
+
+
+
+### Features
+
+* add UpgradeInstance request ([#3274](https://www.github.com/googleapis/google-cloud-php/issues/3274)) ([e14db65](https://www.github.com/googleapis/google-cloud-php/commit/e14db65fe40c9dc89fd022496e5c2c63af69a47b))
+
+</details>
+
+<details><summary>google/cloud-security-center 0.9.0</summary>
+
+
+
+### Features
+
+* update retry and timeout configuration ([#3275](https://www.github.com/googleapis/google-cloud-php/issues/3275)) ([797e264](https://www.github.com/googleapis/google-cloud-php/commit/797e26458789aa964471c92b6db61592745799ce))
+
+</details>
+
+<details><summary>google/cloud-service-directory 0.2.0</summary>
+
+
+
+### Features
+
+* update retry and timeout configuration ([#3267](https://www.github.com/googleapis/google-cloud-php/issues/3267)) ([a3f4ac1](https://www.github.com/googleapis/google-cloud-php/commit/a3f4ac13d81b4b039e3b76aa5d0800acf20dd812))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.30.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update retry configurations ([#3229](https://www.github.com/googleapis/google-cloud-php/issues/3229)) ([d76b184](https://www.github.com/googleapis/google-cloud-php/commit/d76b1843da476bd3140b6ff5ed02b1fcf3546a46))
+
+</details>
+
+<details><summary>google/cloud-trace 1.2.0</summary>
+
+
+
+### Features
+
+* added support for span kind ([#3227](https://www.github.com/googleapis/google-cloud-php/issues/3227)) ([1c7ea00](https://www.github.com/googleapis/google-cloud-php/commit/1c7ea00401b720008979a6306803eff26d815197))
+
+</details>
+
+<details><summary>google/cloud-translate 1.8.1</summary>
+
+
+
+### Documentation
+
+* add backticks in docstring ([#3260](https://www.github.com/googleapis/google-cloud-php/issues/3260)) ([58a3fd5](https://www.github.com/googleapis/google-cloud-php/commit/58a3fd54444ad351b8fdb3613ec9ae454a04da95))
+
+</details>
+
 ## 0.136.0
 
 <details><summary>google/cloud-bigquerydatatransfer 1.1.0</summary>
