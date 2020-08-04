@@ -98,7 +98,7 @@ class GrpcTest extends TestCase
     public function testListInstanceConfigs()
     {
         $this->assertCallCorrect('listInstanceConfigs', [
-            'projectId' => self::PROJECT
+            'projectName' => self::PROJECT
         ], $this->expectResourceHeader(self::PROJECT, [
             self::PROJECT
         ]));
@@ -108,7 +108,7 @@ class GrpcTest extends TestCase
     {
         $this->assertCallCorrect('getInstanceConfig', [
             'name' => self::CONFIG,
-            'projectId' => self::PROJECT
+            'projectName' => self::PROJECT
         ], $this->expectResourceHeader(self::PROJECT, [
             self::CONFIG
         ]));
@@ -117,7 +117,7 @@ class GrpcTest extends TestCase
     public function testListInstances()
     {
         $this->assertCallCorrect('listInstances', [
-            'projectId' => self::PROJECT
+            'projectName' => self::PROJECT
         ], $this->expectResourceHeader(self::PROJECT, [
             self::PROJECT
         ]));
@@ -127,7 +127,7 @@ class GrpcTest extends TestCase
     {
         $this->assertCallCorrect('getInstance', [
             'name' => self::INSTANCE,
-            'projectId' => self::PROJECT
+            'projectName' => self::PROJECT
         ], $this->expectResourceHeader(self::PROJECT, [
             self::INSTANCE
         ]));
@@ -145,7 +145,7 @@ class GrpcTest extends TestCase
         $fieldMask = $this->serializer->decodeMessage(new FieldMask, ['paths' => $mask]);
         $this->assertCallCorrect('getInstance', [
             'name' => self::INSTANCE,
-            'projectId' => self::PROJECT,
+            'projectName' => self::PROJECT,
             'fieldMask' => $fieldNames
         ], $this->expectResourceHeader(self::PROJECT, [
             self::INSTANCE,
@@ -161,7 +161,7 @@ class GrpcTest extends TestCase
         $fieldMask = $this->serializer->decodeMessage(new FieldMask, ['paths' => $mask]);
         $this->assertCallCorrect('getInstance', [
             'name' => self::INSTANCE,
-            'projectId' => self::PROJECT,
+            'projectName' => self::PROJECT,
             'fieldMask' => $fieldNames
         ], $this->expectResourceHeader(self::PROJECT, [
             self::INSTANCE,
@@ -174,7 +174,7 @@ class GrpcTest extends TestCase
         list ($args, $instance) = $this->instance();
 
         $this->assertCallCorrect('createInstance', [
-            'projectId' => self::PROJECT,
+            'projectName' => self::PROJECT,
             'instanceId' => self::INSTANCE
         ] + $args, $this->expectResourceHeader(self::INSTANCE, [
             self::PROJECT,

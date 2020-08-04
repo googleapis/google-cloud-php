@@ -86,7 +86,10 @@ class InstanceTest extends TestCase
         $instance = $this->getDefaultInstance();
 
         $this->connection->getInstance(Argument::allOf(
-            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry(
+                'projectName',
+                InstanceAdminClient::projectName(self::PROJECT_ID)
+            ),
             Argument::withEntry('name', $this->instance->name())
         ))
             ->shouldBeCalledTimes(1)
@@ -126,7 +129,10 @@ class InstanceTest extends TestCase
     {
         $this->connection->getInstance(Argument::allOf(
             Argument::withEntry('name', $this->instance->name()),
-            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry(
+                'projectName',
+                InstanceAdminClient::projectName(self::PROJECT_ID)
+            ),
             Argument::withEntry('fieldMask', ['name'])
         ))
             ->shouldBeCalledTimes(1)
@@ -134,7 +140,10 @@ class InstanceTest extends TestCase
 
         $this->connection->getInstance(Argument::allOf(
             Argument::withEntry('name', $this->instance->name()),
-            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry(
+                'projectName',
+                InstanceAdminClient::projectName(self::PROJECT_ID)
+            ),
             Argument::not(Argument::withKey('fieldMask'))
         ))
             ->shouldBeCalledTimes(2)
@@ -155,7 +164,10 @@ class InstanceTest extends TestCase
     public function testExistsNotFound()
     {
         $this->connection->getInstance(Argument::allOf(
-            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry(
+                'projectName',
+                InstanceAdminClient::projectName(self::PROJECT_ID)
+            ),
             Argument::withEntry('name', $this->instance->name())
         ))
             ->shouldBeCalled()
@@ -172,7 +184,10 @@ class InstanceTest extends TestCase
 
         $this->connection->getInstance(Argument::allOf(
             Argument::withEntry('name', $this->instance->name()),
-            Argument::withEntry('projectId', self::PROJECT_ID)
+            Argument::withEntry(
+                'projectName',
+                InstanceAdminClient::projectName(self::PROJECT_ID)
+            )
         ))
             ->shouldBeCalledTimes(1)
             ->willReturn($instance);
@@ -194,7 +209,10 @@ class InstanceTest extends TestCase
         $requestedFieldNames = ["name", 'node_count'];
         $this->connection->getInstance(Argument::allOf(
             Argument::withEntry('name', $this->instance->name()),
-            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry(
+                'projectName',
+                InstanceAdminClient::projectName(self::PROJECT_ID)
+            ),
             Argument::withEntry('fieldMask', $requestedFieldNames)
         ))
             ->shouldBeCalledTimes(1)
@@ -212,7 +230,10 @@ class InstanceTest extends TestCase
         $instance = $this->getDefaultInstance();
 
         $this->connection->getInstance(Argument::allOf(
-            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry(
+                'projectName',
+                InstanceAdminClient::projectName(self::PROJECT_ID)
+            ),
             Argument::withEntry('name', $this->instance->name())
         ))
             ->shouldBeCalledTimes(1)
@@ -226,7 +247,10 @@ class InstanceTest extends TestCase
     public function testStateIsNull()
     {
         $this->connection->getInstance(Argument::allOf(
-            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry(
+                'projectName',
+                InstanceAdminClient::projectName(self::PROJECT_ID)
+            ),
             Argument::withEntry('name', $this->instance->name())
         ))
             ->shouldBeCalledTimes(1)
@@ -341,7 +365,7 @@ class InstanceTest extends TestCase
                 'name' => 'my-operation'
             ]);
         $this->instance->___setProperty('connection', $this->connection->reveal());
-        
+
         $op = $this->instance->createDatabaseFromBackup('restore-database', $backupName);
         $this->assertInstanceOf(LongRunningOperation::class, $op);
     }
@@ -359,7 +383,7 @@ class InstanceTest extends TestCase
                 'name' => 'my-operation'
             ]);
         $this->instance->___setProperty('connection', $this->connection->reveal());
-        
+
         $op = $this->instance->createDatabaseFromBackup('restore-database', $backupObject);
         $this->assertInstanceOf(LongRunningOperation::class, $op);
     }
@@ -479,7 +503,7 @@ class InstanceTest extends TestCase
         $this->connection->listBackupOperations(Argument::withEntry('instance', $this->instance->name()))
             ->shouldBeCalled()
             ->willReturn(['operations' => $operations]);
-        
+
         $this->instance->___setProperty('connection', $this->connection->reveal());
 
         $bkpOps = $this->instance->backupOperations();
@@ -498,13 +522,13 @@ class InstanceTest extends TestCase
             ['name' => 'operation1'],
             ['name' => 'operation2']
         ];
-        
+
         $this->connection->listDatabaseOperations(Argument::withEntry('instance', $this->instance->name()))
             ->shouldBeCalled()
             ->willReturn(['operations' => $operations]);
-        
+
         $this->instance->___setProperty('connection', $this->connection->reveal());
-        
+
         $dbOps = $this->instance->databaseOperations();
 
         $this->assertInstanceOf(ItemIterator::class, $dbOps);

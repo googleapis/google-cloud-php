@@ -83,7 +83,7 @@ class InstanceConfigurationTest extends TestCase
 
         $this->connection->getInstanceConfig([
             'name' => InstanceAdminClient::instanceConfigName(self::PROJECT_ID, self::NAME),
-            'projectId' => self::PROJECT_ID
+            'projectName' => InstanceAdminClient::projectName(self::PROJECT_ID)
         ])->shouldBeCalled()->willReturn($info);
 
         $this->configuration->___setProperty('connection', $this->connection->reveal());
@@ -94,7 +94,10 @@ class InstanceConfigurationTest extends TestCase
     public function testExists()
     {
         $this->connection->getInstanceConfig(Argument::allOf(
-            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry(
+                'projectName',
+                InstanceAdminClient::projectName(self::PROJECT_ID)
+            ),
             Argument::withEntry('name', $this->configuration->name())
         ))
             ->shouldBeCalled()
@@ -107,7 +110,10 @@ class InstanceConfigurationTest extends TestCase
     public function testExistsDoesntExist()
     {
         $this->connection->getInstanceConfig(Argument::allOf(
-            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry(
+                'projectName',
+                InstanceAdminClient::projectName(self::PROJECT_ID)
+            ),
             Argument::withEntry('name', $this->configuration->name())
         ))
             ->shouldBeCalled()
@@ -123,7 +129,7 @@ class InstanceConfigurationTest extends TestCase
 
         $this->connection->getInstanceConfig([
             'name' => InstanceAdminClient::instanceConfigName(self::PROJECT_ID, self::NAME),
-            'projectId' => self::PROJECT_ID
+            'projectName' => InstanceAdminClient::projectName(self::PROJECT_ID)
         ])->shouldBeCalledTimes(1)->willReturn($info);
 
         $this->configuration->___setProperty('connection', $this->connection->reveal());
