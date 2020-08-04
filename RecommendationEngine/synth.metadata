@@ -1,25 +1,18 @@
 {
   "sources": [
     {
-      "generator": {
-        "name": "artman",
-        "version": "2.0.0",
-        "dockerImage": "googleapis/artman@sha256:b3b47805231a305d0f40c4bf069df20f6a2635574e6d4259fac651d3f9f6e098"
-      }
-    },
-    {
       "git": {
         "name": ".",
         "remote": "https://github.com/googleapis/google-cloud-php.git",
-        "sha": "3ba23e7483d8fa855fb7847b6dce1b2e1143d42d"
+        "sha": "a3f4ac13d81b4b039e3b76aa5d0800acf20dd812"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "1c722ced84e4ba9a680ef86a5563eee293b3ddad",
-        "internalRef": "316143794"
+        "sha": "864dfeafdd5429e20612d378169858d9fe08c9e8",
+        "internalRef": "316509011"
       }
     },
     {
@@ -37,8 +30,7 @@
         "apiName": "recommendationengine",
         "apiVersion": "v1beta1",
         "language": "php",
-        "generator": "gapic",
-        "config": "google/cloud/recommendationengine/v1beta1/artman_recommendationengine_v1beta1.yaml"
+        "generator": "bazel"
       }
     }
   ]
