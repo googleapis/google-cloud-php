@@ -91,7 +91,7 @@ class BatchDmlResultTest extends SnippetTestCase
             'projects/test-project/instances/my-instance/databases/my-database/sessions/foo'
         );
         $session->info()->willReturn([
-            'database' => 'projects/test-project/instances/my-instance/databases/my-database'
+            'databaseName' => 'projects/test-project/instances/my-instance/databases/my-database'
         ]);
         $session->setExpiration(Argument::any())->willReturn(null);
 

@@ -77,8 +77,7 @@ class BatchClientTest extends TestCase
                     return false;
                 }
 
-                $db = explode('/', self::DATABASE);
-                return $args['database'] === array_pop($db);
+                return $args['database'] === self::DATABASE;
             })
         ))->shouldBeCalled()->willReturn([
             'id' => self::TRANSACTION,

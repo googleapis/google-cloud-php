@@ -165,7 +165,7 @@ class DatabaseTest extends TestCase
         $this->database->___setProperty('connection', $this->connection->reveal());
 
         $this->assertEquals(Database::STATE_READY, $this->database->state());
-        
+
         // Make sure the request only is sent once.
         $this->database->state();
     }
@@ -185,9 +185,9 @@ class DatabaseTest extends TestCase
             ->willReturn(['name' => 'operations/foo']);
 
         $this->database->___setProperty('connection', $this->connection->reveal());
-        
+
         $op = $this->database->createBackup(self::BACKUP, $expireTime);
-        
+
         $this->assertInstanceOf(LongRunningOperation::class, $op);
     }
 
@@ -201,7 +201,7 @@ class DatabaseTest extends TestCase
                 'name' => DatabaseAdminClient::backupName(self::PROJECT, self::INSTANCE, 'backup2'),
             ]
         ];
-            
+
         $expectedFilter = "database:".$this->database->name();
         $this->connection->listBackups(Argument::withEntry('filter', $expectedFilter))
             ->shouldBeCalled()
@@ -340,7 +340,7 @@ class DatabaseTest extends TestCase
             ]);
 
         $this->instance->___setProperty('connection', $this->connection->reveal());
-        
+
         $op = $this->database->restore($backupName);
         $this->assertInstanceOf(LongRunningOperation::class, $op);
     }
@@ -361,7 +361,7 @@ class DatabaseTest extends TestCase
             ->willReturn([
             'name' => 'my-operation'
             ]);
-    
+
         $this->instance->___setProperty('connection', $this->connection->reveal());
 
         $op = $this->database->restore($backupObj);
@@ -452,7 +452,7 @@ class DatabaseTest extends TestCase
 
         $this->connection->beginTransaction(Argument::allOf(
             Argument::withEntry('session', $this->session->name()),
-            Argument::withEntry('database', self::DATABASE)
+            Argument::withEntry('database', DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE))
         ))
             ->shouldBeCalled()
             ->willReturn([
@@ -460,7 +460,7 @@ class DatabaseTest extends TestCase
             ]);
 
         $this->connection->deleteSession(Argument::allOf(
-            Argument::withEntry('database', self::DATABASE),
+            Argument::withEntry('database', DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE)),
             Argument::withEntry('name', $this->session->name())
         ))
             ->shouldBeCalled();
@@ -525,7 +525,7 @@ class DatabaseTest extends TestCase
     {
         $this->connection->beginTransaction(Argument::allOf(
             Argument::withEntry('session', $this->session->name()),
-            Argument::withEntry('database', self::DATABASE)
+            Argument::withEntry('database', DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE))
         ))
             ->shouldBeCalled()
             ->willReturn(['id' => self::TRANSACTION]);
@@ -559,7 +559,7 @@ class DatabaseTest extends TestCase
     {
         $this->connection->beginTransaction(Argument::allOf(
             Argument::withEntry('session', $this->session->name()),
-            Argument::withEntry('database', self::DATABASE)
+            Argument::withEntry('database', DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE))
         ))
             ->shouldBeCalled()
             ->willReturn(['id' => self::TRANSACTION]);
@@ -578,14 +578,14 @@ class DatabaseTest extends TestCase
     {
         $this->connection->beginTransaction(Argument::allOf(
             Argument::withEntry('session', $this->session->name()),
-            Argument::withEntry('database', self::DATABASE)
+            Argument::withEntry('database', DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE))
         ))
             ->shouldBeCalled()
             ->willReturn(['id' => self::TRANSACTION]);
 
         $this->connection->commit(Argument::allOf(
             Argument::withEntry('session', $this->session->name()),
-            Argument::withEntry('database', self::DATABASE)
+            Argument::withEntry('database', DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE))
         ))
             ->shouldBeCalled()
             ->willReturn(['commitTimestamp' => '2017-01-09T18:05:22.534799Z']);
@@ -610,14 +610,14 @@ class DatabaseTest extends TestCase
     {
         $this->connection->beginTransaction(Argument::allOf(
             Argument::withEntry('session', $this->session->name()),
-            Argument::withEntry('database', self::DATABASE)
+            Argument::withEntry('database', DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE))
         ))
             ->shouldBeCalled()
             ->willReturn(['id' => self::TRANSACTION]);
 
         $this->connection->rollback(Argument::allOf(
             Argument::withEntry('session', $this->session->name()),
-            Argument::withEntry('database', self::DATABASE)
+            Argument::withEntry('database', DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE))
         ))
             ->shouldBeCalled();
 
@@ -633,7 +633,7 @@ class DatabaseTest extends TestCase
     {
         $this->connection->beginTransaction(Argument::allOf(
             Argument::withEntry('session', $this->session->name()),
-            Argument::withEntry('database', self::DATABASE)
+            Argument::withEntry('database', DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE))
         ))
             ->shouldBeCalled()
             ->willReturn(['id' => self::TRANSACTION]);
@@ -661,7 +661,7 @@ class DatabaseTest extends TestCase
 
         $this->connection->beginTransaction(Argument::allOf(
             Argument::withEntry('session', $this->session->name()),
-            Argument::withEntry('database', self::DATABASE)
+            Argument::withEntry('database', DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE))
         ))
             ->shouldBeCalledTimes(3)
             ->willReturn(['id' => self::TRANSACTION]);
@@ -669,7 +669,7 @@ class DatabaseTest extends TestCase
         $it = 0;
         $this->connection->commit(Argument::allOf(
             Argument::withEntry('session', $this->session->name()),
-            Argument::withEntry('database', self::DATABASE)
+            Argument::withEntry('database', DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE))
         ))
             ->shouldBeCalledTimes(3)
             ->will(function () use (&$it, $abort) {
@@ -710,7 +710,7 @@ class DatabaseTest extends TestCase
 
         $this->connection->beginTransaction(Argument::allOf(
             Argument::withEntry('session', $this->session->name()),
-            Argument::withEntry('database', self::DATABASE)
+            Argument::withEntry('database', DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE))
         ))
             ->shouldBeCalledTimes(Database::MAX_RETRIES + 1)
             ->willReturn(['id' => self::TRANSACTION]);
@@ -718,7 +718,7 @@ class DatabaseTest extends TestCase
         $it = 0;
         $this->connection->commit(Argument::allOf(
             Argument::withEntry('session', $this->session->name()),
-            Argument::withEntry('database', self::DATABASE)
+            Argument::withEntry('database', DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE))
         ))
             ->shouldBeCalledTimes(Database::MAX_RETRIES + 1)
             ->will(function () use (&$it, $abort) {
@@ -742,7 +742,7 @@ class DatabaseTest extends TestCase
     {
         $this->connection->beginTransaction(Argument::allOf(
             Argument::withEntry('session', $this->session->name()),
-            Argument::withEntry('database', self::DATABASE)
+            Argument::withEntry('database', DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE))
         ))
             ->shouldBeCalled()
             ->willReturn(['id' => self::TRANSACTION]);
@@ -760,7 +760,7 @@ class DatabaseTest extends TestCase
     {
         $this->connection->beginTransaction(Argument::allOf(
             Argument::withEntry('session', $this->session->name()),
-            Argument::withEntry('database', self::DATABASE)
+            Argument::withEntry('database', DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE))
         ))
             ->shouldBeCalled()
             ->willReturn(['id' => self::TRANSACTION]);
@@ -1168,7 +1168,7 @@ class DatabaseTest extends TestCase
     {
         $this->connection->deleteSession(Argument::allOf(
             Argument::withEntry('name', $this->session->name()),
-            Argument::withEntry('database', self::DATABASE)
+            Argument::withEntry('database', DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE))
         ))
             ->shouldBeCalled()
             ->willReturn([]);
