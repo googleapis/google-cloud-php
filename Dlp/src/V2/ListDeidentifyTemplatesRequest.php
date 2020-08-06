@@ -16,8 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListDeidentifyTemplatesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent resource name, for example projects/my-project-id or
-     * organizations/my-org-id.
+     * Required. Parent resource name.
+     * - Format:projects/[PROJECT-ID]
+     * - Format:organizations/[ORGANIZATION-ID]
+     * - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     * - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -52,8 +55,7 @@ class ListDeidentifyTemplatesRequest extends \Google\Protobuf\Internal\Message
      */
     private $order_by = '';
     /**
-     * The geographic location where deidentifications templates will be retrieved
-     * from. Use `-` for all locations. Reserved for future extensions.
+     * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>string location_id = 5;</code>
      */
@@ -66,8 +68,11 @@ class ListDeidentifyTemplatesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent resource name, for example projects/my-project-id or
-     *           organizations/my-org-id.
+     *           Required. Parent resource name.
+     *           - Format:projects/[PROJECT-ID]
+     *           - Format:organizations/[ORGANIZATION-ID]
+     *           - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *           - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     @type string $page_token
      *           Page token to continue retrieval. Comes from previous call
      *           to `ListDeidentifyTemplates`.
@@ -86,8 +91,7 @@ class ListDeidentifyTemplatesRequest extends \Google\Protobuf\Internal\Message
      *           - `name`: corresponds to template's name.
      *           - `display_name`: corresponds to template's display name.
      *     @type string $location_id
-     *           The geographic location where deidentifications templates will be retrieved
-     *           from. Use `-` for all locations. Reserved for future extensions.
+     *           Deprecated. This field has no effect.
      * }
      */
     public function __construct($data = NULL) {
@@ -96,8 +100,11 @@ class ListDeidentifyTemplatesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource name, for example projects/my-project-id or
-     * organizations/my-org-id.
+     * Required. Parent resource name.
+     * - Format:projects/[PROJECT-ID]
+     * - Format:organizations/[ORGANIZATION-ID]
+     * - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     * - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -108,8 +115,11 @@ class ListDeidentifyTemplatesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource name, for example projects/my-project-id or
-     * organizations/my-org-id.
+     * Required. Parent resource name.
+     * - Format:projects/[PROJECT-ID]
+     * - Format:organizations/[ORGANIZATION-ID]
+     * - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     * - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -224,8 +234,7 @@ class ListDeidentifyTemplatesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The geographic location where deidentifications templates will be retrieved
-     * from. Use `-` for all locations. Reserved for future extensions.
+     * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>string location_id = 5;</code>
      * @return string
@@ -236,8 +245,7 @@ class ListDeidentifyTemplatesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The geographic location where deidentifications templates will be retrieved
-     * from. Use `-` for all locations. Reserved for future extensions.
+     * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>string location_id = 5;</code>
      * @param string $var

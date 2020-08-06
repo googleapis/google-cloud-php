@@ -16,7 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent resource name, for example `projects/my-project-id`.
+     * Required. Parent resource name.
+     * - Format:projects/[PROJECT-ID]
+     * - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -77,8 +79,7 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      */
     private $filter = '';
     /**
-     * The geographic location where job triggers will be retrieved from.
-     * Use `-` for all locations. Reserved for future extensions.
+     * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>string location_id = 7;</code>
      */
@@ -91,7 +92,9 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent resource name, for example `projects/my-project-id`.
+     *           Required. Parent resource name.
+     *           - Format:projects/[PROJECT-ID]
+     *           - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *     @type string $page_token
      *           Page token to continue retrieval. Comes from previous call
      *           to ListJobTriggers. `order_by` field must not
@@ -132,8 +135,7 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      *           * last_run_time > \"2017-12-12T00:00:00+00:00\"
      *           The length of this field should be no more than 500 characters.
      *     @type string $location_id
-     *           The geographic location where job triggers will be retrieved from.
-     *           Use `-` for all locations. Reserved for future extensions.
+     *           Deprecated. This field has no effect.
      * }
      */
     public function __construct($data = NULL) {
@@ -142,7 +144,9 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource name, for example `projects/my-project-id`.
+     * Required. Parent resource name.
+     * - Format:projects/[PROJECT-ID]
+     * - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -153,7 +157,9 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource name, for example `projects/my-project-id`.
+     * Required. Parent resource name.
+     * - Format:projects/[PROJECT-ID]
+     * - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -334,8 +340,7 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The geographic location where job triggers will be retrieved from.
-     * Use `-` for all locations. Reserved for future extensions.
+     * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>string location_id = 7;</code>
      * @return string
@@ -346,8 +351,7 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The geographic location where job triggers will be retrieved from.
-     * Use `-` for all locations. Reserved for future extensions.
+     * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>string location_id = 7;</code>
      * @param string $var

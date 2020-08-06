@@ -114,3 +114,10 @@ s.replace(
     r"(.{0,})\]\((/.{0,})\)",
     r"\1](https://cloud.google.com\2)"
 )
+
+s.replace(
+    "src/V2/Gapic/DlpServiceGapicClient.php",
+    r"@type string \$parent\n\s+\*\s+(The )?[Pp]arent resource name.",
+    r"""@type string $parent The parent resource name. Please note, unless you have
+     *           authenticated using an API key this option will be required."""
+)

@@ -7,7 +7,8 @@ namespace Google\Cloud\Dlp\V2;
 use UnexpectedValueException;
 
 /**
- * Definitions of file type groups to scan.
+ * Definitions of file type groups to scan. New types will be added to this
+ * list.
  *
  * Protobuf type <code>google.privacy.dlp.v2.FileType</code>
  */
@@ -20,7 +21,11 @@ class FileType
      */
     const FILE_TYPE_UNSPECIFIED = 0;
     /**
-     * Includes all file extensions not covered by text file types.
+     * Includes all file extensions not covered by another entry. Binary
+     * scanning attempts to convert the content of the file to utf_8 to scan
+     * the file.
+     * If you wish to avoid this fall back, specify one or more of the other
+     * FileType's in your storage scan.
      *
      * Generated from protobuf enum <code>BINARY_FILE = 1;</code>
      */
@@ -40,10 +45,27 @@ class FileType
      * Included file extensions:
      *   bmp, gif, jpg, jpeg, jpe, png.
      * bytes_limit_per_file has no effect on image files.
+     * Image inspection is restricted to 'global', 'us', 'asia', and 'europe'.
      *
      * Generated from protobuf enum <code>IMAGE = 3;</code>
      */
     const IMAGE = 3;
+    /**
+     * Word files >30 MB will be scanned as binary files.
+     * Included file extensions:
+     *   docx, dotx, docm, dotm
+     *
+     * Generated from protobuf enum <code>WORD = 5;</code>
+     */
+    const WORD = 5;
+    /**
+     * PDF files >30 MB will be scanned as binary files.
+     * Included file extensions:
+     *   pdf
+     *
+     * Generated from protobuf enum <code>PDF = 6;</code>
+     */
+    const PDF = 6;
     /**
      * Included file extensions:
      *   avro
@@ -51,13 +73,31 @@ class FileType
      * Generated from protobuf enum <code>AVRO = 7;</code>
      */
     const AVRO = 7;
+    /**
+     * Included file extensions:
+     *   csv
+     *
+     * Generated from protobuf enum <code>CSV = 8;</code>
+     */
+    const CSV = 8;
+    /**
+     * Included file extensions:
+     *   tsv
+     *
+     * Generated from protobuf enum <code>TSV = 9;</code>
+     */
+    const TSV = 9;
 
     private static $valueToName = [
         self::FILE_TYPE_UNSPECIFIED => 'FILE_TYPE_UNSPECIFIED',
         self::BINARY_FILE => 'BINARY_FILE',
         self::TEXT_FILE => 'TEXT_FILE',
         self::IMAGE => 'IMAGE',
+        self::WORD => 'WORD',
+        self::PDF => 'PDF',
         self::AVRO => 'AVRO',
+        self::CSV => 'CSV',
+        self::TSV => 'TSV',
     ];
 
     public static function name($value)

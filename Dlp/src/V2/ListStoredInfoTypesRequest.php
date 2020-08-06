@@ -16,8 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListStoredInfoTypesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent resource name, for example projects/my-project-id or
-     * organizations/my-org-id.
+     * Required. Parent resource name.
+     * - Format:projects/[PROJECT-ID]
+     * - Format:organizations/[ORGANIZATION-ID]
+     * - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     * - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -53,8 +56,7 @@ class ListStoredInfoTypesRequest extends \Google\Protobuf\Internal\Message
      */
     private $order_by = '';
     /**
-     * The geographic location where stored infoTypes will be retrieved from.
-     * Use `-` for all locations. Reserved for future extensions.
+     * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>string location_id = 5;</code>
      */
@@ -67,8 +69,11 @@ class ListStoredInfoTypesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent resource name, for example projects/my-project-id or
-     *           organizations/my-org-id.
+     *           Required. Parent resource name.
+     *           - Format:projects/[PROJECT-ID]
+     *           - Format:organizations/[ORGANIZATION-ID]
+     *           - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *           - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     @type string $page_token
      *           Page token to continue retrieval. Comes from previous call
      *           to `ListStoredInfoTypes`.
@@ -88,8 +93,7 @@ class ListStoredInfoTypesRequest extends \Google\Protobuf\Internal\Message
      *           - `name`: corresponds to resource name.
      *           - `display_name`: corresponds to info type's display name.
      *     @type string $location_id
-     *           The geographic location where stored infoTypes will be retrieved from.
-     *           Use `-` for all locations. Reserved for future extensions.
+     *           Deprecated. This field has no effect.
      * }
      */
     public function __construct($data = NULL) {
@@ -98,8 +102,11 @@ class ListStoredInfoTypesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource name, for example projects/my-project-id or
-     * organizations/my-org-id.
+     * Required. Parent resource name.
+     * - Format:projects/[PROJECT-ID]
+     * - Format:organizations/[ORGANIZATION-ID]
+     * - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     * - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -110,8 +117,11 @@ class ListStoredInfoTypesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource name, for example projects/my-project-id or
-     * organizations/my-org-id.
+     * Required. Parent resource name.
+     * - Format:projects/[PROJECT-ID]
+     * - Format:organizations/[ORGANIZATION-ID]
+     * - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     * - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -228,8 +238,7 @@ class ListStoredInfoTypesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The geographic location where stored infoTypes will be retrieved from.
-     * Use `-` for all locations. Reserved for future extensions.
+     * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>string location_id = 5;</code>
      * @return string
@@ -240,8 +249,7 @@ class ListStoredInfoTypesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The geographic location where stored infoTypes will be retrieved from.
-     * Use `-` for all locations. Reserved for future extensions.
+     * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>string location_id = 5;</code>
      * @param string $var

@@ -16,6 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListInfoTypesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
+     * The parent resource name.
+     * - Format:locations/[LOCATION-ID]
+     *
+     * Generated from protobuf field <code>string parent = 4;</code>
+     */
+    private $parent = '';
+    /**
      * BCP-47 language code for localized infoType friendly
      * names. If omitted, or if localized strings are not available,
      * en-US strings will be returned.
@@ -31,8 +38,7 @@ class ListInfoTypesRequest extends \Google\Protobuf\Internal\Message
      */
     private $filter = '';
     /**
-     * The geographic location to list info types. Reserved for future
-     * extensions.
+     * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>string location_id = 3;</code>
      */
@@ -44,6 +50,9 @@ class ListInfoTypesRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string $parent
+     *           The parent resource name.
+     *           - Format:locations/[LOCATION-ID]
      *     @type string $language_code
      *           BCP-47 language code for localized infoType friendly
      *           names. If omitted, or if localized strings are not available,
@@ -52,13 +61,40 @@ class ListInfoTypesRequest extends \Google\Protobuf\Internal\Message
      *           filter to only return infoTypes supported by certain parts of the
      *           API. Defaults to supported_by=INSPECT.
      *     @type string $location_id
-     *           The geographic location to list info types. Reserved for future
-     *           extensions.
+     *           Deprecated. This field has no effect.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * The parent resource name.
+     * - Format:locations/[LOCATION-ID]
+     *
+     * Generated from protobuf field <code>string parent = 4;</code>
+     * @return string
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    /**
+     * The parent resource name.
+     * - Format:locations/[LOCATION-ID]
+     *
+     * Generated from protobuf field <code>string parent = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setParent($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->parent = $var;
+
+        return $this;
     }
 
     /**
@@ -120,8 +156,7 @@ class ListInfoTypesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The geographic location to list info types. Reserved for future
-     * extensions.
+     * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>string location_id = 3;</code>
      * @return string
@@ -132,8 +167,7 @@ class ListInfoTypesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The geographic location to list info types. Reserved for future
-     * extensions.
+     * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>string location_id = 3;</code>
      * @param string $var

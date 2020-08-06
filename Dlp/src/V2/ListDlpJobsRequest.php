@@ -16,7 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent resource name, for example projects/my-project-id.
+     * Required. Parent resource name.
+     * - Format:projects/[PROJECT-ID]
+     * - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *
      * Generated from protobuf field <code>string parent = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -83,8 +85,7 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
      */
     private $order_by = '';
     /**
-     * The geographic location where jobs will be retrieved from.
-     * Use `-` for all locations. Reserved for future extensions.
+     * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>string location_id = 7;</code>
      */
@@ -97,7 +98,9 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent resource name, for example projects/my-project-id.
+     *           Required. Parent resource name.
+     *           - Format:projects/[PROJECT-ID]
+     *           - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *     @type string $filter
      *           Allows filtering.
      *           Supported syntax:
@@ -140,8 +143,7 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
      *           - `name`: corresponds to job's name.
      *           - `state`: corresponds to `state`
      *     @type string $location_id
-     *           The geographic location where jobs will be retrieved from.
-     *           Use `-` for all locations. Reserved for future extensions.
+     *           Deprecated. This field has no effect.
      * }
      */
     public function __construct($data = NULL) {
@@ -150,7 +152,9 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource name, for example projects/my-project-id.
+     * Required. Parent resource name.
+     * - Format:projects/[PROJECT-ID]
+     * - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *
      * Generated from protobuf field <code>string parent = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -161,7 +165,9 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource name, for example projects/my-project-id.
+     * Required. Parent resource name.
+     * - Format:projects/[PROJECT-ID]
+     * - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *
      * Generated from protobuf field <code>string parent = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -368,8 +374,7 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The geographic location where jobs will be retrieved from.
-     * Use `-` for all locations. Reserved for future extensions.
+     * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>string location_id = 7;</code>
      * @return string
@@ -380,8 +385,7 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The geographic location where jobs will be retrieved from.
-     * Use `-` for all locations. Reserved for future extensions.
+     * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>string location_id = 7;</code>
      * @param string $var
