@@ -37,6 +37,7 @@ use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
+use Google\Cloud\Spanner\Numeric;
 use Prophecy\Argument;
 
 /**
