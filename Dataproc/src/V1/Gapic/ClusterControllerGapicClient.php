@@ -596,6 +596,89 @@ class ClusterControllerGapicClient
     }
 
     /**
+     * Gets cluster diagnostic information. The returned
+     * [Operation.metadata][google.longrunning.Operation.metadata] will be
+     * [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).
+     * After the operation completes,
+     * [Operation.response][google.longrunning.Operation.response]
+     * contains
+     * [DiagnoseClusterResults](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#diagnoseclusterresults).
+     *
+     * Sample code:
+     * ```
+     * $clusterControllerClient = new ClusterControllerClient();
+     * try {
+     *     $projectId = '';
+     *     $region = '';
+     *     $clusterName = '';
+     *     $operationResponse = $clusterControllerClient->diagnoseCluster($projectId, $region, $clusterName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $clusterControllerClient->diagnoseCluster($projectId, $region, $clusterName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $clusterControllerClient->resumeOperation($operationName, 'diagnoseCluster');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       $result = $newOperationResponse->getResult();
+     *       // doSomethingWith($result)
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $clusterControllerClient->close();
+     * }
+     * ```
+     *
+     * @param string $projectId    Required. The ID of the Google Cloud Platform project that the cluster
+     *                             belongs to.
+     * @param string $region       Required. The Dataproc region in which to handle the request.
+     * @param string $clusterName  Required. The cluster name.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function diagnoseCluster($projectId, $region, $clusterName, array $optionalArgs = [])
+    {
+        $request = new DiagnoseClusterRequest();
+        $request->setProjectId($projectId);
+        $request->setRegion($region);
+        $request->setClusterName($clusterName);
+
+        return $this->startOperationsCall(
+            'DiagnoseCluster',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
      * Gets the resource representation for a cluster in a project.
      *
      * Sample code:
@@ -741,86 +824,5 @@ class ClusterControllerGapicClient
             ListClustersResponse::class,
             $request
         );
-    }
-
-    /**
-     * Gets cluster diagnostic information. The returned
-     * [Operation.metadata][google.longrunning.Operation.metadata] will be
-     * [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).
-     * After the operation completes,
-     * [Operation.response][google.longrunning.Operation.response]
-     * contains
-     * [DiagnoseClusterResults](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#diagnoseclusterresults).
-     *
-     * Sample code:
-     * ```
-     * $clusterControllerClient = new ClusterControllerClient();
-     * try {
-     *     $projectId = '';
-     *     $region = '';
-     *     $clusterName = '';
-     *     $operationResponse = $clusterControllerClient->diagnoseCluster($projectId, $region, $clusterName);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // operation succeeded and returns no value
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *
-     *
-     *     // Alternatively:
-     *
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $clusterControllerClient->diagnoseCluster($projectId, $region, $clusterName);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $clusterControllerClient->resumeOperation($operationName, 'diagnoseCluster');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *       // operation succeeded and returns no value
-     *     } else {
-     *       $error = $newOperationResponse->getError();
-     *       // handleError($error)
-     *     }
-     * } finally {
-     *     $clusterControllerClient->close();
-     * }
-     * ```
-     *
-     * @param string $projectId    Required. The ID of the Google Cloud Platform project that the cluster
-     *                             belongs to.
-     * @param string $region       Required. The Dataproc region in which to handle the request.
-     * @param string $clusterName  Required. The cluster name.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\ApiCore\OperationResponse
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function diagnoseCluster($projectId, $region, $clusterName, array $optionalArgs = [])
-    {
-        $request = new DiagnoseClusterRequest();
-        $request->setProjectId($projectId);
-        $request->setRegion($region);
-        $request->setClusterName($clusterName);
-
-        return $this->startOperationsCall(
-            'DiagnoseCluster',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
-        )->wait();
     }
 }

@@ -84,7 +84,7 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      */
     private $jobs;
     /**
-     * Optional. emplate parameters whose values are substituted into the
+     * Optional. Template parameters whose values are substituted into the
      * template. Values for parameters must be provided when the template is
      * instantiated.
      *
@@ -136,7 +136,7 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dataproc\V1\OrderedJob[]|\Google\Protobuf\Internal\RepeatedField $jobs
      *           Required. The Directed Acyclic Graph of Jobs to submit.
      *     @type \Google\Cloud\Dataproc\V1\TemplateParameter[]|\Google\Protobuf\Internal\RepeatedField $parameters
-     *           Optional. emplate parameters whose values are substituted into the
+     *           Optional. Template parameters whose values are substituted into the
      *           template. Values for parameters must be provided when the template is
      *           instantiated.
      * }
@@ -395,7 +395,7 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. emplate parameters whose values are substituted into the
+     * Optional. Template parameters whose values are substituted into the
      * template. Values for parameters must be provided when the template is
      * instantiated.
      *
@@ -408,7 +408,7 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. emplate parameters whose values are substituted into the
+     * Optional. Template parameters whose values are substituted into the
      * template. Values for parameters must be provided when the template is
      * instantiated.
      *

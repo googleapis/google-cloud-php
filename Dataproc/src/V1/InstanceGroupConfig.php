@@ -76,6 +76,16 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      */
     private $is_preemptible = false;
     /**
+     * Optional. Specifies the preemptibility of the instance group.
+     * The default value for master and worker groups is
+     * `NON_PREEMPTIBLE`. This default cannot be changed.
+     * The default value for secondary instances is
+     * `PREEMPTIBLE`.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig.Preemptibility preemptibility = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $preemptibility = 0;
+    /**
      * Output only. The config for Compute Engine Instance Group
      * Manager that manages this group.
      * This is only used for preemptible instance groups.
@@ -140,6 +150,12 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      *     @type bool $is_preemptible
      *           Output only. Specifies that this instance group contains preemptible
      *           instances.
+     *     @type int $preemptibility
+     *           Optional. Specifies the preemptibility of the instance group.
+     *           The default value for master and worker groups is
+     *           `NON_PREEMPTIBLE`. This default cannot be changed.
+     *           The default value for secondary instances is
+     *           `PREEMPTIBLE`.
      *     @type \Google\Cloud\Dataproc\V1\ManagedGroupConfig $managed_group_config
      *           Output only. The config for Compute Engine Instance Group
      *           Manager that manages this group.
@@ -356,6 +372,40 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->is_preemptible = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the preemptibility of the instance group.
+     * The default value for master and worker groups is
+     * `NON_PREEMPTIBLE`. This default cannot be changed.
+     * The default value for secondary instances is
+     * `PREEMPTIBLE`.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig.Preemptibility preemptibility = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getPreemptibility()
+    {
+        return $this->preemptibility;
+    }
+
+    /**
+     * Optional. Specifies the preemptibility of the instance group.
+     * The default value for master and worker groups is
+     * `NON_PREEMPTIBLE`. This default cannot be changed.
+     * The default value for secondary instances is
+     * `PREEMPTIBLE`.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig.Preemptibility preemptibility = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPreemptibility($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Dataproc\V1\InstanceGroupConfig_Preemptibility::class);
+        $this->preemptibility = $var;
 
         return $this;
     }
