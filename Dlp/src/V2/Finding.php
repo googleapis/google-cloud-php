@@ -17,8 +17,8 @@ class Finding extends \Google\Protobuf\Internal\Message
 {
     /**
      * Resource name in format
-     * projects/{project}/locations/{location}/findings/{finding}
-     * Populated only when viewing persisted findings.
+     * projects/{project}/locations/{location}/findings/{finding} Populated only
+     * when viewing persisted findings.
      *
      * Generated from protobuf field <code>string name = 14;</code>
      */
@@ -74,23 +74,20 @@ class Finding extends \Google\Protobuf\Internal\Message
     private $resource_name = '';
     /**
      * Job trigger name, if applicable, for this finding.
-     * (-- api-linter: core::0122::name-suffix=disabled
-     *     aip.dev/not-precedent: AIP-122 discourages _name suffixes for
-     *     resource names, but this has existed as part of the bigquery schema
-     *     before this rule existed. --)
      *
      * Generated from protobuf field <code>string trigger_name = 9 [(.google.api.resource_reference) = {</code>
      */
     private $trigger_name = '';
     /**
-     * The labels associated with this `InspectFinding`.
+     * The labels associated with this `Finding`.
      * Label keys must be between 1 and 63 characters long and must conform
-     * to the following regular expression: \[a-z\](\[-a-z0-9\]*\[a-z0-9\])?.
+     * to the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?`.
      * Label values must be between 0 and 63 characters long and must conform
-     * to the regular expression (\[a-z\](\[-a-z0-9\]*\[a-z0-9\])?)?.
+     * to the regular expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`.
      * No more than 10 labels can be associated with a given finding.
-     * Example: <code>"environment" : "production"</code>
-     * Example: <code>"pipeline" : "etl"</code>
+     * Examples:
+     * * `"environment" : "production"`
+     * * `"pipeline" : "etl"`
      *
      * Generated from protobuf field <code>map<string, string> labels = 10;</code>
      */
@@ -103,10 +100,6 @@ class Finding extends \Google\Protobuf\Internal\Message
     private $job_create_time = null;
     /**
      * The job that stored the finding.
-     * (-- api-linter: core::0122::name-suffix=disabled
-     *     aip.dev/not-precedent: AIP-122 discourages _name suffixes for
-     *     resource names, but this has existed as part of the bigquery schema
-     *     before this rule existed. --)
      *
      * Generated from protobuf field <code>string job_name = 13 [(.google.api.resource_reference) = {</code>
      */
@@ -120,8 +113,8 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Resource name in format
-     *           projects/{project}/locations/{location}/findings/{finding}
-     *           Populated only when viewing persisted findings.
+     *           projects/{project}/locations/{location}/findings/{finding} Populated only
+     *           when viewing persisted findings.
      *     @type string $quote
      *           The content that was found. Even if the content is not textual, it
      *           may be converted to a textual representation here.
@@ -145,27 +138,20 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           The job that stored the finding.
      *     @type string $trigger_name
      *           Job trigger name, if applicable, for this finding.
-     *           (-- api-linter: core::0122::name-suffix=disabled
-     *               aip.dev/not-precedent: AIP-122 discourages _name suffixes for
-     *               resource names, but this has existed as part of the bigquery schema
-     *               before this rule existed. --)
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           The labels associated with this `InspectFinding`.
+     *           The labels associated with this `Finding`.
      *           Label keys must be between 1 and 63 characters long and must conform
-     *           to the following regular expression: \[a-z\](\[-a-z0-9\]*\[a-z0-9\])?.
+     *           to the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?`.
      *           Label values must be between 0 and 63 characters long and must conform
-     *           to the regular expression (\[a-z\](\[-a-z0-9\]*\[a-z0-9\])?)?.
+     *           to the regular expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`.
      *           No more than 10 labels can be associated with a given finding.
-     *           Example: <code>"environment" : "production"</code>
-     *           Example: <code>"pipeline" : "etl"</code>
+     *           Examples:
+     *           * `"environment" : "production"`
+     *           * `"pipeline" : "etl"`
      *     @type \Google\Protobuf\Timestamp $job_create_time
      *           Time the job started that produced this finding.
      *     @type string $job_name
      *           The job that stored the finding.
-     *           (-- api-linter: core::0122::name-suffix=disabled
-     *               aip.dev/not-precedent: AIP-122 discourages _name suffixes for
-     *               resource names, but this has existed as part of the bigquery schema
-     *               before this rule existed. --)
      * }
      */
     public function __construct($data = NULL) {
@@ -175,8 +161,8 @@ class Finding extends \Google\Protobuf\Internal\Message
 
     /**
      * Resource name in format
-     * projects/{project}/locations/{location}/findings/{finding}
-     * Populated only when viewing persisted findings.
+     * projects/{project}/locations/{location}/findings/{finding} Populated only
+     * when viewing persisted findings.
      *
      * Generated from protobuf field <code>string name = 14;</code>
      * @return string
@@ -188,8 +174,8 @@ class Finding extends \Google\Protobuf\Internal\Message
 
     /**
      * Resource name in format
-     * projects/{project}/locations/{location}/findings/{finding}
-     * Populated only when viewing persisted findings.
+     * projects/{project}/locations/{location}/findings/{finding} Populated only
+     * when viewing persisted findings.
      *
      * Generated from protobuf field <code>string name = 14;</code>
      * @param string $var
@@ -401,10 +387,6 @@ class Finding extends \Google\Protobuf\Internal\Message
 
     /**
      * Job trigger name, if applicable, for this finding.
-     * (-- api-linter: core::0122::name-suffix=disabled
-     *     aip.dev/not-precedent: AIP-122 discourages _name suffixes for
-     *     resource names, but this has existed as part of the bigquery schema
-     *     before this rule existed. --)
      *
      * Generated from protobuf field <code>string trigger_name = 9 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -416,10 +398,6 @@ class Finding extends \Google\Protobuf\Internal\Message
 
     /**
      * Job trigger name, if applicable, for this finding.
-     * (-- api-linter: core::0122::name-suffix=disabled
-     *     aip.dev/not-precedent: AIP-122 discourages _name suffixes for
-     *     resource names, but this has existed as part of the bigquery schema
-     *     before this rule existed. --)
      *
      * Generated from protobuf field <code>string trigger_name = 9 [(.google.api.resource_reference) = {</code>
      * @param string $var
@@ -434,14 +412,15 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The labels associated with this `InspectFinding`.
+     * The labels associated with this `Finding`.
      * Label keys must be between 1 and 63 characters long and must conform
-     * to the following regular expression: \[a-z\](\[-a-z0-9\]*\[a-z0-9\])?.
+     * to the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?`.
      * Label values must be between 0 and 63 characters long and must conform
-     * to the regular expression (\[a-z\](\[-a-z0-9\]*\[a-z0-9\])?)?.
+     * to the regular expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`.
      * No more than 10 labels can be associated with a given finding.
-     * Example: <code>"environment" : "production"</code>
-     * Example: <code>"pipeline" : "etl"</code>
+     * Examples:
+     * * `"environment" : "production"`
+     * * `"pipeline" : "etl"`
      *
      * Generated from protobuf field <code>map<string, string> labels = 10;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -452,14 +431,15 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The labels associated with this `InspectFinding`.
+     * The labels associated with this `Finding`.
      * Label keys must be between 1 and 63 characters long and must conform
-     * to the following regular expression: \[a-z\](\[-a-z0-9\]*\[a-z0-9\])?.
+     * to the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?`.
      * Label values must be between 0 and 63 characters long and must conform
-     * to the regular expression (\[a-z\](\[-a-z0-9\]*\[a-z0-9\])?)?.
+     * to the regular expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`.
      * No more than 10 labels can be associated with a given finding.
-     * Example: <code>"environment" : "production"</code>
-     * Example: <code>"pipeline" : "etl"</code>
+     * Examples:
+     * * `"environment" : "production"`
+     * * `"pipeline" : "etl"`
      *
      * Generated from protobuf field <code>map<string, string> labels = 10;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -501,10 +481,6 @@ class Finding extends \Google\Protobuf\Internal\Message
 
     /**
      * The job that stored the finding.
-     * (-- api-linter: core::0122::name-suffix=disabled
-     *     aip.dev/not-precedent: AIP-122 discourages _name suffixes for
-     *     resource names, but this has existed as part of the bigquery schema
-     *     before this rule existed. --)
      *
      * Generated from protobuf field <code>string job_name = 13 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -516,10 +492,6 @@ class Finding extends \Google\Protobuf\Internal\Message
 
     /**
      * The job that stored the finding.
-     * (-- api-linter: core::0122::name-suffix=disabled
-     *     aip.dev/not-precedent: AIP-122 discourages _name suffixes for
-     *     resource names, but this has existed as part of the bigquery schema
-     *     before this rule existed. --)
      *
      * Generated from protobuf field <code>string job_name = 13 [(.google.api.resource_reference) = {</code>
      * @param string $var

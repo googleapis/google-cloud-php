@@ -17,6 +17,8 @@ class ReidentifyContentRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The parent resource name.
+     * - Format:projects/[PROJECT-ID]
+     * - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -69,8 +71,7 @@ class ReidentifyContentRequest extends \Google\Protobuf\Internal\Message
      */
     private $reidentify_template_name = '';
     /**
-     * The geographic location to process content reidentification.  Reserved for
-     * future extensions.
+     * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>string location_id = 7;</code>
      */
@@ -84,6 +85,8 @@ class ReidentifyContentRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The parent resource name.
+     *           - Format:projects/[PROJECT-ID]
+     *           - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *     @type \Google\Cloud\Dlp\V2\DeidentifyConfig $reidentify_config
      *           Configuration for the re-identification of the content item.
      *           This field shares the same proto message type that is used for
@@ -112,8 +115,7 @@ class ReidentifyContentRequest extends \Google\Protobuf\Internal\Message
      *           template. Repeated fields are appended. Singular sub-messages and groups
      *           are recursively merged.
      *     @type string $location_id
-     *           The geographic location to process content reidentification.  Reserved for
-     *           future extensions.
+     *           Deprecated. This field has no effect.
      * }
      */
     public function __construct($data = NULL) {
@@ -123,6 +125,8 @@ class ReidentifyContentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent resource name.
+     * - Format:projects/[PROJECT-ID]
+     * - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -134,6 +138,8 @@ class ReidentifyContentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent resource name.
+     * - Format:projects/[PROJECT-ID]
+     * - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -312,8 +318,7 @@ class ReidentifyContentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The geographic location to process content reidentification.  Reserved for
-     * future extensions.
+     * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>string location_id = 7;</code>
      * @return string
@@ -324,8 +329,7 @@ class ReidentifyContentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The geographic location to process content reidentification.  Reserved for
-     * future extensions.
+     * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>string location_id = 7;</code>
      * @param string $var

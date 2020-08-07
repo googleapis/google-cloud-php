@@ -16,7 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateJobTriggerRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent resource name, for example projects/my-project-id.
+     * Required. Parent resource name.
+     * - Format:projects/[PROJECT-ID]
+     * - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -37,8 +39,7 @@ class CreateJobTriggerRequest extends \Google\Protobuf\Internal\Message
      */
     private $trigger_id = '';
     /**
-     * The geographic location to store the job trigger. Reserved for
-     * future extensions.
+     * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>string location_id = 4;</code>
      */
@@ -51,7 +52,9 @@ class CreateJobTriggerRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent resource name, for example projects/my-project-id.
+     *           Required. Parent resource name.
+     *           - Format:projects/[PROJECT-ID]
+     *           - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *     @type \Google\Cloud\Dlp\V2\JobTrigger $job_trigger
      *           Required. The JobTrigger to create.
      *     @type string $trigger_id
@@ -60,8 +63,7 @@ class CreateJobTriggerRequest extends \Google\Protobuf\Internal\Message
      *           expression: `[a-zA-Z\\d-_]+`. The maximum length is 100
      *           characters. Can be empty to allow the system to generate one.
      *     @type string $location_id
-     *           The geographic location to store the job trigger. Reserved for
-     *           future extensions.
+     *           Deprecated. This field has no effect.
      * }
      */
     public function __construct($data = NULL) {
@@ -70,7 +72,9 @@ class CreateJobTriggerRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource name, for example projects/my-project-id.
+     * Required. Parent resource name.
+     * - Format:projects/[PROJECT-ID]
+     * - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -81,7 +85,9 @@ class CreateJobTriggerRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource name, for example projects/my-project-id.
+     * Required. Parent resource name.
+     * - Format:projects/[PROJECT-ID]
+     * - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -154,8 +160,7 @@ class CreateJobTriggerRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The geographic location to store the job trigger. Reserved for
-     * future extensions.
+     * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>string location_id = 4;</code>
      * @return string
@@ -166,8 +171,7 @@ class CreateJobTriggerRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The geographic location to store the job trigger. Reserved for
-     * future extensions.
+     * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>string location_id = 4;</code>
      * @param string $var

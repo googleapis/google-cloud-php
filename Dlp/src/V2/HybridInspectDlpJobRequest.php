@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class HybridInspectDlpJobRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Resource name of the job to execute a hybrid inspect on, for
-     * example `projects/dlp-test-project/dlpJob/53234423`.
+     * Required. Resource name of the job to execute a hybrid inspect on, for example
+     * `projects/dlp-test-project/dlpJob/53234423`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -36,8 +36,8 @@ class HybridInspectDlpJobRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. Resource name of the job to execute a hybrid inspect on, for
-     *           example `projects/dlp-test-project/dlpJob/53234423`.
+     *           Required. Resource name of the job to execute a hybrid inspect on, for example
+     *           `projects/dlp-test-project/dlpJob/53234423`.
      *     @type \Google\Cloud\Dlp\V2\HybridContentItem $hybrid_item
      *           The item to inspect.
      * }
@@ -48,8 +48,8 @@ class HybridInspectDlpJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name of the job to execute a hybrid inspect on, for
-     * example `projects/dlp-test-project/dlpJob/53234423`.
+     * Required. Resource name of the job to execute a hybrid inspect on, for example
+     * `projects/dlp-test-project/dlpJob/53234423`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -60,8 +60,8 @@ class HybridInspectDlpJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name of the job to execute a hybrid inspect on, for
-     * example `projects/dlp-test-project/dlpJob/53234423`.
+     * Required. Resource name of the job to execute a hybrid inspect on, for example
+     * `projects/dlp-test-project/dlpJob/53234423`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
