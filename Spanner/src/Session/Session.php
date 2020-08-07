@@ -95,7 +95,8 @@ class Session
     /**
      * Return info on the session.
      *
-     * @return array An array containing the `projectId`, `instance`, `database`, 'databaseName' and session `name` keys.
+     * @return array An array containing the `projectId`, `instance`, `database`, 'databaseName' and session `name`
+     *         keys.
      */
     public function info()
     {
