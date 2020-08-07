@@ -1,0 +1,36 @@
+{
+    "title": "Game Servers",
+    "defaultService": "gaming\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "gaming\/readme"
+        },
+        {
+            "title": "v1",
+            "type": "gaming\/v1\/readme",
+            "nav": [
+                {
+                    "title": "GameServerClustersServiceClient",
+                    "type": "gaming\/v1\/gameserverclustersserviceclient"
+                },
+                {
+                    "title": "GameServerConfigsServiceClient",
+                    "type": "gaming\/v1\/gameserverconfigsserviceclient"
+                },
+                {
+                    "title": "GameServerDeploymentsServiceClient",
+                    "type": "gaming\/v1\/gameserverdeploymentsserviceclient"
+                },
+                {
+                    "title": "RealmsServiceClient",
+                    "type": "gaming\/v1\/realmsserviceclient"
+                }
+            ],
+            "patterns": [
+                "gaming\/v1\/\\w{1,}"
+            ]
+        }
+    ],
+    "pattern": "gaming\/\\w{1,}"
+}

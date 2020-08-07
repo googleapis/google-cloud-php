@@ -26,6 +26,7 @@
         "cloud-dlp",
         "cloud-error-reporting",
         "cloud-firestore",
+        "cloud-game-servers",
         "cloud-iot",
         "cloud-kms",
         "cloud-language",

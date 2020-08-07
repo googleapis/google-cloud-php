@@ -994,6 +994,14 @@
             ]
         },
         {
+            "id": "cloud-game-servers",
+            "name": "google/cloud-game-servers",
+            "defaultService": "gaming/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-iot",
             "name": "google/cloud-iot",
             "defaultService": "iot/readme",
