@@ -51,6 +51,7 @@ This client supports the following Google Cloud Platform services at a [Beta](#v
 * [Google Cloud BigQuery Storage](BigQueryStorage) (Beta)
 * [Google Cloud BigQuery Reservation](BigQueryReservation) (Beta)
 * [Google Cloud Data Catalog](DataCatalog) (Beta)
+* [Google Cloud Gaming Servers](Gaming) (Beta)
 * [Google Cloud Natural Language](Language) (Beta)
 * [Google Cloud Recaptcha Enterprise](RecaptchaEnterprise) (Beta)
 * [Google Cloud Security Command Center](SecurityCenter) (Beta)
