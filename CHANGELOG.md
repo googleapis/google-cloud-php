@@ -1,5 +1,41 @@
 # Changelog
 
+## 0.138.0
+
+<details><summary>google/cloud-dataproc 1.2.0</summary>
+
+
+
+### Features
+
+* introduce new fields to ClusterConfig and InstanceGroupConfig ([#3271](https://www.github.com/googleapis/google-cloud-php/issues/3271)) ([fc163df](https://www.github.com/googleapis/google-cloud-php/commit/fc163df52ccc89946174e6a4d214f75add931368))
+
+</details>
+
+<details><summary>google/cloud-dlp 0.27.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* add support for new data types and reorganize signatures (#3280)
+
+### Features
+
+* add support for new data types and reorganize signatures ([#3280](https://www.github.com/googleapis/google-cloud-php/issues/3280)) ([a6dd274](https://www.github.com/googleapis/google-cloud-php/commit/a6dd274dacc40b8aa8f4fe57103214a95fd30dbe))
+
+</details>
+
+<details><summary>google/cloud-game-servers 0.1.0</summary>
+
+
+
+### Features
+
+* introduce gaming servers clients ([#3282](https://www.github.com/googleapis/google-cloud-php/issues/3282)) ([ea1a63e](https://www.github.com/googleapis/google-cloud-php/commit/ea1a63e3e69fc8d3e34de366f894f39b96d59266))
+
+</details>
+
 ## 0.137.0
 
 <details><summary>google/cloud-bigquery-connection 0.1.0</summary>

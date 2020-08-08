@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.138.0",
                 "v0.137.0",
                 "v0.136.0",
                 "v0.135.0",
@@ -598,6 +599,7 @@
             "name": "google/cloud-dataproc",
             "defaultService": "dataproc/readme",
             "versions": [
+                "v1.2.0",
                 "v1.1.1",
                 "v1.1.0",
                 "v1.0.2",
@@ -802,6 +804,7 @@
             "name": "google/cloud-dlp",
             "defaultService": "dlp/readme",
             "versions": [
+                "v0.27.0",
                 "v0.26.1",
                 "v0.26.0",
                 "v0.25.1",
@@ -998,6 +1001,7 @@
             "name": "google/cloud-game-servers",
             "defaultService": "gaming/readme",
             "versions": [
+                "v0.1.0",
                 "master"
             ]
         },
