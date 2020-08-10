@@ -63,7 +63,8 @@ class BatchSnapshotTest extends SnippetTestCase
         $this->session = $this->prophesize(Session::class);
         $this->session->name()->willReturn(self::SESSION);
         $this->session->info()->willReturn($sessData + [
-            'name' => self::SESSION
+            'name' => self::SESSION,
+            'databaseName' => self::DATABASE
         ]);
 
         $this->time = time();

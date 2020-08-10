@@ -170,7 +170,7 @@ class InstanceConfiguration
     {
         $this->info = $this->connection->getInstanceConfig($options + [
             'name' => $this->name,
-            'projectId' => $this->projectId
+            'projectName' => InstanceAdminClient::projectName($this->projectId),
         ]);
 
         return $this->info;

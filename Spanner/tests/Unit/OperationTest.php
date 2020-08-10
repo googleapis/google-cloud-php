@@ -19,6 +19,7 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
+use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Batch\QueryPartition;
 use Google\Cloud\Spanner\Batch\ReadPartition;
 use Google\Cloud\Spanner\Database;
@@ -45,7 +46,7 @@ class OperationTest extends TestCase
 
     const SESSION = 'my-session-id';
     const TRANSACTION = 'my-transaction-id';
-    const DATABASE = 'my-database';
+    const DATABASE = 'projects/my-awesome-project/instances/my-instance/databases/my-database';
     const TIMESTAMP = '2017-01-09T18:05:22.534799Z';
 
     private $connection;
@@ -65,7 +66,7 @@ class OperationTest extends TestCase
 
         $session = $this->prophesize(Session::class);
         $session->name()->willReturn(self::SESSION);
-        $session->info()->willReturn(['database' => self::DATABASE]);
+        $session->info()->willReturn(['databaseName' => self::DATABASE]);
         $this->session = $session->reveal();
     }
 

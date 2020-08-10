@@ -245,10 +245,10 @@ class Grpc implements ConnectionInterface
      */
     public function listInstanceConfigs(array $args)
     {
-        $projectId = $this->pluck('projectId', $args);
+        $projectName = $this->pluck('projectName', $args);
         return $this->send([$this->getInstanceAdminClient(), 'listInstanceConfigs'], [
-            $projectId,
-            $this->addResourcePrefixHeader($args, $projectId)
+            $projectName,
+            $this->addResourcePrefixHeader($args, $projectName)
         ]);
     }
 
@@ -257,10 +257,10 @@ class Grpc implements ConnectionInterface
      */
     public function getInstanceConfig(array $args)
     {
-        $projectId = $this->pluck('projectId', $args);
+        $projectName = $this->pluck('projectName', $args);
         return $this->send([$this->getInstanceAdminClient(), 'getInstanceConfig'], [
             $this->pluck('name', $args),
-            $this->addResourcePrefixHeader($args, $projectId)
+            $this->addResourcePrefixHeader($args, $projectName)
         ]);
     }
 
@@ -269,10 +269,10 @@ class Grpc implements ConnectionInterface
      */
     public function listInstances(array $args)
     {
-        $projectId = $this->pluck('projectId', $args);
+        $projectName = $this->pluck('projectName', $args);
         return $this->send([$this->getInstanceAdminClient(), 'listInstances'], [
-            $projectId,
-            $this->addResourcePrefixHeader($args, $projectId)
+            $projectName,
+            $this->addResourcePrefixHeader($args, $projectName)
         ]);
     }
 
@@ -281,7 +281,7 @@ class Grpc implements ConnectionInterface
      */
     public function getInstance(array $args)
     {
-        $projectId = $this->pluck('projectId', $args);
+        $projectName = $this->pluck('projectName', $args);
 
         if (isset($args['fieldMask'])) {
             $mask = [];
@@ -298,7 +298,7 @@ class Grpc implements ConnectionInterface
 
         return $this->send([$this->getInstanceAdminClient(), 'getInstance'], [
             $this->pluck('name', $args),
-            $this->addResourcePrefixHeader($args, $projectId)
+            $this->addResourcePrefixHeader($args, $projectName)
         ]);
     }
 
@@ -311,7 +311,7 @@ class Grpc implements ConnectionInterface
 
         $instance = $this->instanceObject($args, true);
         $res = $this->send([$this->getInstanceAdminClient(), 'createInstance'], [
-            $this->pluck('projectId', $args),
+            $this->pluck('projectName', $args),
             $this->pluck('instanceId', $args),
             $instance,
             $this->addResourcePrefixHeader($args, $instanceName)
@@ -658,13 +658,13 @@ class Grpc implements ConnectionInterface
      */
     public function createSessionAsync(array $args)
     {
-        $database = $this->pluck('database', $args);
-        $opts = $this->addResourcePrefixHeader([], $database);
+        $databaseName = $this->pluck('database', $args);
+        $opts = $this->addResourcePrefixHeader([], $databaseName);
         $opts['credentialsWrapper'] = $this->credentialsWrapper;
         $transport = $this->spannerClient->getTransport();
 
         $request = new CreateSessionRequest([
-            'database' => $database
+            'database' => $databaseName
         ]);
 
         $session = $this->pluck('session', $args, false);
@@ -694,11 +694,11 @@ class Grpc implements ConnectionInterface
             $this->pluck('sessionTemplate', $args)
         );
 
-        $database = $this->pluck('database', $args);
+        $databaseName = $this->pluck('database', $args);
         return $this->send([$this->spannerClient, 'batchCreateSessions'], [
-            $database,
+            $databaseName,
             $this->pluck('sessionCount', $args),
-            $this->addResourcePrefixHeader($args, $database)
+            $this->addResourcePrefixHeader($args, $databaseName)
         ]);
     }
 
@@ -707,10 +707,10 @@ class Grpc implements ConnectionInterface
      */
     public function getSession(array $args)
     {
-        $database = $this->pluck('database', $args);
+        $databaseName = $this->pluck('database', $args);
         return $this->send([$this->spannerClient, 'getSession'], [
             $this->pluck('name', $args),
-            $this->addResourcePrefixHeader($args, $database)
+            $this->addResourcePrefixHeader($args, $databaseName)
         ]);
     }
 
@@ -719,10 +719,10 @@ class Grpc implements ConnectionInterface
      */
     public function deleteSession(array $args)
     {
-        $database = $this->pluck('database', $args);
+        $databaseName = $this->pluck('database', $args);
         return $this->send([$this->spannerClient, 'deleteSession'], [
             $this->pluck('name', $args),
-            $this->addResourcePrefixHeader($args, $database)
+            $this->addResourcePrefixHeader($args, $databaseName)
         ]);
     }
 
@@ -737,12 +737,12 @@ class Grpc implements ConnectionInterface
      */
     public function deleteSessionAsync(array $args)
     {
-        $database = $this->pluck('database', $args);
+        $databaseName = $this->pluck('database', $args);
         $request = new DeleteSessionRequest();
         $request->setName($this->pluck('name', $args));
 
         $transport = $this->spannerClient->getTransport();
-        $opts = $this->addResourcePrefixHeader([], $database);
+        $opts = $this->addResourcePrefixHeader([], $databaseName);
         $opts['credentialsWrapper'] = $this->credentialsWrapper;
 
         return $transport->startUnaryCall(
@@ -764,7 +764,7 @@ class Grpc implements ConnectionInterface
         $args = $this->formatSqlParams($args);
         $args['transaction'] = $this->createTransactionSelector($args);
 
-        $database = $this->pluck('database', $args);
+        $databaseName = $this->pluck('database', $args);
         $queryOptions = $this->pluck('queryOptions', $args, false) ?: [];
 
         // Query options precedence is query-level, then environment-level, then client-level.
@@ -784,7 +784,7 @@ class Grpc implements ConnectionInterface
         return $this->send([$this->spannerClient, 'executeStreamingSql'], [
             $this->pluck('session', $args),
             $this->pluck('sql', $args),
-            $this->addResourcePrefixHeader($args, $database)
+            $this->addResourcePrefixHeader($args, $databaseName)
         ]);
     }
 
@@ -799,13 +799,13 @@ class Grpc implements ConnectionInterface
 
         $args['transaction'] = $this->createTransactionSelector($args);
 
-        $database = $this->pluck('database', $args);
+        $databaseName = $this->pluck('database', $args);
         return $this->send([$this->spannerClient, 'streamingRead'], [
             $this->pluck('session', $args),
             $this->pluck('table', $args),
             $this->pluck('columns', $args),
             $keySet,
-            $this->addResourcePrefixHeader($args, $database)
+            $this->addResourcePrefixHeader($args, $databaseName)
         ]);
     }
 
@@ -814,7 +814,7 @@ class Grpc implements ConnectionInterface
      */
     public function executeBatchDml(array $args)
     {
-        $database = $this->pluck('database', $args);
+        $databaseName = $this->pluck('database', $args);
         $args['transaction'] = $this->createTransactionSelector($args);
 
         $statements = [];
@@ -828,7 +828,7 @@ class Grpc implements ConnectionInterface
             $this->pluck('transaction', $args),
             $statements,
             $this->pluck('seqno', $args),
-            $this->addResourcePrefixHeader($args, $database)
+            $this->addResourcePrefixHeader($args, $databaseName)
         ]);
     }
 
@@ -854,11 +854,11 @@ class Grpc implements ConnectionInterface
             $options->setPartitionedDml($pdml);
         }
 
-        $database = $this->pluck('database', $args);
+        $databaseName = $this->pluck('database', $args);
         return $this->send([$this->spannerClient, 'beginTransaction'], [
             $this->pluck('session', $args),
             $options,
-            $this->addResourcePrefixHeader($args, $database)
+            $this->addResourcePrefixHeader($args, $databaseName)
         ]);
     }
 
@@ -922,11 +922,11 @@ class Grpc implements ConnectionInterface
             $args['singleUseTransaction'] = $options;
         }
 
-        $database = $this->pluck('database', $args);
+        $databaseName = $this->pluck('database', $args);
         return $this->send([$this->spannerClient, 'commit'], [
             $this->pluck('session', $args),
             $mutations,
-            $this->addResourcePrefixHeader($args, $database)
+            $this->addResourcePrefixHeader($args, $databaseName)
         ]);
     }
 
@@ -935,11 +935,11 @@ class Grpc implements ConnectionInterface
      */
     public function rollback(array $args)
     {
-        $database = $this->pluck('database', $args);
+        $databaseName = $this->pluck('database', $args);
         return $this->send([$this->spannerClient, 'rollback'], [
             $this->pluck('session', $args),
             $this->pluck('transactionId', $args),
-            $this->addResourcePrefixHeader($args, $database)
+            $this->addResourcePrefixHeader($args, $databaseName)
         ]);
     }
 
@@ -956,11 +956,11 @@ class Grpc implements ConnectionInterface
             $this->pluck('partitionOptions', $args, false) ?: []
         );
 
-        $database = $this->pluck('database', $args);
+        $databaseName = $this->pluck('database', $args);
         return $this->send([$this->spannerClient, 'partitionQuery'], [
             $this->pluck('session', $args),
             $this->pluck('sql', $args),
-            $this->addResourcePrefixHeader($args, $database)
+            $this->addResourcePrefixHeader($args, $databaseName)
         ]);
     }
 
@@ -979,12 +979,12 @@ class Grpc implements ConnectionInterface
             $this->pluck('partitionOptions', $args, false) ?: []
         );
 
-        $database = $this->pluck('database', $args);
+        $databaseName = $this->pluck('database', $args);
         return $this->send([$this->spannerClient, 'partitionRead'], [
             $this->pluck('session', $args),
             $this->pluck('table', $args),
             $keySet,
-            $this->addResourcePrefixHeader($args, $database)
+            $this->addResourcePrefixHeader($args, $databaseName)
         ]);
     }
 

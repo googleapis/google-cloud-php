@@ -470,7 +470,12 @@ class TransactionalReadMethodsTest extends SnippetTestCase
         $sessData = SpannerGapicClient::parseName(self::SESSION, 'session');
         $this->session->name()->willReturn(self::SESSION);
         $this->session->info()->willReturn($sessData + [
-            'name' => self::SESSION
+            'name' => self::SESSION,
+            'databaseName' => SpannerGapicClient::databaseName(
+                self::PROJECT,
+                self::INSTANCE,
+                self::DATABASE
+            )
         ]);
 
         return \Google\Cloud\Core\Testing\TestHelpers::stub(BatchSnapshot::class, [

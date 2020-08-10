@@ -131,7 +131,7 @@ class Operation
         $res = $this->connection->commit($this->arrayFilterRemoveNull([
             'mutations' => $mutations,
             'session' => $session->name(),
-            'database' => $session->info()['database']
+            'database' => $this->getDatabaseNameFromSession($session)
         ]) + $options);
 
         $time = $this->parseTimeString($res['commitTimestamp']);
@@ -153,7 +153,7 @@ class Operation
         $this->connection->rollback([
             'transactionId' => $transactionId,
             'session' => $session->name(),
-            'database' => $session->info()['database']
+            'database' => $this->getDatabaseNameFromSession($session)
         ] + $options);
     }
 
@@ -187,7 +187,7 @@ class Operation
             return $this->connection->executeStreamingSql([
                 'sql' => $sql,
                 'session' => $session->name(),
-                'database' => $session->info()['database']
+                'database' => $this->getDatabaseNameFromSession($session)
             ] + $options);
         };
 
@@ -282,7 +282,7 @@ class Operation
 
         $res = $this->connection->executeBatchDml([
             'session' => $session->name(),
-            'database' => $session->info()['database'],
+            'database' => $this->getDatabaseNameFromSession($session),
             'transactionId' => $transaction->id(),
             'statements' => $stmts
         ] + $options);
@@ -333,7 +333,7 @@ class Operation
                 'session' => $session->name(),
                 'columns' => $columns,
                 'keySet' => $this->flattenKeySet($keySet),
-                'database' => $session->info()['database']
+                'database' => $this->getDatabaseNameFromSession($session)
             ] + $options);
         };
 
@@ -569,7 +569,7 @@ class Operation
 
         $res = $this->connection->partitionQuery([
             'session' => $session->name(),
-            'database' => $session->info()['database'],
+            'database' => $this->getDatabaseNameFromSession($session),
             'transactionId' => $transactionId,
             'sql' => $sql
         ] + $options);
@@ -625,7 +625,7 @@ class Operation
 
         $res = $this->connection->partitionRead([
             'session' => $session->name(),
-            'database' => $session->info()['database'],
+            'database' => $this->getDatabaseNameFromSession($session),
             'transactionId' => $transactionId,
             'table' => $table,
             'columns' => $columns,
@@ -679,7 +679,7 @@ class Operation
 
         return $this->connection->beginTransaction($options + [
             'session' => $session->name(),
-            'database' => $session->info()['database']
+            'database' => $this->getDatabaseNameFromSession($session)
         ]);
     }
 
@@ -708,6 +708,11 @@ class Operation
         }
 
         return $this->arrayFilterRemoveNull($keys);
+    }
+
+    private function getDatabaseNameFromSession(Session $session)
+    {
+        return $session->info()['databaseName'];
     }
 
     /**

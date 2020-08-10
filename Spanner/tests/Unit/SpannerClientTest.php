@@ -92,7 +92,7 @@ class SpannerClientTest extends TestCase
     public function testInstanceConfigurations()
     {
         $this->connection->listInstanceConfigs(
-            Argument::withEntry('projectId', InstanceAdminClient::projectName(self::PROJECT))
+            Argument::withEntry('projectName', InstanceAdminClient::projectName(self::PROJECT))
         )
             ->shouldBeCalled()
             ->willReturn([
@@ -144,7 +144,7 @@ class SpannerClientTest extends TestCase
         ];
 
         $this->connection->listInstanceConfigs(
-            Argument::withEntry('projectId', InstanceAdminClient::projectName(self::PROJECT))
+            Argument::withEntry('projectName', InstanceAdminClient::projectName(self::PROJECT))
         )
             ->shouldBeCalledTimes(2)
             ->willReturn($firstCall, $secondCall);
@@ -224,7 +224,7 @@ class SpannerClientTest extends TestCase
     public function testInstances()
     {
         $this->connection->listInstances(
-            Argument::withEntry('projectId', InstanceAdminClient::projectName(self::PROJECT))
+            Argument::withEntry('projectName', InstanceAdminClient::projectName(self::PROJECT))
         )
             ->shouldBeCalled()
             ->willReturn([
