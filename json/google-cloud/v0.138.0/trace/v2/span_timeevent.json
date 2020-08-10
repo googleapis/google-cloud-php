@@ -1,0 +1,1 @@
+{"id":"trace\/v2\/span_timeevent","type":"","title":"Google\\Cloud\\Trace\\V2\\Span_TimeEvent","name":"Span_TimeEvent","description":"<p>This class is deprecated. Use Google\\Cloud\\Trace\\V2\\Span\\TimeEvent instead.<\/p>","examples":[],"resources":[],"methods":[]}

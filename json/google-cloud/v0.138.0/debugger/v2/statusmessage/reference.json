@@ -1,0 +1,1 @@
+{"id":"debugger\/v2\/statusmessage\/reference","type":"","title":"Google\\Cloud\\Debugger\\V2\\StatusMessage\\Reference","name":"Reference","description":"<p>Enumerates references to which the message applies.<\/p>\n<p>Protobuf type <code>google.devtools.clouddebugger.v2.StatusMessage.Reference<\/code><\/p>","examples":[],"resources":[],"methods":[]}

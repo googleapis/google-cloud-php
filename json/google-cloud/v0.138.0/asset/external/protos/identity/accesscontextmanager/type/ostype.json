@@ -1,0 +1,1 @@
+{"id":"asset\/external\/protos\/identity\/accesscontextmanager\/type\/ostype","type":"","title":"Google\\Identity\\AccessContextManager\\Type\\OsType","name":"OsType","description":"<p>The operating system type of the device.<\/p>\n<p>Next id: 7<\/p>\n<p>Protobuf type <code>google.identity.accesscontextmanager.type.OsType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

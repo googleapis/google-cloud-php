@@ -1,0 +1,1 @@
+{"id":"talent\/v4beta1\/jobbenefit","type":"","title":"Google\\Cloud\\Talent\\V4beta1\\JobBenefit","name":"JobBenefit","description":"<p>An enum that represents employee benefits included with the job.<\/p>\n<p>Protobuf type <code>google.cloud.talent.v4beta1.JobBenefit<\/code><\/p>","examples":[],"resources":[],"methods":[]}
