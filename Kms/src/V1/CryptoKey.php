@@ -11,8 +11,8 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * A [CryptoKey][google.cloud.kms.v1.CryptoKey] represents a logical key that can be used for cryptographic
  * operations.
- * A [CryptoKey][google.cloud.kms.v1.CryptoKey] is made up of one or more [versions][google.cloud.kms.v1.CryptoKeyVersion], which
- * represent the actual key material used in cryptographic operations.
+ * A [CryptoKey][google.cloud.kms.v1.CryptoKey] is made up of zero or more [versions][google.cloud.kms.v1.CryptoKeyVersion],
+ * which represent the actual key material used in cryptographic operations.
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.CryptoKey</code>
  */

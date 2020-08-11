@@ -1329,9 +1329,13 @@ class KeyManagementServiceClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $ciphertext = '-72';
+        $verifiedPlaintextCrc32c = false;
+        $verifiedAdditionalAuthenticatedDataCrc32c = true;
         $expectedResponse = new EncryptResponse();
         $expectedResponse->setName($name2);
         $expectedResponse->setCiphertext($ciphertext);
+        $expectedResponse->setVerifiedPlaintextCrc32c($verifiedPlaintextCrc32c);
+        $expectedResponse->setVerifiedAdditionalAuthenticatedDataCrc32c($verifiedAdditionalAuthenticatedDataCrc32c);
         $transport->addResponse($expectedResponse);
 
         // Mock request
@@ -1718,8 +1722,10 @@ class KeyManagementServiceClientTest extends GeneratedTest
 
         // Mock response
         $pem = 'pem110872';
+        $name2 = 'name2-1052831874';
         $expectedResponse = new PublicKey();
         $expectedResponse->setPem($pem);
+        $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
 
         // Mock request
@@ -1791,8 +1797,10 @@ class KeyManagementServiceClientTest extends GeneratedTest
 
         // Mock response
         $plaintext = '-9';
+        $verifiedCiphertextCrc32c = true;
         $expectedResponse = new AsymmetricDecryptResponse();
         $expectedResponse->setPlaintext($plaintext);
+        $expectedResponse->setVerifiedCiphertextCrc32c($verifiedCiphertextCrc32c);
         $transport->addResponse($expectedResponse);
 
         // Mock request
@@ -1869,8 +1877,12 @@ class KeyManagementServiceClientTest extends GeneratedTest
 
         // Mock response
         $signature = '106';
+        $verifiedDigestCrc32c = true;
+        $name2 = 'name2-1052831874';
         $expectedResponse = new AsymmetricSignResponse();
         $expectedResponse->setSignature($signature);
+        $expectedResponse->setVerifiedDigestCrc32c($verifiedDigestCrc32c);
+        $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
 
         // Mock request
