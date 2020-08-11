@@ -66,8 +66,9 @@ trait JobConfigurationTrait
     }
 
     /**
-     * Specifies the default dataset to use for unqualified table names in the
-     * query.
+     * Sets dryRun flag. If set to true, don't actually run this job. A valid query will
+     * return a mostly empty response with some processing statistics, while an
+     * invalid query will return the same error it would if it wasn't a dry run.
      *
      * @param bool $dryRun Whether or not to execute as a dry run.
      * @return JobConfigurationInterface
@@ -94,8 +95,12 @@ trait JobConfigurationTrait
     }
 
     /**
-     * Specifies the default dataset to use for unqualified table names in the
-     * query.
+     * Sets the labels associated with the job. Labels can use these to organize
+     * and group jobs. Label keys and values can be no longer than 63 characters,
+     * can only contain lowercase letters, numeric characters, underscores and
+     * dashes. International characters are allowed. Label values are optional.
+     * Label keys must start with a letter and each label in the list must have
+     * a different key.
      *
      * @param array $labels The labels to apply.
      * @return JobConfigurationInterface
