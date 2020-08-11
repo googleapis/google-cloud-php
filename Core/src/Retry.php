@@ -80,7 +80,7 @@ class Retry
                 return $res;
             } catch (\Exception $exception) {
                 if ($this->retryFunction) {
-                    if (!call_user_func($this->retryFunction, $exception)) {
+                    if (!call_user_func($this->retryFunction, $exception, $retryAttempt)) {
                         throw $exception;
                     }
                 }
