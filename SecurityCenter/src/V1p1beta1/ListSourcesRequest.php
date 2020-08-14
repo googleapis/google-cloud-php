@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListSourcesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Resource name of the parent of sources to list. Its format should
-     * be "organizations/[organization_id]".
+     * Required. Resource name of the parent of sources to list. Its format should be
+     * "organizations/[organization_id]".
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -45,8 +45,8 @@ class ListSourcesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. Resource name of the parent of sources to list. Its format should
-     *           be "organizations/[organization_id]".
+     *           Required. Resource name of the parent of sources to list. Its format should be
+     *           "organizations/[organization_id]".
      *     @type string $page_token
      *           The value returned by the last `ListSourcesResponse`; indicates
      *           that this is a continuation of a prior `ListSources` call, and
@@ -62,8 +62,8 @@ class ListSourcesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name of the parent of sources to list. Its format should
-     * be "organizations/[organization_id]".
+     * Required. Resource name of the parent of sources to list. Its format should be
+     * "organizations/[organization_id]".
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -74,8 +74,8 @@ class ListSourcesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name of the parent of sources to list. Its format should
-     * be "organizations/[organization_id]".
+     * Required. Resource name of the parent of sources to list. Its format should be
+     * "organizations/[organization_id]".
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -48,7 +48,6 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     *
      * Creates a finding. The corresponding source must exist for finding
      * creation to succeed.
      * @param \Google\Cloud\SecurityCenter\V1p1beta1\CreateFindingRequest $argument input argument
@@ -273,7 +272,6 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     *
      * Updates the state of a finding.
      * @param \Google\Cloud\SecurityCenter\V1p1beta1\SetFindingStateRequest $argument input argument
      * @param array $metadata metadata
