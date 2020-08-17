@@ -87,6 +87,7 @@ class ManageBucketsTest extends StorageTestCase
     }
 
     /**
+     * @group storage-bucket-lifecycle
      * @dataProvider lifecycleRules
      */
     public function testCreateBucketWithLifecycleDeleteRule(array $rule, $isError = false)
@@ -106,6 +107,7 @@ class ManageBucketsTest extends StorageTestCase
     }
 
     /**
+     * @group storage-bucket-lifecycle
      * @dataProvider lifecycleRules
      */
     public function testUpdateBucketWithLifecycleDeleteRule(array $rule, $isError = false)
@@ -132,12 +134,22 @@ class ManageBucketsTest extends StorageTestCase
         return [
             [['age' => 1000]],
             [['daysSinceNoncurrentTime' => 25]],
-            [['noncurrentTimeBefore' => (new \DateTime)->format("Y-m-d")]],
             [['daysSinceNoncurrentTime' => -5], true], // error case
+            [['daysSinceNoncurrentTime' => -5], true], // error case
+
+            [['noncurrentTimeBefore' => (new \DateTime)->format("Y-m-d")]],
+            [['noncurrentTimeBefore' => new \DateTime]],
             [['noncurrentTimeBefore' => 'this is not a timestamp'], true], // error case
+
+            [['customTimeBefore' => (new \DateTime)->format("Y-m-d")]],
+            [['customTimeBefore' => new \DateTime]],
+            [['customTimeBefore' => 'this is not a timestamp'], true], // error case
         ];
     }
 
+    /**
+     * @group storage-bucket-lifecycle
+     */
     public function testUpdateAndClearLifecycle()
     {
         $lifecycle = self::$bucket->currentLifecycle()

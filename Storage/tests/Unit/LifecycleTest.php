@@ -203,6 +203,7 @@ class LifecycleTest extends TestCase
         return [
             ['createdBefore', $dt, $dt->format('Y-m-d')],
             ['customTimeBefore', $dt, $dt->format('Y-m-d')],
+            ['noncurrentTimeBefore', $dt, $dt->format('Y-m-d')],
         ];
     }
 }

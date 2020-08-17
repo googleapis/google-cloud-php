@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Storage;
 
+use Google\Cloud\Core\Timestamp;
+
 /**
  * Object Lifecycle Management supports common use cases like setting a Time to
  * Live (TTL) for objects, archiving older versions of objects, or "downgrading"
@@ -112,8 +114,8 @@ class Lifecycle implements \ArrayAccess, \IteratorAggregate
      *     @type \DateTimeInterface|string $noncurrentTimeBefore This condition
      *           is satisfied when the noncurrent time on an object is before
      *           this timestamp. This condition is relevant only for versioned
-     *           objects. If a string is given, it must be a timestamp in RFC
-     *           3339 format.
+     *           objects. If a string is given, it must be a date in RFC 3339
+     *           format with only the date part (for instance, "2013-01-15").
      *     @type int $numNewerVersions Relevant only for versioned objects. If
      *           the value is N, this condition is satisfied when there are at
      *           least N versions (including the live version) newer than this
@@ -148,13 +150,13 @@ class Lifecycle implements \ArrayAccess, \IteratorAggregate
      * // Using customTimeBefore rule with an object's custom time setting.
      * $lifecycle->addSetStorageClassRule('NEARLINE', [
      *     'customTimeBefore' => (new \DateTime())->add(
-     *         new \DateInterval::createFromDateString('+10 days')
+     *         \DateInterval::createFromDateString('+10 days')
      *     )
      * ]);
      *
      * $bucket->update(['lifecycle' => $lifecycle]);
      *
-     * $object = $bucket->myObject($objectName);
+     * $object = $bucket->object($objectName);
      * $object->update([
      *     'metadata' => [
      *         'customTime' => '2020-08-17T00:00:00Z'
@@ -202,8 +204,8 @@ class Lifecycle implements \ArrayAccess, \IteratorAggregate
      *     @type \DateTimeInterface|string $noncurrentTimeBefore This condition
      *           is satisfied when the noncurrent time on an object is before
      *           this timestamp. This condition is relevant only for versioned
-     *           objects. If a string is given, it must be a timestamp in RFC
-     *           3339 format.
+     *           objects. If a string is given, it must be a date in RFC 3339
+     *           format with only the date part (for instance, "2013-01-15").
      *     @type int $numNewerVersions Relevant only for versioned objects. If
      *           the value is N, this condition is satisfied when there are at
      *           least N versions (including the live version) newer than this
@@ -374,22 +376,13 @@ class Lifecycle implements \ArrayAccess, \IteratorAggregate
     {
         $rfc339DateFields = [
             'createdBefore',
-            'customTimeBefore'
+            'customTimeBefore',
+            'noncurrentTimeBefore'
         ];
 
         foreach ($rfc339DateFields as $field) {
             if (isset($condition[$field]) && $condition[$field] instanceof \DateTimeInterface) {
                 $condition[$field] = $condition[$field]->format('Y-m-d');
-            }
-        }
-
-        $rfc339TimestampFields = [
-            'noncurrentTimeBefore'
-        ];
-
-        foreach ($rfc339TimestampFields as $field) {
-            if (isset($condition[$field]) && $condition[$field] instanceof \DateTimeInterface) {
-                $condition[$field] = $condition[$field]->format(\DateTimeInterface::ATOM);
             }
         }
 
