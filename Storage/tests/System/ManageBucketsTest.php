@@ -18,7 +18,6 @@
 namespace Google\Cloud\Storage\Tests\System;
 
 use Google\Cloud\Core\Exception\BadRequestException;
-use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Storage\Bucket;
 
 /**
@@ -133,7 +132,7 @@ class ManageBucketsTest extends StorageTestCase
         return [
             [['age' => 1000]],
             [['daysSinceNoncurrentTime' => 25]],
-            [['noncurrentTimeBefore' => (new Timestamp(new \DateTime))->formatAsString()]],
+            [['noncurrentTimeBefore' => (new \DateTime)->format("Y-m-d")]],
             [['daysSinceNoncurrentTime' => -5], true], // error case
             [['noncurrentTimeBefore' => 'this is not a timestamp'], true], // error case
         ];

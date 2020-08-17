@@ -99,10 +99,11 @@ class Lifecycle implements \ArrayAccess, \IteratorAggregate
      *           include `"MULTI_REGIONAL"`, `"REGIONAL"`, `"NEARLINE"`,
      *           `"ARCHIVE"`, `"COLDLINE"`, `"STANDARD"`, and
      *           `"DURABLE_REDUCED_AVAILABILITY"`.
-     *     @type string $noncurrentTimeBefore A timestamp in RFC 3339 format.
-     *           This condition is satisfied when the noncurrent time on an
-     *           object is before this timestamp. This condition is relevant
-     *           only for versioned objects.
+     *     @type string $noncurrentTimeBefore A date in RFC 3339 format with
+     *           only the date part (for instance, "2013-01-15"). This condition
+     *           is satisfied when the noncurrent time on an object is before
+     *           this timestamp. This condition is relevant only for versioned
+     *           objects.
      *     @type int $numNewerVersions Relevant only for versioned objects. If
      *           the value is N, this condition is satisfied when there are at
      *           least N versions (including the live version) newer than this
