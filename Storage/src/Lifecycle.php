@@ -80,10 +80,20 @@ class Lifecycle implements \ArrayAccess, \IteratorAggregate
      *
      *     @type int $age Age of an object (in days). This condition is
      *           satisfied when an object reaches the specified age.
-     *     @type string $createdBefore A date in RFC 3339 format with only the
-     *           date part (for instance, "2013-01-15"). This condition is
+     *     @type \DateTimeInterface|string $createdBefore This condition is
      *           satisfied when an object is created before midnight of the
-     *           specified date in UTC.
+     *           specified date in UTC. If a string is given, it must be a date
+     *           in RFC 3339 format with only the date part (for instance,
+     *           "2013-01-15").
+     *     @type \DateTimeInterface|string $customTimeBefore This condition is
+     *           satisfied when the custom time on an object is before this date
+     *           in UTC. If a string is given, it must be a date in RFC 3339
+     *           format with only the date part (for instance, "2013-01-15").
+     *     @type int $daysSinceCustomTime Number of days elapsed since the
+     *           user-specified timestamp set on an object. The condition is
+     *           satisfied if the days elapsed is at least this number. If no
+     *           custom timestamp is specified on an object, the condition does
+     *           not apply.
      *     @type int $daysSinceNoncurrentTime Number of days elapsed since the
      *           noncurrent timestamp of an object. The condition is satisfied
      *           if the days elapsed is at least this number. This condition is
@@ -99,11 +109,11 @@ class Lifecycle implements \ArrayAccess, \IteratorAggregate
      *           include `"MULTI_REGIONAL"`, `"REGIONAL"`, `"NEARLINE"`,
      *           `"ARCHIVE"`, `"COLDLINE"`, `"STANDARD"`, and
      *           `"DURABLE_REDUCED_AVAILABILITY"`.
-     *     @type string $noncurrentTimeBefore A date in RFC 3339 format with
-     *           only the date part (for instance, "2013-01-15"). This condition
+     *     @type \DateTimeInterface|string $noncurrentTimeBefore This condition
      *           is satisfied when the noncurrent time on an object is before
      *           this timestamp. This condition is relevant only for versioned
-     *           objects.
+     *           objects. If a string is given, it must be a timestamp in RFC
+     *           3339 format.
      *     @type int $numNewerVersions Relevant only for versioned objects. If
      *           the value is N, this condition is satisfied when there are at
      *           least N versions (including the live version) newer than this
@@ -117,7 +127,7 @@ class Lifecycle implements \ArrayAccess, \IteratorAggregate
             'action' => [
                 'type' => 'Delete'
             ],
-            'condition' => $condition
+            'condition' => $this->formatCondition($condition)
         ];
 
         return $this;
@@ -134,6 +144,24 @@ class Lifecycle implements \ArrayAccess, \IteratorAggregate
      * ]);
      * ```
      *
+     * ```
+     * // Using customTimeBefore rule with an object's custom time setting.
+     * $lifecycle->addSetStorageClassRule('NEARLINE', [
+     *     'customTimeBefore' => (new \DateTime())->add(
+     *         new \DateInterval::createFromDateString('+10 days')
+     *     )
+     * ]);
+     *
+     * $bucket->update(['lifecycle' => $lifecycle]);
+     *
+     * $object = $bucket->myObject($objectName);
+     * $object->update([
+     *     'metadata' => [
+     *         'customTime' => '2020-08-17T00:00:00Z'
+     *     ]
+     * ]);
+     * ```
+     *
      * @param string $storageClass The target storage class. Values include
      *        `"MULTI_REGIONAL"`, `"REGIONAL"`, `"NEARLINE"`, `"COLDLINE"`,
      *        `"STANDARD"`, and `"DURABLE_REDUCED_AVAILABILITY"`.
@@ -142,10 +170,20 @@ class Lifecycle implements \ArrayAccess, \IteratorAggregate
      *
      *     @type int $age Age of an object (in days). This condition is
      *           satisfied when an object reaches the specified age.
-     *     @type string $createdBefore A date in RFC 3339 format with only the
-     *           date part (for instance, "2013-01-15"). This condition is
+     *     @type \DateTimeInterface|string $createdBefore This condition is
      *           satisfied when an object is created before midnight of the
-     *           specified date in UTC.
+     *           specified date in UTC. If a string is given, it must be a date
+     *           in RFC 3339 format with only the date part (for instance,
+     *           "2013-01-15").
+     *     @type \DateTimeInterface|string $customTimeBefore This condition is
+     *           satisfied when the custom time on an object is before this date
+     *           in UTC. If a string is given, it must be a date in RFC 3339
+     *           format with only the date part (for instance, "2013-01-15").
+     *     @type int $daysSinceCustomTime Number of days elapsed since the
+     *           user-specified timestamp set on an object. The condition is
+     *           satisfied if the days elapsed is at least this number. If no
+     *           custom timestamp is specified on an object, the condition does
+     *           not apply.
      *     @type int $daysSinceNoncurrentTime Number of days elapsed since the
      *           noncurrent timestamp of an object. The condition is satisfied
      *           if the days elapsed is at least this number. This condition is
@@ -161,10 +199,11 @@ class Lifecycle implements \ArrayAccess, \IteratorAggregate
      *           include `"MULTI_REGIONAL"`, `"REGIONAL"`, `"NEARLINE"`,
      *           `"ARCHIVE"`, `"COLDLINE"`, `"STANDARD"`, and
      *           `"DURABLE_REDUCED_AVAILABILITY"`.
-     *     @type string $noncurrentTimeBefore A timestamp in RFC 3339 format.
-     *           This condition is satisfied when the noncurrent time on an
-     *           object is before this timestamp. This condition is relevant
-     *           only for versioned objects.
+     *     @type \DateTimeInterface|string $noncurrentTimeBefore This condition
+     *           is satisfied when the noncurrent time on an object is before
+     *           this timestamp. This condition is relevant only for versioned
+     *           objects. If a string is given, it must be a timestamp in RFC
+     *           3339 format.
      *     @type int $numNewerVersions Relevant only for versioned objects. If
      *           the value is N, this condition is satisfied when there are at
      *           least N versions (including the live version) newer than this
@@ -179,7 +218,7 @@ class Lifecycle implements \ArrayAccess, \IteratorAggregate
                 'type' => 'SetStorageClass',
                 'storageClass' => $storageClass
             ],
-            'condition' => $condition
+            'condition' => $this->formatCondition($condition)
         ];
 
         return $this;
@@ -322,5 +361,38 @@ class Lifecycle implements \ArrayAccess, \IteratorAggregate
         return isset($this->lifecycle['rule'][$offset])
             ? $this->lifecycle['rule'][$offset]
             : null;
+    }
+
+    /**
+     * Apply condition-specific formatting rules (such as date formatting) to
+     * conditions.
+     *
+     * @param array $condition
+     * @return array
+     */
+    private function formatCondition(array $condition)
+    {
+        $rfc339DateFields = [
+            'createdBefore',
+            'customTimeBefore'
+        ];
+
+        foreach ($rfc339DateFields as $field) {
+            if (isset($condition[$field]) && $condition[$field] instanceof \DateTimeInterface) {
+                $condition[$field] = $condition[$field]->format('Y-m-d');
+            }
+        }
+
+        $rfc339TimestampFields = [
+            'noncurrentTimeBefore'
+        ];
+
+        foreach ($rfc339TimestampFields as $field) {
+            if (isset($condition[$field]) && $condition[$field] instanceof \DateTimeInterface) {
+                $condition[$field] = $condition[$field]->format(\DateTimeInterface::ATOM);
+            }
+        }
+
+        return $condition;
     }
 }
