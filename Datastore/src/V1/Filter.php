@@ -45,6 +45,11 @@ class Filter extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasCompositeFilter()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * A composite filter.
      *
@@ -69,6 +74,11 @@ class Filter extends \Google\Protobuf\Internal\Message
     public function getPropertyFilter()
     {
         return $this->readOneof(2);
+    }
+
+    public function hasPropertyFilter()
+    {
+        return $this->hasOneof(2);
     }
 
     /**

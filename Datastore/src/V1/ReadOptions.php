@@ -49,6 +49,11 @@ class ReadOptions extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasReadConsistency()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * The non-transactional read consistency to use.
      * Cannot be set to `STRONG` for global queries.
@@ -59,7 +64,7 @@ class ReadOptions extends \Google\Protobuf\Internal\Message
      */
     public function setReadConsistency($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Datastore\V1\ReadOptions_ReadConsistency::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Datastore\V1\ReadOptions\ReadConsistency::class);
         $this->writeOneof(1, $var);
 
         return $this;
@@ -76,6 +81,11 @@ class ReadOptions extends \Google\Protobuf\Internal\Message
     public function getTransaction()
     {
         return $this->readOneof(2);
+    }
+
+    public function hasTransaction()
+    {
+        return $this->hasOneof(2);
     }
 
     /**

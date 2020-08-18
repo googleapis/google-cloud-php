@@ -175,7 +175,7 @@ class QueryResultBatch extends \Google\Protobuf\Internal\Message
      */
     public function setEntityResultType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Datastore\V1\EntityResult_ResultType::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Datastore\V1\EntityResult\ResultType::class);
         $this->entity_result_type = $var;
 
         return $this;
@@ -253,7 +253,7 @@ class QueryResultBatch extends \Google\Protobuf\Internal\Message
      */
     public function setMoreResults($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Datastore\V1\QueryResultBatch_MoreResultsType::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Datastore\V1\QueryResultBatch\MoreResultsType::class);
         $this->more_results = $var;
 
         return $this;

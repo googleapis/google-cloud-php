@@ -46,6 +46,11 @@ class GqlQueryParameter extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasValue()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * A value parameter.
      *
@@ -71,6 +76,11 @@ class GqlQueryParameter extends \Google\Protobuf\Internal\Message
     public function getCursor()
     {
         return $this->readOneof(3);
+    }
+
+    public function hasCursor()
+    {
+        return $this->hasOneof(3);
     }
 
     /**

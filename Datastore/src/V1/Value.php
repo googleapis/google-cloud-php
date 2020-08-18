@@ -95,6 +95,11 @@ class Value extends \Google\Protobuf\Internal\Message
         return $this->readOneof(11);
     }
 
+    public function hasNullValue()
+    {
+        return $this->hasOneof(11);
+    }
+
     /**
      * A null value.
      *
@@ -119,6 +124,11 @@ class Value extends \Google\Protobuf\Internal\Message
     public function getBooleanValue()
     {
         return $this->readOneof(1);
+    }
+
+    public function hasBooleanValue()
+    {
+        return $this->hasOneof(1);
     }
 
     /**
@@ -147,6 +157,11 @@ class Value extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasIntegerValue()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * An integer value.
      *
@@ -171,6 +186,11 @@ class Value extends \Google\Protobuf\Internal\Message
     public function getDoubleValue()
     {
         return $this->readOneof(3);
+    }
+
+    public function hasDoubleValue()
+    {
+        return $this->hasOneof(3);
     }
 
     /**
@@ -201,6 +221,11 @@ class Value extends \Google\Protobuf\Internal\Message
         return $this->readOneof(10);
     }
 
+    public function hasTimestampValue()
+    {
+        return $this->hasOneof(10);
+    }
+
     /**
      * A timestamp value.
      * When stored in the Datastore, precise only to microseconds;
@@ -229,6 +254,11 @@ class Value extends \Google\Protobuf\Internal\Message
         return $this->readOneof(5);
     }
 
+    public function hasKeyValue()
+    {
+        return $this->hasOneof(5);
+    }
+
     /**
      * A key value.
      *
@@ -255,6 +285,11 @@ class Value extends \Google\Protobuf\Internal\Message
     public function getStringValue()
     {
         return $this->readOneof(17);
+    }
+
+    public function hasStringValue()
+    {
+        return $this->hasOneof(17);
     }
 
     /**
@@ -288,6 +323,11 @@ class Value extends \Google\Protobuf\Internal\Message
         return $this->readOneof(18);
     }
 
+    public function hasBlobValue()
+    {
+        return $this->hasOneof(18);
+    }
+
     /**
      * A blob value.
      * May have at most 1,000,000 bytes.
@@ -317,6 +357,11 @@ class Value extends \Google\Protobuf\Internal\Message
         return $this->readOneof(8);
     }
 
+    public function hasGeoPointValue()
+    {
+        return $this->hasOneof(8);
+    }
+
     /**
      * A geo point value representing a point on the surface of Earth.
      *
@@ -344,6 +389,11 @@ class Value extends \Google\Protobuf\Internal\Message
     public function getEntityValue()
     {
         return $this->readOneof(6);
+    }
+
+    public function hasEntityValue()
+    {
+        return $this->hasOneof(6);
     }
 
     /**
@@ -376,6 +426,11 @@ class Value extends \Google\Protobuf\Internal\Message
     public function getArrayValue()
     {
         return $this->readOneof(9);
+    }
+
+    public function hasArrayValue()
+    {
+        return $this->hasOneof(9);
     }
 
     /**

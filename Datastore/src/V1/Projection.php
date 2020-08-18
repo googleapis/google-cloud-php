@@ -45,7 +45,17 @@ class Projection extends \Google\Protobuf\Internal\Message
      */
     public function getProperty()
     {
-        return $this->property;
+        return isset($this->property) ? $this->property : null;
+    }
+
+    public function hasProperty()
+    {
+        return isset($this->property);
+    }
+
+    public function clearProperty()
+    {
+        unset($this->property);
     }
 
     /**

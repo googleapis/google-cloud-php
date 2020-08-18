@@ -53,7 +53,17 @@ class PropertyOrder extends \Google\Protobuf\Internal\Message
      */
     public function getProperty()
     {
-        return $this->property;
+        return isset($this->property) ? $this->property : null;
+    }
+
+    public function hasProperty()
+    {
+        return isset($this->property);
+    }
+
+    public function clearProperty()
+    {
+        unset($this->property);
     }
 
     /**
@@ -91,7 +101,7 @@ class PropertyOrder extends \Google\Protobuf\Internal\Message
      */
     public function setDirection($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Datastore\V1\PropertyOrder_Direction::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Datastore\V1\PropertyOrder\Direction::class);
         $this->direction = $var;
 
         return $this;

@@ -87,7 +87,17 @@ class LookupRequest extends \Google\Protobuf\Internal\Message
      */
     public function getReadOptions()
     {
-        return $this->read_options;
+        return isset($this->read_options) ? $this->read_options : null;
+    }
+
+    public function hasReadOptions()
+    {
+        return isset($this->read_options);
+    }
+
+    public function clearReadOptions()
+    {
+        unset($this->read_options);
     }
 
     /**

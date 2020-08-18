@@ -58,6 +58,11 @@ class Mutation extends \Google\Protobuf\Internal\Message
         return $this->readOneof(4);
     }
 
+    public function hasInsert()
+    {
+        return $this->hasOneof(4);
+    }
+
     /**
      * The entity to insert. The entity must not already exist.
      * The entity key's final path element may be incomplete.
@@ -84,6 +89,11 @@ class Mutation extends \Google\Protobuf\Internal\Message
     public function getUpdate()
     {
         return $this->readOneof(5);
+    }
+
+    public function hasUpdate()
+    {
+        return $this->hasOneof(5);
     }
 
     /**
@@ -114,6 +124,11 @@ class Mutation extends \Google\Protobuf\Internal\Message
         return $this->readOneof(6);
     }
 
+    public function hasUpsert()
+    {
+        return $this->hasOneof(6);
+    }
+
     /**
      * The entity to upsert. The entity may or may not already exist.
      * The entity key's final path element may be incomplete.
@@ -142,6 +157,11 @@ class Mutation extends \Google\Protobuf\Internal\Message
         return $this->readOneof(7);
     }
 
+    public function hasDelete()
+    {
+        return $this->hasOneof(7);
+    }
+
     /**
      * The key of the entity to delete. The entity may or may not already exist.
      * Must have a complete key path and must not be reserved/read-only.
@@ -168,6 +188,11 @@ class Mutation extends \Google\Protobuf\Internal\Message
     public function getBaseVersion()
     {
         return $this->readOneof(8);
+    }
+
+    public function hasBaseVersion()
+    {
+        return $this->hasOneof(8);
     }
 
     /**
