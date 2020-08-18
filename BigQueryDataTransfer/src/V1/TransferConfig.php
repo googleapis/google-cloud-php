@@ -256,6 +256,11 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasDestinationDatasetId()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * The BigQuery target dataset id.
      *
@@ -331,7 +336,17 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      */
     public function getParams()
     {
-        return $this->params;
+        return isset($this->params) ? $this->params : null;
+    }
+
+    public function hasParams()
+    {
+        return isset($this->params);
+    }
+
+    public function clearParams()
+    {
+        unset($this->params);
     }
 
     /**
@@ -405,7 +420,17 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      */
     public function getScheduleOptions()
     {
-        return $this->schedule_options;
+        return isset($this->schedule_options) ? $this->schedule_options : null;
+    }
+
+    public function hasScheduleOptions()
+    {
+        return isset($this->schedule_options);
+    }
+
+    public function clearScheduleOptions()
+    {
+        unset($this->schedule_options);
     }
 
     /**
@@ -495,7 +520,17 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return $this->update_time;
+        return isset($this->update_time) ? $this->update_time : null;
+    }
+
+    public function hasUpdateTime()
+    {
+        return isset($this->update_time);
+    }
+
+    public function clearUpdateTime()
+    {
+        unset($this->update_time);
     }
 
     /**
@@ -521,7 +556,17 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      */
     public function getNextRunTime()
     {
-        return $this->next_run_time;
+        return isset($this->next_run_time) ? $this->next_run_time : null;
+    }
+
+    public function hasNextRunTime()
+    {
+        return isset($this->next_run_time);
+    }
+
+    public function clearNextRunTime()
+    {
+        unset($this->next_run_time);
     }
 
     /**
@@ -654,7 +699,17 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      */
     public function getEmailPreferences()
     {
-        return $this->email_preferences;
+        return isset($this->email_preferences) ? $this->email_preferences : null;
+    }
+
+    public function hasEmailPreferences()
+    {
+        return isset($this->email_preferences);
+    }
+
+    public function clearEmailPreferences()
+    {
+        unset($this->email_preferences);
     }
 
     /**

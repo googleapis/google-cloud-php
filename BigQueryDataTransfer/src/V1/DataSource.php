@@ -578,7 +578,7 @@ class DataSource extends \Google\Protobuf\Internal\Message
      */
     public function setAuthorizationType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\DataTransfer\V1\DataSource_AuthorizationType::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\DataTransfer\V1\DataSource\AuthorizationType::class);
         $this->authorization_type = $var;
 
         return $this;
@@ -610,7 +610,7 @@ class DataSource extends \Google\Protobuf\Internal\Message
      */
     public function setDataRefreshType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\DataTransfer\V1\DataSource_DataRefreshType::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\DataTransfer\V1\DataSource\DataRefreshType::class);
         $this->data_refresh_type = $var;
 
         return $this;
@@ -680,7 +680,17 @@ class DataSource extends \Google\Protobuf\Internal\Message
      */
     public function getMinimumScheduleInterval()
     {
-        return $this->minimum_schedule_interval;
+        return isset($this->minimum_schedule_interval) ? $this->minimum_schedule_interval : null;
+    }
+
+    public function hasMinimumScheduleInterval()
+    {
+        return isset($this->minimum_schedule_interval);
+    }
+
+    public function clearMinimumScheduleInterval()
+    {
+        unset($this->minimum_schedule_interval);
     }
 
     /**
