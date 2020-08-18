@@ -144,7 +144,17 @@ class ReadSession extends \Google\Protobuf\Internal\Message
      */
     public function getExpireTime()
     {
-        return $this->expire_time;
+        return isset($this->expire_time) ? $this->expire_time : null;
+    }
+
+    public function hasExpireTime()
+    {
+        return isset($this->expire_time);
+    }
+
+    public function clearExpireTime()
+    {
+        unset($this->expire_time);
     }
 
     /**
@@ -201,6 +211,11 @@ class ReadSession extends \Google\Protobuf\Internal\Message
         return $this->readOneof(4);
     }
 
+    public function hasAvroSchema()
+    {
+        return $this->hasOneof(4);
+    }
+
     /**
      * Output only. Avro schema.
      *
@@ -225,6 +240,11 @@ class ReadSession extends \Google\Protobuf\Internal\Message
     public function getArrowSchema()
     {
         return $this->readOneof(5);
+    }
+
+    public function hasArrowSchema()
+    {
+        return $this->hasOneof(5);
     }
 
     /**
@@ -278,7 +298,17 @@ class ReadSession extends \Google\Protobuf\Internal\Message
      */
     public function getTableModifiers()
     {
-        return $this->table_modifiers;
+        return isset($this->table_modifiers) ? $this->table_modifiers : null;
+    }
+
+    public function hasTableModifiers()
+    {
+        return isset($this->table_modifiers);
+    }
+
+    public function clearTableModifiers()
+    {
+        unset($this->table_modifiers);
     }
 
     /**
@@ -290,7 +320,7 @@ class ReadSession extends \Google\Protobuf\Internal\Message
      */
     public function setTableModifiers($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Storage\V1\ReadSession_TableModifiers::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Storage\V1\ReadSession\TableModifiers::class);
         $this->table_modifiers = $var;
 
         return $this;
@@ -304,7 +334,17 @@ class ReadSession extends \Google\Protobuf\Internal\Message
      */
     public function getReadOptions()
     {
-        return $this->read_options;
+        return isset($this->read_options) ? $this->read_options : null;
+    }
+
+    public function hasReadOptions()
+    {
+        return isset($this->read_options);
+    }
+
+    public function clearReadOptions()
+    {
+        unset($this->read_options);
     }
 
     /**
@@ -316,7 +356,7 @@ class ReadSession extends \Google\Protobuf\Internal\Message
      */
     public function setReadOptions($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Storage\V1\ReadSession_TableReadOptions::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Storage\V1\ReadSession\TableReadOptions::class);
         $this->read_options = $var;
 
         return $this;
