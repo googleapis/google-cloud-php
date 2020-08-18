@@ -722,7 +722,17 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getNodeConfig()
     {
-        return $this->node_config;
+        return isset($this->node_config) ? $this->node_config : null;
+    }
+
+    public function hasNodeConfig()
+    {
+        return isset($this->node_config);
+    }
+
+    public function clearNodeConfig()
+    {
+        unset($this->node_config);
     }
 
     /**
@@ -761,7 +771,17 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getMasterAuth()
     {
-        return $this->master_auth;
+        return isset($this->master_auth) ? $this->master_auth : null;
+    }
+
+    public function hasMasterAuth()
+    {
+        return isset($this->master_auth);
+    }
+
+    public function clearMasterAuth()
+    {
+        unset($this->master_auth);
     }
 
     /**
@@ -927,7 +947,17 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getAddonsConfig()
     {
-        return $this->addons_config;
+        return isset($this->addons_config) ? $this->addons_config : null;
+    }
+
+    public function hasAddonsConfig()
+    {
+        return isset($this->addons_config);
+    }
+
+    public function clearAddonsConfig()
+    {
+        unset($this->addons_config);
     }
 
     /**
@@ -1133,7 +1163,17 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getLegacyAbac()
     {
-        return $this->legacy_abac;
+        return isset($this->legacy_abac) ? $this->legacy_abac : null;
+    }
+
+    public function hasLegacyAbac()
+    {
+        return isset($this->legacy_abac);
+    }
+
+    public function clearLegacyAbac()
+    {
+        unset($this->legacy_abac);
     }
 
     /**
@@ -1159,7 +1199,17 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getNetworkPolicy()
     {
-        return $this->network_policy;
+        return isset($this->network_policy) ? $this->network_policy : null;
+    }
+
+    public function hasNetworkPolicy()
+    {
+        return isset($this->network_policy);
+    }
+
+    public function clearNetworkPolicy()
+    {
+        unset($this->network_policy);
     }
 
     /**
@@ -1185,7 +1235,17 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getIpAllocationPolicy()
     {
-        return $this->ip_allocation_policy;
+        return isset($this->ip_allocation_policy) ? $this->ip_allocation_policy : null;
+    }
+
+    public function hasIpAllocationPolicy()
+    {
+        return isset($this->ip_allocation_policy);
+    }
+
+    public function clearIpAllocationPolicy()
+    {
+        unset($this->ip_allocation_policy);
     }
 
     /**
@@ -1211,7 +1271,17 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getMasterAuthorizedNetworksConfig()
     {
-        return $this->master_authorized_networks_config;
+        return isset($this->master_authorized_networks_config) ? $this->master_authorized_networks_config : null;
+    }
+
+    public function hasMasterAuthorizedNetworksConfig()
+    {
+        return isset($this->master_authorized_networks_config);
+    }
+
+    public function clearMasterAuthorizedNetworksConfig()
+    {
+        unset($this->master_authorized_networks_config);
     }
 
     /**
@@ -1237,7 +1307,17 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getMaintenancePolicy()
     {
-        return $this->maintenance_policy;
+        return isset($this->maintenance_policy) ? $this->maintenance_policy : null;
+    }
+
+    public function hasMaintenancePolicy()
+    {
+        return isset($this->maintenance_policy);
+    }
+
+    public function clearMaintenancePolicy()
+    {
+        unset($this->maintenance_policy);
     }
 
     /**
@@ -1263,7 +1343,17 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getBinaryAuthorization()
     {
-        return $this->binary_authorization;
+        return isset($this->binary_authorization) ? $this->binary_authorization : null;
+    }
+
+    public function hasBinaryAuthorization()
+    {
+        return isset($this->binary_authorization);
+    }
+
+    public function clearBinaryAuthorization()
+    {
+        unset($this->binary_authorization);
     }
 
     /**
@@ -1289,7 +1379,17 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getAutoscaling()
     {
-        return $this->autoscaling;
+        return isset($this->autoscaling) ? $this->autoscaling : null;
+    }
+
+    public function hasAutoscaling()
+    {
+        return isset($this->autoscaling);
+    }
+
+    public function clearAutoscaling()
+    {
+        unset($this->autoscaling);
     }
 
     /**
@@ -1315,7 +1415,17 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getNetworkConfig()
     {
-        return $this->network_config;
+        return isset($this->network_config) ? $this->network_config : null;
+    }
+
+    public function hasNetworkConfig()
+    {
+        return isset($this->network_config);
+    }
+
+    public function clearNetworkConfig()
+    {
+        unset($this->network_config);
     }
 
     /**
@@ -1343,7 +1453,17 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getDefaultMaxPodsConstraint()
     {
-        return $this->default_max_pods_constraint;
+        return isset($this->default_max_pods_constraint) ? $this->default_max_pods_constraint : null;
+    }
+
+    public function hasDefaultMaxPodsConstraint()
+    {
+        return isset($this->default_max_pods_constraint);
+    }
+
+    public function clearDefaultMaxPodsConstraint()
+    {
+        unset($this->default_max_pods_constraint);
     }
 
     /**
@@ -1372,7 +1492,17 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getResourceUsageExportConfig()
     {
-        return $this->resource_usage_export_config;
+        return isset($this->resource_usage_export_config) ? $this->resource_usage_export_config : null;
+    }
+
+    public function hasResourceUsageExportConfig()
+    {
+        return isset($this->resource_usage_export_config);
+    }
+
+    public function clearResourceUsageExportConfig()
+    {
+        unset($this->resource_usage_export_config);
     }
 
     /**
@@ -1399,7 +1529,17 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getAuthenticatorGroupsConfig()
     {
-        return $this->authenticator_groups_config;
+        return isset($this->authenticator_groups_config) ? $this->authenticator_groups_config : null;
+    }
+
+    public function hasAuthenticatorGroupsConfig()
+    {
+        return isset($this->authenticator_groups_config);
+    }
+
+    public function clearAuthenticatorGroupsConfig()
+    {
+        unset($this->authenticator_groups_config);
     }
 
     /**
@@ -1425,7 +1565,17 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getPrivateClusterConfig()
     {
-        return $this->private_cluster_config;
+        return isset($this->private_cluster_config) ? $this->private_cluster_config : null;
+    }
+
+    public function hasPrivateClusterConfig()
+    {
+        return isset($this->private_cluster_config);
+    }
+
+    public function clearPrivateClusterConfig()
+    {
+        unset($this->private_cluster_config);
     }
 
     /**
@@ -1451,7 +1601,17 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getDatabaseEncryption()
     {
-        return $this->database_encryption;
+        return isset($this->database_encryption) ? $this->database_encryption : null;
+    }
+
+    public function hasDatabaseEncryption()
+    {
+        return isset($this->database_encryption);
+    }
+
+    public function clearDatabaseEncryption()
+    {
+        unset($this->database_encryption);
     }
 
     /**
@@ -1477,7 +1637,17 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getVerticalPodAutoscaling()
     {
-        return $this->vertical_pod_autoscaling;
+        return isset($this->vertical_pod_autoscaling) ? $this->vertical_pod_autoscaling : null;
+    }
+
+    public function hasVerticalPodAutoscaling()
+    {
+        return isset($this->vertical_pod_autoscaling);
+    }
+
+    public function clearVerticalPodAutoscaling()
+    {
+        unset($this->vertical_pod_autoscaling);
     }
 
     /**
@@ -1741,7 +1911,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function setStatus($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\Cluster_Status::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\Cluster\Status::class);
         $this->status = $var;
 
         return $this;

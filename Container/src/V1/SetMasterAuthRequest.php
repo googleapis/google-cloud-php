@@ -201,7 +201,7 @@ class SetMasterAuthRequest extends \Google\Protobuf\Internal\Message
      */
     public function setAction($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\SetMasterAuthRequest_Action::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\SetMasterAuthRequest\Action::class);
         $this->action = $var;
 
         return $this;
@@ -215,7 +215,17 @@ class SetMasterAuthRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdate()
     {
-        return $this->update;
+        return isset($this->update) ? $this->update : null;
+    }
+
+    public function hasUpdate()
+    {
+        return isset($this->update);
+    }
+
+    public function clearUpdate()
+    {
+        unset($this->update);
     }
 
     /**

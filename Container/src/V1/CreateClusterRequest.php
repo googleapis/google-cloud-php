@@ -146,7 +146,17 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
      */
     public function getCluster()
     {
-        return $this->cluster;
+        return isset($this->cluster) ? $this->cluster : null;
+    }
+
+    public function hasCluster()
+    {
+        return isset($this->cluster);
+    }
+
+    public function clearCluster()
+    {
+        unset($this->cluster);
     }
 
     /**

@@ -128,7 +128,7 @@ class NodeTaint extends \Google\Protobuf\Internal\Message
      */
     public function setEffect($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\NodeTaint_Effect::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\NodeTaint\Effect::class);
         $this->effect = $var;
 
         return $this;

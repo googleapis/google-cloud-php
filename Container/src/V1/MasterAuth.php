@@ -171,7 +171,17 @@ class MasterAuth extends \Google\Protobuf\Internal\Message
      */
     public function getClientCertificateConfig()
     {
-        return $this->client_certificate_config;
+        return isset($this->client_certificate_config) ? $this->client_certificate_config : null;
+    }
+
+    public function hasClientCertificateConfig()
+    {
+        return isset($this->client_certificate_config);
+    }
+
+    public function clearClientCertificateConfig()
+    {
+        unset($this->client_certificate_config);
     }
 
     /**

@@ -133,7 +133,17 @@ class ClusterAutoscaling extends \Google\Protobuf\Internal\Message
      */
     public function getAutoprovisioningNodePoolDefaults()
     {
-        return $this->autoprovisioning_node_pool_defaults;
+        return isset($this->autoprovisioning_node_pool_defaults) ? $this->autoprovisioning_node_pool_defaults : null;
+    }
+
+    public function hasAutoprovisioningNodePoolDefaults()
+    {
+        return isset($this->autoprovisioning_node_pool_defaults);
+    }
+
+    public function clearAutoprovisioningNodePoolDefaults()
+    {
+        unset($this->autoprovisioning_node_pool_defaults);
     }
 
     /**

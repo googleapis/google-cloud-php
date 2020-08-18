@@ -66,7 +66,7 @@ class NetworkPolicy extends \Google\Protobuf\Internal\Message
      */
     public function setProvider($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\NetworkPolicy_Provider::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\NetworkPolicy\Provider::class);
         $this->provider = $var;
 
         return $this;

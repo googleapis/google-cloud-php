@@ -181,7 +181,17 @@ class SetNetworkPolicyRequest extends \Google\Protobuf\Internal\Message
      */
     public function getNetworkPolicy()
     {
-        return $this->network_policy;
+        return isset($this->network_policy) ? $this->network_policy : null;
+    }
+
+    public function hasNetworkPolicy()
+    {
+        return isset($this->network_policy);
+    }
+
+    public function clearNetworkPolicy()
+    {
+        unset($this->network_policy);
     }
 
     /**

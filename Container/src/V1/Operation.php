@@ -228,7 +228,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      */
     public function setOperationType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\Operation_Type::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\Operation\Type::class);
         $this->operation_type = $var;
 
         return $this;
@@ -254,7 +254,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      */
     public function setStatus($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\Operation_Status::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\Operation\Status::class);
         $this->status = $var;
 
         return $this;

@@ -319,7 +319,17 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     public function getDesiredAddonsConfig()
     {
-        return $this->desired_addons_config;
+        return isset($this->desired_addons_config) ? $this->desired_addons_config : null;
+    }
+
+    public function hasDesiredAddonsConfig()
+    {
+        return isset($this->desired_addons_config);
+    }
+
+    public function clearDesiredAddonsConfig()
+    {
+        unset($this->desired_addons_config);
     }
 
     /**
@@ -405,7 +415,17 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     public function getDesiredDatabaseEncryption()
     {
-        return $this->desired_database_encryption;
+        return isset($this->desired_database_encryption) ? $this->desired_database_encryption : null;
+    }
+
+    public function hasDesiredDatabaseEncryption()
+    {
+        return isset($this->desired_database_encryption);
+    }
+
+    public function clearDesiredDatabaseEncryption()
+    {
+        unset($this->desired_database_encryption);
     }
 
     /**
@@ -434,7 +454,17 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     public function getDesiredNodePoolAutoscaling()
     {
-        return $this->desired_node_pool_autoscaling;
+        return isset($this->desired_node_pool_autoscaling) ? $this->desired_node_pool_autoscaling : null;
+    }
+
+    public function hasDesiredNodePoolAutoscaling()
+    {
+        return isset($this->desired_node_pool_autoscaling);
+    }
+
+    public function clearDesiredNodePoolAutoscaling()
+    {
+        unset($this->desired_node_pool_autoscaling);
     }
 
     /**
@@ -499,7 +529,17 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     public function getDesiredMasterAuthorizedNetworksConfig()
     {
-        return $this->desired_master_authorized_networks_config;
+        return isset($this->desired_master_authorized_networks_config) ? $this->desired_master_authorized_networks_config : null;
+    }
+
+    public function hasDesiredMasterAuthorizedNetworksConfig()
+    {
+        return isset($this->desired_master_authorized_networks_config);
+    }
+
+    public function clearDesiredMasterAuthorizedNetworksConfig()
+    {
+        unset($this->desired_master_authorized_networks_config);
     }
 
     /**
@@ -525,7 +565,17 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     public function getDesiredClusterAutoscaling()
     {
-        return $this->desired_cluster_autoscaling;
+        return isset($this->desired_cluster_autoscaling) ? $this->desired_cluster_autoscaling : null;
+    }
+
+    public function hasDesiredClusterAutoscaling()
+    {
+        return isset($this->desired_cluster_autoscaling);
+    }
+
+    public function clearDesiredClusterAutoscaling()
+    {
+        unset($this->desired_cluster_autoscaling);
     }
 
     /**
@@ -551,7 +601,17 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     public function getDesiredBinaryAuthorization()
     {
-        return $this->desired_binary_authorization;
+        return isset($this->desired_binary_authorization) ? $this->desired_binary_authorization : null;
+    }
+
+    public function hasDesiredBinaryAuthorization()
+    {
+        return isset($this->desired_binary_authorization);
+    }
+
+    public function clearDesiredBinaryAuthorization()
+    {
+        unset($this->desired_binary_authorization);
     }
 
     /**
@@ -613,7 +673,17 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     public function getDesiredResourceUsageExportConfig()
     {
-        return $this->desired_resource_usage_export_config;
+        return isset($this->desired_resource_usage_export_config) ? $this->desired_resource_usage_export_config : null;
+    }
+
+    public function hasDesiredResourceUsageExportConfig()
+    {
+        return isset($this->desired_resource_usage_export_config);
+    }
+
+    public function clearDesiredResourceUsageExportConfig()
+    {
+        unset($this->desired_resource_usage_export_config);
     }
 
     /**
@@ -639,7 +709,17 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     public function getDesiredVerticalPodAutoscaling()
     {
-        return $this->desired_vertical_pod_autoscaling;
+        return isset($this->desired_vertical_pod_autoscaling) ? $this->desired_vertical_pod_autoscaling : null;
+    }
+
+    public function hasDesiredVerticalPodAutoscaling()
+    {
+        return isset($this->desired_vertical_pod_autoscaling);
+    }
+
+    public function clearDesiredVerticalPodAutoscaling()
+    {
+        unset($this->desired_vertical_pod_autoscaling);
     }
 
     /**
@@ -665,7 +745,17 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     public function getDesiredIntraNodeVisibilityConfig()
     {
-        return $this->desired_intra_node_visibility_config;
+        return isset($this->desired_intra_node_visibility_config) ? $this->desired_intra_node_visibility_config : null;
+    }
+
+    public function hasDesiredIntraNodeVisibilityConfig()
+    {
+        return isset($this->desired_intra_node_visibility_config);
+    }
+
+    public function clearDesiredIntraNodeVisibilityConfig()
+    {
+        unset($this->desired_intra_node_visibility_config);
     }
 
     /**

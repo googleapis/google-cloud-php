@@ -57,6 +57,11 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasDailyMaintenanceWindow()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * DailyMaintenanceWindow specifies a daily maintenance operation window.
      *
@@ -83,6 +88,11 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
     public function getRecurringWindow()
     {
         return $this->readOneof(3);
+    }
+
+    public function hasRecurringWindow()
+    {
+        return $this->hasOneof(3);
     }
 
     /**

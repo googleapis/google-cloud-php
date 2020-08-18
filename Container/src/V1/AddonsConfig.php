@@ -99,7 +99,17 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      */
     public function getHttpLoadBalancing()
     {
-        return $this->http_load_balancing;
+        return isset($this->http_load_balancing) ? $this->http_load_balancing : null;
+    }
+
+    public function hasHttpLoadBalancing()
+    {
+        return isset($this->http_load_balancing);
+    }
+
+    public function clearHttpLoadBalancing()
+    {
+        unset($this->http_load_balancing);
     }
 
     /**
@@ -128,7 +138,17 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      */
     public function getHorizontalPodAutoscaling()
     {
-        return $this->horizontal_pod_autoscaling;
+        return isset($this->horizontal_pod_autoscaling) ? $this->horizontal_pod_autoscaling : null;
+    }
+
+    public function hasHorizontalPodAutoscaling()
+    {
+        return isset($this->horizontal_pod_autoscaling);
+    }
+
+    public function clearHorizontalPodAutoscaling()
+    {
+        unset($this->horizontal_pod_autoscaling);
     }
 
     /**
@@ -160,7 +180,17 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      */
     public function getKubernetesDashboard()
     {
-        return $this->kubernetes_dashboard;
+        return isset($this->kubernetes_dashboard) ? $this->kubernetes_dashboard : null;
+    }
+
+    public function hasKubernetesDashboard()
+    {
+        return isset($this->kubernetes_dashboard);
+    }
+
+    public function clearKubernetesDashboard()
+    {
+        unset($this->kubernetes_dashboard);
     }
 
     /**
@@ -192,7 +222,17 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      */
     public function getNetworkPolicyConfig()
     {
-        return $this->network_policy_config;
+        return isset($this->network_policy_config) ? $this->network_policy_config : null;
+    }
+
+    public function hasNetworkPolicyConfig()
+    {
+        return isset($this->network_policy_config);
+    }
+
+    public function clearNetworkPolicyConfig()
+    {
+        unset($this->network_policy_config);
     }
 
     /**
@@ -221,7 +261,17 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      */
     public function getCloudRunConfig()
     {
-        return $this->cloud_run_config;
+        return isset($this->cloud_run_config) ? $this->cloud_run_config : null;
+    }
+
+    public function hasCloudRunConfig()
+    {
+        return isset($this->cloud_run_config);
+    }
+
+    public function clearCloudRunConfig()
+    {
+        unset($this->cloud_run_config);
     }
 
     /**
