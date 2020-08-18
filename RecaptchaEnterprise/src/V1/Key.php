@@ -138,6 +138,11 @@ class Key extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasWebSettings()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * Settings for keys that can be used by websites.
      *
@@ -164,6 +169,11 @@ class Key extends \Google\Protobuf\Internal\Message
         return $this->readOneof(4);
     }
 
+    public function hasAndroidSettings()
+    {
+        return $this->hasOneof(4);
+    }
+
     /**
      * Settings for keys that can be used by Android apps.
      *
@@ -188,6 +198,11 @@ class Key extends \Google\Protobuf\Internal\Message
     public function getIosSettings()
     {
         return $this->readOneof(5);
+    }
+
+    public function hasIosSettings()
+    {
+        return $this->hasOneof(5);
     }
 
     /**
@@ -241,7 +256,17 @@ class Key extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return $this->create_time;
+        return isset($this->create_time) ? $this->create_time : null;
+    }
+
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
     }
 
     /**

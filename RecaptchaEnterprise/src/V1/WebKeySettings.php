@@ -183,7 +183,7 @@ class WebKeySettings extends \Google\Protobuf\Internal\Message
      */
     public function setIntegrationType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\RecaptchaEnterprise\V1\WebKeySettings_IntegrationType::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\RecaptchaEnterprise\V1\WebKeySettings\IntegrationType::class);
         $this->integration_type = $var;
 
         return $this;
@@ -213,7 +213,7 @@ class WebKeySettings extends \Google\Protobuf\Internal\Message
      */
     public function setChallengeSecurityPreference($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\RecaptchaEnterprise\V1\WebKeySettings_ChallengeSecurityPreference::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\RecaptchaEnterprise\V1\WebKeySettings\ChallengeSecurityPreference::class);
         $this->challenge_security_preference = $var;
 
         return $this;

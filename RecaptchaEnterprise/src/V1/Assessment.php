@@ -99,7 +99,17 @@ class Assessment extends \Google\Protobuf\Internal\Message
      */
     public function getEvent()
     {
-        return $this->event;
+        return isset($this->event) ? $this->event : null;
+    }
+
+    public function hasEvent()
+    {
+        return isset($this->event);
+    }
+
+    public function clearEvent()
+    {
+        unset($this->event);
     }
 
     /**
@@ -125,7 +135,17 @@ class Assessment extends \Google\Protobuf\Internal\Message
      */
     public function getRiskAnalysis()
     {
-        return $this->risk_analysis;
+        return isset($this->risk_analysis) ? $this->risk_analysis : null;
+    }
+
+    public function hasRiskAnalysis()
+    {
+        return isset($this->risk_analysis);
+    }
+
+    public function clearRiskAnalysis()
+    {
+        unset($this->risk_analysis);
     }
 
     /**
@@ -151,7 +171,17 @@ class Assessment extends \Google\Protobuf\Internal\Message
      */
     public function getTokenProperties()
     {
-        return $this->token_properties;
+        return isset($this->token_properties) ? $this->token_properties : null;
+    }
+
+    public function hasTokenProperties()
+    {
+        return isset($this->token_properties);
+    }
+
+    public function clearTokenProperties()
+    {
+        unset($this->token_properties);
     }
 
     /**
