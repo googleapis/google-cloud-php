@@ -43,7 +43,17 @@ class SearchUrisResponse extends \Google\Protobuf\Internal\Message
      */
     public function getThreat()
     {
-        return $this->threat;
+        return isset($this->threat) ? $this->threat : null;
+    }
+
+    public function hasThreat()
+    {
+        return isset($this->threat);
+    }
+
+    public function clearThreat()
+    {
+        unset($this->threat);
     }
 
     /**
@@ -55,7 +65,7 @@ class SearchUrisResponse extends \Google\Protobuf\Internal\Message
      */
     public function setThreat($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\WebRisk\V1beta1\SearchUrisResponse_ThreatUri::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\WebRisk\V1beta1\SearchUrisResponse\ThreatUri::class);
         $this->threat = $var;
 
         return $this;

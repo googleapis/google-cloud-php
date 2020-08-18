@@ -84,7 +84,17 @@ class SearchHashesResponse extends \Google\Protobuf\Internal\Message
      */
     public function getNegativeExpireTime()
     {
-        return $this->negative_expire_time;
+        return isset($this->negative_expire_time) ? $this->negative_expire_time : null;
+    }
+
+    public function hasNegativeExpireTime()
+    {
+        return isset($this->negative_expire_time);
+    }
+
+    public function clearNegativeExpireTime()
+    {
+        unset($this->negative_expire_time);
     }
 
     /**
