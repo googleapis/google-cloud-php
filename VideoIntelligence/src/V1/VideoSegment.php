@@ -58,7 +58,17 @@ class VideoSegment extends \Google\Protobuf\Internal\Message
      */
     public function getStartTimeOffset()
     {
-        return $this->start_time_offset;
+        return isset($this->start_time_offset) ? $this->start_time_offset : null;
+    }
+
+    public function hasStartTimeOffset()
+    {
+        return isset($this->start_time_offset);
+    }
+
+    public function clearStartTimeOffset()
+    {
+        unset($this->start_time_offset);
     }
 
     /**
@@ -86,7 +96,17 @@ class VideoSegment extends \Google\Protobuf\Internal\Message
      */
     public function getEndTimeOffset()
     {
-        return $this->end_time_offset;
+        return isset($this->end_time_offset) ? $this->end_time_offset : null;
+    }
+
+    public function hasEndTimeOffset()
+    {
+        return isset($this->end_time_offset);
+    }
+
+    public function clearEndTimeOffset()
+    {
+        unset($this->end_time_offset);
     }
 
     /**

@@ -129,7 +129,17 @@ class VideoAnnotationProgress extends \Google\Protobuf\Internal\Message
      */
     public function getStartTime()
     {
-        return $this->start_time;
+        return isset($this->start_time) ? $this->start_time : null;
+    }
+
+    public function hasStartTime()
+    {
+        return isset($this->start_time);
+    }
+
+    public function clearStartTime()
+    {
+        unset($this->start_time);
     }
 
     /**
@@ -155,7 +165,17 @@ class VideoAnnotationProgress extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return $this->update_time;
+        return isset($this->update_time) ? $this->update_time : null;
+    }
+
+    public function hasUpdateTime()
+    {
+        return isset($this->update_time);
+    }
+
+    public function clearUpdateTime()
+    {
+        unset($this->update_time);
     }
 
     /**

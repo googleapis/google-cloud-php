@@ -56,7 +56,17 @@ class LabelFrame extends \Google\Protobuf\Internal\Message
      */
     public function getTimeOffset()
     {
-        return $this->time_offset;
+        return isset($this->time_offset) ? $this->time_offset : null;
+    }
+
+    public function hasTimeOffset()
+    {
+        return isset($this->time_offset);
+    }
+
+    public function clearTimeOffset()
+    {
+        unset($this->time_offset);
     }
 
     /**

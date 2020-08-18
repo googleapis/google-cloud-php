@@ -63,7 +63,17 @@ class TextSegment extends \Google\Protobuf\Internal\Message
      */
     public function getSegment()
     {
-        return $this->segment;
+        return isset($this->segment) ? $this->segment : null;
+    }
+
+    public function hasSegment()
+    {
+        return isset($this->segment);
+    }
+
+    public function clearSegment()
+    {
+        unset($this->segment);
     }
 
     /**

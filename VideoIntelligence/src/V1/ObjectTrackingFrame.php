@@ -54,7 +54,17 @@ class ObjectTrackingFrame extends \Google\Protobuf\Internal\Message
      */
     public function getNormalizedBoundingBox()
     {
-        return $this->normalized_bounding_box;
+        return isset($this->normalized_bounding_box) ? $this->normalized_bounding_box : null;
+    }
+
+    public function hasNormalizedBoundingBox()
+    {
+        return isset($this->normalized_bounding_box);
+    }
+
+    public function clearNormalizedBoundingBox()
+    {
+        unset($this->normalized_bounding_box);
     }
 
     /**
@@ -80,7 +90,17 @@ class ObjectTrackingFrame extends \Google\Protobuf\Internal\Message
      */
     public function getTimeOffset()
     {
-        return $this->time_offset;
+        return isset($this->time_offset) ? $this->time_offset : null;
+    }
+
+    public function hasTimeOffset()
+    {
+        return isset($this->time_offset);
+    }
+
+    public function clearTimeOffset()
+    {
+        unset($this->time_offset);
     }
 
     /**

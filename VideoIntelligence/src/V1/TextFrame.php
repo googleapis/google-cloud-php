@@ -55,7 +55,17 @@ class TextFrame extends \Google\Protobuf\Internal\Message
      */
     public function getRotatedBoundingBox()
     {
-        return $this->rotated_bounding_box;
+        return isset($this->rotated_bounding_box) ? $this->rotated_bounding_box : null;
+    }
+
+    public function hasRotatedBoundingBox()
+    {
+        return isset($this->rotated_bounding_box);
+    }
+
+    public function clearRotatedBoundingBox()
+    {
+        unset($this->rotated_bounding_box);
     }
 
     /**
@@ -81,7 +91,17 @@ class TextFrame extends \Google\Protobuf\Internal\Message
      */
     public function getTimeOffset()
     {
-        return $this->time_offset;
+        return isset($this->time_offset) ? $this->time_offset : null;
+    }
+
+    public function hasTimeOffset()
+    {
+        return isset($this->time_offset);
+    }
+
+    public function clearTimeOffset()
+    {
+        unset($this->time_offset);
     }
 
     /**

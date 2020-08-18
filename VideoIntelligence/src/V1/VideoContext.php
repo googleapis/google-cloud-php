@@ -135,7 +135,17 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      */
     public function getLabelDetectionConfig()
     {
-        return $this->label_detection_config;
+        return isset($this->label_detection_config) ? $this->label_detection_config : null;
+    }
+
+    public function hasLabelDetectionConfig()
+    {
+        return isset($this->label_detection_config);
+    }
+
+    public function clearLabelDetectionConfig()
+    {
+        unset($this->label_detection_config);
     }
 
     /**
@@ -161,7 +171,17 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      */
     public function getShotChangeDetectionConfig()
     {
-        return $this->shot_change_detection_config;
+        return isset($this->shot_change_detection_config) ? $this->shot_change_detection_config : null;
+    }
+
+    public function hasShotChangeDetectionConfig()
+    {
+        return isset($this->shot_change_detection_config);
+    }
+
+    public function clearShotChangeDetectionConfig()
+    {
+        unset($this->shot_change_detection_config);
     }
 
     /**
@@ -187,7 +207,17 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      */
     public function getExplicitContentDetectionConfig()
     {
-        return $this->explicit_content_detection_config;
+        return isset($this->explicit_content_detection_config) ? $this->explicit_content_detection_config : null;
+    }
+
+    public function hasExplicitContentDetectionConfig()
+    {
+        return isset($this->explicit_content_detection_config);
+    }
+
+    public function clearExplicitContentDetectionConfig()
+    {
+        unset($this->explicit_content_detection_config);
     }
 
     /**
@@ -213,7 +243,17 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      */
     public function getFaceDetectionConfig()
     {
-        return $this->face_detection_config;
+        return isset($this->face_detection_config) ? $this->face_detection_config : null;
+    }
+
+    public function hasFaceDetectionConfig()
+    {
+        return isset($this->face_detection_config);
+    }
+
+    public function clearFaceDetectionConfig()
+    {
+        unset($this->face_detection_config);
     }
 
     /**
@@ -239,7 +279,17 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      */
     public function getSpeechTranscriptionConfig()
     {
-        return $this->speech_transcription_config;
+        return isset($this->speech_transcription_config) ? $this->speech_transcription_config : null;
+    }
+
+    public function hasSpeechTranscriptionConfig()
+    {
+        return isset($this->speech_transcription_config);
+    }
+
+    public function clearSpeechTranscriptionConfig()
+    {
+        unset($this->speech_transcription_config);
     }
 
     /**
@@ -265,7 +315,17 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      */
     public function getTextDetectionConfig()
     {
-        return $this->text_detection_config;
+        return isset($this->text_detection_config) ? $this->text_detection_config : null;
+    }
+
+    public function hasTextDetectionConfig()
+    {
+        return isset($this->text_detection_config);
+    }
+
+    public function clearTextDetectionConfig()
+    {
+        unset($this->text_detection_config);
     }
 
     /**
@@ -291,7 +351,17 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      */
     public function getObjectTrackingConfig()
     {
-        return $this->object_tracking_config;
+        return isset($this->object_tracking_config) ? $this->object_tracking_config : null;
+    }
+
+    public function hasObjectTrackingConfig()
+    {
+        return isset($this->object_tracking_config);
+    }
+
+    public function clearObjectTrackingConfig()
+    {
+        unset($this->object_tracking_config);
     }
 
     /**
