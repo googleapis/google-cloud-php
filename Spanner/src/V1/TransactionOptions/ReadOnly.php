@@ -96,6 +96,11 @@ class ReadOnly extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasStrong()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * Read at a timestamp where all previously committed transactions
      * are visible.
@@ -127,6 +132,11 @@ class ReadOnly extends \Google\Protobuf\Internal\Message
     public function getMinReadTimestamp()
     {
         return $this->readOneof(2);
+    }
+
+    public function hasMinReadTimestamp()
+    {
+        return $this->hasOneof(2);
     }
 
     /**
@@ -169,6 +179,11 @@ class ReadOnly extends \Google\Protobuf\Internal\Message
     public function getMaxStaleness()
     {
         return $this->readOneof(3);
+    }
+
+    public function hasMaxStaleness()
+    {
+        return $this->hasOneof(3);
     }
 
     /**
@@ -216,6 +231,11 @@ class ReadOnly extends \Google\Protobuf\Internal\Message
         return $this->readOneof(4);
     }
 
+    public function hasReadTimestamp()
+    {
+        return $this->hasOneof(4);
+    }
+
     /**
      * Executes all reads at the given timestamp. Unlike other modes,
      * reads at a specific timestamp are repeatable; the same read at
@@ -257,6 +277,11 @@ class ReadOnly extends \Google\Protobuf\Internal\Message
     public function getExactStaleness()
     {
         return $this->readOneof(5);
+    }
+
+    public function hasExactStaleness()
+    {
+        return $this->hasOneof(5);
     }
 
     /**

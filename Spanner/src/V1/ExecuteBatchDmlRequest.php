@@ -124,7 +124,17 @@ class ExecuteBatchDmlRequest extends \Google\Protobuf\Internal\Message
      */
     public function getTransaction()
     {
-        return $this->transaction;
+        return isset($this->transaction) ? $this->transaction : null;
+    }
+
+    public function hasTransaction()
+    {
+        return isset($this->transaction);
+    }
+
+    public function clearTransaction()
+    {
+        unset($this->transaction);
     }
 
     /**

@@ -73,7 +73,17 @@ class ResultSetStats extends \Google\Protobuf\Internal\Message
      */
     public function getQueryPlan()
     {
-        return $this->query_plan;
+        return isset($this->query_plan) ? $this->query_plan : null;
+    }
+
+    public function hasQueryPlan()
+    {
+        return isset($this->query_plan);
+    }
+
+    public function clearQueryPlan()
+    {
+        unset($this->query_plan);
     }
 
     /**
@@ -106,7 +116,17 @@ class ResultSetStats extends \Google\Protobuf\Internal\Message
      */
     public function getQueryStats()
     {
-        return $this->query_stats;
+        return isset($this->query_stats) ? $this->query_stats : null;
+    }
+
+    public function hasQueryStats()
+    {
+        return isset($this->query_stats);
+    }
+
+    public function clearQueryStats()
+    {
+        unset($this->query_stats);
     }
 
     /**
@@ -142,6 +162,11 @@ class ResultSetStats extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasRowCountExact()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * Standard DML returns an exact count of rows that were modified.
      *
@@ -167,6 +192,11 @@ class ResultSetStats extends \Google\Protobuf\Internal\Message
     public function getRowCountLowerBound()
     {
         return $this->readOneof(4);
+    }
+
+    public function hasRowCountLowerBound()
+    {
+        return $this->hasOneof(4);
     }
 
     /**

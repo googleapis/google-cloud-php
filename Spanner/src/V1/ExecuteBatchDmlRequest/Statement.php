@@ -120,7 +120,17 @@ class Statement extends \Google\Protobuf\Internal\Message
      */
     public function getParams()
     {
-        return $this->params;
+        return isset($this->params) ? $this->params : null;
+    }
+
+    public function hasParams()
+    {
+        return isset($this->params);
+    }
+
+    public function clearParams()
+    {
+        unset($this->params);
     }
 
     /**

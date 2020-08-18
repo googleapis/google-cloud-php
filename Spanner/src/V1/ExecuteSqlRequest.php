@@ -222,7 +222,17 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      */
     public function getTransaction()
     {
-        return $this->transaction;
+        return isset($this->transaction) ? $this->transaction : null;
+    }
+
+    public function hasTransaction()
+    {
+        return isset($this->transaction);
+    }
+
+    public function clearTransaction()
+    {
+        unset($this->transaction);
     }
 
     /**
@@ -287,7 +297,17 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      */
     public function getParams()
     {
-        return $this->params;
+        return isset($this->params) ? $this->params : null;
+    }
+
+    public function hasParams()
+    {
+        return isset($this->params);
+    }
+
+    public function clearParams()
+    {
+        unset($this->params);
     }
 
     /**
@@ -410,7 +430,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      */
     public function setQueryMode($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Spanner\V1\ExecuteSqlRequest_QueryMode::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Spanner\V1\ExecuteSqlRequest\QueryMode::class);
         $this->query_mode = $var;
 
         return $this;
@@ -496,7 +516,17 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      */
     public function getQueryOptions()
     {
-        return $this->query_options;
+        return isset($this->query_options) ? $this->query_options : null;
+    }
+
+    public function hasQueryOptions()
+    {
+        return isset($this->query_options);
+    }
+
+    public function clearQueryOptions()
+    {
+        unset($this->query_options);
     }
 
     /**
@@ -508,7 +538,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      */
     public function setQueryOptions($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\ExecuteSqlRequest_QueryOptions::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\ExecuteSqlRequest\QueryOptions::class);
         $this->query_options = $var;
 
         return $this;

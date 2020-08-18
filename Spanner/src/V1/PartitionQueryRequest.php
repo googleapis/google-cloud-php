@@ -156,7 +156,17 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
      */
     public function getTransaction()
     {
-        return $this->transaction;
+        return isset($this->transaction) ? $this->transaction : null;
+    }
+
+    public function hasTransaction()
+    {
+        return isset($this->transaction);
+    }
+
+    public function clearTransaction()
+    {
+        unset($this->transaction);
     }
 
     /**
@@ -232,7 +242,17 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
      */
     public function getParams()
     {
-        return $this->params;
+        return isset($this->params) ? $this->params : null;
+    }
+
+    public function hasParams()
+    {
+        return isset($this->params);
+    }
+
+    public function clearParams()
+    {
+        unset($this->params);
     }
 
     /**
@@ -303,7 +323,17 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
      */
     public function getPartitionOptions()
     {
-        return $this->partition_options;
+        return isset($this->partition_options) ? $this->partition_options : null;
+    }
+
+    public function hasPartitionOptions()
+    {
+        return isset($this->partition_options);
+    }
+
+    public function clearPartitionOptions()
+    {
+        unset($this->partition_options);
     }
 
     /**

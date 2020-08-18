@@ -62,7 +62,17 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      */
     public function getInstance()
     {
-        return $this->instance;
+        return isset($this->instance) ? $this->instance : null;
+    }
+
+    public function hasInstance()
+    {
+        return isset($this->instance);
+    }
+
+    public function clearInstance()
+    {
+        unset($this->instance);
     }
 
     /**
@@ -92,7 +102,17 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      */
     public function getFieldMask()
     {
-        return $this->field_mask;
+        return isset($this->field_mask) ? $this->field_mask : null;
+    }
+
+    public function hasFieldMask()
+    {
+        return isset($this->field_mask);
+    }
+
+    public function clearFieldMask()
+    {
+        unset($this->field_mask);
     }
 
     /**

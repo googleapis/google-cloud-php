@@ -82,7 +82,17 @@ class OptimizeRestoredDatabaseMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getProgress()
     {
-        return $this->progress;
+        return isset($this->progress) ? $this->progress : null;
+    }
+
+    public function hasProgress()
+    {
+        return isset($this->progress);
+    }
+
+    public function clearProgress()
+    {
+        unset($this->progress);
     }
 
     /**

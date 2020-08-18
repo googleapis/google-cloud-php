@@ -73,7 +73,17 @@ class ResultSetMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getRowType()
     {
-        return $this->row_type;
+        return isset($this->row_type) ? $this->row_type : null;
+    }
+
+    public function hasRowType()
+    {
+        return isset($this->row_type);
+    }
+
+    public function clearRowType()
+    {
+        unset($this->row_type);
     }
 
     /**
@@ -106,7 +116,17 @@ class ResultSetMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getTransaction()
     {
-        return $this->transaction;
+        return isset($this->transaction) ? $this->transaction : null;
+    }
+
+    public function hasTransaction()
+    {
+        return isset($this->transaction);
+    }
+
+    public function clearTransaction()
+    {
+        unset($this->transaction);
     }
 
     /**

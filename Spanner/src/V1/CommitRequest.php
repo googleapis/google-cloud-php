@@ -99,6 +99,11 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasTransactionId()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * Commit a previously-started transaction.
      *
@@ -131,6 +136,11 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
     public function getSingleUseTransaction()
     {
         return $this->readOneof(3);
+    }
+
+    public function hasSingleUseTransaction()
+    {
+        return $this->hasOneof(3);
     }
 
     /**

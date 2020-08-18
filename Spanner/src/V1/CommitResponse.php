@@ -45,7 +45,17 @@ class CommitResponse extends \Google\Protobuf\Internal\Message
      */
     public function getCommitTimestamp()
     {
-        return $this->commit_timestamp;
+        return isset($this->commit_timestamp) ? $this->commit_timestamp : null;
+    }
+
+    public function hasCommitTimestamp()
+    {
+        return isset($this->commit_timestamp);
+    }
+
+    public function clearCommitTimestamp()
+    {
+        unset($this->commit_timestamp);
     }
 
     /**
