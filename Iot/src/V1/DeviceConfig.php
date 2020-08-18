@@ -126,7 +126,17 @@ class DeviceConfig extends \Google\Protobuf\Internal\Message
      */
     public function getCloudUpdateTime()
     {
-        return $this->cloud_update_time;
+        return isset($this->cloud_update_time) ? $this->cloud_update_time : null;
+    }
+
+    public function hasCloudUpdateTime()
+    {
+        return isset($this->cloud_update_time);
+    }
+
+    public function clearCloudUpdateTime()
+    {
+        unset($this->cloud_update_time);
     }
 
     /**
@@ -161,7 +171,17 @@ class DeviceConfig extends \Google\Protobuf\Internal\Message
      */
     public function getDeviceAckTime()
     {
-        return $this->device_ack_time;
+        return isset($this->device_ack_time) ? $this->device_ack_time : null;
+    }
+
+    public function hasDeviceAckTime()
+    {
+        return isset($this->device_ack_time);
+    }
+
+    public function clearDeviceAckTime()
+    {
+        unset($this->device_ack_time);
     }
 
     /**

@@ -90,7 +90,17 @@ class GetDeviceRequest extends \Google\Protobuf\Internal\Message
      */
     public function getFieldMask()
     {
-        return $this->field_mask;
+        return isset($this->field_mask) ? $this->field_mask : null;
+    }
+
+    public function hasFieldMask()
+    {
+        return isset($this->field_mask);
+    }
+
+    public function clearFieldMask()
+    {
+        unset($this->field_mask);
     }
 
     /**

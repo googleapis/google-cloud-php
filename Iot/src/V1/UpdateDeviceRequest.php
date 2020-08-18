@@ -68,7 +68,17 @@ class UpdateDeviceRequest extends \Google\Protobuf\Internal\Message
      */
     public function getDevice()
     {
-        return $this->device;
+        return isset($this->device) ? $this->device : null;
+    }
+
+    public function hasDevice()
+    {
+        return isset($this->device);
+    }
+
+    public function clearDevice()
+    {
+        unset($this->device);
     }
 
     /**
@@ -100,7 +110,17 @@ class UpdateDeviceRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return $this->update_mask;
+        return isset($this->update_mask) ? $this->update_mask : null;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**
