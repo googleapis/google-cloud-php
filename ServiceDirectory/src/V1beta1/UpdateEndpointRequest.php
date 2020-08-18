@@ -53,7 +53,17 @@ class UpdateEndpointRequest extends \Google\Protobuf\Internal\Message
      */
     public function getEndpoint()
     {
-        return $this->endpoint;
+        return isset($this->endpoint) ? $this->endpoint : null;
+    }
+
+    public function hasEndpoint()
+    {
+        return isset($this->endpoint);
+    }
+
+    public function clearEndpoint()
+    {
+        unset($this->endpoint);
     }
 
     /**
@@ -79,7 +89,17 @@ class UpdateEndpointRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return $this->update_mask;
+        return isset($this->update_mask) ? $this->update_mask : null;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**
