@@ -214,7 +214,17 @@ class LocationFilter extends \Google\Protobuf\Internal\Message
      */
     public function getLatLng()
     {
-        return $this->lat_lng;
+        return isset($this->lat_lng) ? $this->lat_lng : null;
+    }
+
+    public function hasLatLng()
+    {
+        return isset($this->lat_lng);
+    }
+
+    public function clearLatLng()
+    {
+        unset($this->lat_lng);
     }
 
     /**
@@ -313,7 +323,7 @@ class LocationFilter extends \Google\Protobuf\Internal\Message
      */
     public function setTelecommutePreference($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4beta1\LocationFilter_TelecommutePreference::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4beta1\LocationFilter\TelecommutePreference::class);
         $this->telecommute_preference = $var;
 
         return $this;

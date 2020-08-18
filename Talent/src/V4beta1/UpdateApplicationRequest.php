@@ -61,7 +61,17 @@ class UpdateApplicationRequest extends \Google\Protobuf\Internal\Message
      */
     public function getApplication()
     {
-        return $this->application;
+        return isset($this->application) ? $this->application : null;
+    }
+
+    public function hasApplication()
+    {
+        return isset($this->application);
+    }
+
+    public function clearApplication()
+    {
+        unset($this->application);
     }
 
     /**
@@ -91,7 +101,17 @@ class UpdateApplicationRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return $this->update_mask;
+        return isset($this->update_mask) ? $this->update_mask : null;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**

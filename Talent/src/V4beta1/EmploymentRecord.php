@@ -167,7 +167,17 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
      */
     public function getStartDate()
     {
-        return $this->start_date;
+        return isset($this->start_date) ? $this->start_date : null;
+    }
+
+    public function hasStartDate()
+    {
+        return isset($this->start_date);
+    }
+
+    public function clearStartDate()
+    {
+        unset($this->start_date);
     }
 
     /**
@@ -193,7 +203,17 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
      */
     public function getEndDate()
     {
-        return $this->end_date;
+        return isset($this->end_date) ? $this->end_date : null;
+    }
+
+    public function hasEndDate()
+    {
+        return isset($this->end_date);
+    }
+
+    public function clearEndDate()
+    {
+        unset($this->end_date);
     }
 
     /**
@@ -279,7 +299,17 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
      */
     public function getAddress()
     {
-        return $this->address;
+        return isset($this->address) ? $this->address : null;
+    }
+
+    public function hasAddress()
+    {
+        return isset($this->address);
+    }
+
+    public function clearAddress()
+    {
+        unset($this->address);
     }
 
     /**
@@ -363,7 +393,17 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
      */
     public function getIsSupervisor()
     {
-        return $this->is_supervisor;
+        return isset($this->is_supervisor) ? $this->is_supervisor : null;
+    }
+
+    public function hasIsSupervisor()
+    {
+        return isset($this->is_supervisor);
+    }
+
+    public function clearIsSupervisor()
+    {
+        unset($this->is_supervisor);
     }
 
     /**
@@ -416,7 +456,17 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
      */
     public function getIsSelfEmployed()
     {
-        return $this->is_self_employed;
+        return isset($this->is_self_employed) ? $this->is_self_employed : null;
+    }
+
+    public function hasIsSelfEmployed()
+    {
+        return isset($this->is_self_employed);
+    }
+
+    public function clearIsSelfEmployed()
+    {
+        unset($this->is_self_employed);
     }
 
     /**
@@ -469,7 +519,17 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
      */
     public function getIsCurrent()
     {
-        return $this->is_current;
+        return isset($this->is_current) ? $this->is_current : null;
+    }
+
+    public function hasIsCurrent()
+    {
+        return isset($this->is_current);
+    }
+
+    public function clearIsCurrent()
+    {
+        unset($this->is_current);
     }
 
     /**

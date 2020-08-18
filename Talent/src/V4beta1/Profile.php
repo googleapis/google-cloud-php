@@ -664,7 +664,17 @@ class Profile extends \Google\Protobuf\Internal\Message
      */
     public function getIsHirable()
     {
-        return $this->is_hirable;
+        return isset($this->is_hirable) ? $this->is_hirable : null;
+    }
+
+    public function hasIsHirable()
+    {
+        return isset($this->is_hirable);
+    }
+
+    public function clearIsHirable()
+    {
+        unset($this->is_hirable);
     }
 
     /**
@@ -717,7 +727,17 @@ class Profile extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return $this->create_time;
+        return isset($this->create_time) ? $this->create_time : null;
+    }
+
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
     }
 
     /**
@@ -743,7 +763,17 @@ class Profile extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return $this->update_time;
+        return isset($this->update_time) ? $this->update_time : null;
+    }
+
+    public function hasUpdateTime()
+    {
+        return isset($this->update_time);
+    }
+
+    public function clearUpdateTime()
+    {
+        unset($this->update_time);
     }
 
     /**
@@ -783,7 +813,17 @@ class Profile extends \Google\Protobuf\Internal\Message
      */
     public function getCandidateUpdateTime()
     {
-        return $this->candidate_update_time;
+        return isset($this->candidate_update_time) ? $this->candidate_update_time : null;
+    }
+
+    public function hasCandidateUpdateTime()
+    {
+        return isset($this->candidate_update_time);
+    }
+
+    public function clearCandidateUpdateTime()
+    {
+        unset($this->candidate_update_time);
     }
 
     /**
@@ -828,7 +868,17 @@ class Profile extends \Google\Protobuf\Internal\Message
      */
     public function getResumeUpdateTime()
     {
-        return $this->resume_update_time;
+        return isset($this->resume_update_time) ? $this->resume_update_time : null;
+    }
+
+    public function hasResumeUpdateTime()
+    {
+        return isset($this->resume_update_time);
+    }
+
+    public function clearResumeUpdateTime()
+    {
+        unset($this->resume_update_time);
     }
 
     /**
@@ -859,7 +909,17 @@ class Profile extends \Google\Protobuf\Internal\Message
      */
     public function getResume()
     {
-        return $this->resume;
+        return isset($this->resume) ? $this->resume : null;
+    }
+
+    public function hasResume()
+    {
+        return isset($this->resume);
+    }
+
+    public function clearResume()
+    {
+        unset($this->resume);
     }
 
     /**

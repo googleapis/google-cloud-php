@@ -119,7 +119,17 @@ class Skill extends \Google\Protobuf\Internal\Message
      */
     public function getLastUsedDate()
     {
-        return $this->last_used_date;
+        return isset($this->last_used_date) ? $this->last_used_date : null;
+    }
+
+    public function hasLastUsedDate()
+    {
+        return isset($this->last_used_date);
+    }
+
+    public function clearLastUsedDate()
+    {
+        unset($this->last_used_date);
     }
 
     /**

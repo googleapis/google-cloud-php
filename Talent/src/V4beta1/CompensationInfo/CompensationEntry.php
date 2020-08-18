@@ -116,7 +116,7 @@ class CompensationEntry extends \Google\Protobuf\Internal\Message
      */
     public function setType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4beta1\CompensationInfo_CompensationType::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4beta1\CompensationInfo\CompensationType::class);
         $this->type = $var;
 
         return $this;
@@ -144,7 +144,7 @@ class CompensationEntry extends \Google\Protobuf\Internal\Message
      */
     public function setUnit($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4beta1\CompensationInfo_CompensationUnit::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4beta1\CompensationInfo\CompensationUnit::class);
         $this->unit = $var;
 
         return $this;
@@ -159,6 +159,11 @@ class CompensationEntry extends \Google\Protobuf\Internal\Message
     public function getAmount()
     {
         return $this->readOneof(3);
+    }
+
+    public function hasAmount()
+    {
+        return $this->hasOneof(3);
     }
 
     /**
@@ -187,6 +192,11 @@ class CompensationEntry extends \Google\Protobuf\Internal\Message
         return $this->readOneof(4);
     }
 
+    public function hasRange()
+    {
+        return $this->hasOneof(4);
+    }
+
     /**
      * Compensation range.
      *
@@ -196,7 +206,7 @@ class CompensationEntry extends \Google\Protobuf\Internal\Message
      */
     public function setRange($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Talent\V4beta1\CompensationInfo_CompensationRange::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Talent\V4beta1\CompensationInfo\CompensationRange::class);
         $this->writeOneof(4, $var);
 
         return $this;
@@ -247,7 +257,17 @@ class CompensationEntry extends \Google\Protobuf\Internal\Message
      */
     public function getExpectedUnitsPerYear()
     {
-        return $this->expected_units_per_year;
+        return isset($this->expected_units_per_year) ? $this->expected_units_per_year : null;
+    }
+
+    public function hasExpectedUnitsPerYear()
+    {
+        return isset($this->expected_units_per_year);
+    }
+
+    public function clearExpectedUnitsPerYear()
+    {
+        unset($this->expected_units_per_year);
     }
 
     /**

@@ -60,6 +60,11 @@ class PersonName extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasFormattedName()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * A string represents a person's full name. For example, "Dr. John Smith".
      * Number of characters allowed is 100.
@@ -88,6 +93,11 @@ class PersonName extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasStructuredName()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * A person's name in a structured way (last name, first name, suffix, and
      * so on.)
@@ -98,7 +108,7 @@ class PersonName extends \Google\Protobuf\Internal\Message
      */
     public function setStructuredName($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Talent\V4beta1\PersonName_PersonStructuredName::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Talent\V4beta1\PersonName\PersonStructuredName::class);
         $this->writeOneof(2, $var);
 
         return $this;

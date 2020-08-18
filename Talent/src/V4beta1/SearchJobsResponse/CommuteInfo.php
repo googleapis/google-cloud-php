@@ -59,7 +59,17 @@ class CommuteInfo extends \Google\Protobuf\Internal\Message
      */
     public function getJobLocation()
     {
-        return $this->job_location;
+        return isset($this->job_location) ? $this->job_location : null;
+    }
+
+    public function hasJobLocation()
+    {
+        return isset($this->job_location);
+    }
+
+    public function clearJobLocation()
+    {
+        unset($this->job_location);
     }
 
     /**
@@ -88,7 +98,17 @@ class CommuteInfo extends \Google\Protobuf\Internal\Message
      */
     public function getTravelDuration()
     {
-        return $this->travel_duration;
+        return isset($this->travel_duration) ? $this->travel_duration : null;
+    }
+
+    public function hasTravelDuration()
+    {
+        return isset($this->travel_duration);
+    }
+
+    public function clearTravelDuration()
+    {
+        unset($this->travel_duration);
     }
 
     /**

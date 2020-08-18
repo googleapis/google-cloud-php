@@ -302,7 +302,17 @@ class RequestMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getDeviceInfo()
     {
-        return $this->device_info;
+        return isset($this->device_info) ? $this->device_info : null;
+    }
+
+    public function hasDeviceInfo()
+    {
+        return isset($this->device_info);
+    }
+
+    public function clearDeviceInfo()
+    {
+        unset($this->device_info);
     }
 
     /**

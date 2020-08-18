@@ -829,7 +829,17 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      */
     public function getHirableFilter()
     {
-        return $this->hirable_filter;
+        return isset($this->hirable_filter) ? $this->hirable_filter : null;
+    }
+
+    public function hasHirableFilter()
+    {
+        return isset($this->hirable_filter);
+    }
+
+    public function clearHirableFilter()
+    {
+        unset($this->hirable_filter);
     }
 
     /**
@@ -1035,7 +1045,17 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      */
     public function getCandidateAvailabilityFilter()
     {
-        return $this->candidate_availability_filter;
+        return isset($this->candidate_availability_filter) ? $this->candidate_availability_filter : null;
+    }
+
+    public function hasCandidateAvailabilityFilter()
+    {
+        return isset($this->candidate_availability_filter);
+    }
+
+    public function clearCandidateAvailabilityFilter()
+    {
+        unset($this->candidate_availability_filter);
     }
 
     /**

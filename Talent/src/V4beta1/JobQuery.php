@@ -497,7 +497,17 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      */
     public function getCommuteFilter()
     {
-        return $this->commute_filter;
+        return isset($this->commute_filter) ? $this->commute_filter : null;
+    }
+
+    public function hasCommuteFilter()
+    {
+        return isset($this->commute_filter);
+    }
+
+    public function clearCommuteFilter()
+    {
+        unset($this->commute_filter);
     }
 
     /**
@@ -569,7 +579,17 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      */
     public function getCompensationFilter()
     {
-        return $this->compensation_filter;
+        return isset($this->compensation_filter) ? $this->compensation_filter : null;
+    }
+
+    public function hasCompensationFilter()
+    {
+        return isset($this->compensation_filter);
+    }
+
+    public function clearCompensationFilter()
+    {
+        unset($this->compensation_filter);
     }
 
     /**
@@ -766,7 +786,17 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      */
     public function getPublishTimeRange()
     {
-        return $this->publish_time_range;
+        return isset($this->publish_time_range) ? $this->publish_time_range : null;
+    }
+
+    public function hasPublishTimeRange()
+    {
+        return isset($this->publish_time_range);
+    }
+
+    public function clearPublishTimeRange()
+    {
+        unset($this->publish_time_range);
     }
 
     /**

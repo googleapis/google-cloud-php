@@ -55,7 +55,17 @@ class WorkExperienceFilter extends \Google\Protobuf\Internal\Message
      */
     public function getMinExperience()
     {
-        return $this->min_experience;
+        return isset($this->min_experience) ? $this->min_experience : null;
+    }
+
+    public function hasMinExperience()
+    {
+        return isset($this->min_experience);
+    }
+
+    public function clearMinExperience()
+    {
+        unset($this->min_experience);
     }
 
     /**
@@ -81,7 +91,17 @@ class WorkExperienceFilter extends \Google\Protobuf\Internal\Message
      */
     public function getMaxExperience()
     {
-        return $this->max_experience;
+        return isset($this->max_experience) ? $this->max_experience : null;
+    }
+
+    public function hasMaxExperience()
+    {
+        return isset($this->max_experience);
+    }
+
+    public function clearMaxExperience()
+    {
+        unset($this->max_experience);
     }
 
     /**

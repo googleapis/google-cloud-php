@@ -413,7 +413,17 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      */
     public function getRequestMetadata()
     {
-        return $this->request_metadata;
+        return isset($this->request_metadata) ? $this->request_metadata : null;
+    }
+
+    public function hasRequestMetadata()
+    {
+        return isset($this->request_metadata);
+    }
+
+    public function clearRequestMetadata()
+    {
+        unset($this->request_metadata);
     }
 
     /**
@@ -441,7 +451,17 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      */
     public function getProfileQuery()
     {
-        return $this->profile_query;
+        return isset($this->profile_query) ? $this->profile_query : null;
+    }
+
+    public function hasProfileQuery()
+    {
+        return isset($this->profile_query);
+    }
+
+    public function clearProfileQuery()
+    {
+        unset($this->profile_query);
     }
 
     /**

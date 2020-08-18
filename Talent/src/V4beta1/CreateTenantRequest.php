@@ -87,7 +87,17 @@ class CreateTenantRequest extends \Google\Protobuf\Internal\Message
      */
     public function getTenant()
     {
-        return $this->tenant;
+        return isset($this->tenant) ? $this->tenant : null;
+    }
+
+    public function hasTenant()
+    {
+        return isset($this->tenant);
+    }
+
+    public function clearTenant()
+    {
+        unset($this->tenant);
     }
 
     /**

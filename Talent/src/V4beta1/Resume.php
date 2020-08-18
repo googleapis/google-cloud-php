@@ -123,7 +123,7 @@ class Resume extends \Google\Protobuf\Internal\Message
      */
     public function setResumeType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4beta1\Resume_ResumeType::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4beta1\Resume\ResumeType::class);
         $this->resume_type = $var;
 
         return $this;

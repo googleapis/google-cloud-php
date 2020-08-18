@@ -101,7 +101,7 @@ class CompletionResult extends \Google\Protobuf\Internal\Message
      */
     public function setType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4beta1\CompleteQueryRequest_CompletionType::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4beta1\CompleteQueryRequest\CompletionType::class);
         $this->type = $var;
 
         return $this;
