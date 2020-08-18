@@ -201,6 +201,11 @@ class Task extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasAppEngineHttpRequest()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * App Engine HTTP request that is sent to the task's target. Can
      * be set only if
@@ -231,6 +236,11 @@ class Task extends \Google\Protobuf\Internal\Message
     public function getPullMessage()
     {
         return $this->readOneof(4);
+    }
+
+    public function hasPullMessage()
+    {
+        return $this->hasOneof(4);
     }
 
     /**
@@ -264,7 +274,17 @@ class Task extends \Google\Protobuf\Internal\Message
      */
     public function getScheduleTime()
     {
-        return $this->schedule_time;
+        return isset($this->schedule_time) ? $this->schedule_time : null;
+    }
+
+    public function hasScheduleTime()
+    {
+        return isset($this->schedule_time);
+    }
+
+    public function clearScheduleTime()
+    {
+        unset($this->schedule_time);
     }
 
     /**
@@ -297,7 +317,17 @@ class Task extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return $this->create_time;
+        return isset($this->create_time) ? $this->create_time : null;
+    }
+
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
     }
 
     /**
@@ -324,7 +354,17 @@ class Task extends \Google\Protobuf\Internal\Message
      */
     public function getStatus()
     {
-        return $this->status;
+        return isset($this->status) ? $this->status : null;
+    }
+
+    public function hasStatus()
+    {
+        return isset($this->status);
+    }
+
+    public function clearStatus()
+    {
+        unset($this->status);
     }
 
     /**
@@ -364,7 +404,7 @@ class Task extends \Google\Protobuf\Internal\Message
      */
     public function setView($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Tasks\V2beta2\Task_View::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Tasks\V2beta2\Task\View::class);
         $this->view = $var;
 
         return $this;

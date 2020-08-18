@@ -240,6 +240,11 @@ class Queue extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasAppEngineHttpTarget()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * App Engine HTTP target.
      * An App Engine queue is a queue that has an [AppEngineHttpTarget][google.cloud.tasks.v2beta2.AppEngineHttpTarget].
@@ -266,6 +271,11 @@ class Queue extends \Google\Protobuf\Internal\Message
     public function getPullTarget()
     {
         return $this->readOneof(4);
+    }
+
+    public function hasPullTarget()
+    {
+        return $this->hasOneof(4);
     }
 
     /**
@@ -304,7 +314,17 @@ class Queue extends \Google\Protobuf\Internal\Message
      */
     public function getRateLimits()
     {
-        return $this->rate_limits;
+        return isset($this->rate_limits) ? $this->rate_limits : null;
+    }
+
+    public function hasRateLimits()
+    {
+        return isset($this->rate_limits);
+    }
+
+    public function clearRateLimits()
+    {
+        unset($this->rate_limits);
     }
 
     /**
@@ -350,7 +370,17 @@ class Queue extends \Google\Protobuf\Internal\Message
      */
     public function getRetryConfig()
     {
-        return $this->retry_config;
+        return isset($this->retry_config) ? $this->retry_config : null;
+    }
+
+    public function hasRetryConfig()
+    {
+        return isset($this->retry_config);
+    }
+
+    public function clearRetryConfig()
+    {
+        unset($this->retry_config);
     }
 
     /**
@@ -406,7 +436,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      */
     public function setState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Tasks\V2beta2\Queue_State::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Tasks\V2beta2\Queue\State::class);
         $this->state = $var;
 
         return $this;
@@ -427,7 +457,17 @@ class Queue extends \Google\Protobuf\Internal\Message
      */
     public function getPurgeTime()
     {
-        return $this->purge_time;
+        return isset($this->purge_time) ? $this->purge_time : null;
+    }
+
+    public function hasPurgeTime()
+    {
+        return isset($this->purge_time);
+    }
+
+    public function clearPurgeTime()
+    {
+        unset($this->purge_time);
     }
 
     /**

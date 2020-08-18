@@ -66,7 +66,17 @@ class AppEngineHttpQueue extends \Google\Protobuf\Internal\Message
      */
     public function getAppEngineRoutingOverride()
     {
-        return $this->app_engine_routing_override;
+        return isset($this->app_engine_routing_override) ? $this->app_engine_routing_override : null;
+    }
+
+    public function hasAppEngineRoutingOverride()
+    {
+        return isset($this->app_engine_routing_override);
+    }
+
+    public function clearAppEngineRoutingOverride()
+    {
+        unset($this->app_engine_routing_override);
     }
 
     /**

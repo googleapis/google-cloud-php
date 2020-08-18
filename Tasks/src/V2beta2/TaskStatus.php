@@ -144,7 +144,17 @@ class TaskStatus extends \Google\Protobuf\Internal\Message
      */
     public function getFirstAttemptStatus()
     {
-        return $this->first_attempt_status;
+        return isset($this->first_attempt_status) ? $this->first_attempt_status : null;
+    }
+
+    public function hasFirstAttemptStatus()
+    {
+        return isset($this->first_attempt_status);
+    }
+
+    public function clearFirstAttemptStatus()
+    {
+        unset($this->first_attempt_status);
     }
 
     /**
@@ -174,7 +184,17 @@ class TaskStatus extends \Google\Protobuf\Internal\Message
      */
     public function getLastAttemptStatus()
     {
-        return $this->last_attempt_status;
+        return isset($this->last_attempt_status) ? $this->last_attempt_status : null;
+    }
+
+    public function hasLastAttemptStatus()
+    {
+        return isset($this->last_attempt_status);
+    }
+
+    public function clearLastAttemptStatus()
+    {
+        unset($this->last_attempt_status);
     }
 
     /**

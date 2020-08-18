@@ -134,7 +134,17 @@ class RenewLeaseRequest extends \Google\Protobuf\Internal\Message
      */
     public function getScheduleTime()
     {
-        return $this->schedule_time;
+        return isset($this->schedule_time) ? $this->schedule_time : null;
+    }
+
+    public function hasScheduleTime()
+    {
+        return isset($this->schedule_time);
+    }
+
+    public function clearScheduleTime()
+    {
+        unset($this->schedule_time);
     }
 
     /**
@@ -166,7 +176,17 @@ class RenewLeaseRequest extends \Google\Protobuf\Internal\Message
      */
     public function getLeaseDuration()
     {
-        return $this->lease_duration;
+        return isset($this->lease_duration) ? $this->lease_duration : null;
+    }
+
+    public function hasLeaseDuration()
+    {
+        return isset($this->lease_duration);
+    }
+
+    public function clearLeaseDuration()
+    {
+        unset($this->lease_duration);
     }
 
     /**
@@ -224,7 +244,7 @@ class RenewLeaseRequest extends \Google\Protobuf\Internal\Message
      */
     public function setResponseView($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Tasks\V2beta2\Task_View::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Tasks\V2beta2\Task\View::class);
         $this->response_view = $var;
 
         return $this;

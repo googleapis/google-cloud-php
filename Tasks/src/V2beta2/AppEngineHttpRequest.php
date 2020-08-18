@@ -282,7 +282,17 @@ class AppEngineHttpRequest extends \Google\Protobuf\Internal\Message
      */
     public function getAppEngineRouting()
     {
-        return $this->app_engine_routing;
+        return isset($this->app_engine_routing) ? $this->app_engine_routing : null;
+    }
+
+    public function hasAppEngineRouting()
+    {
+        return isset($this->app_engine_routing);
+    }
+
+    public function clearAppEngineRouting()
+    {
+        unset($this->app_engine_routing);
     }
 
     /**
