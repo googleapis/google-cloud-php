@@ -145,7 +145,7 @@ class PartOfSpeech extends \Google\Protobuf\Internal\Message
      */
     public function setTag($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Language\V1beta2\PartOfSpeech_Tag::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Language\V1beta2\PartOfSpeech\Tag::class);
         $this->tag = $var;
 
         return $this;
@@ -171,7 +171,7 @@ class PartOfSpeech extends \Google\Protobuf\Internal\Message
      */
     public function setAspect($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Language\V1beta2\PartOfSpeech_Aspect::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Language\V1beta2\PartOfSpeech\Aspect::class);
         $this->aspect = $var;
 
         return $this;
@@ -197,7 +197,7 @@ class PartOfSpeech extends \Google\Protobuf\Internal\Message
      */
     public function setCase($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Language\V1beta2\PartOfSpeech_Case::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Language\V1beta2\PartOfSpeech\PBCase::class);
         $this->case = $var;
 
         return $this;
@@ -223,7 +223,7 @@ class PartOfSpeech extends \Google\Protobuf\Internal\Message
      */
     public function setForm($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Language\V1beta2\PartOfSpeech_Form::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Language\V1beta2\PartOfSpeech\Form::class);
         $this->form = $var;
 
         return $this;
@@ -249,7 +249,7 @@ class PartOfSpeech extends \Google\Protobuf\Internal\Message
      */
     public function setGender($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Language\V1beta2\PartOfSpeech_Gender::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Language\V1beta2\PartOfSpeech\Gender::class);
         $this->gender = $var;
 
         return $this;
@@ -275,7 +275,7 @@ class PartOfSpeech extends \Google\Protobuf\Internal\Message
      */
     public function setMood($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Language\V1beta2\PartOfSpeech_Mood::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Language\V1beta2\PartOfSpeech\Mood::class);
         $this->mood = $var;
 
         return $this;
@@ -301,7 +301,7 @@ class PartOfSpeech extends \Google\Protobuf\Internal\Message
      */
     public function setNumber($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Language\V1beta2\PartOfSpeech_Number::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Language\V1beta2\PartOfSpeech\Number::class);
         $this->number = $var;
 
         return $this;
@@ -327,7 +327,7 @@ class PartOfSpeech extends \Google\Protobuf\Internal\Message
      */
     public function setPerson($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Language\V1beta2\PartOfSpeech_Person::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Language\V1beta2\PartOfSpeech\Person::class);
         $this->person = $var;
 
         return $this;
@@ -353,7 +353,7 @@ class PartOfSpeech extends \Google\Protobuf\Internal\Message
      */
     public function setProper($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Language\V1beta2\PartOfSpeech_Proper::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Language\V1beta2\PartOfSpeech\Proper::class);
         $this->proper = $var;
 
         return $this;
@@ -379,7 +379,7 @@ class PartOfSpeech extends \Google\Protobuf\Internal\Message
      */
     public function setReciprocity($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Language\V1beta2\PartOfSpeech_Reciprocity::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Language\V1beta2\PartOfSpeech\Reciprocity::class);
         $this->reciprocity = $var;
 
         return $this;
@@ -405,7 +405,7 @@ class PartOfSpeech extends \Google\Protobuf\Internal\Message
      */
     public function setTense($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Language\V1beta2\PartOfSpeech_Tense::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Language\V1beta2\PartOfSpeech\Tense::class);
         $this->tense = $var;
 
         return $this;
@@ -431,7 +431,7 @@ class PartOfSpeech extends \Google\Protobuf\Internal\Message
      */
     public function setVoice($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Language\V1beta2\PartOfSpeech_Voice::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Language\V1beta2\PartOfSpeech\Voice::class);
         $this->voice = $var;
 
         return $this;

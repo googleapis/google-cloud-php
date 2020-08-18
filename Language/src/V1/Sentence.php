@@ -57,7 +57,17 @@ class Sentence extends \Google\Protobuf\Internal\Message
      */
     public function getText()
     {
-        return $this->text;
+        return isset($this->text) ? $this->text : null;
+    }
+
+    public function hasText()
+    {
+        return isset($this->text);
+    }
+
+    public function clearText()
+    {
+        unset($this->text);
     }
 
     /**
@@ -85,7 +95,17 @@ class Sentence extends \Google\Protobuf\Internal\Message
      */
     public function getSentiment()
     {
-        return $this->sentiment;
+        return isset($this->sentiment) ? $this->sentiment : null;
+    }
+
+    public function hasSentiment()
+    {
+        return isset($this->sentiment);
+    }
+
+    public function clearSentiment()
+    {
+        unset($this->sentiment);
     }
 
     /**

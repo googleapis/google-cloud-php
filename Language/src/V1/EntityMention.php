@@ -68,7 +68,17 @@ class EntityMention extends \Google\Protobuf\Internal\Message
      */
     public function getText()
     {
-        return $this->text;
+        return isset($this->text) ? $this->text : null;
+    }
+
+    public function hasText()
+    {
+        return isset($this->text);
+    }
+
+    public function clearText()
+    {
+        unset($this->text);
     }
 
     /**
@@ -106,7 +116,7 @@ class EntityMention extends \Google\Protobuf\Internal\Message
      */
     public function setType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Language\V1\EntityMention_Type::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Language\V1\EntityMention\Type::class);
         $this->type = $var;
 
         return $this;
@@ -123,7 +133,17 @@ class EntityMention extends \Google\Protobuf\Internal\Message
      */
     public function getSentiment()
     {
-        return $this->sentiment;
+        return isset($this->sentiment) ? $this->sentiment : null;
+    }
+
+    public function hasSentiment()
+    {
+        return isset($this->sentiment);
+    }
+
+    public function clearSentiment()
+    {
+        unset($this->sentiment);
     }
 
     /**
