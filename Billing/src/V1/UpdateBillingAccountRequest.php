@@ -89,7 +89,17 @@ class UpdateBillingAccountRequest extends \Google\Protobuf\Internal\Message
      */
     public function getAccount()
     {
-        return $this->account;
+        return isset($this->account) ? $this->account : null;
+    }
+
+    public function hasAccount()
+    {
+        return isset($this->account);
+    }
+
+    public function clearAccount()
+    {
+        unset($this->account);
     }
 
     /**
@@ -116,7 +126,17 @@ class UpdateBillingAccountRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return $this->update_mask;
+        return isset($this->update_mask) ? $this->update_mask : null;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**

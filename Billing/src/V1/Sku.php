@@ -189,7 +189,17 @@ class Sku extends \Google\Protobuf\Internal\Message
      */
     public function getCategory()
     {
-        return $this->category;
+        return isset($this->category) ? $this->category : null;
+    }
+
+    public function hasCategory()
+    {
+        return isset($this->category);
+    }
+
+    public function clearCategory()
+    {
+        unset($this->category);
     }
 
     /**

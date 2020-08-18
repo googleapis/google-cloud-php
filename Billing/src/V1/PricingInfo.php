@@ -104,7 +104,17 @@ class PricingInfo extends \Google\Protobuf\Internal\Message
      */
     public function getEffectiveTime()
     {
-        return $this->effective_time;
+        return isset($this->effective_time) ? $this->effective_time : null;
+    }
+
+    public function hasEffectiveTime()
+    {
+        return isset($this->effective_time);
+    }
+
+    public function clearEffectiveTime()
+    {
+        unset($this->effective_time);
     }
 
     /**
@@ -163,7 +173,17 @@ class PricingInfo extends \Google\Protobuf\Internal\Message
      */
     public function getPricingExpression()
     {
-        return $this->pricing_expression;
+        return isset($this->pricing_expression) ? $this->pricing_expression : null;
+    }
+
+    public function hasPricingExpression()
+    {
+        return isset($this->pricing_expression);
+    }
+
+    public function clearPricingExpression()
+    {
+        unset($this->pricing_expression);
     }
 
     /**
@@ -190,7 +210,17 @@ class PricingInfo extends \Google\Protobuf\Internal\Message
      */
     public function getAggregationInfo()
     {
-        return $this->aggregation_info;
+        return isset($this->aggregation_info) ? $this->aggregation_info : null;
+    }
+
+    public function hasAggregationInfo()
+    {
+        return isset($this->aggregation_info);
+    }
+
+    public function clearAggregationInfo()
+    {
+        unset($this->aggregation_info);
     }
 
     /**
