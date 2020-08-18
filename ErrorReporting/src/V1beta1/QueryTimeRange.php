@@ -58,7 +58,7 @@ class QueryTimeRange extends \Google\Protobuf\Internal\Message
      */
     public function setPeriod($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\ErrorReporting\V1beta1\QueryTimeRange_Period::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\ErrorReporting\V1beta1\QueryTimeRange\Period::class);
         $this->period = $var;
 
         return $this;

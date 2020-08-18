@@ -119,7 +119,17 @@ class ReportedErrorEvent extends \Google\Protobuf\Internal\Message
      */
     public function getEventTime()
     {
-        return $this->event_time;
+        return isset($this->event_time) ? $this->event_time : null;
+    }
+
+    public function hasEventTime()
+    {
+        return isset($this->event_time);
+    }
+
+    public function clearEventTime()
+    {
+        unset($this->event_time);
     }
 
     /**
@@ -147,7 +157,17 @@ class ReportedErrorEvent extends \Google\Protobuf\Internal\Message
      */
     public function getServiceContext()
     {
-        return $this->service_context;
+        return isset($this->service_context) ? $this->service_context : null;
+    }
+
+    public function hasServiceContext()
+    {
+        return isset($this->service_context);
+    }
+
+    public function clearServiceContext()
+    {
+        unset($this->service_context);
     }
 
     /**
@@ -243,7 +263,17 @@ class ReportedErrorEvent extends \Google\Protobuf\Internal\Message
      */
     public function getContext()
     {
-        return $this->context;
+        return isset($this->context) ? $this->context : null;
+    }
+
+    public function hasContext()
+    {
+        return isset($this->context);
+    }
+
+    public function clearContext()
+    {
+        unset($this->context);
     }
 
     /**

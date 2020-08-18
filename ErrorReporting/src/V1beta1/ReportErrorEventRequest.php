@@ -95,7 +95,17 @@ class ReportErrorEventRequest extends \Google\Protobuf\Internal\Message
      */
     public function getEvent()
     {
-        return $this->event;
+        return isset($this->event) ? $this->event : null;
+    }
+
+    public function hasEvent()
+    {
+        return isset($this->event);
+    }
+
+    public function clearEvent()
+    {
+        unset($this->event);
     }
 
     /**
