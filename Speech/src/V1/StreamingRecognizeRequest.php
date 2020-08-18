@@ -60,6 +60,11 @@ class StreamingRecognizeRequest extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasStreamingConfig()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * Provides information to the recognizer that specifies how to process the
      * request. The first `StreamingRecognizeRequest` message must contain a
@@ -93,6 +98,11 @@ class StreamingRecognizeRequest extends \Google\Protobuf\Internal\Message
     public function getAudioContent()
     {
         return $this->readOneof(2);
+    }
+
+    public function hasAudioContent()
+    {
+        return $this->hasOneof(2);
     }
 
     /**

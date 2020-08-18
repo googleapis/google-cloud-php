@@ -219,7 +219,17 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      */
     public function getResultEndTime()
     {
-        return $this->result_end_time;
+        return isset($this->result_end_time) ? $this->result_end_time : null;
+    }
+
+    public function hasResultEndTime()
+    {
+        return isset($this->result_end_time);
+    }
+
+    public function clearResultEndTime()
+    {
+        unset($this->result_end_time);
     }
 
     /**

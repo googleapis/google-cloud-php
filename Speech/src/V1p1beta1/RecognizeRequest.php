@@ -56,7 +56,17 @@ class RecognizeRequest extends \Google\Protobuf\Internal\Message
      */
     public function getConfig()
     {
-        return $this->config;
+        return isset($this->config) ? $this->config : null;
+    }
+
+    public function hasConfig()
+    {
+        return isset($this->config);
+    }
+
+    public function clearConfig()
+    {
+        unset($this->config);
     }
 
     /**
@@ -83,7 +93,17 @@ class RecognizeRequest extends \Google\Protobuf\Internal\Message
      */
     public function getAudio()
     {
-        return $this->audio;
+        return isset($this->audio) ? $this->audio : null;
+    }
+
+    public function hasAudio()
+    {
+        return isset($this->audio);
+    }
+
+    public function clearAudio()
+    {
+        unset($this->audio);
     }
 
     /**

@@ -105,7 +105,17 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
      */
     public function getError()
     {
-        return $this->error;
+        return isset($this->error) ? $this->error : null;
+    }
+
+    public function hasError()
+    {
+        return isset($this->error);
+    }
+
+    public function clearError()
+    {
+        unset($this->error);
     }
 
     /**
@@ -176,7 +186,7 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
      */
     public function setSpeechEventType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Speech\V1\StreamingRecognizeResponse_SpeechEventType::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Speech\V1\StreamingRecognizeResponse\SpeechEventType::class);
         $this->speech_event_type = $var;
 
         return $this;
