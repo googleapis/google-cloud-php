@@ -142,7 +142,7 @@ class Assignment extends \Google\Protobuf\Internal\Message
      */
     public function setJobType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\Reservation\V1\Assignment_JobType::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\Reservation\V1\Assignment\JobType::class);
         $this->job_type = $var;
 
         return $this;
@@ -168,7 +168,7 @@ class Assignment extends \Google\Protobuf\Internal\Message
      */
     public function setState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\Reservation\V1\Assignment_State::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\Reservation\V1\Assignment\State::class);
         $this->state = $var;
 
         return $this;

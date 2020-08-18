@@ -121,7 +121,17 @@ class CreateReservationRequest extends \Google\Protobuf\Internal\Message
      */
     public function getReservation()
     {
-        return $this->reservation;
+        return isset($this->reservation) ? $this->reservation : null;
+    }
+
+    public function hasReservation()
+    {
+        return isset($this->reservation);
+    }
+
+    public function clearReservation()
+    {
+        unset($this->reservation);
     }
 
     /**

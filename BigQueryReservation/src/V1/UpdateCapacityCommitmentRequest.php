@@ -53,7 +53,17 @@ class UpdateCapacityCommitmentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getCapacityCommitment()
     {
-        return $this->capacity_commitment;
+        return isset($this->capacity_commitment) ? $this->capacity_commitment : null;
+    }
+
+    public function hasCapacityCommitment()
+    {
+        return isset($this->capacity_commitment);
+    }
+
+    public function clearCapacityCommitment()
+    {
+        unset($this->capacity_commitment);
     }
 
     /**
@@ -79,7 +89,17 @@ class UpdateCapacityCommitmentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return $this->update_mask;
+        return isset($this->update_mask) ? $this->update_mask : null;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**
