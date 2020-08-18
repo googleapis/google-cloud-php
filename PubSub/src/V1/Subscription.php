@@ -333,7 +333,17 @@ class Subscription extends \Google\Protobuf\Internal\Message
      */
     public function getPushConfig()
     {
-        return $this->push_config;
+        return isset($this->push_config) ? $this->push_config : null;
+    }
+
+    public function hasPushConfig()
+    {
+        return isset($this->push_config);
+    }
+
+    public function clearPushConfig()
+    {
+        unset($this->push_config);
     }
 
     /**
@@ -458,7 +468,17 @@ class Subscription extends \Google\Protobuf\Internal\Message
      */
     public function getMessageRetentionDuration()
     {
-        return $this->message_retention_duration;
+        return isset($this->message_retention_duration) ? $this->message_retention_duration : null;
+    }
+
+    public function hasMessageRetentionDuration()
+    {
+        return isset($this->message_retention_duration);
+    }
+
+    public function clearMessageRetentionDuration()
+    {
+        unset($this->message_retention_duration);
     }
 
     /**
@@ -554,7 +574,17 @@ class Subscription extends \Google\Protobuf\Internal\Message
      */
     public function getExpirationPolicy()
     {
-        return $this->expiration_policy;
+        return isset($this->expiration_policy) ? $this->expiration_policy : null;
+    }
+
+    public function hasExpirationPolicy()
+    {
+        return isset($this->expiration_policy);
+    }
+
+    public function clearExpirationPolicy()
+    {
+        unset($this->expiration_policy);
     }
 
     /**
@@ -625,7 +655,17 @@ class Subscription extends \Google\Protobuf\Internal\Message
      */
     public function getDeadLetterPolicy()
     {
-        return $this->dead_letter_policy;
+        return isset($this->dead_letter_policy) ? $this->dead_letter_policy : null;
+    }
+
+    public function hasDeadLetterPolicy()
+    {
+        return isset($this->dead_letter_policy);
+    }
+
+    public function clearDeadLetterPolicy()
+    {
+        unset($this->dead_letter_policy);
     }
 
     /**
@@ -662,7 +702,17 @@ class Subscription extends \Google\Protobuf\Internal\Message
      */
     public function getRetryPolicy()
     {
-        return $this->retry_policy;
+        return isset($this->retry_policy) ? $this->retry_policy : null;
+    }
+
+    public function hasRetryPolicy()
+    {
+        return isset($this->retry_policy);
+    }
+
+    public function clearRetryPolicy()
+    {
+        unset($this->retry_policy);
     }
 
     /**

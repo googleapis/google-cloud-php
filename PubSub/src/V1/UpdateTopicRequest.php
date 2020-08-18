@@ -61,7 +61,17 @@ class UpdateTopicRequest extends \Google\Protobuf\Internal\Message
      */
     public function getTopic()
     {
-        return $this->topic;
+        return isset($this->topic) ? $this->topic : null;
+    }
+
+    public function hasTopic()
+    {
+        return isset($this->topic);
+    }
+
+    public function clearTopic()
+    {
+        unset($this->topic);
     }
 
     /**
@@ -91,7 +101,17 @@ class UpdateTopicRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return $this->update_mask;
+        return isset($this->update_mask) ? $this->update_mask : null;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**

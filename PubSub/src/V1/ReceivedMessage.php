@@ -109,7 +109,17 @@ class ReceivedMessage extends \Google\Protobuf\Internal\Message
      */
     public function getMessage()
     {
-        return $this->message;
+        return isset($this->message) ? $this->message : null;
+    }
+
+    public function hasMessage()
+    {
+        return isset($this->message);
+    }
+
+    public function clearMessage()
+    {
+        unset($this->message);
     }
 
     /**

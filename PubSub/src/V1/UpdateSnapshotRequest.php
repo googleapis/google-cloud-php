@@ -55,7 +55,17 @@ class UpdateSnapshotRequest extends \Google\Protobuf\Internal\Message
      */
     public function getSnapshot()
     {
-        return $this->snapshot;
+        return isset($this->snapshot) ? $this->snapshot : null;
+    }
+
+    public function hasSnapshot()
+    {
+        return isset($this->snapshot);
+    }
+
+    public function clearSnapshot()
+    {
+        unset($this->snapshot);
     }
 
     /**
@@ -82,7 +92,17 @@ class UpdateSnapshotRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return $this->update_mask;
+        return isset($this->update_mask) ? $this->update_mask : null;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**
