@@ -58,7 +58,7 @@ class BreakpointActionValue extends \Google\Protobuf\Internal\Message
      */
     public function setValue($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Debugger\V2\Breakpoint_Action::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Debugger\V2\Breakpoint\Action::class);
         $this->value = $var;
 
         return $this;

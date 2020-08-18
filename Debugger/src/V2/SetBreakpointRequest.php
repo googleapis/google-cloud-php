@@ -92,7 +92,17 @@ class SetBreakpointRequest extends \Google\Protobuf\Internal\Message
      */
     public function getBreakpoint()
     {
-        return $this->breakpoint;
+        return isset($this->breakpoint) ? $this->breakpoint : null;
+    }
+
+    public function hasBreakpoint()
+    {
+        return isset($this->breakpoint);
+    }
+
+    public function clearBreakpoint()
+    {
+        unset($this->breakpoint);
     }
 
     /**

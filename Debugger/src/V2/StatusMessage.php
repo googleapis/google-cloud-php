@@ -103,7 +103,7 @@ class StatusMessage extends \Google\Protobuf\Internal\Message
      */
     public function setRefersTo($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Debugger\V2\StatusMessage_Reference::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Debugger\V2\StatusMessage\Reference::class);
         $this->refers_to = $var;
 
         return $this;
@@ -117,7 +117,17 @@ class StatusMessage extends \Google\Protobuf\Internal\Message
      */
     public function getDescription()
     {
-        return $this->description;
+        return isset($this->description) ? $this->description : null;
+    }
+
+    public function hasDescription()
+    {
+        return isset($this->description);
+    }
+
+    public function clearDescription()
+    {
+        unset($this->description);
     }
 
     /**

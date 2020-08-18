@@ -51,7 +51,17 @@ class RegisterDebuggeeRequest extends \Google\Protobuf\Internal\Message
      */
     public function getDebuggee()
     {
-        return $this->debuggee;
+        return isset($this->debuggee) ? $this->debuggee : null;
+    }
+
+    public function hasDebuggee()
+    {
+        return isset($this->debuggee);
+    }
+
+    public function clearDebuggee()
+    {
+        unset($this->debuggee);
     }
 
     /**

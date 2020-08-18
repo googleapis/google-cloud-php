@@ -314,7 +314,17 @@ class Variable extends \Google\Protobuf\Internal\Message
      */
     public function getVarTableIndex()
     {
-        return $this->var_table_index;
+        return isset($this->var_table_index) ? $this->var_table_index : null;
+    }
+
+    public function hasVarTableIndex()
+    {
+        return isset($this->var_table_index);
+    }
+
+    public function clearVarTableIndex()
+    {
+        unset($this->var_table_index);
     }
 
     /**
@@ -386,7 +396,17 @@ class Variable extends \Google\Protobuf\Internal\Message
      */
     public function getStatus()
     {
-        return $this->status;
+        return isset($this->status) ? $this->status : null;
+    }
+
+    public function hasStatus()
+    {
+        return isset($this->status);
+    }
+
+    public function clearStatus()
+    {
+        unset($this->status);
     }
 
     /**

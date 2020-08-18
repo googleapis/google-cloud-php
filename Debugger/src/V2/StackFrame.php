@@ -99,7 +99,17 @@ class StackFrame extends \Google\Protobuf\Internal\Message
      */
     public function getLocation()
     {
-        return $this->location;
+        return isset($this->location) ? $this->location : null;
+    }
+
+    public function hasLocation()
+    {
+        return isset($this->location);
+    }
+
+    public function clearLocation()
+    {
+        unset($this->location);
     }
 
     /**
