@@ -104,7 +104,17 @@ class StackFrame extends \Google\Protobuf\Internal\Message
      */
     public function getFunctionName()
     {
-        return $this->function_name;
+        return isset($this->function_name) ? $this->function_name : null;
+    }
+
+    public function hasFunctionName()
+    {
+        return isset($this->function_name);
+    }
+
+    public function clearFunctionName()
+    {
+        unset($this->function_name);
     }
 
     /**
@@ -133,7 +143,17 @@ class StackFrame extends \Google\Protobuf\Internal\Message
      */
     public function getOriginalFunctionName()
     {
-        return $this->original_function_name;
+        return isset($this->original_function_name) ? $this->original_function_name : null;
+    }
+
+    public function hasOriginalFunctionName()
+    {
+        return isset($this->original_function_name);
+    }
+
+    public function clearOriginalFunctionName()
+    {
+        unset($this->original_function_name);
     }
 
     /**
@@ -162,7 +182,17 @@ class StackFrame extends \Google\Protobuf\Internal\Message
      */
     public function getFileName()
     {
-        return $this->file_name;
+        return isset($this->file_name) ? $this->file_name : null;
+    }
+
+    public function hasFileName()
+    {
+        return isset($this->file_name);
+    }
+
+    public function clearFileName()
+    {
+        unset($this->file_name);
     }
 
     /**
@@ -243,7 +273,17 @@ class StackFrame extends \Google\Protobuf\Internal\Message
      */
     public function getLoadModule()
     {
-        return $this->load_module;
+        return isset($this->load_module) ? $this->load_module : null;
+    }
+
+    public function hasLoadModule()
+    {
+        return isset($this->load_module);
+    }
+
+    public function clearLoadModule()
+    {
+        unset($this->load_module);
     }
 
     /**
@@ -269,7 +309,17 @@ class StackFrame extends \Google\Protobuf\Internal\Message
      */
     public function getSourceVersion()
     {
-        return $this->source_version;
+        return isset($this->source_version) ? $this->source_version : null;
+    }
+
+    public function hasSourceVersion()
+    {
+        return isset($this->source_version);
+    }
+
+    public function clearSourceVersion()
+    {
+        unset($this->source_version);
     }
 
     /**

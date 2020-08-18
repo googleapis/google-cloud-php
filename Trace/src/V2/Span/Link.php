@@ -138,7 +138,7 @@ class Link extends \Google\Protobuf\Internal\Message
      */
     public function setType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Trace\V2\Span_Link_Type::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Trace\V2\Span\Link\Type::class);
         $this->type = $var;
 
         return $this;
@@ -153,7 +153,17 @@ class Link extends \Google\Protobuf\Internal\Message
      */
     public function getAttributes()
     {
-        return $this->attributes;
+        return isset($this->attributes) ? $this->attributes : null;
+    }
+
+    public function hasAttributes()
+    {
+        return isset($this->attributes);
+    }
+
+    public function clearAttributes()
+    {
+        unset($this->attributes);
     }
 
     /**
@@ -166,7 +176,7 @@ class Link extends \Google\Protobuf\Internal\Message
      */
     public function setAttributes($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Trace\V2\Span_Attributes::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Trace\V2\Span\Attributes::class);
         $this->attributes = $var;
 
         return $this;

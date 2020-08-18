@@ -58,7 +58,17 @@ class Annotation extends \Google\Protobuf\Internal\Message
      */
     public function getDescription()
     {
-        return $this->description;
+        return isset($this->description) ? $this->description : null;
+    }
+
+    public function hasDescription()
+    {
+        return isset($this->description);
+    }
+
+    public function clearDescription()
+    {
+        unset($this->description);
     }
 
     /**
@@ -86,7 +96,17 @@ class Annotation extends \Google\Protobuf\Internal\Message
      */
     public function getAttributes()
     {
-        return $this->attributes;
+        return isset($this->attributes) ? $this->attributes : null;
+    }
+
+    public function hasAttributes()
+    {
+        return isset($this->attributes);
+    }
+
+    public function clearAttributes()
+    {
+        unset($this->attributes);
     }
 
     /**
@@ -99,7 +119,7 @@ class Annotation extends \Google\Protobuf\Internal\Message
      */
     public function setAttributes($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Trace\V2\Span_Attributes::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Trace\V2\Span\Attributes::class);
         $this->attributes = $var;
 
         return $this;
