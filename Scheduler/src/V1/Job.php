@@ -324,6 +324,11 @@ class Job extends \Google\Protobuf\Internal\Message
         return $this->readOneof(4);
     }
 
+    public function hasPubsubTarget()
+    {
+        return $this->hasOneof(4);
+    }
+
     /**
      * Pub/Sub target.
      *
@@ -350,6 +355,11 @@ class Job extends \Google\Protobuf\Internal\Message
         return $this->readOneof(5);
     }
 
+    public function hasAppEngineHttpTarget()
+    {
+        return $this->hasOneof(5);
+    }
+
     /**
      * App Engine HTTP target.
      *
@@ -374,6 +384,11 @@ class Job extends \Google\Protobuf\Internal\Message
     public function getHttpTarget()
     {
         return $this->readOneof(6);
+    }
+
+    public function hasHttpTarget()
+    {
+        return $this->hasOneof(6);
     }
 
     /**
@@ -499,7 +514,17 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getUserUpdateTime()
     {
-        return $this->user_update_time;
+        return isset($this->user_update_time) ? $this->user_update_time : null;
+    }
+
+    public function hasUserUpdateTime()
+    {
+        return isset($this->user_update_time);
+    }
+
+    public function clearUserUpdateTime()
+    {
+        unset($this->user_update_time);
     }
 
     /**
@@ -537,7 +562,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function setState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Scheduler\V1\Job_State::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Scheduler\V1\Job\State::class);
         $this->state = $var;
 
         return $this;
@@ -551,7 +576,17 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getStatus()
     {
-        return $this->status;
+        return isset($this->status) ? $this->status : null;
+    }
+
+    public function hasStatus()
+    {
+        return isset($this->status);
+    }
+
+    public function clearStatus()
+    {
+        unset($this->status);
     }
 
     /**
@@ -579,7 +614,17 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getScheduleTime()
     {
-        return $this->schedule_time;
+        return isset($this->schedule_time) ? $this->schedule_time : null;
+    }
+
+    public function hasScheduleTime()
+    {
+        return isset($this->schedule_time);
+    }
+
+    public function clearScheduleTime()
+    {
+        unset($this->schedule_time);
     }
 
     /**
@@ -607,7 +652,17 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getLastAttemptTime()
     {
-        return $this->last_attempt_time;
+        return isset($this->last_attempt_time) ? $this->last_attempt_time : null;
+    }
+
+    public function hasLastAttemptTime()
+    {
+        return isset($this->last_attempt_time);
+    }
+
+    public function clearLastAttemptTime()
+    {
+        unset($this->last_attempt_time);
     }
 
     /**
@@ -633,7 +688,17 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getRetryConfig()
     {
-        return $this->retry_config;
+        return isset($this->retry_config) ? $this->retry_config : null;
+    }
+
+    public function hasRetryConfig()
+    {
+        return isset($this->retry_config);
+    }
+
+    public function clearRetryConfig()
+    {
+        unset($this->retry_config);
     }
 
     /**
@@ -667,7 +732,17 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getAttemptDeadline()
     {
-        return $this->attempt_deadline;
+        return isset($this->attempt_deadline) ? $this->attempt_deadline : null;
+    }
+
+    public function hasAttemptDeadline()
+    {
+        return isset($this->attempt_deadline);
+    }
+
+    public function clearAttemptDeadline()
+    {
+        unset($this->attempt_deadline);
     }
 
     /**

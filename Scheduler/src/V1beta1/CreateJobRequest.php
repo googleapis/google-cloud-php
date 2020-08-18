@@ -95,7 +95,17 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
      */
     public function getJob()
     {
-        return $this->job;
+        return isset($this->job) ? $this->job : null;
+    }
+
+    public function hasJob()
+    {
+        return isset($this->job);
+    }
+
+    public function clearJob()
+    {
+        unset($this->job);
     }
 
     /**
