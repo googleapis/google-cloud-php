@@ -69,7 +69,17 @@ class AsyncAnnotateFileRequest extends \Google\Protobuf\Internal\Message
      */
     public function getInputConfig()
     {
-        return $this->input_config;
+        return isset($this->input_config) ? $this->input_config : null;
+    }
+
+    public function hasInputConfig()
+    {
+        return isset($this->input_config);
+    }
+
+    public function clearInputConfig()
+    {
+        unset($this->input_config);
     }
 
     /**
@@ -121,7 +131,17 @@ class AsyncAnnotateFileRequest extends \Google\Protobuf\Internal\Message
      */
     public function getImageContext()
     {
-        return $this->image_context;
+        return isset($this->image_context) ? $this->image_context : null;
+    }
+
+    public function hasImageContext()
+    {
+        return isset($this->image_context);
+    }
+
+    public function clearImageContext()
+    {
+        unset($this->image_context);
     }
 
     /**
@@ -147,7 +167,17 @@ class AsyncAnnotateFileRequest extends \Google\Protobuf\Internal\Message
      */
     public function getOutputConfig()
     {
-        return $this->output_config;
+        return isset($this->output_config) ? $this->output_config : null;
+    }
+
+    public function hasOutputConfig()
+    {
+        return isset($this->output_config);
+    }
+
+    public function clearOutputConfig()
+    {
+        unset($this->output_config);
     }
 
     /**

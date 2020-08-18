@@ -97,7 +97,17 @@ class Symbol extends \Google\Protobuf\Internal\Message
      */
     public function getProperty()
     {
-        return $this->property;
+        return isset($this->property) ? $this->property : null;
+    }
+
+    public function hasProperty()
+    {
+        return isset($this->property);
+    }
+
+    public function clearProperty()
+    {
+        unset($this->property);
     }
 
     /**
@@ -109,7 +119,7 @@ class Symbol extends \Google\Protobuf\Internal\Message
      */
     public function setProperty($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Vision\V1\TextAnnotation_TextProperty::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Vision\V1\TextAnnotation\TextProperty::class);
         $this->property = $var;
 
         return $this;
@@ -137,7 +147,17 @@ class Symbol extends \Google\Protobuf\Internal\Message
      */
     public function getBoundingBox()
     {
-        return $this->bounding_box;
+        return isset($this->bounding_box) ? $this->bounding_box : null;
+    }
+
+    public function hasBoundingBox()
+    {
+        return isset($this->bounding_box);
+    }
+
+    public function clearBoundingBox()
+    {
+        unset($this->bounding_box);
     }
 
     /**

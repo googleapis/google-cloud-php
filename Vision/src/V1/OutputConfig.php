@@ -69,7 +69,17 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
      */
     public function getGcsDestination()
     {
-        return $this->gcs_destination;
+        return isset($this->gcs_destination) ? $this->gcs_destination : null;
+    }
+
+    public function hasGcsDestination()
+    {
+        return isset($this->gcs_destination);
+    }
+
+    public function clearGcsDestination()
+    {
+        unset($this->gcs_destination);
     }
 
     /**

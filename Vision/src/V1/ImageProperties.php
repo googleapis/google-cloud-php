@@ -45,7 +45,17 @@ class ImageProperties extends \Google\Protobuf\Internal\Message
      */
     public function getDominantColors()
     {
-        return $this->dominant_colors;
+        return isset($this->dominant_colors) ? $this->dominant_colors : null;
+    }
+
+    public function hasDominantColors()
+    {
+        return isset($this->dominant_colors);
+    }
+
+    public function clearDominantColors()
+    {
+        unset($this->dominant_colors);
     }
 
     /**

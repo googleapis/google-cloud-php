@@ -79,7 +79,17 @@ class TextProperty extends \Google\Protobuf\Internal\Message
      */
     public function getDetectedBreak()
     {
-        return $this->detected_break;
+        return isset($this->detected_break) ? $this->detected_break : null;
+    }
+
+    public function hasDetectedBreak()
+    {
+        return isset($this->detected_break);
+    }
+
+    public function clearDetectedBreak()
+    {
+        unset($this->detected_break);
     }
 
     /**
@@ -91,7 +101,7 @@ class TextProperty extends \Google\Protobuf\Internal\Message
      */
     public function setDetectedBreak($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Vision\V1\TextAnnotation_DetectedBreak::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak::class);
         $this->detected_break = $var;
 
         return $this;

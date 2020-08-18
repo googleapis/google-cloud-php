@@ -324,7 +324,17 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
      */
     public function getFullTextAnnotation()
     {
-        return $this->full_text_annotation;
+        return isset($this->full_text_annotation) ? $this->full_text_annotation : null;
+    }
+
+    public function hasFullTextAnnotation()
+    {
+        return isset($this->full_text_annotation);
+    }
+
+    public function clearFullTextAnnotation()
+    {
+        unset($this->full_text_annotation);
     }
 
     /**
@@ -353,7 +363,17 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
      */
     public function getSafeSearchAnnotation()
     {
-        return $this->safe_search_annotation;
+        return isset($this->safe_search_annotation) ? $this->safe_search_annotation : null;
+    }
+
+    public function hasSafeSearchAnnotation()
+    {
+        return isset($this->safe_search_annotation);
+    }
+
+    public function clearSafeSearchAnnotation()
+    {
+        unset($this->safe_search_annotation);
     }
 
     /**
@@ -379,7 +399,17 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
      */
     public function getImagePropertiesAnnotation()
     {
-        return $this->image_properties_annotation;
+        return isset($this->image_properties_annotation) ? $this->image_properties_annotation : null;
+    }
+
+    public function hasImagePropertiesAnnotation()
+    {
+        return isset($this->image_properties_annotation);
+    }
+
+    public function clearImagePropertiesAnnotation()
+    {
+        unset($this->image_properties_annotation);
     }
 
     /**
@@ -405,7 +435,17 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
      */
     public function getCropHintsAnnotation()
     {
-        return $this->crop_hints_annotation;
+        return isset($this->crop_hints_annotation) ? $this->crop_hints_annotation : null;
+    }
+
+    public function hasCropHintsAnnotation()
+    {
+        return isset($this->crop_hints_annotation);
+    }
+
+    public function clearCropHintsAnnotation()
+    {
+        unset($this->crop_hints_annotation);
     }
 
     /**
@@ -431,7 +471,17 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
      */
     public function getWebDetection()
     {
-        return $this->web_detection;
+        return isset($this->web_detection) ? $this->web_detection : null;
+    }
+
+    public function hasWebDetection()
+    {
+        return isset($this->web_detection);
+    }
+
+    public function clearWebDetection()
+    {
+        unset($this->web_detection);
     }
 
     /**
@@ -457,7 +507,17 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
      */
     public function getProductSearchResults()
     {
-        return $this->product_search_results;
+        return isset($this->product_search_results) ? $this->product_search_results : null;
+    }
+
+    public function hasProductSearchResults()
+    {
+        return isset($this->product_search_results);
+    }
+
+    public function clearProductSearchResults()
+    {
+        unset($this->product_search_results);
     }
 
     /**
@@ -485,7 +545,17 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
      */
     public function getError()
     {
-        return $this->error;
+        return isset($this->error) ? $this->error : null;
+    }
+
+    public function hasError()
+    {
+        return isset($this->error);
+    }
+
+    public function clearError()
+    {
+        unset($this->error);
     }
 
     /**
@@ -514,7 +584,17 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
      */
     public function getContext()
     {
-        return $this->context;
+        return isset($this->context) ? $this->context : null;
+    }
+
+    public function hasContext()
+    {
+        return isset($this->context);
+    }
+
+    public function clearContext()
+    {
+        unset($this->context);
     }
 
     /**

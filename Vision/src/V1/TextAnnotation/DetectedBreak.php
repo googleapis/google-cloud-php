@@ -65,7 +65,7 @@ class DetectedBreak extends \Google\Protobuf\Internal\Message
      */
     public function setType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Vision\V1\TextAnnotation_DetectedBreak_BreakType::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak\BreakType::class);
         $this->type = $var;
 
         return $this;

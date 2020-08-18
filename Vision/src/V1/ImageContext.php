@@ -91,7 +91,17 @@ class ImageContext extends \Google\Protobuf\Internal\Message
      */
     public function getLatLongRect()
     {
-        return $this->lat_long_rect;
+        return isset($this->lat_long_rect) ? $this->lat_long_rect : null;
+    }
+
+    public function hasLatLongRect()
+    {
+        return isset($this->lat_long_rect);
+    }
+
+    public function clearLatLongRect()
+    {
+        unset($this->lat_long_rect);
     }
 
     /**
@@ -157,7 +167,17 @@ class ImageContext extends \Google\Protobuf\Internal\Message
      */
     public function getCropHintsParams()
     {
-        return $this->crop_hints_params;
+        return isset($this->crop_hints_params) ? $this->crop_hints_params : null;
+    }
+
+    public function hasCropHintsParams()
+    {
+        return isset($this->crop_hints_params);
+    }
+
+    public function clearCropHintsParams()
+    {
+        unset($this->crop_hints_params);
     }
 
     /**
@@ -183,7 +203,17 @@ class ImageContext extends \Google\Protobuf\Internal\Message
      */
     public function getProductSearchParams()
     {
-        return $this->product_search_params;
+        return isset($this->product_search_params) ? $this->product_search_params : null;
+    }
+
+    public function hasProductSearchParams()
+    {
+        return isset($this->product_search_params);
+    }
+
+    public function clearProductSearchParams()
+    {
+        unset($this->product_search_params);
     }
 
     /**
@@ -209,7 +239,17 @@ class ImageContext extends \Google\Protobuf\Internal\Message
      */
     public function getWebDetectionParams()
     {
-        return $this->web_detection_params;
+        return isset($this->web_detection_params) ? $this->web_detection_params : null;
+    }
+
+    public function hasWebDetectionParams()
+    {
+        return isset($this->web_detection_params);
+    }
+
+    public function clearWebDetectionParams()
+    {
+        unset($this->web_detection_params);
     }
 
     /**

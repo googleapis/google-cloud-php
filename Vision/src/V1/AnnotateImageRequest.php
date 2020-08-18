@@ -62,7 +62,17 @@ class AnnotateImageRequest extends \Google\Protobuf\Internal\Message
      */
     public function getImage()
     {
-        return $this->image;
+        return isset($this->image) ? $this->image : null;
+    }
+
+    public function hasImage()
+    {
+        return isset($this->image);
+    }
+
+    public function clearImage()
+    {
+        unset($this->image);
     }
 
     /**
@@ -114,7 +124,17 @@ class AnnotateImageRequest extends \Google\Protobuf\Internal\Message
      */
     public function getImageContext()
     {
-        return $this->image_context;
+        return isset($this->image_context) ? $this->image_context : null;
+    }
+
+    public function hasImageContext()
+    {
+        return isset($this->image_context);
+    }
+
+    public function clearImageContext()
+    {
+        unset($this->image_context);
     }
 
     /**
