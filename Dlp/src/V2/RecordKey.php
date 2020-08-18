@@ -51,6 +51,11 @@ class RecordKey extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasDatastoreKey()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DatastoreKey datastore_key = 2;</code>
      * @param \Google\Cloud\Dlp\V2\DatastoreKey $var
@@ -71,6 +76,11 @@ class RecordKey extends \Google\Protobuf\Internal\Message
     public function getBigQueryKey()
     {
         return $this->readOneof(3);
+    }
+
+    public function hasBigQueryKey()
+    {
+        return $this->hasOneof(3);
     }
 
     /**

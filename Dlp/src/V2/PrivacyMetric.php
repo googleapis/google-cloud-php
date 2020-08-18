@@ -53,6 +53,11 @@ class PrivacyMetric extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasNumericalStatsConfig()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * Numerical stats
      *
@@ -62,7 +67,7 @@ class PrivacyMetric extends \Google\Protobuf\Internal\Message
      */
     public function setNumericalStatsConfig($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\PrivacyMetric_NumericalStatsConfig::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\PrivacyMetric\NumericalStatsConfig::class);
         $this->writeOneof(1, $var);
 
         return $this;
@@ -79,6 +84,11 @@ class PrivacyMetric extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasCategoricalStatsConfig()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * Categorical stats
      *
@@ -88,7 +98,7 @@ class PrivacyMetric extends \Google\Protobuf\Internal\Message
      */
     public function setCategoricalStatsConfig($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\PrivacyMetric_CategoricalStatsConfig::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\PrivacyMetric\CategoricalStatsConfig::class);
         $this->writeOneof(2, $var);
 
         return $this;
@@ -105,6 +115,11 @@ class PrivacyMetric extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasKAnonymityConfig()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * K-anonymity
      *
@@ -114,7 +129,7 @@ class PrivacyMetric extends \Google\Protobuf\Internal\Message
      */
     public function setKAnonymityConfig($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\PrivacyMetric_KAnonymityConfig::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\PrivacyMetric\KAnonymityConfig::class);
         $this->writeOneof(3, $var);
 
         return $this;
@@ -131,6 +146,11 @@ class PrivacyMetric extends \Google\Protobuf\Internal\Message
         return $this->readOneof(4);
     }
 
+    public function hasLDiversityConfig()
+    {
+        return $this->hasOneof(4);
+    }
+
     /**
      * l-diversity
      *
@@ -140,7 +160,7 @@ class PrivacyMetric extends \Google\Protobuf\Internal\Message
      */
     public function setLDiversityConfig($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\PrivacyMetric_LDiversityConfig::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\PrivacyMetric\LDiversityConfig::class);
         $this->writeOneof(4, $var);
 
         return $this;
@@ -157,6 +177,11 @@ class PrivacyMetric extends \Google\Protobuf\Internal\Message
         return $this->readOneof(5);
     }
 
+    public function hasKMapEstimationConfig()
+    {
+        return $this->hasOneof(5);
+    }
+
     /**
      * k-map
      *
@@ -166,7 +191,7 @@ class PrivacyMetric extends \Google\Protobuf\Internal\Message
      */
     public function setKMapEstimationConfig($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\PrivacyMetric_KMapEstimationConfig::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\PrivacyMetric\KMapEstimationConfig::class);
         $this->writeOneof(5, $var);
 
         return $this;
@@ -183,6 +208,11 @@ class PrivacyMetric extends \Google\Protobuf\Internal\Message
         return $this->readOneof(6);
     }
 
+    public function hasDeltaPresenceEstimationConfig()
+    {
+        return $this->hasOneof(6);
+    }
+
     /**
      * delta-presence
      *
@@ -192,7 +222,7 @@ class PrivacyMetric extends \Google\Protobuf\Internal\Message
      */
     public function setDeltaPresenceEstimationConfig($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\PrivacyMetric_DeltaPresenceEstimationConfig::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\PrivacyMetric\DeltaPresenceEstimationConfig::class);
         $this->writeOneof(6, $var);
 
         return $this;

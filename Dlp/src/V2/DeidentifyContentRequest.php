@@ -153,7 +153,17 @@ class DeidentifyContentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getDeidentifyConfig()
     {
-        return $this->deidentify_config;
+        return isset($this->deidentify_config) ? $this->deidentify_config : null;
+    }
+
+    public function hasDeidentifyConfig()
+    {
+        return isset($this->deidentify_config);
+    }
+
+    public function clearDeidentifyConfig()
+    {
+        unset($this->deidentify_config);
     }
 
     /**
@@ -183,7 +193,17 @@ class DeidentifyContentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getInspectConfig()
     {
-        return $this->inspect_config;
+        return isset($this->inspect_config) ? $this->inspect_config : null;
+    }
+
+    public function hasInspectConfig()
+    {
+        return isset($this->inspect_config);
+    }
+
+    public function clearInspectConfig()
+    {
+        unset($this->inspect_config);
     }
 
     /**
@@ -211,7 +231,17 @@ class DeidentifyContentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getItem()
     {
-        return $this->item;
+        return isset($this->item) ? $this->item : null;
+    }
+
+    public function hasItem()
+    {
+        return isset($this->item);
+    }
+
+    public function clearItem()
+    {
+        unset($this->item);
     }
 
     /**

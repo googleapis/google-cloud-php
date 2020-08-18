@@ -49,7 +49,17 @@ class EntityId extends \Google\Protobuf\Internal\Message
      */
     public function getField()
     {
-        return $this->field;
+        return isset($this->field) ? $this->field : null;
+    }
+
+    public function hasField()
+    {
+        return isset($this->field);
+    }
+
+    public function clearField()
+    {
+        unset($this->field);
     }
 
     /**

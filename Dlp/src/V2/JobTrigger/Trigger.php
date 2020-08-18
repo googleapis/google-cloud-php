@@ -48,6 +48,11 @@ class Trigger extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasSchedule()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * Create a job on a repeating basis based on the elapse of time.
      *
@@ -75,6 +80,11 @@ class Trigger extends \Google\Protobuf\Internal\Message
     public function getManual()
     {
         return $this->readOneof(2);
+    }
+
+    public function hasManual()
+    {
+        return $this->hasOneof(2);
     }
 
     /**

@@ -47,6 +47,11 @@ class CharsToIgnore extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasCharactersToSkip()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * Characters to not transform when masking.
      *
@@ -74,6 +79,11 @@ class CharsToIgnore extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasCommonCharactersToIgnore()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * Common characters to not transform when masking. Useful to avoid removing
      * punctuation.
@@ -84,7 +94,7 @@ class CharsToIgnore extends \Google\Protobuf\Internal\Message
      */
     public function setCommonCharactersToIgnore($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Dlp\V2\CharsToIgnore_CommonCharsToIgnore::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Dlp\V2\CharsToIgnore\CommonCharsToIgnore::class);
         $this->writeOneof(2, $var);
 
         return $this;

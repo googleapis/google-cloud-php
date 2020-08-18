@@ -110,7 +110,17 @@ class FileSet extends \Google\Protobuf\Internal\Message
      */
     public function getRegexFileSet()
     {
-        return $this->regex_file_set;
+        return isset($this->regex_file_set) ? $this->regex_file_set : null;
+    }
+
+    public function hasRegexFileSet()
+    {
+        return isset($this->regex_file_set);
+    }
+
+    public function clearRegexFileSet()
+    {
+        unset($this->regex_file_set);
     }
 
     /**

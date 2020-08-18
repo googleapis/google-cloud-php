@@ -49,6 +49,11 @@ class ContentItem extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasValue()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * String data to inspect or redact.
      *
@@ -77,6 +82,11 @@ class ContentItem extends \Google\Protobuf\Internal\Message
         return $this->readOneof(4);
     }
 
+    public function hasTable()
+    {
+        return $this->hasOneof(4);
+    }
+
     /**
      * Structured content for inspection. See
      * https://cloud.google.com/dlp/docs/inspecting-text#inspecting_a_table to
@@ -103,6 +113,11 @@ class ContentItem extends \Google\Protobuf\Internal\Message
     public function getByteItem()
     {
         return $this->readOneof(5);
+    }
+
+    public function hasByteItem()
+    {
+        return $this->hasOneof(5);
     }
 
     /**

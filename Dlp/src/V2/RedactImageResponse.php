@@ -121,7 +121,17 @@ class RedactImageResponse extends \Google\Protobuf\Internal\Message
      */
     public function getInspectResult()
     {
-        return $this->inspect_result;
+        return isset($this->inspect_result) ? $this->inspect_result : null;
+    }
+
+    public function hasInspectResult()
+    {
+        return isset($this->inspect_result);
+    }
+
+    public function clearInspectResult()
+    {
+        unset($this->inspect_result);
     }
 
     /**

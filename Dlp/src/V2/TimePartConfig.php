@@ -58,7 +58,7 @@ class TimePartConfig extends \Google\Protobuf\Internal\Message
      */
     public function setPartToExtract($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Dlp\V2\TimePartConfig_TimePart::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Dlp\V2\TimePartConfig\TimePart::class);
         $this->part_to_extract = $var;
 
         return $this;

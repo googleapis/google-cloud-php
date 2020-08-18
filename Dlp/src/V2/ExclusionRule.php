@@ -56,6 +56,11 @@ class ExclusionRule extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasDictionary()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * Dictionary which defines the rule.
      *
@@ -65,7 +70,7 @@ class ExclusionRule extends \Google\Protobuf\Internal\Message
      */
     public function setDictionary($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\CustomInfoType_Dictionary::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\CustomInfoType\Dictionary::class);
         $this->writeOneof(1, $var);
 
         return $this;
@@ -82,6 +87,11 @@ class ExclusionRule extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasRegex()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * Regular expression which defines the rule.
      *
@@ -91,7 +101,7 @@ class ExclusionRule extends \Google\Protobuf\Internal\Message
      */
     public function setRegex($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\CustomInfoType_Regex::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\CustomInfoType\Regex::class);
         $this->writeOneof(2, $var);
 
         return $this;
@@ -106,6 +116,11 @@ class ExclusionRule extends \Google\Protobuf\Internal\Message
     public function getExcludeInfoTypes()
     {
         return $this->readOneof(3);
+    }
+
+    public function hasExcludeInfoTypes()
+    {
+        return $this->hasOneof(3);
     }
 
     /**

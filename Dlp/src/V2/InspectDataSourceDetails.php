@@ -53,7 +53,17 @@ class InspectDataSourceDetails extends \Google\Protobuf\Internal\Message
      */
     public function getRequestedOptions()
     {
-        return $this->requested_options;
+        return isset($this->requested_options) ? $this->requested_options : null;
+    }
+
+    public function hasRequestedOptions()
+    {
+        return isset($this->requested_options);
+    }
+
+    public function clearRequestedOptions()
+    {
+        unset($this->requested_options);
     }
 
     /**
@@ -65,7 +75,7 @@ class InspectDataSourceDetails extends \Google\Protobuf\Internal\Message
      */
     public function setRequestedOptions($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\InspectDataSourceDetails_RequestedOptions::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\InspectDataSourceDetails\RequestedOptions::class);
         $this->requested_options = $var;
 
         return $this;
@@ -79,7 +89,17 @@ class InspectDataSourceDetails extends \Google\Protobuf\Internal\Message
      */
     public function getResult()
     {
-        return $this->result;
+        return isset($this->result) ? $this->result : null;
+    }
+
+    public function hasResult()
+    {
+        return isset($this->result);
+    }
+
+    public function clearResult()
+    {
+        unset($this->result);
     }
 
     /**
@@ -91,7 +111,7 @@ class InspectDataSourceDetails extends \Google\Protobuf\Internal\Message
      */
     public function setResult($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\InspectDataSourceDetails_Result::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\InspectDataSourceDetails\Result::class);
         $this->result = $var;
 
         return $this;

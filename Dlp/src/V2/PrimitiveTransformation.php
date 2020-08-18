@@ -63,6 +63,11 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasReplaceConfig()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * Replace
      *
@@ -87,6 +92,11 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
     public function getRedactConfig()
     {
         return $this->readOneof(2);
+    }
+
+    public function hasRedactConfig()
+    {
+        return $this->hasOneof(2);
     }
 
     /**
@@ -115,6 +125,11 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasCharacterMaskConfig()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * Mask
      *
@@ -139,6 +154,11 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
     public function getCryptoReplaceFfxFpeConfig()
     {
         return $this->readOneof(4);
+    }
+
+    public function hasCryptoReplaceFfxFpeConfig()
+    {
+        return $this->hasOneof(4);
     }
 
     /**
@@ -167,6 +187,11 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
         return $this->readOneof(5);
     }
 
+    public function hasFixedSizeBucketingConfig()
+    {
+        return $this->hasOneof(5);
+    }
+
     /**
      * Fixed size bucketing
      *
@@ -191,6 +216,11 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
     public function getBucketingConfig()
     {
         return $this->readOneof(6);
+    }
+
+    public function hasBucketingConfig()
+    {
+        return $this->hasOneof(6);
     }
 
     /**
@@ -219,6 +249,11 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
         return $this->readOneof(7);
     }
 
+    public function hasReplaceWithInfoTypeConfig()
+    {
+        return $this->hasOneof(7);
+    }
+
     /**
      * Replace with infotype
      *
@@ -243,6 +278,11 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
     public function getTimePartConfig()
     {
         return $this->readOneof(8);
+    }
+
+    public function hasTimePartConfig()
+    {
+        return $this->hasOneof(8);
     }
 
     /**
@@ -271,6 +311,11 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
         return $this->readOneof(9);
     }
 
+    public function hasCryptoHashConfig()
+    {
+        return $this->hasOneof(9);
+    }
+
     /**
      * Crypto
      *
@@ -297,6 +342,11 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
         return $this->readOneof(11);
     }
 
+    public function hasDateShiftConfig()
+    {
+        return $this->hasOneof(11);
+    }
+
     /**
      * Date Shift
      *
@@ -321,6 +371,11 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
     public function getCryptoDeterministicConfig()
     {
         return $this->readOneof(12);
+    }
+
+    public function hasCryptoDeterministicConfig()
+    {
+        return $this->hasOneof(12);
     }
 
     /**

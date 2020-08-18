@@ -59,7 +59,17 @@ class QuasiId extends \Google\Protobuf\Internal\Message
      */
     public function getField()
     {
-        return $this->field;
+        return isset($this->field) ? $this->field : null;
+    }
+
+    public function hasField()
+    {
+        return isset($this->field);
+    }
+
+    public function clearField()
+    {
+        unset($this->field);
     }
 
     /**
@@ -90,6 +100,11 @@ class QuasiId extends \Google\Protobuf\Internal\Message
     public function getInfoType()
     {
         return $this->readOneof(2);
+    }
+
+    public function hasInfoType()
+    {
+        return $this->hasOneof(2);
     }
 
     /**
@@ -124,6 +139,11 @@ class QuasiId extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasCustomTag()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * A column can be tagged with a custom tag. In this case, the user must
      * indicate an auxiliary table that contains statistical information on
@@ -151,6 +171,11 @@ class QuasiId extends \Google\Protobuf\Internal\Message
     public function getInferred()
     {
         return $this->readOneof(4);
+    }
+
+    public function hasInferred()
+    {
+        return $this->hasOneof(4);
     }
 
     /**

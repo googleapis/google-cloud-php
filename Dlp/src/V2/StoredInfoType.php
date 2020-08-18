@@ -90,7 +90,17 @@ class StoredInfoType extends \Google\Protobuf\Internal\Message
      */
     public function getCurrentVersion()
     {
-        return $this->current_version;
+        return isset($this->current_version) ? $this->current_version : null;
+    }
+
+    public function hasCurrentVersion()
+    {
+        return isset($this->current_version);
+    }
+
+    public function clearCurrentVersion()
+    {
+        unset($this->current_version);
     }
 
     /**

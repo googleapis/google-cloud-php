@@ -54,7 +54,17 @@ class HybridContentItem extends \Google\Protobuf\Internal\Message
      */
     public function getItem()
     {
-        return $this->item;
+        return isset($this->item) ? $this->item : null;
+    }
+
+    public function hasItem()
+    {
+        return isset($this->item);
+    }
+
+    public function clearItem()
+    {
+        unset($this->item);
     }
 
     /**
@@ -80,7 +90,17 @@ class HybridContentItem extends \Google\Protobuf\Internal\Message
      */
     public function getFindingDetails()
     {
-        return $this->finding_details;
+        return isset($this->finding_details) ? $this->finding_details : null;
+    }
+
+    public function hasFindingDetails()
+    {
+        return isset($this->finding_details);
+    }
+
+    public function clearFindingDetails()
+    {
+        unset($this->finding_details);
     }
 
     /**

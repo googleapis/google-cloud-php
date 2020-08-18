@@ -77,6 +77,11 @@ class MetadataLocation extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasStorageLabel()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * Storage metadata.
      *

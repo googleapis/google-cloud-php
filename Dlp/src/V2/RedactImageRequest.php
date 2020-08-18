@@ -148,7 +148,17 @@ class RedactImageRequest extends \Google\Protobuf\Internal\Message
      */
     public function getInspectConfig()
     {
-        return $this->inspect_config;
+        return isset($this->inspect_config) ? $this->inspect_config : null;
+    }
+
+    public function hasInspectConfig()
+    {
+        return isset($this->inspect_config);
+    }
+
+    public function clearInspectConfig()
+    {
+        unset($this->inspect_config);
     }
 
     /**
@@ -228,7 +238,17 @@ class RedactImageRequest extends \Google\Protobuf\Internal\Message
      */
     public function getByteItem()
     {
-        return $this->byte_item;
+        return isset($this->byte_item) ? $this->byte_item : null;
+    }
+
+    public function hasByteItem()
+    {
+        return isset($this->byte_item);
+    }
+
+    public function clearByteItem()
+    {
+        unset($this->byte_item);
     }
 
     /**

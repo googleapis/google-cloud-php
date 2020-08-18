@@ -54,7 +54,17 @@ class Error extends \Google\Protobuf\Internal\Message
      */
     public function getDetails()
     {
-        return $this->details;
+        return isset($this->details) ? $this->details : null;
+    }
+
+    public function hasDetails()
+    {
+        return isset($this->details);
+    }
+
+    public function clearDetails()
+    {
+        unset($this->details);
     }
 
     /**

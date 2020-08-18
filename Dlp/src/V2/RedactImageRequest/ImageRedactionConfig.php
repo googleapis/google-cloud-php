@@ -62,6 +62,11 @@ class ImageRedactionConfig extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasInfoType()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * Only one per info_type should be provided per request. If not
      * specified, and redact_all_text is false, the DLP API will redact all
@@ -92,6 +97,11 @@ class ImageRedactionConfig extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasRedactAllText()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * If true, all text found in the image, regardless whether it matches an
      * info_type, is redacted. Only one should be provided.
@@ -117,7 +127,17 @@ class ImageRedactionConfig extends \Google\Protobuf\Internal\Message
      */
     public function getRedactionColor()
     {
-        return $this->redaction_color;
+        return isset($this->redaction_color) ? $this->redaction_color : null;
+    }
+
+    public function hasRedactionColor()
+    {
+        return isset($this->redaction_color);
+    }
+
+    public function clearRedactionColor()
+    {
+        unset($this->redaction_color);
     }
 
     /**

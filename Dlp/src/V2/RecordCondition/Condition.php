@@ -77,7 +77,17 @@ class Condition extends \Google\Protobuf\Internal\Message
      */
     public function getField()
     {
-        return $this->field;
+        return isset($this->field) ? $this->field : null;
+    }
+
+    public function hasField()
+    {
+        return isset($this->field);
+    }
+
+    public function clearField()
+    {
+        unset($this->field);
     }
 
     /**
@@ -129,7 +139,17 @@ class Condition extends \Google\Protobuf\Internal\Message
      */
     public function getValue()
     {
-        return $this->value;
+        return isset($this->value) ? $this->value : null;
+    }
+
+    public function hasValue()
+    {
+        return isset($this->value);
+    }
+
+    public function clearValue()
+    {
+        unset($this->value);
     }
 
     /**

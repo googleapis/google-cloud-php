@@ -69,7 +69,17 @@ class StatisticalTable extends \Google\Protobuf\Internal\Message
      */
     public function getTable()
     {
-        return $this->table;
+        return isset($this->table) ? $this->table : null;
+    }
+
+    public function hasTable()
+    {
+        return isset($this->table);
+    }
+
+    public function clearTable()
+    {
+        unset($this->table);
     }
 
     /**
@@ -122,7 +132,17 @@ class StatisticalTable extends \Google\Protobuf\Internal\Message
      */
     public function getRelativeFrequency()
     {
-        return $this->relative_frequency;
+        return isset($this->relative_frequency) ? $this->relative_frequency : null;
+    }
+
+    public function hasRelativeFrequency()
+    {
+        return isset($this->relative_frequency);
+    }
+
+    public function clearRelativeFrequency()
+    {
+        unset($this->relative_frequency);
     }
 
     /**

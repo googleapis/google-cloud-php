@@ -102,7 +102,7 @@ class SummaryResult extends \Google\Protobuf\Internal\Message
      */
     public function setCode($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Dlp\V2\TransformationSummary_TransformationResultCode::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Dlp\V2\TransformationSummary\TransformationResultCode::class);
         $this->code = $var;
 
         return $this;

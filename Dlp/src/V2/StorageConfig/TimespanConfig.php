@@ -100,7 +100,17 @@ class TimespanConfig extends \Google\Protobuf\Internal\Message
      */
     public function getStartTime()
     {
-        return $this->start_time;
+        return isset($this->start_time) ? $this->start_time : null;
+    }
+
+    public function hasStartTime()
+    {
+        return isset($this->start_time);
+    }
+
+    public function clearStartTime()
+    {
+        unset($this->start_time);
     }
 
     /**
@@ -127,7 +137,17 @@ class TimespanConfig extends \Google\Protobuf\Internal\Message
      */
     public function getEndTime()
     {
-        return $this->end_time;
+        return isset($this->end_time) ? $this->end_time : null;
+    }
+
+    public function hasEndTime()
+    {
+        return isset($this->end_time);
+    }
+
+    public function clearEndTime()
+    {
+        unset($this->end_time);
     }
 
     /**
@@ -165,7 +185,17 @@ class TimespanConfig extends \Google\Protobuf\Internal\Message
      */
     public function getTimestampField()
     {
-        return $this->timestamp_field;
+        return isset($this->timestamp_field) ? $this->timestamp_field : null;
+    }
+
+    public function hasTimestampField()
+    {
+        return isset($this->timestamp_field);
+    }
+
+    public function clearTimestampField()
+    {
+        unset($this->timestamp_field);
     }
 
     /**

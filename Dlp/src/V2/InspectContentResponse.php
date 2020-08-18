@@ -45,7 +45,17 @@ class InspectContentResponse extends \Google\Protobuf\Internal\Message
      */
     public function getResult()
     {
-        return $this->result;
+        return isset($this->result) ? $this->result : null;
+    }
+
+    public function hasResult()
+    {
+        return isset($this->result);
+    }
+
+    public function clearResult()
+    {
+        unset($this->result);
     }
 
     /**

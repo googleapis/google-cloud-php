@@ -101,7 +101,17 @@ class UpdateStoredInfoTypeRequest extends \Google\Protobuf\Internal\Message
      */
     public function getConfig()
     {
-        return $this->config;
+        return isset($this->config) ? $this->config : null;
+    }
+
+    public function hasConfig()
+    {
+        return isset($this->config);
+    }
+
+    public function clearConfig()
+    {
+        unset($this->config);
     }
 
     /**
@@ -129,7 +139,17 @@ class UpdateStoredInfoTypeRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return $this->update_mask;
+        return isset($this->update_mask) ? $this->update_mask : null;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**

@@ -205,7 +205,17 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      */
     public function getLimits()
     {
-        return $this->limits;
+        return isset($this->limits) ? $this->limits : null;
+    }
+
+    public function hasLimits()
+    {
+        return isset($this->limits);
+    }
+
+    public function clearLimits()
+    {
+        unset($this->limits);
     }
 
     /**
@@ -217,7 +227,7 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      */
     public function setLimits($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\InspectConfig_FindingLimits::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\InspectConfig\FindingLimits::class);
         $this->limits = $var;
 
         return $this;

@@ -102,7 +102,17 @@ class StoredInfoTypeVersion extends \Google\Protobuf\Internal\Message
      */
     public function getConfig()
     {
-        return $this->config;
+        return isset($this->config) ? $this->config : null;
+    }
+
+    public function hasConfig()
+    {
+        return isset($this->config);
+    }
+
+    public function clearConfig()
+    {
+        unset($this->config);
     }
 
     /**
@@ -129,7 +139,17 @@ class StoredInfoTypeVersion extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return $this->create_time;
+        return isset($this->create_time) ? $this->create_time : null;
+    }
+
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
     }
 
     /**
@@ -230,7 +250,17 @@ class StoredInfoTypeVersion extends \Google\Protobuf\Internal\Message
      */
     public function getStats()
     {
-        return $this->stats;
+        return isset($this->stats) ? $this->stats : null;
+    }
+
+    public function hasStats()
+    {
+        return isset($this->stats);
+    }
+
+    public function clearStats()
+    {
+        unset($this->stats);
     }
 
     /**

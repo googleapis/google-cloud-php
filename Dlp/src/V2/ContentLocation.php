@@ -136,6 +136,11 @@ class ContentLocation extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasRecordLocation()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * Location within a row or record of a database table.
      *
@@ -160,6 +165,11 @@ class ContentLocation extends \Google\Protobuf\Internal\Message
     public function getImageLocation()
     {
         return $this->readOneof(3);
+    }
+
+    public function hasImageLocation()
+    {
+        return $this->hasOneof(3);
     }
 
     /**
@@ -188,6 +198,11 @@ class ContentLocation extends \Google\Protobuf\Internal\Message
         return $this->readOneof(5);
     }
 
+    public function hasDocumentLocation()
+    {
+        return $this->hasOneof(5);
+    }
+
     /**
      * Location data for document files.
      *
@@ -212,6 +227,11 @@ class ContentLocation extends \Google\Protobuf\Internal\Message
     public function getMetadataLocation()
     {
         return $this->readOneof(8);
+    }
+
+    public function hasMetadataLocation()
+    {
+        return $this->hasOneof(8);
     }
 
     /**
@@ -240,7 +260,17 @@ class ContentLocation extends \Google\Protobuf\Internal\Message
      */
     public function getContainerTimestamp()
     {
-        return $this->container_timestamp;
+        return isset($this->container_timestamp) ? $this->container_timestamp : null;
+    }
+
+    public function hasContainerTimestamp()
+    {
+        return isset($this->container_timestamp);
+    }
+
+    public function clearContainerTimestamp()
+    {
+        unset($this->container_timestamp);
     }
 
     /**

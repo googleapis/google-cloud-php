@@ -61,7 +61,17 @@ class BigQueryKey extends \Google\Protobuf\Internal\Message
      */
     public function getTableReference()
     {
-        return $this->table_reference;
+        return isset($this->table_reference) ? $this->table_reference : null;
+    }
+
+    public function hasTableReference()
+    {
+        return isset($this->table_reference);
+    }
+
+    public function clearTableReference()
+    {
+        unset($this->table_reference);
     }
 
     /**

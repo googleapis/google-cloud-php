@@ -139,7 +139,17 @@ class CryptoDeterministicConfig extends \Google\Protobuf\Internal\Message
      */
     public function getCryptoKey()
     {
-        return $this->crypto_key;
+        return isset($this->crypto_key) ? $this->crypto_key : null;
+    }
+
+    public function hasCryptoKey()
+    {
+        return isset($this->crypto_key);
+    }
+
+    public function clearCryptoKey()
+    {
+        unset($this->crypto_key);
     }
 
     /**
@@ -190,7 +200,17 @@ class CryptoDeterministicConfig extends \Google\Protobuf\Internal\Message
      */
     public function getSurrogateInfoType()
     {
-        return $this->surrogate_info_type;
+        return isset($this->surrogate_info_type) ? $this->surrogate_info_type : null;
+    }
+
+    public function hasSurrogateInfoType()
+    {
+        return isset($this->surrogate_info_type);
+    }
+
+    public function clearSurrogateInfoType()
+    {
+        unset($this->surrogate_info_type);
     }
 
     /**
@@ -254,7 +274,17 @@ class CryptoDeterministicConfig extends \Google\Protobuf\Internal\Message
      */
     public function getContext()
     {
-        return $this->context;
+        return isset($this->context) ? $this->context : null;
+    }
+
+    public function hasContext()
+    {
+        return isset($this->context);
+    }
+
+    public function clearContext()
+    {
+        unset($this->context);
     }
 
     /**

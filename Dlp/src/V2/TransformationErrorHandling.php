@@ -52,6 +52,11 @@ class TransformationErrorHandling extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasThrowError()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * Throw an error
      *
@@ -61,7 +66,7 @@ class TransformationErrorHandling extends \Google\Protobuf\Internal\Message
      */
     public function setThrowError($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\TransformationErrorHandling_ThrowError::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\TransformationErrorHandling\ThrowError::class);
         $this->writeOneof(1, $var);
 
         return $this;
@@ -78,6 +83,11 @@ class TransformationErrorHandling extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasLeaveUntransformed()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * Ignore errors
      *
@@ -87,7 +97,7 @@ class TransformationErrorHandling extends \Google\Protobuf\Internal\Message
      */
     public function setLeaveUntransformed($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\TransformationErrorHandling_LeaveUntransformed::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\TransformationErrorHandling\LeaveUntransformed::class);
         $this->writeOneof(2, $var);
 
         return $this;

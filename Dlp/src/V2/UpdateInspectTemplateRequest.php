@@ -95,7 +95,17 @@ class UpdateInspectTemplateRequest extends \Google\Protobuf\Internal\Message
      */
     public function getInspectTemplate()
     {
-        return $this->inspect_template;
+        return isset($this->inspect_template) ? $this->inspect_template : null;
+    }
+
+    public function hasInspectTemplate()
+    {
+        return isset($this->inspect_template);
+    }
+
+    public function clearInspectTemplate()
+    {
+        unset($this->inspect_template);
     }
 
     /**
@@ -121,7 +131,17 @@ class UpdateInspectTemplateRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return $this->update_mask;
+        return isset($this->update_mask) ? $this->update_mask : null;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**

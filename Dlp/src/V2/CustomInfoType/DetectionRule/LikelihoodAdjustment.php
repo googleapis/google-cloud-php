@@ -53,6 +53,11 @@ class LikelihoodAdjustment extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasFixedLikelihood()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * Set the likelihood of a finding to a fixed value.
      *
@@ -84,6 +89,11 @@ class LikelihoodAdjustment extends \Google\Protobuf\Internal\Message
     public function getRelativeLikelihood()
     {
         return $this->readOneof(2);
+    }
+
+    public function hasRelativeLikelihood()
+    {
+        return $this->hasOneof(2);
     }
 
     /**

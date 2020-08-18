@@ -62,6 +62,11 @@ class Value extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasIntegerValue()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * integer
      *
@@ -86,6 +91,11 @@ class Value extends \Google\Protobuf\Internal\Message
     public function getFloatValue()
     {
         return $this->readOneof(2);
+    }
+
+    public function hasFloatValue()
+    {
+        return $this->hasOneof(2);
     }
 
     /**
@@ -114,6 +124,11 @@ class Value extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasStringValue()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * string
      *
@@ -138,6 +153,11 @@ class Value extends \Google\Protobuf\Internal\Message
     public function getBooleanValue()
     {
         return $this->readOneof(4);
+    }
+
+    public function hasBooleanValue()
+    {
+        return $this->hasOneof(4);
     }
 
     /**
@@ -166,6 +186,11 @@ class Value extends \Google\Protobuf\Internal\Message
         return $this->readOneof(5);
     }
 
+    public function hasTimestampValue()
+    {
+        return $this->hasOneof(5);
+    }
+
     /**
      * timestamp
      *
@@ -190,6 +215,11 @@ class Value extends \Google\Protobuf\Internal\Message
     public function getTimeValue()
     {
         return $this->readOneof(6);
+    }
+
+    public function hasTimeValue()
+    {
+        return $this->hasOneof(6);
     }
 
     /**
@@ -218,6 +248,11 @@ class Value extends \Google\Protobuf\Internal\Message
         return $this->readOneof(7);
     }
 
+    public function hasDateValue()
+    {
+        return $this->hasOneof(7);
+    }
+
     /**
      * date
      *
@@ -242,6 +277,11 @@ class Value extends \Google\Protobuf\Internal\Message
     public function getDayOfWeekValue()
     {
         return $this->readOneof(8);
+    }
+
+    public function hasDayOfWeekValue()
+    {
+        return $this->hasOneof(8);
     }
 
     /**

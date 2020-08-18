@@ -63,7 +63,17 @@ class InfoTypeLimit extends \Google\Protobuf\Internal\Message
      */
     public function getInfoType()
     {
-        return $this->info_type;
+        return isset($this->info_type) ? $this->info_type : null;
+    }
+
+    public function hasInfoType()
+    {
+        return isset($this->info_type);
+    }
+
+    public function clearInfoType()
+    {
+        unset($this->info_type);
     }
 
     /**
