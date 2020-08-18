@@ -62,7 +62,17 @@ class Schedule extends \Google\Protobuf\Internal\Message
      */
     public function getScheduleTime()
     {
-        return $this->schedule_time;
+        return isset($this->schedule_time) ? $this->schedule_time : null;
+    }
+
+    public function hasScheduleTime()
+    {
+        return isset($this->schedule_time);
+    }
+
+    public function clearScheduleTime()
+    {
+        unset($this->schedule_time);
     }
 
     /**

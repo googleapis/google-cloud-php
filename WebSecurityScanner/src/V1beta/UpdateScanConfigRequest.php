@@ -63,7 +63,17 @@ class UpdateScanConfigRequest extends \Google\Protobuf\Internal\Message
      */
     public function getScanConfig()
     {
-        return $this->scan_config;
+        return isset($this->scan_config) ? $this->scan_config : null;
+    }
+
+    public function hasScanConfig()
+    {
+        return isset($this->scan_config);
+    }
+
+    public function clearScanConfig()
+    {
+        unset($this->scan_config);
     }
 
     /**
@@ -93,7 +103,17 @@ class UpdateScanConfigRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return $this->update_mask;
+        return isset($this->update_mask) ? $this->update_mask : null;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**

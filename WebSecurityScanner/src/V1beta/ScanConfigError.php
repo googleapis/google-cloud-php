@@ -74,7 +74,7 @@ class ScanConfigError extends \Google\Protobuf\Internal\Message
      */
     public function setCode($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\WebSecurityScanner\V1beta\ScanConfigError_Code::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\WebSecurityScanner\V1beta\ScanConfigError\Code::class);
         $this->code = $var;
 
         return $this;

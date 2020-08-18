@@ -83,7 +83,17 @@ class CreateScanConfigRequest extends \Google\Protobuf\Internal\Message
      */
     public function getScanConfig()
     {
-        return $this->scan_config;
+        return isset($this->scan_config) ? $this->scan_config : null;
+    }
+
+    public function hasScanConfig()
+    {
+        return isset($this->scan_config);
+    }
+
+    public function clearScanConfig()
+    {
+        unset($this->scan_config);
     }
 
     /**
