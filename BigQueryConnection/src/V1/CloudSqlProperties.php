@@ -133,7 +133,7 @@ class CloudSqlProperties extends \Google\Protobuf\Internal\Message
      */
     public function setType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\Connection\V1\CloudSqlProperties_DatabaseType::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\Connection\V1\CloudSqlProperties\DatabaseType::class);
         $this->type = $var;
 
         return $this;
@@ -147,7 +147,17 @@ class CloudSqlProperties extends \Google\Protobuf\Internal\Message
      */
     public function getCredential()
     {
-        return $this->credential;
+        return isset($this->credential) ? $this->credential : null;
+    }
+
+    public function hasCredential()
+    {
+        return isset($this->credential);
+    }
+
+    public function clearCredential()
+    {
+        unset($this->credential);
     }
 
     /**
