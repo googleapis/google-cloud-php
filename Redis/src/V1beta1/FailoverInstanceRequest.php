@@ -103,7 +103,7 @@ class FailoverInstanceRequest extends \Google\Protobuf\Internal\Message
      */
     public function setDataProtectionMode($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Redis\V1beta1\FailoverInstanceRequest_DataProtectionMode::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Redis\V1beta1\FailoverInstanceRequest\DataProtectionMode::class);
         $this->data_protection_mode = $var;
 
         return $this;

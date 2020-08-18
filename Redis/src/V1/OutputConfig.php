@@ -43,6 +43,11 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasGcsDestination()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * Google Cloud Storage destination for output content.
      *
