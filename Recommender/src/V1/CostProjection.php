@@ -59,7 +59,17 @@ class CostProjection extends \Google\Protobuf\Internal\Message
      */
     public function getCost()
     {
-        return $this->cost;
+        return isset($this->cost) ? $this->cost : null;
+    }
+
+    public function hasCost()
+    {
+        return isset($this->cost);
+    }
+
+    public function clearCost()
+    {
+        unset($this->cost);
     }
 
     /**
@@ -87,7 +97,17 @@ class CostProjection extends \Google\Protobuf\Internal\Message
      */
     public function getDuration()
     {
-        return $this->duration;
+        return isset($this->duration) ? $this->duration : null;
+    }
+
+    public function hasDuration()
+    {
+        return isset($this->duration);
+    }
+
+    public function clearDuration()
+    {
+        unset($this->duration);
     }
 
     /**

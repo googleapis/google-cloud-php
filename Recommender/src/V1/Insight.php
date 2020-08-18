@@ -243,7 +243,17 @@ class Insight extends \Google\Protobuf\Internal\Message
      */
     public function getContent()
     {
-        return $this->content;
+        return isset($this->content) ? $this->content : null;
+    }
+
+    public function hasContent()
+    {
+        return isset($this->content);
+    }
+
+    public function clearContent()
+    {
+        unset($this->content);
     }
 
     /**
@@ -270,7 +280,17 @@ class Insight extends \Google\Protobuf\Internal\Message
      */
     public function getLastRefreshTime()
     {
-        return $this->last_refresh_time;
+        return isset($this->last_refresh_time) ? $this->last_refresh_time : null;
+    }
+
+    public function hasLastRefreshTime()
+    {
+        return isset($this->last_refresh_time);
+    }
+
+    public function clearLastRefreshTime()
+    {
+        unset($this->last_refresh_time);
     }
 
     /**
@@ -298,7 +318,17 @@ class Insight extends \Google\Protobuf\Internal\Message
      */
     public function getObservationPeriod()
     {
-        return $this->observation_period;
+        return isset($this->observation_period) ? $this->observation_period : null;
+    }
+
+    public function hasObservationPeriod()
+    {
+        return isset($this->observation_period);
+    }
+
+    public function clearObservationPeriod()
+    {
+        unset($this->observation_period);
     }
 
     /**
@@ -326,7 +356,17 @@ class Insight extends \Google\Protobuf\Internal\Message
      */
     public function getStateInfo()
     {
-        return $this->state_info;
+        return isset($this->state_info) ? $this->state_info : null;
+    }
+
+    public function hasStateInfo()
+    {
+        return isset($this->state_info);
+    }
+
+    public function clearStateInfo()
+    {
+        unset($this->state_info);
     }
 
     /**
@@ -364,7 +404,7 @@ class Insight extends \Google\Protobuf\Internal\Message
      */
     public function setCategory($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Recommender\V1\Insight_Category::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Recommender\V1\Insight\Category::class);
         $this->category = $var;
 
         return $this;

@@ -239,7 +239,17 @@ class Recommendation extends \Google\Protobuf\Internal\Message
      */
     public function getLastRefreshTime()
     {
-        return $this->last_refresh_time;
+        return isset($this->last_refresh_time) ? $this->last_refresh_time : null;
+    }
+
+    public function hasLastRefreshTime()
+    {
+        return isset($this->last_refresh_time);
+    }
+
+    public function clearLastRefreshTime()
+    {
+        unset($this->last_refresh_time);
     }
 
     /**
@@ -267,7 +277,17 @@ class Recommendation extends \Google\Protobuf\Internal\Message
      */
     public function getPrimaryImpact()
     {
-        return $this->primary_impact;
+        return isset($this->primary_impact) ? $this->primary_impact : null;
+    }
+
+    public function hasPrimaryImpact()
+    {
+        return isset($this->primary_impact);
+    }
+
+    public function clearPrimaryImpact()
+    {
+        unset($this->primary_impact);
     }
 
     /**
@@ -324,7 +344,17 @@ class Recommendation extends \Google\Protobuf\Internal\Message
      */
     public function getContent()
     {
-        return $this->content;
+        return isset($this->content) ? $this->content : null;
+    }
+
+    public function hasContent()
+    {
+        return isset($this->content);
+    }
+
+    public function clearContent()
+    {
+        unset($this->content);
     }
 
     /**
@@ -350,7 +380,17 @@ class Recommendation extends \Google\Protobuf\Internal\Message
      */
     public function getStateInfo()
     {
-        return $this->state_info;
+        return isset($this->state_info) ? $this->state_info : null;
+    }
+
+    public function hasStateInfo()
+    {
+        return isset($this->state_info);
+    }
+
+    public function clearStateInfo()
+    {
+        unset($this->state_info);
     }
 
     /**
