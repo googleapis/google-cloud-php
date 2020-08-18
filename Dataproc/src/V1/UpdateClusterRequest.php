@@ -299,7 +299,17 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      */
     public function getCluster()
     {
-        return $this->cluster;
+        return isset($this->cluster) ? $this->cluster : null;
+    }
+
+    public function hasCluster()
+    {
+        return isset($this->cluster);
+    }
+
+    public function clearCluster()
+    {
+        unset($this->cluster);
     }
 
     /**
@@ -332,7 +342,17 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      */
     public function getGracefulDecommissionTimeout()
     {
-        return $this->graceful_decommission_timeout;
+        return isset($this->graceful_decommission_timeout) ? $this->graceful_decommission_timeout : null;
+    }
+
+    public function hasGracefulDecommissionTimeout()
+    {
+        return isset($this->graceful_decommission_timeout);
+    }
+
+    public function clearGracefulDecommissionTimeout()
+    {
+        unset($this->graceful_decommission_timeout);
     }
 
     /**
@@ -412,7 +432,17 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return $this->update_mask;
+        return isset($this->update_mask) ? $this->update_mask : null;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**

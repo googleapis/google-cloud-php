@@ -85,7 +85,7 @@ class JobStatus extends \Google\Protobuf\Internal\Message
      */
     public function setState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Dataproc\V1beta2\JobStatus_State::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Dataproc\V1beta2\JobStatus\State::class);
         $this->state = $var;
 
         return $this;
@@ -127,7 +127,17 @@ class JobStatus extends \Google\Protobuf\Internal\Message
      */
     public function getStateStartTime()
     {
-        return $this->state_start_time;
+        return isset($this->state_start_time) ? $this->state_start_time : null;
+    }
+
+    public function hasStateStartTime()
+    {
+        return isset($this->state_start_time);
+    }
+
+    public function clearStateStartTime()
+    {
+        unset($this->state_start_time);
     }
 
     /**
@@ -167,7 +177,7 @@ class JobStatus extends \Google\Protobuf\Internal\Message
      */
     public function setSubstate($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Dataproc\V1beta2\JobStatus_Substate::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Dataproc\V1beta2\JobStatus\Substate::class);
         $this->substate = $var;
 
         return $this;

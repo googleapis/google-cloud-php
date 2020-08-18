@@ -94,6 +94,11 @@ class HiveJob extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasQueryFileUri()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * The HCFS URI of the script that contains Hive queries.
      *
@@ -118,6 +123,11 @@ class HiveJob extends \Google\Protobuf\Internal\Message
     public function getQueryList()
     {
         return $this->readOneof(2);
+    }
+
+    public function hasQueryList()
+    {
+        return $this->hasOneof(2);
     }
 
     /**

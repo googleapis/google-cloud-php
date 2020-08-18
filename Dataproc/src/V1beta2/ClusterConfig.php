@@ -238,7 +238,17 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      */
     public function getGceClusterConfig()
     {
-        return $this->gce_cluster_config;
+        return isset($this->gce_cluster_config) ? $this->gce_cluster_config : null;
+    }
+
+    public function hasGceClusterConfig()
+    {
+        return isset($this->gce_cluster_config);
+    }
+
+    public function clearGceClusterConfig()
+    {
+        unset($this->gce_cluster_config);
     }
 
     /**
@@ -266,7 +276,17 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      */
     public function getMasterConfig()
     {
-        return $this->master_config;
+        return isset($this->master_config) ? $this->master_config : null;
+    }
+
+    public function hasMasterConfig()
+    {
+        return isset($this->master_config);
+    }
+
+    public function clearMasterConfig()
+    {
+        unset($this->master_config);
     }
 
     /**
@@ -294,7 +314,17 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      */
     public function getWorkerConfig()
     {
-        return $this->worker_config;
+        return isset($this->worker_config) ? $this->worker_config : null;
+    }
+
+    public function hasWorkerConfig()
+    {
+        return isset($this->worker_config);
+    }
+
+    public function clearWorkerConfig()
+    {
+        unset($this->worker_config);
     }
 
     /**
@@ -322,7 +352,17 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      */
     public function getSecondaryWorkerConfig()
     {
-        return $this->secondary_worker_config;
+        return isset($this->secondary_worker_config) ? $this->secondary_worker_config : null;
+    }
+
+    public function hasSecondaryWorkerConfig()
+    {
+        return isset($this->secondary_worker_config);
+    }
+
+    public function clearSecondaryWorkerConfig()
+    {
+        unset($this->secondary_worker_config);
     }
 
     /**
@@ -349,7 +389,17 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      */
     public function getSoftwareConfig()
     {
-        return $this->software_config;
+        return isset($this->software_config) ? $this->software_config : null;
+    }
+
+    public function hasSoftwareConfig()
+    {
+        return isset($this->software_config);
+    }
+
+    public function clearSoftwareConfig()
+    {
+        unset($this->software_config);
     }
 
     /**
@@ -375,7 +425,17 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      */
     public function getLifecycleConfig()
     {
-        return $this->lifecycle_config;
+        return isset($this->lifecycle_config) ? $this->lifecycle_config : null;
+    }
+
+    public function hasLifecycleConfig()
+    {
+        return isset($this->lifecycle_config);
+    }
+
+    public function clearLifecycleConfig()
+    {
+        unset($this->lifecycle_config);
     }
 
     /**
@@ -449,7 +509,17 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      */
     public function getEncryptionConfig()
     {
-        return $this->encryption_config;
+        return isset($this->encryption_config) ? $this->encryption_config : null;
+    }
+
+    public function hasEncryptionConfig()
+    {
+        return isset($this->encryption_config);
+    }
+
+    public function clearEncryptionConfig()
+    {
+        unset($this->encryption_config);
     }
 
     /**
@@ -476,7 +546,17 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      */
     public function getAutoscalingConfig()
     {
-        return $this->autoscaling_config;
+        return isset($this->autoscaling_config) ? $this->autoscaling_config : null;
+    }
+
+    public function hasAutoscalingConfig()
+    {
+        return isset($this->autoscaling_config);
+    }
+
+    public function clearAutoscalingConfig()
+    {
+        unset($this->autoscaling_config);
     }
 
     /**
@@ -503,7 +583,17 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      */
     public function getEndpointConfig()
     {
-        return $this->endpoint_config;
+        return isset($this->endpoint_config) ? $this->endpoint_config : null;
+    }
+
+    public function hasEndpointConfig()
+    {
+        return isset($this->endpoint_config);
+    }
+
+    public function clearEndpointConfig()
+    {
+        unset($this->endpoint_config);
     }
 
     /**
@@ -529,7 +619,17 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      */
     public function getSecurityConfig()
     {
-        return $this->security_config;
+        return isset($this->security_config) ? $this->security_config : null;
+    }
+
+    public function hasSecurityConfig()
+    {
+        return isset($this->security_config);
+    }
+
+    public function clearSecurityConfig()
+    {
+        unset($this->security_config);
     }
 
     /**
@@ -558,7 +658,17 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      */
     public function getGkeClusterConfig()
     {
-        return $this->gke_cluster_config;
+        return isset($this->gke_cluster_config) ? $this->gke_cluster_config : null;
+    }
+
+    public function hasGkeClusterConfig()
+    {
+        return isset($this->gke_cluster_config);
+    }
+
+    public function clearGkeClusterConfig()
+    {
+        unset($this->gke_cluster_config);
     }
 
     /**

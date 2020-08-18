@@ -45,6 +45,11 @@ class ParameterValidation extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasRegex()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * Validation based on regular expressions.
      *
@@ -69,6 +74,11 @@ class ParameterValidation extends \Google\Protobuf\Internal\Message
     public function getValues()
     {
         return $this->readOneof(2);
+    }
+
+    public function hasValues()
+    {
+        return $this->hasOneof(2);
     }
 
     /**

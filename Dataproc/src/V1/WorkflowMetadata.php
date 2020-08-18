@@ -209,7 +209,17 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getCreateCluster()
     {
-        return $this->create_cluster;
+        return isset($this->create_cluster) ? $this->create_cluster : null;
+    }
+
+    public function hasCreateCluster()
+    {
+        return isset($this->create_cluster);
+    }
+
+    public function clearCreateCluster()
+    {
+        unset($this->create_cluster);
     }
 
     /**
@@ -235,7 +245,17 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getGraph()
     {
-        return $this->graph;
+        return isset($this->graph) ? $this->graph : null;
+    }
+
+    public function hasGraph()
+    {
+        return isset($this->graph);
+    }
+
+    public function clearGraph()
+    {
+        unset($this->graph);
     }
 
     /**
@@ -261,7 +281,17 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getDeleteCluster()
     {
-        return $this->delete_cluster;
+        return isset($this->delete_cluster) ? $this->delete_cluster : null;
+    }
+
+    public function hasDeleteCluster()
+    {
+        return isset($this->delete_cluster);
+    }
+
+    public function clearDeleteCluster()
+    {
+        unset($this->delete_cluster);
     }
 
     /**
@@ -299,7 +329,7 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
      */
     public function setState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Dataproc\V1\WorkflowMetadata_State::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Dataproc\V1\WorkflowMetadata\State::class);
         $this->state = $var;
 
         return $this;
@@ -365,7 +395,17 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getStartTime()
     {
-        return $this->start_time;
+        return isset($this->start_time) ? $this->start_time : null;
+    }
+
+    public function hasStartTime()
+    {
+        return isset($this->start_time);
+    }
+
+    public function clearStartTime()
+    {
+        unset($this->start_time);
     }
 
     /**
@@ -391,7 +431,17 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getEndTime()
     {
-        return $this->end_time;
+        return isset($this->end_time) ? $this->end_time : null;
+    }
+
+    public function hasEndTime()
+    {
+        return isset($this->end_time);
+    }
+
+    public function clearEndTime()
+    {
+        unset($this->end_time);
     }
 
     /**

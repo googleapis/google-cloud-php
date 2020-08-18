@@ -330,7 +330,17 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      */
     public function getDiskConfig()
     {
-        return $this->disk_config;
+        return isset($this->disk_config) ? $this->disk_config : null;
+    }
+
+    public function hasDiskConfig()
+    {
+        return isset($this->disk_config);
+    }
+
+    public function clearDiskConfig()
+    {
+        unset($this->disk_config);
     }
 
     /**
@@ -404,7 +414,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      */
     public function setPreemptibility($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Dataproc\V1\InstanceGroupConfig_Preemptibility::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Dataproc\V1\InstanceGroupConfig\Preemptibility::class);
         $this->preemptibility = $var;
 
         return $this;
@@ -420,7 +430,17 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      */
     public function getManagedGroupConfig()
     {
-        return $this->managed_group_config;
+        return isset($this->managed_group_config) ? $this->managed_group_config : null;
+    }
+
+    public function hasManagedGroupConfig()
+    {
+        return isset($this->managed_group_config);
+    }
+
+    public function clearManagedGroupConfig()
+    {
+        unset($this->managed_group_config);
     }
 
     /**

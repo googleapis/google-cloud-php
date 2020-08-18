@@ -189,7 +189,17 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getReference()
     {
-        return $this->reference;
+        return isset($this->reference) ? $this->reference : null;
+    }
+
+    public function hasReference()
+    {
+        return isset($this->reference);
+    }
+
+    public function clearReference()
+    {
+        unset($this->reference);
     }
 
     /**
@@ -219,7 +229,17 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getPlacement()
     {
-        return $this->placement;
+        return isset($this->placement) ? $this->placement : null;
+    }
+
+    public function hasPlacement()
+    {
+        return isset($this->placement);
+    }
+
+    public function clearPlacement()
+    {
+        unset($this->placement);
     }
 
     /**
@@ -249,6 +269,11 @@ class Job extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasHadoopJob()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * Optional. Job is a Hadoop job.
      *
@@ -273,6 +298,11 @@ class Job extends \Google\Protobuf\Internal\Message
     public function getSparkJob()
     {
         return $this->readOneof(4);
+    }
+
+    public function hasSparkJob()
+    {
+        return $this->hasOneof(4);
     }
 
     /**
@@ -301,6 +331,11 @@ class Job extends \Google\Protobuf\Internal\Message
         return $this->readOneof(5);
     }
 
+    public function hasPysparkJob()
+    {
+        return $this->hasOneof(5);
+    }
+
     /**
      * Optional. Job is a PySpark job.
      *
@@ -325,6 +360,11 @@ class Job extends \Google\Protobuf\Internal\Message
     public function getHiveJob()
     {
         return $this->readOneof(6);
+    }
+
+    public function hasHiveJob()
+    {
+        return $this->hasOneof(6);
     }
 
     /**
@@ -353,6 +393,11 @@ class Job extends \Google\Protobuf\Internal\Message
         return $this->readOneof(7);
     }
 
+    public function hasPigJob()
+    {
+        return $this->hasOneof(7);
+    }
+
     /**
      * Optional. Job is a Pig job.
      *
@@ -377,6 +422,11 @@ class Job extends \Google\Protobuf\Internal\Message
     public function getSparkRJob()
     {
         return $this->readOneof(21);
+    }
+
+    public function hasSparkRJob()
+    {
+        return $this->hasOneof(21);
     }
 
     /**
@@ -405,6 +455,11 @@ class Job extends \Google\Protobuf\Internal\Message
         return $this->readOneof(12);
     }
 
+    public function hasSparkSqlJob()
+    {
+        return $this->hasOneof(12);
+    }
+
     /**
      * Optional. Job is a SparkSql job.
      *
@@ -429,6 +484,11 @@ class Job extends \Google\Protobuf\Internal\Message
     public function getPrestoJob()
     {
         return $this->readOneof(23);
+    }
+
+    public function hasPrestoJob()
+    {
+        return $this->hasOneof(23);
     }
 
     /**
@@ -456,7 +516,17 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getStatus()
     {
-        return $this->status;
+        return isset($this->status) ? $this->status : null;
+    }
+
+    public function hasStatus()
+    {
+        return isset($this->status);
+    }
+
+    public function clearStatus()
+    {
+        unset($this->status);
     }
 
     /**
@@ -636,7 +706,17 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getScheduling()
     {
-        return $this->scheduling;
+        return isset($this->scheduling) ? $this->scheduling : null;
+    }
+
+    public function hasScheduling()
+    {
+        return isset($this->scheduling);
+    }
+
+    public function clearScheduling()
+    {
+        unset($this->scheduling);
     }
 
     /**

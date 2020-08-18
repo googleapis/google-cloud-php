@@ -95,7 +95,17 @@ class NodeInitializationAction extends \Google\Protobuf\Internal\Message
      */
     public function getExecutionTimeout()
     {
-        return $this->execution_timeout;
+        return isset($this->execution_timeout) ? $this->execution_timeout : null;
+    }
+
+    public function hasExecutionTimeout()
+    {
+        return isset($this->execution_timeout);
+    }
+
+    public function clearExecutionTimeout()
+    {
+        unset($this->execution_timeout);
     }
 
     /**
