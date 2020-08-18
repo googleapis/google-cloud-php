@@ -101,7 +101,7 @@ class CreateGlossaryMetadata extends \Google\Protobuf\Internal\Message
      */
     public function setState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Translate\V3\CreateGlossaryMetadata_State::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Translate\V3\CreateGlossaryMetadata\State::class);
         $this->state = $var;
 
         return $this;
@@ -115,7 +115,17 @@ class CreateGlossaryMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getSubmitTime()
     {
-        return $this->submit_time;
+        return isset($this->submit_time) ? $this->submit_time : null;
+    }
+
+    public function hasSubmitTime()
+    {
+        return isset($this->submit_time);
+    }
+
+    public function clearSubmitTime()
+    {
+        unset($this->submit_time);
     }
 
     /**

@@ -183,7 +183,17 @@ class Translation extends \Google\Protobuf\Internal\Message
      */
     public function getGlossaryConfig()
     {
-        return $this->glossary_config;
+        return isset($this->glossary_config) ? $this->glossary_config : null;
+    }
+
+    public function hasGlossaryConfig()
+    {
+        return isset($this->glossary_config);
+    }
+
+    public function clearGlossaryConfig()
+    {
+        unset($this->glossary_config);
     }
 
     /**

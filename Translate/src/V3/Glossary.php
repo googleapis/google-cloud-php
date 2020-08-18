@@ -117,6 +117,11 @@ class Glossary extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasLanguagePair()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * Used with unidirectional glossaries.
      *
@@ -126,7 +131,7 @@ class Glossary extends \Google\Protobuf\Internal\Message
      */
     public function setLanguagePair($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Translate\V3\Glossary_LanguageCodePair::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Translate\V3\Glossary\LanguageCodePair::class);
         $this->writeOneof(3, $var);
 
         return $this;
@@ -143,6 +148,11 @@ class Glossary extends \Google\Protobuf\Internal\Message
         return $this->readOneof(4);
     }
 
+    public function hasLanguageCodesSet()
+    {
+        return $this->hasOneof(4);
+    }
+
     /**
      * Used with equivalent term set glossaries.
      *
@@ -152,7 +162,7 @@ class Glossary extends \Google\Protobuf\Internal\Message
      */
     public function setLanguageCodesSet($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Translate\V3\Glossary_LanguageCodesSet::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Translate\V3\Glossary\LanguageCodesSet::class);
         $this->writeOneof(4, $var);
 
         return $this;
@@ -167,7 +177,17 @@ class Glossary extends \Google\Protobuf\Internal\Message
      */
     public function getInputConfig()
     {
-        return $this->input_config;
+        return isset($this->input_config) ? $this->input_config : null;
+    }
+
+    public function hasInputConfig()
+    {
+        return isset($this->input_config);
+    }
+
+    public function clearInputConfig()
+    {
+        unset($this->input_config);
     }
 
     /**
@@ -220,7 +240,17 @@ class Glossary extends \Google\Protobuf\Internal\Message
      */
     public function getSubmitTime()
     {
-        return $this->submit_time;
+        return isset($this->submit_time) ? $this->submit_time : null;
+    }
+
+    public function hasSubmitTime()
+    {
+        return isset($this->submit_time);
+    }
+
+    public function clearSubmitTime()
+    {
+        unset($this->submit_time);
     }
 
     /**
@@ -246,7 +276,17 @@ class Glossary extends \Google\Protobuf\Internal\Message
      */
     public function getEndTime()
     {
-        return $this->end_time;
+        return isset($this->end_time) ? $this->end_time : null;
+    }
+
+    public function hasEndTime()
+    {
+        return isset($this->end_time);
+    }
+
+    public function clearEndTime()
+    {
+        unset($this->end_time);
     }
 
     /**

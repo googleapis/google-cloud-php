@@ -79,7 +79,17 @@ class CreateGlossaryRequest extends \Google\Protobuf\Internal\Message
      */
     public function getGlossary()
     {
-        return $this->glossary;
+        return isset($this->glossary) ? $this->glossary : null;
+    }
+
+    public function hasGlossary()
+    {
+        return isset($this->glossary);
+    }
+
+    public function clearGlossary()
+    {
+        unset($this->glossary);
     }
 
     /**
