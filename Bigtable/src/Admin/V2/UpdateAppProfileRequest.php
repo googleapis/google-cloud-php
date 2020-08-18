@@ -63,7 +63,17 @@ class UpdateAppProfileRequest extends \Google\Protobuf\Internal\Message
      */
     public function getAppProfile()
     {
-        return $this->app_profile;
+        return isset($this->app_profile) ? $this->app_profile : null;
+    }
+
+    public function hasAppProfile()
+    {
+        return isset($this->app_profile);
+    }
+
+    public function clearAppProfile()
+    {
+        unset($this->app_profile);
     }
 
     /**
@@ -90,7 +100,17 @@ class UpdateAppProfileRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return $this->update_mask;
+        return isset($this->update_mask) ? $this->update_mask : null;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**

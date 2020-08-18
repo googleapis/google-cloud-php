@@ -50,6 +50,11 @@ class RowRange extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasStartKeyClosed()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * Used when giving an inclusive lower bound for the range.
      *
@@ -74,6 +79,11 @@ class RowRange extends \Google\Protobuf\Internal\Message
     public function getStartKeyOpen()
     {
         return $this->readOneof(2);
+    }
+
+    public function hasStartKeyOpen()
+    {
+        return $this->hasOneof(2);
     }
 
     /**
@@ -102,6 +112,11 @@ class RowRange extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasEndKeyOpen()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * Used when giving an exclusive upper bound for the range.
      *
@@ -126,6 +141,11 @@ class RowRange extends \Google\Protobuf\Internal\Message
     public function getEndKeyClosed()
     {
         return $this->readOneof(4);
+    }
+
+    public function hasEndKeyClosed()
+    {
+        return $this->hasOneof(4);
     }
 
     /**

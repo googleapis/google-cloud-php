@@ -50,6 +50,11 @@ class ValueRange extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasStartValueClosed()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * Used when giving an inclusive lower bound for the range.
      *
@@ -74,6 +79,11 @@ class ValueRange extends \Google\Protobuf\Internal\Message
     public function getStartValueOpen()
     {
         return $this->readOneof(2);
+    }
+
+    public function hasStartValueOpen()
+    {
+        return $this->hasOneof(2);
     }
 
     /**
@@ -102,6 +112,11 @@ class ValueRange extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasEndValueClosed()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * Used when giving an inclusive upper bound for the range.
      *
@@ -126,6 +141,11 @@ class ValueRange extends \Google\Protobuf\Internal\Message
     public function getEndValueOpen()
     {
         return $this->readOneof(4);
+    }
+
+    public function hasEndValueOpen()
+    {
+        return $this->hasOneof(4);
     }
 
     /**

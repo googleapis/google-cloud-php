@@ -75,7 +75,17 @@ class Condition extends \Google\Protobuf\Internal\Message
      */
     public function getPredicateFilter()
     {
-        return $this->predicate_filter;
+        return isset($this->predicate_filter) ? $this->predicate_filter : null;
+    }
+
+    public function hasPredicateFilter()
+    {
+        return isset($this->predicate_filter);
+    }
+
+    public function clearPredicateFilter()
+    {
+        unset($this->predicate_filter);
     }
 
     /**
@@ -103,7 +113,17 @@ class Condition extends \Google\Protobuf\Internal\Message
      */
     public function getTrueFilter()
     {
-        return $this->true_filter;
+        return isset($this->true_filter) ? $this->true_filter : null;
+    }
+
+    public function hasTrueFilter()
+    {
+        return isset($this->true_filter);
+    }
+
+    public function clearTrueFilter()
+    {
+        unset($this->true_filter);
     }
 
     /**
@@ -132,7 +152,17 @@ class Condition extends \Google\Protobuf\Internal\Message
      */
     public function getFalseFilter()
     {
-        return $this->false_filter;
+        return isset($this->false_filter) ? $this->false_filter : null;
+    }
+
+    public function hasFalseFilter()
+    {
+        return isset($this->false_filter);
+    }
+
+    public function clearFalseFilter()
+    {
+        unset($this->false_filter);
     }
 
     /**

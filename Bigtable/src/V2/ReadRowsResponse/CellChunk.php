@@ -194,7 +194,17 @@ class CellChunk extends \Google\Protobuf\Internal\Message
      */
     public function getFamilyName()
     {
-        return $this->family_name;
+        return isset($this->family_name) ? $this->family_name : null;
+    }
+
+    public function hasFamilyName()
+    {
+        return isset($this->family_name);
+    }
+
+    public function clearFamilyName()
+    {
+        unset($this->family_name);
     }
 
     /**
@@ -266,7 +276,17 @@ class CellChunk extends \Google\Protobuf\Internal\Message
      */
     public function getQualifier()
     {
-        return $this->qualifier;
+        return isset($this->qualifier) ? $this->qualifier : null;
+    }
+
+    public function hasQualifier()
+    {
+        return isset($this->qualifier);
+    }
+
+    public function clearQualifier()
+    {
+        unset($this->qualifier);
     }
 
     /**
@@ -471,6 +491,11 @@ class CellChunk extends \Google\Protobuf\Internal\Message
         return $this->readOneof(8);
     }
 
+    public function hasResetRow()
+    {
+        return $this->hasOneof(8);
+    }
+
     /**
      * Indicates that the client should drop all previous chunks for
      * `row_key`, as it will be re-read from the beginning.
@@ -497,6 +522,11 @@ class CellChunk extends \Google\Protobuf\Internal\Message
     public function getCommitRow()
     {
         return $this->readOneof(9);
+    }
+
+    public function hasCommitRow()
+    {
+        return $this->hasOneof(9);
     }
 
     /**

@@ -90,6 +90,11 @@ class DropRowRangeRequest extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasRowKeyPrefix()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * Delete all rows that start with this row key prefix. Prefix cannot be
      * zero length.
@@ -115,6 +120,11 @@ class DropRowRangeRequest extends \Google\Protobuf\Internal\Message
     public function getDeleteAllDataFromTable()
     {
         return $this->readOneof(3);
+    }
+
+    public function hasDeleteAllDataFromTable()
+    {
+        return $this->hasOneof(3);
     }
 
     /**

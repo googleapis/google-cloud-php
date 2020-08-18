@@ -142,7 +142,17 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
      */
     public function getBackup()
     {
-        return $this->backup;
+        return isset($this->backup) ? $this->backup : null;
+    }
+
+    public function hasBackup()
+    {
+        return isset($this->backup);
+    }
+
+    public function clearBackup()
+    {
+        unset($this->backup);
     }
 
     /**

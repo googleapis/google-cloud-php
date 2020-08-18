@@ -160,7 +160,17 @@ class CreateTableRequest extends \Google\Protobuf\Internal\Message
      */
     public function getTable()
     {
-        return $this->table;
+        return isset($this->table) ? $this->table : null;
+    }
+
+    public function hasTable()
+    {
+        return isset($this->table);
+    }
+
+    public function clearTable()
+    {
+        unset($this->table);
     }
 
     /**

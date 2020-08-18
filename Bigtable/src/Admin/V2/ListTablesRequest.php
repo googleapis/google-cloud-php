@@ -128,7 +128,7 @@ class ListTablesRequest extends \Google\Protobuf\Internal\Message
      */
     public function setView($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Bigtable\Admin\V2\Table_View::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Bigtable\Admin\V2\Table\View::class);
         $this->view = $var;
 
         return $this;

@@ -79,6 +79,11 @@ class RestoreInfo extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasBackupInfo()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * Information about the backup used to restore the table. The backup
      * may no longer exist.

@@ -205,6 +205,11 @@ class RowFilter extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasChain()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * Applies several RowFilters to the data in sequence, progressively
      * narrowing the results.
@@ -215,7 +220,7 @@ class RowFilter extends \Google\Protobuf\Internal\Message
      */
     public function setChain($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\V2\RowFilter_Chain::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\V2\RowFilter\Chain::class);
         $this->writeOneof(1, $var);
 
         return $this;
@@ -233,6 +238,11 @@ class RowFilter extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasInterleave()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * Applies several RowFilters to the data in parallel and combines the
      * results.
@@ -243,7 +253,7 @@ class RowFilter extends \Google\Protobuf\Internal\Message
      */
     public function setInterleave($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\V2\RowFilter_Interleave::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\V2\RowFilter\Interleave::class);
         $this->writeOneof(2, $var);
 
         return $this;
@@ -261,6 +271,11 @@ class RowFilter extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasCondition()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * Applies one of two possible RowFilters to the data based on the output of
      * a predicate RowFilter.
@@ -271,7 +286,7 @@ class RowFilter extends \Google\Protobuf\Internal\Message
      */
     public function setCondition($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\V2\RowFilter_Condition::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\V2\RowFilter\Condition::class);
         $this->writeOneof(3, $var);
 
         return $this;
@@ -339,6 +354,11 @@ class RowFilter extends \Google\Protobuf\Internal\Message
     public function getSink()
     {
         return $this->readOneof(16);
+    }
+
+    public function hasSink()
+    {
+        return $this->hasOneof(16);
     }
 
     /**
@@ -421,6 +441,11 @@ class RowFilter extends \Google\Protobuf\Internal\Message
         return $this->readOneof(17);
     }
 
+    public function hasPassAllFilter()
+    {
+        return $this->hasOneof(17);
+    }
+
     /**
      * Matches all cells, regardless of input. Functionally equivalent to
      * leaving `filter` unset, but included for completeness.
@@ -447,6 +472,11 @@ class RowFilter extends \Google\Protobuf\Internal\Message
     public function getBlockAllFilter()
     {
         return $this->readOneof(18);
+    }
+
+    public function hasBlockAllFilter()
+    {
+        return $this->hasOneof(18);
     }
 
     /**
@@ -482,6 +512,11 @@ class RowFilter extends \Google\Protobuf\Internal\Message
         return $this->readOneof(4);
     }
 
+    public function hasRowKeyRegexFilter()
+    {
+        return $this->hasOneof(4);
+    }
+
     /**
      * Matches only cells from rows whose keys satisfy the given RE2 regex. In
      * other words, passes through the entire row when the key matches, and
@@ -515,6 +550,11 @@ class RowFilter extends \Google\Protobuf\Internal\Message
         return $this->readOneof(14);
     }
 
+    public function hasRowSampleFilter()
+    {
+        return $this->hasOneof(14);
+    }
+
     /**
      * Matches all cells from a row with probability p, and matches no cells
      * from the row with probability 1-p.
@@ -545,6 +585,11 @@ class RowFilter extends \Google\Protobuf\Internal\Message
     public function getFamilyNameRegexFilter()
     {
         return $this->readOneof(5);
+    }
+
+    public function hasFamilyNameRegexFilter()
+    {
+        return $this->hasOneof(5);
     }
 
     /**
@@ -583,6 +628,11 @@ class RowFilter extends \Google\Protobuf\Internal\Message
         return $this->readOneof(6);
     }
 
+    public function hasColumnQualifierRegexFilter()
+    {
+        return $this->hasOneof(6);
+    }
+
     /**
      * Matches only cells from columns whose qualifiers satisfy the given RE2
      * regex.
@@ -614,6 +664,11 @@ class RowFilter extends \Google\Protobuf\Internal\Message
         return $this->readOneof(7);
     }
 
+    public function hasColumnRangeFilter()
+    {
+        return $this->hasOneof(7);
+    }
+
     /**
      * Matches only cells from columns within the given range.
      *
@@ -638,6 +693,11 @@ class RowFilter extends \Google\Protobuf\Internal\Message
     public function getTimestampRangeFilter()
     {
         return $this->readOneof(8);
+    }
+
+    public function hasTimestampRangeFilter()
+    {
+        return $this->hasOneof(8);
     }
 
     /**
@@ -670,6 +730,11 @@ class RowFilter extends \Google\Protobuf\Internal\Message
         return $this->readOneof(9);
     }
 
+    public function hasValueRegexFilter()
+    {
+        return $this->hasOneof(9);
+    }
+
     /**
      * Matches only cells with values that satisfy the given regular expression.
      * Note that, since cell values can contain arbitrary bytes, the `\C` escape
@@ -700,6 +765,11 @@ class RowFilter extends \Google\Protobuf\Internal\Message
         return $this->readOneof(15);
     }
 
+    public function hasValueRangeFilter()
+    {
+        return $this->hasOneof(15);
+    }
+
     /**
      * Matches only cells with values that fall within the given range.
      *
@@ -726,6 +796,11 @@ class RowFilter extends \Google\Protobuf\Internal\Message
     public function getCellsPerRowOffsetFilter()
     {
         return $this->readOneof(10);
+    }
+
+    public function hasCellsPerRowOffsetFilter()
+    {
+        return $this->hasOneof(10);
     }
 
     /**
@@ -756,6 +831,11 @@ class RowFilter extends \Google\Protobuf\Internal\Message
     public function getCellsPerRowLimitFilter()
     {
         return $this->readOneof(11);
+    }
+
+    public function hasCellsPerRowLimitFilter()
+    {
+        return $this->hasOneof(11);
     }
 
     /**
@@ -791,6 +871,11 @@ class RowFilter extends \Google\Protobuf\Internal\Message
         return $this->readOneof(12);
     }
 
+    public function hasCellsPerColumnLimitFilter()
+    {
+        return $this->hasOneof(12);
+    }
+
     /**
      * Matches only the most recent N cells within each column. For example,
      * if N=2, this filter would match column `foo:bar` at timestamps 10 and 9,
@@ -820,6 +905,11 @@ class RowFilter extends \Google\Protobuf\Internal\Message
     public function getStripValueTransformer()
     {
         return $this->readOneof(13);
+    }
+
+    public function hasStripValueTransformer()
+    {
+        return $this->hasOneof(13);
     }
 
     /**
@@ -856,6 +946,11 @@ class RowFilter extends \Google\Protobuf\Internal\Message
     public function getApplyLabelTransformer()
     {
         return $this->readOneof(19);
+    }
+
+    public function hasApplyLabelTransformer()
+    {
+        return $this->hasOneof(19);
     }
 
     /**

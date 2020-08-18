@@ -133,6 +133,11 @@ class ReadModifyWriteRule extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasAppendValue()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * Rule specifying that `append_value` be appended to the existing value.
      * If the targeted cell is unset, it will be treated as containing the
@@ -162,6 +167,11 @@ class ReadModifyWriteRule extends \Google\Protobuf\Internal\Message
     public function getIncrementAmount()
     {
         return $this->readOneof(4);
+    }
+
+    public function hasIncrementAmount()
+    {
+        return $this->hasOneof(4);
     }
 
     /**

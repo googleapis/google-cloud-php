@@ -218,7 +218,7 @@ class Table extends \Google\Protobuf\Internal\Message
      */
     public function setGranularity($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Bigtable\Admin\V2\Table_TimestampGranularity::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Bigtable\Admin\V2\Table\TimestampGranularity::class);
         $this->granularity = $var;
 
         return $this;
@@ -233,7 +233,17 @@ class Table extends \Google\Protobuf\Internal\Message
      */
     public function getRestoreInfo()
     {
-        return $this->restore_info;
+        return isset($this->restore_info) ? $this->restore_info : null;
+    }
+
+    public function hasRestoreInfo()
+    {
+        return isset($this->restore_info);
+    }
+
+    public function clearRestoreInfo()
+    {
+        unset($this->restore_info);
     }
 
     /**

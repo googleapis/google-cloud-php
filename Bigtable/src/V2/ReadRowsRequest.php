@@ -145,7 +145,17 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getRows()
     {
-        return $this->rows;
+        return isset($this->rows) ? $this->rows : null;
+    }
+
+    public function hasRows()
+    {
+        return isset($this->rows);
+    }
+
+    public function clearRows()
+    {
+        unset($this->rows);
     }
 
     /**
@@ -172,7 +182,17 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getFilter()
     {
-        return $this->filter;
+        return isset($this->filter) ? $this->filter : null;
+    }
+
+    public function hasFilter()
+    {
+        return isset($this->filter);
+    }
+
+    public function clearFilter()
+    {
+        unset($this->filter);
     }
 
     /**

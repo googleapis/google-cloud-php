@@ -57,7 +57,7 @@ class ClusterState extends \Google\Protobuf\Internal\Message
      */
     public function setReplicationState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Bigtable\Admin\V2\Table_ClusterState_ReplicationState::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Bigtable\Admin\V2\Table\ClusterState\ReplicationState::class);
         $this->replication_state = $var;
 
         return $this;
