@@ -127,7 +127,17 @@ class SearchCatalogRequest extends \Google\Protobuf\Internal\Message
      */
     public function getScope()
     {
-        return $this->scope;
+        return isset($this->scope) ? $this->scope : null;
+    }
+
+    public function hasScope()
+    {
+        return isset($this->scope);
+    }
+
+    public function clearScope()
+    {
+        unset($this->scope);
     }
 
     /**
@@ -142,7 +152,7 @@ class SearchCatalogRequest extends \Google\Protobuf\Internal\Message
      */
     public function setScope($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\DataCatalog\V1\SearchCatalogRequest_Scope::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\DataCatalog\V1\SearchCatalogRequest\Scope::class);
         $this->scope = $var;
 
         return $this;

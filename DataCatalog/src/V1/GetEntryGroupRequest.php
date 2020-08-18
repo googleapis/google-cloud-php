@@ -84,7 +84,17 @@ class GetEntryGroupRequest extends \Google\Protobuf\Internal\Message
      */
     public function getReadMask()
     {
-        return $this->read_mask;
+        return isset($this->read_mask) ? $this->read_mask : null;
+    }
+
+    public function hasReadMask()
+    {
+        return isset($this->read_mask);
+    }
+
+    public function clearReadMask()
+    {
+        unset($this->read_mask);
     }
 
     /**

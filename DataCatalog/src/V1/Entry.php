@@ -240,6 +240,11 @@ class Entry extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasType()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * The type of the entry.
      * Only used for Entries with types in the EntryType enum.
@@ -273,6 +278,11 @@ class Entry extends \Google\Protobuf\Internal\Message
     public function getUserSpecifiedType()
     {
         return $this->readOneof(16);
+    }
+
+    public function hasUserSpecifiedType()
+    {
+        return $this->hasOneof(16);
     }
 
     /**
@@ -310,6 +320,11 @@ class Entry extends \Google\Protobuf\Internal\Message
         return $this->readOneof(17);
     }
 
+    public function hasIntegratedSystem()
+    {
+        return $this->hasOneof(17);
+    }
+
     /**
      * Output only. This field indicates the entry's source system that Data
      * Catalog integrates with, such as BigQuery or Pub/Sub.
@@ -339,6 +354,11 @@ class Entry extends \Google\Protobuf\Internal\Message
     public function getUserSpecifiedSystem()
     {
         return $this->readOneof(18);
+    }
+
+    public function hasUserSpecifiedSystem()
+    {
+        return $this->hasOneof(18);
     }
 
     /**
@@ -372,6 +392,11 @@ class Entry extends \Google\Protobuf\Internal\Message
         return $this->readOneof(6);
     }
 
+    public function hasGcsFilesetSpec()
+    {
+        return $this->hasOneof(6);
+    }
+
     /**
      * Specification that applies to a Cloud Storage fileset. This is only valid
      * on entries of type FILESET.
@@ -398,6 +423,11 @@ class Entry extends \Google\Protobuf\Internal\Message
     public function getBigqueryTableSpec()
     {
         return $this->readOneof(12);
+    }
+
+    public function hasBigqueryTableSpec()
+    {
+        return $this->hasOneof(12);
     }
 
     /**
@@ -427,6 +457,11 @@ class Entry extends \Google\Protobuf\Internal\Message
     public function getBigqueryDateShardedSpec()
     {
         return $this->readOneof(15);
+    }
+
+    public function hasBigqueryDateShardedSpec()
+    {
+        return $this->hasOneof(15);
     }
 
     /**
@@ -512,7 +547,17 @@ class Entry extends \Google\Protobuf\Internal\Message
      */
     public function getSchema()
     {
-        return $this->schema;
+        return isset($this->schema) ? $this->schema : null;
+    }
+
+    public function hasSchema()
+    {
+        return isset($this->schema);
+    }
+
+    public function clearSchema()
+    {
+        unset($this->schema);
     }
 
     /**
@@ -541,7 +586,17 @@ class Entry extends \Google\Protobuf\Internal\Message
      */
     public function getSourceSystemTimestamps()
     {
-        return $this->source_system_timestamps;
+        return isset($this->source_system_timestamps) ? $this->source_system_timestamps : null;
+    }
+
+    public function hasSourceSystemTimestamps()
+    {
+        return isset($this->source_system_timestamps);
+    }
+
+    public function clearSourceSystemTimestamps()
+    {
+        unset($this->source_system_timestamps);
     }
 
     /**

@@ -60,7 +60,17 @@ class UpdateTagTemplateRequest extends \Google\Protobuf\Internal\Message
      */
     public function getTagTemplate()
     {
-        return $this->tag_template;
+        return isset($this->tag_template) ? $this->tag_template : null;
+    }
+
+    public function hasTagTemplate()
+    {
+        return isset($this->tag_template);
+    }
+
+    public function clearTagTemplate()
+    {
+        unset($this->tag_template);
     }
 
     /**
@@ -89,7 +99,17 @@ class UpdateTagTemplateRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return $this->update_mask;
+        return isset($this->update_mask) ? $this->update_mask : null;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**

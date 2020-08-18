@@ -112,7 +112,17 @@ class UpdateTagTemplateFieldRequest extends \Google\Protobuf\Internal\Message
      */
     public function getTagTemplateField()
     {
-        return $this->tag_template_field;
+        return isset($this->tag_template_field) ? $this->tag_template_field : null;
+    }
+
+    public function hasTagTemplateField()
+    {
+        return isset($this->tag_template_field);
+    }
+
+    public function clearTagTemplateField()
+    {
+        unset($this->tag_template_field);
     }
 
     /**
@@ -148,7 +158,17 @@ class UpdateTagTemplateFieldRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return $this->update_mask;
+        return isset($this->update_mask) ? $this->update_mask : null;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**

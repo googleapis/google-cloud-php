@@ -142,7 +142,17 @@ class CreateTagTemplateFieldRequest extends \Google\Protobuf\Internal\Message
      */
     public function getTagTemplateField()
     {
-        return $this->tag_template_field;
+        return isset($this->tag_template_field) ? $this->tag_template_field : null;
+    }
+
+    public function hasTagTemplateField()
+    {
+        return isset($this->tag_template_field);
+    }
+
+    public function clearTagTemplateField()
+    {
+        unset($this->tag_template_field);
     }
 
     /**
