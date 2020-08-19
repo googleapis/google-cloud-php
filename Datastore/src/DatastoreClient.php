@@ -130,6 +130,8 @@ class DatastoreClient
      *     @type int $retries Number of retries for a failed request. **Defaults
      *           to** `3`.
      *     @type array $scopes Scopes to be used for the request.
+     *     @type string $quotaProject Specifies a user project to bill for
+     *           access charges associated with the request.
      *     @type string $namespaceId Partitions data under a namespace. Useful for
      *           [Multitenant Projects](https://cloud.google.com/datastore/docs/concepts/multitenancy).
      *     @type bool $returnInt64AsObject If true, 64 bit integers will be

@@ -177,6 +177,8 @@ class LoggingClient
      *     @type int $retries Number of retries for a failed request.
      *           **Defaults to** `3`.
      *     @type array $scopes Scopes to be used for the request.
+     *     @type string $quotaProject Specifies a user project to bill for
+     *           access charges associated with the request.
      *     @type string $transport The transport type used for requests. May be
      *           either `grpc` or `rest`. **Defaults to** `grpc` if gRPC support
      *           is detected on the system.
