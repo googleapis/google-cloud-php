@@ -296,7 +296,7 @@ class RequestWrapper
 
             $headers['Authorization'] = 'Bearer ' . $token;
 
-            if ($this->quotaProject) {
+            if ($quotaProject) {
                 $headers[GetQuotaProjectInterface::X_GOOG_USER_PROJECT_HEADER] = [$quotaProject];
             }
         }
