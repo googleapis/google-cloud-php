@@ -127,7 +127,7 @@ class LifecycleTest extends SnippetTestCase
 
         $object = $this->prophesize(StorageObject::class);
         $object->update(['metadata' => [
-            'customTime' => '2020-08-17T00:00:00Z'
+            'customTime' => '2020-08-17'
         ]])->shouldBeCalled();
 
         $bucket = $this->prophesize(Bucket::class);

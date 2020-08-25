@@ -159,7 +159,7 @@ class Lifecycle implements \ArrayAccess, \IteratorAggregate
      * $object = $bucket->object($objectName);
      * $object->update([
      *     'metadata' => [
-     *         'customTime' => '2020-08-17T00:00:00Z'
+     *         'customTime' => '2020-08-17'
      *     ]
      * ]);
      * ```
