@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Storage\Tests\System;
 
+use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Storage\Bucket;
 
 /**
@@ -72,23 +73,6 @@ class ManageBucketsTest extends StorageTestCase
         $this->assertEquals('multi-region', $bucket->info()['locationType']);
     }
 
-    public function testCreatesBucketWithLifeycleBuilder()
-    {
-        $lifecycle = Bucket::lifecycle()
-            ->addDeleteRule([
-                'age' => 500
-            ]);
-        $name = uniqid(self::TESTING_PREFIX);
-        $this->assertFalse(self::$client->bucket($name)->exists());
-        $bucket = self::createBucket(self::$client, $name, [
-            'lifecycle' => $lifecycle
-        ]);
-
-        $this->assertTrue(self::$client->bucket($name)->exists());
-        $this->assertEquals($name, $bucket->name());
-        $this->assertEquals($lifecycle->toArray(), $bucket->info()['lifecycle']);
-    }
-
     public function testUpdateBucket()
     {
         $options = [
@@ -102,19 +86,75 @@ class ManageBucketsTest extends StorageTestCase
         $this->assertEquals($options['website'], $info['website']);
     }
 
-    public function testUpdateBucketWithLifecycleBuilder()
+    /**
+     * @group storage-bucket-lifecycle
+     * @dataProvider lifecycleRules
+     */
+    public function testCreateBucketWithLifecycleDeleteRule(array $rule, $isError = false)
+    {
+        if ($isError) {
+            $this->setExpectedException(BadRequestException::class);
+        }
+
+        $lifecycle = Bucket::lifecycle();
+        $lifecycle->addDeleteRule($rule);
+
+        $bucket = self::createBucket(self::$client, uniqid(self::TESTING_PREFIX), [
+            'lifecycle' => $lifecycle
+        ]);
+
+        $this->assertEquals($lifecycle->toArray(), $bucket->info()['lifecycle']);
+    }
+
+    /**
+     * @group storage-bucket-lifecycle
+     * @dataProvider lifecycleRules
+     */
+    public function testUpdateBucketWithLifecycleDeleteRule(array $rule, $isError = false)
+    {
+        if ($isError) {
+            $this->setExpectedException(BadRequestException::class);
+        }
+
+        $lifecycle = Bucket::lifecycle();
+        $lifecycle->addDeleteRule($rule);
+
+        $bucket = self::createBucket(self::$client, uniqid(self::TESTING_PREFIX));
+        $this->assertArrayNotHasKey('lifecycle', $bucket->info());
+
+        $bucket->update([
+            'lifecycle' => $lifecycle
+        ]);
+
+        $this->assertEquals($lifecycle->toArray(), $bucket->info()['lifecycle']);
+    }
+
+    public function lifecycleRules()
+    {
+        return [
+            [['age' => 1000]],
+            [['daysSinceNoncurrentTime' => 25]],
+            [['daysSinceNoncurrentTime' => -5], true], // error case
+            [['daysSinceNoncurrentTime' => -5], true], // error case
+
+            [['noncurrentTimeBefore' => (new \DateTime)->format("Y-m-d")]],
+            [['noncurrentTimeBefore' => new \DateTime]],
+            [['noncurrentTimeBefore' => 'this is not a timestamp'], true], // error case
+
+            [['customTimeBefore' => (new \DateTime)->format("Y-m-d")]],
+            [['customTimeBefore' => new \DateTime]],
+            [['customTimeBefore' => 'this is not a timestamp'], true], // error case
+        ];
+    }
+
+    /**
+     * @group storage-bucket-lifecycle
+     */
+    public function testUpdateAndClearLifecycle()
     {
         $lifecycle = self::$bucket->currentLifecycle()
             ->addDeleteRule([
                 'age' => 500
-            ]);
-        $info = self::$bucket->update(['lifecycle' => $lifecycle]);
-
-        $this->assertEquals($lifecycle->toArray(), $info['lifecycle']);
-
-        $lifecycle = self::$bucket->currentLifecycle()
-            ->addDeleteRule([
-                'age' => 1000
             ]);
         $info = self::$bucket->update(['lifecycle' => $lifecycle]);
 

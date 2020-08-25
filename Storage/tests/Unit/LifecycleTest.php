@@ -22,6 +22,7 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @group storage
+ * @group storage-lifecycle
  */
 class LifecycleTest extends TestCase
 {
@@ -142,5 +143,67 @@ class LifecycleTest extends TestCase
     {
         $this->lifecycle
             ->clearRules(123);
+    }
+
+    /**
+     * @dataProvider dateTimeRules
+     */
+    public function testAddSetStorageClassRuleDateTimeTransform($rule, \DateTimeInterface $dt, $dateString)
+    {
+        $this->lifecycle->addSetStorageClassRule('NEARLINE', [
+            $rule => $dt
+        ]);
+
+        $this->lifecycle->addSetStorageClassRule('NEARLINE', [
+            $rule => $dateString
+        ]);
+
+        $result = $this->lifecycle->toArray();
+
+        $this->assertEquals(
+            $dateString,
+            $result['rule'][0]['condition'][$rule]
+        );
+
+        $this->assertEquals(
+            $dateString,
+            $result['rule'][1]['condition'][$rule]
+        );
+    }
+
+    /**
+     * @dataProvider dateTimeRules
+     */
+    public function testAddDeleteRuleDateTimeTransform($rule, \DateTimeInterface $dt, $dateString)
+    {
+        $this->lifecycle->addDeleteRule([
+            $rule => $dt
+        ]);
+
+        $this->lifecycle->addDeleteRule([
+            $rule => $dateString
+        ]);
+
+        $result = $this->lifecycle->toArray();
+
+        $this->assertEquals(
+            $dateString,
+            $result['rule'][0]['condition'][$rule]
+        );
+
+        $this->assertEquals(
+            $dateString,
+            $result['rule'][1]['condition'][$rule]
+        );
+    }
+
+    public function dateTimeRules()
+    {
+        $dt = new \DateTime;
+        return [
+            ['createdBefore', $dt, $dt->format('Y-m-d')],
+            ['customTimeBefore', $dt, $dt->format('Y-m-d')],
+            ['noncurrentTimeBefore', $dt, $dt->format('Y-m-d')],
+        ];
     }
 }

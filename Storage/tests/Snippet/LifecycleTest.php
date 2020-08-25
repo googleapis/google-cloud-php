@@ -19,9 +19,11 @@ namespace Google\Cloud\Storage\Tests\Snippet;
 
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
+use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\Connection\Rest;
 use Google\Cloud\Storage\Lifecycle;
 use Google\Cloud\Storage\StorageClient;
+use Google\Cloud\Storage\StorageObject;
 use Prophecy\Argument;
 
 /**
@@ -117,6 +119,29 @@ class LifecycleTest extends SnippetTestCase
             ],
             $returnVal->toArray()
         );
+    }
+
+    public function testAddSetStorageClassRuleWithObjectCustomTime()
+    {
+        $dt = (new \DateTime)->add(\DateInterval::createFromDateString('+10 days'));
+
+        $object = $this->prophesize(StorageObject::class);
+        $object->update(['metadata' => [
+            'customTime' => '2020-08-17'
+        ]])->shouldBeCalled();
+
+        $bucket = $this->prophesize(Bucket::class);
+        $bucket->object('my-object')->shouldBeCalled()->willReturn($object->reveal());
+        $bucket->update(Argument::that(function ($arg) use ($dt) {
+            return $arg['lifecycle']->toArray()['rule'][0]['condition']['customTimeBefore'] == $dt->format('Y-m-d');
+        }))->shouldBeCalled();
+
+        $snippet = $this->snippetFromMethod(Lifecycle::class, 'addSetStorageClassRule', 1);
+        $snippet->addLocal('lifecycle', $this->lifecycle);
+        $snippet->addLocal('bucket', $bucket->reveal());
+        $snippet->addLocal('objectName', 'my-object');
+
+        $snippet->invoke('lifecycle');
     }
 
     public function testClearRules()
