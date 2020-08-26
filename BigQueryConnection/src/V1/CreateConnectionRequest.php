@@ -117,7 +117,17 @@ class CreateConnectionRequest extends \Google\Protobuf\Internal\Message
      */
     public function getConnection()
     {
-        return $this->connection;
+        return isset($this->connection) ? $this->connection : null;
+    }
+
+    public function hasConnection()
+    {
+        return isset($this->connection);
+    }
+
+    public function clearConnection()
+    {
+        unset($this->connection);
     }
 
     /**

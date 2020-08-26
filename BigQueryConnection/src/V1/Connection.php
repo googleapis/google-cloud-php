@@ -174,6 +174,11 @@ class Connection extends \Google\Protobuf\Internal\Message
         return $this->readOneof(4);
     }
 
+    public function hasCloudSql()
+    {
+        return $this->hasOneof(4);
+    }
+
     /**
      * Cloud SQL properties.
      *
