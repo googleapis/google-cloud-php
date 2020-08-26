@@ -88,6 +88,11 @@ class StartManualTransferRunsRequest extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasRequestedTimeRange()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * Time range for the transfer runs that should be started.
      *
@@ -97,7 +102,7 @@ class StartManualTransferRunsRequest extends \Google\Protobuf\Internal\Message
      */
     public function setRequestedTimeRange($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\DataTransfer\V1\StartManualTransferRunsRequest_TimeRange::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\DataTransfer\V1\StartManualTransferRunsRequest\TimeRange::class);
         $this->writeOneof(3, $var);
 
         return $this;
@@ -113,6 +118,11 @@ class StartManualTransferRunsRequest extends \Google\Protobuf\Internal\Message
     public function getRequestedRunTime()
     {
         return $this->readOneof(4);
+    }
+
+    public function hasRequestedRunTime()
+    {
+        return $this->hasOneof(4);
     }
 
     /**

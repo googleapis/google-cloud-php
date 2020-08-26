@@ -164,7 +164,17 @@ class CreateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      */
     public function getTransferConfig()
     {
-        return $this->transfer_config;
+        return isset($this->transfer_config) ? $this->transfer_config : null;
+    }
+
+    public function hasTransferConfig()
+    {
+        return isset($this->transfer_config);
+    }
+
+    public function clearTransferConfig()
+    {
+        unset($this->transfer_config);
     }
 
     /**

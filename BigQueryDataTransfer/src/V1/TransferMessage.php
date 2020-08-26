@@ -61,7 +61,17 @@ class TransferMessage extends \Google\Protobuf\Internal\Message
      */
     public function getMessageTime()
     {
-        return $this->message_time;
+        return isset($this->message_time) ? $this->message_time : null;
+    }
+
+    public function hasMessageTime()
+    {
+        return isset($this->message_time);
+    }
+
+    public function clearMessageTime()
+    {
+        unset($this->message_time);
     }
 
     /**
@@ -99,7 +109,7 @@ class TransferMessage extends \Google\Protobuf\Internal\Message
      */
     public function setSeverity($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\DataTransfer\V1\TransferMessage_MessageSeverity::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\DataTransfer\V1\TransferMessage\MessageSeverity::class);
         $this->severity = $var;
 
         return $this;

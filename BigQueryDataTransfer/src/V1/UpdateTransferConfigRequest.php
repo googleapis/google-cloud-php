@@ -124,7 +124,17 @@ class UpdateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      */
     public function getTransferConfig()
     {
-        return $this->transfer_config;
+        return isset($this->transfer_config) ? $this->transfer_config : null;
+    }
+
+    public function hasTransferConfig()
+    {
+        return isset($this->transfer_config);
+    }
+
+    public function clearTransferConfig()
+    {
+        unset($this->transfer_config);
     }
 
     /**
@@ -204,7 +214,17 @@ class UpdateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return $this->update_mask;
+        return isset($this->update_mask) ? $this->update_mask : null;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**

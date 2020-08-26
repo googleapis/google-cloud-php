@@ -210,7 +210,17 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      */
     public function getScheduleTime()
     {
-        return $this->schedule_time;
+        return isset($this->schedule_time) ? $this->schedule_time : null;
+    }
+
+    public function hasScheduleTime()
+    {
+        return isset($this->schedule_time);
+    }
+
+    public function clearScheduleTime()
+    {
+        unset($this->schedule_time);
     }
 
     /**
@@ -237,7 +247,17 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      */
     public function getRunTime()
     {
-        return $this->run_time;
+        return isset($this->run_time) ? $this->run_time : null;
+    }
+
+    public function hasRunTime()
+    {
+        return isset($this->run_time);
+    }
+
+    public function clearRunTime()
+    {
+        unset($this->run_time);
     }
 
     /**
@@ -264,7 +284,17 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      */
     public function getErrorStatus()
     {
-        return $this->error_status;
+        return isset($this->error_status) ? $this->error_status : null;
+    }
+
+    public function hasErrorStatus()
+    {
+        return isset($this->error_status);
+    }
+
+    public function clearErrorStatus()
+    {
+        unset($this->error_status);
     }
 
     /**
@@ -291,7 +321,17 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      */
     public function getStartTime()
     {
-        return $this->start_time;
+        return isset($this->start_time) ? $this->start_time : null;
+    }
+
+    public function hasStartTime()
+    {
+        return isset($this->start_time);
+    }
+
+    public function clearStartTime()
+    {
+        unset($this->start_time);
     }
 
     /**
@@ -319,7 +359,17 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      */
     public function getEndTime()
     {
-        return $this->end_time;
+        return isset($this->end_time) ? $this->end_time : null;
+    }
+
+    public function hasEndTime()
+    {
+        return isset($this->end_time);
+    }
+
+    public function clearEndTime()
+    {
+        unset($this->end_time);
     }
 
     /**
@@ -346,7 +396,17 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return $this->update_time;
+        return isset($this->update_time) ? $this->update_time : null;
+    }
+
+    public function hasUpdateTime()
+    {
+        return isset($this->update_time);
+    }
+
+    public function clearUpdateTime()
+    {
+        unset($this->update_time);
     }
 
     /**
@@ -372,7 +432,17 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      */
     public function getParams()
     {
-        return $this->params;
+        return isset($this->params) ? $this->params : null;
+    }
+
+    public function hasParams()
+    {
+        return isset($this->params);
+    }
+
+    public function clearParams()
+    {
+        unset($this->params);
     }
 
     /**
@@ -399,6 +469,11 @@ class TransferRun extends \Google\Protobuf\Internal\Message
     public function getDestinationDatasetId()
     {
         return $this->readOneof(2);
+    }
+
+    public function hasDestinationDatasetId()
+    {
+        return $this->hasOneof(2);
     }
 
     /**
@@ -566,7 +641,17 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      */
     public function getEmailPreferences()
     {
-        return $this->email_preferences;
+        return isset($this->email_preferences) ? $this->email_preferences : null;
+    }
+
+    public function hasEmailPreferences()
+    {
+        return isset($this->email_preferences);
+    }
+
+    public function clearEmailPreferences()
+    {
+        unset($this->email_preferences);
     }
 
     /**

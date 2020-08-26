@@ -223,7 +223,7 @@ class ListTransferRunsRequest extends \Google\Protobuf\Internal\Message
      */
     public function setRunAttempt($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\DataTransfer\V1\ListTransferRunsRequest_RunAttempt::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\DataTransfer\V1\ListTransferRunsRequest\RunAttempt::class);
         $this->run_attempt = $var;
 
         return $this;
