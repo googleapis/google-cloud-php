@@ -102,6 +102,12 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 10;</code>
      */
     private $create_time = null;
+    /**
+     * The severity of the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1p1beta1.Finding.Severity severity = 13;</code>
+     */
+    private $severity = 0;
 
     /**
      * Constructor.
@@ -152,6 +158,8 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           the firewall became open. The accuracy is determined by the detector.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           The time at which the finding was created in Security Command Center.
+     *     @type int $severity
+     *           The severity of the finding.
      * }
      */
     public function __construct($data = NULL) {
@@ -461,6 +469,32 @@ class Finding extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->create_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * The severity of the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1p1beta1.Finding.Severity severity = 13;</code>
+     * @return int
+     */
+    public function getSeverity()
+    {
+        return $this->severity;
+    }
+
+    /**
+     * The severity of the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1p1beta1.Finding.Severity severity = 13;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSeverity($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\SecurityCenter\V1p1beta1\Finding_Severity::class);
+        $this->severity = $var;
 
         return $this;
     }

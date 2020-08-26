@@ -30,7 +30,7 @@ class ListFindingsResult extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Resource that is associated with this finding.
      *
-     * Generated from protobuf field <code>.google.cloud.securitycenter.v1p1beta1.ListFindingsResponse.ListFindingsResult.Resource resource = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1p1beta1.ListFindingsResponse.ListFindingsResult.Resource resource = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $resource = null;
 
@@ -108,7 +108,7 @@ class ListFindingsResult extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Resource that is associated with this finding.
      *
-     * Generated from protobuf field <code>.google.cloud.securitycenter.v1p1beta1.ListFindingsResponse.ListFindingsResult.Resource resource = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1p1beta1.ListFindingsResponse.ListFindingsResult.Resource resource = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\SecurityCenter\V1p1beta1\ListFindingsResponse\ListFindingsResult\Resource
      */
     public function getResource()
@@ -119,7 +119,7 @@ class ListFindingsResult extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Resource that is associated with this finding.
      *
-     * Generated from protobuf field <code>.google.cloud.securitycenter.v1p1beta1.ListFindingsResponse.ListFindingsResult.Resource resource = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1p1beta1.ListFindingsResponse.ListFindingsResult.Resource resource = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\SecurityCenter\V1p1beta1\ListFindingsResponse\ListFindingsResult\Resource $var
      * @return $this
      */
