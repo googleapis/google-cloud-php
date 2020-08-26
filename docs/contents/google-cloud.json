@@ -33,6 +33,7 @@
         "cloud-logging",
         "cloud-memcache",
         "cloud-monitoring",
+        "cloud-osconfig",
         "cloud-oslogin",
         "cloud-pubsub",
         "cloud-recaptcha-enterprise",

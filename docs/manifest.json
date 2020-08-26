@@ -1295,6 +1295,14 @@
             ]
         },
         {
+            "id": "cloud-osconfig",
+            "name": "google/cloud-osconfig",
+            "defaultService": "osconfig/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-oslogin",
             "name": "google/cloud-oslogin",
             "defaultService": "oslogin/readme",
