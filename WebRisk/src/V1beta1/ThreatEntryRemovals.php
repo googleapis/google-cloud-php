@@ -59,7 +59,17 @@ class ThreatEntryRemovals extends \Google\Protobuf\Internal\Message
      */
     public function getRawIndices()
     {
-        return $this->raw_indices;
+        return isset($this->raw_indices) ? $this->raw_indices : null;
+    }
+
+    public function hasRawIndices()
+    {
+        return isset($this->raw_indices);
+    }
+
+    public function clearRawIndices()
+    {
+        unset($this->raw_indices);
     }
 
     /**
@@ -88,7 +98,17 @@ class ThreatEntryRemovals extends \Google\Protobuf\Internal\Message
      */
     public function getRiceIndices()
     {
-        return $this->rice_indices;
+        return isset($this->rice_indices) ? $this->rice_indices : null;
+    }
+
+    public function hasRiceIndices()
+    {
+        return isset($this->rice_indices);
+    }
+
+    public function clearRiceIndices()
+    {
+        unset($this->rice_indices);
     }
 
     /**

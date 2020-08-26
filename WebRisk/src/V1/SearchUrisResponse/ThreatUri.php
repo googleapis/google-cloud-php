@@ -82,7 +82,17 @@ class ThreatUri extends \Google\Protobuf\Internal\Message
      */
     public function getExpireTime()
     {
-        return $this->expire_time;
+        return isset($this->expire_time) ? $this->expire_time : null;
+    }
+
+    public function hasExpireTime()
+    {
+        return isset($this->expire_time);
+    }
+
+    public function clearExpireTime()
+    {
+        unset($this->expire_time);
     }
 
     /**

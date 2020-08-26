@@ -117,7 +117,7 @@ class ComputeThreatListDiffResponse extends \Google\Protobuf\Internal\Message
      */
     public function setResponseType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\WebRisk\V1\ComputeThreatListDiffResponse_ResponseType::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\WebRisk\V1\ComputeThreatListDiffResponse\ResponseType::class);
         $this->response_type = $var;
 
         return $this;
@@ -131,7 +131,17 @@ class ComputeThreatListDiffResponse extends \Google\Protobuf\Internal\Message
      */
     public function getAdditions()
     {
-        return $this->additions;
+        return isset($this->additions) ? $this->additions : null;
+    }
+
+    public function hasAdditions()
+    {
+        return isset($this->additions);
+    }
+
+    public function clearAdditions()
+    {
+        unset($this->additions);
     }
 
     /**
@@ -158,7 +168,17 @@ class ComputeThreatListDiffResponse extends \Google\Protobuf\Internal\Message
      */
     public function getRemovals()
     {
-        return $this->removals;
+        return isset($this->removals) ? $this->removals : null;
+    }
+
+    public function hasRemovals()
+    {
+        return isset($this->removals);
+    }
+
+    public function clearRemovals()
+    {
+        unset($this->removals);
     }
 
     /**
@@ -218,7 +238,17 @@ class ComputeThreatListDiffResponse extends \Google\Protobuf\Internal\Message
      */
     public function getChecksum()
     {
-        return $this->checksum;
+        return isset($this->checksum) ? $this->checksum : null;
+    }
+
+    public function hasChecksum()
+    {
+        return isset($this->checksum);
+    }
+
+    public function clearChecksum()
+    {
+        unset($this->checksum);
     }
 
     /**
@@ -233,7 +263,7 @@ class ComputeThreatListDiffResponse extends \Google\Protobuf\Internal\Message
      */
     public function setChecksum($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\WebRisk\V1\ComputeThreatListDiffResponse_Checksum::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\WebRisk\V1\ComputeThreatListDiffResponse\Checksum::class);
         $this->checksum = $var;
 
         return $this;
@@ -250,7 +280,17 @@ class ComputeThreatListDiffResponse extends \Google\Protobuf\Internal\Message
      */
     public function getRecommendedNextDiff()
     {
-        return $this->recommended_next_diff;
+        return isset($this->recommended_next_diff) ? $this->recommended_next_diff : null;
+    }
+
+    public function hasRecommendedNextDiff()
+    {
+        return isset($this->recommended_next_diff);
+    }
+
+    public function clearRecommendedNextDiff()
+    {
+        unset($this->recommended_next_diff);
     }
 
     /**

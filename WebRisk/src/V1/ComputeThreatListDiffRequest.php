@@ -129,7 +129,17 @@ class ComputeThreatListDiffRequest extends \Google\Protobuf\Internal\Message
      */
     public function getConstraints()
     {
-        return $this->constraints;
+        return isset($this->constraints) ? $this->constraints : null;
+    }
+
+    public function hasConstraints()
+    {
+        return isset($this->constraints);
+    }
+
+    public function clearConstraints()
+    {
+        unset($this->constraints);
     }
 
     /**
@@ -141,7 +151,7 @@ class ComputeThreatListDiffRequest extends \Google\Protobuf\Internal\Message
      */
     public function setConstraints($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\WebRisk\V1\ComputeThreatListDiffRequest_Constraints::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\WebRisk\V1\ComputeThreatListDiffRequest\Constraints::class);
         $this->constraints = $var;
 
         return $this;
