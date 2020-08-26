@@ -45,7 +45,17 @@ class LocationInfo extends \Google\Protobuf\Internal\Message
      */
     public function getLatLng()
     {
-        return $this->lat_lng;
+        return isset($this->lat_lng) ? $this->lat_lng : null;
+    }
+
+    public function hasLatLng()
+    {
+        return isset($this->lat_lng);
+    }
+
+    public function clearLatLng()
+    {
+        unset($this->lat_lng);
     }
 
     /**

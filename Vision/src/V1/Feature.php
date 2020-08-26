@@ -81,7 +81,7 @@ class Feature extends \Google\Protobuf\Internal\Message
      */
     public function setType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Vision\V1\Feature_Type::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Vision\V1\Feature\Type::class);
         $this->type = $var;
 
         return $this;

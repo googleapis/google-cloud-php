@@ -45,7 +45,17 @@ class AsyncAnnotateFileResponse extends \Google\Protobuf\Internal\Message
      */
     public function getOutputConfig()
     {
-        return $this->output_config;
+        return isset($this->output_config) ? $this->output_config : null;
+    }
+
+    public function hasOutputConfig()
+    {
+        return isset($this->output_config);
+    }
+
+    public function clearOutputConfig()
+    {
+        unset($this->output_config);
     }
 
     /**

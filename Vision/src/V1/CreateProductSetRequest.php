@@ -97,7 +97,17 @@ class CreateProductSetRequest extends \Google\Protobuf\Internal\Message
      */
     public function getProductSet()
     {
-        return $this->product_set;
+        return isset($this->product_set) ? $this->product_set : null;
+    }
+
+    public function hasProductSet()
+    {
+        return isset($this->product_set);
+    }
+
+    public function clearProductSet()
+    {
+        unset($this->product_set);
     }
 
     /**

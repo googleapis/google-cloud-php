@@ -195,7 +195,17 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      */
     public function getBoundingPoly()
     {
-        return $this->bounding_poly;
+        return isset($this->bounding_poly) ? $this->bounding_poly : null;
+    }
+
+    public function hasBoundingPoly()
+    {
+        return isset($this->bounding_poly);
+    }
+
+    public function clearBoundingPoly()
+    {
+        unset($this->bounding_poly);
     }
 
     /**
@@ -232,7 +242,17 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      */
     public function getFdBoundingPoly()
     {
-        return $this->fd_bounding_poly;
+        return isset($this->fd_bounding_poly) ? $this->fd_bounding_poly : null;
+    }
+
+    public function hasFdBoundingPoly()
+    {
+        return isset($this->fd_bounding_poly);
+    }
+
+    public function clearFdBoundingPoly()
+    {
+        unset($this->fd_bounding_poly);
     }
 
     /**

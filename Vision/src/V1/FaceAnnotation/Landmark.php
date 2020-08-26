@@ -65,7 +65,7 @@ class Landmark extends \Google\Protobuf\Internal\Message
      */
     public function setType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Vision\V1\FaceAnnotation_Landmark_Type::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::class);
         $this->type = $var;
 
         return $this;
@@ -79,7 +79,17 @@ class Landmark extends \Google\Protobuf\Internal\Message
      */
     public function getPosition()
     {
-        return $this->position;
+        return isset($this->position) ? $this->position : null;
+    }
+
+    public function hasPosition()
+    {
+        return isset($this->position);
+    }
+
+    public function clearPosition()
+    {
+        unset($this->position);
     }
 
     /**

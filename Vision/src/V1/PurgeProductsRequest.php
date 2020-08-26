@@ -66,6 +66,11 @@ class PurgeProductsRequest extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasProductSetPurgeConfig()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * Specify which ProductSet contains the Products to be deleted.
      *
@@ -91,6 +96,11 @@ class PurgeProductsRequest extends \Google\Protobuf\Internal\Message
     public function getDeleteOrphanProducts()
     {
         return $this->readOneof(3);
+    }
+
+    public function hasDeleteOrphanProducts()
+    {
+        return $this->hasOneof(3);
     }
 
     /**

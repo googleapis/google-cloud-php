@@ -74,7 +74,17 @@ class AnnotateFileResponse extends \Google\Protobuf\Internal\Message
      */
     public function getInputConfig()
     {
-        return $this->input_config;
+        return isset($this->input_config) ? $this->input_config : null;
+    }
+
+    public function hasInputConfig()
+    {
+        return isset($this->input_config);
+    }
+
+    public function clearInputConfig()
+    {
+        unset($this->input_config);
     }
 
     /**
@@ -155,7 +165,17 @@ class AnnotateFileResponse extends \Google\Protobuf\Internal\Message
      */
     public function getError()
     {
-        return $this->error;
+        return isset($this->error) ? $this->error : null;
+    }
+
+    public function hasError()
+    {
+        return isset($this->error);
+    }
+
+    public function clearError()
+    {
+        unset($this->error);
     }
 
     /**

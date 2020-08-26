@@ -64,7 +64,17 @@ class UpdateProductRequest extends \Google\Protobuf\Internal\Message
      */
     public function getProduct()
     {
-        return $this->product;
+        return isset($this->product) ? $this->product : null;
+    }
+
+    public function hasProduct()
+    {
+        return isset($this->product);
+    }
+
+    public function clearProduct()
+    {
+        unset($this->product);
     }
 
     /**
@@ -95,7 +105,17 @@ class UpdateProductRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return $this->update_mask;
+        return isset($this->update_mask) ? $this->update_mask : null;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**

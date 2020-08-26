@@ -45,6 +45,11 @@ class ImportProductSetsInputConfig extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasGcsSource()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * The Google Cloud Storage location for a csv file which preserves a list
      * of ImportProductSetRequests in each line.

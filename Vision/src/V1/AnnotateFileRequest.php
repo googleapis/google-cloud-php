@@ -87,7 +87,17 @@ class AnnotateFileRequest extends \Google\Protobuf\Internal\Message
      */
     public function getInputConfig()
     {
-        return $this->input_config;
+        return isset($this->input_config) ? $this->input_config : null;
+    }
+
+    public function hasInputConfig()
+    {
+        return isset($this->input_config);
+    }
+
+    public function clearInputConfig()
+    {
+        unset($this->input_config);
     }
 
     /**
@@ -139,7 +149,17 @@ class AnnotateFileRequest extends \Google\Protobuf\Internal\Message
      */
     public function getImageContext()
     {
-        return $this->image_context;
+        return isset($this->image_context) ? $this->image_context : null;
+    }
+
+    public function hasImageContext()
+    {
+        return isset($this->image_context);
+    }
+
+    public function clearImageContext()
+    {
+        unset($this->image_context);
     }
 
     /**
