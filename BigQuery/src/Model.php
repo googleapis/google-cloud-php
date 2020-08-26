@@ -20,6 +20,7 @@ namespace Google\Cloud\BigQuery;
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\Core\ConcurrencyControlTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Storage\StorageObject;
 
 /**
  * A [BigQuery ML](https://cloud.google.com/bigquery-ml/docs/) Model represents what an ML system has learned from
@@ -45,18 +46,25 @@ class Model
     private $info = [];
 
     /**
+     * @var string The model location
+     */
+    private $location;
+
+    /**
      * @param ConnectionInterface $connection Represents a connection to BigQuery.
      * @param string $id The model's ID.
      * @param string $datasetId The dataset's ID.
      * @param string $projectId The project's ID.
-     * @param array $info The model data.
+     * @param array $info [optional] The model data.
+     * @param array $location [optional] The location of the model.
      */
     public function __construct(
         ConnectionInterface $connection,
         $id,
         $datasetId,
         $projectId,
-        array $info = []
+        array $info = [],
+        $location = null
     ) {
         $this->connection = $connection;
         $this->identity = [
@@ -65,6 +73,7 @@ class Model
             'projectId' => $projectId
         ];
         $this->info = $info;
+        $this->location = $location;
     }
 
     /**
@@ -229,5 +238,47 @@ class Model
         }
 
         return $this->info = $this->connection->patchModel($options);
+    }
+
+    /**
+     * Returns an extract job configuration to be passed to either
+     * {@see Google\Cloud\BigQuery\BigQueryClient::runJob()} or
+     * {@see Google\Cloud\BigQuery\BigQueryClient::startJob()}. A
+     * configuration can be built using fluent setters or by providing a full
+     * set of options at once.
+     *
+     * Example:
+     * ```
+     * $destinationObject = $storage->bucket('myBucket')->object('modelOutput');
+     * $extractJobConfig = $model->extract($destinationObject);
+     * ```
+     *
+     * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs Jobs insert API Documentation.
+     *
+     * @param string|StorageObject $destination The destination object. May be
+     *        a {@see Google\Cloud\Storage\StorageObject} or a URI pointing to
+     *        a Google Cloud Storage object in the format of
+     *        `gs://{bucket-name}/{object-name}`.
+     * @param array $options [optional] Please see the
+     *        [upstream API documentation for Job configuration]
+     *        (https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs#configuration)
+     *        for the available options.
+     * @return ExtractJobConfiguration
+     */
+    public function extract($destination, array $options = [])
+    {
+        if ($destination instanceof StorageObject) {
+            $destination = $destination->gcsUri();
+        }
+
+        return (new ExtractJobConfiguration(
+            $this->identity['projectId'],
+            $options,
+            isset($this->info['location'])
+                ? $this->info['location']
+                : $this->location
+        ))
+            ->destinationUris([$destination])
+            ->sourceModel($this);
     }
 }

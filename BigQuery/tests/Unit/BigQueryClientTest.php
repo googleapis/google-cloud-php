@@ -23,6 +23,7 @@ use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\BigQuery\Dataset;
 use Google\Cloud\BigQuery\Date;
 use Google\Cloud\BigQuery\Job;
+use Google\Cloud\BigQuery\JobConfigurationInterface;
 use Google\Cloud\BigQuery\Numeric;
 use Google\Cloud\BigQuery\QueryJobConfiguration;
 use Google\Cloud\BigQuery\QueryResults;
@@ -30,6 +31,7 @@ use Google\Cloud\BigQuery\Time;
 use Google\Cloud\BigQuery\Timestamp;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Testing\TestHelpers;
+use Google\Cloud\Core\Upload\AbstractUploader;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 
@@ -46,6 +48,15 @@ class BigQueryClientTest extends TestCase
     const LOCATION = 'asia-northeast1';
 
     public $connection;
+
+    private $jobResponse = [
+        'jobReference' => [
+            'jobId' => self::JOB_ID
+        ],
+        'status' => [
+            'state' => 'RUNNING'
+        ]
+    ];
 
     public function setUp()
     {
@@ -413,6 +424,92 @@ class BigQueryClientTest extends TestCase
         ]);
 
         $this->assertInstanceOf(Dataset::class, $dataset);
+    }
+
+    /**
+     * @dataProvider jobConfigDataProvider
+     */
+    public function testRunJob($expectedData, $expectedMethod, $returnedData)
+    {
+        $client = $this->getClient(['location' => self::LOCATION]);
+
+        $jobConfig = $this->prophesize(JobConfigurationInterface::class);
+        $jobConfig->toArray()
+            ->willReturn($expectedData);
+        $this->connection->$expectedMethod($expectedData)
+            ->willReturn($returnedData)
+            ->shouldBeCalledTimes(1);
+
+        $this->connection->getJob(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('jobId', self::JOB_ID)
+        ))
+            ->willReturn([
+                'status' => [
+                    'state' => 'DONE'
+                ]
+            ])
+            ->shouldBeCalledTimes(1);
+
+        $client->___setProperty('connection', $this->connection->reveal());
+        $job = $client->runJob($jobConfig->reveal());
+
+        $this->assertInstanceOf(Job::class, $job);
+        $this->assertTrue($job->isComplete());
+    }
+
+    /**
+     * @dataProvider jobConfigDataProvider
+     */
+    public function testStartJob($expectedData, $expectedMethod, $returnedData)
+    {
+        $client = $this->getClient(['location' => self::LOCATION]);
+
+        $jobConfig = $this->prophesize(JobConfigurationInterface::class);
+        $jobConfig->toArray()
+            ->willReturn($expectedData);
+        $this->connection->$expectedMethod($expectedData)
+            ->willReturn($returnedData)
+            ->shouldBeCalledTimes(1);
+
+        $this->connection->getJob(Argument::any())
+            ->shouldNotBeCalled();
+
+        $client->___setProperty('connection', $this->connection->reveal());
+        $job = $client->startJob($jobConfig->reveal());
+
+        $this->assertInstanceOf(Job::class, $job);
+        $this->assertFalse($job->isComplete());
+        $this->assertEquals($this->jobResponse, $job->info());
+    }
+
+    public function jobConfigDataProvider()
+    {
+        $expected = [
+            'projectId' => self::PROJECT_ID,
+            'jobReference' => [
+                'projectId' => self::PROJECT_ID,
+                'jobId' => self::JOB_ID
+            ]
+        ];
+
+        $uploader = $this->prophesize(AbstractUploader::class);
+        $uploader->upload()
+            ->willReturn($this->jobResponse)
+            ->shouldBeCalledTimes(1);
+
+        return [
+            [
+                $expected,
+                'insertJob',
+                $this->jobResponse
+            ],
+            [
+                $expected + ['data' => 'abc'],
+                'insertJobUpload',
+                $uploader->reveal()
+            ]
+        ];
     }
 
     public function testGetsBytes()

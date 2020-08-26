@@ -18,8 +18,13 @@
 namespace Google\Cloud\BigQuery\Tests\Snippet;
 
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
+use Google\Cloud\BigQuery\ExtractJobConfiguration;
+use Google\Cloud\BigQuery\JobConfigurationInterface;
 use Google\Cloud\BigQuery\Model;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\TestHelpers;
+use Google\Cloud\Storage\Connection\Rest as StorageConnection;
+use Google\Cloud\Storage\StorageClient;
 use Prophecy\Argument;
 
 /**
@@ -28,24 +33,22 @@ use Prophecy\Argument;
 class ModelTest extends SnippetTestCase
 {
     private $connection;
+    private $model;
+
     const PROJECT_ID = 'myProjectId';
     const DATASET_ID = 'myDatasetId';
     const MODEL_ID = 'myModelId';
+    const JOB_ID = 'myJob';
 
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-    }
-
-    public function getModel($connection, array $info = [])
-    {
-        return new Model(
-            $connection->reveal(),
+        $this->model = TestHelpers::stub(Model::class, [
+            $this->connection->reveal(),
             self::MODEL_ID,
             self::DATASET_ID,
             self::PROJECT_ID,
-            $info
-        );
+        ], ['connection', 'info']);
     }
 
     public function testExists()
@@ -53,9 +56,10 @@ class ModelTest extends SnippetTestCase
         $this->connection->getModel(Argument::any())
             ->shouldBeCalledTimes(1)
             ->willReturn([]);
-        $model = $this->getModel($this->connection);
+        $this->model->___setProperty('connection', $this->connection->reveal());
+
         $snippet = $this->snippetFromMethod(Model::class, 'exists');
-        $snippet->addLocal('model', $model);
+        $snippet->addLocal('model', $this->model);
         $res = $snippet->invoke('model');
 
         $this->assertEquals(true, $res->output());
@@ -66,10 +70,10 @@ class ModelTest extends SnippetTestCase
         $this->connection->deleteModel(Argument::any())
             ->shouldBeCalledTimes(1)
             ->willReturn([]);
+        $this->model->___setProperty('connection', $this->connection->reveal());
 
-        $model = $this->getModel($this->connection);
         $snippet = $this->snippetFromMethod(Model::class, 'delete');
-        $snippet->addLocal('model', $model);
+        $snippet->addLocal('model', $this->model);
 
         $snippet->invoke();
     }
@@ -81,10 +85,10 @@ class ModelTest extends SnippetTestCase
             ->willReturn([
                 'modelType' => 'LOGISTIC_REGRESSION'
             ]);
+        $this->model->___setProperty('connection', $this->connection->reveal());
 
-        $model = $this->getModel($this->connection);
         $snippet = $this->snippetFromMethod(Model::class, 'info');
-        $snippet->addLocal('model', $model);
+        $snippet->addLocal('model', $this->model);
         $res = $snippet->invoke('model');
 
         $this->assertEquals('LOGISTIC_REGRESSION', $res->output());
@@ -97,10 +101,10 @@ class ModelTest extends SnippetTestCase
             ->willReturn([
                 'modelType' => 'LOGISTIC_REGRESSION'
             ]);
+        $this->model->___setProperty('connection', $this->connection->reveal());
 
-        $model = $this->getModel($this->connection);
         $snippet = $this->snippetFromMethod(Model::class, 'reload');
-        $snippet->addLocal('model', $model);
+        $snippet->addLocal('model', $this->model);
         $res = $snippet->invoke('model');
 
         $this->assertEquals('LOGISTIC_REGRESSION', $res->output());
@@ -108,9 +112,8 @@ class ModelTest extends SnippetTestCase
 
     public function testId()
     {
-        $model = $this->getModel($this->connection);
         $snippet = $this->snippetFromMethod(Model::class, 'id');
-        $snippet->addLocal('model', $model);
+        $snippet->addLocal('model', $this->model);
         $res = $snippet->invoke('model');
 
         $this->assertEquals(self::MODEL_ID, $res->output());
@@ -118,9 +121,8 @@ class ModelTest extends SnippetTestCase
 
     public function testIdentity()
     {
-        $model = $this->getModel($this->connection);
         $snippet = $this->snippetFromMethod(Model::class, 'identity');
-        $snippet->addLocal('model', $model);
+        $snippet->addLocal('model', $this->model);
         $res = $snippet->invoke('model');
 
         $this->assertEquals(self::MODEL_ID, $res->output());
@@ -131,10 +133,37 @@ class ModelTest extends SnippetTestCase
         $this->connection->patchModel(Argument::withEntry('friendlyName', 'My ML model'))
              ->shouldBeCalledTimes(1)
              ->willReturn([]);
+        $this->model->___setProperty('connection', $this->connection->reveal());
 
-        $model = $this->getModel($this->connection);
         $snippet = $this->snippetFromMethod(Model::class, 'update');
-        $snippet->addLocal('model', $model);
+        $snippet->addLocal('model', $this->model);
         $snippet->invoke();
+    }
+
+    public function testExtract()
+    {
+        $storage = TestHelpers::stub(StorageClient::class);
+        $storageConnection = $this->prophesize(StorageConnection::class);
+        $storageConnection->projectId()->willReturn(self::PROJECT_ID);
+        $storage->___setProperty('connection', $storageConnection->reveal());
+
+        $snippet = $this->snippetFromMethod(Model::class, 'extract');
+        $snippet->addLocal('storage', $storage);
+        $snippet->addLocal('model', $this->model);
+        $config = $snippet->invoke('extractJobConfig')
+            ->returnVal();
+
+        $this->assertInstanceOf(ExtractJobConfiguration::class, $config);
+        $this->assertEquals(
+            [
+                'destinationUris' => ['gs://myBucket/modelOutput'],
+                'sourceModel' => [
+                    'projectId' => self::PROJECT_ID,
+                    'datasetId' => self::DATASET_ID,
+                    'modelId' => self::MODEL_ID
+                ]
+            ],
+            $config->toArray()['configuration']['extract']
+        );
     }
 }

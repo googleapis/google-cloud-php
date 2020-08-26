@@ -75,7 +75,7 @@ class ManageTablesTest extends BigQueryTestCase
     public function testCopiesTable($table)
     {
         $copyJobConfig = self::$table->copy($table);
-        $job = self::$table->startJob($copyJobConfig);
+        $job = self::$client->startJob($copyJobConfig);
         $backoff = new ExponentialBackoff(8);
         $backoff->execute(function () use ($job) {
             $job->reload();
@@ -127,10 +127,11 @@ class ManageTablesTest extends BigQueryTestCase
         $object = self::$bucket->object(
             uniqid(self::TESTING_PREFIX)
         );
+        self::$deletionQueue->add($object);
 
         $extractJobConfig = self::$table->extract($object)
             ->destinationFormat('NEWLINE_DELIMITED_JSON');
-        $job = self::$table->startJob($extractJobConfig);
+        $job = self::$client->startJob($extractJobConfig);
 
         $backoff = new ExponentialBackoff(8);
         $backoff->execute(function () use ($job) {

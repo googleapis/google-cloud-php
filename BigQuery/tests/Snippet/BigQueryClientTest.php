@@ -23,6 +23,7 @@ use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\BigQuery\Dataset;
 use Google\Cloud\BigQuery\Date;
 use Google\Cloud\BigQuery\Job;
+use Google\Cloud\BigQuery\JobConfigurationInterface;
 use Google\Cloud\BigQuery\Numeric;
 use Google\Cloud\BigQuery\QueryJobConfiguration;
 use Google\Cloud\BigQuery\QueryResults;
@@ -366,6 +367,64 @@ class BigQueryClientTest extends SnippetTestCase
         $res = $snippet->invoke('dataset');
 
         $this->assertInstanceOf(Dataset::class, $res->returnVal());
+    }
+
+    public function testRunJob()
+    {
+        $jobConfig = $this->prophesize(JobConfigurationInterface::class);
+        $jobConfig->toArray()
+            ->willReturn([
+                'projectId' => self::PROJECT_ID,
+                'jobReference' => [
+                    'jobId' => self::JOB_ID,
+                    'projectId' => self::PROJECT_ID
+                ]
+            ]);
+        $snippet = $this->snippetFromMethod(BigQueryClient::class, 'runJob');
+        $snippet->addLocal('bigQuery', $this->client);
+        $snippet->addLocal('jobConfig', $jobConfig->reveal());
+        $this->connection->insertJob(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'jobReference' => [
+                    'jobId' => self::JOB_ID
+                ],
+                'status' => [
+                    'state' => 'DONE'
+                ]
+            ]);
+        $this->client->___setProperty('connection', $this->connection->reveal());
+        $res = $snippet->invoke('job');
+
+        $this->assertInstanceOf(Job::class, $res->returnVal());
+        $this->assertEquals('1', $res->output());
+    }
+
+    public function testStartJob()
+    {
+        $jobConfig = $this->prophesize(JobConfigurationInterface::class);
+        $jobConfig->toArray()
+            ->willReturn([
+                'projectId' => self::PROJECT_ID,
+                'jobReference' => [
+                    'jobId' => self::JOB_ID,
+                    'projectId' => self::PROJECT_ID
+                ]
+            ]);
+        $snippet = $this->snippetFromMethod(BigQueryClient::class, 'startJob');
+        $snippet->addLocal('bigQuery', $this->client);
+        $snippet->addLocal('jobConfig', $jobConfig->reveal());
+        $this->connection->insertJob(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'jobReference' => [
+                    'jobId' => self::JOB_ID
+                ]
+            ]);
+        $this->client->___setProperty('connection', $this->connection->reveal());
+        $res = $snippet->invoke('job');
+
+        $this->assertInstanceOf(Job::class, $res->returnVal());
     }
 
     public function testBytes()

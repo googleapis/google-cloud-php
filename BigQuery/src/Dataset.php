@@ -326,7 +326,10 @@ class Dataset
             $id,
             $this->identity['datasetId'],
             $this->identity['projectId'],
-            $info
+            $info,
+            isset($this->info['location'])
+                ? $this->info['location']
+                : $this->location
         );
     }
 

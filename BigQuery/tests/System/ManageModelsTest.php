@@ -18,6 +18,7 @@
 namespace Google\Cloud\BigQuery\Tests\System;
 
 use Google\Cloud\BigQuery\Model;
+use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Core\Testing\System\KeyManager;
 
 /**
@@ -130,6 +131,32 @@ class ManageModelsTest extends BigQueryTestCase
         ]);
 
         $this->assertKeyName(self::$keyName2, $info);
+    }
+
+    public function testExtractsModel()
+    {
+        $object = self::$bucket->object(
+            uniqid(self::TESTING_PREFIX)
+        );
+        self::$deletionQueue->add($object);
+
+        $extractJobConfig = self::$model->extract($object);
+        $job = self::$client->startJob($extractJobConfig);
+
+        $backoff = new ExponentialBackoff(8);
+        $backoff->execute(function () use ($job) {
+            $job->reload();
+
+            if (!$job->isComplete()) {
+                throw new \Exception();
+            }
+        });
+
+        if (!$job->isComplete()) {
+            $this->fail('Job failed to complete within the allotted time.');
+        }
+
+        $this->assertArrayNotHasKey('errorResult', $job->info()['status']);
     }
 
     private function assertKeyName($expected, array $info)
