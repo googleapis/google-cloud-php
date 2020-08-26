@@ -53,7 +53,17 @@ class UpdateReservationRequest extends \Google\Protobuf\Internal\Message
      */
     public function getReservation()
     {
-        return $this->reservation;
+        return isset($this->reservation) ? $this->reservation : null;
+    }
+
+    public function hasReservation()
+    {
+        return isset($this->reservation);
+    }
+
+    public function clearReservation()
+    {
+        unset($this->reservation);
     }
 
     /**
@@ -79,7 +89,17 @@ class UpdateReservationRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return $this->update_mask;
+        return isset($this->update_mask) ? $this->update_mask : null;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**

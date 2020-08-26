@@ -85,7 +85,17 @@ class CreateAssignmentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getAssignment()
     {
-        return $this->assignment;
+        return isset($this->assignment) ? $this->assignment : null;
+    }
+
+    public function hasAssignment()
+    {
+        return isset($this->assignment);
+    }
+
+    public function clearAssignment()
+    {
+        unset($this->assignment);
     }
 
     /**

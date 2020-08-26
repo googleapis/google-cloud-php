@@ -174,7 +174,7 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
      */
     public function setPlan($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment_CommitmentPlan::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment\CommitmentPlan::class);
         $this->plan = $var;
 
         return $this;
@@ -200,7 +200,7 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
      */
     public function setState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment_State::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment\State::class);
         $this->state = $var;
 
         return $this;
@@ -215,7 +215,17 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
      */
     public function getCommitmentEndTime()
     {
-        return $this->commitment_end_time;
+        return isset($this->commitment_end_time) ? $this->commitment_end_time : null;
+    }
+
+    public function hasCommitmentEndTime()
+    {
+        return isset($this->commitment_end_time);
+    }
+
+    public function clearCommitmentEndTime()
+    {
+        unset($this->commitment_end_time);
     }
 
     /**
@@ -242,7 +252,17 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
      */
     public function getFailureStatus()
     {
-        return $this->failure_status;
+        return isset($this->failure_status) ? $this->failure_status : null;
+    }
+
+    public function hasFailureStatus()
+    {
+        return isset($this->failure_status);
+    }
+
+    public function clearFailureStatus()
+    {
+        unset($this->failure_status);
     }
 
     /**
@@ -284,7 +304,7 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
      */
     public function setRenewalPlan($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment_CommitmentPlan::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment\CommitmentPlan::class);
         $this->renewal_plan = $var;
 
         return $this;

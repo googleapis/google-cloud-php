@@ -53,7 +53,17 @@ class UpdateBiReservationRequest extends \Google\Protobuf\Internal\Message
      */
     public function getBiReservation()
     {
-        return $this->bi_reservation;
+        return isset($this->bi_reservation) ? $this->bi_reservation : null;
+    }
+
+    public function hasBiReservation()
+    {
+        return isset($this->bi_reservation);
+    }
+
+    public function clearBiReservation()
+    {
+        unset($this->bi_reservation);
     }
 
     /**
@@ -79,7 +89,17 @@ class UpdateBiReservationRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return $this->update_mask;
+        return isset($this->update_mask) ? $this->update_mask : null;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**
