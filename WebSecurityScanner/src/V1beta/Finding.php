@@ -469,7 +469,17 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     public function getForm()
     {
-        return $this->form;
+        return isset($this->form) ? $this->form : null;
+    }
+
+    public function hasForm()
+    {
+        return isset($this->form);
+    }
+
+    public function clearForm()
+    {
+        unset($this->form);
     }
 
     /**
@@ -496,7 +506,17 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     public function getOutdatedLibrary()
     {
-        return $this->outdated_library;
+        return isset($this->outdated_library) ? $this->outdated_library : null;
+    }
+
+    public function hasOutdatedLibrary()
+    {
+        return isset($this->outdated_library);
+    }
+
+    public function clearOutdatedLibrary()
+    {
+        unset($this->outdated_library);
     }
 
     /**
@@ -523,7 +543,17 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     public function getViolatingResource()
     {
-        return $this->violating_resource;
+        return isset($this->violating_resource) ? $this->violating_resource : null;
+    }
+
+    public function hasViolatingResource()
+    {
+        return isset($this->violating_resource);
+    }
+
+    public function clearViolatingResource()
+    {
+        unset($this->violating_resource);
     }
 
     /**
@@ -550,7 +580,17 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     public function getVulnerableHeaders()
     {
-        return $this->vulnerable_headers;
+        return isset($this->vulnerable_headers) ? $this->vulnerable_headers : null;
+    }
+
+    public function hasVulnerableHeaders()
+    {
+        return isset($this->vulnerable_headers);
+    }
+
+    public function clearVulnerableHeaders()
+    {
+        unset($this->vulnerable_headers);
     }
 
     /**
@@ -577,7 +617,17 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     public function getVulnerableParameters()
     {
-        return $this->vulnerable_parameters;
+        return isset($this->vulnerable_parameters) ? $this->vulnerable_parameters : null;
+    }
+
+    public function hasVulnerableParameters()
+    {
+        return isset($this->vulnerable_parameters);
+    }
+
+    public function clearVulnerableParameters()
+    {
+        unset($this->vulnerable_parameters);
     }
 
     /**
@@ -604,7 +654,17 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     public function getXss()
     {
-        return $this->xss;
+        return isset($this->xss) ? $this->xss : null;
+    }
+
+    public function hasXss()
+    {
+        return isset($this->xss);
+    }
+
+    public function clearXss()
+    {
+        unset($this->xss);
     }
 
     /**

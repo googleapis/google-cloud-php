@@ -59,7 +59,7 @@ class ScanRunWarningTrace extends \Google\Protobuf\Internal\Message
      */
     public function setCode($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\WebSecurityScanner\V1beta\ScanRunWarningTrace_Code::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\WebSecurityScanner\V1beta\ScanRunWarningTrace\Code::class);
         $this->code = $var;
 
         return $this;

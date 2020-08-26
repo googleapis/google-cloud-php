@@ -192,7 +192,7 @@ class ScanRun extends \Google\Protobuf\Internal\Message
      */
     public function setExecutionState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\WebSecurityScanner\V1beta\ScanRun_ExecutionState::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\WebSecurityScanner\V1beta\ScanRun\ExecutionState::class);
         $this->execution_state = $var;
 
         return $this;
@@ -220,7 +220,7 @@ class ScanRun extends \Google\Protobuf\Internal\Message
      */
     public function setResultState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\WebSecurityScanner\V1beta\ScanRun_ResultState::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\WebSecurityScanner\V1beta\ScanRun\ResultState::class);
         $this->result_state = $var;
 
         return $this;
@@ -234,7 +234,17 @@ class ScanRun extends \Google\Protobuf\Internal\Message
      */
     public function getStartTime()
     {
-        return $this->start_time;
+        return isset($this->start_time) ? $this->start_time : null;
+    }
+
+    public function hasStartTime()
+    {
+        return isset($this->start_time);
+    }
+
+    public function clearStartTime()
+    {
+        unset($this->start_time);
     }
 
     /**
@@ -261,7 +271,17 @@ class ScanRun extends \Google\Protobuf\Internal\Message
      */
     public function getEndTime()
     {
-        return $this->end_time;
+        return isset($this->end_time) ? $this->end_time : null;
+    }
+
+    public function hasEndTime()
+    {
+        return isset($this->end_time);
+    }
+
+    public function clearEndTime()
+    {
+        unset($this->end_time);
     }
 
     /**
@@ -407,7 +427,17 @@ class ScanRun extends \Google\Protobuf\Internal\Message
      */
     public function getErrorTrace()
     {
-        return $this->error_trace;
+        return isset($this->error_trace) ? $this->error_trace : null;
+    }
+
+    public function hasErrorTrace()
+    {
+        return isset($this->error_trace);
+    }
+
+    public function clearErrorTrace()
+    {
+        unset($this->error_trace);
     }
 
     /**

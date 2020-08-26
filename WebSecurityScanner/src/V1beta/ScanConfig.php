@@ -266,7 +266,17 @@ class ScanConfig extends \Google\Protobuf\Internal\Message
      */
     public function getAuthentication()
     {
-        return $this->authentication;
+        return isset($this->authentication) ? $this->authentication : null;
+    }
+
+    public function hasAuthentication()
+    {
+        return isset($this->authentication);
+    }
+
+    public function clearAuthentication()
+    {
+        unset($this->authentication);
     }
 
     /**
@@ -279,7 +289,7 @@ class ScanConfig extends \Google\Protobuf\Internal\Message
      */
     public function setAuthentication($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\WebSecurityScanner\V1beta\ScanConfig_Authentication::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\WebSecurityScanner\V1beta\ScanConfig\Authentication::class);
         $this->authentication = $var;
 
         return $this;
@@ -305,7 +315,7 @@ class ScanConfig extends \Google\Protobuf\Internal\Message
      */
     public function setUserAgent($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\WebSecurityScanner\V1beta\ScanConfig_UserAgent::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\WebSecurityScanner\V1beta\ScanConfig\UserAgent::class);
         $this->user_agent = $var;
 
         return $this;
@@ -347,7 +357,17 @@ class ScanConfig extends \Google\Protobuf\Internal\Message
      */
     public function getSchedule()
     {
-        return $this->schedule;
+        return isset($this->schedule) ? $this->schedule : null;
+    }
+
+    public function hasSchedule()
+    {
+        return isset($this->schedule);
+    }
+
+    public function clearSchedule()
+    {
+        unset($this->schedule);
     }
 
     /**
@@ -359,7 +379,7 @@ class ScanConfig extends \Google\Protobuf\Internal\Message
      */
     public function setSchedule($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\WebSecurityScanner\V1beta\ScanConfig_Schedule::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\WebSecurityScanner\V1beta\ScanConfig\Schedule::class);
         $this->schedule = $var;
 
         return $this;
@@ -415,7 +435,7 @@ class ScanConfig extends \Google\Protobuf\Internal\Message
      */
     public function setExportToSecurityCommandCenter($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\WebSecurityScanner\V1beta\ScanConfig_ExportToSecurityCommandCenter::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\WebSecurityScanner\V1beta\ScanConfig\ExportToSecurityCommandCenter::class);
         $this->export_to_security_command_center = $var;
 
         return $this;
@@ -429,7 +449,17 @@ class ScanConfig extends \Google\Protobuf\Internal\Message
      */
     public function getLatestRun()
     {
-        return $this->latest_run;
+        return isset($this->latest_run) ? $this->latest_run : null;
+    }
+
+    public function hasLatestRun()
+    {
+        return isset($this->latest_run);
+    }
+
+    public function clearLatestRun()
+    {
+        unset($this->latest_run);
     }
 
     /**
@@ -467,7 +497,7 @@ class ScanConfig extends \Google\Protobuf\Internal\Message
      */
     public function setRiskLevel($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\WebSecurityScanner\V1beta\ScanConfig_RiskLevel::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\WebSecurityScanner\V1beta\ScanConfig\RiskLevel::class);
         $this->risk_level = $var;
 
         return $this;

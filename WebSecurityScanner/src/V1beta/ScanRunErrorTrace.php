@@ -82,7 +82,7 @@ class ScanRunErrorTrace extends \Google\Protobuf\Internal\Message
      */
     public function setCode($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\WebSecurityScanner\V1beta\ScanRunErrorTrace_Code::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\WebSecurityScanner\V1beta\ScanRunErrorTrace\Code::class);
         $this->code = $var;
 
         return $this;
@@ -98,7 +98,17 @@ class ScanRunErrorTrace extends \Google\Protobuf\Internal\Message
      */
     public function getScanConfigError()
     {
-        return $this->scan_config_error;
+        return isset($this->scan_config_error) ? $this->scan_config_error : null;
+    }
+
+    public function hasScanConfigError()
+    {
+        return isset($this->scan_config_error);
+    }
+
+    public function clearScanConfigError()
+    {
+        unset($this->scan_config_error);
     }
 
     /**

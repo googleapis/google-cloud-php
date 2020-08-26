@@ -45,6 +45,11 @@ class Authentication extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasGoogleAccount()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * Authentication using a Google account.
      *
@@ -54,7 +59,7 @@ class Authentication extends \Google\Protobuf\Internal\Message
      */
     public function setGoogleAccount($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\WebSecurityScanner\V1beta\ScanConfig_Authentication_GoogleAccount::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\WebSecurityScanner\V1beta\ScanConfig\Authentication\GoogleAccount::class);
         $this->writeOneof(1, $var);
 
         return $this;
@@ -71,6 +76,11 @@ class Authentication extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasCustomAccount()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * Authentication using a custom account.
      *
@@ -80,7 +90,7 @@ class Authentication extends \Google\Protobuf\Internal\Message
      */
     public function setCustomAccount($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\WebSecurityScanner\V1beta\ScanConfig_Authentication_CustomAccount::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\WebSecurityScanner\V1beta\ScanConfig\Authentication\CustomAccount::class);
         $this->writeOneof(2, $var);
 
         return $this;
