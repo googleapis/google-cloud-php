@@ -49,6 +49,45 @@ class EncryptRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bytes additional_authenticated_data = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $additional_authenticated_data = '';
+    /**
+     * Optional. An optional CRC32C checksum of the [EncryptRequest.plaintext][google.cloud.kms.v1.EncryptRequest.plaintext]. If
+     * specified, [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will verify the integrity of the
+     * received [EncryptRequest.plaintext][google.cloud.kms.v1.EncryptRequest.plaintext] using this checksum.
+     * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will report an error if the checksum verification
+     * fails. If you receive a checksum error, your client should verify that
+     * CRC32C([EncryptRequest.plaintext][google.cloud.kms.v1.EncryptRequest.plaintext]) is equal to
+     * [EncryptRequest.plaintext_crc32c][google.cloud.kms.v1.EncryptRequest.plaintext_crc32c], and if so, perform a limited number of
+     * retries. A persistent mismatch may indicate an issue in your computation of
+     * the CRC32C checksum.
+     * Note: This field is defined as int64 for reasons of compatibility across
+     * different languages. However, it is a non-negative integer, which will
+     * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
+     * that support this type.
+     * NOTE: This field is in Beta.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int64Value plaintext_crc32c = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $plaintext_crc32c = null;
+    /**
+     * Optional. An optional CRC32C checksum of the
+     * [EncryptRequest.additional_authenticated_data][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data]. If specified,
+     * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will verify the integrity of the received
+     * [EncryptRequest.additional_authenticated_data][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data] using this checksum.
+     * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will report an error if the checksum verification
+     * fails. If you receive a checksum error, your client should verify that
+     * CRC32C([EncryptRequest.additional_authenticated_data][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data]) is equal to
+     * [EncryptRequest.additional_authenticated_data_crc32c][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data_crc32c], and if so, perform
+     * a limited number of retries. A persistent mismatch may indicate an issue in
+     * your computation of the CRC32C checksum.
+     * Note: This field is defined as int64 for reasons of compatibility across
+     * different languages. However, it is a non-negative integer, which will
+     * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
+     * that support this type.
+     * NOTE: This field is in Beta.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int64Value additional_authenticated_data_crc32c = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $additional_authenticated_data_crc32c = null;
 
     /**
      * Constructor.
@@ -78,6 +117,37 @@ class EncryptRequest extends \Google\Protobuf\Internal\Message
      *           64KiB. For [HSM][google.cloud.kms.v1.ProtectionLevel.HSM] keys, the combined length of the
      *           plaintext and additional_authenticated_data fields must be no larger than
      *           8KiB.
+     *     @type \Google\Protobuf\Int64Value $plaintext_crc32c
+     *           Optional. An optional CRC32C checksum of the [EncryptRequest.plaintext][google.cloud.kms.v1.EncryptRequest.plaintext]. If
+     *           specified, [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will verify the integrity of the
+     *           received [EncryptRequest.plaintext][google.cloud.kms.v1.EncryptRequest.plaintext] using this checksum.
+     *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will report an error if the checksum verification
+     *           fails. If you receive a checksum error, your client should verify that
+     *           CRC32C([EncryptRequest.plaintext][google.cloud.kms.v1.EncryptRequest.plaintext]) is equal to
+     *           [EncryptRequest.plaintext_crc32c][google.cloud.kms.v1.EncryptRequest.plaintext_crc32c], and if so, perform a limited number of
+     *           retries. A persistent mismatch may indicate an issue in your computation of
+     *           the CRC32C checksum.
+     *           Note: This field is defined as int64 for reasons of compatibility across
+     *           different languages. However, it is a non-negative integer, which will
+     *           never exceed 2^32-1, and can be safely downconverted to uint32 in languages
+     *           that support this type.
+     *           NOTE: This field is in Beta.
+     *     @type \Google\Protobuf\Int64Value $additional_authenticated_data_crc32c
+     *           Optional. An optional CRC32C checksum of the
+     *           [EncryptRequest.additional_authenticated_data][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data]. If specified,
+     *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will verify the integrity of the received
+     *           [EncryptRequest.additional_authenticated_data][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data] using this checksum.
+     *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will report an error if the checksum verification
+     *           fails. If you receive a checksum error, your client should verify that
+     *           CRC32C([EncryptRequest.additional_authenticated_data][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data]) is equal to
+     *           [EncryptRequest.additional_authenticated_data_crc32c][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data_crc32c], and if so, perform
+     *           a limited number of retries. A persistent mismatch may indicate an issue in
+     *           your computation of the CRC32C checksum.
+     *           Note: This field is defined as int64 for reasons of compatibility across
+     *           different languages. However, it is a non-negative integer, which will
+     *           never exceed 2^32-1, and can be safely downconverted to uint32 in languages
+     *           that support this type.
+     *           NOTE: This field is in Beta.
      * }
      */
     public function __construct($data = NULL) {
@@ -194,6 +264,220 @@ class EncryptRequest extends \Google\Protobuf\Internal\Message
 
         return $this;
     }
+
+    /**
+     * Optional. An optional CRC32C checksum of the [EncryptRequest.plaintext][google.cloud.kms.v1.EncryptRequest.plaintext]. If
+     * specified, [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will verify the integrity of the
+     * received [EncryptRequest.plaintext][google.cloud.kms.v1.EncryptRequest.plaintext] using this checksum.
+     * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will report an error if the checksum verification
+     * fails. If you receive a checksum error, your client should verify that
+     * CRC32C([EncryptRequest.plaintext][google.cloud.kms.v1.EncryptRequest.plaintext]) is equal to
+     * [EncryptRequest.plaintext_crc32c][google.cloud.kms.v1.EncryptRequest.plaintext_crc32c], and if so, perform a limited number of
+     * retries. A persistent mismatch may indicate an issue in your computation of
+     * the CRC32C checksum.
+     * Note: This field is defined as int64 for reasons of compatibility across
+     * different languages. However, it is a non-negative integer, which will
+     * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
+     * that support this type.
+     * NOTE: This field is in Beta.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int64Value plaintext_crc32c = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Int64Value
+     */
+    public function getPlaintextCrc32C()
+    {
+        return $this->plaintext_crc32c;
+    }
+
+    /**
+     * Returns the unboxed value from <code>getPlaintextCrc32C()</code>
+
+     * Optional. An optional CRC32C checksum of the [EncryptRequest.plaintext][google.cloud.kms.v1.EncryptRequest.plaintext]. If
+     * specified, [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will verify the integrity of the
+     * received [EncryptRequest.plaintext][google.cloud.kms.v1.EncryptRequest.plaintext] using this checksum.
+     * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will report an error if the checksum verification
+     * fails. If you receive a checksum error, your client should verify that
+     * CRC32C([EncryptRequest.plaintext][google.cloud.kms.v1.EncryptRequest.plaintext]) is equal to
+     * [EncryptRequest.plaintext_crc32c][google.cloud.kms.v1.EncryptRequest.plaintext_crc32c], and if so, perform a limited number of
+     * retries. A persistent mismatch may indicate an issue in your computation of
+     * the CRC32C checksum.
+     * Note: This field is defined as int64 for reasons of compatibility across
+     * different languages. However, it is a non-negative integer, which will
+     * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
+     * that support this type.
+     * NOTE: This field is in Beta.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int64Value plaintext_crc32c = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int|string|null
+     */
+    public function getPlaintextCrc32CValue()
+    {
+        return $this->readWrapperValue("plaintext_crc32c");
+    }
+
+    /**
+     * Optional. An optional CRC32C checksum of the [EncryptRequest.plaintext][google.cloud.kms.v1.EncryptRequest.plaintext]. If
+     * specified, [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will verify the integrity of the
+     * received [EncryptRequest.plaintext][google.cloud.kms.v1.EncryptRequest.plaintext] using this checksum.
+     * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will report an error if the checksum verification
+     * fails. If you receive a checksum error, your client should verify that
+     * CRC32C([EncryptRequest.plaintext][google.cloud.kms.v1.EncryptRequest.plaintext]) is equal to
+     * [EncryptRequest.plaintext_crc32c][google.cloud.kms.v1.EncryptRequest.plaintext_crc32c], and if so, perform a limited number of
+     * retries. A persistent mismatch may indicate an issue in your computation of
+     * the CRC32C checksum.
+     * Note: This field is defined as int64 for reasons of compatibility across
+     * different languages. However, it is a non-negative integer, which will
+     * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
+     * that support this type.
+     * NOTE: This field is in Beta.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int64Value plaintext_crc32c = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Int64Value $var
+     * @return $this
+     */
+    public function setPlaintextCrc32C($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Int64Value::class);
+        $this->plaintext_crc32c = $var;
+
+        return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\Int64Value object.
+
+     * Optional. An optional CRC32C checksum of the [EncryptRequest.plaintext][google.cloud.kms.v1.EncryptRequest.plaintext]. If
+     * specified, [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will verify the integrity of the
+     * received [EncryptRequest.plaintext][google.cloud.kms.v1.EncryptRequest.plaintext] using this checksum.
+     * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will report an error if the checksum verification
+     * fails. If you receive a checksum error, your client should verify that
+     * CRC32C([EncryptRequest.plaintext][google.cloud.kms.v1.EncryptRequest.plaintext]) is equal to
+     * [EncryptRequest.plaintext_crc32c][google.cloud.kms.v1.EncryptRequest.plaintext_crc32c], and if so, perform a limited number of
+     * retries. A persistent mismatch may indicate an issue in your computation of
+     * the CRC32C checksum.
+     * Note: This field is defined as int64 for reasons of compatibility across
+     * different languages. However, it is a non-negative integer, which will
+     * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
+     * that support this type.
+     * NOTE: This field is in Beta.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int64Value plaintext_crc32c = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int|string|null $var
+     * @return $this
+     */
+    public function setPlaintextCrc32CValue($var)
+    {
+        $this->writeWrapperValue("plaintext_crc32c", $var);
+        return $this;}
+
+    /**
+     * Optional. An optional CRC32C checksum of the
+     * [EncryptRequest.additional_authenticated_data][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data]. If specified,
+     * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will verify the integrity of the received
+     * [EncryptRequest.additional_authenticated_data][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data] using this checksum.
+     * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will report an error if the checksum verification
+     * fails. If you receive a checksum error, your client should verify that
+     * CRC32C([EncryptRequest.additional_authenticated_data][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data]) is equal to
+     * [EncryptRequest.additional_authenticated_data_crc32c][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data_crc32c], and if so, perform
+     * a limited number of retries. A persistent mismatch may indicate an issue in
+     * your computation of the CRC32C checksum.
+     * Note: This field is defined as int64 for reasons of compatibility across
+     * different languages. However, it is a non-negative integer, which will
+     * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
+     * that support this type.
+     * NOTE: This field is in Beta.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int64Value additional_authenticated_data_crc32c = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Int64Value
+     */
+    public function getAdditionalAuthenticatedDataCrc32C()
+    {
+        return $this->additional_authenticated_data_crc32c;
+    }
+
+    /**
+     * Returns the unboxed value from <code>getAdditionalAuthenticatedDataCrc32C()</code>
+
+     * Optional. An optional CRC32C checksum of the
+     * [EncryptRequest.additional_authenticated_data][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data]. If specified,
+     * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will verify the integrity of the received
+     * [EncryptRequest.additional_authenticated_data][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data] using this checksum.
+     * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will report an error if the checksum verification
+     * fails. If you receive a checksum error, your client should verify that
+     * CRC32C([EncryptRequest.additional_authenticated_data][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data]) is equal to
+     * [EncryptRequest.additional_authenticated_data_crc32c][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data_crc32c], and if so, perform
+     * a limited number of retries. A persistent mismatch may indicate an issue in
+     * your computation of the CRC32C checksum.
+     * Note: This field is defined as int64 for reasons of compatibility across
+     * different languages. However, it is a non-negative integer, which will
+     * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
+     * that support this type.
+     * NOTE: This field is in Beta.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int64Value additional_authenticated_data_crc32c = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int|string|null
+     */
+    public function getAdditionalAuthenticatedDataCrc32CValue()
+    {
+        return $this->readWrapperValue("additional_authenticated_data_crc32c");
+    }
+
+    /**
+     * Optional. An optional CRC32C checksum of the
+     * [EncryptRequest.additional_authenticated_data][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data]. If specified,
+     * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will verify the integrity of the received
+     * [EncryptRequest.additional_authenticated_data][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data] using this checksum.
+     * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will report an error if the checksum verification
+     * fails. If you receive a checksum error, your client should verify that
+     * CRC32C([EncryptRequest.additional_authenticated_data][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data]) is equal to
+     * [EncryptRequest.additional_authenticated_data_crc32c][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data_crc32c], and if so, perform
+     * a limited number of retries. A persistent mismatch may indicate an issue in
+     * your computation of the CRC32C checksum.
+     * Note: This field is defined as int64 for reasons of compatibility across
+     * different languages. However, it is a non-negative integer, which will
+     * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
+     * that support this type.
+     * NOTE: This field is in Beta.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int64Value additional_authenticated_data_crc32c = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Int64Value $var
+     * @return $this
+     */
+    public function setAdditionalAuthenticatedDataCrc32C($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Int64Value::class);
+        $this->additional_authenticated_data_crc32c = $var;
+
+        return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\Int64Value object.
+
+     * Optional. An optional CRC32C checksum of the
+     * [EncryptRequest.additional_authenticated_data][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data]. If specified,
+     * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will verify the integrity of the received
+     * [EncryptRequest.additional_authenticated_data][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data] using this checksum.
+     * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will report an error if the checksum verification
+     * fails. If you receive a checksum error, your client should verify that
+     * CRC32C([EncryptRequest.additional_authenticated_data][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data]) is equal to
+     * [EncryptRequest.additional_authenticated_data_crc32c][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data_crc32c], and if so, perform
+     * a limited number of retries. A persistent mismatch may indicate an issue in
+     * your computation of the CRC32C checksum.
+     * Note: This field is defined as int64 for reasons of compatibility across
+     * different languages. However, it is a non-negative integer, which will
+     * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
+     * that support this type.
+     * NOTE: This field is in Beta.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int64Value additional_authenticated_data_crc32c = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int|string|null $var
+     * @return $this
+     */
+    public function setAdditionalAuthenticatedDataCrc32CValue($var)
+    {
+        $this->writeWrapperValue("additional_authenticated_data_crc32c", $var);
+        return $this;}
 
 }
 

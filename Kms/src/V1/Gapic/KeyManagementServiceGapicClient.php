@@ -79,6 +79,7 @@ use Google\Cloud\Kms\V1\UpdateCryptoKeyPrimaryVersionRequest;
 use Google\Cloud\Kms\V1\UpdateCryptoKeyRequest;
 use Google\Cloud\Kms\V1\UpdateCryptoKeyVersionRequest;
 use Google\Protobuf\FieldMask;
+use Google\Protobuf\Int64Value;
 
 /**
  * Service Description: Google Cloud Key Management Service.
@@ -1577,6 +1578,39 @@ class KeyManagementServiceGapicClient
      *          64KiB. For [HSM][google.cloud.kms.v1.ProtectionLevel.HSM] keys, the combined length of the
      *          plaintext and additional_authenticated_data fields must be no larger than
      *          8KiB.
+     *     @type Int64Value $plaintextCrc32c
+     *          Optional. An optional CRC32C checksum of the [EncryptRequest.plaintext][google.cloud.kms.v1.EncryptRequest.plaintext]. If
+     *          specified, [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will verify the integrity of the
+     *          received [EncryptRequest.plaintext][google.cloud.kms.v1.EncryptRequest.plaintext] using this checksum.
+     *          [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will report an error if the checksum verification
+     *          fails. If you receive a checksum error, your client should verify that
+     *          CRC32C([EncryptRequest.plaintext][google.cloud.kms.v1.EncryptRequest.plaintext]) is equal to
+     *          [EncryptRequest.plaintext_crc32c][google.cloud.kms.v1.EncryptRequest.plaintext_crc32c], and if so, perform a limited number of
+     *          retries. A persistent mismatch may indicate an issue in your computation of
+     *          the CRC32C checksum.
+     *          Note: This field is defined as int64 for reasons of compatibility across
+     *          different languages. However, it is a non-negative integer, which will
+     *          never exceed 2^32-1, and can be safely downconverted to uint32 in languages
+     *          that support this type.
+     *
+     *          NOTE: This field is in Beta.
+     *     @type Int64Value $additionalAuthenticatedDataCrc32c
+     *          Optional. An optional CRC32C checksum of the
+     *          [EncryptRequest.additional_authenticated_data][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data]. If specified,
+     *          [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will verify the integrity of the received
+     *          [EncryptRequest.additional_authenticated_data][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data] using this checksum.
+     *          [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will report an error if the checksum verification
+     *          fails. If you receive a checksum error, your client should verify that
+     *          CRC32C([EncryptRequest.additional_authenticated_data][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data]) is equal to
+     *          [EncryptRequest.additional_authenticated_data_crc32c][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data_crc32c], and if so, perform
+     *          a limited number of retries. A persistent mismatch may indicate an issue in
+     *          your computation of the CRC32C checksum.
+     *          Note: This field is defined as int64 for reasons of compatibility across
+     *          different languages. However, it is a non-negative integer, which will
+     *          never exceed 2^32-1, and can be safely downconverted to uint32 in languages
+     *          that support this type.
+     *
+     *          NOTE: This field is in Beta.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1595,6 +1629,12 @@ class KeyManagementServiceGapicClient
         $request->setPlaintext($plaintext);
         if (isset($optionalArgs['additionalAuthenticatedData'])) {
             $request->setAdditionalAuthenticatedData($optionalArgs['additionalAuthenticatedData']);
+        }
+        if (isset($optionalArgs['plaintextCrc32c'])) {
+            $request->setPlaintextCrc32c($optionalArgs['plaintextCrc32c']);
+        }
+        if (isset($optionalArgs['additionalAuthenticatedDataCrc32c'])) {
+            $request->setAdditionalAuthenticatedDataCrc32c($optionalArgs['additionalAuthenticatedDataCrc32c']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor([
@@ -1638,6 +1678,39 @@ class KeyManagementServiceGapicClient
      *     @type string $additionalAuthenticatedData
      *          Optional. Optional data that must match the data originally supplied in
      *          [EncryptRequest.additional_authenticated_data][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data].
+     *     @type Int64Value $ciphertextCrc32c
+     *          Optional. An optional CRC32C checksum of the [DecryptRequest.ciphertext][google.cloud.kms.v1.DecryptRequest.ciphertext]. If
+     *          specified, [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will verify the integrity of the
+     *          received [DecryptRequest.ciphertext][google.cloud.kms.v1.DecryptRequest.ciphertext] using this checksum.
+     *          [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will report an error if the checksum verification
+     *          fails. If you receive a checksum error, your client should verify that
+     *          CRC32C([DecryptRequest.ciphertext][google.cloud.kms.v1.DecryptRequest.ciphertext]) is equal to
+     *          [DecryptRequest.ciphertext_crc32c][google.cloud.kms.v1.DecryptRequest.ciphertext_crc32c], and if so, perform a limited number
+     *          of retries. A persistent mismatch may indicate an issue in your computation
+     *          of the CRC32C checksum.
+     *          Note: This field is defined as int64 for reasons of compatibility across
+     *          different languages. However, it is a non-negative integer, which will
+     *          never exceed 2^32-1, and can be safely downconverted to uint32 in languages
+     *          that support this type.
+     *
+     *          NOTE: This field is in Beta.
+     *     @type Int64Value $additionalAuthenticatedDataCrc32c
+     *          Optional. An optional CRC32C checksum of the
+     *          [DecryptRequest.additional_authenticated_data][google.cloud.kms.v1.DecryptRequest.additional_authenticated_data]. If specified,
+     *          [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will verify the integrity of the received
+     *          [DecryptRequest.additional_authenticated_data][google.cloud.kms.v1.DecryptRequest.additional_authenticated_data] using this checksum.
+     *          [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will report an error if the checksum verification
+     *          fails. If you receive a checksum error, your client should verify that
+     *          CRC32C([DecryptRequest.additional_authenticated_data][google.cloud.kms.v1.DecryptRequest.additional_authenticated_data]) is equal to
+     *          [DecryptRequest.additional_authenticated_data_crc32c][google.cloud.kms.v1.DecryptRequest.additional_authenticated_data_crc32c], and if so, perform
+     *          a limited number of retries. A persistent mismatch may indicate an issue in
+     *          your computation of the CRC32C checksum.
+     *          Note: This field is defined as int64 for reasons of compatibility across
+     *          different languages. However, it is a non-negative integer, which will
+     *          never exceed 2^32-1, and can be safely downconverted to uint32 in languages
+     *          that support this type.
+     *
+     *          NOTE: This field is in Beta.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1656,6 +1729,12 @@ class KeyManagementServiceGapicClient
         $request->setCiphertext($ciphertext);
         if (isset($optionalArgs['additionalAuthenticatedData'])) {
             $request->setAdditionalAuthenticatedData($optionalArgs['additionalAuthenticatedData']);
+        }
+        if (isset($optionalArgs['ciphertextCrc32c'])) {
+            $request->setCiphertextCrc32c($optionalArgs['ciphertextCrc32c']);
+        }
+        if (isset($optionalArgs['additionalAuthenticatedDataCrc32c'])) {
+            $request->setAdditionalAuthenticatedDataCrc32c($optionalArgs['additionalAuthenticatedDataCrc32c']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor([
@@ -1919,6 +1998,22 @@ class KeyManagementServiceGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
+     *     @type Int64Value $ciphertextCrc32c
+     *          Optional. An optional CRC32C checksum of the [AsymmetricDecryptRequest.ciphertext][google.cloud.kms.v1.AsymmetricDecryptRequest.ciphertext].
+     *          If specified, [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will verify the integrity of the
+     *          received [AsymmetricDecryptRequest.ciphertext][google.cloud.kms.v1.AsymmetricDecryptRequest.ciphertext] using this checksum.
+     *          [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will report an error if the checksum verification
+     *          fails. If you receive a checksum error, your client should verify that
+     *          CRC32C([AsymmetricDecryptRequest.ciphertext][google.cloud.kms.v1.AsymmetricDecryptRequest.ciphertext]) is equal to
+     *          [AsymmetricDecryptRequest.ciphertext_crc32c][google.cloud.kms.v1.AsymmetricDecryptRequest.ciphertext_crc32c], and if so, perform a
+     *          limited number of retries. A persistent mismatch may indicate an issue in
+     *          your computation of the CRC32C checksum.
+     *          Note: This field is defined as int64 for reasons of compatibility across
+     *          different languages. However, it is a non-negative integer, which will
+     *          never exceed 2^32-1, and can be safely downconverted to uint32 in languages
+     *          that support this type.
+     *
+     *          NOTE: This field is in Beta.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1935,6 +2030,9 @@ class KeyManagementServiceGapicClient
         $request = new AsymmetricDecryptRequest();
         $request->setName($name);
         $request->setCiphertext($ciphertext);
+        if (isset($optionalArgs['ciphertextCrc32c'])) {
+            $request->setCiphertextCrc32c($optionalArgs['ciphertextCrc32c']);
+        }
 
         $requestParams = new RequestParamsHeaderDescriptor([
           'name' => $request->getName(),
@@ -1975,6 +2073,22 @@ class KeyManagementServiceGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
+     *     @type Int64Value $digestCrc32c
+     *          Optional. An optional CRC32C checksum of the [AsymmetricSignRequest.digest][google.cloud.kms.v1.AsymmetricSignRequest.digest]. If
+     *          specified, [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will verify the integrity of the
+     *          received [AsymmetricSignRequest.digest][google.cloud.kms.v1.AsymmetricSignRequest.digest] using this checksum.
+     *          [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will report an error if the checksum verification
+     *          fails. If you receive a checksum error, your client should verify that
+     *          CRC32C([AsymmetricSignRequest.digest][google.cloud.kms.v1.AsymmetricSignRequest.digest]) is equal to
+     *          [AsymmetricSignRequest.digest_crc32c][google.cloud.kms.v1.AsymmetricSignRequest.digest_crc32c], and if so, perform a limited
+     *          number of retries. A persistent mismatch may indicate an issue in your
+     *          computation of the CRC32C checksum.
+     *          Note: This field is defined as int64 for reasons of compatibility across
+     *          different languages. However, it is a non-negative integer, which will
+     *          never exceed 2^32-1, and can be safely downconverted to uint32 in languages
+     *          that support this type.
+     *
+     *          NOTE: This field is in Beta.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1991,6 +2105,9 @@ class KeyManagementServiceGapicClient
         $request = new AsymmetricSignRequest();
         $request->setName($name);
         $request->setDigest($digest);
+        if (isset($optionalArgs['digestCrc32c'])) {
+            $request->setDigestCrc32c($optionalArgs['digestCrc32c']);
+        }
 
         $requestParams = new RequestParamsHeaderDescriptor([
           'name' => $request->getName(),
@@ -2011,8 +2128,8 @@ class KeyManagementServiceGapicClient
      * Sets the access control policy on the specified resource. Replaces
      * any existing policy.
      *
-     * Can return Public Errors: NOT_FOUND, INVALID_ARGUMENT and
-     * PERMISSION_DENIED
+     * Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+     * errors.
      *
      * Sample code:
      * ```
@@ -2131,7 +2248,7 @@ class KeyManagementServiceGapicClient
     /**
      * Returns permissions that a caller has on the specified resource. If the
      * resource does not exist, this will return an empty set of
-     * permissions, not a NOT_FOUND error.
+     * permissions, not a `NOT_FOUND` error.
      *
      * Note: This operation is designed to be used for building
      * permission-aware UIs and command-line tools, not for authorization
