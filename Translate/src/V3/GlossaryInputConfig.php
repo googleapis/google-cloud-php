@@ -75,6 +75,11 @@ class GlossaryInputConfig extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasGcsSource()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * Required. Google Cloud Storage location of glossary data.
      * File format is determined based on the filename extension. API returns

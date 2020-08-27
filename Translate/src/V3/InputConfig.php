@@ -119,6 +119,11 @@ class InputConfig extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasGcsSource()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * Required. Google Cloud Storage location for the source input.
      * This can be a single file (for example,

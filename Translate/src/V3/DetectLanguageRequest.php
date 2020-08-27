@@ -187,6 +187,11 @@ class DetectLanguageRequest extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasContent()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * The content of the input stored as a string.
      *

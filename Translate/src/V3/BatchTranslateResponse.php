@@ -162,7 +162,17 @@ class BatchTranslateResponse extends \Google\Protobuf\Internal\Message
      */
     public function getSubmitTime()
     {
-        return $this->submit_time;
+        return isset($this->submit_time) ? $this->submit_time : null;
+    }
+
+    public function hasSubmitTime()
+    {
+        return isset($this->submit_time);
+    }
+
+    public function clearSubmitTime()
+    {
+        unset($this->submit_time);
     }
 
     /**
@@ -190,7 +200,17 @@ class BatchTranslateResponse extends \Google\Protobuf\Internal\Message
      */
     public function getEndTime()
     {
-        return $this->end_time;
+        return isset($this->end_time) ? $this->end_time : null;
+    }
+
+    public function hasEndTime()
+    {
+        return isset($this->end_time);
+    }
+
+    public function clearEndTime()
+    {
+        unset($this->end_time);
     }
 
     /**
