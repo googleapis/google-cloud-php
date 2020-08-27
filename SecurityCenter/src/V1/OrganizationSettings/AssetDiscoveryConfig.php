@@ -91,7 +91,7 @@ class AssetDiscoveryConfig extends \Google\Protobuf\Internal\Message
      */
     public function setInclusionMode($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\SecurityCenter\V1\OrganizationSettings_AssetDiscoveryConfig_InclusionMode::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\SecurityCenter\V1\OrganizationSettings\AssetDiscoveryConfig\InclusionMode::class);
         $this->inclusion_mode = $var;
 
         return $this;

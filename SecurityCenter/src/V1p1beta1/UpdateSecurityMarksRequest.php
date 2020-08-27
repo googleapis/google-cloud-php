@@ -71,7 +71,17 @@ class UpdateSecurityMarksRequest extends \Google\Protobuf\Internal\Message
      */
     public function getSecurityMarks()
     {
-        return $this->security_marks;
+        return isset($this->security_marks) ? $this->security_marks : null;
+    }
+
+    public function hasSecurityMarks()
+    {
+        return isset($this->security_marks);
+    }
+
+    public function clearSecurityMarks()
+    {
+        unset($this->security_marks);
     }
 
     /**
@@ -100,7 +110,17 @@ class UpdateSecurityMarksRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return $this->update_mask;
+        return isset($this->update_mask) ? $this->update_mask : null;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**
@@ -131,7 +151,17 @@ class UpdateSecurityMarksRequest extends \Google\Protobuf\Internal\Message
      */
     public function getStartTime()
     {
-        return $this->start_time;
+        return isset($this->start_time) ? $this->start_time : null;
+    }
+
+    public function hasStartTime()
+    {
+        return isset($this->start_time);
+    }
+
+    public function clearStartTime()
+    {
+        unset($this->start_time);
     }
 
     /**

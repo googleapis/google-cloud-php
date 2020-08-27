@@ -55,7 +55,17 @@ class UpdateSourceRequest extends \Google\Protobuf\Internal\Message
      */
     public function getSource()
     {
-        return $this->source;
+        return isset($this->source) ? $this->source : null;
+    }
+
+    public function hasSource()
+    {
+        return isset($this->source);
+    }
+
+    public function clearSource()
+    {
+        unset($this->source);
     }
 
     /**
@@ -82,7 +92,17 @@ class UpdateSourceRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return $this->update_mask;
+        return isset($this->update_mask) ? $this->update_mask : null;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**

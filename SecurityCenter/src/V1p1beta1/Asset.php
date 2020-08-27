@@ -151,7 +151,17 @@ class Asset extends \Google\Protobuf\Internal\Message
      */
     public function getSecurityCenterProperties()
     {
-        return $this->security_center_properties;
+        return isset($this->security_center_properties) ? $this->security_center_properties : null;
+    }
+
+    public function hasSecurityCenterProperties()
+    {
+        return isset($this->security_center_properties);
+    }
+
+    public function clearSecurityCenterProperties()
+    {
+        unset($this->security_center_properties);
     }
 
     /**
@@ -164,7 +174,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      */
     public function setSecurityCenterProperties($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1p1beta1\Asset_SecurityCenterProperties::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1p1beta1\Asset\SecurityCenterProperties::class);
         $this->security_center_properties = $var;
 
         return $this;
@@ -207,7 +217,17 @@ class Asset extends \Google\Protobuf\Internal\Message
      */
     public function getSecurityMarks()
     {
-        return $this->security_marks;
+        return isset($this->security_marks) ? $this->security_marks : null;
+    }
+
+    public function hasSecurityMarks()
+    {
+        return isset($this->security_marks);
+    }
+
+    public function clearSecurityMarks()
+    {
+        unset($this->security_marks);
     }
 
     /**
@@ -234,7 +254,17 @@ class Asset extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return $this->create_time;
+        return isset($this->create_time) ? $this->create_time : null;
+    }
+
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
     }
 
     /**
@@ -261,7 +291,17 @@ class Asset extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return $this->update_time;
+        return isset($this->update_time) ? $this->update_time : null;
+    }
+
+    public function hasUpdateTime()
+    {
+        return isset($this->update_time);
+    }
+
+    public function clearUpdateTime()
+    {
+        unset($this->update_time);
     }
 
     /**
@@ -291,7 +331,17 @@ class Asset extends \Google\Protobuf\Internal\Message
      */
     public function getIamPolicy()
     {
-        return $this->iam_policy;
+        return isset($this->iam_policy) ? $this->iam_policy : null;
+    }
+
+    public function hasIamPolicy()
+    {
+        return isset($this->iam_policy);
+    }
+
+    public function clearIamPolicy()
+    {
+        unset($this->iam_policy);
     }
 
     /**
@@ -306,7 +356,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      */
     public function setIamPolicy($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1p1beta1\Asset_IamPolicy::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1p1beta1\Asset\IamPolicy::class);
         $this->iam_policy = $var;
 
         return $this;

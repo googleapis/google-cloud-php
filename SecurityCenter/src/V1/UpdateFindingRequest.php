@@ -75,7 +75,17 @@ class UpdateFindingRequest extends \Google\Protobuf\Internal\Message
      */
     public function getFinding()
     {
-        return $this->finding;
+        return isset($this->finding) ? $this->finding : null;
+    }
+
+    public function hasFinding()
+    {
+        return isset($this->finding);
+    }
+
+    public function clearFinding()
+    {
+        unset($this->finding);
     }
 
     /**
@@ -110,7 +120,17 @@ class UpdateFindingRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return $this->update_mask;
+        return isset($this->update_mask) ? $this->update_mask : null;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**

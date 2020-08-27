@@ -86,7 +86,17 @@ class CreateSourceRequest extends \Google\Protobuf\Internal\Message
      */
     public function getSource()
     {
-        return $this->source;
+        return isset($this->source) ? $this->source : null;
+    }
+
+    public function hasSource()
+    {
+        return isset($this->source);
+    }
+
+    public function clearSource()
+    {
+        unset($this->source);
     }
 
     /**

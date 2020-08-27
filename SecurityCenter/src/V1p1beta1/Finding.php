@@ -289,7 +289,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     public function setState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\SecurityCenter\V1p1beta1\Finding_State::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\SecurityCenter\V1p1beta1\Finding\State::class);
         $this->state = $var;
 
         return $this;
@@ -397,7 +397,17 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     public function getSecurityMarks()
     {
-        return $this->security_marks;
+        return isset($this->security_marks) ? $this->security_marks : null;
+    }
+
+    public function hasSecurityMarks()
+    {
+        return isset($this->security_marks);
+    }
+
+    public function clearSecurityMarks()
+    {
+        unset($this->security_marks);
     }
 
     /**
@@ -427,7 +437,17 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     public function getEventTime()
     {
-        return $this->event_time;
+        return isset($this->event_time) ? $this->event_time : null;
+    }
+
+    public function hasEventTime()
+    {
+        return isset($this->event_time);
+    }
+
+    public function clearEventTime()
+    {
+        unset($this->event_time);
     }
 
     /**
@@ -455,7 +475,17 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return $this->create_time;
+        return isset($this->create_time) ? $this->create_time : null;
+    }
+
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
     }
 
     /**
@@ -493,7 +523,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     public function setSeverity($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\SecurityCenter\V1p1beta1\Finding_Severity::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\SecurityCenter\V1p1beta1\Finding\Severity::class);
         $this->severity = $var;
 
         return $this;

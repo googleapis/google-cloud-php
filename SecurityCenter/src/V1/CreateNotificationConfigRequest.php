@@ -135,7 +135,17 @@ class CreateNotificationConfigRequest extends \Google\Protobuf\Internal\Message
      */
     public function getNotificationConfig()
     {
-        return $this->notification_config;
+        return isset($this->notification_config) ? $this->notification_config : null;
+    }
+
+    public function hasNotificationConfig()
+    {
+        return isset($this->notification_config);
+    }
+
+    public function clearNotificationConfig()
+    {
+        unset($this->notification_config);
     }
 
     /**
