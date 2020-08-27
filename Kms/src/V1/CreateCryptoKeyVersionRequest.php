@@ -83,7 +83,17 @@ class CreateCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
      */
     public function getCryptoKeyVersion()
     {
-        return $this->crypto_key_version;
+        return isset($this->crypto_key_version) ? $this->crypto_key_version : null;
+    }
+
+    public function hasCryptoKeyVersion()
+    {
+        return isset($this->crypto_key_version);
+    }
+
+    public function clearCryptoKeyVersion()
+    {
+        unset($this->crypto_key_version);
     }
 
     /**

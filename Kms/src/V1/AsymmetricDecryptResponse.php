@@ -136,7 +136,17 @@ class AsymmetricDecryptResponse extends \Google\Protobuf\Internal\Message
      */
     public function getPlaintextCrc32C()
     {
-        return $this->plaintext_crc32c;
+        return isset($this->plaintext_crc32c) ? $this->plaintext_crc32c : null;
+    }
+
+    public function hasPlaintextCrc32C()
+    {
+        return isset($this->plaintext_crc32c);
+    }
+
+    public function clearPlaintextCrc32C()
+    {
+        unset($this->plaintext_crc32c);
     }
 
     /**

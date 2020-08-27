@@ -69,7 +69,7 @@ class KeyOperationAttestation extends \Google\Protobuf\Internal\Message
      */
     public function setFormat($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Kms\V1\KeyOperationAttestation_AttestationFormat::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Kms\V1\KeyOperationAttestation\AttestationFormat::class);
         $this->format = $var;
 
         return $this;
