@@ -39,6 +39,7 @@ use Google\Cloud\Core\ArrayTrait;
 class BigtableClient
 {
     use ArrayTrait;
+    use EmulatorSupportTrait;
 
     const VERSION = '1.4.3';
 
@@ -106,6 +107,8 @@ class BigtableClient
      */
     public function __construct(array $config = [])
     {
+        $config = $this->setEmulatorOptions($config);
+
         if (!isset($config['transportConfig']['grpc']['stubOpts'])) {
             $config['transportConfig']['grpc']['stubOpts'] = [];
         }
