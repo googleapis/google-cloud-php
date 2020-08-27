@@ -20,7 +20,8 @@ namespace Google\Cloud\Bigtable;
 use Google\Cloud\Core\EmulatorTrait;
 
 /*
- * Common method to configure emulator support based on configuration options and `BIGTABLE_EMULATOR_HOST` environment variable.
+ * Common method to configure emulator support based on configuration options
+ * and `BIGTABLE_EMULATOR_HOST` environment variable.
  */
 trait EmulatorSupportTrait
 {
