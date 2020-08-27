@@ -224,7 +224,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      */
     public function setState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Kms\V1\CryptoKeyVersion_CryptoKeyVersionState::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Kms\V1\CryptoKeyVersion\CryptoKeyVersionState::class);
         $this->state = $var;
 
         return $this;
@@ -280,7 +280,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      */
     public function setAlgorithm($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Kms\V1\CryptoKeyVersion_CryptoKeyVersionAlgorithm::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Kms\V1\CryptoKeyVersion\CryptoKeyVersionAlgorithm::class);
         $this->algorithm = $var;
 
         return $this;
@@ -297,7 +297,17 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      */
     public function getAttestation()
     {
-        return $this->attestation;
+        return isset($this->attestation) ? $this->attestation : null;
+    }
+
+    public function hasAttestation()
+    {
+        return isset($this->attestation);
+    }
+
+    public function clearAttestation()
+    {
+        unset($this->attestation);
     }
 
     /**
@@ -326,7 +336,17 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return $this->create_time;
+        return isset($this->create_time) ? $this->create_time : null;
+    }
+
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
     }
 
     /**
@@ -353,7 +373,17 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      */
     public function getGenerateTime()
     {
-        return $this->generate_time;
+        return isset($this->generate_time) ? $this->generate_time : null;
+    }
+
+    public function hasGenerateTime()
+    {
+        return isset($this->generate_time);
+    }
+
+    public function clearGenerateTime()
+    {
+        unset($this->generate_time);
     }
 
     /**
@@ -382,7 +412,17 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      */
     public function getDestroyTime()
     {
-        return $this->destroy_time;
+        return isset($this->destroy_time) ? $this->destroy_time : null;
+    }
+
+    public function hasDestroyTime()
+    {
+        return isset($this->destroy_time);
+    }
+
+    public function clearDestroyTime()
+    {
+        unset($this->destroy_time);
     }
 
     /**
@@ -412,7 +452,17 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      */
     public function getDestroyEventTime()
     {
-        return $this->destroy_event_time;
+        return isset($this->destroy_event_time) ? $this->destroy_event_time : null;
+    }
+
+    public function hasDestroyEventTime()
+    {
+        return isset($this->destroy_event_time);
+    }
+
+    public function clearDestroyEventTime()
+    {
+        unset($this->destroy_event_time);
     }
 
     /**
@@ -471,7 +521,17 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      */
     public function getImportTime()
     {
-        return $this->import_time;
+        return isset($this->import_time) ? $this->import_time : null;
+    }
+
+    public function hasImportTime()
+    {
+        return isset($this->import_time);
+    }
+
+    public function clearImportTime()
+    {
+        unset($this->import_time);
     }
 
     /**
@@ -530,7 +590,17 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      */
     public function getExternalProtectionLevelOptions()
     {
-        return $this->external_protection_level_options;
+        return isset($this->external_protection_level_options) ? $this->external_protection_level_options : null;
+    }
+
+    public function hasExternalProtectionLevelOptions()
+    {
+        return isset($this->external_protection_level_options);
+    }
+
+    public function clearExternalProtectionLevelOptions()
+    {
+        unset($this->external_protection_level_options);
     }
 
     /**

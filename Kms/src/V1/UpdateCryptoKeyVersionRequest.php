@@ -53,7 +53,17 @@ class UpdateCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
      */
     public function getCryptoKeyVersion()
     {
-        return $this->crypto_key_version;
+        return isset($this->crypto_key_version) ? $this->crypto_key_version : null;
+    }
+
+    public function hasCryptoKeyVersion()
+    {
+        return isset($this->crypto_key_version);
+    }
+
+    public function clearCryptoKeyVersion()
+    {
+        unset($this->crypto_key_version);
     }
 
     /**
@@ -79,7 +89,17 @@ class UpdateCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return $this->update_mask;
+        return isset($this->update_mask) ? $this->update_mask : null;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**

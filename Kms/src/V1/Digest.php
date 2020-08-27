@@ -47,6 +47,11 @@ class Digest extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasSha256()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * A message digest produced with the SHA-256 algorithm.
      *
@@ -73,6 +78,11 @@ class Digest extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasSha384()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * A message digest produced with the SHA-384 algorithm.
      *
@@ -97,6 +107,11 @@ class Digest extends \Google\Protobuf\Internal\Message
     public function getSha512()
     {
         return $this->readOneof(3);
+    }
+
+    public function hasSha512()
+    {
+        return $this->hasOneof(3);
     }
 
     /**

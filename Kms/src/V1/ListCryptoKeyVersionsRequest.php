@@ -211,7 +211,7 @@ class ListCryptoKeyVersionsRequest extends \Google\Protobuf\Internal\Message
      */
     public function setView($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Kms\V1\CryptoKeyVersion_CryptoKeyVersionView::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Kms\V1\CryptoKeyVersion\CryptoKeyVersionView::class);
         $this->view = $var;
 
         return $this;

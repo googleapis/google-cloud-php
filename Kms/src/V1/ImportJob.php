@@ -205,7 +205,7 @@ class ImportJob extends \Google\Protobuf\Internal\Message
      */
     public function setImportMethod($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Kms\V1\ImportJob_ImportMethod::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Kms\V1\ImportJob\ImportMethod::class);
         $this->import_method = $var;
 
         return $this;
@@ -251,7 +251,17 @@ class ImportJob extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return $this->create_time;
+        return isset($this->create_time) ? $this->create_time : null;
+    }
+
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
     }
 
     /**
@@ -277,7 +287,17 @@ class ImportJob extends \Google\Protobuf\Internal\Message
      */
     public function getGenerateTime()
     {
-        return $this->generate_time;
+        return isset($this->generate_time) ? $this->generate_time : null;
+    }
+
+    public function hasGenerateTime()
+    {
+        return isset($this->generate_time);
+    }
+
+    public function clearGenerateTime()
+    {
+        unset($this->generate_time);
     }
 
     /**
@@ -304,7 +324,17 @@ class ImportJob extends \Google\Protobuf\Internal\Message
      */
     public function getExpireTime()
     {
-        return $this->expire_time;
+        return isset($this->expire_time) ? $this->expire_time : null;
+    }
+
+    public function hasExpireTime()
+    {
+        return isset($this->expire_time);
+    }
+
+    public function clearExpireTime()
+    {
+        unset($this->expire_time);
     }
 
     /**
@@ -332,7 +362,17 @@ class ImportJob extends \Google\Protobuf\Internal\Message
      */
     public function getExpireEventTime()
     {
-        return $this->expire_event_time;
+        return isset($this->expire_event_time) ? $this->expire_event_time : null;
+    }
+
+    public function hasExpireEventTime()
+    {
+        return isset($this->expire_event_time);
+    }
+
+    public function clearExpireEventTime()
+    {
+        unset($this->expire_event_time);
     }
 
     /**
@@ -373,7 +413,7 @@ class ImportJob extends \Google\Protobuf\Internal\Message
      */
     public function setState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Kms\V1\ImportJob_ImportJobState::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Kms\V1\ImportJob\ImportJobState::class);
         $this->state = $var;
 
         return $this;
@@ -389,7 +429,17 @@ class ImportJob extends \Google\Protobuf\Internal\Message
      */
     public function getPublicKey()
     {
-        return $this->public_key;
+        return isset($this->public_key) ? $this->public_key : null;
+    }
+
+    public function hasPublicKey()
+    {
+        return isset($this->public_key);
+    }
+
+    public function clearPublicKey()
+    {
+        unset($this->public_key);
     }
 
     /**
@@ -403,7 +453,7 @@ class ImportJob extends \Google\Protobuf\Internal\Message
      */
     public function setPublicKey($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Kms\V1\ImportJob_WrappingPublicKey::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Kms\V1\ImportJob\WrappingPublicKey::class);
         $this->public_key = $var;
 
         return $this;
@@ -421,7 +471,17 @@ class ImportJob extends \Google\Protobuf\Internal\Message
      */
     public function getAttestation()
     {
-        return $this->attestation;
+        return isset($this->attestation) ? $this->attestation : null;
+    }
+
+    public function hasAttestation()
+    {
+        return isset($this->attestation);
+    }
+
+    public function clearAttestation()
+    {
+        unset($this->attestation);
     }
 
     /**

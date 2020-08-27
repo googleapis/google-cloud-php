@@ -114,7 +114,7 @@ class CryptoKeyVersionTemplate extends \Google\Protobuf\Internal\Message
      */
     public function setAlgorithm($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Kms\V1\CryptoKeyVersion_CryptoKeyVersionAlgorithm::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Kms\V1\CryptoKeyVersion\CryptoKeyVersionAlgorithm::class);
         $this->algorithm = $var;
 
         return $this;

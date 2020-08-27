@@ -148,7 +148,17 @@ class AsymmetricSignResponse extends \Google\Protobuf\Internal\Message
      */
     public function getSignatureCrc32C()
     {
-        return $this->signature_crc32c;
+        return isset($this->signature_crc32c) ? $this->signature_crc32c : null;
+    }
+
+    public function hasSignatureCrc32C()
+    {
+        return isset($this->signature_crc32c);
+    }
+
+    public function clearSignatureCrc32C()
+    {
+        unset($this->signature_crc32c);
     }
 
     /**

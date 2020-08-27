@@ -182,7 +182,17 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      */
     public function getPrimary()
     {
-        return $this->primary;
+        return isset($this->primary) ? $this->primary : null;
+    }
+
+    public function hasPrimary()
+    {
+        return isset($this->primary);
+    }
+
+    public function clearPrimary()
+    {
+        unset($this->primary);
     }
 
     /**
@@ -227,7 +237,7 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      */
     public function setPurpose($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Kms\V1\CryptoKey_CryptoKeyPurpose::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Kms\V1\CryptoKey\CryptoKeyPurpose::class);
         $this->purpose = $var;
 
         return $this;
@@ -241,7 +251,17 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return $this->create_time;
+        return isset($this->create_time) ? $this->create_time : null;
+    }
+
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
     }
 
     /**
@@ -276,7 +296,17 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      */
     public function getNextRotationTime()
     {
-        return $this->next_rotation_time;
+        return isset($this->next_rotation_time) ? $this->next_rotation_time : null;
+    }
+
+    public function hasNextRotationTime()
+    {
+        return isset($this->next_rotation_time);
+    }
+
+    public function clearNextRotationTime()
+    {
+        unset($this->next_rotation_time);
     }
 
     /**
@@ -320,6 +350,11 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
         return $this->readOneof(8);
     }
 
+    public function hasRotationPeriod()
+    {
+        return $this->hasOneof(8);
+    }
+
     /**
      * [next_rotation_time][google.cloud.kms.v1.CryptoKey.next_rotation_time] will be advanced by this period when the service
      * automatically rotates a key. Must be at least 24 hours and at most
@@ -352,7 +387,17 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      */
     public function getVersionTemplate()
     {
-        return $this->version_template;
+        return isset($this->version_template) ? $this->version_template : null;
+    }
+
+    public function hasVersionTemplate()
+    {
+        return isset($this->version_template);
+    }
+
+    public function clearVersionTemplate()
+    {
+        unset($this->version_template);
     }
 
     /**

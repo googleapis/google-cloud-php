@@ -154,7 +154,7 @@ class PublicKey extends \Google\Protobuf\Internal\Message
      */
     public function setAlgorithm($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Kms\V1\CryptoKeyVersion_CryptoKeyVersionAlgorithm::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Kms\V1\CryptoKeyVersion\CryptoKeyVersionAlgorithm::class);
         $this->algorithm = $var;
 
         return $this;
@@ -179,7 +179,17 @@ class PublicKey extends \Google\Protobuf\Internal\Message
      */
     public function getPemCrc32C()
     {
-        return $this->pem_crc32c;
+        return isset($this->pem_crc32c) ? $this->pem_crc32c : null;
+    }
+
+    public function hasPemCrc32C()
+    {
+        return isset($this->pem_crc32c);
+    }
+
+    public function clearPemCrc32C()
+    {
+        unset($this->pem_crc32c);
     }
 
     /**
