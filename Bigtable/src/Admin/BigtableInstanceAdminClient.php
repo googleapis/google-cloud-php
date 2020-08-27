@@ -19,6 +19,9 @@ namespace Google\Cloud\Bigtable\Admin;
 
 use Google\Cloud\Bigtable\EmulatorSupportTrait;
 
+/**
+ * Wrapper for V2\BigtableInstanceAdminClient supporting emulator.
+ */
 class BigtableInstanceAdminClient extends V2\BigtableInstanceAdminClient
 {
     use EmulatorSupportTrait;
