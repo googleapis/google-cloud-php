@@ -58,7 +58,17 @@ class Module extends \Google\Protobuf\Internal\Message
      */
     public function getModule()
     {
-        return $this->module;
+        return isset($this->module) ? $this->module : null;
+    }
+
+    public function hasModule()
+    {
+        return isset($this->module);
+    }
+
+    public function clearModule()
+    {
+        unset($this->module);
     }
 
     /**
@@ -86,7 +96,17 @@ class Module extends \Google\Protobuf\Internal\Message
      */
     public function getBuildId()
     {
-        return $this->build_id;
+        return isset($this->build_id) ? $this->build_id : null;
+    }
+
+    public function hasBuildId()
+    {
+        return isset($this->build_id);
+    }
+
+    public function clearBuildId()
+    {
+        unset($this->build_id);
     }
 
     /**

@@ -298,7 +298,17 @@ class Span extends \Google\Protobuf\Internal\Message
      */
     public function getDisplayName()
     {
-        return $this->display_name;
+        return isset($this->display_name) ? $this->display_name : null;
+    }
+
+    public function hasDisplayName()
+    {
+        return isset($this->display_name);
+    }
+
+    public function clearDisplayName()
+    {
+        unset($this->display_name);
     }
 
     /**
@@ -332,7 +342,17 @@ class Span extends \Google\Protobuf\Internal\Message
      */
     public function getStartTime()
     {
-        return $this->start_time;
+        return isset($this->start_time) ? $this->start_time : null;
+    }
+
+    public function hasStartTime()
+    {
+        return isset($this->start_time);
+    }
+
+    public function clearStartTime()
+    {
+        unset($this->start_time);
     }
 
     /**
@@ -362,7 +382,17 @@ class Span extends \Google\Protobuf\Internal\Message
      */
     public function getEndTime()
     {
-        return $this->end_time;
+        return isset($this->end_time) ? $this->end_time : null;
+    }
+
+    public function hasEndTime()
+    {
+        return isset($this->end_time);
+    }
+
+    public function clearEndTime()
+    {
+        unset($this->end_time);
     }
 
     /**
@@ -391,7 +421,17 @@ class Span extends \Google\Protobuf\Internal\Message
      */
     public function getAttributes()
     {
-        return $this->attributes;
+        return isset($this->attributes) ? $this->attributes : null;
+    }
+
+    public function hasAttributes()
+    {
+        return isset($this->attributes);
+    }
+
+    public function clearAttributes()
+    {
+        unset($this->attributes);
     }
 
     /**
@@ -404,7 +444,7 @@ class Span extends \Google\Protobuf\Internal\Message
      */
     public function setAttributes($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Trace\V2\Span_Attributes::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Trace\V2\Span\Attributes::class);
         $this->attributes = $var;
 
         return $this;
@@ -418,7 +458,17 @@ class Span extends \Google\Protobuf\Internal\Message
      */
     public function getStackTrace()
     {
-        return $this->stack_trace;
+        return isset($this->stack_trace) ? $this->stack_trace : null;
+    }
+
+    public function hasStackTrace()
+    {
+        return isset($this->stack_trace);
+    }
+
+    public function clearStackTrace()
+    {
+        unset($this->stack_trace);
     }
 
     /**
@@ -445,7 +495,17 @@ class Span extends \Google\Protobuf\Internal\Message
      */
     public function getTimeEvents()
     {
-        return $this->time_events;
+        return isset($this->time_events) ? $this->time_events : null;
+    }
+
+    public function hasTimeEvents()
+    {
+        return isset($this->time_events);
+    }
+
+    public function clearTimeEvents()
+    {
+        unset($this->time_events);
     }
 
     /**
@@ -458,7 +518,7 @@ class Span extends \Google\Protobuf\Internal\Message
      */
     public function setTimeEvents($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Trace\V2\Span_TimeEvents::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Trace\V2\Span\TimeEvents::class);
         $this->time_events = $var;
 
         return $this;
@@ -472,7 +532,17 @@ class Span extends \Google\Protobuf\Internal\Message
      */
     public function getLinks()
     {
-        return $this->links;
+        return isset($this->links) ? $this->links : null;
+    }
+
+    public function hasLinks()
+    {
+        return isset($this->links);
+    }
+
+    public function clearLinks()
+    {
+        unset($this->links);
     }
 
     /**
@@ -484,7 +554,7 @@ class Span extends \Google\Protobuf\Internal\Message
      */
     public function setLinks($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Trace\V2\Span_Links::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Trace\V2\Span\Links::class);
         $this->links = $var;
 
         return $this;
@@ -498,7 +568,17 @@ class Span extends \Google\Protobuf\Internal\Message
      */
     public function getStatus()
     {
-        return $this->status;
+        return isset($this->status) ? $this->status : null;
+    }
+
+    public function hasStatus()
+    {
+        return isset($this->status);
+    }
+
+    public function clearStatus()
+    {
+        unset($this->status);
     }
 
     /**
@@ -527,7 +607,17 @@ class Span extends \Google\Protobuf\Internal\Message
      */
     public function getSameProcessAsParentSpan()
     {
-        return $this->same_process_as_parent_span;
+        return isset($this->same_process_as_parent_span) ? $this->same_process_as_parent_span : null;
+    }
+
+    public function hasSameProcessAsParentSpan()
+    {
+        return isset($this->same_process_as_parent_span);
+    }
+
+    public function clearSameProcessAsParentSpan()
+    {
+        unset($this->same_process_as_parent_span);
     }
 
     /**
@@ -590,7 +680,17 @@ class Span extends \Google\Protobuf\Internal\Message
      */
     public function getChildSpanCount()
     {
-        return $this->child_span_count;
+        return isset($this->child_span_count) ? $this->child_span_count : null;
+    }
+
+    public function hasChildSpanCount()
+    {
+        return isset($this->child_span_count);
+    }
+
+    public function clearChildSpanCount()
+    {
+        unset($this->child_span_count);
     }
 
     /**
@@ -662,7 +762,7 @@ class Span extends \Google\Protobuf\Internal\Message
      */
     public function setSpanKind($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Trace\V2\Span_SpanKind::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Trace\V2\Span\SpanKind::class);
         $this->span_kind = $var;
 
         return $this;

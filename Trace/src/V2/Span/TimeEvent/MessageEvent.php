@@ -91,7 +91,7 @@ class MessageEvent extends \Google\Protobuf\Internal\Message
      */
     public function setType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Trace\V2\Span_TimeEvent_MessageEvent_Type::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Trace\V2\Span\TimeEvent\MessageEvent\Type::class);
         $this->type = $var;
 
         return $this;

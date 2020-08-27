@@ -65,7 +65,17 @@ class StackTrace extends \Google\Protobuf\Internal\Message
      */
     public function getStackFrames()
     {
-        return $this->stack_frames;
+        return isset($this->stack_frames) ? $this->stack_frames : null;
+    }
+
+    public function hasStackFrames()
+    {
+        return isset($this->stack_frames);
+    }
+
+    public function clearStackFrames()
+    {
+        unset($this->stack_frames);
     }
 
     /**
@@ -77,7 +87,7 @@ class StackTrace extends \Google\Protobuf\Internal\Message
      */
     public function setStackFrames($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Trace\V2\StackTrace_StackFrames::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Trace\V2\StackTrace\StackFrames::class);
         $this->stack_frames = $var;
 
         return $this;

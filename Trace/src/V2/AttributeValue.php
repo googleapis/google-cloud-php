@@ -47,6 +47,11 @@ class AttributeValue extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasStringValue()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * A string up to 256 bytes long.
      *
@@ -73,6 +78,11 @@ class AttributeValue extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasIntValue()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * A 64-bit signed integer.
      *
@@ -97,6 +107,11 @@ class AttributeValue extends \Google\Protobuf\Internal\Message
     public function getBoolValue()
     {
         return $this->readOneof(3);
+    }
+
+    public function hasBoolValue()
+    {
+        return $this->hasOneof(3);
     }
 
     /**

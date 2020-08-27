@@ -50,7 +50,17 @@ class TimeEvent extends \Google\Protobuf\Internal\Message
      */
     public function getTime()
     {
-        return $this->time;
+        return isset($this->time) ? $this->time : null;
+    }
+
+    public function hasTime()
+    {
+        return isset($this->time);
+    }
+
+    public function clearTime()
+    {
+        unset($this->time);
     }
 
     /**
@@ -79,6 +89,11 @@ class TimeEvent extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasAnnotation()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * Text annotation with a set of attributes.
      *
@@ -88,7 +103,7 @@ class TimeEvent extends \Google\Protobuf\Internal\Message
      */
     public function setAnnotation($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Trace\V2\Span_TimeEvent_Annotation::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Trace\V2\Span\TimeEvent\Annotation::class);
         $this->writeOneof(2, $var);
 
         return $this;
@@ -105,6 +120,11 @@ class TimeEvent extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasMessageEvent()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * An event describing a message sent/received between Spans.
      *
@@ -114,7 +134,7 @@ class TimeEvent extends \Google\Protobuf\Internal\Message
      */
     public function setMessageEvent($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Trace\V2\Span_TimeEvent_MessageEvent::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Trace\V2\Span\TimeEvent\MessageEvent::class);
         $this->writeOneof(3, $var);
 
         return $this;
