@@ -80,7 +80,17 @@ class AttemptStatus extends \Google\Protobuf\Internal\Message
      */
     public function getScheduleTime()
     {
-        return $this->schedule_time;
+        return isset($this->schedule_time) ? $this->schedule_time : null;
+    }
+
+    public function hasScheduleTime()
+    {
+        return isset($this->schedule_time);
+    }
+
+    public function clearScheduleTime()
+    {
+        unset($this->schedule_time);
     }
 
     /**
@@ -108,7 +118,17 @@ class AttemptStatus extends \Google\Protobuf\Internal\Message
      */
     public function getDispatchTime()
     {
-        return $this->dispatch_time;
+        return isset($this->dispatch_time) ? $this->dispatch_time : null;
+    }
+
+    public function hasDispatchTime()
+    {
+        return isset($this->dispatch_time);
+    }
+
+    public function clearDispatchTime()
+    {
+        unset($this->dispatch_time);
     }
 
     /**
@@ -136,7 +156,17 @@ class AttemptStatus extends \Google\Protobuf\Internal\Message
      */
     public function getResponseTime()
     {
-        return $this->response_time;
+        return isset($this->response_time) ? $this->response_time : null;
+    }
+
+    public function hasResponseTime()
+    {
+        return isset($this->response_time);
+    }
+
+    public function clearResponseTime()
+    {
+        unset($this->response_time);
     }
 
     /**
@@ -165,7 +195,17 @@ class AttemptStatus extends \Google\Protobuf\Internal\Message
      */
     public function getResponseStatus()
     {
-        return $this->response_status;
+        return isset($this->response_status) ? $this->response_status : null;
+    }
+
+    public function hasResponseStatus()
+    {
+        return isset($this->response_status);
+    }
+
+    public function clearResponseStatus()
+    {
+        unset($this->response_status);
     }
 
     /**

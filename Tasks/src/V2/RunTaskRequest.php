@@ -132,7 +132,7 @@ class RunTaskRequest extends \Google\Protobuf\Internal\Message
      */
     public function setResponseView($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Tasks\V2\Task_View::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Tasks\V2\Task\View::class);
         $this->response_view = $var;
 
         return $this;

@@ -257,7 +257,17 @@ class LeaseTasksRequest extends \Google\Protobuf\Internal\Message
      */
     public function getLeaseDuration()
     {
-        return $this->lease_duration;
+        return isset($this->lease_duration) ? $this->lease_duration : null;
+    }
+
+    public function hasLeaseDuration()
+    {
+        return isset($this->lease_duration);
+    }
+
+    public function clearLeaseDuration()
+    {
+        unset($this->lease_duration);
     }
 
     /**
@@ -327,7 +337,7 @@ class LeaseTasksRequest extends \Google\Protobuf\Internal\Message
      */
     public function setResponseView($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Tasks\V2beta2\Task_View::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Tasks\V2beta2\Task\View::class);
         $this->response_view = $var;
 
         return $this;

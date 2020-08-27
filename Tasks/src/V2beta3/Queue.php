@@ -279,6 +279,11 @@ class Queue extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasAppEngineHttpQueue()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * [AppEngineHttpQueue][google.cloud.tasks.v2beta3.AppEngineHttpQueue] settings apply only to
      * [App Engine tasks][google.cloud.tasks.v2beta3.AppEngineHttpRequest] in this queue.
@@ -323,7 +328,17 @@ class Queue extends \Google\Protobuf\Internal\Message
      */
     public function getRateLimits()
     {
-        return $this->rate_limits;
+        return isset($this->rate_limits) ? $this->rate_limits : null;
+    }
+
+    public function hasRateLimits()
+    {
+        return isset($this->rate_limits);
+    }
+
+    public function clearRateLimits()
+    {
+        unset($this->rate_limits);
     }
 
     /**
@@ -376,7 +391,17 @@ class Queue extends \Google\Protobuf\Internal\Message
      */
     public function getRetryConfig()
     {
-        return $this->retry_config;
+        return isset($this->retry_config) ? $this->retry_config : null;
+    }
+
+    public function hasRetryConfig()
+    {
+        return isset($this->retry_config);
+    }
+
+    public function clearRetryConfig()
+    {
+        unset($this->retry_config);
     }
 
     /**
@@ -432,7 +457,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      */
     public function setState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Tasks\V2beta3\Queue_State::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Tasks\V2beta3\Queue\State::class);
         $this->state = $var;
 
         return $this;
@@ -453,7 +478,17 @@ class Queue extends \Google\Protobuf\Internal\Message
      */
     public function getPurgeTime()
     {
-        return $this->purge_time;
+        return isset($this->purge_time) ? $this->purge_time : null;
+    }
+
+    public function hasPurgeTime()
+    {
+        return isset($this->purge_time);
+    }
+
+    public function clearPurgeTime()
+    {
+        unset($this->purge_time);
     }
 
     /**
@@ -488,7 +523,17 @@ class Queue extends \Google\Protobuf\Internal\Message
      */
     public function getStackdriverLoggingConfig()
     {
-        return $this->stackdriver_logging_config;
+        return isset($this->stackdriver_logging_config) ? $this->stackdriver_logging_config : null;
+    }
+
+    public function hasStackdriverLoggingConfig()
+    {
+        return isset($this->stackdriver_logging_config);
+    }
+
+    public function clearStackdriverLoggingConfig()
+    {
+        unset($this->stackdriver_logging_config);
     }
 
     /**
@@ -534,7 +579,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      */
     public function setType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Tasks\V2beta3\Queue_Type::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Tasks\V2beta3\Queue\Type::class);
         $this->type = $var;
 
         return $this;

@@ -67,7 +67,17 @@ class UpdateQueueRequest extends \Google\Protobuf\Internal\Message
      */
     public function getQueue()
     {
-        return $this->queue;
+        return isset($this->queue) ? $this->queue : null;
+    }
+
+    public function hasQueue()
+    {
+        return isset($this->queue);
+    }
+
+    public function clearQueue()
+    {
+        unset($this->queue);
     }
 
     /**
@@ -98,7 +108,17 @@ class UpdateQueueRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return $this->update_mask;
+        return isset($this->update_mask) ? $this->update_mask : null;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**

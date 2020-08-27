@@ -194,7 +194,17 @@ class CreateTaskRequest extends \Google\Protobuf\Internal\Message
      */
     public function getTask()
     {
-        return $this->task;
+        return isset($this->task) ? $this->task : null;
+    }
+
+    public function hasTask()
+    {
+        return isset($this->task);
+    }
+
+    public function clearTask()
+    {
+        unset($this->task);
     }
 
     /**
@@ -277,7 +287,7 @@ class CreateTaskRequest extends \Google\Protobuf\Internal\Message
      */
     public function setResponseView($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Tasks\V2\Task_View::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Tasks\V2\Task\View::class);
         $this->response_view = $var;
 
         return $this;

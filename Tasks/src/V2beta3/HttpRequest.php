@@ -334,6 +334,11 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
         return $this->readOneof(5);
     }
 
+    public function hasOauthToken()
+    {
+        return $this->hasOneof(5);
+    }
+
     /**
      * If specified, an
      * [OAuth token](https://developers.google.com/identity/protocols/OAuth2)
@@ -369,6 +374,11 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
     public function getOidcToken()
     {
         return $this->readOneof(6);
+    }
+
+    public function hasOidcToken()
+    {
+        return $this->hasOneof(6);
     }
 
     /**

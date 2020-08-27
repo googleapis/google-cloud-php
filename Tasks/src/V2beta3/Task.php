@@ -276,6 +276,11 @@ class Task extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasAppEngineHttpRequest()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * HTTP request that is sent to the App Engine app handler.
      * An App Engine task is a task that has [AppEngineHttpRequest][google.cloud.tasks.v2beta3.AppEngineHttpRequest] set.
@@ -304,6 +309,11 @@ class Task extends \Google\Protobuf\Internal\Message
         return $this->readOneof(11);
     }
 
+    public function hasHttpRequest()
+    {
+        return $this->hasOneof(11);
+    }
+
     /**
      * HTTP request that is sent to the task's target.
      * An HTTP task is a task that has [HttpRequest][google.cloud.tasks.v2beta3.HttpRequest] set.
@@ -330,7 +340,17 @@ class Task extends \Google\Protobuf\Internal\Message
      */
     public function getScheduleTime()
     {
-        return $this->schedule_time;
+        return isset($this->schedule_time) ? $this->schedule_time : null;
+    }
+
+    public function hasScheduleTime()
+    {
+        return isset($this->schedule_time);
+    }
+
+    public function clearScheduleTime()
+    {
+        unset($this->schedule_time);
     }
 
     /**
@@ -359,7 +379,17 @@ class Task extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return $this->create_time;
+        return isset($this->create_time) ? $this->create_time : null;
+    }
+
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
     }
 
     /**
@@ -411,7 +441,17 @@ class Task extends \Google\Protobuf\Internal\Message
      */
     public function getDispatchDeadline()
     {
-        return $this->dispatch_deadline;
+        return isset($this->dispatch_deadline) ? $this->dispatch_deadline : null;
+    }
+
+    public function hasDispatchDeadline()
+    {
+        return isset($this->dispatch_deadline);
+    }
+
+    public function clearDispatchDeadline()
+    {
+        unset($this->dispatch_deadline);
     }
 
     /**
@@ -520,7 +560,17 @@ class Task extends \Google\Protobuf\Internal\Message
      */
     public function getFirstAttempt()
     {
-        return $this->first_attempt;
+        return isset($this->first_attempt) ? $this->first_attempt : null;
+    }
+
+    public function hasFirstAttempt()
+    {
+        return isset($this->first_attempt);
+    }
+
+    public function clearFirstAttempt()
+    {
+        unset($this->first_attempt);
     }
 
     /**
@@ -548,7 +598,17 @@ class Task extends \Google\Protobuf\Internal\Message
      */
     public function getLastAttempt()
     {
-        return $this->last_attempt;
+        return isset($this->last_attempt) ? $this->last_attempt : null;
+    }
+
+    public function hasLastAttempt()
+    {
+        return isset($this->last_attempt);
+    }
+
+    public function clearLastAttempt()
+    {
+        unset($this->last_attempt);
     }
 
     /**
@@ -588,7 +648,7 @@ class Task extends \Google\Protobuf\Internal\Message
      */
     public function setView($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Tasks\V2beta3\Task_View::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Tasks\V2beta3\Task\View::class);
         $this->view = $var;
 
         return $this;

@@ -122,7 +122,17 @@ class CancelLeaseRequest extends \Google\Protobuf\Internal\Message
      */
     public function getScheduleTime()
     {
-        return $this->schedule_time;
+        return isset($this->schedule_time) ? $this->schedule_time : null;
+    }
+
+    public function hasScheduleTime()
+    {
+        return isset($this->schedule_time);
+    }
+
+    public function clearScheduleTime()
+    {
+        unset($this->schedule_time);
     }
 
     /**
@@ -182,7 +192,7 @@ class CancelLeaseRequest extends \Google\Protobuf\Internal\Message
      */
     public function setResponseView($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Tasks\V2beta2\Task_View::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Tasks\V2beta2\Task\View::class);
         $this->response_view = $var;
 
         return $this;
