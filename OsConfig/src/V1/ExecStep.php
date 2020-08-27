@@ -53,7 +53,17 @@ class ExecStep extends \Google\Protobuf\Internal\Message
      */
     public function getLinuxExecStepConfig()
     {
-        return $this->linux_exec_step_config;
+        return isset($this->linux_exec_step_config) ? $this->linux_exec_step_config : null;
+    }
+
+    public function hasLinuxExecStepConfig()
+    {
+        return isset($this->linux_exec_step_config);
+    }
+
+    public function clearLinuxExecStepConfig()
+    {
+        unset($this->linux_exec_step_config);
     }
 
     /**
@@ -79,7 +89,17 @@ class ExecStep extends \Google\Protobuf\Internal\Message
      */
     public function getWindowsExecStepConfig()
     {
-        return $this->windows_exec_step_config;
+        return isset($this->windows_exec_step_config) ? $this->windows_exec_step_config : null;
+    }
+
+    public function hasWindowsExecStepConfig()
+    {
+        return isset($this->windows_exec_step_config);
+    }
+
+    public function clearWindowsExecStepConfig()
+    {
+        unset($this->windows_exec_step_config);
     }
 
     /**

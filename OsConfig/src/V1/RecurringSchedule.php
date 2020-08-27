@@ -105,7 +105,17 @@ class RecurringSchedule extends \Google\Protobuf\Internal\Message
      */
     public function getTimeZone()
     {
-        return $this->time_zone;
+        return isset($this->time_zone) ? $this->time_zone : null;
+    }
+
+    public function hasTimeZone()
+    {
+        return isset($this->time_zone);
+    }
+
+    public function clearTimeZone()
+    {
+        unset($this->time_zone);
     }
 
     /**
@@ -133,7 +143,17 @@ class RecurringSchedule extends \Google\Protobuf\Internal\Message
      */
     public function getStartTime()
     {
-        return $this->start_time;
+        return isset($this->start_time) ? $this->start_time : null;
+    }
+
+    public function hasStartTime()
+    {
+        return isset($this->start_time);
+    }
+
+    public function clearStartTime()
+    {
+        unset($this->start_time);
     }
 
     /**
@@ -161,7 +181,17 @@ class RecurringSchedule extends \Google\Protobuf\Internal\Message
      */
     public function getEndTime()
     {
-        return $this->end_time;
+        return isset($this->end_time) ? $this->end_time : null;
+    }
+
+    public function hasEndTime()
+    {
+        return isset($this->end_time);
+    }
+
+    public function clearEndTime()
+    {
+        unset($this->end_time);
     }
 
     /**
@@ -188,7 +218,17 @@ class RecurringSchedule extends \Google\Protobuf\Internal\Message
      */
     public function getTimeOfDay()
     {
-        return $this->time_of_day;
+        return isset($this->time_of_day) ? $this->time_of_day : null;
+    }
+
+    public function hasTimeOfDay()
+    {
+        return isset($this->time_of_day);
+    }
+
+    public function clearTimeOfDay()
+    {
+        unset($this->time_of_day);
     }
 
     /**
@@ -226,7 +266,7 @@ class RecurringSchedule extends \Google\Protobuf\Internal\Message
      */
     public function setFrequency($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\OsConfig\V1\RecurringSchedule_Frequency::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\OsConfig\V1\RecurringSchedule\Frequency::class);
         $this->frequency = $var;
 
         return $this;
@@ -241,6 +281,11 @@ class RecurringSchedule extends \Google\Protobuf\Internal\Message
     public function getWeekly()
     {
         return $this->readOneof(6);
+    }
+
+    public function hasWeekly()
+    {
+        return $this->hasOneof(6);
     }
 
     /**
@@ -269,6 +314,11 @@ class RecurringSchedule extends \Google\Protobuf\Internal\Message
         return $this->readOneof(7);
     }
 
+    public function hasMonthly()
+    {
+        return $this->hasOneof(7);
+    }
+
     /**
      * Required. Schedule with monthly executions.
      *
@@ -292,7 +342,17 @@ class RecurringSchedule extends \Google\Protobuf\Internal\Message
      */
     public function getLastExecuteTime()
     {
-        return $this->last_execute_time;
+        return isset($this->last_execute_time) ? $this->last_execute_time : null;
+    }
+
+    public function hasLastExecuteTime()
+    {
+        return isset($this->last_execute_time);
+    }
+
+    public function clearLastExecuteTime()
+    {
+        unset($this->last_execute_time);
     }
 
     /**
@@ -318,7 +378,17 @@ class RecurringSchedule extends \Google\Protobuf\Internal\Message
      */
     public function getNextExecuteTime()
     {
-        return $this->next_execute_time;
+        return isset($this->next_execute_time) ? $this->next_execute_time : null;
+    }
+
+    public function hasNextExecuteTime()
+    {
+        return isset($this->next_execute_time);
+    }
+
+    public function clearNextExecuteTime()
+    {
+        unset($this->next_execute_time);
     }
 
     /**

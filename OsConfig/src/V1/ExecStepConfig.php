@@ -69,6 +69,11 @@ class ExecStepConfig extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasLocalPath()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * An absolute path to the executable on the VM.
      *
@@ -93,6 +98,11 @@ class ExecStepConfig extends \Google\Protobuf\Internal\Message
     public function getGcsObject()
     {
         return $this->readOneof(2);
+    }
+
+    public function hasGcsObject()
+    {
+        return $this->hasOneof(2);
     }
 
     /**
@@ -164,7 +174,7 @@ class ExecStepConfig extends \Google\Protobuf\Internal\Message
      */
     public function setInterpreter($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\OsConfig\V1\ExecStepConfig_Interpreter::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\OsConfig\V1\ExecStepConfig\Interpreter::class);
         $this->interpreter = $var;
 
         return $this;

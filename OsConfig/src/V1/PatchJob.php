@@ -249,7 +249,17 @@ class PatchJob extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return $this->create_time;
+        return isset($this->create_time) ? $this->create_time : null;
+    }
+
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
     }
 
     /**
@@ -275,7 +285,17 @@ class PatchJob extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return $this->update_time;
+        return isset($this->update_time) ? $this->update_time : null;
+    }
+
+    public function hasUpdateTime()
+    {
+        return isset($this->update_time);
+    }
+
+    public function clearUpdateTime()
+    {
+        unset($this->update_time);
     }
 
     /**
@@ -313,7 +333,7 @@ class PatchJob extends \Google\Protobuf\Internal\Message
      */
     public function setState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\OsConfig\V1\PatchJob_State::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\OsConfig\V1\PatchJob\State::class);
         $this->state = $var;
 
         return $this;
@@ -327,7 +347,17 @@ class PatchJob extends \Google\Protobuf\Internal\Message
      */
     public function getInstanceFilter()
     {
-        return $this->instance_filter;
+        return isset($this->instance_filter) ? $this->instance_filter : null;
+    }
+
+    public function hasInstanceFilter()
+    {
+        return isset($this->instance_filter);
+    }
+
+    public function clearInstanceFilter()
+    {
+        unset($this->instance_filter);
     }
 
     /**
@@ -353,7 +383,17 @@ class PatchJob extends \Google\Protobuf\Internal\Message
      */
     public function getPatchConfig()
     {
-        return $this->patch_config;
+        return isset($this->patch_config) ? $this->patch_config : null;
+    }
+
+    public function hasPatchConfig()
+    {
+        return isset($this->patch_config);
+    }
+
+    public function clearPatchConfig()
+    {
+        unset($this->patch_config);
     }
 
     /**
@@ -380,7 +420,17 @@ class PatchJob extends \Google\Protobuf\Internal\Message
      */
     public function getDuration()
     {
-        return $this->duration;
+        return isset($this->duration) ? $this->duration : null;
+    }
+
+    public function hasDuration()
+    {
+        return isset($this->duration);
+    }
+
+    public function clearDuration()
+    {
+        unset($this->duration);
     }
 
     /**
@@ -407,7 +457,17 @@ class PatchJob extends \Google\Protobuf\Internal\Message
      */
     public function getInstanceDetailsSummary()
     {
-        return $this->instance_details_summary;
+        return isset($this->instance_details_summary) ? $this->instance_details_summary : null;
+    }
+
+    public function hasInstanceDetailsSummary()
+    {
+        return isset($this->instance_details_summary);
+    }
+
+    public function clearInstanceDetailsSummary()
+    {
+        unset($this->instance_details_summary);
     }
 
     /**
@@ -419,7 +479,7 @@ class PatchJob extends \Google\Protobuf\Internal\Message
      */
     public function setInstanceDetailsSummary($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\OsConfig\V1\PatchJob_InstanceDetailsSummary::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\OsConfig\V1\PatchJob\InstanceDetailsSummary::class);
         $this->instance_details_summary = $var;
 
         return $this;

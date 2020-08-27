@@ -49,6 +49,11 @@ class MonthlySchedule extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasWeekDayOfMonth()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * Required. Week day in a month.
      *
@@ -76,6 +81,11 @@ class MonthlySchedule extends \Google\Protobuf\Internal\Message
     public function getMonthDay()
     {
         return $this->readOneof(2);
+    }
+
+    public function hasMonthDay()
+    {
+        return $this->hasOneof(2);
     }
 
     /**
