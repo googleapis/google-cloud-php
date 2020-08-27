@@ -84,7 +84,7 @@ class AptSettings extends \Google\Protobuf\Internal\Message
      */
     public function setType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\OsConfig\V1\AptSettings_Type::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\OsConfig\V1\AptSettings\Type::class);
         $this->type = $var;
 
         return $this;

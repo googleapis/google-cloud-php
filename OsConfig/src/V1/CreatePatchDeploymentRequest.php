@@ -137,7 +137,17 @@ class CreatePatchDeploymentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getPatchDeployment()
     {
-        return $this->patch_deployment;
+        return isset($this->patch_deployment) ? $this->patch_deployment : null;
+    }
+
+    public function hasPatchDeployment()
+    {
+        return isset($this->patch_deployment);
+    }
+
+    public function clearPatchDeployment()
+    {
+        unset($this->patch_deployment);
     }
 
     /**

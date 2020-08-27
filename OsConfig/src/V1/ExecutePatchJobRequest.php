@@ -159,7 +159,17 @@ class ExecutePatchJobRequest extends \Google\Protobuf\Internal\Message
      */
     public function getInstanceFilter()
     {
-        return $this->instance_filter;
+        return isset($this->instance_filter) ? $this->instance_filter : null;
+    }
+
+    public function hasInstanceFilter()
+    {
+        return isset($this->instance_filter);
+    }
+
+    public function clearInstanceFilter()
+    {
+        unset($this->instance_filter);
     }
 
     /**
@@ -187,7 +197,17 @@ class ExecutePatchJobRequest extends \Google\Protobuf\Internal\Message
      */
     public function getPatchConfig()
     {
-        return $this->patch_config;
+        return isset($this->patch_config) ? $this->patch_config : null;
+    }
+
+    public function hasPatchConfig()
+    {
+        return isset($this->patch_config);
+    }
+
+    public function clearPatchConfig()
+    {
+        unset($this->patch_config);
     }
 
     /**
@@ -215,7 +235,17 @@ class ExecutePatchJobRequest extends \Google\Protobuf\Internal\Message
      */
     public function getDuration()
     {
-        return $this->duration;
+        return isset($this->duration) ? $this->duration : null;
+    }
+
+    public function hasDuration()
+    {
+        return isset($this->duration);
+    }
+
+    public function clearDuration()
+    {
+        unset($this->duration);
     }
 
     /**

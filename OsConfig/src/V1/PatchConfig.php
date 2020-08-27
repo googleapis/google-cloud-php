@@ -122,7 +122,7 @@ class PatchConfig extends \Google\Protobuf\Internal\Message
      */
     public function setRebootConfig($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\OsConfig\V1\PatchConfig_RebootConfig::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\OsConfig\V1\PatchConfig\RebootConfig::class);
         $this->reboot_config = $var;
 
         return $this;
@@ -137,7 +137,17 @@ class PatchConfig extends \Google\Protobuf\Internal\Message
      */
     public function getApt()
     {
-        return $this->apt;
+        return isset($this->apt) ? $this->apt : null;
+    }
+
+    public function hasApt()
+    {
+        return isset($this->apt);
+    }
+
+    public function clearApt()
+    {
+        unset($this->apt);
     }
 
     /**
@@ -165,7 +175,17 @@ class PatchConfig extends \Google\Protobuf\Internal\Message
      */
     public function getYum()
     {
-        return $this->yum;
+        return isset($this->yum) ? $this->yum : null;
+    }
+
+    public function hasYum()
+    {
+        return isset($this->yum);
+    }
+
+    public function clearYum()
+    {
+        unset($this->yum);
     }
 
     /**
@@ -193,7 +213,17 @@ class PatchConfig extends \Google\Protobuf\Internal\Message
      */
     public function getGoo()
     {
-        return $this->goo;
+        return isset($this->goo) ? $this->goo : null;
+    }
+
+    public function hasGoo()
+    {
+        return isset($this->goo);
+    }
+
+    public function clearGoo()
+    {
+        unset($this->goo);
     }
 
     /**
@@ -221,7 +251,17 @@ class PatchConfig extends \Google\Protobuf\Internal\Message
      */
     public function getZypper()
     {
-        return $this->zypper;
+        return isset($this->zypper) ? $this->zypper : null;
+    }
+
+    public function hasZypper()
+    {
+        return isset($this->zypper);
+    }
+
+    public function clearZypper()
+    {
+        unset($this->zypper);
     }
 
     /**
@@ -248,7 +288,17 @@ class PatchConfig extends \Google\Protobuf\Internal\Message
      */
     public function getWindowsUpdate()
     {
-        return $this->windows_update;
+        return isset($this->windows_update) ? $this->windows_update : null;
+    }
+
+    public function hasWindowsUpdate()
+    {
+        return isset($this->windows_update);
+    }
+
+    public function clearWindowsUpdate()
+    {
+        unset($this->windows_update);
     }
 
     /**
@@ -274,7 +324,17 @@ class PatchConfig extends \Google\Protobuf\Internal\Message
      */
     public function getPreStep()
     {
-        return $this->pre_step;
+        return isset($this->pre_step) ? $this->pre_step : null;
+    }
+
+    public function hasPreStep()
+    {
+        return isset($this->pre_step);
+    }
+
+    public function clearPreStep()
+    {
+        unset($this->pre_step);
     }
 
     /**
@@ -300,7 +360,17 @@ class PatchConfig extends \Google\Protobuf\Internal\Message
      */
     public function getPostStep()
     {
-        return $this->post_step;
+        return isset($this->post_step) ? $this->post_step : null;
+    }
+
+    public function hasPostStep()
+    {
+        return isset($this->post_step);
+    }
+
+    public function clearPostStep()
+    {
+        unset($this->post_step);
     }
 
     /**

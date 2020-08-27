@@ -148,7 +148,7 @@ class PatchJobInstanceDetails extends \Google\Protobuf\Internal\Message
      */
     public function setState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\OsConfig\V1\Instance_PatchState::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\OsConfig\V1\Instance\PatchState::class);
         $this->state = $var;
 
         return $this;
