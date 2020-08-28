@@ -26,6 +26,12 @@ class BigtableInstanceAdminClient extends V2\BigtableInstanceAdminClient
 {
     use EmulatorSupportTrait;
 
+    /**
+     * Constructor.
+     *
+     * @param array $options
+     * @throws \Google\ApiCore\ValidationException
+     */
     public function __construct(array $options = [])
     {
         $options = $this->setEmulatorOptions($options);
