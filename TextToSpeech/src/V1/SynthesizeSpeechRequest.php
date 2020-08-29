@@ -61,7 +61,17 @@ class SynthesizeSpeechRequest extends \Google\Protobuf\Internal\Message
      */
     public function getInput()
     {
-        return $this->input;
+        return isset($this->input) ? $this->input : null;
+    }
+
+    public function hasInput()
+    {
+        return isset($this->input);
+    }
+
+    public function clearInput()
+    {
+        unset($this->input);
     }
 
     /**
@@ -87,7 +97,17 @@ class SynthesizeSpeechRequest extends \Google\Protobuf\Internal\Message
      */
     public function getVoice()
     {
-        return $this->voice;
+        return isset($this->voice) ? $this->voice : null;
+    }
+
+    public function hasVoice()
+    {
+        return isset($this->voice);
+    }
+
+    public function clearVoice()
+    {
+        unset($this->voice);
     }
 
     /**
@@ -113,7 +133,17 @@ class SynthesizeSpeechRequest extends \Google\Protobuf\Internal\Message
      */
     public function getAudioConfig()
     {
-        return $this->audio_config;
+        return isset($this->audio_config) ? $this->audio_config : null;
+    }
+
+    public function hasAudioConfig()
+    {
+        return isset($this->audio_config);
+    }
+
+    public function clearAudioConfig()
+    {
+        unset($this->audio_config);
     }
 
     /**
