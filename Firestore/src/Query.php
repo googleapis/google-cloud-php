@@ -125,7 +125,7 @@ class Query
     /**
      * @var string
      */
-    private $parent;
+    private $parentName;
 
     /**
      * @var array
@@ -147,7 +147,7 @@ class Query
     ) {
         $this->connection = $connection;
         $this->valueMapper = $valueMapper;
-        $this->parent = $parent;
+        $this->parentName = $parent;
         $this->query = $query;
 
         if (!isset($this->query['from'])) {
@@ -187,7 +187,7 @@ class Query
             $query = $this->finalQueryPrepare($this->query);
 
             $generator = $this->connection->runQuery($this->arrayFilterRemoveNull([
-                'parent' => $this->parent,
+                'parent' => $this->parentName,
                 'structuredQuery' => $query,
                 'retries' => 0
             ]) + $options);
@@ -836,7 +836,7 @@ class Query
         return new self(
             $this->connection,
             $this->valueMapper,
-            $this->parent,
+            $this->parentName,
             $query
         );
     }
@@ -921,7 +921,7 @@ class Query
     private function basePath()
     {
         return $this->allDescendants()
-            ? $this->parent
-            : $this->childPath($this->parent, $this->query['from'][0]['collectionId']);
+            ? $this->parentName
+            : $this->childPath($this->parentName, $this->query['from'][0]['collectionId']);
     }
 }

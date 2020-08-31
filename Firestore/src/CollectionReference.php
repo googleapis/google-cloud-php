@@ -60,6 +60,11 @@ class CollectionReference extends Query
     private $name;
 
     /**
+     * @var DocumentReference|null
+     */
+    private $parent;
+
+    /**
      * @param ConnectionInterface $connection A Connection to Cloud Firestore.
      * @param ValueMapper $valueMapper A Firestore Value Mapper.
      * @param string $name The absolute name of the collection.
@@ -284,12 +289,13 @@ class CollectionReference extends Query
      */
     public function parent()
     {
-        $parentPath = $this->parentPath($this->name);
-        if ($this->isDocument($parentPath)) {
-            return $this->documentFactory($parentPath);
-        } else {
-            return null;
+        if (!isset($this->parent)) {
+            $parentPath = $this->parentPath($this->name);
+            if ($this->isDocument($parentPath)) {
+                $this->parent = $this->documentFactory($parentPath);
+            }
         }
+        return $this->parent;
     }
 
     /**
