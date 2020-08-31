@@ -269,17 +269,23 @@ class WriteBatchTest extends TestCase
     public function testSetMerge($name, $ref)
     {
         $this->batch->set($ref, [
-            'hello' => 'world'
+            'hello' => 'world',
+            'foobar' => ['foo' => 'bar'],
+            'emptiness' => []
         ], ['merge' => true]);
 
         $this->commitAndAssert([
             'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             'writes' => [
                 [
-                    'updateMask' => ['fieldPaths' => ['hello']],
+                    'updateMask' => ['fieldPaths' => ['emptiness', 'foobar.foo', 'hello']],
                     'update' => [
                         'name' => $name,
-                        'fields' => ['hello' => ['stringValue' => 'world']]
+                        'fields' => [
+                            'hello' => ['stringValue' => 'world'],
+                            'foobar' => ['mapValue' => ['fields' => ['foo' => ['stringValue' => 'bar']]]],
+                            'emptiness' => ['arrayValue' => ['values' => []]]
+                        ]
                     ]
                 ]
             ]

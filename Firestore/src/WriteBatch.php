@@ -847,7 +847,7 @@ class WriteBatch
         foreach ($fields as $key => $val) {
             $currentPath = $path->child($key);
 
-            if (is_array($val) && $this->isAssoc($val)) {
+            if (is_array($val) && !empty($val) && $this->isAssoc($val)) {
                 $output = array_merge(
                     $output,
                     $this->encodeFieldPaths($val, $currentPath)
