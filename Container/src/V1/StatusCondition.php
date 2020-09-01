@@ -66,7 +66,7 @@ class StatusCondition extends \Google\Protobuf\Internal\Message
      */
     public function setCode($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\StatusCondition_Code::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\StatusCondition\Code::class);
         $this->code = $var;
 
         return $this;

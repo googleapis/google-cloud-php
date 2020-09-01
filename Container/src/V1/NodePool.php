@@ -188,7 +188,17 @@ class NodePool extends \Google\Protobuf\Internal\Message
      */
     public function getConfig()
     {
-        return $this->config;
+        return isset($this->config) ? $this->config : null;
+    }
+
+    public function hasConfig()
+    {
+        return isset($this->config);
+    }
+
+    public function clearConfig()
+    {
+        unset($this->config);
     }
 
     /**
@@ -340,7 +350,7 @@ class NodePool extends \Google\Protobuf\Internal\Message
      */
     public function setStatus($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\NodePool_Status::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\NodePool\Status::class);
         $this->status = $var;
 
         return $this;
@@ -383,7 +393,17 @@ class NodePool extends \Google\Protobuf\Internal\Message
      */
     public function getAutoscaling()
     {
-        return $this->autoscaling;
+        return isset($this->autoscaling) ? $this->autoscaling : null;
+    }
+
+    public function hasAutoscaling()
+    {
+        return isset($this->autoscaling);
+    }
+
+    public function clearAutoscaling()
+    {
+        unset($this->autoscaling);
     }
 
     /**
@@ -410,7 +430,17 @@ class NodePool extends \Google\Protobuf\Internal\Message
      */
     public function getManagement()
     {
-        return $this->management;
+        return isset($this->management) ? $this->management : null;
+    }
+
+    public function hasManagement()
+    {
+        return isset($this->management);
+    }
+
+    public function clearManagement()
+    {
+        unset($this->management);
     }
 
     /**
@@ -437,7 +467,17 @@ class NodePool extends \Google\Protobuf\Internal\Message
      */
     public function getMaxPodsConstraint()
     {
-        return $this->max_pods_constraint;
+        return isset($this->max_pods_constraint) ? $this->max_pods_constraint : null;
+    }
+
+    public function hasMaxPodsConstraint()
+    {
+        return isset($this->max_pods_constraint);
+    }
+
+    public function clearMaxPodsConstraint()
+    {
+        unset($this->max_pods_constraint);
     }
 
     /**

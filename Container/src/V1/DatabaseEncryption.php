@@ -67,7 +67,7 @@ class DatabaseEncryption extends \Google\Protobuf\Internal\Message
      */
     public function setState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\DatabaseEncryption_State::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\DatabaseEncryption\State::class);
         $this->state = $var;
 
         return $this;

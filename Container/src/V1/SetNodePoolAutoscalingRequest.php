@@ -221,7 +221,17 @@ class SetNodePoolAutoscalingRequest extends \Google\Protobuf\Internal\Message
      */
     public function getAutoscaling()
     {
-        return $this->autoscaling;
+        return isset($this->autoscaling) ? $this->autoscaling : null;
+    }
+
+    public function hasAutoscaling()
+    {
+        return isset($this->autoscaling);
+    }
+
+    public function clearAutoscaling()
+    {
+        unset($this->autoscaling);
     }
 
     /**

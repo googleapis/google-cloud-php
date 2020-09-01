@@ -174,7 +174,17 @@ class SetMaintenancePolicyRequest extends \Google\Protobuf\Internal\Message
      */
     public function getMaintenancePolicy()
     {
-        return $this->maintenance_policy;
+        return isset($this->maintenance_policy) ? $this->maintenance_policy : null;
+    }
+
+    public function hasMaintenancePolicy()
+    {
+        return isset($this->maintenance_policy);
+    }
+
+    public function clearMaintenancePolicy()
+    {
+        unset($this->maintenance_policy);
     }
 
     /**

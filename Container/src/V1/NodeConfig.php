@@ -809,7 +809,17 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      */
     public function getShieldedInstanceConfig()
     {
-        return $this->shielded_instance_config;
+        return isset($this->shielded_instance_config) ? $this->shielded_instance_config : null;
+    }
+
+    public function hasShieldedInstanceConfig()
+    {
+        return isset($this->shielded_instance_config);
+    }
+
+    public function clearShieldedInstanceConfig()
+    {
+        unset($this->shielded_instance_config);
     }
 
     /**

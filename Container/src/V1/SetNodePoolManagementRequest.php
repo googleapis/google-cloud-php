@@ -222,7 +222,17 @@ class SetNodePoolManagementRequest extends \Google\Protobuf\Internal\Message
      */
     public function getManagement()
     {
-        return $this->management;
+        return isset($this->management) ? $this->management : null;
+    }
+
+    public function hasManagement()
+    {
+        return isset($this->management);
+    }
+
+    public function clearManagement()
+    {
+        unset($this->management);
     }
 
     /**

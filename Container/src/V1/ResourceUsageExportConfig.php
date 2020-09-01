@@ -63,7 +63,17 @@ class ResourceUsageExportConfig extends \Google\Protobuf\Internal\Message
      */
     public function getBigqueryDestination()
     {
-        return $this->bigquery_destination;
+        return isset($this->bigquery_destination) ? $this->bigquery_destination : null;
+    }
+
+    public function hasBigqueryDestination()
+    {
+        return isset($this->bigquery_destination);
+    }
+
+    public function clearBigqueryDestination()
+    {
+        unset($this->bigquery_destination);
     }
 
     /**
@@ -75,7 +85,7 @@ class ResourceUsageExportConfig extends \Google\Protobuf\Internal\Message
      */
     public function setBigqueryDestination($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ResourceUsageExportConfig_BigQueryDestination::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ResourceUsageExportConfig\BigQueryDestination::class);
         $this->bigquery_destination = $var;
 
         return $this;
@@ -117,7 +127,17 @@ class ResourceUsageExportConfig extends \Google\Protobuf\Internal\Message
      */
     public function getConsumptionMeteringConfig()
     {
-        return $this->consumption_metering_config;
+        return isset($this->consumption_metering_config) ? $this->consumption_metering_config : null;
+    }
+
+    public function hasConsumptionMeteringConfig()
+    {
+        return isset($this->consumption_metering_config);
+    }
+
+    public function clearConsumptionMeteringConfig()
+    {
+        unset($this->consumption_metering_config);
     }
 
     /**
@@ -129,7 +149,7 @@ class ResourceUsageExportConfig extends \Google\Protobuf\Internal\Message
      */
     public function setConsumptionMeteringConfig($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ResourceUsageExportConfig_ConsumptionMeteringConfig::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ResourceUsageExportConfig\ConsumptionMeteringConfig::class);
         $this->consumption_metering_config = $var;
 
         return $this;

@@ -129,7 +129,7 @@ class UsableSubnetworkSecondaryRange extends \Google\Protobuf\Internal\Message
      */
     public function setStatus($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\UsableSubnetworkSecondaryRange_Status::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\UsableSubnetworkSecondaryRange\Status::class);
         $this->status = $var;
 
         return $this;
