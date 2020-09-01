@@ -62,7 +62,17 @@ class AnnotateTextRequest extends \Google\Protobuf\Internal\Message
      */
     public function getDocument()
     {
-        return $this->document;
+        return isset($this->document) ? $this->document : null;
+    }
+
+    public function hasDocument()
+    {
+        return isset($this->document);
+    }
+
+    public function clearDocument()
+    {
+        unset($this->document);
     }
 
     /**
@@ -88,7 +98,17 @@ class AnnotateTextRequest extends \Google\Protobuf\Internal\Message
      */
     public function getFeatures()
     {
-        return $this->features;
+        return isset($this->features) ? $this->features : null;
+    }
+
+    public function hasFeatures()
+    {
+        return isset($this->features);
+    }
+
+    public function clearFeatures()
+    {
+        unset($this->features);
     }
 
     /**
@@ -100,7 +120,7 @@ class AnnotateTextRequest extends \Google\Protobuf\Internal\Message
      */
     public function setFeatures($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Language\V1beta2\AnnotateTextRequest_Features::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Language\V1beta2\AnnotateTextRequest\Features::class);
         $this->features = $var;
 
         return $this;

@@ -93,7 +93,7 @@ class Document extends \Google\Protobuf\Internal\Message
      */
     public function setType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Language\V1\Document_Type::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Language\V1\Document\Type::class);
         $this->type = $var;
 
         return $this;
@@ -109,6 +109,11 @@ class Document extends \Google\Protobuf\Internal\Message
     public function getContent()
     {
         return $this->readOneof(2);
+    }
+
+    public function hasContent()
+    {
+        return $this->hasOneof(2);
     }
 
     /**
@@ -139,6 +144,11 @@ class Document extends \Google\Protobuf\Internal\Message
     public function getGcsContentUri()
     {
         return $this->readOneof(3);
+    }
+
+    public function hasGcsContentUri()
+    {
+        return $this->hasOneof(3);
     }
 
     /**

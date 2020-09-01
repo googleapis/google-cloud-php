@@ -69,7 +69,17 @@ class Token extends \Google\Protobuf\Internal\Message
      */
     public function getText()
     {
-        return $this->text;
+        return isset($this->text) ? $this->text : null;
+    }
+
+    public function hasText()
+    {
+        return isset($this->text);
+    }
+
+    public function clearText()
+    {
+        unset($this->text);
     }
 
     /**
@@ -95,7 +105,17 @@ class Token extends \Google\Protobuf\Internal\Message
      */
     public function getPartOfSpeech()
     {
-        return $this->part_of_speech;
+        return isset($this->part_of_speech) ? $this->part_of_speech : null;
+    }
+
+    public function hasPartOfSpeech()
+    {
+        return isset($this->part_of_speech);
+    }
+
+    public function clearPartOfSpeech()
+    {
+        unset($this->part_of_speech);
     }
 
     /**
@@ -121,7 +141,17 @@ class Token extends \Google\Protobuf\Internal\Message
      */
     public function getDependencyEdge()
     {
-        return $this->dependency_edge;
+        return isset($this->dependency_edge) ? $this->dependency_edge : null;
+    }
+
+    public function hasDependencyEdge()
+    {
+        return isset($this->dependency_edge);
+    }
+
+    public function clearDependencyEdge()
+    {
+        unset($this->dependency_edge);
     }
 
     /**

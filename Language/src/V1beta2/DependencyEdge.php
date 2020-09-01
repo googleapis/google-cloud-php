@@ -107,7 +107,7 @@ class DependencyEdge extends \Google\Protobuf\Internal\Message
      */
     public function setLabel($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Language\V1beta2\DependencyEdge_Label::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Language\V1beta2\DependencyEdge\Label::class);
         $this->label = $var;
 
         return $this;

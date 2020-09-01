@@ -147,7 +147,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      */
     public function setType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Language\V1\Entity_Type::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Language\V1\Entity\Type::class);
         $this->type = $var;
 
         return $this;
@@ -258,7 +258,17 @@ class Entity extends \Google\Protobuf\Internal\Message
      */
     public function getSentiment()
     {
-        return $this->sentiment;
+        return isset($this->sentiment) ? $this->sentiment : null;
+    }
+
+    public function hasSentiment()
+    {
+        return isset($this->sentiment);
+    }
+
+    public function clearSentiment()
+    {
+        unset($this->sentiment);
     }
 
     /**

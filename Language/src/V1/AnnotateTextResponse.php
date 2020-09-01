@@ -190,7 +190,17 @@ class AnnotateTextResponse extends \Google\Protobuf\Internal\Message
      */
     public function getDocumentSentiment()
     {
-        return $this->document_sentiment;
+        return isset($this->document_sentiment) ? $this->document_sentiment : null;
+    }
+
+    public function hasDocumentSentiment()
+    {
+        return isset($this->document_sentiment);
+    }
+
+    public function clearDocumentSentiment()
+    {
+        unset($this->document_sentiment);
     }
 
     /**

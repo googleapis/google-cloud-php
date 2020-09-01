@@ -45,7 +45,17 @@ class ClassifyTextRequest extends \Google\Protobuf\Internal\Message
      */
     public function getDocument()
     {
-        return $this->document;
+        return isset($this->document) ? $this->document : null;
+    }
+
+    public function hasDocument()
+    {
+        return isset($this->document);
+    }
+
+    public function clearDocument()
+    {
+        unset($this->document);
     }
 
     /**
