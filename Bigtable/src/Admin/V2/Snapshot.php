@@ -142,7 +142,17 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      */
     public function getSourceTable()
     {
-        return $this->source_table;
+        return isset($this->source_table) ? $this->source_table : null;
+    }
+
+    public function hasSourceTable()
+    {
+        return isset($this->source_table);
+    }
+
+    public function clearSourceTable()
+    {
+        unset($this->source_table);
     }
 
     /**
@@ -200,7 +210,17 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return $this->create_time;
+        return isset($this->create_time) ? $this->create_time : null;
+    }
+
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
     }
 
     /**
@@ -228,7 +248,17 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      */
     public function getDeleteTime()
     {
-        return $this->delete_time;
+        return isset($this->delete_time) ? $this->delete_time : null;
+    }
+
+    public function hasDeleteTime()
+    {
+        return isset($this->delete_time);
+    }
+
+    public function clearDeleteTime()
+    {
+        unset($this->delete_time);
     }
 
     /**
@@ -268,7 +298,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      */
     public function setState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Bigtable\Admin\V2\Snapshot_State::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Bigtable\Admin\V2\Snapshot\State::class);
         $this->state = $var;
 
         return $this;

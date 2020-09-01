@@ -49,6 +49,11 @@ class Mutation extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasSetCell()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * Set a cell's value.
      *
@@ -58,7 +63,7 @@ class Mutation extends \Google\Protobuf\Internal\Message
      */
     public function setSetCell($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\V2\Mutation_SetCell::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\V2\Mutation\SetCell::class);
         $this->writeOneof(1, $var);
 
         return $this;
@@ -75,6 +80,11 @@ class Mutation extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasDeleteFromColumn()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * Deletes cells from a column.
      *
@@ -84,7 +94,7 @@ class Mutation extends \Google\Protobuf\Internal\Message
      */
     public function setDeleteFromColumn($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\V2\Mutation_DeleteFromColumn::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\V2\Mutation\DeleteFromColumn::class);
         $this->writeOneof(2, $var);
 
         return $this;
@@ -101,6 +111,11 @@ class Mutation extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasDeleteFromFamily()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * Deletes cells from a column family.
      *
@@ -110,7 +125,7 @@ class Mutation extends \Google\Protobuf\Internal\Message
      */
     public function setDeleteFromFamily($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\V2\Mutation_DeleteFromFamily::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\V2\Mutation\DeleteFromFamily::class);
         $this->writeOneof(3, $var);
 
         return $this;
@@ -127,6 +142,11 @@ class Mutation extends \Google\Protobuf\Internal\Message
         return $this->readOneof(4);
     }
 
+    public function hasDeleteFromRow()
+    {
+        return $this->hasOneof(4);
+    }
+
     /**
      * Deletes cells from the entire row.
      *
@@ -136,7 +156,7 @@ class Mutation extends \Google\Protobuf\Internal\Message
      */
     public function setDeleteFromRow($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\V2\Mutation_DeleteFromRow::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\V2\Mutation\DeleteFromRow::class);
         $this->writeOneof(4, $var);
 
         return $this;

@@ -134,6 +134,11 @@ class RestoreTableRequest extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasBackup()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * Name of the backup from which to restore. Values are of the form
      * `projects/<project>/instances/<instance>/clusters/<cluster>/backups/<backup>`.

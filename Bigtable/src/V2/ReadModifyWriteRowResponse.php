@@ -45,7 +45,17 @@ class ReadModifyWriteRowResponse extends \Google\Protobuf\Internal\Message
      */
     public function getRow()
     {
-        return $this->row;
+        return isset($this->row) ? $this->row : null;
+    }
+
+    public function hasRow()
+    {
+        return isset($this->row);
+    }
+
+    public function clearRow()
+    {
+        unset($this->row);
     }
 
     /**

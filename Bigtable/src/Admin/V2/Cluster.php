@@ -169,7 +169,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function setState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Bigtable\Admin\V2\Cluster_State::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Bigtable\Admin\V2\Cluster\State::class);
         $this->state = $var;
 
         return $this;

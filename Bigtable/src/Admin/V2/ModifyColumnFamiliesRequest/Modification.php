@@ -85,6 +85,11 @@ class Modification extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasCreate()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * Create a new column family with the specified schema, or fail if
      * one already exists with the given ID.
@@ -113,6 +118,11 @@ class Modification extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasUpdate()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * Update an existing column family to the specified schema, or fail
      * if no column family exists with the given ID.
@@ -139,6 +149,11 @@ class Modification extends \Google\Protobuf\Internal\Message
     public function getDrop()
     {
         return $this->readOneof(4);
+    }
+
+    public function hasDrop()
+    {
+        return $this->hasOneof(4);
     }
 
     /**

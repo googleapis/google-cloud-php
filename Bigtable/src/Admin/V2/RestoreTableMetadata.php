@@ -145,6 +145,11 @@ class RestoreTableMetadata extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasBackupInfo()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * Generated from protobuf field <code>.google.bigtable.admin.v2.BackupInfo backup_info = 3;</code>
      * @param \Google\Cloud\Bigtable\Admin\V2\BackupInfo $var
@@ -210,7 +215,17 @@ class RestoreTableMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getProgress()
     {
-        return $this->progress;
+        return isset($this->progress) ? $this->progress : null;
+    }
+
+    public function hasProgress()
+    {
+        return isset($this->progress);
+    }
+
+    public function clearProgress()
+    {
+        unset($this->progress);
     }
 
     /**

@@ -55,7 +55,17 @@ class PartialUpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      */
     public function getInstance()
     {
-        return $this->instance;
+        return isset($this->instance) ? $this->instance : null;
+    }
+
+    public function hasInstance()
+    {
+        return isset($this->instance);
+    }
+
+    public function clearInstance()
+    {
+        unset($this->instance);
     }
 
     /**
@@ -82,7 +92,17 @@ class PartialUpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return $this->update_mask;
+        return isset($this->update_mask) ? $this->update_mask : null;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**

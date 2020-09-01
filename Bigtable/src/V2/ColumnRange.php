@@ -87,6 +87,11 @@ class ColumnRange extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasStartQualifierClosed()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * Used when giving an inclusive lower bound for the range.
      *
@@ -111,6 +116,11 @@ class ColumnRange extends \Google\Protobuf\Internal\Message
     public function getStartQualifierOpen()
     {
         return $this->readOneof(3);
+    }
+
+    public function hasStartQualifierOpen()
+    {
+        return $this->hasOneof(3);
     }
 
     /**
@@ -139,6 +149,11 @@ class ColumnRange extends \Google\Protobuf\Internal\Message
         return $this->readOneof(4);
     }
 
+    public function hasEndQualifierClosed()
+    {
+        return $this->hasOneof(4);
+    }
+
     /**
      * Used when giving an inclusive upper bound for the range.
      *
@@ -163,6 +178,11 @@ class ColumnRange extends \Google\Protobuf\Internal\Message
     public function getEndQualifierOpen()
     {
         return $this->readOneof(5);
+    }
+
+    public function hasEndQualifierOpen()
+    {
+        return $this->hasOneof(5);
     }
 
     /**

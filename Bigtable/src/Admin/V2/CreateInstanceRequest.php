@@ -144,7 +144,17 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
      */
     public function getInstance()
     {
-        return $this->instance;
+        return isset($this->instance) ? $this->instance : null;
+    }
+
+    public function hasInstance()
+    {
+        return isset($this->instance);
+    }
+
+    public function clearInstance()
+    {
+        unset($this->instance);
     }
 
     /**

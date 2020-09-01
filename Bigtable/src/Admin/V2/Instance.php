@@ -178,7 +178,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     public function setState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Bigtable\Admin\V2\Instance_State::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Bigtable\Admin\V2\Instance\State::class);
         $this->state = $var;
 
         return $this;
@@ -204,7 +204,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     public function setType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Bigtable\Admin\V2\Instance_Type::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Bigtable\Admin\V2\Instance\Type::class);
         $this->type = $var;
 
         return $this;

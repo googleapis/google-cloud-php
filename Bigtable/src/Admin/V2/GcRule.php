@@ -51,6 +51,11 @@ class GcRule extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasMaxNumVersions()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * Delete all cells in a column except the most recent N.
      *
@@ -77,6 +82,11 @@ class GcRule extends \Google\Protobuf\Internal\Message
     public function getMaxAge()
     {
         return $this->readOneof(2);
+    }
+
+    public function hasMaxAge()
+    {
+        return $this->hasOneof(2);
     }
 
     /**
@@ -107,6 +117,11 @@ class GcRule extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasIntersection()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * Delete cells that would be deleted by every nested rule.
      *
@@ -116,7 +131,7 @@ class GcRule extends \Google\Protobuf\Internal\Message
      */
     public function setIntersection($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\GcRule_Intersection::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\GcRule\Intersection::class);
         $this->writeOneof(3, $var);
 
         return $this;
@@ -133,6 +148,11 @@ class GcRule extends \Google\Protobuf\Internal\Message
         return $this->readOneof(4);
     }
 
+    public function hasUnion()
+    {
+        return $this->hasOneof(4);
+    }
+
     /**
      * Delete cells that would be deleted by any nested rule.
      *
@@ -142,7 +162,7 @@ class GcRule extends \Google\Protobuf\Internal\Message
      */
     public function setUnion($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\GcRule_Union::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\GcRule\Union::class);
         $this->writeOneof(4, $var);
 
         return $this;

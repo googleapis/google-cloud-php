@@ -184,6 +184,11 @@ class AppProfile extends \Google\Protobuf\Internal\Message
         return $this->readOneof(5);
     }
 
+    public function hasMultiClusterRoutingUseAny()
+    {
+        return $this->hasOneof(5);
+    }
+
     /**
      * Use a multi-cluster routing policy.
      *
@@ -193,7 +198,7 @@ class AppProfile extends \Google\Protobuf\Internal\Message
      */
     public function setMultiClusterRoutingUseAny($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\AppProfile_MultiClusterRoutingUseAny::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\AppProfile\MultiClusterRoutingUseAny::class);
         $this->writeOneof(5, $var);
 
         return $this;
@@ -210,6 +215,11 @@ class AppProfile extends \Google\Protobuf\Internal\Message
         return $this->readOneof(6);
     }
 
+    public function hasSingleClusterRouting()
+    {
+        return $this->hasOneof(6);
+    }
+
     /**
      * Use a single-cluster routing policy.
      *
@@ -219,7 +229,7 @@ class AppProfile extends \Google\Protobuf\Internal\Message
      */
     public function setSingleClusterRouting($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\AppProfile_SingleClusterRouting::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\AppProfile\SingleClusterRouting::class);
         $this->writeOneof(6, $var);
 
         return $this;

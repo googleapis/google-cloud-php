@@ -65,7 +65,17 @@ class SnapshotTableMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getOriginalRequest()
     {
-        return $this->original_request;
+        return isset($this->original_request) ? $this->original_request : null;
+    }
+
+    public function hasOriginalRequest()
+    {
+        return isset($this->original_request);
+    }
+
+    public function clearOriginalRequest()
+    {
+        unset($this->original_request);
     }
 
     /**
@@ -91,7 +101,17 @@ class SnapshotTableMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getRequestTime()
     {
-        return $this->request_time;
+        return isset($this->request_time) ? $this->request_time : null;
+    }
+
+    public function hasRequestTime()
+    {
+        return isset($this->request_time);
+    }
+
+    public function clearRequestTime()
+    {
+        unset($this->request_time);
     }
 
     /**
@@ -117,7 +137,17 @@ class SnapshotTableMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getFinishTime()
     {
-        return $this->finish_time;
+        return isset($this->finish_time) ? $this->finish_time : null;
+    }
+
+    public function hasFinishTime()
+    {
+        return isset($this->finish_time);
+    }
+
+    public function clearFinishTime()
+    {
+        unset($this->finish_time);
     }
 
     /**
