@@ -45,7 +45,17 @@ class TableModifiers extends \Google\Protobuf\Internal\Message
      */
     public function getSnapshotTime()
     {
-        return $this->snapshot_time;
+        return isset($this->snapshot_time) ? $this->snapshot_time : null;
+    }
+
+    public function hasSnapshotTime()
+    {
+        return isset($this->snapshot_time);
+    }
+
+    public function clearSnapshotTime()
+    {
+        unset($this->snapshot_time);
     }
 
     /**

@@ -72,6 +72,11 @@ class ReadRowsResponse extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasAvroRows()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * Serialized row data in AVRO format.
      *
@@ -96,6 +101,11 @@ class ReadRowsResponse extends \Google\Protobuf\Internal\Message
     public function getArrowRecordBatch()
     {
         return $this->readOneof(4);
+    }
+
+    public function hasArrowRecordBatch()
+    {
+        return $this->hasOneof(4);
     }
 
     /**
@@ -147,7 +157,17 @@ class ReadRowsResponse extends \Google\Protobuf\Internal\Message
      */
     public function getStats()
     {
-        return $this->stats;
+        return isset($this->stats) ? $this->stats : null;
+    }
+
+    public function hasStats()
+    {
+        return isset($this->stats);
+    }
+
+    public function clearStats()
+    {
+        unset($this->stats);
     }
 
     /**
@@ -174,7 +194,17 @@ class ReadRowsResponse extends \Google\Protobuf\Internal\Message
      */
     public function getThrottleState()
     {
-        return $this->throttle_state;
+        return isset($this->throttle_state) ? $this->throttle_state : null;
+    }
+
+    public function hasThrottleState()
+    {
+        return isset($this->throttle_state);
+    }
+
+    public function clearThrottleState()
+    {
+        unset($this->throttle_state);
     }
 
     /**
