@@ -57,6 +57,11 @@ class GatewayListOptions extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasGatewayType()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * If `GATEWAY` is specified, only gateways are returned. If `NON_GATEWAY`
      * is specified, only non-gateway devices are returned. If
@@ -86,6 +91,11 @@ class GatewayListOptions extends \Google\Protobuf\Internal\Message
     public function getAssociationsGatewayId()
     {
         return $this->readOneof(2);
+    }
+
+    public function hasAssociationsGatewayId()
+    {
+        return $this->hasOneof(2);
     }
 
     /**
@@ -118,6 +128,11 @@ class GatewayListOptions extends \Google\Protobuf\Internal\Message
     public function getAssociationsDeviceId()
     {
         return $this->readOneof(3);
+    }
+
+    public function hasAssociationsDeviceId()
+    {
+        return $this->hasOneof(3);
     }
 
     /**

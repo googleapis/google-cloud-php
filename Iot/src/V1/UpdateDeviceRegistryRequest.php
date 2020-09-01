@@ -67,7 +67,17 @@ class UpdateDeviceRegistryRequest extends \Google\Protobuf\Internal\Message
      */
     public function getDeviceRegistry()
     {
-        return $this->device_registry;
+        return isset($this->device_registry) ? $this->device_registry : null;
+    }
+
+    public function hasDeviceRegistry()
+    {
+        return isset($this->device_registry);
+    }
+
+    public function clearDeviceRegistry()
+    {
+        unset($this->device_registry);
     }
 
     /**
@@ -99,7 +109,17 @@ class UpdateDeviceRegistryRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return $this->update_mask;
+        return isset($this->update_mask) ? $this->update_mask : null;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**

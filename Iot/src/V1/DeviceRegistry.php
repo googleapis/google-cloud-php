@@ -252,7 +252,17 @@ class DeviceRegistry extends \Google\Protobuf\Internal\Message
      */
     public function getStateNotificationConfig()
     {
-        return $this->state_notification_config;
+        return isset($this->state_notification_config) ? $this->state_notification_config : null;
+    }
+
+    public function hasStateNotificationConfig()
+    {
+        return isset($this->state_notification_config);
+    }
+
+    public function clearStateNotificationConfig()
+    {
+        unset($this->state_notification_config);
     }
 
     /**
@@ -283,7 +293,17 @@ class DeviceRegistry extends \Google\Protobuf\Internal\Message
      */
     public function getMqttConfig()
     {
-        return $this->mqtt_config;
+        return isset($this->mqtt_config) ? $this->mqtt_config : null;
+    }
+
+    public function hasMqttConfig()
+    {
+        return isset($this->mqtt_config);
+    }
+
+    public function clearMqttConfig()
+    {
+        unset($this->mqtt_config);
     }
 
     /**
@@ -309,7 +329,17 @@ class DeviceRegistry extends \Google\Protobuf\Internal\Message
      */
     public function getHttpConfig()
     {
-        return $this->http_config;
+        return isset($this->http_config) ? $this->http_config : null;
+    }
+
+    public function hasHttpConfig()
+    {
+        return isset($this->http_config);
+    }
+
+    public function clearHttpConfig()
+    {
+        unset($this->http_config);
     }
 
     /**

@@ -393,7 +393,17 @@ class Device extends \Google\Protobuf\Internal\Message
      */
     public function getLastHeartbeatTime()
     {
-        return $this->last_heartbeat_time;
+        return isset($this->last_heartbeat_time) ? $this->last_heartbeat_time : null;
+    }
+
+    public function hasLastHeartbeatTime()
+    {
+        return isset($this->last_heartbeat_time);
+    }
+
+    public function clearLastHeartbeatTime()
+    {
+        unset($this->last_heartbeat_time);
     }
 
     /**
@@ -425,7 +435,17 @@ class Device extends \Google\Protobuf\Internal\Message
      */
     public function getLastEventTime()
     {
-        return $this->last_event_time;
+        return isset($this->last_event_time) ? $this->last_event_time : null;
+    }
+
+    public function hasLastEventTime()
+    {
+        return isset($this->last_event_time);
+    }
+
+    public function clearLastEventTime()
+    {
+        unset($this->last_event_time);
     }
 
     /**
@@ -455,7 +475,17 @@ class Device extends \Google\Protobuf\Internal\Message
      */
     public function getLastStateTime()
     {
-        return $this->last_state_time;
+        return isset($this->last_state_time) ? $this->last_state_time : null;
+    }
+
+    public function hasLastStateTime()
+    {
+        return isset($this->last_state_time);
+    }
+
+    public function clearLastStateTime()
+    {
+        unset($this->last_state_time);
     }
 
     /**
@@ -485,7 +515,17 @@ class Device extends \Google\Protobuf\Internal\Message
      */
     public function getLastConfigAckTime()
     {
-        return $this->last_config_ack_time;
+        return isset($this->last_config_ack_time) ? $this->last_config_ack_time : null;
+    }
+
+    public function hasLastConfigAckTime()
+    {
+        return isset($this->last_config_ack_time);
+    }
+
+    public function clearLastConfigAckTime()
+    {
+        unset($this->last_config_ack_time);
     }
 
     /**
@@ -514,7 +554,17 @@ class Device extends \Google\Protobuf\Internal\Message
      */
     public function getLastConfigSendTime()
     {
-        return $this->last_config_send_time;
+        return isset($this->last_config_send_time) ? $this->last_config_send_time : null;
+    }
+
+    public function hasLastConfigSendTime()
+    {
+        return isset($this->last_config_send_time);
+    }
+
+    public function clearLastConfigSendTime()
+    {
+        unset($this->last_config_send_time);
     }
 
     /**
@@ -573,7 +623,17 @@ class Device extends \Google\Protobuf\Internal\Message
      */
     public function getLastErrorTime()
     {
-        return $this->last_error_time;
+        return isset($this->last_error_time) ? $this->last_error_time : null;
+    }
+
+    public function hasLastErrorTime()
+    {
+        return isset($this->last_error_time);
+    }
+
+    public function clearLastErrorTime()
+    {
+        unset($this->last_error_time);
     }
 
     /**
@@ -605,7 +665,17 @@ class Device extends \Google\Protobuf\Internal\Message
      */
     public function getLastErrorStatus()
     {
-        return $this->last_error_status;
+        return isset($this->last_error_status) ? $this->last_error_status : null;
+    }
+
+    public function hasLastErrorStatus()
+    {
+        return isset($this->last_error_status);
+    }
+
+    public function clearLastErrorStatus()
+    {
+        unset($this->last_error_status);
     }
 
     /**
@@ -639,7 +709,17 @@ class Device extends \Google\Protobuf\Internal\Message
      */
     public function getConfig()
     {
-        return $this->config;
+        return isset($this->config) ? $this->config : null;
+    }
+
+    public function hasConfig()
+    {
+        return isset($this->config);
+    }
+
+    public function clearConfig()
+    {
+        unset($this->config);
     }
 
     /**
@@ -670,7 +750,17 @@ class Device extends \Google\Protobuf\Internal\Message
      */
     public function getState()
     {
-        return $this->state;
+        return isset($this->state) ? $this->state : null;
+    }
+
+    public function hasState()
+    {
+        return isset($this->state);
+    }
+
+    public function clearState()
+    {
+        unset($this->state);
     }
 
     /**
@@ -769,7 +859,17 @@ class Device extends \Google\Protobuf\Internal\Message
      */
     public function getGatewayConfig()
     {
-        return $this->gateway_config;
+        return isset($this->gateway_config) ? $this->gateway_config : null;
+    }
+
+    public function hasGatewayConfig()
+    {
+        return isset($this->gateway_config);
+    }
+
+    public function clearGatewayConfig()
+    {
+        unset($this->gateway_config);
     }
 
     /**

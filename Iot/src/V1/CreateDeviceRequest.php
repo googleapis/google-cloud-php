@@ -93,7 +93,17 @@ class CreateDeviceRequest extends \Google\Protobuf\Internal\Message
      */
     public function getDevice()
     {
-        return $this->device;
+        return isset($this->device) ? $this->device : null;
+    }
+
+    public function hasDevice()
+    {
+        return isset($this->device);
+    }
+
+    public function clearDevice()
+    {
+        unset($this->device);
     }
 
     /**

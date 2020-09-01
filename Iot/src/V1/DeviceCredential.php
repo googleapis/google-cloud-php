@@ -75,6 +75,11 @@ class DeviceCredential extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasPublicKey()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * A public key used to verify the signature of JSON Web Tokens (JWTs).
      * When adding a new device credential, either via device creation or via
@@ -110,7 +115,17 @@ class DeviceCredential extends \Google\Protobuf\Internal\Message
      */
     public function getExpirationTime()
     {
-        return $this->expiration_time;
+        return isset($this->expiration_time) ? $this->expiration_time : null;
+    }
+
+    public function hasExpirationTime()
+    {
+        return isset($this->expiration_time);
+    }
+
+    public function clearExpirationTime()
+    {
+        unset($this->expiration_time);
     }
 
     /**

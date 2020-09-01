@@ -43,6 +43,11 @@ class RegistryCredential extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasPublicKeyCertificate()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * A public key certificate used to verify the device credentials.
      *
