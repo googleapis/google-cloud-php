@@ -163,7 +163,17 @@ class ListEventsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getServiceFilter()
     {
-        return $this->service_filter;
+        return isset($this->service_filter) ? $this->service_filter : null;
+    }
+
+    public function hasServiceFilter()
+    {
+        return isset($this->service_filter);
+    }
+
+    public function clearServiceFilter()
+    {
+        unset($this->service_filter);
     }
 
     /**
@@ -193,7 +203,17 @@ class ListEventsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getTimeRange()
     {
-        return $this->time_range;
+        return isset($this->time_range) ? $this->time_range : null;
+    }
+
+    public function hasTimeRange()
+    {
+        return isset($this->time_range);
+    }
+
+    public function clearTimeRange()
+    {
+        unset($this->time_range);
     }
 
     /**

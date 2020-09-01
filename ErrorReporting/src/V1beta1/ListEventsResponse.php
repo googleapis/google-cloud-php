@@ -121,7 +121,17 @@ class ListEventsResponse extends \Google\Protobuf\Internal\Message
      */
     public function getTimeRangeBegin()
     {
-        return $this->time_range_begin;
+        return isset($this->time_range_begin) ? $this->time_range_begin : null;
+    }
+
+    public function hasTimeRangeBegin()
+    {
+        return isset($this->time_range_begin);
+    }
+
+    public function clearTimeRangeBegin()
+    {
+        unset($this->time_range_begin);
     }
 
     /**

@@ -164,7 +164,17 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      */
     public function getGroup()
     {
-        return $this->group;
+        return isset($this->group) ? $this->group : null;
+    }
+
+    public function hasGroup()
+    {
+        return isset($this->group);
+    }
+
+    public function clearGroup()
+    {
+        unset($this->group);
     }
 
     /**
@@ -302,7 +312,17 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      */
     public function getFirstSeenTime()
     {
-        return $this->first_seen_time;
+        return isset($this->first_seen_time) ? $this->first_seen_time : null;
+    }
+
+    public function hasFirstSeenTime()
+    {
+        return isset($this->first_seen_time);
+    }
+
+    public function clearFirstSeenTime()
+    {
+        unset($this->first_seen_time);
     }
 
     /**
@@ -332,7 +352,17 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      */
     public function getLastSeenTime()
     {
-        return $this->last_seen_time;
+        return isset($this->last_seen_time) ? $this->last_seen_time : null;
+    }
+
+    public function hasLastSeenTime()
+    {
+        return isset($this->last_seen_time);
+    }
+
+    public function clearLastSeenTime()
+    {
+        unset($this->last_seen_time);
     }
 
     /**
@@ -422,7 +452,17 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      */
     public function getRepresentative()
     {
-        return $this->representative;
+        return isset($this->representative) ? $this->representative : null;
+    }
+
+    public function hasRepresentative()
+    {
+        return isset($this->representative);
+    }
+
+    public function clearRepresentative()
+    {
+        unset($this->representative);
     }
 
     /**

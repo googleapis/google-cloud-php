@@ -219,7 +219,17 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getServiceFilter()
     {
-        return $this->service_filter;
+        return isset($this->service_filter) ? $this->service_filter : null;
+    }
+
+    public function hasServiceFilter()
+    {
+        return isset($this->service_filter);
+    }
+
+    public function clearServiceFilter()
+    {
+        unset($this->service_filter);
     }
 
     /**
@@ -254,7 +264,17 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getTimeRange()
     {
-        return $this->time_range;
+        return isset($this->time_range) ? $this->time_range : null;
+    }
+
+    public function hasTimeRange()
+    {
+        return isset($this->time_range);
+    }
+
+    public function clearTimeRange()
+    {
+        unset($this->time_range);
     }
 
     /**
@@ -288,7 +308,17 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getTimedCountDuration()
     {
-        return $this->timed_count_duration;
+        return isset($this->timed_count_duration) ? $this->timed_count_duration : null;
+    }
+
+    public function hasTimedCountDuration()
+    {
+        return isset($this->timed_count_duration);
+    }
+
+    public function clearTimedCountDuration()
+    {
+        unset($this->timed_count_duration);
     }
 
     /**
@@ -344,7 +374,17 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getAlignmentTime()
     {
-        return $this->alignment_time;
+        return isset($this->alignment_time) ? $this->alignment_time : null;
+    }
+
+    public function hasAlignmentTime()
+    {
+        return isset($this->alignment_time);
+    }
+
+    public function clearAlignmentTime()
+    {
+        unset($this->alignment_time);
     }
 
     /**

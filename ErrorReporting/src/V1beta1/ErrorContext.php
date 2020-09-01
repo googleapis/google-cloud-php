@@ -89,7 +89,17 @@ class ErrorContext extends \Google\Protobuf\Internal\Message
      */
     public function getHttpRequest()
     {
-        return $this->http_request;
+        return isset($this->http_request) ? $this->http_request : null;
+    }
+
+    public function hasHttpRequest()
+    {
+        return isset($this->http_request);
+    }
+
+    public function clearHttpRequest()
+    {
+        unset($this->http_request);
     }
 
     /**
@@ -160,7 +170,17 @@ class ErrorContext extends \Google\Protobuf\Internal\Message
      */
     public function getReportLocation()
     {
-        return $this->report_location;
+        return isset($this->report_location) ? $this->report_location : null;
+    }
+
+    public function hasReportLocation()
+    {
+        return isset($this->report_location);
+    }
+
+    public function clearReportLocation()
+    {
+        unset($this->report_location);
     }
 
     /**
