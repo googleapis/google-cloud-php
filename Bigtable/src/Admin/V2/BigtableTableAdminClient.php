@@ -40,15 +40,6 @@ class BigtableTableAdminClient extends BigtableTableAdminGapicClient
 {
     use EmulatorSupportTrait;
 
-    /**
-     * Constructor.
-     *
-     * @param array $options
-     * @throws \Google\ApiCore\ValidationException
-     */
-    public function __construct(array $options = [])
-    {
-        $options = $this->setEmulatorOptions($options);
-        parent::__construct($options);
-    }
+    // This class is intentionally empty, and is intended to hold manual
+    // additions to the generated {@see BigtableTableAdminGapicClient} class.
 }

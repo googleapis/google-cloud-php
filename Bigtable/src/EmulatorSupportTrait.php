@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Bigtable;
 
+use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\EmulatorTrait;
 
 /**
@@ -25,15 +26,17 @@ use Google\Cloud\Core\EmulatorTrait;
  */
 trait EmulatorSupportTrait
 {
+    use ArrayTrait;
     use EmulatorTrait;
 
     /**
      * Add transport configuration for emulator support if needed.
      *
+     * Supersedes {@see Google\ApiCore\GapicClientTrait::modifyClientOptions()} method.
+     *
      * @param array $options
-     * @return array
      */
-    private function setEmulatorOptions(array $options)
+    protected function modifyClientOptions(array &$options)
     {
         $emulatorHost = getenv('BIGTABLE_EMULATOR_HOST');
 
@@ -42,9 +45,7 @@ trait EmulatorSupportTrait
             'emulatorHost' => $emulatorHost,
         ];
         if ($options['hasEmulator']) {
-            $options += $this->emulatorGapicConfig($options['emulatorHost']);
+            $options = $this->arrayMergeRecursive($options, $this->emulatorGapicConfig($options['emulatorHost']));
         }
-
-        return $options;
     }
 }
