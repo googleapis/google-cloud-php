@@ -61,7 +61,17 @@ class ListFindingsResult extends \Google\Protobuf\Internal\Message
      */
     public function getFinding()
     {
-        return $this->finding;
+        return isset($this->finding) ? $this->finding : null;
+    }
+
+    public function hasFinding()
+    {
+        return isset($this->finding);
+    }
+
+    public function clearFinding()
+    {
+        unset($this->finding);
     }
 
     /**
@@ -99,7 +109,7 @@ class ListFindingsResult extends \Google\Protobuf\Internal\Message
      */
     public function setStateChange($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\SecurityCenter\V1\ListFindingsResponse_ListFindingsResult_StateChange::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\SecurityCenter\V1\ListFindingsResponse\ListFindingsResult\StateChange::class);
         $this->state_change = $var;
 
         return $this;
@@ -113,7 +123,17 @@ class ListFindingsResult extends \Google\Protobuf\Internal\Message
      */
     public function getResource()
     {
-        return $this->resource;
+        return isset($this->resource) ? $this->resource : null;
+    }
+
+    public function hasResource()
+    {
+        return isset($this->resource);
+    }
+
+    public function clearResource()
+    {
+        unset($this->resource);
     }
 
     /**
@@ -125,7 +145,7 @@ class ListFindingsResult extends \Google\Protobuf\Internal\Message
      */
     public function setResource($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1\ListFindingsResponse_ListFindingsResult_Resource::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1\ListFindingsResponse\ListFindingsResult\Resource::class);
         $this->resource = $var;
 
         return $this;

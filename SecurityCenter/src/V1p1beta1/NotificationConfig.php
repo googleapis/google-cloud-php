@@ -163,7 +163,7 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
      */
     public function setEventType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\SecurityCenter\V1p1beta1\NotificationConfig_EventType::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\SecurityCenter\V1p1beta1\NotificationConfig\EventType::class);
         $this->event_type = $var;
 
         return $this;
@@ -236,6 +236,11 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
         return $this->readOneof(6);
     }
 
+    public function hasStreamingConfig()
+    {
+        return $this->hasOneof(6);
+    }
+
     /**
      * The config for triggering streaming-based notifications.
      *
@@ -245,7 +250,7 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
      */
     public function setStreamingConfig($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1p1beta1\NotificationConfig_StreamingConfig::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1p1beta1\NotificationConfig\StreamingConfig::class);
         $this->writeOneof(6, $var);
 
         return $this;

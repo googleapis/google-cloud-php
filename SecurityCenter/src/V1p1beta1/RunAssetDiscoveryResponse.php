@@ -65,7 +65,7 @@ class RunAssetDiscoveryResponse extends \Google\Protobuf\Internal\Message
      */
     public function setState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\SecurityCenter\V1p1beta1\RunAssetDiscoveryResponse_State::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\SecurityCenter\V1p1beta1\RunAssetDiscoveryResponse\State::class);
         $this->state = $var;
 
         return $this;
@@ -79,7 +79,17 @@ class RunAssetDiscoveryResponse extends \Google\Protobuf\Internal\Message
      */
     public function getDuration()
     {
-        return $this->duration;
+        return isset($this->duration) ? $this->duration : null;
+    }
+
+    public function hasDuration()
+    {
+        return isset($this->duration);
+    }
+
+    public function clearDuration()
+    {
+        unset($this->duration);
     }
 
     /**

@@ -87,6 +87,11 @@ class NotificationMessage extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasFinding()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * If it's a Finding based notification config, this field will be
      * populated.
@@ -111,7 +116,17 @@ class NotificationMessage extends \Google\Protobuf\Internal\Message
      */
     public function getResource()
     {
-        return $this->resource;
+        return isset($this->resource) ? $this->resource : null;
+    }
+
+    public function hasResource()
+    {
+        return isset($this->resource);
+    }
+
+    public function clearResource()
+    {
+        unset($this->resource);
     }
 
     /**

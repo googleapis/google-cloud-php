@@ -128,7 +128,17 @@ class CreateFindingRequest extends \Google\Protobuf\Internal\Message
      */
     public function getFinding()
     {
-        return $this->finding;
+        return isset($this->finding) ? $this->finding : null;
+    }
+
+    public function hasFinding()
+    {
+        return isset($this->finding);
+    }
+
+    public function clearFinding()
+    {
+        unset($this->finding);
     }
 
     /**

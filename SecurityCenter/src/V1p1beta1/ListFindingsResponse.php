@@ -97,7 +97,17 @@ class ListFindingsResponse extends \Google\Protobuf\Internal\Message
      */
     public function getReadTime()
     {
-        return $this->read_time;
+        return isset($this->read_time) ? $this->read_time : null;
+    }
+
+    public function hasReadTime()
+    {
+        return isset($this->read_time);
+    }
+
+    public function clearReadTime()
+    {
+        unset($this->read_time);
     }
 
     /**

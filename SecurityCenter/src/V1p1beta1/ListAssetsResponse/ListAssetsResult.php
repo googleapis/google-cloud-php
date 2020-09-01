@@ -53,7 +53,17 @@ class ListAssetsResult extends \Google\Protobuf\Internal\Message
      */
     public function getAsset()
     {
-        return $this->asset;
+        return isset($this->asset) ? $this->asset : null;
+    }
+
+    public function hasAsset()
+    {
+        return isset($this->asset);
+    }
+
+    public function clearAsset()
+    {
+        unset($this->asset);
     }
 
     /**
@@ -91,7 +101,7 @@ class ListAssetsResult extends \Google\Protobuf\Internal\Message
      */
     public function setStateChange($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\SecurityCenter\V1p1beta1\ListAssetsResponse_ListAssetsResult_StateChange::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\SecurityCenter\V1p1beta1\ListAssetsResponse\ListAssetsResult\StateChange::class);
         $this->state_change = $var;
 
         return $this;

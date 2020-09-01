@@ -201,6 +201,11 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
         return $this->readOneof(5);
     }
 
+    public function hasStreamingConfig()
+    {
+        return $this->hasOneof(5);
+    }
+
     /**
      * The config for triggering streaming-based notifications.
      *
@@ -210,7 +215,7 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
      */
     public function setStreamingConfig($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1\NotificationConfig_StreamingConfig::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1\NotificationConfig\StreamingConfig::class);
         $this->writeOneof(5, $var);
 
         return $this;

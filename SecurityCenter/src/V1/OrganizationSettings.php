@@ -138,7 +138,17 @@ class OrganizationSettings extends \Google\Protobuf\Internal\Message
      */
     public function getAssetDiscoveryConfig()
     {
-        return $this->asset_discovery_config;
+        return isset($this->asset_discovery_config) ? $this->asset_discovery_config : null;
+    }
+
+    public function hasAssetDiscoveryConfig()
+    {
+        return isset($this->asset_discovery_config);
+    }
+
+    public function clearAssetDiscoveryConfig()
+    {
+        unset($this->asset_discovery_config);
     }
 
     /**
@@ -150,7 +160,7 @@ class OrganizationSettings extends \Google\Protobuf\Internal\Message
      */
     public function setAssetDiscoveryConfig($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1\OrganizationSettings_AssetDiscoveryConfig::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1\OrganizationSettings\AssetDiscoveryConfig::class);
         $this->asset_discovery_config = $var;
 
         return $this;

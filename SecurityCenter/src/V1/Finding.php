@@ -90,9 +90,11 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     private $security_marks = null;
     /**
-     * The time at which the event took place. For example, if the finding
-     * represents an open firewall it would capture the time the detector believes
-     * the firewall became open. The accuracy is determined by the detector.
+     * The time at which the event took place, or when an update to the finding
+     * occurred. For example, if the finding represents an open firewall it would
+     * capture the time the detector believes the firewall became open. The
+     * accuracy is determined by the detector. If the finding were to be resolved
+     * afterward, this time would reflect when the finding was resolved.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp event_time = 9;</code>
      */
@@ -148,9 +150,11 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           managed by the user and come from the SecurityMarks resource that belongs
      *           to the finding.
      *     @type \Google\Protobuf\Timestamp $event_time
-     *           The time at which the event took place. For example, if the finding
-     *           represents an open firewall it would capture the time the detector believes
-     *           the firewall became open. The accuracy is determined by the detector.
+     *           The time at which the event took place, or when an update to the finding
+     *           occurred. For example, if the finding represents an open firewall it would
+     *           capture the time the detector believes the firewall became open. The
+     *           accuracy is determined by the detector. If the finding were to be resolved
+     *           afterward, this time would reflect when the finding was resolved.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           The time at which the finding was created in Security Command Center.
      * }
@@ -282,7 +286,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     public function setState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\SecurityCenter\V1\Finding_State::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\SecurityCenter\V1\Finding\State::class);
         $this->state = $var;
 
         return $this;
@@ -390,7 +394,17 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     public function getSecurityMarks()
     {
-        return $this->security_marks;
+        return isset($this->security_marks) ? $this->security_marks : null;
+    }
+
+    public function hasSecurityMarks()
+    {
+        return isset($this->security_marks);
+    }
+
+    public function clearSecurityMarks()
+    {
+        unset($this->security_marks);
     }
 
     /**
@@ -411,22 +425,36 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time at which the event took place. For example, if the finding
-     * represents an open firewall it would capture the time the detector believes
-     * the firewall became open. The accuracy is determined by the detector.
+     * The time at which the event took place, or when an update to the finding
+     * occurred. For example, if the finding represents an open firewall it would
+     * capture the time the detector believes the firewall became open. The
+     * accuracy is determined by the detector. If the finding were to be resolved
+     * afterward, this time would reflect when the finding was resolved.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp event_time = 9;</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getEventTime()
     {
-        return $this->event_time;
+        return isset($this->event_time) ? $this->event_time : null;
+    }
+
+    public function hasEventTime()
+    {
+        return isset($this->event_time);
+    }
+
+    public function clearEventTime()
+    {
+        unset($this->event_time);
     }
 
     /**
-     * The time at which the event took place. For example, if the finding
-     * represents an open firewall it would capture the time the detector believes
-     * the firewall became open. The accuracy is determined by the detector.
+     * The time at which the event took place, or when an update to the finding
+     * occurred. For example, if the finding represents an open firewall it would
+     * capture the time the detector believes the firewall became open. The
+     * accuracy is determined by the detector. If the finding were to be resolved
+     * afterward, this time would reflect when the finding was resolved.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp event_time = 9;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -448,7 +476,17 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return $this->create_time;
+        return isset($this->create_time) ? $this->create_time : null;
+    }
+
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
     }
 
     /**
