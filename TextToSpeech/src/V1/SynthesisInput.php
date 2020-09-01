@@ -51,6 +51,11 @@ class SynthesisInput extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasText()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * The raw text to be synthesized.
      *
@@ -78,6 +83,11 @@ class SynthesisInput extends \Google\Protobuf\Internal\Message
     public function getSsml()
     {
         return $this->readOneof(2);
+    }
+
+    public function hasSsml()
+    {
+        return $this->hasOneof(2);
     }
 
     /**
