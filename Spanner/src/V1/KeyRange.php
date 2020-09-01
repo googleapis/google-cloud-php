@@ -115,6 +115,11 @@ class KeyRange extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasStartClosed()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * If the start is closed, then the range includes all rows whose
      * first `len(start_closed)` key columns exactly match `start_closed`.
@@ -141,6 +146,11 @@ class KeyRange extends \Google\Protobuf\Internal\Message
     public function getStartOpen()
     {
         return $this->readOneof(2);
+    }
+
+    public function hasStartOpen()
+    {
+        return $this->hasOneof(2);
     }
 
     /**
@@ -171,6 +181,11 @@ class KeyRange extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasEndClosed()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * If the end is closed, then the range includes all rows whose
      * first `len(end_closed)` key columns exactly match `end_closed`.
@@ -197,6 +212,11 @@ class KeyRange extends \Google\Protobuf\Internal\Message
     public function getEndOpen()
     {
         return $this->readOneof(4);
+    }
+
+    public function hasEndOpen()
+    {
+        return $this->hasOneof(4);
     }
 
     /**

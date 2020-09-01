@@ -56,6 +56,11 @@ class TransactionSelector extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasSingleUse()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * Execute the read or SQL query in a temporary transaction.
      * This is the most efficient way to execute a transaction that
@@ -84,6 +89,11 @@ class TransactionSelector extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasId()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * Execute the read or SQL query in a previously-started transaction.
      *
@@ -110,6 +120,11 @@ class TransactionSelector extends \Google\Protobuf\Internal\Message
     public function getBegin()
     {
         return $this->readOneof(3);
+    }
+
+    public function hasBegin()
+    {
+        return $this->hasOneof(3);
     }
 
     /**

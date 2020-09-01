@@ -303,7 +303,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     public function setState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Spanner\Admin\Instance\V1\Instance_State::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Spanner\Admin\Instance\V1\Instance\State::class);
         $this->state = $var;
 
         return $this;

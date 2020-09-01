@@ -94,7 +94,17 @@ class Delete extends \Google\Protobuf\Internal\Message
      */
     public function getKeySet()
     {
-        return $this->key_set;
+        return isset($this->key_set) ? $this->key_set : null;
+    }
+
+    public function hasKeySet()
+    {
+        return isset($this->key_set);
+    }
+
+    public function clearKeySet()
+    {
+        unset($this->key_set);
     }
 
     /**

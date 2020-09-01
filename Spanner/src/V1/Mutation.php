@@ -69,6 +69,11 @@ class Mutation extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasInsert()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * Insert new rows in a table. If any of the rows already exist,
      * the write or transaction fails with error `ALREADY_EXISTS`.
@@ -79,7 +84,7 @@ class Mutation extends \Google\Protobuf\Internal\Message
      */
     public function setInsert($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\Mutation_Write::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\Mutation\Write::class);
         $this->writeOneof(1, $var);
 
         return $this;
@@ -97,6 +102,11 @@ class Mutation extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasUpdate()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * Update existing rows in a table. If any of the rows does not
      * already exist, the transaction fails with error `NOT_FOUND`.
@@ -107,7 +117,7 @@ class Mutation extends \Google\Protobuf\Internal\Message
      */
     public function setUpdate($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\Mutation_Write::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\Mutation\Write::class);
         $this->writeOneof(2, $var);
 
         return $this;
@@ -129,6 +139,11 @@ class Mutation extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasInsertOrUpdate()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * Like [insert][google.spanner.v1.Mutation.insert], except that if the row already exists, then
      * its column values are overwritten with the ones provided. Any
@@ -143,7 +158,7 @@ class Mutation extends \Google\Protobuf\Internal\Message
      */
     public function setInsertOrUpdate($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\Mutation_Write::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\Mutation\Write::class);
         $this->writeOneof(3, $var);
 
         return $this;
@@ -167,6 +182,11 @@ class Mutation extends \Google\Protobuf\Internal\Message
         return $this->readOneof(4);
     }
 
+    public function hasReplace()
+    {
+        return $this->hasOneof(4);
+    }
+
     /**
      * Like [insert][google.spanner.v1.Mutation.insert], except that if the row already exists, it is
      * deleted, and the column values provided are inserted
@@ -183,7 +203,7 @@ class Mutation extends \Google\Protobuf\Internal\Message
      */
     public function setReplace($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\Mutation_Write::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\Mutation\Write::class);
         $this->writeOneof(4, $var);
 
         return $this;
@@ -201,6 +221,11 @@ class Mutation extends \Google\Protobuf\Internal\Message
         return $this->readOneof(5);
     }
 
+    public function hasDelete()
+    {
+        return $this->hasOneof(5);
+    }
+
     /**
      * Delete rows from a table. Succeeds whether or not the named
      * rows were present.
@@ -211,7 +236,7 @@ class Mutation extends \Google\Protobuf\Internal\Message
      */
     public function setDelete($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\Mutation_Delete::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\Mutation\Delete::class);
         $this->writeOneof(5, $var);
 
         return $this;

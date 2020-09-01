@@ -151,7 +151,17 @@ class Session extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return $this->create_time;
+        return isset($this->create_time) ? $this->create_time : null;
+    }
+
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
     }
 
     /**
@@ -178,7 +188,17 @@ class Session extends \Google\Protobuf\Internal\Message
      */
     public function getApproximateLastUseTime()
     {
-        return $this->approximate_last_use_time;
+        return isset($this->approximate_last_use_time) ? $this->approximate_last_use_time : null;
+    }
+
+    public function hasApproximateLastUseTime()
+    {
+        return isset($this->approximate_last_use_time);
+    }
+
+    public function clearApproximateLastUseTime()
+    {
+        unset($this->approximate_last_use_time);
     }
 
     /**

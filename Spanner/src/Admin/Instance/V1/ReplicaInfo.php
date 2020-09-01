@@ -103,7 +103,7 @@ class ReplicaInfo extends \Google\Protobuf\Internal\Message
      */
     public function setType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo_ReplicaType::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo\ReplicaType::class);
         $this->type = $var;
 
         return $this;

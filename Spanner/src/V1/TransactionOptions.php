@@ -273,6 +273,11 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasReadWrite()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * Transaction may write.
      * Authorization to begin a read-write transaction requires
@@ -285,7 +290,7 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
      */
     public function setReadWrite($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\TransactionOptions_ReadWrite::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite::class);
         $this->writeOneof(1, $var);
 
         return $this;
@@ -305,6 +310,11 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasPartitionedDml()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * Partitioned DML transaction.
      * Authorization to begin a Partitioned DML transaction requires
@@ -317,7 +327,7 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
      */
     public function setPartitionedDml($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\TransactionOptions_PartitionedDml::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\TransactionOptions\PartitionedDml::class);
         $this->writeOneof(3, $var);
 
         return $this;
@@ -337,6 +347,11 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasReadOnly()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * Transaction will not write.
      * Authorization to begin a read-only transaction requires
@@ -349,7 +364,7 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
      */
     public function setReadOnly($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\TransactionOptions_ReadOnly::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\TransactionOptions\ReadOnly::class);
         $this->writeOneof(2, $var);
 
         return $this;

@@ -165,7 +165,7 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      */
     public function setKind($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Spanner\V1\PlanNode_Kind::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Spanner\V1\PlanNode\Kind::class);
         $this->kind = $var;
 
         return $this;
@@ -231,7 +231,17 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      */
     public function getShortRepresentation()
     {
-        return $this->short_representation;
+        return isset($this->short_representation) ? $this->short_representation : null;
+    }
+
+    public function hasShortRepresentation()
+    {
+        return isset($this->short_representation);
+    }
+
+    public function clearShortRepresentation()
+    {
+        unset($this->short_representation);
     }
 
     /**
@@ -243,7 +253,7 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      */
     public function setShortRepresentation($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\PlanNode_ShortRepresentation::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\PlanNode\ShortRepresentation::class);
         $this->short_representation = $var;
 
         return $this;
@@ -263,7 +273,17 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      */
     public function getMetadata()
     {
-        return $this->metadata;
+        return isset($this->metadata) ? $this->metadata : null;
+    }
+
+    public function hasMetadata()
+    {
+        return isset($this->metadata);
+    }
+
+    public function clearMetadata()
+    {
+        unset($this->metadata);
     }
 
     /**
@@ -298,7 +318,17 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      */
     public function getExecutionStats()
     {
-        return $this->execution_stats;
+        return isset($this->execution_stats) ? $this->execution_stats : null;
+    }
+
+    public function hasExecutionStats()
+    {
+        return isset($this->execution_stats);
+    }
+
+    public function clearExecutionStats()
+    {
+        unset($this->execution_stats);
     }
 
     /**

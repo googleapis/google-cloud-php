@@ -79,7 +79,17 @@ class CreateSessionRequest extends \Google\Protobuf\Internal\Message
      */
     public function getSession()
     {
-        return $this->session;
+        return isset($this->session) ? $this->session : null;
+    }
+
+    public function hasSession()
+    {
+        return isset($this->session);
+    }
+
+    public function clearSession()
+    {
+        unset($this->session);
     }
 
     /**

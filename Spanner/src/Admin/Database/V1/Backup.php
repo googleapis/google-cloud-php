@@ -188,7 +188,17 @@ class Backup extends \Google\Protobuf\Internal\Message
      */
     public function getExpireTime()
     {
-        return $this->expire_time;
+        return isset($this->expire_time) ? $this->expire_time : null;
+    }
+
+    public function hasExpireTime()
+    {
+        return isset($this->expire_time);
+    }
+
+    public function clearExpireTime()
+    {
+        unset($this->expire_time);
     }
 
     /**
@@ -268,7 +278,17 @@ class Backup extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return $this->create_time;
+        return isset($this->create_time) ? $this->create_time : null;
+    }
+
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
     }
 
     /**
@@ -335,7 +355,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      */
     public function setState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Spanner\Admin\Database\V1\Backup_State::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Spanner\Admin\Database\V1\Backup\State::class);
         $this->state = $var;
 
         return $this;

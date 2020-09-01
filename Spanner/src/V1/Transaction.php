@@ -115,7 +115,17 @@ class Transaction extends \Google\Protobuf\Internal\Message
      */
     public function getReadTimestamp()
     {
-        return $this->read_timestamp;
+        return isset($this->read_timestamp) ? $this->read_timestamp : null;
+    }
+
+    public function hasReadTimestamp()
+    {
+        return isset($this->read_timestamp);
+    }
+
+    public function clearReadTimestamp()
+    {
+        unset($this->read_timestamp);
     }
 
     /**

@@ -220,7 +220,17 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      */
     public function getMetadata()
     {
-        return $this->metadata;
+        return isset($this->metadata) ? $this->metadata : null;
+    }
+
+    public function hasMetadata()
+    {
+        return isset($this->metadata);
+    }
+
+    public function clearMetadata()
+    {
+        unset($this->metadata);
     }
 
     /**
@@ -458,7 +468,17 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      */
     public function getStats()
     {
-        return $this->stats;
+        return isset($this->stats) ? $this->stats : null;
+    }
+
+    public function hasStats()
+    {
+        return isset($this->stats);
+    }
+
+    public function clearStats()
+    {
+        unset($this->stats);
     }
 
     /**

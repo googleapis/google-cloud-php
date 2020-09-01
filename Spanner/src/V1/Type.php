@@ -93,7 +93,17 @@ class Type extends \Google\Protobuf\Internal\Message
      */
     public function getArrayElementType()
     {
-        return $this->array_element_type;
+        return isset($this->array_element_type) ? $this->array_element_type : null;
+    }
+
+    public function hasArrayElementType()
+    {
+        return isset($this->array_element_type);
+    }
+
+    public function clearArrayElementType()
+    {
+        unset($this->array_element_type);
     }
 
     /**
@@ -121,7 +131,17 @@ class Type extends \Google\Protobuf\Internal\Message
      */
     public function getStructType()
     {
-        return $this->struct_type;
+        return isset($this->struct_type) ? $this->struct_type : null;
+    }
+
+    public function hasStructType()
+    {
+        return isset($this->struct_type);
+    }
+
+    public function clearStructType()
+    {
+        unset($this->struct_type);
     }
 
     /**

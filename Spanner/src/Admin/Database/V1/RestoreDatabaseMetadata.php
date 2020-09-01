@@ -180,6 +180,11 @@ class RestoreDatabaseMetadata extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasBackupInfo()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * Information about the backup used to restore the database.
      *
@@ -205,7 +210,17 @@ class RestoreDatabaseMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getProgress()
     {
-        return $this->progress;
+        return isset($this->progress) ? $this->progress : null;
+    }
+
+    public function hasProgress()
+    {
+        return isset($this->progress);
+    }
+
+    public function clearProgress()
+    {
+        unset($this->progress);
     }
 
     /**
@@ -243,7 +258,17 @@ class RestoreDatabaseMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getCancelTime()
     {
-        return $this->cancel_time;
+        return isset($this->cancel_time) ? $this->cancel_time : null;
+    }
+
+    public function hasCancelTime()
+    {
+        return isset($this->cancel_time);
+    }
+
+    public function clearCancelTime()
+    {
+        unset($this->cancel_time);
     }
 
     /**

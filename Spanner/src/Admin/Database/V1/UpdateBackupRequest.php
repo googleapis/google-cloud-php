@@ -70,7 +70,17 @@ class UpdateBackupRequest extends \Google\Protobuf\Internal\Message
      */
     public function getBackup()
     {
-        return $this->backup;
+        return isset($this->backup) ? $this->backup : null;
+    }
+
+    public function hasBackup()
+    {
+        return isset($this->backup);
+    }
+
+    public function clearBackup()
+    {
+        unset($this->backup);
     }
 
     /**
@@ -103,7 +113,17 @@ class UpdateBackupRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return $this->update_mask;
+        return isset($this->update_mask) ? $this->update_mask : null;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**
