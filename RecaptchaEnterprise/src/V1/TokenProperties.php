@@ -129,7 +129,7 @@ class TokenProperties extends \Google\Protobuf\Internal\Message
      */
     public function setInvalidReason($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\RecaptchaEnterprise\V1\TokenProperties_InvalidReason::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\RecaptchaEnterprise\V1\TokenProperties\InvalidReason::class);
         $this->invalid_reason = $var;
 
         return $this;
@@ -143,7 +143,17 @@ class TokenProperties extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return $this->create_time;
+        return isset($this->create_time) ? $this->create_time : null;
+    }
+
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
     }
 
     /**

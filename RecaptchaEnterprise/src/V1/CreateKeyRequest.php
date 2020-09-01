@@ -83,7 +83,17 @@ class CreateKeyRequest extends \Google\Protobuf\Internal\Message
      */
     public function getKey()
     {
-        return $this->key;
+        return isset($this->key) ? $this->key : null;
+    }
+
+    public function hasKey()
+    {
+        return isset($this->key);
+    }
+
+    public function clearKey()
+    {
+        unset($this->key);
     }
 
     /**

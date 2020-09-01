@@ -95,7 +95,7 @@ class AnnotateAssessmentRequest extends \Google\Protobuf\Internal\Message
      */
     public function setAnnotation($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentRequest_Annotation::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentRequest\Annotation::class);
         $this->annotation = $var;
 
         return $this;
