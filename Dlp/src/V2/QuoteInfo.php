@@ -43,6 +43,11 @@ class QuoteInfo extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasDateTime()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * The date time indicated by the quote.
      *

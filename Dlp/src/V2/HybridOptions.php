@@ -207,7 +207,17 @@ class HybridOptions extends \Google\Protobuf\Internal\Message
      */
     public function getTableOptions()
     {
-        return $this->table_options;
+        return isset($this->table_options) ? $this->table_options : null;
+    }
+
+    public function hasTableOptions()
+    {
+        return isset($this->table_options);
+    }
+
+    public function clearTableOptions()
+    {
+        unset($this->table_options);
     }
 
     /**

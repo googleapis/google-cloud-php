@@ -66,7 +66,17 @@ class AnalyzeDataSourceRiskDetails extends \Google\Protobuf\Internal\Message
      */
     public function getRequestedPrivacyMetric()
     {
-        return $this->requested_privacy_metric;
+        return isset($this->requested_privacy_metric) ? $this->requested_privacy_metric : null;
+    }
+
+    public function hasRequestedPrivacyMetric()
+    {
+        return isset($this->requested_privacy_metric);
+    }
+
+    public function clearRequestedPrivacyMetric()
+    {
+        unset($this->requested_privacy_metric);
     }
 
     /**
@@ -92,7 +102,17 @@ class AnalyzeDataSourceRiskDetails extends \Google\Protobuf\Internal\Message
      */
     public function getRequestedSourceTable()
     {
-        return $this->requested_source_table;
+        return isset($this->requested_source_table) ? $this->requested_source_table : null;
+    }
+
+    public function hasRequestedSourceTable()
+    {
+        return isset($this->requested_source_table);
+    }
+
+    public function clearRequestedSourceTable()
+    {
+        unset($this->requested_source_table);
     }
 
     /**
@@ -121,6 +141,11 @@ class AnalyzeDataSourceRiskDetails extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasNumericalStatsResult()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * Numerical stats result
      *
@@ -130,7 +155,7 @@ class AnalyzeDataSourceRiskDetails extends \Google\Protobuf\Internal\Message
      */
     public function setNumericalStatsResult($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_NumericalStatsResult::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\NumericalStatsResult::class);
         $this->writeOneof(3, $var);
 
         return $this;
@@ -147,6 +172,11 @@ class AnalyzeDataSourceRiskDetails extends \Google\Protobuf\Internal\Message
         return $this->readOneof(4);
     }
 
+    public function hasCategoricalStatsResult()
+    {
+        return $this->hasOneof(4);
+    }
+
     /**
      * Categorical stats result
      *
@@ -156,7 +186,7 @@ class AnalyzeDataSourceRiskDetails extends \Google\Protobuf\Internal\Message
      */
     public function setCategoricalStatsResult($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_CategoricalStatsResult::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\CategoricalStatsResult::class);
         $this->writeOneof(4, $var);
 
         return $this;
@@ -173,6 +203,11 @@ class AnalyzeDataSourceRiskDetails extends \Google\Protobuf\Internal\Message
         return $this->readOneof(5);
     }
 
+    public function hasKAnonymityResult()
+    {
+        return $this->hasOneof(5);
+    }
+
     /**
      * K-anonymity result
      *
@@ -182,7 +217,7 @@ class AnalyzeDataSourceRiskDetails extends \Google\Protobuf\Internal\Message
      */
     public function setKAnonymityResult($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_KAnonymityResult::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\KAnonymityResult::class);
         $this->writeOneof(5, $var);
 
         return $this;
@@ -199,6 +234,11 @@ class AnalyzeDataSourceRiskDetails extends \Google\Protobuf\Internal\Message
         return $this->readOneof(6);
     }
 
+    public function hasLDiversityResult()
+    {
+        return $this->hasOneof(6);
+    }
+
     /**
      * L-divesity result
      *
@@ -208,7 +248,7 @@ class AnalyzeDataSourceRiskDetails extends \Google\Protobuf\Internal\Message
      */
     public function setLDiversityResult($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_LDiversityResult::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\LDiversityResult::class);
         $this->writeOneof(6, $var);
 
         return $this;
@@ -225,6 +265,11 @@ class AnalyzeDataSourceRiskDetails extends \Google\Protobuf\Internal\Message
         return $this->readOneof(7);
     }
 
+    public function hasKMapEstimationResult()
+    {
+        return $this->hasOneof(7);
+    }
+
     /**
      * K-map result
      *
@@ -234,7 +279,7 @@ class AnalyzeDataSourceRiskDetails extends \Google\Protobuf\Internal\Message
      */
     public function setKMapEstimationResult($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_KMapEstimationResult::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\KMapEstimationResult::class);
         $this->writeOneof(7, $var);
 
         return $this;
@@ -251,6 +296,11 @@ class AnalyzeDataSourceRiskDetails extends \Google\Protobuf\Internal\Message
         return $this->readOneof(9);
     }
 
+    public function hasDeltaPresenceEstimationResult()
+    {
+        return $this->hasOneof(9);
+    }
+
     /**
      * Delta-presence result
      *
@@ -260,7 +310,7 @@ class AnalyzeDataSourceRiskDetails extends \Google\Protobuf\Internal\Message
      */
     public function setDeltaPresenceEstimationResult($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_DeltaPresenceEstimationResult::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\DeltaPresenceEstimationResult::class);
         $this->writeOneof(9, $var);
 
         return $this;

@@ -55,6 +55,11 @@ class Action extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasSaveFindings()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * Save resulting findings in a provided location.
      *
@@ -64,7 +69,7 @@ class Action extends \Google\Protobuf\Internal\Message
      */
     public function setSaveFindings($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\Action_SaveFindings::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\Action\SaveFindings::class);
         $this->writeOneof(1, $var);
 
         return $this;
@@ -81,6 +86,11 @@ class Action extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasPubSub()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * Publish a notification to a pubsub topic.
      *
@@ -90,7 +100,7 @@ class Action extends \Google\Protobuf\Internal\Message
      */
     public function setPubSub($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\Action_PublishToPubSub::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\Action\PublishToPubSub::class);
         $this->writeOneof(2, $var);
 
         return $this;
@@ -107,6 +117,11 @@ class Action extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasPublishSummaryToCscc()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * Publish summary to Cloud Security Command Center (Alpha).
      *
@@ -116,7 +131,7 @@ class Action extends \Google\Protobuf\Internal\Message
      */
     public function setPublishSummaryToCscc($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\Action_PublishSummaryToCscc::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\Action\PublishSummaryToCscc::class);
         $this->writeOneof(3, $var);
 
         return $this;
@@ -133,6 +148,11 @@ class Action extends \Google\Protobuf\Internal\Message
         return $this->readOneof(5);
     }
 
+    public function hasPublishFindingsToCloudDataCatalog()
+    {
+        return $this->hasOneof(5);
+    }
+
     /**
      * Publish findings to Cloud Datahub.
      *
@@ -142,7 +162,7 @@ class Action extends \Google\Protobuf\Internal\Message
      */
     public function setPublishFindingsToCloudDataCatalog($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\Action_PublishFindingsToCloudDataCatalog::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\Action\PublishFindingsToCloudDataCatalog::class);
         $this->writeOneof(5, $var);
 
         return $this;
@@ -160,6 +180,11 @@ class Action extends \Google\Protobuf\Internal\Message
         return $this->readOneof(8);
     }
 
+    public function hasJobNotificationEmails()
+    {
+        return $this->hasOneof(8);
+    }
+
     /**
      * Enable email notification for project owners and editors on job's
      * completion/failure.
@@ -170,7 +195,7 @@ class Action extends \Google\Protobuf\Internal\Message
      */
     public function setJobNotificationEmails($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\Action_JobNotificationEmails::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\Action\JobNotificationEmails::class);
         $this->writeOneof(8, $var);
 
         return $this;
@@ -187,6 +212,11 @@ class Action extends \Google\Protobuf\Internal\Message
         return $this->readOneof(9);
     }
 
+    public function hasPublishToStackdriver()
+    {
+        return $this->hasOneof(9);
+    }
+
     /**
      * Enable Stackdriver metric dlp.googleapis.com/finding_count.
      *
@@ -196,7 +226,7 @@ class Action extends \Google\Protobuf\Internal\Message
      */
     public function setPublishToStackdriver($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\Action_PublishToStackdriver::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\Action\PublishToStackdriver::class);
         $this->writeOneof(9, $var);
 
         return $this;

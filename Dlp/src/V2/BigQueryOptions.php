@@ -106,7 +106,17 @@ class BigQueryOptions extends \Google\Protobuf\Internal\Message
      */
     public function getTableReference()
     {
-        return $this->table_reference;
+        return isset($this->table_reference) ? $this->table_reference : null;
+    }
+
+    public function hasTableReference()
+    {
+        return isset($this->table_reference);
+    }
+
+    public function clearTableReference()
+    {
+        unset($this->table_reference);
     }
 
     /**
@@ -240,7 +250,7 @@ class BigQueryOptions extends \Google\Protobuf\Internal\Message
      */
     public function setSampleMethod($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Dlp\V2\BigQueryOptions_SampleMethod::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Dlp\V2\BigQueryOptions\SampleMethod::class);
         $this->sample_method = $var;
 
         return $this;

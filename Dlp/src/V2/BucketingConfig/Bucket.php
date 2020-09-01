@@ -64,7 +64,17 @@ class Bucket extends \Google\Protobuf\Internal\Message
      */
     public function getMin()
     {
-        return $this->min;
+        return isset($this->min) ? $this->min : null;
+    }
+
+    public function hasMin()
+    {
+        return isset($this->min);
+    }
+
+    public function clearMin()
+    {
+        unset($this->min);
     }
 
     /**
@@ -91,7 +101,17 @@ class Bucket extends \Google\Protobuf\Internal\Message
      */
     public function getMax()
     {
-        return $this->max;
+        return isset($this->max) ? $this->max : null;
+    }
+
+    public function hasMax()
+    {
+        return isset($this->max);
+    }
+
+    public function clearMax()
+    {
+        unset($this->max);
     }
 
     /**
@@ -117,7 +137,17 @@ class Bucket extends \Google\Protobuf\Internal\Message
      */
     public function getReplacementValue()
     {
-        return $this->replacement_value;
+        return isset($this->replacement_value) ? $this->replacement_value : null;
+    }
+
+    public function hasReplacementValue()
+    {
+        return isset($this->replacement_value);
+    }
+
+    public function clearReplacementValue()
+    {
+        unset($this->replacement_value);
     }
 
     /**

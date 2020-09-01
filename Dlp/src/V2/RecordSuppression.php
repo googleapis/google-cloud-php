@@ -49,7 +49,17 @@ class RecordSuppression extends \Google\Protobuf\Internal\Message
      */
     public function getCondition()
     {
-        return $this->condition;
+        return isset($this->condition) ? $this->condition : null;
+    }
+
+    public function hasCondition()
+    {
+        return isset($this->condition);
+    }
+
+    public function clearCondition()
+    {
+        unset($this->condition);
     }
 
     /**

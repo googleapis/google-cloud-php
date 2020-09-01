@@ -73,7 +73,17 @@ class InspectJobConfig extends \Google\Protobuf\Internal\Message
      */
     public function getStorageConfig()
     {
-        return $this->storage_config;
+        return isset($this->storage_config) ? $this->storage_config : null;
+    }
+
+    public function hasStorageConfig()
+    {
+        return isset($this->storage_config);
+    }
+
+    public function clearStorageConfig()
+    {
+        unset($this->storage_config);
     }
 
     /**
@@ -99,7 +109,17 @@ class InspectJobConfig extends \Google\Protobuf\Internal\Message
      */
     public function getInspectConfig()
     {
-        return $this->inspect_config;
+        return isset($this->inspect_config) ? $this->inspect_config : null;
+    }
+
+    public function hasInspectConfig()
+    {
+        return isset($this->inspect_config);
+    }
+
+    public function clearInspectConfig()
+    {
+        unset($this->inspect_config);
     }
 
     /**

@@ -111,6 +111,11 @@ class CreateDlpJobRequest extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasInspectJob()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * Set to control what and how to inspect.
      *
@@ -135,6 +140,11 @@ class CreateDlpJobRequest extends \Google\Protobuf\Internal\Message
     public function getRiskJob()
     {
         return $this->readOneof(3);
+    }
+
+    public function hasRiskJob()
+    {
+        return $this->hasOneof(3);
     }
 
     /**

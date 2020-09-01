@@ -64,7 +64,7 @@ class Expressions extends \Google\Protobuf\Internal\Message
      */
     public function setLogicalOperator($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Dlp\V2\RecordCondition_Expressions_LogicalOperator::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Dlp\V2\RecordCondition\Expressions\LogicalOperator::class);
         $this->logical_operator = $var;
 
         return $this;
@@ -81,6 +81,11 @@ class Expressions extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasConditions()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * Conditions to apply to the expression.
      *
@@ -90,7 +95,7 @@ class Expressions extends \Google\Protobuf\Internal\Message
      */
     public function setConditions($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\RecordCondition_Conditions::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\RecordCondition\Conditions::class);
         $this->writeOneof(3, $var);
 
         return $this;

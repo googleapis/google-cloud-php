@@ -89,6 +89,11 @@ class OutputStorageConfig extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasTable()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * Store findings in an existing table or a new table in an existing
      * dataset. If table_id is not set a new one will be generated
@@ -151,7 +156,7 @@ class OutputStorageConfig extends \Google\Protobuf\Internal\Message
      */
     public function setOutputSchema($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Dlp\V2\OutputStorageConfig_OutputSchema::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Dlp\V2\OutputStorageConfig\OutputSchema::class);
         $this->output_schema = $var;
 
         return $this;

@@ -88,7 +88,17 @@ class InfoTypeTransformation extends \Google\Protobuf\Internal\Message
      */
     public function getPrimitiveTransformation()
     {
-        return $this->primitive_transformation;
+        return isset($this->primitive_transformation) ? $this->primitive_transformation : null;
+    }
+
+    public function hasPrimitiveTransformation()
+    {
+        return isset($this->primitive_transformation);
+    }
+
+    public function clearPrimitiveTransformation()
+    {
+        unset($this->primitive_transformation);
     }
 
     /**

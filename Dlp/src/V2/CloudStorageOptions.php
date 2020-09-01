@@ -109,7 +109,17 @@ class CloudStorageOptions extends \Google\Protobuf\Internal\Message
      */
     public function getFileSet()
     {
-        return $this->file_set;
+        return isset($this->file_set) ? $this->file_set : null;
+    }
+
+    public function hasFileSet()
+    {
+        return isset($this->file_set);
+    }
+
+    public function clearFileSet()
+    {
+        unset($this->file_set);
     }
 
     /**
@@ -121,7 +131,7 @@ class CloudStorageOptions extends \Google\Protobuf\Internal\Message
      */
     public function setFileSet($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\CloudStorageOptions_FileSet::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\CloudStorageOptions\FileSet::class);
         $this->file_set = $var;
 
         return $this;
@@ -243,7 +253,7 @@ class CloudStorageOptions extends \Google\Protobuf\Internal\Message
      */
     public function setSampleMethod($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Dlp\V2\CloudStorageOptions_SampleMethod::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Dlp\V2\CloudStorageOptions\SampleMethod::class);
         $this->sample_method = $var;
 
         return $this;

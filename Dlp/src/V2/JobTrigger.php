@@ -212,6 +212,11 @@ class JobTrigger extends \Google\Protobuf\Internal\Message
         return $this->readOneof(4);
     }
 
+    public function hasInspectJob()
+    {
+        return $this->hasOneof(4);
+    }
+
     /**
      * For inspect jobs, a snapshot of the configuration.
      *
@@ -297,7 +302,17 @@ class JobTrigger extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return $this->create_time;
+        return isset($this->create_time) ? $this->create_time : null;
+    }
+
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
     }
 
     /**
@@ -323,7 +338,17 @@ class JobTrigger extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return $this->update_time;
+        return isset($this->update_time) ? $this->update_time : null;
+    }
+
+    public function hasUpdateTime()
+    {
+        return isset($this->update_time);
+    }
+
+    public function clearUpdateTime()
+    {
+        unset($this->update_time);
     }
 
     /**
@@ -349,7 +374,17 @@ class JobTrigger extends \Google\Protobuf\Internal\Message
      */
     public function getLastRunTime()
     {
-        return $this->last_run_time;
+        return isset($this->last_run_time) ? $this->last_run_time : null;
+    }
+
+    public function hasLastRunTime()
+    {
+        return isset($this->last_run_time);
+    }
+
+    public function clearLastRunTime()
+    {
+        unset($this->last_run_time);
     }
 
     /**
@@ -387,7 +422,7 @@ class JobTrigger extends \Google\Protobuf\Internal\Message
      */
     public function setStatus($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Dlp\V2\JobTrigger_Status::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Dlp\V2\JobTrigger\Status::class);
         $this->status = $var;
 
         return $this;

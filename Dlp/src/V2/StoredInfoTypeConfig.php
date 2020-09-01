@@ -117,6 +117,11 @@ class StoredInfoTypeConfig extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasLargeCustomDictionary()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * StoredInfoType where findings are defined by a dictionary of phrases.
      *
@@ -143,6 +148,11 @@ class StoredInfoTypeConfig extends \Google\Protobuf\Internal\Message
         return $this->readOneof(4);
     }
 
+    public function hasDictionary()
+    {
+        return $this->hasOneof(4);
+    }
+
     /**
      * Store dictionary-based CustomInfoType.
      *
@@ -152,7 +162,7 @@ class StoredInfoTypeConfig extends \Google\Protobuf\Internal\Message
      */
     public function setDictionary($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\CustomInfoType_Dictionary::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\CustomInfoType\Dictionary::class);
         $this->writeOneof(4, $var);
 
         return $this;
@@ -169,6 +179,11 @@ class StoredInfoTypeConfig extends \Google\Protobuf\Internal\Message
         return $this->readOneof(5);
     }
 
+    public function hasRegex()
+    {
+        return $this->hasOneof(5);
+    }
+
     /**
      * Store regular expression-based StoredInfoType.
      *
@@ -178,7 +193,7 @@ class StoredInfoTypeConfig extends \Google\Protobuf\Internal\Message
      */
     public function setRegex($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\CustomInfoType_Regex::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\CustomInfoType\Regex::class);
         $this->writeOneof(5, $var);
 
         return $this;

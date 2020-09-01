@@ -51,6 +51,11 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasTransient()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * Transient crypto key
      *
@@ -77,6 +82,11 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasUnwrapped()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * Unwrapped crypto key
      *
@@ -101,6 +111,11 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
     public function getKmsWrapped()
     {
         return $this->readOneof(3);
+    }
+
+    public function hasKmsWrapped()
+    {
+        return $this->hasOneof(3);
     }
 
     /**

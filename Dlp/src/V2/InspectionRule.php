@@ -46,6 +46,11 @@ class InspectionRule extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasHotwordRule()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * Hotword-based detection rule.
      *
@@ -55,7 +60,7 @@ class InspectionRule extends \Google\Protobuf\Internal\Message
      */
     public function setHotwordRule($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\CustomInfoType_DetectionRule_HotwordRule::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\CustomInfoType\DetectionRule\HotwordRule::class);
         $this->writeOneof(1, $var);
 
         return $this;
@@ -70,6 +75,11 @@ class InspectionRule extends \Google\Protobuf\Internal\Message
     public function getExclusionRule()
     {
         return $this->readOneof(2);
+    }
+
+    public function hasExclusionRule()
+    {
+        return $this->hasOneof(2);
     }
 
     /**

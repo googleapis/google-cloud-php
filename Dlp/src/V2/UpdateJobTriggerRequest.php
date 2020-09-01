@@ -91,7 +91,17 @@ class UpdateJobTriggerRequest extends \Google\Protobuf\Internal\Message
      */
     public function getJobTrigger()
     {
-        return $this->job_trigger;
+        return isset($this->job_trigger) ? $this->job_trigger : null;
+    }
+
+    public function hasJobTrigger()
+    {
+        return isset($this->job_trigger);
+    }
+
+    public function clearJobTrigger()
+    {
+        unset($this->job_trigger);
     }
 
     /**
@@ -117,7 +127,17 @@ class UpdateJobTriggerRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return $this->update_mask;
+        return isset($this->update_mask) ? $this->update_mask : null;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**

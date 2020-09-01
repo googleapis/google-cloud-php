@@ -59,6 +59,11 @@ class DeidentifyConfig extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasInfoTypeTransformations()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * Treat the dataset as free-form text and apply the same free text
      * transformation everywhere.
@@ -88,6 +93,11 @@ class DeidentifyConfig extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasRecordTransformations()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * Treat the dataset as structured. Transformations can be applied to
      * specific locations within structured datasets, such as transforming
@@ -114,7 +124,17 @@ class DeidentifyConfig extends \Google\Protobuf\Internal\Message
      */
     public function getTransformationErrorHandling()
     {
-        return $this->transformation_error_handling;
+        return isset($this->transformation_error_handling) ? $this->transformation_error_handling : null;
+    }
+
+    public function hasTransformationErrorHandling()
+    {
+        return isset($this->transformation_error_handling);
+    }
+
+    public function clearTransformationErrorHandling()
+    {
+        unset($this->transformation_error_handling);
     }
 
     /**

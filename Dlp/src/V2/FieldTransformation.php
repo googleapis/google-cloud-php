@@ -103,7 +103,17 @@ class FieldTransformation extends \Google\Protobuf\Internal\Message
      */
     public function getCondition()
     {
-        return $this->condition;
+        return isset($this->condition) ? $this->condition : null;
+    }
+
+    public function hasCondition()
+    {
+        return isset($this->condition);
+    }
+
+    public function clearCondition()
+    {
+        unset($this->condition);
     }
 
     /**
@@ -138,6 +148,11 @@ class FieldTransformation extends \Google\Protobuf\Internal\Message
         return $this->readOneof(4);
     }
 
+    public function hasPrimitiveTransformation()
+    {
+        return $this->hasOneof(4);
+    }
+
     /**
      * Apply the transformation to the entire field.
      *
@@ -163,6 +178,11 @@ class FieldTransformation extends \Google\Protobuf\Internal\Message
     public function getInfoTypeTransformations()
     {
         return $this->readOneof(5);
+    }
+
+    public function hasInfoTypeTransformations()
+    {
+        return $this->hasOneof(5);
     }
 
     /**

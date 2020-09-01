@@ -172,7 +172,7 @@ class DlpJob extends \Google\Protobuf\Internal\Message
      */
     public function setState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Dlp\V2\DlpJob_JobState::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Dlp\V2\DlpJob\JobState::class);
         $this->state = $var;
 
         return $this;
@@ -187,6 +187,11 @@ class DlpJob extends \Google\Protobuf\Internal\Message
     public function getRiskDetails()
     {
         return $this->readOneof(4);
+    }
+
+    public function hasRiskDetails()
+    {
+        return $this->hasOneof(4);
     }
 
     /**
@@ -215,6 +220,11 @@ class DlpJob extends \Google\Protobuf\Internal\Message
         return $this->readOneof(5);
     }
 
+    public function hasInspectDetails()
+    {
+        return $this->hasOneof(5);
+    }
+
     /**
      * Results from inspecting a data source.
      *
@@ -238,7 +248,17 @@ class DlpJob extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return $this->create_time;
+        return isset($this->create_time) ? $this->create_time : null;
+    }
+
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
     }
 
     /**
@@ -264,7 +284,17 @@ class DlpJob extends \Google\Protobuf\Internal\Message
      */
     public function getStartTime()
     {
-        return $this->start_time;
+        return isset($this->start_time) ? $this->start_time : null;
+    }
+
+    public function hasStartTime()
+    {
+        return isset($this->start_time);
+    }
+
+    public function clearStartTime()
+    {
+        unset($this->start_time);
     }
 
     /**
@@ -290,7 +320,17 @@ class DlpJob extends \Google\Protobuf\Internal\Message
      */
     public function getEndTime()
     {
-        return $this->end_time;
+        return isset($this->end_time) ? $this->end_time : null;
+    }
+
+    public function hasEndTime()
+    {
+        return isset($this->end_time);
+    }
+
+    public function clearEndTime()
+    {
+        unset($this->end_time);
     }
 
     /**

@@ -160,7 +160,17 @@ class Result extends \Google\Protobuf\Internal\Message
      */
     public function getHybridStats()
     {
-        return $this->hybrid_stats;
+        return isset($this->hybrid_stats) ? $this->hybrid_stats : null;
+    }
+
+    public function hasHybridStats()
+    {
+        return isset($this->hybrid_stats);
+    }
+
+    public function clearHybridStats()
+    {
+        unset($this->hybrid_stats);
     }
 
     /**

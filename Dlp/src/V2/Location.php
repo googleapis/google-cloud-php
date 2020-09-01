@@ -87,7 +87,17 @@ class Location extends \Google\Protobuf\Internal\Message
      */
     public function getByteRange()
     {
-        return $this->byte_range;
+        return isset($this->byte_range) ? $this->byte_range : null;
+    }
+
+    public function hasByteRange()
+    {
+        return isset($this->byte_range);
+    }
+
+    public function clearByteRange()
+    {
+        unset($this->byte_range);
     }
 
     /**
@@ -119,7 +129,17 @@ class Location extends \Google\Protobuf\Internal\Message
      */
     public function getCodepointRange()
     {
-        return $this->codepoint_range;
+        return isset($this->codepoint_range) ? $this->codepoint_range : null;
+    }
+
+    public function hasCodepointRange()
+    {
+        return isset($this->codepoint_range);
+    }
+
+    public function clearCodepointRange()
+    {
+        unset($this->codepoint_range);
     }
 
     /**
@@ -175,7 +195,17 @@ class Location extends \Google\Protobuf\Internal\Message
      */
     public function getContainer()
     {
-        return $this->container;
+        return isset($this->container) ? $this->container : null;
+    }
+
+    public function hasContainer()
+    {
+        return isset($this->container);
+    }
+
+    public function clearContainer()
+    {
+        unset($this->container);
     }
 
     /**

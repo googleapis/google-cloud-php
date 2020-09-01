@@ -64,7 +64,17 @@ class LargeCustomDictionaryConfig extends \Google\Protobuf\Internal\Message
      */
     public function getOutputPath()
     {
-        return $this->output_path;
+        return isset($this->output_path) ? $this->output_path : null;
+    }
+
+    public function hasOutputPath()
+    {
+        return isset($this->output_path);
+    }
+
+    public function clearOutputPath()
+    {
+        unset($this->output_path);
     }
 
     /**
@@ -96,6 +106,11 @@ class LargeCustomDictionaryConfig extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasCloudStorageFileSet()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * Set of files containing newline-delimited lists of dictionary phrases.
      *
@@ -120,6 +135,11 @@ class LargeCustomDictionaryConfig extends \Google\Protobuf\Internal\Message
     public function getBigQueryField()
     {
         return $this->readOneof(3);
+    }
+
+    public function hasBigQueryField()
+    {
+        return $this->hasOneof(3);
     }
 
     /**

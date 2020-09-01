@@ -53,7 +53,17 @@ class ReidentifyContentResponse extends \Google\Protobuf\Internal\Message
      */
     public function getItem()
     {
-        return $this->item;
+        return isset($this->item) ? $this->item : null;
+    }
+
+    public function hasItem()
+    {
+        return isset($this->item);
+    }
+
+    public function clearItem()
+    {
+        unset($this->item);
     }
 
     /**
@@ -79,7 +89,17 @@ class ReidentifyContentResponse extends \Google\Protobuf\Internal\Message
      */
     public function getOverview()
     {
-        return $this->overview;
+        return isset($this->overview) ? $this->overview : null;
+    }
+
+    public function hasOverview()
+    {
+        return isset($this->overview);
+    }
+
+    public function clearOverview()
+    {
+        unset($this->overview);
     }
 
     /**

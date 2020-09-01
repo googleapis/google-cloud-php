@@ -232,7 +232,17 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     public function getInfoType()
     {
-        return $this->info_type;
+        return isset($this->info_type) ? $this->info_type : null;
+    }
+
+    public function hasInfoType()
+    {
+        return isset($this->info_type);
+    }
+
+    public function clearInfoType()
+    {
+        unset($this->info_type);
     }
 
     /**
@@ -285,7 +295,17 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     public function getLocation()
     {
-        return $this->location;
+        return isset($this->location) ? $this->location : null;
+    }
+
+    public function hasLocation()
+    {
+        return isset($this->location);
+    }
+
+    public function clearLocation()
+    {
+        unset($this->location);
     }
 
     /**
@@ -311,7 +331,17 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return $this->create_time;
+        return isset($this->create_time) ? $this->create_time : null;
+    }
+
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
     }
 
     /**
@@ -339,7 +369,17 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     public function getQuoteInfo()
     {
-        return $this->quote_info;
+        return isset($this->quote_info) ? $this->quote_info : null;
+    }
+
+    public function hasQuoteInfo()
+    {
+        return isset($this->quote_info);
+    }
+
+    public function clearQuoteInfo()
+    {
+        unset($this->quote_info);
     }
 
     /**
@@ -461,7 +501,17 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     public function getJobCreateTime()
     {
-        return $this->job_create_time;
+        return isset($this->job_create_time) ? $this->job_create_time : null;
+    }
+
+    public function hasJobCreateTime()
+    {
+        return isset($this->job_create_time);
+    }
+
+    public function clearJobCreateTime()
+    {
+        unset($this->job_create_time);
     }
 
     /**

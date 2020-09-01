@@ -83,7 +83,17 @@ class HybridInspectDlpJobRequest extends \Google\Protobuf\Internal\Message
      */
     public function getHybridItem()
     {
-        return $this->hybrid_item;
+        return isset($this->hybrid_item) ? $this->hybrid_item : null;
+    }
+
+    public function hasHybridItem()
+    {
+        return isset($this->hybrid_item);
+    }
+
+    public function clearHybridItem()
+    {
+        unset($this->hybrid_item);
     }
 
     /**

@@ -53,6 +53,11 @@ class Schedule extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasRecurrencePeriodDuration()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * With this option a job is started a regular periodic basis. For
      * example: every day (86400 seconds).

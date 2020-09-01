@@ -73,7 +73,17 @@ class DateTime extends \Google\Protobuf\Internal\Message
      */
     public function getDate()
     {
-        return $this->date;
+        return isset($this->date) ? $this->date : null;
+    }
+
+    public function hasDate()
+    {
+        return isset($this->date);
+    }
+
+    public function clearDate()
+    {
+        unset($this->date);
     }
 
     /**
@@ -126,7 +136,17 @@ class DateTime extends \Google\Protobuf\Internal\Message
      */
     public function getTime()
     {
-        return $this->time;
+        return isset($this->time) ? $this->time : null;
+    }
+
+    public function hasTime()
+    {
+        return isset($this->time);
+    }
+
+    public function clearTime()
+    {
+        unset($this->time);
     }
 
     /**
@@ -152,7 +172,17 @@ class DateTime extends \Google\Protobuf\Internal\Message
      */
     public function getTimeZone()
     {
-        return $this->time_zone;
+        return isset($this->time_zone) ? $this->time_zone : null;
+    }
+
+    public function hasTimeZone()
+    {
+        return isset($this->time_zone);
+    }
+
+    public function clearTimeZone()
+    {
+        unset($this->time_zone);
     }
 
     /**
@@ -164,7 +194,7 @@ class DateTime extends \Google\Protobuf\Internal\Message
      */
     public function setTimeZone($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\DateTime_TimeZone::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\DateTime\TimeZone::class);
         $this->time_zone = $var;
 
         return $this;

@@ -76,7 +76,17 @@ class HotwordRule extends \Google\Protobuf\Internal\Message
      */
     public function getHotwordRegex()
     {
-        return $this->hotword_regex;
+        return isset($this->hotword_regex) ? $this->hotword_regex : null;
+    }
+
+    public function hasHotwordRegex()
+    {
+        return isset($this->hotword_regex);
+    }
+
+    public function clearHotwordRegex()
+    {
+        unset($this->hotword_regex);
     }
 
     /**
@@ -88,7 +98,7 @@ class HotwordRule extends \Google\Protobuf\Internal\Message
      */
     public function setHotwordRegex($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\CustomInfoType_Regex::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\CustomInfoType\Regex::class);
         $this->hotword_regex = $var;
 
         return $this;
@@ -109,7 +119,17 @@ class HotwordRule extends \Google\Protobuf\Internal\Message
      */
     public function getProximity()
     {
-        return $this->proximity;
+        return isset($this->proximity) ? $this->proximity : null;
+    }
+
+    public function hasProximity()
+    {
+        return isset($this->proximity);
+    }
+
+    public function clearProximity()
+    {
+        unset($this->proximity);
     }
 
     /**
@@ -128,7 +148,7 @@ class HotwordRule extends \Google\Protobuf\Internal\Message
      */
     public function setProximity($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\CustomInfoType_DetectionRule_Proximity::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\CustomInfoType\DetectionRule\Proximity::class);
         $this->proximity = $var;
 
         return $this;
@@ -142,7 +162,17 @@ class HotwordRule extends \Google\Protobuf\Internal\Message
      */
     public function getLikelihoodAdjustment()
     {
-        return $this->likelihood_adjustment;
+        return isset($this->likelihood_adjustment) ? $this->likelihood_adjustment : null;
+    }
+
+    public function hasLikelihoodAdjustment()
+    {
+        return isset($this->likelihood_adjustment);
+    }
+
+    public function clearLikelihoodAdjustment()
+    {
+        unset($this->likelihood_adjustment);
     }
 
     /**
@@ -154,7 +184,7 @@ class HotwordRule extends \Google\Protobuf\Internal\Message
      */
     public function setLikelihoodAdjustment($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\CustomInfoType_DetectionRule_LikelihoodAdjustment::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\CustomInfoType\DetectionRule\LikelihoodAdjustment::class);
         $this->likelihood_adjustment = $var;
 
         return $this;

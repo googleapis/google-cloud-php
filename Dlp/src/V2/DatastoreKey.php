@@ -45,7 +45,17 @@ class DatastoreKey extends \Google\Protobuf\Internal\Message
      */
     public function getEntityKey()
     {
-        return $this->entity_key;
+        return isset($this->entity_key) ? $this->entity_key : null;
+    }
+
+    public function hasEntityKey()
+    {
+        return isset($this->entity_key);
+    }
+
+    public function clearEntityKey()
+    {
+        unset($this->entity_key);
     }
 
     /**

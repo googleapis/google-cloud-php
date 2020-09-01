@@ -43,6 +43,11 @@ class StoredInfoTypeStats extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasLargeCustomDictionary()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * StoredInfoType where findings are defined by a dictionary of phrases.
      *

@@ -46,7 +46,17 @@ class RecordCondition extends \Google\Protobuf\Internal\Message
      */
     public function getExpressions()
     {
-        return $this->expressions;
+        return isset($this->expressions) ? $this->expressions : null;
+    }
+
+    public function hasExpressions()
+    {
+        return isset($this->expressions);
+    }
+
+    public function clearExpressions()
+    {
+        unset($this->expressions);
     }
 
     /**
@@ -58,7 +68,7 @@ class RecordCondition extends \Google\Protobuf\Internal\Message
      */
     public function setExpressions($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\RecordCondition_Expressions::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\RecordCondition\Expressions::class);
         $this->expressions = $var;
 
         return $this;

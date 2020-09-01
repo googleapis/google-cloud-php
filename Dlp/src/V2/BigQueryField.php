@@ -53,7 +53,17 @@ class BigQueryField extends \Google\Protobuf\Internal\Message
      */
     public function getTable()
     {
-        return $this->table;
+        return isset($this->table) ? $this->table : null;
+    }
+
+    public function hasTable()
+    {
+        return isset($this->table);
+    }
+
+    public function clearTable()
+    {
+        unset($this->table);
     }
 
     /**
@@ -79,7 +89,17 @@ class BigQueryField extends \Google\Protobuf\Internal\Message
      */
     public function getField()
     {
-        return $this->field;
+        return isset($this->field) ? $this->field : null;
+    }
+
+    public function hasField()
+    {
+        return isset($this->field);
+    }
+
+    public function clearField()
+    {
+        unset($this->field);
     }
 
     /**

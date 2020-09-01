@@ -57,6 +57,11 @@ class StorageConfig extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasDatastoreOptions()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * Google Cloud Datastore options.
      *
@@ -83,6 +88,11 @@ class StorageConfig extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasCloudStorageOptions()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * Google Cloud Storage options.
      *
@@ -107,6 +117,11 @@ class StorageConfig extends \Google\Protobuf\Internal\Message
     public function getBigQueryOptions()
     {
         return $this->readOneof(4);
+    }
+
+    public function hasBigQueryOptions()
+    {
+        return $this->hasOneof(4);
     }
 
     /**
@@ -138,6 +153,11 @@ class StorageConfig extends \Google\Protobuf\Internal\Message
         return $this->readOneof(9);
     }
 
+    public function hasHybridOptions()
+    {
+        return $this->hasOneof(9);
+    }
+
     /**
      * Hybrid inspection options.
      * Early access feature is in a pre-release state and might change or have
@@ -162,7 +182,17 @@ class StorageConfig extends \Google\Protobuf\Internal\Message
      */
     public function getTimespanConfig()
     {
-        return $this->timespan_config;
+        return isset($this->timespan_config) ? $this->timespan_config : null;
+    }
+
+    public function hasTimespanConfig()
+    {
+        return isset($this->timespan_config);
+    }
+
+    public function clearTimespanConfig()
+    {
+        unset($this->timespan_config);
     }
 
     /**
@@ -172,7 +202,7 @@ class StorageConfig extends \Google\Protobuf\Internal\Message
      */
     public function setTimespanConfig($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\StorageConfig_TimespanConfig::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\StorageConfig\TimespanConfig::class);
         $this->timespan_config = $var;
 
         return $this;

@@ -153,7 +153,17 @@ class CryptoReplaceFfxFpeConfig extends \Google\Protobuf\Internal\Message
      */
     public function getCryptoKey()
     {
-        return $this->crypto_key;
+        return isset($this->crypto_key) ? $this->crypto_key : null;
+    }
+
+    public function hasCryptoKey()
+    {
+        return isset($this->crypto_key);
+    }
+
+    public function clearCryptoKey()
+    {
+        unset($this->crypto_key);
     }
 
     /**
@@ -192,7 +202,17 @@ class CryptoReplaceFfxFpeConfig extends \Google\Protobuf\Internal\Message
      */
     public function getContext()
     {
-        return $this->context;
+        return isset($this->context) ? $this->context : null;
+    }
+
+    public function hasContext()
+    {
+        return isset($this->context);
+    }
+
+    public function clearContext()
+    {
+        unset($this->context);
     }
 
     /**
@@ -234,6 +254,11 @@ class CryptoReplaceFfxFpeConfig extends \Google\Protobuf\Internal\Message
         return $this->readOneof(4);
     }
 
+    public function hasCommonAlphabet()
+    {
+        return $this->hasOneof(4);
+    }
+
     /**
      * Common alphabets.
      *
@@ -243,7 +268,7 @@ class CryptoReplaceFfxFpeConfig extends \Google\Protobuf\Internal\Message
      */
     public function setCommonAlphabet($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Dlp\V2\CryptoReplaceFfxFpeConfig_FfxCommonNativeAlphabet::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Dlp\V2\CryptoReplaceFfxFpeConfig\FfxCommonNativeAlphabet::class);
         $this->writeOneof(4, $var);
 
         return $this;
@@ -264,6 +289,11 @@ class CryptoReplaceFfxFpeConfig extends \Google\Protobuf\Internal\Message
     public function getCustomAlphabet()
     {
         return $this->readOneof(5);
+    }
+
+    public function hasCustomAlphabet()
+    {
+        return $this->hasOneof(5);
     }
 
     /**
@@ -296,6 +326,11 @@ class CryptoReplaceFfxFpeConfig extends \Google\Protobuf\Internal\Message
     public function getRadix()
     {
         return $this->readOneof(6);
+    }
+
+    public function hasRadix()
+    {
+        return $this->hasOneof(6);
     }
 
     /**
@@ -342,7 +377,17 @@ class CryptoReplaceFfxFpeConfig extends \Google\Protobuf\Internal\Message
      */
     public function getSurrogateInfoType()
     {
-        return $this->surrogate_info_type;
+        return isset($this->surrogate_info_type) ? $this->surrogate_info_type : null;
+    }
+
+    public function hasSurrogateInfoType()
+    {
+        return isset($this->surrogate_info_type);
+    }
+
+    public function clearSurrogateInfoType()
+    {
+        unset($this->surrogate_info_type);
     }
 
     /**

@@ -65,7 +65,7 @@ class ByteContentItem extends \Google\Protobuf\Internal\Message
      */
     public function setType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Dlp\V2\ByteContentItem_BytesType::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Dlp\V2\ByteContentItem\BytesType::class);
         $this->type = $var;
 
         return $this;

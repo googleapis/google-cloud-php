@@ -66,6 +66,11 @@ class Dictionary extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasWordList()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * List of words or phrases to search for.
      *
@@ -75,7 +80,7 @@ class Dictionary extends \Google\Protobuf\Internal\Message
      */
     public function setWordList($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\CustomInfoType_Dictionary_WordList::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\CustomInfoType\Dictionary\WordList::class);
         $this->writeOneof(1, $var);
 
         return $this;
@@ -91,6 +96,11 @@ class Dictionary extends \Google\Protobuf\Internal\Message
     public function getCloudStoragePath()
     {
         return $this->readOneof(3);
+    }
+
+    public function hasCloudStoragePath()
+    {
+        return $this->hasOneof(3);
     }
 
     /**

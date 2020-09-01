@@ -56,7 +56,17 @@ class RequestedOptions extends \Google\Protobuf\Internal\Message
      */
     public function getSnapshotInspectTemplate()
     {
-        return $this->snapshot_inspect_template;
+        return isset($this->snapshot_inspect_template) ? $this->snapshot_inspect_template : null;
+    }
+
+    public function hasSnapshotInspectTemplate()
+    {
+        return isset($this->snapshot_inspect_template);
+    }
+
+    public function clearSnapshotInspectTemplate()
+    {
+        unset($this->snapshot_inspect_template);
     }
 
     /**
@@ -83,7 +93,17 @@ class RequestedOptions extends \Google\Protobuf\Internal\Message
      */
     public function getJobConfig()
     {
-        return $this->job_config;
+        return isset($this->job_config) ? $this->job_config : null;
+    }
+
+    public function hasJobConfig()
+    {
+        return isset($this->job_config);
+    }
+
+    public function clearJobConfig()
+    {
+        unset($this->job_config);
     }
 
     /**

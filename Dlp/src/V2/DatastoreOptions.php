@@ -56,7 +56,17 @@ class DatastoreOptions extends \Google\Protobuf\Internal\Message
      */
     public function getPartitionId()
     {
-        return $this->partition_id;
+        return isset($this->partition_id) ? $this->partition_id : null;
+    }
+
+    public function hasPartitionId()
+    {
+        return isset($this->partition_id);
+    }
+
+    public function clearPartitionId()
+    {
+        unset($this->partition_id);
     }
 
     /**
@@ -83,7 +93,17 @@ class DatastoreOptions extends \Google\Protobuf\Internal\Message
      */
     public function getKind()
     {
-        return $this->kind;
+        return isset($this->kind) ? $this->kind : null;
+    }
+
+    public function hasKind()
+    {
+        return isset($this->kind);
+    }
+
+    public function clearKind()
+    {
+        unset($this->kind);
     }
 
     /**

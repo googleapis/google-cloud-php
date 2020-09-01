@@ -106,7 +106,17 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
      */
     public function getInfoType()
     {
-        return $this->info_type;
+        return isset($this->info_type) ? $this->info_type : null;
+    }
+
+    public function hasInfoType()
+    {
+        return isset($this->info_type);
+    }
+
+    public function clearInfoType()
+    {
+        unset($this->info_type);
     }
 
     /**
@@ -170,6 +180,11 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasDictionary()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * A list of phrases to detect as a CustomInfoType.
      *
@@ -179,7 +194,7 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
      */
     public function setDictionary($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\CustomInfoType_Dictionary::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\CustomInfoType\Dictionary::class);
         $this->writeOneof(2, $var);
 
         return $this;
@@ -196,6 +211,11 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasRegex()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * Regular expression based CustomInfoType.
      *
@@ -205,7 +225,7 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
      */
     public function setRegex($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\CustomInfoType_Regex::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\CustomInfoType\Regex::class);
         $this->writeOneof(3, $var);
 
         return $this;
@@ -223,6 +243,11 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
         return $this->readOneof(4);
     }
 
+    public function hasSurrogateType()
+    {
+        return $this->hasOneof(4);
+    }
+
     /**
      * Message for detecting output from deidentification transformations that
      * support reversing.
@@ -233,7 +258,7 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
      */
     public function setSurrogateType($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\CustomInfoType_SurrogateType::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\CustomInfoType\SurrogateType::class);
         $this->writeOneof(4, $var);
 
         return $this;
@@ -249,6 +274,11 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
     public function getStoredType()
     {
         return $this->readOneof(5);
+    }
+
+    public function hasStoredType()
+    {
+        return $this->hasOneof(5);
     }
 
     /**
@@ -319,7 +349,7 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
      */
     public function setExclusionType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Dlp\V2\CustomInfoType_ExclusionType::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Dlp\V2\CustomInfoType\ExclusionType::class);
         $this->exclusion_type = $var;
 
         return $this;

@@ -117,7 +117,17 @@ class HybridFindingDetails extends \Google\Protobuf\Internal\Message
      */
     public function getContainerDetails()
     {
-        return $this->container_details;
+        return isset($this->container_details) ? $this->container_details : null;
+    }
+
+    public function hasContainerDetails()
+    {
+        return isset($this->container_details);
+    }
+
+    public function clearContainerDetails()
+    {
+        unset($this->container_details);
     }
 
     /**
@@ -209,7 +219,17 @@ class HybridFindingDetails extends \Google\Protobuf\Internal\Message
      */
     public function getTableOptions()
     {
-        return $this->table_options;
+        return isset($this->table_options) ? $this->table_options : null;
+    }
+
+    public function hasTableOptions()
+    {
+        return isset($this->table_options);
+    }
+
+    public function clearTableOptions()
+    {
+        unset($this->table_options);
     }
 
     /**

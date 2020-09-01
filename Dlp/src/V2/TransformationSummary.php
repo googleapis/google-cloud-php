@@ -99,7 +99,17 @@ class TransformationSummary extends \Google\Protobuf\Internal\Message
      */
     public function getInfoType()
     {
-        return $this->info_type;
+        return isset($this->info_type) ? $this->info_type : null;
+    }
+
+    public function hasInfoType()
+    {
+        return isset($this->info_type);
+    }
+
+    public function clearInfoType()
+    {
+        unset($this->info_type);
     }
 
     /**
@@ -125,7 +135,17 @@ class TransformationSummary extends \Google\Protobuf\Internal\Message
      */
     public function getField()
     {
-        return $this->field;
+        return isset($this->field) ? $this->field : null;
+    }
+
+    public function hasField()
+    {
+        return isset($this->field);
+    }
+
+    public function clearField()
+    {
+        unset($this->field);
     }
 
     /**
@@ -151,7 +171,17 @@ class TransformationSummary extends \Google\Protobuf\Internal\Message
      */
     public function getTransformation()
     {
-        return $this->transformation;
+        return isset($this->transformation) ? $this->transformation : null;
+    }
+
+    public function hasTransformation()
+    {
+        return isset($this->transformation);
+    }
+
+    public function clearTransformation()
+    {
+        unset($this->transformation);
     }
 
     /**
@@ -207,7 +237,17 @@ class TransformationSummary extends \Google\Protobuf\Internal\Message
      */
     public function getRecordSuppress()
     {
-        return $this->record_suppress;
+        return isset($this->record_suppress) ? $this->record_suppress : null;
+    }
+
+    public function hasRecordSuppress()
+    {
+        return isset($this->record_suppress);
+    }
+
+    public function clearRecordSuppress()
+    {
+        unset($this->record_suppress);
     }
 
     /**

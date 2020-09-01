@@ -45,7 +45,17 @@ class ReplaceValueConfig extends \Google\Protobuf\Internal\Message
      */
     public function getNewValue()
     {
-        return $this->new_value;
+        return isset($this->new_value) ? $this->new_value : null;
+    }
+
+    public function hasNewValue()
+    {
+        return isset($this->new_value);
+    }
+
+    public function clearNewValue()
+    {
+        unset($this->new_value);
     }
 
     /**

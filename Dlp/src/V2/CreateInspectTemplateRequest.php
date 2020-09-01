@@ -117,7 +117,17 @@ class CreateInspectTemplateRequest extends \Google\Protobuf\Internal\Message
      */
     public function getInspectTemplate()
     {
-        return $this->inspect_template;
+        return isset($this->inspect_template) ? $this->inspect_template : null;
+    }
+
+    public function hasInspectTemplate()
+    {
+        return isset($this->inspect_template);
+    }
+
+    public function clearInspectTemplate()
+    {
+        unset($this->inspect_template);
     }
 
     /**
