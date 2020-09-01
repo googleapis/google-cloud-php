@@ -287,7 +287,7 @@ class Breakpoint extends \Google\Protobuf\Internal\Message
      */
     public function setAction($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Debugger\V2\Breakpoint_Action::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Debugger\V2\Breakpoint\Action::class);
         $this->action = $var;
 
         return $this;
@@ -301,7 +301,17 @@ class Breakpoint extends \Google\Protobuf\Internal\Message
      */
     public function getLocation()
     {
-        return $this->location;
+        return isset($this->location) ? $this->location : null;
+    }
+
+    public function hasLocation()
+    {
+        return isset($this->location);
+    }
+
+    public function clearLocation()
+    {
+        unset($this->location);
     }
 
     /**
@@ -439,7 +449,7 @@ class Breakpoint extends \Google\Protobuf\Internal\Message
      */
     public function setLogLevel($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Debugger\V2\Breakpoint_LogLevel::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Debugger\V2\Breakpoint\LogLevel::class);
         $this->log_level = $var;
 
         return $this;
@@ -481,7 +491,17 @@ class Breakpoint extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return $this->create_time;
+        return isset($this->create_time) ? $this->create_time : null;
+    }
+
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
     }
 
     /**
@@ -508,7 +528,17 @@ class Breakpoint extends \Google\Protobuf\Internal\Message
      */
     public function getFinalTime()
     {
-        return $this->final_time;
+        return isset($this->final_time) ? $this->final_time : null;
+    }
+
+    public function hasFinalTime()
+    {
+        return isset($this->final_time);
+    }
+
+    public function clearFinalTime()
+    {
+        unset($this->final_time);
     }
 
     /**
@@ -570,7 +600,17 @@ class Breakpoint extends \Google\Protobuf\Internal\Message
      */
     public function getStatus()
     {
-        return $this->status;
+        return isset($this->status) ? $this->status : null;
+    }
+
+    public function hasStatus()
+    {
+        return isset($this->status);
+    }
+
+    public function clearStatus()
+    {
+        unset($this->status);
     }
 
     /**

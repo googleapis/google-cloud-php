@@ -191,7 +191,17 @@ class ListBreakpointsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getAction()
     {
-        return $this->action;
+        return isset($this->action) ? $this->action : null;
+    }
+
+    public function hasAction()
+    {
+        return isset($this->action);
+    }
+
+    public function clearAction()
+    {
+        unset($this->action);
     }
 
     /**
@@ -203,7 +213,7 @@ class ListBreakpointsRequest extends \Google\Protobuf\Internal\Message
      */
     public function setAction($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Debugger\V2\ListBreakpointsRequest_BreakpointActionValue::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Debugger\V2\ListBreakpointsRequest\BreakpointActionValue::class);
         $this->action = $var;
 
         return $this;
