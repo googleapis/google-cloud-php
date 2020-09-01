@@ -365,6 +365,11 @@ class Operation extends \Google\Protobuf\Internal\Message
         return $this->readOneof(7);
     }
 
+    public function hasValue()
+    {
+        return $this->hasOneof(7);
+    }
+
     /**
      * Value for the `path` field. Will be set for actions:'add'/'replace'.
      * Maybe set for action: 'test'. Either this or `value_matcher` will be set
@@ -392,6 +397,11 @@ class Operation extends \Google\Protobuf\Internal\Message
     public function getValueMatcher()
     {
         return $this->readOneof(10);
+    }
+
+    public function hasValueMatcher()
+    {
+        return $this->hasOneof(10);
     }
 
     /**

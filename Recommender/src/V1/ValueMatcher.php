@@ -47,6 +47,11 @@ class ValueMatcher extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasMatchesPattern()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * To be used for full regex matching. The regular expression is using the
      * Google RE2 syntax (https://github.com/google/re2/wiki/Syntax), so to be

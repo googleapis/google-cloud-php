@@ -60,7 +60,7 @@ class Impact extends \Google\Protobuf\Internal\Message
      */
     public function setCategory($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Recommender\V1\Impact_Category::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Recommender\V1\Impact\Category::class);
         $this->category = $var;
 
         return $this;
@@ -75,6 +75,11 @@ class Impact extends \Google\Protobuf\Internal\Message
     public function getCostProjection()
     {
         return $this->readOneof(100);
+    }
+
+    public function hasCostProjection()
+    {
+        return $this->hasOneof(100);
     }
 
     /**
