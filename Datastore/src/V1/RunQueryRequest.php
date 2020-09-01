@@ -101,7 +101,17 @@ class RunQueryRequest extends \Google\Protobuf\Internal\Message
      */
     public function getPartitionId()
     {
-        return $this->partition_id;
+        return isset($this->partition_id) ? $this->partition_id : null;
+    }
+
+    public function hasPartitionId()
+    {
+        return isset($this->partition_id);
+    }
+
+    public function clearPartitionId()
+    {
+        unset($this->partition_id);
     }
 
     /**
@@ -130,7 +140,17 @@ class RunQueryRequest extends \Google\Protobuf\Internal\Message
      */
     public function getReadOptions()
     {
-        return $this->read_options;
+        return isset($this->read_options) ? $this->read_options : null;
+    }
+
+    public function hasReadOptions()
+    {
+        return isset($this->read_options);
+    }
+
+    public function clearReadOptions()
+    {
+        unset($this->read_options);
     }
 
     /**
@@ -159,6 +179,11 @@ class RunQueryRequest extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasQuery()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * The query to run.
      *
@@ -183,6 +208,11 @@ class RunQueryRequest extends \Google\Protobuf\Internal\Message
     public function getGqlQuery()
     {
         return $this->readOneof(7);
+    }
+
+    public function hasGqlQuery()
+    {
+        return $this->hasOneof(7);
     }
 
     /**

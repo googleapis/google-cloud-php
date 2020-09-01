@@ -53,7 +53,17 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
      */
     public function getBatch()
     {
-        return $this->batch;
+        return isset($this->batch) ? $this->batch : null;
+    }
+
+    public function hasBatch()
+    {
+        return isset($this->batch);
+    }
+
+    public function clearBatch()
+    {
+        unset($this->batch);
     }
 
     /**
@@ -79,7 +89,17 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
      */
     public function getQuery()
     {
-        return $this->query;
+        return isset($this->query) ? $this->query : null;
+    }
+
+    public function hasQuery()
+    {
+        return isset($this->query);
+    }
+
+    public function clearQuery()
+    {
+        unset($this->query);
     }
 
     /**

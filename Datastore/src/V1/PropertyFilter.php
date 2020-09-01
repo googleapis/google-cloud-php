@@ -61,7 +61,17 @@ class PropertyFilter extends \Google\Protobuf\Internal\Message
      */
     public function getProperty()
     {
-        return $this->property;
+        return isset($this->property) ? $this->property : null;
+    }
+
+    public function hasProperty()
+    {
+        return isset($this->property);
+    }
+
+    public function clearProperty()
+    {
+        unset($this->property);
     }
 
     /**
@@ -99,7 +109,7 @@ class PropertyFilter extends \Google\Protobuf\Internal\Message
      */
     public function setOp($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Datastore\V1\PropertyFilter_Operator::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Datastore\V1\PropertyFilter\Operator::class);
         $this->op = $var;
 
         return $this;
@@ -113,7 +123,17 @@ class PropertyFilter extends \Google\Protobuf\Internal\Message
      */
     public function getValue()
     {
-        return $this->value;
+        return isset($this->value) ? $this->value : null;
+    }
+
+    public function hasValue()
+    {
+        return isset($this->value);
+    }
+
+    public function clearValue()
+    {
+        unset($this->value);
     }
 
     /**

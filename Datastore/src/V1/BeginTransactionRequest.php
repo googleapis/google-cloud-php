@@ -79,7 +79,17 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
      */
     public function getTransactionOptions()
     {
-        return $this->transaction_options;
+        return isset($this->transaction_options) ? $this->transaction_options : null;
+    }
+
+    public function hasTransactionOptions()
+    {
+        return isset($this->transaction_options);
+    }
+
+    public function clearTransactionOptions()
+    {
+        unset($this->transaction_options);
     }
 
     /**

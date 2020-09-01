@@ -122,7 +122,7 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
      */
     public function setMode($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Datastore\V1\CommitRequest_Mode::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Datastore\V1\CommitRequest\Mode::class);
         $this->mode = $var;
 
         return $this;
@@ -139,6 +139,11 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
     public function getTransaction()
     {
         return $this->readOneof(1);
+    }
+
+    public function hasTransaction()
+    {
+        return $this->hasOneof(1);
     }
 
     /**

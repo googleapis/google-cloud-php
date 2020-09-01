@@ -100,6 +100,11 @@ class PathElement extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasId()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * The auto-allocated ID of the entity.
      * Never equal to zero. Values less than zero are discouraged and may not
@@ -129,6 +134,11 @@ class PathElement extends \Google\Protobuf\Internal\Message
     public function getName()
     {
         return $this->readOneof(3);
+    }
+
+    public function hasName()
+    {
+        return $this->hasOneof(3);
     }
 
     /**

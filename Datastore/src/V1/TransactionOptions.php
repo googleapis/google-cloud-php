@@ -48,6 +48,11 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasReadWrite()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * The transaction should allow both reads and writes.
      *
@@ -57,7 +62,7 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
      */
     public function setReadWrite($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Datastore\V1\TransactionOptions_ReadWrite::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastore\V1\TransactionOptions\ReadWrite::class);
         $this->writeOneof(1, $var);
 
         return $this;
@@ -74,6 +79,11 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasReadOnly()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * The transaction should only allow reads.
      *
@@ -83,7 +93,7 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
      */
     public function setReadOnly($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Datastore\V1\TransactionOptions_ReadOnly::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastore\V1\TransactionOptions\ReadOnly::class);
         $this->writeOneof(2, $var);
 
         return $this;

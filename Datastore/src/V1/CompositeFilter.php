@@ -67,7 +67,7 @@ class CompositeFilter extends \Google\Protobuf\Internal\Message
      */
     public function setOp($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Datastore\V1\CompositeFilter_Operator::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Datastore\V1\CompositeFilter\Operator::class);
         $this->op = $var;
 
         return $this;
