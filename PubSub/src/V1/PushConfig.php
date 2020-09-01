@@ -177,6 +177,11 @@ class PushConfig extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasOidcToken()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * If specified, Pub/Sub will generate and attach an OIDC JWT token as an
      * `Authorization` header in the HTTP request for every pushed message.
@@ -187,7 +192,7 @@ class PushConfig extends \Google\Protobuf\Internal\Message
      */
     public function setOidcToken($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\PushConfig_OidcToken::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\PushConfig\OidcToken::class);
         $this->writeOneof(3, $var);
 
         return $this;

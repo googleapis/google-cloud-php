@@ -101,6 +101,11 @@ class SeekRequest extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasTime()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * The time to seek to.
      * Messages retained in the subscription that were published before this
@@ -137,6 +142,11 @@ class SeekRequest extends \Google\Protobuf\Internal\Message
     public function getSnapshot()
     {
         return $this->readOneof(3);
+    }
+
+    public function hasSnapshot()
+    {
+        return $this->hasOneof(3);
     }
 
     /**

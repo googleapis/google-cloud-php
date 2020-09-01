@@ -155,7 +155,17 @@ class Topic extends \Google\Protobuf\Internal\Message
      */
     public function getMessageStoragePolicy()
     {
-        return $this->message_storage_policy;
+        return isset($this->message_storage_policy) ? $this->message_storage_policy : null;
+    }
+
+    public function hasMessageStoragePolicy()
+    {
+        return isset($this->message_storage_policy);
+    }
+
+    public function clearMessageStoragePolicy()
+    {
+        unset($this->message_storage_policy);
     }
 
     /**
