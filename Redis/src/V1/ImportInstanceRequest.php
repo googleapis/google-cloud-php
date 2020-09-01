@@ -87,7 +87,17 @@ class ImportInstanceRequest extends \Google\Protobuf\Internal\Message
      */
     public function getInputConfig()
     {
-        return $this->input_config;
+        return isset($this->input_config) ? $this->input_config : null;
+    }
+
+    public function hasInputConfig()
+    {
+        return isset($this->input_config);
+    }
+
+    public function clearInputConfig()
+    {
+        unset($this->input_config);
     }
 
     /**

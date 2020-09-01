@@ -599,7 +599,17 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return $this->create_time;
+        return isset($this->create_time) ? $this->create_time : null;
+    }
+
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
     }
 
     /**
@@ -637,7 +647,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     public function setState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Redis\V1beta1\Instance_State::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Redis\V1beta1\Instance\State::class);
         $this->state = $var;
 
         return $this;
@@ -743,7 +753,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     public function setTier($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Redis\V1beta1\Instance_Tier::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Redis\V1beta1\Instance\Tier::class);
         $this->tier = $var;
 
         return $this;
@@ -865,7 +875,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     public function setConnectMode($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Redis\V1beta1\Instance_ConnectMode::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Redis\V1beta1\Instance\ConnectMode::class);
         $this->connect_mode = $var;
 
         return $this;
