@@ -141,7 +141,7 @@ class RecognitionMetadata extends \Google\Protobuf\Internal\Message
      */
     public function setInteractionType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Speech\V1p1beta1\RecognitionMetadata_InteractionType::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Speech\V1p1beta1\RecognitionMetadata\InteractionType::class);
         $this->interaction_type = $var;
 
         return $this;
@@ -199,7 +199,7 @@ class RecognitionMetadata extends \Google\Protobuf\Internal\Message
      */
     public function setMicrophoneDistance($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Speech\V1p1beta1\RecognitionMetadata_MicrophoneDistance::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Speech\V1p1beta1\RecognitionMetadata\MicrophoneDistance::class);
         $this->microphone_distance = $var;
 
         return $this;
@@ -225,7 +225,7 @@ class RecognitionMetadata extends \Google\Protobuf\Internal\Message
      */
     public function setOriginalMediaType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Speech\V1p1beta1\RecognitionMetadata_OriginalMediaType::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Speech\V1p1beta1\RecognitionMetadata\OriginalMediaType::class);
         $this->original_media_type = $var;
 
         return $this;
@@ -251,7 +251,7 @@ class RecognitionMetadata extends \Google\Protobuf\Internal\Message
      */
     public function setRecordingDeviceType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Speech\V1p1beta1\RecognitionMetadata_RecordingDeviceType::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Speech\V1p1beta1\RecognitionMetadata\RecordingDeviceType::class);
         $this->recording_device_type = $var;
 
         return $this;

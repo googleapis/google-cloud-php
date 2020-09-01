@@ -58,6 +58,11 @@ class RecognitionAudio extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasContent()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * The audio data bytes encoded as specified in
      * `RecognitionConfig`. Note: as with all bytes fields, proto buffers use a
@@ -90,6 +95,11 @@ class RecognitionAudio extends \Google\Protobuf\Internal\Message
     public function getUri()
     {
         return $this->readOneof(2);
+    }
+
+    public function hasUri()
+    {
+        return $this->hasOneof(2);
     }
 
     /**

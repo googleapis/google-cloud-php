@@ -348,7 +348,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      */
     public function setEncoding($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Speech\V1\RecognitionConfig_AudioEncoding::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Speech\V1\RecognitionConfig\AudioEncoding::class);
         $this->encoding = $var;
 
         return $this;
@@ -693,7 +693,17 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      */
     public function getDiarizationConfig()
     {
-        return $this->diarization_config;
+        return isset($this->diarization_config) ? $this->diarization_config : null;
+    }
+
+    public function hasDiarizationConfig()
+    {
+        return isset($this->diarization_config);
+    }
+
+    public function clearDiarizationConfig()
+    {
+        unset($this->diarization_config);
     }
 
     /**
@@ -726,7 +736,17 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      */
     public function getMetadata()
     {
-        return $this->metadata;
+        return isset($this->metadata) ? $this->metadata : null;
+    }
+
+    public function hasMetadata()
+    {
+        return isset($this->metadata);
+    }
+
+    public function clearMetadata()
+    {
+        unset($this->metadata);
     }
 
     /**
