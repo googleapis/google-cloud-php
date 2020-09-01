@@ -397,7 +397,17 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     public function getNodeConfig()
     {
-        return $this->node_config;
+        return isset($this->node_config) ? $this->node_config : null;
+    }
+
+    public function hasNodeConfig()
+    {
+        return isset($this->node_config);
+    }
+
+    public function clearNodeConfig()
+    {
+        unset($this->node_config);
     }
 
     /**
@@ -409,7 +419,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     public function setNodeConfig($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Memcache\V1beta2\Instance_NodeConfig::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Memcache\V1beta2\Instance\NodeConfig::class);
         $this->node_config = $var;
 
         return $this;
@@ -458,7 +468,17 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     public function getParameters()
     {
-        return $this->parameters;
+        return isset($this->parameters) ? $this->parameters : null;
+    }
+
+    public function hasParameters()
+    {
+        return isset($this->parameters);
+    }
+
+    public function clearParameters()
+    {
+        unset($this->parameters);
     }
 
     /**
@@ -513,7 +533,17 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return $this->create_time;
+        return isset($this->create_time) ? $this->create_time : null;
+    }
+
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
     }
 
     /**
@@ -539,7 +569,17 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return $this->update_time;
+        return isset($this->update_time) ? $this->update_time : null;
+    }
+
+    public function hasUpdateTime()
+    {
+        return isset($this->update_time);
+    }
+
+    public function clearUpdateTime()
+    {
+        unset($this->update_time);
     }
 
     /**
@@ -577,7 +617,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     public function setState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Memcache\V1beta2\Instance_State::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Memcache\V1beta2\Instance\State::class);
         $this->state = $var;
 
         return $this;

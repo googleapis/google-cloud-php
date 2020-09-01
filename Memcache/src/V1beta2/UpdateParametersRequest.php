@@ -91,7 +91,17 @@ class UpdateParametersRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return $this->update_mask;
+        return isset($this->update_mask) ? $this->update_mask : null;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**
@@ -117,7 +127,17 @@ class UpdateParametersRequest extends \Google\Protobuf\Internal\Message
      */
     public function getParameters()
     {
-        return $this->parameters;
+        return isset($this->parameters) ? $this->parameters : null;
+    }
+
+    public function hasParameters()
+    {
+        return isset($this->parameters);
+    }
+
+    public function clearParameters()
+    {
+        unset($this->parameters);
     }
 
     /**

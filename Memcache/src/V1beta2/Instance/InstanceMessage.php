@@ -63,7 +63,7 @@ class InstanceMessage extends \Google\Protobuf\Internal\Message
      */
     public function setCode($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Memcache\V1beta2\Instance_InstanceMessage_Code::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Memcache\V1beta2\Instance\InstanceMessage\Code::class);
         $this->code = $var;
 
         return $this;

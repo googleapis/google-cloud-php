@@ -153,7 +153,7 @@ class Node extends \Google\Protobuf\Internal\Message
      */
     public function setState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Memcache\V1beta2\Instance_Node_State::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Memcache\V1beta2\Instance\Node\State::class);
         $this->state = $var;
 
         return $this;
@@ -221,7 +221,17 @@ class Node extends \Google\Protobuf\Internal\Message
      */
     public function getParameters()
     {
-        return $this->parameters;
+        return isset($this->parameters) ? $this->parameters : null;
+    }
+
+    public function hasParameters()
+    {
+        return isset($this->parameters);
+    }
+
+    public function clearParameters()
+    {
+        unset($this->parameters);
     }
 
     /**
