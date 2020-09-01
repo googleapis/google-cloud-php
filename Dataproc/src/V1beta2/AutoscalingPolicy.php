@@ -164,6 +164,11 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasBasicAlgorithm()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.BasicAutoscalingAlgorithm basic_algorithm = 3;</code>
      * @param \Google\Cloud\Dataproc\V1beta2\BasicAutoscalingAlgorithm $var
@@ -185,7 +190,17 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
      */
     public function getWorkerConfig()
     {
-        return $this->worker_config;
+        return isset($this->worker_config) ? $this->worker_config : null;
+    }
+
+    public function hasWorkerConfig()
+    {
+        return isset($this->worker_config);
+    }
+
+    public function clearWorkerConfig()
+    {
+        unset($this->worker_config);
     }
 
     /**
@@ -211,7 +226,17 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
      */
     public function getSecondaryWorkerConfig()
     {
-        return $this->secondary_worker_config;
+        return isset($this->secondary_worker_config) ? $this->secondary_worker_config : null;
+    }
+
+    public function hasSecondaryWorkerConfig()
+    {
+        return isset($this->secondary_worker_config);
+    }
+
+    public function clearSecondaryWorkerConfig()
+    {
+        unset($this->secondary_worker_config);
     }
 
     /**

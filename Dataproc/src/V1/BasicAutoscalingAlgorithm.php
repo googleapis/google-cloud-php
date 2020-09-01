@@ -57,7 +57,17 @@ class BasicAutoscalingAlgorithm extends \Google\Protobuf\Internal\Message
      */
     public function getYarnConfig()
     {
-        return $this->yarn_config;
+        return isset($this->yarn_config) ? $this->yarn_config : null;
+    }
+
+    public function hasYarnConfig()
+    {
+        return isset($this->yarn_config);
+    }
+
+    public function clearYarnConfig()
+    {
+        unset($this->yarn_config);
     }
 
     /**
@@ -85,7 +95,17 @@ class BasicAutoscalingAlgorithm extends \Google\Protobuf\Internal\Message
      */
     public function getCooldownPeriod()
     {
-        return $this->cooldown_period;
+        return isset($this->cooldown_period) ? $this->cooldown_period : null;
+    }
+
+    public function hasCooldownPeriod()
+    {
+        return isset($this->cooldown_period);
+    }
+
+    public function clearCooldownPeriod()
+    {
+        unset($this->cooldown_period);
     }
 
     /**

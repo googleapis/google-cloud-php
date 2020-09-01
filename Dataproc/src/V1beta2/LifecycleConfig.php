@@ -80,7 +80,17 @@ class LifecycleConfig extends \Google\Protobuf\Internal\Message
      */
     public function getIdleDeleteTtl()
     {
-        return $this->idle_delete_ttl;
+        return isset($this->idle_delete_ttl) ? $this->idle_delete_ttl : null;
+    }
+
+    public function hasIdleDeleteTtl()
+    {
+        return isset($this->idle_delete_ttl);
+    }
+
+    public function clearIdleDeleteTtl()
+    {
+        unset($this->idle_delete_ttl);
     }
 
     /**
@@ -114,6 +124,11 @@ class LifecycleConfig extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasAutoDeleteTime()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * Optional. The time when cluster will be auto-deleted. (see JSON representation of
      * [Timestamp](https://developers.google.com/protocol-buffers/docs/proto3#json)).
@@ -142,6 +157,11 @@ class LifecycleConfig extends \Google\Protobuf\Internal\Message
     public function getAutoDeleteTtl()
     {
         return $this->readOneof(3);
+    }
+
+    public function hasAutoDeleteTtl()
+    {
+        return $this->hasOneof(3);
     }
 
     /**
@@ -173,7 +193,17 @@ class LifecycleConfig extends \Google\Protobuf\Internal\Message
      */
     public function getIdleStartTime()
     {
-        return $this->idle_start_time;
+        return isset($this->idle_start_time) ? $this->idle_start_time : null;
+    }
+
+    public function hasIdleStartTime()
+    {
+        return isset($this->idle_start_time);
+    }
+
+    public function clearIdleStartTime()
+    {
+        unset($this->idle_start_time);
     }
 
     /**

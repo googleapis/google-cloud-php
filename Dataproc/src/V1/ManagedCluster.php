@@ -115,7 +115,17 @@ class ManagedCluster extends \Google\Protobuf\Internal\Message
      */
     public function getConfig()
     {
-        return $this->config;
+        return isset($this->config) ? $this->config : null;
+    }
+
+    public function hasConfig()
+    {
+        return isset($this->config);
+    }
+
+    public function clearConfig()
+    {
+        unset($this->config);
     }
 
     /**

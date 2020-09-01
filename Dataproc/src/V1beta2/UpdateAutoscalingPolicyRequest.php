@@ -45,7 +45,17 @@ class UpdateAutoscalingPolicyRequest extends \Google\Protobuf\Internal\Message
      */
     public function getPolicy()
     {
-        return $this->policy;
+        return isset($this->policy) ? $this->policy : null;
+    }
+
+    public function hasPolicy()
+    {
+        return isset($this->policy);
+    }
+
+    public function clearPolicy()
+    {
+        unset($this->policy);
     }
 
     /**

@@ -116,7 +116,7 @@ class YarnApplication extends \Google\Protobuf\Internal\Message
      */
     public function setState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Dataproc\V1beta2\YarnApplication_State::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Dataproc\V1beta2\YarnApplication\State::class);
         $this->state = $var;
 
         return $this;

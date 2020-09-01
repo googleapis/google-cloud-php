@@ -161,6 +161,11 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasHadoopJob()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * Optional. Job is a Hadoop job.
      *
@@ -185,6 +190,11 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
     public function getSparkJob()
     {
         return $this->readOneof(3);
+    }
+
+    public function hasSparkJob()
+    {
+        return $this->hasOneof(3);
     }
 
     /**
@@ -213,6 +223,11 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
         return $this->readOneof(4);
     }
 
+    public function hasPysparkJob()
+    {
+        return $this->hasOneof(4);
+    }
+
     /**
      * Optional. Job is a PySpark job.
      *
@@ -237,6 +252,11 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
     public function getHiveJob()
     {
         return $this->readOneof(5);
+    }
+
+    public function hasHiveJob()
+    {
+        return $this->hasOneof(5);
     }
 
     /**
@@ -265,6 +285,11 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
         return $this->readOneof(6);
     }
 
+    public function hasPigJob()
+    {
+        return $this->hasOneof(6);
+    }
+
     /**
      * Optional. Job is a Pig job.
      *
@@ -289,6 +314,11 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
     public function getSparkRJob()
     {
         return $this->readOneof(11);
+    }
+
+    public function hasSparkRJob()
+    {
+        return $this->hasOneof(11);
     }
 
     /**
@@ -317,6 +347,11 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
         return $this->readOneof(7);
     }
 
+    public function hasSparkSqlJob()
+    {
+        return $this->hasOneof(7);
+    }
+
     /**
      * Optional. Job is a SparkSql job.
      *
@@ -341,6 +376,11 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
     public function getPrestoJob()
     {
         return $this->readOneof(12);
+    }
+
+    public function hasPrestoJob()
+    {
+        return $this->hasOneof(12);
     }
 
     /**
@@ -404,7 +444,17 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
      */
     public function getScheduling()
     {
-        return $this->scheduling;
+        return isset($this->scheduling) ? $this->scheduling : null;
+    }
+
+    public function hasScheduling()
+    {
+        return isset($this->scheduling);
+    }
+
+    public function clearScheduling()
+    {
+        unset($this->scheduling);
     }
 
     /**

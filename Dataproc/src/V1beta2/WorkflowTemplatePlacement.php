@@ -48,6 +48,11 @@ class WorkflowTemplatePlacement extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasManagedCluster()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * Optional. A cluster that is managed by the workflow.
      *
@@ -74,6 +79,11 @@ class WorkflowTemplatePlacement extends \Google\Protobuf\Internal\Message
     public function getClusterSelector()
     {
         return $this->readOneof(2);
+    }
+
+    public function hasClusterSelector()
+    {
+        return $this->hasOneof(2);
     }
 
     /**

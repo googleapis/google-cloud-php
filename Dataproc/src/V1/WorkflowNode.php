@@ -167,7 +167,7 @@ class WorkflowNode extends \Google\Protobuf\Internal\Message
      */
     public function setState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Dataproc\V1\WorkflowNode_NodeState::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Dataproc\V1\WorkflowNode\NodeState::class);
         $this->state = $var;
 
         return $this;

@@ -73,7 +73,7 @@ class ReservationAffinity extends \Google\Protobuf\Internal\Message
      */
     public function setConsumeReservationType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Dataproc\V1\ReservationAffinity_Type::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Dataproc\V1\ReservationAffinity\Type::class);
         $this->consume_reservation_type = $var;
 
         return $this;

@@ -514,7 +514,17 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      */
     public function getReservationAffinity()
     {
-        return $this->reservation_affinity;
+        return isset($this->reservation_affinity) ? $this->reservation_affinity : null;
+    }
+
+    public function hasReservationAffinity()
+    {
+        return isset($this->reservation_affinity);
+    }
+
+    public function clearReservationAffinity()
+    {
+        unset($this->reservation_affinity);
     }
 
     /**

@@ -81,7 +81,7 @@ class ClusterOperationStatus extends \Google\Protobuf\Internal\Message
      */
     public function setState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Dataproc\V1\ClusterOperationStatus_State::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Dataproc\V1\ClusterOperationStatus\State::class);
         $this->state = $var;
 
         return $this;
@@ -147,7 +147,17 @@ class ClusterOperationStatus extends \Google\Protobuf\Internal\Message
      */
     public function getStateStartTime()
     {
-        return $this->state_start_time;
+        return isset($this->state_start_time) ? $this->state_start_time : null;
+    }
+
+    public function hasStateStartTime()
+    {
+        return isset($this->state_start_time);
+    }
+
+    public function clearStateStartTime()
+    {
+        unset($this->state_start_time);
     }
 
     /**

@@ -45,7 +45,17 @@ class GkeClusterConfig extends \Google\Protobuf\Internal\Message
      */
     public function getNamespacedGkeDeploymentTarget()
     {
-        return $this->namespaced_gke_deployment_target;
+        return isset($this->namespaced_gke_deployment_target) ? $this->namespaced_gke_deployment_target : null;
+    }
+
+    public function hasNamespacedGkeDeploymentTarget()
+    {
+        return isset($this->namespaced_gke_deployment_target);
+    }
+
+    public function clearNamespacedGkeDeploymentTarget()
+    {
+        unset($this->namespaced_gke_deployment_target);
     }
 
     /**
@@ -57,7 +67,7 @@ class GkeClusterConfig extends \Google\Protobuf\Internal\Message
      */
     public function setNamespacedGkeDeploymentTarget($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1beta2\GkeClusterConfig_NamespacedGkeDeploymentTarget::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1beta2\GkeClusterConfig\NamespacedGkeDeploymentTarget::class);
         $this->namespaced_gke_deployment_target = $var;
 
         return $this;

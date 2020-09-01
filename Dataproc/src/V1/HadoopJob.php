@@ -128,6 +128,11 @@ class HadoopJob extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasMainJarFileUri()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * The HCFS URI of the jar file containing the main class.
      * Examples:
@@ -157,6 +162,11 @@ class HadoopJob extends \Google\Protobuf\Internal\Message
     public function getMainClass()
     {
         return $this->readOneof(2);
+    }
+
+    public function hasMainClass()
+    {
+        return $this->hasOneof(2);
     }
 
     /**
@@ -335,7 +345,17 @@ class HadoopJob extends \Google\Protobuf\Internal\Message
      */
     public function getLoggingConfig()
     {
-        return $this->logging_config;
+        return isset($this->logging_config) ? $this->logging_config : null;
+    }
+
+    public function hasLoggingConfig()
+    {
+        return isset($this->logging_config);
+    }
+
+    public function clearLoggingConfig()
+    {
+        unset($this->logging_config);
     }
 
     /**

@@ -253,7 +253,17 @@ class SparkRJob extends \Google\Protobuf\Internal\Message
      */
     public function getLoggingConfig()
     {
-        return $this->logging_config;
+        return isset($this->logging_config) ? $this->logging_config : null;
+    }
+
+    public function hasLoggingConfig()
+    {
+        return isset($this->logging_config);
+    }
+
+    public function clearLoggingConfig()
+    {
+        unset($this->logging_config);
     }
 
     /**

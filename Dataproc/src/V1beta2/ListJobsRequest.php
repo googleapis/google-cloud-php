@@ -273,7 +273,7 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      */
     public function setJobStateMatcher($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Dataproc\V1beta2\ListJobsRequest_JobStateMatcher::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Dataproc\V1beta2\ListJobsRequest\JobStateMatcher::class);
         $this->job_state_matcher = $var;
 
         return $this;
