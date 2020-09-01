@@ -137,7 +137,17 @@ class CreateServiceRequest extends \Google\Protobuf\Internal\Message
      */
     public function getService()
     {
-        return $this->service;
+        return isset($this->service) ? $this->service : null;
+    }
+
+    public function hasService()
+    {
+        return isset($this->service);
+    }
+
+    public function clearService()
+    {
+        unset($this->service);
     }
 
     /**

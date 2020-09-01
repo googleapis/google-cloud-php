@@ -137,7 +137,17 @@ class CreateEndpointRequest extends \Google\Protobuf\Internal\Message
      */
     public function getEndpoint()
     {
-        return $this->endpoint;
+        return isset($this->endpoint) ? $this->endpoint : null;
+    }
+
+    public function hasEndpoint()
+    {
+        return isset($this->endpoint);
+    }
+
+    public function clearEndpoint()
+    {
+        unset($this->endpoint);
     }
 
     /**
