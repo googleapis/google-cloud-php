@@ -553,7 +553,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      */
     public function setSearchMode($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4beta1\SearchJobsRequest_SearchMode::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4beta1\SearchJobsRequest\SearchMode::class);
         $this->search_mode = $var;
 
         return $this;
@@ -569,7 +569,17 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getRequestMetadata()
     {
-        return $this->request_metadata;
+        return isset($this->request_metadata) ? $this->request_metadata : null;
+    }
+
+    public function hasRequestMetadata()
+    {
+        return isset($this->request_metadata);
+    }
+
+    public function clearRequestMetadata()
+    {
+        unset($this->request_metadata);
     }
 
     /**
@@ -597,7 +607,17 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getJobQuery()
     {
-        return $this->job_query;
+        return isset($this->job_query) ? $this->job_query : null;
+    }
+
+    public function hasJobQuery()
+    {
+        return isset($this->job_query);
+    }
+
+    public function clearJobQuery()
+    {
+        unset($this->job_query);
     }
 
     /**
@@ -1149,7 +1169,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      */
     public function setDiversificationLevel($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4beta1\SearchJobsRequest_DiversificationLevel::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4beta1\SearchJobsRequest\DiversificationLevel::class);
         $this->diversification_level = $var;
 
         return $this;
@@ -1164,7 +1184,17 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getCustomRankingInfo()
     {
-        return $this->custom_ranking_info;
+        return isset($this->custom_ranking_info) ? $this->custom_ranking_info : null;
+    }
+
+    public function hasCustomRankingInfo()
+    {
+        return isset($this->custom_ranking_info);
+    }
+
+    public function clearCustomRankingInfo()
+    {
+        unset($this->custom_ranking_info);
     }
 
     /**
@@ -1177,7 +1207,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      */
     public function setCustomRankingInfo($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Talent\V4beta1\SearchJobsRequest_CustomRankingInfo::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Talent\V4beta1\SearchJobsRequest\CustomRankingInfo::class);
         $this->custom_ranking_info = $var;
 
         return $this;

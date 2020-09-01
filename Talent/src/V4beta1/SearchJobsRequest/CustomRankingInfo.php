@@ -107,7 +107,7 @@ class CustomRankingInfo extends \Google\Protobuf\Internal\Message
      */
     public function setImportanceLevel($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4beta1\SearchJobsRequest_CustomRankingInfo_ImportanceLevel::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4beta1\SearchJobsRequest\CustomRankingInfo\ImportanceLevel::class);
         $this->importance_level = $var;
 
         return $this;

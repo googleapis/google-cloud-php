@@ -109,7 +109,7 @@ class Location extends \Google\Protobuf\Internal\Message
      */
     public function setLocationType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4beta1\Location_LocationType::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4beta1\Location\LocationType::class);
         $this->location_type = $var;
 
         return $this;
@@ -126,7 +126,17 @@ class Location extends \Google\Protobuf\Internal\Message
      */
     public function getPostalAddress()
     {
-        return $this->postal_address;
+        return isset($this->postal_address) ? $this->postal_address : null;
+    }
+
+    public function hasPostalAddress()
+    {
+        return isset($this->postal_address);
+    }
+
+    public function clearPostalAddress()
+    {
+        unset($this->postal_address);
     }
 
     /**
@@ -155,7 +165,17 @@ class Location extends \Google\Protobuf\Internal\Message
      */
     public function getLatLng()
     {
-        return $this->lat_lng;
+        return isset($this->lat_lng) ? $this->lat_lng : null;
+    }
+
+    public function hasLatLng()
+    {
+        return isset($this->lat_lng);
+    }
+
+    public function clearLatLng()
+    {
+        unset($this->lat_lng);
     }
 
     /**

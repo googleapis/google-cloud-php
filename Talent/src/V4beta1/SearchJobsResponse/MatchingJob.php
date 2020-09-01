@@ -91,7 +91,17 @@ class MatchingJob extends \Google\Protobuf\Internal\Message
      */
     public function getJob()
     {
-        return $this->job;
+        return isset($this->job) ? $this->job : null;
+    }
+
+    public function hasJob()
+    {
+        return isset($this->job);
+    }
+
+    public function clearJob()
+    {
+        unset($this->job);
     }
 
     /**
@@ -208,7 +218,17 @@ class MatchingJob extends \Google\Protobuf\Internal\Message
      */
     public function getCommuteInfo()
     {
-        return $this->commute_info;
+        return isset($this->commute_info) ? $this->commute_info : null;
+    }
+
+    public function hasCommuteInfo()
+    {
+        return isset($this->commute_info);
+    }
+
+    public function clearCommuteInfo()
+    {
+        unset($this->commute_info);
     }
 
     /**
@@ -221,7 +241,7 @@ class MatchingJob extends \Google\Protobuf\Internal\Message
      */
     public function setCommuteInfo($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Talent\V4beta1\SearchJobsResponse_CommuteInfo::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Talent\V4beta1\SearchJobsResponse\CommuteInfo::class);
         $this->commute_info = $var;
 
         return $this;

@@ -88,7 +88,7 @@ class ProfileEvent extends \Google\Protobuf\Internal\Message
      */
     public function setType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4beta1\ProfileEvent_ProfileEventType::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4beta1\ProfileEvent\ProfileEventType::class);
         $this->type = $var;
 
         return $this;

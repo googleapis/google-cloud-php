@@ -377,7 +377,17 @@ class Application extends \Google\Protobuf\Internal\Message
      */
     public function getApplicationDate()
     {
-        return $this->application_date;
+        return isset($this->application_date) ? $this->application_date : null;
+    }
+
+    public function hasApplicationDate()
+    {
+        return isset($this->application_date);
+    }
+
+    public function clearApplicationDate()
+    {
+        unset($this->application_date);
     }
 
     /**
@@ -421,7 +431,7 @@ class Application extends \Google\Protobuf\Internal\Message
      */
     public function setStage($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4beta1\Application_ApplicationStage::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4beta1\Application\ApplicationStage::class);
         $this->stage = $var;
 
         return $this;
@@ -447,7 +457,7 @@ class Application extends \Google\Protobuf\Internal\Message
      */
     public function setState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4beta1\Application_ApplicationState::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4beta1\Application\ApplicationState::class);
         $this->state = $var;
 
         return $this;
@@ -491,7 +501,17 @@ class Application extends \Google\Protobuf\Internal\Message
      */
     public function getReferral()
     {
-        return $this->referral;
+        return isset($this->referral) ? $this->referral : null;
+    }
+
+    public function hasReferral()
+    {
+        return isset($this->referral);
+    }
+
+    public function clearReferral()
+    {
+        unset($this->referral);
     }
 
     /**
@@ -544,7 +564,17 @@ class Application extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return $this->create_time;
+        return isset($this->create_time) ? $this->create_time : null;
+    }
+
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
     }
 
     /**
@@ -570,7 +600,17 @@ class Application extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return $this->update_time;
+        return isset($this->update_time) ? $this->update_time : null;
+    }
+
+    public function hasUpdateTime()
+    {
+        return isset($this->update_time);
+    }
+
+    public function clearUpdateTime()
+    {
+        unset($this->update_time);
     }
 
     /**
@@ -654,7 +694,17 @@ class Application extends \Google\Protobuf\Internal\Message
      */
     public function getIsMatch()
     {
-        return $this->is_match;
+        return isset($this->is_match) ? $this->is_match : null;
+    }
+
+    public function hasIsMatch()
+    {
+        return isset($this->is_match);
+    }
+
+    public function clearIsMatch()
+    {
+        unset($this->is_match);
     }
 
     /**

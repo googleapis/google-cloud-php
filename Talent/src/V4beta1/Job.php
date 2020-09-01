@@ -761,7 +761,17 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getApplicationInfo()
     {
-        return $this->application_info;
+        return isset($this->application_info) ? $this->application_info : null;
+    }
+
+    public function hasApplicationInfo()
+    {
+        return isset($this->application_info);
+    }
+
+    public function clearApplicationInfo()
+    {
+        unset($this->application_info);
     }
 
     /**
@@ -773,7 +783,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function setApplicationInfo($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Talent\V4beta1\Job_ApplicationInfo::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Talent\V4beta1\Job\ApplicationInfo::class);
         $this->application_info = $var;
 
         return $this;
@@ -814,7 +824,17 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getCompensationInfo()
     {
-        return $this->compensation_info;
+        return isset($this->compensation_info) ? $this->compensation_info : null;
+    }
+
+    public function hasCompensationInfo()
+    {
+        return isset($this->compensation_info);
+    }
+
+    public function clearCompensationInfo()
+    {
+        unset($this->compensation_info);
     }
 
     /**
@@ -1246,7 +1266,17 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getJobStartTime()
     {
-        return $this->job_start_time;
+        return isset($this->job_start_time) ? $this->job_start_time : null;
+    }
+
+    public function hasJobStartTime()
+    {
+        return isset($this->job_start_time);
+    }
+
+    public function clearJobStartTime()
+    {
+        unset($this->job_start_time);
     }
 
     /**
@@ -1274,7 +1304,17 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getJobEndTime()
     {
-        return $this->job_end_time;
+        return isset($this->job_end_time) ? $this->job_end_time : null;
+    }
+
+    public function hasJobEndTime()
+    {
+        return isset($this->job_end_time);
+    }
+
+    public function clearJobEndTime()
+    {
+        unset($this->job_end_time);
     }
 
     /**
@@ -1303,7 +1343,17 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getPostingPublishTime()
     {
-        return $this->posting_publish_time;
+        return isset($this->posting_publish_time) ? $this->posting_publish_time : null;
+    }
+
+    public function hasPostingPublishTime()
+    {
+        return isset($this->posting_publish_time);
+    }
+
+    public function clearPostingPublishTime()
+    {
+        unset($this->posting_publish_time);
     }
 
     /**
@@ -1365,7 +1415,17 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getPostingExpireTime()
     {
-        return $this->posting_expire_time;
+        return isset($this->posting_expire_time) ? $this->posting_expire_time : null;
+    }
+
+    public function hasPostingExpireTime()
+    {
+        return isset($this->posting_expire_time);
+    }
+
+    public function clearPostingExpireTime()
+    {
+        unset($this->posting_expire_time);
     }
 
     /**
@@ -1425,7 +1485,17 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getPostingCreateTime()
     {
-        return $this->posting_create_time;
+        return isset($this->posting_create_time) ? $this->posting_create_time : null;
+    }
+
+    public function hasPostingCreateTime()
+    {
+        return isset($this->posting_create_time);
+    }
+
+    public function clearPostingCreateTime()
+    {
+        unset($this->posting_create_time);
     }
 
     /**
@@ -1451,7 +1521,17 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getPostingUpdateTime()
     {
-        return $this->posting_update_time;
+        return isset($this->posting_update_time) ? $this->posting_update_time : null;
+    }
+
+    public function hasPostingUpdateTime()
+    {
+        return isset($this->posting_update_time);
+    }
+
+    public function clearPostingUpdateTime()
+    {
+        unset($this->posting_update_time);
     }
 
     /**
@@ -1503,7 +1583,17 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getDerivedInfo()
     {
-        return $this->derived_info;
+        return isset($this->derived_info) ? $this->derived_info : null;
+    }
+
+    public function hasDerivedInfo()
+    {
+        return isset($this->derived_info);
+    }
+
+    public function clearDerivedInfo()
+    {
+        unset($this->derived_info);
     }
 
     /**
@@ -1515,7 +1605,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function setDerivedInfo($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Talent\V4beta1\Job_DerivedInfo::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Talent\V4beta1\Job\DerivedInfo::class);
         $this->derived_info = $var;
 
         return $this;
@@ -1529,7 +1619,17 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getProcessingOptions()
     {
-        return $this->processing_options;
+        return isset($this->processing_options) ? $this->processing_options : null;
+    }
+
+    public function hasProcessingOptions()
+    {
+        return isset($this->processing_options);
+    }
+
+    public function clearProcessingOptions()
+    {
+        unset($this->processing_options);
     }
 
     /**
@@ -1541,7 +1641,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function setProcessingOptions($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Talent\V4beta1\Job_ProcessingOptions::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Talent\V4beta1\Job\ProcessingOptions::class);
         $this->processing_options = $var;
 
         return $this;

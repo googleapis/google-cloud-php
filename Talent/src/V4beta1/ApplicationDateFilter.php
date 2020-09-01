@@ -61,7 +61,17 @@ class ApplicationDateFilter extends \Google\Protobuf\Internal\Message
      */
     public function getStartDate()
     {
-        return $this->start_date;
+        return isset($this->start_date) ? $this->start_date : null;
+    }
+
+    public function hasStartDate()
+    {
+        return isset($this->start_date);
+    }
+
+    public function clearStartDate()
+    {
+        unset($this->start_date);
     }
 
     /**
@@ -89,7 +99,17 @@ class ApplicationDateFilter extends \Google\Protobuf\Internal\Message
      */
     public function getEndDate()
     {
-        return $this->end_date;
+        return isset($this->end_date) ? $this->end_date : null;
+    }
+
+    public function hasEndDate()
+    {
+        return isset($this->end_date);
+    }
+
+    public function clearEndDate()
+    {
+        unset($this->end_date);
     }
 
     /**

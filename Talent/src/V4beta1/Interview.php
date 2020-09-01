@@ -55,7 +55,17 @@ class Interview extends \Google\Protobuf\Internal\Message
      */
     public function getRating()
     {
-        return $this->rating;
+        return isset($this->rating) ? $this->rating : null;
+    }
+
+    public function hasRating()
+    {
+        return isset($this->rating);
+    }
+
+    public function clearRating()
+    {
+        unset($this->rating);
     }
 
     /**

@@ -64,7 +64,17 @@ class JobResult extends \Google\Protobuf\Internal\Message
      */
     public function getJob()
     {
-        return $this->job;
+        return isset($this->job) ? $this->job : null;
+    }
+
+    public function hasJob()
+    {
+        return isset($this->job);
+    }
+
+    public function clearJob()
+    {
+        unset($this->job);
     }
 
     /**
@@ -94,7 +104,17 @@ class JobResult extends \Google\Protobuf\Internal\Message
      */
     public function getStatus()
     {
-        return $this->status;
+        return isset($this->status) ? $this->status : null;
+    }
+
+    public function hasStatus()
+    {
+        return isset($this->status);
+    }
+
+    public function clearStatus()
+    {
+        unset($this->status);
     }
 
     /**

@@ -95,7 +95,17 @@ class AvailabilitySignal extends \Google\Protobuf\Internal\Message
      */
     public function getLastUpdateTime()
     {
-        return $this->last_update_time;
+        return isset($this->last_update_time) ? $this->last_update_time : null;
+    }
+
+    public function hasLastUpdateTime()
+    {
+        return isset($this->last_update_time);
+    }
+
+    public function clearLastUpdateTime()
+    {
+        unset($this->last_update_time);
     }
 
     /**
@@ -125,7 +135,17 @@ class AvailabilitySignal extends \Google\Protobuf\Internal\Message
      */
     public function getFilterSatisfied()
     {
-        return $this->filter_satisfied;
+        return isset($this->filter_satisfied) ? $this->filter_satisfied : null;
+    }
+
+    public function hasFilterSatisfied()
+    {
+        return isset($this->filter_satisfied);
+    }
+
+    public function clearFilterSatisfied()
+    {
+        unset($this->filter_satisfied);
     }
 
     /**

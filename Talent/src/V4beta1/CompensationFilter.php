@@ -85,7 +85,7 @@ class CompensationFilter extends \Google\Protobuf\Internal\Message
      */
     public function setType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4beta1\CompensationFilter_FilterType::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4beta1\CompensationFilter\FilterType::class);
         $this->type = $var;
 
         return $this;
@@ -127,7 +127,17 @@ class CompensationFilter extends \Google\Protobuf\Internal\Message
      */
     public function getRange()
     {
-        return $this->range;
+        return isset($this->range) ? $this->range : null;
+    }
+
+    public function hasRange()
+    {
+        return isset($this->range);
+    }
+
+    public function clearRange()
+    {
+        unset($this->range);
     }
 
     /**
@@ -139,7 +149,7 @@ class CompensationFilter extends \Google\Protobuf\Internal\Message
      */
     public function setRange($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Talent\V4beta1\CompensationInfo_CompensationRange::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Talent\V4beta1\CompensationInfo\CompensationRange::class);
         $this->range = $var;
 
         return $this;

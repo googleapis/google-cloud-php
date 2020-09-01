@@ -133,7 +133,17 @@ class SearchProfilesResponse extends \Google\Protobuf\Internal\Message
      */
     public function getSpellCorrection()
     {
-        return $this->spell_correction;
+        return isset($this->spell_correction) ? $this->spell_correction : null;
+    }
+
+    public function hasSpellCorrection()
+    {
+        return isset($this->spell_correction);
+    }
+
+    public function clearSpellCorrection()
+    {
+        unset($this->spell_correction);
     }
 
     /**
@@ -160,7 +170,17 @@ class SearchProfilesResponse extends \Google\Protobuf\Internal\Message
      */
     public function getMetadata()
     {
-        return $this->metadata;
+        return isset($this->metadata) ? $this->metadata : null;
+    }
+
+    public function hasMetadata()
+    {
+        return isset($this->metadata);
+    }
+
+    public function clearMetadata()
+    {
+        unset($this->metadata);
     }
 
     /**

@@ -94,6 +94,11 @@ class Address extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasUnstructuredAddress()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * Unstructured address.
      * For example, "1600 Amphitheatre Pkwy, Mountain View, CA 94043",
@@ -124,6 +129,11 @@ class Address extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasStructuredAddress()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * Structured address that contains street address, city, state, country,
      * and so on.
@@ -148,7 +158,17 @@ class Address extends \Google\Protobuf\Internal\Message
      */
     public function getCurrent()
     {
-        return $this->current;
+        return isset($this->current) ? $this->current : null;
+    }
+
+    public function hasCurrent()
+    {
+        return isset($this->current);
+    }
+
+    public function clearCurrent()
+    {
+        unset($this->current);
     }
 
     /**

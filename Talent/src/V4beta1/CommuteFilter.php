@@ -115,7 +115,17 @@ class CommuteFilter extends \Google\Protobuf\Internal\Message
      */
     public function getStartCoordinates()
     {
-        return $this->start_coordinates;
+        return isset($this->start_coordinates) ? $this->start_coordinates : null;
+    }
+
+    public function hasStartCoordinates()
+    {
+        return isset($this->start_coordinates);
+    }
+
+    public function clearStartCoordinates()
+    {
+        unset($this->start_coordinates);
     }
 
     /**
@@ -143,7 +153,17 @@ class CommuteFilter extends \Google\Protobuf\Internal\Message
      */
     public function getTravelDuration()
     {
-        return $this->travel_duration;
+        return isset($this->travel_duration) ? $this->travel_duration : null;
+    }
+
+    public function hasTravelDuration()
+    {
+        return isset($this->travel_duration);
+    }
+
+    public function clearTravelDuration()
+    {
+        unset($this->travel_duration);
     }
 
     /**
@@ -207,6 +227,11 @@ class CommuteFilter extends \Google\Protobuf\Internal\Message
         return $this->readOneof(5);
     }
 
+    public function hasRoadTraffic()
+    {
+        return $this->hasOneof(5);
+    }
+
     /**
      * Specifies the traffic density to use when calculating commute time.
      *
@@ -216,7 +241,7 @@ class CommuteFilter extends \Google\Protobuf\Internal\Message
      */
     public function setRoadTraffic($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4beta1\CommuteFilter_RoadTraffic::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4beta1\CommuteFilter\RoadTraffic::class);
         $this->writeOneof(5, $var);
 
         return $this;
@@ -233,6 +258,11 @@ class CommuteFilter extends \Google\Protobuf\Internal\Message
     public function getDepartureTime()
     {
         return $this->readOneof(6);
+    }
+
+    public function hasDepartureTime()
+    {
+        return $this->hasOneof(6);
     }
 
     /**

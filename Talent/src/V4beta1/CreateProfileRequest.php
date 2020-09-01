@@ -87,7 +87,17 @@ class CreateProfileRequest extends \Google\Protobuf\Internal\Message
      */
     public function getProfile()
     {
-        return $this->profile;
+        return isset($this->profile) ? $this->profile : null;
+    }
+
+    public function hasProfile()
+    {
+        return isset($this->profile);
+    }
+
+    public function clearProfile()
+    {
+        unset($this->profile);
     }
 
     /**

@@ -111,7 +111,17 @@ class Certification extends \Google\Protobuf\Internal\Message
      */
     public function getAcquireDate()
     {
-        return $this->acquire_date;
+        return isset($this->acquire_date) ? $this->acquire_date : null;
+    }
+
+    public function hasAcquireDate()
+    {
+        return isset($this->acquire_date);
+    }
+
+    public function clearAcquireDate()
+    {
+        unset($this->acquire_date);
     }
 
     /**
@@ -137,7 +147,17 @@ class Certification extends \Google\Protobuf\Internal\Message
      */
     public function getExpireDate()
     {
-        return $this->expire_date;
+        return isset($this->expire_date) ? $this->expire_date : null;
+    }
+
+    public function hasExpireDate()
+    {
+        return isset($this->expire_date);
+    }
+
+    public function clearExpireDate()
+    {
+        unset($this->expire_date);
     }
 
     /**

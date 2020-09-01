@@ -73,7 +73,17 @@ class TimeFilter extends \Google\Protobuf\Internal\Message
      */
     public function getStartTime()
     {
-        return $this->start_time;
+        return isset($this->start_time) ? $this->start_time : null;
+    }
+
+    public function hasStartTime()
+    {
+        return isset($this->start_time);
+    }
+
+    public function clearStartTime()
+    {
+        unset($this->start_time);
     }
 
     /**
@@ -103,7 +113,17 @@ class TimeFilter extends \Google\Protobuf\Internal\Message
      */
     public function getEndTime()
     {
-        return $this->end_time;
+        return isset($this->end_time) ? $this->end_time : null;
+    }
+
+    public function hasEndTime()
+    {
+        return isset($this->end_time);
+    }
+
+    public function clearEndTime()
+    {
+        unset($this->end_time);
     }
 
     /**
@@ -145,7 +165,7 @@ class TimeFilter extends \Google\Protobuf\Internal\Message
      */
     public function setTimeField($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4beta1\TimeFilter_TimeField::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4beta1\TimeFilter\TimeField::class);
         $this->time_field = $var;
 
         return $this;

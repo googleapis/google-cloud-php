@@ -69,7 +69,7 @@ class DeviceInfo extends \Google\Protobuf\Internal\Message
      */
     public function setDeviceType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4beta1\DeviceInfo_DeviceType::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4beta1\DeviceInfo\DeviceType::class);
         $this->device_type = $var;
 
         return $this;

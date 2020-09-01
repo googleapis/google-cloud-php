@@ -174,7 +174,7 @@ class Tenant extends \Google\Protobuf\Internal\Message
      */
     public function setUsageType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4beta1\Tenant_DataUsageType::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4beta1\Tenant\DataUsageType::class);
         $this->usage_type = $var;
 
         return $this;

@@ -48,7 +48,17 @@ class DerivedInfo extends \Google\Protobuf\Internal\Message
      */
     public function getHeadquartersLocation()
     {
-        return $this->headquarters_location;
+        return isset($this->headquarters_location) ? $this->headquarters_location : null;
+    }
+
+    public function hasHeadquartersLocation()
+    {
+        return isset($this->headquarters_location);
+    }
+
+    public function clearHeadquartersLocation()
+    {
+        unset($this->headquarters_location);
     }
 
     /**

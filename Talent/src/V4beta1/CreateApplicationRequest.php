@@ -91,7 +91,17 @@ class CreateApplicationRequest extends \Google\Protobuf\Internal\Message
      */
     public function getApplication()
     {
-        return $this->application;
+        return isset($this->application) ? $this->application : null;
+    }
+
+    public function hasApplication()
+    {
+        return isset($this->application);
+    }
+
+    public function clearApplication()
+    {
+        unset($this->application);
     }
 
     /**

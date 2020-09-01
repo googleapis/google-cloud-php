@@ -130,7 +130,17 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
      */
     public function getStartDate()
     {
-        return $this->start_date;
+        return isset($this->start_date) ? $this->start_date : null;
+    }
+
+    public function hasStartDate()
+    {
+        return isset($this->start_date);
+    }
+
+    public function clearStartDate()
+    {
+        unset($this->start_date);
     }
 
     /**
@@ -156,7 +166,17 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
      */
     public function getEndDate()
     {
-        return $this->end_date;
+        return isset($this->end_date) ? $this->end_date : null;
+    }
+
+    public function hasEndDate()
+    {
+        return isset($this->end_date);
+    }
+
+    public function clearEndDate()
+    {
+        unset($this->end_date);
     }
 
     /**
@@ -182,7 +202,17 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
      */
     public function getExpectedGraduationDate()
     {
-        return $this->expected_graduation_date;
+        return isset($this->expected_graduation_date) ? $this->expected_graduation_date : null;
+    }
+
+    public function hasExpectedGraduationDate()
+    {
+        return isset($this->expected_graduation_date);
+    }
+
+    public function clearExpectedGraduationDate()
+    {
+        unset($this->expected_graduation_date);
     }
 
     /**
@@ -238,7 +268,17 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
      */
     public function getAddress()
     {
-        return $this->address;
+        return isset($this->address) ? $this->address : null;
+    }
+
+    public function hasAddress()
+    {
+        return isset($this->address);
+    }
+
+    public function clearAddress()
+    {
+        unset($this->address);
     }
 
     /**
@@ -269,6 +309,11 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
         return $this->readOneof(6);
     }
 
+    public function hasDegreeDescription()
+    {
+        return $this->hasOneof(6);
+    }
+
     /**
      * The full description of the degree.
      * For example, "Master of Science in Computer Science", "B.S in Math".
@@ -295,6 +340,11 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
     public function getStructuredDegree()
     {
         return $this->readOneof(7);
+    }
+
+    public function hasStructuredDegree()
+    {
+        return $this->hasOneof(7);
     }
 
     /**
@@ -348,7 +398,17 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
      */
     public function getIsCurrent()
     {
-        return $this->is_current;
+        return isset($this->is_current) ? $this->is_current : null;
+    }
+
+    public function hasIsCurrent()
+    {
+        return isset($this->is_current);
+    }
+
+    public function clearIsCurrent()
+    {
+        unset($this->is_current);
     }
 
     /**

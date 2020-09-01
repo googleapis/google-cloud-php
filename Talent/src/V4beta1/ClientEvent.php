@@ -142,7 +142,17 @@ class ClientEvent extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return $this->create_time;
+        return isset($this->create_time) ? $this->create_time : null;
+    }
+
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
     }
 
     /**
@@ -172,6 +182,11 @@ class ClientEvent extends \Google\Protobuf\Internal\Message
         return $this->readOneof(5);
     }
 
+    public function hasJobEvent()
+    {
+        return $this->hasOneof(5);
+    }
+
     /**
      * An event issued when a job seeker interacts with the application that
      * implements Cloud Talent Solution.
@@ -198,6 +213,11 @@ class ClientEvent extends \Google\Protobuf\Internal\Message
     public function getProfileEvent()
     {
         return $this->readOneof(6);
+    }
+
+    public function hasProfileEvent()
+    {
+        return $this->hasOneof(6);
     }
 
     /**

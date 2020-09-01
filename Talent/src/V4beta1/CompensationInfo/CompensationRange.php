@@ -66,7 +66,17 @@ class CompensationRange extends \Google\Protobuf\Internal\Message
      */
     public function getMaxCompensation()
     {
-        return $this->max_compensation;
+        return isset($this->max_compensation) ? $this->max_compensation : null;
+    }
+
+    public function hasMaxCompensation()
+    {
+        return isset($this->max_compensation);
+    }
+
+    public function clearMaxCompensation()
+    {
+        unset($this->max_compensation);
     }
 
     /**
@@ -97,7 +107,17 @@ class CompensationRange extends \Google\Protobuf\Internal\Message
      */
     public function getMinCompensation()
     {
-        return $this->min_compensation;
+        return isset($this->min_compensation) ? $this->min_compensation : null;
+    }
+
+    public function hasMinCompensation()
+    {
+        return isset($this->min_compensation);
+    }
+
+    public function clearMinCompensation()
+    {
+        unset($this->min_compensation);
     }
 
     /**

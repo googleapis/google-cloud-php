@@ -94,7 +94,7 @@ class JobEvent extends \Google\Protobuf\Internal\Message
      */
     public function setType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4beta1\JobEvent_JobEventType::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4beta1\JobEvent\JobEventType::class);
         $this->type = $var;
 
         return $this;

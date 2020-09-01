@@ -533,7 +533,17 @@ class Company extends \Google\Protobuf\Internal\Message
      */
     public function getDerivedInfo()
     {
-        return $this->derived_info;
+        return isset($this->derived_info) ? $this->derived_info : null;
+    }
+
+    public function hasDerivedInfo()
+    {
+        return isset($this->derived_info);
+    }
+
+    public function clearDerivedInfo()
+    {
+        unset($this->derived_info);
     }
 
     /**
@@ -545,7 +555,7 @@ class Company extends \Google\Protobuf\Internal\Message
      */
     public function setDerivedInfo($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Talent\V4beta1\Company_DerivedInfo::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Talent\V4beta1\Company\DerivedInfo::class);
         $this->derived_info = $var;
 
         return $this;

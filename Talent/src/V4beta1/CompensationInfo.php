@@ -114,7 +114,17 @@ class CompensationInfo extends \Google\Protobuf\Internal\Message
      */
     public function getAnnualizedBaseCompensationRange()
     {
-        return $this->annualized_base_compensation_range;
+        return isset($this->annualized_base_compensation_range) ? $this->annualized_base_compensation_range : null;
+    }
+
+    public function hasAnnualizedBaseCompensationRange()
+    {
+        return isset($this->annualized_base_compensation_range);
+    }
+
+    public function clearAnnualizedBaseCompensationRange()
+    {
+        unset($this->annualized_base_compensation_range);
     }
 
     /**
@@ -129,7 +139,7 @@ class CompensationInfo extends \Google\Protobuf\Internal\Message
      */
     public function setAnnualizedBaseCompensationRange($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Talent\V4beta1\CompensationInfo_CompensationRange::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Talent\V4beta1\CompensationInfo\CompensationRange::class);
         $this->annualized_base_compensation_range = $var;
 
         return $this;
@@ -146,7 +156,17 @@ class CompensationInfo extends \Google\Protobuf\Internal\Message
      */
     public function getAnnualizedTotalCompensationRange()
     {
-        return $this->annualized_total_compensation_range;
+        return isset($this->annualized_total_compensation_range) ? $this->annualized_total_compensation_range : null;
+    }
+
+    public function hasAnnualizedTotalCompensationRange()
+    {
+        return isset($this->annualized_total_compensation_range);
+    }
+
+    public function clearAnnualizedTotalCompensationRange()
+    {
+        unset($this->annualized_total_compensation_range);
     }
 
     /**
@@ -161,7 +181,7 @@ class CompensationInfo extends \Google\Protobuf\Internal\Message
      */
     public function setAnnualizedTotalCompensationRange($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Talent\V4beta1\CompensationInfo_CompensationRange::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Talent\V4beta1\CompensationInfo\CompensationRange::class);
         $this->annualized_total_compensation_range = $var;
 
         return $this;

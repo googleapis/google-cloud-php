@@ -119,7 +119,7 @@ class Phone extends \Google\Protobuf\Internal\Message
      */
     public function setType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4beta1\Phone_PhoneType::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4beta1\Phone\PhoneType::class);
         $this->type = $var;
 
         return $this;

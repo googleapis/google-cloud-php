@@ -105,7 +105,7 @@ class EmployerFilter extends \Google\Protobuf\Internal\Message
      */
     public function setMode($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4beta1\EmployerFilter_EmployerFilterMode::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4beta1\EmployerFilter\EmployerFilterMode::class);
         $this->mode = $var;
 
         return $this;

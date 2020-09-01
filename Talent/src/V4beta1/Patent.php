@@ -205,7 +205,17 @@ class Patent extends \Google\Protobuf\Internal\Message
      */
     public function getPatentStatusDate()
     {
-        return $this->patent_status_date;
+        return isset($this->patent_status_date) ? $this->patent_status_date : null;
+    }
+
+    public function hasPatentStatusDate()
+    {
+        return isset($this->patent_status_date);
+    }
+
+    public function clearPatentStatusDate()
+    {
+        unset($this->patent_status_date);
     }
 
     /**
@@ -231,7 +241,17 @@ class Patent extends \Google\Protobuf\Internal\Message
      */
     public function getPatentFilingDate()
     {
-        return $this->patent_filing_date;
+        return isset($this->patent_filing_date) ? $this->patent_filing_date : null;
+    }
+
+    public function hasPatentFilingDate()
+    {
+        return isset($this->patent_filing_date);
+    }
+
+    public function clearPatentFilingDate()
+    {
+        unset($this->patent_filing_date);
     }
 
     /**
