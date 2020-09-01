@@ -59,7 +59,17 @@ class UpdateJobRequest extends \Google\Protobuf\Internal\Message
      */
     public function getJob()
     {
-        return $this->job;
+        return isset($this->job) ? $this->job : null;
+    }
+
+    public function hasJob()
+    {
+        return isset($this->job);
+    }
+
+    public function clearJob()
+    {
+        unset($this->job);
     }
 
     /**
@@ -87,7 +97,17 @@ class UpdateJobRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return $this->update_mask;
+        return isset($this->update_mask) ? $this->update_mask : null;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**
