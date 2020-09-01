@@ -31,12 +31,24 @@
 namespace Google\Cloud\Bigtable\Admin\V2;
 
 use Google\Cloud\Bigtable\Admin\V2\Gapic\BigtableTableAdminGapicClient;
+use Google\Cloud\Bigtable\EmulatorSupportTrait;
 
 /**
  * {@inheritdoc}
  */
 class BigtableTableAdminClient extends BigtableTableAdminGapicClient
 {
-    // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see BigtableTableAdminGapicClient} class.
+    use EmulatorSupportTrait;
+
+    /**
+     * Constructor.
+     *
+     * @param array $options
+     * @throws \Google\ApiCore\ValidationException
+     */
+    public function __construct(array $options = [])
+    {
+        $options = $this->setEmulatorOptions($options);
+        parent::__construct($options);
+    }
 }
