@@ -67,7 +67,7 @@ class AggregationInfo extends \Google\Protobuf\Internal\Message
      */
     public function setAggregationLevel($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Billing\V1\AggregationInfo_AggregationLevel::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Billing\V1\AggregationInfo\AggregationLevel::class);
         $this->aggregation_level = $var;
 
         return $this;
@@ -89,7 +89,7 @@ class AggregationInfo extends \Google\Protobuf\Internal\Message
      */
     public function setAggregationInterval($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Billing\V1\AggregationInfo_AggregationInterval::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Billing\V1\AggregationInfo\AggregationInterval::class);
         $this->aggregation_interval = $var;
 
         return $this;

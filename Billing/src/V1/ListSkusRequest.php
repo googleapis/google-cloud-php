@@ -148,7 +148,17 @@ class ListSkusRequest extends \Google\Protobuf\Internal\Message
      */
     public function getStartTime()
     {
-        return $this->start_time;
+        return isset($this->start_time) ? $this->start_time : null;
+    }
+
+    public function hasStartTime()
+    {
+        return isset($this->start_time);
+    }
+
+    public function clearStartTime()
+    {
+        unset($this->start_time);
     }
 
     /**
@@ -184,7 +194,17 @@ class ListSkusRequest extends \Google\Protobuf\Internal\Message
      */
     public function getEndTime()
     {
-        return $this->end_time;
+        return isset($this->end_time) ? $this->end_time : null;
+    }
+
+    public function hasEndTime()
+    {
+        return isset($this->end_time);
+    }
+
+    public function clearEndTime()
+    {
+        unset($this->end_time);
     }
 
     /**

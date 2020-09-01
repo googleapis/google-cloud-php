@@ -86,7 +86,17 @@ class UpdateProjectBillingInfoRequest extends \Google\Protobuf\Internal\Message
      */
     public function getProjectBillingInfo()
     {
-        return $this->project_billing_info;
+        return isset($this->project_billing_info) ? $this->project_billing_info : null;
+    }
+
+    public function hasProjectBillingInfo()
+    {
+        return isset($this->project_billing_info);
+    }
+
+    public function clearProjectBillingInfo()
+    {
+        unset($this->project_billing_info);
     }
 
     /**
