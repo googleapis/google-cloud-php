@@ -1,5 +1,481 @@
 # Changelog
 
+## 0.139.0
+
+<details><summary>google/cloud-bigquery 1.16.1</summary>
+
+
+
+### Documentation
+
+* add accurate description to job configuration methods ([#3291](https://www.github.com/googleapis/google-cloud-php/issues/3291)) ([50af9a8](https://www.github.com/googleapis/google-cloud-php/commit/50af9a81978e9f402f83870cd21dcf9b0debd71e))
+
+</details>
+
+<details><summary>google/cloud-bigquery-connection 0.2.0</summary>
+
+
+
+### Features
+
+* regenerate with proto v3.13.0 ([78002e6](https://www.github.com/googleapis/google-cloud-php/commit/78002e689294aa2cc4fe8dc3d65aa5a8d17d32dc))
+
+
+### Miscellaneous Chores
+
+* add .repo-metadata.json to bigquery libraries ([#3293](https://www.github.com/googleapis/google-cloud-php/issues/3293)) ([5629e92](https://www.github.com/googleapis/google-cloud-php/commit/5629e92953158182e7bc313cc05bb9722f10c05c))
+
+</details>
+
+<details><summary>google/cloud-bigquerydatatransfer 1.2.0</summary>
+
+
+
+### Features
+
+* regenerate with protoc v3.13.0 ([#3302](https://www.github.com/googleapis/google-cloud-php/issues/3302)) ([7a8a478](https://www.github.com/googleapis/google-cloud-php/commit/7a8a478b35bb53446d2cd9d4a8ae6fef22d0546f))
+
+</details>
+
+<details><summary>google/cloud-bigquery-reservation 0.2.0</summary>
+
+
+
+### Features
+
+* regenerate with protoc v3.13.0 ([#3303](https://www.github.com/googleapis/google-cloud-php/issues/3303)) ([6d37ea3](https://www.github.com/googleapis/google-cloud-php/commit/6d37ea32526afde7325a4ff711c29768882f3ded))
+
+
+### Miscellaneous Chores
+
+* add .repo-metadata.json to bigquery libraries ([#3293](https://www.github.com/googleapis/google-cloud-php/issues/3293)) ([5629e92](https://www.github.com/googleapis/google-cloud-php/commit/5629e92953158182e7bc313cc05bb9722f10c05c))
+
+</details>
+
+<details><summary>google/cloud-bigquery-storage 1.0.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* move clients from beta to GA (#3364)
+
+### Features
+
+* move clients from beta to GA ([#3364](https://www.github.com/googleapis/google-cloud-php/issues/3364)) ([cbefe7f](https://www.github.com/googleapis/google-cloud-php/commit/cbefe7f66af4709fa383b3c767ae6d35a8523760))
+* regenerate with protoc v3.13.0 ([#3304](https://www.github.com/googleapis/google-cloud-php/issues/3304)) ([15752f6](https://www.github.com/googleapis/google-cloud-php/commit/15752f697b3e4f1d470323f86a83088872bdd3a0))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.5.0</summary>
+
+
+
+### Features
+
+* regenerate with protoc v3.13.0 ([#3305](https://www.github.com/googleapis/google-cloud-php/issues/3305)) ([b2ecb9e](https://www.github.com/googleapis/google-cloud-php/commit/b2ecb9ede03458515690c35c6adba4925f632afd))
+
+</details>
+
+<details><summary>google/cloud-billing 1.2.0</summary>
+
+
+
+### Features
+
+* regenerate with protoc v3.13.0 ([#3306](https://www.github.com/googleapis/google-cloud-php/issues/3306)) ([b647ed3](https://www.github.com/googleapis/google-cloud-php/commit/b647ed3cfb5a7f8f841b756e9aac1a58d3f5df96))
+
+</details>
+
+<details><summary>google/cloud-container 1.2.0</summary>
+
+
+
+### Features
+
+* regenerate with protoc v3.13.0 ([#3307](https://www.github.com/googleapis/google-cloud-php/issues/3307)) ([f7b7839](https://www.github.com/googleapis/google-cloud-php/commit/f7b7839132b8d5817e9c7a79b9f5bbba19329710))
+
+</details>
+
+<details><summary>google/cloud-core 1.39.0</summary>
+
+
+
+### Features
+
+* pass retryAttempt to all retryFunction calls ([#3290](https://www.github.com/googleapis/google-cloud-php/issues/3290)) ([183e795](https://www.github.com/googleapis/google-cloud-php/commit/183e795ce8a599f7f736ac3f0a0eaa14ddc4c2cb))
+
+</details>
+
+<details><summary>google/cloud-data-catalog 1.0.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* move clients from beta to GA (#3364)
+
+### Features
+
+* move clients from beta to GA ([#3364](https://www.github.com/googleapis/google-cloud-php/issues/3364)) ([cbefe7f](https://www.github.com/googleapis/google-cloud-php/commit/cbefe7f66af4709fa383b3c767ae6d35a8523760))
+* regenerate with protoc v3.13.0 ([#3308](https://www.github.com/googleapis/google-cloud-php/issues/3308)) ([54cc3b4](https://www.github.com/googleapis/google-cloud-php/commit/54cc3b4a9e83b07775693ea4dbddace6f977e546))
+
+</details>
+
+<details><summary>google/cloud-dataproc 1.3.0</summary>
+
+
+
+### Features
+
+* regenerate with protoc v3.13.0 ([#3309](https://www.github.com/googleapis/google-cloud-php/issues/3309)) ([7865929](https://www.github.com/googleapis/google-cloud-php/commit/78659295f89534bcaa1fd76c21d57e7f47c202d5))
+
+</details>
+
+<details><summary>google/cloud-datastore 1.12.0</summary>
+
+
+
+### Features
+
+* regenerate with protoc v3.13.0 ([#3310](https://www.github.com/googleapis/google-cloud-php/issues/3310)) ([1d3bb26](https://www.github.com/googleapis/google-cloud-php/commit/1d3bb26336de868e9b851e5d91f44a4670a5e1df))
+
+</details>
+
+<details><summary>google/cloud-debugger 1.3.0</summary>
+
+
+
+### Features
+
+* regenerate with protoc v3.13.0 ([#3311](https://www.github.com/googleapis/google-cloud-php/issues/3311)) ([fd88b78](https://www.github.com/googleapis/google-cloud-php/commit/fd88b78c572efcad2a7683e7784e49234050ed52))
+
+
+### Miscellaneous Chores
+
+* **deps:** update dependency google/cloud-tools to ^0.11.0 ([#3363](https://www.github.com/googleapis/google-cloud-php/issues/3363)) ([8038912](https://www.github.com/googleapis/google-cloud-php/commit/8038912ee2d97999dcdf9786e47198b6cafe844d))
+
+</details>
+
+<details><summary>google/cloud-dlp 1.0.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* move clients from beta to GA (#3364)
+
+### Features
+
+* move clients from beta to GA ([#3364](https://www.github.com/googleapis/google-cloud-php/issues/3364)) ([cbefe7f](https://www.github.com/googleapis/google-cloud-php/commit/cbefe7f66af4709fa383b3c767ae6d35a8523760))
+* regenerate with protoc v3.13.0 ([#3312](https://www.github.com/googleapis/google-cloud-php/issues/3312)) ([58d37ad](https://www.github.com/googleapis/google-cloud-php/commit/58d37ad4d4363de2180e0af92035955056c16f1d))
+
+</details>
+
+<details><summary>google/cloud-error-reporting 0.18.0</summary>
+
+
+
+### Features
+
+* regenerate with protoc v3.13.0 ([#3313](https://www.github.com/googleapis/google-cloud-php/issues/3313)) ([38b4266](https://www.github.com/googleapis/google-cloud-php/commit/38b426676f75c90782cd33c5f83834e9ccaed430))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.15.0</summary>
+
+
+
+### Features
+
+* retry CommitRequests that fail with UNAVAILABLE ([#3146](https://www.github.com/googleapis/google-cloud-php/issues/3146)) ([6690d04](https://www.github.com/googleapis/google-cloud-php/commit/6690d04330f4075db0d989c04e1f0fbc9ecfa990))
+
+
+### Bug Fixes
+
+* preserve empty arrays when using set() with merge enabled ([#3344](https://www.github.com/googleapis/google-cloud-php/issues/3344)) ([5fc5171](https://www.github.com/googleapis/google-cloud-php/commit/5fc5171fc9e7fc221a116ef3739157c07410d6f2))
+
+</details>
+
+<details><summary>google/cloud-iot 1.3.0</summary>
+
+
+
+### Features
+
+* regenerate with protoc v3.13.0 ([#3314](https://www.github.com/googleapis/google-cloud-php/issues/3314)) ([02fe237](https://www.github.com/googleapis/google-cloud-php/commit/02fe237c0ca04613fb96ea9f511cf8a887be6f76))
+
+</details>
+
+<details><summary>google/cloud-kms 1.11.0</summary>
+
+
+
+### Features
+
+* add client integrity verification fields to the KMS protos ([#3292](https://www.github.com/googleapis/google-cloud-php/issues/3292)) ([f113bc1](https://www.github.com/googleapis/google-cloud-php/commit/f113bc1faad39f0e681bfe709684f81f37d8a422))
+* regenerate with protoc v3.13.0 ([#3341](https://www.github.com/googleapis/google-cloud-php/issues/3341)) ([de500b5](https://www.github.com/googleapis/google-cloud-php/commit/de500b5c1d77b9a660e929a86a47cfca24788ad7))
+
+</details>
+
+<details><summary>google/cloud-language 0.24.0</summary>
+
+
+
+### Features
+
+* regenerate with protoc v3.13.0 ([#3315](https://www.github.com/googleapis/google-cloud-php/issues/3315)) ([ed3591a](https://www.github.com/googleapis/google-cloud-php/commit/ed3591a66f8ea709b66fcc0acde6374295dd0a73))
+
+</details>
+
+<details><summary>google/cloud-memcache 0.3.0</summary>
+
+
+
+### Features
+
+* regenerate with protoc v3.13.0 ([#3316](https://www.github.com/googleapis/google-cloud-php/issues/3316)) ([b0189d3](https://www.github.com/googleapis/google-cloud-php/commit/b0189d3b396ec44add0b8d5ffa86244d581679c4))
+
+</details>
+
+<details><summary>google/cloud-osconfig 0.1.0</summary>
+
+
+
+### Features
+
+* introduce osconfig client ([#3339](https://www.github.com/googleapis/google-cloud-php/issues/3339)) ([3098a34](https://www.github.com/googleapis/google-cloud-php/commit/3098a34a695353c392bf9de21a208a6c43da5f1a))
+* regenerate with protoc v3.13.0 ([#3342](https://www.github.com/googleapis/google-cloud-php/issues/3342)) ([b32c320](https://www.github.com/googleapis/google-cloud-php/commit/b32c3203ec09f495bf027706c124257a25e5597c))
+
+</details>
+
+<details><summary>google/cloud-oslogin 1.2.0</summary>
+
+
+
+### Features
+
+* regenerate with protoc v3.13.0 ([#3317](https://www.github.com/googleapis/google-cloud-php/issues/3317)) ([af1c703](https://www.github.com/googleapis/google-cloud-php/commit/af1c703949fdfaba36f4a615f575c15fbeef42d4))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.28.0</summary>
+
+
+
+### Features
+
+* regenerate with protoc v3.13.0 ([#3318](https://www.github.com/googleapis/google-cloud-php/issues/3318)) ([806db87](https://www.github.com/googleapis/google-cloud-php/commit/806db877b6229b918d6dd54b0eae38302d5b80e2))
+
+</details>
+
+<details><summary>google/cloud-recaptcha-enterprise 1.0.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* move clients from beta to GA (#3364)
+
+### Features
+
+* move clients from beta to GA ([#3364](https://www.github.com/googleapis/google-cloud-php/issues/3364)) ([cbefe7f](https://www.github.com/googleapis/google-cloud-php/commit/cbefe7f66af4709fa383b3c767ae6d35a8523760))
+* regenerate with protoc v3.13.0 ([#3319](https://www.github.com/googleapis/google-cloud-php/issues/3319)) ([7261ae5](https://www.github.com/googleapis/google-cloud-php/commit/7261ae5d5af2bd8939f1004e7453d6cc60957c85))
+
+</details>
+
+<details><summary>google/cloud-recommender 1.2.0</summary>
+
+
+
+### Features
+
+* regenerate with protoc v3.13.0 ([#3320](https://www.github.com/googleapis/google-cloud-php/issues/3320)) ([dc3b272](https://www.github.com/googleapis/google-cloud-php/commit/dc3b27251632407d89dcb4179f42b4b7b4ffa258))
+
+</details>
+
+<details><summary>google/cloud-redis 1.2.0</summary>
+
+
+
+### Features
+
+* regenerate with protoc v3.13.0 ([#3321](https://www.github.com/googleapis/google-cloud-php/issues/3321)) ([6b8a740](https://www.github.com/googleapis/google-cloud-php/commit/6b8a740ed5dcdc822d82b2c29cc5b489a211ad4d))
+
+</details>
+
+<details><summary>google/cloud-scheduler 1.5.0</summary>
+
+
+
+### Features
+
+* regenerate with protoc v3.13.0 ([#3322](https://www.github.com/googleapis/google-cloud-php/issues/3322)) ([9dae370](https://www.github.com/googleapis/google-cloud-php/commit/9dae370fcefd505f4a7af100f5bd307b46466876))
+
+</details>
+
+<details><summary>google/cloud-security-center 1.0.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* move clients from beta to GA (#3364)
+
+### Features
+
+* added field severity to findings ([#3297](https://www.github.com/googleapis/google-cloud-php/issues/3297)) ([d510e10](https://www.github.com/googleapis/google-cloud-php/commit/d510e10f12b1d78cef877ec4e74b67011d65af15))
+* move clients from beta to GA ([#3364](https://www.github.com/googleapis/google-cloud-php/issues/3364)) ([cbefe7f](https://www.github.com/googleapis/google-cloud-php/commit/cbefe7f66af4709fa383b3c767ae6d35a8523760))
+* regenerate with protoc v3.13.0 ([#3343](https://www.github.com/googleapis/google-cloud-php/issues/3343)) ([6664f96](https://www.github.com/googleapis/google-cloud-php/commit/6664f9662b098db1b93f840bedf6950f92f76675))
+
+</details>
+
+<details><summary>google/cloud-service-directory 0.3.0</summary>
+
+
+
+### Features
+
+* regenerate with protoc v3.13.0 ([#3323](https://www.github.com/googleapis/google-cloud-php/issues/3323)) ([a60cb6f](https://www.github.com/googleapis/google-cloud-php/commit/a60cb6ff20630c802955bc663b34c29385ec989a))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.31.0</summary>
+
+
+
+### Features
+
+* regenerate with protoc v3.13.0 ([#3324](https://www.github.com/googleapis/google-cloud-php/issues/3324)) ([a434786](https://www.github.com/googleapis/google-cloud-php/commit/a43478630c1f0b6874251287e3002315369ee8fa))
+
+
+### Bug Fixes
+
+* correctly set google-cloud-resource-prefix headers ([#3276](https://www.github.com/googleapis/google-cloud-php/issues/3276)) ([bb8d699](https://www.github.com/googleapis/google-cloud-php/commit/bb8d69939c464aee3e0705bd5ba60b8befb76ffc))
+
+</details>
+
+<details><summary>google/cloud-speech 1.3.0</summary>
+
+
+
+### Features
+
+* regenerate with protoc v3.13.0 ([#3325](https://www.github.com/googleapis/google-cloud-php/issues/3325)) ([b654710](https://www.github.com/googleapis/google-cloud-php/commit/b65471051157ff395dc391f069db94b1ca025e42))
+
+</details>
+
+<details><summary>google/cloud-storage 1.23.0</summary>
+
+
+
+### Features
+
+* add support for noncurrent and custom time lifecycle rules ([#3153](https://www.github.com/googleapis/google-cloud-php/issues/3153)) ([dd85aad](https://www.github.com/googleapis/google-cloud-php/commit/dd85aade5498ec0723587b3cf4a82f96d7e615ff))
+* support fflush() and append mode in StreamWrapper ([#3108](https://www.github.com/googleapis/google-cloud-php/issues/3108)) ([58ec8a3](https://www.github.com/googleapis/google-cloud-php/commit/58ec8a3cd9280082ad5701c3522326b7b2748693))
+
+</details>
+
+<details><summary>google/cloud-talent 0.14.0</summary>
+
+
+
+### Features
+
+* regenerate with protoc v3.13.0 ([#3326](https://www.github.com/googleapis/google-cloud-php/issues/3326)) ([09e42c7](https://www.github.com/googleapis/google-cloud-php/commit/09e42c78f37a05b388451bb21f37d184bfb39a97))
+
+</details>
+
+<details><summary>google/cloud-tasks 1.8.0</summary>
+
+
+
+### Features
+
+* regenerate with protoc v3.13.0 ([#3327](https://www.github.com/googleapis/google-cloud-php/issues/3327)) ([a87190f](https://www.github.com/googleapis/google-cloud-php/commit/a87190f3262131c9f29b674cffc34d65e74d2f77))
+
+</details>
+
+<details><summary>google/cloud-text-to-speech 1.2.0</summary>
+
+
+
+### Features
+
+* regenerate with protoc v3.13.0 ([#3349](https://www.github.com/googleapis/google-cloud-php/issues/3349)) ([bf734d2](https://www.github.com/googleapis/google-cloud-php/commit/bf734d266898853bc4c32485c46439ddda4cf1b4))
+
+
+### Miscellaneous Chores
+
+* escape `*` characters in comments ([#3286](https://www.github.com/googleapis/google-cloud-php/issues/3286)) ([62944c9](https://www.github.com/googleapis/google-cloud-php/commit/62944c932f1549eff1466ae6dcd696350eb53296))
+
+</details>
+
+<details><summary>google/cloud-trace 1.3.0</summary>
+
+
+
+### Features
+
+* regenerate with protoc v3.13.0 ([#3328](https://www.github.com/googleapis/google-cloud-php/issues/3328)) ([99d56d6](https://www.github.com/googleapis/google-cloud-php/commit/99d56d6929fd3f7a3cae9c71c1c2f4fa2bcbcef3))
+
+</details>
+
+<details><summary>google/cloud-translate 1.9.0</summary>
+
+
+
+### Features
+
+* regenerate with protoc v3.13.0 ([#3329](https://www.github.com/googleapis/google-cloud-php/issues/3329)) ([986b974](https://www.github.com/googleapis/google-cloud-php/commit/986b974c83c5cc5eac2e3fa5af1d855fb9825dd7))
+
+</details>
+
+<details><summary>google/cloud-videointelligence 1.10.0</summary>
+
+
+
+### Features
+
+* regenerate with protoc v3.13.0 ([#3330](https://www.github.com/googleapis/google-cloud-php/issues/3330)) ([1ae1f57](https://www.github.com/googleapis/google-cloud-php/commit/1ae1f57067e3113baa44820128ed16549746550a))
+
+</details>
+
+<details><summary>google/cloud-vision 1.2.0</summary>
+
+
+
+### Features
+
+* regenerate with protoc v3.13.0 ([#3331](https://www.github.com/googleapis/google-cloud-php/issues/3331)) ([fd2a022](https://www.github.com/googleapis/google-cloud-php/commit/fd2a02212c55b49ecd338192fe017d35e070132b))
+
+</details>
+
+<details><summary>google/cloud-web-risk 1.0.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* move clients from beta to GA (#3364)
+
+### Features
+
+* move clients from beta to GA ([#3364](https://www.github.com/googleapis/google-cloud-php/issues/3364)) ([cbefe7f](https://www.github.com/googleapis/google-cloud-php/commit/cbefe7f66af4709fa383b3c767ae6d35a8523760))
+* regenerate with protoc v3.13.0 ([#3332](https://www.github.com/googleapis/google-cloud-php/issues/3332)) ([8c5ea2e](https://www.github.com/googleapis/google-cloud-php/commit/8c5ea2e3faa4cba7f6b22bc7aa8f6d40e5d1e7ef))
+
+</details>
+
+<details><summary>google/cloud-web-security-scanner 0.6.0</summary>
+
+
+
+### Features
+
+* regenerate with protoc v3.13.0 ([#3333](https://www.github.com/googleapis/google-cloud-php/issues/3333)) ([30f699f](https://www.github.com/googleapis/google-cloud-php/commit/30f699fefb70620c88745bc1d74a2aadbf85c85c))
+
+</details>
+
 ## 0.138.0
 
 <details><summary>google/cloud-dataproc 1.2.0</summary>
