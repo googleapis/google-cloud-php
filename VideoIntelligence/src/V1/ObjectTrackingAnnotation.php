@@ -82,6 +82,11 @@ class ObjectTrackingAnnotation extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasSegment()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * Non-streaming batch mode ONLY.
      * Each object track corresponds to one video segment where it appears.
@@ -114,6 +119,11 @@ class ObjectTrackingAnnotation extends \Google\Protobuf\Internal\Message
         return $this->readOneof(5);
     }
 
+    public function hasTrackId()
+    {
+        return $this->hasOneof(5);
+    }
+
     /**
      * Streaming mode ONLY.
      * In streaming mode, we do not know the end time of a tracked object
@@ -142,7 +152,17 @@ class ObjectTrackingAnnotation extends \Google\Protobuf\Internal\Message
      */
     public function getEntity()
     {
-        return $this->entity;
+        return isset($this->entity) ? $this->entity : null;
+    }
+
+    public function hasEntity()
+    {
+        return isset($this->entity);
+    }
+
+    public function clearEntity()
+    {
+        unset($this->entity);
     }
 
     /**

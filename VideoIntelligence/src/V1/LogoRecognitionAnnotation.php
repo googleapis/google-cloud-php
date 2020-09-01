@@ -68,7 +68,17 @@ class LogoRecognitionAnnotation extends \Google\Protobuf\Internal\Message
      */
     public function getEntity()
     {
-        return $this->entity;
+        return isset($this->entity) ? $this->entity : null;
+    }
+
+    public function hasEntity()
+    {
+        return isset($this->entity);
+    }
+
+    public function clearEntity()
+    {
+        unset($this->entity);
     }
 
     /**

@@ -111,7 +111,17 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      */
     public function getLabelDetectionConfig()
     {
-        return $this->label_detection_config;
+        return isset($this->label_detection_config) ? $this->label_detection_config : null;
+    }
+
+    public function hasLabelDetectionConfig()
+    {
+        return isset($this->label_detection_config);
+    }
+
+    public function clearLabelDetectionConfig()
+    {
+        unset($this->label_detection_config);
     }
 
     /**
@@ -137,7 +147,17 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      */
     public function getShotChangeDetectionConfig()
     {
-        return $this->shot_change_detection_config;
+        return isset($this->shot_change_detection_config) ? $this->shot_change_detection_config : null;
+    }
+
+    public function hasShotChangeDetectionConfig()
+    {
+        return isset($this->shot_change_detection_config);
+    }
+
+    public function clearShotChangeDetectionConfig()
+    {
+        unset($this->shot_change_detection_config);
     }
 
     /**
@@ -163,7 +183,17 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      */
     public function getExplicitContentDetectionConfig()
     {
-        return $this->explicit_content_detection_config;
+        return isset($this->explicit_content_detection_config) ? $this->explicit_content_detection_config : null;
+    }
+
+    public function hasExplicitContentDetectionConfig()
+    {
+        return isset($this->explicit_content_detection_config);
+    }
+
+    public function clearExplicitContentDetectionConfig()
+    {
+        unset($this->explicit_content_detection_config);
     }
 
     /**
@@ -189,7 +219,17 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      */
     public function getFaceDetectionConfig()
     {
-        return $this->face_detection_config;
+        return isset($this->face_detection_config) ? $this->face_detection_config : null;
+    }
+
+    public function hasFaceDetectionConfig()
+    {
+        return isset($this->face_detection_config);
+    }
+
+    public function clearFaceDetectionConfig()
+    {
+        unset($this->face_detection_config);
     }
 
     /**

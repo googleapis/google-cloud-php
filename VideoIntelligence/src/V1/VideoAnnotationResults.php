@@ -217,7 +217,17 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      */
     public function getSegment()
     {
-        return $this->segment;
+        return isset($this->segment) ? $this->segment : null;
+    }
+
+    public function hasSegment()
+    {
+        return isset($this->segment);
+    }
+
+    public function clearSegment()
+    {
+        unset($this->segment);
     }
 
     /**
@@ -449,7 +459,17 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      */
     public function getExplicitAnnotation()
     {
-        return $this->explicit_annotation;
+        return isset($this->explicit_annotation) ? $this->explicit_annotation : null;
+    }
+
+    public function hasExplicitAnnotation()
+    {
+        return isset($this->explicit_annotation);
+    }
+
+    public function clearExplicitAnnotation()
+    {
+        unset($this->explicit_annotation);
     }
 
     /**
@@ -584,7 +604,17 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      */
     public function getError()
     {
-        return $this->error;
+        return isset($this->error) ? $this->error : null;
+    }
+
+    public function hasError()
+    {
+        return isset($this->error);
+    }
+
+    public function clearError()
+    {
+        unset($this->error);
     }
 
     /**
