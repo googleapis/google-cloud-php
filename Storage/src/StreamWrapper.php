@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Storage;
 
+use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Storage\Bucket;
 use GuzzleHttp\Psr7\CachingStream;
@@ -24,7 +25,7 @@ use GuzzleHttp\Psr7;
 
 /**
  * A streamWrapper implementation for handling `gs://bucket/path/to/file.jpg`.
- * Note that you can only open a file with mode 'r', 'rb', 'rb', 'w', 'wb', or 'wt'.
+ * Note that you can only open a file with mode 'r', 'rb', 'rt', 'w', 'wb', 'wt', 'a', 'ab', or 'at'.
  *
  * See: http://php.net/manual/en/class.streamwrapper.php
  */
@@ -37,8 +38,15 @@ class StreamWrapper
     const DIRECTORY_WRITABLE_MODE = 16895; // 40777 in octal
     const DIRECTORY_READABLE_MODE = 16676; // 40444 in octal
 
+    const TAIL_NAME_SUFFIX = '~';
+
     /**
      * @var resource|null Must be public according to the PHP documentation.
+     *
+     * Contains array of context options in form ['protocol' => ['option' => value]].
+     * Options used by StreamWrapper:
+     *
+     * flush (bool) `true`: fflush() will flush output buffer; `false`: fflush() will do nothing
      */
     public $context;
 
@@ -78,6 +86,31 @@ class StreamWrapper
      * @var StorageObject
      */
     private $object;
+
+    /**
+     * @var array Context options passed to stream_open(), used for append mode and flushing.
+     */
+    private $options = [];
+
+    /**
+     * @var bool `true`: fflush() will flush output buffer and redirect output to the "tail" object.
+     */
+    private $flushing = false;
+
+    /**
+     * @var string|null Content type for composed object. Will be filled on first composing.
+     */
+    private $contentType = null;
+
+    /**
+     * @var bool `true`: writing the "tail" object, next fflush() or fclose() will compose.
+     */
+    private $composing = false;
+
+    /**
+     * @var bool `true`: data has been written to the stream.
+     */
+    private $dirty = false;
 
     /**
      * Ensure we close the stream when this StreamWrapper is destroyed.
@@ -139,7 +172,7 @@ class StreamWrapper
      * download the file to see if it can be opened.
      *
      * @param string $path The path of the resource to open
-     * @param string $mode The fopen mode. Currently only supports ('r', 'rb', 'rt', 'w', 'wb', 'wt')
+     * @param string $mode The fopen mode. Currently supports ('r', 'rb', 'rt', 'w', 'wb', 'wt', 'a', 'ab', 'at')
      * @param int $flags Bitwise options STREAM_USE_PATH|STREAM_REPORT_ERRORS|STREAM_MUST_SEEK
      * @param string $openedPath Will be set to the path on success if STREAM_USE_PATH option is set
      * @return bool
@@ -157,6 +190,13 @@ class StreamWrapper
             if (array_key_exists($this->protocol, $contextOptions)) {
                 $options = $contextOptions[$this->protocol] ?: [];
             }
+
+            if (isset($options['flush'])) {
+                $this->flushing = (bool)$options['flush'];
+                unset($options['flush']);
+            }
+
+            $this->options = $options;
         }
 
         if ($mode == 'w') {
@@ -165,6 +205,24 @@ class StreamWrapper
                 $this->bucket->getStreamableUploader(
                     $this->stream,
                     $options + ['name' => $this->file]
+                )
+            );
+        } elseif ($mode == 'a') {
+            try {
+                $info = $this->bucket->object($this->file)->info();
+                $this->composing = ($info['size'] > 0);
+            } catch (NotFoundException $e) {
+            }
+
+            $this->stream = new WriteStream(null, $options);
+            $name = $this->file;
+            if ($this->composing) {
+                $name .= self::TAIL_NAME_SUFFIX;
+            }
+            $this->stream->setUploader(
+                $this->bucket->getStreamableUploader(
+                    $this->stream,
+                    $options + ['name' => $name]
                 )
             );
         } elseif ($mode == 'r') {
@@ -213,7 +271,9 @@ class StreamWrapper
      */
     public function stream_write($data)
     {
-        return $this->stream->write($data);
+        $result = $this->stream->write($data);
+        $this->dirty = $this->dirty || (bool)$result;
+        return $result;
     }
 
     /**
@@ -249,6 +309,18 @@ class StreamWrapper
     {
         if (isset($this->stream)) {
             $this->stream->close();
+        }
+
+        if ($this->composing) {
+            if ($this->dirty) {
+                $this->compose();
+                $this->dirty = false;
+            }
+            try {
+                $this->bucket->object($this->file . self::TAIL_NAME_SUFFIX)->delete();
+            } catch (NotFoundException $e) {
+            }
+            $this->composing = false;
         }
     }
 
@@ -529,6 +601,43 @@ class StreamWrapper
     }
 
     /**
+     * Callback handler for fflush() function.
+     *
+     * @return bool
+     */
+    public function stream_flush()
+    {
+        if (!$this->flushing) {
+            return false;
+        }
+
+        if (!$this->dirty) {
+            return true;
+        }
+
+        if (isset($this->stream)) {
+            $this->stream->close();
+        }
+
+        if ($this->composing) {
+            $this->compose();
+        }
+
+        $options = $this->options;
+        $this->stream = new WriteStream(null, $options);
+        $this->stream->setUploader(
+            $this->bucket->getStreamableUploader(
+                $this->stream,
+                $options + ['name' => $this->file . self::TAIL_NAME_SUFFIX]
+            )
+        );
+        $this->composing = true;
+        $this->dirty = false;
+
+        return true;
+    }
+
+    /**
      * Parse the URL and set protocol, filename and bucket.
      *
      * @param  string $path URL to open
@@ -718,5 +827,15 @@ class StreamWrapper
 
         // Otherwise, assume only the project/bucket owner can use the bucket.
         return 'private';
+    }
+
+    private function compose()
+    {
+        if (!isset($this->contentType)) {
+            $info = $this->bucket->object($this->file)->info();
+            $this->contentType = $info['contentType'] ?: 'application/octet-stream';
+        }
+        $options = ['destination' => ['contentType' => $this->contentType]];
+        $this->bucket->compose([$this->file, $this->file . self::TAIL_NAME_SUFFIX], $this->file, $options);
     }
 }
