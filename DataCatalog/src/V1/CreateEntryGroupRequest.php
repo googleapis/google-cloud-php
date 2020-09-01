@@ -134,7 +134,17 @@ class CreateEntryGroupRequest extends \Google\Protobuf\Internal\Message
      */
     public function getEntryGroup()
     {
-        return $this->entry_group;
+        return isset($this->entry_group) ? $this->entry_group : null;
+    }
+
+    public function hasEntryGroup()
+    {
+        return isset($this->entry_group);
+    }
+
+    public function clearEntryGroup()
+    {
+        unset($this->entry_group);
     }
 
     /**

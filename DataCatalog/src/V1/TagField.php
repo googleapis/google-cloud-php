@@ -103,6 +103,11 @@ class TagField extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasDoubleValue()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * Holds the value for a tag field with double type.
      *
@@ -127,6 +132,11 @@ class TagField extends \Google\Protobuf\Internal\Message
     public function getStringValue()
     {
         return $this->readOneof(3);
+    }
+
+    public function hasStringValue()
+    {
+        return $this->hasOneof(3);
     }
 
     /**
@@ -155,6 +165,11 @@ class TagField extends \Google\Protobuf\Internal\Message
         return $this->readOneof(4);
     }
 
+    public function hasBoolValue()
+    {
+        return $this->hasOneof(4);
+    }
+
     /**
      * Holds the value for a tag field with boolean type.
      *
@@ -179,6 +194,11 @@ class TagField extends \Google\Protobuf\Internal\Message
     public function getTimestampValue()
     {
         return $this->readOneof(5);
+    }
+
+    public function hasTimestampValue()
+    {
+        return $this->hasOneof(5);
     }
 
     /**
@@ -208,6 +228,11 @@ class TagField extends \Google\Protobuf\Internal\Message
         return $this->readOneof(6);
     }
 
+    public function hasEnumValue()
+    {
+        return $this->hasOneof(6);
+    }
+
     /**
      * Holds the value for a tag field with enum type. This value must be
      * one of the allowed values in the definition of this enum.
@@ -218,7 +243,7 @@ class TagField extends \Google\Protobuf\Internal\Message
      */
     public function setEnumValue($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\DataCatalog\V1\TagField_EnumValue::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\DataCatalog\V1\TagField\EnumValue::class);
         $this->writeOneof(6, $var);
 
         return $this;

@@ -225,6 +225,11 @@ class SearchCatalogResult extends \Google\Protobuf\Internal\Message
         return $this->readOneof(8);
     }
 
+    public function hasIntegratedSystem()
+    {
+        return $this->hasOneof(8);
+    }
+
     /**
      * Output only. This field indicates the entry's source system that Data Catalog
      * integrates with, such as BigQuery or Cloud Pub/Sub.
@@ -251,6 +256,11 @@ class SearchCatalogResult extends \Google\Protobuf\Internal\Message
     public function getUserSpecifiedSystem()
     {
         return $this->readOneof(9);
+    }
+
+    public function hasUserSpecifiedSystem()
+    {
+        return $this->hasOneof(9);
     }
 
     /**

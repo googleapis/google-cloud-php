@@ -43,6 +43,11 @@ class FieldType extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasPrimitiveType()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * Represents primitive types - string, bool etc.
      *
@@ -52,7 +57,7 @@ class FieldType extends \Google\Protobuf\Internal\Message
      */
     public function setPrimitiveType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\DataCatalog\V1\FieldType_PrimitiveType::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\DataCatalog\V1\FieldType\PrimitiveType::class);
         $this->writeOneof(1, $var);
 
         return $this;
@@ -69,6 +74,11 @@ class FieldType extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasEnumType()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * Represents an enum type.
      *
@@ -78,7 +88,7 @@ class FieldType extends \Google\Protobuf\Internal\Message
      */
     public function setEnumType($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\DataCatalog\V1\FieldType_EnumType::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\DataCatalog\V1\FieldType\EnumType::class);
         $this->writeOneof(2, $var);
 
         return $this;

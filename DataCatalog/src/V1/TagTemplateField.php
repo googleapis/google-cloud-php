@@ -147,7 +147,17 @@ class TagTemplateField extends \Google\Protobuf\Internal\Message
      */
     public function getType()
     {
-        return $this->type;
+        return isset($this->type) ? $this->type : null;
+    }
+
+    public function hasType()
+    {
+        return isset($this->type);
+    }
+
+    public function clearType()
+    {
+        unset($this->type);
     }
 
     /**

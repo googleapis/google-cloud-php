@@ -82,6 +82,11 @@ class BigQueryTableSpec extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasViewSpec()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * Table view specification. This field should only be populated if
      * `table_source_type` is `BIGQUERY_VIEW`.
@@ -108,6 +113,11 @@ class BigQueryTableSpec extends \Google\Protobuf\Internal\Message
     public function getTableSpec()
     {
         return $this->readOneof(3);
+    }
+
+    public function hasTableSpec()
+    {
+        return $this->hasOneof(3);
     }
 
     /**

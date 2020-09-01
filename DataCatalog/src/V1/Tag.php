@@ -189,6 +189,11 @@ class Tag extends \Google\Protobuf\Internal\Message
         return $this->readOneof(4);
     }
 
+    public function hasColumn()
+    {
+        return $this->hasOneof(4);
+    }
+
     /**
      * Resources like Entry can have schemas associated with them. This scope
      * allows users to attach tags to an individual column based on that schema.

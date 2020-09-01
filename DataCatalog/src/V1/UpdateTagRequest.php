@@ -56,7 +56,17 @@ class UpdateTagRequest extends \Google\Protobuf\Internal\Message
      */
     public function getTag()
     {
-        return $this->tag;
+        return isset($this->tag) ? $this->tag : null;
+    }
+
+    public function hasTag()
+    {
+        return isset($this->tag);
+    }
+
+    public function clearTag()
+    {
+        unset($this->tag);
     }
 
     /**
@@ -83,7 +93,17 @@ class UpdateTagRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return $this->update_mask;
+        return isset($this->update_mask) ? $this->update_mask : null;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**

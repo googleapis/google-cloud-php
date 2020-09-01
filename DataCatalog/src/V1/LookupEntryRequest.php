@@ -66,6 +66,11 @@ class LookupEntryRequest extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasLinkedResource()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * The full name of the Google Cloud Platform resource the Data Catalog
      * entry represents. See:
@@ -104,6 +109,11 @@ class LookupEntryRequest extends \Google\Protobuf\Internal\Message
     public function getSqlResource()
     {
         return $this->readOneof(3);
+    }
+
+    public function hasSqlResource()
+    {
+        return $this->hasOneof(3);
     }
 
     /**
