@@ -61,8 +61,23 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $uptimeCheckServiceClient = new Google\Cloud\Monitoring\V3\UptimeCheckServiceClient();
  * try {
- *     $name = '';
- *     $uptimeCheckServiceClient->deleteUptimeCheckConfig($name);
+ *     $parent = '';
+ *     // Iterate over pages of elements
+ *     $pagedResponse = $uptimeCheckServiceClient->listUptimeCheckConfigs($parent);
+ *     foreach ($pagedResponse->iteratePages() as $page) {
+ *         foreach ($page as $element) {
+ *             // doSomethingWith($element);
+ *         }
+ *     }
+ *
+ *
+ *     // Alternatively:
+ *
+ *     // Iterate through all elements
+ *     $pagedResponse = $uptimeCheckServiceClient->listUptimeCheckConfigs($parent);
+ *     foreach ($pagedResponse->iterateAllElements() as $element) {
+ *         // doSomethingWith($element);
+ *     }
  * } finally {
  *     $uptimeCheckServiceClient->close();
  * }
@@ -353,57 +368,6 @@ class UptimeCheckServiceGapicClient
     }
 
     /**
-     * Deletes an Uptime check configuration. Note that this method will fail
-     * if the Uptime check configuration is referenced by an alert policy or
-     * other dependent configs that would be rendered invalid by the deletion.
-     *
-     * Sample code:
-     * ```
-     * $uptimeCheckServiceClient = new Google\Cloud\Monitoring\V3\UptimeCheckServiceClient();
-     * try {
-     *     $name = '';
-     *     $uptimeCheckServiceClient->deleteUptimeCheckConfig($name);
-     * } finally {
-     *     $uptimeCheckServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $name Required. The Uptime check configuration to delete. The format is:
-     *
-     *     projects/[PROJECT_ID_OR_NUMBER]/uptimeCheckConfigs/[UPTIME_CHECK_ID]
-     * @param array $optionalArgs {
-     *                            Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function deleteUptimeCheckConfig($name, array $optionalArgs = [])
-    {
-        $request = new DeleteUptimeCheckConfigRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteUptimeCheckConfig',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
      * Lists the existing valid Uptime check configurations for the project
      * (leaving out any invalid configurations).
      *
@@ -655,6 +619,57 @@ class UptimeCheckServiceGapicClient
         return $this->startCall(
             'UpdateUptimeCheckConfig',
             UptimeCheckConfig::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Deletes an Uptime check configuration. Note that this method will fail
+     * if the Uptime check configuration is referenced by an alert policy or
+     * other dependent configs that would be rendered invalid by the deletion.
+     *
+     * Sample code:
+     * ```
+     * $uptimeCheckServiceClient = new Google\Cloud\Monitoring\V3\UptimeCheckServiceClient();
+     * try {
+     *     $name = '';
+     *     $uptimeCheckServiceClient->deleteUptimeCheckConfig($name);
+     * } finally {
+     *     $uptimeCheckServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name Required. The Uptime check configuration to delete. The format is:
+     *
+     *     projects/[PROJECT_ID_OR_NUMBER]/uptimeCheckConfigs/[UPTIME_CHECK_ID]
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteUptimeCheckConfig($name, array $optionalArgs = [])
+    {
+        $request = new DeleteUptimeCheckConfigRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteUptimeCheckConfig',
+            GPBEmpty::class,
             $optionalArgs,
             $request
         )->wait();

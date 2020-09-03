@@ -3,28 +3,6 @@
 return [
     'interfaces' => [
         'google.monitoring.v3.ServiceMonitoringService' => [
-            'DeleteService' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v3/{name=*/*/services/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteServiceLevelObjective' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v3/{name=*/*/services/*/serviceLevelObjectives/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'CreateService' => [
                 'method' => 'post',
                 'uriTemplate' => '/v3/{parent=*/*}/services',
@@ -72,6 +50,17 @@ return [
                     ],
                 ],
             ],
+            'DeleteService' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v3/{name=*/*/services/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'CreateServiceLevelObjective' => [
                 'method' => 'post',
                 'uriTemplate' => '/v3/{parent=*/*/services/*}/serviceLevelObjectives',
@@ -114,6 +103,17 @@ return [
                     'service_level_objective.name' => [
                         'getters' => [
                             'getServiceLevelObjective',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteServiceLevelObjective' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v3/{name=*/*/services/*/serviceLevelObjectives/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
                             'getName',
                         ],
                     ],

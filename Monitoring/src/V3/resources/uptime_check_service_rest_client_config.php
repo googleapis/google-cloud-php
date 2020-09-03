@@ -3,17 +3,6 @@
 return [
     'interfaces' => [
         'google.monitoring.v3.UptimeCheckService' => [
-            'DeleteUptimeCheckConfig' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v3/{name=projects/*/uptimeCheckConfigs/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'ListUptimeCheckConfigs' => [
                 'method' => 'get',
                 'uriTemplate' => '/v3/{parent=projects/*}/uptimeCheckConfigs',
@@ -56,6 +45,17 @@ return [
                     'uptime_check_config.name' => [
                         'getters' => [
                             'getUptimeCheckConfig',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteUptimeCheckConfig' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v3/{name=projects/*/uptimeCheckConfigs/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
                             'getName',
                         ],
                     ],

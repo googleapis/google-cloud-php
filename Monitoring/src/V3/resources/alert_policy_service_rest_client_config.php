@@ -3,17 +3,6 @@
 return [
     'interfaces' => [
         'google.monitoring.v3.AlertPolicyService' => [
-            'DeleteAlertPolicy' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v3/{name=projects/*/alertPolicies/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'ListAlertPolicies' => [
                 'method' => 'get',
                 'uriTemplate' => '/v3/{name=projects/*}/alertPolicies',
@@ -40,6 +29,17 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v3/{name=projects/*}/alertPolicies',
                 'body' => 'alert_policy',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteAlertPolicy' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v3/{name=projects/*/alertPolicies/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [

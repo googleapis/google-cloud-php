@@ -63,8 +63,9 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
  * try {
- *     $name = '';
- *     $serviceMonitoringServiceClient->deleteService($name);
+ *     $parent = '';
+ *     $service = new Service();
+ *     $response = $serviceMonitoringServiceClient->createService($parent, $service);
  * } finally {
  *     $serviceMonitoringServiceClient->close();
  * }
@@ -479,104 +480,6 @@ class ServiceMonitoringServiceGapicClient
     }
 
     /**
-     * Soft delete this `Service`.
-     *
-     * Sample code:
-     * ```
-     * $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
-     * try {
-     *     $name = '';
-     *     $serviceMonitoringServiceClient->deleteService($name);
-     * } finally {
-     *     $serviceMonitoringServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $name Required. Resource name of the `Service` to delete. The format is:
-     *
-     *     projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
-     * @param array $optionalArgs {
-     *                            Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function deleteService($name, array $optionalArgs = [])
-    {
-        $request = new DeleteServiceRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteService',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Delete the given `ServiceLevelObjective`.
-     *
-     * Sample code:
-     * ```
-     * $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
-     * try {
-     *     $name = '';
-     *     $serviceMonitoringServiceClient->deleteServiceLevelObjective($name);
-     * } finally {
-     *     $serviceMonitoringServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $name Required. Resource name of the `ServiceLevelObjective` to delete. The format is:
-     *
-     *     projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME]
-     * @param array $optionalArgs {
-     *                            Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function deleteServiceLevelObjective($name, array $optionalArgs = [])
-    {
-        $request = new DeleteServiceLevelObjectiveRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteServiceLevelObjective',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
      * Create a `Service`.
      *
      * Sample code:
@@ -839,6 +742,55 @@ class ServiceMonitoringServiceGapicClient
         return $this->startCall(
             'UpdateService',
             Service::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Soft delete this `Service`.
+     *
+     * Sample code:
+     * ```
+     * $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
+     * try {
+     *     $name = '';
+     *     $serviceMonitoringServiceClient->deleteService($name);
+     * } finally {
+     *     $serviceMonitoringServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name Required. Resource name of the `Service` to delete. The format is:
+     *
+     *     projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteService($name, array $optionalArgs = [])
+    {
+        $request = new DeleteServiceRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteService',
+            GPBEmpty::class,
             $optionalArgs,
             $request
         )->wait();
@@ -1114,6 +1066,55 @@ class ServiceMonitoringServiceGapicClient
         return $this->startCall(
             'UpdateServiceLevelObjective',
             ServiceLevelObjective::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Delete the given `ServiceLevelObjective`.
+     *
+     * Sample code:
+     * ```
+     * $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
+     * try {
+     *     $name = '';
+     *     $serviceMonitoringServiceClient->deleteServiceLevelObjective($name);
+     * } finally {
+     *     $serviceMonitoringServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name Required. Resource name of the `ServiceLevelObjective` to delete. The format is:
+     *
+     *     projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME]
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteServiceLevelObjective($name, array $optionalArgs = [])
+    {
+        $request = new DeleteServiceLevelObjectiveRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteServiceLevelObjective',
+            GPBEmpty::class,
             $optionalArgs,
             $request
         )->wait();

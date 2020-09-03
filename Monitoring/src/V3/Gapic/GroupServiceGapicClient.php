@@ -65,8 +65,23 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $groupServiceClient = new Google\Cloud\Monitoring\V3\GroupServiceClient();
  * try {
- *     $group = new Google\Cloud\Monitoring\V3\Group();
- *     $response = $groupServiceClient->updateGroup($group);
+ *     $name = '';
+ *     // Iterate over pages of elements
+ *     $pagedResponse = $groupServiceClient->listGroups($name);
+ *     foreach ($pagedResponse->iteratePages() as $page) {
+ *         foreach ($page as $element) {
+ *             // doSomethingWith($element);
+ *         }
+ *     }
+ *
+ *
+ *     // Alternatively:
+ *
+ *     // Iterate through all elements
+ *     $pagedResponse = $groupServiceClient->listGroups($name);
+ *     foreach ($pagedResponse->iterateAllElements() as $element) {
+ *         // doSomethingWith($element);
+ *     }
  * } finally {
  *     $groupServiceClient->close();
  * }
@@ -357,118 +372,6 @@ class GroupServiceGapicClient
     }
 
     /**
-     * Updates an existing group.
-     * You can change any group attributes except `name`.
-     *
-     * Sample code:
-     * ```
-     * $groupServiceClient = new Google\Cloud\Monitoring\V3\GroupServiceClient();
-     * try {
-     *     $group = new Google\Cloud\Monitoring\V3\Group();
-     *     $response = $groupServiceClient->updateGroup($group);
-     * } finally {
-     *     $groupServiceClient->close();
-     * }
-     * ```
-     *
-     * @param Group $group        Required. The new definition of the group.  All fields of the existing group,
-     *                            excepting `name`, are replaced with the corresponding fields of this group.
-     * @param array $optionalArgs {
-     *                            Optional.
-     *
-     *     @type bool $validateOnly
-     *          If true, validate this request but do not update the existing group.
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\Monitoring\V3\Group
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function updateGroup($group, array $optionalArgs = [])
-    {
-        $request = new UpdateGroupRequest();
-        $request->setGroup($group);
-        if (isset($optionalArgs['validateOnly'])) {
-            $request->setValidateOnly($optionalArgs['validateOnly']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'group.name' => $request->getGroup()->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'UpdateGroup',
-            Group::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Deletes an existing group.
-     *
-     * Sample code:
-     * ```
-     * $groupServiceClient = new Google\Cloud\Monitoring\V3\GroupServiceClient();
-     * try {
-     *     $name = '';
-     *     $groupServiceClient->deleteGroup($name);
-     * } finally {
-     *     $groupServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $name Required. The group to delete. The format is:
-     *
-     *     projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]
-     * @param array $optionalArgs {
-     *                            Optional.
-     *
-     *     @type bool $recursive
-     *          If this field is true, then the request means to delete a group with all
-     *          its descendants. Otherwise, the request means to delete a group only when
-     *          it has no descendants. The default value is false.
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function deleteGroup($name, array $optionalArgs = [])
-    {
-        $request = new DeleteGroupRequest();
-        $request->setName($name);
-        if (isset($optionalArgs['recursive'])) {
-            $request->setRecursive($optionalArgs['recursive']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteGroup',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
      * Lists the existing groups.
      *
      * Sample code:
@@ -688,6 +591,118 @@ class GroupServiceGapicClient
         return $this->startCall(
             'CreateGroup',
             Group::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Updates an existing group.
+     * You can change any group attributes except `name`.
+     *
+     * Sample code:
+     * ```
+     * $groupServiceClient = new Google\Cloud\Monitoring\V3\GroupServiceClient();
+     * try {
+     *     $group = new Google\Cloud\Monitoring\V3\Group();
+     *     $response = $groupServiceClient->updateGroup($group);
+     * } finally {
+     *     $groupServiceClient->close();
+     * }
+     * ```
+     *
+     * @param Group $group        Required. The new definition of the group.  All fields of the existing group,
+     *                            excepting `name`, are replaced with the corresponding fields of this group.
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type bool $validateOnly
+     *          If true, validate this request but do not update the existing group.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Monitoring\V3\Group
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateGroup($group, array $optionalArgs = [])
+    {
+        $request = new UpdateGroupRequest();
+        $request->setGroup($group);
+        if (isset($optionalArgs['validateOnly'])) {
+            $request->setValidateOnly($optionalArgs['validateOnly']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'group.name' => $request->getGroup()->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'UpdateGroup',
+            Group::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Deletes an existing group.
+     *
+     * Sample code:
+     * ```
+     * $groupServiceClient = new Google\Cloud\Monitoring\V3\GroupServiceClient();
+     * try {
+     *     $name = '';
+     *     $groupServiceClient->deleteGroup($name);
+     * } finally {
+     *     $groupServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name Required. The group to delete. The format is:
+     *
+     *     projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type bool $recursive
+     *          If this field is true, then the request means to delete a group with all
+     *          its descendants. Otherwise, the request means to delete a group only when
+     *          it has no descendants. The default value is false.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteGroup($name, array $optionalArgs = [])
+    {
+        $request = new DeleteGroupRequest();
+        $request->setName($name);
+        if (isset($optionalArgs['recursive'])) {
+            $request->setRecursive($optionalArgs['recursive']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteGroup',
+            GPBEmpty::class,
             $optionalArgs,
             $request
         )->wait();
