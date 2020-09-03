@@ -103,34 +103,9 @@ use Google\Protobuf\FieldMask;
  * ```
  * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
  * try {
- *     $formattedName = $autoMlClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
- *     $operationResponse = $autoMlClient->deleteDataset($formattedName);
- *     $operationResponse->pollUntilComplete();
- *     if ($operationResponse->operationSucceeded()) {
- *         // operation succeeded and returns no value
- *     } else {
- *         $error = $operationResponse->getError();
- *         // handleError($error)
- *     }
- *
- *
- *     // Alternatively:
- *
- *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $autoMlClient->deleteDataset($formattedName);
- *     $operationName = $operationResponse->getName();
- *     // ... do other work
- *     $newOperationResponse = $autoMlClient->resumeOperation($operationName, 'deleteDataset');
- *     while (!$newOperationResponse->isDone()) {
- *         // ... do other work
- *         $newOperationResponse->reload();
- *     }
- *     if ($newOperationResponse->operationSucceeded()) {
- *       // operation succeeded and returns no value
- *     } else {
- *       $error = $newOperationResponse->getError();
- *       // handleError($error)
- *     }
+ *     $formattedParent = $autoMlClient->locationName('[PROJECT]', '[LOCATION]');
+ *     $dataset = new Google\Cloud\AutoMl\V1beta1\Dataset();
+ *     $response = $autoMlClient->createDataset($formattedParent, $dataset);
  * } finally {
  *     $autoMlClient->close();
  * }
@@ -576,6 +551,255 @@ class AutoMlGapicClient
     }
 
     /**
+     * Creates a dataset.
+     *
+     * Sample code:
+     * ```
+     * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
+     * try {
+     *     $formattedParent = $autoMlClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $dataset = new Google\Cloud\AutoMl\V1beta1\Dataset();
+     *     $response = $autoMlClient->createDataset($formattedParent, $dataset);
+     * } finally {
+     *     $autoMlClient->close();
+     * }
+     * ```
+     *
+     * @param string  $parent       Required. The resource name of the project to create the dataset for.
+     * @param Dataset $dataset      Required. The dataset to create.
+     * @param array   $optionalArgs {
+     *                              Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\AutoMl\V1beta1\Dataset
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function createDataset($parent, $dataset, array $optionalArgs = [])
+    {
+        $request = new CreateDatasetRequest();
+        $request->setParent($parent);
+        $request->setDataset($dataset);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'CreateDataset',
+            Dataset::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Gets a dataset.
+     *
+     * Sample code:
+     * ```
+     * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
+     * try {
+     *     $formattedName = $autoMlClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+     *     $response = $autoMlClient->getDataset($formattedName);
+     * } finally {
+     *     $autoMlClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of the dataset to retrieve.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\AutoMl\V1beta1\Dataset
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function getDataset($name, array $optionalArgs = [])
+    {
+        $request = new GetDatasetRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'GetDataset',
+            Dataset::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Lists datasets in a project.
+     *
+     * Sample code:
+     * ```
+     * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
+     * try {
+     *     $formattedParent = $autoMlClient->locationName('[PROJECT]', '[LOCATION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $autoMlClient->listDatasets($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $autoMlClient->listDatasets($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $autoMlClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The resource name of the project from which to list datasets.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type string $filter
+     *          An expression for filtering the results of the request.
+     *
+     *            * `dataset_metadata` - for existence of the case (e.g.
+     *                      image_classification_dataset_metadata:*). Some examples of using the filter are:
+     *
+     *            * `translation_dataset_metadata:*` --> The dataset has
+     *                                                   translation_dataset_metadata.
+     *     @type int $pageSize
+     *          The maximum number of resources contained in the underlying API
+     *          response. The API may return fewer values in a page, even if
+     *          there are additional values to be retrieved.
+     *     @type string $pageToken
+     *          A page token is used to specify a page of values to be returned.
+     *          If no page token is specified (the default), the first page
+     *          of values will be returned. Any page token used here must have
+     *          been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function listDatasets($parent, array $optionalArgs = [])
+    {
+        $request = new ListDatasetsRequest();
+        $request->setParent($parent);
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->getPagedListResponse(
+            'ListDatasets',
+            $optionalArgs,
+            ListDatasetsResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Updates a dataset.
+     *
+     * Sample code:
+     * ```
+     * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
+     * try {
+     *     $dataset = new Google\Cloud\AutoMl\V1beta1\Dataset();
+     *     $response = $autoMlClient->updateDataset($dataset);
+     * } finally {
+     *     $autoMlClient->close();
+     * }
+     * ```
+     *
+     * @param Dataset $dataset      Required. The dataset which replaces the resource on the server.
+     * @param array   $optionalArgs {
+     *                              Optional.
+     *
+     *     @type FieldMask $updateMask
+     *          The update mask applies to the resource.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\AutoMl\V1beta1\Dataset
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function updateDataset($dataset, array $optionalArgs = [])
+    {
+        $request = new UpdateDatasetRequest();
+        $request->setDataset($dataset);
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'dataset.name' => $request->getDataset()->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'UpdateDataset',
+            Dataset::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Deletes a dataset and all of its contents.
      * Returns empty response in the
      * [response][google.longrunning.Operation.response] field when it completes,
@@ -822,611 +1046,6 @@ class AutoMlGapicClient
             $optionalArgs,
             $request,
             $this->getOperationsClient()
-        )->wait();
-    }
-
-    /**
-     * Deletes a model.
-     * Returns `google.protobuf.Empty` in the
-     * [response][google.longrunning.Operation.response] field when it completes,
-     * and `delete_details` in the
-     * [metadata][google.longrunning.Operation.metadata] field.
-     *
-     * Sample code:
-     * ```
-     * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
-     * try {
-     *     $formattedName = $autoMlClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-     *     $operationResponse = $autoMlClient->deleteModel($formattedName);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // operation succeeded and returns no value
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *
-     *
-     *     // Alternatively:
-     *
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $autoMlClient->deleteModel($formattedName);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $autoMlClient->resumeOperation($operationName, 'deleteModel');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *       // operation succeeded and returns no value
-     *     } else {
-     *       $error = $newOperationResponse->getError();
-     *       // handleError($error)
-     *     }
-     * } finally {
-     *     $autoMlClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. Resource name of the model being deleted.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\ApiCore\OperationResponse
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function deleteModel($name, array $optionalArgs = [])
-    {
-        $request = new DeleteModelRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startOperationsCall(
-            'DeleteModel',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
-        )->wait();
-    }
-
-    /**
-     * Exports a trained, "export-able", model to a user specified Google Cloud
-     * Storage location. A model is considered export-able if and only if it has
-     * an export format defined for it in.
-     *
-     * [ModelExportOutputConfig][google.cloud.automl.v1beta1.ModelExportOutputConfig].
-     *
-     * Returns an empty response in the
-     * [response][google.longrunning.Operation.response] field when it completes.
-     *
-     * Sample code:
-     * ```
-     * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
-     * try {
-     *     $formattedName = $autoMlClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-     *     $outputConfig = new Google\Cloud\AutoMl\V1beta1\ModelExportOutputConfig();
-     *     $operationResponse = $autoMlClient->exportModel($formattedName, $outputConfig);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // operation succeeded and returns no value
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *
-     *
-     *     // Alternatively:
-     *
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $autoMlClient->exportModel($formattedName, $outputConfig);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $autoMlClient->resumeOperation($operationName, 'exportModel');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *       // operation succeeded and returns no value
-     *     } else {
-     *       $error = $newOperationResponse->getError();
-     *       // handleError($error)
-     *     }
-     * } finally {
-     *     $autoMlClient->close();
-     * }
-     * ```
-     *
-     * @param string                  $name         Required. The resource name of the model to export.
-     * @param ModelExportOutputConfig $outputConfig Required. The desired output location and configuration.
-     * @param array                   $optionalArgs {
-     *                                              Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\ApiCore\OperationResponse
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function exportModel($name, $outputConfig, array $optionalArgs = [])
-    {
-        $request = new ExportModelRequest();
-        $request->setName($name);
-        $request->setOutputConfig($outputConfig);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startOperationsCall(
-            'ExportModel',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
-        )->wait();
-    }
-
-    /**
-     * Exports examples on which the model was evaluated (i.e. which were in the
-     * TEST set of the dataset the model was created from), together with their
-     * ground truth annotations and the annotations created (predicted) by the
-     * model.
-     * The examples, ground truth and predictions are exported in the state
-     * they were at the moment the model was evaluated.
-     *
-     * This export is available only for 30 days since the model evaluation is
-     * created.
-     *
-     * Currently only available for Tables.
-     *
-     * Returns an empty response in the
-     * [response][google.longrunning.Operation.response] field when it completes.
-     *
-     * Sample code:
-     * ```
-     * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
-     * try {
-     *     $formattedName = $autoMlClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-     *     $outputConfig = new Google\Cloud\AutoMl\V1beta1\ExportEvaluatedExamplesOutputConfig();
-     *     $operationResponse = $autoMlClient->exportEvaluatedExamples($formattedName, $outputConfig);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // operation succeeded and returns no value
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *
-     *
-     *     // Alternatively:
-     *
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $autoMlClient->exportEvaluatedExamples($formattedName, $outputConfig);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $autoMlClient->resumeOperation($operationName, 'exportEvaluatedExamples');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *       // operation succeeded and returns no value
-     *     } else {
-     *       $error = $newOperationResponse->getError();
-     *       // handleError($error)
-     *     }
-     * } finally {
-     *     $autoMlClient->close();
-     * }
-     * ```
-     *
-     * @param string                              $name         Required. The resource name of the model whose evaluated examples are to
-     *                                                          be exported.
-     * @param ExportEvaluatedExamplesOutputConfig $outputConfig Required. The desired output location and configuration.
-     * @param array                               $optionalArgs {
-     *                                                          Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\ApiCore\OperationResponse
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function exportEvaluatedExamples($name, $outputConfig, array $optionalArgs = [])
-    {
-        $request = new ExportEvaluatedExamplesRequest();
-        $request->setName($name);
-        $request->setOutputConfig($outputConfig);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startOperationsCall(
-            'ExportEvaluatedExamples',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
-        )->wait();
-    }
-
-    /**
-     * Lists model evaluations.
-     *
-     * Sample code:
-     * ```
-     * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
-     * try {
-     *     $formattedParent = $autoMlClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-     *     // Iterate over pages of elements
-     *     $pagedResponse = $autoMlClient->listModelEvaluations($formattedParent);
-     *     foreach ($pagedResponse->iteratePages() as $page) {
-     *         foreach ($page as $element) {
-     *             // doSomethingWith($element);
-     *         }
-     *     }
-     *
-     *
-     *     // Alternatively:
-     *
-     *     // Iterate through all elements
-     *     $pagedResponse = $autoMlClient->listModelEvaluations($formattedParent);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     * } finally {
-     *     $autoMlClient->close();
-     * }
-     * ```
-     *
-     * @param string $parent       Required. Resource name of the model to list the model evaluations for.
-     *                             If modelId is set as "-", this will list model evaluations from across all
-     *                             models of the parent location.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type string $filter
-     *          An expression for filtering the results of the request.
-     *
-     *            * `annotation_spec_id` - for =, !=  or existence. See example below for
-     *                                   the last.
-     *
-     *          Some examples of using the filter are:
-     *
-     *            * `annotation_spec_id!=4` --> The model evaluation was done for
-     *                                      annotation spec with ID different than 4.
-     *            * `NOT annotation_spec_id:*` --> The model evaluation was done for
-     *                                         aggregate of all annotation specs.
-     *     @type int $pageSize
-     *          The maximum number of resources contained in the underlying API
-     *          response. The API may return fewer values in a page, even if
-     *          there are additional values to be retrieved.
-     *     @type string $pageToken
-     *          A page token is used to specify a page of values to be returned.
-     *          If no page token is specified (the default), the first page
-     *          of values will be returned. Any page token used here must have
-     *          been generated by a previous call to the API.
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\ApiCore\PagedListResponse
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function listModelEvaluations($parent, array $optionalArgs = [])
-    {
-        $request = new ListModelEvaluationsRequest();
-        $request->setParent($parent);
-        if (isset($optionalArgs['filter'])) {
-            $request->setFilter($optionalArgs['filter']);
-        }
-        if (isset($optionalArgs['pageSize'])) {
-            $request->setPageSize($optionalArgs['pageSize']);
-        }
-        if (isset($optionalArgs['pageToken'])) {
-            $request->setPageToken($optionalArgs['pageToken']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'parent' => $request->getParent(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->getPagedListResponse(
-            'ListModelEvaluations',
-            $optionalArgs,
-            ListModelEvaluationsResponse::class,
-            $request
-        );
-    }
-
-    /**
-     * Creates a dataset.
-     *
-     * Sample code:
-     * ```
-     * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
-     * try {
-     *     $formattedParent = $autoMlClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $dataset = new Google\Cloud\AutoMl\V1beta1\Dataset();
-     *     $response = $autoMlClient->createDataset($formattedParent, $dataset);
-     * } finally {
-     *     $autoMlClient->close();
-     * }
-     * ```
-     *
-     * @param string  $parent       Required. The resource name of the project to create the dataset for.
-     * @param Dataset $dataset      Required. The dataset to create.
-     * @param array   $optionalArgs {
-     *                              Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\AutoMl\V1beta1\Dataset
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function createDataset($parent, $dataset, array $optionalArgs = [])
-    {
-        $request = new CreateDatasetRequest();
-        $request->setParent($parent);
-        $request->setDataset($dataset);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'parent' => $request->getParent(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'CreateDataset',
-            Dataset::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Gets a dataset.
-     *
-     * Sample code:
-     * ```
-     * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
-     * try {
-     *     $formattedName = $autoMlClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
-     *     $response = $autoMlClient->getDataset($formattedName);
-     * } finally {
-     *     $autoMlClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. The resource name of the dataset to retrieve.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\AutoMl\V1beta1\Dataset
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function getDataset($name, array $optionalArgs = [])
-    {
-        $request = new GetDatasetRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'GetDataset',
-            Dataset::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Lists datasets in a project.
-     *
-     * Sample code:
-     * ```
-     * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
-     * try {
-     *     $formattedParent = $autoMlClient->locationName('[PROJECT]', '[LOCATION]');
-     *     // Iterate over pages of elements
-     *     $pagedResponse = $autoMlClient->listDatasets($formattedParent);
-     *     foreach ($pagedResponse->iteratePages() as $page) {
-     *         foreach ($page as $element) {
-     *             // doSomethingWith($element);
-     *         }
-     *     }
-     *
-     *
-     *     // Alternatively:
-     *
-     *     // Iterate through all elements
-     *     $pagedResponse = $autoMlClient->listDatasets($formattedParent);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     * } finally {
-     *     $autoMlClient->close();
-     * }
-     * ```
-     *
-     * @param string $parent       Required. The resource name of the project from which to list datasets.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type string $filter
-     *          An expression for filtering the results of the request.
-     *
-     *            * `dataset_metadata` - for existence of the case (e.g.
-     *                      image_classification_dataset_metadata:*). Some examples of using the filter are:
-     *
-     *            * `translation_dataset_metadata:*` --> The dataset has
-     *                                                   translation_dataset_metadata.
-     *     @type int $pageSize
-     *          The maximum number of resources contained in the underlying API
-     *          response. The API may return fewer values in a page, even if
-     *          there are additional values to be retrieved.
-     *     @type string $pageToken
-     *          A page token is used to specify a page of values to be returned.
-     *          If no page token is specified (the default), the first page
-     *          of values will be returned. Any page token used here must have
-     *          been generated by a previous call to the API.
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\ApiCore\PagedListResponse
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function listDatasets($parent, array $optionalArgs = [])
-    {
-        $request = new ListDatasetsRequest();
-        $request->setParent($parent);
-        if (isset($optionalArgs['filter'])) {
-            $request->setFilter($optionalArgs['filter']);
-        }
-        if (isset($optionalArgs['pageSize'])) {
-            $request->setPageSize($optionalArgs['pageSize']);
-        }
-        if (isset($optionalArgs['pageToken'])) {
-            $request->setPageToken($optionalArgs['pageToken']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'parent' => $request->getParent(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->getPagedListResponse(
-            'ListDatasets',
-            $optionalArgs,
-            ListDatasetsResponse::class,
-            $request
-        );
-    }
-
-    /**
-     * Updates a dataset.
-     *
-     * Sample code:
-     * ```
-     * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
-     * try {
-     *     $dataset = new Google\Cloud\AutoMl\V1beta1\Dataset();
-     *     $response = $autoMlClient->updateDataset($dataset);
-     * } finally {
-     *     $autoMlClient->close();
-     * }
-     * ```
-     *
-     * @param Dataset $dataset      Required. The dataset which replaces the resource on the server.
-     * @param array   $optionalArgs {
-     *                              Optional.
-     *
-     *     @type FieldMask $updateMask
-     *          The update mask applies to the resource.
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\AutoMl\V1beta1\Dataset
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function updateDataset($dataset, array $optionalArgs = [])
-    {
-        $request = new UpdateDatasetRequest();
-        $request->setDataset($dataset);
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'dataset.name' => $request->getDataset()->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'UpdateDataset',
-            Dataset::class,
-            $optionalArgs,
-            $request
         )->wait();
     }
 
@@ -2109,6 +1728,86 @@ class AutoMlGapicClient
     }
 
     /**
+     * Deletes a model.
+     * Returns `google.protobuf.Empty` in the
+     * [response][google.longrunning.Operation.response] field when it completes,
+     * and `delete_details` in the
+     * [metadata][google.longrunning.Operation.metadata] field.
+     *
+     * Sample code:
+     * ```
+     * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
+     * try {
+     *     $formattedName = $autoMlClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+     *     $operationResponse = $autoMlClient->deleteModel($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $autoMlClient->deleteModel($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $autoMlClient->resumeOperation($operationName, 'deleteModel');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       // operation succeeded and returns no value
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $autoMlClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Resource name of the model being deleted.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function deleteModel($name, array $optionalArgs = [])
+    {
+        $request = new DeleteModelRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startOperationsCall(
+            'DeleteModel',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
      * Deploys a model. If a model is already deployed, deploying it with the
      * same parameters has no effect. Deploying with different parametrs
      * (as e.g. changing.
@@ -2288,6 +1987,185 @@ class AutoMlGapicClient
     }
 
     /**
+     * Exports a trained, "export-able", model to a user specified Google Cloud
+     * Storage location. A model is considered export-able if and only if it has
+     * an export format defined for it in.
+     *
+     * [ModelExportOutputConfig][google.cloud.automl.v1beta1.ModelExportOutputConfig].
+     *
+     * Returns an empty response in the
+     * [response][google.longrunning.Operation.response] field when it completes.
+     *
+     * Sample code:
+     * ```
+     * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
+     * try {
+     *     $formattedName = $autoMlClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+     *     $outputConfig = new Google\Cloud\AutoMl\V1beta1\ModelExportOutputConfig();
+     *     $operationResponse = $autoMlClient->exportModel($formattedName, $outputConfig);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $autoMlClient->exportModel($formattedName, $outputConfig);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $autoMlClient->resumeOperation($operationName, 'exportModel');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       // operation succeeded and returns no value
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $autoMlClient->close();
+     * }
+     * ```
+     *
+     * @param string                  $name         Required. The resource name of the model to export.
+     * @param ModelExportOutputConfig $outputConfig Required. The desired output location and configuration.
+     * @param array                   $optionalArgs {
+     *                                              Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function exportModel($name, $outputConfig, array $optionalArgs = [])
+    {
+        $request = new ExportModelRequest();
+        $request->setName($name);
+        $request->setOutputConfig($outputConfig);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startOperationsCall(
+            'ExportModel',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Exports examples on which the model was evaluated (i.e. which were in the
+     * TEST set of the dataset the model was created from), together with their
+     * ground truth annotations and the annotations created (predicted) by the
+     * model.
+     * The examples, ground truth and predictions are exported in the state
+     * they were at the moment the model was evaluated.
+     *
+     * This export is available only for 30 days since the model evaluation is
+     * created.
+     *
+     * Currently only available for Tables.
+     *
+     * Returns an empty response in the
+     * [response][google.longrunning.Operation.response] field when it completes.
+     *
+     * Sample code:
+     * ```
+     * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
+     * try {
+     *     $formattedName = $autoMlClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+     *     $outputConfig = new Google\Cloud\AutoMl\V1beta1\ExportEvaluatedExamplesOutputConfig();
+     *     $operationResponse = $autoMlClient->exportEvaluatedExamples($formattedName, $outputConfig);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $autoMlClient->exportEvaluatedExamples($formattedName, $outputConfig);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $autoMlClient->resumeOperation($operationName, 'exportEvaluatedExamples');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       // operation succeeded and returns no value
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $autoMlClient->close();
+     * }
+     * ```
+     *
+     * @param string                              $name         Required. The resource name of the model whose evaluated examples are to
+     *                                                          be exported.
+     * @param ExportEvaluatedExamplesOutputConfig $outputConfig Required. The desired output location and configuration.
+     * @param array                               $optionalArgs {
+     *                                                          Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function exportEvaluatedExamples($name, $outputConfig, array $optionalArgs = [])
+    {
+        $request = new ExportEvaluatedExamplesRequest();
+        $request->setName($name);
+        $request->setOutputConfig($outputConfig);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startOperationsCall(
+            'ExportEvaluatedExamples',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
      * Gets a model evaluation.
      *
      * Sample code:
@@ -2335,5 +2213,102 @@ class AutoMlGapicClient
             $optionalArgs,
             $request
         )->wait();
+    }
+
+    /**
+     * Lists model evaluations.
+     *
+     * Sample code:
+     * ```
+     * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
+     * try {
+     *     $formattedParent = $autoMlClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $autoMlClient->listModelEvaluations($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $autoMlClient->listModelEvaluations($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $autoMlClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. Resource name of the model to list the model evaluations for.
+     *                             If modelId is set as "-", this will list model evaluations from across all
+     *                             models of the parent location.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type string $filter
+     *          An expression for filtering the results of the request.
+     *
+     *            * `annotation_spec_id` - for =, !=  or existence. See example below for
+     *                                   the last.
+     *
+     *          Some examples of using the filter are:
+     *
+     *            * `annotation_spec_id!=4` --> The model evaluation was done for
+     *                                      annotation spec with ID different than 4.
+     *            * `NOT annotation_spec_id:*` --> The model evaluation was done for
+     *                                         aggregate of all annotation specs.
+     *     @type int $pageSize
+     *          The maximum number of resources contained in the underlying API
+     *          response. The API may return fewer values in a page, even if
+     *          there are additional values to be retrieved.
+     *     @type string $pageToken
+     *          A page token is used to specify a page of values to be returned.
+     *          If no page token is specified (the default), the first page
+     *          of values will be returned. Any page token used here must have
+     *          been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function listModelEvaluations($parent, array $optionalArgs = [])
+    {
+        $request = new ListModelEvaluationsRequest();
+        $request->setParent($parent);
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->getPagedListResponse(
+            'ListModelEvaluations',
+            $optionalArgs,
+            ListModelEvaluationsResponse::class,
+            $request
+        );
     }
 }
