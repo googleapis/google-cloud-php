@@ -20,8 +20,6 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/cloud/bigquery/storage/v1/storage.proto
  * and updates to that file get reflected here through a refresh process.
- *
- * @experimental
  */
 
 namespace Google\Cloud\BigQuery\Storage\V1\Gapic;
@@ -66,8 +64,6 @@ use Google\Cloud\BigQuery\Storage\V1\SplitReadStreamResponse;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parseName method to extract the individual identifiers contained within formatted names
  * that are returned by the API.
- *
- * @experimental
  */
 class BigQueryReadGapicClient
 {
@@ -183,7 +179,6 @@ class BigQueryReadGapicClient
      * @param string $project
      *
      * @return string The formatted project resource.
-     * @experimental
      */
     public static function projectName($project)
     {
@@ -201,7 +196,6 @@ class BigQueryReadGapicClient
      * @param string $session
      *
      * @return string The formatted read_session resource.
-     * @experimental
      */
     public static function readSessionName($project, $location, $session)
     {
@@ -222,7 +216,6 @@ class BigQueryReadGapicClient
      * @param string $stream
      *
      * @return string The formatted read_stream resource.
-     * @experimental
      */
     public static function readStreamName($project, $location, $session, $stream)
     {
@@ -243,7 +236,6 @@ class BigQueryReadGapicClient
      * @param string $table
      *
      * @return string The formatted table resource.
-     * @experimental
      */
     public static function tableName($project, $dataset, $table)
     {
@@ -274,7 +266,6 @@ class BigQueryReadGapicClient
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
-     * @experimental
      */
     public static function parseName($formattedName, $template = null)
     {
@@ -351,7 +342,6 @@ class BigQueryReadGapicClient
      * }
      *
      * @throws ValidationException
-     * @experimental
      */
     public function __construct(array $options = [])
     {
@@ -417,7 +407,6 @@ class BigQueryReadGapicClient
      * @return \Google\Cloud\BigQuery\Storage\V1\ReadSession
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function createReadSession($parent, $readSession, array $optionalArgs = [])
     {
@@ -482,7 +471,6 @@ class BigQueryReadGapicClient
      * @return \Google\ApiCore\ServerStream
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function readRows($readStream, array $optionalArgs = [])
     {
@@ -555,7 +543,6 @@ class BigQueryReadGapicClient
      * @return \Google\Cloud\BigQuery\Storage\V1\SplitReadStreamResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function splitReadStream($name, array $optionalArgs = [])
     {
