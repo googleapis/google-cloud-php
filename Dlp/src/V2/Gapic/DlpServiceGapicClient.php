@@ -1046,8 +1046,20 @@ class DlpServiceGapicClient
      *
      *     @type string $parent The parent resource name. Please note, unless you have
      *           authenticated using an API key this option will be required.
-     *          - Format:projects/[PROJECT-ID]
-     *          - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *
+     *          The format of this value varies depending on whether you have [specified a
+     *          processing location](https://cloud.google.com/dlp/docs/specifying-location):
+     *
+     *          + Projects scope, location specified:<br/>
+     *            `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     *          + Projects scope, no location specified (defaults to global):<br/>
+     *            `projects/`<var>PROJECT_ID</var>
+     *
+     *          The following example `parent` string specifies a parent project with the
+     *          identifier `example-project`, and specifies the `europe-west3` location
+     *          for processing data:
+     *
+     *              parent=projects/example-project/locations/europe-west3
      *     @type InspectConfig $inspectConfig
      *          Configuration for the inspector. What specified here will override
      *          the template referenced by the inspect_template_name argument.
@@ -1131,8 +1143,20 @@ class DlpServiceGapicClient
      *
      *     @type string $parent The parent resource name. Please note, unless you have
      *           authenticated using an API key this option will be required.
-     *          - Format:projects/[PROJECT-ID]
-     *          - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *
+     *          The format of this value varies depending on whether you have [specified a
+     *          processing location](https://cloud.google.com/dlp/docs/specifying-location):
+     *
+     *          + Projects scope, location specified:<br/>
+     *            `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     *          + Projects scope, no location specified (defaults to global):<br/>
+     *            `projects/`<var>PROJECT_ID</var>
+     *
+     *          The following example `parent` string specifies a parent project with the
+     *          identifier `example-project`, and specifies the `europe-west3` location
+     *          for processing data:
+     *
+     *              parent=projects/example-project/locations/europe-west3
      *     @type string $locationId
      *          Deprecated. This field has no effect.
      *     @type InspectConfig $inspectConfig
@@ -1217,8 +1241,20 @@ class DlpServiceGapicClient
      *
      *     @type string $parent The parent resource name. Please note, unless you have
      *           authenticated using an API key this option will be required.
-     *          - Format:projects/[PROJECT-ID]
-     *          - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *
+     *          The format of this value varies depending on whether you have [specified a
+     *          processing location](https://cloud.google.com/dlp/docs/specifying-location):
+     *
+     *          + Projects scope, location specified:<br/>
+     *            `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     *          + Projects scope, no location specified (defaults to global):<br/>
+     *            `projects/`<var>PROJECT_ID</var>
+     *
+     *          The following example `parent` string specifies a parent project with the
+     *          identifier `example-project`, and specifies the `europe-west3` location
+     *          for processing data:
+     *
+     *              parent=projects/example-project/locations/europe-west3
      *     @type DeidentifyConfig $deidentifyConfig
      *          Configuration for the de-identification of the content item.
      *          Items specified here will override the template referenced by the
@@ -1311,11 +1347,23 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent resource name.
-     *                             - Format:projects/[PROJECT-ID]
-     *                             - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $parent Required. Parent resource name.
+     *
+     * The format of this value varies depending on whether you have [specified a
+     * processing location](https://cloud.google.com/dlp/docs/specifying-location):
+     *
+     * + Projects scope, location specified:<br/>
+     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * + Projects scope, no location specified (defaults to global):<br/>
+     *   `projects/`<var>PROJECT_ID</var>
+     *
+     * The following example `parent` string specifies a parent project with the
+     * identifier `example-project`, and specifies the `europe-west3` location
+     * for processing data:
+     *
+     *     parent=projects/example-project/locations/europe-west3
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type DeidentifyConfig $reidentifyConfig
      *          Configuration for the re-identification of the content item.
@@ -1341,10 +1389,11 @@ class DlpServiceGapicClient
      *     @type string $reidentifyTemplateName
      *          Template to use. References an instance of `DeidentifyTemplate`.
      *          Any configuration directly specified in `reidentify_config` or
-     *          `inspect_config` will override those set in the template. Singular fields
-     *          that are set in this request will replace their corresponding fields in the
-     *          template. Repeated fields are appended. Singular sub-messages and groups
-     *          are recursively merged.
+     *          `inspect_config` will override those set in the template. The
+     *          `DeidentifyTemplate` used must include only reversible transformations.
+     *          Singular fields that are set in this request will replace their
+     *          corresponding fields in the template. Repeated fields are appended.
+     *          Singular sub-messages and groups are recursively merged.
      *     @type string $locationId
      *          Deprecated. This field has no effect.
      *     @type RetrySettings|array $retrySettings
@@ -1416,7 +1465,10 @@ class DlpServiceGapicClient
      *
      *     @type string $parent The parent resource name. Please note, unless you have
      *           authenticated using an API key this option will be required.
-     *          - Format:locations/[LOCATION-ID]
+     *
+     *          The format of this value is as follows:
+     *
+     *              locations/<var>LOCATION_ID</var>
      *     @type string $languageCode
      *          BCP-47 language code for localized infoType friendly
      *          names. If omitted, or if localized strings are not available,
@@ -1485,11 +1537,26 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string          $parent          Required. Parent resource name.
-     *                                         - Format:projects/[PROJECT-ID]
-     *                                         - Format:organizations/[ORGANIZATION-ID]
-     *                                         - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
-     *                                         - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
+     * @param string $parent Required. Parent resource name.
+     *
+     * The format of this value varies depending on the scope of the request
+     * (project or organization) and whether you have [specified a processing
+     * location](https://cloud.google.com/dlp/docs/specifying-location):
+     *
+     * + Projects scope, location specified:<br/>
+     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * + Projects scope, no location specified (defaults to global):<br/>
+     *   `projects/`<var>PROJECT_ID</var>
+     * + Organizations scope, location specified:<br/>
+     *   `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * + Organizations scope, no location specified (defaults to global):<br/>
+     *   `organizations/`<var>ORG_ID</var>
+     *
+     * The following example `parent` string specifies a parent project with the
+     * identifier `example-project`, and specifies the `europe-west3` location
+     * for processing data:
+     *
+     *     parent=projects/example-project/locations/europe-west3
      * @param InspectTemplate $inspectTemplate Required. The InspectTemplate to create.
      * @param array           $optionalArgs    {
      *                                         Optional.
@@ -1683,13 +1750,28 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Parent resource name.
-     *                             - Format:projects/[PROJECT-ID]
-     *                             - Format:organizations/[ORGANIZATION-ID]
-     *                             - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
-     *                             - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $parent Required. Parent resource name.
+     *
+     * The format of this value varies depending on the scope of the request
+     * (project or organization) and whether you have [specified a processing
+     * location](https://cloud.google.com/dlp/docs/specifying-location):
+     *
+     * + Projects scope, location specified:<br/>
+     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * + Projects scope, no location specified (defaults to global):<br/>
+     *   `projects/`<var>PROJECT_ID</var>
+     * + Organizations scope, location specified:<br/>
+     *   `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * + Organizations scope, no location specified (defaults to global):<br/>
+     *   `organizations/`<var>ORG_ID</var>
+     *
+     * The following example `parent` string specifies a parent project with the
+     * identifier `example-project`, and specifies the `europe-west3` location
+     * for processing data:
+     *
+     *     parent=projects/example-project/locations/europe-west3
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type string $pageToken
      *          A page token is used to specify a page of values to be returned.
@@ -1827,11 +1909,26 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string             $parent             Required. Parent resource name.
-     *                                               - Format:projects/[PROJECT-ID]
-     *                                               - Format:organizations/[ORGANIZATION-ID]
-     *                                               - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
-     *                                               - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
+     * @param string $parent Required. Parent resource name.
+     *
+     * The format of this value varies depending on the scope of the request
+     * (project or organization) and whether you have [specified a processing
+     * location](https://cloud.google.com/dlp/docs/specifying-location):
+     *
+     * + Projects scope, location specified:<br/>
+     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * + Projects scope, no location specified (defaults to global):<br/>
+     *   `projects/`<var>PROJECT_ID</var>
+     * + Organizations scope, location specified:<br/>
+     *   `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * + Organizations scope, no location specified (defaults to global):<br/>
+     *   `organizations/`<var>ORG_ID</var>
+     *
+     * The following example `parent` string specifies a parent project with the
+     * identifier `example-project`, and specifies the `europe-west3` location
+     * for processing data:
+     *
+     *     parent=projects/example-project/locations/europe-west3
      * @param DeidentifyTemplate $deidentifyTemplate Required. The DeidentifyTemplate to create.
      * @param array              $optionalArgs       {
      *                                               Optional.
@@ -2028,13 +2125,28 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Parent resource name.
-     *                             - Format:projects/[PROJECT-ID]
-     *                             - Format:organizations/[ORGANIZATION-ID]
-     *                             - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
-     *                             - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $parent Required. Parent resource name.
+     *
+     * The format of this value varies depending on the scope of the request
+     * (project or organization) and whether you have [specified a processing
+     * location](https://cloud.google.com/dlp/docs/specifying-location):
+     *
+     * + Projects scope, location specified:<br/>
+     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * + Projects scope, no location specified (defaults to global):<br/>
+     *   `projects/`<var>PROJECT_ID</var>
+     * + Organizations scope, location specified:<br/>
+     *   `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * + Organizations scope, no location specified (defaults to global):<br/>
+     *   `organizations/`<var>ORG_ID</var>
+     *
+     * The following example `parent` string specifies a parent project with the
+     * identifier `example-project`, and specifies the `europe-west3` location
+     * for processing data:
+     *
+     *     parent=projects/example-project/locations/europe-west3
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type string $pageToken
      *          A page token is used to specify a page of values to be returned.
@@ -2172,9 +2284,21 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string     $parent       Required. Parent resource name.
-     *                                 - Format:projects/[PROJECT-ID]
-     *                                 - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     * @param string $parent Required. Parent resource name.
+     *
+     * The format of this value varies depending on whether you have [specified a
+     * processing location](https://cloud.google.com/dlp/docs/specifying-location):
+     *
+     * + Projects scope, location specified:<br/>
+     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * + Projects scope, no location specified (defaults to global):<br/>
+     *   `projects/`<var>PROJECT_ID</var>
+     *
+     * The following example `parent` string specifies a parent project with the
+     * identifier `example-project`, and specifies the `europe-west3` location
+     * for processing data:
+     *
+     *     parent=projects/example-project/locations/europe-west3
      * @param JobTrigger $jobTrigger   Required. The JobTrigger to create.
      * @param array      $optionalArgs {
      *                                 Optional.
@@ -2426,11 +2550,23 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Parent resource name.
-     *                             - Format:projects/[PROJECT-ID]
-     *                             - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $parent Required. Parent resource name.
+     *
+     * The format of this value varies depending on whether you have [specified a
+     * processing location](https://cloud.google.com/dlp/docs/specifying-location):
+     *
+     * + Projects scope, location specified:<br/>
+     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * + Projects scope, no location specified (defaults to global):<br/>
+     *   `projects/`<var>PROJECT_ID</var>
+     *
+     * The following example `parent` string specifies a parent project with the
+     * identifier `example-project`, and specifies the `europe-west3` location
+     * for processing data:
+     *
+     *     parent=projects/example-project/locations/europe-west3
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type string $pageToken
      *          A page token is used to specify a page of values to be returned.
@@ -2599,11 +2735,23 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Parent resource name.
-     *                             - Format:projects/[PROJECT-ID]
-     *                             - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $parent Required. Parent resource name.
+     *
+     * The format of this value varies depending on whether you have [specified a
+     * processing location](https://cloud.google.com/dlp/docs/specifying-location):
+     *
+     * + Projects scope, location specified:<br/>
+     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * + Projects scope, no location specified (defaults to global):<br/>
+     *   `projects/`<var>PROJECT_ID</var>
+     *
+     * The following example `parent` string specifies a parent project with the
+     * identifier `example-project`, and specifies the `europe-west3` location
+     * for processing data:
+     *
+     *     parent=projects/example-project/locations/europe-west3
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type InspectJobConfig $inspectJob The configuration details for an inspect
      *          job. Only one of $inspectJob and $riskJob may be provided.
@@ -2692,11 +2840,23 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Parent resource name.
-     *                             - Format:projects/[PROJECT-ID]
-     *                             - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $parent Required. Parent resource name.
+     *
+     * The format of this value varies depending on whether you have [specified a
+     * processing location](https://cloud.google.com/dlp/docs/specifying-location):
+     *
+     * + Projects scope, location specified:<br/>
+     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * + Projects scope, no location specified (defaults to global):<br/>
+     *   `projects/`<var>PROJECT_ID</var>
+     *
+     * The following example `parent` string specifies a parent project with the
+     * identifier `example-project`, and specifies the `europe-west3` location
+     * for processing data:
+     *
+     *     parent=projects/example-project/locations/europe-west3
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type string $filter
      *          Allows filtering.
@@ -2974,11 +3134,26 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string               $parent       Required. Parent resource name.
-     *                                           - Format:projects/[PROJECT-ID]
-     *                                           - Format:organizations/[ORGANIZATION-ID]
-     *                                           - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
-     *                                           - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
+     * @param string $parent Required. Parent resource name.
+     *
+     * The format of this value varies depending on the scope of the request
+     * (project or organization) and whether you have [specified a processing
+     * location](https://cloud.google.com/dlp/docs/specifying-location):
+     *
+     * + Projects scope, location specified:<br/>
+     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * + Projects scope, no location specified (defaults to global):<br/>
+     *   `projects/`<var>PROJECT_ID</var>
+     * + Organizations scope, location specified:<br/>
+     *   `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * + Organizations scope, no location specified (defaults to global):<br/>
+     *   `organizations/`<var>ORG_ID</var>
+     *
+     * The following example `parent` string specifies a parent project with the
+     * identifier `example-project`, and specifies the `europe-west3` location
+     * for processing data:
+     *
+     *     parent=projects/example-project/locations/europe-west3
      * @param StoredInfoTypeConfig $config       Required. Configuration of the storedInfoType to create.
      * @param array                $optionalArgs {
      *                                           Optional.
@@ -3178,13 +3353,28 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Parent resource name.
-     *                             - Format:projects/[PROJECT-ID]
-     *                             - Format:organizations/[ORGANIZATION-ID]
-     *                             - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
-     *                             - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $parent Required. Parent resource name.
+     *
+     * The format of this value varies depending on the scope of the request
+     * (project or organization) and whether you have [specified a processing
+     * location](https://cloud.google.com/dlp/docs/specifying-location):
+     *
+     * + Projects scope, location specified:<br/>
+     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * + Projects scope, no location specified (defaults to global):<br/>
+     *   `projects/`<var>PROJECT_ID</var>
+     * + Organizations scope, location specified:<br/>
+     *   `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * + Organizations scope, no location specified (defaults to global):<br/>
+     *   `organizations/`<var>ORG_ID</var>
+     *
+     * The following example `parent` string specifies a parent project with the
+     * identifier `example-project`, and specifies the `europe-west3` location
+     * for processing data:
+     *
+     *     parent=projects/example-project/locations/europe-west3
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type string $pageToken
      *          A page token is used to specify a page of values to be returned.
