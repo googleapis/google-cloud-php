@@ -59,7 +59,17 @@ class UpdateNotificationChannelRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return $this->update_mask;
+        return isset($this->update_mask) ? $this->update_mask : null;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**
@@ -88,7 +98,17 @@ class UpdateNotificationChannelRequest extends \Google\Protobuf\Internal\Message
      */
     public function getNotificationChannel()
     {
-        return $this->notification_channel;
+        return isset($this->notification_channel) ? $this->notification_channel : null;
+    }
+
+    public function hasNotificationChannel()
+    {
+        return isset($this->notification_channel);
+    }
+
+    public function clearNotificationChannel()
+    {
+        unset($this->notification_channel);
     }
 
     /**

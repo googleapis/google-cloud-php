@@ -131,7 +131,17 @@ class CreateServiceLevelObjectiveRequest extends \Google\Protobuf\Internal\Messa
      */
     public function getServiceLevelObjective()
     {
-        return $this->service_level_objective;
+        return isset($this->service_level_objective) ? $this->service_level_objective : null;
+    }
+
+    public function hasServiceLevelObjective()
+    {
+        return isset($this->service_level_objective);
+    }
+
+    public function clearServiceLevelObjective()
+    {
+        unset($this->service_level_objective);
     }
 
     /**

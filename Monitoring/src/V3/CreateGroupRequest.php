@@ -94,7 +94,17 @@ class CreateGroupRequest extends \Google\Protobuf\Internal\Message
      */
     public function getGroup()
     {
-        return $this->group;
+        return isset($this->group) ? $this->group : null;
+    }
+
+    public function hasGroup()
+    {
+        return isset($this->group);
+    }
+
+    public function clearGroup()
+    {
+        unset($this->group);
     }
 
     /**

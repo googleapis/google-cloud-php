@@ -288,7 +288,17 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      */
     public function getDocumentation()
     {
-        return $this->documentation;
+        return isset($this->documentation) ? $this->documentation : null;
+    }
+
+    public function hasDocumentation()
+    {
+        return isset($this->documentation);
+    }
+
+    public function clearDocumentation()
+    {
+        unset($this->documentation);
     }
 
     /**
@@ -304,7 +314,7 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      */
     public function setDocumentation($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\AlertPolicy_Documentation::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\AlertPolicy\Documentation::class);
         $this->documentation = $var;
 
         return $this;
@@ -408,7 +418,7 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      */
     public function setCombiner($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Monitoring\V3\AlertPolicy_ConditionCombinerType::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Monitoring\V3\AlertPolicy\ConditionCombinerType::class);
         $this->combiner = $var;
 
         return $this;
@@ -426,7 +436,17 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      */
     public function getEnabled()
     {
-        return $this->enabled;
+        return isset($this->enabled) ? $this->enabled : null;
+    }
+
+    public function hasEnabled()
+    {
+        return isset($this->enabled);
+    }
+
+    public function clearEnabled()
+    {
+        unset($this->enabled);
     }
 
     /**
@@ -492,7 +512,17 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      */
     public function getValidity()
     {
-        return $this->validity;
+        return isset($this->validity) ? $this->validity : null;
+    }
+
+    public function hasValidity()
+    {
+        return isset($this->validity);
+    }
+
+    public function clearValidity()
+    {
+        unset($this->validity);
     }
 
     /**
@@ -562,7 +592,17 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      */
     public function getCreationRecord()
     {
-        return $this->creation_record;
+        return isset($this->creation_record) ? $this->creation_record : null;
+    }
+
+    public function hasCreationRecord()
+    {
+        return isset($this->creation_record);
+    }
+
+    public function clearCreationRecord()
+    {
+        unset($this->creation_record);
     }
 
     /**
@@ -590,7 +630,17 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      */
     public function getMutationRecord()
     {
-        return $this->mutation_record;
+        return isset($this->mutation_record) ? $this->mutation_record : null;
+    }
+
+    public function hasMutationRecord()
+    {
+        return isset($this->mutation_record);
+    }
+
+    public function clearMutationRecord()
+    {
+        unset($this->mutation_record);
     }
 
     /**

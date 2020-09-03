@@ -67,6 +67,11 @@ class WindowsBasedSli extends \Google\Protobuf\Internal\Message
         return $this->readOneof(5);
     }
 
+    public function hasGoodBadMetricFilter()
+    {
+        return $this->hasOneof(5);
+    }
+
     /**
      * A [monitoring filter](https://cloud.google.com/monitoring/api/v3/filters)
      * specifying a `TimeSeries` with `ValueType = BOOL`. The window is good if
@@ -95,6 +100,11 @@ class WindowsBasedSli extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasGoodTotalRatioThreshold()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * A window is good if its `performance` is high enough.
      *
@@ -104,7 +114,7 @@ class WindowsBasedSli extends \Google\Protobuf\Internal\Message
      */
     public function setGoodTotalRatioThreshold($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\WindowsBasedSli_PerformanceThreshold::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\WindowsBasedSli\PerformanceThreshold::class);
         $this->writeOneof(2, $var);
 
         return $this;
@@ -122,6 +132,11 @@ class WindowsBasedSli extends \Google\Protobuf\Internal\Message
         return $this->readOneof(6);
     }
 
+    public function hasMetricMeanInRange()
+    {
+        return $this->hasOneof(6);
+    }
+
     /**
      * A window is good if the metric's value is in a good range, averaged
      * across returned streams.
@@ -132,7 +147,7 @@ class WindowsBasedSli extends \Google\Protobuf\Internal\Message
      */
     public function setMetricMeanInRange($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\WindowsBasedSli_MetricRange::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\WindowsBasedSli\MetricRange::class);
         $this->writeOneof(6, $var);
 
         return $this;
@@ -150,6 +165,11 @@ class WindowsBasedSli extends \Google\Protobuf\Internal\Message
         return $this->readOneof(7);
     }
 
+    public function hasMetricSumInRange()
+    {
+        return $this->hasOneof(7);
+    }
+
     /**
      * A window is good if the metric's value is in a good range, summed across
      * returned streams.
@@ -160,7 +180,7 @@ class WindowsBasedSli extends \Google\Protobuf\Internal\Message
      */
     public function setMetricSumInRange($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\WindowsBasedSli_MetricRange::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\WindowsBasedSli\MetricRange::class);
         $this->writeOneof(7, $var);
 
         return $this;
@@ -175,7 +195,17 @@ class WindowsBasedSli extends \Google\Protobuf\Internal\Message
      */
     public function getWindowPeriod()
     {
-        return $this->window_period;
+        return isset($this->window_period) ? $this->window_period : null;
+    }
+
+    public function hasWindowPeriod()
+    {
+        return isset($this->window_period);
+    }
+
+    public function clearWindowPeriod()
+    {
+        unset($this->window_period);
     }
 
     /**

@@ -189,7 +189,17 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      */
     public function getAlignmentPeriod()
     {
-        return $this->alignment_period;
+        return isset($this->alignment_period) ? $this->alignment_period : null;
+    }
+
+    public function hasAlignmentPeriod()
+    {
+        return isset($this->alignment_period);
+    }
+
+    public function clearAlignmentPeriod()
+    {
+        unset($this->alignment_period);
     }
 
     /**
@@ -261,7 +271,7 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      */
     public function setPerSeriesAligner($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Monitoring\V3\Aggregation_Aligner::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Monitoring\V3\Aggregation\Aligner::class);
         $this->per_series_aligner = $var;
 
         return $this;
@@ -309,7 +319,7 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      */
     public function setCrossSeriesReducer($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Monitoring\V3\Aggregation_Reducer::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Monitoring\V3\Aggregation\Reducer::class);
         $this->cross_series_reducer = $var;
 
         return $this;

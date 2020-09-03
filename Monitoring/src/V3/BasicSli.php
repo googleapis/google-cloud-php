@@ -203,6 +203,11 @@ class BasicSli extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasAvailability()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * Good service is defined to be the count of requests made to this service
      * that return successfully.
@@ -213,7 +218,7 @@ class BasicSli extends \Google\Protobuf\Internal\Message
      */
     public function setAvailability($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\BasicSli_AvailabilityCriteria::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\BasicSli\AvailabilityCriteria::class);
         $this->writeOneof(2, $var);
 
         return $this;
@@ -231,6 +236,11 @@ class BasicSli extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasLatency()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * Good service is defined to be the count of requests made to this service
      * that are fast enough with respect to `latency.threshold`.
@@ -241,7 +251,7 @@ class BasicSli extends \Google\Protobuf\Internal\Message
      */
     public function setLatency($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\BasicSli_LatencyCriteria::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\BasicSli\LatencyCriteria::class);
         $this->writeOneof(3, $var);
 
         return $this;
