@@ -448,7 +448,8 @@ class SecretManagerServiceGapicClient
      * try {
      *     $formattedParent = $secretManagerServiceClient->projectName('[PROJECT]');
      *     $secretId = '';
-     *     $response = $secretManagerServiceClient->createSecret($formattedParent, $secretId);
+     *     $secret = new Secret();
+     *     $response = $secretManagerServiceClient->createSecret($formattedParent, $secretId, $secret);
      * } finally {
      *     $secretManagerServiceClient->close();
      * }
@@ -461,11 +462,10 @@ class SecretManagerServiceGapicClient
      * A secret ID is a string with a maximum length of 255 characters and can
      * contain uppercase and lowercase letters, numerals, and the hyphen (`-`) and
      * underscore (`_`) characters.
-     * @param array $optionalArgs {
-     *                            Optional.
+     * @param Secret $secret       Required. A [Secret][google.cloud.secrets.v1beta1.Secret] with initial field values.
+     * @param array  $optionalArgs {
+     *                             Optional.
      *
-     *     @type Secret $secret
-     *          A [Secret][google.cloud.secrets.v1beta1.Secret] with initial field values.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -478,14 +478,12 @@ class SecretManagerServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createSecret($parent, $secretId, array $optionalArgs = [])
+    public function createSecret($parent, $secretId, $secret, array $optionalArgs = [])
     {
         $request = new CreateSecretRequest();
         $request->setParent($parent);
         $request->setSecretId($secretId);
-        if (isset($optionalArgs['secret'])) {
-            $request->setSecret($optionalArgs['secret']);
-        }
+        $request->setSecret($secret);
 
         $requestParams = new RequestParamsHeaderDescriptor([
           'parent' => $request->getParent(),
