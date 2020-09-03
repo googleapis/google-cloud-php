@@ -20,8 +20,6 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/cloud/recaptchaenterprise/v1/recaptchaenterprise.proto
  * and updates to that file get reflected here through a refresh process.
- *
- * @experimental
  */
 
 namespace Google\Cloud\RecaptchaEnterprise\V1\Gapic;
@@ -71,8 +69,6 @@ use Google\Protobuf\GPBEmpty;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parseName method to extract the individual identifiers contained within formatted names
  * that are returned by the API.
- *
- * @experimental
  */
 class RecaptchaEnterpriseServiceGapicClient
 {
@@ -176,7 +172,6 @@ class RecaptchaEnterpriseServiceGapicClient
      * @param string $assessment
      *
      * @return string The formatted assessment resource.
-     * @experimental
      */
     public static function assessmentName($project, $assessment)
     {
@@ -194,7 +189,6 @@ class RecaptchaEnterpriseServiceGapicClient
      * @param string $key
      *
      * @return string The formatted key resource.
-     * @experimental
      */
     public static function keyName($project, $key)
     {
@@ -211,7 +205,6 @@ class RecaptchaEnterpriseServiceGapicClient
      * @param string $project
      *
      * @return string The formatted project resource.
-     * @experimental
      */
     public static function projectName($project)
     {
@@ -239,7 +232,6 @@ class RecaptchaEnterpriseServiceGapicClient
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
-     * @experimental
      */
     public static function parseName($formattedName, $template = null)
     {
@@ -316,7 +308,6 @@ class RecaptchaEnterpriseServiceGapicClient
      * }
      *
      * @throws ValidationException
-     * @experimental
      */
     public function __construct(array $options = [])
     {
@@ -355,7 +346,6 @@ class RecaptchaEnterpriseServiceGapicClient
      * @return \Google\Cloud\RecaptchaEnterprise\V1\Assessment
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function createAssessment($parent, $assessment, array $optionalArgs = [])
     {
@@ -411,7 +401,6 @@ class RecaptchaEnterpriseServiceGapicClient
      * @return \Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function annotateAssessment($name, $annotation, array $optionalArgs = [])
     {
@@ -465,7 +454,6 @@ class RecaptchaEnterpriseServiceGapicClient
      * @return \Google\Cloud\RecaptchaEnterprise\V1\Key
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function createKey($parent, $key, array $optionalArgs = [])
     {
@@ -541,7 +529,6 @@ class RecaptchaEnterpriseServiceGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listKeys($parent, array $optionalArgs = [])
     {
@@ -598,7 +585,6 @@ class RecaptchaEnterpriseServiceGapicClient
      * @return \Google\Cloud\RecaptchaEnterprise\V1\Key
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getKey($name, array $optionalArgs = [])
     {
@@ -651,7 +637,6 @@ class RecaptchaEnterpriseServiceGapicClient
      * @return \Google\Cloud\RecaptchaEnterprise\V1\Key
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function updateKey($key, array $optionalArgs = [])
     {
@@ -703,7 +688,6 @@ class RecaptchaEnterpriseServiceGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function deleteKey($name, array $optionalArgs = [])
     {
