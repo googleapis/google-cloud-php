@@ -95,7 +95,7 @@ class OpenUrlAction extends \Google\Protobuf\Internal\Message
      */
     public function setUrlTypeHint($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\Intent_Message_BrowseCarouselCard_BrowseCarouselCardItem_OpenUrlAction_UrlTypeHint::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\Intent\Message\BrowseCarouselCard\BrowseCarouselCardItem\OpenUrlAction\UrlTypeHint::class);
         $this->url_type_hint = $var;
 
         return $this;

@@ -415,7 +415,17 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      */
     public function getParameters()
     {
-        return $this->parameters;
+        return isset($this->parameters) ? $this->parameters : null;
+    }
+
+    public function hasParameters()
+    {
+        return isset($this->parameters);
+    }
+
+    public function clearParameters()
+    {
+        unset($this->parameters);
     }
 
     /**
@@ -570,7 +580,17 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      */
     public function getWebhookPayload()
     {
-        return $this->webhook_payload;
+        return isset($this->webhook_payload) ? $this->webhook_payload : null;
+    }
+
+    public function hasWebhookPayload()
+    {
+        return isset($this->webhook_payload);
+    }
+
+    public function clearWebhookPayload()
+    {
+        unset($this->webhook_payload);
     }
 
     /**
@@ -631,7 +651,17 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      */
     public function getIntent()
     {
-        return $this->intent;
+        return isset($this->intent) ? $this->intent : null;
+    }
+
+    public function hasIntent()
+    {
+        return isset($this->intent);
+    }
+
+    public function clearIntent()
+    {
+        unset($this->intent);
     }
 
     /**
@@ -704,7 +734,17 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      */
     public function getDiagnosticInfo()
     {
-        return $this->diagnostic_info;
+        return isset($this->diagnostic_info) ? $this->diagnostic_info : null;
+    }
+
+    public function hasDiagnosticInfo()
+    {
+        return isset($this->diagnostic_info);
+    }
+
+    public function clearDiagnosticInfo()
+    {
+        unset($this->diagnostic_info);
     }
 
     /**
@@ -736,7 +776,17 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      */
     public function getSentimentAnalysisResult()
     {
-        return $this->sentiment_analysis_result;
+        return isset($this->sentiment_analysis_result) ? $this->sentiment_analysis_result : null;
+    }
+
+    public function hasSentimentAnalysisResult()
+    {
+        return isset($this->sentiment_analysis_result);
+    }
+
+    public function clearSentimentAnalysisResult()
+    {
+        unset($this->sentiment_analysis_result);
     }
 
     /**

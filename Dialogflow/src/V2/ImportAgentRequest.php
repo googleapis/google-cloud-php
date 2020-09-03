@@ -85,6 +85,11 @@ class ImportAgentRequest extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasAgentUri()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * The URI to a Google Cloud Storage file containing the agent to import.
      * Note: The URI must start with "gs://".
@@ -110,6 +115,11 @@ class ImportAgentRequest extends \Google\Protobuf\Internal\Message
     public function getAgentContent()
     {
         return $this->readOneof(3);
+    }
+
+    public function hasAgentContent()
+    {
+        return $this->hasOneof(3);
     }
 
     /**

@@ -69,7 +69,17 @@ class UpdateEntityTypeRequest extends \Google\Protobuf\Internal\Message
      */
     public function getEntityType()
     {
-        return $this->entity_type;
+        return isset($this->entity_type) ? $this->entity_type : null;
+    }
+
+    public function hasEntityType()
+    {
+        return isset($this->entity_type);
+    }
+
+    public function clearEntityType()
+    {
+        unset($this->entity_type);
     }
 
     /**
@@ -129,7 +139,17 @@ class UpdateEntityTypeRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return $this->update_mask;
+        return isset($this->update_mask) ? $this->update_mask : null;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**

@@ -47,6 +47,11 @@ class ExportAgentResponse extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasAgentUri()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * The URI to a file containing the exported agent. This field is populated
      * only if `agent_uri` is specified in `ExportAgentRequest`.
@@ -72,6 +77,11 @@ class ExportAgentResponse extends \Google\Protobuf\Internal\Message
     public function getAgentContent()
     {
         return $this->readOneof(2);
+    }
+
+    public function hasAgentContent()
+    {
+        return $this->hasOneof(2);
     }
 
     /**

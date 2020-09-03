@@ -115,7 +115,17 @@ class SpeechWordInfo extends \Google\Protobuf\Internal\Message
      */
     public function getStartOffset()
     {
-        return $this->start_offset;
+        return isset($this->start_offset) ? $this->start_offset : null;
+    }
+
+    public function hasStartOffset()
+    {
+        return isset($this->start_offset);
+    }
+
+    public function clearStartOffset()
+    {
+        unset($this->start_offset);
     }
 
     /**
@@ -145,7 +155,17 @@ class SpeechWordInfo extends \Google\Protobuf\Internal\Message
      */
     public function getEndOffset()
     {
-        return $this->end_offset;
+        return isset($this->end_offset) ? $this->end_offset : null;
+    }
+
+    public function hasEndOffset()
+    {
+        return isset($this->end_offset);
+    }
+
+    public function clearEndOffset()
+    {
+        unset($this->end_offset);
     }
 
     /**

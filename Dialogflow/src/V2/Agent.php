@@ -430,7 +430,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      */
     public function setMatchMode($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\Agent_MatchMode::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\Agent\MatchMode::class);
         $this->match_mode = $var;
 
         return $this;
@@ -500,7 +500,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      */
     public function setApiVersion($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\Agent_ApiVersion::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\Agent\ApiVersion::class);
         $this->api_version = $var;
 
         return $this;
@@ -526,7 +526,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      */
     public function setTier($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\Agent_Tier::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\Agent\Tier::class);
         $this->tier = $var;
 
         return $this;

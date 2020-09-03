@@ -225,7 +225,17 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getQueryParams()
     {
-        return $this->query_params;
+        return isset($this->query_params) ? $this->query_params : null;
+    }
+
+    public function hasQueryParams()
+    {
+        return isset($this->query_params);
+    }
+
+    public function clearQueryParams()
+    {
+        unset($this->query_params);
     }
 
     /**
@@ -255,7 +265,17 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getQueryInput()
     {
-        return $this->query_input;
+        return isset($this->query_input) ? $this->query_input : null;
+    }
+
+    public function hasQueryInput()
+    {
+        return isset($this->query_input);
+    }
+
+    public function clearQueryInput()
+    {
+        unset($this->query_input);
     }
 
     /**
@@ -327,7 +347,17 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getOutputAudioConfig()
     {
-        return $this->output_audio_config;
+        return isset($this->output_audio_config) ? $this->output_audio_config : null;
+    }
+
+    public function hasOutputAudioConfig()
+    {
+        return isset($this->output_audio_config);
+    }
+
+    public function clearOutputAudioConfig()
+    {
+        unset($this->output_audio_config);
     }
 
     /**
@@ -359,7 +389,17 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getOutputAudioConfigMask()
     {
-        return $this->output_audio_config_mask;
+        return isset($this->output_audio_config_mask) ? $this->output_audio_config_mask : null;
+    }
+
+    public function hasOutputAudioConfigMask()
+    {
+        return isset($this->output_audio_config_mask);
+    }
+
+    public function clearOutputAudioConfigMask()
+    {
+        unset($this->output_audio_config_mask);
     }
 
     /**

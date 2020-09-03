@@ -126,7 +126,17 @@ class DetectIntentResponse extends \Google\Protobuf\Internal\Message
      */
     public function getQueryResult()
     {
-        return $this->query_result;
+        return isset($this->query_result) ? $this->query_result : null;
+    }
+
+    public function hasQueryResult()
+    {
+        return isset($this->query_result);
+    }
+
+    public function clearQueryResult()
+    {
+        unset($this->query_result);
     }
 
     /**
@@ -153,7 +163,17 @@ class DetectIntentResponse extends \Google\Protobuf\Internal\Message
      */
     public function getWebhookStatus()
     {
-        return $this->webhook_status;
+        return isset($this->webhook_status) ? $this->webhook_status : null;
+    }
+
+    public function hasWebhookStatus()
+    {
+        return isset($this->webhook_status);
+    }
+
+    public function clearWebhookStatus()
+    {
+        unset($this->webhook_status);
     }
 
     /**
@@ -221,7 +241,17 @@ class DetectIntentResponse extends \Google\Protobuf\Internal\Message
      */
     public function getOutputAudioConfig()
     {
-        return $this->output_audio_config;
+        return isset($this->output_audio_config) ? $this->output_audio_config : null;
+    }
+
+    public function hasOutputAudioConfig()
+    {
+        return isset($this->output_audio_config);
+    }
+
+    public function clearOutputAudioConfig()
+    {
+        unset($this->output_audio_config);
     }
 
     /**

@@ -51,6 +51,11 @@ class QueryInput extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasAudioConfig()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * Instructs the speech recognizer how to process the speech audio.
      *
@@ -77,6 +82,11 @@ class QueryInput extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasText()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * The natural language text to be processed.
      *
@@ -101,6 +111,11 @@ class QueryInput extends \Google\Protobuf\Internal\Message
     public function getEvent()
     {
         return $this->readOneof(3);
+    }
+
+    public function hasEvent()
+    {
+        return $this->hasOneof(3);
     }
 
     /**

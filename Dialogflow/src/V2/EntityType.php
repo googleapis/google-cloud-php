@@ -172,7 +172,7 @@ class EntityType extends \Google\Protobuf\Internal\Message
      */
     public function setKind($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\EntityType_Kind::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\EntityType\Kind::class);
         $this->kind = $var;
 
         return $this;
@@ -200,7 +200,7 @@ class EntityType extends \Google\Protobuf\Internal\Message
      */
     public function setAutoExpansionMode($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\EntityType_AutoExpansionMode::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\EntityType\AutoExpansionMode::class);
         $this->auto_expansion_mode = $var;
 
         return $this;

@@ -117,6 +117,11 @@ class BatchUpdateIntentsRequest extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasIntentBatchUri()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * The URI to a Google Cloud Storage file containing intents to update or
      * create. The file format can either be a serialized proto (of IntentBatch
@@ -143,6 +148,11 @@ class BatchUpdateIntentsRequest extends \Google\Protobuf\Internal\Message
     public function getIntentBatchInline()
     {
         return $this->readOneof(3);
+    }
+
+    public function hasIntentBatchInline()
+    {
+        return $this->hasOneof(3);
     }
 
     /**
@@ -202,7 +212,17 @@ class BatchUpdateIntentsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return $this->update_mask;
+        return isset($this->update_mask) ? $this->update_mask : null;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**

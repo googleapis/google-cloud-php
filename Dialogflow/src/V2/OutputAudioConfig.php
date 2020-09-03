@@ -131,7 +131,17 @@ class OutputAudioConfig extends \Google\Protobuf\Internal\Message
      */
     public function getSynthesizeSpeechConfig()
     {
-        return $this->synthesize_speech_config;
+        return isset($this->synthesize_speech_config) ? $this->synthesize_speech_config : null;
+    }
+
+    public function hasSynthesizeSpeechConfig()
+    {
+        return isset($this->synthesize_speech_config);
+    }
+
+    public function clearSynthesizeSpeechConfig()
+    {
+        unset($this->synthesize_speech_config);
     }
 
     /**

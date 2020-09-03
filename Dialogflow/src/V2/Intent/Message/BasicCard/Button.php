@@ -79,7 +79,17 @@ class Button extends \Google\Protobuf\Internal\Message
      */
     public function getOpenUriAction()
     {
-        return $this->open_uri_action;
+        return isset($this->open_uri_action) ? $this->open_uri_action : null;
+    }
+
+    public function hasOpenUriAction()
+    {
+        return isset($this->open_uri_action);
+    }
+
+    public function clearOpenUriAction()
+    {
+        unset($this->open_uri_action);
     }
 
     /**
@@ -91,7 +101,7 @@ class Button extends \Google\Protobuf\Internal\Message
      */
     public function setOpenUriAction($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Intent_Message_BasicCard_Button_OpenUriAction::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Intent\Message\BasicCard\Button\OpenUriAction::class);
         $this->open_uri_action = $var;
 
         return $this;

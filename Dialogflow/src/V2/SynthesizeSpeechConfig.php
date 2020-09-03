@@ -237,7 +237,17 @@ class SynthesizeSpeechConfig extends \Google\Protobuf\Internal\Message
      */
     public function getVoice()
     {
-        return $this->voice;
+        return isset($this->voice) ? $this->voice : null;
+    }
+
+    public function hasVoice()
+    {
+        return isset($this->voice);
+    }
+
+    public function clearVoice()
+    {
+        unset($this->voice);
     }
 
     /**

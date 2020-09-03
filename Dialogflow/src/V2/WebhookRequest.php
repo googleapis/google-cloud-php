@@ -146,7 +146,17 @@ class WebhookRequest extends \Google\Protobuf\Internal\Message
      */
     public function getQueryResult()
     {
-        return $this->query_result;
+        return isset($this->query_result) ? $this->query_result : null;
+    }
+
+    public function hasQueryResult()
+    {
+        return isset($this->query_result);
+    }
+
+    public function clearQueryResult()
+    {
+        unset($this->query_result);
     }
 
     /**
@@ -174,7 +184,17 @@ class WebhookRequest extends \Google\Protobuf\Internal\Message
      */
     public function getOriginalDetectIntentRequest()
     {
-        return $this->original_detect_intent_request;
+        return isset($this->original_detect_intent_request) ? $this->original_detect_intent_request : null;
+    }
+
+    public function hasOriginalDetectIntentRequest()
+    {
+        return isset($this->original_detect_intent_request);
+    }
+
+    public function clearOriginalDetectIntentRequest()
+    {
+        unset($this->original_detect_intent_request);
     }
 
     /**

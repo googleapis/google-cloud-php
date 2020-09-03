@@ -100,7 +100,7 @@ class BrowseCarouselCard extends \Google\Protobuf\Internal\Message
      */
     public function setImageDisplayOptions($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\Intent_Message_BrowseCarouselCard_ImageDisplayOptions::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\Intent\Message\BrowseCarouselCard\ImageDisplayOptions::class);
         $this->image_display_options = $var;
 
         return $this;

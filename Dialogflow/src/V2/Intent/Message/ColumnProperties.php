@@ -91,7 +91,7 @@ class ColumnProperties extends \Google\Protobuf\Internal\Message
      */
     public function setHorizontalAlignment($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\Intent_Message_ColumnProperties_HorizontalAlignment::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\Intent\Message\ColumnProperties\HorizontalAlignment::class);
         $this->horizontal_alignment = $var;
 
         return $this;

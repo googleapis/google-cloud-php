@@ -137,7 +137,17 @@ class TableCard extends \Google\Protobuf\Internal\Message
      */
     public function getImage()
     {
-        return $this->image;
+        return isset($this->image) ? $this->image : null;
+    }
+
+    public function hasImage()
+    {
+        return isset($this->image);
+    }
+
+    public function clearImage()
+    {
+        unset($this->image);
     }
 
     /**
@@ -149,7 +159,7 @@ class TableCard extends \Google\Protobuf\Internal\Message
      */
     public function setImage($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Intent_Message_Image::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Intent\Message\Image::class);
         $this->image = $var;
 
         return $this;

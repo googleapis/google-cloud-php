@@ -143,7 +143,7 @@ class SessionEntityType extends \Google\Protobuf\Internal\Message
      */
     public function setEntityOverrideMode($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\SessionEntityType_EntityOverrideMode::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\SessionEntityType\EntityOverrideMode::class);
         $this->entity_override_mode = $var;
 
         return $this;

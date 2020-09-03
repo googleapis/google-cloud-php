@@ -53,7 +53,17 @@ class UpdateSessionEntityTypeRequest extends \Google\Protobuf\Internal\Message
      */
     public function getSessionEntityType()
     {
-        return $this->session_entity_type;
+        return isset($this->session_entity_type) ? $this->session_entity_type : null;
+    }
+
+    public function hasSessionEntityType()
+    {
+        return isset($this->session_entity_type);
+    }
+
+    public function clearSessionEntityType()
+    {
+        unset($this->session_entity_type);
     }
 
     /**
@@ -79,7 +89,17 @@ class UpdateSessionEntityTypeRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return $this->update_mask;
+        return isset($this->update_mask) ? $this->update_mask : null;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**

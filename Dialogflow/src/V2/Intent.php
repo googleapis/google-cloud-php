@@ -330,7 +330,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      */
     public function setWebhookState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\Intent_WebhookState::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\Intent\WebhookState::class);
         $this->webhook_state = $var;
 
         return $this;

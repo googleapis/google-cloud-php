@@ -99,7 +99,17 @@ class CreateContextRequest extends \Google\Protobuf\Internal\Message
      */
     public function getContext()
     {
-        return $this->context;
+        return isset($this->context) ? $this->context : null;
+    }
+
+    public function hasContext()
+    {
+        return isset($this->context);
+    }
+
+    public function clearContext()
+    {
+        unset($this->context);
     }
 
     /**

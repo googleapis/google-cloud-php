@@ -221,7 +221,17 @@ class Context extends \Google\Protobuf\Internal\Message
      */
     public function getParameters()
     {
-        return $this->parameters;
+        return isset($this->parameters) ? $this->parameters : null;
+    }
+
+    public function hasParameters()
+    {
+        return isset($this->parameters);
+    }
+
+    public function clearParameters()
+    {
+        unset($this->parameters);
     }
 
     /**
