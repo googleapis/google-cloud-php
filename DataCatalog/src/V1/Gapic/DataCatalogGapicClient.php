@@ -20,8 +20,6 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/cloud/datacatalog/v1/datacatalog.proto
  * and updates to that file get reflected here through a refresh process.
- *
- * @experimental
  */
 
 namespace Google\Cloud\DataCatalog\V1\Gapic;
@@ -115,8 +113,6 @@ use Google\Protobuf\GPBEmpty;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parseName method to extract the individual identifiers contained within formatted names
  * that are returned by the API.
- *
- * @experimental
  */
 class DataCatalogGapicClient
 {
@@ -255,7 +251,6 @@ class DataCatalogGapicClient
      * @param string $entry
      *
      * @return string The formatted entry resource.
-     * @experimental
      */
     public static function entryName($project, $location, $entryGroup, $entry)
     {
@@ -276,7 +271,6 @@ class DataCatalogGapicClient
      * @param string $entryGroup
      *
      * @return string The formatted entry_group resource.
-     * @experimental
      */
     public static function entryGroupName($project, $location, $entryGroup)
     {
@@ -295,7 +289,6 @@ class DataCatalogGapicClient
      * @param string $location
      *
      * @return string The formatted location resource.
-     * @experimental
      */
     public static function locationName($project, $location)
     {
@@ -316,7 +309,6 @@ class DataCatalogGapicClient
      * @param string $tag
      *
      * @return string The formatted tag resource.
-     * @experimental
      */
     public static function tagName($project, $location, $entryGroup, $entry, $tag)
     {
@@ -338,7 +330,6 @@ class DataCatalogGapicClient
      * @param string $tagTemplate
      *
      * @return string The formatted tag_template resource.
-     * @experimental
      */
     public static function tagTemplateName($project, $location, $tagTemplate)
     {
@@ -359,7 +350,6 @@ class DataCatalogGapicClient
      * @param string $field
      *
      * @return string The formatted tag_template_field resource.
-     * @experimental
      */
     public static function tagTemplateFieldName($project, $location, $tagTemplate, $field)
     {
@@ -393,7 +383,6 @@ class DataCatalogGapicClient
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
-     * @experimental
      */
     public static function parseName($formattedName, $template = null)
     {
@@ -470,7 +459,6 @@ class DataCatalogGapicClient
      * }
      *
      * @throws ValidationException
-     * @experimental
      */
     public function __construct(array $options = [])
     {
@@ -571,7 +559,6 @@ class DataCatalogGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function searchCatalog($scope, $query, array $optionalArgs = [])
     {
@@ -653,7 +640,6 @@ class DataCatalogGapicClient
      * @return \Google\Cloud\DataCatalog\V1\EntryGroup
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function createEntryGroup($parent, $entryGroupId, array $optionalArgs = [])
     {
@@ -710,7 +696,6 @@ class DataCatalogGapicClient
      * @return \Google\Cloud\DataCatalog\V1\EntryGroup
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getEntryGroup($name, array $optionalArgs = [])
     {
@@ -770,7 +755,6 @@ class DataCatalogGapicClient
      * @return \Google\Cloud\DataCatalog\V1\EntryGroup
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function updateEntryGroup($entryGroup, array $optionalArgs = [])
     {
@@ -828,7 +812,6 @@ class DataCatalogGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function deleteEntryGroup($name, array $optionalArgs = [])
     {
@@ -908,7 +891,6 @@ class DataCatalogGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listEntryGroups($parent, array $optionalArgs = [])
     {
@@ -981,7 +963,6 @@ class DataCatalogGapicClient
      * @return \Google\Cloud\DataCatalog\V1\Entry
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function createEntry($parent, $entryId, $entry, array $optionalArgs = [])
     {
@@ -1058,7 +1039,6 @@ class DataCatalogGapicClient
      * @return \Google\Cloud\DataCatalog\V1\Entry
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function updateEntry($entry, array $optionalArgs = [])
     {
@@ -1117,7 +1097,6 @@ class DataCatalogGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function deleteEntry($name, array $optionalArgs = [])
     {
@@ -1169,7 +1148,6 @@ class DataCatalogGapicClient
      * @return \Google\Cloud\DataCatalog\V1\Entry
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getEntry($name, array $optionalArgs = [])
     {
@@ -1242,7 +1220,6 @@ class DataCatalogGapicClient
      * @return \Google\Cloud\DataCatalog\V1\Entry
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function lookupEntry(array $optionalArgs = [])
     {
@@ -1322,7 +1299,6 @@ class DataCatalogGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listEntries($parent, array $optionalArgs = [])
     {
@@ -1394,7 +1370,6 @@ class DataCatalogGapicClient
      * @return \Google\Cloud\DataCatalog\V1\TagTemplate
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function createTagTemplate($parent, $tagTemplateId, $tagTemplate, array $optionalArgs = [])
     {
@@ -1448,7 +1423,6 @@ class DataCatalogGapicClient
      * @return \Google\Cloud\DataCatalog\V1\TagTemplate
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getTagTemplate($name, array $optionalArgs = [])
     {
@@ -1512,7 +1486,6 @@ class DataCatalogGapicClient
      * @return \Google\Cloud\DataCatalog\V1\TagTemplate
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function updateTagTemplate($tagTemplate, array $optionalArgs = [])
     {
@@ -1573,7 +1546,6 @@ class DataCatalogGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function deleteTagTemplate($name, $force, array $optionalArgs = [])
     {
@@ -1641,7 +1613,6 @@ class DataCatalogGapicClient
      * @return \Google\Cloud\DataCatalog\V1\TagTemplateField
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function createTagTemplateField($parent, $tagTemplateFieldId, $tagTemplateField, array $optionalArgs = [])
     {
@@ -1716,7 +1687,6 @@ class DataCatalogGapicClient
      * @return \Google\Cloud\DataCatalog\V1\TagTemplateField
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function updateTagTemplateField($name, $tagTemplateField, array $optionalArgs = [])
     {
@@ -1779,7 +1749,6 @@ class DataCatalogGapicClient
      * @return \Google\Cloud\DataCatalog\V1\TagTemplateField
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function renameTagTemplateField($name, $newTagTemplateFieldId, array $optionalArgs = [])
     {
@@ -1838,7 +1807,6 @@ class DataCatalogGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function deleteTagTemplateField($name, $force, array $optionalArgs = [])
     {
@@ -1903,7 +1871,6 @@ class DataCatalogGapicClient
      * @return \Google\Cloud\DataCatalog\V1\Tag
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function createTag($parent, $tag, array $optionalArgs = [])
     {
@@ -1957,7 +1924,6 @@ class DataCatalogGapicClient
      * @return \Google\Cloud\DataCatalog\V1\Tag
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function updateTag($tag, array $optionalArgs = [])
     {
@@ -2010,7 +1976,6 @@ class DataCatalogGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function deleteTag($name, array $optionalArgs = [])
     {
@@ -2091,7 +2056,6 @@ class DataCatalogGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listTags($parent, array $optionalArgs = [])
     {
@@ -2166,7 +2130,6 @@ class DataCatalogGapicClient
      * @return \Google\Cloud\Iam\V1\Policy
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function setIamPolicy($resource, $policy, array $optionalArgs = [])
     {
@@ -2236,7 +2199,6 @@ class DataCatalogGapicClient
      * @return \Google\Cloud\Iam\V1\Policy
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getIamPolicy($resource, array $optionalArgs = [])
     {
@@ -2307,7 +2269,6 @@ class DataCatalogGapicClient
      * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
     {
