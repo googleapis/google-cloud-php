@@ -48,6 +48,11 @@ class Precondition extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasExists()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * When set to `true`, the target document must exist.
      * When set to `false`, the target document must not exist.
@@ -74,6 +79,11 @@ class Precondition extends \Google\Protobuf\Internal\Message
     public function getUpdateTime()
     {
         return $this->readOneof(2);
+    }
+
+    public function hasUpdateTime()
+    {
+        return $this->hasOneof(2);
     }
 
     /**

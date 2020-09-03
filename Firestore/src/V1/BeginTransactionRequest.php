@@ -86,7 +86,17 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
      */
     public function getOptions()
     {
-        return $this->options;
+        return isset($this->options) ? $this->options : null;
+    }
+
+    public function hasOptions()
+    {
+        return isset($this->options);
+    }
+
+    public function clearOptions()
+    {
+        unset($this->options);
     }
 
     /**

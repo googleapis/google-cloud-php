@@ -45,6 +45,11 @@ class ReadOnly extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasReadTime()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * Reads documents at the given time.
      * This may not be older than 60 seconds.

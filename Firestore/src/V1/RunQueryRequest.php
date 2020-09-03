@@ -108,6 +108,11 @@ class RunQueryRequest extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasStructuredQuery()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * A structured query.
      *
@@ -132,6 +137,11 @@ class RunQueryRequest extends \Google\Protobuf\Internal\Message
     public function getTransaction()
     {
         return $this->readOneof(5);
+    }
+
+    public function hasTransaction()
+    {
+        return $this->hasOneof(5);
     }
 
     /**
@@ -163,6 +173,11 @@ class RunQueryRequest extends \Google\Protobuf\Internal\Message
         return $this->readOneof(6);
     }
 
+    public function hasNewTransaction()
+    {
+        return $this->hasOneof(6);
+    }
+
     /**
      * Starts a new transaction and reads the documents.
      * Defaults to a read-only transaction.
@@ -191,6 +206,11 @@ class RunQueryRequest extends \Google\Protobuf\Internal\Message
     public function getReadTime()
     {
         return $this->readOneof(7);
+    }
+
+    public function hasReadTime()
+    {
+        return $this->hasOneof(7);
     }
 
     /**

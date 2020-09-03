@@ -91,6 +91,11 @@ class IndexField extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasOrder()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * Indicates that this field supports ordering by the specified order or
      * comparing using =, <, <=, >, >=.
@@ -101,7 +106,7 @@ class IndexField extends \Google\Protobuf\Internal\Message
      */
     public function setOrder($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Firestore\Admin\V1\Index_IndexField_Order::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Firestore\Admin\V1\Index\IndexField\Order::class);
         $this->writeOneof(2, $var);
 
         return $this;
@@ -118,6 +123,11 @@ class IndexField extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasArrayConfig()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * Indicates that this field supports operations on `array_value`s.
      *
@@ -127,7 +137,7 @@ class IndexField extends \Google\Protobuf\Internal\Message
      */
     public function setArrayConfig($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Firestore\Admin\V1\Index_IndexField_ArrayConfig::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Firestore\Admin\V1\Index\IndexField\ArrayConfig::class);
         $this->writeOneof(3, $var);
 
         return $this;

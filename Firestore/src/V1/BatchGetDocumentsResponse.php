@@ -72,6 +72,11 @@ class BatchGetDocumentsResponse extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasFound()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * A document that was requested.
      *
@@ -97,6 +102,11 @@ class BatchGetDocumentsResponse extends \Google\Protobuf\Internal\Message
     public function getMissing()
     {
         return $this->readOneof(2);
+    }
+
+    public function hasMissing()
+    {
+        return $this->hasOneof(2);
     }
 
     /**
@@ -156,7 +166,17 @@ class BatchGetDocumentsResponse extends \Google\Protobuf\Internal\Message
      */
     public function getReadTime()
     {
-        return $this->read_time;
+        return isset($this->read_time) ? $this->read_time : null;
+    }
+
+    public function hasReadTime()
+    {
+        return isset($this->read_time);
+    }
+
+    public function clearReadTime()
+    {
+        unset($this->read_time);
     }
 
     /**

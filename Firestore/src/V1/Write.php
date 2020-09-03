@@ -96,6 +96,11 @@ class Write extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasUpdate()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * A document to write.
      *
@@ -123,6 +128,11 @@ class Write extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasDelete()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * A document name to delete. In the format:
      * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
@@ -148,6 +158,11 @@ class Write extends \Google\Protobuf\Internal\Message
     public function getTransform()
     {
         return $this->readOneof(6);
+    }
+
+    public function hasTransform()
+    {
+        return $this->hasOneof(6);
     }
 
     /**
@@ -181,7 +196,17 @@ class Write extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return $this->update_mask;
+        return isset($this->update_mask) ? $this->update_mask : null;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**
@@ -248,7 +273,17 @@ class Write extends \Google\Protobuf\Internal\Message
      */
     public function getCurrentDocument()
     {
-        return $this->current_document;
+        return isset($this->current_document) ? $this->current_document : null;
+    }
+
+    public function hasCurrentDocument()
+    {
+        return isset($this->current_document);
+    }
+
+    public function clearCurrentDocument()
+    {
+        unset($this->current_document);
     }
 
     /**

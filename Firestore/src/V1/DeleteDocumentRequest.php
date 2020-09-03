@@ -86,7 +86,17 @@ class DeleteDocumentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getCurrentDocument()
     {
-        return $this->current_document;
+        return isset($this->current_document) ? $this->current_document : null;
+    }
+
+    public function hasCurrentDocument()
+    {
+        return isset($this->current_document);
+    }
+
+    public function clearCurrentDocument()
+    {
+        unset($this->current_document);
     }
 
     /**

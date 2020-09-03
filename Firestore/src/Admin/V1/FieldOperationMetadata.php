@@ -100,7 +100,17 @@ class FieldOperationMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getStartTime()
     {
-        return $this->start_time;
+        return isset($this->start_time) ? $this->start_time : null;
+    }
+
+    public function hasStartTime()
+    {
+        return isset($this->start_time);
+    }
+
+    public function clearStartTime()
+    {
+        unset($this->start_time);
     }
 
     /**
@@ -127,7 +137,17 @@ class FieldOperationMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getEndTime()
     {
-        return $this->end_time;
+        return isset($this->end_time) ? $this->end_time : null;
+    }
+
+    public function hasEndTime()
+    {
+        return isset($this->end_time);
+    }
+
+    public function clearEndTime()
+    {
+        unset($this->end_time);
     }
 
     /**
@@ -236,7 +256,17 @@ class FieldOperationMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getProgressDocuments()
     {
-        return $this->progress_documents;
+        return isset($this->progress_documents) ? $this->progress_documents : null;
+    }
+
+    public function hasProgressDocuments()
+    {
+        return isset($this->progress_documents);
+    }
+
+    public function clearProgressDocuments()
+    {
+        unset($this->progress_documents);
     }
 
     /**
@@ -262,7 +292,17 @@ class FieldOperationMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getProgressBytes()
     {
-        return $this->progress_bytes;
+        return isset($this->progress_bytes) ? $this->progress_bytes : null;
+    }
+
+    public function hasProgressBytes()
+    {
+        return isset($this->progress_bytes);
+    }
+
+    public function clearProgressBytes()
+    {
+        unset($this->progress_bytes);
     }
 
     /**

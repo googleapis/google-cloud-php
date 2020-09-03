@@ -156,7 +156,7 @@ class Index extends \Google\Protobuf\Internal\Message
      */
     public function setQueryScope($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Firestore\Admin\V1\Index_QueryScope::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Firestore\Admin\V1\Index\QueryScope::class);
         $this->query_scope = $var;
 
         return $this;
@@ -224,7 +224,7 @@ class Index extends \Google\Protobuf\Internal\Message
      */
     public function setState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Firestore\Admin\V1\Index_State::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Firestore\Admin\V1\Index\State::class);
         $this->state = $var;
 
         return $this;

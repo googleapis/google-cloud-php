@@ -111,7 +111,7 @@ class TargetChange extends \Google\Protobuf\Internal\Message
      */
     public function setTargetChangeType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Firestore\V1\TargetChange_TargetChangeType::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Firestore\V1\TargetChange\TargetChangeType::class);
         $this->target_change_type = $var;
 
         return $this;
@@ -155,7 +155,17 @@ class TargetChange extends \Google\Protobuf\Internal\Message
      */
     public function getCause()
     {
-        return $this->cause;
+        return isset($this->cause) ? $this->cause : null;
+    }
+
+    public function hasCause()
+    {
+        return isset($this->cause);
+    }
+
+    public function clearCause()
+    {
+        unset($this->cause);
     }
 
     /**
@@ -218,7 +228,17 @@ class TargetChange extends \Google\Protobuf\Internal\Message
      */
     public function getReadTime()
     {
-        return $this->read_time;
+        return isset($this->read_time) ? $this->read_time : null;
+    }
+
+    public function hasReadTime()
+    {
+        return isset($this->read_time);
+    }
+
+    public function clearReadTime()
+    {
+        unset($this->read_time);
     }
 
     /**

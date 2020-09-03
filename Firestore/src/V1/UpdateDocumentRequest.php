@@ -88,7 +88,17 @@ class UpdateDocumentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getDocument()
     {
-        return $this->document;
+        return isset($this->document) ? $this->document : null;
+    }
+
+    public function hasDocument()
+    {
+        return isset($this->document);
+    }
+
+    public function clearDocument()
+    {
+        unset($this->document);
     }
 
     /**
@@ -120,7 +130,17 @@ class UpdateDocumentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return $this->update_mask;
+        return isset($this->update_mask) ? $this->update_mask : null;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**
@@ -153,7 +173,17 @@ class UpdateDocumentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getMask()
     {
-        return $this->mask;
+        return isset($this->mask) ? $this->mask : null;
+    }
+
+    public function hasMask()
+    {
+        return isset($this->mask);
+    }
+
+    public function clearMask()
+    {
+        unset($this->mask);
     }
 
     /**
@@ -182,7 +212,17 @@ class UpdateDocumentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getCurrentDocument()
     {
-        return $this->current_document;
+        return isset($this->current_document) ? $this->current_document : null;
+    }
+
+    public function hasCurrentDocument()
+    {
+        return isset($this->current_document);
+    }
+
+    public function clearCurrentDocument()
+    {
+        unset($this->current_document);
     }
 
     /**

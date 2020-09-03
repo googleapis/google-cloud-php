@@ -91,6 +91,11 @@ class ListenRequest extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasAddTarget()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * A target to add to this stream.
      *
@@ -115,6 +120,11 @@ class ListenRequest extends \Google\Protobuf\Internal\Message
     public function getRemoveTarget()
     {
         return $this->readOneof(3);
+    }
+
+    public function hasRemoveTarget()
+    {
+        return $this->hasOneof(3);
     }
 
     /**

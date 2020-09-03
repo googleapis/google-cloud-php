@@ -73,6 +73,11 @@ class Value extends \Google\Protobuf\Internal\Message
         return $this->readOneof(11);
     }
 
+    public function hasNullValue()
+    {
+        return $this->hasOneof(11);
+    }
+
     /**
      * A null value.
      *
@@ -97,6 +102,11 @@ class Value extends \Google\Protobuf\Internal\Message
     public function getBooleanValue()
     {
         return $this->readOneof(1);
+    }
+
+    public function hasBooleanValue()
+    {
+        return $this->hasOneof(1);
     }
 
     /**
@@ -125,6 +135,11 @@ class Value extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasIntegerValue()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * An integer value.
      *
@@ -149,6 +164,11 @@ class Value extends \Google\Protobuf\Internal\Message
     public function getDoubleValue()
     {
         return $this->readOneof(3);
+    }
+
+    public function hasDoubleValue()
+    {
+        return $this->hasOneof(3);
     }
 
     /**
@@ -177,6 +197,11 @@ class Value extends \Google\Protobuf\Internal\Message
     public function getTimestampValue()
     {
         return $this->readOneof(10);
+    }
+
+    public function hasTimestampValue()
+    {
+        return $this->hasOneof(10);
     }
 
     /**
@@ -210,6 +235,11 @@ class Value extends \Google\Protobuf\Internal\Message
         return $this->readOneof(17);
     }
 
+    public function hasStringValue()
+    {
+        return $this->hasOneof(17);
+    }
+
     /**
      * A string value.
      * The string, represented as UTF-8, must not exceed 1 MiB - 89 bytes.
@@ -241,6 +271,11 @@ class Value extends \Google\Protobuf\Internal\Message
         return $this->readOneof(18);
     }
 
+    public function hasBytesValue()
+    {
+        return $this->hasOneof(18);
+    }
+
     /**
      * A bytes value.
      * Must not exceed 1 MiB - 89 bytes.
@@ -270,6 +305,11 @@ class Value extends \Google\Protobuf\Internal\Message
         return $this->readOneof(5);
     }
 
+    public function hasReferenceValue()
+    {
+        return $this->hasOneof(5);
+    }
+
     /**
      * A reference to a document. For example:
      * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
@@ -295,6 +335,11 @@ class Value extends \Google\Protobuf\Internal\Message
     public function getGeoPointValue()
     {
         return $this->readOneof(8);
+    }
+
+    public function hasGeoPointValue()
+    {
+        return $this->hasOneof(8);
     }
 
     /**
@@ -325,6 +370,11 @@ class Value extends \Google\Protobuf\Internal\Message
         return $this->readOneof(9);
     }
 
+    public function hasArrayValue()
+    {
+        return $this->hasOneof(9);
+    }
+
     /**
      * An array value.
      * Cannot directly contain another array value, though can contain an
@@ -351,6 +401,11 @@ class Value extends \Google\Protobuf\Internal\Message
     public function getMapValue()
     {
         return $this->readOneof(6);
+    }
+
+    public function hasMapValue()
+    {
+        return $this->hasOneof(6);
     }
 
     /**

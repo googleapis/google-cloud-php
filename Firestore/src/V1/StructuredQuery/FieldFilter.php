@@ -61,7 +61,17 @@ class FieldFilter extends \Google\Protobuf\Internal\Message
      */
     public function getField()
     {
-        return $this->field;
+        return isset($this->field) ? $this->field : null;
+    }
+
+    public function hasField()
+    {
+        return isset($this->field);
+    }
+
+    public function clearField()
+    {
+        unset($this->field);
     }
 
     /**
@@ -73,7 +83,7 @@ class FieldFilter extends \Google\Protobuf\Internal\Message
      */
     public function setField($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1\StructuredQuery_FieldReference::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1\StructuredQuery\FieldReference::class);
         $this->field = $var;
 
         return $this;
@@ -99,7 +109,7 @@ class FieldFilter extends \Google\Protobuf\Internal\Message
      */
     public function setOp($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Firestore\V1\StructuredQuery_FieldFilter_Operator::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Firestore\V1\StructuredQuery\FieldFilter\Operator::class);
         $this->op = $var;
 
         return $this;
@@ -113,7 +123,17 @@ class FieldFilter extends \Google\Protobuf\Internal\Message
      */
     public function getValue()
     {
-        return $this->value;
+        return isset($this->value) ? $this->value : null;
+    }
+
+    public function hasValue()
+    {
+        return isset($this->value);
+    }
+
+    public function clearValue()
+    {
+        unset($this->value);
     }
 
     /**

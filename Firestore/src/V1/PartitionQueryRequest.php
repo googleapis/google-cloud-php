@@ -157,6 +157,11 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasStructuredQuery()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * A structured query.
      * Filters, order bys, limits, offsets, and start/end cursors are not
