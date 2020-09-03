@@ -45,6 +45,11 @@ class Replication extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasAutomatic()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * The [Secret][google.cloud.secrets.v1beta1.Secret] will automatically be replicated without any restrictions.
      *
@@ -54,7 +59,7 @@ class Replication extends \Google\Protobuf\Internal\Message
      */
     public function setAutomatic($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\SecretManager\V1beta1\Replication_Automatic::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\SecretManager\V1beta1\Replication\Automatic::class);
         $this->writeOneof(1, $var);
 
         return $this;
@@ -71,6 +76,11 @@ class Replication extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasUserManaged()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * The [Secret][google.cloud.secrets.v1beta1.Secret] will only be replicated into the locations specified.
      *
@@ -80,7 +90,7 @@ class Replication extends \Google\Protobuf\Internal\Message
      */
     public function setUserManaged($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\SecretManager\V1beta1\Replication_UserManaged::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\SecretManager\V1beta1\Replication\UserManaged::class);
         $this->writeOneof(2, $var);
 
         return $this;

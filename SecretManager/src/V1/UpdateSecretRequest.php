@@ -53,7 +53,17 @@ class UpdateSecretRequest extends \Google\Protobuf\Internal\Message
      */
     public function getSecret()
     {
-        return $this->secret;
+        return isset($this->secret) ? $this->secret : null;
+    }
+
+    public function hasSecret()
+    {
+        return isset($this->secret);
+    }
+
+    public function clearSecret()
+    {
+        unset($this->secret);
     }
 
     /**
@@ -79,7 +89,17 @@ class UpdateSecretRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return $this->update_mask;
+        return isset($this->update_mask) ? $this->update_mask : null;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**
