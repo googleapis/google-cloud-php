@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * A secret payload resource in the Secret Manager API. This contains the
- * sensitive secret data that is associated with a [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
+ * sensitive secret payload that is associated with a [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
  *
  * Generated from protobuf message <code>google.cloud.secretmanager.v1.SecretPayload</code>
  */
