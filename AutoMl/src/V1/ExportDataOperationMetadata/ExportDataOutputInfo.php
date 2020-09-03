@@ -47,6 +47,11 @@ class ExportDataOutputInfo extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasGcsOutputDirectory()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * The full path of the Google Cloud Storage directory created, into which
      * the exported data is written.

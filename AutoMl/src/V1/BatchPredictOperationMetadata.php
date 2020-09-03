@@ -56,7 +56,17 @@ class BatchPredictOperationMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getInputConfig()
     {
-        return $this->input_config;
+        return isset($this->input_config) ? $this->input_config : null;
+    }
+
+    public function hasInputConfig()
+    {
+        return isset($this->input_config);
+    }
+
+    public function clearInputConfig()
+    {
+        unset($this->input_config);
     }
 
     /**
@@ -83,7 +93,17 @@ class BatchPredictOperationMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getOutputInfo()
     {
-        return $this->output_info;
+        return isset($this->output_info) ? $this->output_info : null;
+    }
+
+    public function hasOutputInfo()
+    {
+        return isset($this->output_info);
+    }
+
+    public function clearOutputInfo()
+    {
+        unset($this->output_info);
     }
 
     /**
@@ -95,7 +115,7 @@ class BatchPredictOperationMetadata extends \Google\Protobuf\Internal\Message
      */
     public function setOutputInfo($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1\BatchPredictOperationMetadata_BatchPredictOutputInfo::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1\BatchPredictOperationMetadata\BatchPredictOutputInfo::class);
         $this->output_info = $var;
 
         return $this;

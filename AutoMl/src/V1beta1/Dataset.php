@@ -120,6 +120,11 @@ class Dataset extends \Google\Protobuf\Internal\Message
         return $this->readOneof(23);
     }
 
+    public function hasTranslationDatasetMetadata()
+    {
+        return $this->hasOneof(23);
+    }
+
     /**
      * Metadata for a dataset used for translation.
      *
@@ -144,6 +149,11 @@ class Dataset extends \Google\Protobuf\Internal\Message
     public function getImageClassificationDatasetMetadata()
     {
         return $this->readOneof(24);
+    }
+
+    public function hasImageClassificationDatasetMetadata()
+    {
+        return $this->hasOneof(24);
     }
 
     /**
@@ -172,6 +182,11 @@ class Dataset extends \Google\Protobuf\Internal\Message
         return $this->readOneof(25);
     }
 
+    public function hasTextClassificationDatasetMetadata()
+    {
+        return $this->hasOneof(25);
+    }
+
     /**
      * Metadata for a dataset used for text classification.
      *
@@ -196,6 +211,11 @@ class Dataset extends \Google\Protobuf\Internal\Message
     public function getImageObjectDetectionDatasetMetadata()
     {
         return $this->readOneof(26);
+    }
+
+    public function hasImageObjectDetectionDatasetMetadata()
+    {
+        return $this->hasOneof(26);
     }
 
     /**
@@ -224,6 +244,11 @@ class Dataset extends \Google\Protobuf\Internal\Message
         return $this->readOneof(31);
     }
 
+    public function hasVideoClassificationDatasetMetadata()
+    {
+        return $this->hasOneof(31);
+    }
+
     /**
      * Metadata for a dataset used for video classification.
      *
@@ -248,6 +273,11 @@ class Dataset extends \Google\Protobuf\Internal\Message
     public function getVideoObjectTrackingDatasetMetadata()
     {
         return $this->readOneof(29);
+    }
+
+    public function hasVideoObjectTrackingDatasetMetadata()
+    {
+        return $this->hasOneof(29);
     }
 
     /**
@@ -276,6 +306,11 @@ class Dataset extends \Google\Protobuf\Internal\Message
         return $this->readOneof(28);
     }
 
+    public function hasTextExtractionDatasetMetadata()
+    {
+        return $this->hasOneof(28);
+    }
+
     /**
      * Metadata for a dataset used for text extraction.
      *
@@ -302,6 +337,11 @@ class Dataset extends \Google\Protobuf\Internal\Message
         return $this->readOneof(30);
     }
 
+    public function hasTextSentimentDatasetMetadata()
+    {
+        return $this->hasOneof(30);
+    }
+
     /**
      * Metadata for a dataset used for text sentiment.
      *
@@ -326,6 +366,11 @@ class Dataset extends \Google\Protobuf\Internal\Message
     public function getTablesDatasetMetadata()
     {
         return $this->readOneof(33);
+    }
+
+    public function hasTablesDatasetMetadata()
+    {
+        return $this->hasOneof(33);
     }
 
     /**
@@ -465,7 +510,17 @@ class Dataset extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return $this->create_time;
+        return isset($this->create_time) ? $this->create_time : null;
+    }
+
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
     }
 
     /**

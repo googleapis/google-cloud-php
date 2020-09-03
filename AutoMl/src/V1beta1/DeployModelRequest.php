@@ -53,6 +53,11 @@ class DeployModelRequest extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasImageObjectDetectionModelDeploymentMetadata()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * Model deployment metadata specific to Image Object Detection.
      *
@@ -77,6 +82,11 @@ class DeployModelRequest extends \Google\Protobuf\Internal\Message
     public function getImageClassificationModelDeploymentMetadata()
     {
         return $this->readOneof(4);
+    }
+
+    public function hasImageClassificationModelDeploymentMetadata()
+    {
+        return $this->hasOneof(4);
     }
 
     /**

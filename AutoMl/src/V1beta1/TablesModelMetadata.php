@@ -216,6 +216,11 @@ class TablesModelMetadata extends \Google\Protobuf\Internal\Message
         return $this->readOneof(17);
     }
 
+    public function hasOptimizationObjectiveRecallValue()
+    {
+        return $this->hasOneof(17);
+    }
+
     /**
      * Required when optimization_objective is "MAXIMIZE_PRECISION_AT_RECALL".
      * Must be between 0 and 1, inclusive.
@@ -242,6 +247,11 @@ class TablesModelMetadata extends \Google\Protobuf\Internal\Message
     public function getOptimizationObjectivePrecisionValue()
     {
         return $this->readOneof(18);
+    }
+
+    public function hasOptimizationObjectivePrecisionValue()
+    {
+        return $this->hasOneof(18);
     }
 
     /**
@@ -276,7 +286,17 @@ class TablesModelMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getTargetColumnSpec()
     {
-        return $this->target_column_spec;
+        return isset($this->target_column_spec) ? $this->target_column_spec : null;
+    }
+
+    public function hasTargetColumnSpec()
+    {
+        return isset($this->target_column_spec);
+    }
+
+    public function clearTargetColumnSpec()
+    {
+        unset($this->target_column_spec);
     }
 
     /**

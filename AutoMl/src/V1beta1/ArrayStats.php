@@ -48,7 +48,17 @@ class ArrayStats extends \Google\Protobuf\Internal\Message
      */
     public function getMemberStats()
     {
-        return $this->member_stats;
+        return isset($this->member_stats) ? $this->member_stats : null;
+    }
+
+    public function hasMemberStats()
+    {
+        return isset($this->member_stats);
+    }
+
+    public function clearMemberStats()
+    {
+        unset($this->member_stats);
     }
 
     /**

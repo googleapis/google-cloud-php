@@ -374,7 +374,17 @@ class TablesDatasetMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getStatsUpdateTime()
     {
-        return $this->stats_update_time;
+        return isset($this->stats_update_time) ? $this->stats_update_time : null;
+    }
+
+    public function hasStatsUpdateTime()
+    {
+        return isset($this->stats_update_time);
+    }
+
+    public function clearStatsUpdateTime()
+    {
+        unset($this->stats_update_time);
     }
 
     /**

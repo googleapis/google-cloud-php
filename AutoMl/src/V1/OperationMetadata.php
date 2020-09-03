@@ -99,6 +99,11 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
         return $this->readOneof(8);
     }
 
+    public function hasDeleteDetails()
+    {
+        return $this->hasOneof(8);
+    }
+
     /**
      * Details of a Delete operation.
      *
@@ -123,6 +128,11 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     public function getDeployModelDetails()
     {
         return $this->readOneof(24);
+    }
+
+    public function hasDeployModelDetails()
+    {
+        return $this->hasOneof(24);
     }
 
     /**
@@ -151,6 +161,11 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
         return $this->readOneof(25);
     }
 
+    public function hasUndeployModelDetails()
+    {
+        return $this->hasOneof(25);
+    }
+
     /**
      * Details of an UndeployModel operation.
      *
@@ -175,6 +190,11 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     public function getCreateModelDetails()
     {
         return $this->readOneof(10);
+    }
+
+    public function hasCreateModelDetails()
+    {
+        return $this->hasOneof(10);
     }
 
     /**
@@ -203,6 +223,11 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
         return $this->readOneof(30);
     }
 
+    public function hasCreateDatasetDetails()
+    {
+        return $this->hasOneof(30);
+    }
+
     /**
      * Details of CreateDataset operation.
      *
@@ -227,6 +252,11 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     public function getImportDataDetails()
     {
         return $this->readOneof(15);
+    }
+
+    public function hasImportDataDetails()
+    {
+        return $this->hasOneof(15);
     }
 
     /**
@@ -255,6 +285,11 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
         return $this->readOneof(16);
     }
 
+    public function hasBatchPredictDetails()
+    {
+        return $this->hasOneof(16);
+    }
+
     /**
      * Details of BatchPredict operation.
      *
@@ -281,6 +316,11 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
         return $this->readOneof(21);
     }
 
+    public function hasExportDataDetails()
+    {
+        return $this->hasOneof(21);
+    }
+
     /**
      * Details of ExportData operation.
      *
@@ -305,6 +345,11 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     public function getExportModelDetails()
     {
         return $this->readOneof(22);
+    }
+
+    public function hasExportModelDetails()
+    {
+        return $this->hasOneof(22);
     }
 
     /**
@@ -390,7 +435,17 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return $this->create_time;
+        return isset($this->create_time) ? $this->create_time : null;
+    }
+
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
     }
 
     /**
@@ -416,7 +471,17 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return $this->update_time;
+        return isset($this->update_time) ? $this->update_time : null;
+    }
+
+    public function hasUpdateTime()
+    {
+        return isset($this->update_time);
+    }
+
+    public function clearUpdateTime()
+    {
+        unset($this->update_time);
     }
 
     /**

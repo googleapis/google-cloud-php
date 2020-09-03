@@ -45,7 +45,17 @@ class TranslationAnnotation extends \Google\Protobuf\Internal\Message
      */
     public function getTranslatedContent()
     {
-        return $this->translated_content;
+        return isset($this->translated_content) ? $this->translated_content : null;
+    }
+
+    public function hasTranslatedContent()
+    {
+        return isset($this->translated_content);
+    }
+
+    public function clearTranslatedContent()
+    {
+        unset($this->translated_content);
     }
 
     /**

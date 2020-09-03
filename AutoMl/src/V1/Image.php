@@ -56,6 +56,11 @@ class Image extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasImageBytes()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * Image content represented as a stream of bytes.
      * Note: As with all `bytes` fields, protobuffers use a pure binary

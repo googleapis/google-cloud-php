@@ -67,6 +67,11 @@ class ExportEvaluatedExamplesOutputConfig extends \Google\Protobuf\Internal\Mess
         return $this->readOneof(2);
     }
 
+    public function hasBigqueryDestination()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * The BigQuery location where the output is to be written to.
      *

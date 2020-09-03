@@ -77,6 +77,11 @@ class DataStats extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasFloat64Stats()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * The statistics for FLOAT64 DataType.
      *
@@ -101,6 +106,11 @@ class DataStats extends \Google\Protobuf\Internal\Message
     public function getStringStats()
     {
         return $this->readOneof(4);
+    }
+
+    public function hasStringStats()
+    {
+        return $this->hasOneof(4);
     }
 
     /**
@@ -129,6 +139,11 @@ class DataStats extends \Google\Protobuf\Internal\Message
         return $this->readOneof(5);
     }
 
+    public function hasTimestampStats()
+    {
+        return $this->hasOneof(5);
+    }
+
     /**
      * The statistics for TIMESTAMP DataType.
      *
@@ -153,6 +168,11 @@ class DataStats extends \Google\Protobuf\Internal\Message
     public function getArrayStats()
     {
         return $this->readOneof(6);
+    }
+
+    public function hasArrayStats()
+    {
+        return $this->hasOneof(6);
     }
 
     /**
@@ -181,6 +201,11 @@ class DataStats extends \Google\Protobuf\Internal\Message
         return $this->readOneof(7);
     }
 
+    public function hasStructStats()
+    {
+        return $this->hasOneof(7);
+    }
+
     /**
      * The statistics for STRUCT DataType.
      *
@@ -205,6 +230,11 @@ class DataStats extends \Google\Protobuf\Internal\Message
     public function getCategoryStats()
     {
         return $this->readOneof(8);
+    }
+
+    public function hasCategoryStats()
+    {
+        return $this->hasOneof(8);
     }
 
     /**

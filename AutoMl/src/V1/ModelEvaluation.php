@@ -147,6 +147,11 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
         return $this->readOneof(8);
     }
 
+    public function hasClassificationEvaluationMetrics()
+    {
+        return $this->hasOneof(8);
+    }
+
     /**
      * Model evaluation metrics for image, text, video and tables
      * classification.
@@ -176,6 +181,11 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
         return $this->readOneof(9);
     }
 
+    public function hasTranslationEvaluationMetrics()
+    {
+        return $this->hasOneof(9);
+    }
+
     /**
      * Model evaluation metrics for translation.
      *
@@ -200,6 +210,11 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
     public function getImageObjectDetectionEvaluationMetrics()
     {
         return $this->readOneof(12);
+    }
+
+    public function hasImageObjectDetectionEvaluationMetrics()
+    {
+        return $this->hasOneof(12);
     }
 
     /**
@@ -228,6 +243,11 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
         return $this->readOneof(11);
     }
 
+    public function hasTextSentimentEvaluationMetrics()
+    {
+        return $this->hasOneof(11);
+    }
+
     /**
      * Evaluation metrics for text sentiment models.
      *
@@ -252,6 +272,11 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
     public function getTextExtractionEvaluationMetrics()
     {
         return $this->readOneof(13);
+    }
+
+    public function hasTextExtractionEvaluationMetrics()
+    {
+        return $this->hasOneof(13);
     }
 
     /**
@@ -391,7 +416,17 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return $this->create_time;
+        return isset($this->create_time) ? $this->create_time : null;
+    }
+
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
     }
 
     /**

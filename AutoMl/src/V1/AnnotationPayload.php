@@ -81,6 +81,11 @@ class AnnotationPayload extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasTranslation()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * Annotation details for translation.
      *
@@ -105,6 +110,11 @@ class AnnotationPayload extends \Google\Protobuf\Internal\Message
     public function getClassification()
     {
         return $this->readOneof(3);
+    }
+
+    public function hasClassification()
+    {
+        return $this->hasOneof(3);
     }
 
     /**
@@ -133,6 +143,11 @@ class AnnotationPayload extends \Google\Protobuf\Internal\Message
         return $this->readOneof(4);
     }
 
+    public function hasImageObjectDetection()
+    {
+        return $this->hasOneof(4);
+    }
+
     /**
      * Annotation details for image object detection.
      *
@@ -159,6 +174,11 @@ class AnnotationPayload extends \Google\Protobuf\Internal\Message
         return $this->readOneof(6);
     }
 
+    public function hasTextExtraction()
+    {
+        return $this->hasOneof(6);
+    }
+
     /**
      * Annotation details for text extraction.
      *
@@ -183,6 +203,11 @@ class AnnotationPayload extends \Google\Protobuf\Internal\Message
     public function getTextSentiment()
     {
         return $this->readOneof(7);
+    }
+
+    public function hasTextSentiment()
+    {
+        return $this->hasOneof(7);
     }
 
     /**

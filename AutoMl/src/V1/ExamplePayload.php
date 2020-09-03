@@ -47,6 +47,11 @@ class ExamplePayload extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasImage()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * Example image.
      *
@@ -73,6 +78,11 @@ class ExamplePayload extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasTextSnippet()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * Example text.
      *
@@ -97,6 +107,11 @@ class ExamplePayload extends \Google\Protobuf\Internal\Message
     public function getDocument()
     {
         return $this->readOneof(4);
+    }
+
+    public function hasDocument()
+    {
+        return $this->hasOneof(4);
     }
 
     /**

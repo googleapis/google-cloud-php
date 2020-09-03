@@ -55,6 +55,11 @@ class TextExtractionAnnotation extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasTextSegment()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * An entity annotation will set this, which is the part of the original
      * text to which the annotation pertains.

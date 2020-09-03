@@ -55,7 +55,17 @@ class ImageObjectDetectionAnnotation extends \Google\Protobuf\Internal\Message
      */
     public function getBoundingBox()
     {
-        return $this->bounding_box;
+        return isset($this->bounding_box) ? $this->bounding_box : null;
+    }
+
+    public function hasBoundingBox()
+    {
+        return isset($this->bounding_box);
+    }
+
+    public function clearBoundingBox()
+    {
+        unset($this->bounding_box);
     }
 
     /**

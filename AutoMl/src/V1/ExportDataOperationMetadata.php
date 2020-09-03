@@ -45,7 +45,17 @@ class ExportDataOperationMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getOutputInfo()
     {
-        return $this->output_info;
+        return isset($this->output_info) ? $this->output_info : null;
+    }
+
+    public function hasOutputInfo()
+    {
+        return isset($this->output_info);
+    }
+
+    public function clearOutputInfo()
+    {
+        unset($this->output_info);
     }
 
     /**
@@ -57,7 +67,7 @@ class ExportDataOperationMetadata extends \Google\Protobuf\Internal\Message
      */
     public function setOutputInfo($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1\ExportDataOperationMetadata_ExportDataOutputInfo::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1\ExportDataOperationMetadata\ExportDataOutputInfo::class);
         $this->output_info = $var;
 
         return $this;

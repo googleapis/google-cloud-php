@@ -136,7 +136,17 @@ class ColumnSpec extends \Google\Protobuf\Internal\Message
      */
     public function getDataType()
     {
-        return $this->data_type;
+        return isset($this->data_type) ? $this->data_type : null;
+    }
+
+    public function hasDataType()
+    {
+        return isset($this->data_type);
+    }
+
+    public function clearDataType()
+    {
+        unset($this->data_type);
     }
 
     /**
@@ -197,7 +207,17 @@ class ColumnSpec extends \Google\Protobuf\Internal\Message
      */
     public function getDataStats()
     {
-        return $this->data_stats;
+        return isset($this->data_stats) ? $this->data_stats : null;
+    }
+
+    public function hasDataStats()
+    {
+        return isset($this->data_stats);
+    }
+
+    public function clearDataStats()
+    {
+        unset($this->data_stats);
     }
 
     /**
