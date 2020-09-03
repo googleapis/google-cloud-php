@@ -50,6 +50,8 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
      * `User Id`. They can be a random number or some type of user and session
      * identifiers (preferably hashed). The length of the `Session ID` and
      * `User ID` must not exceed 36 characters.
+     * For more information, see the [API interactions
+     * guide](https://cloud.google.com/dialogflow/docs/api-overview).
      *
      * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -127,6 +129,8 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
      *           `User Id`. They can be a random number or some type of user and session
      *           identifiers (preferably hashed). The length of the `Session ID` and
      *           `User ID` must not exceed 36 characters.
+     *           For more information, see the [API interactions
+     *           guide](https://cloud.google.com/dialogflow/docs/api-overview).
      *     @type \Google\Cloud\Dialogflow\V2\QueryParameters $query_params
      *           The parameters of this query.
      *     @type \Google\Cloud\Dialogflow\V2\QueryInput $query_input
@@ -176,6 +180,8 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
      * `User Id`. They can be a random number or some type of user and session
      * identifiers (preferably hashed). The length of the `Session ID` and
      * `User ID` must not exceed 36 characters.
+     * For more information, see the [API interactions
+     * guide](https://cloud.google.com/dialogflow/docs/api-overview).
      *
      * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -196,6 +202,8 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
      * `User Id`. They can be a random number or some type of user and session
      * identifiers (preferably hashed). The length of the `Session ID` and
      * `User ID` must not exceed 36 characters.
+     * For more information, see the [API interactions
+     * guide](https://cloud.google.com/dialogflow/docs/api-overview).
      *
      * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -39,7 +39,7 @@ use Google\Cloud\Dialogflow\V2\ListEnvironmentsRequest;
 use Google\Cloud\Dialogflow\V2\ListEnvironmentsResponse;
 
 /**
- * Service Description: Manages agent environments.
+ * Service Description: Service for managing [Environments][google.cloud.dialogflow.v2.Environment].
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:

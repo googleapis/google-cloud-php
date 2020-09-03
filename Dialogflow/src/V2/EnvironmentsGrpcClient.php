@@ -19,7 +19,7 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 /**
- * Manages agent environments.
+ * Service for managing [Environments][google.cloud.dialogflow.v2.Environment].
  */
 class EnvironmentsGrpcClient extends \Grpc\BaseStub {
 
