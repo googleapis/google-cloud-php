@@ -75,6 +75,76 @@ class UptimeCheckServiceClientTest extends GeneratedTest
     /**
      * @test
      */
+    public function deleteUptimeCheckConfigTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+
+        // Mock request
+        $name = 'name3373707';
+
+        $client->deleteUptimeCheckConfig($name);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.monitoring.v3.UptimeCheckService/DeleteUptimeCheckConfig', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getName();
+
+        $this->assertProtobufEquals($name, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function deleteUptimeCheckConfigExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        // Mock request
+        $name = 'name3373707';
+
+        try {
+            $client->deleteUptimeCheckConfig($name);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function listUptimeCheckConfigsTest()
     {
         $transport = $this->createTransport();
@@ -94,9 +164,9 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $parent = 'parent-995424086';
 
-        $response = $client->listUptimeCheckConfigs($formattedParent);
+        $response = $client->listUptimeCheckConfigs($parent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -110,7 +180,7 @@ class UptimeCheckServiceClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getParent();
 
-        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertProtobufEquals($parent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -137,10 +207,10 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $parent = 'parent-995424086';
 
         try {
-            $client->listUptimeCheckConfigs($formattedParent);
+            $client->listUptimeCheckConfigs($parent);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -174,9 +244,9 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->uptimeCheckConfigName('[PROJECT]', '[UPTIME_CHECK_CONFIG]');
+        $name = 'name3373707';
 
-        $response = $client->getUptimeCheckConfig($formattedName);
+        $response = $client->getUptimeCheckConfig($name);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -186,7 +256,7 @@ class UptimeCheckServiceClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getName();
 
-        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertProtobufEquals($name, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -214,10 +284,10 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->uptimeCheckConfigName('[PROJECT]', '[UPTIME_CHECK_CONFIG]');
+        $name = 'name3373707';
 
         try {
-            $client->getUptimeCheckConfig($formattedName);
+            $client->getUptimeCheckConfig($name);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -251,10 +321,10 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $parent = 'parent-995424086';
         $uptimeCheckConfig = new UptimeCheckConfig();
 
-        $response = $client->createUptimeCheckConfig($formattedParent, $uptimeCheckConfig);
+        $response = $client->createUptimeCheckConfig($parent, $uptimeCheckConfig);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -264,7 +334,7 @@ class UptimeCheckServiceClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getParent();
 
-        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertProtobufEquals($parent, $actualValue);
         $actualValue = $actualRequestObject->getUptimeCheckConfig();
 
         $this->assertProtobufEquals($uptimeCheckConfig, $actualValue);
@@ -295,11 +365,11 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $parent = 'parent-995424086';
         $uptimeCheckConfig = new UptimeCheckConfig();
 
         try {
-            $client->createUptimeCheckConfig($formattedParent, $uptimeCheckConfig);
+            $client->createUptimeCheckConfig($parent, $uptimeCheckConfig);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -377,76 +447,6 @@ class UptimeCheckServiceClientTest extends GeneratedTest
 
         try {
             $client->updateUptimeCheckConfig($uptimeCheckConfig);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function deleteUptimeCheckConfigTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        // Mock response
-        $expectedResponse = new GPBEmpty();
-        $transport->addResponse($expectedResponse);
-
-        // Mock request
-        $formattedName = $client->uptimeCheckConfigName('[PROJECT]', '[UPTIME_CHECK_CONFIG]');
-
-        $client->deleteUptimeCheckConfig($formattedName);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.monitoring.v3.UptimeCheckService/DeleteUptimeCheckConfig', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getName();
-
-        $this->assertProtobufEquals($formattedName, $actualValue);
-
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function deleteUptimeCheckConfigExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
-        // Mock request
-        $formattedName = $client->uptimeCheckConfigName('[PROJECT]', '[UPTIME_CHECK_CONFIG]');
-
-        try {
-            $client->deleteUptimeCheckConfig($formattedName);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
