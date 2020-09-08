@@ -20,8 +20,6 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/cloud/webrisk/v1/webrisk.proto
  * and updates to that file get reflected here through a refresh process.
- *
- * @experimental
  */
 
 namespace Google\Cloud\WebRisk\V1\Gapic;
@@ -68,8 +66,6 @@ use Google\Cloud\WebRisk\V1\ThreatType;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parseName method to extract the individual identifiers contained within formatted names
  * that are returned by the API.
- *
- * @experimental
  */
 class WebRiskServiceGapicClient
 {
@@ -150,7 +146,6 @@ class WebRiskServiceGapicClient
      * @param string $project
      *
      * @return string The formatted project resource.
-     * @experimental
      */
     public static function projectName($project)
     {
@@ -176,7 +171,6 @@ class WebRiskServiceGapicClient
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
-     * @experimental
      */
     public static function parseName($formattedName, $template = null)
     {
@@ -253,7 +247,6 @@ class WebRiskServiceGapicClient
      * }
      *
      * @throws ValidationException
-     * @experimental
      */
     public function __construct(array $options = [])
     {
@@ -303,7 +296,6 @@ class WebRiskServiceGapicClient
      * @return \Google\Cloud\WebRisk\V1\ComputeThreatListDiffResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function computeThreatListDiff($threatType, $constraints, array $optionalArgs = [])
     {
@@ -357,7 +349,6 @@ class WebRiskServiceGapicClient
      * @return \Google\Cloud\WebRisk\V1\SearchUrisResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function searchUris($uri, $threatTypes, array $optionalArgs = [])
     {
@@ -409,7 +400,6 @@ class WebRiskServiceGapicClient
      * @return \Google\Cloud\WebRisk\V1\SearchHashesResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function searchHashes($threatTypes, array $optionalArgs = [])
     {
@@ -463,7 +453,6 @@ class WebRiskServiceGapicClient
      * @return \Google\Cloud\WebRisk\V1\Submission
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function createSubmission($parent, $submission, array $optionalArgs = [])
     {
