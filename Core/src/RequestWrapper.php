@@ -290,7 +290,7 @@ class RequestWrapper
                 $token = $this->accessToken;
             } else {
                 $credentialsFetcher = $this->getCredentialsFetcher();
-                $token = $this->fetchCredentials($credentialsFetcher);
+                $token = $this->fetchCredentials($credentialsFetcher)['access_token'];
 
                 if ($credentialsFetcher instanceof GetQuotaProjectInterface) {
                     $quotaProject = $credentialsFetcher->getQuotaProject();
@@ -303,7 +303,6 @@ class RequestWrapper
                 $headers['X-Goog-User-Project'] = [$quotaProject];
             }
         }
-
 
         return Psr7\modify_request($request, ['set_headers' => $headers]);
     }

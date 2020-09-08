@@ -518,6 +518,31 @@ class RequestWrapperTest extends TestCase
         );
     }
 
+    public function testUserProvidedQuotaProjectTakesPrecedentOverKeyFile()
+    {
+        $quotaProject = 'test-quota-project';
+        $keyFilePath = Fixtures::JSON_KEY_FIXTURE();
+        $keyFile = json_decode(file_get_contents($keyFilePath), true);
+        $keyFile['quota_project_id'] = 'do-not-use-this';
+
+        $requestWrapper = new RequestWrapper([
+            'quotaProject' => $quotaProject,
+            'keyFile' => $keyFile,
+            'authHttpHandler' => function ($request, $options = []) {
+                return new Response(200, [], json_encode(['access_token' => 'abc']));
+            },
+            'httpHandler' => function ($request, $options = []) use ($quotaProject) {
+                $userProject = $request->getHeaderLine('X-Goog-User-Project');
+                $this->assertEquals($quotaProject, $userProject);
+                return new Response(200);
+            },
+        ]);
+
+        $requestWrapper->send(
+            new Request('GET', 'http://www.example.com')
+        );
+    }
+
     public function testAddsQuotaProjectHeaderToRequest()
     {
         $quotaProject = 'test-quota-project';
