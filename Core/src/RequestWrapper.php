@@ -291,13 +291,16 @@ class RequestWrapper
             } else {
                 $credentialsFetcher = $this->getCredentialsFetcher();
                 $token = $this->fetchCredentials($credentialsFetcher);
-                $quotaProject = $credentialsFetcher->getQuotaProject() ?: $quotaProject;
+
+                if ($credentialsFetcher instanceof GetQuotaProjectInterface) {
+                    $quotaProject = $credentialsFetcher->getQuotaProject() ?: $quotaProject;
+                }
             }
 
             $headers['Authorization'] = 'Bearer ' . $token;
 
             if ($quotaProject) {
-                $headers[GetQuotaProjectInterface::X_GOOG_USER_PROJECT_HEADER] = [$quotaProject];
+                $headers['X-Goog-User-Project'] = [$quotaProject];
             }
         }
 
