@@ -67,6 +67,12 @@ trait RequestWrapperTrait
     private $scopes = [];
 
     /**
+     * @var string|null The user project to bill for access charges associated
+     *      with the request.
+     */
+    private $quotaProject;
+
+    /**
      * Sets common defaults between request wrappers.
      *
      * @param array $config {
@@ -85,6 +91,8 @@ trait RequestWrapperTrait
      *     @type int $retries Number of retries for a failed request.
      *           **Defaults to** `3`.
      *     @type array $scopes Scopes to be used for the request.
+     *     @type string $quotaProject Specifies a user project to bill for
+     *           access charges associated with the request.
      * }
      * @throws \InvalidArgumentException
      */
@@ -97,7 +105,8 @@ trait RequestWrapperTrait
             'keyFile' => null,
             'requestTimeout' => null,
             'retries' => 3,
-            'scopes' => null
+            'scopes' => null,
+            'quotaProject' => null
         ];
 
         if ($config['credentialsFetcher'] && !$config['credentialsFetcher'] instanceof FetchAuthTokenInterface) {
@@ -115,6 +124,7 @@ trait RequestWrapperTrait
         $this->scopes = $config['scopes'];
         $this->keyFile = $config['keyFile'];
         $this->requestTimeout = $config['requestTimeout'];
+        $this->quotaProject = $config['quotaProject'];
     }
 
     /**
@@ -155,6 +165,10 @@ trait RequestWrapperTrait
         if ($this->credentialsFetcher) {
             $fetcher = $this->credentialsFetcher;
         } elseif ($this->keyFile) {
+            if ($this->quotaProject) {
+                $this->keyFile['quota_project_id'] = $this->quotaProject;
+            }
+
             $fetcher = CredentialsLoader::makeCredentials($this->scopes, $this->keyFile);
         } else {
             try {
@@ -179,6 +193,12 @@ trait RequestWrapperTrait
      */
     protected function getADC()
     {
-        return ApplicationDefaultCredentials::getCredentials($this->scopes, $this->authHttpHandler);
+        return ApplicationDefaultCredentials::getCredentials(
+            $this->scopes,
+            $this->authHttpHandler,
+            null,
+            null,
+            $this->quotaProject
+        );
     }
 }

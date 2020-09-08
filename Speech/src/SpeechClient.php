@@ -96,6 +96,8 @@ class SpeechClient
      *     @type int $retries Number of retries for a failed request.
      *           **Defaults to** `3`.
      *     @type array $scopes Scopes to be used for the request.
+     *     @type string $quotaProject Specifies a user project to bill for
+     *           access charges associated with the request.
      *     @type string $languageCode The language of the content to be
      *           recognized. Only BCP-47 (e.g., `"en-US"`, `"es-ES"`) language
      *           codes are accepted. See
