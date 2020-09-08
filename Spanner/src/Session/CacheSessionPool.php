@@ -879,7 +879,7 @@ class CacheSessionPool implements SessionPoolInterface
             // acquire() method picks sessions from the beginning of the queue,
             // so make sure that "oldest" ones will be picked first.
             usort($sessions, function ($a, $b) {
-                return ($a['expires'] - $b['expires']);
+                return ($a['expiration'] - $b['expiration']);
             });
 
             $now = $this->time();
@@ -889,13 +889,13 @@ class CacheSessionPool implements SessionPoolInterface
             $len = count($sessions);
             // Find sessions that already expired.
             for ($expiredPos = 0; $expiredPos < $len; $expiredPos++) {
-                if ($sessions[$expiredPos]['expires'] > $now) {
+                if ($sessions[$expiredPos]['expiration'] > $now) {
                     break;
                 }
             }
             // Find sessions that will expire in next 10 minutes ("old" sessions).
             for ($soonToExpirePos = $expiredPos; $soonToExpirePos < $len; $soonToExpirePos++) {
-                if ($sessions[$soonToExpirePos]['expires'] > $soonToExpireThreshold) {
+                if ($sessions[$soonToExpirePos]['expiration'] > $soonToExpireThreshold) {
                     break;
                 }
             }
@@ -904,7 +904,7 @@ class CacheSessionPool implements SessionPoolInterface
             if (isset($prevMaintainTime)) {
                 $freshThreshold = $prevMaintainTime + self::SESSION_EXPIRATION_SECONDS;
                 for (; $freshPos >= 0; $freshPos--) {
-                    if ($sessions[$freshPos]['expires'] <= $freshThreshold) {
+                    if ($sessions[$freshPos]['expiration'] <= $freshThreshold) {
                         break;
                     }
                 }
@@ -930,7 +930,7 @@ class CacheSessionPool implements SessionPoolInterface
                 if ($this->refreshSession($session)) {
                     $sessions[] = [
                         'name' => $item['name'],
-                        'expires' => $session->expiration(),
+                        'expiration' => $session->expiration(),
                     ];
                     $freshSessionsCount++;
                 } else {
@@ -961,7 +961,7 @@ class CacheSessionPool implements SessionPoolInterface
                         if ($this->refreshSession($session)) {
                             $sessions[] = [
                                 'name' => $item['name'],
-                                'expires' => $session->expiration(),
+                                'expiration' => $session->expiration(),
                             ];
                         }
                     }
