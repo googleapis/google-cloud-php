@@ -711,15 +711,14 @@ class CacheSessionPoolTest extends TestCase
         $database->execute(Argument::exact('SELECT 1'), Argument::withKey('session'))
             ->willReturn(new DumbObject);
 
-        $createdSession = $this->prophesize(\Google\Cloud\Spanner\V1\Session::class);
-        $createRes = function ($args, $mock, $method) use ($createdSession, $shouldCreateFails) {
+        $createRes = function ($args, $mock, $method) use ($shouldCreateFails) {
             if ($shouldCreateFails) {
                 throw new \Exception("error");
             }
 
             $methodCalls = $mock->findProphecyMethodCalls(
                 $method->getMethodName(),
-                new ArgumentsWildcard($args)
+                new ArgumentsWildcard([Argument::any()])
             );
 
             return [
@@ -758,7 +757,7 @@ class CacheSessionPoolTest extends TestCase
     {
         return [
             'name' => basename($name),
-            'expires' => $this->time + 3600 - $age,
+            'expiration' => $this->time + 3600 - $age,
         ];
     }
 
@@ -922,6 +921,41 @@ class CacheSessionPoolTest extends TestCase
                 ['minSessions' => 4],
             ],
         ];
+    }
+
+    public function testWarmupAcquireMaintain()
+    {
+        $cache = $this->getCacheItemPool([
+            'queue' => [
+                [
+                    'name' => 'existing1',
+                    'expiration' => $this->time + 3000,
+                ],
+                [
+                    'name' => 'existing2',
+                    'expiration' => $this->time + 3000,
+                ],
+            ],
+            'inUse' => [],
+            'toCreate' => [],
+            'windowStart' => $this->time,
+            'maxInUseSessions' => 1,
+            'maintainTime' => $this->time - 600,
+        ]);
+        $config = [
+            'minSessions' => 10,
+            'maxSessions' => 20,
+        ];
+        $pool = new CacheSessionPoolStub($cache, $config, $this->time);
+        $pool->setDatabase($this->getDatabase(false, false, 8));
+        $pool->warmup();
+        $pool->acquire();
+        $pool->maintain();
+
+        $queue = $cache->getItem($this->cacheKey)->get()['queue'];
+        $this->assertCount(9, $queue);
+        $this->assertEquals($this->time + 3000, $queue[0]['expiration']);
+        $this->assertEquals($this->time + 3600, $queue[1]['expiration']);
     }
 }
 
