@@ -258,7 +258,17 @@ class WebhookResponse extends \Google\Protobuf\Internal\Message
      */
     public function getPayload()
     {
-        return $this->payload;
+        return isset($this->payload) ? $this->payload : null;
+    }
+
+    public function hasPayload()
+    {
+        return isset($this->payload);
+    }
+
+    public function clearPayload()
+    {
+        unset($this->payload);
     }
 
     /**
@@ -327,7 +337,17 @@ class WebhookResponse extends \Google\Protobuf\Internal\Message
      */
     public function getFollowupEventInput()
     {
-        return $this->followup_event_input;
+        return isset($this->followup_event_input) ? $this->followup_event_input : null;
+    }
+
+    public function hasFollowupEventInput()
+    {
+        return isset($this->followup_event_input);
+    }
+
+    public function clearFollowupEventInput()
+    {
+        unset($this->followup_event_input);
     }
 
     /**

@@ -137,7 +137,7 @@ class TrainingPhrase extends \Google\Protobuf\Internal\Message
      */
     public function setType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\Intent_TrainingPhrase_Type::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\Intent\TrainingPhrase\Type::class);
         $this->type = $var;
 
         return $this;

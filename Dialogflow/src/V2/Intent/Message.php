@@ -81,6 +81,11 @@ class Message extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasText()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * The text response.
      *
@@ -90,7 +95,7 @@ class Message extends \Google\Protobuf\Internal\Message
      */
     public function setText($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Intent_Message_Text::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Intent\Message\Text::class);
         $this->writeOneof(1, $var);
 
         return $this;
@@ -107,6 +112,11 @@ class Message extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasImage()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * The image response.
      *
@@ -116,7 +126,7 @@ class Message extends \Google\Protobuf\Internal\Message
      */
     public function setImage($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Intent_Message_Image::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Intent\Message\Image::class);
         $this->writeOneof(2, $var);
 
         return $this;
@@ -133,6 +143,11 @@ class Message extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasQuickReplies()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * The quick replies response.
      *
@@ -142,7 +157,7 @@ class Message extends \Google\Protobuf\Internal\Message
      */
     public function setQuickReplies($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Intent_Message_QuickReplies::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Intent\Message\QuickReplies::class);
         $this->writeOneof(3, $var);
 
         return $this;
@@ -159,6 +174,11 @@ class Message extends \Google\Protobuf\Internal\Message
         return $this->readOneof(4);
     }
 
+    public function hasCard()
+    {
+        return $this->hasOneof(4);
+    }
+
     /**
      * The card response.
      *
@@ -168,7 +188,7 @@ class Message extends \Google\Protobuf\Internal\Message
      */
     public function setCard($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Intent_Message_Card::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Intent\Message\Card::class);
         $this->writeOneof(4, $var);
 
         return $this;
@@ -183,6 +203,11 @@ class Message extends \Google\Protobuf\Internal\Message
     public function getPayload()
     {
         return $this->readOneof(5);
+    }
+
+    public function hasPayload()
+    {
+        return $this->hasOneof(5);
     }
 
     /**
@@ -211,6 +236,11 @@ class Message extends \Google\Protobuf\Internal\Message
         return $this->readOneof(7);
     }
 
+    public function hasSimpleResponses()
+    {
+        return $this->hasOneof(7);
+    }
+
     /**
      * The voice and text-only responses for Actions on Google.
      *
@@ -220,7 +250,7 @@ class Message extends \Google\Protobuf\Internal\Message
      */
     public function setSimpleResponses($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Intent_Message_SimpleResponses::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Intent\Message\SimpleResponses::class);
         $this->writeOneof(7, $var);
 
         return $this;
@@ -237,6 +267,11 @@ class Message extends \Google\Protobuf\Internal\Message
         return $this->readOneof(8);
     }
 
+    public function hasBasicCard()
+    {
+        return $this->hasOneof(8);
+    }
+
     /**
      * The basic card response for Actions on Google.
      *
@@ -246,7 +281,7 @@ class Message extends \Google\Protobuf\Internal\Message
      */
     public function setBasicCard($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Intent_Message_BasicCard::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Intent\Message\BasicCard::class);
         $this->writeOneof(8, $var);
 
         return $this;
@@ -263,6 +298,11 @@ class Message extends \Google\Protobuf\Internal\Message
         return $this->readOneof(9);
     }
 
+    public function hasSuggestions()
+    {
+        return $this->hasOneof(9);
+    }
+
     /**
      * The suggestion chips for Actions on Google.
      *
@@ -272,7 +312,7 @@ class Message extends \Google\Protobuf\Internal\Message
      */
     public function setSuggestions($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Intent_Message_Suggestions::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Intent\Message\Suggestions::class);
         $this->writeOneof(9, $var);
 
         return $this;
@@ -289,6 +329,11 @@ class Message extends \Google\Protobuf\Internal\Message
         return $this->readOneof(10);
     }
 
+    public function hasLinkOutSuggestion()
+    {
+        return $this->hasOneof(10);
+    }
+
     /**
      * The link out suggestion chip for Actions on Google.
      *
@@ -298,7 +343,7 @@ class Message extends \Google\Protobuf\Internal\Message
      */
     public function setLinkOutSuggestion($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Intent_Message_LinkOutSuggestion::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Intent\Message\LinkOutSuggestion::class);
         $this->writeOneof(10, $var);
 
         return $this;
@@ -315,6 +360,11 @@ class Message extends \Google\Protobuf\Internal\Message
         return $this->readOneof(11);
     }
 
+    public function hasListSelect()
+    {
+        return $this->hasOneof(11);
+    }
+
     /**
      * The list card response for Actions on Google.
      *
@@ -324,7 +374,7 @@ class Message extends \Google\Protobuf\Internal\Message
      */
     public function setListSelect($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Intent_Message_ListSelect::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Intent\Message\ListSelect::class);
         $this->writeOneof(11, $var);
 
         return $this;
@@ -341,6 +391,11 @@ class Message extends \Google\Protobuf\Internal\Message
         return $this->readOneof(12);
     }
 
+    public function hasCarouselSelect()
+    {
+        return $this->hasOneof(12);
+    }
+
     /**
      * The carousel card response for Actions on Google.
      *
@@ -350,7 +405,7 @@ class Message extends \Google\Protobuf\Internal\Message
      */
     public function setCarouselSelect($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Intent_Message_CarouselSelect::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Intent\Message\CarouselSelect::class);
         $this->writeOneof(12, $var);
 
         return $this;
@@ -367,6 +422,11 @@ class Message extends \Google\Protobuf\Internal\Message
         return $this->readOneof(22);
     }
 
+    public function hasBrowseCarouselCard()
+    {
+        return $this->hasOneof(22);
+    }
+
     /**
      * Browse carousel card for Actions on Google.
      *
@@ -376,7 +436,7 @@ class Message extends \Google\Protobuf\Internal\Message
      */
     public function setBrowseCarouselCard($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Intent_Message_BrowseCarouselCard::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Intent\Message\BrowseCarouselCard::class);
         $this->writeOneof(22, $var);
 
         return $this;
@@ -393,6 +453,11 @@ class Message extends \Google\Protobuf\Internal\Message
         return $this->readOneof(23);
     }
 
+    public function hasTableCard()
+    {
+        return $this->hasOneof(23);
+    }
+
     /**
      * Table card for Actions on Google.
      *
@@ -402,7 +467,7 @@ class Message extends \Google\Protobuf\Internal\Message
      */
     public function setTableCard($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Intent_Message_TableCard::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Intent\Message\TableCard::class);
         $this->writeOneof(23, $var);
 
         return $this;
@@ -419,6 +484,11 @@ class Message extends \Google\Protobuf\Internal\Message
         return $this->readOneof(24);
     }
 
+    public function hasMediaContent()
+    {
+        return $this->hasOneof(24);
+    }
+
     /**
      * The media content card for Actions on Google.
      *
@@ -428,7 +498,7 @@ class Message extends \Google\Protobuf\Internal\Message
      */
     public function setMediaContent($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Intent_Message_MediaContent::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Intent\Message\MediaContent::class);
         $this->writeOneof(24, $var);
 
         return $this;
@@ -454,7 +524,7 @@ class Message extends \Google\Protobuf\Internal\Message
      */
     public function setPlatform($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\Intent_Message_Platform::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\Intent\Message\Platform::class);
         $this->platform = $var;
 
         return $this;

@@ -54,38 +54,7 @@ use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 
 /**
- * Service Description: An intent represents a mapping between input from a user and an action to
- * be taken by your application. When you pass user input to the
- * [DetectIntent][google.cloud.dialogflow.v2.Sessions.DetectIntent] (or
- * [StreamingDetectIntent][google.cloud.dialogflow.v2.Sessions.StreamingDetectIntent]) method, the
- * Dialogflow API analyzes the input and searches
- * for a matching intent. If no match is found, the Dialogflow API returns a
- * fallback intent (`is_fallback` = true).
- *
- * You can provide additional information for the Dialogflow API to use to
- * match user input to an intent by adding the following to your intent.
- *
- * *   **Contexts** - provide additional context for intent analysis. For
- *     example, if an intent is related to an object in your application that
- *     plays music, you can provide a context to determine when to match the
- *     intent if the user input is "turn it off". You can include a context
- *     that matches the intent when there is previous user input of
- *     "play music", and not when there is previous user input of
- *     "turn on the light".
- *
- * *   **Events** - allow for matching an intent by using an event name
- *     instead of user input. Your application can provide an event name and
- *     related parameters to the Dialogflow API to match an intent. For
- *     example, when your application starts, you can send a welcome event
- *     with a user name parameter to the Dialogflow API to match an intent with
- *     a personalized welcome message for the user.
- *
- * *   **Training phrases** - provide examples of user input to train the
- *     Dialogflow API agent to better match intents.
- *
- * For more information about intents, see the
- * [Dialogflow
- * documentation](https://cloud.google.com/dialogflow/docs/intents-overview).
+ * Service Description: Service for managing [Intents][google.cloud.dialogflow.v2.Intent].
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -93,8 +62,23 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $intentsClient = new IntentsClient();
  * try {
- *     $formattedName = $intentsClient->intentName('[PROJECT]', '[INTENT]');
- *     $intentsClient->deleteIntent($formattedName);
+ *     $formattedParent = $intentsClient->agentName('[PROJECT]');
+ *     // Iterate over pages of elements
+ *     $pagedResponse = $intentsClient->listIntents($formattedParent);
+ *     foreach ($pagedResponse->iteratePages() as $page) {
+ *         foreach ($page as $element) {
+ *             // doSomethingWith($element);
+ *         }
+ *     }
+ *
+ *
+ *     // Alternatively:
+ *
+ *     // Iterate through all elements
+ *     $pagedResponse = $intentsClient->listIntents($formattedParent);
+ *     foreach ($pagedResponse->iterateAllElements() as $element) {
+ *         // doSomethingWith($element);
+ *     }
  * } finally {
  *     $intentsClient->close();
  * }
@@ -364,139 +348,6 @@ class IntentsGapicClient
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
         $this->operationsClient = $this->createOperationsClient($clientOptions);
-    }
-
-    /**
-     * Deletes the specified intent and its direct or indirect followup intents.
-     *
-     * Sample code:
-     * ```
-     * $intentsClient = new IntentsClient();
-     * try {
-     *     $formattedName = $intentsClient->intentName('[PROJECT]', '[INTENT]');
-     *     $intentsClient->deleteIntent($formattedName);
-     * } finally {
-     *     $intentsClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. The name of the intent to delete. If this intent has direct or
-     *                             indirect followup intents, we also delete them.
-     *                             Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function deleteIntent($name, array $optionalArgs = [])
-    {
-        $request = new DeleteIntentRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteIntent',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Deletes intents in the specified agent.
-     *
-     * Operation <response: [google.protobuf.Empty][google.protobuf.Empty]>
-     *
-     * Sample code:
-     * ```
-     * $intentsClient = new IntentsClient();
-     * try {
-     *     $formattedParent = $intentsClient->agentName('[PROJECT]');
-     *     $intents = [];
-     *     $operationResponse = $intentsClient->batchDeleteIntents($formattedParent, $intents);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // operation succeeded and returns no value
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *
-     *
-     *     // Alternatively:
-     *
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $intentsClient->batchDeleteIntents($formattedParent, $intents);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $intentsClient->resumeOperation($operationName, 'batchDeleteIntents');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *       // operation succeeded and returns no value
-     *     } else {
-     *       $error = $newOperationResponse->getError();
-     *       // handleError($error)
-     *     }
-     * } finally {
-     *     $intentsClient->close();
-     * }
-     * ```
-     *
-     * @param string   $parent       Required. The name of the agent to delete all entities types for. Format:
-     *                               `projects/<Project ID>/agent`.
-     * @param Intent[] $intents      Required. The collection of intents to delete. Only intent `name` must be
-     *                               filled in.
-     * @param array    $optionalArgs {
-     *                               Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\ApiCore\OperationResponse
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function batchDeleteIntents($parent, $intents, array $optionalArgs = [])
-    {
-        $request = new BatchDeleteIntentsRequest();
-        $request->setParent($parent);
-        $request->setIntents($intents);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'parent' => $request->getParent(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startOperationsCall(
-            'BatchDeleteIntents',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
-        )->wait();
     }
 
     /**
@@ -801,6 +652,56 @@ class IntentsGapicClient
     }
 
     /**
+     * Deletes the specified intent and its direct or indirect followup intents.
+     *
+     * Sample code:
+     * ```
+     * $intentsClient = new IntentsClient();
+     * try {
+     *     $formattedName = $intentsClient->intentName('[PROJECT]', '[INTENT]');
+     *     $intentsClient->deleteIntent($formattedName);
+     * } finally {
+     *     $intentsClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the intent to delete. If this intent has direct or
+     *                             indirect followup intents, we also delete them.
+     *                             Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function deleteIntent($name, array $optionalArgs = [])
+    {
+        $request = new DeleteIntentRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteIntent',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Updates/Creates multiple intents in the specified agent.
      *
      * Operation <response: [BatchUpdateIntentsResponse][google.cloud.dialogflow.v2.BatchUpdateIntentsResponse]>
@@ -907,6 +808,89 @@ class IntentsGapicClient
 
         return $this->startOperationsCall(
             'BatchUpdateIntents',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Deletes intents in the specified agent.
+     *
+     * Operation <response: [google.protobuf.Empty][google.protobuf.Empty]>
+     *
+     * Sample code:
+     * ```
+     * $intentsClient = new IntentsClient();
+     * try {
+     *     $formattedParent = $intentsClient->agentName('[PROJECT]');
+     *     $intents = [];
+     *     $operationResponse = $intentsClient->batchDeleteIntents($formattedParent, $intents);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $intentsClient->batchDeleteIntents($formattedParent, $intents);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $intentsClient->resumeOperation($operationName, 'batchDeleteIntents');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       // operation succeeded and returns no value
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $intentsClient->close();
+     * }
+     * ```
+     *
+     * @param string   $parent       Required. The name of the agent to delete all entities types for. Format:
+     *                               `projects/<Project ID>/agent`.
+     * @param Intent[] $intents      Required. The collection of intents to delete. Only intent `name` must be
+     *                               filled in.
+     * @param array    $optionalArgs {
+     *                               Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function batchDeleteIntents($parent, $intents, array $optionalArgs = [])
+    {
+        $request = new BatchDeleteIntentsRequest();
+        $request->setParent($parent);
+        $request->setIntents($intents);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startOperationsCall(
+            'BatchDeleteIntents',
             $optionalArgs,
             $request,
             $this->getOperationsClient()

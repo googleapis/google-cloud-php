@@ -149,7 +149,17 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      */
     public function getGeoLocation()
     {
-        return $this->geo_location;
+        return isset($this->geo_location) ? $this->geo_location : null;
+    }
+
+    public function hasGeoLocation()
+    {
+        return isset($this->geo_location);
+    }
+
+    public function clearGeoLocation()
+    {
+        unset($this->geo_location);
     }
 
     /**
@@ -265,7 +275,17 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      */
     public function getPayload()
     {
-        return $this->payload;
+        return isset($this->payload) ? $this->payload : null;
+    }
+
+    public function hasPayload()
+    {
+        return isset($this->payload);
+    }
+
+    public function clearPayload()
+    {
+        unset($this->payload);
     }
 
     /**
@@ -296,7 +316,17 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      */
     public function getSentimentAnalysisRequestConfig()
     {
-        return $this->sentiment_analysis_request_config;
+        return isset($this->sentiment_analysis_request_config) ? $this->sentiment_analysis_request_config : null;
+    }
+
+    public function hasSentimentAnalysisRequestConfig()
+    {
+        return isset($this->sentiment_analysis_request_config);
+    }
+
+    public function clearSentimentAnalysisRequestConfig()
+    {
+        unset($this->sentiment_analysis_request_config);
     }
 
     /**

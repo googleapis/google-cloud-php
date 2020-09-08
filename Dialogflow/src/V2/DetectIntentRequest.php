@@ -25,6 +25,8 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      * `User Id`. They can be a random number or some type of user and session
      * identifiers (preferably hashed). The length of the `Session ID` and
      * `User ID` must not exceed 36 characters.
+     * For more information, see the [API interactions
+     * guide](https://cloud.google.com/dialogflow/docs/api-overview).
      *
      * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -88,6 +90,8 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      *           `User Id`. They can be a random number or some type of user and session
      *           identifiers (preferably hashed). The length of the `Session ID` and
      *           `User ID` must not exceed 36 characters.
+     *           For more information, see the [API interactions
+     *           guide](https://cloud.google.com/dialogflow/docs/api-overview).
      *     @type \Google\Cloud\Dialogflow\V2\QueryParameters $query_params
      *           The parameters of this query.
      *     @type \Google\Cloud\Dialogflow\V2\QueryInput $query_input
@@ -127,6 +131,8 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      * `User Id`. They can be a random number or some type of user and session
      * identifiers (preferably hashed). The length of the `Session ID` and
      * `User ID` must not exceed 36 characters.
+     * For more information, see the [API interactions
+     * guide](https://cloud.google.com/dialogflow/docs/api-overview).
      *
      * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -146,6 +152,8 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      * `User Id`. They can be a random number or some type of user and session
      * identifiers (preferably hashed). The length of the `Session ID` and
      * `User ID` must not exceed 36 characters.
+     * For more information, see the [API interactions
+     * guide](https://cloud.google.com/dialogflow/docs/api-overview).
      *
      * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -167,7 +175,17 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getQueryParams()
     {
-        return $this->query_params;
+        return isset($this->query_params) ? $this->query_params : null;
+    }
+
+    public function hasQueryParams()
+    {
+        return isset($this->query_params);
+    }
+
+    public function clearQueryParams()
+    {
+        unset($this->query_params);
     }
 
     /**
@@ -197,7 +215,17 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getQueryInput()
     {
-        return $this->query_input;
+        return isset($this->query_input) ? $this->query_input : null;
+    }
+
+    public function hasQueryInput()
+    {
+        return isset($this->query_input);
+    }
+
+    public function clearQueryInput()
+    {
+        unset($this->query_input);
     }
 
     /**
@@ -229,7 +257,17 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getOutputAudioConfig()
     {
-        return $this->output_audio_config;
+        return isset($this->output_audio_config) ? $this->output_audio_config : null;
+    }
+
+    public function hasOutputAudioConfig()
+    {
+        return isset($this->output_audio_config);
+    }
+
+    public function clearOutputAudioConfig()
+    {
+        unset($this->output_audio_config);
     }
 
     /**
@@ -261,7 +299,17 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getOutputAudioConfigMask()
     {
-        return $this->output_audio_config_mask;
+        return isset($this->output_audio_config_mask) ? $this->output_audio_config_mask : null;
+    }
+
+    public function hasOutputAudioConfigMask()
+    {
+        return isset($this->output_audio_config_mask);
+    }
+
+    public function clearOutputAudioConfigMask()
+    {
+        unset($this->output_audio_config_mask);
     }
 
     /**

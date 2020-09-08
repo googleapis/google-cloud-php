@@ -81,7 +81,17 @@ class BrowseCarouselCardItem extends \Google\Protobuf\Internal\Message
      */
     public function getOpenUriAction()
     {
-        return $this->open_uri_action;
+        return isset($this->open_uri_action) ? $this->open_uri_action : null;
+    }
+
+    public function hasOpenUriAction()
+    {
+        return isset($this->open_uri_action);
+    }
+
+    public function clearOpenUriAction()
+    {
+        unset($this->open_uri_action);
     }
 
     /**
@@ -93,7 +103,7 @@ class BrowseCarouselCardItem extends \Google\Protobuf\Internal\Message
      */
     public function setOpenUriAction($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Intent_Message_BrowseCarouselCard_BrowseCarouselCardItem_OpenUrlAction::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Intent\Message\BrowseCarouselCard\BrowseCarouselCardItem\OpenUrlAction::class);
         $this->open_uri_action = $var;
 
         return $this;
@@ -161,7 +171,17 @@ class BrowseCarouselCardItem extends \Google\Protobuf\Internal\Message
      */
     public function getImage()
     {
-        return $this->image;
+        return isset($this->image) ? $this->image : null;
+    }
+
+    public function hasImage()
+    {
+        return isset($this->image);
+    }
+
+    public function clearImage()
+    {
+        unset($this->image);
     }
 
     /**
@@ -173,7 +193,7 @@ class BrowseCarouselCardItem extends \Google\Protobuf\Internal\Message
      */
     public function setImage($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Intent_Message_Image::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Intent\Message\Image::class);
         $this->image = $var;
 
         return $this;

@@ -9,11 +9,13 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a session entity type.
- * Extends or replaces a custom entity type at the user session level (we
- * refer to the entity types defined at the agent level as "custom entity
- * types").
- * Note: session entity types apply to all queries, regardless of the language.
+ * A session represents a conversation between a Dialogflow agent and an
+ * end-user. You can create special entities, called session entities, during a
+ * session. Session entities can extend or replace custom entity types and only
+ * exist during the session that they were created for. All session data,
+ * including session entities, is stored by Dialogflow for 20 minutes.
+ * For more information, see the [session entity
+ * guide](https://cloud.google.com/dialogflow/docs/entities-session).
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.SessionEntityType</code>
  */
@@ -141,7 +143,7 @@ class SessionEntityType extends \Google\Protobuf\Internal\Message
      */
     public function setEntityOverrideMode($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\SessionEntityType_EntityOverrideMode::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\SessionEntityType\EntityOverrideMode::class);
         $this->entity_override_mode = $var;
 
         return $this;

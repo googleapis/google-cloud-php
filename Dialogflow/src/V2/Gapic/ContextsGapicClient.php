@@ -47,24 +47,7 @@ use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 
 /**
- * Service Description: A context represents additional information included with user input or with
- * an intent returned by the Dialogflow API. Contexts are helpful for
- * differentiating user input which may be vague or have a different meaning
- * depending on additional details from your application such as user setting
- * and preferences, previous user input, where the user is in your application,
- * geographic location, and so on.
- *
- * You can include contexts as input parameters of a
- * [DetectIntent][google.cloud.dialogflow.v2.Sessions.DetectIntent] (or
- * [StreamingDetectIntent][google.cloud.dialogflow.v2.Sessions.StreamingDetectIntent]) request,
- * or as output contexts included in the returned intent.
- * Contexts expire when an intent is matched, after the number of `DetectIntent`
- * requests specified by the `lifespan_count` parameter, or after 20 minutes
- * if no intents are matched for a `DetectIntent` request.
- *
- * For more information about contexts, see the
- * [Dialogflow
- * documentation](https://cloud.google.com/dialogflow/docs/contexts-overview).
+ * Service Description: Service for managing [Contexts][google.cloud.dialogflow.v2.Context].
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -72,8 +55,23 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $contextsClient = new ContextsClient();
  * try {
- *     $name = '';
- *     $contextsClient->deleteContext($name);
+ *     $parent = '';
+ *     // Iterate over pages of elements
+ *     $pagedResponse = $contextsClient->listContexts($parent);
+ *     foreach ($pagedResponse->iteratePages() as $page) {
+ *         foreach ($page as $element) {
+ *             // doSomethingWith($element);
+ *         }
+ *     }
+ *
+ *
+ *     // Alternatively:
+ *
+ *     // Iterate through all elements
+ *     $pagedResponse = $contextsClient->listContexts($parent);
+ *     foreach ($pagedResponse->iterateAllElements() as $element) {
+ *         // doSomethingWith($element);
+ *     }
  * } finally {
  *     $contextsClient->close();
  * }
@@ -444,112 +442,6 @@ class ContextsGapicClient
     }
 
     /**
-     * Deletes the specified context.
-     *
-     * Sample code:
-     * ```
-     * $contextsClient = new ContextsClient();
-     * try {
-     *     $name = '';
-     *     $contextsClient->deleteContext($name);
-     * } finally {
-     *     $contextsClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. The name of the context to delete. Format:
-     *                             `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`
-     *                             or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
-     *                             ID>/sessions/<Session ID>/contexts/<Context ID>`.
-     *                             If `Environment ID` is not specified, we assume default 'draft'
-     *                             environment. If `User ID` is not specified, we assume default '-' user.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function deleteContext($name, array $optionalArgs = [])
-    {
-        $request = new DeleteContextRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteContext',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Deletes all active contexts in the specified session.
-     *
-     * Sample code:
-     * ```
-     * $contextsClient = new ContextsClient();
-     * try {
-     *     $parent = '';
-     *     $contextsClient->deleteAllContexts($parent);
-     * } finally {
-     *     $contextsClient->close();
-     * }
-     * ```
-     *
-     * @param string $parent       Required. The name of the session to delete all contexts from. Format:
-     *                             `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project
-     *                             ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session
-     *                             ID>`.
-     *                             If `Environment ID` is not specified we assume default 'draft' environment.
-     *                             If `User ID` is not specified, we assume default '-' user.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function deleteAllContexts($parent, array $optionalArgs = [])
-    {
-        $request = new DeleteAllContextsRequest();
-        $request->setParent($parent);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'parent' => $request->getParent(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteAllContexts',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
      * Returns the list of all contexts in the specified session.
      *
      * Sample code:
@@ -799,6 +691,112 @@ class ContextsGapicClient
         return $this->startCall(
             'UpdateContext',
             Context::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Deletes the specified context.
+     *
+     * Sample code:
+     * ```
+     * $contextsClient = new ContextsClient();
+     * try {
+     *     $name = '';
+     *     $contextsClient->deleteContext($name);
+     * } finally {
+     *     $contextsClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the context to delete. Format:
+     *                             `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`
+     *                             or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *                             ID>/sessions/<Session ID>/contexts/<Context ID>`.
+     *                             If `Environment ID` is not specified, we assume default 'draft'
+     *                             environment. If `User ID` is not specified, we assume default '-' user.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function deleteContext($name, array $optionalArgs = [])
+    {
+        $request = new DeleteContextRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteContext',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Deletes all active contexts in the specified session.
+     *
+     * Sample code:
+     * ```
+     * $contextsClient = new ContextsClient();
+     * try {
+     *     $parent = '';
+     *     $contextsClient->deleteAllContexts($parent);
+     * } finally {
+     *     $contextsClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The name of the session to delete all contexts from. Format:
+     *                             `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project
+     *                             ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session
+     *                             ID>`.
+     *                             If `Environment ID` is not specified we assume default 'draft' environment.
+     *                             If `User ID` is not specified, we assume default '-' user.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function deleteAllContexts($parent, array $optionalArgs = [])
+    {
+        $request = new DeleteAllContextsRequest();
+        $request->setParent($parent);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteAllContexts',
+            GPBEmpty::class,
             $optionalArgs,
             $request
         )->wait();

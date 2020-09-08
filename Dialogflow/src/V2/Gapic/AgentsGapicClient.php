@@ -63,8 +63,8 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $agentsClient = new AgentsClient();
  * try {
- *     $agent = new Agent();
- *     $response = $agentsClient->setAgent($agent);
+ *     $formattedParent = $agentsClient->projectName('[PROJECT]');
+ *     $response = $agentsClient->getAgent($formattedParent);
  * } finally {
  *     $agentsClient->close();
  * }
@@ -304,6 +304,57 @@ class AgentsGapicClient
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
         $this->operationsClient = $this->createOperationsClient($clientOptions);
+    }
+
+    /**
+     * Retrieves the specified agent.
+     *
+     * Sample code:
+     * ```
+     * $agentsClient = new AgentsClient();
+     * try {
+     *     $formattedParent = $agentsClient->projectName('[PROJECT]');
+     *     $response = $agentsClient->getAgent($formattedParent);
+     * } finally {
+     *     $agentsClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The project that the agent to fetch is associated with.
+     *                             Format: `projects/<Project ID>`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dialogflow\V2\Agent
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function getAgent($parent, array $optionalArgs = [])
+    {
+        $request = new GetAgentRequest();
+        $request->setParent($parent);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'GetAgent',
+            Agent::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -664,156 +715,6 @@ class AgentsGapicClient
     }
 
     /**
-     * Restores the specified agent from a ZIP file.
-     *
-     * Replaces the current agent version with a new one. All the intents and
-     * entity types in the older version are deleted. After the restore, the
-     * restored draft agent will be trained automatically (unless disabled in
-     * agent settings). However, once the restore is done, training may not be
-     * completed yet. Please call [TrainAgent][google.cloud.dialogflow.v2.Agents.TrainAgent] and wait for the operation it
-     * returns in order to train explicitly.
-     *
-     * Operation <response: [google.protobuf.Empty][google.protobuf.Empty]>
-     * An operation which tracks when restoring is complete. It only tracks
-     * when the draft agent is updated not when it is done training.
-     *
-     * Sample code:
-     * ```
-     * $agentsClient = new AgentsClient();
-     * try {
-     *     $formattedParent = $agentsClient->projectName('[PROJECT]');
-     *     $operationResponse = $agentsClient->restoreAgent($formattedParent);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // operation succeeded and returns no value
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *
-     *
-     *     // Alternatively:
-     *
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $agentsClient->restoreAgent($formattedParent);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $agentsClient->resumeOperation($operationName, 'restoreAgent');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *       // operation succeeded and returns no value
-     *     } else {
-     *       $error = $newOperationResponse->getError();
-     *       // handleError($error)
-     *     }
-     * } finally {
-     *     $agentsClient->close();
-     * }
-     * ```
-     *
-     * @param string $parent       Required. The project that the agent to restore is associated with.
-     *                             Format: `projects/<Project ID>`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type string $agentUri
-     *          The URI to a Google Cloud Storage file containing the agent to restore.
-     *          Note: The URI must start with "gs://".
-     *     @type string $agentContent
-     *          Zip compressed raw byte content for agent.
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\ApiCore\OperationResponse
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function restoreAgent($parent, array $optionalArgs = [])
-    {
-        $request = new RestoreAgentRequest();
-        $request->setParent($parent);
-        if (isset($optionalArgs['agentUri'])) {
-            $request->setAgentUri($optionalArgs['agentUri']);
-        }
-        if (isset($optionalArgs['agentContent'])) {
-            $request->setAgentContent($optionalArgs['agentContent']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'parent' => $request->getParent(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startOperationsCall(
-            'RestoreAgent',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
-        )->wait();
-    }
-
-    /**
-     * Retrieves the specified agent.
-     *
-     * Sample code:
-     * ```
-     * $agentsClient = new AgentsClient();
-     * try {
-     *     $formattedParent = $agentsClient->projectName('[PROJECT]');
-     *     $response = $agentsClient->getAgent($formattedParent);
-     * } finally {
-     *     $agentsClient->close();
-     * }
-     * ```
-     *
-     * @param string $parent       Required. The project that the agent to fetch is associated with.
-     *                             Format: `projects/<Project ID>`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\Dialogflow\V2\Agent
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function getAgent($parent, array $optionalArgs = [])
-    {
-        $request = new GetAgentRequest();
-        $request->setParent($parent);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'parent' => $request->getParent(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'GetAgent',
-            Agent::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
      * Imports the specified agent from a ZIP file.
      *
      * Uploads new intents and entity types without deleting the existing ones.
@@ -907,6 +808,105 @@ class AgentsGapicClient
 
         return $this->startOperationsCall(
             'ImportAgent',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Restores the specified agent from a ZIP file.
+     *
+     * Replaces the current agent version with a new one. All the intents and
+     * entity types in the older version are deleted. After the restore, the
+     * restored draft agent will be trained automatically (unless disabled in
+     * agent settings). However, once the restore is done, training may not be
+     * completed yet. Please call [TrainAgent][google.cloud.dialogflow.v2.Agents.TrainAgent] and wait for the operation it
+     * returns in order to train explicitly.
+     *
+     * Operation <response: [google.protobuf.Empty][google.protobuf.Empty]>
+     * An operation which tracks when restoring is complete. It only tracks
+     * when the draft agent is updated not when it is done training.
+     *
+     * Sample code:
+     * ```
+     * $agentsClient = new AgentsClient();
+     * try {
+     *     $formattedParent = $agentsClient->projectName('[PROJECT]');
+     *     $operationResponse = $agentsClient->restoreAgent($formattedParent);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $agentsClient->restoreAgent($formattedParent);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $agentsClient->resumeOperation($operationName, 'restoreAgent');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       // operation succeeded and returns no value
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $agentsClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The project that the agent to restore is associated with.
+     *                             Format: `projects/<Project ID>`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type string $agentUri
+     *          The URI to a Google Cloud Storage file containing the agent to restore.
+     *          Note: The URI must start with "gs://".
+     *     @type string $agentContent
+     *          Zip compressed raw byte content for agent.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function restoreAgent($parent, array $optionalArgs = [])
+    {
+        $request = new RestoreAgentRequest();
+        $request->setParent($parent);
+        if (isset($optionalArgs['agentUri'])) {
+            $request->setAgentUri($optionalArgs['agentUri']);
+        }
+        if (isset($optionalArgs['agentContent'])) {
+            $request->setAgentContent($optionalArgs['agentContent']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startOperationsCall(
+            'RestoreAgent',
             $optionalArgs,
             $request,
             $this->getOperationsClient()

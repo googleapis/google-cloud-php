@@ -9,7 +9,20 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents an agent environment.
+ * You can create multiple versions of your agent and publish them to separate
+ * environments.
+ * When you edit an agent, you are editing the draft agent. At any point, you
+ * can save the draft agent as an agent version, which is an immutable snapshot
+ * of your agent.
+ * When you save the draft agent, it is published to the default environment.
+ * When you create agent versions, you can publish them to custom environments.
+ * You can create a variety of custom environments for:
+ * - testing
+ * - development
+ * - production
+ * - etc.
+ * For more information, see the [versions and environments
+ * guide](https://cloud.google.com/dialogflow/docs/agents-versions).
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.Environment</code>
  */
@@ -189,7 +202,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      */
     public function setState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\Environment_State::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\Environment\State::class);
         $this->state = $var;
 
         return $this;
@@ -204,7 +217,17 @@ class Environment extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return $this->update_time;
+        return isset($this->update_time) ? $this->update_time : null;
+    }
+
+    public function hasUpdateTime()
+    {
+        return isset($this->update_time);
+    }
+
+    public function clearUpdateTime()
+    {
+        unset($this->update_time);
     }
 
     /**

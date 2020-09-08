@@ -97,7 +97,7 @@ class ValidationError extends \Google\Protobuf\Internal\Message
      */
     public function setSeverity($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\ValidationError_Severity::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\ValidationError\Severity::class);
         $this->severity = $var;
 
         return $this;

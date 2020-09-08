@@ -121,6 +121,11 @@ class ResponseMediaObject extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasLargeImage()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * Optional. Image to display above media content.
      *
@@ -130,7 +135,7 @@ class ResponseMediaObject extends \Google\Protobuf\Internal\Message
      */
     public function setLargeImage($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Intent_Message_Image::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Intent\Message\Image::class);
         $this->writeOneof(3, $var);
 
         return $this;
@@ -147,6 +152,11 @@ class ResponseMediaObject extends \Google\Protobuf\Internal\Message
         return $this->readOneof(4);
     }
 
+    public function hasIcon()
+    {
+        return $this->hasOneof(4);
+    }
+
     /**
      * Optional. Icon to display above media content.
      *
@@ -156,7 +166,7 @@ class ResponseMediaObject extends \Google\Protobuf\Internal\Message
      */
     public function setIcon($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Intent_Message_Image::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Intent\Message\Image::class);
         $this->writeOneof(4, $var);
 
         return $this;

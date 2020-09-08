@@ -3,40 +3,6 @@
 return [
     'interfaces' => [
         'google.cloud.dialogflow.v2.Contexts' => [
-            'DeleteContext' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v2/{name=projects/*/agent/sessions/*/contexts/*}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'delete',
-                        'uriTemplate' => '/v2/{name=projects/*/agent/environments/*/users/*/sessions/*/contexts/*}',
-                    ],
-                ],
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteAllContexts' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v2/{parent=projects/*/agent/sessions/*}/contexts',
-                'additionalBindings' => [
-                    [
-                        'method' => 'delete',
-                        'uriTemplate' => '/v2/{parent=projects/*/agent/environments/*/users/*/sessions/*}/contexts',
-                    ],
-                ],
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
             'ListContexts' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{parent=projects/*/agent/sessions/*}/contexts',
@@ -106,6 +72,40 @@ return [
                         'getters' => [
                             'getContext',
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteContext' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v2/{name=projects/*/agent/sessions/*/contexts/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{name=projects/*/agent/environments/*/users/*/sessions/*/contexts/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteAllContexts' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v2/{parent=projects/*/agent/sessions/*}/contexts',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{parent=projects/*/agent/environments/*/users/*/sessions/*}/contexts',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],

@@ -69,7 +69,17 @@ class Item extends \Google\Protobuf\Internal\Message
      */
     public function getInfo()
     {
-        return $this->info;
+        return isset($this->info) ? $this->info : null;
+    }
+
+    public function hasInfo()
+    {
+        return isset($this->info);
+    }
+
+    public function clearInfo()
+    {
+        unset($this->info);
     }
 
     /**
@@ -81,7 +91,7 @@ class Item extends \Google\Protobuf\Internal\Message
      */
     public function setInfo($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Intent_Message_SelectItemInfo::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Intent\Message\SelectItemInfo::class);
         $this->info = $var;
 
         return $this;
@@ -147,7 +157,17 @@ class Item extends \Google\Protobuf\Internal\Message
      */
     public function getImage()
     {
-        return $this->image;
+        return isset($this->image) ? $this->image : null;
+    }
+
+    public function hasImage()
+    {
+        return isset($this->image);
+    }
+
+    public function clearImage()
+    {
+        unset($this->image);
     }
 
     /**
@@ -159,7 +179,7 @@ class Item extends \Google\Protobuf\Internal\Message
      */
     public function setImage($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Intent_Message_Image::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Intent\Message\Image::class);
         $this->image = $var;
 
         return $this;

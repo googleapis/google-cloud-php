@@ -3,6 +3,17 @@
 return [
     'interfaces' => [
         'google.cloud.dialogflow.v2.Agents' => [
+            'GetAgent' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=projects/*}/agent',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'SetAgent' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{agent.parent=projects/*}/agent',
@@ -62,9 +73,9 @@ return [
                     ],
                 ],
             ],
-            'RestoreAgent' => [
+            'ImportAgent' => [
                 'method' => 'post',
-                'uriTemplate' => '/v2/{parent=projects/*}/agent:restore',
+                'uriTemplate' => '/v2/{parent=projects/*}/agent:import',
                 'body' => '*',
                 'placeholders' => [
                     'parent' => [
@@ -74,20 +85,9 @@ return [
                     ],
                 ],
             ],
-            'GetAgent' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/{parent=projects/*}/agent',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'ImportAgent' => [
+            'RestoreAgent' => [
                 'method' => 'post',
-                'uriTemplate' => '/v2/{parent=projects/*}/agent:import',
+                'uriTemplate' => '/v2/{parent=projects/*}/agent:restore',
                 'body' => '*',
                 'placeholders' => [
                     'parent' => [

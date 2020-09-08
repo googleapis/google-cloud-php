@@ -140,7 +140,7 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      */
     public function setMessageType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\StreamingRecognitionResult_MessageType::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\StreamingRecognitionResult\MessageType::class);
         $this->message_type = $var;
 
         return $this;
@@ -281,7 +281,17 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      */
     public function getSpeechEndOffset()
     {
-        return $this->speech_end_offset;
+        return isset($this->speech_end_offset) ? $this->speech_end_offset : null;
+    }
+
+    public function hasSpeechEndOffset()
+    {
+        return isset($this->speech_end_offset);
+    }
+
+    public function clearSpeechEndOffset()
+    {
+        unset($this->speech_end_offset);
     }
 
     /**

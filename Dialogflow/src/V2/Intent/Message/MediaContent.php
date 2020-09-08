@@ -65,7 +65,7 @@ class MediaContent extends \Google\Protobuf\Internal\Message
      */
     public function setMediaType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\Intent_Message_MediaContent_ResponseMediaType::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\Intent\Message\MediaContent\ResponseMediaType::class);
         $this->media_type = $var;
 
         return $this;

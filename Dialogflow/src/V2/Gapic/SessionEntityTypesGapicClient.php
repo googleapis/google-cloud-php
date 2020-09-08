@@ -46,23 +46,7 @@ use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 
 /**
- * Service Description: Entities are extracted from user input and represent parameters that are
- * meaningful to your application. For example, a date range, a proper name
- * such as a geographic location or landmark, and so on. Entities represent
- * actionable data for your application.
- *
- * Session entity types are referred to as **User** entity types and are
- * entities that are built for an individual user such as
- * favorites, preferences, playlists, and so on. You can redefine a session
- * entity type at the session level.
- *
- * Session entity methods do not work with Google Assistant integration.
- * Contact Dialogflow support if you need to use session entities
- * with Google Assistant integration.
- *
- * For more information about entity types, see the
- * [Dialogflow
- * documentation](https://cloud.google.com/dialogflow/docs/entities-overview).
+ * Service Description: Service for managing [SessionEntityTypes][google.cloud.dialogflow.v2.SessionEntityType].
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -70,8 +54,23 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $sessionEntityTypesClient = new SessionEntityTypesClient();
  * try {
- *     $name = '';
- *     $sessionEntityTypesClient->deleteSessionEntityType($name);
+ *     $parent = '';
+ *     // Iterate over pages of elements
+ *     $pagedResponse = $sessionEntityTypesClient->listSessionEntityTypes($parent);
+ *     foreach ($pagedResponse->iteratePages() as $page) {
+ *         foreach ($page as $element) {
+ *             // doSomethingWith($element);
+ *         }
+ *     }
+ *
+ *
+ *     // Alternatively:
+ *
+ *     // Iterate through all elements
+ *     $pagedResponse = $sessionEntityTypesClient->listSessionEntityTypes($parent);
+ *     foreach ($pagedResponse->iterateAllElements() as $element) {
+ *         // doSomethingWith($element);
+ *     }
  * } finally {
  *     $sessionEntityTypesClient->close();
  * }
@@ -442,64 +441,6 @@ class SessionEntityTypesGapicClient
     }
 
     /**
-     * Deletes the specified session entity type.
-     *
-     * This method doesn't work with Google Assistant integration.
-     * Contact Dialogflow support if you need to use session entities
-     * with Google Assistant integration.
-     *
-     * Sample code:
-     * ```
-     * $sessionEntityTypesClient = new SessionEntityTypesClient();
-     * try {
-     *     $name = '';
-     *     $sessionEntityTypesClient->deleteSessionEntityType($name);
-     * } finally {
-     *     $sessionEntityTypesClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. The name of the entity type to delete. Format:
-     *                             `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
-     *                             Display Name>` or `projects/<Project ID>/agent/environments/<Environment
-     *                             ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display
-     *                             Name>`.
-     *                             If `Environment ID` is not specified, we assume default 'draft'
-     *                             environment. If `User ID` is not specified, we assume default '-' user.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function deleteSessionEntityType($name, array $optionalArgs = [])
-    {
-        $request = new DeleteSessionEntityTypeRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteSessionEntityType',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
      * Returns the list of all session entity types in the specified session.
      *
      * This method doesn't work with Google Assistant integration.
@@ -767,6 +708,64 @@ class SessionEntityTypesGapicClient
         return $this->startCall(
             'UpdateSessionEntityType',
             SessionEntityType::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Deletes the specified session entity type.
+     *
+     * This method doesn't work with Google Assistant integration.
+     * Contact Dialogflow support if you need to use session entities
+     * with Google Assistant integration.
+     *
+     * Sample code:
+     * ```
+     * $sessionEntityTypesClient = new SessionEntityTypesClient();
+     * try {
+     *     $name = '';
+     *     $sessionEntityTypesClient->deleteSessionEntityType($name);
+     * } finally {
+     *     $sessionEntityTypesClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the entity type to delete. Format:
+     *                             `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
+     *                             Display Name>` or `projects/<Project ID>/agent/environments/<Environment
+     *                             ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display
+     *                             Name>`.
+     *                             If `Environment ID` is not specified, we assume default 'draft'
+     *                             environment. If `User ID` is not specified, we assume default '-' user.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function deleteSessionEntityType($name, array $optionalArgs = [])
+    {
+        $request = new DeleteSessionEntityTypeRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteSessionEntityType',
+            GPBEmpty::class,
             $optionalArgs,
             $request
         )->wait();

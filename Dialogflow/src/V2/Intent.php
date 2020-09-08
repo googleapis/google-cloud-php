@@ -9,9 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents an intent.
- * Intents convert a number of user expressions or patterns into an action. An
- * action is an extraction of a user command or sentence semantics.
+ * An intent categorizes an end-user's intention for one conversation turn. For
+ * each agent, you define many intents, where your combined intents can handle a
+ * complete conversation. When an end-user writes or says something, referred to
+ * as an end-user expression or end-user input, Dialogflow matches the end-user
+ * input to the best intent in your agent. Matching an intent is also known as
+ * intent classification.
+ * For more information, see the [intent
+ * guide](https://cloud.google.com/dialogflow/docs/intents-overview).
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.Intent</code>
  */
@@ -325,7 +330,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      */
     public function setWebhookState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\Intent_WebhookState::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\Intent\WebhookState::class);
         $this->webhook_state = $var;
 
         return $this;

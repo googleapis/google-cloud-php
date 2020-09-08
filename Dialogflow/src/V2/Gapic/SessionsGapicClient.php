@@ -46,10 +46,10 @@ use Google\Cloud\Dialogflow\V2\StreamingDetectIntentResponse;
 use Google\Protobuf\FieldMask;
 
 /**
- * Service Description: A session represents an interaction with a user. You retrieve user input
- * and pass it to the [DetectIntent][google.cloud.dialogflow.v2.Sessions.DetectIntent] (or
- * [StreamingDetectIntent][google.cloud.dialogflow.v2.Sessions.StreamingDetectIntent]) method to determine
- * user intent and respond.
+ * Service Description: A service used for session interactions.
+ *
+ * For more information, see the [API interactions
+ * guide](https://cloud.google.com/dialogflow/docs/api-overview).
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -347,15 +347,18 @@ class SessionsGapicClient
      * }
      * ```
      *
-     * @param string     $session    Required. The name of the session this query is sent to. Format:
-     *                               `projects/<Project ID>/agent/sessions/<Session ID>`, or
-     *                               `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
-     *                               ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume
-     *                               default 'draft' environment. If `User ID` is not specified, we are using
-     *                               "-". It's up to the API caller to choose an appropriate `Session ID` and
-     *                               `User Id`. They can be a random number or some type of user and session
-     *                               identifiers (preferably hashed). The length of the `Session ID` and
-     *                               `User ID` must not exceed 36 characters.
+     * @param string $session Required. The name of the session this query is sent to. Format:
+     *                        `projects/<Project ID>/agent/sessions/<Session ID>`, or
+     *                        `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *                        ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume
+     *                        default 'draft' environment. If `User ID` is not specified, we are using
+     *                        "-". It's up to the API caller to choose an appropriate `Session ID` and
+     *                        `User Id`. They can be a random number or some type of user and session
+     *                        identifiers (preferably hashed). The length of the `Session ID` and
+     *                        `User ID` must not exceed 36 characters.
+     *
+     * For more information, see the [API interactions
+     * guide](https://cloud.google.com/dialogflow/docs/api-overview).
      * @param QueryInput $queryInput Required. The input specification. It can be set to:
      *
      * 1.  an audio config

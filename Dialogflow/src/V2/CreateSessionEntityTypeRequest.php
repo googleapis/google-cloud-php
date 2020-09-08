@@ -99,7 +99,17 @@ class CreateSessionEntityTypeRequest extends \Google\Protobuf\Internal\Message
      */
     public function getSessionEntityType()
     {
-        return $this->session_entity_type;
+        return isset($this->session_entity_type) ? $this->session_entity_type : null;
+    }
+
+    public function hasSessionEntityType()
+    {
+        return isset($this->session_entity_type);
+    }
+
+    public function clearSessionEntityType()
+    {
+        unset($this->session_entity_type);
     }
 
     /**
