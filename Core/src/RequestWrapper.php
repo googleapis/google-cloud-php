@@ -293,7 +293,7 @@ class RequestWrapper
                 $token = $this->fetchCredentials($credentialsFetcher);
 
                 if ($credentialsFetcher instanceof GetQuotaProjectInterface) {
-                    $quotaProject = $credentialsFetcher->getQuotaProject() ?: $quotaProject;
+                    $quotaProject = $credentialsFetcher->getQuotaProject();
                 }
             }
 
