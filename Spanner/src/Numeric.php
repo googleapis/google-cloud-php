@@ -52,8 +52,9 @@ class Numeric implements ValueInterface
          * This type supports fixed 38 digits of precision and 9 digits of scale.
          * This number can be optionally prefixed with a plus or minus sign.
          */
-        $pattern = '/^[-+]?([0-9]{1,38})?(\.([0-9]{1,9})?)?$/';
-        if (! preg_match($pattern, $value)) {
+        $decimalPattern = '/^[-+]?([0-9]{1,38})?(\.([0-9]{1,9})?)?$/';
+        $scientificPattern = '/^[0-9]\.[0-9]{1,37}[Ee][-+][0-9]{1,2}$/';
+        if (!preg_match($decimalPattern, $value) && !preg_match($scientificPattern, $value)) {
             throw new \InvalidArgumentException(
                 'Numeric type only allows fixed 38 decimal digits and 9 decimal digits of scale.'
             );

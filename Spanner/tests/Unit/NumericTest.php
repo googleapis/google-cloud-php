@@ -44,7 +44,10 @@ class NumericTest extends TestCase
             ['999999999999999999999999999999999999999.999999999'], // too many digits
             ['0.9999999999'], // too many digits of scale
             ['0.123.123'],
-            ['...']
+            ['...'],
+            ['.1231e+10'],
+            ['1.12345e-100'], // too large an exponent
+            ['9.99999999999999999999999999999999999999E38'] // too many digits
         ];
     }
 
@@ -72,7 +75,9 @@ class NumericTest extends TestCase
                 [99], // int
                 [99.9], // float
                 ['123.'],
-                ['.123']
+                ['.123'],
+                ['1.123e+10'],
+                ['1.123E-4']
             ];
     }
 
