@@ -20,8 +20,6 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/privacy/dlp/v2/dlp.proto
  * and updates to that file get reflected here through a refresh process.
- *
- * @experimental
  */
 
 namespace Google\Cloud\Dlp\V2\Gapic;
@@ -124,8 +122,6 @@ use Google\Protobuf\GPBEmpty;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parseName method to extract the individual identifiers contained within formatted names
  * that are returned by the API.
- *
- * @experimental
  */
 class DlpServiceGapicClient
 {
@@ -471,7 +467,6 @@ class DlpServiceGapicClient
      * @param string $deidentifyTemplate
      *
      * @return string The formatted deidentify_template resource.
-     * @experimental
      */
     public static function deidentifyTemplateName($organization, $deidentifyTemplate)
     {
@@ -489,7 +484,6 @@ class DlpServiceGapicClient
      * @param string $dlpJob
      *
      * @return string The formatted dlp_job resource.
-     * @experimental
      */
     public static function dlpJobName($project, $dlpJob)
     {
@@ -507,7 +501,6 @@ class DlpServiceGapicClient
      * @param string $inspectTemplate
      *
      * @return string The formatted inspect_template resource.
-     * @experimental
      */
     public static function inspectTemplateName($organization, $inspectTemplate)
     {
@@ -525,7 +518,6 @@ class DlpServiceGapicClient
      * @param string $jobTrigger
      *
      * @return string The formatted job_trigger resource.
-     * @experimental
      */
     public static function jobTriggerName($project, $jobTrigger)
     {
@@ -543,7 +535,6 @@ class DlpServiceGapicClient
      * @param string $location
      *
      * @return string The formatted location resource.
-     * @experimental
      */
     public static function locationName($project, $location)
     {
@@ -560,7 +551,6 @@ class DlpServiceGapicClient
      * @param string $organization
      *
      * @return string The formatted organization resource.
-     * @experimental
      */
     public static function organizationName($organization)
     {
@@ -577,7 +567,6 @@ class DlpServiceGapicClient
      * @param string $deidentifyTemplate
      *
      * @return string The formatted organization_deidentify_template resource.
-     * @experimental
      */
     public static function organizationDeidentifyTemplateName($organization, $deidentifyTemplate)
     {
@@ -595,7 +584,6 @@ class DlpServiceGapicClient
      * @param string $inspectTemplate
      *
      * @return string The formatted organization_inspect_template resource.
-     * @experimental
      */
     public static function organizationInspectTemplateName($organization, $inspectTemplate)
     {
@@ -613,7 +601,6 @@ class DlpServiceGapicClient
      * @param string $location
      *
      * @return string The formatted organization_location resource.
-     * @experimental
      */
     public static function organizationLocationName($organization, $location)
     {
@@ -632,7 +619,6 @@ class DlpServiceGapicClient
      * @param string $deidentifyTemplate
      *
      * @return string The formatted organization_location_deidentify_template resource.
-     * @experimental
      */
     public static function organizationLocationDeidentifyTemplateName($organization, $location, $deidentifyTemplate)
     {
@@ -652,7 +638,6 @@ class DlpServiceGapicClient
      * @param string $inspectTemplate
      *
      * @return string The formatted organization_location_inspect_template resource.
-     * @experimental
      */
     public static function organizationLocationInspectTemplateName($organization, $location, $inspectTemplate)
     {
@@ -672,7 +657,6 @@ class DlpServiceGapicClient
      * @param string $storedInfoType
      *
      * @return string The formatted organization_location_stored_info_type resource.
-     * @experimental
      */
     public static function organizationLocationStoredInfoTypeName($organization, $location, $storedInfoType)
     {
@@ -691,7 +675,6 @@ class DlpServiceGapicClient
      * @param string $storedInfoType
      *
      * @return string The formatted organization_stored_info_type resource.
-     * @experimental
      */
     public static function organizationStoredInfoTypeName($organization, $storedInfoType)
     {
@@ -708,7 +691,6 @@ class DlpServiceGapicClient
      * @param string $project
      *
      * @return string The formatted project resource.
-     * @experimental
      */
     public static function projectName($project)
     {
@@ -725,7 +707,6 @@ class DlpServiceGapicClient
      * @param string $deidentifyTemplate
      *
      * @return string The formatted project_deidentify_template resource.
-     * @experimental
      */
     public static function projectDeidentifyTemplateName($project, $deidentifyTemplate)
     {
@@ -743,7 +724,6 @@ class DlpServiceGapicClient
      * @param string $dlpJob
      *
      * @return string The formatted project_dlp_job resource.
-     * @experimental
      */
     public static function projectDlpJobName($project, $dlpJob)
     {
@@ -761,7 +741,6 @@ class DlpServiceGapicClient
      * @param string $inspectTemplate
      *
      * @return string The formatted project_inspect_template resource.
-     * @experimental
      */
     public static function projectInspectTemplateName($project, $inspectTemplate)
     {
@@ -779,7 +758,6 @@ class DlpServiceGapicClient
      * @param string $jobTrigger
      *
      * @return string The formatted project_job_trigger resource.
-     * @experimental
      */
     public static function projectJobTriggerName($project, $jobTrigger)
     {
@@ -798,7 +776,6 @@ class DlpServiceGapicClient
      * @param string $deidentifyTemplate
      *
      * @return string The formatted project_location_deidentify_template resource.
-     * @experimental
      */
     public static function projectLocationDeidentifyTemplateName($project, $location, $deidentifyTemplate)
     {
@@ -818,7 +795,6 @@ class DlpServiceGapicClient
      * @param string $dlpJob
      *
      * @return string The formatted project_location_dlp_job resource.
-     * @experimental
      */
     public static function projectLocationDlpJobName($project, $location, $dlpJob)
     {
@@ -838,7 +814,6 @@ class DlpServiceGapicClient
      * @param string $inspectTemplate
      *
      * @return string The formatted project_location_inspect_template resource.
-     * @experimental
      */
     public static function projectLocationInspectTemplateName($project, $location, $inspectTemplate)
     {
@@ -858,7 +833,6 @@ class DlpServiceGapicClient
      * @param string $jobTrigger
      *
      * @return string The formatted project_location_job_trigger resource.
-     * @experimental
      */
     public static function projectLocationJobTriggerName($project, $location, $jobTrigger)
     {
@@ -878,7 +852,6 @@ class DlpServiceGapicClient
      * @param string $storedInfoType
      *
      * @return string The formatted project_location_stored_info_type resource.
-     * @experimental
      */
     public static function projectLocationStoredInfoTypeName($project, $location, $storedInfoType)
     {
@@ -897,7 +870,6 @@ class DlpServiceGapicClient
      * @param string $storedInfoType
      *
      * @return string The formatted project_stored_info_type resource.
-     * @experimental
      */
     public static function projectStoredInfoTypeName($project, $storedInfoType)
     {
@@ -915,7 +887,6 @@ class DlpServiceGapicClient
      * @param string $storedInfoType
      *
      * @return string The formatted stored_info_type resource.
-     * @experimental
      */
     public static function storedInfoTypeName($organization, $storedInfoType)
     {
@@ -966,7 +937,6 @@ class DlpServiceGapicClient
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
-     * @experimental
      */
     public static function parseName($formattedName, $template = null)
     {
@@ -1043,7 +1013,6 @@ class DlpServiceGapicClient
      * }
      *
      * @throws ValidationException
-     * @experimental
      */
     public function __construct(array $options = [])
     {
@@ -1077,8 +1046,20 @@ class DlpServiceGapicClient
      *
      *     @type string $parent The parent resource name. Please note, unless you have
      *           authenticated using an API key this option will be required.
-     *          - Format:projects/[PROJECT-ID]
-     *          - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *
+     *          The format of this value varies depending on whether you have [specified a
+     *          processing location](https://cloud.google.com/dlp/docs/specifying-location):
+     *
+     *          + Projects scope, location specified:<br/>
+     *            `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     *          + Projects scope, no location specified (defaults to global):<br/>
+     *            `projects/`<var>PROJECT_ID</var>
+     *
+     *          The following example `parent` string specifies a parent project with the
+     *          identifier `example-project`, and specifies the `europe-west3` location
+     *          for processing data:
+     *
+     *              parent=projects/example-project/locations/europe-west3
      *     @type InspectConfig $inspectConfig
      *          Configuration for the inspector. What specified here will override
      *          the template referenced by the inspect_template_name argument.
@@ -1102,7 +1083,6 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\InspectContentResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function inspectContent(array $optionalArgs = [])
     {
@@ -1163,8 +1143,20 @@ class DlpServiceGapicClient
      *
      *     @type string $parent The parent resource name. Please note, unless you have
      *           authenticated using an API key this option will be required.
-     *          - Format:projects/[PROJECT-ID]
-     *          - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *
+     *          The format of this value varies depending on whether you have [specified a
+     *          processing location](https://cloud.google.com/dlp/docs/specifying-location):
+     *
+     *          + Projects scope, location specified:<br/>
+     *            `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     *          + Projects scope, no location specified (defaults to global):<br/>
+     *            `projects/`<var>PROJECT_ID</var>
+     *
+     *          The following example `parent` string specifies a parent project with the
+     *          identifier `example-project`, and specifies the `europe-west3` location
+     *          for processing data:
+     *
+     *              parent=projects/example-project/locations/europe-west3
      *     @type string $locationId
      *          Deprecated. This field has no effect.
      *     @type InspectConfig $inspectConfig
@@ -1186,7 +1178,6 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\RedactImageResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function redactImage(array $optionalArgs = [])
     {
@@ -1250,8 +1241,20 @@ class DlpServiceGapicClient
      *
      *     @type string $parent The parent resource name. Please note, unless you have
      *           authenticated using an API key this option will be required.
-     *          - Format:projects/[PROJECT-ID]
-     *          - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *
+     *          The format of this value varies depending on whether you have [specified a
+     *          processing location](https://cloud.google.com/dlp/docs/specifying-location):
+     *
+     *          + Projects scope, location specified:<br/>
+     *            `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     *          + Projects scope, no location specified (defaults to global):<br/>
+     *            `projects/`<var>PROJECT_ID</var>
+     *
+     *          The following example `parent` string specifies a parent project with the
+     *          identifier `example-project`, and specifies the `europe-west3` location
+     *          for processing data:
+     *
+     *              parent=projects/example-project/locations/europe-west3
      *     @type DeidentifyConfig $deidentifyConfig
      *          Configuration for the de-identification of the content item.
      *          Items specified here will override the template referenced by the
@@ -1286,7 +1289,6 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\DeidentifyContentResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function deidentifyContent(array $optionalArgs = [])
     {
@@ -1345,11 +1347,23 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent resource name.
-     *                             - Format:projects/[PROJECT-ID]
-     *                             - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $parent Required. Parent resource name.
+     *
+     * The format of this value varies depending on whether you have [specified a
+     * processing location](https://cloud.google.com/dlp/docs/specifying-location):
+     *
+     * + Projects scope, location specified:<br/>
+     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * + Projects scope, no location specified (defaults to global):<br/>
+     *   `projects/`<var>PROJECT_ID</var>
+     *
+     * The following example `parent` string specifies a parent project with the
+     * identifier `example-project`, and specifies the `europe-west3` location
+     * for processing data:
+     *
+     *     parent=projects/example-project/locations/europe-west3
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type DeidentifyConfig $reidentifyConfig
      *          Configuration for the re-identification of the content item.
@@ -1375,10 +1389,11 @@ class DlpServiceGapicClient
      *     @type string $reidentifyTemplateName
      *          Template to use. References an instance of `DeidentifyTemplate`.
      *          Any configuration directly specified in `reidentify_config` or
-     *          `inspect_config` will override those set in the template. Singular fields
-     *          that are set in this request will replace their corresponding fields in the
-     *          template. Repeated fields are appended. Singular sub-messages and groups
-     *          are recursively merged.
+     *          `inspect_config` will override those set in the template. The
+     *          `DeidentifyTemplate` used must include only reversible transformations.
+     *          Singular fields that are set in this request will replace their
+     *          corresponding fields in the template. Repeated fields are appended.
+     *          Singular sub-messages and groups are recursively merged.
      *     @type string $locationId
      *          Deprecated. This field has no effect.
      *     @type RetrySettings|array $retrySettings
@@ -1391,7 +1406,6 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\ReidentifyContentResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function reidentifyContent($parent, array $optionalArgs = [])
     {
@@ -1451,7 +1465,10 @@ class DlpServiceGapicClient
      *
      *     @type string $parent The parent resource name. Please note, unless you have
      *           authenticated using an API key this option will be required.
-     *          - Format:locations/[LOCATION-ID]
+     *
+     *          The format of this value is as follows:
+     *
+     *              locations/<var>LOCATION_ID</var>
      *     @type string $languageCode
      *          BCP-47 language code for localized infoType friendly
      *          names. If omitted, or if localized strings are not available,
@@ -1471,7 +1488,6 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\ListInfoTypesResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listInfoTypes(array $optionalArgs = [])
     {
@@ -1521,11 +1537,26 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string          $parent          Required. Parent resource name.
-     *                                         - Format:projects/[PROJECT-ID]
-     *                                         - Format:organizations/[ORGANIZATION-ID]
-     *                                         - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
-     *                                         - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
+     * @param string $parent Required. Parent resource name.
+     *
+     * The format of this value varies depending on the scope of the request
+     * (project or organization) and whether you have [specified a processing
+     * location](https://cloud.google.com/dlp/docs/specifying-location):
+     *
+     * + Projects scope, location specified:<br/>
+     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * + Projects scope, no location specified (defaults to global):<br/>
+     *   `projects/`<var>PROJECT_ID</var>
+     * + Organizations scope, location specified:<br/>
+     *   `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * + Organizations scope, no location specified (defaults to global):<br/>
+     *   `organizations/`<var>ORG_ID</var>
+     *
+     * The following example `parent` string specifies a parent project with the
+     * identifier `example-project`, and specifies the `europe-west3` location
+     * for processing data:
+     *
+     *     parent=projects/example-project/locations/europe-west3
      * @param InspectTemplate $inspectTemplate Required. The InspectTemplate to create.
      * @param array           $optionalArgs    {
      *                                         Optional.
@@ -1547,7 +1578,6 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\InspectTemplate
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function createInspectTemplate($parent, $inspectTemplate, array $optionalArgs = [])
     {
@@ -1611,7 +1641,6 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\InspectTemplate
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function updateInspectTemplate($name, array $optionalArgs = [])
     {
@@ -1670,7 +1699,6 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\InspectTemplate
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getInspectTemplate($name, array $optionalArgs = [])
     {
@@ -1722,13 +1750,28 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Parent resource name.
-     *                             - Format:projects/[PROJECT-ID]
-     *                             - Format:organizations/[ORGANIZATION-ID]
-     *                             - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
-     *                             - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $parent Required. Parent resource name.
+     *
+     * The format of this value varies depending on the scope of the request
+     * (project or organization) and whether you have [specified a processing
+     * location](https://cloud.google.com/dlp/docs/specifying-location):
+     *
+     * + Projects scope, location specified:<br/>
+     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * + Projects scope, no location specified (defaults to global):<br/>
+     *   `projects/`<var>PROJECT_ID</var>
+     * + Organizations scope, location specified:<br/>
+     *   `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * + Organizations scope, no location specified (defaults to global):<br/>
+     *   `organizations/`<var>ORG_ID</var>
+     *
+     * The following example `parent` string specifies a parent project with the
+     * identifier `example-project`, and specifies the `europe-west3` location
+     * for processing data:
+     *
+     *     parent=projects/example-project/locations/europe-west3
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type string $pageToken
      *          A page token is used to specify a page of values to be returned.
@@ -1765,7 +1808,6 @@ class DlpServiceGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listInspectTemplates($parent, array $optionalArgs = [])
     {
@@ -1828,7 +1870,6 @@ class DlpServiceGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function deleteInspectTemplate($name, array $optionalArgs = [])
     {
@@ -1868,11 +1909,26 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string             $parent             Required. Parent resource name.
-     *                                               - Format:projects/[PROJECT-ID]
-     *                                               - Format:organizations/[ORGANIZATION-ID]
-     *                                               - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
-     *                                               - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
+     * @param string $parent Required. Parent resource name.
+     *
+     * The format of this value varies depending on the scope of the request
+     * (project or organization) and whether you have [specified a processing
+     * location](https://cloud.google.com/dlp/docs/specifying-location):
+     *
+     * + Projects scope, location specified:<br/>
+     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * + Projects scope, no location specified (defaults to global):<br/>
+     *   `projects/`<var>PROJECT_ID</var>
+     * + Organizations scope, location specified:<br/>
+     *   `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * + Organizations scope, no location specified (defaults to global):<br/>
+     *   `organizations/`<var>ORG_ID</var>
+     *
+     * The following example `parent` string specifies a parent project with the
+     * identifier `example-project`, and specifies the `europe-west3` location
+     * for processing data:
+     *
+     *     parent=projects/example-project/locations/europe-west3
      * @param DeidentifyTemplate $deidentifyTemplate Required. The DeidentifyTemplate to create.
      * @param array              $optionalArgs       {
      *                                               Optional.
@@ -1894,7 +1950,6 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\DeidentifyTemplate
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function createDeidentifyTemplate($parent, $deidentifyTemplate, array $optionalArgs = [])
     {
@@ -1959,7 +2014,6 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\DeidentifyTemplate
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function updateDeidentifyTemplate($name, array $optionalArgs = [])
     {
@@ -2019,7 +2073,6 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\DeidentifyTemplate
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getDeidentifyTemplate($name, array $optionalArgs = [])
     {
@@ -2072,13 +2125,28 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Parent resource name.
-     *                             - Format:projects/[PROJECT-ID]
-     *                             - Format:organizations/[ORGANIZATION-ID]
-     *                             - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
-     *                             - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $parent Required. Parent resource name.
+     *
+     * The format of this value varies depending on the scope of the request
+     * (project or organization) and whether you have [specified a processing
+     * location](https://cloud.google.com/dlp/docs/specifying-location):
+     *
+     * + Projects scope, location specified:<br/>
+     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * + Projects scope, no location specified (defaults to global):<br/>
+     *   `projects/`<var>PROJECT_ID</var>
+     * + Organizations scope, location specified:<br/>
+     *   `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * + Organizations scope, no location specified (defaults to global):<br/>
+     *   `organizations/`<var>ORG_ID</var>
+     *
+     * The following example `parent` string specifies a parent project with the
+     * identifier `example-project`, and specifies the `europe-west3` location
+     * for processing data:
+     *
+     *     parent=projects/example-project/locations/europe-west3
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type string $pageToken
      *          A page token is used to specify a page of values to be returned.
@@ -2115,7 +2183,6 @@ class DlpServiceGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listDeidentifyTemplates($parent, array $optionalArgs = [])
     {
@@ -2179,7 +2246,6 @@ class DlpServiceGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function deleteDeidentifyTemplate($name, array $optionalArgs = [])
     {
@@ -2218,9 +2284,21 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string     $parent       Required. Parent resource name.
-     *                                 - Format:projects/[PROJECT-ID]
-     *                                 - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     * @param string $parent Required. Parent resource name.
+     *
+     * The format of this value varies depending on whether you have [specified a
+     * processing location](https://cloud.google.com/dlp/docs/specifying-location):
+     *
+     * + Projects scope, location specified:<br/>
+     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * + Projects scope, no location specified (defaults to global):<br/>
+     *   `projects/`<var>PROJECT_ID</var>
+     *
+     * The following example `parent` string specifies a parent project with the
+     * identifier `example-project`, and specifies the `europe-west3` location
+     * for processing data:
+     *
+     *     parent=projects/example-project/locations/europe-west3
      * @param JobTrigger $jobTrigger   Required. The JobTrigger to create.
      * @param array      $optionalArgs {
      *                                 Optional.
@@ -2242,7 +2320,6 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\JobTrigger
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function createJobTrigger($parent, $jobTrigger, array $optionalArgs = [])
     {
@@ -2305,7 +2382,6 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\JobTrigger
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function updateJobTrigger($name, array $optionalArgs = [])
     {
@@ -2369,7 +2445,6 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\HybridInspectResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function hybridInspectJobTrigger($name, array $optionalArgs = [])
     {
@@ -2424,7 +2499,6 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\JobTrigger
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getJobTrigger($name, array $optionalArgs = [])
     {
@@ -2476,11 +2550,23 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Parent resource name.
-     *                             - Format:projects/[PROJECT-ID]
-     *                             - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $parent Required. Parent resource name.
+     *
+     * The format of this value varies depending on whether you have [specified a
+     * processing location](https://cloud.google.com/dlp/docs/specifying-location):
+     *
+     * + Projects scope, location specified:<br/>
+     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * + Projects scope, no location specified (defaults to global):<br/>
+     *   `projects/`<var>PROJECT_ID</var>
+     *
+     * The following example `parent` string specifies a parent project with the
+     * identifier `example-project`, and specifies the `europe-west3` location
+     * for processing data:
+     *
+     *     parent=projects/example-project/locations/europe-west3
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type string $pageToken
      *          A page token is used to specify a page of values to be returned.
@@ -2544,7 +2630,6 @@ class DlpServiceGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listJobTriggers($parent, array $optionalArgs = [])
     {
@@ -2609,7 +2694,6 @@ class DlpServiceGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function deleteJobTrigger($name, array $optionalArgs = [])
     {
@@ -2651,11 +2735,23 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Parent resource name.
-     *                             - Format:projects/[PROJECT-ID]
-     *                             - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $parent Required. Parent resource name.
+     *
+     * The format of this value varies depending on whether you have [specified a
+     * processing location](https://cloud.google.com/dlp/docs/specifying-location):
+     *
+     * + Projects scope, location specified:<br/>
+     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * + Projects scope, no location specified (defaults to global):<br/>
+     *   `projects/`<var>PROJECT_ID</var>
+     *
+     * The following example `parent` string specifies a parent project with the
+     * identifier `example-project`, and specifies the `europe-west3` location
+     * for processing data:
+     *
+     *     parent=projects/example-project/locations/europe-west3
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type InspectJobConfig $inspectJob The configuration details for an inspect
      *          job. Only one of $inspectJob and $riskJob may be provided.
@@ -2680,7 +2776,6 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\DlpJob
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function createDlpJob($parent, array $optionalArgs = [])
     {
@@ -2745,11 +2840,23 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Parent resource name.
-     *                             - Format:projects/[PROJECT-ID]
-     *                             - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $parent Required. Parent resource name.
+     *
+     * The format of this value varies depending on whether you have [specified a
+     * processing location](https://cloud.google.com/dlp/docs/specifying-location):
+     *
+     * + Projects scope, location specified:<br/>
+     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * + Projects scope, no location specified (defaults to global):<br/>
+     *   `projects/`<var>PROJECT_ID</var>
+     *
+     * The following example `parent` string specifies a parent project with the
+     * identifier `example-project`, and specifies the `europe-west3` location
+     * for processing data:
+     *
+     *     parent=projects/example-project/locations/europe-west3
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type string $filter
      *          Allows filtering.
@@ -2818,7 +2925,6 @@ class DlpServiceGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listDlpJobs($parent, array $optionalArgs = [])
     {
@@ -2888,7 +2994,6 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\DlpJob
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getDlpJob($name, array $optionalArgs = [])
     {
@@ -2940,7 +3045,6 @@ class DlpServiceGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function deleteDlpJob($name, array $optionalArgs = [])
     {
@@ -2992,7 +3096,6 @@ class DlpServiceGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function cancelDlpJob($name, array $optionalArgs = [])
     {
@@ -3031,11 +3134,26 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string               $parent       Required. Parent resource name.
-     *                                           - Format:projects/[PROJECT-ID]
-     *                                           - Format:organizations/[ORGANIZATION-ID]
-     *                                           - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
-     *                                           - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
+     * @param string $parent Required. Parent resource name.
+     *
+     * The format of this value varies depending on the scope of the request
+     * (project or organization) and whether you have [specified a processing
+     * location](https://cloud.google.com/dlp/docs/specifying-location):
+     *
+     * + Projects scope, location specified:<br/>
+     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * + Projects scope, no location specified (defaults to global):<br/>
+     *   `projects/`<var>PROJECT_ID</var>
+     * + Organizations scope, location specified:<br/>
+     *   `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * + Organizations scope, no location specified (defaults to global):<br/>
+     *   `organizations/`<var>ORG_ID</var>
+     *
+     * The following example `parent` string specifies a parent project with the
+     * identifier `example-project`, and specifies the `europe-west3` location
+     * for processing data:
+     *
+     *     parent=projects/example-project/locations/europe-west3
      * @param StoredInfoTypeConfig $config       Required. Configuration of the storedInfoType to create.
      * @param array                $optionalArgs {
      *                                           Optional.
@@ -3057,7 +3175,6 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\StoredInfoType
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function createStoredInfoType($parent, $config, array $optionalArgs = [])
     {
@@ -3125,7 +3242,6 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\StoredInfoType
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function updateStoredInfoType($name, array $optionalArgs = [])
     {
@@ -3185,7 +3301,6 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\StoredInfoType
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getStoredInfoType($name, array $optionalArgs = [])
     {
@@ -3238,13 +3353,28 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Parent resource name.
-     *                             - Format:projects/[PROJECT-ID]
-     *                             - Format:organizations/[ORGANIZATION-ID]
-     *                             - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
-     *                             - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $parent Required. Parent resource name.
+     *
+     * The format of this value varies depending on the scope of the request
+     * (project or organization) and whether you have [specified a processing
+     * location](https://cloud.google.com/dlp/docs/specifying-location):
+     *
+     * + Projects scope, location specified:<br/>
+     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * + Projects scope, no location specified (defaults to global):<br/>
+     *   `projects/`<var>PROJECT_ID</var>
+     * + Organizations scope, location specified:<br/>
+     *   `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * + Organizations scope, no location specified (defaults to global):<br/>
+     *   `organizations/`<var>ORG_ID</var>
+     *
+     * The following example `parent` string specifies a parent project with the
+     * identifier `example-project`, and specifies the `europe-west3` location
+     * for processing data:
+     *
+     *     parent=projects/example-project/locations/europe-west3
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type string $pageToken
      *          A page token is used to specify a page of values to be returned.
@@ -3282,7 +3412,6 @@ class DlpServiceGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listStoredInfoTypes($parent, array $optionalArgs = [])
     {
@@ -3346,7 +3475,6 @@ class DlpServiceGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function deleteStoredInfoType($name, array $optionalArgs = [])
     {
@@ -3404,7 +3532,6 @@ class DlpServiceGapicClient
      * @return \Google\Cloud\Dlp\V2\HybridInspectResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function hybridInspectDlpJob($name, array $optionalArgs = [])
     {
@@ -3459,7 +3586,6 @@ class DlpServiceGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function finishDlpJob($name, array $optionalArgs = [])
     {

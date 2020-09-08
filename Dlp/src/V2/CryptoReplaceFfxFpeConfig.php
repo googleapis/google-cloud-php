@@ -113,6 +113,9 @@ class CryptoReplaceFfxFpeConfig extends \Google\Protobuf\Internal\Message
      *           Number of characters must be in the range [2, 95].
      *           This must be encoded as ASCII.
      *           The order of characters does not matter.
+     *           The full list of allowed characters is:
+     *           <code>0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
+     *           ~`!&#64;#$%^&*()_-+={[}]|\:;"'<,>.?/</code>
      *     @type int $radix
      *           The native way to select the alphabet. Must be in the range [2, 95].
      *     @type \Google\Cloud\Dlp\V2\InfoType $surrogate_info_type
@@ -282,6 +285,9 @@ class CryptoReplaceFfxFpeConfig extends \Google\Protobuf\Internal\Message
      * Number of characters must be in the range [2, 95].
      * This must be encoded as ASCII.
      * The order of characters does not matter.
+     * The full list of allowed characters is:
+     * <code>0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
+     * ~`!&#64;#$%^&*()_-+={[}]|\:;"'<,>.?/</code>
      *
      * Generated from protobuf field <code>string custom_alphabet = 5;</code>
      * @return string
@@ -304,6 +310,9 @@ class CryptoReplaceFfxFpeConfig extends \Google\Protobuf\Internal\Message
      * Number of characters must be in the range [2, 95].
      * This must be encoded as ASCII.
      * The order of characters does not matter.
+     * The full list of allowed characters is:
+     * <code>0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
+     * ~`!&#64;#$%^&*()_-+={[}]|\:;"'<,>.?/</code>
      *
      * Generated from protobuf field <code>string custom_alphabet = 5;</code>
      * @param string $var

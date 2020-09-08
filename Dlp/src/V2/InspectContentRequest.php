@@ -17,8 +17,16 @@ class InspectContentRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Parent resource name.
-     * - Format:projects/[PROJECT-ID]
-     * - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     * The format of this value varies depending on whether you have [specified a
+     * processing location](https://cloud.google.com/dlp/docs/specifying-location):
+     * + Projects scope, location specified:<br/>
+     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * + Projects scope, no location specified (defaults to global):<br/>
+     *   `projects/`<var>PROJECT_ID</var>
+     * The following example `parent` string specifies a parent project with the
+     * identifier `example-project`, and specifies the `europe-west3` location
+     * for processing data:
+     *     parent=projects/example-project/locations/europe-west3
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      */
@@ -61,8 +69,16 @@ class InspectContentRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Parent resource name.
-     *           - Format:projects/[PROJECT-ID]
-     *           - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *           The format of this value varies depending on whether you have [specified a
+     *           processing location](https://cloud.google.com/dlp/docs/specifying-location):
+     *           + Projects scope, location specified:<br/>
+     *             `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     *           + Projects scope, no location specified (defaults to global):<br/>
+     *             `projects/`<var>PROJECT_ID</var>
+     *           The following example `parent` string specifies a parent project with the
+     *           identifier `example-project`, and specifies the `europe-west3` location
+     *           for processing data:
+     *               parent=projects/example-project/locations/europe-west3
      *     @type \Google\Cloud\Dlp\V2\InspectConfig $inspect_config
      *           Configuration for the inspector. What specified here will override
      *           the template referenced by the inspect_template_name argument.
@@ -85,8 +101,16 @@ class InspectContentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Parent resource name.
-     * - Format:projects/[PROJECT-ID]
-     * - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     * The format of this value varies depending on whether you have [specified a
+     * processing location](https://cloud.google.com/dlp/docs/specifying-location):
+     * + Projects scope, location specified:<br/>
+     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * + Projects scope, no location specified (defaults to global):<br/>
+     *   `projects/`<var>PROJECT_ID</var>
+     * The following example `parent` string specifies a parent project with the
+     * identifier `example-project`, and specifies the `europe-west3` location
+     * for processing data:
+     *     parent=projects/example-project/locations/europe-west3
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -98,8 +122,16 @@ class InspectContentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Parent resource name.
-     * - Format:projects/[PROJECT-ID]
-     * - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     * The format of this value varies depending on whether you have [specified a
+     * processing location](https://cloud.google.com/dlp/docs/specifying-location):
+     * + Projects scope, location specified:<br/>
+     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * + Projects scope, no location specified (defaults to global):<br/>
+     *   `projects/`<var>PROJECT_ID</var>
+     * The following example `parent` string specifies a parent project with the
+     * identifier `example-project`, and specifies the `europe-west3` location
+     * for processing data:
+     *     parent=projects/example-project/locations/europe-west3
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var

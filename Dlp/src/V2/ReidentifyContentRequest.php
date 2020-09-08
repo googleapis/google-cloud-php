@@ -16,9 +16,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class ReidentifyContentRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent resource name.
-     * - Format:projects/[PROJECT-ID]
-     * - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     * Required. Parent resource name.
+     * The format of this value varies depending on whether you have [specified a
+     * processing location](https://cloud.google.com/dlp/docs/specifying-location):
+     * + Projects scope, location specified:<br/>
+     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * + Projects scope, no location specified (defaults to global):<br/>
+     *   `projects/`<var>PROJECT_ID</var>
+     * The following example `parent` string specifies a parent project with the
+     * identifier `example-project`, and specifies the `europe-west3` location
+     * for processing data:
+     *     parent=projects/example-project/locations/europe-west3
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -62,10 +70,11 @@ class ReidentifyContentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Template to use. References an instance of `DeidentifyTemplate`.
      * Any configuration directly specified in `reidentify_config` or
-     * `inspect_config` will override those set in the template. Singular fields
-     * that are set in this request will replace their corresponding fields in the
-     * template. Repeated fields are appended. Singular sub-messages and groups
-     * are recursively merged.
+     * `inspect_config` will override those set in the template. The
+     * `DeidentifyTemplate` used must include only reversible transformations.
+     * Singular fields that are set in this request will replace their
+     * corresponding fields in the template. Repeated fields are appended.
+     * Singular sub-messages and groups are recursively merged.
      *
      * Generated from protobuf field <code>string reidentify_template_name = 6;</code>
      */
@@ -84,9 +93,17 @@ class ReidentifyContentRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent resource name.
-     *           - Format:projects/[PROJECT-ID]
-     *           - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *           Required. Parent resource name.
+     *           The format of this value varies depending on whether you have [specified a
+     *           processing location](https://cloud.google.com/dlp/docs/specifying-location):
+     *           + Projects scope, location specified:<br/>
+     *             `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     *           + Projects scope, no location specified (defaults to global):<br/>
+     *             `projects/`<var>PROJECT_ID</var>
+     *           The following example `parent` string specifies a parent project with the
+     *           identifier `example-project`, and specifies the `europe-west3` location
+     *           for processing data:
+     *               parent=projects/example-project/locations/europe-west3
      *     @type \Google\Cloud\Dlp\V2\DeidentifyConfig $reidentify_config
      *           Configuration for the re-identification of the content item.
      *           This field shares the same proto message type that is used for
@@ -110,10 +127,11 @@ class ReidentifyContentRequest extends \Google\Protobuf\Internal\Message
      *     @type string $reidentify_template_name
      *           Template to use. References an instance of `DeidentifyTemplate`.
      *           Any configuration directly specified in `reidentify_config` or
-     *           `inspect_config` will override those set in the template. Singular fields
-     *           that are set in this request will replace their corresponding fields in the
-     *           template. Repeated fields are appended. Singular sub-messages and groups
-     *           are recursively merged.
+     *           `inspect_config` will override those set in the template. The
+     *           `DeidentifyTemplate` used must include only reversible transformations.
+     *           Singular fields that are set in this request will replace their
+     *           corresponding fields in the template. Repeated fields are appended.
+     *           Singular sub-messages and groups are recursively merged.
      *     @type string $location_id
      *           Deprecated. This field has no effect.
      * }
@@ -124,9 +142,17 @@ class ReidentifyContentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource name.
-     * - Format:projects/[PROJECT-ID]
-     * - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     * Required. Parent resource name.
+     * The format of this value varies depending on whether you have [specified a
+     * processing location](https://cloud.google.com/dlp/docs/specifying-location):
+     * + Projects scope, location specified:<br/>
+     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * + Projects scope, no location specified (defaults to global):<br/>
+     *   `projects/`<var>PROJECT_ID</var>
+     * The following example `parent` string specifies a parent project with the
+     * identifier `example-project`, and specifies the `europe-west3` location
+     * for processing data:
+     *     parent=projects/example-project/locations/europe-west3
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -137,9 +163,17 @@ class ReidentifyContentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource name.
-     * - Format:projects/[PROJECT-ID]
-     * - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     * Required. Parent resource name.
+     * The format of this value varies depending on whether you have [specified a
+     * processing location](https://cloud.google.com/dlp/docs/specifying-location):
+     * + Projects scope, location specified:<br/>
+     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * + Projects scope, no location specified (defaults to global):<br/>
+     *   `projects/`<var>PROJECT_ID</var>
+     * The following example `parent` string specifies a parent project with the
+     * identifier `example-project`, and specifies the `europe-west3` location
+     * for processing data:
+     *     parent=projects/example-project/locations/europe-west3
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -314,10 +348,11 @@ class ReidentifyContentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Template to use. References an instance of `DeidentifyTemplate`.
      * Any configuration directly specified in `reidentify_config` or
-     * `inspect_config` will override those set in the template. Singular fields
-     * that are set in this request will replace their corresponding fields in the
-     * template. Repeated fields are appended. Singular sub-messages and groups
-     * are recursively merged.
+     * `inspect_config` will override those set in the template. The
+     * `DeidentifyTemplate` used must include only reversible transformations.
+     * Singular fields that are set in this request will replace their
+     * corresponding fields in the template. Repeated fields are appended.
+     * Singular sub-messages and groups are recursively merged.
      *
      * Generated from protobuf field <code>string reidentify_template_name = 6;</code>
      * @return string
@@ -330,10 +365,11 @@ class ReidentifyContentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Template to use. References an instance of `DeidentifyTemplate`.
      * Any configuration directly specified in `reidentify_config` or
-     * `inspect_config` will override those set in the template. Singular fields
-     * that are set in this request will replace their corresponding fields in the
-     * template. Repeated fields are appended. Singular sub-messages and groups
-     * are recursively merged.
+     * `inspect_config` will override those set in the template. The
+     * `DeidentifyTemplate` used must include only reversible transformations.
+     * Singular fields that are set in this request will replace their
+     * corresponding fields in the template. Repeated fields are appended.
+     * Singular sub-messages and groups are recursively merged.
      *
      * Generated from protobuf field <code>string reidentify_template_name = 6;</code>
      * @param string $var

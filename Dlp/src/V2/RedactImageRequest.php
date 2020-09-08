@@ -17,9 +17,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class RedactImageRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The parent resource name.
-     * - Format:projects/[PROJECT-ID]
-     * - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     * Parent resource name.
+     * The format of this value varies depending on whether you have [specified a
+     * processing location](https://cloud.google.com/dlp/docs/specifying-location):
+     * + Projects scope, location specified:<br/>
+     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * + Projects scope, no location specified (defaults to global):<br/>
+     *   `projects/`<var>PROJECT_ID</var>
+     * The following example `parent` string specifies a parent project with the
+     * identifier `example-project`, and specifies the `europe-west3` location
+     * for processing data:
+     *     parent=projects/example-project/locations/europe-west3
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      */
@@ -63,9 +71,17 @@ class RedactImageRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The parent resource name.
-     *           - Format:projects/[PROJECT-ID]
-     *           - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *           Parent resource name.
+     *           The format of this value varies depending on whether you have [specified a
+     *           processing location](https://cloud.google.com/dlp/docs/specifying-location):
+     *           + Projects scope, location specified:<br/>
+     *             `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     *           + Projects scope, no location specified (defaults to global):<br/>
+     *             `projects/`<var>PROJECT_ID</var>
+     *           The following example `parent` string specifies a parent project with the
+     *           identifier `example-project`, and specifies the `europe-west3` location
+     *           for processing data:
+     *               parent=projects/example-project/locations/europe-west3
      *     @type string $location_id
      *           Deprecated. This field has no effect.
      *     @type \Google\Cloud\Dlp\V2\InspectConfig $inspect_config
@@ -85,9 +101,17 @@ class RedactImageRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The parent resource name.
-     * - Format:projects/[PROJECT-ID]
-     * - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     * Parent resource name.
+     * The format of this value varies depending on whether you have [specified a
+     * processing location](https://cloud.google.com/dlp/docs/specifying-location):
+     * + Projects scope, location specified:<br/>
+     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * + Projects scope, no location specified (defaults to global):<br/>
+     *   `projects/`<var>PROJECT_ID</var>
+     * The following example `parent` string specifies a parent project with the
+     * identifier `example-project`, and specifies the `europe-west3` location
+     * for processing data:
+     *     parent=projects/example-project/locations/europe-west3
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -98,9 +122,17 @@ class RedactImageRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The parent resource name.
-     * - Format:projects/[PROJECT-ID]
-     * - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     * Parent resource name.
+     * The format of this value varies depending on whether you have [specified a
+     * processing location](https://cloud.google.com/dlp/docs/specifying-location):
+     * + Projects scope, location specified:<br/>
+     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * + Projects scope, no location specified (defaults to global):<br/>
+     *   `projects/`<var>PROJECT_ID</var>
+     * The following example `parent` string specifies a parent project with the
+     * identifier `example-project`, and specifies the `europe-west3` location
+     * for processing data:
+     *     parent=projects/example-project/locations/europe-west3
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var
