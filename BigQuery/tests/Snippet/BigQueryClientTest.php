@@ -20,9 +20,12 @@ namespace Google\Cloud\BigQuery\Tests\Snippet;
 use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\BigQuery\Bytes;
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
+use Google\Cloud\BigQuery\CopyJobConfiguration;
 use Google\Cloud\BigQuery\Dataset;
 use Google\Cloud\BigQuery\Date;
+use Google\Cloud\BigQuery\ExtractJobConfiguration;
 use Google\Cloud\BigQuery\Job;
+use Google\Cloud\BigQuery\LoadJobConfiguration;
 use Google\Cloud\BigQuery\Numeric;
 use Google\Cloud\BigQuery\QueryJobConfiguration;
 use Google\Cloud\BigQuery\QueryResults;
@@ -33,6 +36,8 @@ use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
+use Google\Cloud\Storage\Connection\Rest as StorageConnection;
+use Google\Cloud\Storage\StorageClient;
 use Prophecy\Argument;
 
 /**
@@ -443,6 +448,96 @@ class BigQueryClientTest extends SnippetTestCase
         $res = $snippet->invoke('serviceAccount');
 
         $this->assertEquals($expectedEmail, $res->returnVal());
+    }
+
+    public function testCopyTable()
+    {
+        $snippet = $this->snippetFromMethod(BigQueryClient::class, 'copyTable');
+        $snippet->addLocal('bigQuery', $this->client);
+        $this->client->___setProperty('connection', $this->connection->reveal());
+        $config = $snippet->invoke('copyJobConfig')->returnVal();
+        $this->assertInstanceOf(CopyJobConfiguration::class, $config);
+        $this->assertEquals(
+            [
+                'destinationTable' => [
+                    'projectId' => self::PROJECT_ID,
+                    'datasetId' => 'myDataset',
+                    'tableId' => 'myDestinationTable',
+                ],
+                'sourceTable' => [
+                    'projectId' => 'bigquery-public-data',
+                    'datasetId' => 'samples',
+                    'tableId' => 'shakespeare',
+                ]
+            ],
+            $config->toArray()['configuration']['copy']
+        );
+    }
+
+    public function testExtractTable()
+    {
+        $snippet = $this->snippetFromMethod(BigQueryClient::class, 'extractTable');
+        $snippet->addLocal('bigQuery', $this->client);
+        $snippet->addLocal('table', $this->client->dataset('myDataset')->table('myTable'));
+        $this->client->___setProperty('connection', $this->connection->reveal());
+        $config = $snippet->invoke('extractJobConfig')->returnVal();
+        $this->assertInstanceOf(ExtractJobConfiguration::class, $config);
+        $this->assertEquals(
+            [
+                'destinationUris' => ['gs://myBucket/tableOutput'],
+                'sourceTable' => [
+                    'projectId' => self::PROJECT_ID,
+                    'datasetId' => 'myDataset',
+                    'tableId' => 'myTable',
+                ]
+            ],
+            $config->toArray()['configuration']['extract']
+        );
+    }
+
+    public function testLoadTable()
+    {
+        $snippet = $this->snippetFromMethod(BigQueryClient::class, 'loadTable');
+        $snippet->addLocal('bigQuery', $this->client);
+        $snippet->addLocal('table', $this->client->dataset('myDataset')->table('myTable'));
+        $snippet->replace('fopen(\'/path/to/my/data.csv\', \'r\')', '123');
+        $this->client->___setProperty('connection', $this->connection->reveal());
+        $config = $snippet->invoke('loadJobConfig')->returnVal();
+        $this->assertInstanceOf(LoadJobConfiguration::class, $config);
+        $this->assertEquals(
+            [
+                'destinationTable' => [
+                    'projectId' => self::PROJECT_ID,
+                    'datasetId' => 'myDataset',
+                    'tableId' => 'myTable',
+                ]
+            ],
+            $config->toArray()['configuration']['load']
+        );
+    }
+
+    public function testLoadTableFromStorage()
+    {
+        $snippet = $this->snippetFromMethod(BigQueryClient::class, 'loadTableFromStorage');
+        $storage = TestHelpers::stub(StorageClient::class);
+        $storage->___setProperty('connection', $this->prophesize(StorageConnection::class)->reveal());
+        $snippet->addLocal('bigQuery', $this->client);
+        $snippet->addLocal('storage', $storage);
+        $snippet->addLocal('table', $this->client->dataset('myDataset')->table('myTable'));
+        $this->client->___setProperty('connection', $this->connection->reveal());
+        $config = $snippet->invoke('loadJobConfig')->returnVal();
+        $this->assertInstanceOf(LoadJobConfiguration::class, $config);
+        $this->assertEquals(
+            [
+                'sourceUris' => ['gs://myBucket/important-data.csv'],
+                'destinationTable' => [
+                    'projectId' => self::PROJECT_ID,
+                    'datasetId' => 'myDataset',
+                    'tableId' => 'myTable',
+                ]
+            ],
+            $config->toArray()['configuration']['load']
+        );
     }
 }
 
