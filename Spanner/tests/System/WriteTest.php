@@ -39,6 +39,7 @@ class WriteTest extends SpannerTestCase
 
     public static function setupBeforeClass()
     {
+        self::skipEmulatorTests();
         parent::setUpBeforeClass();
 
         self::$database->updateDdlBatch([

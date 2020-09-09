@@ -250,6 +250,7 @@ class QueryTest extends SpannerTestCase
 
     public function testBindNumericParameter()
     {
+        $this->skipEmulatorTests();
         $db = self::$database;
 
         $str = '0.987654321';
@@ -268,6 +269,7 @@ class QueryTest extends SpannerTestCase
 
     public function testBindNumericParameterNull()
     {
+        $this->skipEmulatorTests();
         $db = self::$database;
 
         $res = $db->execute('SELECT @param as foo', [
@@ -416,6 +418,10 @@ class QueryTest extends SpannerTestCase
      */
     public function testBindArrayOfType($value, $result = null, $resultType = null, callable $filter = null)
     {
+        if ($resultType == Numeric::class) {
+            $this->skipEmulatorTests();
+        }
+
         if (!$filter) {
             $filter = function ($val) {
                 return $val;
@@ -451,6 +457,10 @@ class QueryTest extends SpannerTestCase
      */
     public function testBindEmptyArrayOfTypeLegacy($type)
     {
+        if ($type == Database::TYPE_NUMERIC) {
+            $this->skipEmulatorTests();
+        }
+
         $db = self::$database;
 
         $res = $db->execute('SELECT @param as foo', [
@@ -478,6 +488,9 @@ class QueryTest extends SpannerTestCase
      */
     public function testBindEmptyArrayOfType($type)
     {
+        if ($type == Database::TYPE_NUMERIC) {
+            $this->skipEmulatorTests();
+        }
         $db = self::$database;
 
         $res = $db->execute('SELECT @param as foo', [
@@ -506,6 +519,10 @@ class QueryTest extends SpannerTestCase
      */
     public function testBindNullArrayOfTypeLegacy($type)
     {
+        if ($type == Database::TYPE_NUMERIC) {
+            $this->skipEmulatorTests();
+        }
+
         $db = self::$database;
 
         $res = $db->execute('SELECT @param as foo', [
@@ -534,6 +551,10 @@ class QueryTest extends SpannerTestCase
      */
     public function testBindNullArrayOfType($type)
     {
+        if ($type == Database::TYPE_NUMERIC) {
+            $this->skipEmulatorTests();
+        }
+
         $db = self::$database;
 
         $res = $db->execute('SELECT @param as foo', [
