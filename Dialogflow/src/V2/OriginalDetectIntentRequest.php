@@ -41,9 +41,9 @@ class OriginalDetectIntentRequest extends \Google\Protobuf\Internal\Message
      *    "caller_id": "+18558363987"
      *  }
      * }</pre>
-     * Note: The caller ID field (`caller_id`) will be redacted for Standard
+     * Note: The caller ID field (`caller_id`) will be redacted for Trial
      * Edition agents and populated with the caller ID in [E.164
-     * format](https://en.wikipedia.org/wiki/E.164) for Enterprise Edition agents.
+     * format](https://en.wikipedia.org/wiki/E.164) for Essentials Edition agents.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct payload = 3;</code>
      */
@@ -72,9 +72,9 @@ class OriginalDetectIntentRequest extends \Google\Protobuf\Internal\Message
      *              "caller_id": "+18558363987"
      *            }
      *           }</pre>
-     *           Note: The caller ID field (`caller_id`) will be redacted for Standard
+     *           Note: The caller ID field (`caller_id`) will be redacted for Trial
      *           Edition agents and populated with the caller ID in [E.164
-     *           format](https://en.wikipedia.org/wiki/E.164) for Enterprise Edition agents.
+     *           format](https://en.wikipedia.org/wiki/E.164) for Essentials Edition agents.
      * }
      */
     public function __construct($data = NULL) {
@@ -149,9 +149,9 @@ class OriginalDetectIntentRequest extends \Google\Protobuf\Internal\Message
      *    "caller_id": "+18558363987"
      *  }
      * }</pre>
-     * Note: The caller ID field (`caller_id`) will be redacted for Standard
+     * Note: The caller ID field (`caller_id`) will be redacted for Trial
      * Edition agents and populated with the caller ID in [E.164
-     * format](https://en.wikipedia.org/wiki/E.164) for Enterprise Edition agents.
+     * format](https://en.wikipedia.org/wiki/E.164) for Essentials Edition agents.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct payload = 3;</code>
      * @return \Google\Protobuf\Struct
@@ -182,9 +182,9 @@ class OriginalDetectIntentRequest extends \Google\Protobuf\Internal\Message
      *    "caller_id": "+18558363987"
      *  }
      * }</pre>
-     * Note: The caller ID field (`caller_id`) will be redacted for Standard
+     * Note: The caller ID field (`caller_id`) will be redacted for Trial
      * Edition agents and populated with the caller ID in [E.164
-     * format](https://en.wikipedia.org/wiki/E.164) for Enterprise Edition agents.
+     * format](https://en.wikipedia.org/wiki/E.164) for Essentials Edition agents.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct payload = 3;</code>
      * @param \Google\Protobuf\Struct $var
