@@ -13,3 +13,5 @@
 /Datastore/     @googleapis/firestore-dpe @googleapis/yoshi-php
 /Firestore/     @googleapis/firestore-dpe @googleapis/yoshi-php
 /Storage/       @googleapis/storage-dpe @googleapis/yoshi-php
+/BigQuery*/.    @googleapis/api-bigquery @googleapis/yoshi-php
+/PubSub/        @googleapis/api-pubsub @googleapis/yoshi-php
