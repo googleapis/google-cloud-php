@@ -709,6 +709,47 @@ class GapicClientTraitTest extends TestCase
         $client->set('credentialsWrapper', $credentialsWrapper);
         $this->assertEquals($credentialsWrapper, $client->call('getCredentialsWrapper'));
     }
+
+    public function testUserProjectHeaderIsSetWhenProvidingQuotaProject()
+    {
+        $quotaProject = 'test-quota-project';
+        $credentialsWrapper = $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $credentialsWrapper->expects($this->once())
+            ->method('getQuotaProject')
+            ->willReturn($quotaProject);
+        $transport = $this->getMock(TransportInterface::class);
+        $transport->expects($this->once())
+            ->method('startUnaryCall')
+            ->with(
+                $this->isInstanceOf(Call::class),
+                $this->equalTo([
+                    'headers' => AgentHeader::buildAgentHeader([]) + [
+                        'X-Goog-User-Project' => [$quotaProject]
+                    ],
+                    'credentialsWrapper' => $credentialsWrapper
+                ])
+            );
+        $client = new GapicClientTraitStub();
+        $updatedOptions = $client->call('buildClientOptions', [
+            [
+                'transport' => $transport,
+                'credentials' => $credentialsWrapper,
+            ]
+        ]);
+        $client->call('setClientOptions', [$updatedOptions]);
+        $client->set('retrySettings', [
+            'method' => $this->getMockBuilder(RetrySettings::class)
+                ->disableOriginalConstructor()
+                ->getMock()
+            ]
+        );
+        $client->call('startCall', [
+            'method',
+            'decodeType'
+        ]);
+    }
 }
 
 class GapicClientTraitStub
