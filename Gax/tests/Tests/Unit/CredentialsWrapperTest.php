@@ -47,20 +47,26 @@ use Prophecy\Argument;
 class CredentialsWrapperTest extends TestCase
 {
     /**
-     * @dataProvider buildData
+     * @dataProvider buildDataWithoutExplicitKeyFile
      */
-    public function testBuild($args, $expectedCredentialsWrapper)
+    public function testBuildWithoutExplicitKeyFile($args, $expectedCredentialsWrapper)
+    {
+        putenv('GOOGLE_APPLICATION_CREDENTIALS=' . __DIR__ . '/testdata/json-key-file.json');
+        $actualCredentialsWrapper = CredentialsWrapper::build($args);
+        $this->assertEquals($expectedCredentialsWrapper, $actualCredentialsWrapper);
+        putenv('GOOGLE_APPLICATION_CREDENTIALS');
+    }
+
+    /**
+     * @dataProvider buildDataWithKeyFile
+     */
+    public function testBuildWithKeyFile($args, $expectedCredentialsWrapper)
     {
         $actualCredentialsWrapper = CredentialsWrapper::build($args);
         $this->assertEquals($expectedCredentialsWrapper, $actualCredentialsWrapper);
     }
 
-    public function buildData()
-    {
-        return $this->buildDataWithoutKeyFile() + $this->buildDataWithKeyFile();
-    }
-
-    private function buildDataWithoutKeyFile()
+    public function buildDataWithoutExplicitKeyFile()
     {
         $scopes = ['myscope'];
         $defaultAuthHttpHandler = HttpHandlerFactory::build();
@@ -71,7 +77,10 @@ class CredentialsWrapperTest extends TestCase
         $defaultAuthCache = new MemoryCacheItemPool();
         $authCache = new SysVCacheItemPool();
         $authCacheOptions = ['lifetime' => 600];
-        return [
+        $quotaProject = 'my-quota-project';
+        putenv('GOOGLE_APPLICATION_CREDENTIALS=' . __DIR__ . '/testdata/json-key-file.json');
+
+        $testData = [
             [
                 [],
                 new CredentialsWrapper(ApplicationDefaultCredentials::getCredentials(null, $defaultAuthHttpHandler, null, $defaultAuthCache), $defaultAuthHttpHandler),
@@ -96,10 +105,17 @@ class CredentialsWrapperTest extends TestCase
                 ['authCache' => $authCache],
                 new CredentialsWrapper(ApplicationDefaultCredentials::getCredentials(null, $defaultAuthHttpHandler, null, $authCache), $defaultAuthHttpHandler),
             ],
+            [
+                ['quotaProject' => $quotaProject],
+                new CredentialsWrapper(ApplicationDefaultCredentials::getCredentials(null, $defaultAuthHttpHandler, null, $defaultAuthCache, $quotaProject), $defaultAuthHttpHandler),
+            ],
         ];
+        putenv('GOOGLE_APPLICATION_CREDENTIALS');
+
+        return $testData;
     }
 
-    private function buildDataWithKeyFile()
+    public function buildDataWithKeyFile()
     {
         $keyFilePath = __DIR__ . '/testdata/json-key-file.json';
         $keyFile = json_decode(file_get_contents($keyFilePath), true);
@@ -109,6 +125,7 @@ class CredentialsWrapperTest extends TestCase
         $defaultAuthCache = new MemoryCacheItemPool();
         $authCache = new SysVCacheItemPool();
         $authCacheOptions = ['lifetime' => 600];
+        $quotaProject = 'my-quota-project';
         return [
             [
                 ['keyFile' => $keyFile],
@@ -137,6 +154,16 @@ class CredentialsWrapperTest extends TestCase
             [
                 ['keyFile' => $keyFile, 'authCache' => $authCache],
                 $this->makeExpectedKeyFileCreds($keyFile, null, $authCache, null, null),
+            ],
+            [
+                ['keyFile' => $keyFile, 'quotaProject' => $quotaProject],
+                $this->makeExpectedKeyFileCreds(
+                    $keyFile + ['quota_project_id' => $quotaProject],
+                    null,
+                    $defaultAuthCache,
+                    null,
+                    null
+                ),
             ],
         ];
     }
